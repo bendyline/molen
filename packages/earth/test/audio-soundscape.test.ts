@@ -75,6 +75,27 @@ describe('World soundscape content and behavior', () => {
     expect([...clips.map((c) => c.id)].filter((id) => !reachable.has(id))).toEqual([]);
   });
 
+  it('loads no music track when music is off', async () => {
+    const renderer = {
+      camera: { matrixWorld: { elements: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1] } },
+      getWorldOrigin: () => [0, 0, 0],
+      sky: { frame: { daylight: 1 } },
+    };
+    const music = async (on: boolean): Promise<string[]> => {
+      const audio = await createEarthAudio(packs, renderer, { music: on });
+      for (let nowMs = 0; nowMs < 5_000; nowMs += 250)
+        audio?.update({ nowMs, mode: 'orbit', position: [0, 200, 0], location: places[0] });
+      const playing = audio?.layer.director
+        .voices()
+        .map((voice) => voice.sound)
+        .filter((sound) => sound.startsWith('music.'));
+      audio?.dispose();
+      return playing ?? [];
+    };
+    expect(await music(true)).not.toEqual([]);
+    expect(await music(false)).toEqual([]);
+  });
+
   it('changes day/night, dawn, cold, rain, regions, coasts and cabin exposure without warnings', async () => {
     const warnings: string[] = [];
     const renderer = {

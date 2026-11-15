@@ -553,7 +553,7 @@ function add407Cockpit(root, m) {
   hd.box([0.003, 0.05, 0.002], [0, -0.015, 0], hd.amber);
   hd.finish();
   bindings.push(
-    { node: h.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 },
+    { node: h.name, source: 'roll', property: 'rotation', axis: 'z', scale: -1 },
     {
       node: h.name,
       source: 'pitch',

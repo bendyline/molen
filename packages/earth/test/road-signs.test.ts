@@ -79,8 +79,8 @@ describe('Earth road-sign conventions', () => {
     expect(content.roadSigns?.catalog.profiles).toHaveLength(58);
     expect(Object.keys(content.roadSigns?.shields?.shields ?? {})).toHaveLength(50);
     expect(readJson.mock.calls.map((args) => args[0])).toEqual([
-      'signs/us-states.json',
       'signs/catalog.json',
+      'signs/us-states.json',
       'signs/route-shields.json',
       'signs/regions.atlas.json',
     ]);

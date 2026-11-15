@@ -184,6 +184,7 @@ export {
   type EarthDeviceMemory,
   type EarthPerformanceTier,
   earthAdmission,
+  earthArrivalAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,

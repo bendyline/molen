@@ -356,6 +356,37 @@ describe('earth vehicles', () => {
     expect(vehicles.trafficSolids()).toEqual([]);
     vehicles.dispose();
   });
+  it('keeps a taken traffic car on a road raised above the sampled terrain', async () => {
+    vi.useFakeTimers({ toFake: ['performance'] });
+    // A road on a fill 1.5 m above the terrain sample, past the 0.65 m a support ray starts
+    // above the sample: settling read from there put the car under the road.
+    const root = new THREE.Group();
+    const road = new THREE.Mesh(new THREE.PlaneGeometry(100, 100).rotateX(-Math.PI / 2));
+    road.position.set(1000, 1.5, 2020);
+    root.add(road);
+    const vehicles = new EarthVehicles({
+      root,
+      sampleHeight: () => 0,
+      loadModel: async () => new THREE.Group(),
+      types: ENTITY_TYPES,
+    });
+    try {
+      const [x, y, z] = traffic(vehicles);
+      vehicles.world.patch(TRAFFIC, Transform, { pos: [1000, 1.5, 2020] });
+      const walker: [number, number, number] = [x, y + 1.5, z];
+      expect(vehicles.openDoor(walker)).toBe(true);
+      const car = vehicles.nearest(walker) as string;
+      expect(car).not.toBe(TRAFFIC);
+      for (let i = 0; i < 4; i++) {
+        vi.advanceTimersByTime(250);
+        vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
+        expect(vehicles.world.get(car, Transform)?.pos[1]).toBeCloseTo(1.5, 3);
+      }
+    } finally {
+      vehicles.dispose();
+      vi.useRealTimers();
+    }
+  });
   it('returns a taken car nobody drove to traffic out of model range, and leaves a driven one parked', async () => {
     const { vehicles } = setup();
     const walker = traffic(vehicles);

@@ -1093,6 +1093,18 @@ export function footprintCovers(
   polygon: TerrainSemanticPolygon,
   context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
 ): boolean {
+  // Every sample lies within the polygon's bounds, so bounds clear of the grid cannot be half
+  // covered. Checked first: a dense town tile tested thousands of polygons against each
+  // landmark's footprint, 64 point-in-polygon samples apiece, on the main thread.
+  const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+  const extent = footprint.size * footprint.cell;
+  if (
+    context.origin[0] + maxU * context.tileSize < footprint.minX ||
+    context.origin[0] + minU * context.tileSize >= footprint.minX + extent ||
+    context.origin[1] + maxV * context.tileSize < footprint.minZ ||
+    context.origin[1] + minV * context.tileSize >= footprint.minZ + extent
+  )
+    return false;
   return halfOccupied(polygon, ([u, v]) => {
     const x = Math.floor(
       (context.origin[0] + u * context.tileSize - footprint.minX) / footprint.cell,

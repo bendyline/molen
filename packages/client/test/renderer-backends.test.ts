@@ -696,6 +696,47 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('reports a software rasterizer from the WebGL renderer string or the WebGPU adapter', async () => {
+    // Hidden renderer strings (no debug extension) read as hardware.
+    const hidden = await Renderer.create({ backend: 'webgl' });
+    expect(hidden.softwareRasterizer).toBe(false);
+    hidden.dispose();
+    const UNMASKED_RENDERER_WEBGL = 0x9246;
+    const context = (name: string) => ({
+      ...gl,
+      RENDERER: 0x1f01,
+      getExtension: vi.fn(() => ({ UNMASKED_RENDERER_WEBGL })),
+      getParameter: vi.fn((parameter: number) =>
+        parameter === UNMASKED_RENDERER_WEBGL ? name : 'WebKit WebGL',
+      ),
+    });
+    webgl.getContext.mockReturnValue(
+      context('ANGLE (NVIDIA, NVIDIA GeForce RTX 4080 Direct3D11 vs_5_0 ps_5_0, D3D11)'),
+    );
+    const hardware = await Renderer.create({ backend: 'webgl' });
+    expect(hardware.softwareRasterizer).toBe(false);
+    hardware.dispose();
+    webgl.getContext.mockReturnValue(
+      context('ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero)), SwiftShader driver)'),
+    );
+    const swiftShader = await Renderer.create({ backend: 'webgl' });
+    expect(swiftShader.softwareRasterizer).toBe(true);
+    swiftShader.dispose();
+    vi.stubGlobal('navigator', {
+      gpu: { requestAdapter: async () => ({ info: { isFallbackAdapter: true } }) },
+    });
+    const fallback = await Renderer.create();
+    expect(fallback.backend).toBe('webgpu');
+    expect(fallback.softwareRasterizer).toBe(true);
+    fallback.dispose();
+    vi.stubGlobal('navigator', {
+      gpu: { requestAdapter: async () => ({ info: { vendor: 'nvidia', architecture: 'ada' } }) },
+    });
+    const gpu = await Renderer.create();
+    expect(gpu.softwareRasterizer).toBe(false);
+    gpu.dispose();
+  });
+
   // A context can advertise navigator.gpu and then never settle. Unbounded, that is a page that
   // renders nothing and reports nothing, which is worse than losing WebGPU.
   it('falls back when the adapter request never settles', async () => {

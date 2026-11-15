@@ -72,7 +72,8 @@ export function dc3Cockpit(root, m) {
     trueHeading: { op: 'modulo', args: ['northYaw', 2 * Math.PI] },
     rpm1: { op: 'multiply', args: ['engine1', 2350] },
     rpm2: { op: 'multiply', args: ['engine2', 2350] },
-    turnDegrees: { op: 'multiply', args: ['yawRate', 180 / Math.PI] },
+    // Positive turning right, so the needle leans into the turn (yawRate is positive left).
+    turnDegrees: { op: 'multiply', args: ['yawRate', -180 / Math.PI] },
     rollUp: { op: 'max', args: ['rollInput', 0] },
     rollDown: { op: 'min', args: ['rollInput', 0] },
     leftUp: { op: 'multiply', args: ['rollUp', (27 * Math.PI) / 180] },

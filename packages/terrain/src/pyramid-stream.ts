@@ -246,6 +246,8 @@ export interface TerrainPyramidStreamOptions
   maxResidentTiles: number;
   /** Soft resident height/geometry byte cap; displayed coverage is never removed to meet it. */
   maxResidentBytes?: number | undefined;
+  /** Soft cap on the bytes kept for ground the camera has left (see TerrainPyramidBudget). */
+  maxHiddenBytes?: number | undefined;
   initialView?: TerrainPyramidView;
   /**
    * Build ahead of a moving camera (on by default). The stream follows the camera's track through
@@ -502,6 +504,13 @@ export interface TerrainPyramidBudget extends TerrainPyramidSelectionOptions {
   maxResidentTiles: number;
   /** Soft cap on retained height/geometry buffers; excludes textures, source caches and GPU copies. */
   maxResidentBytes?: number | undefined;
+  /**
+   * Soft cap on the part of those buffers held by ground the camera has left (resident, but not
+   * displayed, wanted, replacing displayed ground or ahead of the camera): the warm cache that
+   * makes a return instant. Without it the warm cache fills whatever `maxResidentBytes` leaves,
+   * so a large cap, meant to show more, mostly kept more hidden.
+   */
+  maxHiddenBytes?: number | undefined;
 }
 
 export interface TerrainPyramidStreamPressure {
@@ -680,6 +689,12 @@ function requireBudget(budget: TerrainPyramidBudget): void {
     (!Number.isSafeInteger(budget.maxResidentBytes) || budget.maxResidentBytes < 1)
   ) {
     throw new Error('terrain pyramid maxResidentBytes must be a positive safe integer');
+  }
+  if (
+    budget.maxHiddenBytes !== undefined &&
+    (!Number.isSafeInteger(budget.maxHiddenBytes) || budget.maxHiddenBytes < 0)
+  ) {
+    throw new Error('terrain pyramid maxHiddenBytes must be a nonnegative safe integer');
   }
 }
 
@@ -1067,6 +1082,17 @@ const DEFAULT_FAST_DETAIL = 0.25;
  * before they hold new work back: see startQueuedLayerLoads.
  */
 const STALE_LAYER_ROOM = 2;
+/**
+ * A displayed tile with selected ground beneath it more than this many levels finer is a
+ * placeholder: it is not held on screen for its layers, and finer ground replaces it without
+ * refining one generation at a time. A first view (or a jump) shows a tile five or six levels too
+ * coarse within seconds; held for its roads and land cover, it kept a city at zoom 7 for over a
+ * minute while each generation beneath it built roads and buildings in turn. Its own detail is a
+ * few highways and a blur of land cover, so bare ground for a few seconds, then water, land cover,
+ * roads and buildings as each finishes, costs little. Refinement within this many levels (zooming,
+ * flight) keeps its atomic handoff.
+ */
+const PLACEHOLDER_LEVELS = 3;
 /** A level back in use needs this much more than `minTileSeconds`, so speed noise cannot flip it. */
 const LEVEL_LIMIT_HYSTERESIS = 1.2;
 /** How full the cache may get on tiles ahead alone, before they must replace something. */
@@ -1555,6 +1581,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(options.maxResidentBytes === undefined
         ? {}
         : { maxResidentBytes: options.maxResidentBytes }),
+      ...(options.maxHiddenBytes === undefined ? {} : { maxHiddenBytes: options.maxHiddenBytes }),
       ...(options.hysteresis === undefined ? {} : { hysteresis: options.hysteresis }),
       ...(options.peripheralDegrees === undefined
         ? {}
@@ -2927,6 +2954,18 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       for (let level = leaf.level - 1; level >= this.descriptor.minLevel; level--)
         incompleteParents.add(terrainPyramidTileKey(terrainPyramidAncestor(leaf, level)));
     }
+    // Displayed tiles standing in for ground far finer than themselves (PLACEHOLDER_LEVELS).
+    const placeholders = new Set<string>();
+    for (const leaf of this.selected.values())
+      for (const previousKey of previousDisplayed) {
+        const previous = this.resident.get(previousKey);
+        if (
+          previous !== undefined &&
+          leaf.level - previous.address.level > PLACEHOLDER_LEVELS &&
+          pyramidAddressesOverlap(previous.address, leaf)
+        )
+          placeholders.add(previousKey);
+      }
     // Tiles any layer currently displays, gathered once rather than per leaf and candidate.
     const layered = new Set<string>();
     for (const keys of this.displayedLayers.values()) for (const key of keys) layered.add(key);
@@ -2942,6 +2981,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           previous &&
           incompleteParents.has(previousKey) &&
           previous.address.level < leaf.level &&
+          !placeholders.has(previousKey) &&
           pyramidAddressesOverlap(previous.address, leaf) &&
           layered.has(previousKey) &&
           this.resident.has(
@@ -3017,6 +3057,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           // A bare ancestor has no detail to preserve. Do not pin an entire region to it
           // while new building layers finish; only wait for layers it actually displays.
           if (!this.losesVisibleLayers(previousKey, tile)) continue;
+          // Nor a placeholder for ground far finer than itself (PLACEHOLDER_LEVELS).
+          if (placeholders.has(previousKey)) continue;
           // Nor hold a coarser tile for a layer that will not arrive: it kept its whole area
           // coarse, and every finished sibling beneath it hidden, for as long as the failure
           // lasted (one land-cover tile that threw froze a neighborhood at four levels too
@@ -3647,6 +3689,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const outdatedTiles = new Set<string>();
     for (const { tileKey } of this.outdatedLayers.values()) outdatedTiles.add(tileKey);
     let live = 0;
+    // Of those, layers for tiles due to replace ground on screen (see the handoff pass).
+    let handoffLive = 0;
     for (const { layer, address } of this.pendingLayers.values()) {
       const tileKey = terrainPyramidTileKey(address);
       // Everything this pass could start work for, and the tiles a handoff still waits on.
@@ -3661,10 +3705,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       )
         continue;
       live++;
+      if (this.replacementTiles.has(tileKey) && !this.displayed.has(tileKey)) handoffLive++;
       layerCounts.set(layer.id, (layerCounts.get(layer.id) ?? 0) + 1);
     }
     const room = this.budget.maxConcurrentLayerLoads * (1 + STALE_LAYER_ROOM);
-    if (live >= this.budget.maxConcurrentLayerLoads || this.pendingLayers.size >= room) return;
+    if (this.pendingLayers.size >= room) return;
+    // A full window still starts what releases a parent already on screen (see the handoff pass).
+    const handoffOpen = handoffLive < this.budget.maxConcurrentLayerLoads;
+    if (live >= this.budget.maxConcurrentLayerLoads && !(handoffOpen && this.handoffWaiting()))
+      return;
     // Everything is judged at the view a build will finish into: a moving camera has left what
     // it sees now by then, and a tile right beneath it is about the last thing worth starting.
     const lead = this.lead;
@@ -3791,6 +3840,27 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         Number(b.layer.category === 'hydrology') - Number(a.layer.category === 'hydrology') ||
         Number(b.handoff) - Number(a.handoff),
     );
+    // The handoff pass: layers that release a parent already on screen have a window of their
+    // own, beside the one the rest share and outside the per-layer shares. Started with the view,
+    // the finest leaves' layers held every slot, and over a city each took most of a minute
+    // (buildings, road surfaces): the family that would replace the coarse first tile could not
+    // start, and nothing finer than a zoom-7 tile showed for 70-85 s. Their worker jobs already
+    // go first (`layerPriority` gives a family its parent's distance).
+    for (let index = 0; index < jobs.length; ) {
+      if (handoffLive >= this.budget.maxConcurrentLayerLoads || this.pendingLayers.size >= room)
+        break;
+      const job = jobs[index] as (typeof jobs)[number];
+      if (!job.handoff || job.ahead !== undefined) {
+        index++;
+        continue;
+      }
+      jobs.splice(index, 1);
+      layerCounts.set(job.layer.id, (layerCounts.get(job.layer.id) ?? 0) + 1);
+      this.startLayerLoad(job.tile, job.layer);
+      live++;
+      handoffLive++;
+    }
+    if (live >= this.budget.maxConcurrentLayerLoads) return;
     // Tiles ahead leave a slot free: a layer holds one for about a second, too long for ground
     // the camera turns to see to wait behind ground it has yet to reach. They also wait out a
     // backlog on the main thread: the frame queue is the scarce thing, and they are optional.
@@ -3875,6 +3945,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return priority;
   }
 
+  /** A tile due to replace ground on screen still has layers to build (see the handoff pass). */
+  private handoffWaiting(): boolean {
+    for (const key of this.replacementTiles) {
+      if (this.displayed.has(key)) continue;
+      const tile = this.resident.get(key);
+      if (tile !== undefined && !this.layersReady(tile)) return true;
+    }
+    return false;
+  }
+
   private replacesDisplayedDescendants(address: TerrainPyramidTileAddress): boolean {
     for (const key of this.displayed) {
       const displayed = this.resident.get(key)?.address;
@@ -3905,7 +3985,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.resident.size <= targetResident &&
       (this.budget.maxResidentBytes === undefined ||
         this.geometryBytes + this.decodedHeightBytes <= this.budget.maxResidentBytes);
-    if (underBudget()) {
+    // Ground the camera has left is held to its own share (maxHiddenBytes). Only it: tiles ahead,
+    // wanted or replacing what is on screen stay under the total cap alone.
+    const warmUnderCap = (): boolean =>
+      this.budget.maxHiddenBytes === undefined ||
+      this.geometryBytes + this.decodedHeightBytes - this.displayedBytes <=
+        this.budget.maxHiddenBytes;
+    if (underBudget() && warmUnderCap()) {
       this.aheadRoom = this.hasRoomAhead();
       return;
     }
@@ -3945,7 +4031,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.address.z - b.address.z,
       );
     for (const [key] of stale) {
-      if (underBudget()) break;
+      if (underBudget() && warmUnderCap()) break;
       this.evict(key);
     }
     this.aheadRoom = this.hasRoomAhead();

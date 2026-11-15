@@ -1,5 +1,6 @@
 /** Model-owned openings in rendered ground. Heights remain available for anchoring. */
 import * as THREE from 'three';
+import { isCompactAttribute } from './compact-attributes';
 
 type Point = readonly [number, number];
 export type TerrainGroundOutline = readonly Point[];
@@ -681,6 +682,26 @@ function* terrainGroundCutSteps(
   names.forEach((name, k) => {
     const size = sizes[k] as number;
     const attribute = attrs[k] as THREE.BufferAttribute;
+    // Packed bytes (compact-attributes.ts) stay packed: the source's copied as they are, the
+    // few vertices made on clipped edges packed again. As floats, a cut tile's land cover
+    // came back at its old size.
+    if (attribute instanceof THREE.BufferAttribute && isCompactAttribute(attribute)) {
+      const signed = attribute.array instanceof Int8Array;
+      const packedOutput = signed ? new Int8Array(written * size) : new Uint8Array(written * size);
+      packedOutput.set(
+        (attribute.array as Int8Array | Uint8Array).subarray(0, sourceVertices * size),
+      );
+      const extra = (added[k] as Float32Array).subarray(0, (written - sourceVertices) * size);
+      const offset = sourceVertices * size;
+      for (let i = 0; i < extra.length; i++) {
+        const value = extra[i] as number;
+        packedOutput[offset + i] = signed
+          ? Math.round(Math.max(-1, Math.min(1, value)) * 127)
+          : Math.round(Math.max(0, Math.min(1, value)) * 255);
+      }
+      result.setAttribute(name, new THREE.BufferAttribute(packedOutput, size, true));
+      return;
+    }
     const output = new Float32Array(written * size);
     const plain =
       attribute instanceof THREE.BufferAttribute &&

@@ -1449,9 +1449,12 @@ export class EarthVehicles {
       this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
       const sin = Math.sin(state.yaw);
       const cos = Math.cos(state.yaw);
+      // From the car's own height, as the kernel's step reads it. From the sampled terrain, the
+      // ray started under a road on a fill more than 0.65 m above that terrain (a lakeshore road
+      // at Low to Balanced detail) and dropped a car taken out of traffic through the road.
       const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((z) =>
         (spec.cycle ? [0, 0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]).map((x) =>
-          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z),
+          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z, t.pos[1]),
         ),
       );
       if (heights.some((height) => height === undefined)) continue;

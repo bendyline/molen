@@ -181,6 +181,7 @@ import {
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
   earthAdmission,
+  earthArrivalAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -813,7 +814,11 @@ export interface EarthView {
    */
   setWeather(weather: WeatherData | undefined): void;
   readonly weather: WeatherData | undefined;
-  /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
+  /**
+   * Stop rendering (e.g. while hidden); input and streaming pause with it. After 15 s paused (by
+   * this call, or because the page is inactive) the view releases ground the camera has left and
+   * generated buildings kept for returns; what is on screen stays, so resuming is instant.
+   */
   setPaused(paused: boolean): void;
   /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
   setAmbientEnabled(enabled: boolean): void;
@@ -854,6 +859,30 @@ const QUALITY_SETTLE_MS = 600;
 const QUALITY_HOLD_MAX_MS = 4_000;
 /** Memory pressure at which a level change applies at once, moving or not. */
 const URGENT_MEMORY_PRESSURE = 1.25;
+/**
+ * The longest a view settles, ms: from a new terrain stack or a jump until the stream first has
+ * nothing left to load, frame time does not change the level (`AdaptiveQualitySample.settling`).
+ * Arrival saturates the main thread (worker results, uploads, first shader builds), and a step
+ * then rebuilt every surface tile at the new level, so the coarse ground stayed for 30-60 s more
+ * while the workers redid it. A dense city's ground arrives in under half a minute, but its
+ * buildings stream for a minute or two more, and each step restarted them: at 30 and 60 s three
+ * steps in a row left Seattle without a building for over a minute. Memory pressure still lowers
+ * the level at any time, and a device that cannot afford it still steps down after this.
+ */
+const SETTLE_MAX_MS = 120_000;
+/**
+ * How often the soundscape is resolved while nothing can be heard (muted, or before a gesture
+ * unlocks sound), ms. Every frame it cost about 5% of the main thread while a view loaded (bird
+ * and insect levels, the street search, the director), all of it silent. Each resolution still
+ * keeps the scene current, so unmuting plays the right sounds at once.
+ */
+const SILENT_AUDIO_MS = 250;
+/**
+ * A view paused this long (ms) releases what it can rebuild: ground left behind and generated
+ * buildings kept for returns (see `setPaused`). Short enough that a view in a background tab does
+ * not crowd the one in use; long enough that a glance at another tab costs nothing.
+ */
+const RELEASE_PAUSED_MS = 15_000;
 /** Re-anchor the metric frame once the view is this far (degrees latitude) from it. */
 const REANCHOR_DEGREES = 1;
 /** Recheck a host's regional source after roughly five kilometers of manual panning. */
@@ -1050,6 +1079,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     ...(signal !== undefined ? { signal } : {}),
   });
   const renderer = viewer.renderer;
+  // A software rasterizer starts at the lowest level (see earthInitialQualityLevel).
+  if (automatic && renderer.softwareRasterizer) {
+    level = earthInitialQualityLevel({ softwareRasterizer: true });
+    tier = earthPerformanceTier(level);
+  }
   const disposers: Array<() => void> = [() => viewer.dispose()];
   disposers.push(() => {
     sourceAbort.abort();
@@ -1758,11 +1792,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     );
     let pose = orbit.update(0, input.read(0), environment);
     stack = await createStack(frameLatitude, pose);
-    disposers.push(() => stack?.dispose());
+    // Disposed, the stack is dropped too: the view's methods close over this scope, so a handle
+    // the host keeps after dispose() (a stale closure, a dev tool) would otherwise keep every
+    // tile's geometry alive (over 300 MB in a city).
+    disposers.push(() => {
+      const disposing = stack;
+      stack = undefined;
+      disposing?.dispose();
+    });
     if (signal?.aborted) throw new DOMException('Earth view mount aborted', 'AbortError');
 
     const markers: MarkerLayer = createMarkerLayer(renderer, {
       groundHeight,
+      // Ground under a pin changes only as terrain refines (a 180 ms morph); a city of pins
+      // re-reading it every frame cost the main thread while the view streamed in.
+      groundRefreshMs: 250,
       fade: { near: 25_000, far: 60_000 },
       maxVisible: 256,
       // A city of photo pins would otherwise stack into an unreadable wall toward the horizon.
@@ -3284,8 +3328,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     disposers.push(() => gpuTimer?.dispose());
     let workMs = 0;
     const admissionGovernor = createEarthAdmissionGovernor(renderer.backend);
+    /** The admission limits are the arrival budget (see `earthArrivalAdmission`). */
+    let admissionArriving = false;
     let heldLevel: number | undefined;
     let heldReason: AdaptiveQualityReason | undefined;
+    // The view's arrival (SETTLE_MAX_MS): which stack is settling, since when, and whether its
+    // stream has started loading yet (an idle stream before its first request is not settled).
+    let settleStack: EarthStack | undefined;
+    let settleSince: number | undefined;
+    let settleStarted = false;
+    let settledAt = Number.NEGATIVE_INFINITY;
     let heldSince = 0;
     let movedAt = Number.NEGATIVE_INFINITY;
     let lastPose = pose;
@@ -3528,6 +3580,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let audioStack: EarthStack | undefined;
     let audioTerrainSample: EarthAudioTerrainSample | undefined;
     let audioTerrainAt = -Infinity;
+    let audioSilentAt = Number.NEGATIVE_INFINITY;
     if (options.audio !== false && content !== undefined) {
       void createEarthAudio(content.packs, renderer, options.audio ?? {})
         .then((started) => {
@@ -3583,13 +3636,29 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const frameInput = input.read(dt);
       const workStart = performance.now();
       const gpuMs = gpuTimer?.poll();
+      // stream.stats() walks every tile's objects; per frame, only the constant-time reads.
+      const loading = current?.stream.loading();
+      const streaming = loading !== undefined && (loading.tiles > 0 || loading.layers > 0);
+      if (current !== undefined) {
+        if (settleStack !== current) {
+          settleStack = current;
+          settleSince = now;
+          settleStarted = false;
+        }
+        if (settleSince !== undefined) {
+          if (streaming) settleStarted = true;
+          if ((settleStarted && !streaming) || now - settleSince >= SETTLE_MAX_MS) {
+            settleSince = undefined;
+            settledAt = now;
+          }
+        }
+      }
       if (automatic && current !== undefined) {
-        // stream.stats() walks every tile's objects; per frame, only the constant-time reads.
-        const loading = current.stream.loading();
         const memoryPressure = current.stream.pressure().displayedBytes / memoryBudget;
         const change = controller.sample(frameMs, {
           active: !document.hidden,
-          loading: loading.tiles > 0 || loading.layers > 0,
+          loading: streaming,
+          settling: settleSince !== undefined,
           memoryPressure,
           ...(gpuTimer !== undefined && workMs > 0 ? { cpuFrameMs: workMs } : {}),
           ...(gpuMs !== undefined ? { gpuFrameMs: gpuMs } : {}),
@@ -3613,7 +3682,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         } else if (
           !calibrated &&
           heldLevel === undefined &&
-          now - levelSince >= EARTH_QUALITY_CALIBRATION_MS
+          settleSince === undefined &&
+          now - Math.max(levelSince, settledAt) >= EARTH_QUALITY_CALIBRATION_MS
         ) {
           controller = new AdaptiveQualityController({
             initialLevel: level,
@@ -3757,7 +3827,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       markers.update(pose.position);
       if (shadowsOn) renderer.setShadowFocus(shadowFocus(pose));
       viewer.setCamera({ position: pose.position, lookAt: pose.lookAt });
-      if (audio !== undefined) {
+      const audible = audio !== undefined && !audio.layer.muted && audio.layer.unlocked;
+      if (audio !== undefined && (audible || now - audioSilentAt >= SILENT_AUDIO_MS)) {
+        audioSilentAt = audible ? Number.NEGATIVE_INFINITY : now;
         if (audioStack !== current) {
           audioStack = current;
           audio.attachWorld(current?.world);
@@ -3819,7 +3891,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       frames++;
       workMs = performance.now() - workStart;
       const admission = admissionGovernor.sample(workMs, frameMs);
-      if (admission !== undefined) renderer.admission.setLimits(admission);
+      // While a view arrives the scene is mostly waiting on admitted work, so the arrival budget
+      // holds until it settles; the governor's measured choice applies again from then.
+      const arriving = settleSince !== undefined;
+      if (arriving !== admissionArriving) {
+        admissionArriving = arriving;
+        renderer.admission.setLimits(
+          arriving
+            ? earthArrivalAdmission(renderer.backend)
+            : earthAdmission(renderer.backend, admissionGovernor.spare),
+        );
+      } else if (admission !== undefined && !arriving) renderer.admission.setLimits(admission);
       if (
         Math.hypot(
           pose.position[0] - lastPose.position[0],
@@ -3855,6 +3937,37 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     };
     frameHandle = requestAnimationFrame(frame);
     disposers.push(() => cancelAnimationFrame(frameHandle));
+    // A view paused for a while (hidden by its host, or a background tab) gives back what it can
+    // rebuild: ground the camera has left and generated buildings kept for a return. What is on
+    // screen stays, so resuming shows the same view at once. A view left open in another tab held
+    // over 3 GB while doing nothing, crowding the tab the reader was using.
+    let releaseTimer: ReturnType<typeof setTimeout> | undefined;
+    let released: EarthStack | undefined;
+    const releaseMemory = (): void => {
+      releaseTimer = undefined;
+      const current = stack;
+      if (!paused || disposed || current === undefined) return;
+      released = current;
+      current.stream.setBudget({ maxHiddenBytes: 0 });
+      current.worldgen?.setCacheBudget(0);
+    };
+    const restoreMemory = (): void => {
+      if (releaseTimer !== undefined) clearTimeout(releaseTimer);
+      releaseTimer = undefined;
+      const current = released;
+      released = undefined;
+      if (current === undefined || current !== stack) return;
+      current.stream.setBudget({ maxHiddenBytes: terrainBudget().maxHiddenBytes });
+      current.worldgen?.setCacheBudget(worldgenCacheBytes());
+    };
+    disposers.push(() => {
+      if (releaseTimer !== undefined) clearTimeout(releaseTimer);
+      // The frame loop's other references to a stack go with it (see the stack's disposer),
+      // including the steps of a level change still being applied, which close over theirs.
+      released = preloadStack = settleStack = audioStack = undefined;
+      bakingFor = undefined;
+      tierSteps.length = 0;
+    });
     const updatePaused = (): void => {
       const next = manuallyPaused || inactive;
       if (next === paused || disposed) return;
@@ -3866,7 +3979,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       if (paused) {
         cancelAnimationFrame(frameHandle);
         input.map.reset();
+        releaseTimer ??= setTimeout(releaseMemory, RELEASE_PAUSED_MS);
       } else {
+        restoreMemory();
         last = performance.now();
         frameHandle = requestAnimationFrame(frame);
       }
@@ -3989,6 +4104,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       },
       jumpTo(target) {
         deferredMode = undefined;
+        // A new place arrives like a first view: hold the level until it has loaded.
+        settleSince = performance.now();
+        settleStarted = false;
         if (mode !== 'orbit') setMode('orbit', { force: true });
         orbit.set(orbitTarget(target));
         if (

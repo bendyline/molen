@@ -391,6 +391,15 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
           ...(environment !== undefined ? { environment: environment.docs } : {}),
         })
       : undefined;
+  // The renderers leave the landcover generator's lifetime to us: its workers end with the view.
+  const landcoverGenerator =
+    workers.landcover !== undefined
+      ? landcoverPool(
+          Array.from({ length: surfaceWorkers() }, () =>
+            createTerrainLandcoverWorkerBridge((workers.landcover as () => Worker)()),
+          ),
+        )
+      : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
     distantBuildings: true,
     buildingInfill: options.buildingInfill ?? true,
@@ -446,15 +455,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         }
       : {}),
     ...(options.onTileStats !== undefined ? { onTileStats: options.onTileStats } : {}),
-    ...(workers.landcover !== undefined
-      ? {
-          landcoverGenerator: landcoverPool(
-            Array.from({ length: surfaceWorkers() }, () =>
-              createTerrainLandcoverWorkerBridge((workers.landcover as () => Worker)()),
-            ),
-          ),
-        }
-      : {}),
+    ...(landcoverGenerator !== undefined ? { landcoverGenerator } : {}),
     roads: { surfaceRenderer: options.surfaceRenderer },
     ...(generator !== undefined ? { generator } : {}),
     cache: createWorldgenTileCache({ maxEntries: 512, maxBytes: 192 * 1024 * 1024 }),
@@ -474,6 +475,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       disposed = true;
       pool?.dispose();
       renderers.dispose();
+      landcoverGenerator?.dispose();
       generator?.dispose();
       routedStructures?.dispose();
       streamingStructures?.dispose();

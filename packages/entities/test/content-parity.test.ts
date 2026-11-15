@@ -20,11 +20,23 @@ import {
 const pack = await openDirPack(
   fileURLToPath(new URL('../../../content/entities', import.meta.url)),
 );
-const types = createTypeLibrary(
-  await Promise.all((pack.manifest.provides.types ?? []).map((path) => pack.readJson(path))),
+const typeDocs = await Promise.all(
+  (pack.manifest.provides.types ?? []).map((path) => pack.readJson(path)),
 );
+const types = createTypeLibrary(typeDocs);
 
 describe('entity content parity', () => {
+  it('builds the same library with structure checks, as hosts serving built packs do', () => {
+    const skipped: string[] = [];
+    const structure = createTypeLibrary(typeDocs, {
+      checks: 'structure',
+      onSkip: (message) => skipped.push(message),
+    });
+    expect(skipped).toEqual([]);
+    expect(structure.ids()).toEqual(types.ids());
+    expect(structure.hash).toBe(types.hash);
+  });
+
   // Invariants, not pinned digests: content may change freely as long as every type still
   // resolves to a placeable model of its own id. Component shapes are validated against their
   // schemas by the tooling tests, which load this pack with every component registered.

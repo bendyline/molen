@@ -17,7 +17,11 @@ import type { TerrainDescriptor } from './descriptor-types';
 import type { Heightfield } from './heightfield';
 import { buildChunkGeometry, type ChunkMeshOptions, lodStepForDistance } from './mesh';
 
-export { type CachingArchiveOpenerOptions, cachingArchiveOpener } from './archive-cache';
+export {
+  type CachingArchiveOpenerOptions,
+  CorruptTerrainArchiveError,
+  cachingArchiveOpener,
+} from './archive-cache';
 export {
   createTerrainArchiveSetArchive,
   type TerrainArchiveSetArchive,

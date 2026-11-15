@@ -77,6 +77,48 @@ describe('marker layer', () => {
     expect(sprite.center.y).toBe(0);
   });
 
+  it('reads a grounded marker’s ground again only after groundRefreshMs', () => {
+    const view = host();
+    view.look([0, 50, 200], [0, 0, 0]);
+    let now = 1000;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => now);
+    try {
+      let ground: number | undefined;
+      const reads = vi.fn(() => ground);
+      const layer = createMarkerLayer(view, { groundHeight: reads, groundRefreshMs: 250 });
+      layer.set([marker('a', 0, 0)]);
+      const sprite = layer.object.children[0] as THREE.Sprite;
+      // Not grounded yet: it asks at every update.
+      layer.update([0, 50, 200]);
+      now += 16;
+      layer.update([0, 50, 200]);
+      expect(reads).toHaveBeenCalledTimes(2);
+      ground = 5;
+      now += 16;
+      layer.update([0, 50, 200]);
+      expect(sprite.position.y).toBe(5);
+      // Grounded: the next reads wait out the interval, and the marker keeps its height meanwhile.
+      ground = 9;
+      for (let frame = 0; frame < 10; frame++) {
+        now += 16;
+        layer.update([0, 50, 200]);
+      }
+      expect(reads).toHaveBeenCalledTimes(3);
+      expect(sprite.position.y).toBe(5);
+      now += 100;
+      layer.update([0, 50, 200]);
+      expect(reads).toHaveBeenCalledTimes(4);
+      expect(sprite.position.y).toBe(9);
+      // A moved marker reads its new ground at once.
+      layer.set([marker('a', 10, 0)]);
+      now += 16;
+      layer.update([0, 50, 200]);
+      expect(reads).toHaveBeenCalledTimes(5);
+    } finally {
+      clock.mockRestore();
+    }
+  });
+
   it('draws only the budgeted nearest markers, preferring higher priority', () => {
     const view = host();
     view.look([0, 100, 0], [0, 0, -1]);

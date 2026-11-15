@@ -45,6 +45,14 @@ export interface AdaptiveQualitySample {
   /** Estimated resident working set / memory budget. Values above one lower detail. */
   memoryPressure?: number;
   /**
+   * The host's view is still arriving (a first mount, a jump to a new place): slow frames and
+   * stalls are that arrival, not the level's cost. A step now would rebuild what is half loaded at
+   * another level and start the wait again, so frame time neither lowers nor raises detail while
+   * it is set; memory pressure, and measured GPU time over twice the frame budget, still lower it. Hosts clear it once the view has loaded, or after
+   * a bound of their own, so a device that cannot afford the level still steps down afterwards.
+   */
+  settling?: boolean;
+  /**
    * The level asks for more than streaming can hold or deliver, by the host's own measure: tiles
    * rebuilt after eviction, a view that crowds its cache. Frame times do not show this (the work
    * runs outside the frame), so a level can look affordable while it never finishes loading.
@@ -127,6 +135,7 @@ export class AdaptiveQualityController {
   private overloadMs = 0;
   private headroomMs = 0;
   private loading = false;
+  private settling = false;
   private cpuTotalMs = 0;
   private cpuSamples = 0;
   private gpuTotalMs = 0;
@@ -181,7 +190,8 @@ export class AdaptiveQualityController {
       this.lastPauseMs = this.clockMs;
       this.resetMeasurements();
       this.previousPause = true;
-      if (repeated && this.level > this.minLevel) {
+      // While the view settles, a long frame is the arrival (shader builds, first uploads).
+      if (repeated && this.level > this.minLevel && sample.settling !== true) {
         this.lastPauseMs = Number.NEGATIVE_INFINITY;
         return this.change(this.level - 1, 'frame-time');
       }
@@ -197,6 +207,7 @@ export class AdaptiveQualityController {
     if (this.frames.length < 512) this.frames.push(elapsed);
     else this.frames[this.frameCursor++ % 512] = elapsed;
     this.loading ||= sample.loading === true;
+    this.settling ||= sample.settling === true;
     this.strained ||= sample.strained === true;
     if (Number.isFinite(sample.cpuFrameMs) && (sample.cpuFrameMs ?? 0) > 0) {
       this.cpuTotalMs += sample.cpuFrameMs ?? 0;
@@ -266,13 +277,12 @@ export class AdaptiveQualityController {
     const memory = this.memorySamples > 0 ? this.memoryTotal / this.memorySamples : 0;
     // GPU results often arrive for only a subset of frames. Averaging with unsampled CPU-only
     // frames would hide GPU saturation and authorize an unsafe detail upgrade.
-    const work = Math.max(
-      this.cpuSamples > 0 ? this.cpuTotalMs / this.cpuSamples : 0,
-      this.gpuSamples > 0 ? this.gpuTotalMs / this.gpuSamples : 0,
-    );
+    const gpuWork = this.gpuSamples > 0 ? this.gpuTotalMs / this.gpuSamples : 0;
+    const work = Math.max(this.cpuSamples > 0 ? this.cpuTotalMs / this.cpuSamples : 0, gpuWork);
     const measured = this.cpuSamples > 0 || this.gpuSamples > 0;
     const measuredBoth = this.cpuSamples > 0 && this.gpuSamples > 0;
     const loading = this.loading;
+    const settling = this.settling;
     const strained = this.strained;
     this.resetWindow();
     const overloaded =
@@ -281,6 +291,7 @@ export class AdaptiveQualityController {
     // RAF cadence is refresh-limited, so sustained on-target frames authorize a cautious probe.
     // Real CPU/GPU work, when supplied, must also have margin; submission time is not GPU time.
     const headroom =
+      !settling &&
       (!loading || measuredBoth) &&
       !strained &&
       memory < 0.85 &&
@@ -291,7 +302,11 @@ export class AdaptiveQualityController {
     // When the host measures its frame work and that work fits, slow frames during loading are
     // the loading itself; lower detail would only restart streaming and prolong them.
     const renderBound = !loading || !measured || work > this.targetFrameMs * 0.75;
-    this.overloadMs = overloaded && renderBound ? this.overloadMs + elapsed : 0;
+    // Settling discounts slow frames, not a GPU that measurably cannot draw the level. Arrival adds
+    // some GPU work (uploads, warm-up draws), but not twice the frame budget: that is the level.
+    const gpuBound = gpuWork > this.targetFrameMs * 2;
+    this.overloadMs =
+      overloaded && renderBound && (!settling || gpuBound) ? this.overloadMs + elapsed : 0;
     this.headroomMs = headroom ? this.headroomMs + elapsed : 0;
     this.strainMs = strained ? this.strainMs + elapsed : 0;
     if (this.warmupElapsedMs < this.warmupMs) return;
@@ -348,6 +363,7 @@ export class AdaptiveQualityController {
     this.frameCursor = 0;
     this.windowMs = 0;
     this.loading = false;
+    this.settling = false;
     this.strained = false;
     this.cpuTotalMs = 0;
     this.cpuSamples = 0;

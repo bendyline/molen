@@ -220,7 +220,10 @@ export interface EarthAudioOptions {
   /** Master volume 0–1 (default 1). */
   volume?: number;
   muted?: boolean;
-  /** Background music on (default true). */
+  /**
+   * Background music on (default true). Off, no track is loaded and the music bus is silent; a
+   * host can still raise the bus and start a playlist itself (`layer.music`).
+   */
   music?: boolean;
   /** Resume audio on the first gesture on this target (default the window). */
   unlockTarget?: EventTarget;
@@ -349,10 +352,14 @@ export async function createEarthAudio(
       })),
     ],
   };
+  const soundscape = options.environment ?? earthSoundscapeEnvironment(environment, clips);
+  // Without music its playlist is left out, so no track is fetched or decoded (one decodes to
+  // about 50 MB of samples); a silenced bus alone still loaded and played it.
+  const { music: _playlist, ...withoutMusic } = soundscape;
   const layer = createAudioLayer({
     banks,
     provider: packs.assetProvider(),
-    environment: options.environment ?? earthSoundscapeEnvironment(environment, clips),
+    environment: options.music === false ? withoutMusic : soundscape,
     renderer,
     ...(options.volume !== undefined ? { volume: options.volume } : {}),
     ...(options.muted !== undefined ? { muted: options.muted } : {}),

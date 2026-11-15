@@ -19,6 +19,20 @@ import { isAeroway, transportKind, transportWidth } from './transport-features';
 export const ROAD_PROFILE_WINDOW = 30;
 /** Meters between the stations a graded line is read at. */
 const STATION = 5;
+/**
+ * Finest rendered grid (meters between vertices) on which roads either side of a wall each keep
+ * their own vertices (see `WALL_HEIGHT`). On a coarser grid one cell spans a street and the road
+ * beside it whatever the vertex is given, and sharing it measured smoother over Seattle than
+ * handing it to either road.
+ */
+const WALL_SPACING = 8;
+/**
+ * Meters between two roads' profiles past which a vertex they both reach is not shared between
+ * them: it takes the profile of the road whose centerline is nearer, and the roads with profiles
+ * within this of that one. A rail line at the foot of a bluff and the street a few meters away on
+ * top of it otherwise pulled each other's edge vertices halfway, and both rode over the result.
+ */
+const WALL_HEIGHT = 3;
 
 /** A way to grade, in world meters: stations along its centerline and the bench it wants. */
 export interface RoadEarthworkLine {
@@ -214,7 +228,9 @@ export function clipRoadLine(
  * of its profile (`roadProfileHeight` of `reference`, read along its centerline), out to a grid
  * cell past its edge; beyond that the ground blends back to what it was. Where roads are close
  * the nearest one decides, so two streets at different heights each keep their own bench and the
- * block between them takes up the difference, as a graded city block does.
+ * block between them takes up the difference, as a graded city block does. On a fine enough grid
+ * a vertex between roads at very different heights is not shared at all: the road whose
+ * centerline is nearer keeps it, and the cell beyond it stands in for the retaining wall.
  *
  * `reference` is the natural ground as a function of world X/Z alone (the same elevation level
  * for every tile, reaching past this tile's edges), so adjacent tiles grade their shared edge
@@ -260,12 +276,11 @@ export function beginRoadEarthworks(
   const margin = spacing * 1.25;
   const blend = Math.max(8, spacing * 1.6);
   const maxChange = options.maxChange ?? 12;
+  const walls = spacing <= WALL_SPACING;
   const count = side * side;
-  const weighted = new Float64Array(count),
-    weights = new Float64Array(count),
-    influence = new Float32Array(count),
-    nearest = new Float32Array(count).fill(Number.POSITIVE_INFINITY);
-  const touched: number[] = [];
+  // Each road's claim on each vertex it reaches, weighed against the others once all are in:
+  // vertex, the road's profile there, meters beyond its edge and from its centerline, its share.
+  const claims: number[] = [];
   // One road's nearest point to each vertex, gathered before the road is weighed in.
   const stamp = new Int32Array(count).fill(-1);
   const distance = new Float32Array(count),
@@ -349,21 +364,52 @@ export function beginRoadEarthworks(
       }
     }
     for (const vertex of own) {
-      const beyond = Math.max(0, (distance[vertex] as number) - line.halfWidth);
+      const away = distance[vertex] as number;
+      const beyond = Math.max(0, away - line.halfWidth);
       const fade = Math.max(0, Math.min(1, (beyond - margin) / blend));
       const share = 1 - fade * fade * (3 - 2 * fade);
       if (share <= 0) continue;
-      // The nearest road decides: a road's own footprint is all but its own.
-      const weight = share / ((beyond + 0.75) * (beyond + 0.75));
-      if ((weights[vertex] as number) === 0) touched.push(vertex);
-      weighted[vertex] = (weighted[vertex] as number) + weight * (profile[vertex] as number);
-      weights[vertex] = (weights[vertex] as number) + weight;
-      influence[vertex] = Math.max(influence[vertex] as number, share);
-      nearest[vertex] = Math.min(nearest[vertex] as number, beyond);
+      claims.push(vertex, profile[vertex] as number, beyond, away, share);
     }
   };
   const finish = (): Heightfield => {
-    if (touched.length === 0) return heightfield;
+    if (claims.length === 0) return heightfield;
+    // Across a wall, the road whose centerline is nearest each vertex, and its profile there.
+    let owner: Float32Array | undefined, ownerHeight: Float32Array | undefined;
+    if (walls) {
+      owner = new Float32Array(count).fill(Number.POSITIVE_INFINITY);
+      ownerHeight = new Float32Array(count);
+      for (let c = 0; c < claims.length; c += 5) {
+        const vertex = claims[c] as number,
+          height = claims[c + 1] as number,
+          away = claims[c + 3] as number;
+        const best = owner[vertex] as number;
+        // Ties go to the lower road, so the answer does not depend on which road came first.
+        if (away < best || (away === best && height < (ownerHeight[vertex] as number))) {
+          owner[vertex] = away;
+          ownerHeight[vertex] = height;
+        }
+      }
+    }
+    const weighted = new Float64Array(count),
+      weights = new Float64Array(count),
+      influence = new Float32Array(count),
+      nearest = new Float32Array(count).fill(Number.POSITIVE_INFINITY);
+    const touched: number[] = [];
+    for (let c = 0; c < claims.length; c += 5) {
+      const vertex = claims[c] as number,
+        height = claims[c + 1] as number,
+        beyond = claims[c + 2] as number,
+        share = claims[c + 4] as number;
+      nearest[vertex] = Math.min(nearest[vertex] as number, beyond);
+      if (ownerHeight && Math.abs(height - (ownerHeight[vertex] as number)) > WALL_HEIGHT) continue;
+      // The nearest road decides: a road's own footprint is all but its own.
+      const weight = share / ((beyond + 0.75) * (beyond + 0.75));
+      if ((weights[vertex] as number) === 0) touched.push(vertex);
+      weighted[vertex] = (weighted[vertex] as number) + weight * height;
+      weights[vertex] = (weights[vertex] as number) + weight;
+      influence[vertex] = Math.max(influence[vertex] as number, share);
+    }
     // How far each rendered vertex moves.
     const change = new Float32Array(count);
     let any = false;

@@ -89,6 +89,36 @@ describe('AdaptiveQualityController', () => {
     expect(changes).toEqual([{ previousLevel: 3, level: 2, reason: 'frame-time' }]);
   });
 
+  it('keeps its level while the view settles, then adapts to what the settled view costs', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    // Slow frames and render-bound measured work while the view arrives change nothing.
+    const arriving = { loading: true, settling: true, cpuFrameMs: 20, gpuFrameMs: 18 };
+    expect(run(controller, 20000, 50, arriving)).toEqual([]);
+    // Nor do repeated stalls (shader builds, first uploads) inside the minute.
+    expect(controller.sample(1500, arriving)).toBeUndefined();
+    run(controller, 500, 1000 / 60, arriving);
+    expect(controller.sample(1500, arriving)).toBeUndefined();
+    // Nor does headroom raise it.
+    expect(run(controller, 30000, 1000 / 60, { settling: true })).toEqual([]);
+    expect(controller.getStats().level).toBe(3);
+    // Once settled, a level the device cannot afford still steps down.
+    const changes = run(controller, 6000, 50);
+    expect(changes[0]).toEqual({ previousLevel: 3, level: 2, reason: 'frame-time' });
+  });
+
+  it('still lowers detail while the view settles when the GPU measurably cannot draw the level', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    // A software rasterizer or a weak GPU: arrival work never takes twice the frame on the GPU.
+    const changes = run(controller, 6000, 60, { loading: true, settling: true, gpuFrameMs: 45 });
+    expect(changes[0]).toEqual({ previousLevel: 3, level: 2, reason: 'frame-time' });
+  });
+
+  it('still lowers detail for memory pressure while the view settles', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    const changes = run(controller, 3000, 1000 / 60, { settling: true, memoryPressure: 1.3 });
+    expect(changes[0]).toEqual({ previousLevel: 3, level: 2, reason: 'memory-pressure' });
+  });
+
   it('recovers during continuous flight streaming only with sustained CPU and GPU headroom', () => {
     const controller = new AdaptiveQualityController({ initialLevel: 0, maxLevel: 2 });
     // Streaming never becomes idle while flying. CPU submission alone cannot prove GPU margin.

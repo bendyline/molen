@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   createEarthAdmissionGovernor,
   earthAdmission,
+  earthArrivalAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -28,6 +29,16 @@ describe('earth device detail policy', () => {
     expect(streaming.maxSelectedTiles).toBe(rendering.maxSelectedTiles);
     expect(streaming.maxSurfaceTileResolution).toBe(rendering.maxSurfaceTileResolution);
     expect(streaming.maxScreenSpaceError).toBe(rendering.maxScreenSpaceError);
+  });
+
+  it('admits the most streaming work while a view arrives', () => {
+    const arrival = earthArrivalAdmission('webgl');
+    expect(arrival).toEqual({ maxBytes: 16 * MIB, maxMilliseconds: 8 });
+    // More than even a spare frame takes, on every backend.
+    const spare = earthAdmission('webgl', true);
+    expect(arrival.maxBytes).toBeGreaterThan(spare.maxBytes);
+    expect(arrival.maxMilliseconds ?? 0).toBeGreaterThan(spare.maxMilliseconds ?? 0);
+    expect(earthArrivalAdmission('webgpu')).toEqual({ maxBytes: 16 * MIB });
   });
 
   it('admits more streaming work only while frames have time to spare', () => {
@@ -80,6 +91,8 @@ describe('earth device detail policy', () => {
     expect(earthInitialQualityLevel({ deviceMemory: 4 })).toBe(2);
     expect(earthInitialQualityLevel({ deviceMemory: 8 })).toBe(3);
     expect(earthInitialQualityLevel({})).toBe(3);
+    // A software rasterizer starts lowest whatever its memory.
+    expect(earthInitialQualityLevel({ deviceMemory: 8, softwareRasterizer: true })).toBe(0);
   });
 
   it('coordinates six monotonically increasing detail and working-set budgets', () => {
@@ -187,11 +200,13 @@ describe('earth device detail policy', () => {
 describe('earth terrain cache budget', () => {
   const MIB = 1024 * 1024;
 
-  it('keeps ground just left warm up to the device budget at every level', () => {
+  it('keeps ground just left warm within the device budget at every level', () => {
     for (let level = 0; level <= 5; level++) {
       const budget = earthTerrainBudget(earthPerformanceTier(level).terrain, 768 * MIB);
       expect(budget.maxResidentBytes).toBe(768 * MIB);
       expect(budget.maxResidentTiles).toBe(768);
+      // Half for ground left behind, so a larger budget shows more rather than hides more.
+      expect(budget.maxHiddenBytes).toBe(384 * MIB);
     }
   });
 

@@ -58,6 +58,36 @@ interface InitializedRenderer {
   optimizer?: WebGpuSceneOptimizer;
   reflectionFilter?: SkyReflectionFilter;
   clouds?: CloudBackend;
+  /** The WebGPU adapter is a fallback (software) adapter; see Renderer.softwareRasterizer. */
+  softwareAdapter?: boolean;
+}
+
+/** Renderer strings of the software rasterizers browsers fall back to (see softwareRasterizer). */
+const SOFTWARE_RASTERIZER = /swiftshader|llvmpipe|softpipe|lavapipe|basic render driver/i;
+
+/** A WebGPU adapter that rasterizes on the CPU, by its own flag or its description. */
+function softwareAdapter(adapter: GPUAdapter): boolean {
+  const legacy = adapter as GPUAdapter & { isFallbackAdapter?: boolean };
+  const info = (adapter as GPUAdapter & { info?: Partial<Record<string, unknown>> }).info;
+  const described = [info?.vendor, info?.architecture, info?.device, info?.description]
+    .filter((part): part is string => typeof part === 'string')
+    .join(' ');
+  return (
+    legacy.isFallbackAdapter === true ||
+    info?.isFallbackAdapter === true ||
+    SOFTWARE_RASTERIZER.test(described)
+  );
+}
+
+/** A WebGL context drawn by a software rasterizer, by its unmasked renderer string when exposed. */
+function softwareContext(gl: WebGLRenderingContext | WebGL2RenderingContext): boolean {
+  try {
+    const debug = gl.getExtension?.('WEBGL_debug_renderer_info');
+    const name: unknown = gl.getParameter?.(debug ? debug.UNMASKED_RENDERER_WEBGL : gl.RENDERER);
+    return typeof name === 'string' && SOFTWARE_RASTERIZER.test(name);
+  } catch {
+    return false;
+  }
 }
 
 export interface RendererOptions {
@@ -255,6 +285,19 @@ export class Renderer {
   private fallback: string | undefined;
   get fallbackReason(): string | undefined {
     return this.fallback;
+  }
+  private software: boolean | undefined;
+  /**
+   * Whether this device draws through a software rasterizer: SwiftShader (headless and
+   * blocklisted-GPU Chromium), Mesa's llvmpipe or lavapipe, Windows' Basic Render Driver, or a
+   * WebGPU fallback adapter. Every pixel and vertex then costs CPU time, so a host that sizes its
+   * work to the device starts at its lowest tier. Read once, from the WebGL context's unmasked
+   * renderer string (false where the browser hides it) or the WebGPU adapter's fallback flag.
+   */
+  get softwareRasterizer(): boolean {
+    this.software ??=
+      this.backend === 'webgl' && softwareContext((this.three as THREE.WebGLRenderer).getContext());
+    return this.software;
   }
   readonly scene: THREE.Scene;
   /** World-space objects live here so the renderer can rebase them near the camera. */
@@ -640,6 +683,7 @@ export class Renderer {
         return new Renderer(opts, {
           three,
           backend: 'webgpu',
+          softwareAdapter: softwareAdapter(adapter),
           clouds: {
             material: clouds.createWebGpuCloudMaterial,
             installShadows: (uniforms) => clouds.installWebGpuCloudShadows(three, uniforms),
@@ -694,6 +738,7 @@ export class Renderer {
     this.viewportHeight = height;
     this.pixelRatio = pixelRatio;
     this.backend = initialized?.backend ?? 'webgl';
+    if (this.backend === 'webgpu') this.software = initialized?.softwareAdapter === true;
     this.optimizer = initialized?.optimizer;
     this.cloudBackend = initialized?.clouds;
     this.three =

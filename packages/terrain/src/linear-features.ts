@@ -142,12 +142,72 @@ const SURFACE_MATERIAL = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 });
 
+/**
+ * A growing list of 32-bit floats. A dense tile's roads and bridges run to millions of values:
+ * held as `number[]` they took 8–16 bytes each inside the worker's JavaScript heap, which the page
+ * and every worker share (about 4 GB a tab), and Bellevue's interchanges and floating bridges ran a
+ * tab out of memory. Here they take 4 bytes each, outside that heap, and the finished array is
+ * handed to the geometry without another copy of the whole list.
+ */
+export class GrowableFloats {
+  private data: Float32Array;
+  length = 0;
+  constructor(capacity = 1024) {
+    this.data = new Float32Array(capacity);
+  }
+  private reserve(extra: number): void {
+    const needed = this.length + extra;
+    if (needed <= this.data.length) return;
+    const grown = new Float32Array(Math.max(needed, Math.ceil(this.data.length * 1.5)));
+    grown.set(this.data.subarray(0, this.length));
+    this.data = grown;
+  }
+  push(value: number): void {
+    this.reserve(1);
+    this.data[this.length++] = value;
+  }
+  push3(a: number, b: number, c: number): void {
+    this.reserve(3);
+    const at = this.length;
+    this.data[at] = a;
+    this.data[at + 1] = b;
+    this.data[at + 2] = c;
+    this.length = at + 3;
+  }
+  push4(a: number, b: number, c: number, d: number): void {
+    this.reserve(4);
+    const at = this.length;
+    this.data[at] = a;
+    this.data[at + 1] = b;
+    this.data[at + 2] = c;
+    this.data[at + 3] = d;
+    this.length = at + 4;
+  }
+  get(index: number): number {
+    return index < this.length ? (this.data[index] as number) : 0;
+  }
+  set(index: number, value: number): void {
+    if (index < this.length) this.data[index] = value;
+  }
+  /** Zeros up to `length` values. */
+  padTo(length: number): void {
+    if (length <= this.length) return;
+    this.reserve(length - this.length);
+    this.data.fill(0, this.length, length);
+    this.length = length;
+  }
+  /** The values, as an array of exactly `length` (its own buffer, transferable on its own). */
+  toArray(): Float32Array {
+    return this.length === this.data.length ? this.data : this.data.slice(0, this.length);
+  }
+}
+
 /** Batched, tile-clipped triangles sharing the rendered ground grid. */
 export class TerrainSurfaceMeshBuilder {
-  private readonly positions: number[] = [];
-  private readonly colors: number[] = [];
-  private readonly normals: number[] = [];
-  private readonly attributes = new Map<string, { size: number; values: number[] }>();
+  private readonly positions = new GrowableFloats();
+  private readonly colors = new GrowableFloats();
+  private readonly normals = new GrowableFloats();
+  private readonly attributes = new Map<string, { size: number; values: GrowableFloats }>();
   private groundAt?: (x: number, z: number) => number;
   get vertexCount(): number {
     return this.positions.length / 3;
@@ -155,7 +215,8 @@ export class TerrainSurfaceMeshBuilder {
 
   /** Emit `name` on the finished mesh even if nothing wrote it (zeros). */
   ensureAttribute(name: string, size: number): void {
-    if (!this.attributes.has(name)) this.attributes.set(name, { size, values: [] });
+    if (!this.attributes.has(name))
+      this.attributes.set(name, { size, values: new GrowableFloats() });
   }
 
   /**
@@ -173,11 +234,14 @@ export class TerrainSurfaceMeshBuilder {
     if (this.vertexCount <= start) return;
     const code = kind * 128 + Math.min(127, Math.max(0, width));
     const w = kind === TERRAIN_SURFACE_KIND.road ? laneWidth : fray;
-    const entry = this.attributes.get('surfaceDetail') ?? { size: 4, values: [] };
-    while (entry.values.length < start * 4) entry.values.push(0);
+    const entry = this.attributes.get('surfaceDetail') ?? {
+      size: 4,
+      values: new GrowableFloats(),
+    };
+    entry.values.padTo(start * 4);
     for (let i = start; i < this.vertexCount; i++) {
-      const [along, across] = sample(this.positions[i * 3] ?? 0, this.positions[i * 3 + 2] ?? 0);
-      entry.values.push(along, across, code, w);
+      const [along, across] = sample(this.positions.get(i * 3), this.positions.get(i * 3 + 2));
+      entry.values.push4(along, across, code, w);
     }
     this.attributes.set('surfaceDetail', entry);
   }
@@ -194,8 +258,8 @@ export class TerrainSurfaceMeshBuilder {
     for (let t = start; t + 2 < this.vertexCount; t += 3) {
       let paved = false;
       for (let i = t; i < t + 3 && !paved; i++)
-        paved = !ground(this.positions[i * 3] ?? 0, this.positions[i * 3 + 2] ?? 0);
-      if (paved) for (let i = t; i < t + 3; i++) entry.values[i * 4 + 3] = 0;
+        paved = !ground(this.positions.get(i * 3), this.positions.get(i * 3 + 2));
+      if (paved) for (let i = t; i < t + 3; i++) entry.values.set(i * 4 + 3, 0);
     }
   }
 
@@ -206,13 +270,10 @@ export class TerrainSurfaceMeshBuilder {
     start: number,
     sample: (x: number, z: number) => number[],
   ): void {
-    const entry = this.attributes.get(name) ?? { size, values: [] };
-    while (entry.values.length < start * size) entry.values.push(0);
+    const entry = this.attributes.get(name) ?? { size, values: new GrowableFloats() };
+    entry.values.padTo(start * size);
     for (let i = start; i < this.vertexCount; i++) {
-      const x = this.positions[i * 3],
-        z = this.positions[i * 3 + 2];
-      if (x === undefined || z === undefined) throw new Error('Missing terrain surface vertex');
-      const values = sample(x, z);
+      const values = sample(this.positions.get(i * 3), this.positions.get(i * 3 + 2));
       for (let k = 0; k < values.length; k++) entry.values.push(values[k] as number);
     }
     this.attributes.set(name, entry);
@@ -228,6 +289,14 @@ export class TerrainSurfaceMeshBuilder {
 
   /** Clip a convex 3D face to this tile, interpolating heights at its boundaries. */
   face(points: readonly (readonly [number, number, number])[], color: THREE.Color): void {
+    // Most faces lie inside the tile: append them as they are. Clipping copied every corner of
+    // every face (a bridge's barriers, piers and signs are thousands of them a tile).
+    const size = this.context.tileSize;
+    const inside = points.every((p) => p[0] >= 0 && p[0] <= size && p[2] >= 0 && p[2] <= size);
+    if (inside) {
+      this.appendFan(points, color);
+      return;
+    }
     let clipped = points.map((p) => [...p] as [number, number, number]);
     for (const [axis, limit, sign] of [
       [0, 0, 1],
@@ -255,18 +324,36 @@ export class TerrainSurfaceMeshBuilder {
         }
       }
     }
-    for (let i = 1; i + 1 < clipped.length; i++) {
-      const a = clipped[0] as [number, number, number],
-        b = clipped[i] as [number, number, number],
-        c = clipped[i + 1] as [number, number, number];
-      const normal = new THREE.Vector3()
-        .subVectors(new THREE.Vector3(...b), new THREE.Vector3(...a))
-        .cross(new THREE.Vector3().subVectors(new THREE.Vector3(...c), new THREE.Vector3(...a)))
-        .normalize();
+    this.appendFan(clipped, color);
+  }
+
+  /** Triangulate a convex polygon as a fan from its first corner, with one flat normal each. */
+  private appendFan(
+    points: readonly (readonly [number, number, number])[],
+    color: THREE.Color,
+  ): void {
+    for (let i = 1; i + 1 < points.length; i++) {
+      const a = points[0] as readonly [number, number, number],
+        b = points[i] as readonly [number, number, number],
+        c = points[i + 1] as readonly [number, number, number];
+      // (b - a) x (c - a), normalized (a degenerate triangle keeps a zero normal).
+      const ux = b[0] - a[0],
+        uy = b[1] - a[1],
+        uz = b[2] - a[2];
+      const vx = c[0] - a[0],
+        vy = c[1] - a[1],
+        vz = c[2] - a[2];
+      let nx = uy * vz - uz * vy,
+        ny = uz * vx - ux * vz,
+        nz = ux * vy - uy * vx;
+      const length = Math.hypot(nx, ny, nz) || 1;
+      nx /= length;
+      ny /= length;
+      nz /= length;
       for (const p of [a, b, c]) {
-        this.positions.push(...p);
-        this.normals.push(normal.x, normal.y, normal.z);
-        this.colors.push(color.r, color.g, color.b);
+        this.positions.push3(p[0], p[1], p[2]);
+        this.normals.push3(nx, ny, nz);
+        this.colors.push3(color.r, color.g, color.b);
       }
     }
   }
@@ -280,10 +367,10 @@ export class TerrainSurfaceMeshBuilder {
     if (!absolute) {
       terrainSurfaceDraper(this.context).polygon(points, (a, b, c) => {
         for (const p of [a, b, c]) {
-          this.positions.push(p[0], p[1] + elevation, p[2]);
-          this.normals.push(p[3], p[4], p[5]);
+          this.positions.push3(p[0], p[1] + elevation, p[2]);
+          this.normals.push3(p[3], p[4], p[5]);
           const tint = typeof color === 'function' ? color(p[0], p[2]) : color;
-          this.colors.push(tint.r, tint.g, tint.b);
+          this.colors.push3(tint.r, tint.g, tint.b);
         }
       });
       return;
@@ -291,10 +378,10 @@ export class TerrainSurfaceMeshBuilder {
     const clipped = clipTerrainSurfacePolygon(points, this.context.tileSize);
     for (let i = 1; i + 1 < clipped.length; i++) {
       for (const p of [clipped[0], clipped[i], clipped[i + 1]] as TerrainSemanticPoint[]) {
-        this.positions.push(p[0], elevation, p[1]);
-        this.normals.push(0, 1, 0);
+        this.positions.push3(p[0], elevation, p[1]);
+        this.normals.push3(0, 1, 0);
         const tint = typeof color === 'function' ? color(p[0], p[1]) : color;
-        this.colors.push(tint.r, tint.g, tint.b);
+        this.colors.push3(tint.r, tint.g, tint.b);
       }
     }
   }
@@ -346,12 +433,12 @@ export class TerrainSurfaceMeshBuilder {
         [b, yb],
         [c, yc],
       ] as const) {
-        this.positions.push(p[0], y, p[2]);
+        this.positions.push3(p[0], y, p[2]);
         const sx = -p[3] / p[4] + px - gx,
           sz = -p[5] / p[4] + pz - gz;
         const length = Math.hypot(sx, 1, sz);
-        this.normals.push(-sx / length, 1 / length, -sz / length);
-        this.colors.push(color.r, color.g, color.b);
+        this.normals.push3(-sx / length, 1 / length, -sz / length);
+        this.colors.push3(color.r, color.g, color.b);
       }
     });
   }
@@ -364,12 +451,12 @@ export class TerrainSurfaceMeshBuilder {
   ): THREE.Mesh | undefined {
     if (this.positions.length === 0) return undefined;
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
-    geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.colors, 3));
-    geometry.setAttribute('normal', new THREE.Float32BufferAttribute(this.normals, 3));
+    geometry.setAttribute('position', new THREE.BufferAttribute(this.positions.toArray(), 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(this.colors.toArray(), 3));
+    geometry.setAttribute('normal', new THREE.BufferAttribute(this.normals.toArray(), 3));
     for (const [name, entry] of this.attributes) {
-      while (entry.values.length < this.vertexCount * entry.size) entry.values.push(0);
-      geometry.setAttribute(name, new THREE.Float32BufferAttribute(entry.values, entry.size));
+      entry.values.padTo(this.vertexCount * entry.size);
+      geometry.setAttribute(name, new THREE.BufferAttribute(entry.values.toArray(), entry.size));
     }
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;

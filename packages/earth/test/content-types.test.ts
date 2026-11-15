@@ -66,6 +66,68 @@ describe('Earth content entity types', () => {
     expect((await loadEarthContent([silent], { stylePack: false })).types).toBeUndefined();
   });
 
+  it('leaves out a type that fails its checks, with a warning, and loads the rest', async () => {
+    const doc = typesDoc('molen.entities', ['tree.pine', 'prop.bench']);
+    Object.assign((doc.types as Record<string, object>)['molen.entities.prop.bench'] as object, {
+      components: { transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1], wobble: 1 } },
+    });
+    const warnings: string[] = [];
+    const full = await loadEarthContent([typesPack('molen.entities', [doc])], {
+      stylePack: false,
+      onWarning: (message) => warnings.push(message),
+    });
+    expect(full.types?.ids()).toEqual(['molen.entities.tree.pine']);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toMatch(/"molen\.entities\.prop\.bench" left out.*wobble/);
+    // Structure checks, for packs validated where they were built, keep the field.
+    const structure = await loadEarthContent([typesPack('molen.entities', [doc])], {
+      stylePack: false,
+      typeChecks: 'structure',
+      onWarning: (message) => warnings.push(message),
+    });
+    expect(structure.types?.ids()).toEqual([
+      'molen.entities.tree.pine',
+      'molen.entities.prop.bench',
+    ]);
+    expect(warnings).toHaveLength(1);
+  });
+
+  it('reads the style pack while the entity types are still arriving', async () => {
+    let release = (): void => {};
+    const arrived = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const reads: string[] = [];
+    const slow = typesPack('molen.entities', [typesDoc('molen.entities', ['tree.pine'])]);
+    const readTypes = slow.readJson.bind(slow);
+    Object.assign(slow, {
+      readJson: async (path: string) => {
+        reads.push(`types ${path}`);
+        await arrived;
+        return readTypes(path);
+      },
+    });
+    const missing = (id: string) =>
+      ({
+        manifest: { id, version: '1.0.0', provides: {} },
+        readJson: async (path: string) => {
+          reads.push(`${id} ${path}`);
+          throw new Error(`no ${path} in this test`);
+        },
+      }) as unknown as Pack;
+    const loading = loadEarthContent([
+      slow,
+      missing('molen.worldgen.default'),
+      missing('molen.earth'),
+    ]);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(reads).toContain('molen.worldgen.default stylepack.json');
+    release();
+    const content = await loading;
+    expect(content.types?.ids()).toEqual(['molen.entities.tree.pine']);
+    expect(content.worldgenError).toMatch(/unavailable: no .+ in this test/);
+  });
+
   it('rejects a type id declared by two packs, naming both', async () => {
     const entities = typesPack('molen.entities', [typesDoc('molen.entities', ['tree.pine'])]);
     const clash = typesPack('example.fork', [typesDoc('molen.entities', ['tree.pine'])]);

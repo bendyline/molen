@@ -6,7 +6,11 @@
 
 import { fleetCatalogSchema } from '@bendyline/molen-ambient/kernel';
 import { type AssetProvider, decodeStarCatalog, type SkyStar } from '@bendyline/molen-client';
-import { createTypeLibrary, type TypeLibrary } from '@bendyline/molen-kernel/content';
+import {
+  createTypeLibrary,
+  type TypeChecks,
+  type TypeLibrary,
+} from '@bendyline/molen-kernel/content';
 import { type FontLibrary, loadFontLibrary } from '@bendyline/molen-materials/text';
 import {
   createPackSet,
@@ -218,6 +222,18 @@ export interface EarthContent {
 export interface LoadEarthContentOptions {
   /** Style pack id, or false for plain extrusions (default `molen.worldgen.default`). */
   stylePack?: string | false;
+  /**
+   * How closely entity type documents are checked (`createTypeLibrary`'s `checks`, default
+   * `'full'`). A host serving packs it built and validated itself can pass `'structure'`: the
+   * full schema pass over the stock aircraft and vehicle types costs about 0.5 s of main thread
+   * before a view can mount, and rejects a field this engine version does not know.
+   */
+  typeChecks?: TypeChecks;
+  /**
+   * Reports content left out, such as an entity type that failed its checks (default
+   * `console.warn`). A bad type is skipped, with any type that extends it; the rest still load.
+   */
+  onWarning?: (message: string) => void;
 }
 
 /** A pack's `provides.types` documents, read in declaration order (none when it provides none). */
@@ -230,10 +246,15 @@ async function readTypeDocs(pack: Pack): Promise<{ label: string; docs: unknown[
 
 /**
  * One type library over the types documents of every pack in `packs`, in that order. A type id
- * declared by two different packs is an error naming both; duplicates inside one pack are left
- * to the library's own validation. Undefined when no pack provides types.
+ * declared by two different packs is an error naming both; anything else that fails the
+ * library's checks is left out and reported through `onSkip`. Undefined when no pack provides
+ * types.
  */
-async function readTypes(packs: readonly Pack[]): Promise<TypeLibrary | undefined> {
+async function readTypes(
+  packs: readonly Pack[],
+  checks: TypeChecks,
+  onSkip: (message: string) => void,
+): Promise<TypeLibrary | undefined> {
   const read = await Promise.all(packs.map(readTypeDocs));
   const owners = new Map<string, string>();
   const docs: unknown[] = [];
@@ -254,7 +275,7 @@ async function readTypes(packs: readonly Pack[]): Promise<TypeLibrary | undefine
     labels.push(label);
   }
   if (docs.length === 0) return undefined;
-  return createTypeLibrary(docs, { label: labels.join(' + ') });
+  return createTypeLibrary(docs, { label: labels.join(' + '), checks, onSkip });
 }
 
 async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenContent> {
@@ -367,6 +388,36 @@ async function readRegionalContent(
   };
 }
 
+/** Country sign appearances from the Earth pack; undefined when it provides no sign catalog. */
+async function readRoadSigns(earthPack: Pack): Promise<EarthRoadSignContent | undefined> {
+  const provides = earthPack.manifest.provides;
+  const signPath = provides['road-signs']?.[0];
+  if (signPath === undefined) return undefined;
+  const shieldPath = provides['route-shields']?.[0];
+  const atlasPath = provides['road-sign-regions']?.[0];
+  const [signCatalog, signProfiles, shields, atlas] = await Promise.all([
+    earthPack.readJson(signPath).then((doc) => terrainRoadSignCatalogSchema.parse(doc)),
+    Promise.all(
+      (provides['road-sign-profiles'] ?? []).map(
+        async (path) =>
+          terrainRoadSignProfilesSchema.parse(await earthPack.readJson(path)).profiles,
+      ),
+    ),
+    shieldPath === undefined
+      ? undefined
+      : earthPack.readJson(shieldPath).then((doc) => terrainRouteShieldLibrarySchema.parse(doc)),
+    atlasPath === undefined ? undefined : earthPack.readJson<RegionAtlasDoc>(atlasPath),
+  ]);
+  return {
+    catalog: terrainRoadSignCatalogSchema.parse({
+      ...signCatalog,
+      profiles: [...signCatalog.profiles, ...signProfiles.flat()],
+    }),
+    ...(shields ? { shields } : {}),
+    ...(atlas ? { atlas } : {}),
+  };
+}
+
 export interface OpenPacksFromIndexOptions {
   /**
    * Keep pack bytes in this cache (`createBlockCache` from `@bendyline/molen-pack/cache`): the
@@ -422,7 +473,12 @@ export async function openPacksFromIndex(
                   }),
                   cache,
                   { key: `file:${file.sha256}`, url: fileHref, size: file.size },
-                  options.wholeBelow !== undefined ? { wholeBelow: options.wholeBelow } : {},
+                  // A loose file is always read whole: in one compressible request (type JSON
+                  // crosses the network at a twentieth of its size).
+                  {
+                    wholeFile: true,
+                    ...(options.wholeBelow !== undefined ? { wholeBelow: options.wholeBelow } : {}),
+                  },
                 ),
             }
           : {}),
@@ -492,40 +548,106 @@ export async function loadEarthContent(
 ): Promise<EarthContent> {
   const byId = new Map(opened.map((pack) => [pack.manifest.id, pack]));
   const packs = createPackSet([...opened]);
+  const warn = options.onWarning ?? ((message: string) => console.warn(`[molen-earth] ${message}`));
+  const earthPack = byId.get(EARTH_PACK_IDS.earth);
+  // Every kind of content is read at once, so the entity types (the largest documents, often
+  // fetched over the network) do not hold up the fonts, the style pack and the catalogs.
   // Entity types come from every pack: the entities pack first, so the stock cars and aircraft
   // keep their document order, then host packs in the order they were opened.
   const entities = byId.get(EARTH_PACK_IDS.entities);
-  const types = await readTypes([
-    ...(entities === undefined ? [] : [entities]),
-    ...opened.filter((pack) => pack.manifest.id !== EARTH_PACK_IDS.entities),
-  ]);
-  const fontPack = byId.get(EARTH_PACK_IDS.earth);
-  const fontPath = fontPack?.manifest.provides.fonts?.[0];
-  const fonts =
-    fontPack && fontPath
-      ? await loadFontLibrary(await fontPack.readJson(fontPath), (path) =>
-          fontPack.readJson(fontPath.slice(0, fontPath.lastIndexOf('/') + 1) + path),
-        )
-      : undefined;
+  const typesRead = readTypes(
+    [
+      ...(entities === undefined ? [] : [entities]),
+      ...opened.filter((pack) => pack.manifest.id !== EARTH_PACK_IDS.entities),
+    ],
+    options.typeChecks ?? 'full',
+    warn,
+  );
+  const fontPath = earthPack?.manifest.provides.fonts?.[0];
+  const fontsRead =
+    earthPack && fontPath
+      ? earthPack
+          .readJson(fontPath)
+          .then((catalog) =>
+            loadFontLibrary(catalog, (path) =>
+              earthPack.readJson(fontPath.slice(0, fontPath.lastIndexOf('/') + 1) + path),
+            ),
+          )
+      : Promise.resolve(undefined);
   const styleId =
     options.stylePack === false ? undefined : (options.stylePack ?? EARTH_PACK_IDS.style);
-  let worldgen: EarthWorldgenContent | undefined;
-  let worldgenError: string | undefined;
-  if (styleId !== undefined) {
+  const worldgenRead = (async (): Promise<{
+    worldgen?: EarthWorldgenContent;
+    worldgenError?: string;
+  }> => {
+    if (styleId === undefined) return {};
     // A missing or broken style pack turns worldgen off; terrain and cars still render.
     try {
       const styles = byId.get(styleId);
-      const earth = byId.get(EARTH_PACK_IDS.earth);
       if (styles === undefined) throw new Error(`style pack "${styleId}" is not open`);
-      if (earth === undefined) throw new Error(`the ${EARTH_PACK_IDS.earth} pack is not open`);
-      worldgen = await readWorldgen(styles, earth);
-      if (fonts) worldgen.fonts = fonts;
-      const environment = await readRegionalContent(opened, worldgen.pack);
-      if (environment !== undefined) worldgen.environment = environment;
+      if (earthPack === undefined) throw new Error(`the ${EARTH_PACK_IDS.earth} pack is not open`);
+      const worldgen = await readWorldgen(styles, earthPack);
+      try {
+        const environment = await readRegionalContent(opened, worldgen.pack);
+        if (environment !== undefined) worldgen.environment = environment;
+      } catch (error) {
+        worldgen.structures.dispose?.();
+        throw error;
+      }
+      return { worldgen };
     } catch (error) {
-      worldgenError = `Style pack "${styleId}" unavailable: ${(error as Error).message}`;
+      return { worldgenError: `Style pack "${styleId}" unavailable: ${(error as Error).message}` };
     }
+  })();
+  const fleetRead = Promise.all(
+    opened.flatMap((pack) =>
+      (pack.manifest.provides.fleet ?? []).map(async (path) =>
+        fleetCatalogSchema.parse(await pack.readJson(path)),
+      ),
+    ),
+  );
+  const airportPath = earthPack?.manifest.provides.airports?.[0];
+  const airportsRead =
+    earthPack && airportPath
+      ? earthPack
+          .readJson<EarthAirportIndex>(airportPath)
+          .then((index) => createEarthAirports(index, (path) => earthPack.readJson(path)))
+      : Promise.resolve(undefined);
+  const roadSignsRead = earthPack ? readRoadSigns(earthPack) : Promise.resolve(undefined);
+  const [typesResult, fontsResult, worldgenResult, fleetResult, airportsResult, roadSignsResult] =
+    await Promise.allSettled([
+      typesRead,
+      fontsRead,
+      worldgenRead,
+      fleetRead,
+      airportsRead,
+      roadSignsRead,
+    ]);
+  const settled = [
+    typesResult,
+    fontsResult,
+    worldgenResult,
+    fleetResult,
+    airportsResult,
+    roadSignsResult,
+  ];
+  const failed = settled.find((result) => result.status === 'rejected');
+  if (failed !== undefined) {
+    // The reads that did finish are dropped with the failure; a streamed structure index would
+    // otherwise keep its requests alive.
+    if (worldgenResult.status === 'fulfilled')
+      worldgenResult.value.worldgen?.structures.dispose?.();
+    throw (failed as PromiseRejectedResult).reason;
   }
+  const value = <T>(result: PromiseSettledResult<T>): T =>
+    (result as PromiseFulfilledResult<T>).value;
+  const types = value(typesResult);
+  const fonts = value(fontsResult);
+  const { worldgen, worldgenError } = value(worldgenResult);
+  if (worldgen !== undefined && fonts) worldgen.fonts = fonts;
+  const fleetCatalogs = value(fleetResult);
+  const airports = value(airportsResult);
+  const roadSigns = value(roadSignsResult);
   const styleIndex =
     worldgen === undefined ? {} : stylePackAssetIndex(worldgen.pack, `pack:${worldgen.styleId}/`);
   const closePacks = packs.close.bind(packs);
@@ -534,58 +656,6 @@ export async function loadEarthContent(
     closePacks();
   };
   let stars: Promise<SkyStar[]> | undefined;
-  const fleetCatalogs = await Promise.all(
-    opened.flatMap((pack) =>
-      (pack.manifest.provides.fleet ?? []).map(async (path) =>
-        fleetCatalogSchema.parse(await pack.readJson(path)),
-      ),
-    ),
-  );
-  const earthPack = byId.get(EARTH_PACK_IDS.earth);
-  const airportPath = earthPack?.manifest.provides.airports?.[0];
-  const airports =
-    earthPack && airportPath
-      ? await createEarthAirports(
-          await earthPack.readJson<EarthAirportIndex>(airportPath),
-          (path) => earthPack.readJson(path),
-        )
-      : undefined;
-  const signPath = earthPack?.manifest.provides['road-signs']?.[0];
-  const signAtlasPath = earthPack?.manifest.provides['road-sign-regions']?.[0];
-  const signProfiles = earthPack
-    ? (
-        await Promise.all(
-          (earthPack.manifest.provides['road-sign-profiles'] ?? []).map(
-            async (path) =>
-              terrainRoadSignProfilesSchema.parse(await earthPack.readJson(path)).profiles,
-          ),
-        )
-      ).flat()
-    : [];
-  const shieldPath = earthPack?.manifest.provides['route-shields']?.[0];
-  const signCatalog =
-    earthPack && signPath
-      ? terrainRoadSignCatalogSchema.parse(await earthPack.readJson(signPath))
-      : undefined;
-  const roadSigns =
-    earthPack && signCatalog
-      ? {
-          catalog: terrainRoadSignCatalogSchema.parse({
-            ...signCatalog,
-            profiles: [...signCatalog.profiles, ...signProfiles],
-          }),
-          ...(shieldPath
-            ? {
-                shields: terrainRouteShieldLibrarySchema.parse(
-                  await earthPack.readJson(shieldPath),
-                ),
-              }
-            : {}),
-          ...(signAtlasPath
-            ? { atlas: await earthPack.readJson<RegionAtlasDoc>(signAtlasPath) }
-            : {}),
-        }
-      : undefined;
   const fleetAtlas =
     fleetCatalogs.length && earthPack
       ? (worldgen?.atlas ??
