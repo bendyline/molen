@@ -10,7 +10,7 @@ import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { createInterface } from 'node:readline';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { isDeepStrictEqual, parseArgs } from 'node:util';
+import { isDeepStrictEqual, parseArgs, stripVTControlCharacters } from 'node:util';
 import { createAssetFileCache } from './asset-file-cache.mjs';
 import { assetInputs, changedInputs } from './asset-inputs.mjs';
 import { createJobCache } from './asset-job-cache.mjs';
@@ -601,8 +601,11 @@ async function withWindowsRetry(work, log, label, transients) {
   try {
     return await work();
   } catch (error) {
+    // Under FORCE_COLOR a job's Node colours the error it dies of, even into a pipe, which puts
+    // escape codes inside the text these patterns look for ("code: \x1b[33m3221225477\x1b[39m").
+    const text = stripVTControlCharacters(String(error.message));
     const transient =
-      process.platform === 'win32' && transients.find(({ pattern }) => pattern.test(error.message));
+      process.platform === 'win32' && transients.find(({ pattern }) => pattern.test(text));
     if (!transient) throw error;
     log(`  ${label} ${transient.what}; retrying once in 2 seconds.`);
     await new Promise((done) => setTimeout(done, 2000));

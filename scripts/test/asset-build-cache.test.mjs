@@ -334,11 +334,9 @@ const crashRetry = (id) =>
  * Build a fixture whose generators are `scripts`, then `check` the outcome. Each script records
  * every attempt that reaches it as a line of `.artifacts/<id>-attempts.txt`. Windows can spend the
  * one retry before the deliberate crash does: a real access violation (the flake the retry exists
- * for) can end an attempt before its script's first line, and on 2026-11-14 and -15 `two` failed
- * here in ways two successive evidence checks could not tell apart from a broken retry (1,200
- * stress builds never reproduced it). So a first run that fails its check runs once more on a
- * fresh fixture; a broken retry fails both. Each failed run reports what it left (retries logged,
- * attempt lines, build error) as a test diagnostic, so the next occurrence explains itself.
+ * for) can end an attempt before its script's first line. So a first run that fails its check runs
+ * once more on a fresh fixture; a broken retry fails both. Each failed run reports what it left
+ * (retries logged, attempt lines, build error) as a test diagnostic.
  */
 async function crashScenario(t, scripts, check) {
   for (let run = 1; ; run++) {
@@ -372,15 +370,30 @@ async function crashScenario(t, scripts, check) {
   }
 }
 
-test(
-  'a generator that loses a Node process to an access violation runs once more',
-  windowsOnly,
-  async (t) => {
-    // On the first attempt that reaches it, one's own process dies; two starts a process that does.
-    await crashScenario(
-      t,
-      {
-        one: `
+// A job reports the process it lost by dying of the uncaught error, and Node colours that report
+// whenever FORCE_COLOR is set: "code: \x1b[33m3221225477\x1b[39m". `node --test` sets it for
+// every test file when it reports to a terminal, so the environment must not choose the form:
+// the build once missed the coloured one, which failed this test from a terminal and nowhere else.
+for (const [output, forceColor] of [
+  ['plain', undefined],
+  ['coloured', '1'],
+])
+  test(
+    `a generator that loses a Node process to an access violation runs once more (${output} output)`,
+    windowsOnly,
+    async (t) => {
+      const inherited = process.env.FORCE_COLOR;
+      t.after(() => {
+        if (inherited === undefined) delete process.env.FORCE_COLOR;
+        else process.env.FORCE_COLOR = inherited;
+      });
+      if (forceColor === undefined) delete process.env.FORCE_COLOR;
+      else process.env.FORCE_COLOR = forceColor;
+      // On the first attempt that reaches it, one's own process dies; two starts a process that does.
+      await crashScenario(
+        t,
+        {
+          one: `
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
     const first = !existsSync('.artifacts/one-attempts.txt');
     appendFileSync('.artifacts/one-attempts.txt', first ? 'first\\n' : 'again\\n');
@@ -388,7 +401,7 @@ test(
     mkdirSync('assets/one', {recursive: true});
     writeFileSync('assets/one/model.glb', 'one');
   `,
-        two: `
+          two: `
     import {execFile} from 'node:child_process';
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
     import {promisify} from 'node:util';
@@ -398,20 +411,20 @@ test(
     mkdirSync('assets/two', {recursive: true});
     writeFileSync('assets/two/model.glb', 'two');
   `,
-      },
-      async ({ root, messages, attempts, report, error }) => {
-        if (error) throw error;
-        assert.deepEqual(runIds(report), ['one', 'two']);
-        for (const id of ['one', 'two']) {
-          assert.equal(attempts[id], 'first\nagain\n');
-          assert.ok(messages.includes(crashRetry(id)));
-          assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
-        }
-        assert.deepEqual(runIds(await build(root)), []);
-      },
-    );
-  },
-);
+        },
+        async ({ root, messages, attempts, report, error }) => {
+          if (error) throw error;
+          assert.deepEqual(runIds(report), ['one', 'two']);
+          for (const id of ['one', 'two']) {
+            assert.equal(attempts[id], 'first\nagain\n');
+            assert.ok(messages.includes(crashRetry(id)));
+            assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
+          }
+          assert.deepEqual(runIds(await build(root)), []);
+        },
+      );
+    },
+  );
 
 test(
   'a process that crashes on every attempt fails after the second; other failures run once',
