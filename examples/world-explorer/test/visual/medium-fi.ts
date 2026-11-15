@@ -151,7 +151,8 @@ let neighborPositions = [
   [-95, -72],
   [88, -71],
 ].map(([x, z]) => [x * contextScale, z * contextScale]);
-const focus = contextOptions.has('focus') ? JSON.parse(contextOptions.get('focus')!) : undefined;
+const focusOption = contextOptions.get('focus');
+const focus = focusOption === null ? undefined : JSON.parse(focusOption);
 const reviewCenter = mediumFiFocus(
   focus,
   terrainDescriptor ? sidecar.bounds.sphere.center : [0, 0, 0],

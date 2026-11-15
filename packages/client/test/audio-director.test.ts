@@ -1,4 +1,4 @@
-import type { EngineEvent, JsonObject, SoundbankDoc } from '@bendyline/molen-schema';
+import type { EngineEvent, JsonObject, SoundbankDoc, SoundEntry } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import {
   AudioDirector,
@@ -424,16 +424,21 @@ describe('zones, budget, determinism', () => {
     s.set('heli', 'aircraftInput', { power: 0.6, pitch: 0, roll: 0 });
     const bank = {
       ...BANK,
-      sounds: { ...BANK.sounds, 'engine.car': { ...BANK.sounds['engine.car']!, tags: ['rotor'] } },
+      sounds: {
+        ...BANK.sounds,
+        'engine.car': { ...(BANK.sounds['engine.car'] as SoundEntry), tags: ['rotor'] },
+      },
     };
     const d = new AudioDirector({ bank: mergeSoundbanks([bank]) });
-    const first = starts(d.update({ nowMs: 0, source: s }))[0]!;
-    expect(first.tone?.pulseDepth).toBeGreaterThan(0);
+    const first = starts(d.update({ nowMs: 0, source: s }))[0];
+    expect(first?.tone?.pulseDepth).toBeGreaterThan(0);
     s.set('heli', 'aircraftInput', { power: 0.6, pitch: 0, roll: -0.8 });
     const commands = d.update({ nowMs: 16, source: s });
     expect(starts(commands)).toHaveLength(0);
     const change = commands.find((c) => c.op === 'set');
-    expect(change?.op === 'set' && change.tone!.pulseDepth).toBeGreaterThan(first.tone!.pulseDepth);
+    expect(change?.op === 'set' && change.tone?.pulseDepth).toBeGreaterThan(
+      first?.tone?.pulseDepth as number,
+    );
     expect(change?.op === 'set' && change.pitch).toBeUndefined();
   });
   it('fades a zone with distance outside its shape', () => {

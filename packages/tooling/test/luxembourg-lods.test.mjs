@@ -10,8 +10,7 @@ import {
   wgs84ToWorld,
 } from '../../terrain/dist/kernel.mjs';
 import { StructureModelLibrary } from '../../worldgen/dist/client.mjs';
-import { emptyWorldgenStats, encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
+import { emptyWorldgenStats } from '../../worldgen/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { createWorldgenSemanticRenderers } from '../../worldgen-earth/src/client/renderers.ts';

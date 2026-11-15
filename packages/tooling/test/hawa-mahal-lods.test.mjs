@@ -10,8 +10,7 @@ import {
   wgs84ToWorld,
 } from '../../terrain/dist/kernel.mjs';
 import { StructureModelLibrary } from '../../worldgen/dist/client.mjs';
-import { emptyWorldgenStats, encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
+import { emptyWorldgenStats } from '../../worldgen/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { createWorldgenSemanticRenderers } from '../../worldgen-earth/src/client/renderers.ts';
@@ -71,8 +70,7 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json'),
-  P = (p) => p;
+  layout = await read(source + '/layout.json');
 it('binds the complete two-court palace to exact source/runtime pins and its own signed map frame', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),
@@ -129,7 +127,7 @@ it('keeps both courts, complete low rear range, five-tier crown, open chhatri, d
       l.name + ' raised central crown',
     ).toBeGreaterThan(16.4);
     const nt = layout.northTower,
-      [x, z, X, Z] = nt.bounds;
+      [x, , X, Z] = nt.bounds;
     expect(
       nearest(ts, [(x + X) / 2, layout.floorY + nt.openLo + 1.2, Z + 5], [0, 0, -1], true),
       l.name + ' genuine open north chhatri',

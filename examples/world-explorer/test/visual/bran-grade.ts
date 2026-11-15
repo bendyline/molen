@@ -272,8 +272,9 @@ async function passageProbes() {
   const frame = await json<{ features: { id: string; native: number[][] }[] }>(
     `${folder}/map-frame.json`,
   );
-  const p = frame.features.find((f) => f.id === 'way/244093205')!.native,
-    a = p[4],
+  const p = frame.features.find((f) => f.id === 'way/244093205')?.native;
+  if (!p) throw Error('Missing mapped passage');
+  const a = p[4],
     b = p[5],
     len = Math.hypot(b[0] - a[0], b[1] - a[1]);
   const along = [(b[0] - a[0]) / len, (b[1] - a[1]) / len],

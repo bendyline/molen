@@ -6,7 +6,6 @@ import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import {
   buildKingkeyLevel,
-  kingkeyArch,
   kingkeyControls,
   kingkeyGroundY,
   kingkeyProfile,

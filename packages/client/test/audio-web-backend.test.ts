@@ -92,20 +92,20 @@ describe('Web Audio decoded clip budget', () => {
     await backend.preload(['rotor.mp3']);
     expect(filters).toHaveLength(1);
     expect(oscillators).toHaveLength(1);
-    expect(filters[0]!.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
+    expect(filters[0]?.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
       5000,
       0,
       expect.any(Number),
     );
-    expect(oscillators[0]!.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
+    expect(oscillators[0]?.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
       8,
       0,
       expect.any(Number),
     );
     backend.apply([{ op: 'stop', voice: 'rotor', fadeS: 0.1 }]);
-    sources[0]!.onended?.();
-    expect(oscillators[0]!.stop).toHaveBeenCalledOnce();
-    expect(filters[0]!.disconnect).toHaveBeenCalledOnce();
+    sources[0]?.onended?.();
+    expect(oscillators[0]?.stop).toHaveBeenCalledOnce();
+    expect(filters[0]?.disconnect).toHaveBeenCalledOnce();
     expect(backend.stats().voices).toBe(0);
     backend.dispose();
   });

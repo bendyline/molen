@@ -15,6 +15,7 @@
       "!**/.artifacts",
       "!review-lock.json",
       "!content/earth/fonts/*.json",
+      "!content/glyphs-*/glyphs/*.json",
       "!**/__output__",
       "!**/.tmp",
       "!spikes",
@@ -27,6 +28,8 @@
       "!content/worldgen/source/places/**/references/**/*.html",
       "!content/worldgen/source/places/**/map-sources/**/*.html",
       "!content/worldgen/source/places/**/primary-source/**/*.html",
+      "!content/worldgen/source/places/**/pmtiles-map.json",
+      "!content/worldgen/source/places/**/pmtiles-fit.json",
       "!content/worldgen/source/material-library/texture-audit.json",
       "!content/earth/structures/evidence/bridge-terrain/gugik/poniatowski_bridge.json",
       "!content/earth/structures/evidence/osm-features.json",
@@ -60,12 +63,12 @@
   "overrides": [
     {
       "includes": [
-        "content/earth/world.atlas.json",
-        "content/ecology/regional.catalog.json",
-        "content/worldgen/source/places/9q/9q5/ambassador_hotel_los_angeles/terrain-grid.json"
+        "content/**/*.json",
+        "content/worldgen/source/places/**/models/*.mjs",
+        "reference-lock.json"
       ],
       "files": {
-        "maxSize": 4194304
+        "maxSize": 16777216
       }
     },
     {
@@ -80,6 +83,40 @@
         "rules": {
           "style": {
             "useExponentiationOperator": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "content/worldgen/source/places/**/*.mjs",
+        "packages/worldgen/scripts/generalife-model.mjs",
+        "packages/worldgen/scripts/generate-island-bridge.mjs",
+        "packages/worldgen/scripts/generate-ponte-coperto.mjs",
+        "packages/worldgen/scripts/kyoto-station-model.mjs",
+        "packages/worldgen/scripts/london-victoria-station-model.mjs",
+        "packages/worldgen/scripts/structure-bach-house.mjs",
+        "packages/worldgen/scripts/structure-chatsworth-house.mjs"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedFunctionParameters": "off",
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off"
+          },
+          "style": {
+            "useConst": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/worldgen/scripts/generalife-model.mjs"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noApproximativeNumericConstant": "off"
           }
         }
       }

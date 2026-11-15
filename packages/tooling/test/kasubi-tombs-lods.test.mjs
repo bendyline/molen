@@ -10,8 +10,7 @@ import {
   wgs84ToWorld,
 } from '../../terrain/dist/kernel.mjs';
 import { StructureModelLibrary } from '../../worldgen/dist/client.mjs';
-import { emptyWorldgenStats, encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
+import { emptyWorldgenStats } from '../../worldgen/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { createWorldgenSemanticRenderers } from '../../worldgen-earth/src/client/renderers.ts';
@@ -71,8 +70,7 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json'),
-  P = (p) => p;
+  layout = await read(source + '/layout.json');
 it('pins the individual principal building at its actual map footprint with a signed court-facing frame', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),

@@ -292,7 +292,7 @@ async function passageProbes() {
     bridge = data.features.find((f) => f.id === 'way/112500238')?.points;
   if (!bridge) throw Error('Missing mapped bridge');
   const a = bridge[0],
-    b = bridge.at(-1)!,
+    b = bridge[bridge.length - 1],
     len = Math.hypot(b[0] - a[0], b[1] - a[1]),
     axis = [(b[0] - a[0]) / len, (b[1] - a[1]) / len],
     n = [-axis[1], axis[0]];
@@ -310,7 +310,7 @@ async function passageProbes() {
   const route = data.features.find((f) => f.id === 'way/649550040')?.points;
   if (!route) throw Error('Missing mapped entrance');
   const start = route[0],
-    end = route.at(-1)!,
+    end = route[route.length - 1],
     dl = Math.hypot(end[0] - start[0], end[1] - start[1]),
     d = [(end[0] - start[0]) / dl, (end[1] - start[1]) / dl];
   for (const side of [-0.5, 0, 0.5])
