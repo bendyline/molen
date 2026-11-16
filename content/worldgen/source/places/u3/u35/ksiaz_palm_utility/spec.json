@@ -19,13 +19,13 @@
   },
   "size": [
     10.849772930145264,
-    13.5,
+    14.05748200416565,
     40.07851600646973
   ],
   "actualBounds": {
     "min": [
       -5.222006320953369,
-      0,
+      -0.5574820041656494,
       -19.61199951171875
     ],
     "max": [
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X along a mapped cross-range edge toward east",
     "longitudinal": "+Z approximately south; signed facade interpretation follows NID elevation captions",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "origin": "Mapped outline origin with elevation set by the sampled approach."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -92,7 +92,7 @@
   "reconstruction": {
     "basis": "Own OSM footprint(s), official NID individual building survey card and 2025 designated ensemble plan.",
     "scope": "Long utility range and joined polygonal south end, preserving both mapped rings.",
-    "registration": "Cardinal facade interpretation proposed; actual terrain and slope contact, current restoration and real world placement remain pending."
+    "registration": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -104,7 +104,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.3063185,
       50.8293005
@@ -112,32 +112,157 @@
     "heading": 0.15701657710290243,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
-    "replaceFootprint": false,
+    "groundModelY": 0.215,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain.",
+    "terrainReference": {
+      "anchor": [
+        16.306375141441578,
+        50.829347180502005
+      ],
+      "modelHeight": 0.215,
+      "basis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
+    },
+    "bounds": [
+      16.30618510413855,
+      50.829101448735095,
+      16.306458261598912,
+      50.82949219237386
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.163268,
+          -19.451737
+        ],
+        [
+          2.680307,
+          -19.546529
+        ],
+        [
+          3.844883,
+          9.278947
+        ],
+        [
+          -3.939711,
+          9.001195
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.163268,
+            -19.451737
+          ],
+          [
+            2.680307,
+            -19.546529
+          ],
+          [
+            3.844883,
+            9.278947
+          ],
+          [
+            -3.939711,
+            9.001195
+          ]
+        ],
+        [
+          [
+            -3.939711,
+            9.001195
+          ],
+          [
+            4.403698,
+            9.367419
+          ],
+          [
+            4.647447,
+            12.652001
+          ],
+          [
+            5.206262,
+            12.740472
+          ],
+          [
+            5.400358,
+            17.544718
+          ],
+          [
+            4.625781,
+            17.613028
+          ],
+          [
+            2.85003,
+            20.386942
+          ],
+          [
+            -3.688138,
+            17.060532
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps masks for the mapped service building and its integral components."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          3.185092,
+          -3.783896
+        ],
+        [
+          3.129991,
+          -5.102746
+        ],
+        [
+          4.710257,
+          -5.368943
+        ],
+        [
+          4.782055,
+          -3.650442
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            3.185092,
+            -3.783896
+          ],
+          [
+            3.129991,
+            -5.102746
+          ],
+          [
+            4.710257,
+            -5.368943
+          ],
+          [
+            4.782055,
+            -3.650442
+          ]
+        ]
+      ],
+      "basis": "The sandstone landing fills its own cutout and meets the retained approach at the toe."
+    },
+    "replaceFootprint": true,
     "featureIds": [
       "way/396950371",
       "way/396950375"
     ],
     "source": "https://www.openstreetmap.org/way/396950371",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:3bc7ec09e280b83e5a01fc4283ecd9f3ebd91bd338df7a548a8d629d713d7f1e",
+    "mapGeometryHash": "sha256:de92e0e642bb5f99c94633e17d721daa75e5e69647be544ea2db57aad4d0b9a5",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring(s) and signed cross-range axes. Cardinal elevations and ensemble associations follow the individual NID survey cards; heights, current facades and ground datum are interpretations. Inactive until actual component/terrain fit is reviewed. No parent QID is reused."
+    "notes": "Own mapped rings and apron, aligned to retained Protomaps and terrain samples. Cardinal elevations follow the individual NID cards. Heights and current facades remain interpretations."
   },
   "sharedSurfaces": [
     {
       "ref": "matgraph:molen.worldgen.material.stone_drywall",
       "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.plaster_lime",
-      "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -151,6 +276,15 @@
       "repeatMeters": [
         2.4,
         2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
       ]
     },
     {
@@ -170,15 +304,24 @@
         1.92,
         0.9
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
   "limitations": [
     "Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.",
     "Own attributed mapped footprints. Heights, roof subdivisions, openings and detail are original interpretations of the 1994 NID cards. Boiler/control boundaries and adjoining annex associations remain proposed.",
-    "No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions; actual geographic fit remains unreviewed.",
+    "No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions.",
     "References show the 1994 survey state and incorporate earlier plan inventories; current restoration state is unconfirmed.",
-    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+    "No unique textures, copied photos or interior. Physical-device timing remains unmeasured."
   ],
   "qaCameras": [
     {
@@ -238,10 +381,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 3693,
-    "vertices": 11079,
-    "materials": 6,
-    "bytes": 446828,
-    "sha256": "sha256:1a0b0ac2168146ca687e494721ec60246cd89b913560c87e1d75d06df00d1f76"
+    "triangles": 3653,
+    "vertices": 10959,
+    "materials": 7,
+    "bytes": 442524,
+    "sha256": "sha256:dc7646a9fb943ee4184f424c6d46a3b5e6da2b117b83417aa91527e72c7323ad"
   }
 }

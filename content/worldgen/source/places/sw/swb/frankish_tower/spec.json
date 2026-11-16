@@ -1,0 +1,315 @@
+{
+  "id": "frankish_tower",
+  "planId": "frankish_tower",
+  "assetId": "molen.worldgen.structure.frankish_tower",
+  "title": "Frankish Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1869-06-01",
+    "validFrom": "1869-01-01",
+    "validUntil": "1874-01-01"
+  },
+  "wikidataId": "Q12885865",
+  "referenceCoordinate": {
+    "longitude": 23.725072145462033,
+    "latitude": 37.971560137027595
+  },
+  "visualBrief": "The reconstructed Frankish Tower has the measured 8.69 by 7.78 m plan, weathered masonry courses with reused Pentelic blocks, the east window, a north projection, timber access stair and uneven crenellations above the southwest wing of the Propylaia.",
+  "nativeAxes": "+X follows the south wing of the Propylaia eastward, +Z faces the south wall and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -4.585000038146973,
+      -1.399999976158142,
+      -5.434500217437744
+    ],
+    "max": [
+      4.82243537902832,
+      25.93400001525879,
+      4.110000133514404
+    ]
+  },
+  "size": [
+    9.407435417175293,
+    27.33399999141693,
+    9.544500350952148
+  ],
+  "geometrySource": "Original deterministic geometry from early photographs, measured sections, and the mapped south-wing court beside the Temple of Athena Nike.",
+  "materialMethod": "Shared weathered limestone, marble, quarried limestone and timber use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Acropolis_Frankish_tower.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bonfils,_F%C3%A9lix_(1831-1885)_-_Athens_-_Propylaia_1868-1875.jpg",
+    "https://frankika.efa.gr/index.php/en/node/9654"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      23.725072145462033,
+      37.971560137027595
+    ],
+    "heading": 0.2160849721115255,
+    "bounds": [
+      23.724990703808185,
+      37.97150470947053,
+      23.72516227422563,
+      37.97162626483051
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 126.56666,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The stepped plinth intersects the standard Terrarium surface at the Propylaia south wing.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3c10d0d8afd54a49cdf8444c7b372cee0c5b1f07d39c60f87f2880d0922a4880",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q12885865",
+    "notes": "Represents the late standing tower documented in photographs around 1869. The supported dates cover a photographed appearance before dismantling. The 8.69 by 7.78 m base and 25.90 m height follow the École française d’Athènes record. Reused stone blocks, crenellations, doors, timber stair and floor arrangement are reconstructed from photographs and the archive description. The old tower abuts the south wing of the Propylaia. Its plinth uses standard Terrarium, with the base stepped into the coarse hill mesh. Surrounding features come from current map data."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/frankish_tower/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:13123d186b222c9c138a0c780167b3e1859867731f0588325a327d56d7d77247"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/swb/frankish_tower/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:8bde1229533ca3053f7f4d5a6f77e29ab1619e4358c6c409b1ad32af2ef77408",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.91
+      },
+      "bed": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95
+      },
+      "timber": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.91
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.91
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.91
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "Represents the late standing tower documented in photographs around 1869. The supported dates cover a photographed appearance before dismantling.",
+    "The 8.69 by 7.78 m base and 25.90 m height follow the École française d’Athènes record. Reused stone blocks, crenellations, doors, timber stair and floor arrangement are reconstructed from photographs and the archive description.",
+    "The old tower abuts the south wing of the Propylaia. Its plinth uses standard Terrarium, with the base stepped into the coarse hill mesh. Surrounding features come from current map data."
+  ],
+  "qaCameras": [
+    {
+      "name": "acropolis-tower-and-south-wing",
+      "position": [
+        63,
+        31,
+        39
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 39
+    },
+    {
+      "name": "east-window-and-base",
+      "position": [
+        23,
+        5,
+        13
+      ],
+      "lookAt": [
+        1,
+        9,
+        1
+      ],
+      "fov": 62
+    },
+    {
+      "name": "north-stair-and-turret",
+      "position": [
+        29,
+        14,
+        -23
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "crenellations-and-terrace",
+      "position": [
+        -15,
+        34,
+        19
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "south-and-west-masonry",
+      "position": [
+        -23,
+        13,
+        26
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "rear-of-temple-precinct",
+      "position": [
+        -32,
+        31,
+        -30
+      ],
+      "lookAt": [
+        1,
+        11,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 33754,
+    "vertices": 67508,
+    "materials": 4,
+    "bytes": 2838296,
+    "sha256": "sha256:322a0306fbff6968022080f7ad071e401600b6c5b755de5c1f63f12398f5bafd"
+  }
+}

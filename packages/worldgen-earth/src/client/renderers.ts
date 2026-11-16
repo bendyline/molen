@@ -14,6 +14,7 @@ import {
   disposeTerrainSemanticObject,
   keepTerrainSemanticTile,
   setTerrainGroundCutouts,
+  setTerrainSurfacePassages,
   setTerrainWaterCutout,
   TERRAIN_COVERS_GROUND,
   type TerrainLandcoverGenerator,
@@ -1389,17 +1390,33 @@ export function createWorldgenSemanticRenderers(
         })();
         const roadsTask = (async (): Promise<THREE.Object3D | undefined> => {
           let roadTile = tile;
-          if (structures.some((entry) => entry.replaceRoads)) {
+          if (structures.some((entry) => entry.replaceRoads || entry.surfacePassageIds)) {
             await structureTask;
-            roadTile = withoutStructureRoads(
-              tile,
-              context,
-              structures.filter((entry) => structureGroup.getObjectByName(`structure:${entry.id}`)),
-              metersPerUnit,
-              (entry) =>
-                structureGroup.getObjectByName(`structure:${entry.id}`)?.userData
-                  .structureElevation as number | undefined,
+            const loaded = structures.filter((entry) =>
+              structureGroup.getObjectByName(`structure:${entry.id}`),
             );
+            const passages = new Set(loaded.flatMap((entry) => entry.surfacePassageIds ?? []));
+            if (passages.size) {
+              setTerrainSurfacePassages(group, passages);
+              roadTile = {
+                ...roadTile,
+                transportation: roadTile.transportation.map((feature) =>
+                  feature.tunnel && typeof feature.id === 'number' && passages.has(feature.id)
+                    ? { ...feature, tunnel: false }
+                    : feature,
+                ),
+              };
+            }
+            if (loaded.some((entry) => entry.replaceRoads))
+              roadTile = withoutStructureRoads(
+                roadTile,
+                context,
+                loaded,
+                metersPerUnit,
+                (entry) =>
+                  structureGroup.getObjectByName(`structure:${entry.id}`)?.userData
+                    .structureElevation as number | undefined,
+              );
           }
           if (options.roads?.surfaceRenderer && options.roads.renderTransportation !== false) {
             return options.roads.surfaceRenderer.createTileAsync(roadTile, context);

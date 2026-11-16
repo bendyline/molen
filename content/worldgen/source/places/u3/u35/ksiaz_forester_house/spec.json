@@ -18,14 +18,14 @@
     "latitude": 50.84432313943821
   },
   "size": [
-    13.396999835968018,
-    11.804239273071289,
+    14.536483764648438,
+    12.537747263908386,
     13.700000286102295
   ],
   "actualBounds": {
     "min": [
-      -6.697000026702881,
-      0,
+      -7.836483955383301,
+      -0.7335079908370972,
       -6.840000152587891
     ],
     "max": [
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X along longest mapped edge in source vertex order",
     "longitudinal": "+Z perpendicular to mapped edge",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "origin": "Mapped envelope center; model elevation uses the retained approach control."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -83,7 +83,7 @@
   "reconstruction": {
     "basis": "Own 17-vertex attributed map footprint and primary photographs of the timber gables, dormer and tiled roofs. Heights, roof subdivision and facade details are interpreted.",
     "scope": "Independent exterior component of ksiaz_castle_and_park_complex; castle and park ensemble remains incomplete.",
-    "registration": "Own map-derived axis and anchor; signed facade orientation and vertical terrain fit must be checked before activation."
+    "registration": "The porch and dormer face the side approached from Jeździecka, with the main timber gable turned toward the mapped footpath. The stone base and short entrance steps meet the retained Terrarium terrain."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -95,7 +95,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.30370172124799,
       50.84432313943821
@@ -103,17 +103,172 @@
     "heading": -0.8912217878661122,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
+    "groundModelY": -0.14,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The porch and dormer face the side approached from Jeździecka, with the main timber gable turned toward the mapped footpath. The stone base and short entrance steps meet the retained Terrarium terrain.",
+    "terrainReference": {
+      "anchor": [
+        16.3035834861427,
+        50.84435331631166
+      ],
+      "modelHeight": -0.14,
+      "basis": "The porch and dormer face the side approached from Jeździecka, with the main timber gable turned toward the mapped footpath. The stone base and short entrance steps meet the retained Terrarium terrain."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.531489,
+          6.00904
+        ],
+        [
+          -6.485821,
+          2.652605
+        ],
+        [
+          -5.543766,
+          2.686603
+        ],
+        [
+          -5.621406,
+          -5.617078
+        ],
+        [
+          -4.002432,
+          -5.520919
+        ],
+        [
+          -3.996597,
+          -6.728109
+        ],
+        [
+          -0.905297,
+          -6.654279
+        ],
+        [
+          -0.939295,
+          -5.712224
+        ],
+        [
+          6.56898,
+          -5.705376
+        ],
+        [
+          6.585473,
+          -3.025861
+        ],
+        [
+          3.759308,
+          -3.127854
+        ],
+        [
+          3.798129,
+          1.023986
+        ],
+        [
+          5.005319,
+          1.029821
+        ],
+        [
+          5.066467,
+          6.653987
+        ],
+        [
+          -5.533108,
+          6.573309
+        ],
+        [
+          -5.589434,
+          6.043038
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.531489,
+            6.00904
+          ],
+          [
+            -6.485821,
+            2.652605
+          ],
+          [
+            -5.543766,
+            2.686603
+          ],
+          [
+            -5.621406,
+            -5.617078
+          ],
+          [
+            -4.002432,
+            -5.520919
+          ],
+          [
+            -3.996597,
+            -6.728109
+          ],
+          [
+            -0.905297,
+            -6.654279
+          ],
+          [
+            -0.939295,
+            -5.712224
+          ],
+          [
+            6.56898,
+            -5.705376
+          ],
+          [
+            6.585473,
+            -3.025861
+          ],
+          [
+            3.759308,
+            -3.127854
+          ],
+          [
+            3.798129,
+            1.023986
+          ],
+          [
+            5.005319,
+            1.029821
+          ],
+          [
+            5.066467,
+            6.653987
+          ],
+          [
+            -5.533108,
+            6.573309
+          ],
+          [
+            -5.589434,
+            6.043038
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only the exact Protomaps footprint for 262236292 in the retained 20261114 extract."
+    },
+    "bounds": [
+      16.303497,
+      50.844171,
+      16.303903,
+      50.844473
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "way/262236292"
     ],
     "source": "https://www.openstreetmap.org/way/262236292",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:9134999f7b5baddf03aee9153681a5b6caef5cb76160985c5b5a0d3d28f7eda0",
+    "mapGeometryHash": "sha256:7d69148c10b47aadd214c4ede756597eee10f4a09329c25cae0bf4433df1d039",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+    "notes": "The porch and dormer face the side approached from Jeździecka, with the main timber gable turned toward the mapped footpath. The stone base and short entrance steps meet the retained Terrarium terrain."
   },
   "sharedSurfaces": [
     {
@@ -135,6 +290,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.tile_ceramic",
       "slot": "roof",
       "uv": "repeats",
@@ -144,12 +308,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
       "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
-        2,
-        0.25
+        1.2,
+        1.2
       ]
     }
   ],
@@ -157,9 +321,9 @@
   "limitations": [
     "Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.",
     "Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.",
-    "No independent Wikidata identifier is asserted; main facade facing remains provisional.",
+    "The source uses its own OSM feature. Doorway and roof details are approximate.",
     "References show 2014/2016 appearance; current restoration state is unconfirmed.",
-    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+    "The steps and base use the retained map and elevation samples. The exterior is a reconstruction with shared materials."
   ],
   "qaCameras": [
     {
@@ -219,10 +383,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 1468,
-    "vertices": 4404,
-    "materials": 5,
-    "bytes": 179376,
-    "sha256": "sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd"
+    "triangles": 1606,
+    "vertices": 4818,
+    "materials": 6,
+    "bytes": 196424,
+    "sha256": "sha256:e2b729b2edcc769aa34c1899ee3f7b55fe4e7c78062060879935058eb6f896e5"
   }
 }

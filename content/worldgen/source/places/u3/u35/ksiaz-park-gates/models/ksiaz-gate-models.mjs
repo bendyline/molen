@@ -1,7 +1,10 @@
 /** Source-specific park gates; ornamental forms are medium-fi interpretations, not sculpture scans. */
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { normalFor } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import {
+  normalFor,
+  normalize,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 export const ksiazGateModels = [
   {
     id: 'KSI_G01',
@@ -32,15 +35,17 @@ export const ksiazGateModels = [
     title: 'Książ Lion Gate at Świebodzice',
     node: 2618881852,
     component: 'park-gates',
-    referenceYear: '2012',
+    fitAppearance:
+      'The restored exterior follows photographs from both approaches. The iron leaves are shown open.',
     brief:
-      'Tall square sandstone piers with broad cornices, seated lions holding shields, rising curved wing walls and open iron leaves; clear sky above the passage.',
+      'Pale sandstone piers with shield-bearing lions, curved terracotta wall panels, urn-topped outer posts and open wrought-iron leaves.',
     primaryDescription:
-      'Independent Brama Lwów heritage gate node and adjoining path; exterior interpreted from Irena Goderska’s 2012 primary photograph, not a map-linked photo or surveyed footprint.',
+      'Independent Brama Lwów heritage gate node and adjoining path. Irena Goderska’s park-side photograph and the linked restored views establish the profile, materials and signed approach.',
     ornamentNote:
       'Seated lions, manes, paws, shields and tails are original simplified medium-fi forms without facial likeness, carved heraldry or sculptural microdetail.',
     references: [
       'https://commons.wikimedia.org/wiki/File:PL,_%C5%9Awiebodzice_brama_do_parku_Ksi%C4%85%C5%BC_DSC_0008-001.JPG',
+      'https://www.labiryntarium.pl/7gmin/gminaswiebodzice/698-spacerkiemdoksiaza.html',
     ],
     sourceDocuments: ['reference-metadata.json'],
     cameras: [
@@ -62,11 +67,17 @@ export const ksiazGateModels = [
 export const ksiazGateSurfaces = {
   carvedStone: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.92, metallic: 0 },
   sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
+  plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
   metal: { slot: 'trim', graph: 'metal_painted', roughness: 0.7, metallic: 0.65 },
 };
 export const ksiazGatePalette = { stone: '#e5d8bd', trim: '#ece1ca', metal: '#72828a' };
+export const ksiazLionGatePalette = {
+  ...ksiazGatePalette,
+  wallPanel: '#bf7850',
+  plinth: '#aaa79f',
+};
 const colors = Object.fromEntries(
-  Object.entries(ksiazGatePalette).map(([k, h]) => [
+  Object.entries(ksiazLionGatePalette).map(([k, h]) => [
     k,
     h
       .slice(1)
@@ -210,24 +221,26 @@ function tube(o, a, b, r, color = 'metal', surface = 'metal') {
 function path(o, points, r, color = 'metal', surface = 'metal') {
   for (let i = 1; i < points.length; i++) tube(o, points[i - 1], points[i], r, color, surface);
 }
-function lathe(o, x, z, levels, n = 8, color = 'trim') {
+function lathe(o, x, z, levels, n = 8, color = 'trim', footprint) {
   const rings = levels.map(([y, r]) =>
-    Array.from({ length: n }, (_, i) => [
-      x + r * Math.cos((i * 2 * Math.PI) / n),
-      y,
-      z + r * Math.sin((i * 2 * Math.PI) / n),
-    ]),
+    Array.from({ length: n }, (_, i) => {
+      const [u, v] = footprint?.[i] ?? [
+        Math.cos((i * 2 * Math.PI) / n),
+        Math.sin((i * 2 * Math.PI) / n),
+      ];
+      return [x + r * u, y, z + r * v];
+    }),
   );
   for (let j = 1; j < rings.length; j++)
     for (let i = 0; i < n; i++) {
       const k = (i + 1) % n,
         a = rings[j - 1][i],
         b = rings[j - 1][k];
-      face(o, [a, b, rings[j][k], rings[j][i]], color, 'sandstone', [
-        (a[0] + b[0]) / 2 - x,
-        0,
-        (a[2] + b[2]) / 2 - z,
-      ]);
+      const target =
+        levels[j - 1][0] === levels[j][0]
+          ? [0, Math.sign(levels[j - 1][1] - levels[j][1]), 0]
+          : [(a[0] + b[0]) / 2 - x, 0, (a[2] + b[2]) / 2 - z];
+      face(o, [a, b, rings[j][k], rings[j][i]], color, 'sandstone', target);
     }
   face(o, rings.at(-1), color, 'sandstone', [0, 1, 0]);
 }
@@ -302,7 +315,8 @@ function ironOpening(o, half, d, crest) {
   if (crest) {
     const top = Array.from({ length: count + 1 }, (_, i) => {
       const x = -half + (2 * half * i) / count;
-      return [x, 3.48 + 2.1 * Math.max(0, 1 - Math.abs(x) / half), 0];
+      const t = 1 - Math.abs(x) / half;
+      return [x, 3.48 + 1.99 * Math.pow(Math.sin((t * Math.PI) / 2), 0.78), 0];
     });
     path(o, top, 0.065);
     if (d >= 1) {
@@ -333,13 +347,31 @@ function ironOpening(o, half, d, crest) {
           0.045,
         );
     }
-    if (d >= 2) for (const x of [-0.65, 0.65]) scroll(o, x, 4.65, 0.01, 0.32, d);
+    if (d >= 2) {
+      for (const sign of [-1, 1]) {
+        for (const [x, y, radius] of [
+          [0.49, 4.85, 0.32],
+          [1.06, 4.64, 0.31],
+          [1.58, 4.32, 0.22],
+        ])
+          scroll(o, sign * x, y, 0.025, radius, d);
+        path(
+          o,
+          [
+            [0, 4.62, 0.03],
+            [sign * 0.57, 5.16, 0.03],
+            [sign * 1.06, 5.04, 0.03],
+          ],
+          0.044,
+        );
+      }
+    }
     if (d >= 1)
       ellipsoid(
         {
           addTriangle: (_s, r, p, n, uv, _col) => o.addTriangle('metal', r, p, n, uv, colors.metal),
         },
-        [0, 5.72, 0],
+        [0, 5.6, 0],
         [0.28, 0.17, 0.25],
         d,
       );
@@ -382,8 +414,18 @@ function localGate(o, center, angle = 0) {
       ),
   };
 }
-function squarePier(o, x, c) {
-  box(o, x, 0, 0, c.pillarWidth + 0.12, 0.36, c.pillarDepth + 0.12);
+function squarePier(o, x, c, bottom) {
+  box(
+    o,
+    x,
+    bottom,
+    0,
+    c.pillarWidth + 0.12,
+    0.36 - bottom,
+    c.pillarDepth + 0.12,
+    'plinth',
+    'carvedStone',
+  );
   const half = c.pillarWidth / 2,
     z = c.pillarDepth / 2,
     bevel = 0.14,
@@ -413,9 +455,31 @@ function squarePier(o, x, c) {
       [b[1] - a[1], 0, a[0] - b[0]],
     );
   }
-  box(o, x, c.pillarHeight - 0.5, 0, c.pillarWidth + 0.1, 0.2, c.pillarDepth + 0.1, 'trim');
-  box(o, x, c.pillarHeight - 0.3, 0, c.pillarWidth + 0.5, 0.22, c.pillarDepth + 0.48, 'stone');
-  box(o, x, c.pillarHeight - 0.08, 0, c.pillarWidth + 0.62, 0.08, c.pillarDepth + 0.6, 'trim');
+  const cornice = [
+    [0.5, 0.2, 0.1, 0.1, 'trim'],
+    [0.3, 0.22, 0.5, 0.48, 'stone'],
+    [0.08, 0.08, 0.62, 0.6, 'trim'],
+  ];
+  for (const [offset, height, spreadX, spreadZ, color] of cornice) {
+    const y = c.pillarHeight - offset;
+    const w = half + spreadX / 2,
+      depth = z + spreadZ / 2;
+    box(o, x, y, 0, 2 * w, height, 2 * depth, color, 'carvedStone');
+    face(
+      o,
+      [
+        [x - w, y, -depth],
+        [x + w, y, -depth],
+        [x + w, y, depth],
+        [x - w, y, depth],
+      ],
+      color,
+      'carvedStone',
+      [0, -1, 0],
+    );
+  }
+  for (const sign of [-1, 1])
+    box(o, x, 0.44, sign * (z + 0.01), 1.04, 3.45, 0.025, 'stone', 'carvedStone');
 }
 function shield(o, d) {
   const profile = [
@@ -449,12 +513,17 @@ function shield(o, d) {
       [b[1] - a[1], a[0] - b[0], 0],
     );
   }
-  if (d >= 2) {
-    box(o, 0, 0.32, 0.68, 0.06, 0.69, 0.03, 'stone');
-    box(o, 0, 0.85, 0.68, 0.54, 0.06, 0.03, 'stone');
+  if (d === 3) {
+    const bead = [...profile, profile[0]].map(([x, y]) => [
+      x * 0.82,
+      0.66 + (y - 0.66) * 0.85,
+      0.67,
+    ]);
+    path(o, bead, 0.025, 'trim', 'sandstone');
   }
 }
 function seatedLion(o, d) {
+  box(o, 0, 0, 0.04, 0.87, 0.095, 1.08, 'trim');
   ellipsoid(o, [0, 0.51, -0.17], [0.48, 0.51, 0.41], d);
   ellipsoid(o, [0, 1.05, 0.02], [0.34, 0.54, 0.33], d);
   // Mane and projecting muzzle carry recognition even at skyline distance.
@@ -489,15 +558,36 @@ function seatedLion(o, d) {
       ellipsoid(o, [0.33 * Math.cos(a), 1.49 + 0.3 * Math.sin(a), 0.21], [0.13, 0.16, 0.13], 1);
     }
   }
+  if (d === 3) {
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < 3; i++) {
+        const y = 1.21 + i * 0.17;
+        path(
+          o,
+          [
+            [side * 0.2, y + 0.25, -0.26],
+            [side * 0.32, y + 0.13, -0.22],
+            [side * 0.32, y - 0.03, -0.1],
+          ],
+          0.072,
+          'trim',
+          'sandstone',
+        );
+      }
+      ellipsoid(o, [side * 0.13, 1.55, 0.585], [0.12, 0.11, 0.06], 1);
+    }
+  }
 }
-function lionWing(o, sign, px, c, d) {
+function lionWing(o, sign, px, c, grades, d) {
   const count = d >= 2 ? 8 : 4,
     points = Array.from({ length: count + 1 }, (_, i) => {
       const t = i / count;
       return [
         sign * (px + c.pillarWidth / 2 + c.sideWidth * t),
         -1.3 * Math.sin((t * Math.PI) / 2),
-        c.sideHeight + (c.pillarHeight - 0.85 - c.sideHeight) * Math.pow(1 - t, 3),
+        c.sideHeight +
+          (c.pillarHeight - 0.85 - c.sideHeight) * Math.pow(1 - t, 3) +
+          t * grades[(i * 8) / count],
       ];
     });
   const normals = points.slice(1).map((b, i) => {
@@ -521,7 +611,7 @@ function lionWing(o, sign, px, c, d) {
       y,
       points[i][1] + miters[i][1] * s * width,
     ];
-  function band(width, low, high, color) {
+  function band(width, low, high, color, material = 'sandstone') {
     for (let i = 1; i < points.length; i++) {
       const target = normals[i - 1];
       for (const s of [-1, 1])
@@ -534,7 +624,7 @@ function lionWing(o, sign, px, c, d) {
             vertex(i - 1, s, width, high(i - 1)),
           ],
           color,
-          'sandstone',
+          material,
           [s * target[0], 0, s * target[1]],
         );
       face(
@@ -546,7 +636,7 @@ function lionWing(o, sign, px, c, d) {
           vertex(i - 1, 1, width, high(i - 1)),
         ],
         color,
-        'sandstone',
+        material,
         [0, 1, 0],
       );
     }
@@ -562,29 +652,83 @@ function lionWing(o, sign, px, c, d) {
           vertex(i, -1, width, high(i)),
         ],
         color,
-        'sandstone',
+        material,
         [-direction * n[1], 0, direction * n[0]],
       );
     }
   }
   // Shared mitered vertices join every wall/coping segment without open tangent-block gaps.
+  const base = (i) => grades[(i * 8) / count];
   band(
     0.34,
-    () => 0,
+    (i) => base(i) - 0.22,
     (i) => points[i][2],
-    'stone',
+    'trim',
+    'plaster',
   );
   band(
     0.38,
-    () => 0,
-    () => 0.26,
-    'stone',
+    (i) => base(i) - 0.22,
+    (i) => base(i) + 0.3,
+    'plinth',
+    'carvedStone',
   );
   band(
     0.4,
     (i) => points[i][2],
     (i) => points[i][2] + 0.13,
     'trim',
+    'carvedStone',
+  );
+  for (let i = 1; i <= count; i++) {
+    const start = i === 1 ? 0.32 : 0;
+    const end = i === count ? 0.87 : 1;
+    const normal = normals[i - 1];
+    for (const side of [-1, 1]) {
+      const panel = (t, y0, y1) => {
+        const a = vertex(i - 1, side, 0.346, y0),
+          b = vertex(i, side, 0.346, y1);
+        return a.map((v, axis) => v + (b[axis] - v) * t);
+      };
+      face(
+        o,
+        [
+          panel(start, base(i - 1) + 0.58, base(i) + 0.58),
+          panel(end, base(i - 1) + 0.58, base(i) + 0.58),
+          panel(end, points[i - 1][2] - 0.21, points[i][2] - 0.21),
+          panel(start, points[i - 1][2] - 0.21, points[i][2] - 0.21),
+        ],
+        'wallPanel',
+        'plaster',
+        [side * normal[0], 0, side * normal[1]],
+      );
+    }
+  }
+  const [x, z] = points.at(-1),
+    ground = base(count),
+    top = ground + c.sideHeight + 0.3;
+  box(o, x, ground - 0.2, z, 0.76, 0.54, 0.82, 'plinth', 'carvedStone');
+  box(o, x, ground + 0.34, z, 0.65, top - ground - 0.34, 0.69, 'trim', 'plaster');
+  box(o, x, top, z, 0.89, 0.16, 0.91, 'trim', 'carvedStone');
+  const urn = {
+    addTriangle: (_s, ref, positions, normal, uv, color) =>
+      o.addTriangle('carvedStone', ref, positions, normal, uv, color),
+  };
+  lathe(
+    urn,
+    x,
+    z,
+    [
+      [top + 0.16, 0.24],
+      [top + 0.25, 0.24],
+      [top + 0.28, 0.12],
+      [top + 0.43, 0.17],
+      [top + 0.63, 0.31],
+      [top + 0.75, 0.24],
+      [top + 0.85, 0.14],
+      [top + 0.91, 0.05],
+    ],
+    d < 2 ? 6 : 10,
   );
 }
 function lionLeaves(o, half, d) {
@@ -610,14 +754,21 @@ function lionLeaves(o, half, d) {
       tube(o, [p[0], 0.14, p[1]], [p[0], top, p[1]], 0.035);
       if (d >= 2) tube(o, [p[0], top, p[1]], [p[0], top + 0.15, p[1]], 0.055);
     }
+    if (d === 3) {
+      const span = Math.hypot(endX - hinge, endZ);
+      const frame = localGate(o, [hinge, 0, 0], -Math.atan2(endZ, endX - hinge));
+      for (const y of [0.35, 1.06])
+        for (let i = 0; i < 7; i++) scroll(frame, ((i + 0.5) * span) / 7, y, 0.012, 0.102, 2);
+    }
   }
 }
-function buildLionGate(o, c, d) {
+function buildLionGate(o, c, fit, d) {
   const half = c.clearWidth / 2,
     px = half + c.pillarWidth / 2;
   for (const sign of [-1, 1]) {
     const x = sign * px;
-    squarePier(o, x, c);
+    const { pierBase, grades } = fit.wings[(sign + 1) / 2];
+    squarePier(o, x, c, pierBase);
     box(o, x, c.pillarHeight, 0, 1.38, 0.2, 1.35, 'stone');
     box(o, x, c.pillarHeight + 0.2, 0, 1.22, 0.1, 1.2, 'trim');
     const carving = localGate(o, [x, c.pillarHeight + 0.3, 0], -sign * Math.PI * 0.75);
@@ -635,10 +786,13 @@ function buildLionGate(o, c, d) {
       },
       d,
     );
-    lionWing(o, sign, px, c, d);
-    if (d >= 1)
-      for (const z of [-c.pillarDepth / 2 - 0.015, c.pillarDepth / 2 + 0.015])
+    lionWing(o, sign, px, c, grades, d);
+    if (d >= 1) {
+      for (const z of [-c.pillarDepth / 2 - 0.015, c.pillarDepth / 2 + 0.015]) {
         for (const offset of [-0.53, 0.53]) box(o, x + offset, 0.5, z, 0.09, 3.42, 0.08, 'trim');
+        box(o, x, 3.9, z, 1.15, 0.085, 0.09, 'trim', 'carvedStone');
+      }
+    }
   }
   lionLeaves(o, half, d);
 }
@@ -647,29 +801,46 @@ export function buildKsiazGate(o, key, level = 'closeup') {
   const f = frames.get(key),
     d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
   if (!f || d === undefined) throw Error('Unknown gate or level');
-  if (key === 'ksiaz_lion_gate') return buildLionGate(o, f.controls, d);
+  if (key === 'ksiaz_lion_gate') return buildLionGate(o, f.controls, f.siteFit, d);
   const c = f.controls,
     half = c.clearWidth / 2,
     px = half + c.pillarWidth / 2;
+  const carving = {
+    addTriangle: (_surface, ref, points, normal, uv, color) =>
+      o.addTriangle('carvedStone', ref, points, normal, uv, color),
+  };
+  const pier = [
+    [-0.75, -1],
+    [0.75, -1],
+    [1, -0.75],
+    [1, 0.75],
+    [0.75, 1],
+    [-0.75, 1],
+    [-1, 0.75],
+    [-1, -0.75],
+  ];
   for (const sign of [-1, 1]) {
     const x = sign * px;
+    const grades = f.siteFit.wings[(sign + 1) / 2];
+    const shaft = [[0.41, 0.67]];
+    if (d >= 2) {
+      for (let course = 1; course <= 7; course++) {
+        const y = 0.41 + course * 0.47;
+        shaft.push([y - 0.023, 0.67], [y, 0.651], [y + 0.023, 0.67]);
+      }
+    }
+    shaft.push([3.74, 0.67], [3.74, 0.76], [3.91, 0.83], [4.02, 0.98], [4.1, 0.98]);
     lathe(
       o,
       x,
       0,
-      [
-        [0, 0.9],
-        [0.35, 0.9],
-        [0.35, 0.76],
-        [3.85, 0.76],
-        [3.85, 0.9],
-        [4.1, 0.98],
-      ],
+      [[grades.pierBase, 0.82], [0.29, 0.82], [0.41, 0.71], ...shaft],
       8,
       'stone',
+      pier,
     );
     lathe(
-      o,
+      carving,
       x,
       0,
       [
@@ -677,32 +848,38 @@ export function buildKsiazGate(o, key, level = 'closeup') {
         [4.45, 0.4],
         [4.7, 0.22],
         [4.8, 0.22],
-        [5.25, 0.56],
-        [5.4, 0.63],
-        [5.58, 0.47],
-        [5.8, 0.14],
+        [5.12, 0.46],
+        [5.33, 0.55],
+        [5.45, 0.58],
+        [5.48, 0.49],
+        [5.59, 0.44],
+        [5.7, 0.25],
+        [5.84, 0.1],
       ],
-      d === 0 ? 6 : 8,
+      d === 0 ? 6 : d === 1 ? 8 : 12,
     );
     if (d >= 2) {
       for (const yy of [4.3, 4.55])
-        for (const xx of [-0.45, 0.45]) scroll(o, x + xx, yy, 0.7, 0.22, d, 'trim', 'sandstone');
-      ellipsoid(o, [x - 0.55, 4.65, 0.35], [0.18, 0.34, 0.18], d);
-      ellipsoid(o, [x - 0.55, 5.01, 0.35], [0.15, 0.17, 0.15], d);
+        for (const xx of [-0.45, 0.45])
+          scroll(carving, x + xx, yy, -0.52, 0.22, d, 'trim', 'sandstone');
+      ellipsoid(carving, [x - sign * 0.52, 4.55, -0.35], [0.18, 0.34, 0.18], d);
+      ellipsoid(carving, [x - sign * 0.52, 4.91, -0.35], [0.15, 0.17, 0.15], d);
     }
-    const n = d >= 2 ? 7 : 4,
-      wing = [];
-    for (let i = 0; i <= n; i++) {
-      const t = i / n;
-      wing.push([sign * (px + 0.7 + c.sideWidth * t), 0.5, -1.4 * Math.sin((t * Math.PI) / 2)]);
-    }
+    const stations = d >= 2 ? [0, 1, 2, 3, 4, 5, 6, 7] : [0, 2, 4, 7];
+    const wing = stations.map((i) => [
+      sign * (px + 0.7 + (c.sideWidth * i) / 7),
+      grades.grades[i],
+      -1.4 * Math.sin((i * Math.PI) / 14),
+    ]);
     for (let i = 1; i < wing.length; i++) {
       const a = wing[i - 1],
         b = wing[i],
         mid = [(a[0] + b[0]) / 2, (a[2] + b[2]) / 2],
         len = Math.hypot(b[0] - a[0], b[2] - a[2]);
       // Small overlapping tangent blocks form a continuous curved wall and coping.
-      const angle = -Math.atan2(b[2] - a[2], b[0] - a[0]),
+      const slope = (b[1] - a[1]) / len,
+        grade = (a[1] + b[1]) / 2,
+        angle = -Math.atan2(b[2] - a[2], b[0] - a[0]),
         rotate = ([x, y, z]) => [
           x * Math.cos(angle) + z * Math.sin(angle),
           y,
@@ -715,27 +892,36 @@ export function buildKsiazGate(o, key, level = 'closeup') {
               r,
               p.map((v) => {
                 const a = rotate(v);
-                return [a[0] + mid[0], a[1], a[2] + mid[1]];
+                return [a[0] + mid[0], a[1] + grade + slope * v[0], a[2] + mid[1]];
               }),
-              rotate(n),
+              normalize(rotate([n[0] - slope * n[1], n[1], n[2]])),
               uv,
               col,
             ),
         };
-      box(q, 0, 0, 0, len + 0.04, c.sideHeight, 0.45);
+      box(q, 0, -0.25, 0, len + 0.04, c.sideHeight + 0.25, 0.45);
       box(q, 0, c.sideHeight, 0, len + 0.06, 0.16, 0.6, 'trim');
       if (d >= 1 && c.crest) {
         const bars = d === 1 ? 2 : 4;
-        for (let j = 0; j < bars; j++)
-          box(q, -len / 2 + ((j + 0.5) * len) / bars, 1.36, 0, 0.06, 1.25, 0.06, 'metal', 'metal');
+        for (let j = 0; j < bars; j++) {
+          const bar = -len / 2 + ((j + 0.5) * len) / bars;
+          box(q, bar, 1.36, 0, 0.045, 1.25, 0.054, 'metal', 'metal');
+          if (d === 3) {
+            box(q, bar, 2.62, 0, 0.021, 0.11, 0.028, 'metal', 'metal');
+            if (j % 2 === 0) scroll(q, bar + len / (4 * bars), 2.36, -0.028, 0.075, d);
+          }
+        }
+        if (d >= 2) box(q, 0, 1.48, 0, len + 0.04, 0.045, 0.053, 'metal', 'metal');
         box(q, 0, 2.58, 0, len + 0.04, 0.06, 0.06, 'metal', 'metal');
       }
     }
     if (!c.crest) {
       const end = wing.at(-1);
-      box(o, end[0], 1.2, end[2], 1.6, 0.25, 1.05, 'trim');
-      if (d >= 1) statue(o, end[0], 1.45, end[2], d);
-      else ellipsoid(o, [end[0], 2.05, end[2]], [0.9, 0.6, 0.4], 1);
+      box(o, end[0], c.sideHeight - 0.17 + end[1], end[2], 1.6, 0.44, 1.05, 'trim');
+      const pedestal = c.sideHeight + 0.27 + end[1];
+      if (d >= 1)
+        statue(localGate(carving, [end[0], pedestal, end[2]], sign < 0 ? 0 : Math.PI), 0, 0, 0, d);
+      else ellipsoid(carving, [end[0], pedestal + 0.6, end[2]], [0.9, 0.6, 0.4], 1);
     }
   }
   ironOpening(o, half, d, c.crest);
@@ -750,7 +936,7 @@ export function buildKsiazGateSkyline(o, key) {
           p,
           n,
           uv,
-          col.map((v, i) => v * ((key === 'ksiaz_lion_gate' ? lionMeans : means)[s]?.[i] ?? 1)),
+          col.map((v, i) => v * ((s === 'carvedStone' ? lionMeans : means)[s]?.[i] ?? 1)),
         ),
     },
     key,

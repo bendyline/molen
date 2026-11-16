@@ -86,6 +86,40 @@ describe('mapped water banks', () => {
       ),
     ).toBeUndefined();
   });
+  it('closes the underside of an explicit water stage against lower dry terrain', () => {
+    const geometry = buildTerrainWaterBanks(
+      [
+        {
+          polygon: {
+            outer: [
+              [0, 0.25],
+              [0.75, 0.25],
+              [0.75, 0.75],
+              [0, 0.75],
+            ],
+          },
+          height: 30,
+          fixedStage: true,
+        },
+      ],
+      context,
+      0.18,
+    );
+    if (!geometry) throw new Error('Expected banks below the fixed water stage');
+    const positions = geometry.getAttribute('position');
+    const sample = renderedGroundSampler(context.heightfield, context.origin, context.tileSize);
+    let groundVertices = 0;
+    for (let i = 0; i < positions.count; i++) {
+      const y = positions.getY(i);
+      if (y === 30) continue;
+      expect(y).toBeCloseTo(sample(200 + positions.getX(i), 400 + positions.getZ(i)) - 0.05, 4);
+      groundVertices++;
+    }
+    expect(groundVertices).toBeGreaterThan(0);
+    for (let i = 0; i < positions.count; i += 3)
+      expect([0, 1, 2].some((j) => positions.getX(i + j) > 0)).toBe(true);
+    geometry.dispose();
+  });
   it('builds no banks in the buffer that decoded and overzoomed areas carry past the tile', () => {
     // Open water clipped to the tile plus a 1/32 buffer, as decoded tiles carry it: its seams lie
     // outside the ground, where banks once stood as walls in the sea.
@@ -119,5 +153,64 @@ describe('mapped water banks', () => {
     expect(geometry.boundingBox?.min.z).toBeCloseTo(0, 6);
     expect(geometry.boundingBox?.max.z).toBeCloseTo(100, 6);
     geometry.dispose();
+  });
+  it('keeps a canal mouth open where both polygons share the same water stage', () => {
+    const river = {
+      outer: [
+        [0.1, 0.2],
+        [0.9, 0.2],
+        [0.9, 0.5],
+        [0.6, 0.5],
+        [0.4, 0.5],
+        [0.1, 0.5],
+      ],
+    } as const;
+    const canal = {
+      outer: [
+        [0.4, 0.8],
+        [0.6, 0.8],
+        [0.6, 0.5],
+        [0.4, 0.5],
+      ],
+    } as const;
+    const runs = [
+      {
+        waters: [
+          { polygon: river, height: 1 },
+          { polygon: canal, height: 1 },
+        ],
+        hasBank: false,
+      },
+      {
+        waters: [
+          { polygon: river, height: 1 },
+          { polygon: canal, height: 2 },
+        ],
+        hasBank: true,
+      },
+      {
+        waters: [
+          { polygon: river, height: 1 },
+          { polygon: river, height: 1 },
+        ],
+        hasBank: true,
+      },
+    ];
+    for (const { waters, hasBank } of runs) {
+      const geometry = buildTerrainWaterBanks(waters, context, 0);
+      if (!geometry) throw new Error('Expected visible outer banks');
+      const position = geometry.getAttribute('position');
+      let mouthTriangles = 0;
+      for (let i = 0; i < position.count; i += 3) {
+        if (
+          [i, i + 1, i + 2].every(
+            (j) => position.getZ(j) === 50 && position.getX(j) >= 40 && position.getX(j) <= 60,
+          )
+        )
+          mouthTriangles++;
+      }
+      expect(mouthTriangles > 0).toBe(hasBank);
+      geometry.dispose();
+    }
   });
 });

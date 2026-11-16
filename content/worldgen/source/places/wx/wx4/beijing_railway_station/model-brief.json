@@ -63,9 +63,9 @@
     }
   },
   "exportLabel": "Molen original complete Beijing station passenger building and open canopy source",
-  "expectedDraftMasterHash": "sha256:52a026e80ee8e11e13948a2237296febbc5974017f5930d4136a20e6efdb40e2",
-  "visualBrief": "Complete permanent Beijing railway station passenger ensemble: monumental north facade, both square clock towers with three-tier glazed Chinese roofs and finials, deep central glazed bays and rounded columns, full lateral wings and corner roof pavilions, two genuine courtyard voids, all mapped canopy bounds represented by open platform-roof wings, and the elevated connector with stairs. Preserve the native forecourt, independent service buildings, streets, rails and urban context. Exterior only; no copied signs, lettering, branding, figurative ornament, people, trains or navigable interior.",
-  "heightPolicy": "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets. One unchanged standard field sample outside the north entrance[-12,-57],48.08290055999999m,defines one common Y=0. Native contact still requires current render review.",
+  "expectedDraftMasterHash": "sha256:1c27f6fced999b5d18e92299d87a06ef76684c93e3f51636350313ddec20fb55",
+  "visualBrief": "Beijing Railway Station with its paired clock towers and glazed roofs, three recessed main windows, full passenger wings, two open courtyards, eight open platform-roof rows, raised passenger connector and fitted entrance apron.",
+  "heightPolicy": "The mapped station and photographs resolve the north-facing gate, the two clock towers and south rail platforms. The shared datum uses a standard terrain sample in the north forecourt. A bounded plaza surface exposes the gate and courtyard grade. Platform roofs preserve the mapped rail paths and seat their supports at sampled grade.",
   "nativeAxes": "+X east along the monumental north facade; +Z south toward the railway platforms; -Z north toward the forecourt and Beijing Station East/West Street. +Y up.",
   "sourceFacts": {
     "numericNativeHeightsAvailable": false,
@@ -87,8 +87,8 @@
       "cornerPavilion": 27.8,
       "canopyCentre": 6.4,
       "canopyEdge": 7.8,
-      "connectorFloor": 4,
-      "connectorRoof": 7.2
+      "connectorFloor": 12.35969,
+      "connectorRoof": 15.55969
     },
     "heightPolicy": "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets.",
     "authoredMaximumMeters": 43.3,
@@ -101,13 +101,15 @@
     "courtyardVoids": 2,
     "canopyRows": 8,
     "ownedNativeParts": 13,
-    "retainedNativeParts": 350
+    "retainedNativeParts": 350,
+    "platformGeometry": {
+      "plan": "Mapped canopy shapes and clearances around actual PMTiles rails.",
+      "height": "Photo-proportioned roof shape and local support grades."
+    }
   },
   "limitations": [
-    "Complete permanent Beijing railway station passenger ensemble: monumental north facade, both square clock towers with three-tier glazed Chinese roofs and finials, deep central glazed bays and rounded columns, full lateral wings and corner roof pavilions, two genuine courtyard voids, all mapped canopy bounds represented by open platform-roof wings, and the elevated connector with stairs. Preserve the native forecourt, independent service buildings, streets, rails and urban context. Exterior only; no copied signs, lettering, branding, figurative ornament, people, trains or navigable interior.",
-    "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets. One unchanged standard field sample outside the north entrance[-12,-57],48.08290055999999m,defines one common Y=0. Native contact still requires current render review.",
-    "Two adequate ordinary front and selected-platform photographs inspected. Full map outlines and two court holes are retained. Hidden rear windows, canopy module inventory/sky-slot widths, detailed roof ornament and current renovation phase remain medium-fi approximations. The eight canopy rows are regularized around native rail gaps plus two inferred edge rows; they are not a surveyed inventory. The central facade is regularized to preserve all three photographed glazed bays. Exact hidden ornament, thresholds, platform levels and present works remain approximate. No copied lettering or photographic textures. Physical-device timing and numerical LOD errors remain unmeasured.",
-    "Six existing shared256px limestone,granite,glazed-tile,painted-metal,corrugated-metal andwindow-grid graphs. Six merged semantic groups,metric UVs andlinear colours,no embedded or private textures. Skyline preserves the full passenger mass,clock silhouettes,courts andallcanopyrows. District addscoarsepanes;street addsrealrecesses;close-up addsroofcurves,branchsupports,clocks andstairs;master separatelyrefinesframes andcurves. LODerrors areestimates."
+    "Forecourt and platform elevations are visual estimates from the mapped plan and standard terrain. The platform roofs use locally fitted support heights and retain the eight modeled rows and existing rail gaps.",
+    "The model depicts the permanent passenger exterior. Fine thresholds, hidden rooms and temporary works are approximate or outside the model scope."
   ],
   "references": [
     {
@@ -125,6 +127,10 @@
     {
       "url": "https://build.protomaps.com/20261031.pmtiles",
       "observed": "Approximate physical association: parent80/238, four mapped roof/tower pavilions10/11/13/15, complete layer3 canopy56/118/188/243 and layer2 connector75/149. Parent has two genuine courtyard holes; preserve them in walls, roofs, floors and masks. PMTiles supply no numeric heights for these scoped families. Do not turn layer numbers into surveyed platform heights or claim an exact Wikidata-tagged parent. Source includes an approximately0.72m central facade projection to keep all three observed glazed bays and columns continuous between the clock towers; original map part edges are generalized. Two actual court voids remain open. All heights are original photo-proportioned approximations."
+    },
+    {
+      "url": "https://zdzqgw.beijing.gov.cn/zqfw/bjzdq/bjzdt/202405/t20240506_3661894.html",
+      "use": "North forecourt and entrance photograph after the 2024 works."
     }
   ],
   "cameras": [
@@ -200,13 +206,9 @@
     }
   ],
   "mediumFiContext": {
-    "groundY": 0,
-    "scale": 1.6,
-    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-    "terrain": {
-      "descriptor": "terrain-review.terrain.json",
-      "heightmap": "terrain-review.height.png"
-    }
+    "scale": 1,
+    "groundY": -1.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
   },
   "runtimeLodOverlay": {
     "level": "skyline",

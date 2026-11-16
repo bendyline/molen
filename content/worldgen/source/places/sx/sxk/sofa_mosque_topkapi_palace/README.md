@@ -16,7 +16,7 @@ Sofa Mosque: small pale rectangular prayer hall with four tall pointed windows a
 
 ## Model and axes
 
-11,872 triangles; 33,024 vertices; 7 material groups; 1,335,684 bytes. Native bounds: -6.646, -1.888, -5.970 to 8.259, 11.223, 5.970. Source hash: `sha256:70ab2db23d9cb088f2659eacdec516d092265d2b5bce4365db426dcb5723c823`.
+11,740 triangles; 32,628 vertices; 7 material groups; 1,319,844 bytes. Native bounds: -6.646, -1.200, -5.970 to 6.646, 11.059, 5.970. Source hash: `sha256:aa2e6ac96577dfb2919e4240000275074b9cc9372504bddc20c50bea7bef318f`.
 
 {"x":"east","y":"up","z":"south"}
 
@@ -31,6 +31,6 @@ Run `node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=sofa
 - Sofa Mosque: small pale rectangular prayer hall with four tall pointed windows along its garden side, three front bays and a real central entry, fine brown window mullions, shallow lead cushion roof, paneled upper frieze/cornice and a short attached cylindrical stone minaret with moulded balcony support, a genuinely pierced lozenge guard, blunt rounded cap and finial. Plain interior; no copied inscriptions/art, chandelier, furnishings or independent neighbouring palace range.
 - Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint.
 - Picture-led floor0.6834893142276027m relative to uncovered provider,5.1m wall/cornice,1.1m cushion-roof rise and10.4m minaret/finial. Window/header, hidden rear elevation, minaret position/profile/guard inventory and plain room layout are reconstructed rather than surveyed. Entry14treads follow the sampled original garden grade and do not claim exact historical thresholds.
-- Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified.
+- The retained standard field samples 35.14 m beside the photographed entrance. The bounded forecourt meets the two entrance treads and blends into the garden slope. Absolute grades are representative visualization controls.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

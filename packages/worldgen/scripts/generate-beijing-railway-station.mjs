@@ -91,6 +91,7 @@ const spec = {
     terrainReference: placement.terrainReference,
     replaceRoads: placement.replaceRoads,
     bounds: placement.bounds,
+    minLevel: placement.minLevel,
     mapGeometrySource: 'map-frame.json',
     mapGeometryHash: hashEvidenceText(frame),
     mapGeometryLicense: 'ODbL-1.0',
@@ -106,7 +107,7 @@ const spec = {
   geometrySource:
     'Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.',
   materialMethod:
-    'Six existing shared256px limestone,stucco,granite,painted-metal,slate andwindow-grid graphs;seven semanticgroups,no private or embedded images.',
+    'Shared limestone, granite, glazed tile, painted metal, corrugated metal and grid glazing graphs use metric UVs and linear vertex colors.',
   sharedSurfaces: materials.flatMap((m) => (m.sharedSurface ? [m.sharedSurface] : [])),
   runtimeLodOverlay: brief.runtimeLodOverlay,
   mediumFiContext: brief.mediumFiContext,
@@ -133,18 +134,6 @@ const scene = {
       components: {
         transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] },
         renderable: { kind: 'gltf', ref: assetId, shadows: { cast: true, receive: true } },
-      },
-    },
-    {
-      id: 'ground',
-      components: {
-        transform: { pos: [0, -0.15, 0], scale: [850, 0.2, 650], rot: [0, 0, 0, 1] },
-        renderable: {
-          kind: 'primitive',
-          ref: 'box',
-          materialRef: 'palette:#6b929a',
-          shadows: { receive: true },
-        },
       },
     },
     ...(brief.reviewEntities ?? []),
@@ -176,7 +165,7 @@ const source = {
   kind: 'static-structure',
   title: brief.title,
   files: {
-    definitions: ['spec.json', 'scene.json', 'model-brief.json'],
+    definitions: ['spec.json', 'scene.json', 'model-brief.json', 'models/site-fit.json'],
     models: [
       {
         path: 'models/source.glb',

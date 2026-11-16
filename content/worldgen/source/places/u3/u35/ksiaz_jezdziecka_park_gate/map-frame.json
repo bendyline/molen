@@ -8,7 +8,7 @@
     16.2996426,
     50.8420816
   ],
-  "heading": -0.7432773399575731,
+  "heading": 2.39831531363222,
   "sourceUrl": "https://www.openstreetmap.org/node/2858843981",
   "elements": [
     {
@@ -62,16 +62,16 @@
     "centerlines": [
       [
         [
-          0.5155587591986666,
-          -7.65571553569262
+          -0.5155587591986666,
+          7.65571553569262
         ],
         [
           0,
           0
         ],
         [
-          0.5155587591986657,
-          6.118329305587039
+          -0.5155587591986657,
+          -6.118329305587039
         ]
       ]
     ]
@@ -81,8 +81,8 @@
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X across the mapped path",
-    "longitudinal": "+Z along preceding-to-following mapped path vertices; signed facade facing provisional",
-    "origin": "Mapped gate opening center; Y0 estimated local terrain contact"
+    "longitudinal": "+Z through the gate away from the linked photograph viewpoint; curved wings on the photographed −Z side.",
+    "origin": "Mapped pedestrian opening center; Y0 is the retained Terrarium elevation at the gate node."
   },
   "controls": {
     "clearWidth": 4.6,
@@ -97,7 +97,82 @@
   "reconstruction": {
     "basis": "Own mapped gate point and adjacent path control vertices; original exterior interpretation of source photographs.",
     "scope": "One of three park gates in ksiaz_castle_and_park_complex; other site structures remain incomplete.",
-    "registration": "Path direction gives an undirected axis; road-facing sign and terrain fit still require independent review."
+    "registration": "The photographed Jeździecka bend fixes the park-side facing. The iron leaves are shown open across the mapped pedestrian access. Foundations and wings follow the local slope."
   },
-  "geometryLabel": "Attributed adjoining path through gate; gate dimensions are photographic estimates"
+  "geometryLabel": "Attributed adjoining path through gate; gate dimensions are photographic estimates",
+  "siteFit": {
+    "contact": {
+      "anchor": [
+        16.2996426,
+        50.8420816
+      ],
+      "modelHeight": 0,
+      "local": [
+        0,
+        0
+      ],
+      "meters": 406.544251
+    },
+    "datumMeters": 406.544251,
+    "wings": [
+      {
+        "pierBase": -0.130378,
+        "grades": [
+          0.133795,
+          0.16897,
+          0.204703,
+          0.23905,
+          0.273121,
+          0.30727,
+          0.340679,
+          0.373329
+        ]
+      },
+      {
+        "pierBase": -0.354698,
+        "grades": [
+          -0.135232,
+          -0.158021,
+          -0.181257,
+          -0.205364,
+          -0.230726,
+          -0.257663,
+          -0.286415,
+          -0.317129
+        ]
+      }
+    ],
+    "bounds": [
+      16.299422,
+      50.841935,
+      16.299864,
+      50.842229
+    ],
+    "evidence": {
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "archiveHashes": {
+        "vector": "sha256:683e3a6987c3316e5d74e1a944b9ffd40421dadc5b01d58c2e264396ab67c77f",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17867,
+          "y": 10992,
+          "hash": "sha256:cd4329f6b4f8a051742e5b4949294e4b14c496e512089d792b967ac9e6480054"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8933,
+          "y": 5496,
+          "hash": "sha256:4531cdefd015e518d46413f22058749f419ef8f739c7ceb9c2c1cb8eee6c5557",
+          "container": "retained PMTiles"
+        }
+      ],
+      "transportationId": 35184425839190,
+      "openingOffsetMeters": 0.077891
+    }
+  }
 }

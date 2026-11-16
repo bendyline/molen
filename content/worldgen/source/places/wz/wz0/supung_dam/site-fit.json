@@ -1,0 +1,119 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 81.29844916666666,
+  "crestElevation": 126.4,
+  "sites": [
+    {
+      "name": "Supung Dam powerhouse apron bank",
+      "anchor": [
+        124.962054994,
+        40.461438194
+      ],
+      "heading": -0.929686248123,
+      "bounds": [
+        90,
+        40,
+        235,
+        68
+      ],
+      "elevation": 38.3,
+      "blend": 28,
+      "basis": "Keep the riverbank below the terrace of the generating hall."
+    },
+    {
+      "name": "Supung Dam western reservoir shore raster lows",
+      "anchor": [
+        124.962054994,
+        40.461438194
+      ],
+      "heading": -0.929686248123,
+      "bounds": [
+        -474,
+        -910,
+        -235,
+        -87
+      ],
+      "elevation": 110,
+      "blend": 45,
+      "basis": "Repair implausible lows in the retained Terrarium field while preserving intact terrain.",
+      "repairBelow": 48
+    },
+    {
+      "name": "Supung Dam reservoir near dam raster lows",
+      "anchor": [
+        124.962054994,
+        40.461438194
+      ],
+      "heading": -0.929686248123,
+      "bounds": [
+        -235,
+        -295,
+        255,
+        -73
+      ],
+      "elevation": 81,
+      "blend": 44,
+      "basis": "Repair implausible lows in the retained Terrarium field while preserving intact terrain.",
+      "repairBelow": 47
+    },
+    {
+      "name": "Supung Dam eastern reservoir shore raster lows",
+      "anchor": [
+        124.962054994,
+        40.461438194
+      ],
+      "heading": -0.929686248123,
+      "bounds": [
+        255,
+        -850,
+        540,
+        -86
+      ],
+      "elevation": 111,
+      "blend": 48,
+      "basis": "Repair implausible lows in the retained Terrarium field while preserving intact terrain.",
+      "repairBelow": 46
+    },
+    {
+      "name": "Supung Dam downstream river and bank raster lows",
+      "anchor": [
+        124.962054994,
+        40.461438194
+      ],
+      "heading": -0.929686248123,
+      "bounds": [
+        -515,
+        -75,
+        485,
+        565
+      ],
+      "elevation": 32,
+      "blend": 44,
+      "basis": "Repair implausible lows in the retained Terrarium field while preserving intact terrain.",
+      "repairBelow": 15
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 487003,
+      "name": "Supung Reservoir",
+      "elevation": 123.3,
+      "basis": "The representative operating pool sits 3.1 m below the recorded crest."
+    },
+    {
+      "id": 2370981972,
+      "name": "Yalu River below Supung Dam",
+      "elevation": 31.16,
+      "basis": "The representative tailwater level follows the retained downstream terrain samples."
+    },
+    {
+      "id": 35185239023441,
+      "name": "Supung duplicate Yalu crossing centerline",
+      "hideLines": true,
+      "basis": "The mapped river centerline crosses the dam between the two area water features."
+    }
+  ],
+  "waterStageNotes": "Representative operating pool and downstream stages for the two retained Yalu water features.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

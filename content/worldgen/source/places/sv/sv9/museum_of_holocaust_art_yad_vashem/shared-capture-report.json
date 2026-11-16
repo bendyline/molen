@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-  "inputHash": "sha256:ab5e9195521db2e5d227dec90620b6ef5fbf7565a0095be46ea11cf790eef651",
-  "sourceHash": "sha256:0ff3d04fd8bb0ad059a75b5b9f4f4008a24698018add06b51f9507efb028df2f",
-  "runtimeHash": "sha256:7091f3514fba82c712e9449579831bf682087c3d0c093a4c43148c07f303d616",
+  "inputHash": "sha256:2ab2c9bf5668d10f35ae61600f3c22ed79b2c7fdfbdb86d57bf89dd8d6c818ce",
+  "sourceHash": "sha256:30fb0c9a0fe500662c3c278c4b81da83b96657976022e36531862deb0d8e78df",
+  "runtimeHash": "sha256:e95d40322c6ee3780f863aba1798cdf17ce625910239cbf229144e0b9d077372",
   "reviewGroundY": 0.06,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:3bc06b7d78ab266b1710dc7ff200c16c1ea3259d3da82cd8ebb1ebf134935f4d",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:639988f1c8bc29375c6d40ec2b32c49728c33c62897e6c965488e75f1a66c474",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:2a61d7808befc6914fdc5c56af1b954a23c83156aef383fbedb8b9f9f4bc3c55",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -24,239 +25,379 @@
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
     },
+    "matgraph:molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:b0ac1e54fa8f9fae6bd7f9499cb42f6466a096bbe4a5af29d6ec104967533fd6",
+      "hash": "sha256:1f846f1be2c8b4238487230327f6b46a7b9c25d852e1a33decd534bb9d028269",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:d36c9d84a4d81a152845846bcb451daa1d0a1e4ac970498b65c19c29c7948284",
+      "hash": "sha256:744f49ff087c4e5ab434857c25f03fe7ea3725ceeb7f2175463ef3456e82fbc8",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:729d6d6094d985302a856bd630309ddead560430ba66d240dcde0b26bb9cb4e8",
+      "hash": "sha256:c29fac0b1d5fb3359c36479057666d8e0d08123b6ced36512be8f66c10d69035",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:d6383ca54ea1cb09e9f750b9c0d01df12c34c37555291e280b5ef769bbe69e0b",
+      "hash": "sha256:90f8ca6dd0136904280eb873547172fab8dfd6682847b5a9758a8188172cf7cb",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/courtyard-recessed-entry.png",
-      "hash": "sha256:29ae2eaf2c97c3305ec11b0dfe53cc02d38c603a636692e9656f916167bcebd8",
+      "hash": "sha256:8fb99fcf9e178ad38fc9ba054395003dd453ed509fce125a1c40eea103a8c9f4",
       "camera": {
         "name": "courtyard-recessed-entry",
         "position": [
@@ -273,56 +414,89 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/long-blank-courtyard-elevation.png",
-      "hash": "sha256:f12cdb85fd90e58249a906500848fc94602d938193c3faedf7511cc26b623289",
+      "hash": "sha256:4080c50c77579e4501a92aaf8173103b012500cd391f9be512259c00a239b972",
       "camera": {
         "name": "long-blank-courtyard-elevation",
         "position": [
@@ -339,56 +513,89 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
       }
     },
     {
       "path": "shots/shared/roof-slab-and-rear-envelope.png",
-      "hash": "sha256:d49127ef495ed3dbf1ad1d2ea1fcca5eb0da406c94e22a5f3140023efdde66a4",
+      "hash": "sha256:620e61c9df2507b552f6359c77d9cb48ae67d5e2036706f90d5228e24c1c3bb9",
       "camera": {
         "name": "roof-slab-and-rear-envelope",
         "position": [
@@ -405,51 +612,173 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 334,
+        "meshes": 8,
+        "triangles": 2398,
         "bounds": {
           "min": [
-            -15.420353889465332,
-            -3.9352383613586426,
+            -22.75065803527832,
+            -3.498300075531006,
             -22.400968551635742
           ],
           "max": [
             15.039605140686035,
             7.210000038146973,
-            22.527894973754883
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "77e0d8d7-844b-4ff3-9a73-37d74e76ed2e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "04f310e4-150b-4605-8359-7fa469898814",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "46399653-6f4d-4d14-91d6-f124681f0d59",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "23713e57-7a94-4c7f-b140-029731365d6d"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
         },
         "loads": [
           "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 336
+        "draws": 9,
+        "renderedTriangles": 2443
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:5cb952ba6f05985ba979e3073f4b47fcb988bf087c52a3c179619667f6429d62",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem",
+        "mode": "geographic-flat-terrain",
+        "placementId": "museum.of.holocaust.art.yad.vashem",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 2398,
+        "bounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.75065803527832,
+            -3.498300075531006,
+            -22.400968551635742
+          ],
+          "max": [
+            15.039605140686035,
+            7.210000038146973,
+            29.048250198364258
+          ]
+        },
+        "reviewGroundY": 0.06,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "dc0193fb-bb59-4daa-a963-b99b4314e8d3",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "6c1023d1-a1f1-4a42-bf2a-27b862284f44",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "140710f6-e233-4f8e-a0ac-550f5a728cae",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bffa8ca-5b33-49af-939c-0c028794d1a8",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9395265f-4c86-4811-8fd9-d68489349e4a",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "8e50a6fe-817a-4f93-81ab-074d62c2feff"
+        },
+        "loads": [
+          "molen.worldgen.structure.museum_of_holocaust_art_yad_vashem"
+        ],
+        "selectionBounds": [
+          35.17378206843295,
+          31.772945176722686,
+          35.1751346093726,
+          31.774095020657466
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "museum.of.holocaust.art.yad.vashem",
+            "coordinate": [
+              35.17453546860756,
+              31.77332299508358
+            ],
+            "height": -1.85914
+          }
+        ],
+        "visibleStructures": [
+          "museum.of.holocaust.art.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 2443
       }
     }
   ],
@@ -459,8 +788,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

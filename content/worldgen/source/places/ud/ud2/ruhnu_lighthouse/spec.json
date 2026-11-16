@@ -34,15 +34,93 @@
   ],
   "geographicProposal": {
     "anchor": [
-      23.26012233,
-      57.80135766
+      23.26012545,
+      57.8013371
     ],
-    "heading": 0,
+    "heading": 0.037225470525,
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
     "status": "preview-proposal",
-    "source": "https://nma.transpordiamet.ee/aton/2538/",
-    "notes": "Authority coordinate anchors the central tube. Mapped approach1297215907 ends directly south of the tower, resolving native+Z door to south. Four legs are placed symmetrically around this doorway as in the restored entry photograph. OSMcircle1297215911 is only5.7m wide and does not bound the external supporting legs, so it is not used to stretch the tower."
+    "source": "https://www.openstreetmap.org/way/1297215911",
+    "notes": "The center of mapped way 1297215911 locates the shaft about 2.3 m south of the navigation marker. The final mapped track point toward the entrance sets the signed front axis. The four supports extend beyond the mapped shaft disk; photographs control the legs and brace spacing.",
+    "bounds": [
+      23.25986,
+      57.80118,
+      23.2604,
+      57.80149
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          2.61219,
+          1.21815
+        ],
+        [
+          1.94662,
+          1.98942
+        ],
+        [
+          1.28697,
+          2.6017
+        ],
+        [
+          0.32118,
+          2.88416
+        ],
+        [
+          -1.57487,
+          2.49512
+        ],
+        [
+          -2.18715,
+          1.83547
+        ],
+        [
+          -2.91698,
+          0.05696
+        ],
+        [
+          -2.37487,
+          -1.67418
+        ],
+        [
+          -0.9025,
+          -2.73383
+        ],
+        [
+          0.05737,
+          -2.85729
+        ],
+        [
+          1.78259,
+          -2.15619
+        ],
+        [
+          2.39487,
+          -1.49654
+        ],
+        [
+          2.83631,
+          -0.52483
+        ]
+      ],
+      "minimumCoverage": 0.8,
+      "basis": "Tower shaft footprint from the current PMTiles building layer. The independent keeper buildings retain their map geometry."
+    },
+    "terrainReference": {
+      "anchor": [
+        23.26012545,
+        57.8013371
+      ],
+      "modelHeight": 0,
+      "basis": "Model Y=0 is the host sample at the mapped shaft center."
+    },
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four separate granite pads fit standard Terrarium grades. A short buried skirt meets the host terrain at the shaft.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:220583658880bc69138a1b7155589f81e2dd83c3beaf320b88428f1dc5283131",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors, ODbL-1.0"
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -138,10 +216,110 @@
   "assetId": "molen.worldgen.structure.ruhnu_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.4,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "appearance": {
+    "identity": "Ruhnu’s central riveted shaft, four leaning iron legs, two tiers of tubular braces, stepped service drum and two gallery rings below a glazed lantern and bronze-toned dome.",
+    "master": "The original pictured pipe joints, rivet rows, bolted flanges, rain hood, lantern panes, beacon and vane remain. Each granite footing is set to the local host grade.",
+    "browser": "The skyline and district models retain all four legs and both tiers of braces. District adds the gallery rails and transparent lantern. Street and close-up preserve the finer ironwork.",
+    "exclusions": "Detached keeper buildings and forest are supplied by the map. Ground and fittings are interpreted from standard terrain and the restored exterior photos."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/ruhnu-fit-model.mjs",
+    "export": "buildRuhnuFittedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ruhnu-fit-model.mjs",
+    "export": "buildRuhnuSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRuhnuDistrict",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    },
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.05
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "footings-in-context",
+      "position": [
+        10,
+        2.8,
+        11
+      ],
+      "lookAt": [
+        0,
+        1.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "open-iron-frame-district",
+      "position": [
+        21,
+        16,
+        22
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "district"
+    }
+  ],
   "actualBounds": {
     "min": [
       -5.218448162078857,
-      0,
+      -0.30720001459121704,
       -5.218448162078857
     ],
     "max": [
@@ -151,11 +329,11 @@
     ]
   },
   "mesh": {
-    "triangles": 234397,
-    "vertices": 548379,
+    "triangles": 234585,
+    "vertices": 548667,
     "materials": 4,
-    "bytes": 22557132,
-    "sha256": "sha256:b3e46cb7fb5d56e9f187288b1eb82339552abccc3a0e4fab767ed08f98273836"
+    "bytes": 22569776,
+    "sha256": "sha256:3c1d95068e7a61e2e30b8ee07151c8ca4f407f6e21408b147aaef5b430c0354d"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

@@ -1,0 +1,202 @@
+{
+  "fidelityTarget": "medium-fi",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hermannsdenkmal-fit-model.mjs",
+    "export": "buildFittedHermannsdenkmal"
+  },
+  "mediumFiContext": {
+    "scale": 0.62,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "appearance": {
+    "identity": "Copper Arminius with raised sword and shield stands on a domed sandstone pedestal with a ring of ten piers, an outside gallery and paired curved stairs.",
+    "master": "Preserves the authored figure and ten-pier arcade. Adds the curved eastern stairs, upper stair, fitted foundation, gallery parapet and simplified capital heads and waterspouts.",
+    "browser": "The authored skyline and district profiles keep the sculpture, ten open bays, fitted stone foundation and stepped approach. Street and close-up retain the finer arches, gallery and sculpture details."
+  },
+  "geographic": {
+    "anchor": [
+      8.83948475,
+      51.9116545
+    ],
+    "heading": -1.5707963267948966,
+    "source": "https://www.openstreetmap.org/way/207366382",
+    "bounds": [
+      8.83928,
+      51.91152,
+      8.83969,
+      51.91179
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          7.5145,
+          -7.22435
+        ],
+        [
+          9.17219,
+          -4.64572
+        ],
+        [
+          10.27732,
+          -1.69871
+        ],
+        [
+          10.27732,
+          1.2483
+        ],
+        [
+          9.35638,
+          4.19531
+        ],
+        [
+          7.69869,
+          6.77394
+        ],
+        [
+          5.30424,
+          8.80001
+        ],
+        [
+          2.54142,
+          9.90514
+        ],
+        [
+          -0.58978,
+          10.27352
+        ],
+        [
+          -3.53679,
+          9.72095
+        ],
+        [
+          -6.29961,
+          8.06326
+        ],
+        [
+          -8.32568,
+          5.853
+        ],
+        [
+          -9.79918,
+          3.27437
+        ],
+        [
+          -10.16756,
+          0.14317
+        ],
+        [
+          -9.79918,
+          -2.80384
+        ],
+        [
+          -8.50987,
+          -5.75085
+        ],
+        [
+          -6.4838,
+          -7.9611
+        ],
+        [
+          -3.90516,
+          -9.6188
+        ],
+        [
+          -0.95815,
+          -10.35555
+        ],
+        [
+          2.17304,
+          -10.17136
+        ],
+        [
+          5.12005,
+          -9.06623
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The mapped circular pedestal encloses the building parts belonging to the statue and gallery."
+    },
+    "terrainReference": {
+      "anchor": [
+        8.83948475,
+        51.9116545
+      ],
+      "modelHeight": 0,
+      "basis": "Host terrain at the center of the monument establishes Y=0."
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The sandstone foundation extends to the low side of the sampled hill. Curved stair feet follow the adjacent mapped pedestrian approach grades.",
+    "notes": "The circular pedestal and statue parts locate the monument. The heritage record establishes the west-facing statue and sword. The eastern curved flights follow the three mapped stair segments and connect to the arcade plinth."
+  },
+  "limitations": [
+    "The statue preserves the published height and standing pose. The sculpted face, clothing folds, inscriptions, capitals and fittings use original polygonal approximations.",
+    "The staircase follows the aerial photographs and its mapped paths. Stair counts, base grading and hidden construction are interpreted from standard viewer terrain."
+  ],
+  "referencePages": [
+    "https://www.teutoburgerwald.de/region/ausflugsziele/mein-ziel/hermannsdenkmal",
+    "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Hermannsdenkmal_(view_from_the_southwest).jpg"
+  ],
+  "qaCameras": [
+    {
+      "name": "curved-east-stairs",
+      "position": [
+        -12,
+        6,
+        -20
+      ],
+      "lookAt": [
+        0,
+        2,
+        -9
+      ]
+    }
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-map.json",
+    "fit-controls.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hermannsdenkmal-fit-model.mjs",
+    "export": "buildHermannsdenkmalSkyline",
+    "errorMeters": 1.5,
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildHermannsdenkmalDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "grunewald_stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65
+          }
+        }
+      }
+    }
+  }
+}

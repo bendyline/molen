@@ -16,4 +16,6 @@ Six existing shared256px graphs:gravel,stone_basalt,concrete_plain,metal_standin
 
 Gate threshold corrected toY=-4 and closed-gate centerY=4 below the unchangedY=15 crest bridge. Lower chute outlet remainsY=-142. The floor stays below the visible gate faces;all elevations remain illustrative estimates.
 
+The spillway follows the four terminal corners of PMTiles canal 4830821252. The chute outlet is placed 68 percent along the mapped run from the gate line. The outlet elevation and stilling-basin details remain picture-scale estimates.
+
 Original geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.

@@ -11,7 +11,7 @@
       "title": "Castle,terraces and fortifications",
       "status": "core-authored-appearance-reviewed",
       "notes": "Castle exterior core and approximate terraced gardens;fortification and landscape completeness still pending.",
-      "unresolvedPlacements": [
+      "placementControls": [
         {
           "title": "Powder Tower",
           "mapFeature": "way/706239462",
@@ -24,13 +24,13 @@
             88.89756493084487,
             47.64031319972397
           ],
-          "existingApproximateModelCenter": [
+          "previousApproximateModelCenter": [
             -3.4,
             -27.2
           ],
           "discrepancyMeters": 118.82724002515714,
-          "status": "requires-source-specific-correction",
-          "notes": "The core tower control does not coincide with the separately mapped named tower. Direct photographic identification and terrace-ground attachment must be checked before removing or replacing geometry."
+          "status": "mapped-site-preview",
+          "notes": "The four castle detail levels use mappedLocalCenter for the Powder Tower. The viewer replaces the exact native tower footprint while the castle model is loaded. The roof, wall details and foothill landscape remain approximations."
         }
       ]
     },
@@ -38,104 +38,115 @@
       "key": "entrance-buildings",
       "count": 1,
       "title": "Associated entrance buildings",
-      "status": "partially-authored-appearance-reviewed",
+      "status": "three-independent-placements-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_gatehouse",
           "sourceBundle": "../ksiaz_gatehouse/source.json",
           "mapFeature": "way/236837152",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_gatehouse/QA-REVIEW.md"
         },
         {
           "asset": "molen.worldgen.structure.ksiaz_north_officina",
           "sourceBundle": "../ksiaz_north_officina/source.json",
           "mapFeature": "way/236837153",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_north_officina/QA-REVIEW.md"
         },
         {
           "asset": "molen.worldgen.structure.ksiaz_south_officina",
           "sourceBundle": "../ksiaz_south_officina/source.json",
           "mapFeature": "way/236837154",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_south_officina/QA-REVIEW.md"
         }
       ],
       "nearbyModel": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
         "sourceBundle": "../ksiaz_zamkowy_hotel/source.json",
         "mapFeature": "way/236837151",
-        "membership": "unconfirmed",
-        "placement": "draft"
+        "membership": "listed-associated-building",
+        "placement": "preview",
+        "identitySource": "https://zabytek.pl/en/obiekty/g-278127",
+        "review": "../ksiaz_zamkowy_hotel/QA-REVIEW.md"
       },
-      "notes": "Gatehouse and two side wings have independent source-specific exteriors and inactive placement drafts. Hotel Zamkowy is also modeled as a separately identified nearby building; its designated entrance-group membership is not established. Exact group coverage, other entrances, facade/terrain fit and the whole-site scope remain pending."
+      "notes": "The gatehouse and both courtyard wings have independently reviewed placements. The nearby former tax office at Piastów Śląskich 5 has a separate hotel model, identified by the National Heritage Institute entry and the labeled aerial. The hotel and entrance group render together."
     },
     {
       "key": "mausoleum",
       "count": 1,
       "title": "Park pavilion/mausoleum",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
           "sourceBundle": "../ksiaz_hochberg_mausoleum/source.json",
           "mapFeature": "way/266177054",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_hochberg_mausoleum/QA-REVIEW.md"
         }
       ],
-      "notes": "Independent own-footprint exterior reviewed; mapped Q30083059. Entry orientation, crypt/interior and terrain fit remain pending."
+      "notes": "The restored chapel exterior, signed footprint, curved entrance stair and modeled clearing grade passed review in the viewer. The crypt and interior remain outside the model."
     },
     {
       "key": "park-gates",
       "count": 3,
       "title": "Three park gates",
-      "status": "exteriors-authored-appearance-reviewed",
+      "status": "three-independent-placements-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
           "sourceBundle": "../ksiaz_jezdziecka_park_gate/source.json",
           "mapFeature": "node/2858843981",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_jezdziecka_park_gate/QA-REVIEW.md"
         },
         {
           "asset": "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "sourceBundle": "../ksiaz_hochberg_alley_gate/source.json",
           "mapFeature": "node/2858843969",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_hochberg_alley_gate/QA-REVIEW.md"
         },
         {
           "asset": "molen.worldgen.structure.ksiaz_lion_gate",
           "sourceBundle": "../ksiaz_lion_gate/source.json",
           "mapFeature": "node/2618881852",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_lion_gate/QA-REVIEW.md"
         }
       ],
-      "notes": "All three independent park-gate exteriors have source-specific original medium-fi models and inactive point/path-axis drafts. First two follow 2014 photographs; Lion Gate follows a 2012 photograph. Current restoration, dimensions, signed facing and terrain fit remain unreviewed. Exterior appearance review does not approve the whole site."
+      "notes": "Lion Gate, Jeździecka Gate and Hochberg Alley Gate have signed path alignment and ground-contact reviews at all four detail levels. Each gate preserves its open route and neighboring mapped features."
     },
     {
       "key": "swiss-houses",
       "count": 2,
       "title": "Two Swiss houses",
-      "status": "exteriors-authored-appearance-reviewed",
+      "status": "two-independent-placements-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_swiss_house_i",
           "sourceBundle": "../ksiaz_swiss_house_i/source.json",
           "mapFeature": "way/255269521",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_swiss_house_i/QA-REVIEW.md"
         },
         {
           "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
           "sourceBundle": "../ksiaz_swiss_house_ii/source.json",
           "mapFeature": "way/255269530",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_swiss_house_ii/QA-REVIEW.md"
         }
       ],
-      "notes": "Both individually mapped Swiss house exteriors follow primary 2012 photographs and matching official NID records. Estimated roof dimensions, unseen elevations, present state, signed facade direction and terrain fit remain pending. Adjacent annexes/fences are outside the main houses."
+      "notes": "Both independently mapped house exteriors have reviewed dormer and porch facing, physical landings, four detail levels and geographic placement. Both render with Lion Gate and restore their own footprint if the landmark fails to load."
     },
     {
       "key": "old-ksiaz",
       "count": 1,
       "title": "Old Książ romantic ruin",
-      "status": "mapped-wall-exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.old_ksiaz_ruins",
@@ -147,16 +158,17 @@
             "way/805533437",
             "way/898350440"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../old_ksiaz_ruins/QA-REVIEW.md"
         }
       ],
-      "notes": "Roofless exterior interpretation of the own mapped envelope/four wall traces follows primary 2014 photos and a 2012 interior panorama. Photographic wall association, heights, unmapped remains, cliff/terrace contact and current condition remain pending. Appearance review does not approve complete surveyed ruin coverage."
+      "notes": "The four wall traces, retained hillside, fitted portal approaches and trail breach passed independent review. The roofless exterior remains open in all four detail levels."
     },
     {
       "key": "stables",
       "count": 5,
       "title": "Five stables",
-      "status": "exteriors-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_stable_ensemble",
@@ -169,16 +181,17 @@
             "stable-iv",
             "stable-v"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_stable_ensemble/QA-REVIEW.md"
         }
       ],
-      "notes": "Named exterior ranges represented within one connected source-built stable asset. Primary plan/photos and operator aerial support identities; individual range boundaries, dimensions, unseen/current elevations and real terrain remain unreviewed. One ensemble asset is not five separate surveyed models."
+      "notes": "The structure fits the two mapped building outlines. The entrance arch follows the road into the court. It supplies the stone lining while the viewer draws the road at terrain grade. The inferred tunnel returns if the model fails to load."
     },
     {
       "key": "riding-hall",
       "count": 1,
       "title": "Covered riding hall",
-      "status": "exterior-authored-association-proposed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_stable_ensemble",
@@ -187,16 +200,17 @@
           "componentKeys": [
             "riding-hall"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_stable_ensemble/QA-REVIEW.md"
         }
       ],
-      "notes": "Exterior hall/annex interpretation is part of the connected stable asset. Association to adjacent mapped building follows primary plan/aerial but remains proposed; real terrain, roof dimensions, current appearance and interior remain unreviewed."
+      "notes": "The separately mapped riding hall and annexes sit on their fitted plinth within the stable ensemble asset."
     },
     {
       "key": "carriage-house",
       "count": 1,
       "title": "Carriage house",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_stable_ensemble",
@@ -205,76 +219,99 @@
           "componentKeys": [
             "carriage-house"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_stable_ensemble/QA-REVIEW.md"
         }
       ],
-      "notes": "Named exterior ranges represented within one connected source-built stable asset. Primary plan/photos and operator aerial support identities; individual range boundaries, dimensions, unseen/current elevations and real terrain remain unreviewed. One ensemble asset is not five separate surveyed models."
+      "notes": "The structure fits the two mapped building outlines. The entrance arch follows the road into the court. It supplies the stone lining while the viewer draws the road at terrain grade. The inferred tunnel returns if the model fails to load."
     },
     {
       "key": "forge",
       "count": 1,
       "title": "Forge",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_forge",
           "sourceBundle": "../ksiaz_forge/source.json",
           "mapFeature": "way/281941091",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_forge/QA-REVIEW.md"
         }
       ],
-      "notes": "Independent L-shaped exterior with two recessed arches reviewed against a 2014 photograph. Current appearance, unseen elevations and terrain/facade fit remain pending."
+      "notes": "The two photographed portals face the inner yard of the mapped L-shaped footprint, with thresholds 54 cm apart on the slope. The pavement joins the original terrain within 8 mm at the sampled points across all four levels. The exterior and four levels were reviewed as an independent building."
     },
     {
       "key": "forester-house",
       "count": 1,
       "title": "Forester house",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_forester_house",
           "sourceBundle": "../ksiaz_forester_house/source.json",
           "mapFeature": "way/262236292",
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_forester_house/QA-REVIEW.md"
         }
       ],
-      "notes": "Independent own-footprint medium-fi exterior follows 2014/2016 primary photographs. Current state, unseen elevations, signed facade facing and terrain fit remain pending."
+      "notes": "The porch faces the Jeździecka approach and the timber gable faces the mapped footpath. The original terrain supplies the datum. The pavement joins the original terrain within 8 mm at the sampled points across all four levels. The exterior and four levels were reviewed as an independent building."
     },
     {
       "key": "palm-house",
       "count": 1,
       "title": "Lubiechów Palm House",
-      "status": "connected-exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_house",
           "sourceBundle": "../ksiaz_palm_house/source.json",
           "mapFeature": "relation/3532583",
-          "placement": "draft"
+          "placement": "preview",
+          "componentFeatures": [
+            "relation/3532583",
+            "way/263009992"
+          ],
+          "review": "../ksiaz_palm_house/QA-REVIEW.md"
         }
       ],
-      "notes": "Own connected main hall/orangeries exterior with two open courts, primary-reference central hall/roof/porch and own main entrance. Estimated roof partitions, dimensions, current-state facade/terrain fit remain pending."
+      "notes": "The modeled plinth sits on the sampled slope. The landing meets the rendered footway within 11 mm at the sampled points in all four detail levels. The occupied masks retain both open courts and replace the two mapped records for the building and its attached bay."
     },
     {
       "key": "greenhouses",
       "count": 1,
       "title": "Greenhouse group",
-      "status": "partially-authored-appearance-reviewed",
+      "status": "connected-and-west-ranges-placed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_house",
           "sourceBundle": "../ksiaz_palm_house/source.json",
           "mapFeature": "relation/3532583",
-          "placement": "draft"
+          "placement": "preview",
+          "componentFeatures": [
+            "relation/3532583",
+            "way/263009992"
+          ],
+          "review": "../ksiaz_palm_house/QA-REVIEW.md"
+        },
+        {
+          "asset": "molen.worldgen.structure.ksiaz_palm_west_greenhouses",
+          "sourceBundle": "../ksiaz_palm_west_greenhouses/source.json",
+          "mapFeature": "way/263009991",
+          "placement": "preview",
+          "componentFeatures": [
+            "way/263009991"
+          ],
+          "review": "../ksiaz_palm_west_greenhouses/QA-REVIEW.md"
         }
       ],
-      "notes": "Connected main orangeries represented in Palm House asset. Separate mapped greenhouse group way/263009991 and other independent ranges remain unmodeled; do not claim complete greenhouse coverage."
+      "notes": "The connected Palm House ranges keep their two courtyards. The separate west glasshouses occupy their own mapped footprint, with both western slots open. The present-day roof and entrance details of the separate ranges are interpreted."
     },
     {
       "key": "boiler-building",
       "count": 1,
       "title": "Palm House boiler building",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
@@ -283,16 +320,17 @@
           "componentFeatures": [
             "way/263010002"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_palm_boiler_range/QA-REVIEW.md"
         }
       ],
-      "notes": "Source-specific exterior follows individual NID1994 survey card and own mapped footprint(s). Shared textures and four LODs appearance reviewed. Exact present-state component associations, dimensions and terrain remain pending; no whole-site approval."
+      "notes": "The placement occupies its own mapped footprint. The foundation follows the terrain and the landing meets the sampled approach within 13 mm in all four detail levels. Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
     },
     {
       "key": "administration",
       "count": 1,
       "title": "Palm House administration building",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_administration",
@@ -301,16 +339,17 @@
           "componentFeatures": [
             "way/263010003"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_palm_administration/QA-REVIEW.md"
         }
       ],
-      "notes": "Source-specific exterior follows individual NID1994 survey card and own mapped footprint(s). Shared textures and four LODs appearance reviewed. Exact present-state component associations, dimensions and terrain remain pending; no whole-site approval."
+      "notes": "The placement occupies its own mapped footprint. The foundation follows the terrain and the landing meets the sampled approach within 9 mm in all four detail levels. Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
     },
     {
       "key": "utility-building",
       "count": 1,
       "title": "Palm House utility building",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_utility",
@@ -320,16 +359,17 @@
             "way/396950371",
             "way/396950375"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_palm_utility/QA-REVIEW.md"
         }
       ],
-      "notes": "Source-specific exterior follows individual NID1994 survey card and own mapped footprint(s). Shared textures and four LODs appearance reviewed. Exact present-state component associations, dimensions and terrain remain pending; no whole-site approval."
+      "notes": "The placement occupies its own mapped footprint. The foundation follows the terrain and the landing meets the sampled approach within 9 mm in all four detail levels. Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
     },
     {
       "key": "residence",
       "count": 1,
       "title": "Palm House residence",
-      "status": "exterior-authored-appearance-reviewed",
+      "status": "independent-placement-reviewed",
       "models": [
         {
           "asset": "molen.worldgen.structure.ksiaz_palm_residence",
@@ -339,16 +379,27 @@
             "way/232185882",
             "way/396950363"
           ],
-          "placement": "draft"
+          "placement": "preview",
+          "review": "../ksiaz_palm_residence/QA-REVIEW.md"
         }
       ],
-      "notes": "Source-specific exterior follows individual NID1994 survey card and own mapped footprint(s). Shared textures and four LODs appearance reviewed. Exact present-state component associations, dimensions and terrain remain pending; no whole-site approval."
+      "notes": "The placement occupies its own mapped footprint. The foundation follows the terrain and the landing meets the sampled approach within 9 mm in all four detail levels. Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
     },
     {
       "key": "park-and-gardens",
       "count": 1,
       "title": "Historic park and former Palm House gardens",
-      "status": "pending"
+      "status": "palm-house-forecourt-reviewed",
+      "models": [
+        {
+          "asset": "molen.worldgen.structure.ksiaz_palm_forecourt",
+          "sourceBundle": "../ksiaz_palm_forecourt/source.json",
+          "mapFeature": "way/263009990",
+          "placement": "preview",
+          "review": "../ksiaz_palm_forecourt/QA-REVIEW.md"
+        }
+      ],
+      "notes": "The Palm House entrance lawns and loop have a placed and reviewed garden model. Former Palm House nursery plots and the wider Książ park are open scope."
     }
   ]
 }

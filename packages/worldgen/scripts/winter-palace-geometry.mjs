@@ -274,14 +274,8 @@ export function buildWinterPalace(face, detail, r) {
             );
       }
     }
-  // Main/side porticoes remain open in both directions; distant levels use simple dark arched infills.
+  // The nearer levels add the moulded arches and projecting side columns.
   for (const p of r.portals) {
-    if (!detail)
-      plane(
-        'glass',
-        archPoints({ x: p.x, z: p.z1, T: [1, 0, 0], N: [0, 0, 1] }, 0.3, p.spring, p.R, 0.1),
-        [0, 0, 1],
-      );
     if (detail >= 2) {
       const w = { x: p.x, z: p.z1, T: [1, 0, 0], N: [0, 0, 1] },
         ps = archPoints(w, 0.2, p.spring, p.R, 0.12),

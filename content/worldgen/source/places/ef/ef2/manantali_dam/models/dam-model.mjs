@@ -1,166 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-export const controls = {
-  anchor: [-10.42949016, 13.197351992],
-  heading: -1.528484012338,
-  datum: 204.42665966666667,
-  crest: 8.073340333333334,
-  foundation: -56.926659666666666,
-  tailwater: -42.20665966666667,
-  wingStations: [
-    [
-      {
-        x: -740.93,
-        z: -35,
-        y: 17.34415488826383,
-        upZ: -46,
-        downZ: 44,
-        up: 16.64415488826383,
-        down: 6.478006840833274,
-      },
-      {
-        x: -716,
-        z: -34,
-        y: 7.973748650073369,
-        upZ: -48,
-        downZ: 44,
-        up: 7.273748650073369,
-        down: -1.3702237777777952,
-      },
-      {
-        x: -650,
-        z: -34,
-        y: 8.073340333333334,
-        upZ: -50,
-        downZ: 45,
-        up: 4.03746955555556,
-        down: -15.955159416666646,
-      },
-      {
-        x: -520,
-        z: -33,
-        y: 8.073340333333334,
-        upZ: -51,
-        downZ: 45,
-        up: 1.7243332500000008,
-        down: -23.552462750000018,
-      },
-      {
-        x: -345,
-        z: -32,
-        y: 8.073340333333334,
-        upZ: -50,
-        downZ: 47,
-        up: 4.030151333333322,
-        down: -20.37634322916665,
-      },
-      {
-        x: -210,
-        z: -31,
-        y: 8.073340333333334,
-        upZ: -49,
-        downZ: 48,
-        up: 3.0202311666667185,
-        down: -21.181034666666676,
-      },
-      {
-        x: -75,
-        z: -28.5,
-        y: 8.073340333333334,
-        upZ: -43,
-        downZ: 47,
-        up: 4.263013479166631,
-        down: -23.880973520833322,
-      },
-    ],
-    [
-      {
-        x: 418,
-        z: -28.5,
-        y: 8.073340333333334,
-        upZ: -47,
-        downZ: 47,
-        up: 4.723843708333362,
-        down: -28.560858444444392,
-      },
-      {
-        x: 485,
-        z: -31,
-        y: 8.073340333333334,
-        upZ: -51,
-        downZ: 47,
-        up: 5.746338500000007,
-        down: -24.523879840277772,
-      },
-      {
-        x: 560,
-        z: -33,
-        y: 8.073340333333334,
-        upZ: -51,
-        downZ: 48,
-        up: 5.776203416666675,
-        down: -25.416754999999995,
-      },
-      {
-        x: 640,
-        z: -33,
-        y: 8.073340333333334,
-        upZ: -51,
-        downZ: 48,
-        up: 3.614888250000007,
-        down: -18.928309333333317,
-      },
-      {
-        x: 688,
-        z: -33,
-        y: 8.065552299748422,
-        upZ: -49,
-        downZ: 27,
-        up: 3.279485444444447,
-        down: -1.3553004166666085,
-      },
-      {
-        x: 717,
-        z: -33,
-        y: 8.113120502932388,
-        upZ: -46,
-        downZ: 8,
-        up: 7.4131205029323874,
-        down: 7.4131205029323874,
-      },
-      {
-        x: 740.93,
-        z: -35,
-        y: 19.87678785687484,
-        upZ: -44,
-        downZ: -5,
-        up: 19.176787856874842,
-        down: 19.176787856874842,
-      },
-    ],
-  ],
-  wall: {
-    span: [-75, 418],
-    centerZ: -27.1,
-    upstreamFaceZ: -33,
-    downstreamToeZ: 54,
-  },
-  spill: {
-    span: [179, 300],
-    clearWidth: 9,
-    count: 8,
-    crestZ: -27.1,
-    apronZ: 89,
-  },
-  plant: {
-    span: [36, 178],
-    upstreamZ: 19,
-    downstreamZ: 64,
-    tailraceOutletCount: 5,
-    roofY: -20.906659666666666,
-  },
-  scope:
-    'Manantali’s central concrete dam with its eight gated spillways, ochre generating hall and five tailrace outlets, the crest control tower and gantries, and both rockfill wings.',
-};
+export const controls = JSON.parse(readFileSync(new URL('../model-controls.json', import.meta.url)));
 const C = {
   wall: [0.49, 0.41, 0.31],
   trim: [0.62, 0.53, 0.4],
@@ -296,9 +136,10 @@ function flank(o, c, stations) {
       b = stations[i],
       A = section(a),
       B = section(b);
+    const paved = a.x >= controls.crestRoad.startX && b.x <= controls.crestRoad.endX;
     const P = (r, v) => [r.x, v[1], v[0]];
     for (let j = 1; j < A.length; j++) {
-      const mat = j === 3 ? 'road' : j === 4 ? 'silt' : 'stone';
+      const mat = j === 3 && paved ? 'road' : j === 4 ? 'silt' : 'stone';
       q(o, c, [P(a, A[j - 1]), P(b, B[j - 1]), P(b, B[j]), P(a, A[j])], mat, [0, 1, 0]);
     }
     for (const [j, sign] of [
@@ -313,10 +154,10 @@ function flank(o, c, stations) {
         [0, 0, sign],
       );
     }
-    if (c.detail)
+    if (c.detail && paved)
       for (const z of [-3.65, 4.65])
         rod(o, c, [a.x, a.y + 0.4, a.z + z], [b.x, b.y + 0.4, b.z + z], 0.16, 0.19, 'trim');
-    if (c.near)
+    if (c.near && paved)
       for (let k = 1; k <= Math.floor((b.x - a.x) / 24); k++) {
         const f = (k * 24) / (b.x - a.x),
           x = lerp(a.x, b.x, f),

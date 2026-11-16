@@ -112,7 +112,9 @@ it('pins the exact-Q main headhouse,signed south-facing frame and retained heigh
   expect(s.sourceFacts.mappedRoofHeight).toBe(18);
   expect(s.sourceFacts.retainedTags['building:levels']).toBe('7');
   expect(s.sourceFacts.estimatedEaves).toBe(22);
-  expect(p.entry.groundCutout.outlines).toHaveLength(1);
+  expect(p.entry.groundCutout.outlines).toHaveLength(5);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
+  expect(p.entry.groundCutout.pavingOutlines).toEqual(p.entry.groundCutout.outlines.slice(1));
   expect(p.entry.replaceRoads).toBeUndefined();
   expect(
     reviewedSourceMapFrame({
@@ -139,6 +141,25 @@ it('retains the whole curved hip,solid collar,six glazed gables and all four fac
         expect.soft(v, f.name + ' ' + name).toBeLessThanOrEqual(max);
       };
     check('whole occupied headhouse floor', top(0, 0, 2), 0.64, 0.66);
+    for (const [x, z] of [
+      [0.05, -64.2],
+      [79, 0],
+      [0.05, 64.2],
+      [-78.9, 0],
+    ])
+      check('entrance threshold ' + [x, z], top(x, z, 0.91), 0.661, 0.663);
+    for (const [x, z] of [
+      [0, -64.78],
+      [79.58, 0],
+      [0, 64.78],
+      [-79.48, 0],
+    ])
+      check(
+        'closed eave underside ' + [x, z],
+        18 + nearest(ts, [x, 18, z], [0, 1, 0], true),
+        21.54,
+        21.56,
+      );
     check('solid pale inner collar', top(0, 36, 60), 41.99, 42.23);
     for (let j = 0; j < 6; j++) {
       const x = -43 + ((j + 0.5) * 86) / 6;

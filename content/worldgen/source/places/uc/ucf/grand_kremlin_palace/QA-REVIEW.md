@@ -1,19 +1,24 @@
-# Grand Kremlin Palace — principal exterior
+# Grand Kremlin Palace
 
-**Native terrain fit pending; not counted ready.** Reviewed2026-11-02.
+The Grand Kremlin Palace includes the south arcade, green central crown, the connected northern Terem ranges and their gold cupolas. The full principal plan preserves the irregular open court.
 
-Native terrain fit remains pending. The standard global field drops approximately8–9m below the common floor along the western return, leaving an oversized plain exposed plinth. A short western stair was visibly implausible and was removed rather than extending an invented approach into neighboring buildings. The model is supported, but a ray touching terrain is insufficient to approve the historic ground fit. Keep the exact geometry, field and review evidence; resolve common site/terrain handling without bespoke per-building surveys. This model is not counted ready.
+The palace retains its signed OSM relation footprint and 157 m datum. A bounded grade fits the west, south and east edges. The principal floor stands 0.72–1.15 m above the sampled rendered approaches. The native east path runs beside the lower arcade.
 
-All10 final portable views inspected. The complete principal relation includes the long yellow/white south facade, stepped lower arcade, paired upper glazing, white pilasters and original simplified window pediments, green hips, raised central pavilion/domed crown/gold lantern/finial, both side returns, internal hall, northeastern faceted hall, connected northern historic/Terem ranges, red roof and11 original simplified gold cupolas. The actual irregular court stays open. Original plain geometric medallions replace emblems and lettering. Source turntables deliberately expose buried foundations. No independent Cathedral Square church, modern State Kremlin Palace or perimeter tower is included.
+![Grand Kremlin Palace in the Earth viewer](site-preview.png)
 
-Q1370087/relation225033, clips750/2077. Anchor[37.615664114,55.750295136], heading0.243647446288: +X ENE along the main south facade; +Z SSE toward the river/Kremlin wall.261 owned components are replaced at98% whole-feature coverage and2050 context components retained by the production renderer. Separate church parents753/2081/2082 and769/2090, modern State Kremlin Palace371/772, independent western buildings and perimeter remain native. Four unchanged standard global Terrarium tiles; approximate157m datum and158m common exterior floor. Only the occupied principal relation and one bounded eastern transition cut the field; the true court stays native.
+The viewer replaces 255 grouped palace records and retains 1,306 surrounding records, 220 transportation records and the native water in the local fixture. A failed download restores the original palace records. Unload releases model geometry and restores ground and land cover.
 
-Source: **230,131 triangles /27,620,068 bytes**. Browser tiers: **962 / 2,879 / 15,501 / 52,781 triangles**. Initial skyline+district: **358,956 bytes**; close-up: **5,115,904 bytes**. Seven shared graphs, seven slots, no embedded/private images and separate GPU streams.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 950 | 89,120 | 1 |
+| district | 2,859 | 267,196 | 5 |
+| street | 15,393 | 1,432,892 | 6 |
+| closeup | 52,673 | 5,108,628 | 7 |
 
-Four focused tests pass; six GLBs validate without errors or warnings. All46 current frames were actually inspected. Exact evidence and source/runtime hashes are recorded in qa.json. Construction review corrected fragile roof-cell triangulation, preserved closed gable peaks, reduced roof-seam geometry to continuous straight segments and removed the unsupported western stair. The skyline simplifies five back-row cupolas while retaining the full principal plan and both identity crowns. No generic substitute or downloaded mesh is used.
+Skyline and district total 356,316 bytes. Six GLBs and 230 placement probes passed. The review covers 71 current renders.
 
-All10 final shared-material and flat-map views inspected. Seven existing256px plaster,limestone,granite,painted-metal,copper,wood andwindow-grid graphs; at most seven draws, metric UVs andlinear colors. No private/embedded images. The complete mapped footprint fits the signed current native frame. Geometry disposes and ground restores on unload. Flat fixtures expose the foundation and do not prove historic ground levels.
+The court elevations and exterior heights are estimates using the retained map, standard elevation terrain and ordinary photos.
 
-All26 final native-field/context, lighting, detail, silhouette and tier views inspected. Connected ranges, open court, south green crown and northern red/gold group persist. Skyline retains six representative northern cupolas; district has closed window proxies; street closed recesses; close-up paired glazing, pilasters, pediments,roof seams and11 cupolas. The western foundation remains visibly oversized. Context buildings are synthetic. Rear inventories, concealed joints, original ornament and historic grades remain approximations; numeric LOD errors and physical timings are unmeasured.
+Cathedral Square, the independent churches, the river slope and the Kremlin perimeter remain basemap context. Ornament and concealed roofing are simplified. Isolated turntables expose foundations that sit below the viewer’s fitted grade.
 
-Three ordinary pictures guide appearance; photographs remain local and are not textures. No copied emblems, sculpture, inscriptions or interiors. Heights, rear/roof inventories, cupola placement, ornament and historic grades are approximate. Physical-device timing, numerical LOD error and category activation remain separate work.
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

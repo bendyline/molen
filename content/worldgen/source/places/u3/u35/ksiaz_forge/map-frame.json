@@ -92,7 +92,7 @@
     "up": "+Y",
     "lateral": "+X along longest mapped edge in source vertex order",
     "longitudinal": "+Z perpendicular to mapped edge",
-    "origin": "Own mapped envelope center; Y0 estimated local terrain contact"
+    "origin": "Mapped envelope center; model elevation uses the retained approach control."
   },
   "controls": {
     "basisEdge": 1,
@@ -102,11 +102,11 @@
     "portals": [
       [
         -3.7,
-        2.7
+        3.55
       ],
       [
         2.95,
-        3.4
+        2.6
       ]
     ],
     "chimney": [
@@ -117,6 +117,273 @@
   "reconstruction": {
     "basis": "Own attributed map footprint and linked primary photographs; source interpretation rather than surveyed dimensions.",
     "scope": "Independent exterior component of ksiaz_castle_and_park_complex; full castle and park remains incomplete.",
-    "registration": "Own map-derived axis and anchor; photograph-facing and vertical terrain fit must be checked before activation."
+    "registration": "The two photographed arches face the inner yard on the signed L-shaped footprint. A mapped path reaches the forge at its southern end. The Terrarium approach samples set separate portal thresholds on the sloping yard."
+  },
+  "siteFit": {
+    "contact": {
+      "anchor": [
+        16.293358519680275,
+        50.844017694941044
+      ],
+      "modelHeight": 0,
+      "local": [
+        -2.631965,
+        6.633091
+      ],
+      "meters": 390.949064
+    },
+    "datumMeters": 390.949064,
+    "footingBottom": -2.276579,
+    "entrances": [
+      {
+        "center": [
+          -4.091965,
+          6.6335
+        ],
+        "angle": 1.571076,
+        "edge": 9,
+        "offset": -3.7,
+        "width": 3.55,
+        "apronWidth": 3.8899999999999997,
+        "depth": 1.46,
+        "floor": 0,
+        "toe": [
+          -0.155914,
+          0.158101
+        ],
+        "wallGround": -0.246361
+      },
+      {
+        "center": [
+          -4.093825,
+          -0.0165
+        ],
+        "angle": 1.571076,
+        "edge": 9,
+        "offset": 2.95,
+        "width": 2.6,
+        "apronWidth": 2.94,
+        "depth": 1.46,
+        "floor": 0.540551,
+        "toe": [
+          0.421061,
+          0.653609
+        ],
+        "wallGround": 0.297824
+      }
+    ],
+    "bounds": [
+      16.293161,
+      50.843915,
+      16.293701,
+      50.844262
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.230511,
+          10.120376
+        ],
+        [
+          -10.234881,
+          -10.056357
+        ],
+        [
+          10.114481,
+          -10.136517
+        ],
+        [
+          10.165053,
+          -4.393391
+        ],
+        [
+          5.015607,
+          -4.397561
+        ],
+        [
+          5.049299,
+          -3.38283
+        ],
+        [
+          0.990375,
+          -3.248061
+        ],
+        [
+          0.956683,
+          -4.262793
+        ],
+        [
+          -4.192763,
+          -4.266962
+        ],
+        [
+          -4.066334,
+          10.090853
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -10.230511,
+            10.120376
+          ],
+          [
+            -10.234881,
+            -10.056357
+          ],
+          [
+            10.114481,
+            -10.136517
+          ],
+          [
+            10.165053,
+            -4.393391
+          ],
+          [
+            5.015607,
+            -4.397561
+          ],
+          [
+            5.049299,
+            -3.38283
+          ],
+          [
+            0.990375,
+            -3.248061
+          ],
+          [
+            0.956683,
+            -4.262793
+          ],
+          [
+            -4.192763,
+            -4.266962
+          ],
+          [
+            -4.066334,
+            10.090853
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only the exact Protomaps footprint for 281941091 in the retained 20261114 extract."
+    },
+    "evidence": {
+      "nativeId": 35184654029923,
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17866,
+          "y": 10992,
+          "hash": "sha256:6cc2b300bdb2ba12a9cf38f7b4a962b66d17e02b918d40f06a86c7e6151e3631"
+        },
+        {
+          "z": 15,
+          "x": 17867,
+          "y": 10992,
+          "hash": "sha256:cd4329f6b4f8a051742e5b4949294e4b14c496e512089d792b967ac9e6480054"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8933,
+          "y": 5496,
+          "hash": "sha256:4531cdefd015e518d46413f22058749f419ef8f739c7ceb9c2c1cb8eee6c5557",
+          "container": "retained PMTiles"
+        }
+      ],
+      "archiveHashes": {
+        "vector": "sha256:a7e7fa1da3498c7733551e4a5d84479ba66410f9849a807b335b87b407451010",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "perimeter": [
+        {
+          "p": [
+            -10.145,
+            10.089
+          ],
+          "height": 389.022485
+        },
+        {
+          "p": [
+            -10.152,
+            -10.089
+          ],
+          "height": 390.867057
+        },
+        {
+          "p": [
+            10.146,
+            -10.089
+          ],
+          "height": 393.282706
+        },
+        {
+          "p": [
+            10.146,
+            -7.938
+          ],
+          "height": 393.233505
+        },
+        {
+          "p": [
+            10.152,
+            -4.305
+          ],
+          "height": 393.162061
+        },
+        {
+          "p": [
+            5.014,
+            -4.311
+          ],
+          "height": 392.761633
+        },
+        {
+          "p": [
+            5.012,
+            -3.264
+          ],
+          "height": 392.724214
+        },
+        {
+          "p": [
+            1.01,
+            -3.27
+          ],
+          "height": 392.246758
+        },
+        {
+          "p": [
+            1.009,
+            -4.218
+          ],
+          "height": 392.304452
+        },
+        {
+          "p": [
+            -4.095,
+            -4.214
+          ],
+          "height": 391.559063
+        },
+        {
+          "p": [
+            -4.091,
+            10.081
+          ],
+          "height": 390.385582
+        },
+        {
+          "p": [
+            -9.315,
+            10.089
+          ],
+          "height": 389.212311
+        }
+      ]
+    }
   }
 }

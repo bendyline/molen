@@ -18,38 +18,40 @@
     "latitude": 50.8512115
   },
   "size": [
-    17.13549041748047,
-    7.150000095367432,
-    4.082606077194214
+    17.989999771118164,
+    7.6226710975170135,
+    4.137999892234802
   ],
   "actualBounds": {
     "min": [
-      -8.567745208740234,
-      0,
-      -1.69960618019104
+      -8.994999885559082,
+      -0.4726710021495819,
+      -1.7549999952316284
     ],
     "max": [
-      8.567745208740234,
+      8.994999885559082,
       7.150000095367432,
       2.382999897003174
     ]
   },
-  "visualBrief": "Tall square sandstone piers with broad cornices, seated lions holding shields, rising curved wing walls and open iron leaves; clear sky above the passage.",
+  "visualBrief": "Pale sandstone piers with shield-bearing lions, curved terracotta wall panels, urn-topped outer posts and open wrought-iron leaves.",
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X across the mapped path",
-    "longitudinal": "+Z toward the park along the adjoining path; sculpture facing provisional",
-    "origin": "Mapped gate opening center; Y0 estimated local terrain contact"
+    "longitudinal": "+Z into the park. The paired lion shields turn inward and toward the town junction to the north, along −Z.",
+    "origin": "Mapped passage center. Y0 is the Terrarium elevation sampled at the gate node."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
     "paletteSrgb": {
       "stone": "#e5d8bd",
       "trim": "#ece1ca",
-      "metal": "#72828a"
+      "metal": "#72828a",
+      "wallPanel": "#bf7850",
+      "plinth": "#aaa79f"
     },
     "colorEncoding": "sRGB decoded to linear COLOR_0",
-    "materialBudget": 3
+    "materialBudget": 4
   },
   "mediumFiContext": {
     "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
@@ -72,23 +74,24 @@
     "independentWikidataIdKnown": false,
     "roofAndDatumSurveyed": false,
     "parentSite": "ksiaz_castle_and_park_complex",
-    "primaryDescription": "Independent Brama Lwów heritage gate node and adjoining path; exterior interpreted from Irena Goderska’s 2012 primary photograph, not a map-linked photo or surveyed footprint."
+    "primaryDescription": "Independent Brama Lwów heritage gate node and adjoining path. Irena Goderska’s park-side photograph and the linked restored views establish the profile, materials and signed approach."
   },
   "reconstruction": {
     "basis": "Own mapped Brama Lwów node and adjacent path controls; original medium-fi exterior from a 2012 photograph.",
     "scope": "One of three park gates in ksiaz_castle_and_park_complex; other site groups remain incomplete.",
-    "registration": "Path order establishes a native axis, not a verified signed facade or sculpture bearing. No surveyed terrain datum."
+    "registration": "The park-side photograph looks through the gate toward the mapped Wałbrzyska and Kasztanowa junction. The road-side photograph confirms the opposite approach and inward-facing lions. Foundations and wall plinths follow retained terrain, and the open leaves sit beside the path."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
     "https://commons.wikimedia.org/wiki/File:PL,_%C5%9Awiebodzice_brama_do_parku_Ksi%C4%85%C5%BC_DSC_0008-001.JPG",
+    "https://www.labiryntarium.pl/7gmin/gminaswiebodzice/698-spacerkiemdoksiaza.html",
     "https://www.openstreetmap.org/node/2618881852"
   ],
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.3176525,
       50.8512115
@@ -97,18 +100,44 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The park-side photograph looks through the gate toward the mapped Wałbrzyska and Kasztanowa junction. The road-side photograph confirms the opposite approach and inward-facing lions. Foundations and wall plinths follow retained terrain, and the open leaves sit beside the path.",
+    "terrainReference": {
+      "anchor": [
+        16.3176525,
+        50.8512115
+      ],
+      "modelHeight": 0,
+      "basis": "The park-side photograph looks through the gate toward the mapped Wałbrzyska and Kasztanowa junction. The road-side photograph confirms the opposite approach and inward-facing lions. Foundations and wall plinths follow retained terrain, and the open leaves sit beside the path."
+    },
+    "bounds": [
+      16.317475,
+      50.851121,
+      16.31783,
+      50.851302
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "node/2618881852"
     ],
     "source": "https://www.openstreetmap.org/node/2618881852",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:408f8b917ee96abbdb5714cd96a5f8b0d726642fe764cc0a1bcff514ce9c53d7",
+    "mapGeometryHash": "sha256:1f60745483e3e772a7d17d3f510ddec5f1b5d345b9950683aada5d93db9512dd",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped gate point and adjoining path axis; no mapped footprint or surveyed dimensions. Signed facing and terrain fit remain unreviewed. Inactive draft."
+    "notes": "The park-side photograph looks through the gate toward the mapped Wałbrzyska and Kasztanowa junction. The road-side photograph confirms the opposite approach and inward-facing lions. Foundations and wall plinths follow retained terrain, and the open leaves sit beside the path."
   },
   "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
     {
       "ref": "matgraph:molen.worldgen.material.stone_sandstone",
       "slot": "wall",
@@ -119,12 +148,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
-      "slot": "trim",
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        1.2,
-        1.2
+        2,
+        2
       ]
     },
     {
@@ -141,10 +170,10 @@
   "limitations": [
     "One of three park gates; the full ksiaz_castle_and_park_complex complex remains incomplete.",
     "Map data locates the opening and adjoining path only. Widths, heights and wing-wall curves are photographic estimates.",
-    "Exterior follows the 2012 primary photograph. Current restoration state is unconfirmed; present-day activation requires review.",
+    "The restored exterior follows photographs from both approaches. The iron leaves are shown open.",
     "Seated lions, manes, paws, shields and tails are original simplified medium-fi forms without facial likeness, carved heraldry or sculptural microdetail.",
     "No independent Wikidata identifier, unique textures or redistributed reference photos.",
-    "Signed facade facing, local datum, terrain fit, adaptive streaming and physical-device timing remain pending."
+    "Original terrain supplies the local grade. Widths and details remain photographic estimates. Physical-device timing remains pending."
   ],
   "qaCameras": [
     {
@@ -204,10 +233,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 3040,
-    "vertices": 9120,
-    "materials": 3,
-    "bytes": 367248,
-    "sha256": "sha256:85c07fbab93204b8c3c36cf789d163a4c3bbff45187657c676a6b01bc0610ccf"
+    "triangles": 6772,
+    "vertices": 20316,
+    "materials": 4,
+    "bytes": 815568,
+    "sha256": "sha256:b501748d3c88c4e7e5688c04b4860830ca83288184da194d3629678c924c9454"
   }
 }

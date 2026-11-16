@@ -9,11 +9,11 @@ import {
 export const bridgeControls = {
   anchor: [30.316953067, 59.94262064],
   heading: -2.5232731292618964,
-  datum: 29,
+  datum: 14.55,
   length: 14.83,
   width: 16.134,
   ends: [-7.415, 7.415],
-  deck: 32.6,
+  deck: 18.15,
   skew: 0.012,
   arches: [{ name: 'Winter Canal', a: -5.65, b: 5.35, spring: -0.8, rise: 3.4 }],
   front: [

@@ -75,6 +75,22 @@ const cfg = {
     collar: 8,
   },
 };
+// The mapped spillway canal joins the Euphrates at the end of the stilling basin.
+const spillwayStart = [
+  [802.135, 135.499],
+  [894.746, 236.036],
+];
+const spillwayBasinEnd = [
+  [201.037, 713.888],
+  [307.237, 816.831],
+];
+// The downstream aerial places the chute outlet before the stilling basin.
+const chuteFraction = 0.68;
+const spillwayEnd = spillwayStart.map((point, edge) =>
+  point.map((value, axis) => value + (spillwayBasinEnd[edge][axis] - value) * chuteFraction),
+);
+const spillwayArea = [...spillwayStart, ...spillwayBasinEnd.toReversed(), spillwayStart[0]];
+
 export const controls = {
   anchor: [38.317982723, 37.480715157],
   heading: -0.684533163628,
@@ -2040,24 +2056,12 @@ export const controls = {
   ],
   spillway: {
     gates: 6,
-    start: [
-      [730, 150],
-      [860, 235],
-    ],
-    end: [
-      [355, 925],
-      [490, 1005],
-    ],
+    start: spillwayStart,
+    end: spillwayEnd,
+    basinEnd: spillwayBasinEnd,
     top: 14,
     floor: -142,
   },
-  spillOutline: [
-    [730, 150],
-    [860, 235],
-    [390, 1155],
-    [255, 1075],
-    [730, 150],
-  ],
   powerhouse: [
     [
       [
@@ -2115,7 +2119,7 @@ export const damPlans = [
   ...controls.powerhouse.map((p) => p[0]),
   ...controls.controlHouse.map((p) => p[0]),
   controls.pipeApron,
-  controls.spillOutline,
+  spillwayArea,
 ];
 const cross = (a, b) => [
     a[1] * b[2] - a[2] * b[1],
@@ -2965,8 +2969,6 @@ function farSpillRib(o, c, a, b, width, height, cap) {
 function spillway(o, c) {
   const s = controls.spillway,
     n = c === cfg.skyline ? 4 : c.master ? 48 : c.near ? 24 : 12,
-    U = sub(s.start[1], s.start[0]),
-    L = Math.hypot(...U),
     step = c === cfg.skyline ? 3 : 6,
     point = (u, t, y = 0) => {
       const a = mix(s.start[0], s.start[1], u),
@@ -3051,10 +3053,8 @@ function spillway(o, c) {
     beam(adapter(o, c), 'paving', point(0, 0, 19), point(1, 0, 19), 9, 0.6, C.paving);
   }
   // Open stilling basin:water stays native context rather than an opaque modeled floor.
-  const A = s.end[0],
-    B = s.end[1],
-    D = [A[0] - 100, A[1] + 150],
-    E = [B[0] - 100, B[1] + 150];
+  const [A, B] = s.end;
+  const [D, E] = s.basinEnd;
   for (const [a, b] of [
     [A, D],
     [B, E],

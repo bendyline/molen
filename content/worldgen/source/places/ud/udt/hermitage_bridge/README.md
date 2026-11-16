@@ -6,8 +6,8 @@ Complete individual Hermitage Bridge exterior: one shallow open granite barrel, 
 
 Rebuild: `node packages/worldgen/scripts/generate-hermitage-bridge.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=hermitage_bridge`. Detailed source and four browser tiers are separate ignored GLB outputs.
 
-Fixed29m visualization datum. Approximate32m end decks and32.6m crown, with local canal review water 28.310m. The unmodified global city field contains strong building/surface returns. The standard native renderer derives incompatible connected canal/Neva levels: this is not a surveyed elevation or a certified native shoreline fit. Keep native water acceptance pending if the rendered mismatch remains.
+The joined water stage and waterfront grade are visualization elevations derived from the retained terrain. Stone courses, vault profile, rounded corners, step counts and concealed foundations are approximate.
 
-Ordinary photos and current PMTiles guide this original medium-fi exterior. Granite courses and arch ring joints, vault profile, low crown, broad walks/short steps, rounded corners and concealed foundations are approximate. No copied photo pixels, downloaded meshes, readable signs, boats, buses or furnished interiors. Neighboring museum connection, buildings, quay walls and roads remain native. Native water and bank fit require current visual acceptance; do not count this preview ready from geometry tests alone. Physical laptop/phone measurements remain pending.
+The separate enclosed museum crossing and neighboring buildings and quays are outside the bridge model. The viewer supplies their mapped context.
 
 Original geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.

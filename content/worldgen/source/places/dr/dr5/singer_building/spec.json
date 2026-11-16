@@ -1,0 +1,421 @@
+{
+  "id": "singer_building",
+  "planId": "singer_building",
+  "assetId": "molen.worldgen.structure.singer_building",
+  "title": "Singer Building",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1912-06-01",
+    "validFrom": "1908-06-01",
+    "validUntil": "1947-01-01"
+  },
+  "wikidataId": "Q651362",
+  "referenceCoordinate": {
+    "longitude": -74.01063082221418,
+    "latitude": 40.709588559510394
+  },
+  "visualBrief": "Fourteen-story Broadway and Liberty Street base in red brick and bluestone, a slender square shaft with three-part windows and bowed balconies, and a rounded slate mansard with a copper lantern.",
+  "nativeAxes": "+X follows Broadway north, +Z faces Broadway and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -29.971927642822266,
+      -1.3799999952316284,
+      -53.38999938964844
+    ],
+    "max": [
+      13.079999923706055,
+      204.8300018310547,
+      19.719999313354492
+    ]
+  },
+  "size": [
+    43.05192756652832,
+    206.21000182628632,
+    73.10999870300293
+  ],
+  "geometrySource": "Original deterministic geometry from archival photographs, the 1908 ground plan, published dimensions and the PMTiles street grid.",
+  "materialMethod": "Shared brick, limestone, stone ashlar, slate, copper and bronze use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://www.loc.gov/resource/hhh.ny0428.photos/",
+    "https://www.loc.gov/resource/hhh.ny0428.photos/",
+    "https://www.loc.gov/resource/hhh.ny0428.photos/",
+    "https://www.loc.gov/resource/hhh.ny0428.photos/",
+    "https://www.loc.gov/item/ny0428/",
+    "https://commons.wikimedia.org/wiki/File:Singer_ground_floor_plan.png"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      -74.01063082221418,
+      40.709588559510394
+    ],
+    "heading": 1.0062269329750602,
+    "bounds": [
+      -74.01141707556378,
+      40.70921036668154,
+      -74.01026639578897,
+      40.70999913029698
+    ],
+    "minLevel": 12,
+    "elevationMode": "sea-level",
+    "elevationMeters": 9.32711,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The street-level foundation extends into standard Terrarium terrain across the site.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.65047,
+          11.66897
+        ],
+        [
+          -21.92588,
+          -60.02857
+        ],
+        [
+          26.96025,
+          -61.52001
+        ],
+        [
+          29.23566,
+          10.17753
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "Replace One Liberty Plaza when the Singer Building is selected by historical date."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e31128fc10f419bafaf059da14d62fd4e4ff0ae1860f5f111398561dd4bc4d26",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q651362",
+    "notes": "Exterior reconstruction of the 1908 Singer and Bourne complex. Façade relief, colors, rear elevations and rooftop service structures are approximations. Historical date mode retains the present-day street network, terrain and buildings outside the selected modern One Liberty Plaza footprint."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dr/dr5/singer_building/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:caf8a9c2dd8a6fa47693bf9bbab9fd3fae479fa77aafed36dedb03d4c1c83922"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/singer_building/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:c2a5e3620853ae19ecd4dc2872d3c8cd19d3650bf2fe246246f93ecb55770ba6",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.84
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.82
+      },
+      "bluestone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.92
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.67,
+        "metallic": 0.26
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#263532",
+        "name": "Recessed period glazing",
+        "roughness": 0.42
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.68,
+        "metallic": 0.39
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82
+          },
+          "bluestone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.67,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#263532",
+            "name": "Recessed period glazing",
+            "roughness": 0.42
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.39
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82
+          },
+          "bluestone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.67,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#263532",
+            "name": "Recessed period glazing",
+            "roughness": 0.42
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.39
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82
+          },
+          "bluestone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.67,
+            "metallic": 0.26
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#263532",
+            "name": "Recessed period glazing",
+            "roughness": 0.42
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.39
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "Exterior reconstruction of the 1908 Singer and Bourne complex. Façade relief, colors, rear elevations and rooftop service structures are approximations.",
+    "Historical date mode retains the present-day street network, terrain and buildings outside the selected modern One Liberty Plaza footprint."
+  ],
+  "qaCameras": [
+    {
+      "name": "broadway-and-liberty",
+      "position": [
+        -88.1,
+        84,
+        73.9
+      ],
+      "lookAt": [
+        -5,
+        98,
+        -6
+      ],
+      "fov": 67
+    },
+    {
+      "name": "broadway-entrance",
+      "position": [
+        1.1,
+        6.5,
+        32
+      ],
+      "lookAt": [
+        -7.8,
+        10.8,
+        19
+      ],
+      "fov": 62
+    },
+    {
+      "name": "lantern-and-mansard",
+      "position": [
+        31,
+        170,
+        35
+      ],
+      "lookAt": [
+        0,
+        168,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "liberty-street-and-bourne",
+      "position": [
+        -60,
+        33,
+        10
+      ],
+      "lookAt": [
+        -25,
+        28,
+        -14
+      ],
+      "fov": 72
+    },
+    {
+      "name": "balconies-and-crown",
+      "position": [
+        27,
+        106,
+        28
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "towers-of-lower-manhattan",
+      "position": [
+        -114.7,
+        164,
+        -163.8
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 44396,
+    "vertices": 90148,
+    "materials": 7,
+    "bytes": 3782300,
+    "sha256": "sha256:e9aeaddd86d7c949b8c0f6c73fa294f81340bfcfde5aefefa51f1cbd16edca99"
+  }
+}

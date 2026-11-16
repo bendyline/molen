@@ -95,7 +95,7 @@ function build(out, detail) {
       );
     }
   };
-  buildIsaac(emit, detail, r);
+  buildIsaac(emit, detail, { ...r, entries: [r.entry, ...r.sideEntries] });
 }
 export const buildIsaacSkyline = (o) => build(o, 0),
   buildIsaacDistrict = (o) => build(o, 1),

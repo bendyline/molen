@@ -82,7 +82,7 @@ const spec = {
     elevationMeters: 0,
     groundContactReviewed: true,
     groundContactBasis:
-      'The headquarters uses one standard host field datum outside the east stairs. Exact doorway, basement and street grades remain approximate. ' +
+      'The west stair toe ties into the standard viewer terrain. Doorway and basement grades are approximate. ' +
       brief.heightPolicy,
     groundModelY: 0,
     replaceFootprint: true,
@@ -135,25 +135,13 @@ const scene = {
         renderable: { kind: 'gltf', ref: assetId, shadows: { cast: true, receive: true } },
       },
     },
-    {
-      id: 'ground',
-      components: {
-        transform: { pos: [0, -0.15, 0], scale: [350, 0.2, 300], rot: [0, 0, 0, 1] },
-        renderable: {
-          kind: 'primitive',
-          ref: 'box',
-          materialRef: 'palette:#6b929a',
-          shadows: { receive: true },
-        },
-      },
-    },
     ...(brief.reviewEntities ?? []),
     {
       id: 'environment',
       components: {
         environment: {
           ambient: { sky: '#dce5ed', ground: '#6c7473', intensity: 1.15 },
-          sun: { direction: [-8, 14, 9], color: '#fff1d3', intensity: 2.2, castShadow: true },
+          sun: { direction: [8, 14, -9], color: '#fff1d3', intensity: 2.2, castShadow: true },
           background: '#b5d2df',
           toneMapping: 'agx',
           exposure: 1.08,
@@ -168,6 +156,7 @@ const scene = {
     lookAt: brief.cameras[0].lookAt,
     fov: brief.cameras[0].fov,
   },
+  terrain: brief.mediumFiContext.terrain,
   physics: { engine: 'none' },
 };
 const source = {

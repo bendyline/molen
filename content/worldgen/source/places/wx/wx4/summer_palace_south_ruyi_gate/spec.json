@@ -1,0 +1,309 @@
+{
+  "id": "summer_palace_south_ruyi_gate",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_south_ruyi_gate",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.274467708,
+    "latitude": 39.97941493
+  },
+  "title": "Summer Palace · South Ruyi Gate",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "Buff brick piers frame a red gate with gold rosettes under a grey tiled crown with upturned corners. The stone approach and green rails keep the central passage open.",
+  "nativeAxes": "+Z points toward the public forecourt and +X follows the façade.",
+  "actualBounds": {
+    "min": [
+      -4.820000171661377,
+      -0.47999998927116394,
+      -3.575000047683716
+    ],
+    "max": [
+      2.370819091796875,
+      5.896999835968018,
+      3.575000047683716
+    ]
+  },
+  "size": [
+    7.190819263458252,
+    6.3769998252391815,
+    7.150000095367432
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://gs.ctrip.com/html5/you/sight/beijing1/5067533.html",
+    "https://ditu.amap.com/place/B000A7R1S8",
+    "https://news.bjd.com.cn/2026/03/23/11646602.shtml"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.274467708,
+      39.97941493
+    ],
+    "heading": 0.38922104910768796,
+    "bounds": [
+      116.27421094925087,
+      39.97921671137221,
+      116.274699954096,
+      39.97960544469998
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 53,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f63667db7adce696723282a35110065492157198049bd40a2d7a55323895a052",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The photographed grey and buff masonry gate has a curved tiled cap, four rosettes and an unobstructed pedestrian opening. The gate center and bearing are estimated along the mapped canal-side footpath, 4.6 m inside the shoreline corner to keep the piers and wing on the bank. Plaque lettering and small roof figures are simplified. The neighboring canal, approach paths and Xiuyi Bridge are separate features."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_south_ruyi_gate/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:2fa32cc9e47ef40d83479557bc882fb8bccdcc8c9ce5acdd19aa1a199e643c18"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_south_ruyi_gate/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_longformat"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "inputHash": "sha256:224a1da0d0c494cc634286f37a22471e40b8fa09e0d381048a048d00fe22a251",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The photographed grey and buff masonry gate has a curved tiled cap, four rosettes and an unobstructed pedestrian opening. The gate center and bearing are estimated along the mapped canal-side footpath, 4.6 m inside the shoreline corner to keep the piers and wing on the bank. Plaque lettering and small roof figures are simplified. The neighboring canal, approach paths and Xiuyi Bridge are separate features."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        9,
+        6.1,
+        19.5
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "detail",
+      "position": [
+        1.1,
+        2.5,
+        10.8
+      ],
+      "lookAt": [
+        0,
+        2.03,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -7.2,
+        5.5,
+        -12.2
+      ],
+      "lookAt": [
+        0,
+        2.15,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "elevated",
+      "position": [
+        9,
+        27,
+        11
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2248,
+    "vertices": 4482,
+    "materials": 6,
+    "bytes": 192168,
+    "sha256": "sha256:13b35065d01b2d6cabe9c7cf6bb1e445c1a3026e5378c528e5baaf69efa58aa7"
+  }
+}

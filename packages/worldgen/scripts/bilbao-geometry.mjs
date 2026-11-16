@@ -27,6 +27,149 @@ const simplify = (ring, tolerance) => {
   return p;
 };
 
+function addEntryStairs(face, beam, detail, site, baseY) {
+  const mix = (a, b, t) => a + (b - a) * t;
+  const sampleCurve = (curve, t) => {
+    const s = t * (curve.length - 1),
+      i = Math.floor(s);
+    return curve[i].map((v, k) => mix(v, curve[i + 1]?.[k] ?? v, s - i));
+  };
+  for (const [index, stairs] of [site.main, site.westFlight].entries()) {
+    const count = detail > 1 ? stairs.count : [index ? 5 : 8, index ? 14 : 16][detail];
+    const strips = index ? 1 : [2, 3, 7, 10][detail];
+    const level = (t) => mix(stairs.lo, stairs.hi, t);
+    const at = (t, u, y) => {
+      const left = sampleCurve(stairs.left, t),
+        right = sampleCurve(stairs.right, t);
+      const dx = right[0] - left[0],
+        dz = right[1] - left[1],
+        len = Math.hypot(dx, dz);
+      const bow = mix(...stairs.sagitta, t) * 4 * u * (1 - u);
+      return [
+        mix(left[0], right[0], u) - (dz / len) * bow,
+        y,
+        mix(left[1], right[1], u) + (dx / len) * bow,
+      ];
+    };
+    for (let step = 0; step < count; step++) {
+      const a = step / count,
+        b = (step + 1) / count,
+        y = level(b);
+      for (let j = 0; j < strips; j++) {
+        const left = j / strips,
+          right = (j + 1) / strips;
+        const A = at(a, left, y),
+          B = at(a, right, y),
+          C = at(b, right, y),
+          D = at(b, left, y);
+        face('floor', [A, B, C, D], [0, 1, 0]);
+        face('floor', [at(a, left, level(a)), at(a, right, level(a)), B, A], [0, 0, -1]);
+      }
+      for (const side of [0, 1]) {
+        const out = at(a, side, y);
+        const inside = at(a, 1 - side, y);
+        face(
+          'stone',
+          [at(a, side, baseY), at(b, side, baseY), at(b, side, y), out],
+          [out[0] - inside[0], 0, out[2] - inside[2]],
+        );
+      }
+    }
+    if (detail) {
+      const parts = detail === 1 ? 4 : 14;
+      for (const lane of index ? [0.08, 0.92] : [0.065, 0.54, 0.94]) {
+        for (let i = 0; i < parts; i++) {
+          const a = mix(0.022, 0.98, i / parts),
+            b = mix(0.022, 0.98, (i + 1) / parts);
+          beam(at(a, lane, level(a) + 1.04), at(b, lane, level(b) + 1.04), 0.061);
+          if (detail > 1 || i % 2 === 0)
+            beam(at(a, lane, level(a)), at(a, lane, level(a) + 1.04), 0.045);
+        }
+      }
+    }
+  }
+}
+
+function addBilbaoTerraces(face, beam, detail, site, floorY, baseY) {
+  prism(face, 'floor', site.lowerCourt, baseY, floorY - 0.013, detail > 1);
+  for (const polygon of site.samples) {
+    const rings = [polygon.outline, ...polygon.holes],
+      holes = [];
+    const points = rings.flat();
+    let index = rings[0].length;
+    for (const hole of rings.slice(1)) {
+      holes.push(index);
+      index += hole.length;
+    }
+    const triangles = earcut(
+      points.flatMap(([x, , z]) => [x, z]),
+      holes,
+    );
+    for (let i = 0; i < triangles.length; i += 3) {
+      face(
+        'floor',
+        triangles.slice(i, i + 3).map((k) => points[k]),
+        [0, 1, 0],
+      );
+    }
+    for (const [j, ring] of rings.entries()) {
+      const area = ring.reduce((s, [x, , z], i) => {
+        const [a, , b] = ring[(i + 1) % ring.length];
+        return s + x * b - a * z;
+      }, 0);
+      for (let i = 0; i < ring.length; i++) {
+        const a = ring[i],
+          b = ring[(i + 1) % ring.length];
+        const sign = Math.sign(area) * (j === 0 ? 1 : -1);
+        face(
+          'stone',
+          [[a[0], baseY, a[2]], [b[0], baseY, b[2]], b, a],
+          [(b[2] - a[2]) * sign, 0, (a[0] - b[0]) * sign],
+        );
+      }
+    }
+  }
+  addEntryStairs(face, beam, detail, site, baseY);
+
+  // The glazed lower entrance follows the angled edge of the court below the esplanade.
+  const front = site.lowEdge;
+  const heads = front.map(([x, z], i) => [
+    x,
+    floorY + 5.8 + 1.75 * Math.sin((Math.PI * i) / (front.length - 1)),
+    z,
+  ]);
+  const feet = front.map(([x, z]) => [x, floorY, z]);
+  const back = ([x, y, z]) => [x + 0.9, y + 0.65, z - 10];
+  for (let i = 1; i < front.length; i++) {
+    const a = feet[i - 1],
+      b = feet[i],
+      A = heads[i - 1],
+      B = heads[i];
+    face('glass', [a, b, B, A], [0, 0, 1]);
+    face('metal', [A, B, back(B), back(A)], [0, 1, 0]);
+    if (detail) {
+      beam(a, A, 0.13);
+      beam(A, B, 0.16);
+      for (const sill of [2.64, 4.9])
+        beam([a[0], floorY + sill, a[2] + 0.055], [b[0], floorY + sill, b[2] + 0.055], 0.079);
+    }
+  }
+  for (const i of [0, front.length - 1]) {
+    const a = feet[i],
+      p = heads[i],
+      q = back(p);
+    face('stone', [a, p, q, [q[0], floorY, q[2]]], [i ? 1 : -1, 0, 0]);
+  }
+  if (detail) {
+    beam(feet.at(-1), heads.at(-1), 0.16);
+    for (const i of [1, 2, 3]) {
+      const [x, , z] = feet[i];
+      beam([x + 0.44, floorY, z + 0.15], [x + 0.44, floorY + 2.66, z + 0.15], 0.085);
+      beam([x - 0.44, floorY, z + 0.4], [x - 0.44, floorY + 2.66, z + 0.4], 0.085);
+    }
+  }
+}
+
 export function buildBilbao(face, detail, r) {
   const Y = r.floorY,
     tolerance = [3.2, 0.65, 0.12, 0.02][detail],
@@ -115,10 +258,20 @@ export function buildBilbao(face, detail, r) {
       if (detail) cap(role, levels[0], -1);
       return { p, top, point };
     };
-  const parent = { outline: simplify(r.parent.outline, tolerance), holes: [] };
-  prism(face, 'floor', parent, r.foundationY, Y, detail > 0);
+  for (const p of r.site.occupiedFloors)
+    prism(
+      face,
+      'floor',
+      {
+        outline: simplify(p.outline, tolerance),
+        holes: p.holes.map((h) => simplify(h, tolerance)),
+      },
+      r.foundationY,
+      Y,
+      detail > 0,
+    );
   // The continuous low gallery follows the irregular parent, including its long east arm.
-  for (const p of r.lowBody)
+  for (const p of r.site.lowerBodies)
     prism(
       face,
       'metal',
@@ -130,6 +283,7 @@ export function buildBilbao(face, detail, r) {
       Y + 11,
       detail > 0,
     );
+  addBilbaoTerraces(face, beam, detail, r.site, Y, r.foundationY);
   const stoneIds = new Set([
     118500240, 118500243, 118500249, 118500252, 118500255, 118501682, 118501684, 118506777,
     118506963, 118507297, 118507299,
@@ -265,33 +419,6 @@ export function buildBilbao(face, detail, r) {
     ])
       beam(ep(p, Y), ep(p, Y + h), 0.22);
     for (const y of [4, 8, 12]) beam(ep(E, Y + y), ep(F, Y + y), 0.13);
-    const steps = detail === 1 ? 4 : 12,
-      segments = detail === 1 ? 5 : 14;
-    for (let j = 0; j < steps; j++) {
-      const ri = 15 + j * 0.42 * (12 / steps),
-        ro = 15 + (j + 1) * 0.42 * (12 / steps),
-        hi = Y + 0.26 * (j + 1) * (12 / steps),
-        point = (R, t) => [-32 + R * Math.cos(t), 60 + R * Math.sin(t)];
-      for (let k = 0; k < segments; k++) {
-        const a = 2.5 + (k / segments) * 0.9,
-          b = 2.5 + ((k + 1) / segments) * 0.9;
-        prism(
-          face,
-          'floor',
-          { outline: [point(ri, a), point(ro, a), point(ro, b), point(ri, b)], holes: [] },
-          r.foundationY,
-          hi,
-          detail > 1,
-        );
-      }
-    }
-    if (detail >= 2)
-      for (const t of [2.5, 2.95, 3.4]) {
-        const point = (R, y) => [-32 + R * Math.cos(t), y, 60 + R * Math.sin(t)];
-        beam(point(15, Y + 1), point(20.04, Y + 4.12), 0.075);
-        for (const R of [15.3, 19.8])
-          beam(point(R, Y + (R - 15) * 0.62), point(R, Y + (R - 15) * 0.62 + 1), 0.06);
-      }
     // Small high lantern glazing differentiates the crown from the metallic lobes.
     const crown = r.parts.find((p) => p.height === 41);
     if (crown)

@@ -12,4 +12,6 @@ Current PMTiles place the monument at **[-43.210459649562836, -22.95191748693652
 
 **Remaining issue:** the standard global field places this point on a steep side slope and obscures the pedestal and lower robe in some views. Its center sample is 528.95m while the native peak POI records 710m. Correct placement-height sampling does not fix that terrain profile. No surveyed summit altitude, replacement mountain or broad flattening pad is asserted. This remains part of the shared site/terrain backlog.
 
+The finer Mapzen Terrarium tile at zoom 15 gives 528.23 m at the same mapped statue point. Both standard tile resolutions therefore reproduce the summit mismatch, and the native fit remains open. [Mapzen terrain tiles](https://registry.opendata.aws/terrain-tiles/)
+
 Rebuild: node packages/worldgen/scripts/generate-christ-redeemer.mjs; append --check for exact source verification. Import, LOD and placement commands select --ids=christ_the_redeemer. Physical-device timing and numerical LOD error remain unmeasured.

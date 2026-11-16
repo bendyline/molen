@@ -82,8 +82,7 @@ const spec = {
     elevationMeters: 0,
     groundContactReviewed: true,
     groundContactBasis:
-      'The historic station uses one standard host field datum outside the southwest entrance. Exact threshold,platform andstreet grades remain approximate. ' +
-      brief.heightPolicy,
+      'The southwest entrance sets the host terrain datum. The authored apron joins sampled terrain and paving at its perimeter. The original grades are approximate.',
     groundModelY: 0,
     replaceFootprint: true,
     buildingCutout: placement.buildingCutout,
@@ -227,7 +226,8 @@ await emit(
   Buffer.from(
     '# Umeå Central Station\n\n![Molen preview](preview.png)\n\n' +
       brief.visualBrief +
-      '\n\nRebuild: `node packages/worldgen/scripts/generate-umea-central-station.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=umea_central_station`. Detailed source and four browser tiers are separate ignored GLB outputs.\n\n' +
+      '\n\nThe station apron follows sampled sidewalk and platform-side grades. Its level strip exposes the brick base and window sills. [Placement review](QA-REVIEW.md)\n\n' +
+      'Rebuild with `node packages/worldgen/scripts/generate-umea-central-station.mjs`. Append `--check` for exact source bytes. Select the station for import, LOD and placement with `--ids=umea_central_station`. The source master and four browser tiers are generated GLBs.\n\n' +
       brief.limitations.join('\n\n') +
       '\n\nOriginal geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.\n',
   ),

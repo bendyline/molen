@@ -1,0 +1,427 @@
+{
+  "id": "summer_palace_kuoru_pavilion",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_kuoru_pavilion",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.272658408,
+    "latitude": 39.989054132
+  },
+  "title": "Summer Palace · Kuoru Pavilion",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "Open double-eaved octagonal pavilion with a grey conical tile roof, three rings of red columns and stone steps at the east end of Kunming Lake.",
+  "nativeAxes": "+X and +Z are mapped local axes. Building bearings are derived independently from their mapped outlines.",
+  "actualBounds": {
+    "min": [
+      -8.828694343566895,
+      -2.3610000610351562,
+      -8.89354419708252
+    ],
+    "max": [
+      8.941794395446777,
+      10.119999885559082,
+      8.876944541931152
+    ]
+  },
+  "size": [
+    17.770488739013672,
+    12.480999946594238,
+    17.770488739013672
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://www.sohu.com/a/401185214_216077"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.272658408,
+      39.989054132
+    ],
+    "heading": 0,
+    "bounds": [
+      116.27242383286246,
+      39.988874922053405,
+      116.2728929825513,
+      39.98923436908029
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 54,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.00676,
+          -2.80234
+        ],
+        [
+          -3.66025,
+          -7.83514
+        ],
+        [
+          2.9739,
+          -8.0639
+        ],
+        [
+          7.77794,
+          -3.48863
+        ],
+        [
+          8.00671,
+          2.91676
+        ],
+        [
+          3.6602,
+          7.7208
+        ],
+        [
+          -2.97396,
+          7.94956
+        ],
+        [
+          -7.778,
+          3.60305
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.00676,
+            -2.80234
+          ],
+          [
+            -3.66025,
+            -7.83514
+          ],
+          [
+            2.9739,
+            -8.0639
+          ],
+          [
+            7.77794,
+            -3.48863
+          ],
+          [
+            8.00671,
+            2.91676
+          ],
+          [
+            3.6602,
+            7.7208
+          ],
+          [
+            -2.97396,
+            7.94956
+          ],
+          [
+            -7.778,
+            3.60305
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Only occupied footprints of the documented buildings are replaced."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e4ffefc14bfc2466b6be91b7f34228b11cbdda704a180231c21717e5a8e9e61b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The octagonal pavilion is placed on its east-dyke location independently from the island. The source retains open bays and three rings of pillars. Railings and painted trim are simplified."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_kuoru_pavilion/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:02a38af17e2897cbc82b8ca0385c83df6f0dac83019280da8fe069ff8a0057b0"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_kuoru_pavilion/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_stack"
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.12
+      }
+    },
+    "inputHash": "sha256:89c0fd6197b18e53f5be94af2e8d2975db2817b16aadcfaa3be246801e58464d",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The octagonal pavilion is placed on its east-dyke location independently from the island. The source retains open bays and three rings of pillars. Railings and painted trim are simplified."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        -49,
+        18,
+        -32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "detail",
+      "position": [
+        -20,
+        4,
+        -15
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "reverse",
+      "position": [
+        29,
+        6,
+        22
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "elevated",
+      "position": [
+        9,
+        44,
+        -30
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 42
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2810,
+    "vertices": 5410,
+    "materials": 4,
+    "bytes": 231396,
+    "sha256": "sha256:a651561759743168f7f928e8019fdc47268c352b1645e07d510e48eeff86b49a"
+  }
+}

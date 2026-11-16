@@ -1,0 +1,472 @@
+{
+  "id": "leningradskaya_hotel",
+  "planId": "leningradskaya_hotel",
+  "collectionId": "seven_sisters",
+  "assetId": "molen.worldgen.structure.leningradskaya_hotel",
+  "title": "Leningradskaya Hotel",
+  "category": "tower",
+  "quality": "detailed",
+  "wikidataId": "Q2269257",
+  "referenceCoordinate": {
+    "longitude": 37.65173,
+    "latitude": 55.77401
+  },
+  "nativeAxes": "+Y up. +Z faces northeast toward the Komsomolskaya Square approach, +X northwest along the entrance facade.",
+  "visualBrief": "A red and cream stepped hotel with long limestone pilasters, mapped low side wings around recessed courts, an arched northeast entrance, tiered octagonal lantern and a green spire above the crown pinnacles.",
+  "size": [
+    63.82407188415527,
+    138.61489868164062,
+    83.37377166748047
+  ],
+  "actualBounds": {
+    "min": [
+      -31.124361038208008,
+      -2.5,
+      -49.117244720458984
+    ],
+    "max": [
+      32.699710845947266,
+      136.11489868164062,
+      34.256526947021484
+    ]
+  },
+  "referencePages": [
+    "https://www.hilton.com/en/hotels/svohfhi-hilton-moscow-leningradskaya/gallery/",
+    "https://commons.wikimedia.org/wiki/File:Moscow._Leningradskaya_Hotel.jpg",
+    "https://commons.wikimedia.org/wiki/File:Фасад_гостиницы.jpg",
+    "https://commons.wikimedia.org/wiki/File:Гостиница_«Ленинградская»_на_Комсомольской_площади_2024.png",
+    "https://www.mos.ru/upload/documents/files/844/MOSKVAKOTORAYaEST%282012god%29.pdf",
+    "https://www.openstreetmap.org/way/130850433"
+  ],
+  "geometrySource": "Original deterministic geometry on the mapped parent and 13 parts. Photos govern the facade, height schedule and ornament.",
+  "materialMethod": "Metric shared limestone, brick, granite and metals with locally colored inset glass. No embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/uc/ucf/leningradskaya_hotel/models/hotel-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/leningradskaya_hotel/models/hotel-model.mjs",
+    "inputHash": "sha256:62853852531c00603b179178bc99fc00e8a2b87d5e1e4ab3b2693a0bc716c664",
+    "export": "buildSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick"
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "Inset blue-gray glass"
+      },
+      "brass": {
+        "slot": "trim",
+        "graph": "metal_copper"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset blue-gray glass"
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset blue-gray glass"
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset blue-gray glass"
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.65157610177994,
+      55.77405896894994
+    ],
+    "heading": 2.0734150204516606,
+    "bounds": [
+      37.65068774340798,
+      55.773583620887905,
+      37.65222573473539,
+      55.77440909097558
+    ],
+    "source": "https://www.openstreetmap.org/way/130850433",
+    "notes": "The mapped wing outlines establish the approach-facing orientation. The west and rear wings follow the surrounding rise in the viewer terrain.",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Viewer Terrarium grade at the mapped forecourt on the longitudinal axis, just beyond the entrance steps.",
+    "terrainReference": {
+      "anchor": [
+        37.652079957397426,
+        55.774214754407204
+      ],
+      "modelHeight": 0,
+      "basis": "Viewer Terrarium grade at the mapped forecourt on the longitudinal axis, just beyond the entrance steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          32.238,
+          -44.179
+        ],
+        [
+          32.418,
+          -29.515
+        ],
+        [
+          23.773,
+          -29.476
+        ],
+        [
+          23.923,
+          -17.895
+        ],
+        [
+          27.903,
+          -17.815
+        ],
+        [
+          28.116,
+          11.431
+        ],
+        [
+          24.577,
+          11.594
+        ],
+        [
+          24.728,
+          30.841
+        ],
+        [
+          -24.891,
+          31.161
+        ],
+        [
+          -25.116,
+          13.79
+        ],
+        [
+          -28.427,
+          13.886
+        ],
+        [
+          -28.647,
+          -17.089
+        ],
+        [
+          -25.564,
+          -17.119
+        ],
+        [
+          -25.626,
+          -30.951
+        ],
+        [
+          -30.813,
+          -30.928
+        ],
+        [
+          -30.876,
+          -48.594
+        ],
+        [
+          -17.419,
+          -48.67
+        ],
+        [
+          -17.298,
+          -36.339
+        ],
+        [
+          -7.152,
+          -36.319
+        ],
+        [
+          -6.876,
+          -18.345
+        ],
+        [
+          7.788,
+          -18.524
+        ],
+        [
+          7.6,
+          -34.917
+        ],
+        [
+          16.848,
+          -35.008
+        ],
+        [
+          16.824,
+          -44.028
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Exact hotel parent outline retains the flanking courts and independent station buildings."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ff7ae04fec7d384f2b96dbc62133bd0b7320879231f85b2a14ea64a60da3c1bd",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic evidence is tracked in qa.json.",
+  "limitations": [
+    "Window profiles, roof carving and the crown emblem are photo-proportioned visual reconstructions.",
+    "Standard viewer terrain supplies the ground height and the approach grade. This is an exterior model."
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        62,
+        -3
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "rear-courtyard",
+      "position": [
+        -74,
+        79,
+        -157
+      ],
+      "lookAt": [
+        0,
+        53,
+        -11
+      ],
+      "fov": 49
+    },
+    {
+      "name": "entrance-and-masonry",
+      "position": [
+        10,
+        8,
+        61
+      ],
+      "lookAt": [
+        0,
+        12.8,
+        30
+      ],
+      "fov": 51
+    },
+    {
+      "name": "octagonal-lantern-and-spire",
+      "position": [
+        33,
+        113,
+        47
+      ],
+      "lookAt": [
+        0,
+        111,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "leningradskaya-hotel-skyline",
+      "position": [
+        67,
+        51,
+        171
+      ],
+      "lookAt": [
+        0,
+        64,
+        -3
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "leningradskaya-hotel-district",
+      "position": [
+        67,
+        51,
+        171
+      ],
+      "lookAt": [
+        0,
+        64,
+        -3
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "leningradskaya-hotel-street",
+      "position": [
+        67,
+        51,
+        171
+      ],
+      "lookAt": [
+        0,
+        64,
+        -3
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "leningradskaya-hotel-closeup",
+      "position": [
+        67,
+        51,
+        171
+      ],
+      "lookAt": [
+        0,
+        64,
+        -3
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 27417,
+    "vertices": 78923,
+    "materials": 6,
+    "bytes": 3173932,
+    "sha256": "sha256:0106d1cdf11e6105866be9caaf38c5762a1150e8b75f4ab943fb29a1bf93ee19"
+  }
+}

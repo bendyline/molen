@@ -4,7 +4,9 @@
 
 Complete connected Hamburg main-station exterior:whole curved train shed andraised glazed monitor,both full glazed arch ends,transverse Wandelhalle withboth clock towers,arched entry fronts,paired copper entrance turrets,north range,all mapped repeated pitched side bays andSSE eastern roof pavilion. Preserve thebelow-grade open rail approach,independent extended platformcanopies androad bridges,street kiosks,offices andcity blocks. Exterior only;no lettering,brands,coats of arms,people,trains,navigable interior orfuture expansion proposal.
 
-Rebuild: `node packages/worldgen/scripts/generate-hamburg-station.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=hamburg_hauptbahnhof`. Detailed source and four browser tiers are separate ignored GLB outputs.
+The Hachmannplatz canopy follows four layered map features and an ordinary station photo. Its glass vaults and painted steel roof leave the entrance plaza open. The entrance landings and frontage walks follow sampled terrain. [Placement controls](placement-draft.json)
+
+Rebuild with `node packages/worldgen/scripts/generate-hamburg-station.mjs`. Append `--check` to verify exact bytes. Select `--ids=hamburg_hauptbahnhof` when importing or placing the four streaming levels.
 
 Complete connected Hamburg main-station exterior:whole curved train shed andraised glazed monitor,both full glazed arch ends,transverse Wandelhalle withboth clock towers,arched entry fronts,paired copper entrance turrets,north range,all mapped repeated pitched side bays andSSE eastern roof pavilion. Preserve thebelow-grade open rail approach,independent extended platformcanopies androad bridges,street kiosks,offices andcity blocks. Exterior only;no lettering,brands,coats of arms,people,trains,navigable interior orfuture expansion proposal.
 

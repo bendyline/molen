@@ -1,16 +1,19 @@
 /** 'exhibitions_pavilion_yad_vashem': open court, stair-pierced end wall and curved planted wing. */
 import earcut from 'earcut';
 import { box, prism } from './khmer-structure-geometry.mjs';
+import { addSquareOfHopeLandscape } from './yad-court-landscape.mjs';
 
 export function buildYadExhibitions(face, detail, r) {
   const Y = r.floorY;
   const P = ([x, y, z]) => [x * r.xAxis[0] + z * r.zAxis[0], y, x * r.xAxis[1] + z * r.zAxis[1]];
-  const f = (role, ps, n) => face(role, ps.map(P), P(n));
+  const f = (role, ps, n, tint) => face(role, ps.map(P), P(n), tint);
   const curve = (x) => {
     const t = Math.max(0, Math.min(1, (x - 10) / 7));
     return 3 + 0.0045 * (x + 20) * (x + 20) + 4.7 * t * t * (3 - 2 * t);
   };
-  const height = (x) => 0.32 + ((x + 20.22) / 37.22) * 6.36;
+  const stairStart = -19.6;
+  const stairEnd = 16.8;
+  const height = (x) => (Math.max(0, x - stairStart) / (stairEnd - stairStart)) * 6.6;
   const strip = (x1, x2, offset, width) => ({
     outline: [
       [x1, curve(x1) + offset - width / 2],
@@ -64,7 +67,9 @@ export function buildYadExhibitions(face, detail, r) {
       o += ring.length;
     }
   }
-  // Only occupied volumes have foundations. The original courtyard stays completely open.
+  // Keep the square open above its fitted paving and cover the two occupied floor plates.
+  prism(f, 'pavers', { outline: r.court.outline }, r.court.baseY, r.court.floorY);
+  addSquareOfHopeLandscape(f, detail, r.court);
   for (const p of r.end) prism(f, 'floor', p, r.foundationY, Y, true);
   for (const band of r.bands)
     for (const p of band.polygons) prism(f, 'concrete', p, Y + band.lo, Y + band.hi, true);
@@ -84,17 +89,30 @@ export function buildYadExhibitions(face, detail, r) {
     );
 
   const count = [10, 24, 36, 44][detail];
+  const firstTread = 0.65;
+  const stations = [
+    stairStart,
+    ...Array.from(
+      { length: count },
+      (_, i) => stairStart + firstTread + ((stairEnd - stairStart - firstTread) * i) / (count - 1),
+    ),
+  ];
   for (let i = 0; i < count; i++) {
-    const x1 = -19.6 + (36.4 * i) / count,
-      x2 = -19.6 + (36.4 * (i + 1)) / count;
-    prism(f, 'floor', strip(x1, x2, 1.1, 1.7), Y + height(x1) - 0.1, Y + height(x2) + 0.08, true);
+    const [x1, x2] = [stations[i], stations[i + 1]];
+    prism(f, 'floor', strip(x1, x2, 1.1, 1.7), Y + height(x1) - 0.1, Y + height(x2) + 0.01);
   }
+  prism(
+    f,
+    'floor',
+    strip(stairEnd, 17.14, 1.1, 1.7),
+    Y + height(stairEnd) - 0.1,
+    Y + height(stairEnd) + 0.01,
+  );
   // One closed sweep per guard follows the same stations as its stair treads.
   // Adjacent sections share their ends; internal caps would add hidden geometry.
   for (const offset of [0.12, 2.08]) {
-    const sections = Array.from({ length: count + 1 }, (_, i) => {
-      const x = -19.6 + (36.4 * i) / count,
-        z = curve(x) + offset,
+    const sections = stations.map((x) => {
+      const z = curve(x) + offset,
         lo = Y + height(x) - 0.05,
         hi = Y + height(x) + 0.7;
       return [

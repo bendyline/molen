@@ -1,17 +1,24 @@
 # Capanda Dam
 
-Reviewed 2026-11-03. **46 current views inspected.**
+The two angled concrete wings, four spillway chutes, curved service crossing, two yellow gantries, switchyard and powerhouse follow the signed Cuanza site. Fitted gravel banks close the apron and tailrace spur.
 
-The individual Capanda model includes both angled wings, four deep spillway chutes with divider walls, the mapped curved service crossing, two yellow gantries, supported switchyard, generator hall and mapped tailrace apron.
+The viewer places the model at a fixed 956 m datum with a 961 m crest. The reservoir and downstream river use representative stages of 956 m and 875 m. Both water polygons, one neighboring building and all 11 independent road records are retained in the fixture.
 
-Signed position [15.466341039, −9.795258874], heading −1.118970338564 radians, follows the 1,245.232 m retained dam outline, native two-part crest crossing and owned powerhouse. The model placement samples the nearby 958.33 m shoulder and applies its local terrain contact offset. The surrounding native service roads and buildings are preserved.
+![Capanda Dam on the Kwanza River](site-preview.png)
 
-Six existing material graphs supply board-formed concrete, plain concrete, gravel, painted steel, standing-seam roofing and glazing. The skyline uses one draw and the nearer tiers at most six. All six GLBs have zero embedded images. Eviction releases geometry and restores the terrain.
+The model replaces the mapped powerhouse and the two matching crest bridge fragments. A failed download restores all mapped features. Unload restores the terrain and releases model geometry. The fixed-stage water renderer extends the banks down to the terrain along mapped shores.
 
-The 26 site views use ten standard Terrarium tiles with all original height values retained. The fixture uses a 956 m water plane estimated from the shoreline band. The production inland water sampler measured 890.50 m at the crest window and 868.92 m in the reservoir interior window. These values are approximate because the diagnostic windows are independent of live tile boundaries. See native-datum-probes.json.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 727 | 63,560 | 1 |
+| district | 2,451 | 222,704 | 6 |
+| street | 3,155 | 282,100 | 6 |
+| closeup | 4,523 | 398,524 | 6 |
 
-The detailed master contains 4,789 triangles. Viewer tiers contain 665, 2387, 3085, 4453 triangles. Skyline plus district are 275,620 bytes and close-up is 393,248 bytes. Four focused checks verify exact source pins, selective replacement, the four chute beds, curved service crossing, powerhouse roof and both supported aprons, and byte-for-byte LOD reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+The first two detail levels total 286,264 bytes. Six GLBs passed validation with zero errors or warnings. Four focused geometry checks, 30 placement probes and six shoreline traces passed. 71 renders were inspected.
 
-Runtime reservoir datum remains pending. The ordinary photos show water immediately upstream of the crest, while default raw-terrain sampling places the reservoir about 66–87 m below the draft water plane. Some local shoreline slivers and grade seams also remain. The gate machinery and switchyard hardware are visually interpreted.
+Water stages, concrete elevations and equipment geometry are representative exterior estimates. The water is static and the switchyard and powerhouse interiors are outside this model.
 
-Rebuild with `node packages/worldgen/scripts/generate-capanda-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=capanda_dam`.
+The coarse original terrain leaves a small seam below the first spillway toe. The mapped apron and narrow tailrace bank are fitted using the retained standard terrain.
+
+[Mapped site frame](map-frame.json) · [QA evidence](qa.json) · [Water feature settings](../../../../../../earth/hydrology/water-features.json)

@@ -53,6 +53,7 @@ import {
   type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
+  type TerrainWaterFeature,
 } from './semantic-types';
 import { waterwayWidth } from './semantic-widths';
 import type { TerrainTileLayerCategory } from './stream';
@@ -596,6 +597,15 @@ const URBAN_GROUND_CLASSES: readonly string[] = [
   'university',
 ];
 
+export interface TerrainWaterFeatureStyle {
+  /** Absolute rendered water elevation in the terrain frame. Used for polygon surfaces. */
+  elevation?: number;
+  /** Omit a centerline ribbon when the mapped polygon already represents this reach. */
+  hideLines?: boolean;
+  /** Omit mapped areas that describe hydraulic works instead of standing water. */
+  hidePolygons?: boolean;
+}
+
 export interface TerrainSemanticMeshOptions {
   /** Shared controller for live style changes across resident tiles. */
   surfaceRenderer?: TerrainSurfaceRenderer;
@@ -649,6 +659,11 @@ export interface TerrainSemanticMeshOptions {
     walls: ReadonlyArray<readonly [string, number]>;
   };
   waterOffset?: number;
+  /** Supply consistent water levels across tiles and control duplicate waterway ribbons. */
+  waterFeatureStyle?: (
+    feature: TerrainWaterFeature,
+    surface?: { polygon: TerrainSemanticPolygon; context: TerrainPyramidTileLayerContext },
+  ) => TerrainWaterFeatureStyle | undefined;
   /** Bank upper-edge lift; defaults to landcoverOffset or 0.18m, even in a separate water layer.
    * Set 0 for bare elevation without a raised landcover surface. */
   shorelineGroundOffset?: number;
@@ -925,6 +940,7 @@ function createWaterwayMesh(
   const indices: number[] = [];
   const normals: number[] = [];
   for (const feature of tile.water) {
+    if (!feature.lines?.length || options.waterFeatureStyle?.(feature)?.hideLines) continue;
     for (const line of feature.lines ?? []) {
       appendRibbonLine(
         line,
@@ -1245,7 +1261,9 @@ export function terrainWaterSurfaceHeight(
   context: TerrainPyramidTileLayerContext,
   offset: number,
   seaLevel?: number,
+  elevation?: number,
 ): number {
+  if (elevation !== undefined && Number.isFinite(elevation)) return elevation;
   // Shoreline vertices often sample the bank, especially on coarse DEM tiles. Taking
   // their median can lift a whole lake above its bridges. Prefer interior water samples;
   // a lower quartile rejects bridge/shore contamination without trusting one low outlier.
@@ -1479,8 +1497,9 @@ function* waterMeshSteps(
   const geometries: THREE.BufferGeometry[] = [];
   const shoreline: TerrainGroundOutline[] = [];
   const shorelineLevels: number[] = [];
-  const waters: { polygon: TerrainSemanticPolygon; height: number }[] = [];
+  const waters: { polygon: TerrainSemanticPolygon; height: number; fixedStage: boolean }[] = [];
   for (const feature of tile.water) {
+    if (!feature.polygons?.length || options.waterFeatureStyle?.(feature)?.hidePolygons) continue;
     for (const polygon of feature.polygons ?? []) {
       yield* pauseWhenDue(clock);
       const shape = shapeFromPolygon(polygon, context.tileSize);
@@ -1488,17 +1507,23 @@ function* waterMeshSteps(
       const geometry = new THREE.ShapeGeometry(shape);
       geometry.rotateX(-Math.PI / 2);
       const positions = geometry.getAttribute('position');
+      const elevation = options.waterFeatureStyle?.(feature, { polygon, context })?.elevation;
       const height = terrainWaterSurfaceHeight(
         polygon,
         context,
         options.waterOffset ?? 0.65,
         options.seaLevel,
+        elevation,
       );
       for (let index = 0; index < positions.count; index++) {
         positions.setY(index, height);
       }
       positions.needsUpdate = true;
-      waters.push({ polygon, height });
+      waters.push({
+        polygon,
+        height,
+        fixedStage: elevation !== undefined && Number.isFinite(elevation),
+      });
       // Flat: ShapeGeometry's normals, turned up with the shape, are already exact.
       geometries.push(geometry);
       yield* pauseWhenDue(clock);

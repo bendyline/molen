@@ -56,6 +56,7 @@ for (const model of ksiazParkModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -124,6 +125,7 @@ for (const model of ksiazParkModels.filter(
       fov: 43,
     },
     qaCameras = model.cameras;
+  const { weatheredTimber, ...parkPalette } = ksiazParkPalette;
   const spec = {
     planId: model.id,
     id: model.id,
@@ -144,7 +146,7 @@ for (const model of ksiazParkModels.filter(
     nativeAxes: frame.nativeAxes,
     appearance: {
       standard: 'docs-src/guide/medium-fi.md',
-      paletteSrgb: ksiazParkPalette,
+      paletteSrgb: fit ? { ...parkPalette, weatheredTimber } : parkPalette,
       colorEncoding: 'sRGB decoded to linear COLOR_0',
       materialBudget: 8,
     },
@@ -157,7 +159,7 @@ for (const model of ksiazParkModels.filter(
       parentSite: 'ksiaz_castle_and_park_complex',
       primaryDescription:
         model.component === 'mausoleum'
-          ? 'Independent mapped chapel/pavilion in the official castle park ensemble. Exterior forms follow the primary conservation report and a post-restoration southeast photograph.'
+          ? 'Independent mapped chapel in the castle park. Exterior forms follow restored entrance and southeast photographs.'
           : 'Independent mapped historic forge with photograph linked in the OSM source reference. Two arched doors, stone masonry, brick upper band and chimney follow that 2014 photograph.',
     },
     reconstruction: frame.reconstruction,
@@ -166,12 +168,26 @@ for (const model of ksiazParkModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: fit ? 'preview-proposal' : 'research-only',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: fit?.contact.modelHeight ?? 0,
+      ...(fit
+        ? {
+            groundContactReviewed: true,
+            groundContactBasis: frame.reconstruction.registration,
+            terrainReference: {
+              anchor: fit.contact.anchor,
+              modelHeight: fit.contact.modelHeight,
+              basis: frame.reconstruction.registration,
+            },
+            buildingCutout: fit.buildingCutout,
+            bounds: fit.bounds,
+            orientationPolicy: 'map-verified',
+          }
+        : {}),
       replaceFootprint: false,
       featureIds: [`way/${model.way}`],
       source: frame.sourceUrl,
@@ -179,8 +195,9 @@ for (const model of ksiazParkModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped.',
+      notes: fit
+        ? frame.reconstruction.registration
+        : 'Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -197,9 +214,11 @@ for (const model of ksiazParkModels.filter(
       'Footprint is attributed map geometry. Heights, openings, roof profiles and details are photographic interpretations.',
       ...(model.wikidata ? [] : ['No independent Wikidata identifier known.']),
       model.component === 'mausoleum'
-        ? 'Entry facade is a northwest proposal; subterranean crypt, vault and interior are not authored.'
+        ? 'Restored exterior. The subterranean crypt, vault and interior are outside this model.'
         : 'Forge appearance follows a 2014 photograph; present appearance and unseen elevations are not confirmed.',
-      'No unique textures, copied photographs, signage or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
+      fit
+        ? 'The portal levels and stone approaches use the retained map and elevation samples. The exterior is a reconstruction with shared materials.'
+        : 'No unique textures, copied photographs, signage or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -289,13 +308,17 @@ for (const model of ksiazParkModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    (fit
+      ? 'Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.\n\n'
+      : 'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n') +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own map footprint; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. Only the mausoleum has a mapped independent Wikidata identity. Entry azimuth and actual geographic fit remain pending.\n\n' +
+    (model.component === 'mausoleum' && fit
+      ? frame.reconstruction.registration + ' Dimensions are photographic estimates.\n\n'
+      : 'Own map footprint; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. Only the mausoleum has a mapped independent Wikidata identity. Entry azimuth and actual geographic fit remain pending.\n\n') +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/generate-ksiaz-park-structures.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +

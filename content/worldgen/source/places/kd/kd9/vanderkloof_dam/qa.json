@@ -1,15 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.vanderkloof_dam",
-  "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
+  "reviewedOn": "2026-11-16",
+  "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
   "sourceHash": "sha256:7c41065aa921da936a76c5a6e7e72e59ca4cc3b72cf39d2fb4177254b5b4cb52",
   "runtimeHash": "sha256:191d2042e53fc2771634c5da11be32fcb7fdbebdafb15f0bcf4517afdd770578",
-  "captureReportHash": "sha256:e46d089e232d41fd43bb8ef10e6a20ae07cf5724636c47dd888c69b4cec4b1c8",
-  "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings. The northern and southern banks mask parts of the outer concrete wings in the standard terrain. The southern low outlets and the lower reaches of the radial chutes are partly occluded. The exact tie, outlet and lower chutes are approximate. Operating discharge and the underground generating station are outside the exterior model.",
+  "captureReportHash": "sha256:97f49f76404221f61effb7d9cbe2f50c4734a221e49172262a207f43236be92d",
+  "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings. The signed crest follows the retained access roads at both abutments. The Earth viewer uses separate 1170.5 m reservoir and 1106 m tailwater surfaces. The four radial chute runs and the two southern outlet recesses sit above the fitted terrain. Both access roads meet the modeled deck at 1180 m at the sampled joins. The tailwater and local bank grades are representative exterior estimates. The outer banks retain some sharp edges at coarse terrain resolution. Operating discharge and the underground generating station are outside the model. The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the graded shoulders.",
   "visualReview": {
     "status": "passed",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
+    "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
+    "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings.",
+    "captureReportHash": "sha256:97f49f76404221f61effb7d9cbe2f50c4734a221e49172262a207f43236be92d",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -58,30 +60,13 @@
         "path": "shots/upstream-crest.png",
         "hash": "sha256:5ed6f4c72d0259a025dd7d3c56433d7f65f9c9303f012615d41140f94467452b"
       }
-    ],
-    "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings."
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:dd97444c39244f1a7621bbea201cee267063a082357dd3d9c406294146e685e9",
-    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
-    "placementHash": "sha256:bf9ca17bc18ca89810b7a0c6557d124363272f529f56587cc4545dbe4ecbb20d",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.concrete_boardformed": {
-        "path": "materials/concrete_boardformed.matgraph.json",
-        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
+    "notes": "Three shared graphs supply board-formed concrete, plain concrete and painted steel. All six GLBs have zero embedded images. Eviction releases the model geometry and restores terrain.",
+    "captureReportHash": "sha256:626745210a4a34a6ec0efe1034ac0b75f29b1b3a5696b0331adbe94204c8127e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -131,26 +116,224 @@
         "hash": "sha256:185b822e59ccfe13c1d33c7341b80312e1cae0ac390beb4cf4ee06155e5d44ea"
       }
     ],
-    "notes": "Three shared graphs supply board-formed concrete, plain concrete and painted steel. All six GLBs have zero embedded images. Eviction releases the model geometry and restores terrain."
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "placementHash": "sha256:c198864c3f3131b93cad16af26e22d7791cf8fac3ad41f9d66163db8d2ab74c7",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_boardformed": {
+        "path": "materials/concrete_boardformed.matgraph.json",
+        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
   },
   "geographicReview": {
-    "status": "pending-native-bank-and-chute-fit",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
-    "placementHash": "sha256:bf9ca17bc18ca89810b7a0c6557d124363272f529f56587cc4545dbe4ecbb20d",
-    "scope": "The retained crest road and both water polygons bind the frame at [24.7317, −29.9922] with a heading of −π/2. Local +X runs south along the crest and +Z runs west downstream. The 1180 m road grade is absolute. The modeled road ends are extended from the mapped crest trace to reach the documented length.",
-    "notes": "The northern and southern banks mask parts of the outer concrete wings in the standard terrain. The southern low outlets and the lower reaches of the radial chutes are partly occluded. The exact tie, outlet and lower chutes are approximate. Operating discharge and the underground generating station are outside the exterior model."
-  },
-  "fidelityReview": {
-    "target": "medium-fi",
-    "status": "pending-native-bank-and-chute-fit",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
-    "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings. The northern and southern banks mask parts of the outer concrete wings in the standard terrain. The southern low outlets and the lower reaches of the radial chutes are partly occluded. The exact tie, outlet and lower chutes are approximate. Operating discharge and the underground generating station are outside the exterior model."
+    "status": "passed",
+    "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
+    "placementHash": "sha256:c198864c3f3131b93cad16af26e22d7791cf8fac3ad41f9d66163db8d2ab74c7",
+    "mapFrameHash": "sha256:d1f26513fec7a45d39b256da77f8ccd79825100edf9031dc86256fd72be70bf9",
+    "notes": "The signed crest follows the retained access roads at both abutments. The Earth viewer uses separate 1170.5 m reservoir and 1106 m tailwater surfaces. The four radial chute runs and the two southern outlet recesses sit above the fitted terrain. Both access roads meet the modeled deck at 1180 m at the sampled joins.",
+    "native": {
+      "fixtureHash": "sha256:d0a644525ac6d6385b5009081520378f4842b860980548fd956f0baeea176679",
+      "gradeSettingsHash": "sha256:314160fbe110c9f5b390e30f1d902172c8a7d87487383a5f53e0524787598b90",
+      "waterSettingsHash": "sha256:a43029862fd60c1a302bb0bec5d9b6d4282724158e9ad8ecefed826344376f88",
+      "waterStagesMeters": {
+        "reservoir": 1170.5,
+        "tailwater": 1106
+      },
+      "probeCount": 500,
+      "checkedWaterSamples": 50,
+      "gradeAdjustedSamples": 1089,
+      "maximumCrestRoadJoinDifferenceMeters": 0.001953125,
+      "nativeRoadRecordsRetained": 86,
+      "nativeBuildingsRetained": 23,
+      "failedLoadKeepsNativeLayers": true,
+      "groundAndLandcoverRestoredOnUnload": true,
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-downstream-overview.png",
+          "hash": "sha256:df89af44cd46a24e646ca6f289f3cb48b3ba4f65993cb7660e3a775e487e8ea1"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-central-spillway.png",
+          "hash": "sha256:7c89cd699173608c47fd8fd85940688016d4179caffa3149df1f0d58d0998050"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-radial-gates.png",
+          "hash": "sha256:4efe1a391bb490bb5ecd2623d371af7a67b93f18d1dd9a955311bd160986e96d"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-low-outlets.png",
+          "hash": "sha256:25b6527318f31e5cb051d57b71e1dbdd4bf8fdb0a07d813958ea9a158d5aed03"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-upstream-crest.png",
+          "hash": "sha256:d792ae59caf95a1ce170e465c109d6912a81b85e7bd3b5e8cba8b8ea15b91f9e"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-south-chute-toe.png",
+          "hash": "sha256:6b734cdaa80344b4640cf07fcb2b791045920232e7afa486e1981fe9d05711bc"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-north-crest-approach.png",
+          "hash": "sha256:665e3e605f7e3ad415eae11e5d71bd82347297bf7415ee31ce0b8d2426ebff09"
+        },
+        {
+          "level": "skyline",
+          "file": "vanderkloof_dam-skyline-south-crest-approach.png",
+          "hash": "sha256:b81ab776911602db1f9d763741e5f469de83fa989a529ff0f241b50cc9759a32"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-downstream-overview.png",
+          "hash": "sha256:4e4350ee6677de58469f6e022c0d013df619ab45ee12434cc2b7427dae19f09a"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-central-spillway.png",
+          "hash": "sha256:9e366d7ac813f95c75941ec589929a424e335f9b4793a23795da0a5c720f2203"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-radial-gates.png",
+          "hash": "sha256:9f1dd1f6a882bf5ae4db104a2fa97e8672384edd56fa69b44e5397e34201220c"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-low-outlets.png",
+          "hash": "sha256:2c98a5b9c7c313d08e4bf913fe1fef71a9b4d65aa7883f94be5f6c6823f8c917"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-upstream-crest.png",
+          "hash": "sha256:6b3db388431471cc1d34d8354883db3b230d4d5d8225d5f4170b3b014038ff4e"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-south-chute-toe.png",
+          "hash": "sha256:0a11703676bec4259e7801c8c9a4f89f5dbbe118f5ba580906da06578c5165d5"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-north-crest-approach.png",
+          "hash": "sha256:90b8c55f90eb2362cca0ec60c851495e896a0f45093c0f428c277994807696b7"
+        },
+        {
+          "level": "district",
+          "file": "vanderkloof_dam-district-south-crest-approach.png",
+          "hash": "sha256:667176e121981440e08f6430be43de9f8b6fea27e06269c48598e4380ebbbbe0"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-downstream-overview.png",
+          "hash": "sha256:6626e12d13c020e4329280b5be559422eced4d0c61242b3591ca50d34963f342"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-central-spillway.png",
+          "hash": "sha256:1b449c0d682b2c0b44b69471f05ec33fb32d96804d1a6c326b7f94c7dccd2188"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-radial-gates.png",
+          "hash": "sha256:5bce881fffdbcefe239259c68c375cc15754af2b83ce11576789c1394b56776b"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-low-outlets.png",
+          "hash": "sha256:4c3b33448c9603899d71b6124ff19d0279bc0fe3539d30977540c06f53cf871d"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-upstream-crest.png",
+          "hash": "sha256:40e950914063f11eff8ba76ce01cbbdbe5516df94f82ff858112320f604a52ab"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-south-chute-toe.png",
+          "hash": "sha256:f139958f600f237edd9ad2979b7e8992369e156ac45a10b0351c38fa2a09d749"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-north-crest-approach.png",
+          "hash": "sha256:bccdef474f489c599e431219630b8a292c51d3c2a4537e05dd895fb5e9b45acf"
+        },
+        {
+          "level": "street",
+          "file": "vanderkloof_dam-street-south-crest-approach.png",
+          "hash": "sha256:c44637d9a9f35961873189b6e853b430fff993e3acd7d17e5ab3b7ced785fc08"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-downstream-overview.png",
+          "hash": "sha256:1bc711adb7f43da7064705e934a86f46e89951d04de0190c507ef3560a2f1937"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-central-spillway.png",
+          "hash": "sha256:51c5370acec43b2e3a39154fa6c0bf81206a3eaef2d6a2bb6b07b9d9d3907ddc"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-radial-gates.png",
+          "hash": "sha256:e88316b0b31a7247d1e9f809535cbe4e1b234b125597dae81cee9b434b389d90"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-low-outlets.png",
+          "hash": "sha256:85301a3ced43b73be62369cbfe44a5a292fb18f8bdd6a16cff7fade7a7cc4243"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-upstream-crest.png",
+          "hash": "sha256:5e1daaedb58ce66352c1502bdb5577e252ee676705fcbc5b78779ffa994ca8ab"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-south-chute-toe.png",
+          "hash": "sha256:cffe2a8305e8e6c98ce0165b2da6c8d8b20b262595dd8751773c4711e9546a30"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-north-crest-approach.png",
+          "hash": "sha256:bccdef474f489c599e431219630b8a292c51d3c2a4537e05dd895fb5e9b45acf"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-south-crest-approach.png",
+          "hash": "sha256:c44637d9a9f35961873189b6e853b430fff993e3acd7d17e5ab3b7ced785fc08"
+        },
+        {
+          "level": "closeup",
+          "file": "vanderkloof_dam-closeup-south-outlet-recesses.png",
+          "hash": "sha256:41b73e044b767c7b521ed922d5210dbee3c2d6baee3abe685e2f3a811e4dfcc2"
+        },
+        {
+          "level": "failure",
+          "file": "vanderkloof_dam-failure-downstream-overview.png",
+          "hash": "sha256:9ec3b9128230d578a5cadde8c18e92991a09fb1f0c61a24cb3a7ea2228218a58"
+        }
+      ]
+    }
   },
   "mediumFiReview": {
-    "status": "pending-native-bank-and-chute-fit",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
-    "captureReportHash": "sha256:2a40c9fd83eaf85af20b04cdf3644ae802fac24c4ccf64a5893b6f7778e7a187",
-    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
+    "status": "passed",
+    "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
+    "notes": "Inspected four detail levels in daylight and late light in the 25 standard-terrain views. The ungraded lighting fixture retains its original coarse bank. The Earth captures verify the fitted arch, separate reservoir and river levels, both crest road ties and restored native layers.",
+    "captureReportHash": "sha256:b5ff7a88a8e1443d8822d2294f8b0f84123d67869e1271183ca373e7d8436fba",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -181,55 +364,55 @@
     "inspectedFrameHashes": [
       {
         "path": "medium-fi/street-noon-economy.png",
-        "hash": "sha256:3fc7a6d04f770be5cbf45c4766508b0c541b7fa0a722ebe11d3db4e23b0f3fa4"
+        "hash": "sha256:30deca07d281b5c24874106f7f9b17d7bb763c877691e583e2d853b4a74e1e95"
       },
       {
         "path": "medium-fi/street-noon-high.png",
-        "hash": "sha256:881f7e513693f069a73c68b05ea6b4d3d8f3b91d818395cdd95b0aebf0759c1e"
+        "hash": "sha256:1849556c729c38d03c9f048cc58ca2d5c0c6dac03792605a76ef2f4dc8b9b066"
       },
       {
         "path": "medium-fi/street-late-economy.png",
-        "hash": "sha256:066ff45d38ba91df3608c22348a19e6090196a2b2c41aa80a62445b89ef2b0b9"
+        "hash": "sha256:fa085eb71670ae583d88bc5fec29fb1e49caf6a8a4772b8f6ac570f1af6078e3"
       },
       {
         "path": "medium-fi/street-late-high.png",
-        "hash": "sha256:ecc758835490d0bb10a56d23263b9c233d5029991ba0d34cad1b4b3594a20818"
+        "hash": "sha256:0c8fd84e6c34c915e154b7d44ad0dcfafe0d133ffc671dbc9211f2eb41f1f4d1"
       },
       {
         "path": "medium-fi/block-noon-economy.png",
-        "hash": "sha256:6aeda4d6651a5e58a3196a606b1f5700aa2f83f46501cf226debaa54db8e7f82"
+        "hash": "sha256:4f7f9b09c49080e06be31ca720342271683da4171920e613bab87f0090e5294b"
       },
       {
         "path": "medium-fi/block-noon-high.png",
-        "hash": "sha256:2f660be1dc7133a76d7d74b8a9dcec7f064da428d990cb61e5c4a5145614b676"
+        "hash": "sha256:e2d7e318ff9f3306a0f7c2d890aabc5925d18982f96d456604e2d2475f873366"
       },
       {
         "path": "medium-fi/block-late-economy.png",
-        "hash": "sha256:7d6153c7a9f94f5c637a0416686448c91560849914acde8761738e55f4a41941"
+        "hash": "sha256:0e5cfc0038b0870061ef20c60fd87fd510ab60163cdf11bc438bc507f0987725"
       },
       {
         "path": "medium-fi/block-late-high.png",
-        "hash": "sha256:e33a708c6c48db43d1e0659624ad87f5b56ec336883f72e8ce88142f1b3c3b2f"
+        "hash": "sha256:2cd4da3befbb091b10a3c3ba2e4c73963ded9e87abc62163050e42ccb4b5d433"
       },
       {
         "path": "medium-fi/skyline-noon-economy.png",
-        "hash": "sha256:b4b8a4de635b69a287f0c9ac4b14493448d1bdfd7d56582c484b6a24eab5835e"
+        "hash": "sha256:dd2c9c6ebdc1a9f3190dd093f5032693a36071a6ac0704ee10fd7002c8766216"
       },
       {
         "path": "medium-fi/skyline-noon-high.png",
-        "hash": "sha256:2221b57267eb10c8a795235c838512946c7cbf33e3ce8718d2544624de75c145"
+        "hash": "sha256:fdbedbecf2cb5772e06bc1cd688750de12a17e737bbf0a17c8ee83ca0c84b797"
       },
       {
         "path": "medium-fi/skyline-late-economy.png",
-        "hash": "sha256:02b9b674f2b47951cd56e1ef71177fd4aba8862b0bac910541067f95a32f3629"
+        "hash": "sha256:d28d0ab7871b487603b823c27cc9912ca1159255ff862e7b0bde861876783871"
       },
       {
         "path": "medium-fi/skyline-late-high.png",
-        "hash": "sha256:58117ce60ba1485df2c62a23abb7dd212464fc5ea3583019172a9089d8796b40"
+        "hash": "sha256:4be523bf4e7ff50da1d521e2d8c747908760ff198d7d29bc3742977c6417670b"
       },
       {
         "path": "medium-fi/silhouette.png",
-        "hash": "sha256:97c641ffc58eec140b05bb6ba7bd34d12596ca7870698736410323c13a16f430"
+        "hash": "sha256:76d06be766efdbd58f051a77033159cb512f2d2cc2eae5079a4e2c4d84f111df"
       },
       {
         "path": "medium-fi/central-spillway.png",
@@ -245,286 +428,128 @@
       },
       {
         "path": "medium-fi/upstream-crest.png",
-        "hash": "sha256:f35590d606dc7c4603656077c7d483abf9b26606e1c1a2fa2323ff883f206794"
+        "hash": "sha256:dfbd91979ff3ef645d29292227616c77437c3e7a1eb55bb784e0434c89e004ba"
       },
       {
         "path": "medium-fi/vanderkloof-skyline.png",
-        "hash": "sha256:bafb6fdc1e1839385565c65e57eea57e9b5d7eae61d962ef1193f6c43d3090c7"
+        "hash": "sha256:fe3fa42fcb06c4587ea3ed9805f3b8c119dd3f311c9fc21e5fce2405e5f952d3"
       },
       {
         "path": "medium-fi/vanderkloof-district.png",
-        "hash": "sha256:d7071500ecf51157f0cd7d2ae5fe7749565bd0b31176fc4626af1e11e885f465"
+        "hash": "sha256:c6c16f22ff75a7423a8a16e5aa35af2d5195cd5dc184f590620970153eab8af9"
       },
       {
         "path": "medium-fi/vanderkloof-street.png",
-        "hash": "sha256:303eb7347e538c23ad5cf10d28efee9aa6f0b8e2d60d0e1431541d643e8495c2"
+        "hash": "sha256:ea29c3455aaa17d5e86c621ec7e811cc479cbbaa373c08b7778f98eb369d6c7d"
       },
       {
         "path": "medium-fi/vanderkloof-closeup.png",
-        "hash": "sha256:1cf21894a6640a0f71562b2c5ccc48633f9fa12c6293cf6898bbaf91d971e1ed"
+        "hash": "sha256:2487896cad63b980e4be0c272d66b32a2149eb28f1b0d6012d14c1ae75f51067"
       },
       {
         "path": "medium-fi/transition-skyline.png",
-        "hash": "sha256:1468e3750f23bd7d949e1f28116b691b4c2211d6707ff735927fc1f897c361cb"
+        "hash": "sha256:a59e2ed72ea3272f387daae088ae912a292a6788102e55e2a788ce45b508d01a"
       },
       {
         "path": "medium-fi/transition-district.png",
-        "hash": "sha256:2f660be1dc7133a76d7d74b8a9dcec7f064da428d990cb61e5c4a5145614b676"
+        "hash": "sha256:e2d7e318ff9f3306a0f7c2d890aabc5925d18982f96d456604e2d2475f873366"
       },
       {
         "path": "medium-fi/transition-street.png",
-        "hash": "sha256:cd619c246e6feedbb8877fb30a236ea1a31853cd6d3edd96e1472087f31b6aac"
+        "hash": "sha256:a97c3d9b531068af3e1c41578d4e156e6ef82250cd3bed2cc4382cd557aa9c0e"
       },
       {
         "path": "medium-fi/transition-closeup.png",
-        "hash": "sha256:b655347ec2173ed30f91576d57e3fce67520bc638abb34687eac688c22fe210d"
+        "hash": "sha256:26ff7fb2b0bda002e76837ecb00ba75520e6bfd383b5642c22a78e18752f4d2d"
       }
     ],
-    "notes": "The 25 terrain views use nine standard Terrarium tiles with two separately sampled water stages. Five comparison views use representative stages of 1165.33 m upstream and 1102.63 m downstream. The separate reference fixture uses 1170.5 m full supply and an illustrative 1106 m tailwater. The rectangular review window clips the far reservoir edge."
+    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf"
   },
-  "siteIntegrationReview": {
-    "status": "pending-native-bank-and-chute-fit",
-    "inputHash": "sha256:71f31cb8cd0aaced455bfa76509d345e522828567712dc31eb26602f30a6e022",
-    "terrainFixture": {
-      "descriptor": {
-        "path": "terrain-review.terrain.json",
-        "hash": "sha256:7f8e803cdf35e4551d2db30b40850a8f27206bcf8666b780d9fd61cf9f9c13ed"
-      },
-      "heightmap": {
-        "path": "terrain-review.height.png",
-        "hash": "sha256:229543a60f3452eeb7c35d51514679f3d18aabd822e4adeee3cf7361585b0305"
-      }
-    },
-    "waterFixture": {
-      "path": "native-water.json",
-      "hash": "sha256:84792080a7767acff33c7c30e9bbf8d3aaea73d9500133f772897af3c5885c6b"
-    },
-    "gridHash": "sha256:72ec8dc9beb9a41a71a37f5019875dafe3597381e65ae6a72483db7a01a4461a",
-    "source": "Ordinary dam photos, retained standard PMTiles geometry and nine standard Terrarium tiles.",
-    "notes": "The 25 terrain views use nine standard Terrarium tiles with two separately sampled water stages. Five comparison views use representative stages of 1165.33 m upstream and 1102.63 m downstream. The separate reference fixture uses 1170.5 m full supply and an illustrative 1106 m tailwater. The rectangular review window clips the far reservoir edge. The northern and southern banks mask parts of the outer concrete wings in the standard terrain. The southern low outlets and the lower reaches of the radial chutes are partly occluded. The exact tie, outlet and lower chutes are approximate. Operating discharge and the underground generating station are outside the exterior model."
-  },
-  "runtimeStageComparison": {
-    "waterFixtureHash": "sha256:8e0ec1bd352c689eac41fdee8b95a10736d2887b7e283d8c7840dfa339941199",
-    "frames": [
-      {
-        "path": ".artifacts/vanderkloof-dam-review/runtime-current-draft-shots/downstream-overview.png",
-        "hash": "sha256:dead5e0ace13fb2643900586d37bb51ce9357caa43c5610b432588a014691b18"
-      },
-      {
-        "path": ".artifacts/vanderkloof-dam-review/runtime-current-draft-shots/central-spillway.png",
-        "hash": "sha256:29bc070c4f007853dc0fddda3396b0100325076fc0fc7dca089aa28dcd81b986"
-      },
-      {
-        "path": ".artifacts/vanderkloof-dam-review/runtime-current-draft-shots/radial-gates.png",
-        "hash": "sha256:73443e688a567cb2ba87c7e0ca90039ab60c6cc84083404808a7d93c9c4fa6aa"
-      },
-      {
-        "path": ".artifacts/vanderkloof-dam-review/runtime-current-draft-shots/low-outlets.png",
-        "hash": "sha256:c97bba7b68bb76fef846bfce313631cb603a4573031f8816588d6fa5435b1ea2"
-      },
-      {
-        "path": ".artifacts/vanderkloof-dam-review/runtime-current-draft-shots/upstream-crest.png",
-        "hash": "sha256:88c177ce94b9a3efe30a82127f9e35f315015d03cc681b958f856e7203c8da36"
-      }
-    ],
-    "notes": "The northern and southern banks mask parts of the outer concrete wings in the standard terrain. The southern low outlets and the lower reaches of the radial chutes are partly occluded. The exact tie, outlet and lower chutes are approximate. Operating discharge and the underground generating station are outside the exterior model."
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:41f8998cc145a8daa4ad6097970921289865ed6c1cf55e995a43cbed4432138a",
+    "notes": "The model reproduces the 770 m curved crest road, fourteen ribbed overflow openings, four south-flank radial gates with distinct chutes, and six recessed lower outlet openings. The signed crest follows the retained access roads at both abutments. The Earth viewer uses separate 1170.5 m reservoir and 1106 m tailwater surfaces. The four radial chute runs and the two southern outlet recesses sit above the fitted terrain. Both access roads meet the modeled deck at 1180 m at the sampled joins. The tailwater and local bank grades are representative exterior estimates. The outer banks retain some sharp edges at coarse terrain resolution. Operating discharge and the underground generating station are outside the model. The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the graded shoulders."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
         "name": "source",
         "path": "content/worldgen/source/places/kd/kd9/vanderkloof_dam/models/source.glb",
         "hash": "sha256:7c41065aa921da936a76c5a6e7e72e59ca4cc3b72cf39d2fb4177254b5b4cb52",
-        "bytes": 195152,
         "triangles": 2264,
-        "materials": 4,
+        "bytes": 195152,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.3686828613281,
-          -93.31842803955078,
-          -13.691847801208496
-        ],
-        "max": [
-          323.06103515625,
-          15.521574974060059,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/kd/kd9/vanderkloof_dam/model.glb",
         "hash": "sha256:191d2042e53fc2771634c5da11be32fcb7fdbebdafb15f0bcf4517afdd770578",
-        "bytes": 194692,
         "triangles": 2264,
-        "materials": 4,
+        "bytes": 194692,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.3686828613281,
-          -93.31842803955078,
-          -13.691847801208496
-        ],
-        "max": [
-          323.06103515625,
-          15.521574974060059,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/kd/kd9/vanderkloof_dam/model.skyline.glb",
         "hash": "sha256:dc87ad6a9f54b60535475e6f58dbe8ffabe909c09be7e34dc4a32bb70bed6d99",
-        "bytes": 73704,
         "triangles": 928,
-        "materials": 4,
+        "bytes": 73704,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.231201171875,
-          -93.31842803955078,
-          -13.680255889892578
-        ],
-        "max": [
-          322.9761962890625,
-          14.681574821472168,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/kd/kd9/vanderkloof_dam/model.district.glb",
         "hash": "sha256:f702601c8b4fffb2650fc90d51b027c953e805c6369805396f843a65864b0e0b",
-        "bytes": 92136,
         "triangles": 1192,
-        "materials": 4,
+        "bytes": 92136,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.369873046875,
-          -93.31842803955078,
-          -13.691847801208496
-        ],
-        "max": [
-          323.0610046386719,
-          15.521574974060059,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/kd/kd9/vanderkloof_dam/model.street.glb",
         "hash": "sha256:0ba227a118c439750ad210fe10a42e3b290cc8bdfaabbeadbf3cd8df658f2081",
-        "bytes": 143440,
         "triangles": 1902,
-        "materials": 4,
+        "bytes": 143440,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.3686828613281,
-          -93.31842803955078,
-          -13.680255889892578
-        ],
-        "max": [
-          323.06103515625,
-          15.521574974060059,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/kd/kd9/vanderkloof_dam/model.closeup.glb",
         "hash": "sha256:c22aeac8e9c2fac7359c13d85dd81a99220bc5d90695dd4c3265c668b2ba4a94",
-        "bytes": 165284,
         "triangles": 2216,
-        "materials": 4,
+        "bytes": 165284,
+        "drawCalls": 4,
         "images": 0,
-        "min": [
-          -304.3686828613281,
-          -93.31842803955078,
-          -13.691847801208496
-        ],
-        "max": [
-          323.06103515625,
-          15.521574974060059,
-          222.38308715820312
-        ],
-        "errors": 0,
-        "warnings": 0
-      }
-    ],
-    "tests": {
-      "command": "node .artifacts/vanderkloof-dam-review/check.mjs",
-      "passed": 4,
-      "failed": 0,
-      "checks": [
-        "Mapped crest, signed datum, full extent and exact source hashes",
-        "Swept concrete footprint, paving retention and standard terrain samples",
-        "Four radial gates, fourteen through-open spillway bays, six recessed outlets and crest in every tier",
-        "Four viewer tiers rebuild byte for byte with distinct GPU streams and shared materials"
-      ]
-    }
-  },
-  "runtimeLodReview": {
-    "status": "passed",
-    "recipeHash": "sha256:2480354958fe6bbb39a57df1c57f37b406f13646c3b86f0d496121e2bba337d4",
-    "levels": [
-      {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "hash": "sha256:dc87ad6a9f54b60535475e6f58dbe8ffabe909c09be7e34dc4a32bb70bed6d99",
-        "bytes": 73704,
-        "gzipBytes": 26991,
-        "triangles": 928,
-        "cpuBytes": 68640,
-        "gpuBytes": 68640,
-        "errorMeters": 4,
-        "drawCalls": 4
-      },
-      {
-        "name": "district",
-        "file": "model.district.glb",
-        "hash": "sha256:f702601c8b4fffb2650fc90d51b027c953e805c6369805396f843a65864b0e0b",
-        "bytes": 92136,
-        "gzipBytes": 32182,
-        "triangles": 1192,
-        "cpuBytes": 87072,
-        "gpuBytes": 87072,
-        "errorMeters": 1.6,
-        "drawCalls": 4
-      },
-      {
-        "name": "street",
-        "file": "model.street.glb",
-        "hash": "sha256:0ba227a118c439750ad210fe10a42e3b290cc8bdfaabbeadbf3cd8df658f2081",
-        "bytes": 143440,
-        "gzipBytes": 45042,
-        "triangles": 1902,
-        "cpuBytes": 138348,
-        "gpuBytes": 138348,
-        "errorMeters": 0.6,
-        "drawCalls": 4
-      },
-      {
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "hash": "sha256:c22aeac8e9c2fac7359c13d85dd81a99220bc5d90695dd4c3265c668b2ba4a94",
-        "bytes": 165284,
-        "gzipBytes": 51881,
-        "triangles": 2216,
-        "cpuBytes": 160176,
-        "gpuBytes": 160176,
-        "errorMeters": 0.2,
-        "drawCalls": 4
+        "warnings": 0,
+        "errors": 0
       }
     ],
     "initialBytes": 165840,
-    "notes": "The detailed master contains 2,264 triangles. The four viewer tiers contain 928, 1192, 1902, 2216 triangles. Skyline plus district are 165,840 bytes and close-up is 165,284 bytes. Four focused checks verify the signed crest frame, bounded replacement, gate counts and negative spaces, and exact browser-tier reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks."
-  }
+    "focusedTests": [
+      "Mapped crest, signed datum, full extent and exact source hashes",
+      "Swept concrete footprint, paving retention and standard terrain samples",
+      "Four radial gates, fourteen through-open spillway bays, six recessed outlets and crest in every tier",
+      "Four viewer tiers rebuild byte for byte with distinct GPU streams and shared materials"
+    ]
+  },
+  "limitations": [
+    "The tailwater and local bank grades are representative exterior estimates. The outer banks retain some sharp edges at coarse terrain resolution. Operating discharge and the underground generating station are outside the model.",
+    "The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the graded shoulders."
+  ]
 }

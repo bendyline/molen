@@ -5,7 +5,7 @@
   "sourceHash": "sha256:268011c3249bfa6400e5401e9839d0f52c2663d794fef5f516b26e5d4b253374",
   "runtimeHash": "sha256:869568ab63587c2e394e0573725a1d7af2d8a7cbaf64b1109d188e8f6d397c77",
   "reviewGroundY": 0.2,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:455a66fed7f72de39e82b814cd3eec099e00046b51f3663ff61479efdd9560aa",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
@@ -30,13 +30,13 @@
     },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:f60761ff2d25a84205160e211647e0f4c19c3ce80d73bdf38cd2e58238d82dd1",
+      "hash": "sha256:d8c15f658afe9022c7131c3059af24ca630ab18be28545265e64f735ec63168f",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -46,7 +46,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -55,12 +55,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -79,29 +79,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -114,10 +117,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -136,12 +163,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:394e183c403b2047f0374a9f3342460447c515f0b896ef0e6cdf7b49a51d4f71",
+      "hash": "sha256:d9ac876f6d0277de1c3dff86878e05a0b66ef05bea77ea1280a06567f1399e96",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -151,7 +178,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -160,12 +187,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -184,29 +211,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -219,10 +249,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -241,12 +295,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:f8fbf434690a195918ae6e4044d20ace74ebdc8fba11c6679ccfe2ea98615df3",
+      "hash": "sha256:09bde2c9bd11b77450dfa382c773eb8c0de178af2c7fba7b39c00bdcba3c54a4",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -256,7 +310,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -265,12 +319,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -289,29 +343,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -324,10 +381,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -346,12 +427,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:a64ec22cc3551de5d3c7b713b8d81f36472042e3926f9d24f3ffb3d29c68bf51",
+      "hash": "sha256:378479850010027bd9fb552ca26cbe2e1cbd6264411a6bbccef804a9d1475647",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -361,7 +442,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -370,12 +451,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -394,29 +475,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -429,10 +513,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -451,12 +559,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/north-court-transit-gables-and-shutters.png",
-      "hash": "sha256:a3402b3f286b0ecb113cf6013d178ad68a1f19d74d5fcbb85215756f8034bcf4",
+      "hash": "sha256:d4d9309fc6b0ea7328307c259e0d746b013be7f74edd08f9b357456b6d622dff",
       "camera": {
         "name": "north-court-transit-gables-and-shutters",
         "position": [
@@ -476,7 +584,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -485,12 +593,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -509,29 +617,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -544,10 +655,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -566,12 +701,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/triple-arched-north-entry-and-soffits.png",
-      "hash": "sha256:80718709f036dca4deda07eaca0ef1661b403881c7098bf8124fa2def85ca581",
+      "hash": "sha256:fabd617a72a85dccfba22719d897391220ce8096e0bd11c3d7080e2b89f692b5",
       "camera": {
         "name": "triple-arched-north-entry-and-soffits",
         "position": [
@@ -591,7 +726,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -600,12 +735,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -624,29 +759,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -659,10 +797,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -681,12 +843,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/south-gallery-sash-and-roof-cap.png",
-      "hash": "sha256:fa528c325caac5d3b1189a42d905cb40402298769dfb6fd764ef2fece3784f74",
+      "hash": "sha256:42ca8b1803a81a08c8375304187baae759d29afac0940e5fc5027b7c591c72ae",
       "camera": {
         "name": "south-gallery-sash-and-roof-cap",
         "position": [
@@ -706,7 +868,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -715,12 +877,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -739,29 +901,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -774,10 +939,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -796,12 +985,12 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 7,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:c2e81de658e8c8738eb6b72cfb5fd430a654834caa756e1fd6a1d86d11d5ccca",
+      "hash": "sha256:96102939eb17084c3900f1d2ca3ca0d179f860465fe4d9bbb5b04aab0821ec01",
       "camera": {
         "name": "placement",
         "placement": true
@@ -811,7 +1000,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "meridian.building.royal.observatory.greenwich",
         "position": [
-          -1.4210854715202004e-14,
+          0,
           0,
           0
         ],
@@ -820,12 +1009,12 @@
         "triangles": 7610,
         "bounds": {
           "min": [
-            -8.939999580383315,
+            -8.9399995803833,
             -1.3876229524612427,
             -4.554999828338623
           ],
           "max": [
-            31.629999160766587,
+            31.6299991607666,
             9.300000190734863,
             7.425000190734863
           ]
@@ -844,29 +1033,32 @@
         },
         "reviewGroundY": 0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "f1906c5b-1819-4bb6-85ec-c1d32fd25ba8",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d5d2036f-0892-4e78-9a31-e29c092b6c09",
-          "worldgen:matgraph:molen.worldgen.material.slate": "aa3313d8-eed4-4d2a-a909-c16721820ab6",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "b777ac88-e176-465d-80e7-5e7075bdb503",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "5af1596e-3ce0-4637-93f4-57ab403e7c13"
+          "worldgen:matgraph:molen.worldgen.material.brick": "968c59cb-e7e3-443b-acde-2b9b04cc5463",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0c6be89d-fdd2-4b4c-bb48-153166cf7867",
+          "worldgen:matgraph:molen.worldgen.material.slate": "408d5ac1-512c-48d5-a2c4-abb4e0d7dab5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "348e28cb-dc30-4069-9547-af71372aa49e",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "b3c1986d-11d1-4e00-956d-89bdd946d7c5"
         },
         "loads": [
-          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
           "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
-          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich"
+          "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
         ],
         "selectionBounds": [
-          -0.0025571843674735773,
-          51.47724942444196,
-          -0.0007109877149402919,
-          51.47839926800563
+          -0.002394289969539124,
+          51.47723652334505,
+          -0.0005480933170058384,
+          51.47838636723395
         ],
         "terrainSamples": [
           {
-            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "placementId": "altazimuth.pavilion.royal.observatory.greenwich",
             "coordinate": [
-              -0.0017377621077247006,
-              51.47797385042024
+              -0.0008725297720465719,
+              51.47727682668149
             ],
             "height": 0
           },
@@ -879,10 +1071,34 @@
             "height": 0
           },
           {
+            "placementId": "flamsteed.house.royal.observatory.greenwich",
+            "coordinate": [
+              -0.0017377621077247006,
+              51.47797385042024
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "great.equatorial.building.royal.observatory.greenwich",
+            "coordinate": [
+              -0.001233115126762653,
+              51.47773002674233
+            ],
+            "height": 0
+          },
+          {
             "placementId": "meridian.building.royal.observatory.greenwich",
             "coordinate": [
               -0.0012662889793965324,
               51.477851299305684
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "peter.harrison.planetarium.royal.observatory.greenwich",
+            "coordinate": [
+              -0.000744161385767647,
+              51.47723146175964
             ],
             "height": 0
           }
@@ -901,7 +1117,7 @@
           "molen.worldgen.material.slate": 1
         },
         "draws": 8,
-        "renderedTriangles": 7652
+        "renderedTriangles": 7651
       }
     }
   ],
@@ -913,7 +1129,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Centre Georges Pompidou: independent mapped 42m gallery building with exposed pale structural columns and cantilevered gerberettes, six gallery levels, west piazza diagonal glazed/red escalator tube, east blue/green/yellow services, red stair towers and roof plant. Preserve the sloping piazza, Brancusi studio, IRCAM, independent ducts and all surrounding buildings. Enduring exterior inferred from ordinary photographs, not a depiction of temporary renovation works.
+Centre Georges Pompidou exterior with the glazed core, pale cantilevered frame, western escalator, Forum entrance, eastern service pipes and sloping granite piazza. The Brancusi studio, surrounding streets and neighboring buildings retain native map geometry.
 
 ## Evidence and reconstruction
 
@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.macval.fr/MAC-VAL-X-Centre-Pompidou)
 - [Reference](https://commons.wikimedia.org/wiki/File:Apud_la_Centro_Georges-Pompidou_3.jpg)
 
-Centre Georges Pompidou: independent mapped 42m gallery building with exposed pale structural columns and cantilevered gerberettes, six gallery levels, west piazza diagonal glazed/red escalator tube, east blue/green/yellow services, red stair towers and roof plant. Preserve the sloping piazza, Brancusi studio, IRCAM, independent ducts and all surrounding buildings. Enduring exterior inferred from ordinary photographs, not a depiction of temporary renovation works.
+Centre Georges Pompidou exterior with the glazed core, pale cantilevered frame, western escalator, Forum entrance, eastern service pipes and sloping granite piazza. The Brancusi studio, surrounding streets and neighboring buildings retain native map geometry.
 
 ## Model and axes
 
-46,504 triangles; 139,104 vertices; 4 material groups; 5,568,752 bytes. Native bounds: -58.682, -8.732, -88.479 to 58.864, 49.120, 88.479. Source hash: `sha256:08bdb815acb858df2d66788954eabd46fe486956398c64ce662d6ec268365cf5`.
+46,857 triangles; 140,163 vertices; 5 material groups; 5,611,580 bytes. Native bounds: -100.789, -6.490, -95.499 to 62.691, 43.060, 93.069. Source hash: `sha256:eafbc9bfb5947521a6b32d27474a7c097d937f33ef55e1ea19252bffb4a669c1`.
 
 {"x":"east","y":"up","z":"south"}
 
@@ -28,9 +28,9 @@ Run `node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=cent
 
 ## Pending work
 
-- Centre Georges Pompidou: independent mapped 42m gallery building with exposed pale structural columns and cantilevered gerberettes, six gallery levels, west piazza diagonal glazed/red escalator tube, east blue/green/yellow services, red stair towers and roof plant. Preserve the sloping piazza, Brancusi studio, IRCAM, independent ducts and all surrounding buildings. Enduring exterior inferred from ordinary photographs, not a depiction of temporary renovation works.
+- Centre Georges Pompidou exterior with the glazed core, pale cantilevered frame, western escalator, Forum entrance, eastern service pipes and sloping granite piazza. The Brancusi studio, surrounding streets and neighboring buildings retain native map geometry.
 - Named Centre Georges Pompidou POI and building share native35184427592229/OSM way55503397. Internal+X runs south-southwest along the mapped long side, +Z points west-northwest toward the piazza. The escalator rises toward the south end as observed in the frontal west photo. World heading0; orientation is baked into east/south model coordinates. Only this independent museum record is replaced.
 - Mapped main building height42m and 167.14m long side are controls. Reconstructed45m glazed core, fourteen structural stations, seven floor/roof lines, approx49m high service-tower caps, tube radius1.55m and pipe/member dimensions are picture-led approximations, not engineering measurements. Mechanical inventories, roof plant and hidden facade details are simplified; furnished galleries, working escalators, copied lettering and event artwork omitted.
-- Unmodified standard Protomaps20261020 and Mapzen201x201/6m terrain. Uncovered west piazza attachment at internal[0,38], datum59.41328128796627m. Gallery floor sits0.12m above that control; closed foundation reaches below original core boundary. Only the enclosed core cuts ground; open external frame, tube and piazza retain original terrain. Exact plaza grading/thresholds remain unverified.
+- Standard Protomaps PMTiles z15 and Mapzen Terrarium z14. Sample at the upper piazza and retain the measured host seam along all four edges. The modeled granite plaza descends toward the Forum on an 11% central grade. Northern and southern transitions follow the adjacent ground; the eastern service strip follows street-side terrain. The Forum threshold height and the joins across the ends of the piazza are reconstructed from the museum description, photographs and standard terrain. The site fit is a visual approximation.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

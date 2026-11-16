@@ -1,14 +1,21 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.cape_town_stadium",
-  "inputHash": "sha256:48409d223395838efddd745abf423be0d17be4090f344b81ff57044cd44535ea",
-  "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
+  "inputHash": "sha256:428b75d772a09b60a0cc359fd414314e15f39026440f068584ce7447e9643acd",
+  "sourceHash": "sha256:8c819d9f36b2d935239af8c885e37e70f696a85f0520af1fb3bcfd51f349d315",
+  "runtimeHash": "sha256:43a5aef572711edcf45936a0194d9b8f0931759f42550cc0567c1ec118010f58",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:b0b351ea5cde5770a0958109d95a7eb057da3a8dd3831e21e5f5de2b469e50aa",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:6602387bdee8c380607c9b4083547302acb588e8b476ce5eb24d1161996f8e71",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:cfdb8861520aa266bb326a087dd33343c2c6dc27138a63244fab035fc456fbff",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.membrane": {
       "path": "materials/membrane.matgraph.json",
-      "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -26,7 +33,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:6f52b97024b9a823517feae2cfb07102be975c049cf7ba249a0cc573ddb91605",
+      "hash": "sha256:604befb8fae7d2437d1c0da7d323ef272229c34b7148a60619cbe0c154226cf9",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -42,39 +49,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -82,12 +113,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:2c3a08b3c8a8d66d383ec40a5001d0fa829d2a0e8a9377e0b45be98c5d307eac",
+      "hash": "sha256:865fa1577b06b7b23cd1cde1cb1ff4d86982b4eaf8e6f6df0f686087607dd4e2",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -103,39 +134,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -143,12 +198,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:1ff9c3f447c993ea12db9e6bda846bde2c8dcddca9a7983e8183a8f87b3ed6e1",
+      "hash": "sha256:7d8ddcde3f80c58b505f5cc03841d355335a8c469edd2379099612ec9d4f51f0",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -164,39 +219,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -204,12 +283,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:f43fa20605713c5ed3d5691d2c21cbe46de9ebb8e6923703864dd0cf9f313b8b",
+      "hash": "sha256:5a29c4c93833f2a2db3db41637a64a58ada05aaeb27993db658f1c0da61da72c",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -225,39 +304,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -265,12 +368,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-silver-veil.png",
-      "hash": "sha256:ba5e51da271bf7f7add0f6e9e298ce3f2cd044d037977b9691b40678590074b0",
+      "hash": "sha256:da80cee5caed08f22791b86e31682f892326aa68068d4c99d7ce2acbe081afd9",
       "camera": {
         "name": "near-silver-veil",
         "position": [
@@ -295,39 +398,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -335,12 +462,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-glass-panels.png",
-      "hash": "sha256:48bb1e7f12fe2629cdee27639318408395778bb2c01e7747e2acc04b1aa240ba",
+      "hash": "sha256:fd59cea9c38f5352ecbd8c4b40ccd70dff6a7989a5ed60afeba73d2ae1a8157d",
       "camera": {
         "name": "near-glass-panels",
         "position": [
@@ -365,39 +492,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -405,12 +556,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-inner-cantilever.png",
-      "hash": "sha256:8236b367aa6cd722baa9ab447210f32c7ba2b4db3d2d76df535a92b8bebf2751",
+      "hash": "sha256:90dd6bea0ec292614784080600f070a0f0bb5e15e7abd713d23d5406f2b0e245",
       "camera": {
         "name": "near-inner-cantilever",
         "position": [
@@ -435,39 +586,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -475,12 +650,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-ring-of-fire.png",
-      "hash": "sha256:da0345c22a4d3a1235b5c791e1ab6562629e43144b616270469146abdc95a877",
+      "hash": "sha256:381637e174d97ea0336bca3da227ec1ad1894b12d7c36ba33d076e94db32b348",
       "camera": {
         "name": "near-ring-of-fire",
         "position": [
@@ -505,39 +680,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -545,12 +744,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-upper-hospitality.png",
-      "hash": "sha256:6a14b64c39e487c82ed8b2cd84a9625c1acb653bda621137535309a4b7daff0b",
+      "hash": "sha256:9bfcaba28222fda8f61938712d9a9d57a6d305ce84191bb67de3b6272ae0a45d",
       "camera": {
         "name": "near-upper-hospitality",
         "position": [
@@ -575,39 +774,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -615,12 +838,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-pearly-bowl.png",
-      "hash": "sha256:dc4fea39baba3fd66038c1dce22973cbb2de0312b42fef5fc45ac576be9b78b2",
+      "hash": "sha256:facddda26e7a0feb6534e095039b5ec127c90c41fa2092dfd46bdd6280a441b0",
       "camera": {
         "name": "near-pearly-bowl",
         "position": [
@@ -645,39 +868,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -685,12 +932,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-rugby-pitch.png",
-      "hash": "sha256:47b4e6c4d2d3b31838186c1907004c1c49448adde97ce01974d01118e20b3f4b",
+      "hash": "sha256:b5054ba77d3fc26b2d712502d58c3a7db0091960af05880cd4087a8b6fdb4451",
       "camera": {
         "name": "near-rugby-pitch",
         "position": [
@@ -715,39 +962,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -755,12 +1026,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-grand-stairs.png",
-      "hash": "sha256:8521b70674bf245831a98aefda5539671b60933fc291b1d7e154a4bd02469435",
+      "hash": "sha256:a9f27c30e633ef93ce59340ec98c39244d4a2ab398b0a93b766b058757deea59",
       "camera": {
         "name": "near-grand-stairs",
         "position": [
@@ -785,39 +1056,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -825,12 +1120,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-west-podium.png",
-      "hash": "sha256:e2780073bf78494ea260b1caf0d450e3bddec1890064da060a988945cc23c884",
+      "hash": "sha256:73097c6bdd32036b8188bef6b25a24e33a7ff8494fba64edc57fede89fdec441",
       "camera": {
         "name": "near-west-podium",
         "position": [
@@ -855,39 +1150,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -895,12 +1214,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/near-scoreboard.png",
-      "hash": "sha256:42498900284c6997f6ab5a76cae7d7dfbfd7f5b4b18ea1dbd04eb87929c45aa1",
+      "hash": "sha256:ec8f8ac522287482852fbf2d79613133de9e1af0fb36e6ff476867ff53ac310e",
       "camera": {
         "name": "near-scoreboard",
         "position": [
@@ -925,39 +1244,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -965,12 +1308,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/far-wave-profile.png",
-      "hash": "sha256:83f4525776e9bdcc0855139f8b85ba8dd3bbd8dbb62a89a71a8fa9eb1e7ff6c6",
+      "hash": "sha256:e92bd19ceca613dca95b98e336a6d3fb4723cbb9ba3215be4e9dd5d8cb22dc22",
       "camera": {
         "name": "far-wave-profile",
         "position": [
@@ -995,39 +1338,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1035,12 +1402,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/far-roof-shell.png",
-      "hash": "sha256:e278bde3a6477e33afd8681d1b5f803f551d8576380c373dc371e5318c471629",
+      "hash": "sha256:2b1270b2a29597dbeda758c12a9bf251d5260379328c30d11bda3fd991896af1",
       "camera": {
         "name": "far-roof-shell",
         "position": [
@@ -1065,39 +1432,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1105,12 +1496,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 13,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:312ab1fde2fd8d4be98f2fcf35e3f9dc59eb8fc913d077efe3ac573274f2268c",
+      "hash": "sha256:a04302c4316e312cdad084ec16fbfd59520d8979bd846dd65f6af5c711a935af",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1126,39 +1517,63 @@
         ],
         "heading": 2.9282975441253463,
         "meshes": 10,
-        "triangles": 2070330,
+        "triangles": 1609286,
         "bounds": {
           "min": [
-            -274.47714951253096,
-            -0.6355276703834534,
-            -200.34639786109682
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
           ],
           "max": [
-            211.49725181942728,
+            166.02663811246975,
             50.3499641418457,
-            263.51035137325994
+            231.32027683529
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -225.041440763003,
+            -10.5,
+            -154.47357203512206
+          ],
+          "max": [
+            166.02663811246975,
+            50.3499641418457,
+            231.32027683529
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "6d6b5e35-e9e6-4d3e-aacd-8dbd055c3874",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "13518812-b28b-41e1-827e-c458bdb34451",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "eb6e46d0-05af-4c8a-a3d8-34705936e662",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "81cb5040-b958-4600-8f50-41ffa0ac8ba3"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "a41f7097-1a02-4044-ac85-54d1972c879e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ef9426f4-a063-4324-984e-da89fca6d194",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ae31493a-501b-42b6-9179-215110736114",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "22cc648b-4325-4386-a4ed-80e63e8ccff9"
         },
         "loads": [
           "molen.worldgen.structure.cape_town_stadium"
         ],
         "selectionBounds": [
-          18.40976636089313,
-          -33.904591360809505,
-          18.412537139106874,
-          -33.90229167368224
+          18.40789388414785,
+          -33.90636977894577,
+          18.41418947490738,
+          -33.901144591544785
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "cape.town.stadium",
+            "coordinate": [
+              18.411151750000002,
+              -33.903441525
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "cape.town.stadium"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": true,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1166,7 +1581,7 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 14,
-        "renderedTriangles": 2100572
+        "renderedTriangles": 1640804
       }
     }
   ],
@@ -1176,26 +1591,12 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": false,
+    "visibleCapped": true,
+    "unchanged": false
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "specMetadataReconciliation": {
-    "kind": "non-render-metadata",
-    "date": "2026-10-02",
-    "previousSpecHash": "sha256:fd22627f3fd808d57782bf3014dcba8bc8a6a2212794fdd4021ea0be56ac5788",
-    "previousCaptureReportHash": "sha256:d3cfb2fc1b172c31e7dccc905a181abf16d028d53f565e4afb039ff1e85a3738",
-    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
-    "reviewedSpecPath": "content/worldgen/source/places/k3/k3v/cape_town_stadium/spec.json",
-    "reviewedSpecRecovery": "Exact recorded hash verified against repository revision.",
-    "changes": [
-      {
-        "path": "sourceLicense",
-        "previous": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence Â© OpenStreetMap contributors, ODbL 1.0.",
-        "current": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0."
-      }
-    ],
-    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization), a corrected copyright character, and reversible RGB alignment statistics may differ. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

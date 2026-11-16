@@ -32,8 +32,63 @@
       "shots/shared/north-facing-lights-and-rounded-cap.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256px graphs across the used roles: brick walls/base, stone_limestone_raw white trim, metal_painted lead-colored roof/frames and storefront opaque glass. Five textured draws and one skyline draw. No new graph/private atlas/embedded image. Existing metric material bindings, linear tints, cached graphs and separate POSITION/NORMAL streams retained. Each graph reads once per native textured run; all geometry disposes on unload.",
-    "captureReportHash": "sha256:83c9fde75587f69ef6050cbb2be7df796a3a919cc887a27725547aa9eb9eba06"
+    "notes": "Four existing256px graphs across the used roles: brick walls/base, stone_limestone_raw white trim, metal_painted lead-colored roof/frames and storefront opaque glass. Five textured draws and one skyline draw. No new graph/private atlas/embedded image. Existing metric material bindings, linear tints, cached graphs and separate POSITION/NORMAL streams retained. Each graph reads once per native textured run; all geometry disposes on unload. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:f8cb9dcdf6c28e56a9e52f05cd4d75c3445968826f1d707486d53800c8f62f13",
+    "inputHash": "sha256:aaf19dafa15f3862effa8b1d3bd8bc4a01d304d1148fb899b9b9f788b2608979",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:741f8253f384ee65a78d0c3c1ba99accfc0f1bd204dc45740f51fc6d7517e0be"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:2d1e8dfa32b20466b0b630691dbc8df1fcf9d720b4ea05db15178e4ccee3d436"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:7399f80f6f9f710f3d312f7d910ce8b000195f8e04322149c59c04e1592f2dcc"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:948428dccbd5202299af02d4e5a05a0d13f2b1e749ba141a85af8442fe9eb014"
+      },
+      {
+        "path": "shots/shared/south-brick-quoins-cap-and-lights.png",
+        "hash": "sha256:84af5d761b703a7436d0d2320d833c53cd1299b59ddc4d19f0e4e85256d4e567"
+      },
+      {
+        "path": "shots/shared/west-camera-obscura-entry-and-soffit.png",
+        "hash": "sha256:8e1e66de0d8d507de56efe5e3129c04a56990d40406d1de3d30a1098890a6e18"
+      },
+      {
+        "path": "shots/shared/north-facing-lights-and-rounded-cap.png",
+        "hash": "sha256:a6d866870529ec41b2b684165783374eff7d08c42481607d4a79eda35aa6f085"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:6803573049cd6aca941491d071b4667338718f5c5a3329c79692120e44ee6569"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

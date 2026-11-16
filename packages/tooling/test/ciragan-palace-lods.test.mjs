@@ -83,7 +83,8 @@ it('binds the complete historic palace, both native clips and divided stairs to 
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.heading).toBeCloseTo(0.40690002573, 12);
   expect(frame.mappedIdentity.featureIds).toEqual(['way/498861861']);
-  expect(p.entry.elevation).toBe(11);
+  const fit = await read(source + '/site-fit.json');
+  expect(p.entry.elevation).toBe(fit.baseElevation);
   expect(p.entry.datum).toBe('sea-level');
   expect(p.entry.buildingCutout.minimumCoverage).toBe(0.98);
   expect(p.entry.buildingCutout.outlines).toHaveLength(1);
@@ -102,10 +103,7 @@ it('binds the complete historic palace, both native clips and divided stairs to 
   ).toBeDefined();
 });
 it('keeps all three waterfront pavilions, inset bays, closed roofs/entrance and two supported divided stairs', async () => {
-  const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
-    ),
+  const fit = await read(source + '/site-fit.json'),
     asset = await read(runtime + '/asset.json'),
     files = [
       { name: 'source', path: source + '/models/source.glb' },
@@ -147,7 +145,7 @@ it('keeps all three waterfront pavilions, inset bays, closed roofs/entrance and 
       30 - nearest(ts, [-64, 30, 0], [0, -1, 0], true),
       f.name + ' raised supported landing',
     ).toBeCloseTo(2.4, 2);
-    // Distinct north/south flights meet the unmodified standard field at their outer edges.
+    // Both stairs meet the fitted court and keep the roof and waterfront geometry intact.
     const steps = f.name === 'skyline' ? ts : await triangles(f.path, 'foundation');
     for (const e of layout.entries)
       for (const u of [-0.49, 0, 0.49]) {
@@ -156,8 +154,12 @@ it('keeps all three waterfront pavilions, inset bays, closed roofs/entrance and 
         expect(
           30 - nearest(steps, [X, 30, Z].map(Math.fround), [0, -1, 0], true),
           f.name + ' divided stair contact',
-        ).toBeCloseTo(field.sampleHeight(X, Z), 2);
+        ).toBeCloseTo(fit.sites[0].elevation - fit.baseElevation, 2);
       }
+    expect(
+      30 - nearest(ts, [0, 30, 47], [0, -1, 0], true),
+      f.name + ' waterfront facing',
+    ).toBeCloseTo(fit.quay.top, 2);
   }
 }, 60000);
 it('uses the production viewer to replace the actual native building parts while retaining nearby buildings', async () => {

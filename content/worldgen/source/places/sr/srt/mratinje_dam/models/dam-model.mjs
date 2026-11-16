@@ -1,7 +1,22 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import {
   beam,
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { buildMratinjeSite, fit } from './gorge-fit.mjs';
+
+// The LOD cache keys the entry recipe. Include its source-local terrain dependencies.
+const siteInputs = {
+  'gorge-fit.json': '598bc26a431506ae3632f8fc8538dce93c3e6fd3f579803d7d8e571e5972b039',
+  'gorge-fit.mjs': 'a0337d1cabb6887300252a51ad8fa9b4f7ce1408f965048ae68beb1e7f9c04be',
+};
+for (const [path, expected] of Object.entries(siteInputs)) {
+  const source = readFileSync(new URL(path, import.meta.url), 'utf8').replaceAll('\r\n', '\n');
+  if (createHash('sha256').update(source).digest('hex') !== expected)
+    throw new Error(`Stale Mratinje Dam terrain dependency ${path}`);
+}
+
 export const controls = {
   anchor: [18.842596634, 43.27257545],
   heading: 1.978160431098793,
@@ -56,6 +71,7 @@ const materials = {
   rail: { slot: 'trim', graph: 'metal_painted', rgb: [0.109, 0.267, 0.47] },
   roof: { slot: 'roof', graph: 'metal_standing_seam', rgb: [0.46, 0.107, 0.096] },
   glass: { slot: 'window', graph: 'window_grid', rgb: [0.164, 0.218, 0.246] },
+  rock: { slot: 'foundation', graph: 'stone_limestone_raw', rgb: [0.39, 0.36, 0.32] },
 };
 export const damSurfaces = Object.fromEntries(
   Object.entries(materials).map(([m, { slot, graph }]) => [m, { slot, graph }]),
@@ -114,7 +130,7 @@ function strip(out, m, a, b, h, k, near, far) {
 function shell(out, d, a, b, h, k, side) {
   const xs = [
       a,
-      ...crest.filter(([u], i) => u > a && u < b && (d.detail > 0 || i % 2 === 0)).map(([u]) => u),
+      ...crest.filter(([u], i) => u > a && u < b && (d.detail > 0 || i % 3 === 0)).map(([u]) => u),
       b,
     ],
     hs = [h, ...sections.filter(([v]) => v > h && v < k).map(([v]) => v), k];
@@ -325,7 +341,7 @@ function crestDetails(out, d) {
     rod(out, 'roof', archPoint(31, 682, 11), archPoint(35, 684, 12.7), 0.17, 0.17);
   }
 }
-function portal(out, d, center, radius, spring) {
+function portal(out, d, { center, radius, spring, facing: [nx, nz] }) {
   const profile = [
     [-radius, 678],
     [radius, 678],
@@ -334,16 +350,50 @@ function portal(out, d, center, radius, spring) {
       return [Math.cos(angle) * radius, spring + Math.sin(angle) * radius];
     }),
   ];
-  const facing = [-0.67, 0, -0.74236];
-  const p = ([x, h], z) => [
-    center[0] + x * 0.74236 + z * facing[0],
-    y(h),
-    center[1] - x * 0.67 + z * facing[2],
-  ];
+  const facing = [nx, 0, nz];
+  const p = ([x, h], z) => [center[0] - x * nz + z * nx, y(h), center[1] + x * nx + z * nz];
   const rim = profile.map(([x, h]) => [
     x === 0 ? 0 : Math.sign(x) * (Math.abs(x) + 0.74),
     h === 678 ? h : h + 0.65,
   ]);
+  if (d.detail > 0) {
+    const crown = spring + radius + 1.05;
+    const edge = radius + 1.5;
+    const cap = rim.map(([x]) => [x, crown]);
+    for (let i = 3; i < rim.length; i++) {
+      q(out, 'slab', p(rim[i - 1], 0), p(rim[i], 0), p(cap[i], 0), p(cap[i - 1], 0), facing);
+      q(
+        out,
+        'slab',
+        p(cap[i - 1], 0),
+        p(cap[i], 0),
+        p(cap[i], -3.9),
+        p(cap[i - 1], -3.9),
+        [0, 1, 0],
+      );
+    }
+    for (const s of [-1, 1]) {
+      const x = (radius + 0.74) * s;
+      q(
+        out,
+        'slab',
+        p([x, 678], 0),
+        p([edge * s, 678], 0),
+        p([edge * s, crown], 0),
+        p([x, crown], 0),
+        facing,
+      );
+    }
+  }
+  q(
+    out,
+    'asphalt',
+    p(profile[0], 0.075),
+    p(profile[1], 0.075),
+    p(profile[1], -3.9),
+    p(profile[0], -3.9),
+    [0, 1, 0],
+  );
   for (let i = 1; i <= profile.length; i++) {
     const a = i - 1,
       b = i % profile.length;
@@ -372,7 +422,8 @@ function portal(out, d, center, radius, spring) {
 }
 function inspectionGallery(out, d) {
   const p = (u, h, z) => archPoint(u, h, z, 1);
-  const xs = [-64, -53, -41, -29, -18, -6, 7, 21, 34, 46, 58];
+  const xs =
+    d.detail === 0 ? [-64, -29, 7, 34, 58] : [-64, -53, -41, -29, -18, -6, 7, 21, 34, 46, 58];
   for (let i = 1; i < xs.length; i++) {
     const a = xs[i - 1],
       b = xs[i],
@@ -394,9 +445,14 @@ export function buildDamLevel(out, level) {
   const d = tiers[level];
   if (!d) throw Error('Unknown Mratinje Dam detail level: ' + level);
   shell(out, d, first, last, 458, 678, -1);
-  shell(out, d, first, last, 458, 508.64, 1);
-  roundPorts(out, d, outlets[1]);
-  shell(out, d, first, last, 511.36, 578.3, 1);
+  if (d.detail === 0) {
+    // The tailwater hides these two deep outlets at skyline distances.
+    shell(out, d, first, last, 458, 578.3, 1);
+  } else {
+    shell(out, d, first, last, 458, 508.64, 1);
+    roundPorts(out, d, outlets[1]);
+    shell(out, d, first, last, 511.36, 578.3, 1);
+  }
   roundPorts(out, d, outlets[0]);
   shell(out, d, first, last, 581.7, spillways.sill, 1);
   spillwayWorks(out, d);
@@ -413,8 +469,8 @@ export function buildDamLevel(out, level) {
     }
   crestRoad(out, d);
   crestDetails(out, d);
-  portal(out, d, [132.7, 39.6], 3.75, 680.4);
-  portal(out, d, [142.1, 31.1], 2.7, 679.8);
+  for (const approach of fit.portals) portal(out, d, approach);
+  buildMratinjeSite(out, level);
   if (d.detail > 2) {
     for (const x of [9, 20, 34, 47, 59, 73, 87, 101, 113]) {
       const p = (h, z) => archPoint(x, h, z);

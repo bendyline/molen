@@ -1,10 +1,10 @@
 # Książ stable ensemble
 
-![Shared Molen preview](shots/shared/angle-0.png)
+![Shared Molen preview](preview.png)
 
 Open stable quadrangle with five distinct ranges, arched gate tower, carriage-house bays, red mansard residence tower, cream administration gable, timber framing and the separate covered riding hall with connecting annexes.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [site review](QA-REVIEW.md) for the terrain fit and runtime views.
 
 ## Sources and reconstruction
 
@@ -16,12 +16,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own stable quadrangle and adjacent hall rings; Y0 estimated shared contact. Roof profiles, component boundaries and facades interpreted from primary sources. No independent Wikidata identity asserted. Hall association and real geographic/terrain fit remain pending.
+Terrain sampled at the main gate sets the datum. The documentary plan and operator photos guide the roof profiles, part boundaries and façades.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/generate-ksiaz-stables.mjs --ids=KSI_E01 (or --check).
 
-9592 triangles;1155164 source bytes;7 merged material groups;no embedded images. Six existing shared plaster, tile, slate, rubble, timber and limestone graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Open courtyard, secondary entrance and main through-passage retained. Runtime LODs are separate generated outputs.
+9592 triangles, 1155636 source bytes;8 merged material groups;no embedded images. Six existing shared plaster, tile, slate, rubble, timber and limestone graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Open courtyard, secondary entrance and main through-passage retained. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:0ce6a963f22a75546a2485ebe1cd646452208fb272b1889948241440579a3e31
+Source hash: sha256:aa0efec83de66624215f650e36bfb09f060d132d9a50a8cfc976c6795f275463

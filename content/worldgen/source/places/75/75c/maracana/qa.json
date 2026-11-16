@@ -1,36 +1,33 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.maracana",
-  "inputHash": "sha256:01b943452b43120573d7864fdcb6dd7fe71b4cd3573b438f1efd7bae41e49302",
-  "captureReportHash": "sha256:7b177c40f6a6888f6944b13a69b0697f083703c1529837e61e3bd912005c9309",
+  "inputHash": "sha256:5777c41e407716a473cfb784344d83b5a7204f0dd1196de53b15ee7940c50f2f",
+  "captureReportHash": "sha256:814e24faa7e35ac3f2258ab749cf09f03e26a16a69d2b7d77f58944de3a86c56",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior, open seating bowl and portable materials.",
     "inspectedFrames": [
-      "preview.png",
-      "shots/turntable/angle_0.png",
-      "shots/turntable/angle_1.png",
-      "shots/turntable/angle_2.png",
-      "shots/turntable/angle_3.png",
-      "shots/near-roof-cables.png",
-      "shots/near-seating.png",
-      "shots/near-west-boxes.png",
-      "shots/near-facade.png",
-      "shots/near-monumental-ramp.png",
-      "shots/far-roof.png"
+      "preview.png"
     ],
-    "notes": "All eleven final portable and eleven shared frames inspected, plus full-resolution roof, seats and exterior. Structural bowl underside now closes the previously see-through shell; photovoltaic rows are visibly above the corrected membrane. Field/goals, chair mosaic, aisles, western boxes, concrete crown/ribs, monumental ramps and cable ring are connected."
+    "notes": "The current master summary shows the complete exterior and open seating bowl. The inspected detail and placement views are included in the shared-material report.",
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:2e0f9ab5ba2a3a969a08d337ad8d4e03eac7e05987003ded89967c96e4da754a"
+      }
+    ],
+    "captureReportHash": "sha256:814e24faa7e35ac3f2258ab749cf09f03e26a16a69d2b7d77f58944de3a86c56"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:079d1eac3d7a961fd9c56202c45805d0b7feeca0347d489dcf73469eaa14794e",
+    "captureReportHash": "sha256:4134e7c10dbca205f1e3ce890a7ea00095a7e188e3a7af752f8b92dc6adb3dcd",
     "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
     "inputHash": "sha256:01b943452b43120573d7864fdcb6dd7fe71b4cd3573b438f1efd7bae41e49302",
     "materialGraphs": {
       "matgraph:molen.worldgen.material.membrane": {
         "path": "materials/membrane.matgraph.json",
-        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
       },
       "matgraph:molen.worldgen.material.metal_painted": {
         "path": "materials/metal_painted.matgraph.json",
@@ -54,7 +51,53 @@
       "shots/shared/far-roof.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Shared concrete, membrane and painted metal use metric scale; chair/turf colors remain inexpensive local PBR. Clear visual separation of roof/PV and structure retained. Thin cable raster aliasing occurs at far distances without missing geometry. Geographic and unload assertions pass."
+    "notes": "Shared concrete, membrane and painted metal use metric scale; chair/turf colors remain inexpensive local PBR. Clear visual separation of roof/PV and structure retained. Thin cable raster aliasing occurs at far distances without missing geometry. Geographic and unload assertions pass.",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:408eb6255b2cd6d220aedd65876d95e3ddfcde5af7afa45c63f06ea06a0ddc02"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:9db98dc82abf32d35c1835fa68de86ec910701dc7e27b72db84a27d122688d34"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:fe3ffdc18e09447de15bb023b6b293309ac8131fb337ea38780c70594671d5a5"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:72ff44788ca4415a573c63ba914393f65edd957c4ab2e81ed7226b81ab645fcf"
+      },
+      {
+        "path": "shots/shared/near-roof-cables.png",
+        "hash": "sha256:ccf72d710b0e255863dd3d8ac68fd61fcb214a93f88999a72a8a58d4ec951cd3"
+      },
+      {
+        "path": "shots/shared/near-seating.png",
+        "hash": "sha256:781ce2400772640fff6be926b563f26abce6c4967114ce9467f4ad31153e8c5e"
+      },
+      {
+        "path": "shots/shared/near-west-boxes.png",
+        "hash": "sha256:c81aa59be2a80721e0d1fe8f2a4f49b0e69b5055ff3ab4d03ad44f1cb1e8c24c"
+      },
+      {
+        "path": "shots/shared/near-facade.png",
+        "hash": "sha256:2d440dee8567b8b339cb115e41aaacea634aa67b0360413024a63a9816c113f0"
+      },
+      {
+        "path": "shots/shared/near-monumental-ramp.png",
+        "hash": "sha256:389415553b3c61374a5ad44a553e76ced62700884c05fc406c72bbcefb124e8b"
+      },
+      {
+        "path": "shots/shared/far-roof.png",
+        "hash": "sha256:ef591e948e2ced8fc1006799db90179b9f29c72562d976762074c37bf3b1894e"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:d78f5f6b8e68a81215058eadde91e4b46e0d287a6e9f1eea9cd7b1baae698f1e"
+      }
+    ]
   },
   "geographicReview": {
     "status": "passed",
@@ -66,5 +109,106 @@
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
     "notes": "Roof engineer dimensions/current exterior and structural photos, Rio owner installation manual and exact mapped axes constrain recognizable architecture. Seat distribution is reconstructed from the published mosaic, not a certified ticket inventory; cable prestress and individual workshop sections are outside visible exterior accuracy. Detached Maracanazinho and other neighboring sports facilities remain separate assets."
+  },
+  "originalCapture": {
+    "reportHash": "sha256:7b177c40f6a6888f6944b13a69b0697f083703c1529837e61e3bd912005c9309"
+  },
+  "sourceHash": "sha256:181bf937e85af8f8f9ccc8ee698bb747c96399b84e8a081cf5727de703832b2d",
+  "runtimeHash": "sha256:60c5a2d59a414be2d257f9692d4824bd8899e668d0ea24309647bfbe356f0c5e",
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:6a71debb4ffe8a02a356419881c91a473ddf4f651d9fc44abb4f693b206ea111",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:0f60d7e25f505871b92a6e49812df317b50a586e7860f065de276fa550ac2df8",
+        "bytes": 14940,
+        "gzipBytes": 8430,
+        "triangles": 1000,
+        "cpuBytes": 13888,
+        "gpuBytes": 13888,
+        "errorMeters": 154.59774650686214,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:54ce244bf578c9aa3d37530fe0abdf6b75a7161573e335bb7276917f89765117",
+        "bytes": 468680,
+        "gzipBytes": 135323,
+        "triangles": 4184,
+        "cpuBytes": 461684,
+        "gpuBytes": 461684,
+        "errorMeters": 8.766348453393114,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:a4be5f5912a9ddc018525501b86d5a57306ee20cde64afeac49a0f6c90b3fd3d",
+        "bytes": 2047812,
+        "gzipBytes": 722429,
+        "triangles": 18303,
+        "cpuBytes": 2040752,
+        "gpuBytes": 2040752,
+        "errorMeters": 1.2984558801007933,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:8c4dd30418e44196de1cd7916168fcefc38189c85bdc6a25bdb7e553e99c4791",
+        "bytes": 7150356,
+        "gzipBytes": 2669066,
+        "triangles": 65482,
+        "cpuBytes": 7143236,
+        "gpuBytes": 7143236,
+        "errorMeters": 0.5217758139277826,
+        "drawCalls": 6
+      }
+    ]
+  },
+  "currentGeometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "path": "content/worldgen/source/places/75/75c/maracana/models/source.glb",
+        "hash": "sha256:181bf937e85af8f8f9ccc8ee698bb747c96399b84e8a081cf5727de703832b2d",
+        "bytes": 56749324
+      },
+      {
+        "path": "content/worldgen/assets/places/75/75c/maracana/model.glb",
+        "hash": "sha256:60c5a2d59a414be2d257f9692d4824bd8899e668d0ea24309647bfbe356f0c5e",
+        "bytes": 56748736
+      },
+      {
+        "path": "content/worldgen/assets/places/75/75c/maracana/model.skyline.glb",
+        "hash": "sha256:0f60d7e25f505871b92a6e49812df317b50a586e7860f065de276fa550ac2df8",
+        "bytes": 14940
+      },
+      {
+        "path": "content/worldgen/assets/places/75/75c/maracana/model.district.glb",
+        "hash": "sha256:54ce244bf578c9aa3d37530fe0abdf6b75a7161573e335bb7276917f89765117",
+        "bytes": 468680
+      },
+      {
+        "path": "content/worldgen/assets/places/75/75c/maracana/model.street.glb",
+        "hash": "sha256:a4be5f5912a9ddc018525501b86d5a57306ee20cde64afeac49a0f6c90b3fd3d",
+        "bytes": 2047812
+      },
+      {
+        "path": "content/worldgen/assets/places/75/75c/maracana/model.closeup.glb",
+        "hash": "sha256:8c4dd30418e44196de1cd7916168fcefc38189c85bdc6a25bdb7e553e99c4791",
+        "bytes": 7150356
+      }
+    ]
+  },
+  "evidenceRefresh": {
+    "reviewedOn": "2026-11-14",
+    "sourceHash": "sha256:181bf937e85af8f8f9ccc8ee698bb747c96399b84e8a081cf5727de703832b2d",
+    "runtimeHash": "sha256:60c5a2d59a414be2d257f9692d4824bd8899e668d0ea24309647bfbe356f0c5e",
+    "placementHash": "sha256:e9cd9fb90c73496602bdec9f8f16770d084930d37a00f90b9047c67545f494eb",
+    "notes": "Inspected the current World Viewer master summary, the mapped placement and ten additional shared-material views. The geometry still shows both historic exterior ramps, restored roof and complete seating bowl."
   }
 }

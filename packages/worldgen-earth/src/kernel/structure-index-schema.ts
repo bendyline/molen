@@ -86,6 +86,12 @@ const placementSchema = (runtime: boolean) =>
         .safeExtend({ additionalDecks: z.array(roadReplacement).min(1).max(8).optional() })
         .optional(),
       replaceFootprint: z.boolean().optional(),
+      surfacePassageIds: z
+        .array(finite.int().positive())
+        .min(1)
+        .max(32)
+        .refine((ids) => new Set(ids).size === ids.length, 'duplicate surface passage ID')
+        .optional(),
       buildingCutout: z
         .strictObject({
           minimumCoverage: finite.gt(0).max(1).optional(),
@@ -245,8 +251,8 @@ const placementSchema = (runtime: boolean) =>
       'historical placements need dates and cannot be current-world previews',
     )
     .refine(
-      (entry) => !entry.replaceRoads || !!entry.bounds,
-      'road replacement requires an indexed extent',
+      (entry) => (!entry.replaceRoads && !entry.surfacePassageIds) || !!entry.bounds,
+      'road replacement and surface passages require an indexed extent',
     )
     .refine(
       (entry) => entry.orientation !== 'mapped' || !!entry.mapIdentity,

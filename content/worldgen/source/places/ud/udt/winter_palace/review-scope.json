@@ -277,7 +277,7 @@
     }
   },
   "geographic": {
-    "status": "draft-proposal",
+    "status": "preview-proposal",
     "anchor": [
       30.313884235,
       59.940441442
@@ -286,8 +286,8 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMode": "terrain-contact",
     "groundModelY": -2.9797029112900084,
-    "groundContactReviewed": false,
-    "groundContactBasis": "PENDING NATIVE TERRAIN FIT: the current standard grid buries the river facade and intrudes into courts; geographic completion is not approved. Original standard6m Mapzen samples/roads/water and all independent buildings remain unchanged. Owned boundary samples span-2.951511875586874..26.902494995326656m relative to anchor; the coarse DEM spreads roof/tree heights into some riverfront and courtyard margins. A rigid common floor uses the front plaza, not the roof-biased center. Occupied foundations extend to boundary minimum; ground opening is partitioned strictly inside palace floor polygons, preserving every courtyard hole and outside terrain. No precinct-wide slab, terrain flattening or bespoke elevation source. Some native margins remain uneven/partly occlude low walls. Failure retains originals and every LOD unload restores terrain/water/zero model geometry.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "A common ground sample at the mapped south plaza aligns all five building floors. Molen’s bounded Hermitage waterfront grade is 17.50 m and blends into the retained Terrarium field. Source building outlines, courtyard openings and independent roads are preserved.",
     "replaceFootprint": false,
     "bounds": [
       30.30922138824563,
@@ -301,7 +301,7 @@
         59.93964319761939
       ],
       "modelHeight": -2.9797029112900084,
-      "basis": "Shared existing Winter Palace south-plaza control, internal[0,110]. modelHeight is this member's actual native floor Y, not its raw map-anchor datum. The host samples this ground point and subtracts modelHeight, so all five floors coincide even when the host uses a clean or vertically translated ground provider. Original model geometry and standard PMTiles/elevation samples remain unchanged. This corrects reference semantics; native roof/tree-influenced terrain still requires a separate fit review."
+      "basis": "The mapped Winter Palace south plaza supplies the common building floor datum. The placement subtracts the authored floor height from the same terrain sample for all five buildings."
     },
     "groundCutout": {
       "outline": [
@@ -1410,7 +1410,7 @@
           ]
         ]
       ],
-      "basis": "PENDING NATIVE TERRAIN FIT: the current standard grid buries the river facade and intrudes into courts; geographic completion is not approved. Original standard6m Mapzen samples/roads/water and all independent buildings remain unchanged. Owned boundary samples span-2.951511875586874..26.902494995326656m relative to anchor; the coarse DEM spreads roof/tree heights into some riverfront and courtyard margins. A rigid common floor uses the front plaza, not the roof-biased center. Occupied foundations extend to boundary minimum; ground opening is partitioned strictly inside palace floor polygons, preserving every courtyard hole and outside terrain. No precinct-wide slab, terrain flattening or bespoke elevation source. Some native margins remain uneven/partly occlude low walls. Failure retains originals and every LOD unload restores terrain/water/zero model geometry."
+      "basis": "The fitted grade exposes the river facade and restores native ground to all six courtyards. The three central passages from Palace Square remain open at all four detail levels. The 17.50 m local site grade uses the retained Winter Palace south plaza control and blends into the standard Terrarium field. The native water, independent transportation and surrounding buildings remain. All five anchored buildings pass the common production-renderer fit."
     },
     "buildingCutout": {
       "outline": [
@@ -2368,6 +2368,7 @@
       "minimumCoverage": 0.995,
       "basis": "Only Winter Palace parent52776558202672 and its three integrated projection records52776569623358/359/29176; retain all independent Hermitage neighbors and detached courtyard objects."
     },
-    "notes": "Retained Q182147/relation69424 and named native Winter Palace parent52776558202672 establish the building identity. Standard PMTiles supplies the approximately225.2x182.6m irregular outer and six holes; three integrated projection records lie entirely inside it. Retained axis0.630352782657rad resolves positive internalX northeast toward Small Hermitage and positiveZ southeast toward Palace Square, using actually viewed aerial/south/north/courtyard pictures. Anchor[30.313884235,59.940441442]/world heading0/native east-south. Q132783 describes the Hermitage institution; this is only its Winter Palace member, not a completed Hermitage collection. PENDING NATIVE TERRAIN FIT: the current standard grid buries the river facade and intrudes into courts; geographic completion is not approved. Original standard6m Mapzen samples/roads/water and all independent buildings remain unchanged. Owned boundary samples span-2.951511875586874..26.902494995326656m relative to anchor; the coarse DEM spreads roof/tree heights into some riverfront and courtyard margins. A rigid common floor uses the front plaza, not the roof-biased center. Occupied foundations extend to boundary minimum; ground opening is partitioned strictly inside palace floor polygons, preserving every courtyard hole and outside terrain. No precinct-wide slab, terrain flattening or bespoke elevation source. Some native margins remain uneven/partly occlude low walls. Failure retains originals and every LOD unload restores terrain/water/zero model geometry."
+    "notes": "Retained Q182147/relation69424 and named native Winter Palace parent52776558202672 establish the building identity. Standard PMTiles supplies the approximately225.2x182.6m irregular outer and six holes; three integrated projection records lie entirely inside it. Retained axis0.630352782657rad resolves positive internalX northeast toward Small Hermitage and positiveZ southeast toward Palace Square, using actually viewed aerial/south/north/courtyard pictures. Anchor[30.313884235,59.940441442]/world heading0/native east-south. Q132783 describes the Hermitage institution; this is only its Winter Palace member, not a completed Hermitage collection. A common ground sample at the mapped south plaza aligns all five building floors. Molen’s bounded Hermitage waterfront grade is 17.50 m and blends into the retained Terrarium field. Source building outlines, courtyard openings and independent roads are preserved.",
+    "reviewStatus": "mapped site reviewed in the production renderer"
   }
 }

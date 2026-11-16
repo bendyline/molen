@@ -135,6 +135,49 @@ function semanticTile(): TerrainSemanticTile {
 }
 
 describe('normalized semantic mesh adapter', () => {
+  it('keeps a mapped water feature level across tiles and drops only the selected ribbon', () => {
+    const tile = semanticTile();
+    const [pool, stream] = tile.water;
+    if (!pool || !stream) throw new Error('Expected pond and stream fixtures');
+    tile.water = [
+      { ...pool, id: 11 },
+      { ...stream, id: 12 },
+      {
+        id: 13,
+        lines: [
+          [
+            [0.8, 0.8],
+            [0.9, 0.8],
+          ],
+        ],
+      },
+    ];
+    for (const base of [4, 20]) {
+      const ctx = context();
+      ctx.heightfield = new Heightfield(new Float32Array(4).fill(base / 20), 2, 2, {
+        origin: ctx.origin,
+        worldSize: [100, 100],
+        height: { min: 0, max: 20 },
+      });
+      const object = createTerrainSemanticObject(tile, ctx, {
+        renderLandcover: false,
+        renderTransportation: false,
+        renderBuildings: false,
+        waterFeatureStyle: ({ id }) =>
+          id === 11 ? { elevation: 8.5 } : id === 12 ? { hideLines: true } : undefined,
+      });
+      const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+      const ribbon = object.getObjectByName('semantic:waterways') as THREE.Mesh;
+      water.geometry.computeBoundingBox();
+      ribbon.geometry.computeBoundingBox();
+      expect(water.geometry.boundingBox?.min.y).toBe(8.5);
+      expect(water.geometry.boundingBox?.max.y).toBe(8.5);
+      expect(ribbon.geometry.boundingBox?.min.z).toBeGreaterThan(75);
+      expect(ribbon.geometry.boundingBox?.min.y).toBeCloseTo(base + 0.35);
+      disposeTerrainSemanticObject(object);
+    }
+  });
+
   it('keeps underground footprints out of the surface building mesh', () => {
     const tile = semanticTile();
     const surface = tile.buildings[0];

@@ -29,7 +29,31 @@ describe('authored landmark ground contact', () => {
       }),
     ).toBe(true);
   });
-  it('rejects ambiguous, unsupported, or nonzero contact planes', () => {
+  it('accepts a reviewed contact at the explicit terrain reference height', () => {
+    const spec = {
+      ...fort,
+      geographicProposal: {
+        ...fort.geographicProposal,
+        elevationMode: 'terrain-contact',
+        groundModelY: -2,
+        terrainReference: { anchor: [30.31, 59.94], modelHeight: -2 },
+      },
+    };
+    expect(hasAuthoredGroundContact(spec)).toBe(true);
+    expect(
+      hasAuthoredGroundContact({
+        ...spec,
+        geographicProposal: { ...spec.geographicProposal, groundModelY: -3 },
+      }),
+    ).toBe(false);
+    expect(
+      hasAuthoredGroundContact({
+        ...spec,
+        actualBounds: { min: [-1, -1, -1], max: [1, 8, 1] },
+      }),
+    ).toBe(false);
+  });
+  it('rejects ambiguous and unsupported contact planes', () => {
     for (const patch of [
       { groundContactReviewed: false },
       { groundContactBasis: '' },

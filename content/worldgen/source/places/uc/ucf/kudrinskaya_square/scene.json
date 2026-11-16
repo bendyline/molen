@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Kudrinskaya Square Building preview",
+  "seed": "kudrinskaya_square",
+  "tickRate": 30,
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      64,
+      64,
+      201
+    ],
+    "lookAt": [
+      0,
+      71,
+      0
+    ],
+    "fov": 51
+  },
+  "physics": {
+    "engine": "none"
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.kudrinskaya_square",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "review-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.1,
+            0
+          ],
+          "scale": [
+            340,
+            0.2,
+            320
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#9ca09a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#716d62",
+            "intensity": 1.11
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              11
+            ],
+            "color": "#fff1d8",
+            "intensity": 2.03,
+            "castShadow": true
+          },
+          "background": "#b5cdd9",
+          "toneMapping": "agx",
+          "exposure": 1.03,
+          "shadows": "high"
+        }
+      }
+    }
+  ]
+}

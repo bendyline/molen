@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.old_hermitage",
-  "inputHash": "sha256:23656e7e9e6e2d50740ad816a032739827b9fafe0d978177bfed854e3e10182e",
+  "inputHash": "sha256:6eaa6e16916644b4e1b1ffdaba0cea9d86f4121338f1fdc93000e02e2e53ce30",
   "sourceHash": "sha256:975923f4d31f051689f504cc13b99e89bfb0a5f551d239fc26552124494266e5",
   "runtimeHash": "sha256:543b69171005d08077333b27949ab794c08b3e62022c6c4592bc1bf7b78ca487",
   "reviewGroundY": -23.457581735412308,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:fb35ed923e7a8de52c99a9581032ef8342d6b421aaa3dfb071a3956a47897d9e",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:f0227abd95c7bc411acc0687177c4616e48a4f6e21b0a44a5f9b9eb12c5c8daf",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:a2daa18c4fcaed3c9979e7c2efa14d72a07fb2beffe41470456177f53cd8dd78",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stucco": {
       "path": "materials/stucco.matgraph.json",
@@ -30,21 +31,21 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:2a563a81627a436e4514308f506188bb38d140311ce72d9fa154c09870e50017",
+      "hash": "sha256:bf6b80a4bfc1c0c150f9a5656a31676e37f20db800ae0613a94485be762a0906",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -65,45 +66,111 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:4effd271946bb321653cf3762fedd09f206541fa7dc13e97b5e78def6a7a8343",
+      "hash": "sha256:c8a864487c4b15a05216b81b3e39b72fbb98affd9ce5b1dd92dd4e590d1f8282",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -124,45 +191,111 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:e2c540f63816591841269eaf005f1c250581efdab97673d000717dde685b1520",
+      "hash": "sha256:720cadb6ad568ad6d8b162c9dbd5981ce719973a9486c9a66b8ba292bec98442",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -183,45 +316,111 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:939e556619e506bc3355eb969862ade66c2778c2138e343d1cf63160b6fd4a47",
+      "hash": "sha256:600496dd7ff19acff7f3d8ab228c1b30f4b9d47baa95ee991903e25cfc151b5c",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -242,37 +441,103 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/riverfront-three-tiers-and-central-arched-bays.png",
-      "hash": "sha256:0372f6ca6f7307adbfc5f3cd1be7bb537c2428c90a439f58cf252f322c108b99",
+      "hash": "sha256:863077819a50ec0248b1b394dc15d9287c26c4dd1c76f3552932b46be7b72f59",
       "camera": {
         "name": "riverfront-three-tiers-and-central-arched-bays",
         "position": [
@@ -289,8 +554,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -311,37 +576,103 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/covered-winter-canal-gallery-and-clear-arch.png",
-      "hash": "sha256:4670ff2c6ba726396b92bed83e2cff74eee042326e6edf22b3272ca7d9afac55",
+      "hash": "sha256:2e6eb034a00d53b5a5d97ee7317a83c34b587a6d8aca3e719885294e62f043f0",
       "camera": {
         "name": "covered-winter-canal-gallery-and-clear-arch",
         "position": [
@@ -358,8 +689,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -380,37 +711,103 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
       }
     },
     {
       "path": "shots/shared/native-irregular-plan-and-green-hip-roof.png",
-      "hash": "sha256:e0e6744119f7adab0c53c027ccfbdd3f537e725ffc979b0422acb5dd453fe395",
+      "hash": "sha256:12d3b9bd780144c60e0ffc1ebc580e76b7187128b88c95799cf43523fb56ad7c",
       "camera": {
         "name": "native-irregular-plan-and-green-hip-roof",
         "position": [
@@ -427,8 +824,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.old_hermitage",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
         "position": [
           0,
           0,
@@ -449,32 +846,223 @@
             41.45526885986328
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
         "reviewGroundY": -23.457581735412308,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "25a22245-943e-434c-a820-e32c5e91c16e",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "4f9dbb3e-7ee8-49e6-a272-ca4f47a29da9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a8823de-11e0-40b6-8020-9ddd6412a331",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "46cfe16d-7c48-4e56-9023-3c8d6f60c6f8",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "5e956b3f-3487-4019-b9b2-b02a7961f3aa"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
         },
         "loads": [
-          "molen.worldgen.structure.old_hermitage"
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.window_grid": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
         },
         "draws": 6,
-        "renderedTriangles": 25688
+        "renderedTriangles": 25759
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:7bd063669161e8560b35f2a258aef8a16b6cfecace950f542019cc045b5523e8",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.old_hermitage",
+        "mode": "geographic-flat-terrain",
+        "placementId": "old.hermitage",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 25686,
+        "bounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.673526763916016,
+            -23.857582092285156,
+            -43.088783264160156
+          ],
+          "max": [
+            72.08154296875,
+            2.442418336868286,
+            41.45526885986328
+          ]
+        },
+        "reviewGroundY": -23.457581735412308,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f6298605-bec2-4d2d-a829-952b3240549d",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "5da937cf-9b2e-4a30-a6c4-c6121bec4a30",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "775c0df9-18a7-40b2-a762-25fd7918f8b6",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "587b6cd1-91b2-4850-a659-1772ab06f66c",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "c4f49281-5f8c-4a25-881d-4b00de2aa9aa"
+        },
+        "loads": [
+          "molen.worldgen.structure.hermitage_theatre",
+          "molen.worldgen.structure.new_hermitage",
+          "molen.worldgen.structure.old_hermitage",
+          "molen.worldgen.structure.small_hermitage",
+          "molen.worldgen.structure.winter_palace"
+        ],
+        "selectionBounds": [
+          30.31280658205341,
+          59.94045098864401,
+          30.31955012122799,
+          59.943828654112274
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermitage.theatre",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.89322760622532
+          },
+          {
+            "placementId": "new.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -22.05109339911213
+          },
+          {
+            "placementId": "old.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -23.457581735412308
+          },
+          {
+            "placementId": "small.hermitage",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -20.20704379702497
+          },
+          {
+            "placementId": "winter.palace",
+            "coordinate": [
+              30.315047028387312,
+              59.93964319761939
+            ],
+            "height": -2.9797029112900084
+          }
+        ],
+        "visibleStructures": [
+          "old.hermitage"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 25759
       }
     }
   ],
@@ -484,8 +1072,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

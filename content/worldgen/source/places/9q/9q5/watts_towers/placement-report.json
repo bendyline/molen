@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.watts_towers",
-  "inputHash": "sha256:7caf935ccacb92648caa2ba480876a33e24e0e80ddff288a373b18d82cba4a2c",
-  "placementHash": "sha256:c0d85d971a5aa131b0bfea41b24ee86619a28ac81b019db01d4d0eadee101510",
+  "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+  "placementHash": "sha256:296fac9d32c7d56e65f0e10df957efa70bf5dacdec42a04c1ff6673c35db9ad4",
   "entry": {
     "id": "watts.towers",
     "title": "Watts Towers",
@@ -19,11 +19,25 @@
       "wikidata": "Q445256",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -118.24104123365372,
+        33.938721678265445
+      ],
+      "modelHeight": 0.304769,
+      "basis": "The sampled datum meets the normalized model 0.305 m above its lowest foundation point."
+    },
+    "bounds": [
+      -118.24131,
+      33.93854,
+      -118.24078,
+      33.93891
+    ],
     "minLevel": 13,
     "status": "preview",
     "source": "https://gis.parks.ca.gov/server/rest/services/EnterpriseGIS/CSPBoundaries_Portal/FeatureServer/0",
-    "note": "California State Parks EGIS official Watts Towers of Simon Rodia SHP parcel, GISID GIS0000202 / UNIT_CODE 518 / OBJECTID 199, supplies the four-corner perimeter and south street axis. Native +X follows the south boundary eastward; +Z faces south across E 107th Street. Individual component positions are proportionally reconstructed from the Los Angeles city archive 1959 hearing Exhibit B and cross-checked against the current operator aerial, not labeled as a measured component survey. State GIS boundary is a parcel rather than a component survey. Interior positions and secondary sculpture dimensions are proportional reconstruction. The burned house is represented by surviving exterior remnants only, not its lost building volume. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "The state park parcel supplies the court outline and street-facing axis. PMTiles locate the park and adjacent East 107th Street. Preserve the host map buildings, streets and ground. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

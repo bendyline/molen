@@ -1,0 +1,42 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.foreign_ministry",
+  "kind": "static-structure",
+  "title": "Ministry of Foreign Affairs main building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.foreign_ministry",
+        "output": "assets/places/uc/ucf/foreign_ministry/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ab5efc6a9b3a3b95e9c7c383ca0a298e527bd5a00a84ab278c6dc79e65bbde20"
+      }
+    ],
+    "generators": [
+      {
+        "id": "foreign_ministry",
+        "path": "models/ministry-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "map-frame.json",
+      "README.md",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.png"
+    ]
+  }
+}

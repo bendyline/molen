@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.forest_of_remembrance",
+  "kind": "static-structure",
+  "title": "Forest of Remembrance",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.forest_of_remembrance",
+        "output": "assets/places/ez/ezj/forest_of_remembrance/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:733833c7c2912e59eb8c10cd6c0efebb04359fb93f0f122bd34cc513bf8a7905"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-forest-of-remembrance",
+        "path": "models/generate-forest-of-remembrance.mjs"
+      },
+      {
+        "id": "forest-of-remembrance-geometry",
+        "path": "models/forest-of-remembrance-geometry.mjs"
+      },
+      {
+        "id": "forest-of-remembrance-model",
+        "path": "models/forest-of-remembrance-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "site-preview.png",
+      "QA-REVIEW.md",
+      "qa.json"
+    ]
+  }
+}

@@ -1,15 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.wudongde_hydropower_station",
-  "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
+  "reviewedOn": "2026-11-16",
+  "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
   "sourceHash": "sha256:f81eba3d97db1bc37c6c7a8717c23f4cf1094eaa5b5b84021dc6987af1e688f4",
   "runtimeHash": "sha256:8f7985dfdc408297c55c4797b303b5fa73c54e7408d9735d8bd692a38ec94c7a",
-  "captureReportHash": "sha256:fb66d1e9f4fcf6529c434c8d38dd89f35629123cba79df10796509c58f6dd26e",
-  "notes": "The model has a double-curved arch, narrow crest, five upper recessed spillway bays, six mid-level recessed outlets and crest hoists. The skyline tier preserves the five upper bays and hoists. The finer tiers add mid-level outlets, coping and crest rails. The 104.33 m upstream water discrepancy and approximate buried contacts keep the geographic fit pending. A small exposed terrain edge remains near the downstream right shoulder. Crest width, gate hoists and outlet dimensions are visual approximations. The preview covers the principal dam exterior.",
+  "captureReportHash": "sha256:4378babf32b5b30531083698295d1698c97eddf233448275b2e6d125d780d0fd",
+  "notes": "The model has a double-curved arch, narrow crest, five upper recessed spillway bays, six mid-level recessed outlets and crest hoists. The skyline tier preserves the five upper bays and hoists. The finer tiers add mid-level outlets, coping and crest rails. The signed placement puts the 326.95 m arch inside the mapped dam extent and fixes its crest at 988 m. The Earth viewer renders a 975 m upstream pool, 855.32 m Jinsha tailwater and a separate 873.18 m stilling basin. Two bounded terrain grades keep the mapped channel and basin beds submerged. The mapped buried spill tunnel lines do not render on the surface. Water stages and local bed grades are representative. The coarse raster leaves angular sections along the outer gorge and the downstream right shoulder. Underground works and gate motion are outside the modeled exterior. The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the two graded beds.",
   "visualReview": {
     "status": "passed",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
+    "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
+    "notes": "The model has a double-curved arch, narrow crest, five upper recessed spillway bays, six mid-level recessed outlets and crest hoists. The skyline tier preserves the five upper bays and hoists. The finer tiers add mid-level outlets, coping and crest rails.",
+    "captureReportHash": "sha256:4378babf32b5b30531083698295d1698c97eddf233448275b2e6d125d780d0fd",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -58,34 +60,13 @@
         "path": "shots/gorge-and-tailwater.png",
         "hash": "sha256:bc17b8caf9dcf2acd9fc063ea2368309252aed0c0344c2dc18fe6b8cd0eb2d90"
       }
-    ],
-    "notes": "The model has a double-curved arch, narrow crest, five upper recessed spillway bays, six mid-level recessed outlets and crest hoists. The skyline tier preserves the five upper bays and hoists. The finer tiers add mid-level outlets, coping and crest rails."
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:8c893c316a6e53af273274526b28a8a5e9d78b118441f8e49449588e62839e4e",
-    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
-    "placementHash": "sha256:9294320ea395fd5aa7a728a9264e33eefe6174a9ea7ad9df22e5134e50050450",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.concrete_boardformed": {
-        "path": "materials/concrete_boardformed.matgraph.json",
-        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      },
-      "matgraph:molen.worldgen.material.metal_standing_seam": {
-        "path": "materials/metal_standing_seam.matgraph.json",
-        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      }
-    },
+    "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
+    "notes": "Four shared material graphs supply board-formed and plain concrete, painted steel and standing seam metal. All six GLBs have zero embedded images. Viewer eviction disposes the structure and restores terrain.",
+    "captureReportHash": "sha256:a1221dd9bf66df95a9b6640cf4550685305e63e06b9f681d74d8a9a4ad66637f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -135,26 +116,227 @@
         "hash": "sha256:74d322493818ed9450701ed213426cefc8f32824ce91516ad7eb4402b5e25f78"
       }
     ],
-    "notes": "Four shared material graphs supply board-formed and plain concrete, painted steel and standing seam metal. All six GLBs have zero embedded images. Viewer eviction disposes the structure and restores terrain."
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "placementHash": "sha256:9294320ea395fd5aa7a728a9264e33eefe6174a9ea7ad9df22e5134e50050450",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_boardformed": {
+        "path": "materials/concrete_boardformed.matgraph.json",
+        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "geographicReview": {
-    "status": "pending-native-reservoir-fit",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
+    "status": "passed",
+    "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
     "placementHash": "sha256:9294320ea395fd5aa7a728a9264e33eefe6174a9ea7ad9df22e5134e50050450",
-    "scope": "Standard PMTiles fixes the reservoir gap, access road ends and separate downstream road bridge. The signed 0.292 radian frame places the inferred 326.95 m crest curve inside retained OSM dam way 652591257. The fixed elevation preserves the documented 988 m crest.",
-    "notes": "The 104.33 m upstream water discrepancy and approximate buried contacts keep the geographic fit pending. A small exposed terrain edge remains near the downstream right shoulder. Crest width, gate hoists and outlet dimensions are visual approximations. The preview covers the principal dam exterior."
-  },
-  "fidelityReview": {
-    "status": "pending-native-reservoir-fit",
-    "target": "medium-fi",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
-    "notes": "The 104.33 m upstream water discrepancy and approximate buried contacts keep the geographic fit pending. A small exposed terrain edge remains near the downstream right shoulder. Crest width, gate hoists and outlet dimensions are visual approximations. The preview covers the principal dam exterior."
+    "mapFrameHash": "sha256:2e48624adf657b6bb735ea32248dabdb97e27ce1e0d7549853e96e535dbd8fa4",
+    "notes": "The signed placement puts the 326.95 m arch inside the mapped dam extent and fixes its crest at 988 m. The Earth viewer renders a 975 m upstream pool, 855.32 m Jinsha tailwater and a separate 873.18 m stilling basin. Two bounded terrain grades keep the mapped channel and basin beds submerged. The mapped buried spill tunnel lines do not render on the surface.",
+    "native": {
+      "fixtureHash": "sha256:7ca870c4f9a9a6c558bb893e0bec1e3f17b16e1ee1ed3c816d73592459c8731b",
+      "gradeSettingsHash": "sha256:ed8cff61b8f43882f3abfd3c896d1874609d5c2d1dc0740c4e41b1bf8c52be83",
+      "waterSettingsHash": "sha256:cd526a0fc47016dbb619c77c112820612b428a5fc18c41b03ddec1f7c8f9a126",
+      "waterStagesMeters": {
+        "operatingPool": 975,
+        "tailwater": 855.32,
+        "stillingBasin": 873.18
+      },
+      "probeCount": 270,
+      "checkedWaterSamples": 80,
+      "gradeAdjustedSamples": 696,
+      "minimumSampledWaterClearanceMeters": 5.646585937727082,
+      "retainedNativeRoadIds": [
+        35185550082400,
+        35185550082401
+      ],
+      "nativeRoadRecordsRetained": 3,
+      "failedLoadKeepsNativeLayers": true,
+      "groundAndLandcoverRestoredOnUnload": true,
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-downstream-overview.png",
+          "hash": "sha256:19bfb0b236b5c5d4ac42fc94c05e446ee692e4e5302b4b725054b2fbb9412188"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-spillway-bays.png",
+          "hash": "sha256:00c76469c274a033c9ba481b6a2212f318a3bb85309f7256d057812802e36e5e"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-crest-and-gate-hoists.png",
+          "hash": "sha256:aa19802cd23d764d3bd015161af13b2c03eac4d6669363eb4b78d50d6915f349"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-upper-reservoir.png",
+          "hash": "sha256:6dfec7087514166401f86e3b029863dfc14a0b687254225cfc8f87bd83eab8ed"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-gorge-and-tailwater.png",
+          "hash": "sha256:52d3720e39b4a3a858156f48f641d845b179601909a81ab50b85efbf3cc56762"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-downstream-east-shoulder.png",
+          "hash": "sha256:b831c9d0df06f3612591f21535659430830bb638cdf02242db73ccc5da3dd386"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-downstream-west-shoulder.png",
+          "hash": "sha256:358228ca4c9a1e41a750b50e34a8094236510a233502345322a5967bf0eb8130"
+        },
+        {
+          "level": "skyline",
+          "file": "wudongde_hydropower_station-skyline-stilling-basin-and-gorge.png",
+          "hash": "sha256:e30008ae498e9127eb73c8a2ac7247dcf3e3236c51b6bf6a4db1ea106edb08f1"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-downstream-overview.png",
+          "hash": "sha256:42c279bf34cfa3e789ab7cd31ac3a9531cadf8c80f1e5d2e344093d7fbca8f4f"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-spillway-bays.png",
+          "hash": "sha256:08fa81d2049aaf956bb623b98615679664c3bfd0c4d05f9830866c71e704d273"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-crest-and-gate-hoists.png",
+          "hash": "sha256:3a9d0f751bb60175b0f60dd4c34aad1df539092e150fc2e0a169a4b59564960f"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-upper-reservoir.png",
+          "hash": "sha256:0a419f60e8f47182fbf019368f5dd7bff5bbc72035535235f52a8214d056c164"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-gorge-and-tailwater.png",
+          "hash": "sha256:3908d4be39a9b836e23952b119a427658c11aaefbf8a75950cf4725796142993"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-downstream-east-shoulder.png",
+          "hash": "sha256:397d2de6b83193de5a35e43917e6dd75b5ce5b81697663a4fd0b0a4a2cf33553"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-downstream-west-shoulder.png",
+          "hash": "sha256:fb4ccca942bb2364a1681b8165f5e1e853a0c3c075910f6291602ded84b60e03"
+        },
+        {
+          "level": "district",
+          "file": "wudongde_hydropower_station-district-stilling-basin-and-gorge.png",
+          "hash": "sha256:ae5382b97bcdfc968f33cd601097418496b20430d67783c37a06475929cb70f0"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-downstream-overview.png",
+          "hash": "sha256:5f3d0260fc444acc6bbe96d58e8b644cab4cb87441007f89e829ee817ce9ec43"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-spillway-bays.png",
+          "hash": "sha256:bcdfb82d9fb24601a0e4eee5a7908aee0f98ae16d1678ba4a3b4ecdc2b4b21f5"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-crest-and-gate-hoists.png",
+          "hash": "sha256:3637be1e98fbf013c3fa85181afc59a3efa6c5e97e3b3ebe33ecd17d0665a9ee"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-upper-reservoir.png",
+          "hash": "sha256:b3bf42407880c1d9f40ea8d56050815f3de812b73da54a066c6a65cc606c14ac"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-gorge-and-tailwater.png",
+          "hash": "sha256:57ed624ae212dd9f1885ba6ae4c391f92d6ebe23818e934b6cde3a41d1cacdb0"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-downstream-east-shoulder.png",
+          "hash": "sha256:0b671af64bde8215bedf9d962c580e3d5e14ae9c9189669f54aa21f0b5467375"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-downstream-west-shoulder.png",
+          "hash": "sha256:692b9947f5d1f310df6df6ce49f5287ec88e189d5e03ae8e47cde42284ce64b0"
+        },
+        {
+          "level": "street",
+          "file": "wudongde_hydropower_station-street-stilling-basin-and-gorge.png",
+          "hash": "sha256:fc1fc6fd7d674c14421626ea5f56004e0bb7f4ea1274b9113e75d7edafbcecfa"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-downstream-overview.png",
+          "hash": "sha256:ed24e29a2fa49630d0dee55c85f15039d03ea18433598da03be0df28304e79f4"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-spillway-bays.png",
+          "hash": "sha256:8c7a2a292d5abef557fba5bec7801a7c19376d381be4a369d1b7f250748a8920"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-crest-and-gate-hoists.png",
+          "hash": "sha256:7c2f950f5e324503f02e57dad44c674bb0e8dd4ff8cccd180c982f69825eb53f"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-upper-reservoir.png",
+          "hash": "sha256:37cb6255f7e5294543357b30a1aa4d5ef6370d7595b3a805c738dcc756630bfc"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-gorge-and-tailwater.png",
+          "hash": "sha256:c18dd13843442127ca1b523c7703285ebe1b733c9dba1a2676e0a707ce166e5b"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-downstream-east-shoulder.png",
+          "hash": "sha256:ad5819b9798a3b20dfa4d0b81cba339cd4fde348acf19994bc57ca638002978e"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-downstream-west-shoulder.png",
+          "hash": "sha256:c5348af93dfaf036f4cac2d58863edf236c9b560f285e398cefdc4f7cdb7a828"
+        },
+        {
+          "level": "closeup",
+          "file": "wudongde_hydropower_station-closeup-stilling-basin-and-gorge.png",
+          "hash": "sha256:6bf84d9d34c426e378e85fc9e174013f4a0abecaeb1c14beb2d2cf8d2403dd81"
+        },
+        {
+          "level": "failure",
+          "file": "wudongde_hydropower_station-failure-downstream-overview.png",
+          "hash": "sha256:62b4ae865809fdcf8694db03379e22c23b9399534cae53f410b74a10e6774e91"
+        }
+      ]
+    }
   },
   "mediumFiReview": {
-    "status": "pending-native-reservoir-fit",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
+    "status": "passed",
+    "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
+    "notes": "Inspected four detail levels in daylight and late light. The Earth captures verify the fixed crest, three water stages, separate spill tunnel basin, retained service roads, and restored native layers.",
     "captureReportHash": "sha256:60165a4160cd2ef3b6af0f11d5be6134dafff2f3b4100ec499ea4ebdecf84c9d",
-    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -284,195 +466,13 @@
         "hash": "sha256:3531d449dacbe8881eafbd96ef55979546c7c6fd786e3a564f4dcd99451d43d4"
       }
     ],
-    "notes": "Ten standard Terrarium tiles provide the gorge. The normal-pool review uses 975 m and the standard water sampler yields 870.67 m upstream, 855.32 m in the tailwater and 873.18 m in the spill tunnel basin. Both review fixtures trim the headwater at the dam while preserving the native shores away from the crest."
+    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf"
   },
-  "siteIntegrationReview": {
-    "status": "pending-native-reservoir-fit",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
-    "terrainFixture": {
-      "descriptor": {
-        "path": "terrain-review.terrain.json",
-        "hash": "sha256:2859058e595c2bbd82987b47ffca1d49493bac4db755d66565270ecfec7694c8"
-      },
-      "heightmap": {
-        "path": "terrain-review.height.png",
-        "hash": "sha256:f2f2921e36782e283452e02883258aa6d5fa0b9bc9817ba31104445bb9f80c32"
-      }
-    },
-    "waterFixture": {
-      "path": "native-water.json",
-      "hash": "sha256:b8662175f5c5c80e5a0abef69e35e25af5b14b1f4a459a9f624870e4a31e497e"
-    },
-    "gridHash": "sha256:984e85b11639a3c271e0bad7203d4ad8e423c70aeb6a04a331a7c895940f02b5",
-    "source": "Ordinary dam photos, retained PMTiles/OSM geometry and standard Terrarium.",
-    "notes": "Ten standard Terrarium tiles provide the gorge. The normal-pool review uses 975 m and the standard water sampler yields 870.67 m upstream, 855.32 m in the tailwater and 873.18 m in the spill tunnel basin. Both review fixtures trim the headwater at the dam while preserving the native shores away from the crest. The 104.33 m upstream water discrepancy and approximate buried contacts keep the geographic fit pending. A small exposed terrain edge remains near the downstream right shoulder. Crest width, gate hoists and outlet dimensions are visual approximations. The preview covers the principal dam exterior."
-  },
-  "runtimeStageComparison": {
-    "waterFixtureHash": "sha256:eeb0db3014de86e899cb16684dfe04836cf4d513a98105ee16ecdb4972bc30b3",
-    "frames": [
-      {
-        "path": ".artifacts/wudongde-hydropower-station-review/runtime-current-draft-shots/downstream-overview.png",
-        "hash": "sha256:2aeb05f1095a66494b10c10e466310a69c3ac6728e017cb801a9058d09c4143b"
-      },
-      {
-        "path": ".artifacts/wudongde-hydropower-station-review/runtime-current-draft-shots/spillway-bays.png",
-        "hash": "sha256:3d64f6fb36ab67e7934eaa79c452c69f47203e5d3bc753a3055c2de4369ec6c4"
-      },
-      {
-        "path": ".artifacts/wudongde-hydropower-station-review/runtime-current-draft-shots/crest-and-gate-hoists.png",
-        "hash": "sha256:0c382f1d01bf4a20445c7632d5898d815ad2c1d666a39c1f6228a258545cc475"
-      },
-      {
-        "path": ".artifacts/wudongde-hydropower-station-review/runtime-current-draft-shots/upper-reservoir.png",
-        "hash": "sha256:ede118cce3421ee49624762cea2b3a08f2bc36468b7b877719a00a2a97f97db0"
-      },
-      {
-        "path": ".artifacts/wudongde-hydropower-station-review/runtime-current-draft-shots/gorge-and-tailwater.png",
-        "hash": "sha256:f056c3fa017621da8586604c23b60787c0a0b1ea6528143d4598c64d2bef271a"
-      }
-    ],
-    "notes": "The 104.33 m upstream water discrepancy and approximate buried contacts keep the geographic fit pending. A small exposed terrain edge remains near the downstream right shoulder. Crest width, gate hoists and outlet dimensions are visual approximations. The preview covers the principal dam exterior."
-  },
-  "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
-      {
-        "name": "source",
-        "path": "content/worldgen/source/places/wk/wk8/wudongde_hydropower_station/models/source.glb",
-        "hash": "sha256:f81eba3d97db1bc37c6c7a8717c23f4cf1094eaa5b5b84021dc6987af1e688f4",
-        "bytes": 790968,
-        "triangles": 9370,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -151.43798828125,
-          -195.95816040039062,
-          -34.4458122253418
-        ],
-        "max": [
-          115.4211196899414,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      },
-      {
-        "name": "runtime",
-        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.glb",
-        "hash": "sha256:8f7985dfdc408297c55c4797b303b5fa73c54e7408d9735d8bd692a38ec94c7a",
-        "bytes": 790376,
-        "triangles": 9370,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -151.43798828125,
-          -195.95816040039062,
-          -34.4458122253418
-        ],
-        "max": [
-          115.4211196899414,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      },
-      {
-        "name": "skyline",
-        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.skyline.glb",
-        "hash": "sha256:8ec1990bdcd747055b6a47456a878ab891d5538f4a6383c13db07ca2c1a9e541",
-        "bytes": 70740,
-        "triangles": 906,
-        "materials": 5,
-        "images": 0,
-        "min": [
-          -151.27854919433594,
-          -195.95816040039062,
-          -34.37617874145508
-        ],
-        "max": [
-          115.27855682373047,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      },
-      {
-        "name": "district",
-        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.district.glb",
-        "hash": "sha256:ad34d352f565d280c75858f6a35a22e9daf6a5e4fc8cb2d27571ec891a4ca5f3",
-        "bytes": 243500,
-        "triangles": 3322,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -151.4365234375,
-          -195.95816040039062,
-          -34.4458122253418
-        ],
-        "max": [
-          115.42046356201172,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      },
-      {
-        "name": "street",
-        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.street.glb",
-        "hash": "sha256:26f98a62c8e72a7e762b0ec66aaf2bc19c50639fd68418fc541d00ed4a925489",
-        "bytes": 412448,
-        "triangles": 5558,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -151.43731689453125,
-          -195.95816040039062,
-          -34.4458122253418
-        ],
-        "max": [
-          115.42082977294922,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      },
-      {
-        "name": "closeup",
-        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.closeup.glb",
-        "hash": "sha256:494612864fa5ef9a153186cef3d0264f036e54a6fb7a3b8a23b808340a97ee81",
-        "bytes": 592592,
-        "triangles": 7922,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -151.43785095214844,
-          -195.95816040039062,
-          -34.4458122253418
-        ],
-        "max": [
-          115.42106628417969,
-          78.07183837890625,
-          83.41500091552734
-        ],
-        "errors": 0,
-        "warnings": 0
-      }
-    ],
-    "tests": {
-      "passed": 4,
-      "failed": 0,
-      "checks": [
-        "Exact master, fixed geographic frame and separate road bridge",
-        "Separate native and full-pool fixtures, terrain hash and paving retention",
-        "Five upper recesses at every tier and six mid-level recesses from district onward",
-        "Four reproducible browser tiers, shared material graphs and independent GPU streams"
-      ]
-    }
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:dd5e042cf4f6449a8bb6e24f28c0feba44cd619d0b37e0cefc3b050e18103185",
+    "notes": "The model has a double-curved arch, narrow crest, five upper recessed spillway bays, six mid-level recessed outlets and crest hoists. The skyline tier preserves the five upper bays and hoists. The finer tiers add mid-level outlets, coping and crest rails. The signed placement puts the 326.95 m arch inside the mapped dam extent and fixes its crest at 988 m. The Earth viewer renders a 975 m upstream pool, 855.32 m Jinsha tailwater and a separate 873.18 m stilling basin. Two bounded terrain grades keep the mapped channel and basin beds submerged. The mapped buried spill tunnel lines do not render on the surface. Water stages and local bed grades are representative. The coarse raster leaves angular sections along the outer gorge and the downstream right shoulder. Underground works and gate motion are outside the modeled exterior. The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the two graded beds."
   },
   "runtimeLodReview": {
     "status": "passed",
@@ -530,14 +530,85 @@
     "initialBytes": 314240,
     "notes": "Skyline plus district total 314,240 bytes. The four browser tiers have 906, 3322, 5558, 7922 triangles and rebuild byte for byte. Six GLBs pass Khronos validation. Four focused checks cover exact bytes, the crest and mapped area, the sampled water discrepancy, recessed openings and the shared material streams."
   },
-  "authoringBindingRepair": {
-    "date": "2026-11-03",
-    "previousInputHash": "sha256:d13ac3f8084086a6f201a4febd68108f20c55c0561a17aa8da77e0c8ac22facb",
-    "inputHash": "sha256:ed96c16d41070a28f2d5c64b826ecb28a5755cf334b77669e02f73308942abf8",
-    "reason": "Authoring-index registration now includes the model module and generator. Removing exactly those two added recipe entries reproduces the previous input hash. All prior source-local inputs and six rendered GLB bytes are unchanged; the selected source generator --check passes. Existing current render evidence is retained and its input binding is extended, without claiming new captures.",
-    "recipes": [
-      "content/worldgen/source/places/wk/wk8/wudongde_hydropower_station/models/dam-model.mjs",
-      "packages/worldgen/scripts/generate-wudongde-hydropower-station.mjs"
+  "geometryValidation": {
+    "glbs": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wk/wk8/wudongde_hydropower_station/models/source.glb",
+        "hash": "sha256:f81eba3d97db1bc37c6c7a8717c23f4cf1094eaa5b5b84021dc6987af1e688f4",
+        "triangles": 9370,
+        "bytes": 790968,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.glb",
+        "hash": "sha256:8f7985dfdc408297c55c4797b303b5fa73c54e7408d9735d8bd692a38ec94c7a",
+        "triangles": 9370,
+        "bytes": 790376,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.skyline.glb",
+        "hash": "sha256:8ec1990bdcd747055b6a47456a878ab891d5538f4a6383c13db07ca2c1a9e541",
+        "triangles": 906,
+        "bytes": 70740,
+        "drawCalls": 5,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.district.glb",
+        "hash": "sha256:ad34d352f565d280c75858f6a35a22e9daf6a5e4fc8cb2d27571ec891a4ca5f3",
+        "triangles": 3322,
+        "bytes": 243500,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.street.glb",
+        "hash": "sha256:26f98a62c8e72a7e762b0ec66aaf2bc19c50639fd68418fc541d00ed4a925489",
+        "triangles": 5558,
+        "bytes": 412448,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wk/wk8/wudongde_hydropower_station/model.closeup.glb",
+        "hash": "sha256:494612864fa5ef9a153186cef3d0264f036e54a6fb7a3b8a23b808340a97ee81",
+        "triangles": 7922,
+        "bytes": 592592,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      }
+    ],
+    "initialBytes": 314240,
+    "focusedTests": [
+      "Exact master, fixed geographic frame and separate road bridge",
+      "Separate native and full-pool fixtures, terrain hash and paving retention",
+      "Five upper recesses at every tier and six mid-level recesses from district onward",
+      "Four reproducible browser tiers, shared material graphs and independent GPU streams"
     ]
-  }
+  },
+  "limitations": [
+    "Water stages and local bed grades are representative. The coarse raster leaves angular sections along the outer gorge and the downstream right shoulder. Underground works and gate motion are outside the modeled exterior.",
+    "The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the two graded beds."
+  ]
 }

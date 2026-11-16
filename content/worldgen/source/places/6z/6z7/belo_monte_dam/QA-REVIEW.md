@@ -1,15 +1,24 @@
 # Belo Monte Dam
 
-Reviewed2026-11-03. **Source exterior complete. Native terrain and water acceptance pending.**
+The main dam has two rock-fill arms, eighteen exposed penstocks, the complete green-roof generating hall and west wing, a transformer apron, outfall openings, and a channel divider.
 
-All 10 current portable views inspected. The mapped main Belo Monte barrier includes both rock-fill wings, concrete inlet headwall, all eighteen individually visible exposed penstocks, and the full green-roof powerhouse footprint including the west wing. The river-facing transformer apron, repeated lower outlet openings and long mapped channel divider remain at their separate levels. The source includes pipe collars, intake hoods, access rails, equipment gantries and recessed glazing in its detailed tiers. Pipe diameters, detailed grades and hidden machinery are estimated from the operator aerial and standard map. The separate linked Pimental site and diversion corridor are outside this mapped main-barrier model.
+The Earth viewer renders the intermediate reservoir at 64.7 m and the Xingu tailrace at 11.7 m. A bounded grade ties the terrain to the west powerhouse apron, and the existing channel opening ends upstream of the native BR-230 bridge. The authored hall replaces the mapped duplicate footprint when it loads.
 
-Exact retained Q816119 way 515537190 identifies the main barrier. Anchor [-51.777917853,-3.133655434], heading -0.017833149255, +X along the nearly eastward hall, +Z into the southern intermediate reservoir and -Z toward the northern Xingu tailrace. The single retained hall polygon and channel-divider shoreline controls align with the operator aerial. The mapped footprint spans 1793.51m by 936.211m. The 3.545m source statement is retained as a suspect value and was excluded from geometry dimensions. The unchanged standard sample 64.695191m at local [0,620] supplies the model datum. Headwall +14m, hall roof -30m and tailwater -53m are estimates. The viewer replaces only the one owned hall footprint and retains the native roads, including the BR-230 bridge, and source water.
+![Belo Monte Dam in the Earth viewer](site-preview.png)
 
-All 10 current shared-material and signed-plan views inspected. Six existing shared 256px graphs supply gravel, basalt, concrete, standing-seam roofing, painted metal and window glazing. One skyline group and seven near groups use metric UVs, linear colors and zero embedded images. Model eviction disposes geometry and restores the ground.
+The Earth fixture retains all three mapped service road records. The ground opening follows the upper central arch. Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-All 26 current native-field, lighting, silhouette, component and transition views inspected. Four occupied masks and one bounded tailrace mask preserve the original terrain values and leave 31 outside probes clear. The first native render showed raised terrain filling the mapped tailrace and obscuring the hall frontage. A clipping outline confined to the photographed and mapped tailrace through local Z -1080 restores the open channel around the hall apron and divider in all four tiers. It stops before the BR-230 bridge. The broader native elevation field still breaks up the connected reservoir and partly obscures the west hall tie-in. Some visible seams remain at the tailrace banks. The render uses illustrative reservoir and tailwater levels and retains one mapped island hole. Native terrain and water fit remains pending.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 692 | 67,536 | 1 |
+| district | 2,722 | 251,804 | 7 |
+| street | 7,132 | 643,260 | 7 |
+| closeup | 16,480 | 1,456,944 | 7 |
 
-Detailed source 52192 triangles / 6267328 bytes. Viewer tiers 692 / 2722 / 7132 / 16480 triangles, at most seven draws, skyline+district 319340 bytes and close-up 1456944 bytes. Four focused checks pass for source/runtime pins and exact signed frame, eighteen visible pipe runs and intact hall and divider in six GLBs, production replacement and preserved native context, and exact isolated LOD reconstruction with separate GPU position/normal streams. All six GLBs have zero Khronos errors and warnings. The scene validates and simulates 30 ticks. Numerical LOD errors are authoring estimates. Physical-device and dense-city timing remains unmeasured.
+Skyline and district total 319,340 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the near viewer tiers. The review covers 71 renders and 120 geographic samples.
 
-Rebuild:node packages/worldgen/scripts/generate-belo-monte-dam.mjs;append --check for exact bytes. Import/LOD/readiness select --ids=ataturk_dam. GLBs remain ignored outputs. Canonical source is authoritative. The local authoring draft is not a source input.
+Water levels and local apron grades are representative. Coarse Terrarium slopes leave angular shores around the reservoir and along parts of the tailrace. Penstock diameters and concealed generating equipment are approximate.
+
+This asset covers the main Belo Monte barrier and powerhouse. The linked Pimental complex and diversion canal are separate sites.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

@@ -78,7 +78,7 @@ const spec = {
     anchor: placement.anchor,
     heading: placement.heading,
     elevationMode: 'sea-level',
-    elevationMeters: 11,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis: brief.heightPolicy,
     groundModelY: 0,

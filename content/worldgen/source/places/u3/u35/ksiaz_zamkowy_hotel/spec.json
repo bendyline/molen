@@ -18,28 +18,28 @@
     "latitude": 50.84326817593619
   },
   "size": [
-    13.9846773147583,
-    15.699999809265137,
+    15.20101547241211,
+    18.285577297210693,
     23.03628635406494
   ],
   "actualBounds": {
     "min": [
       -6.987207412719727,
-      0,
+      -3.0255770683288574,
       -11.515392303466797
     ],
     "max": [
-      6.997469902038574,
-      15.699999809265137,
+      8.213808059692383,
+      15.260000228881836,
       11.520894050598145
     ]
   },
-  "visualBrief": "Detached pale hotel with red pitched roof,shallow front pediment and merged dormers.",
+  "visualBrief": "Detached cream hotel with a red hip roof, a joined cross gable, two low dormers and a recessed forecourt entrance.",
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X toward castle approach entrance,approximately east-north-east",
     "longitudinal": "+Z approximately south-south-east",
-    "origin": "Mapped building envelope center;Y0 estimated local ground contact"
+    "origin": "Mapped building envelope center. The terrain reference is the toe of the forecourt entrance apron."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -53,7 +53,7 @@
       "door": "#967556"
     },
     "colorEncoding": "sRGB decoded to linear COLOR_0",
-    "materialBudget": 5
+    "materialBudget": 6
   },
   "mediumFiContext": {
     "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
@@ -80,25 +80,24 @@
     "independentWikidataIdKnown": false,
     "roofAndDatumSurveyed": false,
     "parentSite": "ksiaz_castle_and_park_complex",
-    "primaryDescription": "The hotel operator identifies three palace annexes;official heritage designation includes entrance buildings. This fourth nearby mapped Hotel Zamkowy is separately identified,with its role in the designated ensemble unconfirmed."
+    "primaryDescription": "The National Heritage Institute records the former tax office at Piastów Śląskich 5 under PL.1.9.ZIPOZ.NID_N_02_BK.92980. A labeled aerial identifies the same detached building as Hotel Zamkowy."
   },
   "reconstruction": {
-    "basis": "Own attributed map footprint;two levels for gatehouse/side wings;mansard tags for side wings. Photographs guide visible composition,not exact dimensions.",
-    "scope": "One independent entrance component of ksiaz_castle_and_park_complex. This does not complete the entire castle/park ensemble.",
-    "registration": "Shared signed axis from mapped castle approach. Own center/footprint preserved. Vertical datum and actual terrain fit remain pending."
+    "basis": "Attributed OpenStreetMap outline, labeled aerial and operator aerial. The National Heritage Institute record confirms the former tax office at number 5.",
+    "scope": "Detached historic building identified by its own address and footprint within the Książ estate inventory. The broader estate remains in progress.",
+    "registration": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade."
   },
   "referencePages": [
-    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
-    "https://www.ksiazhotel.pl/hotel",
-    "https://ksiazhotel.pl/pokoj-2os-komfort-oficyna",
-    "https://commons.wikimedia.org/wiki/File:Ksiaz_w_jesiennej_scenerii.jpg",
+    "https://zabytek.pl/en/obiekty/g-278127",
+    "https://i.szalas.hu/hotels/1554425/500x500/40603663.jpg",
+    "https://www.zamek-ksiaz-hotel-przy-oslej-bramie.pl/img/_img81.jpg",
     "https://www.openstreetmap.org/way/236837151"
   ],
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.293447978199982,
       50.84326817593619
@@ -106,17 +105,98 @@
     "heading": 0.6179489906819999,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
+    "groundModelY": -0.34,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade.",
+    "terrainReference": {
+      "anchor": [
+        16.29354320732098,
+        50.84331071927903
+      ],
+      "modelHeight": -0.34,
+      "basis": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.486782,
+          -11.275578
+        ],
+        [
+          6.90482,
+          -11.240633
+        ],
+        [
+          6.540476,
+          11.400863
+        ],
+        [
+          -6.741892,
+          11.212245
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps outline for the former tax office at Piastów Śląskich 5."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          6.676001,
+          1.164916
+        ],
+        [
+          6.703917,
+          -1.164916
+        ],
+        [
+          8.213809,
+          -1.146825
+        ],
+        [
+          8.185893,
+          1.183008
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            6.4,
+            -10.9
+          ],
+          [
+            13,
+            -10.9
+          ],
+          [
+            13,
+            10.9
+          ],
+          [
+            6.4,
+            10.9
+          ]
+        ]
+      ],
+      "basis": "The model supplies the ground below the entrance steps. Clear inferred parking pavement between the principal façade and the outer approach while keeping the mapped service roads."
+    },
+    "bounds": [
+      16.293252188489078,
+      50.84313501749811,
+      16.29370754224942,
+      50.84342995845332
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "way/236837151"
     ],
     "source": "https://www.openstreetmap.org/way/236837151",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:1781525f8523da2844752d262aabd43563a265a9aeea30b35166c956c2bcf861",
+    "mapGeometryHash": "sha256:20059549eaba30f17468d1dcb0cebdf8d1dd7edbc9dbdd91b3ee18216c3e6062",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring and approach-facing axes;roof/body heights and local ground datum estimated. Inactive until terrain/facade fit reviewed. No independent Wikidata identity claimed."
+    "notes": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade."
   },
   "sharedSurfaces": [
     {
@@ -154,6 +234,15 @@
         2,
         0.25
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
@@ -161,8 +250,8 @@
     "One component only;ksiaz_castle_and_park_complex full site remains incomplete.",
     "Footprint is attributed map geometry;heights,openings,dormers and roof profiles are photographic interpretations.",
     "No independent Wikidata identity.",
-    "Hotel Zamkowy inclusion in the official heritage entrance group remains unconfirmed.",
-    "No interiors,signage,statue likenesses or unique textures. Geographic/terrain fit and physical-device timing pending."
+    "The aerials establish the roof and main façade. Precise door details and the sandstone approach are reconstructed.",
+    "Exterior floor and plinth elevations follow the retained terrain samples. Roof profiles, facade details and opposite elevations are reconstructions. No interiors, custom textures or measured device timings."
   ],
   "qaCameras": [
     {
@@ -222,10 +311,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 1327,
-    "vertices": 3981,
-    "materials": 5,
-    "bytes": 162456,
-    "sha256": "sha256:3bed108692457c378a70257d188bd683440d26e319a0ed597ac48368bb141004"
+    "triangles": 1430,
+    "vertices": 4290,
+    "materials": 6,
+    "bytes": 175304,
+    "sha256": "sha256:6c9b9fb2cbfac489ed72d32a47d07a22bbd02f339ff25d53161789e44dbed6f6"
   }
 }

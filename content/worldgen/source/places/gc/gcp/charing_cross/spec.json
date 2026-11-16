@@ -1,0 +1,307 @@
+{
+  "id": "charing_cross",
+  "planId": "charing_cross",
+  "assetId": "molen.worldgen.structure.charing_cross",
+  "title": "Charing Cross",
+  "category": "monument",
+  "quality": "detailed",
+  "wikidataId": "Q216185",
+  "referenceCoordinate": {
+    "longitude": -0.12765437364578247,
+    "latitude": 51.50733346843256
+  },
+  "visualBrief": "The Whitehall-facing dark bronze shows Charles I in armor with curled hair, reins, boots and a sword. The horse raises one foreleg above the molded Portland stone pedestal with carved heraldry and supporters.",
+  "nativeAxes": "+Z faces down Whitehall and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -0.9797622561454773,
+      -0.4000000059604645,
+      -1.6091359853744507
+    ],
+    "max": [
+      0.9243322610855103,
+      6.335564613342285,
+      1.7865159511566162
+    ]
+  },
+  "size": [
+    1.9040945172309875,
+    6.73556461930275,
+    3.395651936531067
+  ],
+  "geometrySource": "Original deterministic geometry from the mapped podium, the Whitehall axis, public exterior photos and standard Terrarium elevations.",
+  "materialMethod": "Shared cast bronze, limestone and granite use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Equestrian_statue_of_Charles_I%2C_Charing_Cross.jpg",
+    "https://commons.wikimedia.org/wiki/File:Charles_I_statue_by_Le_Sueur.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.12765437364578247,
+      51.50733346843256
+    ],
+    "heading": 0.30288486859232405,
+    "bounds": [
+      -0.12787134204959966,
+      51.50719842395989,
+      -0.12743740524196534,
+      51.50746851250501
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 7.845,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The pedestal footing intersects the standard Terrarium grade at the Charles I statue marker.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          0.85365,
+          -1.48558
+        ],
+        [
+          0.85365,
+          1.6297
+        ],
+        [
+          -0.90908,
+          1.66296
+        ],
+        [
+          -0.90908,
+          -1.45232
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "One mapped polygon represents the statue pedestal. The pedestrian island and nearby buildings stay native."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3855ac3ad1b15b4b6730aefcaf103e0f4fe6e605f721bc7705a5196287b05476",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q216185",
+    "notes": "The current monument marks the Charing Cross catalog location. The medieval Eleanor Cross and the Victorian memorial outside the railway station are separate structures. The bronze pose and Portland stone carving are photo-based reconstructions. Fine lettering and heraldic devices are simplified. The native pedestrian island and roads remain visible."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/charing_cross/models/statue-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:e17bd6a4873d0ddb3c34a5d0cfe3e3bad5123c362dca84aeb7bd9c569664bd14"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/charing_cross/models/statue-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:46bbbdf24ebd3230837295687134f30f86254739234528a2df4857ebbaa59f66",
+    "errorMeters": 0.19,
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.55,
+        "metallic": 0.63
+      },
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.87
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.88
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.63
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.63
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.015,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.63
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The current monument marks the Charing Cross catalog location. The medieval Eleanor Cross and the Victorian memorial outside the railway station are separate structures.",
+    "The bronze pose and Portland stone carving are photo-based reconstructions. Fine lettering and heraldic devices are simplified. The native pedestrian island and roads remain visible."
+  ],
+  "qaCameras": [
+    {
+      "name": "from-whitehall",
+      "position": [
+        -11,
+        4,
+        14
+      ],
+      "lookAt": [
+        0,
+        3.3,
+        0
+      ],
+      "fov": 43
+    },
+    {
+      "name": "raised-foreleg-and-armor",
+      "position": [
+        -7,
+        5.5,
+        5
+      ],
+      "lookAt": [
+        0,
+        5.1,
+        0
+      ],
+      "fov": 40
+    },
+    {
+      "name": "whitehall-front-and-coat-of-arms",
+      "position": [
+        0.5,
+        3.2,
+        9
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "rear-and-station-approach",
+      "position": [
+        6,
+        4.6,
+        -8
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "pedestal-carving",
+      "position": [
+        -2.5,
+        1.9,
+        5
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "axis-and-island",
+      "position": [
+        -8,
+        13,
+        -25
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58022,
+    "vertices": 157898,
+    "materials": 3,
+    "bytes": 6383100,
+    "sha256": "sha256:19736a30639c7adc8cde1075be6061e5ea361331a923e3c66a0500a5118dd694"
+  }
+}

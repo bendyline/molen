@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-  "sourceHash": "sha256:6df3393421d166c74600de0b25129de39016a6b3e775f681e14ae0d76e660a76",
-  "runtimeHash": "sha256:fbcb8289a5f4046a025634a3e13f6a415c015a3aa6506a00e51963a66f221664",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:62ed48598618637b241b902a5907c294b6d9716cbb3064075194ae54c67a7c9c",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:e8f427187d5916c1fe10c940ee7f1c6a3c5530babd0e6027f979f554a81f675f",
-  "placementHash": null,
+  "inputHash": "sha256:bb6686ea9ae8c08be5a94d9a7342b86707b96ffb9d135b27e9d36effd37a1c7c",
+  "sourceHash": "sha256:a770ea182bb685e53d0c89678ee2e987c4481ab531a5bf0e4e87d2a8922c4664",
+  "runtimeHash": "sha256:452bbaca78aaf1d948b4375bb61307cb4c0daed664255ebbc8af5182c71e5423",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:cd81c92297392ec25260a28e6b90e513883a440f3a0429083185d9b549713a07",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:73fb4130f76277520b8e0b1ab5fd6283f1c6b0e9bc78008158a6a989882dcaff",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -22,6 +25,10 @@
       "path": "materials/brick.matgraph.json",
       "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
     "matgraph:molen.worldgen.material.stone_drywall": {
       "path": "materials/stone_drywall.matgraph.json",
       "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
@@ -34,237 +41,405 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:cf808232fa9aa785f3c83fc9e3479a0f974171ef686b27e06d0f072a8aa1a68d",
+      "hash": "sha256:16e5dc1ab5a908e34c4921e444fd9becbb1a19c3738643294abddea27f98180f",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:f06b3cf91048ba85635c683de649880b0380710b8223ccb185f9018c76222ce8",
+      "hash": "sha256:a70fab8d73072ece15b9bf13bcd26c108cf55a671e6871aa61cca6dff14c0e34",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:ba3ecb449b23199cf1136fd0e21b203b2599c4b2374702cf22d25be4318c9f3a",
+      "hash": "sha256:1468b146965aaaaee8b4e007c940b55ad79f60b5c80004d641c22bb6f9cc45c3",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:f1a93cfdffadc6a4d3a332c79a56a0fd27b29a153bdb318c7515dff66a7a29d1",
+      "hash": "sha256:8d313173689107106f6daf61533ead4172c983daff093d28b49c7ee29f1a115d",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/oval-dormer-and-blind-panels.png",
-      "hash": "sha256:bb5ce597ba39cf83de306f616072ca73cead0bec9cc5386cf3620333a7b4a025",
+      "hash": "sha256:bf06f973d61d33bb3cac6c1c3adfdcc7a51629ed5bd75b56584e74509731cd5e",
       "camera": {
         "name": "oval-dormer-and-blind-panels",
         "position": [
           -16,
-          10,
-          16
+          9,
+          -14
         ],
         "lookAt": [
           0,
@@ -274,62 +449,104 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/eyebrow-rooflight-and-portal.png",
-      "hash": "sha256:78dd8c8c8d25c82889e8ed68136415d1e3c44ec3c314b257e7a8e99c96ae6fad",
+      "hash": "sha256:f5abfa6dfd1de786cb56b1da0d937dad01b3e722ce8d7bf50edf8b58d546152c",
       "camera": {
         "name": "eyebrow-rooflight-and-portal",
         "position": [
-          16,
-          10,
-          16
+          -14,
+          7,
+          10
         ],
         "lookAt": [
           0,
@@ -339,56 +556,98 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/roof-and-own-footprint.png",
-      "hash": "sha256:b4d06c75e39b08fad4ebae3b9b573454dd27c0f0b8d4fabcb9d2fb53b39db66c",
+      "hash": "sha256:73595fef91803aa53c6067f3c7648141a97422ba9019e1055d9805a296483222",
       "camera": {
         "name": "roof-and-own-footprint",
         "position": [
@@ -404,56 +663,98 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
       }
     },
     {
       "path": "shots/shared/rear-and-hipped-roof.png",
-      "hash": "sha256:803373545d0ba851513277e2952f58afdb09b036ad110b2bf4abd8e7ebe290f2",
+      "hash": "sha256:198425d94a3e12dae8da5e1a914e8bd58ce8724f68001da9036f3be7bdff9488",
       "camera": {
         "name": "rear-and-hipped-roof",
         "position": [
@@ -469,51 +770,191 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
         "position": [
+          -64.24585507041775,
           0,
-          0,
-          0
+          -63.924596848897636
         ],
         "heading": 0,
-        "meshes": 6,
-        "triangles": 977,
+        "meshes": 7,
+        "triangles": 1143,
         "bounds": {
           "min": [
-            -3.8382599353790283,
-            0,
-            -3.7306950092315674
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
           ],
           "max": [
-            3.8382599353790283,
+            5.150789521867409,
             7.199999809265137,
-            3.7306950092315674
+            5.107339796610177
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3642633e-839b-4a54-82dd-c2319045fd9e",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a5ce1283-7fdf-4ff2-b933-0e446f6c9811",
-          "worldgen:matgraph:molen.worldgen.material.brick": "89846a98-6004-46e7-a9b6-509ce5843ee5",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a0332510-0e57-4a3d-8e28-6cfd077a424b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "49af41f5-d54f-4b1b-808e-e74833b0062f"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
           "molen.worldgen.structure.ksiaz_swiss_house_ii"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 979
+        "draws": 8,
+        "renderedTriangles": 1145
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:2668361c533f8dfa9c724d15372f0dc3d06fc1aa85111738574d3602e9283f36",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_swiss_house_ii",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.swiss-house-ii",
+        "position": [
+          -64.24585507041775,
+          0,
+          -63.924596848897636
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 1143,
+        "bounds": {
+          "min": [
+            -5.053365446394309,
+            -0.5645570158958435,
+            -4.982259812764823
+          ],
+          "max": [
+            5.150789521867409,
+            7.199999809265137,
+            5.107339796610177
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.053364123642321,
+            -0.5645570158958435,
+            -4.982258234541832
+          ],
+          "max": [
+            5.150791698217794,
+            7.199999809265137,
+            5.107339151166947
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "4a9b5138-6a91-4e5c-884e-c0e66346f047",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6d5b1a2f-e289-43f1-a3a2-4fed099ffce9",
+          "worldgen:matgraph:molen.worldgen.material.brick": "4657baf4-2ebb-4f1f-831a-e54cae67c500",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "c0901b75-5002-4901-b5e3-ee2c219dd152",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "85d8022f-e90e-4e21-b6e3-a56c88f601bf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "499ce60e-8695-450f-8ed6-a8fca1a598b0"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_swiss_house_i",
+          "molen.worldgen.structure.ksiaz_swiss_house_ii"
+        ],
+        "selectionBounds": [
+          16.317187358147976,
+          50.850600574748725,
+          16.319008641852022,
+          50.85175041832909
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.swiss-house-i",
+            "coordinate": [
+              16.31728414910321,
+              50.85143341153755
+            ],
+            "height": -0.14
+          },
+          {
+            "placementId": "ksiaz.swiss-house-ii",
+            "coordinate": [
+              16.318035343279305,
+              50.851153853000135
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.swiss-house-ii"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 1145
       }
     }
   ],

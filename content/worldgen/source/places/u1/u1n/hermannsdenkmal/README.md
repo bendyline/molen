@@ -16,14 +16,13 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/final-heritage-tower-models.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-46,316 triangles; 96,276 vertices; 2 material groups; 4,023,692 source bytes. Source hash: `sha256:15d47b3b543a15af1678d3e1568b4751ee492ec0f7d0a3d4fa69e72bb57e30f2`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+49,504 triangles; 102,892 vertices; 2 material groups; 4,300,164 source bytes. Source hash: `sha256:264f7e08afb2495462a08c8d7bb6f2f2a0a13839fc52ebd50867554b39815323`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs hermannsdenkmal`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- The copper figure is an original detailed polygonal reconstruction of the published silhouette, pose, clothing and attributes rather than a scan of the sculpture. Shield text and sword inscription are represented by shallow relief fields without fabricated readable lettering.
-- Stone course rhythm and minor carved capitals are reconstructed from the operator photographs; the main ten-pier construction and all published vertical dimensions are retained.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- The statue preserves the published height and standing pose. The sculpted face, clothing folds, inscriptions, capitals and fittings use original polygonal approximations.
+- The staircase follows the aerial photographs and its mapped paths. Stair counts, base grading and hidden construction are interpreted from standard viewer terrain.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

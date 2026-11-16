@@ -1,15 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.sennar_dam",
-  "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
+  "reviewedOn": "2026-11-16",
+  "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
   "sourceHash": "sha256:fddc2bded276c640e63fd912224967f68b36243e7651422468770bd190eaa871",
   "runtimeHash": "sha256:282be4617472b16a0c44c5982e68b5d0f8337512cba23c4ac9c8c2a29d675ead",
-  "captureReportHash": "sha256:9022c4bbbfbcbb5e9634548397c72bbc996d545f0d91ee5f7cbb7dc1e9ef60a2",
-  "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes. The design and sampled views both use a local split at the crest. The unsplit production river polygon and higher sampled canal levels need validation in the regional viewer, where the intake gates may be obscured. Embankment ties, intake shapes and the mobile crane position are approximate. The model shows static closed sluices.",
+  "captureReportHash": "sha256:1727174307e74f6f704862d7fb937ac1f602fdbe6a2cd8dde1bf1911b3b5c58f",
+  "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes. The PMTiles crest rail establishes the signed placement. Two local grades tie the retained rail approaches to the model. The Blue Nile uses a representative 421.7 m reservoir and 410.3 m tailwater. A 416 m canal stage leaves both intake gates visible. The fixed crest and water stages are representative estimates from retained maps, standard terrain and photos. The canal levels, embankment shoulders and gantry position are approximate. The sluices are static. Terrain corrections depend on the host serving the Protomaps semantic IDs and height samples fine enough to resolve the graded shoulders.",
   "visualReview": {
     "status": "passed",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
+    "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
+    "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes.",
+    "captureReportHash": "sha256:1727174307e74f6f704862d7fb937ac1f602fdbe6a2cd8dde1bf1911b3b5c58f",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -58,38 +60,13 @@
         "path": "shots/entire-crossing.png",
         "hash": "sha256:a6a5c2e544983e534c4411286238cdc546c52c3d3419bc514f7d6c28b8aee21f"
       }
-    ],
-    "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes."
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:6a68253dcfba4f40ba6d9ef22b4feadaca727d91bc29766e6aaa5994fc0cbc94",
-    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
-    "placementHash": "sha256:6a200dc263d4709ddeb91fe0bb0d133d8aba9d9b03950c5bea5db225cc9013b4",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.concrete_boardformed": {
-        "path": "materials/concrete_boardformed.matgraph.json",
-        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
-      },
-      "matgraph:molen.worldgen.material.stone_sandstone": {
-        "path": "materials/stone_sandstone.matgraph.json",
-        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      },
-      "matgraph:molen.worldgen.material.gravel": {
-        "path": "materials/gravel.matgraph.json",
-        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
-      }
-    },
+    "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
+    "notes": "Five shared graphs supply sandstone, board-formed concrete, plain concrete, gravel and painted steel. All six GLBs have zero embedded images. Eviction releases model geometry and restores terrain.",
+    "captureReportHash": "sha256:3ee77e2dbfe8110300d3cb3a483b028001f4953ffd19b09b7f9eb10cb066a853",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -139,26 +116,248 @@
         "hash": "sha256:fa5a4533e13a2a54b0f15bf569a7938510e840bab4ef54de6374d595d98b7cfe"
       }
     ],
-    "notes": "Five shared graphs supply sandstone, board-formed concrete, plain concrete, gravel and painted steel. All six GLBs have zero embedded images. Eviction releases model geometry and restores terrain."
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "placementHash": "sha256:6a200dc263d4709ddeb91fe0bb0d133d8aba9d9b03950c5bea5db225cc9013b4",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_boardformed": {
+        "path": "materials/concrete_boardformed.matgraph.json",
+        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.gravel": {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    }
   },
   "geographicReview": {
-    "status": "pending-native-river-stage-and-intake-fit",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
+    "status": "passed",
+    "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
     "placementHash": "sha256:6a200dc263d4709ddeb91fe0bb0d133d8aba9d9b03950c5bea5db225cc9013b4",
-    "scope": "The PMTiles crest rail establishes the anchor at [33.63519769, 13.54762612] and heading −3.00541828 radians. Local +X runs west and +Z runs north-northwest downstream. The fixed 425.4 m crest grade is inferred from terrain and the maximum reservoir level. The dedicated rail replacement matches only the modeled span.",
-    "notes": "The design and sampled views both use a local split at the crest. The unsplit production river polygon and higher sampled canal levels need validation in the regional viewer, where the intake gates may be obscured. Embankment ties, intake shapes and the mobile crane position are approximate. The model shows static closed sluices."
-  },
-  "fidelityReview": {
-    "target": "medium-fi",
-    "status": "pending-native-river-stage-and-intake-fit",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
-    "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes. The design and sampled views both use a local split at the crest. The unsplit production river polygon and higher sampled canal levels need validation in the regional viewer, where the intake gates may be obscured. Embankment ties, intake shapes and the mobile crane position are approximate. The model shows static closed sluices."
+    "mapFrameHash": "sha256:8bd119b68083c53d73e860eb6e10ad2d582d6689d07d6281802d0e4047caa697",
+    "notes": "The PMTiles crest rail establishes the signed placement. Two local grades tie the retained rail approaches to the model. The Blue Nile uses a representative 421.7 m reservoir and 410.3 m tailwater. A 416 m canal stage leaves both intake gates visible.",
+    "native": {
+      "fixtureHash": "sha256:ce9940240357ab2a724833977974bd2489d431761d5dd29f03338c14b02c9435",
+      "gradeSettingsHash": "sha256:c8414a3377a09b2ce37b3cca27b19c8583166b53479a5595b20c96dd79497afd",
+      "waterSettingsHash": "sha256:0f23b9d1ddfe0063bdc09bd4092daec0315376bec2c5edf6e280d88f12c7a7cb",
+      "waterStagesMeters": {
+        "upstream": 421.7,
+        "downstream": 410.3,
+        "canals": 416
+      },
+      "probeCount": 275,
+      "checkedWaterSamples": 100,
+      "gradeAdjustedSamples": 825,
+      "maximumRailBedJoinDifferenceMeters": 0.0008093003390285958,
+      "mappedBridgeFragmentsReplaced": 3,
+      "independentRoadRecordsRetained": 209,
+      "failedLoadRestoresMappedRoads": true,
+      "groundAndLandcoverRestoredOnUnload": true,
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-downstream-overview.png",
+          "hash": "sha256:899334e8d907671f0bedf7694c2dceb960a45b09164ae4e1aa2593667b68c2b0"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-masonry-and-gantry.png",
+          "hash": "sha256:09cbea2bb8949388bf40c33fdd280e57dcd95c9d1511f61bd547afc410a52bcc"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-crest-rail.png",
+          "hash": "sha256:3eb8821d28036d6882ba760a6d3a62a0bae7c0c9458d757f2c067a3c2d2abb3c"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-gezira-intake.png",
+          "hash": "sha256:9d26e1856619ed0c7a148f888a2f8ec57e039deb4183bc43fd89731bb10092b4"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-entire-crossing.png",
+          "hash": "sha256:75e407d643e43da33bb28daa5400d7b10188e1000f9221cc836702399065c9d7"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-intake-0-downstream.png",
+          "hash": "sha256:5fbb64b84439fc554413dd27e575666cb351948b41809c23d6480703c0125c40"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-intake-1-downstream.png",
+          "hash": "sha256:b4a53d96109b9cbd19afa17ff550dfbe1664aac802477ea5aa9fdb1aee9782e3"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-rail-tie-0.png",
+          "hash": "sha256:8e664e92c1b32aa7a24fae1ef077aca03654dca009cd4afd84870f7554a0d00a"
+        },
+        {
+          "level": "skyline",
+          "file": "sennar_dam-skyline-rail-tie-1.png",
+          "hash": "sha256:670bc8601c83e847574779267f95b7d59b9a14ec701b3d93f9849c14b604088b"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-downstream-overview.png",
+          "hash": "sha256:7c19f83f9714ea277e3f9a28a007c8417989c52c497ad734f43ecd1b1cf4683a"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-masonry-and-gantry.png",
+          "hash": "sha256:f19bea7983ec23432f40880034e8d52ad9c466f6f7caaf5b02d5992a9b57d34b"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-crest-rail.png",
+          "hash": "sha256:30f251ece59640b224a9add7edd451dc0f06fe305653368cd7199a9495f5e883"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-gezira-intake.png",
+          "hash": "sha256:9d26e1856619ed0c7a148f888a2f8ec57e039deb4183bc43fd89731bb10092b4"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-entire-crossing.png",
+          "hash": "sha256:7f7ca99efd530f72ed95390f9f9b26fa8a9e19b7140aa6e9827bcff82db54da7"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-intake-0-downstream.png",
+          "hash": "sha256:5fbb64b84439fc554413dd27e575666cb351948b41809c23d6480703c0125c40"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-intake-1-downstream.png",
+          "hash": "sha256:b4a53d96109b9cbd19afa17ff550dfbe1664aac802477ea5aa9fdb1aee9782e3"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-rail-tie-0.png",
+          "hash": "sha256:8e664e92c1b32aa7a24fae1ef077aca03654dca009cd4afd84870f7554a0d00a"
+        },
+        {
+          "level": "district",
+          "file": "sennar_dam-district-rail-tie-1.png",
+          "hash": "sha256:670bc8601c83e847574779267f95b7d59b9a14ec701b3d93f9849c14b604088b"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-downstream-overview.png",
+          "hash": "sha256:6fd030bc6fce78fba0adb5da2d4807a189a9231fd3799b95421b1a0e1745901d"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-masonry-and-gantry.png",
+          "hash": "sha256:a091db483002e7099db7cbdd7a4d9eef04f26c9cec0553e9e52525204d7c558b"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-crest-rail.png",
+          "hash": "sha256:fefde3a062e7cb46bcdcfc884623478bd8914a8e3fca5c20c18ce188981aa22a"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-gezira-intake.png",
+          "hash": "sha256:a3cc53e7ec16268ef38fdbfbd2c4c118cb1a30dbd8e477d3382a67176a66336f"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-entire-crossing.png",
+          "hash": "sha256:30d1270dccf537ebbffa5c25dede79c1a3f1a64da351821bb76a9d1279f800d9"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-intake-0-downstream.png",
+          "hash": "sha256:3da06c8204fd45c5033c8344021b5bd818c7b94172b7be06ee51793971d37efe"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-intake-1-downstream.png",
+          "hash": "sha256:6ce4416f940989cd906f8acf358aa97ac53911ea91941c6c77a385dd9b05c91d"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-rail-tie-0.png",
+          "hash": "sha256:86b82af70f0b62817fabe12d2121a19bb5771f967318167cc9d19e6ab32fb368"
+        },
+        {
+          "level": "street",
+          "file": "sennar_dam-street-rail-tie-1.png",
+          "hash": "sha256:f5f49f9fdc029adb81721a84b3bf622af06845871d039d97b96837051fd16976"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-downstream-overview.png",
+          "hash": "sha256:ad7dcd2760904004834e8ad2494857f852c8ff1ea8891c6456608a39f7a72427"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-masonry-and-gantry.png",
+          "hash": "sha256:459606b4fea9d44de91a2e3faca9cf9d25ce35c55a428297fe5d7965c2a357e6"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-crest-rail.png",
+          "hash": "sha256:70931c6296c99fd7a238267f0a008ea89dba07e11cf6c4cd7a086ed7e279331d"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-gezira-intake.png",
+          "hash": "sha256:a3cc53e7ec16268ef38fdbfbd2c4c118cb1a30dbd8e477d3382a67176a66336f"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-entire-crossing.png",
+          "hash": "sha256:a4864e91f58442924d4d73fddb7f1012c8265a5c5013afd369805c7850672b7c"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-intake-0-downstream.png",
+          "hash": "sha256:3da06c8204fd45c5033c8344021b5bd818c7b94172b7be06ee51793971d37efe"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-intake-1-downstream.png",
+          "hash": "sha256:6ce4416f940989cd906f8acf358aa97ac53911ea91941c6c77a385dd9b05c91d"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-rail-tie-0.png",
+          "hash": "sha256:86b82af70f0b62817fabe12d2121a19bb5771f967318167cc9d19e6ab32fb368"
+        },
+        {
+          "level": "closeup",
+          "file": "sennar_dam-closeup-rail-tie-1.png",
+          "hash": "sha256:f5f49f9fdc029adb81721a84b3bf622af06845871d039d97b96837051fd16976"
+        },
+        {
+          "level": "failure",
+          "file": "sennar_dam-failure-downstream-overview.png",
+          "hash": "sha256:2b10d4a6bd07225a34f7d989b3e451d07d6f5944571fe6a06dbcbebb93af814d"
+        }
+      ]
+    }
   },
   "mediumFiReview": {
-    "status": "pending-native-river-stage-and-intake-fit",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
+    "status": "passed",
+    "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
+    "notes": "Inspected four detail levels in daylight and late light in the 25 standard-terrain views. The Earth placement check independently verifies the rendered canal stages, both rail ties and restored native layers.",
     "captureReportHash": "sha256:1edf4453e706c3b35ecf3af4eb5d5fcf032b70f65c6c0cbe52587540d4c7b142",
-    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -288,259 +487,87 @@
         "hash": "sha256:e2fc5317788331d2afdbfebae6cc240993ab07b355a84cb890e66e7c0c531e2d"
       }
     ],
-    "notes": "The 25 design-terrain views use nine standard Terrarium tiles. The fixture separates the mapped Blue Nile water at the occupied wall and uses 421.7 m upstream, 410.3 m tailwater, and an illustrative 416 m canal level. Five comparison views use sampled stages of 423.58 m upstream, 409.65 m downstream and 423.65 m at the first canal. The second canal probe gives 423.10 m."
+    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf"
   },
-  "siteIntegrationReview": {
-    "status": "pending-native-river-stage-and-intake-fit",
-    "inputHash": "sha256:22e86bd798e602821d4b333db0155c1a40a4317f46e946180e22992ea22eb374",
-    "terrainFixture": {
-      "descriptor": {
-        "path": "terrain-review.terrain.json",
-        "hash": "sha256:dba5eaa46b10c2617db8f20362819edeb8b96b20300f8096e2bca21bd2eea70e"
-      },
-      "heightmap": {
-        "path": "terrain-review.height.png",
-        "hash": "sha256:ee7f7b8017ca49a7d2ff74943d187880812bb085ef8fe88d1c442632d44a1661"
-      }
-    },
-    "waterFixture": {
-      "path": "native-water.json",
-      "hash": "sha256:f4894cf31ef450eedadd247fad2c3429a74a9e926b2cfa4bfaab3e16ad7c70fa"
-    },
-    "gridHash": "sha256:ed9bf80fd7b905b82d81168fde154f792c73d386d8cbf2f7d367547b7df17611",
-    "source": "Ordinary dam photos, retained standard PMTiles geometry and nine standard Terrarium tiles.",
-    "notes": "The 25 design-terrain views use nine standard Terrarium tiles. The fixture separates the mapped Blue Nile water at the occupied wall and uses 421.7 m upstream, 410.3 m tailwater, and an illustrative 416 m canal level. Five comparison views use sampled stages of 423.58 m upstream, 409.65 m downstream and 423.65 m at the first canal. The second canal probe gives 423.10 m. The design and sampled views both use a local split at the crest. The unsplit production river polygon and higher sampled canal levels need validation in the regional viewer, where the intake gates may be obscured. Embankment ties, intake shapes and the mobile crane position are approximate. The model shows static closed sluices."
-  },
-  "transportReview": {
+  "fidelityReview": {
+    "target": "medium-fi",
     "status": "passed",
-    "fragments": 3,
-    "originalMeters": 1854.0553753364668,
-    "remainingMeters": 0,
-    "preservedRoads": 216,
-    "placementStatus": "preview"
-  },
-  "runtimeStageComparison": {
-    "waterFixtureHash": "sha256:d03fd94e3418b317ef1350d5d8b162be79a7d331c2c5860c1177a0bffa0e451e",
-    "frames": [
-      {
-        "path": ".artifacts/sennar-dam-review/runtime-current-draft-shots/downstream-overview.png",
-        "hash": "sha256:bdc3bb43565a07b37fb2388959786269ce5aee0344b589eee89a49892eb85e24"
-      },
-      {
-        "path": ".artifacts/sennar-dam-review/runtime-current-draft-shots/masonry-and-gantry.png",
-        "hash": "sha256:5ec4def77222ed4668dbdb2954e4d419dba878fe9bf45449ca88451be87eadea"
-      },
-      {
-        "path": ".artifacts/sennar-dam-review/runtime-current-draft-shots/crest-rail.png",
-        "hash": "sha256:ab5e3b2aac31529ba3b4b5c7717b968f4049b48f2fcbd752090175bb8f988fa5"
-      },
-      {
-        "path": ".artifacts/sennar-dam-review/runtime-current-draft-shots/gezira-intake.png",
-        "hash": "sha256:a5263750c6ec04e5f4286c5c553a23dc52237990024660adb35a5377e270823a"
-      },
-      {
-        "path": ".artifacts/sennar-dam-review/runtime-current-draft-shots/entire-crossing.png",
-        "hash": "sha256:44d02c206fc05b20cf68aaa457be711dd85980e99afb02e28bc74a580ed3ad9a"
-      }
-    ],
-    "notes": "The design and sampled views both use a local split at the crest. The unsplit production river polygon and higher sampled canal levels need validation in the regional viewer, where the intake gates may be obscured. Embankment ties, intake shapes and the mobile crane position are approximate. The model shows static closed sluices."
+    "inputHash": "sha256:653bf8d8accd97b516138f573f3b54308e205019eadd1baf77ce70220d7c0e72",
+    "notes": "The model reproduces the 600 m sandstone gravity wall, 80 low sluices and 72 upper arched apertures, plus the crest railway, traveling gantry, embankments and two irrigation intakes. The PMTiles crest rail establishes the signed placement. Two local grades tie the retained rail approaches to the model. The Blue Nile uses a representative 421.7 m reservoir and 410.3 m tailwater. A 416 m canal stage leaves both intake gates visible. The fixed crest and water stages are representative estimates from retained maps, standard terrain and photos. The canal levels, embankment shoulders and gantry position are approximate. The sluices are static. Terrain corrections depend on the host serving the Protomaps semantic IDs and height samples fine enough to resolve the graded shoulders."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
         "name": "source",
         "path": "content/worldgen/source/places/sd/sdr/sennar_dam/models/source.glb",
         "hash": "sha256:fddc2bded276c640e63fd912224967f68b36243e7651422468770bd190eaa871",
-        "bytes": 1508524,
         "triangles": 17066,
-        "materials": 6,
+        "bytes": 1508524,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          13.545150756835938,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/sd/sdr/sennar_dam/model.glb",
         "hash": "sha256:282be4617472b16a0c44c5982e68b5d0f8337512cba23c4ac9c8c2a29d675ead",
-        "bytes": 1507916,
         "triangles": 17066,
-        "materials": 6,
+        "bytes": 1507916,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          13.545150756835938,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/sd/sdr/sennar_dam/model.skyline.glb",
         "hash": "sha256:e814d734caa378dfd23677567ccc8316780a5567942728dc98ea6248cc88a843",
-        "bytes": 80676,
         "triangles": 938,
-        "materials": 6,
+        "bytes": 80676,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          11.355151176452637,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/sd/sdr/sennar_dam/model.district.glb",
         "hash": "sha256:f27b5042a89a24fafc194fabce9e53a63d70c00de395f521244cdc40d49a46a3",
-        "bytes": 286488,
         "triangles": 3742,
-        "materials": 6,
+        "bytes": 286488,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          13.545150756835938,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/sd/sdr/sennar_dam/model.street.glb",
         "hash": "sha256:db47d0ea696c1db1cb98721c90a93a87375a22c77089cb714ed2bc9fae3149b7",
-        "bytes": 516256,
         "triangles": 6902,
-        "materials": 6,
+        "bytes": 516256,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          13.545150756835938,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/sd/sdr/sennar_dam/model.closeup.glb",
         "hash": "sha256:ecadf7af7540ce395c89f5a1166cade97a1c35a2a848d4bc6daa853e852705eb",
-        "bytes": 932172,
         "triangles": 12522,
-        "materials": 6,
+        "bytes": 932172,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -1260,
-          -24.14484977722168,
-          -26
-        ],
-        "max": [
-          1750,
-          13.545150756835938,
-          26
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       }
     ],
-    "tests": {
-      "command": "node .artifacts/sennar-dam-review/check.mjs",
-      "passed": 4,
-      "failed": 0,
-      "checks": [
-        "Mapped crest, signed datum, full extent and exact source hashes",
-        "Swept concrete footprint, paving retention and standard terrain samples",
-        "80 lower sluices, 72 upper arches, preserved crest rail and distinct intakes",
-        "Four viewer tiers rebuild byte for byte with distinct GPU streams and shared materials"
-      ]
-    }
+    "initialBytes": 367164
   },
-  "runtimeLodReview": {
-    "status": "passed",
-    "recipeHash": "sha256:8be7cfb6e00c2d6d9c87e2abe572023d843b29ee9b327da6eeb58fc6be177bad",
-    "levels": [
-      {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "hash": "sha256:e814d734caa378dfd23677567ccc8316780a5567942728dc98ea6248cc88a843",
-        "bytes": 80676,
-        "gzipBytes": 15481,
-        "triangles": 938,
-        "cpuBytes": 73452,
-        "gpuBytes": 73452,
-        "errorMeters": 4,
-        "drawCalls": 6
-      },
-      {
-        "name": "district",
-        "file": "model.district.glb",
-        "hash": "sha256:f27b5042a89a24fafc194fabce9e53a63d70c00de395f521244cdc40d49a46a3",
-        "bytes": 286488,
-        "gzipBytes": 55140,
-        "triangles": 3742,
-        "cpuBytes": 279168,
-        "gpuBytes": 279168,
-        "errorMeters": 1.6,
-        "drawCalls": 6
-      },
-      {
-        "name": "street",
-        "file": "model.street.glb",
-        "hash": "sha256:db47d0ea696c1db1cb98721c90a93a87375a22c77089cb714ed2bc9fae3149b7",
-        "bytes": 516256,
-        "gzipBytes": 103574,
-        "triangles": 6902,
-        "cpuBytes": 508944,
-        "gpuBytes": 508944,
-        "errorMeters": 0.6,
-        "drawCalls": 6
-      },
-      {
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "hash": "sha256:ecadf7af7540ce395c89f5a1166cade97a1c35a2a848d4bc6daa853e852705eb",
-        "bytes": 932172,
-        "gzipBytes": 182036,
-        "triangles": 12522,
-        "cpuBytes": 924840,
-        "gpuBytes": 924840,
-        "errorMeters": 0.2,
-        "drawCalls": 6
-      }
-    ],
-    "initialBytes": 367164,
-    "notes": "The detailed master contains 17,066 triangles. The four viewer tiers contain 938, 3742, 6902, 12522 triangles. Skyline plus district are 367,164 bytes and close-up is 932,172 bytes. Four focused checks verify exact source pins, signed placement, rail replacement scope, gate counts, both intakes and byte-for-byte viewer tiers. The production road filter suppresses all three overlapping native rail fragments and preserves all 216 other retained transport lines. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks."
-  }
+  "limitations": [
+    "The fixed crest and water stages are representative estimates from retained maps, standard terrain and photos. The canal levels, embankment shoulders and gantry position are approximate. The sluices are static.",
+    "Terrain corrections depend on the host serving the Protomaps semantic IDs and height samples fine enough to resolve the graded shoulders."
+  ]
 }

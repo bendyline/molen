@@ -70,7 +70,8 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+  layout = await read(source + '/layout.json'),
+  contact = await read(source + '/models/site-fit.json');
 it('pins Farringdon source, full surface interchange frame, both entrance-host grades and the closed-floor policy', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),
@@ -84,12 +85,13 @@ it('pins Farringdon source, full surface interchange frame, both entrance-host g
   expect(frame.heading).toBe(2.012658284323024);
   expect(frame.mappedIdentity.wikidataId).toBe('Q800754');
   expect(frame.mappedIdentity.ownedNativeIds).toContain(35185058305447);
-  expect(layout.nativeMap.ownedParts).toHaveLength(15);
-  expect(layout.nativeMap.preservedNeighbors).toHaveLength(2865);
+  expect(layout.nativeMap.ownedParts).toHaveLength(20);
+  expect(layout.nativeMap.preservedNeighbors).toHaveLength(2860);
   expect(s.sourceFacts.canopyFamilies).toBe(2);
   expect(s.sourceFacts.bloomEstimatedHeight).toBe(34);
   expect(s.sourceFacts.eastNativeHeight).toBe(23);
-  expect(p.entry.groundCutout.outlines).toHaveLength(3);
+  expect(p.entry.groundCutout.outlines).toEqual([...frame.geometry.outlines, ...contact.aprons]);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
   expect(
     reviewedSourceMapFrame({
       frameBytes: await readFile(source + '/map-frame.json'),
@@ -113,14 +115,16 @@ it('keeps whole mapped canopy families, heritage and both entrance hosts, closed
   for (const f of files) {
     const ts = await triangles(f.path),
       top = (x, z, y = 60) => y - nearest(ts, [x, y, z], [0, -1, 0], true);
-    expect.soft(top(48, -128, 2), f.name + ' heritage occupiedfloor').toBeCloseTo(0.65, 2);
-    expect.soft(top(65, -160, 2), f.name + ' modernhall occupiedfloor').toBeCloseTo(0.65, 2);
-    expect
-      .soft(top(-5, -180, 2), f.name + ' Bloom occupiedfloor')
-      .toBeCloseTo(controls.bloomGrade + 0.65, 2);
-    expect
-      .soft(top(-135, 177, controls.eastGrade + 2), f.name + ' east occupiedfloor')
-      .toBeCloseTo(controls.eastGrade + 0.65, 2);
+    for (const [i, entrance] of contact.thresholds.entries()) {
+      const [x, z] = entrance.point;
+      const rim = contact.aprons[i];
+      const direction = sub(rim[2], rim[1]);
+      const length = Math.hypot(...direction);
+      const actual = top(x + 0.03 * direction[0] / length, z + 0.03 * direction[1] / length, entrance.thresholdY + 0.18);
+      expect.soft(actual, `${f.name} ${entrance.name} entry threshold`).toBeCloseTo(entrance.thresholdY, 1);
+    }
+    expect.soft(top(0, -128), f.name + ' complete low western ticket hall').toBeCloseTo(6.8, 1);
+    expect.soft(top(-169, 177), f.name + ' attached Long Lane corner').toBeCloseTo(controls.eastGrade + 23, 2);
     expect
       .soft(top(-5, -180), f.name + ' full Bloomcrown')
       .toBeCloseTo(controls.bloomGrade + 34, 2);
@@ -206,8 +210,8 @@ it('uses the production viewer to replace the whole passenger building and prese
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
   expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
-  expect(target).toHaveLength(15);
-  expect(neighbor).toHaveLength(2865);
+  expect(target).toHaveLength(20);
+  expect(neighbor).toHaveLength(2860);
   const asset = await read(installed + '/asset.json'),
     doc = await new NodeIO().readBinary(
       await readFile(installed + '/' + asset.runtimeLods.levels[0].file),

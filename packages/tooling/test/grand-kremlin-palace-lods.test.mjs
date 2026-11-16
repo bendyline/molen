@@ -88,7 +88,8 @@ it('binds the complete principal palace, connected Terem ranges and actual court
   expect(p.entry.buildingCutout.minimumCoverage).toBe(0.98);
   expect(p.entry.buildingCutout.outlines).toHaveLength(1);
   expect(layout.actualCourt.length).toBeGreaterThan(3);
-  expect(layout.entries).toHaveLength(1);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
+  expect(p.entry.groundCutout.additionalOutlines).toHaveLength(2);
   expect(layout.nativeMap.ownedParts).toHaveLength(261);
   expect(layout.nativeMap.preservedNeighbors).toHaveLength(2050);
   expect(
@@ -101,11 +102,7 @@ it('binds the complete principal palace, connected Terem ranges and actual court
     }),
   ).toBeDefined();
 });
-it('keeps the true irregular court open, both raised crowns closed and bounded approaches supported by the unchanged native field', async () => {
-  const field = heightfieldFromPng(
-    await read(source + '/terrain-review.terrain.json'),
-    await readFile(source + '/terrain-review.height.png'),
-  );
+it('keeps the irregular court and east walkway open and both raised crowns closed', async () => {
   for (const l of (await read(runtime + '/asset.json')).runtimeLods.levels) {
     const ts = await triangles(runtime + '/' + l.file);
     for (const [x, z] of [
@@ -140,15 +137,10 @@ it('keeps the true irregular court open, both raised crowns closed and bounded a
       expect(y, l.name + ' closed range roof').toBeGreaterThanOrEqual(layout.floorY + min - 0.1);
       expect(y).toBeLessThan(layout.floorY + min + 5);
     }
-    for (const e of layout.entries)
-      for (const f of [-0.5, 0, 0.5]) {
-        const X = e.center[0] + e.U[0] * e.width * f + e.N[0] * e.approachDistance,
-          Z = e.center[1] + e.U[1] * e.width * f + e.N[1] * e.approachDistance;
-        expect(
-          30 - nearest(ts, [X, 30, Z].map(Math.fround), [0, -1, 0], true),
-          l.name + ' bounded native contact ' + e.owner,
-        ).toBeCloseTo(field.sampleHeight(X, Z), 2);
-      }
+    for (const z of [20, 22, 24])
+      expect(nearest(ts, [56.45, 30, z], [0, -1, 0], true), l.name + ' open east walkway').toBe(
+        Infinity,
+      );
   }
 }, 60000);
 it('uses the production viewer to replace the actual native building parts while retaining nearby buildings', async () => {

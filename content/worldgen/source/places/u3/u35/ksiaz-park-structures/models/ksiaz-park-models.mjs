@@ -17,6 +17,7 @@ export const ksiazParkModels = [
     references: [
       'https://www.bip.ksiaz.walbrzych.pl/wp-content/upLoads/2013/06/Za%C5%82%C4%85cznik-nr-10-Projekt-Budowlany-Mauzoleum-elewacja.pdf',
       'https://commons.wikimedia.org/wiki/File:Walbrzych_Hochberg_mausoleum_SE_2019.jpg',
+      'https://www.labiryntarium.pl/5powiatow/powiat-walbrzyski/1584-mauzoleum-hochbergow.html',
       'https://www.ksiaz.walbrzych.pl/turystyka/zwiedzanie/dzienne',
     ],
     cameras: [
@@ -47,6 +48,7 @@ export const ksiazParkSurfaces = {
   plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
   tile: { slot: 'roof', graph: 'tile_ceramic', roughness: 0.88, metallic: 0 },
   sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
+  cutStone: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.88, metallic: 0 },
   rubble: { slot: 'wall', graph: 'stone_drywall', roughness: 0.92, metallic: 0 },
   brick: { slot: 'wall', graph: 'brick', roughness: 0.88, metallic: 0 },
   slate: { slot: 'roof', graph: 'slate', roughness: 0.88, metallic: 0 },
@@ -63,6 +65,7 @@ export const ksiazParkPalette = {
   brick: '#ce8e72',
   slate: '#798184',
   timber: '#af946b',
+  weatheredTimber: '#685444',
   metal: '#738276',
   glass: '#536c7c',
 };
@@ -189,7 +192,7 @@ function winding(loop) {
     }, 0),
   );
 }
-function cap(o, loop, height, color, slot) {
+function cap(o, loop, height, color, slot, normal = [0, 1, 0]) {
   const ix = earcut(loop.flat());
   for (let i = 0; i < ix.length; i += 3)
     face(
@@ -203,7 +206,7 @@ function cap(o, loop, height, color, slot) {
         ]),
       color,
       slot,
-      [0, 1, 0],
+      normal,
     );
 }
 function facade(o, loop, i) {
@@ -252,8 +255,8 @@ function window(o, y, w, h, d) {
   rectangle(o, 0, y, 0.04, w, h, 'glass', 'glass');
   if (d >= 2) {
     for (const x of [-w / 2 - 0.12, w / 2 + 0.12])
-      box(o, x, y - 0.15, 0.1, 0.24, h + 0.3, 0.18, 'stone', 'sandstone');
-    for (const yy of [y - 0.18, y + h]) box(o, 0, yy, 0.1, w + 0.5, 0.2, 0.2, 'stone', 'sandstone');
+      box(o, x, y - 0.15, 0.1, 0.24, h + 0.3, 0.18, 'stone', 'cutStone');
+    for (const yy of [y - 0.18, y + h]) box(o, 0, yy, 0.1, w + 0.5, 0.2, 0.2, 'stone', 'cutStone');
     if (d === 3) {
       box(o, 0, y, 0.16, 0.1, h, 0.09, 'metal', 'metal');
       box(o, 0, y + h * 0.55, 0.16, w, 0.08, 0.09, 'metal', 'metal');
@@ -261,7 +264,7 @@ function window(o, y, w, h, d) {
   }
 }
 function oculus(o, y, radius, d) {
-  const n = d < 2 ? 8 : 12;
+  const n = d < 2 ? 8 : d === 2 ? 14 : 24;
   const ring = (r, z) =>
     Array.from({ length: n }, (_, i) => [
       Math.cos((i * Math.PI * 2) / n) * r,
@@ -270,40 +273,223 @@ function oculus(o, y, radius, d) {
     ]);
   face(o, ring(radius, 0.06), 'glass', 'glass', [0, 0, 1]);
   if (d >= 2) {
-    const a = ring(radius, 0.12),
-      b = ring(radius + 0.22, 0.12);
+    const a = ring(radius, 0.09),
+      b = ring(radius + 0.06, 0.17),
+      c = ring(radius + 0.19, 0.17),
+      edge = ring(radius + 0.22, 0.025);
     for (let i = 0; i < n; i++) {
       const k = (i + 1) % n;
-      face(o, [a[i], b[i], b[k], a[k]], 'stone', 'sandstone', [0, 0, 1]);
+      for (const [inside, outside] of [
+        [a, b],
+        [b, c],
+        [c, edge],
+      ])
+        face(o, [inside[i], outside[i], outside[k], inside[k]], 'stone', 'cutStone', [0, 0, 1]);
     }
   }
   if (d === 3) {
-    for (const x of [-0.45, 0, 0.45])
-      box(
+    const center = ring(radius * 0.28, 0.117),
+      tips = ring(radius, 0.117);
+    for (let i = 0; i < n; i++) {
+      const k = (i + 1) % n;
+      const line = (a, b) => {
+        const dx = b[0] - a[0],
+          dy = b[1] - a[1],
+          length = Math.hypot(dx, dy);
+        const shift = [(-0.013 * dy) / length, (0.013 * dx) / length, 0];
+        face(
+          o,
+          [a, b, b.map((v, j) => v + shift[j]), a.map((v, j) => v + shift[j])],
+          'metal',
+          'metal',
+          [0, 0, 1],
+        );
+      };
+      line(center[i], center[k]);
+      if (i % 3 === 0) line(center[i], tips[i]);
+    }
+  }
+}
+function chapelStair(o, fit, detail) {
+  const { width, depth, spring, toe } = fit;
+  const levels = [
+    { width, depth, height: toe },
+    { width: width - 0.12, depth: depth - 0.09, height: toe + 0.045 },
+    { width: width - 0.52, depth: depth - 0.42, height: -0.29 },
+    { width: width - 0.96, depth: depth - 0.78, height: -0.145 },
+    { width: width - 1.42, depth: depth - 1.13, height: 0 },
+  ];
+  const stride = detail < 2 ? 2 : 1;
+  const rings = levels.map((step) => {
+    const curve = [];
+    for (let i = 0; i <= 12; i += stride) {
+      const angle = -Math.PI / 2 + (i * Math.PI) / 12;
+      curve.push([
+        (Math.sin(angle) * step.width) / 2,
+        step.height,
+        spring + Math.cos(angle) * (step.depth - spring),
+      ]);
+    }
+    const a = curve[0],
+      b = curve.at(-1);
+    return [[a[0], a[1], -0.34], ...curve, [b[0], b[1], -0.34]];
+  });
+  // Render each tread only between adjacent risers, with a short grade join at the toe.
+  for (let i = 1; i < rings.length; i++) {
+    const outer = rings[i - 1],
+      inner = rings[i];
+    for (let j = 1; j < outer.length; j++) {
+      const a = outer[j - 1],
+        b = outer[j],
+        c = inner[j],
+        d = inner[j - 1];
+      const u = [c[0], b[1], c[2]],
+        v = [d[0], a[1], d[2]];
+      face(o, [a, b, u, v], 'stone', 'cutStone', [0, 1, 0]);
+      face(o, [v, u, c, d], 'stone', 'cutStone', [d[2] - c[2], 0, c[0] - d[0]]);
+    }
+  }
+  cap(
+    o,
+    rings.at(-1).map(([x, , z]) => [x, z]),
+    0,
+    'stone',
+    'cutStone',
+  );
+}
+function chapelPortal(o, length, bodyHeight, detail) {
+  const width = 1.38,
+    height = 2.72,
+    recess = -0.28;
+  for (const sign of [-1, 1]) {
+    rectangle(
+      o,
+      (sign * (length + width)) / 4,
+      0.38,
+      0,
+      (length - width) / 2,
+      bodyHeight - 0.38,
+      'cream',
+      'plaster',
+    );
+    rectangle(
+      o,
+      (sign * (length + width - 0.6)) / 4,
+      0.65,
+      0.025,
+      (length - width - 0.6) / 2,
+      height - 0.65,
+      'panel',
+      'plaster',
+    );
+    box(
+      o,
+      (sign * width) / 2,
+      0,
+      recess / 2,
+      0.19,
+      height + 0.04,
+      -recess + 0.19,
+      'stone',
+      'cutStone',
+    );
+  }
+  rectangle(o, 0, height, 0, width, bodyHeight - height, 'cream', 'plaster');
+  rectangle(o, 0, height, 0.025, length - 0.6, 5.75 - height, 'panel', 'plaster');
+  // The stone head spans the entire reveal. The dark double door sits behind the facade.
+  box(o, 0, height - 0.03, recess / 2, 1.81, 0.22, -recess + 0.21, 'stone', 'cutStone');
+  face(
+    o,
+    [
+      [-0.8, height - 0.03, -0.38],
+      [0.8, height - 0.03, -0.38],
+      [0.8, height - 0.03, 0.1],
+      [-0.8, height - 0.03, 0.1],
+    ],
+    'stone',
+    'cutStone',
+    [0, -1, 0],
+  );
+  rectangle(o, 0, -0.025, recess, width + 0.08, height + 0.12, 'weatheredTimber', 'timber');
+  if (detail >= 2) {
+    for (const x of [-0.32, 0.32]) {
+      for (let panel = 0; panel < 4; panel++) {
+        const y = 0.21 + 0.61 * panel;
+        box(o, x, y, recess + 0.025, 0.46, 0.49, 0.055, 'timber', 'timber');
+        box(o, x, y + 0.048, recess + 0.054, 0.36, 0.39, 0.042, 'weatheredTimber', 'timber');
+      }
+      box(o, x / 3, 1.14, recess + 0.095, 0.043, 0.065, 0.055, 'metal', 'metal');
+    }
+    const head = [
+      [-0.86, 2.91],
+      [-0.66, 2.95],
+      [-0.36, 3.17],
+      [0, 3.28],
+      [0.36, 3.17],
+      [0.66, 2.95],
+      [0.86, 2.91],
+    ];
+    for (let i = 1; i < head.length; i++) {
+      const [x0, y0] = head[i - 1],
+        [x1, y1] = head[i];
+      face(
         o,
-        x,
-        y - Math.sqrt(radius * radius - x * x),
-        0.18,
-        0.07,
-        2 * Math.sqrt(radius * radius - x * x),
-        0.08,
-        'metal',
-        'metal',
+        [
+          [x0, 2.88, 0.135],
+          [x1, 2.88, 0.135],
+          [x1, y1, 0.135],
+          [x0, y0, 0.135],
+        ],
+        'stone',
+        'cutStone',
+        [0, 0, 1],
       );
-    box(o, 0, y - 0.035, 0.18, radius * 2, 0.07, 0.08, 'metal', 'metal');
+      face(
+        o,
+        [
+          [x0, y0, 0.135],
+          [x1, y1, 0.135],
+          [x1, y1, 0.022],
+          [x0, y0, 0.022],
+        ],
+        'stone',
+        'cutStone',
+        [0, 1, 0],
+      );
+    }
   }
 }
 function buildMausoleum(o, frame, d) {
   const loop = frame.geometry.outline.slice(0, -1),
     c = frame.controls;
-  band(o, loop, 0, 0.38, 'stone', 'sandstone');
-  band(o, loop, 0.38, c.bodyHeight, 'cream', 'plaster');
+  const { entrance, footingBottom } = frame.siteFit;
   const high = new Set([1, 5, 10, 14]),
     recess = new Set([3, 7, 12, 16]);
   // The attributed jogs form sixteen architectural faces; the NW collinear point is retained.
   for (let i = 0; i < loop.length; i++) {
     const { q, length } = facade(o, loop, i);
-    if (d >= 1 && length > 1.5)
+    const entry = i === c.entryFace;
+    if (entry) {
+      const baseWidth = (length - 1.38) / 2;
+      for (const sign of [-1, 1])
+        rectangle(
+          q,
+          (sign * (length - baseWidth)) / 2,
+          footingBottom,
+          0,
+          baseWidth,
+          0.38 - footingBottom,
+          'stone',
+          'sandstone',
+        );
+      rectangle(q, 0, footingBottom, 0, 1.38, -footingBottom, 'stone', 'sandstone');
+      chapelPortal(q, length, c.bodyHeight, d);
+      chapelStair(q, entrance, d);
+    } else {
+      rectangle(q, 0, footingBottom, 0, length, 0.38 - footingBottom, 'stone', 'sandstone');
+      rectangle(q, 0, 0.38, 0, length, c.bodyHeight - 0.38, 'cream', 'plaster');
+    }
+    if (d >= 1 && length > 1.5 && !entry)
       rectangle(q, 0, 0.65, 0.025, Math.max(0.3, length - 0.6), 5.1, 'panel', 'plaster');
     if (d >= 1 && high.has(i)) {
       window(q, 1.05, 1.55, 2.65, d);
@@ -329,45 +515,53 @@ function buildMausoleum(o, frame, d) {
             q,
             ix.slice(k, k + 3).map((j) => pediment[j]),
             'stone',
-            'sandstone',
+            'cutStone',
             [0, 0, 1],
           );
       }
     }
     if (d >= 1 && recess.has(i)) {
       oculus(q, 4.65, 0.7, d);
-      if (i === c.entryFace) {
-        rectangle(q, 0, 0.1, 0.035, 1.3, 2.6, 'timber', 'timber');
-        if (d >= 2)
-          for (const x of [-0.82, 0.82]) box(q, x, 0, 0.08, 0.23, 2.9, 0.2, 'stone', 'sandstone');
-        if (d >= 2) box(q, 0, 2.73, 0.08, 1.88, 0.22, 0.2, 'stone', 'sandstone');
-      } else if (d >= 2) {
+      if (!entry && d >= 2) {
         // Restored southeast bay is blind, not an invented lower window.
-        for (const x of [-0.78, 0.78]) box(q, x, 0.8, 0.08, 0.2, 2.65, 0.18, 'stone', 'sandstone');
-        for (const y of [0.8, 3.25]) box(q, 0, y, 0.08, 1.75, 0.2, 0.18, 'stone', 'sandstone');
+        for (const x of [-0.78, 0.78]) box(q, x, 0.8, 0.08, 0.2, 2.65, 0.18, 'stone', 'cutStone');
+        for (const y of [0.8, 3.25]) box(q, 0, y, 0.08, 1.75, 0.2, 0.18, 'stone', 'cutStone');
       }
     }
-    if (d >= 2) box(q, 0, 6.05, 0.035, length, 0.28, 0.22, 'cream', 'plaster');
   }
   // Joined loft over the actual stepped outline: four raised diagonal mansard bays.
-  const raised = new Set([0, 3, 4, 7, 8, 12, 13, 16]),
-    middle = loop.map(([x, z], i) => [x * 0.62, raised.has(i) ? 8.35 : 7.55, z * 0.62]);
+  const eaves = loop.map(([x, z]) => [x * 1.035, z * 1.035]);
+  band(o, eaves, 6.23, 6.4, 'cream', 'plaster');
+  cap(o, eaves, 6.23, 'cream', 'plaster', [0, -1, 0]);
+  const raised = new Set([0, 3, 4, 7, 8, 12, 13, 16]);
+  const lower = loop.map(([x, z], i) => [x * 0.76, raised.has(i) ? 7.72 : 7.35, z * 0.76]);
+  const upper = loop.map(([x, z]) => [x * 0.46, 8.42, z * 0.46]);
   for (let i = 0; i < loop.length; i++) {
     const k = (i + 1) % loop.length,
-      a = loop[i],
-      b = loop[k];
-    face(
-      o,
-      [[a[0] * 1.025, 6.4, a[1] * 1.025], [b[0] * 1.025, 6.4, b[1] * 1.025], middle[k], middle[i]],
-      'roof',
-      'tile',
-      [0, 1, 0],
-    );
-    face(o, [middle[i], middle[k], [0, 9.55, 0]], 'roof', 'tile', [0, 1, 0]);
+      a = eaves[i],
+      b = eaves[k];
+    face(o, [[a[0], 6.4, a[1]], [b[0], 6.4, b[1]], lower[k], lower[i]], 'roof', 'tile', [0, 1, 0]);
+    face(o, [lower[i], lower[k], upper[k], upper[i]], 'roof', 'tile', [0, 1, 0]);
+    face(o, [upper[i], upper[k], [0, 9.55, 0]], 'roof', 'tile', [0, 1, 0]);
   }
   if (d >= 1) {
     box(o, -2.3, 7.5, -2.1, 0.85, 1.8, 0.7, 'cream', 'plaster');
-    if (d >= 2) box(o, -2.3, 9.3, -2.1, 1.03, 0.18, 0.9, 'slate', 'slate');
+    if (d >= 2) {
+      box(o, -2.3, 9.28, -2.1, 1.03, 0.18, 0.9, 'slate', 'slate');
+      cap(
+        o,
+        [
+          [-2.815, -2.55],
+          [-1.785, -2.55],
+          [-1.785, -1.65],
+          [-2.815, -1.65],
+        ],
+        9.28,
+        'slate',
+        'slate',
+        [0, -1, 0],
+      );
+    }
   }
   // Cross is part of the recognizable roof silhouette, retained in every level.
   box(o, 0, 9.5, 0, 0.16, 1.1, 0.16, 'metal', 'metal');
@@ -376,32 +570,38 @@ function buildMausoleum(o, frame, d) {
 function archHeight(x, center, radius, spring) {
   return spring + Math.sqrt(Math.max(0, radius * radius - (x - center) * (x - center)));
 }
-function portal(o, center, width, d) {
+function portal(o, center, width, d, floor, spring) {
   const r = width / 2,
-    spring = 2.05,
     n = d < 2 ? 6 : 10,
     left = center - r,
     right = center + r;
   const points = [
-    [left, 0.08, -0.13],
-    [right, 0.08, -0.13],
-    [right, spring, -0.13],
+    [left, floor + 0.08, -0.2],
+    [right, floor + 0.08, -0.2],
+    [right, spring, -0.2],
   ];
   for (let i = 1; i <= n; i++) {
     const a = (i * Math.PI) / n;
-    points.push([center + r * Math.cos(a), spring + r * Math.sin(a), -0.13]);
+    points.push([center + r * Math.cos(a), spring + r * Math.sin(a), -0.2]);
   }
-  face(o, points, 'timber', 'timber', [0, 0, 1]);
+  face(o, points, 'weatheredTimber', 'timber', [0, 0, 1]);
   // Reveal returns seal the short distance from the wall opening to its recessed door.
   for (let i = 1; i < points.length; i++) {
     const a = points[i],
       b = points[(i + 1) % points.length];
-    face(o, [[a[0], a[1], 0], [b[0], b[1], 0], b, a], 'stone', 'sandstone', [
+    face(o, [[a[0], a[1], 0], [b[0], b[1], 0], b, a], 'stone', 'cutStone', [
       center - (a[0] + b[0]) / 2,
       spring - (a[1] + b[1]) / 2,
       0,
     ]);
   }
+  face(
+    o,
+    [[left, floor + 0.08, 0], [right, floor + 0.08, 0], points[1], points[0]],
+    'stone',
+    'cutStone',
+    [0, 1, 0],
+  );
   // Upper grilles have a flat muted fill; door timber stops at the spring line.
   const top = [
     [left, spring, -0.1],
@@ -410,18 +610,28 @@ function portal(o, center, width, d) {
   ];
   face(o, top, 'glass', 'glass', [0, 0, 1]);
   if (d >= 2) {
-    box(o, center, 0.08, -0.035, 0.12, spring - 0.08, 0.13, 'timber', 'timber');
+    box(
+      o,
+      center,
+      floor + 0.08,
+      -0.1,
+      0.12,
+      spring - floor - 0.08,
+      0.13,
+      'weatheredTimber',
+      'timber',
+    );
     for (const x of [left - 0.15, right + 0.15])
-      box(o, x, 0, 0.06, 0.3, spring, 0.22, 'stone', 'sandstone');
+      box(o, x, floor, 0.06, 0.3, spring - floor, 0.22, 'stone', 'cutStone');
     for (let i = 0; i < n; i++) {
-      const a = (i * Math.PI) / n,
-        b = ((i + 1) * Math.PI) / n,
+      const a = (i * Math.PI) / n + 0.006,
+        b = ((i + 1) * Math.PI) / n - 0.006,
         ring = (t, rr) => [center + rr * Math.cos(t), spring + rr * Math.sin(t), 0.08];
       face(
         o,
         [ring(a, r), ring(a, r + 0.3), ring(b, r + 0.3), ring(b, r)],
         'stone',
-        'sandstone',
+        'cutStone',
         [0, 0, 1],
       );
     }
@@ -433,14 +643,22 @@ function portal(o, center, width, d) {
       box(o, x, spring, -0.015, 0.06, h, 0.06, 'metal', 'metal');
     }
 }
-function portalWall(o, length, openings, d) {
+function portalWall(o, length, openings, d, entries) {
   const intervals = openings
-    .map(([x, w]) => ({ left: x - w / 2, right: x + w / 2, x, w }))
+    .map(([x, w], i) => ({
+      left: x - w / 2,
+      right: x + w / 2,
+      x,
+      w,
+      floor: entries?.[i]?.floor ?? 0,
+    }))
     .sort((a, b) => a.left - b.left);
   let cursor = -length / 2;
   for (const p of intervals) {
     rectangle(o, (cursor + p.left) / 2, 0, 0, p.left - cursor, 4.3, 'rubble', 'rubble');
+    rectangle(o, p.x, 0, 0, p.w, p.floor + 0.08, 'rubble', 'rubble');
     const n = d < 2 ? 6 : 10;
+    const spring = p.floor + 1.82;
     // Wall triangles end at the arch: there is no opaque wall behind the recessed doors.
     for (let i = 0; i < n; i++) {
       const a = p.x - (p.w / 2) * Math.cos((i * Math.PI) / n),
@@ -448,8 +666,8 @@ function portalWall(o, length, openings, d) {
       face(
         o,
         [
-          [a, archHeight(a, p.x, p.w / 2, 2.05), 0],
-          [b, archHeight(b, p.x, p.w / 2, 2.05), 0],
+          [a, archHeight(a, p.x, p.w / 2, spring), 0],
+          [b, archHeight(b, p.x, p.w / 2, spring), 0],
           [b, 4.3, 0],
           [a, 4.3, 0],
         ],
@@ -458,20 +676,48 @@ function portalWall(o, length, openings, d) {
         [0, 0, 1],
       );
     }
-    portal(o, p.x, p.w, d);
+    portal(o, p.x, p.w, d, p.floor, spring);
     cursor = p.right;
   }
   rectangle(o, (cursor + length / 2) / 2, 0, 0, length / 2 - cursor, 4.3, 'rubble', 'rubble');
+}
+function forgeApron(o, entry) {
+  const { center, angle, apronWidth, depth, floor, toe } = entry;
+  const q = local(o, center, angle);
+  const left = -apronWidth / 2;
+  const right = apronWidth / 2;
+  const a = [left, floor + 0.08, -0.015];
+  const b = [right, floor + 0.08, -0.015];
+  const c = [right, toe[1] + 0.008, depth];
+  const d = [left, toe[0] + 0.008, depth];
+  face(q, [a, b, c, d], 'stone', 'cutStone', [0, 1, 0]);
+  for (const [start, end, normal] of [
+    [a, d, [-1, 0, 0]],
+    [b, c, [1, 0, 0]],
+    [d, c, [0, 0, 1]],
+  ])
+    face(
+      q,
+      [start, end, [end[0], end[1] - 0.26, end[2]], [start[0], start[1] - 0.26, start[2]]],
+      'stone',
+      'cutStone',
+      normal,
+    );
 }
 function buildForge(o, frame, d) {
   const loop = frame.geometry.outline.slice(0, -1),
     c = frame.controls;
   for (let i = 0; i < loop.length; i++) {
     const { q, length } = facade(o, loop, i);
-    if (i === c.portalWall && d >= 1) portalWall(q, length, c.portals, d);
+    if (i === c.portalWall && d >= 1) portalWall(q, length, c.portals, d, frame.siteFit?.entrances);
     else rectangle(q, 0, 0, 0, length, 4.3, 'rubble', 'rubble');
     rectangle(q, 0, 3.72, 0.02, length, 0.58, 'brick', 'brick');
     if (d >= 2) box(q, 0, 4.25, 0.045, length, 0.12, 0.18, 'slate', 'slate');
+  }
+  if (frame.siteFit) {
+    band(o, loop, frame.siteFit.footingBottom, 0, 'rubble', 'rubble');
+    cap(o, loop, frame.siteFit.footingBottom, 'rubble', 'rubble', [0, -1, 0]);
+    for (const entry of frame.siteFit.entrances) forgeApron(o, entry);
   }
   const height = ([x, z]) => 4.35 + 0.06 * Math.min(x + 10.2, z + 10.1);
   // A concave L roof, not an envelope rectangle that closes the courtyard.

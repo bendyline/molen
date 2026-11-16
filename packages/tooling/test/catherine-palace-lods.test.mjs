@@ -118,6 +118,15 @@ it('retains complete long ranges, both returns, all five supported domes, an ope
       const h = 50 - nearest(ts, [d.center[0], 50, d.center[1]], [0, -1, 0], true);
       expect(h, l.name + ' distinct chapel finial').toBeGreaterThan(d.finialHi);
       expect(h).toBeLessThan(d.finialHi + 1);
+      const belowDrum = [
+        d.center[0] + d.radius * 0.85,
+        layout.floorY + d.drumLo + 0.1,
+        d.center[1],
+      ];
+      expect(
+        nearest(ts, belowDrum, [0, -1, 0], true),
+        `${l.name} masonry pedestal immediately below each drum`,
+      ).toBeLessThan(0.6);
     }
     expect(
       nearest(ts, [-60, layout.floorY + 0.2, -50], [0, 1, 0], true),

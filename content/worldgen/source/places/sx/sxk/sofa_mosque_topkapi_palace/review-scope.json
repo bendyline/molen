@@ -49,12 +49,12 @@
   "camera": {
     "position": [
       4.686640440639019,
-      12.683489314227602,
+      12.52,
       14.900852370927204
     ],
     "lookAt": [
       0,
-      4.683489314227603,
+      4.52,
       0
     ],
     "fov": 50
@@ -167,7 +167,7 @@
   ],
   "mediumFiContext": {
     "scale": 1.6,
-    "groundY": 0.6834893142276027,
+    "groundY": 0.52,
     "neighborStyle": "molen.worldgen.catalog.modern_apartments"
   },
   "runtimeLodOverlay": {
@@ -293,17 +293,17 @@
     }
   },
   "geographic": {
-    "status": "draft-proposal",
+    "status": "preview-proposal",
     "anchor": [
       28.985601514577866,
       41.01338454849554
     ],
     "heading": 0,
     "orientationPolicy": "approximate-visualization",
-    "elevationMode": "terrain-contact",
+    "elevationMode": "sea-level",
     "groundModelY": 0,
-    "groundContactReviewed": false,
-    "groundContactBasis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified. Native draft render inspected: retained original slope exposes up to about2m of protective base and requires14entry treads, unlike the near-ground entry in the photographs. Native visual fit is rejected; keep public placement inactive draft and member unfinished. Source/shared-material/LOD review can complete independently of this unresolved fit.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The retained standard field samples 35.14 m beside the photographed entrance. The bounded forecourt meets the two entrance treads and blends into the garden slope.",
     "replaceFootprint": false,
     "mapIdentity": {
       "maxDistance": 8
@@ -314,14 +314,6 @@
       28.985708292638527,
       41.01344896103835
     ],
-    "terrainReference": {
-      "anchor": [
-        28.985556450092155,
-        41.01333165328151
-      ],
-      "modelHeight": 0,
-      "basis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified."
-    },
     "buildingCutout": {
       "outline": [
         [
@@ -383,8 +375,9 @@
           -5.791260359059596
         ]
       ],
-      "basis": "Only occupied hall floor; original stair/garden ground retained."
+      "basis": "Remove terrain only under the occupied floor. The photographed approaches meet the retained courtyard via a shallow landing."
     },
-    "notes": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint. Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified."
+    "notes": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint. The retained standard field samples 35.14 m beside the photographed entrance. The bounded forecourt meets the two entrance treads and blends into the garden slope. Absolute grades are representative visualization controls.",
+    "elevationMeters": 35.16
   }
 }

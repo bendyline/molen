@@ -237,6 +237,13 @@ it('uses the production viewer to replace the powerhouse and control building an
         E * Math.sin(frame.heading) + S * Math.cos(frame.heading),
       ];
     };
+  const mappedSpillway = map.features
+    .filter((feature) => feature.id === 4830821252 && feature.geometry.type === 'Polygon')
+    .flatMap((feature) => feature.geometry.coordinates[0].map(local));
+  const { start, end, basinEnd } = controls.spillway;
+  for (const [x, z] of [...start, ...basinEnd])
+    expect(mappedSpillway.some(([u, v]) => Math.hypot(u - x, v - z) < 1)).toBe(true);
+  expect(placed.waterCutout.outlines).toEqual([[...start, ...end.toReversed()]]);
   const c = Math.cos(frame.heading),
     s = Math.sin(frame.heading),
     point = ([x, z]) => [(c * x + s * z + 2000) / 4000, (-s * x + c * z + 2000) / 4000],

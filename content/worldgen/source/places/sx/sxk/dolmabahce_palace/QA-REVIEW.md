@@ -1,13 +1,24 @@
-# Dolmabahçe Palace — exterior complete; terrain acceptance pending
+# Dolmabahçe Palace
 
-Reviewed2026-11-01. All12 current portable views actually inspected: complete connected selamlik, tall ceremonial hall/links, projecting harem waterfront and full inland return; recessed closed doors/windows, layered cornices/pilasters, original simplified pediments/open parapets/finials, gray hips/chimneys and three glazed roof lanterns. No absent connected wing or unintended open roof observed. Rear elevations, exact windows and carved ornament remain approximate. No copied artwork, text, statuary or interiors.
+The connected Dolmabahçe Palace exterior includes the selamlik, ceremonial hall, harem waterfront and inland return. Its hipped roofs, recessed glazing, pilasters and lanterns carry through the browser detail levels.
 
-Q274141; anchor[29.000569581986287,41.0394863777078], heading0.3694984483984076. +X ENE along waterfront toward harem,+Z SSE Bosporus. Three owned principal native components0/47/46 replaced by one98% whole-feature mask; all470 independent components, including detached pavilion1, remain native. Two submeter geometry seam strips close native digitization gaps. Standard global reference11m and floor11.8m are approximate, not surveyed thresholds.
+The three principal mapped building records align with the original signed footprint. The bounded 3.18 m court grade exposes the shallow plinth. The three rebuilt stairs meet the sampled finished court or mapped footway within 12 mm at all four detail levels.
 
-**Not ready:** Native global DEM leaves an oversized approximately5–7m exposed plinth along the waterfront while inland grades approach the fixed palace floor. Harem/front entry transitions are too steep to treat as a faithful historic ground fit. The model is not floating and the actual native entry corners are supported/ray-checked, but that is insufficient for geographic acceptance. The raw terrain and complete geometry are preserved; do not count this model ready until the common terrain/site-fit issue is resolved. No bespoke terrain research or flattening was used.
+![Dolmabahçe Palace in the Earth viewer](site-preview.png)
 
-Source:232806 triangles /27940632 bytes. Browser tiers:970 / 3814 / 13746 / 63656 triangles. Initial skyline+district:446276 bytes;close-up:5952712 bytes. Five existing shared256px texture graphs,six slots,zero embedded/private images and separate GPU streams. Detailed source and four tiers are independently reproducible from checked-in inputs.
+The fixture retains 26 neighboring buildings, 33 transportation records and native water. A failed download restores all three mapped palace components. Unload restores ground and land cover and releases the model geometry.
 
-Four focused checks pass:source/runtime/input pins;actual tall hall/complete connected lower ranges/inland return/roof joins/garden gaps/closed recesses/native approach corners;production replacement of3 owned components and retention of470 neighbors;exact authored tiers,materials andbudgets. Six GLBs pass Khronos with0 errors/0 warnings. All52 current renders actually inspected and hash-bound in qa.json. Terrain/context pictures expose the unresolved plinth/grade issue; no geographic,medium-fi orsite-integration approval was invented.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 982 | 95,992 | 1 |
+| district | 3,928 | 360,724 | 6 |
+| street | 13,860 | 1,280,748 | 6 |
+| closeup | 63,664 | 5,953,480 | 6 |
 
-Ordinary pictures stay local and are not textures. Two unchanged standard terrain tiles/map inputs stay in source. Gates,seawall,gardens,clock tower,mosque,detached pavilion andred-roofed service ranges remain independent. Carvings/window inventories/rear elevations/roof joins andhistoric grades are approximate. Physical-device timings andnumerical LOD errors remain unmeasured.
+Skyline and district total 456,716 bytes. Six GLBs and 310 placement probes passed. The review covers 77 current renders.
+
+The court and shore grades and the stair proportions are estimates from the standard terrain and ordinary exterior photos.
+
+The seawall, grounds, gates and detached estate buildings remain in the basemap. Ornament and exterior roof details are simplified for medium-fi. Isolated turntables expose foundation geometry that sits below the Earth viewer’s fitted grade.
+
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

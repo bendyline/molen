@@ -5,7 +5,7 @@
   "sourceHash": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
   "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
   "reviewGroundY": -0.18300949977212894,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:99cc35d02e386cb207de5b1d0e30b33724c0a2efda8a74bfaafcd3bd6cccb532",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
@@ -34,13 +34,13 @@
     },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:9935c37907f30f660e24e4752cb2ae784796428f61926d6b7ea37a13aa065314",
+      "hash": "sha256:5e8677ddfb81d4b8e5288598411af2f5204d9aa664342ba8ee83fcf4b54acc30",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -83,30 +83,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -134,10 +152,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -149,7 +168,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:59ba0cbc021a1a0433da8c44cdc627103004203315c956655b68c11e1ffcfb74",
+      "hash": "sha256:d997fec023b1a3a4335f3ed5870fb30aaf85dad9b5c659d5e8cf77b4e256cb60",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -192,30 +211,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -243,10 +280,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -258,7 +296,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:f7c20ae3102fe7c3e251129df950708419add6d6e5991bba0aa4e8b5ec336c54",
+      "hash": "sha256:1c0b29d1eea98b2d8c7349756cb4c20341e99b1555bb60226a94e34afbe9d003",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -301,30 +339,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -352,10 +408,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -367,7 +424,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:35920057663696d64ae53c6a3b6b0f8726372ccae3b6d5970afac1617c8394e9",
+      "hash": "sha256:e105030d9f2a78b25366e0bcafe3cb0e8da08dc97734c2b488da37eccb2a1af4",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -410,30 +467,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -461,10 +536,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -476,7 +552,7 @@
     },
     {
       "path": "shots/shared/open-oval-court-and-column-remains.png",
-      "hash": "sha256:41caf00f14355d2ac97f41bb21453d47dedb9cf0e0638c142892ae4c787f72aa",
+      "hash": "sha256:4879d500305064045bae331557fb963bcd6ee31f4e9260a8b930780c20b6c127",
       "camera": {
         "name": "open-oval-court-and-column-remains",
         "position": [
@@ -529,30 +605,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -580,10 +674,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -595,7 +690,7 @@
     },
     {
       "path": "shots/shared/north-shelter-recessed-door-and-grey-roof.png",
-      "hash": "sha256:259f279be62be28f2836132aaaf1da505750342b0bc98c50c0eacf4fcc3bcaa1",
+      "hash": "sha256:7beb8419c577c834605521138d7261b1be1e1833301731c6127f6fc3dc915092",
       "camera": {
         "name": "north-shelter-recessed-door-and-grey-roof",
         "position": [
@@ -648,30 +743,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -699,10 +812,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -714,7 +828,7 @@
     },
     {
       "path": "shots/shared/low-masonry-and-ground-following-bases.png",
-      "hash": "sha256:a90fe705a2d217026174949796f55713fbd64a5268c3e73af29fbde42cd519f6",
+      "hash": "sha256:6e6b5af83ef0183c0a364e1c833c358b4b94996e0a06eb32e51e8661356ff1a6",
       "camera": {
         "name": "low-masonry-and-ground-following-bases",
         "position": [
@@ -767,30 +881,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -818,10 +950,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -833,7 +966,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:0461e54267469a5dc386249d16a197a7cd47c9adfa4364229237a2684aefb55c",
+      "hash": "sha256:afd3ec979cc9c557dacdfc339636cf327c0c4dab7d588d4ddb27718128b29e4e",
       "camera": {
         "name": "placement",
         "placement": true
@@ -876,30 +1009,48 @@
         },
         "reviewGroundY": -0.18300949977212894,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
-          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "5e165822-b995-424f-a11a-095cef7fe871",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "68cc5168-12b7-4aee-85b7-f9513d0ad4f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e5c440e6-d68a-4af0-9466-96b5514c3769",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "81e8ecc6-9027-4d6d-a3ce-e16b23f1ba4d",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "3d6db177-e80e-4cb1-bb5b-df9a5fe6103d",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "f5f2fe1d-e63b-4724-b34e-c193c2d0e2e1"
         },
         "loads": [
+          "molen.worldgen.structure.casale_entry",
           "molen.worldgen.structure.casale_main",
+          "molen.worldgen.structure.casale_polygonal_latrine",
           "molen.worldgen.structure.casale_triclinium",
           "molen.worldgen.structure.casale_xystus"
         ],
         "selectionBounds": [
-          14.334010123113842,
-          37.36399290674355,
-          14.335456849237232,
-          37.36514275030722
+          14.334010107985467,
+          37.363899109866374,
+          14.335456834108857,
+          37.36504895486735
         ],
         "terrainSamples": [
+          {
+            "placementId": "casale.entry",
+            "coordinate": [
+              14.334331325979651,
+              37.36449394751735
+            ],
+            "height": 0
+          },
           {
             "placementId": "casale.main",
             "coordinate": [
               14.334615152647519,
               37.364545851125
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "casale.polygonal.latrine",
+            "coordinate": [
+              14.335439111001305,
+              37.36473509506915
             ],
             "height": 0
           },
@@ -927,10 +1078,11 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.storefront": 1,
@@ -949,7 +1101,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

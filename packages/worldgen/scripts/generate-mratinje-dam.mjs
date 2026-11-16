@@ -173,7 +173,7 @@ const source = {
   kind: 'static-structure',
   title: brief.title,
   files: {
-    definitions: ['spec.json', 'scene.json', 'model-brief.json'],
+    definitions: ['spec.json', 'scene.json', 'model-brief.json', 'models/gorge-fit.json'],
     models: [
       {
         path: 'models/source.glb',

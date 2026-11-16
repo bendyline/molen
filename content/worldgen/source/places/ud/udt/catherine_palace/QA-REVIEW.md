@@ -1,13 +1,20 @@
-# Catherine Palace — principal palace and chapel exterior
+# Catherine Palace
 
-**Native terrain fit pending; not counted ready.** Reviewed 2026-11-01.
+The complete principal palace includes both returned wings, its projecting roof halls and five gold onion domes. A pale tapered chapel pavilion connects the five drums to the roof. The east facade keeps its three rows of layered windows, pilasters and simplified gilded trim. [Reference photographs and observations](reference-observations.json)
 
-Pending native terrain fit: the unchanged global DEM contains building-scale high returns (roughly10-16m above the main forecourt reference) around parts of the garden facade and end ranges. Current native-field frames visibly occlude lower windows. Flat-stage geometry, map identity/orientation, bounded main-entry contact and all four tiers pass. This is not a surveyed-grade approval and the model is not counted ready. Preserve the master and source inputs; resolve terrain handling without bespoke survey research.
+The signed placement puts the five-domed chapel at the north-northeast end and the garden along the east-southeast facade. A bounded grade at 83.42 m exposes the ground-floor windows, with the main stair apron within 7 mm of the court at three sampled points in each detail level. [Signed map geometry](map-frame.json) · [Retained elevation samples](terrain-samples.json)
 
- Complete connected principal palace and north/south returned wings. Long blue/white/gold facade, raised hall roofs and projecting crowns, gray hipped roofs/chimneys, recessed multi-story glazing and closed main entry, white pilasters, simplified original gilded ribbons, open roof parapets, supported stairs and five gold onion domes. Detached curved forecourt ranges, Lyceum/connecting arch, Cameron gallery, garden pavilions and park remain native context.
+The viewer replaces 204 palace components and retains 182 neighboring buildings, 414 transportation records and 20 mapped water inputs in the fixture. A failed model download restores all 386 buildings. Terrain and water restore after unload, and all model geometry is released.
 
-Source: 223,135 triangles / 26780572 bytes. Browser tiers: 984 / 3925 / 15348 / 61729 triangles. Initial skyline/district total: 446292 bytes; close-up: 5376496 bytes. Six existing shared256px texture graphs, seven draws maximum, no private images, separate GPU streams.
+Six shared graphs supply the exterior. All six GLBs passed Khronos validation with no errors or warnings. Four focused tests verify the source, orientation, mapped ownership, all five chapel supports and the four detail levels. Reviewed 70 current renders.
 
-Four focused checks verify source/runtime and input pins, continuous main/returned ranges, all five distinct chapel finials, open forecourt, actual recessed closed glazing/entry and supported native threshold corners. The production viewer replaces204 owned native components and retains182 others. Exact source-authored tiers reconstruct within budget. Six GLBs pass Khronos validation with zero errors/warnings. All52 final portable, shared, terrain, lighting and tier frames inspected; exact evidence hashes in qa.json.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 990 | 88,072 | 1 |
+| district | 3,947 | 360,404 | 7 |
+| street | 15,530 | 1,331,340 | 7 |
+| closeup | 61,887 | 5,389,900 | 7 |
 
-Placement: Q2854543 / relation17546726, [30.395378699,59.716077264], heading1.009851614252, approximate84m global-field reference and84.5m exterior floor. +X NNE chapel, +Z ESE garden, -Z WNW main court. Two unchanged global terrain tiles; cutout stays within the principal palace and its own entrance apron. No park/forecourt flattening. Historic grades, exact ornament/window inventory and concealed roof joints are approximate. Original simplified ornament, no copied statues, heraldry, text or interiors. Flat fixtures expose foundations; device timing and numerical LOD errors remain unmeasured.
+Skyline and district total 448,476 bytes. The local grade, ornament, roof joints and chapel masonry are visualization approximations. The detached forecourt ranges, Lyceum link, Cameron gallery, pavilions and park use the host map. The review covers the principal palace exterior.
+
+[Viewer preview](site-preview.png) · [Recorded checks](qa.json)

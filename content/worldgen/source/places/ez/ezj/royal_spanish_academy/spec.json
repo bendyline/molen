@@ -10,25 +10,25 @@
     "longitude": -3.6908818781375885,
     "latitude": 40.4149572245088
   },
-  "visualBrief": "Complete principal Madrid headquarters exterior: red-brick rectangular main block with pale basement and attic, all four windowed elevations, eleven-bay north frontage with closed secondary door and small balcony, east principal four-column fluted Doric portico with genuinely open intercolumniation, closed entablature and triangular pediment, three closed entry doors and integral descending stairs, low closed slate hip roof with eight brick chimneys, continuous belt courses, dentil cornice and original geometric attic reliefs and pediment figures. Independent garden fence/gates, transient flags, vegetation, street furniture and neighbors remain native. No navigable interior or exact inscription/sculptural likeness is claimed.",
+  "visualBrief": "Madrid headquarters exterior with a red-brick main block, pale stone courses, eleven-bay north front and balcony, a four-column Doric portico and granite stairs on the west side, and the projecting brick rear wing and tall windows on Calle Moreto. The low slate roof retains eight chimneys. Garden fences and surrounding streets remain part of the map context.",
   "size": [
-    29.800000190734863,
-    31.399999618530273,
-    52.10000038146973
+    29.84000015258789,
+    32.44999980926514,
+    61.94000053405762
   ],
   "actualBounds": {
     "min": [
       -14.600000381469727,
-      -8,
-      -22.5
+      -9.050000190734863,
+      -32.20000076293945
     ],
     "max": [
-      15.199999809265137,
+      15.239999771118164,
       23.399999618530273,
-      29.600000381469727
+      29.739999771118164
     ]
   },
-  "nativeAxes": "+X north, +Z east toward the main portico, -Z west toward the rear, +Y up; approximate 10-degree direction uncertainty.",
+  "nativeAxes": "+X north along Calle de Felipe IV, +Z east toward the rear wing on Calle Moreto, -Z west toward the portico and Ruiz de Alarcón, +Y up.",
   "sourceFacts": {
     "nativeHeightMeters": 8,
     "authoredCorniceMeters": 20,
@@ -36,11 +36,15 @@
     "authoredMaximumMeters": 23.4,
     "ownedMapComponents": 1,
     "preservedNativeComponents": 275,
-    "terrainTiles": 2
+    "terrainTiles": 2,
+    "westStairToeDatum": 653.2244056000001,
+    "modelOriginElevation": 656.8444056000001
   },
   "referencePages": [
     "https://commons.wikimedia.org/wiki/File:Sede_de_la_Real_Academia_Espa%C3%B1ola.jpg",
     "https://commons.wikimedia.org/wiki/File:Sede_de_la_R.A.E._(Madrid)_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_back_of_the_RAE.jpg",
+    "https://www.rae.es/la-institucion/la-rae/sede-institucional/descubra-la-rae/exteriores",
     "https://build.protomaps.com/20261031.pmtiles"
   ],
   "geographicProposal": {
@@ -54,7 +58,7 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMeters": 0,
     "groundContactReviewed": true,
-    "groundContactBasis": "The headquarters uses one standard host field datum outside the east stairs. Exact doorway, basement and street grades remain approximate. No retained numeric building height. Current map parent records 8m, which is retained as a conflicting coarse map fact. The photo-proportioned source has 20m cornice, 21.4m low roof and 23.4m chimney caps; main body is approximately 28.4 by 44.2m, with east stair/portico projection to local Z29.6m. These are approximate visualization controls, not surveyed dimensions. One unchanged field sample outside the east stair toe [0,31], 660.4381705m, supplies the common datum; closed occupied support extends to -8m and portico landing is +2.2m. The coarse urban field varies across the building, so exact historic basement/door/street grades require actual visual review.",
+    "groundContactBasis": "The west stair toe ties into the standard viewer terrain. Doorway and basement grades are approximate. The modeled main block measures about 28.4 by 44.2 m, with a 20 m cornice, 21.4 m roof and 23.4 m chimney caps. PMTiles records a coarse 8 m height. The model uses photo-based proportions. The original viewer terrain determines the west stair toe and rises toward the rear wing. The stair run has been fitted to the standard field and surveyed thresholds remain unknown.",
     "groundModelY": 0,
     "replaceFootprint": true,
     "buildingCutout": {
@@ -97,7 +101,7 @@
         ]
       ],
       "minimumCoverage": 0.98,
-      "basis": "Catalog Q11993457 identifies the institution, not a unique building. The modeled principal Madrid headquarters is the named Real Academia Española map building and same-ID POI 35184457607397 at Felipe IV,4, checked against two ordinary north/east pictures. Physical building Q26960988 is linked by the ordinary image page. No retained exact OSM way or relation identity is available; encoded tile ID is not claimed to be an OSM element ID. Only native component113 is owned; 275 other components remain independent."
+      "basis": "The source location resolves the institution Q11993457 to its Madrid headquarters Q26960988. Standard PMTiles places the named POI and its building under feature 35184457607397. The west-facing columned portico overlooks Ruiz de Alarcón. The solid rear wing on Calle Moreto occupies the eastward map projection. The north front preserves its balcony and secondary door. Only the matched main building footprint is replaced."
     },
     "groundCutout": {
       "outline": [
@@ -106,6 +110,22 @@
           -22.1
         ],
         [
+          -7.4,
+          -22.1
+        ],
+        [
+          -7.4,
+          -32.2
+        ],
+        [
+          7.4,
+          -32.2
+        ],
+        [
+          7.4,
+          -22.1
+        ],
+        [
           14.2,
           -22.1
         ],
@@ -114,19 +134,19 @@
           22.1
         ],
         [
-          7.4,
+          7.35,
           22.1
         ],
         [
-          7.4,
-          29.6
+          7.35,
+          29.44
         ],
         [
-          -7.4,
-          29.6
+          -7.35,
+          29.44
         ],
         [
-          -7.4,
+          -7.35,
           22.1
         ],
         [
@@ -134,30 +154,30 @@
           22.1
         ]
       ],
-      "minHeight": -8,
-      "basis": "Only the closed main body floor and integral closed portico landing/steps are occupied. Gardens, fences and streets retain native ground."
+      "minHeight": -9.05,
+      "basis": "Ground only beneath the closed building, rear projection, portico landing and integral west steps."
     },
     "terrainReference": {
       "anchor": [
-        -3.6905161966730855,
-        40.414962965092194
+        -3.6912640742488754,
+        40.414951224673246
       ],
-      "modelHeight": 0,
-      "basis": "Single unmodified standard host sample outside east stair toe; approximate visualization, not surveyed thresholds."
+      "modelHeight": -3.62,
+      "basis": "Standard terrain sample just beyond the bottom of the west stairs. The front toe ties to the garden and the native slope is retained on all sides."
     },
     "bounds": [
-      -3.691168877886492,
-      40.4148090802826,
-      -3.6905005089784906,
-      40.41510685017587
+      -3.691309726666361,
+      40.41478893266763,
+      -3.6904865992163276,
+      40.41512551634996
     ],
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:3e758d3a0a74a96ed449cf42cee6fee8575b20cb0515cb0c1e4732872a81df9d",
+    "mapGeometryHash": "sha256:d5d689b490422da52474d95feec3900c4a3a80006f65e8dea06d1a9450e380c9",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://build.protomaps.com/20261031.pmtiles",
     "wikidataId": "Q11993457",
-    "notes": "Complete principal Madrid headquarters exterior: red-brick rectangular main block with pale basement and attic, all four windowed elevations, eleven-bay north frontage with closed secondary door and small balcony, east principal four-column fluted Doric portico with genuinely open intercolumniation, closed entablature and triangular pediment, three closed entry doors and integral descending stairs, low closed slate hip roof with eight brick chimneys, continuous belt courses, dentil cornice and original geometric attic reliefs and pediment figures. Independent garden fence/gates, transient flags, vegetation, street furniture and neighbors remain native. No navigable interior or exact inscription/sculptural likeness is claimed. No retained numeric building height. Current map parent records 8m, which is retained as a conflicting coarse map fact. The photo-proportioned source has 20m cornice, 21.4m low roof and 23.4m chimney caps; main body is approximately 28.4 by 44.2m, with east stair/portico projection to local Z29.6m. These are approximate visualization controls, not surveyed dimensions. One unchanged field sample outside the east stair toe [0,31], 660.4381705m, supplies the common datum; closed occupied support extends to -8m and portico landing is +2.2m. The coarse urban field varies across the building, so exact historic basement/door/street grades require actual visual review."
+    "notes": "Madrid headquarters exterior with a red-brick main block, pale stone courses, eleven-bay north front and balcony, a four-column Doric portico and granite stairs on the west side, and the projecting brick rear wing and tall windows on Calle Moreto. The low slate roof retains eight chimneys. Garden fences and surrounding streets remain part of the map context. The modeled main block measures about 28.4 by 44.2 m, with a 20 m cornice, 21.4 m roof and 23.4 m chimney caps. PMTiles records a coarse 8 m height. The model uses photo-based proportions. The original viewer terrain determines the west stair toe and rises toward the rear wing. The stair run has been fitted to the standard field and surveyed thresholds remain unknown."
   },
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
@@ -400,100 +420,100 @@
     "terrain": {
       "descriptor": "terrain-review.terrain.json",
       "heightmap": "terrain-review.height.png"
-    }
+    },
+    "cameraYaw": 3.141592653589793
   },
   "qaLodCameras": [
     {
       "name": "whole-headquarters-skyline",
       "reviewLod": "skyline",
       "position": [
-        63,
-        38,
-        72
+        62,
+        35,
+        -74
       ],
       "lookAt": [
         0,
-        9,
-        0
+        8,
+        -2
       ]
     },
     {
       "name": "whole-headquarters-district",
       "reviewLod": "district",
       "position": [
-        63,
-        38,
-        72
+        62,
+        35,
+        -74
       ],
       "lookAt": [
         0,
-        9,
-        0
+        8,
+        -2
       ]
     },
     {
       "name": "whole-headquarters-street",
       "reviewLod": "street",
       "position": [
-        63,
-        38,
-        72
+        62,
+        35,
+        -74
       ],
       "lookAt": [
         0,
-        9,
-        0
+        8,
+        -2
       ]
     },
     {
       "name": "whole-headquarters-closeup",
       "reviewLod": "closeup",
       "position": [
-        63,
-        38,
-        72
+        62,
+        35,
+        -74
       ],
       "lookAt": [
         0,
-        9,
-        0
+        8,
+        -2
       ]
     }
   ],
   "limitations": [
-    "Complete principal Madrid headquarters exterior: red-brick rectangular main block with pale basement and attic, all four windowed elevations, eleven-bay north frontage with closed secondary door and small balcony, east principal four-column fluted Doric portico with genuinely open intercolumniation, closed entablature and triangular pediment, three closed entry doors and integral descending stairs, low closed slate hip roof with eight brick chimneys, continuous belt courses, dentil cornice and original geometric attic reliefs and pediment figures. Independent garden fence/gates, transient flags, vegetation, street furniture and neighbors remain native. No navigable interior or exact inscription/sculptural likeness is claimed.",
-    "No retained numeric building height. Current map parent records 8m, which is retained as a conflicting coarse map fact. The photo-proportioned source has 20m cornice, 21.4m low roof and 23.4m chimney caps; main body is approximately 28.4 by 44.2m, with east stair/portico projection to local Z29.6m. These are approximate visualization controls, not surveyed dimensions. One unchanged field sample outside the east stair toe [0,31], 660.4381705m, supplies the common datum; closed occupied support extends to -8m and portico landing is +2.2m. The coarse urban field varies across the building, so exact historic basement/door/street grades require actual visual review.",
-    "Two ordinary exterior pictures and the current standard viewer PMTiles only. Distinct east and north elevations are observed; south/west window inventory, low roof shape and eight chimney positions are original medium-fi approximations. No copied relief, lettering, exact statue, interior or hidden roof survey. Current native height 8m conflicts with picture-proportioned body; no claim that the conflict is surveyed or resolved. Standard terrain fit is approximate; physical-device timing and numerical LOD errors remain unmeasured. No bespoke research.",
-    "Seven existing shared 256px brick, limestone, granite, slate, wood, painted metal and punched-window graphs. Metric UVs and linear colors, no private or embedded images. Skyline uses one palette group, closed window patches and coarse open portico. District adds closed recesses and shallow trim; street adds modeled frames, dentils, alternating window heads and geometric attic plaques; close-up refines fluted columns, original reliefs and figures. Source master preserves finer curves."
+    "The modeled main block measures about 28.4 by 44.2 m, with a 20 m cornice, 21.4 m roof and 23.4 m chimney caps. PMTiles records a coarse 8 m height. The model uses photo-based proportions. The original viewer terrain determines the west stair toe and rises toward the rear wing. The stair run has been fitted to the standard field and surveyed thresholds remain unknown.",
+    "The garden photo confirms the west portico and its broad granite stairs. The rear street photo shows a solid brick projection with tall upper windows, stone spandrels and a shallow cap. Stair count, rear decorative details, garden furniture and exact terrain grades are approximations.",
+    "Seven shared 256 px brick, limestone, granite, slate, wood, painted metal and punched-window graphs. Materials use metric UVs and linear colors. Skyline combines the main shell, both projections and the roof in one material group. The closer levels add recesses, masonry ornament and fluted columns."
   ],
   "qaCameras": [
     {
-      "name": "whole-south-west-rear-and-roof",
+      "name": "east-rear-wing-and-south-flank",
       "position": [
-        -65,
-        34,
-        -68
+        -63,
+        29,
+        66
       ],
       "lookAt": [
         0,
-        9,
-        0
+        8,
+        5
       ],
-      "fov": 55
+      "fov": 52
     },
     {
-      "name": "open-doric-portico-closed-doors-and-stairs",
+      "name": "open-west-portico-doors-and-stairs",
       "position": [
-        21,
-        13,
-        44
+        17,
+        10,
+        -47
       ],
       "lookAt": [
         0,
-        9,
-        24
+        6,
+        -24
       ],
-      "fov": 55
+      "fov": 56
     },
     {
       "name": "north-eleven-bays-balcony-attic-and-dentils",
@@ -528,10 +548,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 24128,
-    "vertices": 72384,
+    "triangles": 25506,
+    "vertices": 76518,
     "materials": 7,
-    "bytes": 2899652,
-    "sha256": "sha256:25e152a1245d9bb32998a67b6da8d04113cea4e92a210218efd1ab183d8a9fe1"
+    "bytes": 3065044,
+    "sha256": "sha256:e4b50e29845ca15550a9998270846632bd0f12e48fe7d12873359427d4507d5c"
   }
 }

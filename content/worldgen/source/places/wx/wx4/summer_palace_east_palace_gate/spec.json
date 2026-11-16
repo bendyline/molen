@@ -1,0 +1,396 @@
+{
+  "id": "summer_palace_east_palace_gate",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_east_palace_gate",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.27505295,
+    "latitude": 39.996611566
+  },
+  "title": "Summer Palace · East Palace Gate",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "The five-bay, east-facing gatehouse has grey tile, red studded doors and gilt lattice panels. Two bronze lions flank the pale steps and central stone relief.",
+  "nativeAxes": "+Z points toward the public forecourt and +X follows the mapped façade.",
+  "actualBounds": {
+    "min": [
+      -11.19715690612793,
+      -0.6819999814033508,
+      -7.727234840393066
+    ],
+    "max": [
+      11.19715690612793,
+      8.5266695022583,
+      8.236663818359375
+    ]
+  },
+  "size": [
+    22.39431381225586,
+    9.208669483661652,
+    15.963898658752441
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://summerpalace.net.cn/single/detail_g7yU_73/605.html",
+    "https://kimlientravel.com.vn/cong-dong-cung-mon-noi-chao-don-du-khach-den-voi-di-hoa-vien.html",
+    "https://www.travelchinaguide.com/attraction/beijing/summer/east_gate.htm"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.27505295,
+      39.996611566
+    ],
+    "heading": 1.7016220499389731,
+    "bounds": [
+      116.27482069738596,
+      39.99640554732594,
+      116.27528390699133,
+      39.996817318620884
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 53,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.65511,
+          -5.23394
+        ],
+        [
+          8.84902,
+          -5.00718
+        ],
+        [
+          8.67,
+          5.12051
+        ],
+        [
+          -8.86397,
+          5.12053
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.65511,
+            -5.23394
+          ],
+          [
+            8.84902,
+            -5.00718
+          ],
+          [
+            8.67,
+            5.12051
+          ],
+          [
+            -8.86397,
+            5.12053
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Only occupied footprints of the documented buildings are replaced."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:af187f90a6168748f8d8cd415cd60af2e9d944d64437afd00f29aff2627594fb",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The East Palace Gate is fitted to the occupied footprint on the approach to the Hall of Benevolence and Longevity. The three passages show the door leaves open. Bronze lions and the central stair relief are interpreted from photographs. Separate service ranges in the forecourt remain map geometry."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_east_palace_gate/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:a909f9bd5f1fe67c2657aa835af14bf545ac536f65dca5713106daaba55c0850"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_east_palace_gate/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "metallic": 0.65,
+        "roughness": 0.58
+      }
+    },
+    "inputHash": "sha256:f6f07bc9824eb5761da0a32f53fd1201f7f6398f5a14664b271fddee08edb88a",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.65,
+            "roughness": 0.58
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.65,
+            "roughness": 0.58
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.65,
+            "roughness": 0.58
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The East Palace Gate is fitted to the occupied footprint on the approach to the Hall of Benevolence and Longevity. The three passages show the door leaves open. Bronze lions and the central stair relief are interpreted from photographs. Separate service ranges in the forecourt remain map geometry."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        8.14798,
+        7.09255,
+        32.141459999999995
+      ],
+      "lookAt": [
+        0,
+        3.893,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "detail",
+      "position": [
+        2.30269,
+        3.593,
+        22.22218
+      ],
+      "lookAt": [
+        0,
+        4.093,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -10.09641,
+        6.893,
+        -21.867919999999998
+      ],
+      "lookAt": [
+        0,
+        4.193,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "elevated",
+      "position": [
+        10.6278,
+        42.34142,
+        9.319023
+      ],
+      "lookAt": [
+        0,
+        2.893,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23010,
+    "vertices": 47076,
+    "materials": 7,
+    "bytes": 1975180,
+    "sha256": "sha256:e792e114db7e4d96fca8bf4de099f0b7ad1616819841841b9f02a3bd91636486"
+  }
+}

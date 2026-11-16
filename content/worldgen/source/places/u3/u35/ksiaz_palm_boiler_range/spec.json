@@ -19,14 +19,14 @@
   },
   "size": [
     107.66059112548828,
-    16.3700008392334,
-    8.532480716705322
+    16.91012281179428,
+    9.046553134918213
   ],
   "actualBounds": {
     "min": [
       -53.83979415893555,
-      0,
-      -5.69148063659668
+      -0.5401219725608826,
+      -6.20555305480957
     ],
     "max": [
       53.820796966552734,
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X along a mapped cross-range edge toward east",
     "longitudinal": "+Z approximately south; signed facade interpretation follows NID elevation captions",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "origin": "Mapped outline origin with elevation set by the sampled approach."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -79,7 +79,7 @@
   "reconstruction": {
     "basis": "Own OSM footprint(s), official NID individual building survey card and 2025 designated ensemble plan.",
     "scope": "Historic central boiler exterior plus the attached north service wings in one own mapped ring. Other auxiliary boiler rooms, interiors and underground fuel stores excluded.",
-    "registration": "Cardinal facade interpretation proposed; actual terrain and slope contact, current restoration and real world placement remain pending."
+    "registration": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -91,7 +91,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.308690249999998,
       50.83024005
@@ -99,17 +99,149 @@
     "heading": -0.03453964392182473,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
-    "replaceFootprint": false,
+    "groundModelY": -0.068,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain.",
+    "terrainReference": {
+      "anchor": [
+        16.308691663178703,
+        50.83029579745683
+      ],
+      "modelHeight": -0.068,
+      "basis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
+    },
+    "bounds": [
+      16.30790935460832,
+      50.830188977429,
+      16.309472456857318,
+      50.83032263930599
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -53.770184,
+          2.611135
+        ],
+        [
+          -53.757545,
+          -2.484318
+        ],
+        [
+          -8.658898,
+          -2.532994
+        ],
+        [
+          -8.529032,
+          -4.235821
+        ],
+        [
+          8.45364,
+          -4.256516
+        ],
+        [
+          8.323774,
+          -2.55369
+        ],
+        [
+          53.610901,
+          -2.608879
+        ],
+        [
+          53.604774,
+          2.675053
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -53.770184,
+            2.611135
+          ],
+          [
+            -53.757545,
+            -2.484318
+          ],
+          [
+            -8.658898,
+            -2.532994
+          ],
+          [
+            -8.529032,
+            -4.235821
+          ],
+          [
+            8.45364,
+            -4.256516
+          ],
+          [
+            8.323774,
+            -2.55369
+          ],
+          [
+            53.610901,
+            -2.608879
+          ],
+          [
+            53.604774,
+            2.675053
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps masks for the mapped service building and its integral components."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          0.445,
+          -5.335553
+        ],
+        [
+          -0.675,
+          -5.335553
+        ],
+        [
+          -0.875,
+          -6.205553
+        ],
+        [
+          0.645,
+          -6.205553
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            0.445,
+            -5.335553
+          ],
+          [
+            -0.675,
+            -5.335553
+          ],
+          [
+            -0.875,
+            -6.205553
+          ],
+          [
+            0.645,
+            -6.205553
+          ]
+        ]
+      ],
+      "basis": "The sandstone landing fills its own cutout and meets the retained approach at the toe."
+    },
+    "replaceFootprint": true,
     "featureIds": [
       "way/263010002"
     ],
     "source": "https://www.openstreetmap.org/way/263010002",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:2aae955ab45afe3b248dd3d441166add551d988d9d2f7afc77134eb1f3763ac8",
+    "mapGeometryHash": "sha256:af82ffae91653aa339d29e047db09df16b304920c3c44c61b4d2170513d8950c",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring(s) and signed cross-range axes. Cardinal elevations and ensemble associations follow the individual NID survey cards; heights, current facades and ground datum are interpretations. Inactive until actual component/terrain fit is reviewed. No parent QID is reused."
+    "notes": "Own mapped rings and apron, aligned to retained Protomaps and terrain samples. Cardinal elevations follow the individual NID cards. Heights and current facades remain interpretations."
   },
   "sharedSurfaces": [
     {
@@ -156,15 +288,24 @@
         1.92,
         0.9
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
   "limitations": [
     "Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.",
     "Own attributed mapped footprints. Heights, roof subdivisions, openings and detail are original interpretations of the 1994 NID cards. Boiler/control boundaries and adjoining annex associations remain proposed.",
-    "No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions; actual geographic fit remains unreviewed.",
+    "No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions.",
     "References show the 1994 survey state and incorporate earlier plan inventories; current restoration state is unconfirmed.",
-    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+    "No unique textures, copied photos or interior. Physical-device timing remains unmeasured."
   ],
   "qaCameras": [
     {
@@ -224,10 +365,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 4137,
-    "vertices": 12411,
-    "materials": 6,
-    "bytes": 500136,
-    "sha256": "sha256:7dbca5a4b240443a6c8baffeb2070d13fbbba68321ba37d5a300934f9659b025"
+    "triangles": 4271,
+    "vertices": 12813,
+    "materials": 7,
+    "bytes": 516712,
+    "sha256": "sha256:57d3c6609840c4f0dd5c0b7e537434b5ecfa51f6c243135fcf2e5774ca62b6f1"
   }
 }

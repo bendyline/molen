@@ -10,6 +10,8 @@ Inspected all 28 final medium-fi views: noon/late light, high/economy quality, s
 
 ## Placement and runtime
 
+The current castle preview uses the retained castle ring, four tower parts and Powder Tower footprint to remove their procedural duplicates. All four detail levels preserve the other seven mapped buildings and 220 transportation inputs in the viewer fixture. Failed loading restores all 13 mapped buildings. Review of the wider park and Palm House ensemble remains open.
+
 Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 skyline: 991 triangles, 104088 bytes, 1 draws; district: 2914 triangles, 280684 bytes, 6 draws; street: 7119 triangles, 649636 bytes, 7 draws; closeup: 7839 triangles, 674548 bytes, 7 draws. Initial skyline+district 384772 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured.
@@ -18,7 +20,7 @@ skyline: 991 triangles, 104088 bytes, 1 draws; district: 2914 triangles, 280684 
 
 Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Four tiers contain 991/2914/7119/7839 triangles and initial skyline+district downloads total 384772 bytes. Separate POSITION/NORMAL streams retained.
 
-Approximate castle/terrace exterior and location fit from one inspected picture and standard viewer PMTiles. Working court, terrace layouts/levels, roof forms and Powder Tower body/roof are reconstructed; its retained mapped location supplies placement, not a metric architectural survey. This approval covers the castle/terrace asset and does not approve the entire designated heritage ensemble, remote Palm House or separately modeled park buildings. Exact planting, fountains/water, forest, interiors, thresholds and terrain cutouts remain outside this review. Footprint replacement stays off; physical-device timing unmeasured.
+The castle and terraces follow the inspected aerial photograph and standard viewer PMTiles. The court, terraces, roofs and Powder Tower are reconstructed. The tower uses its mapped location. The wider heritage ensemble, remote Palm House, park buildings, planting, fountains, forest, interiors and thresholds still need their own review. Physical-device timings remain unmeasured.
 
 ## Pictures and map
 

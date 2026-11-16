@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ksiaz_palm_forecourt",
+  "kind": "static-structure",
+  "title": "Lubiechów Palm House entrance garden",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ksiaz_palm_forecourt",
+        "output": "assets/places/u3/u35/ksiaz_palm_forecourt/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:14f0d28dd63e908008eda53f1c9cff4e1d1aac263bbb9415caaafaa21c1dfb86"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palm-forecourt",
+        "path": "models/generate-palm-forecourt.mjs"
+      },
+      {
+        "id": "palm-forecourt",
+        "path": "models/palm-forecourt.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "surface-means.json",
+      "preview.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "QA-REVIEW.md",
+      "site-preview.png",
+      "qa.json"
+    ]
+  }
+}

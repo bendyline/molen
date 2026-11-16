@@ -21,6 +21,7 @@ const linear = (hex) =>
   palette = {
     concrete: linear('e0ddd2'),
     floor: linear('c9c5ba'),
+    pavers: linear('d9cbbb'),
     roof: linear('a0adb0'),
     glass: linear('7f9692'),
     metal: linear('969f9c'),

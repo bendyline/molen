@@ -137,12 +137,6 @@ const decisions = [
     'Sanabria Lake is a lake, despite also having a monument classification.',
     'Q1890632',
   ],
-  [
-    'forest_of_remembrance',
-    'landscape',
-    'Forest of Remembrance is a planted memorial landscape, not a single monumental building.',
-    'Q2288815',
-  ],
 ];
 const rows = new Map(
   Object.values(snapshot.groups)

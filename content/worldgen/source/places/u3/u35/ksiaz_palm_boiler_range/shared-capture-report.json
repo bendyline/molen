@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-  "sourceHash": "sha256:7dbca5a4b240443a6c8baffeb2070d13fbbba68321ba37d5a300934f9659b025",
-  "runtimeHash": "sha256:5b41c606c099a710c0b28e4388b369ede703576d5554ff9763825ec705e23d12",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:2aae955ab45afe3b248dd3d441166add551d988d9d2f7afc77134eb1f3763ac8",
+  "inputHash": "sha256:50308b46dd99923ed49d81d6fef2e76ee60dc6a66ca22171d72c17413a183d97",
+  "sourceHash": "sha256:57d3c6609840c4f0dd5c0b7e537434b5ecfa51f6c243135fcf2e5774ca62b6f1",
+  "runtimeHash": "sha256:7fcc308cb882b8e1b66d204b89e0c426c9695c5042eb8598fe66dd178490a742",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:af82ffae91653aa339d29e047db09df16b304920c3c44c61b4d2170513d8950c",
   "reflectionMode": "none",
   "clippingMode": "legacy",
-  "specHash": "sha256:3703925a7f5eb10dabc5ace782f1733350cfb9d62cffe4a228376018a008cdad",
-  "placementHash": null,
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:319431f5cf62db6439fa3c074b23e489480f5ab81d3cf6d5c3d673738d90d690",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -29,236 +32,372 @@
     "matgraph:molen.worldgen.material.stone_drywall": {
       "path": "materials/stone_drywall.matgraph.json",
       "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+    },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:fe430d7ffde35c3162d506dbdbfb3d263957e96ef5298d214bf33f63c3228ec3",
+      "hash": "sha256:e3471c7adf84af74c99837cfe018a485f2db0b5b94e0fcba3876af0fbdf1f4e0",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:09f1966eb0cb49089850d47e24c475635bc82b1c53554fca17bc537d4d4b3f6c",
+      "hash": "sha256:32973e5a955e195680c4dfd3ca627970a5092b5970751d7b561535ebf10a8b7f",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:8aab23817b92aafb3c27eb35ee2e1f76c8f4d25ca0f8eb6c62dafb3744f190bd",
+      "hash": "sha256:e6ccc695eae01498a1800762cd79e6a0bd52694010b255763118f17ee2681365",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:a1f06c556273c35114a6b743c7ad41fa6106e0798610d474c32e26c289d97c20",
+      "hash": "sha256:d56cba854d9f672ca9b17dcd677cd6a0b1d82751f3ca1a39639a042c50c447af",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/north-timber-gable-and-oriel.png",
-      "hash": "sha256:2e34a56d1658ad5089be7a0e238713e23d743053ba8060ead611d4c042297b95",
+      "hash": "sha256:1798e9c78ff4489d29f3417cb3c2a180d7024dc738476d617f926b9f4e96dbcd",
       "camera": {
         "name": "north-timber-gable-and-oriel",
         "position": [
@@ -274,56 +413,89 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/boiler-stacks-and-north-range.png",
-      "hash": "sha256:897945257d8c434fa5a329552b3b1a72bad65a8f810d3fc459372d92ebec1ee3",
+      "hash": "sha256:1ad23c2c08a5b60045c665933c078473344e7017340de24d54cbd886d81621fd",
       "camera": {
         "name": "boiler-stacks-and-north-range",
         "position": [
@@ -339,56 +511,89 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/own-north-range-footprint.png",
-      "hash": "sha256:dae098c93a931c617c57acbcb0762f1380f420ae4f87956b758036a38998bb73",
+      "hash": "sha256:7579f97447b81cef45ce2fb74b84f5ac7d72bcba2f71fadc67cf6ecf061bbf46",
       "camera": {
         "name": "own-north-range-footprint",
         "position": [
@@ -404,56 +609,89 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
       }
     },
     {
       "path": "shots/shared/south-service-side.png",
-      "hash": "sha256:7e594d736d7a11b0e0e16de2a4ed36d0e7d65d34f8422d649df5021c51ac41ae",
+      "hash": "sha256:89d7a8f4556aa3bfef832b74720f112d334f596d1761b5777d5ecf6387f74ddf",
       "camera": {
         "name": "south-service-side",
         "position": [
@@ -469,51 +707,173 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 6,
-        "triangles": 4137,
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
         "bounds": {
           "min": [
-            -53.83979415893555,
-            0,
-            -5.69148063659668
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
           ],
           "max": [
-            53.820796966552734,
+            53.804504773873,
             16.3700008392334,
-            2.8410000801086426
+            4.623961368946029
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3b4c4bf3-a618-4344-a0d8-5a3b726fe24b",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "9024f720-f134-4d3d-bdc9-5c54c543138f",
-          "worldgen:matgraph:molen.worldgen.material.brick": "a841b72b-031a-4fa8-8e7e-c2d0bfc29c2a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "29f0d6d3-e2fa-48b0-84b6-88072e8e51e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c67b1458-7ce5-4711-9a29-16d611baea80"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_palm_boiler_range"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_drywall": 1
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
-        "draws": 7,
-        "renderedTriangles": 4139
+        "draws": 8,
+        "renderedTriangles": 4283
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:6f9eb315e0c63310c7c46f7ec398d63e3ec6ff874202a2db15ce3caa9bd9b6cc",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_palm_boiler_range",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.palm-boiler-range",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": -0.03453964392182473,
+        "meshes": 7,
+        "triangles": 4271,
+        "bounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.821586142544525,
+            -0.5401219725608826,
+            -6.232068030397845
+          ],
+          "max": [
+            53.804504773873,
+            16.3700008392334,
+            4.623961368946029
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "badf377d-0eda-4c60-b96c-8c451d2ae8ce",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "4194b931-d1d7-4bf3-8b9b-bda2bf0f2989",
+          "worldgen:matgraph:molen.worldgen.material.brick": "ef8522d4-7f24-47d6-b18d-c3f918f574e3",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "242f169e-fac4-43ac-a615-ea93c1d5156b",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "a4387350-f98a-4d12-a448-c593e3793f2d",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "52593538-599b-4b7a-8c68-31890aadf243"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_palm_boiler_range"
+        ],
+        "selectionBounds": [
+          16.307780672376392,
+          50.829680883287054,
+          16.309601139089246,
+          50.83083072646257
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.palm-boiler-range",
+            "coordinate": [
+              16.308691663178703,
+              50.83029579745683
+            ],
+            "height": -0.068
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.palm-boiler-range"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 4283
       }
     }
   ],
@@ -523,8 +883,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

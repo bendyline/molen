@@ -91,7 +91,7 @@
     }
   ],
   "basis": "Original photo-led static exterior: mapped19.0048m road segment, flared relation5636139/Q2390563 footprint and approximate15m clear span/13.1m deck width. The map rectangle axis was corrected to the actual road. Metal panel count/details and granite sections are ordinary-photo reconstruction controls, not a measured engineering survey.",
-  "limitation": "Native placement stays disabled: both standard z14 and z15 terrain contain a large bank rise. The z15 fixture water is16.924m, southeast bank25–30m and northwest bank19–22m. Keep the bridge proportions; do not invent steep ramps or stretch its abutments to approve native fit.",
+  "limitation": "The local road grade and canal stage use the retained standard PMTiles and Terrarium setting. The landings and detailed ironwork are visualization approximations.",
   "sources": {
     "vector": {
       "id": "protomaps-basemap",
@@ -161,5 +161,20 @@
       "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
       "extractHash": "sha256:44f4a1fcab90d72c1e4550f315e3e023672cb1d6352522a600a5bc430af21656"
     }
-  }
+  },
+  "gradeMeters": 20.184,
+  "gradeDocument": "content/earth/terrain/site-grades.json",
+  "waterDocument": "content/earth/hydrology/water-features.json",
+  "approaches": [
+    {
+      "side": -1,
+      "endX": -15.2,
+      "endCenter": 0.24
+    },
+    {
+      "side": 1,
+      "endX": 15.2,
+      "endCenter": -1.27
+    }
+  ]
 }

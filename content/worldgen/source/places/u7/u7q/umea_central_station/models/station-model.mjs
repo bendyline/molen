@@ -1,5 +1,6 @@
 /** Original complete historic Umeå station; shared metric materials and explicit browser tiers. */
 
+import { readFileSync } from 'node:fs';
 import {
   beam,
   beamPath,
@@ -17,6 +18,7 @@ const C = {
   band: lin('d2b17c'),
   stone: lin('d6c49d'),
   base: lin('9b9c91'),
+  paving: lin('a7a397'),
   roof: lin('90ae84'),
   wood: lin('685040'),
   metal: lin('55675e'),
@@ -151,6 +153,35 @@ export const stationPlan = [
   [-9.944196, 5.682806],
   [-18.506601, 5.682806],
 ];
+const placement = JSON.parse(readFileSync(new URL('../placement-draft.json', import.meta.url)));
+const { inner: apronInner, edgeHeights } = placement.apron;
+const apronEdge = placement.groundCutout.outline.map(([x, z], i) => [x, edgeHeights[i], z]);
+
+function stationApron(o, c) {
+  for (let i = 0; i < apronEdge.length; i++) {
+    const j = (i + 1) % apronEdge.length;
+    Q(
+      o,
+      c,
+      [apronInner[i], apronEdge[i], apronEdge[j], apronInner[j]],
+      'base',
+      C.paving,
+      [0, 1, 0],
+    );
+    if (c.detail) {
+      const a = apronEdge[i];
+      const b = apronEdge[j];
+      const below = ([x, y, z]) => [x, y - 0.24, z];
+      Q(o, c, [a, b, below(b), below(a)], 'base', C.base, [b[2] - a[2], 0, a[0] - b[0]]);
+    }
+  }
+  const floor = earcut(apronInner.flatMap(([x, , z]) => [x, z]));
+  for (let i = 0; i < floor.length; i += 3) {
+    const corners = floor.slice(i, i + 3).map((index) => apronInner[index]);
+    T(o, c, corners, 'base', C.paving, [0, 1, 0]);
+  }
+}
+
 const face = (axis, side) =>
   axis === 'z'
     ? ([u, y, v]) => [side > 0 ? u : -u, y, side + Math.sign(side) * v]
@@ -546,7 +577,9 @@ function central(o, c) {
     z0 = -7.33,
     z1 = 7.331;
   const ground = [-3.7, 0, 3.7, 7.55].map((x, i) =>
-    opening(arch(x, 0.85, i === 1 ? 1.85 : 2.15, 3.85, c.arch), i === 1 ? 'wood' : 'glass'),
+    i === 1
+      ? opening(arch(x, 0.365, 1.85, 4.335, c.arch), 'wood')
+      : opening(arch(x, 0.85, 2.15, 3.85, c.arch)),
   );
   const second = [-4.9, -2.1, 2.1, 4.9, 7.4].map((x) =>
     opening(arch(x, 7.0, Math.abs(x) === 4.9 ? 0.65 : 1.8, 2.55, c.arch, 0.4)),
@@ -644,8 +677,9 @@ function bay(o, c) {
     R = 1.55,
     n = c.detail ? 5 : 3,
     ring = [];
-  for (let i = 0; i <= 10; i++) {
-    const a = (i / 10) * Math.PI;
+  const baseSegments = c.detail ? 10 : 5;
+  for (let i = 0; i <= baseSegments; i++) {
+    const a = (i / baseSegments) * Math.PI;
     ring.push([X + R * Math.cos(a), Z + R * Math.sin(a)]);
   }
   slab(o, c, ring, -3, 0.35);
@@ -684,7 +718,7 @@ function bay(o, c) {
       [10.2, 0.95],
       [10.35, 0.3],
     ],
-    N = c.round * 2,
+    N = c.detail ? c.round * 2 : 6,
     point = (r, i) => [
       X + r[1] * Math.cos((i / N) * Math.PI),
       r[0],
@@ -771,10 +805,32 @@ function clock(o, c) {
       );
     }
   // Original static clock hands; no real-time clock or copied numerals are claimed.
-  beam(adapter(o, c), 'metal', [0, y, z + 0.08], [-0.35, y + 0.4, z + 0.08], 0.065, 0.06, C.metal);
-  beam(adapter(o, c), 'metal', [0, y, z + 0.08], [0.35, y + 0.6, z + 0.08], 0.055, 0.05, C.metal);
+  const tips = [
+    [-0.35, 0.4],
+    [0.35, 0.6],
+  ];
+  for (const [x, dy] of tips) {
+    const handZ = z + 0.08;
+    if (c.detail) {
+      beam(adapter(o, c), 'metal', [0, y, handZ], [x, y + dy, handZ], 0.06, 0.055, C.metal);
+    } else {
+      T(
+        o,
+        c,
+        [
+          [-0.041, y, handZ],
+          [0.041, y, handZ],
+          [x, y + dy, handZ],
+        ],
+        'metal',
+        C.metal,
+        [0, 0, 1],
+      );
+    }
+  }
 }
 function entrance(o, c) {
+  box(o, c, -1.05, 1.05, 0.2, 0.35, 7.23, 7.59, 'base', C.base);
   const depth = c.fine ? 0.28 : c.detail ? 0.12 : -0.01;
   const z = 7.331 - depth + 0.015;
   const transom = arch(0, 2.9, 1.5, 1.55, c.arch);
@@ -836,6 +892,7 @@ export function buildStationLevel(o, level = 'master') {
   const c = cfg[level];
   if (!c) throw Error('Unknown station tier ' + level);
   slab(o, c, stationPlan, -3, 0.35);
+  stationApron(o, c);
   wing(o, c, -18.5, -9.944);
   wing(o, c, 9.652, 18.5);
   central(o, c);

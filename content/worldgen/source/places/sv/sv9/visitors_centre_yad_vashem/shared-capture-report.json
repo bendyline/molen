@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.visitors_centre_yad_vashem",
-  "inputHash": "sha256:127d7f3e7b6879256e1e31bc8bbf90f464917a75808b3b91d5b71b3362aa6091",
-  "sourceHash": "sha256:0d37156dbbe56c80bf2c43ca9f7e50840ab1138194f703af9ecb6a6ab7bc535b",
-  "runtimeHash": "sha256:803558051787d1b30ba3949ebd713482ab4c3d8c4529ca0f96a6e4387c8bcca2",
+  "inputHash": "sha256:5e416e9eb8c757eeb1273b55a9371d6571e3009aea649d0e34f7d012d1b17749",
+  "sourceHash": "sha256:963cfe4d91e46138a54cf650331165ddf4f3321e715750ee26dedef60b82a48f",
+  "runtimeHash": "sha256:91b2a8b1726bc52a4fd94bc33c8767ab85c8feb9d52256fb25d60abc0f4ba586",
   "reviewGroundY": 0.06,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:a0c804199592843ae11e25adce18613dccf2595a0a58f87b4e87af28db843b3a",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:e9818adb2915ce4fc94104018abdb5c093623d299488f84c4e6c55e2988099ff",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:e40786262d8f05fd14e31052257f430e00ca178256800d1366fd38086e04d53b",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -20,231 +21,359 @@
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
     },
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:b0752037005f232888d5fd6183c7d070cd37f3db372868219537bb6996852957",
+      "hash": "sha256:00b95260b759ea63ffb64f9aa518fb2e58814af44b5788dcac917a6779722503",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:df9946db0d78c8ce6d3122caa8154b8909778c55fdfc696219dfb7603cfb5b5e",
+      "hash": "sha256:291848ad59dbc2dc82606998d62cada23168b2674abee601bf8d5a7d503b06c0",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:e2358306c6bde29e793d2b1f6a8076bd819fd17a4620ffa5bf65815978cf677f",
+      "hash": "sha256:11fdd93a73d27d8051d7d98e644e0b0bbf76d7adceeb0c26cb80a5366bcfa627",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:23be59c9f00dd1e3d24ec6cca1dec6fba140acbda35bf19d81f634ed24ee1583",
+      "hash": "sha256:b333fb2a45cdb8674874a9e9b5b3165afea6d13823bad03e785c9703a6d598c8",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/carpark-entry-and-notched-fascia.png",
-      "hash": "sha256:0ea4bac94fb466b1f913d99ff990f3f9e2ccae8bd0b3caa46821bcd0c20abd80",
+      "hash": "sha256:652b0f70d4fff6734acef9ae11f766d803eb4690f9f010daec525274d5d1c771",
       "camera": {
         "name": "carpark-entry-and-notched-fascia",
         "position": [
@@ -261,54 +390,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/south-colonnade-and-deep-glazing.png",
-      "hash": "sha256:f1c3bb38f194e0311756963fb48ee6e1f05f6c775a3dde99dbf214ad2c246287",
+      "hash": "sha256:e81c5e18b36a49e0ac8f0b68570aebe792639a3f53d152ebc03a2b84111693bf",
       "camera": {
         "name": "south-colonnade-and-deep-glazing",
         "position": [
@@ -325,54 +485,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
       }
     },
     {
       "path": "shots/shared/gridded-roof-and-column-rhythm.png",
-      "hash": "sha256:28b8e33121f8ce0059860913d8eab6d8125aee93e73fa4fc854de89595dab45a",
+      "hash": "sha256:55fd55c8810ca64a0d9c0c1db18ffed1556896e987ee09ba9e3d7dad61747da4",
       "camera": {
         "name": "gridded-roof-and-column-rhythm",
         "position": [
@@ -389,49 +580,165 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 3956,
+        "meshes": 6,
+        "triangles": 4358,
         "bounds": {
           "min": [
-            -17.895225524902344,
-            -3.794053077697754,
-            -17.70488739013672
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
           ],
           "max": [
-            17.895225524902344,
+            25.3942928314209,
             9.425000190734863,
-            17.831815719604492
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
           ]
         },
         "reviewGroundY": 0.06,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "626cb7c1-fdd2-4082-9fa2-a6922ff7908f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "266bf9ac-dce0-49db-ac09-09bcb2b2698a",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "ce0c5072-2b96-482c-9034-2ba33e63c1a0"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
         },
         "loads": [
           "molen.worldgen.structure.visitors_centre_yad_vashem"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 6,
-        "renderedTriangles": 3958
+        "draws": 7,
+        "renderedTriangles": 4418
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:c52ff9a3923a5a0aede48e6c7c53402646f5752497489d2f98a0b75b2eea36dd",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.visitors_centre_yad_vashem",
+        "mode": "geographic-flat-terrain",
+        "placementId": "visitors.centre.yad.vashem",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 6,
+        "triangles": 4358,
+        "bounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -19.661203384399414,
+            -5.279669761657715,
+            -19.68174934387207
+          ],
+          "max": [
+            25.3942928314209,
+            9.425000190734863,
+            20.924306869506836
+          ]
+        },
+        "reviewGroundY": 0.06,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7320e66f-6cc4-46c3-9969-d8198a14256b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9301fc8f-bf7b-40d0-bcb0-16f7ab86f147",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "6b59e59d-521a-465e-9ba9-43475606cc09",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "464fb9d3-4f96-4ee8-bfe5-cd78ea7d4a59"
+        },
+        "loads": [
+          "molen.worldgen.structure.visitors_centre_yad_vashem"
+        ],
+        "selectionBounds": [
+          35.17592040718337,
+          31.773627300074825,
+          35.17727295774186,
+          31.77477714370786
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "visitors.centre.yad.vashem",
+            "coordinate": [
+              35.17682934884466,
+              31.774261906000103
+            ],
+            "height": 0.60047
+          }
+        ],
+        "visibleStructures": [
+          "visitors.centre.yad.vashem"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 4418
       }
     }
   ],
@@ -441,8 +748,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

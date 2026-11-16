@@ -18,7 +18,7 @@
     ],
     "max": [
       19.94586944580078,
-      30.33750343322754,
+      30.604644775390625,
       5.223540782928467
     ]
   },
@@ -41,7 +41,25 @@
     "evidence": "California State Parks EGIS official Watts Towers of Simon Rodia SHP parcel, GISID GIS0000202 / UNIT_CODE 518 / OBJECTID 199, supplies the four-corner perimeter and south street axis. Native +X follows the south boundary eastward; +Z faces south across E 107th Street. Individual component positions are proportionally reconstructed from the Los Angeles city archive 1959 hearing Exhibit B and cross-checked against the current operator aerial, not labeled as a measured component survey.",
     "limitations": "State GIS boundary is a parcel rather than a component survey. Interior positions and secondary sculpture dimensions are proportional reconstruction. The burned house is represented by surviving exterior remnants only, not its lost building volume.",
     "elevationMode": "terrain-contact",
-    "notes": "California State Parks EGIS official Watts Towers of Simon Rodia SHP parcel, GISID GIS0000202 / UNIT_CODE 518 / OBJECTID 199, supplies the four-corner perimeter and south street axis. Native +X follows the south boundary eastward; +Z faces south across E 107th Street. Individual component positions are proportionally reconstructed from the Los Angeles city archive 1959 hearing Exhibit B and cross-checked against the current operator aerial, not labeled as a measured component survey. State GIS boundary is a parcel rather than a component survey. Interior positions and secondary sculpture dimensions are proportional reconstruction. The burned house is represented by surviving exterior remnants only, not its lost building volume.",
+    "notes": "The state park parcel supplies the court outline and street-facing axis. PMTiles locate the park and adjacent East 107th Street. Preserve the host map buildings, streets and ground.",
+    "bounds": [
+      -118.24131,
+      33.93854,
+      -118.24078,
+      33.93891
+    ],
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -118.24104123365372,
+        33.938721678265445
+      ],
+      "modelHeight": 0.304769,
+      "basis": "The sampled datum meets the normalized model 0.305 m above its lowest foundation point."
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two fitted court planes follow the sampled viewer terrain. A shallow concrete edge reaches below grade around the perimeter.",
     "attribution": "California State Parks EGIS; Los Angeles City Archives, Exhibit B admitted July 1959; operator Watts Towers Arts Center."
   },
   "sourceFacts": {
@@ -77,7 +95,9 @@
     "https://www.lacma.org/sites/default/files/Ship_0.pdf",
     "https://www.lacma.org/sites/default/files/NorthWall_0.pdf",
     "https://www.lacma.org/sites/default/files/SouthWallInt.pdf",
-    "https://www.wattstowers.org/contact-us"
+    "https://www.wattstowers.org/contact-us",
+    "https://www.sfgate.com/la/article/smallest-california-state-park-built-by-one-man-19787197.php",
+    "https://www.pond5.com/stock-footage/item/89819639-watts-towers-aerial-4k"
   ],
   "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
   "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
@@ -103,12 +123,10 @@
     }
   ],
   "limitations": [
-    "Original exterior reconstruction, not a conservation replica: every mosaic shard, shell, bottle bottom and embossed imprint is not copied; deterministic small colored pieces preserve material scale, palette and distribution. Published framing counts, different tower silhouettes and named components are retained.",
-    "Individual component centers, irregular tube bends, secondary sculpture heights and small ornament are proportional from primary plans/photographs rather than a laser survey. Conflicting source heights are recorded explicitly.",
-    "The 1950s house volume is absent, as in the surviving monument. Nearby arts-center buildings, temporary conservation scaffolding and the outer modern security fence are outside this sculpture asset.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Mosaic variation and small ornament use shared surfaces and authored color geometry. Individual shards, shell patterns and framing bends are interpreted from photographs.",
+    "Internal sculpture positions are proportional. The modern security fence, amphitheater and arts center are outside the sculpture asset."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -256,5 +274,116 @@
         -1
       ]
     }
-  ]
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Three open tapered towers, looping braces and a domed gazebo rise over Rodia's narrow mosaic sculpture court.",
+    "master": "Preserves the three principal lattices, mosaic-covered bases, gazebo and fountain, ship, house remnants and smaller sculpture. Fits the assembly and court to sampled viewer terrain.",
+    "browser": "All four levels preserve the open tower cages, west loops, gazebo and masts. The street and close-up recipes keep continuous supports, curved wall panels and the colorful mosaic accents."
+  },
+  "mediumFiContext": {
+    "scale": 0.5,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/watts-towers-fit-model.mjs",
+    "export": "buildWattsFittedMaster"
+  },
+  "mesh": {
+    "triangles": 1079676,
+    "vertices": 1990694,
+    "groups": 4,
+    "bytes": 84623828,
+    "sha256": "sha256:8e9de67dcc51fd32f35ac2f1f5decbf13e38dea4c1d56cac701c946da1c2b5a2",
+    "min": [
+      -22.204702377319336,
+      0,
+      -16.334524154663086
+    ],
+    "max": [
+      19.94586944580078,
+      30.604644775390625,
+      5.223540782928467
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/watts-towers-fit-model.mjs",
+    "export": "buildWattsSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWattsDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "buildWattsStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.34
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWattsCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.34
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  }
 }

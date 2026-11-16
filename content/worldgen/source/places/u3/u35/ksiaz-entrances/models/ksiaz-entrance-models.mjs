@@ -14,6 +14,7 @@ export const ksiazEntranceSurfaces = {
   plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
   tile: { slot: 'roof', graph: 'tile_ceramic', roughness: 0.88, metallic: 0 },
   sandstone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.85, metallic: 0 },
+  sandstoneTread: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.88, metallic: 0 },
   bronze: { slot: 'trim', graph: 'metal_bronze_cast', roughness: 0.65, metallic: 0.7 },
   glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
   timber: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
@@ -166,7 +167,7 @@ function winding(loop) {
     }, 0),
   );
 }
-function cap(o, loop, y, color = 'wall', slot = 'plaster') {
+function cap(o, loop, y, color = 'wall', slot = 'plaster', normal = [0, 1, 0]) {
   const ix = earcut(loop.flat());
   for (let i = 0; i < ix.length; i += 3)
     face(
@@ -174,7 +175,7 @@ function cap(o, loop, y, color = 'wall', slot = 'plaster') {
       ix.slice(i, i + 3).map((k) => [loop[k][0], y, loop[k][1]]),
       color,
       slot,
-      [0, 1, 0],
+      normal,
     );
 }
 function pane(o, x, y, z, w, h, d, arched = false) {
@@ -225,7 +226,7 @@ function profile(o, center, levels, n, color, slot) {
   );
 }
 // Convex clipping builds a joined pitched surface over each component's own mapped ring.
-function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall') {
+function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall', closeRaisedEdges = false) {
   const eps = 1e-7;
   function clip(p, signed) {
     const result = [];
@@ -285,12 +286,58 @@ function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall') {
       });
     },
   };
-  for (const [x, y, z, w, depth, rise, angle = 0] of patches)
-    hip(local(capture, [x, z], angle), 0, y, 0, w, depth, rise);
+  for (const [x, y, z, w, depth, rise, angle = 0, shape = 'hip'] of patches) {
+    const roof = local(capture, [x, z], angle);
+    if (shape === 'gable') {
+      for (const side of [-1, 1])
+        face(
+          roof,
+          [
+            [0, y + rise, -depth / 2],
+            [(side * w) / 2, y, -depth / 2],
+            [(side * w) / 2, y, depth / 2],
+            [0, y + rise, depth / 2],
+          ],
+          'roof',
+          'tile',
+          [0, 1, 0],
+        );
+    } else hip(roof, 0, y, 0, w, depth, rise);
+  }
   const ix = earcut(loop.flat()),
     plan = [];
   for (let i = 0; i < ix.length; i += 3) plan.push(ix.slice(i, i + 3).map((k) => loop[k]));
   for (const poly of plan) surfaces.push({ poly, height: () => base });
+  const outsidePlanes = closeRaisedEdges
+    ? surfaces.map((surface) => ({ ...surface, edges: lines(surface.poly) }))
+    : [];
+  function closeRoofReturn(a, b, current, edgeSign) {
+    const dx = b[0] - a[0],
+      dz = b[1] - a[1];
+    const length = Math.hypot(dx, dz);
+    if (length < 0.00001) return;
+    const normal = [(edgeSign * dz) / length, 0, (-edgeSign * dx) / length];
+    const across = [(a[0] + b[0]) / 2 + 0.001 * normal[0], (a[1] + b[1]) / 2 + 0.001 * normal[2]];
+    const neighbor = outsidePlanes.filter((plane) =>
+      plane.edges.every((edge) => edge(across) >= -eps),
+    );
+    const upper = (p) => current.height(p);
+    const lower = (p) =>
+      Math.min(upper(p), Math.max(base, ...neighbor.map((plane) => plane.height(p))));
+    if (Math.max(upper(a) - lower(a), upper(b) - lower(b)) < 0.015) return;
+    face(
+      o,
+      [
+        [a[0], lower(a), a[1]],
+        [b[0], lower(b), b[1]],
+        [b[0], upper(b), b[1]],
+        [a[0], upper(a), a[1]],
+      ],
+      wallColor,
+      'plaster',
+      normal,
+    );
+  }
   for (let i = 0; i < surfaces.length; i++) {
     const current = surfaces[i];
     let pieces = [current.poly];
@@ -312,7 +359,8 @@ function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall') {
           'tile',
           [0, 1, 0],
         );
-        for (let k = 0; k < p.length; k++)
+        for (let k = 0; k < p.length; k++) {
+          let boundary = false;
           for (let m = 0; m < loop.length; m++) {
             const a = p[k],
               b = p[(k + 1) % p.length],
@@ -326,7 +374,9 @@ function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall') {
               Math.abs(dx * (q[1] - u[1]) - dz * (q[0] - u[0])) / Math.sqrt(l2) < 1e-5 &&
               (q[0] - u[0]) * dx + (q[1] - u[1]) * dz >= -eps &&
               (q[0] - u[0]) * dx + (q[1] - u[1]) * dz <= l2 + eps;
-            if (on(a) && on(b) && Math.max(current.height(a), current.height(b)) > base + eps)
+            if (!on(a) || !on(b)) continue;
+            boundary = true;
+            if (Math.max(current.height(a), current.height(b)) > base + eps)
               face(
                 o,
                 [
@@ -340,6 +390,9 @@ function joinedRoofs(o, loop, base, patches, _d, wallColor = 'wall') {
                 [winding(loop) * dz, 0, -winding(loop) * dx],
               );
           }
+          if (closeRaisedEdges && !boundary)
+            closeRoofReturn(p[k], p[(k + 1) % p.length], current, winding(p));
+        }
       }
   }
 }
@@ -348,7 +401,7 @@ function body(
   loop,
   height,
   d,
-  { raisedEnds = false, color = 'wall', skipPane = () => false } = {},
+  { raisedEnds = false, color = 'wall', skipPane = () => false, entry } = {},
 ) {
   const sign = winding(loop);
   for (let i = 0; i < loop.length; i++) {
@@ -358,18 +411,34 @@ function body(
       dz = b[1] - a[1],
       length = Math.hypot(dx, dz);
     if (length < 0.1) continue;
-    face(
-      o,
-      [
-        [a[0], 0, a[1]],
-        [b[0], 0, b[1]],
-        [b[0], height, b[1]],
-        [a[0], height, a[1]],
-      ],
-      color,
-      'plaster',
-      [sign * dz, 0, -sign * dx],
-    );
+    const normal = [sign * dz, 0, -sign * dx];
+    const point = (s, y) => {
+      const p =
+        s === 0 ? a : s === length ? b : [a[0] + (s * dx) / length, a[1] + (s * dz) / length];
+      return [p[0], y, p[1]];
+    };
+    const panel = (start, end, low, high) =>
+      face(
+        o,
+        [point(start, low), point(end, low), point(end, high), point(start, high)],
+        color,
+        'plaster',
+        normal,
+      );
+    const offset = entry?.center.map((v, k) => v - a[k]);
+    const along = offset && (offset[0] * dx + offset[1] * dz) / length;
+    const cutEntry =
+      d &&
+      offset &&
+      Math.abs((offset[0] * dz - offset[1] * dx) / length) < 0.001 &&
+      along > 0.9 &&
+      along < length - 0.9;
+    if (cutEntry) {
+      panel(0, along - 0.9, 0, height);
+      panel(along + 0.9, length, 0, height);
+      panel(along - 0.9, along + 0.9, 3, height);
+      panel(along - 0.9, along + 0.9, 0, 0.1);
+    } else panel(0, length, 0, height);
     if (d === 0 || length < 5) continue;
     const q = local(o, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], -Math.atan2(dz, dx)),
       n = Math.max(1, Math.floor(length / (d === 1 ? 8 : 4.3)));
@@ -380,7 +449,26 @@ function body(
       for (const y of raisedEnds && Math.abs(worldX) < 14 ? [1.2] : [1.2, 6.4])
         if (!skipPane(worldX, worldZ, y)) pane(q, x, y, -sign * 0.07, 1.35, y > 5 ? 2.2 : 2.7, d);
     }
-    if (d >= 2) box(q, 0, 0.2, -sign * 0.05, length, 0.3, 0.18, 'stone', 'sandstone');
+    if (d >= 2) {
+      const spans = cutEntry
+        ? [
+            [0, along - 0.9],
+            [along + 0.9, length],
+          ]
+        : [[0, length]];
+      for (const [start, end] of spans)
+        box(
+          q,
+          (start + end - length) / 2,
+          0.2,
+          -sign * 0.05,
+          end - start,
+          0.3,
+          0.18,
+          'stone',
+          'sandstone',
+        );
+    }
   }
   cap(o, loop, height, color);
 }
@@ -518,19 +606,64 @@ function boundaryAt(loop, axis, coordinate, facing) {
   if (!hits.length) throw Error('Facade coordinate lies outside the mapped ring');
   return hits.sort((a, b) => facing * (b[0] - a[0]))[0];
 }
-function door(o, d, width = 1.8) {
+function door(o, d, width = 1.8, inset = 0) {
+  const z = inset ? -inset : 0.09;
   face(
     o,
     [
-      [-width / 2, 0.1, 0.09],
-      [width / 2, 0.1, 0.09],
-      [width / 2, 3, 0.09],
-      [-width / 2, 3, 0.09],
+      [-width / 2, 0.1, z],
+      [width / 2, 0.1, z],
+      [width / 2, 3, z],
+      [-width / 2, 3, z],
     ],
     'door',
     'timber',
     [0, 0, 1],
   );
+  if (inset) {
+    const a = -width / 2,
+      b = width / 2;
+    for (const [x, side] of [
+      [a, 1],
+      [b, -1],
+    ])
+      face(
+        o,
+        [
+          [x, 0.1, z],
+          [x, 0.1, 0],
+          [x, 3, 0],
+          [x, 3, z],
+        ],
+        'trim',
+        'plaster',
+        [side, 0, 0],
+      );
+    face(
+      o,
+      [
+        [a, 3, z],
+        [a, 3, 0],
+        [b, 3, 0],
+        [b, 3, z],
+      ],
+      'trim',
+      'plaster',
+      [0, -1, 0],
+    );
+    face(
+      o,
+      [
+        [a, 0.1, z],
+        [a, 0.1, 0],
+        [b, 0.1, 0],
+        [b, 0.1, z],
+      ],
+      'stone',
+      'sandstone',
+      [0, 1, 0],
+    );
+  }
   if (d >= 2) {
     for (const x of [-width / 2 - 0.14, width / 2 + 0.14]) box(o, x, 0, 0.08, 0.28, 3.25, 0.22);
     box(o, 0, 3, 0.08, width + 0.55, 0.25, 0.22);
@@ -547,11 +680,12 @@ function buildOfficina(o, frame, d) {
   const entranceX = 18; // Photographic interpretation in the outer end pavilion.
   body(o, loop, c.bodyHeight, d, {
     raisedEnds: true,
+    entry: frame.siteFit?.apron,
     skipPane: (x, z, y) => y < 5 && z * c.courtFacing > 0 && Math.abs(x - entranceX) < 1.8,
   });
   if (d >= 1) {
     const [z, angle] = boundaryAt(loop, 0, entranceX, c.courtFacing);
-    door(local(o, [entranceX, z], angle), d);
+    door(local(o, [entranceX, z], angle), d, 1.8, frame.siteFit?.apron ? 0.24 : 0);
   }
   const ends = [cx - length / 2 + 4.5, cx + length / 2 - 4.5];
   joinedRoofs(
@@ -563,6 +697,8 @@ function buildOfficina(o, frame, d) {
       ...ends.map((x) => [x, c.endHeight, cz, 9, depth, 4.4]),
     ],
     d,
+    'wall',
+    !!frame.siteFit,
   );
   if (d >= 1)
     for (const facing of [-1, 1]) {
@@ -572,7 +708,8 @@ function buildOfficina(o, frame, d) {
         const x = cx - 14 + (i * 28) / (count - 1),
           q = local(o, [x, z]);
         box(q, 0, 6.5, 0, 2.35, 2.4, 2.2, 'wall', 'plaster');
-        hip(q, 0, 8.9, 0, 2.65, 2.5, 0.8);
+        if (frame.siteFit) dormerCap(q, d);
+        else hip(q, 0, 8.9, 0, 2.65, 2.5, 0.8);
         pane(q, 0, 6.8, facing * 1.16, 1.1, 1.5, d, true);
       }
       if (d >= 2)
@@ -583,43 +720,170 @@ function buildOfficina(o, frame, d) {
     }
   if (d >= 2) for (const x of ends) box(o, x, 12.2, cz, 1.1, 3.2, 1.3, 'trim', 'plaster');
 }
+function dormerCap(o, detail) {
+  const count = detail === 1 ? 4 : 8;
+  const arc = Array.from({ length: count + 1 }, (_, i) => {
+    const angle = (Math.PI * i) / count;
+    return [1.32 * Math.cos(angle), 8.87 + 0.66 * Math.sin(angle)];
+  });
+  for (const side of [-1, 1])
+    face(
+      o,
+      arc.map(([x, y]) => [x, y, side * 1.25]),
+      'trim',
+      'plaster',
+      [0, 0, side],
+    );
+  for (let i = 0; i < count; i++) {
+    const [x, y] = arc[i],
+      [u, v] = arc[i + 1];
+    face(
+      o,
+      [
+        [x, y, -1.25],
+        [u, v, -1.25],
+        [u, v, 1.25],
+        [x, y, 1.25],
+      ],
+      'roof',
+      'tile',
+      [0, 1, 0],
+    );
+  }
+  face(
+    o,
+    [
+      [-1.32, 8.87, -1.25],
+      [1.32, 8.87, -1.25],
+      [1.32, 8.87, 1.25],
+      [-1.32, 8.87, 1.25],
+    ],
+    'trim',
+    'plaster',
+    [0, -1, 0],
+  );
+}
 function buildHotel(o, frame, d) {
   const loop = frame.geometry.outline.slice(0, -1),
     c = frame.controls,
     { min, max } = bounds(loop),
     width = max[0] - min[0],
     length = max[1] - min[1];
-  body(o, loop, c.bodyHeight, d, { skipPane: (x, z, y) => x > 0 && Math.abs(z) < 2 && y < 5 });
+  const entrance = frame.siteFit?.apron;
+  body(o, loop, c.bodyHeight, d, {
+    entry: entrance,
+    skipPane: (x, z, y) => x > 0 && Math.abs(z) < 2 && y < 5,
+  });
   joinedRoofs(
     o,
     loop,
     c.bodyHeight,
-    [[0, c.bodyHeight, 0, length, width, c.roofRise, Math.PI / 2]],
+    [
+      [0, c.bodyHeight, 0, length, width, c.roofRise, Math.PI / 2],
+      [2.65, c.bodyHeight, 0, 7.4, 9.1, 2.26, Math.PI / 2, 'gable'],
+    ],
     d,
+    'trim',
+    true,
   );
-  const q = local(o, [max[0] - 0.02, 0], Math.PI / 2);
+  for (const [i, a] of loop.entries()) {
+    const b = loop[(i + 1) % loop.length];
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    const facade = local(
+      o,
+      [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2],
+      -Math.atan2(b[1] - a[1], b[0] - a[0]),
+    );
+    if (d >= 1) box(facade, 0, 5.23, 0, length, 0.24, 0.18, 'stone', 'sandstone');
+    box(facade, 0, c.bodyHeight - 0.24, 0, length, 0.25, 0.22, 'trim', 'plaster');
+  }
+  if (d >= 1) {
+    const [x, angle] = boundaryAt(loop, 1, 0, 1);
+    const front = local(o, entrance?.center ?? [x, 0], entrance?.angle ?? angle);
+    door(front, d, 1.8, entrance ? 0.27 : 0);
+    for (const z of [-7.1, 7.1]) {
+      const r = local(o, [max[0] - 2.0, z], Math.PI / 2);
+      box(r, 0, 9.94, 0, 1.88, 1.51, 2.36, 'wall', 'plaster');
+      hip(r, 0, 11.45, 0, 2.08, 2.58, 0.64);
+      pane(r, 0, 10.22, 1.22, 0.92, 1.1, d);
+    }
+  }
+  for (const z of [-4.4, 4.4]) {
+    box(o, 0.08, 13.0, z, 1.04, 2.12, 1.28, 'trim', 'plaster');
+    if (d >= 2) box(o, 0.08, 15.08, z, 1.24, 0.18, 1.48, 'stone', 'sandstone');
+  }
+}
+function groundedEntrance(o, frame) {
+  const { footingBottom, apron } = frame.siteFit;
+  const loop = frame.geometry.outline.slice(0, -1);
+  const sign = winding(loop);
+  for (let i = 0; i < loop.length; i++) {
+    const [x, z] = loop[i],
+      [u, v] = loop[(i + 1) % loop.length];
+    face(
+      o,
+      [
+        [x, footingBottom, z],
+        [u, footingBottom, v],
+        [u, 0, v],
+        [x, 0, z],
+      ],
+      'stone',
+      'sandstone',
+      [sign * (v - z), 0, sign * (x - u)],
+    );
+  }
+  cap(o, loop, footingBottom, 'stone', 'sandstone', [0, -1, 0]);
+  if (!apron) return;
+  const q = local(o, apron.center, apron.angle);
+  const a = -apron.width / 2,
+    b = apron.width / 2;
+  const [leftGround, rightGround] = apron.toeHeights;
+  const bottom = Math.min(leftGround, rightGround) - 0.14;
+  for (const [start, end, top] of [
+    [-0.07, 0.4, 0.1],
+    [0.4, 0.8, -0.055],
+    [0.8, 1.18, -0.205],
+  ])
+    box(
+      q,
+      0,
+      bottom,
+      (start + end) / 2,
+      apron.width,
+      top - bottom,
+      end - start,
+      'stone',
+      'sandstoneTread',
+    );
   face(
     q,
     [
-      [-4, 9.3, 0.1],
-      [4, 9.3, 0.1],
-      [0, 12.3, 0.1],
+      [a, leftGround, 1.18],
+      [b, rightGround, 1.18],
+      [b, rightGround + 0.008, apron.depth],
+      [a, leftGround + 0.008, apron.depth],
     ],
-    'trim',
-    'plaster',
-    [0, 0, 1],
+    'stone',
+    'sandstoneTread',
+    [0, 1, 0],
   );
-  if (d >= 1) {
-    const [x, angle] = boundaryAt(loop, 1, 0, 1);
-    door(local(o, [x, 0], angle), d);
-    for (const x of d === 1 ? [-6, 6] : [-7, -3.5, 3.5, 7]) {
-      const r = local(o, [max[0] - 1.5, -x], Math.PI / 2);
-      box(r, 0, 10.5, 0, 2.4, 2.2, 2.4, 'wall', 'plaster');
-      hip(r, 0, 12.7, 0, 2.7, 2.6, 0.9);
-      pane(r, 0, 10.8, 1.25, 1.2, 1.5, d);
-    }
-  }
-  if (d >= 2) for (const z of [-7, 7]) box(o, 0, 13, z, 1.1, 2.7, 1.3, 'trim', 'plaster');
+  for (const [x, toe, side] of [
+    [a, leftGround, -1],
+    [b, rightGround, 1],
+  ])
+    face(
+      q,
+      [
+        [x, bottom, 1.18],
+        [x, bottom, apron.depth],
+        [x, toe + 0.008, apron.depth],
+        [x, toe, 1.18],
+      ],
+      'stone',
+      'sandstoneTread',
+      [side, 0, 0],
+    );
 }
 export function buildKsiazEntrance(o, key, level = 'closeup') {
   const frame = frames.get(key);
@@ -629,6 +893,7 @@ export function buildKsiazEntrance(o, key, level = 'closeup') {
   if (key === 'ksiaz_gatehouse') buildGatehouse(o, frame, d);
   else if (key === 'ksiaz_zamkowy_hotel') buildHotel(o, frame, d);
   else buildOfficina(o, frame, d);
+  if (frame.siteFit) groundedEntrance(o, frame);
 }
 export function buildKsiazEntranceSkyline(o, key) {
   buildKsiazEntrance(

@@ -224,6 +224,7 @@ export {
   type EarthRoadSignContent,
   type EarthRoadSigns,
 } from './client/road-signs';
+export { createEarthSiteGrading, type EarthSiteGrades } from './client/site-grades';
 export { createSnowPace } from './client/snow';
 export {
   type EarthTrain,
@@ -239,6 +240,7 @@ export {
   type EarthVehiclesOptions,
 } from './client/vehicles';
 export { EARTH_WATER_CONDITIONS, EarthWater } from './client/water';
+export { type EarthWaterFeatures, earthWaterMeshOptions } from './client/water-features';
 export { EarthWildlife, type EarthWildlifeStats } from './client/wildlife';
 export {
   type CreateEarthWorldgenOptions,

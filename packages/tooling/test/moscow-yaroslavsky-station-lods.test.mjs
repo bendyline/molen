@@ -111,6 +111,8 @@ it('pins the named passenger terminal, signed frame, eight whole platforms and a
   expect(s.sourceFacts.mainEnvelope).toBe(14);
   expect(s.sourceFacts.rearCanopy).toBe(5);
   expect(p.entry.groundCutout.outlines).toHaveLength(1);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
+  expect(p.entry.groundCutout.pavingOutlines).toHaveLength(2);
   expect(p.entry.replaceRoads).toBeUndefined();
   expect(
     reviewedSourceMapFrame({
@@ -163,6 +165,10 @@ it('retains the individual roof/tower silhouette, unobstructed upper glazing, re
     }
     for (const z of [-50, -60, -75, -90])
       check('continuous boarding apron ' + z, top(0, z, 3), 1.24, 1.26);
+    check('stone entrance sill', top(19.625, 54.6, 2), 1.24, 1.26);
+    check('sloped approach ties into main walk', top(19.625, 59.6, 2), 1.5, 1.52);
+    expect(top(-61.825, -78.579, 3), f.name + ' western mapped track terminus').toBe(-Infinity);
+    expect(top(-1.848, -91.166, 3), f.name + ' central mapped track terminus').toBe(-Infinity);
     for (const p of c.platforms)
       for (const t of [0.1, 0.5, 0.9]) {
         const z = p.bounds[1] + (p.bounds[3] - p.bounds[1]) * t,
@@ -380,7 +386,10 @@ it('uses the production viewer to replace the whole passenger building and prese
     expect(
       landmark.position.y,
       'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(10, 69), 2);
+    ).toBeCloseTo(
+      field.sampleHeight(...layout.terrainReferenceLocal) - placed.terrainReference.modelHeight,
+      2,
+    );
     expect(seen.length).toBeGreaterThan(0);
     expect(seenContext.at(-1)).toEqual(originalContext);
     const remaining = new Set(seen.at(-1)),

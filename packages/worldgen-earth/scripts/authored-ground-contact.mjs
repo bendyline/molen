@@ -1,4 +1,4 @@
-/** Negative foundations may surround a reviewed Y=0 courtyard/contact plane. */
+/** An authored contact plane can use the model origin or an explicit terrain reference. */
 export function hasAuthoredGroundContact(spec) {
   const min = spec.actualBounds?.min?.[1];
   const max = spec.actualBounds?.max?.[1];
@@ -7,9 +7,15 @@ export function hasAuthoredGroundContact(spec) {
   const proposal = spec.geographicProposal;
   const absoluteDatum =
     proposal?.elevationMode === 'sea-level' && Number.isFinite(proposal.elevationMeters);
+  const contact = proposal?.groundModelY;
+  const matchesTerrainReference =
+    proposal?.elevationMode === 'terrain-contact' &&
+    Number.isFinite(contact) &&
+    proposal.terrainReference?.modelHeight === contact &&
+    contact >= min &&
+    contact <= max;
   return (
-    ((min < 0 && max >= 0) || absoluteDatum) &&
-    proposal?.groundModelY === 0 &&
+    ((contact === 0 && ((min < 0 && max >= 0) || absoluteDatum)) || matchesTerrainReference) &&
     proposal.groundContactReviewed === true &&
     typeof proposal.groundContactBasis === 'string' &&
     proposal.groundContactBasis.trim().length > 0

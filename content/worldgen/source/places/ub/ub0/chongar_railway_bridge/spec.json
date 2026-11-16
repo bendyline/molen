@@ -1,0 +1,447 @@
+{
+  "id": "chongar_railway_bridge",
+  "planId": "chongar_railway_bridge",
+  "collectionId": "chongar_bridges",
+  "assetId": "molen.worldgen.structure.chongar_railway_bridge",
+  "title": "Chongar railway bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q30889174",
+  "mapFeatureId": "way/198180998",
+  "referenceCoordinate": {
+    "longitude": 34.47929933667183,
+    "latitude": 45.9524140495781
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2016-09-10",
+    "validFrom": "2016-09-10",
+    "validUntil": "2016-09-11"
+  },
+  "nativeAxes": "+X runs northeast from the causeway to the mainland. +Z faces to the southeast along the side walkway.",
+  "visualBrief": "A low twin-track bridge at the end of the Syvash causeway, with ballast, timber sleepers, steel rail pairs, side walkways and alternating lattice catenary masts.",
+  "size": [
+    164.88119506835938,
+    11.452747106552124,
+    12.27400016784668
+  ],
+  "actualBounds": {
+    "min": [
+      -82.44059753417969,
+      -1.5499999523162842,
+      -6.13700008392334
+    ],
+    "max": [
+      82.44059753417969,
+      9.90274715423584,
+      6.13700008392334
+    ]
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%D0%A7%D0%BE%D0%BD%D0%B3%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%BD%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D1%8B%D0%B9_%D0%BC%D0%BE%D1%81%D1%82_%D0%B8_%D0%B4%D0%B0%D0%BC%D0%B1%D0%B0%2C_%D0%B2%D0%B8%D0%B4_%D1%81_%D1%81%D0%B5%D0%B2%D0%B5%D1%80%D0%B0.jpg",
+    "https://en.defence-ua.com/analysis/what_the_first_photo_of_damaged_railway_bridge_over_chongar_in_crimea_is_talking_about-7489.html",
+    "https://www.openstreetmap.org/way/198180998"
+  ],
+  "geometrySource": "Deterministic bridge geometry from independent mapped centerlines, shoreline elevation samples and dated exterior photographs.",
+  "materialMethod": "Metric UVs use shared concrete and painted metal. The railway adds shared ballast and timber. There are no embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub0/chongar_railway_bridge/models/bridge-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ub0/chongar_railway_bridge/models/bridge-model.mjs",
+    "inputHash": "sha256:1643ac09bebef0b53d45a17c676bc39df918951c1daba35bc5ad1f8c7c6744e8",
+    "export": "buildSkyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed"
+      },
+      "paving": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "name": "Road markings and heads"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "reviewSurface": "water",
+    "anchor": [
+      34.47929933667183,
+      45.9524140495781
+    ],
+    "heading": 1.1032066014979782,
+    "bounds": [
+      34.47869751358036,
+      45.951671302046435,
+      34.4799011597633,
+      45.95315678869903
+    ],
+    "source": "https://www.openstreetmap.org/way/198180998",
+    "notes": "The mapped twin tracks establish the axis and gauge separation. The small rail bridge section meets the causeway at its far end. The images show the track, handrails and catenary. The deck underside, supports and elevations are approximate visual reconstruction.",
+    "orientationPolicy": "approximate-visualization",
+    "mapIdentity": {
+      "maxDistance": 12
+    },
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Absolute sea-level datum in the standard viewer. The deck and approach heights are inferred from photographed proportions, mapped shorelines and sampled Terrarium.",
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 164.8812,
+      "width": 10.7,
+      "outline": [
+        [
+          -82.5606,
+          -5.68
+        ],
+        [
+          82.5606,
+          -5.68
+        ],
+        [
+          82.5606,
+          5.68
+        ],
+        [
+          -82.5606,
+          5.68
+        ]
+      ],
+      "deckHeights": [
+        2.71,
+        3.3200000000000003
+      ],
+      "deckEndpoints": [
+        [
+          -82.4406,
+          0
+        ],
+        [
+          82.4406,
+          0
+        ]
+      ],
+      "deckProfile": [
+        [
+          -82.4406,
+          2.71,
+          0
+        ],
+        [
+          -69.2501,
+          3.36,
+          0
+        ],
+        [
+          -44.5179,
+          3.64,
+          0
+        ],
+        [
+          -4.9464,
+          3.82,
+          0
+        ],
+        [
+          29.6786,
+          3.84,
+          0
+        ],
+        [
+          59.3572,
+          3.66,
+          0
+        ],
+        [
+          82.4406,
+          3.32,
+          0
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184570269830
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e3f050479096cb4ae436fac48d14d00fc703f275bceb4fe45ccb236080a63505",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors",
+    "minLevel": 13
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and location evidence is recorded in qa.json.",
+  "limitations": [
+    "Pier spacing, underside profiles and precise clearance are visual reconstructions. Terrain and water levels depend on the host data.",
+    "This is a reconstruction at the dated exterior reference. Present-day use, damage and traffic are outside its scope."
+  ],
+  "mediumFiContext": {
+    "surface": "water",
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        3,
+        0
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pier-and-girder",
+      "position": [
+        -12,
+        2.55,
+        34.655
+      ],
+      "lookAt": [
+        5,
+        2,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "deck-and-approach",
+      "position": [
+        -87.4406,
+        7,
+        5.5
+      ],
+      "lookAt": [
+        -39.4406,
+        3.4,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "channel-side",
+      "position": [
+        39,
+        12,
+        -65.95248000000001
+      ],
+      "lookAt": [
+        5,
+        3.25,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "chongar-railway-bridge-skyline",
+      "position": [
+        -72.547728,
+        26,
+        102.226344
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chongar-railway-bridge-district",
+      "position": [
+        -72.547728,
+        26,
+        102.226344
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "chongar-railway-bridge-street",
+      "position": [
+        -72.547728,
+        26,
+        102.226344
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "chongar-railway-bridge-closeup",
+      "position": [
+        -72.547728,
+        26,
+        102.226344
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 27556,
+    "vertices": 56952,
+    "materials": 4,
+    "bytes": 2383856,
+    "sha256": "sha256:0ceb27dc5831dfda444980e8ed3aaad01dc0adcf6d6e61668185936e4854fa8c"
+  }
+}

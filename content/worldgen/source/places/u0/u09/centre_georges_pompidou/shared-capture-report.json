@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.centre_georges_pompidou",
-  "inputHash": "sha256:65d3647a9dce23ced43d025d275e223b4217303aa1b4f15e94105bca59a7cbfb",
-  "sourceHash": "sha256:08bdb815acb858df2d66788954eabd46fe486956398c64ce662d6ec268365cf5",
-  "runtimeHash": "sha256:ef285d9b352b9b52216e447711a553c758012d9a9b067b3c8a21ba966615ea51",
-  "reviewGroundY": 0.12,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:bde05c3cab175532b9373ff27bbc7ade4285658b86d4c2c44104821b8907c3a0",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "inputHash": "sha256:5f4ac749f6c1b81aa6b6f35857ddf10a86a344f2aa6465a048508ec3322c6d70",
+  "sourceHash": "sha256:eafbc9bfb5947521a6b32d27474a7c097d937f33ef55e1ea19252bffb4a669c1",
+  "runtimeHash": "sha256:d2a6a69fe002c7d4014d53580e1d40400f8a82438674912a6488dc27bec56946",
+  "reviewGroundY": -5.94,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:c8037617e9d2d105020e5071dea21272157af2247bde96e68ff23f8ba50618a2",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:f5407fb39cdf0d8ece571d666e002adc960bd2544fbe4037c52206c1d5f7bdc6",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -20,295 +21,454 @@
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
     },
+    "matgraph:molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:025a3f0aa9817bba4abedeac86349a1870c15a6fb8a5044f886c61f8af3d45be",
+      "hash": "sha256:6651837814785a2cf76c1483fef7dbc96dc2a0fef88496cfdfe0f2ea2edc25ba",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:374b20ffbf2c88f114f173a48ed8ebb43f8692530f39dd878a056df8f325c577",
+      "hash": "sha256:209415429872be65f3ed754a3651ebc4d834aae60fcb1589f7b86ec7ff5ca1c2",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:af5996e642db18511a578e7074ae8284c14fc40b6a4d758a3c7cf1766af9465c",
+      "hash": "sha256:b03796683a8c18e2405ada6d14c16bac9f02cf7f5b6a0c5168310508ad5e1a38",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:66d84e06f8e60810148dfd09c2e124a84db25f89987989b0c6b772dc42de8863",
+      "hash": "sha256:020b2e9ea440717fa2045d2596194df0dd7687a4498430cb0d670fe5164d1b22",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
-      "path": "shots/shared/piazza-escalator-frame-and-gallery.png",
-      "hash": "sha256:653f33b6cd23950486d9e6a4edd4efc9f3c149d1f91d8a0afecdd46e59739148",
+      "path": "shots/shared/piazza-entrance-and-escalator.png",
+      "hash": "sha256:59cfb79344af4ab43c642fd18988f85dcf06b98020e699e167e310256726dbf0",
       "camera": {
-        "name": "piazza-escalator-frame-and-gallery",
+        "name": "piazza-entrance-and-escalator",
         "position": [
-          -68.58118821818965,
-          24.12,
-          -116.3899506941267
+          -66.50334852633745,
+          -0.6,
+          -24.865732138517256
         ],
         "lookAt": [
-          -16.868231858379552,
-          19.12,
-          -14.847988212951577
+          -20.956892953773817,
+          -2,
+          -6.768207866493552
         ],
-        "fov": 56
+        "fov": 66
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
       "path": "shots/shared/east-service-pipes-and-stair-towers.png",
-      "hash": "sha256:0fa2ae3c3784d700cc23c6785623de6cf032f3d403eac234bf6ce012ec89eedb",
+      "hash": "sha256:56377017ffd5465a4bf4f5681fb08df7ee5f90b4c437f936b8dc5c2e5b16f8e0",
       "camera": {
         "name": "east-service-pipes-and-stair-towers",
         "position": [
@@ -325,54 +485,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
       }
     },
     {
       "path": "shots/shared/south-end-gerberettes-and-roof.png",
-      "hash": "sha256:51680490f2a3a94b514e6c51206955b8360d40d601264cfcc0cb7ae19043304d",
+      "hash": "sha256:5422c979180f363a43ea0663c0eef0c579c75cbc1ccdf96283b8597ab33cde12",
       "camera": {
         "name": "south-end-gerberettes-and-roof",
         "position": [
@@ -389,49 +580,165 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.centre_georges_pompidou",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 4,
-        "triangles": 46504,
+        "meshes": 5,
+        "triangles": 46857,
         "bounds": {
           "min": [
-            -58.68221664428711,
-            -8.732145309448242,
-            -88.47901153564453
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
           ],
           "max": [
-            58.86435317993164,
-            49.119998931884766,
-            88.47901153564453
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
           ]
         },
-        "reviewGroundY": 0.12,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fcc9fc49-846d-4f11-b6b0-2acef551c37d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "571b6c11-c2bb-4266-b1be-9a7939f4adec",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "a7e07b5b-7f1d-425a-afd0-195bc995de40"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
         },
         "loads": [
           "molen.worldgen.structure.centre_georges_pompidou"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.storefront": 1
         },
-        "draws": 5,
-        "renderedTriangles": 46506
+        "draws": 6,
+        "renderedTriangles": 46955
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:8893d6e335b2f17beaae28ddc76b943f33a273e9a24267e542cfe27e14a6efa8",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.centre_georges_pompidou",
+        "mode": "geographic-flat-terrain",
+        "placementId": "centre.georges.pompidou",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 46857,
+        "bounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -100.78875732421875,
+            -6.489999771118164,
+            -95.4988784790039
+          ],
+          "max": [
+            62.690616607666016,
+            43.060001373291016,
+            93.06930541992188
+          ]
+        },
+        "reviewGroundY": -5.94,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "8dee2960-c99c-4e3e-afeb-271bbd1dbd41",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9e3b0bf9-d019-421a-8cd1-c3f0de67edcd",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "1acd6888-dbe5-4d8b-b97d-2a8c5d12d036",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "9436e88b-e093-421f-a9be-db461bb1ce17"
+        },
+        "loads": [
+          "molen.worldgen.structure.centre_georges_pompidou"
+        ],
+        "selectionBounds": [
+          2.3504376308893518,
+          48.85938945826098,
+          2.353933158033325,
+          48.86168914488666
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "centre.georges.pompidou",
+            "coordinate": [
+              2.351332800561841,
+              48.86080210517275
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "centre.georges.pompidou"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 46955
       }
     }
   ],
@@ -441,8 +748,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

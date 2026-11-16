@@ -1,0 +1,322 @@
+{
+  "id": "arch_of_reunification",
+  "planId": "arch_of_reunification",
+  "assetId": "molen.worldgen.structure.arch_of_reunification",
+  "title": "Arch of Reunification",
+  "category": "monument",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2016-06-01",
+    "validFrom": "2001-08-14",
+    "validUntil": "2024-01-20"
+  },
+  "wikidataId": "Q94731",
+  "referenceCoordinate": {
+    "longitude": 125.71574378013608,
+    "latitude": 38.9644500782433
+  },
+  "visualBrief": "Two granite women lean across the Pyongyang–Kaesong Highway and raise a circular bronze peninsula emblem. The broad folded garments abut the stone plinths and bronze relief panels on the plazas at either side of the roadway.",
+  "nativeAxes": "+X points across the highway to the east plinth, +Z follows the southwest approach and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -30.75,
+      -1.4325499534606934,
+      -5.984499931335449
+    ],
+    "max": [
+      30.75,
+      29.99837875366211,
+      10.270000457763672
+    ]
+  },
+  "size": [
+    61.5,
+    31.430928707122803,
+    16.25450038909912
+  ],
+  "geometrySource": "Original deterministic geometry from period photographs, published dimensions, pre-demolition aerial imagery and the mapped highway.",
+  "materialMethod": "Shared granite, rough stone, cast bronze and paving use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://www.north-korea-travel.com/arch-of-reunification.html",
+    "https://megaconstrucciones.net/en/arch-reunification/",
+    "https://www.flickr.com/photos/31904298246/",
+    "https://koryogroup.com/blog/three-charters",
+    "https://koryogroup.com/blog/three-charters",
+    "https://www.dailynk.com/english/high-resolution-satellite-imagery-confirms-demolition-arch-unification/"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      125.71574378013608,
+      38.9644500782433
+    ],
+    "heading": -0.24212458595472983,
+    "bounds": [
+      125.71527600673447,
+      38.9642374144735,
+      125.71620601333316,
+      38.96464529916355
+    ],
+    "minLevel": 12,
+    "elevationMode": "sea-level",
+    "elevationMeters": 32.74515,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two independent plinths intersect Terrarium terrain on opposite sides of the highway.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a8c15b16bfccdc9cf8b0e4738b26b29667842992ae66b4bfb8ee5f17fb183a13",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q94731",
+    "notes": "The 61.5 m sculptural arch and 30 m crown follow published dimensions, the 2021 aerial image and photographs from both road approaches. Facial profiles, garment folds, hand poses and the subordinate relief groups are reconstructed from photos. The bronze artwork is modeled as a sculptural impression. The historical view keeps the roads and terrain from current map data. The visible exterior represents the period before demolition in January 2024, and the supported dates end before the documented removal."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wy/wyc/arch_of_reunification/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:7ebc9a1fcec60f2ea3301c0a93426bb162b292df2b461c0c47f103a8bcb97bf9"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wy/wyc/arch_of_reunification/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:d95ebb859ac253418b001a03f533eb78e9def0ca512b90ac0794ec3f4b86b09f",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.87
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.71,
+        "metallic": 0.47
+      },
+      "paving": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.87
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.47
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.87
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.47
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.87
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.47
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The 61.5 m sculptural arch and 30 m crown follow published dimensions, the 2021 aerial image and photographs from both road approaches.",
+    "Facial profiles, garment folds, hand poses and the subordinate relief groups are reconstructed from photos. The bronze artwork is modeled as a sculptural impression.",
+    "The historical view keeps the roads and terrain from current map data. The visible exterior represents the period before demolition in January 2024, and the supported dates end before the documented removal."
+  ],
+  "qaCameras": [
+    {
+      "name": "highway-approach",
+      "position": [
+        1.5,
+        7,
+        89
+      ],
+      "lookAt": [
+        0,
+        14.1,
+        0
+      ],
+      "fov": 37
+    },
+    {
+      "name": "southwest-base-and-bronze-relief",
+      "position": [
+        -33,
+        4.5,
+        28
+      ],
+      "lookAt": [
+        -13,
+        12,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "hands-faces-and-medallion",
+      "position": [
+        7.2,
+        23,
+        34
+      ],
+      "lookAt": [
+        0,
+        23.6,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "north-plaza-and-road",
+      "position": [
+        -40,
+        15,
+        -52
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "stone-garment-and-shoulder",
+      "position": [
+        31,
+        23,
+        23
+      ],
+      "lookAt": [
+        10,
+        19.7,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "highway-clearance-and-bases",
+      "position": [
+        36,
+        51,
+        -40
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 59
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23300,
+    "vertices": 48024,
+    "materials": 4,
+    "bytes": 2011408,
+    "sha256": "sha256:f07894074fd4a9906accb12b8151b3150ea6446dcb814cf72963656b6ab49b69"
+  }
+}

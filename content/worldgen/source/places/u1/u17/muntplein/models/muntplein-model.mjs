@@ -17,6 +17,7 @@ export const muntpleinSurfaces = {
   stone: { slot: 'trim', graph: 'stone_granite', roughness: 0.92, metallic: 0 },
   paving: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.96, metallic: 0 },
   iron: { slot: 'trim', graph: 'metal_painted', roughness: 0.66, metallic: 0.3 },
+  water: { slot: 'foundation', localRef: 'palette:#ffffff', roughness: 0.3, metallic: 0.15 },
 };
 const C = muntpleinControls;
 const linear = (hex) =>
@@ -34,6 +35,7 @@ const colors = Object.fromEntries(
     steel: '777b79',
     grout: '726e68',
     dark: '4c5450',
+    water: '427787',
   }).map(([k, v]) => [k, linear(v)]),
 );
 const configs = {
@@ -98,7 +100,7 @@ function writer(target, far) {
       )
         continue;
       target.addTriangle(
-        far ? 'far' : slot,
+        far && slot !== 'water' ? 'far' : slot,
         'palette:#ffffff',
         t,
         normalFor(...t),
@@ -107,7 +109,7 @@ function writer(target, far) {
           [1, 0],
           [1, 1],
         ],
-        far ? tint.map((v) => v * 0.65) : tint,
+        far && slot !== 'water' ? tint.map((v) => v * 0.65) : tint,
       );
     }
   };
@@ -152,6 +154,31 @@ function prism(o, slot, p, bottom, top, color) {
       ],
       color,
       hint,
+    );
+  }
+}
+
+/** Continue the canal through the plaza and reconnect to the adjacent native water. */
+function canalSurface(out) {
+  for (const { outline, z0, z1, y0, y1 } of C.canalWater.zones) {
+    const surface = ([x, z]) => [x, y0 + ((z - z0) * (y1 - y0)) / (z1 - z0), z];
+    for (const triangle of triangulatePlan(outline)) {
+      face(out, 'water', triangle.map(surface), colors.water, [0, 1, 0]);
+    }
+  }
+  for (const { edge, normal } of C.canalWater.banks) {
+    const [[ax, az, alo, ahi], [bx, bz, blo, bhi]] = edge;
+    face(
+      out,
+      'brick',
+      [
+        [ax, alo, az],
+        [bx, blo, bz],
+        [bx, bhi, bz],
+        [ax, ahi, az],
+      ],
+      colors.brick,
+      [normal[0], 0, normal[1]],
     );
   }
 }
@@ -305,6 +332,7 @@ export function buildMuntpleinLevel(target, level = 'master') {
   if (!cfg) throw Error('Unknown Muntplein level');
   const o = writer(target, cfg.far),
     Y = C.deckY;
+  canalSurface(o);
   prism(o, 'paving', C.outline, Y - 0.52, Y, colors.paving);
   // The canal remains open beneath the broad plaza. Long side abutments never cross its mouths.
   for (const indices of [

@@ -12,15 +12,15 @@
   },
   "visualBrief": "Amsterdam Muntplein plaza over the Singel: irregular mapped brick-paved deck, open canal passage, brick abutments and round footings, shallow green steel girders with flange/rivet detail, three-bar green iron rails, rounded granite caps and incised central stone panels, plus embedded mapped tram rails. The existing Munttoren remains separate.",
   "size": [
-    55.880075454711914,
+    63.64405822753906,
     5.320000171661377,
-    55.72237968444824
+    118.19985771179199
   ],
   "actualBounds": {
     "min": [
-      -25.52701759338379,
+      -33.29100036621094,
       -1,
-      -27.52252197265625
+      -90
     ],
     "max": [
       30.353057861328125,
@@ -67,6 +67,17 @@
     "elevationMode": "sea-level",
     "elevationMeters": 6.7,
     "replaceFootprint": false,
+    "bounds": [
+      4.893090493639041,
+      52.366821096634546,
+      4.893995158756226,
+      52.36737569921879
+    ],
+    "minLevel": 13,
+    "notes": "PMTiles bridge and pedestrian outline with inferred road and tram extensions. A bounded Singel water correction opens the existing bridge mouth at the original plaza datum. Munttoren and Doelensluis remain separate.",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard PMTiles/Mapzen and ordinary photographs; explicit approximate visualization grade.",
     "replaceRoads": {
       "length": 55.05890782250491,
       "width": 54.69447045370678,
@@ -137,10 +148,211 @@
       ],
       "preservePaving": true,
       "minHeight": 0.2,
-      "basis": "Bounded mapped plaza footprint only, to expose the canal below coarse urban DEM. Raw DEM and water are retained; original ground restores on unload."
+      "basis": "The plaza and mapped Singel strip remove coarse terrain above the channel. Dry banks and road approaches remain native.",
+      "outlines": [
+        [
+          [
+            -3.1860755041555517,
+            -17.789338492651382
+          ],
+          [
+            25.072609796189173,
+            11.56336065083792
+          ],
+          [
+            29.971701440825797,
+            18.36430208718075
+          ],
+          [
+            18.12132632158653,
+            27.844676965823265
+          ],
+          [
+            -20.347011256773868,
+            -12.993860972944464
+          ],
+          [
+            -25.087206381679113,
+            -25.573589177297023
+          ],
+          [
+            -11.778208590735188,
+            -26.849793487883513
+          ]
+        ],
+        [
+          [
+            -33.291,
+            -54.561
+          ],
+          [
+            -32.997,
+            -90
+          ],
+          [
+            -4.211,
+            -90
+          ],
+          [
+            -4.486,
+            -71.881
+          ],
+          [
+            -4.303,
+            -55.838
+          ],
+          [
+            -7.767,
+            -45.81
+          ],
+          [
+            -7.038,
+            -31.955
+          ],
+          [
+            -9.043,
+            -31.408
+          ],
+          [
+            -10.867,
+            -30.314
+          ],
+          [
+            -11.961,
+            -28.491
+          ],
+          [
+            -11.778,
+            -26.85
+          ],
+          [
+            -7.22,
+            -13.905
+          ],
+          [
+            -4.423,
+            -11
+          ],
+          [
+            -18.469,
+            -11
+          ],
+          [
+            -20.347,
+            -12.994
+          ],
+          [
+            -25.087,
+            -25.574
+          ],
+          [
+            -25.634,
+            -26.303
+          ],
+          [
+            -28.004,
+            -26.303
+          ],
+          [
+            -30.557,
+            -32.137
+          ],
+          [
+            -32.38,
+            -39.612
+          ]
+        ]
+      ]
+    },
+    "waterCutout": {
+      "outlines": [
+        [
+          [
+            -33.291,
+            -54.561
+          ],
+          [
+            -32.997,
+            -90
+          ],
+          [
+            -4.211,
+            -90
+          ],
+          [
+            -4.486,
+            -71.881
+          ],
+          [
+            -4.303,
+            -55.838
+          ],
+          [
+            -7.767,
+            -45.81
+          ],
+          [
+            -7.038,
+            -31.955
+          ],
+          [
+            -9.043,
+            -31.408
+          ],
+          [
+            -10.867,
+            -30.314
+          ],
+          [
+            -11.961,
+            -28.491
+          ],
+          [
+            -11.778,
+            -26.85
+          ],
+          [
+            -7.22,
+            -13.905
+          ],
+          [
+            -4.423,
+            -11
+          ],
+          [
+            -18.469,
+            -11
+          ],
+          [
+            -20.347,
+            -12.994
+          ],
+          [
+            -25.087,
+            -25.574
+          ],
+          [
+            -25.634,
+            -26.303
+          ],
+          [
+            -28.004,
+            -26.303
+          ],
+          [
+            -30.557,
+            -32.137
+          ],
+          [
+            -32.38,
+            -39.612
+          ]
+        ]
+      ],
+      "basis": "Standard PMTiles canal geometry, limited to the obstructed Singel approach. Local water slopes to the unmodified upstream surface over 33 m."
     },
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:c5bcf013e4dea05b18100c6c7e38521f762e2847906155a6feb9cedb0f3ec5d8",
+    "mapGeometryHash": "sha256:871d4abfd917be477116f5c19fb466b60c21a531f74b55fa2edabe7d160598e1",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "source": "https://commons.wikimedia.org/wiki/Category:Brug_1,_Muntsluis",
@@ -207,6 +419,12 @@
         "graph": "metal_painted",
         "roughness": 0.66,
         "metallic": 0.3
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.15
       }
     },
     "errorMeters": 0.9,
@@ -243,6 +461,12 @@
             "graph": "metal_painted",
             "roughness": 0.66,
             "metallic": 0.3
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.15
           }
         },
         "errorMeters": 0.3
@@ -279,6 +503,12 @@
             "graph": "metal_painted",
             "roughness": 0.66,
             "metallic": 0.3
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.15
           }
         },
         "errorMeters": 0.12
@@ -315,6 +545,12 @@
             "graph": "metal_painted",
             "roughness": 0.66,
             "metallic": 0.3
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.15
           }
         },
         "errorMeters": 0.04
@@ -328,7 +564,7 @@
     "Brick abutments, shallow steel girder, three-bar rail, rounded granite caps and incised stone-panel branches follow ordinary pictures. Exact structural internals, castings, inscriptions, brick courses and foundations are not engineering reconstructions.",
     "A bounded ground cut under the mapped plaza removes coarse ground intersecting the canal opening; raw DEM and water remain intact. Connected native roads are deliberately graded. Distant levels simplify rails, caps, rivets and tram geometry. Physical laptop/phone timing remains unmeasured.",
     "The pedestrian polygon covers only part of the transported plaza. Its northwest bank edge is expanded 5.6m to include mapped road/tram widths; this inferred composite boundary is not an exact surveyed bridge perimeter.",
-    "Native placement is pending: standard canal polygons differ by about 2.36m in water height at the two portals and hide much of the modeled clear passage. Do not approve the geographic fit or enable this draft by raising the whole plaza and burying the existing Munttoren base."
+    "The Singel portal uses a bounded water surface tied to the viewer terrain samples. It transitions to the adjoining native patch. The resulting water elevations are visual estimates and depend on the host terrain source."
   ],
   "qaCameras": [
     {
@@ -420,10 +656,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 8808,
-    "vertices": 26424,
-    "materials": 4,
-    "bytes": 1059884,
-    "sha256": "sha256:744c9997b238f44ca28bad01904bb18b01a22b44bb916758ba6aeb1b9f1a5068"
+    "triangles": 8868,
+    "vertices": 26604,
+    "materials": 5,
+    "bytes": 1067436,
+    "sha256": "sha256:e13cf3a519f0b6fe26da36193521cd338f2cb35df4fe6ff873ef148d834ef977"
   }
 }

@@ -32,8 +32,67 @@
       "shots/shared/south-gallery-sash-and-roof-cap.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256px graphs: brick stock walls/base and red arches, stone_limestone_raw white trim, slate as an explicit brown weathered-tile substitute, metal_painted lead cap/static shutters/frames, storefront opaque glass. Six textured draws and one skyline draw. No new graph/private atlas/embedded image. Metric surfaces/linear tints, shared graph cache and separate POSITION/NORMAL streams used. All textured native runs read each graph once; every LOD unload disposes all model geometry.",
-    "captureReportHash": "sha256:bfeb862c4c32647f75eef9a234a078181b5b1ce3778319f406edd33043d2c700"
+    "notes": "Five existing256px graphs: brick stock walls/base and red arches, stone_limestone_raw white trim, slate as an explicit brown weathered-tile substitute, metal_painted lead cap/static shutters/frames, storefront opaque glass. Six textured draws and one skyline draw. No new graph/private atlas/embedded image. Metric surfaces/linear tints, shared graph cache and separate POSITION/NORMAL streams used. All textured native runs read each graph once; every LOD unload disposes all model geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:de434f199a4531432efbbcbf90beaa2b57195bbd69728189841f8167ab6e0fea",
+    "inputHash": "sha256:f911f89b19c43f37a9b8d9d105f847e918eaf630e809aecc18e61d207eec68bd",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:d8c15f658afe9022c7131c3059af24ca630ab18be28545265e64f735ec63168f"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:d9ac876f6d0277de1c3dff86878e05a0b66ef05bea77ea1280a06567f1399e96"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:09bde2c9bd11b77450dfa382c773eb8c0de178af2c7fba7b39c00bdcba3c54a4"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:378479850010027bd9fb552ca26cbe2e1cbd6264411a6bbccef804a9d1475647"
+      },
+      {
+        "path": "shots/shared/north-court-transit-gables-and-shutters.png",
+        "hash": "sha256:d4d9309fc6b0ea7328307c259e0d746b013be7f74edd08f9b357456b6d622dff"
+      },
+      {
+        "path": "shots/shared/triple-arched-north-entry-and-soffits.png",
+        "hash": "sha256:fabd617a72a85dccfba22719d897391220ce8096e0bd11c3d7080e2b89f692b5"
+      },
+      {
+        "path": "shots/shared/south-gallery-sash-and-roof-cap.png",
+        "hash": "sha256:42ca8b1803a81a08c8375304187baae759d29afac0940e5fc5027b7c591c72ae"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:96102939eb17084c3900f1d2ca3ca0d179f860465fe4d9bbb5b04aab0821ec01"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

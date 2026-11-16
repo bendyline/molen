@@ -102,7 +102,7 @@ it('reproduces the original master and binds fresh signed component evidence to 
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(await sourceHash(source + '/grade-source.tif')).toBe(grade.sourceRasterHash);
   expect(grade.verticalDatum).toContain('Wiener Null');
-  expect(spec.geographicProposal.replaceFootprint).toBe(false);
+  expect(spec.geographicProposal.buildingCutout.outlines).toHaveLength(19);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBeCloseTo(-0.3728, 5);
   expect(spec.geographicProposal.status).toBe('preview-proposal');
 }, 120000);

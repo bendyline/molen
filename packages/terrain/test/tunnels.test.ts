@@ -5,8 +5,16 @@ import { describe, expect, it, vi } from 'vitest';
 import { markTerrainGroundSurface, TerrainGroundCutoutController } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
-import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
-import { createTerrainTunnelObject, sampleTerrainTunnel, withTerrainTunnels } from '../src/tunnels';
+import {
+  createEmptyTerrainSemanticTile,
+  type TerrainTransportationFeature,
+} from '../src/semantic-types';
+import {
+  createTerrainTunnelObject,
+  sampleTerrainTunnel,
+  setTerrainSurfacePassages,
+  withTerrainTunnels,
+} from '../src/tunnels';
 
 function context(x = 0, height = 10): TerrainPyramidTileLayerContext {
   const origin: [number, number] = [x * 200, 0];
@@ -331,6 +339,59 @@ describe('mapped tunnels', () => {
     const root = new THREE.Group();
     if (portals) root.add(portals);
     expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
+  });
+
+  it('omits an authored surface passage only when the renderer supplies its exact map ID', async () => {
+    const id = 35185020923307;
+    const input = surfacing(tile(0.1, 0.9), [0, 0.1], [0.9, 1]);
+    const [passage] = input.transportation;
+    if (!passage) throw new Error('missing test passage');
+    passage.id = id;
+    const adjacent: TerrainTransportationFeature = {
+      ...passage,
+      id: id + 1,
+      lines: [
+        [
+          [0.1, 0.8],
+          [0.9, 0.8],
+        ],
+      ],
+    };
+    input.transportation.push(adjacent);
+    for (const line of [
+      [
+        [0, 0.8],
+        [0.1, 0.8],
+      ],
+      [
+        [0.9, 0.8],
+        [1, 0.8],
+      ],
+    ] as typeof adjacent.lines)
+      input.transportation.push({ ...adjacent, id: id + 2, tunnel: false, lines: [line] });
+    let loaded = true;
+    const inner = {
+      createTile: () => {
+        const group = new THREE.Group();
+        if (loaded) setTerrainSurfacePassages(group, new Set([id]));
+        return group;
+      },
+    };
+    const blank = { load: vi.fn(async () => undefined) };
+    const renderer = withTerrainTunnels(inner, blank, blank, 2);
+    for (const modelLoaded of [true, false]) {
+      loaded = modelLoaded;
+      const root = new THREE.Group();
+      const object = await renderer.createTile(input, context());
+      if (!object) throw new Error('missing tile');
+      root.add(object);
+      const supported = sampleTerrainTunnel(root, 100, 13, 100);
+      if (modelLoaded) expect(supported).toBeUndefined();
+      else expect(supported?.floor).toBeCloseTo(10.32);
+      expect(sampleTerrainTunnel(root, 100, 13, 160)?.floor).toBeCloseTo(10.32);
+      expect(input.transportation[0]?.tunnel).toBe(true);
+      renderer.disposeTile?.(object);
+    }
   });
 
   it('uses authored floor and clearance measurements instead of inferring them from the DEM', () => {

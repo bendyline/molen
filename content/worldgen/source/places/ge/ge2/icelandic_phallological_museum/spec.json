@@ -1,0 +1,370 @@
+{
+  "id": "icelandic_phallological_museum",
+  "planId": "icelandic_phallological_museum",
+  "assetId": "molen.worldgen.structure.icelandic_phallological_museum",
+  "title": "Icelandic Phallological Museum",
+  "category": "museum",
+  "quality": "detailed",
+  "wikidataId": "Q177174",
+  "referenceCoordinate": {
+    "longitude": -21.935759782791138,
+    "latitude": 64.14846887939484
+  },
+  "visualBrief": "The Icelandic Phallological Museum occupies the Hafnartorg corner with its recessed glass entrance, two projecting museum signs and stone threshold sculpture. The shared retail and office block rises in stepped terraces with deep concrete window surrounds and rooftop equipment.",
+  "nativeAxes": "+Z faces Reykjastræti, −X faces Geirsgata and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -5.802639961242676,
+      -2,
+      -45.98417663574219
+    ],
+    "max": [
+      40.24591827392578,
+      21.43000030517578,
+      8.436003684997559
+    ]
+  },
+  "size": [
+    46.04855823516846,
+    23.43000030517578,
+    54.420180320739746
+  ],
+  "geometrySource": "Original deterministic geometry from the mapped Hafnartorg footprint and street alignment, public exterior photos and standard Terrarium elevations.",
+  "materialMethod": "Shared concrete panel, plain concrete, painted metal and granite use metric UVs and vertex colors. Glazing uses vertex tint and a local palette material.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://visitreykjavik.is/service/icelandic-phallological-museum",
+    "https://www.visiticeland.com/service-provider/5ec7d096a90548233654DE4A",
+    "https://www.japantimes.co.jp/business/2024/10/14/tech/web-sketchiest-sites-iceland/",
+    "https://www.reykjastraeti.is/eignasafn/kalkofnsvegur-2"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -21.935759782791138,
+      64.14846887939484
+    ],
+    "heading": -2.0311688383183135,
+    "bounds": [
+      -21.9363811397677,
+      64.14791339820819,
+      -21.93475472856796,
+      64.1485883775762
+    ],
+    "minLevel": 13,
+    "elevationMode": "terrain-contact",
+    "terrainReference": {
+      "anchor": [
+        -21.935759782791138,
+        64.14846887939484
+      ],
+      "modelHeight": 0,
+      "basis": "The mapped museum marker sets the zero floor on the terrain supplied by the World Viewer host."
+    },
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The mapped museum point defines the zero floor relative to host terrain. Two-meter foundation skirts meet the sampled local grade.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          17.2111,
+          7.1598
+        ],
+        [
+          -5.03264,
+          7.72742
+        ],
+        [
+          -5.03264,
+          -45.60652
+        ],
+        [
+          6.84643,
+          -45.97518
+        ],
+        [
+          40.23794,
+          -36.95743
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "The five-sided Kalkofnsvegur 2 host block as mapped. Adjacent buildings, streets and pedestrian frontage stay native."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:24850ff9ad56a12449529d547e942b8cb7bc2907dd7cf821ec584bb4b09f11bc",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q177174",
+    "notes": "The museum occupies the glass corner of a shared retail and office building. The model covers the exterior of its occupied block, including the surrounding storefronts and stepped office terraces. The exterior and doorway are aligned to PMTiles and photographs. Window fittings, signs and roof services are approximations. The exhibit interior is outside the model scope. The building follows the host terrain at the museum point. The standard Terrarium sample at this waterfront has a substantial vertical offset from the visible coastline, so it serves as a local grade reference."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ge/ge2/icelandic_phallological_museum/models/block-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:f7b0b18e6cae93b480fc1e313f02a6be92f815874b731b47a9b410f97ed0ae06"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ge/ge2/icelandic_phallological_museum/models/block-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:e9cf141013af2139e10817bdbc5e03c266a9e4a858e9d0fb7065dbc2853b39eb",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.87
+      },
+      "slab": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.89
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.12
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.87
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.87
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.87
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.12
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The museum occupies the glass corner of a shared retail and office building. The model covers the exterior of its occupied block, including the surrounding storefronts and stepped office terraces.",
+    "The exterior and doorway are aligned to PMTiles and photographs. Window fittings, signs and roof services are approximations. The exhibit interior is outside the model scope.",
+    "The building follows the host terrain at the museum point. The standard Terrarium sample at this waterfront has a substantial vertical offset from the visible coastline, so it serves as a local grade reference."
+  ],
+  "qaCameras": [
+    {
+      "name": "harbor-block",
+      "position": [
+        -48,
+        16,
+        -42
+      ],
+      "lookAt": [
+        0,
+        10,
+        -17
+      ],
+      "fov": 54
+    },
+    {
+      "name": "museum-corner",
+      "position": [
+        -18.03264,
+        6.5,
+        24.727420000000002
+      ],
+      "lookAt": [
+        1.9673600000000002,
+        7,
+        0.7274200000000004
+      ],
+      "fov": 46
+    },
+    {
+      "name": "corner-door-and-signs",
+      "position": [
+        -10.03264,
+        2.6,
+        15.72742
+      ],
+      "lookAt": [
+        -2.8082659999999997,
+        2.6,
+        7.670658
+      ],
+      "fov": 51
+    },
+    {
+      "name": "kalkofnsvegur-windows",
+      "position": [
+        -30.03264,
+        12,
+        -68.97518
+      ],
+      "lookAt": [
+        1.9673600000000002,
+        9,
+        -22
+      ],
+      "fov": 50
+    },
+    {
+      "name": "roof-terraces",
+      "position": [
+        -24.03264,
+        48,
+        29.727420000000002
+      ],
+      "lookAt": [
+        10.846038,
+        13,
+        -22.730382
+      ],
+      "fov": 53
+    },
+    {
+      "name": "reykjastraeti",
+      "position": [
+        32.23794,
+        3.7,
+        13.72742
+      ],
+      "lookAt": [
+        -3.03264,
+        4.3,
+        7.72742
+      ],
+      "fov": 46
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14126,
+    "vertices": 40470,
+    "materials": 5,
+    "bytes": 1629736,
+    "sha256": "sha256:3ad1678602eb690698b9afc335f5a64811a9ea3f992c747a83531499378cd19d"
+  }
+}

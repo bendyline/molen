@@ -193,10 +193,18 @@ export const controls = {
       width: 6.8,
     },
   ],
+  powerhouseBank: [
+    [[106, -24, -15], [123, -7, -15], [159, -7, -15], [176, -19, -15]],
+    [[102, -40, 37], [120, -15, 37], [159, -15, 37], [183, -29, 37]],
+    [[98, -49, 91], [116, -23, 91], [154, -23, 91], [181, -25, 91]],
+    [[101, -50, 145], [113, -31, 145], [152, -31, 145], [176, -26, 145]],
+    [[109, -52, 193], [117, -39, 193], [149, -39, 193], [174, -32, 193]],
+    [[115, -51, 221], [121, -45, 221], [147, -45, 221], [169, -35, 221]],
+  ],
   archSpan: [-148, 70],
   bays: 15,
   deck: 10,
-  westTieHeight: 3,
+  westTieHeight: 10,
   base: -78,
   tailwater: -57,
   hallFloor: -45,
@@ -671,6 +679,25 @@ function circularRing(u, y, r, n) {
     return [u + r * Math.cos(a), y + r * Math.sin(a)];
   });
 }
+
+function powerhouseBank(o, c) {
+  const bank = controls.powerhouseBank;
+  const rows = c === cfg.skyline ? [bank[0], bank[2], bank.at(-1)] : bank;
+  for (let i = 1; i < rows.length; i++) {
+    const previous = rows[i - 1];
+    const current = rows[i];
+    for (let j = 1; j < current.length; j++)
+      Q(
+        o,
+        c,
+        [previous[j - 1], current[j - 1], current[j], previous[j]],
+        'gravel',
+        C.gravel,
+        [0, 1, 0],
+      );
+  }
+}
+
 function hydraulicHall(o, c) {
   const roof = hallFloor + 14;
   panel(o, c, [controls.hall], roof + 0.45, 'roof');
@@ -775,6 +802,7 @@ export function buildDamLevel(o, level = 'master') {
   crestBridge(o, c);
   spillway(o, c);
   controlCabin(o, c);
+  powerhouseBank(o, c);
   hydraulicHall(o, c);
   sideOutlet(o, c);
 }

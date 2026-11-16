@@ -837,6 +837,11 @@ For separated buildings or precincts, `buildingCutout.outlines` provides up to 6
 simple masks and supersedes `outline`. Keep the primary `outline` for compatibility. Separate
 masks preserve intervening buildings without inventing connecting structure geometry.
 
+For an open carriage arch or similar at-grade passage, add `surfacePassageIds` and geographic
+`bounds`. List exact transportation feature IDs from the map package. While the landmark is
+loaded, the viewer paints those routes on the terrain through the model and skips their inferred
+tunnel walls and ceiling. Failed loads retain the map's tunnel rendering.
+
 For a whole landmark whose source footprint slightly overlaps a neighboring building, set
 `buildingCutout.minimumCoverage` to a fraction in `(0, 1]`, for example `0.995`. This changes
 the mask to whole-building replacement: a mapped feature goes only when the union of that
@@ -894,6 +899,14 @@ model eviction. `build-copernicus-bridge-evidence.py` and the capture runner's
 `--terrain-set=copernicus` option preserve a separate comparison with Copernicus elevations;
 neither capture set substitutes altered heights to make a bridge fit. These reports are research
 evidence and are excluded from the Earth runtime pack.
+
+The Earth pack's optional `water-features` document supplies stable rendered elevations for
+selected Protomaps water polygons. The viewer applies the same elevation to every tile that
+contains the feature. A `hideLines` entry removes a redundant terrain-draped ribbon by feature
+ID. Piva Lake and the downstream gorge at Mratinje use separate representative stages from
+the retained terrain. Hosts composing their own renderer can provide `waterFeatureStyle` to
+`createDefaultTerrainSemanticRenderer`. Its `elevation` is the final height in the terrain
+frame, in meters. Unmatched features use the terrain sampler.
 
 If `replaceFootprint` is set, mapped buildings are suppressed only once the replacement model
 has loaded; failed models keep the procedural building. At any zoom a polygon goes when at least

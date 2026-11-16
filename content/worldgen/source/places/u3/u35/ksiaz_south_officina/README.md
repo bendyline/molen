@@ -4,7 +4,7 @@
 
 Pale yellow elongated side wing:lower central range with repeated dormers and raised two-floor end pavilions beneath red tile roofs.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.
 
 ## Sources and reconstruction
 
@@ -16,12 +16,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own map footprint;native Y0 is estimated local ground contact. Heights,roof profiles,openings and facade facing are interpretations. No independent Wikidata identity is assigned. Hotel Zamkowy membership is unconfirmed.
+The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.98 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. Three stone treads and a shallow apron join the recessed courtyard-side doorway to the original ground.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=KSI_A03 (or --check).
 
-2480 triangles;300816 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
+2927 triangles;354952 source bytes;6 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:b54d87c6d727d00adde604e91a86e7c101448c166ef89a3edeaa7727a2de2f4b
+Source hash: sha256:2d936a891b49e59d642d0ac7815411adb277efd89d38d9fd0aa2b643667c673c

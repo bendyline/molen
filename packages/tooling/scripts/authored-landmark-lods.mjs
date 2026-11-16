@@ -436,6 +436,18 @@ import {
   ksiazPalmServiceSurfaces,
 } from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
 
+import {
+  buildWestGreenhouses,
+  buildWestGreenhousesSkyline,
+  surfaces as westGreenhouseSurfaces,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_west_greenhouses/models/west-greenhouses.mjs';
+
+import {
+  buildPalmForecourt,
+  buildPalmForecourtSkyline,
+  surfaces as palmForecourtSurfaces,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/models/palm-forecourt.mjs';
+
 const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_administration/map-frame.json',
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_administration/surface-means.json',
@@ -447,6 +459,30 @@ const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_boiler_range/surface-means.json',
 ];
 const recipes = {
+  'molen.worldgen.structure.ksiaz_palm_forecourt': {
+    build: buildPalmForecourtSkyline,
+    levels: buildPalmForecourt,
+    surfaces: palmForecourtSurfaces,
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/models/palm-forecourt.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/map-frame.json',
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/surface-means.json',
+    ],
+    errorMeters: 0.65,
+  },
+  'molen.worldgen.structure.ksiaz_palm_west_greenhouses': {
+    build: buildWestGreenhousesSkyline,
+    levels: buildWestGreenhouses,
+    surfaces: westGreenhouseSurfaces,
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_west_greenhouses/models/west-greenhouses.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_west_greenhouses/map-frame.json',
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_west_greenhouses/surface-means.json',
+    ],
+    errorMeters: 0.7,
+  },
   'molen.worldgen.structure.sanjo_ohashi_bridge': {
     build: buildSanjoSkyline,
     levels: buildSanjoRuntime,

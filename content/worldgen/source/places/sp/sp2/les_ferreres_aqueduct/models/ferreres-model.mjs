@@ -9,11 +9,13 @@ export const ferreresControls = JSON.parse(
   readFileSync(new URL('./ferreres-controls.json', import.meta.url)),
 );
 const C = ferreresControls;
+const ravine = JSON.parse(readFileSync(new URL('./ravine.json', import.meta.url)));
 export const ferreresSurfaces = {
   far: { slot: 'foundation', localRef: 'palette:#ffffff', roughness: 1, metallic: 0 },
   stone: { slot: 'wall', graph: 'stone_sandstone_raw', roughness: 1, metallic: 0 },
   arch: { slot: 'wall', graph: 'stone_sandstone', roughness: 1, metallic: 0 },
   channel: { slot: 'foundation', graph: 'stone_limestone_raw', roughness: 1, metallic: 0 },
+  ravine: { slot: 'foundation', graph: 'gravel', roughness: 1, metallic: 0 },
 };
 const linear = (hex) =>
   hex.match(/../g).map((h) => {
@@ -58,12 +60,16 @@ function face(o, slot, pts, color, normal) {
     color,
   );
 }
-function prism(o, slot, lo, hi, color, { bottom = true, top = true } = {}) {
+function prism(o, slot, lo, hi, color, { bottom = true, top = true, ends = [true, true] } = {}) {
   const knots = C.spine.map((p) => p[0]).filter((x) => x > lo[0] + 1e-6 && x < hi[0] - 1e-6);
   if (knots.length) {
     const xs = [lo[0], ...knots, hi[0]];
     for (let i = 1; i < xs.length; i++)
-      prism(o, slot, [xs[i - 1], lo[1], lo[2]], [xs[i], hi[1], hi[2]], color, { bottom, top });
+      prism(o, slot, [xs[i - 1], lo[1], lo[2]], [xs[i], hi[1], hi[2]], color, {
+        bottom,
+        top,
+        ends: [i === 1 && ends[0], i === xs.length - 1 && ends[1]],
+      });
     return;
   }
   const [a, b, c] = lo,
@@ -87,14 +93,22 @@ function prism(o, slot, lo, hi, color, { bottom = true, top = true } = {}) {
       [1, 2, 6, 5],
       [0, 0, 1],
     ],
-    [
-      [0, 1, 5, 4],
-      [-1, 0, 0],
-    ],
-    [
-      [3, 7, 6, 2],
-      [1, 0, 0],
-    ],
+    ...(ends[0]
+      ? [
+          [
+            [0, 1, 5, 4],
+            [-1, 0, 0],
+          ],
+        ]
+      : []),
+    ...(ends[1]
+      ? [
+          [
+            [3, 7, 6, 2],
+            [1, 0, 0],
+          ],
+        ]
+      : []),
     ...(bottom
       ? [
           [
@@ -150,13 +164,14 @@ function pier(o, slot, x, base, spring, width, depth, cfg, lower, topY) {
       [x + width / 2 + 0.18, spring + 0.16, depth / 2 + 0.18],
       capColor,
     );
-    prism(
-      o,
-      slot,
-      [x - width / 2 - 0.22, base, -depth / 2 - 0.22],
-      [x + width / 2 + 0.22, base + 0.35, depth / 2 + 0.22],
-      stone,
-    );
+    if (cfg !== configs.district)
+      prism(
+        o,
+        slot,
+        [x - width / 2 - 0.22, base, -depth / 2 - 0.22],
+        [x + width / 2 + 0.22, base + 0.35, depth / 2 + 0.22],
+        stone,
+      );
   }
   if (cfg.course) {
     const rows = Math.max(1, Math.floor((spring - base - 0.5) / cfg.course)),
@@ -199,7 +214,7 @@ function arcade(o, slot, tier, cfg) {
       o,
       slot,
       x,
-      Math.min(tier.spring - 0.5, base),
+      Math.min(tier.spring - 0.5, base) - (tier.lower ? 0.3 : 0),
       tier.spring,
       pitch - C.opening,
       width,
@@ -289,6 +304,94 @@ function arcade(o, slot, tier, cfg) {
         capColor,
       );
 }
+function buildRavine(o, level) {
+  const index = level === 'skyline' ? 0 : level === 'district' ? 1 : 2;
+  const { rows, columns } = ravine.terrain[index];
+  const role = index === 0 ? 'far' : 'ravine';
+  const grade = (row, column) => {
+    const { x, points } = ravine.rows[row];
+    const [z, y] = points[column];
+    return [x, y, z];
+  };
+  const grass = linear('607753');
+  const soil = linear('93866e');
+  const gravel = linear('c1ab8e');
+  const stream = linear('697d67');
+  const patch = (a, b, c, d, color) => {
+    for (const points of [
+      [a, b, c],
+      [a, c, d],
+    ]) {
+      const normal = normalFor(...points);
+      if (Math.abs(normal[1]) < 1e-7) continue;
+      const triangle = normal[1] < 0 ? points.toReversed() : points;
+      o.addTriangle(
+        role,
+        'palette:#ffffff',
+        triangle,
+        normalFor(...triangle),
+        triangle.map(([x, , z]) => [x * 2, z * 2]),
+        color,
+      );
+    }
+  };
+  for (let i = 1; i < rows.length; i++) {
+    for (let j = 1; j < columns.length; j++) {
+      const a = grade(rows[i - 1], columns[j - 1]);
+      const b = grade(rows[i - 1], columns[j]);
+      const c = grade(rows[i], columns[j]);
+      const d = grade(rows[i], columns[j - 1]);
+      const distance = Math.abs((a[2] + b[2] + c[2] + d[2]) / 4);
+      const exposed = 0.58 * Math.max(0, 1 - distance / 36);
+      patch(
+        a,
+        b,
+        c,
+        d,
+        grass.map((v, k) => v + (soil[k] - v) * exposed),
+      );
+    }
+  }
+  if (index === 0) return;
+  const trailPoint = ([x, z, ...y]) => [x, y[index - 1], z];
+  for (const { points, kind } of ravine.network)
+    for (let i = 1; i < points.length; i++)
+      patch(
+        trailPoint(points[i - 1][0]),
+        trailPoint(points[i - 1][1]),
+        trailPoint(points[i][1]),
+        trailPoint(points[i][0]),
+        kind === 'stream' ? stream : gravel,
+      );
+  const leaves = linear('536541');
+  const shrubCount = index === 1 ? 12 : level === 'street' ? 60 : ravine.shrubs.length;
+  for (const [x, z, districtY, nearY, size, form] of ravine.shrubs.slice(0, shrubCount)) {
+    const y = index === 1 ? districtY : nearY;
+    const height = size * (0.7 + form);
+    const peak = [x + (form - 0.5) * size, y + height, z];
+    const edge = [
+      [x - size, y, z],
+      [x - 0.35 * size, y + 0.4 * height, z - size],
+      [x + 0.62 * size, y, z - 0.6 * size],
+      [x + size, y + 0.22 * height, z + 0.2 * size],
+      [x + 0.1 * size, y, z + size],
+    ];
+    for (let i = 0; i < edge.length; i++) {
+      const points = [edge[i], peak, edge[(i + 1) % edge.length]];
+      const normal = normalFor(...points);
+      const triangle = normal[1] < 0 ? points.toReversed() : points;
+      o.addTriangle(
+        role,
+        'palette:#ffffff',
+        triangle,
+        normalFor(...triangle),
+        undefined,
+        leaves.map((c) => c * (0.8 + form * 0.38 + i * 0.024)),
+      );
+    }
+  }
+}
+
 export function buildFerreresLevel(o, level = 'master') {
   const cfg = configs[level];
   if (!cfg) throw new Error(`Unknown Ferreres level ${level}`);
@@ -328,15 +431,27 @@ export function buildFerreresLevel(o, level = 'master') {
   for (let i = 1; i < knots.length; i++) {
     const a = knots[i - 1],
       b = knots[i];
-    prism(o, floorSlot, [a, C.channelFloor - 0.24, -1.225], [b, C.channelFloor, 1.225], floorColor);
+    const ends = [i === 1, i === knots.length - 1];
+    prism(
+      o,
+      floorSlot,
+      [a, C.channelFloor - 0.24, -1.225],
+      [b, C.channelFloor, 1.225],
+      floorColor,
+      {
+        bottom: level !== 'skyline',
+        ends,
+      },
+    );
     for (const side of [-1, 1]) {
       const z0 = side < 0 ? -1.225 : 0.5,
         z1 = side < 0 ? -0.5 : 1.225;
-      prism(o, slot, [a, C.channelFloor, z0], [b, C.height, z1], stone);
+      prism(o, slot, [a, C.channelFloor, z0], [b, C.height, z1], stone, { ends });
       if (cfg.caps)
         prism(o, slot, [a, C.height - 0.13, z0 - 0.035], [b, C.height, z1 + 0.035], capColor);
     }
   }
+  buildRavine(o, level);
 }
 export const buildFerreresSkyline = (o) => buildFerreresLevel(o, 'skyline');
 export const buildFerreresDistrict = (o) => buildFerreresLevel(o, 'district');
