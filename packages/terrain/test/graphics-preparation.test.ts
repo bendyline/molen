@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
   createTerrainElevationWorkerSource,
@@ -5,6 +6,7 @@ import {
   type ElevationWorkerLike,
   installTerrainElevationWorker,
 } from '../src/elevation-worker';
+import { subtractTerrainGroundGeometry, terrainGroundCutRequest } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import { buildChunkGeometry, terrainTopology } from '../src/mesh';
 import { createTerrainPackagePyramidHeightSource } from '../src/package-client';
@@ -133,6 +135,62 @@ describe('terrain graphics preparation', () => {
     const aborted = new AbortController();
     aborted.abort();
     expect(await source.load({ level: 0, x: 0, z: 0 }, aborted.signal)).toBeUndefined();
+    source.dispose?.();
+  });
+
+  it('cuts ground openings in the worker as on the host, and skips a cut called off', async () => {
+    const descriptor: TerrainPyramidDescriptor = {
+      name: 'cut',
+      origin: [0, 0],
+      rootSize: 100,
+      minLevel: 0,
+      maxLevel: 0,
+      tileResolution: 3,
+      height: { min: 0, max: 100 },
+      layers: [],
+      skirts: false,
+    };
+    const [host, thread] = ports();
+    installTerrainElevationWorker(thread);
+    const timings: ElevationStageTiming[] = [];
+    const source = createTerrainElevationWorkerSource(
+      host,
+      { tileMatrix: { scheme: 'xyz' } } as TerrainPackageDescriptor,
+      descriptor,
+      { getZxy: async () => undefined },
+      { onTiming: (timing) => timings.push(timing) },
+    );
+    const ground = new THREE.PlaneGeometry(10, 10, 4, 4).rotateX(-Math.PI / 2).translate(5, 0, 5);
+    const outlines: [number, number][][] = [
+      [
+        [3, 3],
+        [7, 3],
+        [7, 7],
+        [3, 7],
+      ],
+    ];
+    const request = terrainGroundCutRequest(ground, outlines, [], [undefined]);
+    if (request === undefined) throw new Error('no request');
+    const result = await source.cutGround?.(request, new AbortController().signal);
+    const expected = subtractTerrainGroundGeometry(ground, outlines, [], [undefined]);
+    expect(result?.attributes.map((attribute) => attribute.name)).toEqual(
+      Object.keys(expected.attributes),
+    );
+    for (const attribute of result?.attributes ?? [])
+      expect(Array.from(attribute.array)).toEqual(
+        Array.from(expected.getAttribute(attribute.name).array),
+      );
+    expect(Array.from(result?.index ?? [])).toEqual(Array.from(expected.index?.array ?? []));
+    expect(timings.filter((timing) => timing.stage === 'cut')).toHaveLength(1);
+    // The host's geometry kept its arrays: only copies crossed.
+    expect(ground.getAttribute('position').count).toBe(25);
+    // Called off before the worker reached it: no cut is made.
+    const calledOff = new AbortController();
+    const pending = source.cutGround?.(request, calledOff.signal);
+    calledOff.abort();
+    expect(await pending).toBeUndefined();
+    await new Promise((done) => setTimeout(done, 5));
+    expect(timings.filter((timing) => timing.stage === 'cut')).toHaveLength(1);
     source.dispose?.();
   });
 

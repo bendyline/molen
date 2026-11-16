@@ -177,13 +177,16 @@ export {
 } from './client/overrides';
 export {
   createEarthAdmissionGovernor,
+  EARTH_BACKLOG_MS,
   EARTH_CALIBRATION_QUALITY,
   EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
+  type EarthAdmissionLimits,
   type EarthDeviceMemory,
   type EarthPerformanceTier,
   earthAdmission,
+  earthArrivalAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,

@@ -786,7 +786,8 @@ function porterCockpit(root, m, sections) {
     northYaw: { op: 'subtract', args: [Math.PI, 'yaw'] },
     trueHeading: { op: 'modulo', args: ['northYaw', 2 * Math.PI] },
     rpmPercent: { op: 'multiply', args: ['engine1', 100] },
-    turnDegrees: { op: 'multiply', args: ['yawRate', 180 / Math.PI] },
+    // Positive turning right, so the needle leans into the turn (yawRate is positive left).
+    turnDegrees: { op: 'multiply', args: ['yawRate', -180 / Math.PI] },
   });
   ins.dial(
     'speed',

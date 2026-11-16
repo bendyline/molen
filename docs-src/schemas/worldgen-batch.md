@@ -364,6 +364,47 @@ A serialized generation request: labeled building outlines, optional labeled pol
                   "type": "number",
                   "exclusiveMinimum": 0,
                   "maximum": 100
+                },
+                "sign": {
+                  "description": "A name set from the batch glyph atlas in place of the sign model text; without an atlas holding every character the sign model shows.",
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "description": "The name as shown; it may break over two lines."
+                    },
+                    "plate": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "ink": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "stripe": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "font": {
+                      "description": "Glyph atlas role or face id.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "letterSpacing": {
+                      "type": "number",
+                      "minimum": -0.1,
+                      "maximum": 0.5
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "plate",
+                    "ink"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "required": [

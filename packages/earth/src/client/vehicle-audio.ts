@@ -129,7 +129,11 @@ export class VehicleAudio {
         nowMs > prior.at &&
         nowMs - prior.at < 500 &&
         Math.hypot(
-          ...(transform.pos.map((p, i) => p - prior.position[i]!) as [number, number, number]),
+          ...(transform.pos.map((p, i) => p - (prior.position[i] as number)) as [
+            number,
+            number,
+            number,
+          ]),
         ) <
           Math.max(
             25,

@@ -442,9 +442,11 @@ function wall(face, a, b, H, role, roof, sample) {
     ],
     lo = p.map(([x, z]) => [x, sample(x, z) - 0.4, z]),
     hi = p.map(([x, z]) => [x, sample(x, z) + H, z]);
+  // p runs a->b along its +n side first, so edge i->j faces out along (z_i - z_j, x_j - x_i).
+  // This vertex order keeps each quad split on the diagonal it had before.
   for (let i = 0; i < 4; i++) {
     const j = (i + 1) % 4;
-    face(role, [lo[i], lo[j], hi[j], hi[i]], [p[j][1] - p[i][1], 0, p[i][0] - p[j][0]]);
+    face(role, [lo[i], hi[i], hi[j], lo[j]], [p[i][1] - p[j][1], 0, p[j][0] - p[i][0]]);
   }
   face(
     roof,

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
+  cutTerrainGroundRequest,
   markTerrainGroundSurface,
   markTerrainPavementSurface,
   markTerrainWaterSurface,
@@ -9,6 +10,9 @@ import {
   setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
+  type TerrainGroundCutRequest,
+  type TerrainGroundCutResult,
+  type TerrainGroundCutter,
   terrainGroundSourceGeometry,
 } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
@@ -443,6 +447,107 @@ describe('model-owned ground openings', () => {
     expect(onSourceDispose).toHaveBeenCalledTimes(1);
     controller.dispose();
   });
+  it('sends cuts to a cutter and applies what comes back, the same as a cut made here', async () => {
+    const scene = () => {
+      const root = new THREE.Group(),
+        ground = new THREE.Mesh(plane()),
+        owner = new THREE.Group();
+      // Packed bytes, as a worker-built land cover mesh carries its normals and colors.
+      ground.geometry.setAttribute(
+        'tint',
+        new THREE.BufferAttribute(new Uint8Array([0, 64, 128, 255, 255, 128, 64, 0]), 2, true),
+      );
+      markTerrainGroundSurface(ground);
+      root.add(ground, owner);
+      setTerrainGroundCutout(owner, square);
+      return { root, ground, owner };
+    };
+    const here = scene();
+    new TerrainGroundCutoutController().update(here.root);
+    // A cutter as a worker is one: the request crosses as a copy, the result comes back later.
+    const landings: Array<(fail?: boolean) => void> = [];
+    const signals: AbortSignal[] = [];
+    const cut: TerrainGroundCutter = (request, signal) =>
+      new Promise((resolve, reject) => {
+        const copy = structuredClone(request) as TerrainGroundCutRequest;
+        signals.push(signal);
+        landings.push((fail) => {
+          if (fail) {
+            reject(new Error('no worker'));
+            return;
+          }
+          const { result, transfer } = cutTerrainGroundRequest(copy);
+          resolve(structuredClone(result, { transfer }) as TerrainGroundCutResult);
+        });
+      });
+    const land = async (fail = false): Promise<void> => {
+      landings.shift()?.(fail);
+      await new Promise((done) => setTimeout(done, 0));
+    };
+    const onResult = vi.fn();
+    const away = scene();
+    const source = away.ground.geometry;
+    const controller = new TerrainGroundCutoutController({ cut, onResult, cutVertices: 0 });
+    // Sent, and asked for once however many passes go by; cuts away are not work waiting.
+    expect(controller.update(away.root)).toBe(false);
+    expect(controller.update(away.root)).toBe(false);
+    expect(landings).toHaveLength(1);
+    expect(away.ground.geometry).toBe(source);
+    expect(controller.pending).toBe(false);
+    await land();
+    expect(onResult).toHaveBeenCalledTimes(1);
+    expect(controller.pending).toBe(true);
+    expect(controller.update(away.root)).toBe(true);
+    expect(controller.pending).toBe(false);
+    const made = away.ground.geometry,
+      expected = here.ground.geometry;
+    expect(made).not.toBe(source);
+    expect(terrainGroundSourceGeometry(away.ground)).toBe(source);
+    expect(Object.keys(made.attributes)).toEqual(Object.keys(expected.attributes));
+    for (const name of Object.keys(expected.attributes)) {
+      const got = made.getAttribute(name) as THREE.BufferAttribute,
+        want = expected.getAttribute(name) as THREE.BufferAttribute;
+      expect(got.array.constructor).toBe(want.array.constructor);
+      expect([got.itemSize, got.normalized]).toEqual([want.itemSize, want.normalized]);
+      expect(Array.from(got.array)).toEqual(Array.from(want.array));
+    }
+    expect(Array.from(made.index?.array ?? [])).toEqual(Array.from(expected.index?.array ?? []));
+    expect(made.groups).toEqual(expected.groups);
+    expect(made.boundingBox?.equals(expected.boundingBox as THREE.Box3)).toBe(true);
+    // The mesh's own arrays stayed here, whole.
+    expect(source.getAttribute('position').array).toHaveLength(12);
+    // An opening that goes takes its cut with it; one that goes while its cut is away calls
+    // the cut off, and what lands afterwards is not used.
+    away.owner.visible = false;
+    controller.update(away.root);
+    expect(away.ground.geometry).toBe(source);
+    away.owner.visible = true;
+    controller.update(away.root);
+    expect(landings).toHaveLength(1);
+    away.owner.visible = false;
+    controller.update(away.root);
+    expect(signals.at(-1)?.aborted).toBe(true);
+    await land();
+    expect(onResult).toHaveBeenCalledTimes(1);
+    expect(controller.pending).toBe(false);
+    // A cutter that fails leaves the cut to be made here.
+    away.owner.visible = true;
+    controller.update(away.root);
+    expect(away.ground.geometry).toBe(source);
+    await land(true);
+    expect(onResult).toHaveBeenCalledTimes(2);
+    expect(controller.update(away.root)).toBe(true);
+    expect(area(away.ground.geometry)).toBeCloseTo(area(expected), 6);
+    controller.dispose();
+    // Small ground is not sent at all: it is cut here, in the pass that shows it.
+    const small = scene();
+    const grid = small.ground.geometry;
+    const unsent = new TerrainGroundCutoutController({ cut, onResult });
+    expect(unsent.update(small.root)).toBe(true);
+    expect(small.ground.geometry).not.toBe(grid);
+    expect(landings).toHaveLength(0);
+    unsent.dispose();
+  });
   it('spends at most its budget on cuts after the first, finishing in later updates', () => {
     const root = new THREE.Group(),
       first = new THREE.Mesh(plane()),
@@ -601,6 +706,70 @@ describe('model-owned ground openings', () => {
     world.updateMatrixWorld(true);
     expect(controller.update(root)).toBe(true);
     expect(ground.geometry).not.toBe(cut);
+    controller.dispose();
+  });
+  it('keeps one copy of the vertices a cut shares with the grid it was cut from', () => {
+    const root = new THREE.Group(),
+      ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(200, 200, 40, 40).rotateX(-Math.PI / 2).translate(100, 0, 100),
+      ),
+      owner = new THREE.Group();
+    // A packed attribute beside the float ones, as land cover carries.
+    const vertices = ground.geometry.getAttribute('position').count;
+    ground.geometry.setAttribute(
+      'tint',
+      new THREE.BufferAttribute(
+        Uint8Array.from({ length: vertices * 4 }, (_, i) => i % 251),
+        4,
+        true,
+      ),
+    );
+    markTerrainGroundSurface(ground);
+    root.add(ground, owner);
+    setTerrainGroundCutout(owner, square);
+    const source = ground.geometry;
+    const before = Object.fromEntries(
+      Object.entries(source.attributes).map(([name, attribute]) => [
+        name,
+        { values: Array.from(attribute.array), version: attribute.version },
+      ]),
+    );
+    const controller = new TerrainGroundCutoutController();
+    controller.update(root);
+    const cut = ground.geometry;
+    expect(cut).not.toBe(source);
+    const buffers = new Set<ArrayBufferLike>();
+    for (const geometry of [source, cut])
+      for (const attribute of Object.values(geometry.attributes))
+        buffers.add(attribute.array.buffer);
+    // One buffer for each attribute, not two.
+    expect(buffers.size).toBe(Object.keys(source.attributes).length);
+    for (const [name, attribute] of Object.entries(source.attributes)) {
+      // The grid reads as it did, and nothing asks for another upload.
+      expect(Array.from(attribute.array)).toEqual(before[name]?.values);
+      expect(attribute.version).toBe(before[name]?.version);
+      expect(attribute.count).toBe(vertices);
+    }
+    // Cut again for other openings, the grid moves to the new cut's arrays.
+    setTerrainGroundCutout(owner, [
+      [20, 20],
+      [60, 20],
+      [60, 60],
+      [20, 60],
+    ]);
+    controller.update(root);
+    const next = ground.geometry;
+    expect(next).not.toBe(cut);
+    expect(source.getAttribute('position').array.buffer).toBe(
+      next.getAttribute('position').array.buffer,
+    );
+    expect(Array.from(source.getAttribute('position').array)).toEqual(before.position?.values);
+    // With its openings gone the grid draws again, whole.
+    owner.visible = false;
+    controller.update(root);
+    expect(ground.geometry).toBe(source);
+    expect(Array.from(source.getAttribute('tint').array)).toEqual(before.tint?.values);
+    expect(area(source)).toBeCloseTo(40000, 4);
     controller.dispose();
   });
   it('copies refreshed normals from the retained grid onto its cut without cutting again', () => {

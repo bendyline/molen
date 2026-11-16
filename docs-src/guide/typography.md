@@ -89,6 +89,42 @@ mesh; this is the same API used in the browser. Existing baked GLBs must be rege
 change their lettering. Seven-segment electronic displays can retain their physical segments;
 fixed captions around those displays should use font geometry.
 
+## Glyph atlases
+
+Storefront names use a second form of the same faces: a `molen/glyph-atlas@1` document of glyph
+metrics and atlas rectangles, beside raw 8-bit pages of signed distances. A name is then two
+triangles a letter, every sign in the world shares one texture, and a face can be an atlas only:
+the Kyoto pack's Japanese face holds the 1,544 letters Kyoto's place names use, where a vector font
+of them would run to tens of megabytes.
+
+```ts
+import { assembleGlyphAtlasPixels, createGlyphAtlasSet } from '@bendyline/molen-materials/text';
+
+const set = createGlyphAtlasSet([latinDoc, kyotoDoc]); // metrics only; a worker can hold this
+set.faceFor('大垣書店'); // 'sign.gothic.jp': the first face that holds every letter
+const layout = set.layout('Samir’s Mediterranean Grill', {
+  font: 'serif',
+  maxWidth: 6,
+  maxHeight: 0.8,
+  maxLines: 2,
+});
+// layout.quads: x0, y0, x1, y1, u0, v0, u1, v1 per letter; layout.lines: the line break chosen
+const pixels = await assembleGlyphAtlasPixels(set, (doc, path) => readPage(doc, path));
+```
+
+`createGlyphAtlasSet` stacks the documents' pages into one texture, so every document in a set
+shares one distance range. A name is set in the first candidate face that holds all of it: the
+requested face or role in each document, then each document's default face. Layout is left to
+right, with kerning, uniform fitting, and a second line where it sets the letters a tenth larger,
+broken at a space or, in Japanese and Chinese, between letters (never before a closing mark or a
+small kana). There is no per-letter fallback across faces and no shaping, so Arabic and Indic
+names keep their category sign until a shaping stage exists.
+
+In the engine repository, `node scripts/build-fonts.mjs` rasterizes the Earth atlas from the same
+pinned TTFs as the vector fonts, and each region pack (`content/glyphs-*`) from its own pinned
+font and the character set `scripts/build-glyph-charset.mjs` reads from the region's map extract.
+The distance field is plain arithmetic, byte-identical on every machine; `--check` verifies it.
+
 ## Compiling another face
 
 `compileVectorFont(typefaceJson, { id, characters, weight, style, curveSegments, kerning })`

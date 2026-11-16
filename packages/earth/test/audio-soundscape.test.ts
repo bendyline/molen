@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { type SoundbankDoc, weatherProfile } from '@bendyline/molen-schema';
+import { type SoundbankDoc, type SoundEntry, weatherProfile } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import {
   createEarthAudio,
@@ -36,17 +36,18 @@ const places = [
 
 describe('World soundscape content and behavior', () => {
   it('ships at least 100 distinct, licensed and reachable World sounds', () => {
-    const steps = Object.values(EARTH_AUDIO_ENVIRONMENT.footsteps!.surfaces!);
+    const footsteps = EARTH_AUDIO_ENVIRONMENT.footsteps;
+    if (!footsteps?.surfaces) throw new Error('World audio has no footstep surfaces');
     const ids = new Set([
       ...clips.map((c) => c.id),
-      EARTH_AUDIO_ENVIRONMENT.footsteps!.sound,
-      ...steps,
+      footsteps.sound,
+      ...Object.values(footsteps.surfaces),
     ]);
     expect(ids.size).toBeGreaterThanOrEqual(100);
     const hashes = new Set<string>();
     const clipHashes = new Set<string>();
     for (const id of ids) {
-      const entry = bank.sounds[id]!;
+      const entry = bank.sounds[id] as SoundEntry;
       expect(entry.source.license, id).toBe('CC0-1.0');
       expect(entry.source.url, id).toMatch(/^https:\/\//);
       expect(entry.clips.length).toBeGreaterThan(0);
@@ -58,7 +59,7 @@ describe('World soundscape content and behavior', () => {
         expect(clipHashes.has(hash), `duplicate clip: ${ref}`).toBe(false);
         clipHashes.add(hash);
       }
-      hashes.add(entry.hash!);
+      hashes.add(entry.hash as string);
     }
     expect(hashes.size).toBe(ids.size);
     const reachable = new Set<string>();
@@ -75,6 +76,27 @@ describe('World soundscape content and behavior', () => {
     expect([...clips.map((c) => c.id)].filter((id) => !reachable.has(id))).toEqual([]);
   });
 
+  it('loads no music track when music is off', async () => {
+    const renderer = {
+      camera: { matrixWorld: { elements: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1] } },
+      getWorldOrigin: () => [0, 0, 0],
+      sky: { frame: { daylight: 1 } },
+    };
+    const music = async (on: boolean): Promise<string[]> => {
+      const audio = await createEarthAudio(packs, renderer, { music: on });
+      for (let nowMs = 0; nowMs < 5_000; nowMs += 250)
+        audio?.update({ nowMs, mode: 'orbit', position: [0, 200, 0], location: places[0] });
+      const playing = audio?.layer.director
+        .voices()
+        .map((voice) => voice.sound)
+        .filter((sound) => sound.startsWith('music.'));
+      audio?.dispose();
+      return playing ?? [];
+    };
+    expect(await music(true)).not.toEqual([]);
+    expect(await music(false)).toEqual([]);
+  });
+
   it('changes day/night, dawn, cold, rain, regions, coasts and cabin exposure without warnings', async () => {
     const warnings: string[] = [];
     const renderer = {
@@ -86,7 +108,7 @@ describe('World soundscape content and behavior', () => {
       music: false,
       onWarning: (m) => warnings.push(m),
     });
-    expect(audio).toBeDefined();
+    if (!audio) throw new Error('World audio did not start');
     let nowMs = 0;
     const base: Omit<EarthAudioFrame, 'nowMs'> = {
       mode: 'walk',
@@ -105,20 +127,21 @@ describe('World soundscape content and behavior', () => {
     };
     const run = (patch: Partial<EarthAudioFrame> = {}) => {
       for (let i = 0; i < 100; i++) {
-        audio!.update({ ...base, ...patch, nowMs });
+        audio.update({ ...base, ...patch, nowMs });
         nowMs += 250;
       }
-      return audio!.layer.director.voices();
+      return audio.layer.director.voices();
     };
-    const category = (voices: ReturnType<typeof run>, name: string) =>
+    type Voice = ReturnType<typeof run>[number];
+    const category = (voices: Voice[], name: string) =>
       voices.filter((v) => v.sound.startsWith(`world.${name}.`));
-    const dawn = category(run(), 'birds')[0]!;
+    const dawn = category(run(), 'birds')[0] as Voice;
     expect(dawn.sound).toContain('.europe.');
     expect(category(run({ regionalAmbience: { birds: 0, insects: 0 } }), 'birds')).toHaveLength(1);
-    expect(dawn.gain).toBeGreaterThan(category(run({ solarHour: 14 }), 'birds')[0]!.gain);
-    const cabin = category(run({ mode: 'drive', inVehicle: true }), 'birds')[0]!;
+    expect(dawn.gain).toBeGreaterThan((category(run({ solarHour: 14 }), 'birds')[0] as Voice).gain);
+    const cabin = category(run({ mode: 'drive', inVehicle: true }), 'birds')[0] as Voice;
     expect(cabin.gain).toBeCloseTo(dawn.gain * 0.18, 3);
-    expect(category(run({ location: places[5] }), 'birds')[0]!.sound).toContain('.oceania.');
+    expect(category(run({ location: places[5] }), 'birds')[0]?.sound).toContain('.oceania.');
     renderer.sky.frame.daylight = 0;
     const night = run();
     expect(category(night, 'birds')).toHaveLength(0);
@@ -161,6 +184,6 @@ describe('World soundscape content and behavior', () => {
         expect(category(ground, name)).toHaveLength(0);
     }
     expect(warnings).toEqual([]);
-    audio!.dispose();
+    audio.dispose();
   });
 });

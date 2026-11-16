@@ -17,6 +17,12 @@ export {
   registerBusinessCatalogSchema,
   validateBusinessCatalogDocuments,
 } from './kernel/business-catalog-schema';
+export {
+  cleanBusinessName,
+  isLatinText,
+  MAX_SIGN_NAME_LENGTH,
+  normalizeBusinessName,
+} from './kernel/business-names';
 export { associateBusinesses } from './kernel/businesses';
 export type {
   EcologyArea,
@@ -132,6 +138,10 @@ export {
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';
+export type { SignLook, SignLooksDoc } from './kernel/sign-looks-schema';
+export { registerSignLooksSchema, validateSignLooks } from './kernel/sign-looks-schema';
+export type { SignNamer } from './kernel/sign-names';
+export { createSignNamer } from './kernel/sign-names';
 export {
   type HistoricalStructureAppearance,
   isHistoricalStructureAppearance,
@@ -192,6 +202,7 @@ import { registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
 import { registerMapOverridesSchema } from './kernel/map-overrides-schema';
 import { registerRegionAtlasSchema } from './kernel/region-atlas-schema';
 import { registerRegionalCatalogSchema } from './kernel/regional-content-schema';
+import { registerSignLooksSchema } from './kernel/sign-looks-schema';
 import { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 import { registerWildlifeRangesSchema } from './kernel/wildlife-ranges';
 
@@ -201,6 +212,7 @@ registerEcologyAtlasSchema();
 registerWildlifeRangesSchema();
 registerRegionalCatalogSchema();
 registerBusinessCatalogSchema();
+registerSignLooksSchema();
 registerStructurePlacementsSchema();
 registerMapOverridesSchema();
 

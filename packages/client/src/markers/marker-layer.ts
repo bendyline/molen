@@ -40,6 +40,14 @@ export interface MarkerSpec {
 export interface MarkerLayerOptions {
   /** Ground height at world X/Z, or undefined while unknown. Required for ground-snapped markers. */
   groundHeight?: (x: number, z: number) => number | undefined;
+  /**
+   * How often a grounded marker reads its ground height again, ms (default 0: every update). The
+   * ground beneath a marker changes only as terrain streams in, and a host whose `groundHeight`
+   * samples streamed terrain pays for every read: a city's photo pins re-read each frame took
+   * about 3% of the main thread while an Earth view loaded. A marker not yet grounded, or moved,
+   * reads it at every update until it has one.
+   */
+  groundRefreshMs?: number;
   /** Most markers drawn at once; extras nearest last are hidden (default 256). */
   maxVisible?: number;
   /** Distances (meters) over which markers fade out: full at `near`, gone at `far`. */
@@ -80,6 +88,8 @@ interface MarkerEntry {
   imageKey: MarkerImage;
   aspect: number;
   groundY: number | undefined;
+  /** When `groundY` was last read (performance.now()). */
+  groundReadMs: number;
   distance: number;
   /** Drawn at the last update; decluttering keeps these ahead of newcomers. */
   shown: boolean;
@@ -194,13 +204,19 @@ export class MarkerLayer {
     const fadeMs = this.options.fadeMs ?? 180;
     const fadeStep = fadeMs > 0 ? elapsedMs / fadeMs : Number.POSITIVE_INFINITY;
     const hideUntilGrounded = this.options.hideUntilGrounded ?? true;
+    const groundRefreshMs = this.options.groundRefreshMs ?? 0;
     const candidates: MarkerEntry[] = [];
     for (const entry of this.entries.values()) {
       const { spec } = entry;
       let y = spec.y;
       if (y === undefined) {
-        const ground = this.options.groundHeight?.(spec.x, spec.z);
-        if (ground !== undefined) entry.groundY = ground;
+        if (entry.groundY === undefined || nowMs - entry.groundReadMs >= groundRefreshMs) {
+          const ground = this.options.groundHeight?.(spec.x, spec.z);
+          if (ground !== undefined) {
+            entry.groundY = ground;
+            entry.groundReadMs = nowMs;
+          }
+        }
         y =
           entry.groundY === undefined
             ? hideUntilGrounded
@@ -388,6 +404,7 @@ export class MarkerLayer {
       imageKey: spec.image,
       aspect: imageAspect(spec.image) ?? 1,
       groundY: undefined,
+      groundReadMs: Number.NEGATIVE_INFINITY,
       distance: 0,
       shown: false,
       presence: 0,

@@ -4,12 +4,12 @@
   "status": "completed",
   "reviewedOn": "2026-10-21",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:b42ef5519a6e4b28488ce691f384de7918c636e4327bf3dba456b821b976bbcb",
-  "sourceHash": "sha256:837a02666670d1894b8cb337a044e2f6ab9fe7655cb0144d001377f38c34fb01",
-  "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
+  "inputHash": "sha256:3163a2c639994d5ff269bb4c7c9a2deec8e9796431862d622ea1509eabbd8d07",
+  "sourceHash": "sha256:f9ddb881723b3ee5db1ac50c45dced738d81fc66d41835219ad935a1b92dcbfc",
+  "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
   "visualReview": {
     "status": "passed",
-    "captureReportHash": "sha256:709e590affcdcc031efecff347e3024694406c1d4549d7d5eef5c412263c1750",
+    "captureReportHash": "sha256:73b528a12c501f08f88e65dd499a66f71ac0efd6307a12fc4595b6e507ac314c",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f5ba78bfd563b70b117a2fd2c8dc84b2778f15883c7ab8c3c6edbb572bcc5b44",
+    "captureReportHash": "sha256:6daa69cd1b09bb202202fa94c5dbe1f961af047e78f6e2c6b64214a8c94de96b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -41,7 +41,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cf3f8f5b7e8a3d3d59e067bfcd7d46446cc7c33d0505759b6ce39530e02599fc",
+    "captureReportHash": "sha256:bb32bd6104b138257d9ff6dfc04b028c27cfa7fe851848f9f34467f0f9d913d7",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -67,7 +67,7 @@
     ],
     "notes": "All21currentcontextframesinspected:noon/lateeconomy/high atstreet/block/skyline,silhouette,4detailsand4LODtransitions.976/3972/11296/18914triangles preservewholeclosedspan/16individualfloats/16transversearches/intrinsiccabin. District/skyline thinarch/rail details reduce atdistance, allboatgaps andwalkwayheadroom retain. Longspanoccupieswideframes; fourdetails independently inspectfloats/archwalk/cabin. Synthetic surroundinghouses/groundstage notpartofasset."
   },
-  "captureReportHash": "sha256:709e590affcdcc031efecff347e3024694406c1d4549d7d5eef5c412263c1750",
+  "captureReportHash": "sha256:73b528a12c501f08f88e65dd499a66f71ac0efd6307a12fc4595b6e507ac314c",
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:9c51ffc9664497485b65b67b3d05dfce8c5cd77e62322e7e206c1011ff194b74",
@@ -189,5 +189,16 @@
     "Owner2026electrificationretainsappearance; tourismboard16pontoons/restoredwooddeck textcontrols principalstableform. Historicphotosshowasphaltlane/royaldecorations, notadopted ascurrent. Exactpresentpaintcolors/unrecordedinterimrefits/cabinwindowcount/archcensus/beamgauges/underwaterhullpropulsion/draft are boundedoriginalmediumfiestimates. Mutedwhite/gray/brownwood palette doesnotclaimsurveyedcolorfromblackandwhitephotos.",
     "Deck0/pontoons-1..-2.7m/estimatedwaterline-1.85m/archcrown5.3m arephotoestimates. Floatingcraftareintrinsic bridge supports, nottrafficprops. Actualbarechannel/banks/ships/ferries/quay/facades/trees/people/roadmarkings/renovationequipment/watermesh excluded; no whole-site floor. Openairheadroom/between-boatgaps real atallLODs.",
     "Independent400m129x129field/16641samples/rawtilebytes acquired atfixedlandwardwestapproachbeforegeometry andunchanged. Compositewatercellsincludedeeplowoutliersdown to-379.8896m; diagnosticrawvaluesareNOTsurveyedbathymetry/waterclassification/hostshoregrade. Do notflatten/fit/resampleawaynegativecells. Flatinspectionstage-3.2mseparate; ordinarynativepreview/replaceFootprint=false, realwater/shore/threshold/compatiblehostcontactunverified."
-  ]
+  ],
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:b42ef5519a6e4b28488ce691f384de7918c636e4327bf3dba456b821b976bbcb",
+      "previousSourceHash": "sha256:837a02666670d1894b8cb337a044e2f6ab9fe7655cb0144d001377f38c34fb01",
+      "previousRuntimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
+      "inputHash": "sha256:3163a2c639994d5ff269bb4c7c9a2deec8e9796431862d622ea1509eabbd8d07",
+      "repair": "The flared side walls and both end caps of all sixteen pontoon hulls (metal_stainless_beadblasted) faced into the hull, so the near side was culled and the boats read as see-through from the deck and the water; the open pivot drum under the hinge end (trim) faced inward too. Root cause: in structure-queen-emma-bridge.mjs, hull() handed the shared loft() a counter-clockwise plan ring, and loft() winds outward only for rings that run clockwise as they rise; cabin() built the drum quads without a hint. Fix: hull() reverses the ring for the loft when its signed area is positive (the shared helper is untouched), and each drum quad takes a radial hint. Same vertex positions, surface area and materials; the planar hull quads now split along their other diagonal and the hull caps fan from the other end.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones)."
+    }
+  }
 }

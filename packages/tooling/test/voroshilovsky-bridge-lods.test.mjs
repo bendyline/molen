@@ -5,7 +5,6 @@ import { NodeIO } from '@gltf-transform/core';
 import { expect, it } from 'vitest';
 import {
   buildVoroshilovskyLevel,
-  voroshilovskyControls,
   voroshilovskyDeckY,
   voroshilovskySurfaces,
 } from '../../../content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/models/voroshilovsky-model.mjs';

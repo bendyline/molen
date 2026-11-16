@@ -14,7 +14,9 @@ The [catalog](catalog.json) maps stable model IDs to individual `molen/landmark@
   [General Merchandise](general_merchandise.landmark.json).
 - Other categories: [restaurant](restaurant.landmark.json), [cafe](cafe.landmark.json),
   [pharmacy](pharmacy.landmark.json), [shop](shop.landmark.json).
-- Furniture: [lamp](street_lamp.landmark.json), [bench](bench.landmark.json),
+- Furniture: [mast-arm lamp](street_lamp.landmark.json) for arterials,
+  [post-top lamp](street_lamp.post.landmark.json) for other streets, paths and plazas,
+  [bench](bench.landmark.json),
   [bike rack](bike_rack.landmark.json), [charger](charger.landmark.json),
   [fast charger](charger.fast.landmark.json).
 
@@ -61,6 +63,12 @@ Real source names and stable source IDs live only in the separate
 they are used to recognize mapped data and select one of these generic visual descriptors. This
 directory intentionally contains no source-business filenames, model IDs, titles, wordmarks or
 logo emblems. The generators never invent a mapped source identity for an unidentified building.
+
+Signs that show a place's mapped name are not models in this library: the Earth adapter sets the
+name from a glyph atlas on a plain plate, in a look from the business catalog's
+[sign looks](../../earth/businesses/sign-looks.json), and these descriptors stand in for places
+without a name or when a host asks for generic signs. A chain's descriptor palette here is also
+the palette its named signs take.
 
 The nine broad commercial fallbacks (`grocery`, `restaurant`, `cafe`, `pharmacy`, `shop`, `mall`,
 `department_store`, `outlet_mall`, `strip_mall`) and five street-furniture models remain available

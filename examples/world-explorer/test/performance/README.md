@@ -77,6 +77,93 @@ It needs an installed Chrome, because Playwright's Chromium finds no WebGPU adap
 flights themselves are the explorer's `?autopilot=` URL parameter, which also works by hand:
 `/?mode=human&autopilot=circle&speed=250&alt=900&radius=4000`.
 
+`admittedMsPerSecond` is the main-thread time the frame queue spent publishing streamed work per
+second of flight: beside the queue's waits (`admission-wait` in the stages) it says whether the
+view is short of budget or of work. `--params=admissionMs=8` holds one budget a frame, and
+`--params=cull=0` turns off the renderer's tile culling, for comparison. A profiled flight
+(`--profile`) streams about a third less than an unprofiled one, so compare like with like.
+
+### A low flight at High, 2026-11-15
+
+A P-51's line out of Boeing Field over SODO at 149 m/s and 243 m, manual High, on the NVIDIA
+laptop above in headless Edge (WebGL):
+
+```sh
+node test/performance/run-flight-streaming.mjs --flight=straight --lat=47.50 --lon=-122.288 \
+  --yaw=-1.94668 --speed=149 --alt=243 --quality=high --seconds=100 --channel=msedge
+```
+
+| Streaming budget a frame | 2 ms (before) | held at 4 ms | held at 8 ms | grows with the backlog |
+| --- | ---: | ---: | ---: | ---: |
+| Ground within 2 km finished | 16% | 81% | 96% | 90% |
+| 2 to 5 km finished | 0% | 38% | 74% | 63% |
+| 5 to 10 km finished | 0% | 49% | 87% | 72% |
+| Layers built in 100 s | 250 | 566 | 957 | 847 |
+| Mean wait in the frame queue | 3.1 s | 0.6 s | 0.13 s | 0.44 s |
+| Queue work a second | about 44 ms | 82 ms | 103 ms | 100 ms |
+| Frames a second | 30 | 30 | 22 | 28 |
+| Triangles drawn | 2.7 M | 6.3 M | 8.4 M | 7.5 M |
+
+Ground that is not finished shows a coarser finished tile (`stale`) in the three right-hand
+columns and bare ground before. At 2 ms the frames were always busy (19 ms of main-thread work
+at High), so the queue never left its smallest budget, and even a view held still was loading
+24 layers after 90 seconds. The frame rate lands on 30 or 20 here (two or three display
+refreshes), which makes a single flight's rate a coarse reading: a change to what a frame costs
+is better measured by switching it off and on every two seconds within one flight. Measured that
+way, leaving tiles outside the view out of the scene walk took the main thread's time in a
+frame's render from 17-22 ms to 12-13 ms over three flights, with the same draws (two of them
+with other work loading the machine, which moves both figures but not their order).
+
+A second pass the same day took three costs off the main thread in that flight: road earthworks
+for a tile's ground and ground cutting for water and bores went to the elevation worker, and
+parked cars stay out of the simulation under an aircraft. Other work was loading the machine that
+afternoon, so the two worker moves were measured in pairs: sixty seconds of the flight four times
+in turn, one build, with the elevation source's `gradeEarthworks` and `cutGround` taken away for
+the first of each pair (both then run on the main thread as before).
+
+| | main thread | worker | main thread | worker |
+| --- | ---: | ---: | ---: | ---: |
+| Ground within 2 km finished | 60% | 91% | 67% | 98% |
+| 2 to 5 km finished | 33% | 61% | 38% | 82% |
+| 5 to 10 km finished | 51% | 73% | 45% | 88% |
+| 10 to 20 km finished | 73% | 85% | 64% | 92% |
+| Layers built | 306 | 509 | 356 | 620 |
+| Mean wait in the frame queue | 0.97 s | 0.25 s | 0.30 s | 0.25 s |
+| Frames a second | 20 | 30 | 27 | 35 |
+
+Main-thread shares, from 40 s profiles of the same flight (one before, four after):
+
+| | before | after |
+| --- | ---: | ---: |
+| Road earthworks (`transformHeightfield`) | 3.9% | 0.4 to 0.6% |
+| Ground cuts (`cutGround`) | 6.7% | 1.3 to 1.8% |
+| Parked cars (`EarthVehicles.sync`) | 4.1% | 0.8 to 1.1% |
+
+In the worker a tile's earthworks took 25 to 36 ms on average (108 to 177 ms at the 95th
+percentile) and a cut 29 to 37 ms (79 to 113 ms).
+
+The cuts were the larger part. A tile's land cover over a shoreline took 46 ms to cut, and at
+4 ms a frame only 48 cuts finished in 50 seconds, so the main thread spent its cut budget every
+frame and most ground the flight passed still stood waiting for its cut. The parked cars were a
+pass with no observer, run each time a car's model loaded, that made an entity of every parked
+car in every loaded tile. At Medium most cut meshes are under 5,000 vertices and are still cut
+on the main thread, in the pass that shows them (43 of 61 in the settled SODO view; 2 of 101 at
+High).
+
+A cut ground mesh also kept its vertices twice, once in the grid it was cut from. Held over SODO
+at High that second copy was 174 of 1,139 MiB on show; the two now share one, and the page's array
+buffers (`Runtime.getHeapUsage`'s backing storage, after a collection) fell from 1,403 to
+1,233 MiB with the same 3,799 meshes drawn. That is main memory: the grid's GPU buffers stay. The
+flight itself still fills the 2 GiB cache, as a cache should, and a flight's peak on show (1.4 to
+1.7 GiB) is no measure of this: ground standing in for finer ground counts with it, and the peak
+rises as more ground is finished.
+
+Not done, and what each costs on the main thread in that flight: bridge profiles
+(`gradeTransportSeparationSteps`, 2.6%: a worker would need the tile's roads and its neighbors'
+copied to it, most of them near no bridge) and three's matrix walk of each in-view tile's static
+content (about 4%). In memory, land cover carries crop-row attributes in a city with no fields,
+about 52 MiB of that view; dropping them needs a second material.
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately

@@ -26,7 +26,8 @@ into a shared core and regional model archives while retaining that logical pack
 | --- | --- | --- |
 | [entities/](entities/) | `molen.entities` | Entity type documents (trees, boulder, aircraft, vehicles), their generated scripts, and glTF models with `molen/asset@1` sidecars |
 | [worldgen/](worldgen/) | `molen.worldgen.default` | The default style pack: archstyles, material graphs, scatter rules, props, landmarks, and the structure catalog |
-| [earth/](earth/) | `molen.earth` | The region atlas and the business identity catalog |
+| [earth/](earth/) | `molen.earth` | The region atlas, the business identity catalog and sign looks, and the lettering fonts and storefront glyph atlas |
+| [glyphs-kyoto/](glyphs-kyoto/) | `molen.glyphs.kyoto` | The Japanese letters Kyoto's storefront names use, as a `molen/glyph-atlas@1` atlas (Molen Sign Gothic JP, from Noto Sans JP, OFL) |
 | [ecology/](ecology/) | `molen.ecology` | Compact attributed ecoregions, procedural plants, seasonal/cultivated planting, habitat and ground palettes |
 | [wildlife/](wildlife/) | `molen.wildlife` | Compact attributed mammal country limits, procedural animal recipes and habitat populations; depends on the ecology catalog |
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
@@ -137,3 +138,7 @@ MOLEN_PACKS=content/worldgen:content/earth molen worldgen preview --out preview.
 - `node content/sounds/tools/fetch.mjs` then `node content/sounds/tools/build.mjs` rebuild
   `sounds/audio/`, `sounds.soundbank.json` and `NOTICE.md` from `sounds/sources.json` (needs ffmpeg);
   see [sounds/README.md](sounds/README.md).
+- `node scripts/build-fonts.mjs` writes `earth/fonts/` (vector fonts and the sign glyph atlas) and
+  each `glyphs-*/glyphs/` region atlas; `node scripts/build-glyph-charset.mjs kyoto
+  content/glyphs-kyoto/source/charset.json` first refreshes Kyoto's character set from its map
+  extract. Both take `--check`.

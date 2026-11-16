@@ -1121,6 +1121,8 @@ const STONE_DARK = 0.22;
  * about a pixel and a half), and a polished head's finish. */
 const RAIL_FOOTPRINT = 0.05;
 const RAIL_SHEEN = { roughness: 0.3, metalness: 0.55 };
+/** `TERRAIN_PAINT_ON_PARKING` (linear-features.ts), kept here so the shaders stay standalone. */
+const PAINT_ON_PARKING = 262_144;
 /** How far tufts of lawn creep over cast paving, and the size of a tuft, meters. */
 const CREEP = 0.1;
 const CREEP_TUFT = 0.35;
@@ -1201,6 +1203,15 @@ const PAVEMENT_GLSL = /* glsl */ `
     float isLoose = step(6.5, kind) * (1.0 - isRail);
     float isAsphalt = isRoad + isParking;
     float isConcrete = isSidewalk + isCurb;
+    // Paint carries the surface it lies on (terrainPaintBeneath): that surface's color as 6-bit
+    // sRGB channels, plus a flag (${PAINT_ON_PARKING}) over a parking lot.
+    float paintCode = floor(vSurfaceDetail.w + 0.5) * isPaint;
+    float onParking = step(${PAINT_ON_PARKING - 0.5}, paintCode);
+    paintCode -= onParking * ${PAINT_ON_PARKING.toFixed(1)};
+    vec3 beneathSrgb = vec3(floor(paintCode / 4096.0), mod(floor(paintCode / 64.0), 64.0),
+      mod(paintCode, 64.0)) / 63.0;
+    // The sRGB curve; its linear toe lies below any paving's color.
+    vec3 beneath = pow((beneathSrgb + 0.055) / 1.055, vec3(2.4));
     float aa = max(fwidth(along), 0.0001);
     float aaAcross = max(fwidth(across), 0.0001);
     // Asphalt: aggregate and patchy wear, polished wheel tracks, an oil line down each lane and
@@ -1221,7 +1232,8 @@ const PAVEMENT_GLSL = /* glsl */ `
     // Grit and oil collect along a road's edges, in the gutters.
     float width = code - kind * 128.0;
     float gutter = isRoad * mid * (1.0 - smoothstep(0.0, 0.6, min(across, width - across)));
-    float stains = isParking * mid * 0.24;
+    // A lot's oil stains; its paint takes them on only as it fades into the lot (below).
+    float stains = (isParking + isPaint * onParking) * mid * 0.24;
     if (stains > 0.0) stains *= smoothstep(0.62, 0.86,
       terrainGroundNoise(p + vec2(31.0, 7.0), 2.0) * 0.6 + terrainGroundNoise(p + vec2(9.0, 47.0), 1.0) * 0.4);
     float asphalt = (1.0 + grain * 0.24 + blotch * 0.26) * (1.0 + stones) * (1.0 - wear) *
@@ -1252,8 +1264,10 @@ const PAVEMENT_GLSL = /* glsl */ `
       terrainGroundNoise(p + vec2(3.0, 61.0), 0.25) * 0.4) * 0.6 * near;
     vec3 paint = mix(vec3(1.0), vec3(0.032, 0.036, 0.04) / max(base, vec3(0.001)), worn) *
       (0.97 + grain * 0.08);
-    // A 12 cm line must not remain a bright pixel-wide stripe at airplane altitude.
-    paint = mix(vec3(0.093, 0.100, 0.104) / max(base, vec3(0.001)), paint,
+    // A 12 cm line must not remain a bright pixel-wide stripe at airplane altitude. Narrower than
+    // a pixel it fades into the surface it lies on, shaded as that asphalt is: rows of bays faded
+    // to one darker grey broke into dashes that beat into moiré across a parking lot.
+    paint = mix(beneath / max(base, vec3(0.001)) * asphalt, paint,
       smoothstep(0.25, 1.25, width / max(footprint, 0.0001)));
     float loose = 1.0 + grain * 0.35 + blotch * 0.2;
     float plain = 1.0 + blotch * 0.08;
@@ -1363,7 +1377,8 @@ const PAVEMENT_GLSL = /* glsl */ `
     // the band's own antialiased edge. The edge mask is a whole number, rounded before its bits
     // are read: interpolation hands some pixels 2 as 1.9999999 (NVIDIA does), where mod(soft, 2)
     // is nearly 2 rather than 0, and a sidewalk's lawn side discarded half its pixels as ground.
-    float soft = mod(floor(vSurfaceDetail.w + 0.5), 4.0) * (1.0 - isRoad);
+    // Roads and paint never fray: their w packs other things.
+    float soft = mod(floor(vSurfaceDetail.w + 0.5), 4.0) * (1.0 - isRoad - isPaint);
     float edge = min(mix(64.0, across, mod(soft, 2.0)), mix(64.0, width - across, step(1.5, soft)));
     float coarse = 1.0 - smoothstep(0.25, 0.6, footprint / 0.8);
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / 0.2);
@@ -1507,7 +1522,7 @@ export function createTerrainPavementMaterial(
        metalnessFactor = mix(metalnessFactor, ${RAIL_SHEEN.metalness.toFixed(2)}, terrainRailSheen);`,
       );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@34';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@35';
   states.set(material, state);
   return material;
 }
@@ -1629,6 +1644,17 @@ export async function createTerrainPavementMaterialAsync(
     const isTrack = is(10);
     const isAsphalt = isRoad.add(isParking);
     const isConcrete = isSidewalk.add(isCurb);
+    // Paint carries the surface it lies on: its sRGB color in 6-bit channels and a flag over a
+    // parking lot (see the GLSL above).
+    const paintCode = detail.w.add(0.5).floor().mul(isPaint).toVar() as unknown as F;
+    const onParking = step(PAINT_ON_PARKING - 0.5, paintCode).toVar() as unknown as F;
+    const beneathCode = paintCode.sub(onParking.mul(PAINT_ON_PARKING)).toVar() as unknown as F;
+    const beneathSrgb = vec3(
+      floor(beneathCode.div(4096)),
+      floor(beneathCode.div(64)).mod(64),
+      beneathCode.mod(64),
+    ).div(63);
+    const beneath = beneathSrgb.add(0.055).div(1.055).pow(vec3(2.4)).toVar();
     const line = (coord: F, spacing: number | F, half: number): F => {
       const d = abs(fract(coord.div(spacing).add(0.5)).sub(0.5)).mul(spacing);
       const w = max(fwidth(coord), 0.0001);
@@ -1686,7 +1712,8 @@ export async function createTerrainPavementMaterialAsync(
     const gutter = isRoad
       .mul(mid)
       .mul(smoothstep(0, 0.6, min(across, width.sub(across))).oneMinus());
-    const stains = isParking.mul(mid).mul(0.24).toVar();
+    // A lot's oil stains; its paint takes them on only as it fades into the lot (below).
+    const stains = isParking.add(isPaint.mul(onParking)).mul(mid).mul(0.24).toVar();
     If(stains.greaterThan(0), () => {
       stains.mulAssign(
         smoothstep(
@@ -1759,8 +1786,9 @@ export async function createTerrainPavementMaterialAsync(
     const wornPaint = mix(vec3(1), vec3(0.032, 0.036, 0.04).div(max(base, vec3(0.001))), worn).mul(
       grain.mul(0.08).add(0.97),
     );
+    // Narrower than a pixel, paint fades into the surface it lies on (see the GLSL above).
     const paint = mix(
-      vec3(0.093, 0.1, 0.104).div(max(base, vec3(0.001))),
+      beneath.div(max(base, vec3(0.001))).mul(asphalt),
       wornPaint,
       smoothstep(0.25, 1.25, width.div(max(footprint, 0.0001))),
     );
@@ -1965,7 +1993,7 @@ export async function createTerrainPavementMaterialAsync(
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
     // the band's own antialiased edge. The edge mask is rounded before its bits are read (see
     // the GLSL above); its two bits sit under a track's variant (`TerrainLineBand.variant`).
-    const soft = detail.w.add(0.5).floor().mod(4).mul(isRoad.oneMinus());
+    const soft = detail.w.add(0.5).floor().mod(4).mul(isRoad.add(isPaint).oneMinus());
     const edge = min(
       mix(64, across, soft.mod(2)),
       mix(64, width.sub(across), step(1.5, soft)),

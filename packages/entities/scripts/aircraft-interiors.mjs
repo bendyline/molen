@@ -147,12 +147,13 @@ export function addAircraftCockpit(root, s, f) {
       k.box([w * 0.4, 0.003, 0.002], [0, 0, 0], k.amber);
       k.box([0.004, h * 0.16, 0.002], [0, 0, 0], k.amber);
       k.finish();
+      // Faces look along -Z, where +Z rotation is clockwise: the horizon turns against the bank.
       bindings.push({
         node: horizon.name,
         source: 'roll',
         property: 'rotation',
         axis: 'z',
-        scale: 1,
+        scale: -1,
       });
       bindings.push({
         node: horizon.name,

@@ -331,13 +331,14 @@ const crashRetry = (id) =>
   `  Generator ${id} lost a Node process to an access violation; retrying once in 2 seconds.`;
 
 /**
- * Build a fixture whose generators are `scripts`; each records every attempt that reaches it in
- * `.artifacts/<id>-attempts.txt`. A real access violation (the flake the retry exists for) can
- * also end an attempt before its script's first line, and the deliberate crash then spends the one
- * retry. Only that evidence, an attempt the build made that its script never saw, earns one more
- * run on a fresh fixture, so a retry that is broken still fails.
+ * Build a fixture whose generators are `scripts`, then `check` the outcome. Each script records
+ * every attempt that reaches it as a line of `.artifacts/<id>-attempts.txt`. Windows can spend the
+ * one retry before the deliberate crash does: a real access violation (the flake the retry exists
+ * for) can end an attempt before its script's first line. So a first run that fails its check runs
+ * once more on a fresh fixture; a broken retry fails both. Each failed run reports what it left
+ * (retries logged, attempt lines, build error) as a test diagnostic.
  */
-async function crashScenario(scripts) {
+async function crashScenario(t, scripts, check) {
   for (let run = 1; ; run++) {
     const root = await fixture();
     for (const [id, text] of Object.entries(scripts)) await put(root, `scripts/${id}.mjs`, text);
@@ -346,82 +347,111 @@ async function crashScenario(scripts) {
       (report) => ({ report }),
       (error) => ({ error }),
     );
-    let lost = false;
-    for (const id of Object.keys(scripts)) {
-      const made = messages.includes(crashRetry(id)) ? 2 : 1;
-      const seen = await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8').catch(
+    const attempts = {};
+    for (const id of Object.keys(scripts))
+      attempts[id] = await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8').catch(
         () => '',
       );
-      if (seen.split('\n').length - 1 < made) lost = true;
+    try {
+      return await check({ root, messages, attempts, ...outcome });
+    } catch (failure) {
+      const head = (error) => error.message.split('\n')[0];
+      const left = Object.entries(attempts).map(
+        ([id, text]) =>
+          `${id} ${messages.includes(crashRetry(id)) ? 'retried' : 'not retried'}, saw [${text.split('\n').filter(Boolean)}]`,
+      );
+      const built =
+        outcome.error === failure
+          ? ''
+          : `; build ${outcome.error ? `failed: ${head(outcome.error)}` : 'succeeded'}`;
+      t.diagnostic(`Run ${run} failed (${head(failure)}${built}); ${left.join('; ')}.`);
+      if (run > 1) throw failure;
     }
-    if (run === 1 && lost) continue;
-    return { root, messages, ...outcome };
   }
 }
 
-test(
-  'a generator that loses a Node process to an access violation runs once more',
-  windowsOnly,
-  async () => {
-    // On the first attempt that reaches it, one's own process dies; two starts a process that does.
-    const { root, messages, report, error } = await crashScenario({
-      one: `
+// A job reports the process it lost by dying of the uncaught error, and Node colours that report
+// whenever FORCE_COLOR is set: "code: \x1b[33m3221225477\x1b[39m". `node --test` sets it for
+// every test file when it reports to a terminal, so the environment must not choose the form:
+// the build once missed the coloured one, which failed this test from a terminal and nowhere else.
+for (const [output, forceColor] of [
+  ['plain', undefined],
+  ['coloured', '1'],
+])
+  test(
+    `a generator that loses a Node process to an access violation runs once more (${output} output)`,
+    windowsOnly,
+    async (t) => {
+      const inherited = process.env.FORCE_COLOR;
+      t.after(() => {
+        if (inherited === undefined) delete process.env.FORCE_COLOR;
+        else process.env.FORCE_COLOR = inherited;
+      });
+      if (forceColor === undefined) delete process.env.FORCE_COLOR;
+      else process.env.FORCE_COLOR = forceColor;
+      // On the first attempt that reaches it, one's own process dies; two starts a process that does.
+      await crashScenario(
+        t,
+        {
+          one: `
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
     const first = !existsSync('.artifacts/one-attempts.txt');
-    appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
+    appendFileSync('.artifacts/one-attempts.txt', first ? 'first\\n' : 'again\\n');
     if (first) process.exit(0xC0000005);
     mkdirSync('assets/one', {recursive: true});
     writeFileSync('assets/one/model.glb', 'one');
   `,
-      two: `
+          two: `
     import {execFile} from 'node:child_process';
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
     import {promisify} from 'node:util';
     const first = !existsSync('.artifacts/two-attempts.txt');
-    appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
+    appendFileSync('.artifacts/two-attempts.txt', first ? 'first\\n' : 'again\\n');
     if (first) await promisify(execFile)(process.execPath, ['-e', 'process.exit(0xC0000005)']);
     mkdirSync('assets/two', {recursive: true});
     writeFileSync('assets/two/model.glb', 'two');
   `,
-    });
-    if (error) throw error;
-    assert.deepEqual(runIds(report), ['one', 'two']);
-    for (const id of ['one', 'two']) {
-      assert.equal(
-        await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8'),
-        'attempt\nattempt\n',
+        },
+        async ({ root, messages, attempts, report, error }) => {
+          if (error) throw error;
+          assert.deepEqual(runIds(report), ['one', 'two']);
+          for (const id of ['one', 'two']) {
+            assert.equal(attempts[id], 'first\nagain\n');
+            assert.ok(messages.includes(crashRetry(id)));
+            assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
+          }
+          assert.deepEqual(runIds(await build(root)), []);
+        },
       );
-      assert.ok(messages.includes(crashRetry(id)));
-      assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
-    }
-    assert.deepEqual(runIds(await build(root)), []);
-  },
-);
+    },
+  );
 
 test(
   'a process that crashes on every attempt fails after the second; other failures run once',
   windowsOnly,
-  async () => {
-    const { root, error } = await crashScenario({
-      one: `
+  async (t) => {
+    await crashScenario(
+      t,
+      {
+        one: `
     import {appendFileSync} from 'node:fs';
     appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
     throw Error('deliberate failure');
   `,
-      two: `
+        two: `
     import {appendFileSync} from 'node:fs';
     appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
     process.exit(0xC0000005);
   `,
-    });
-    assert.ok(error, 'the build should fail');
-    assert.match(error.message, /Generator one failed \(exit 1\)/);
-    assert.match(error.message, /deliberate failure/);
-    assert.match(error.message, /Generator two failed \(exit 3221225477\)/);
-    assert.equal(await readFile(join(root, '.artifacts/one-attempts.txt'), 'utf8'), 'attempt\n');
-    assert.equal(
-      await readFile(join(root, '.artifacts/two-attempts.txt'), 'utf8'),
-      'attempt\nattempt\n',
+      },
+      ({ attempts, error }) => {
+        assert.ok(error, 'the build should fail');
+        assert.match(error.message, /Generator one failed \(exit 1\)/);
+        assert.match(error.message, /deliberate failure/);
+        assert.match(error.message, /Generator two failed \(exit 3221225477\)/);
+        assert.equal(attempts.one, 'attempt\n');
+        assert.equal(attempts.two, 'attempt\nattempt\n');
+      },
     );
   },
 );

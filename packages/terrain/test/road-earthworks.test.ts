@@ -128,6 +128,40 @@ describe('road earthworks', () => {
     expect(after(200, 200)).toBeLessThan(50);
   });
 
+  it('keeps a railway at the foot of a wall level beside the street on top of it', () => {
+    // Waterfront Seattle: the tracks at about 5 m and a 12 m street at 20 m, 6 m apart at the
+    // edges. Shared, the vertex between them sat at 15 m and the tracks rode up the wall.
+    const wall = (_x: number, z: number): number =>
+      5 + 15 * Math.max(0, Math.min(1, (z - 196) / 8));
+    const lines = roadEarthworkLines(
+      [
+        road(
+          [
+            [0, 0.48],
+            [1, 0.48],
+          ],
+          { class: 'rail', subclass: 'rail', width: 6 },
+        ),
+        road(
+          [
+            [0, 0.5275],
+            [1, 0.5275],
+          ],
+          { class: 'major_road', subclass: 'primary', width: 12 },
+        ),
+      ],
+      [0, 0],
+      SIZE,
+    );
+    const after = surface(gradeRoadEarthworks(field(wall), lines, wall));
+    for (let x = 60; x <= 340; x += 13) {
+      // The tracks, 189 to 195 m, level at their own height from rail to rail.
+      for (const z of [189, 192, 195]) expect(after(x, z)).toBeCloseTo(5, 1);
+      // The street on top keeps its carriageway, short of the cell at the wall's foot.
+      for (const z of [207, 211, 215]) expect(after(x, z)).toBeCloseTo(20, 1);
+    }
+  });
+
   it('grades the edge two tiles share to the same heights from either side', () => {
     const features = [
       road([

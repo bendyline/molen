@@ -81,6 +81,13 @@ or more each while work waits), also get that share of themselves as budget: 2 m
 software frame left streaming under half a percent of the time, and a town's semantic layers
 spent their two-minute deadline in the queue. Interactive rates and a single long frame keep the
 fixed budget. `setLimits` changes the budget from the next frame on.
+
+A fixed small budget protects the frame rate of a view that keeps up, and starves one that does
+not. `backlog: { afterMs, maxMilliseconds, maxBytes }` (in the options or `setLimits`) lets the
+budget grow while work is backing up: once the oldest waiting job outside the background lane
+has waited `afterMs`, the frame's time and byte budgets rise with its wait and reach the backlog
+values at twice that. They fall back as soon as the queue keeps up again, so a view at rest and a
+slow pan never pay for it.
 A job's `priority` is `'normal'`, `'background'` or `'urgent'` (ahead of normal jobs, in its own
 order). Background jobs run in budget normal jobs leave and, once one has waited
 `backgroundWaitMs` (default 750), take a turn after every `backgroundShare` other jobs (default
@@ -137,7 +144,33 @@ Kyoto, some 1.4 million of the objects each collection walks.
 
 Three updates every object's world matrix each frame, hidden ones included. Hidden terrain tiles,
 pooled ambient figures (each with its skeleton) and the explorer's parked-aircraft cockpits skip
-that walk until they show again. Far detail stops drawing: a surface tile's signs, fixtures,
+that walk until they show again.
+
+Three also culls one mesh at a time, and only once it has walked to it: for world matrices, for
+levels of detail and what to draw, and once more for each shadow map. A streamed world keeps
+most of its tiles outside the view, finished and ready for a turn of the camera. On WebGL the
+renderer leaves a render group (`createRenderGroup`, which the terrain stream uses for each tile)
+out of the scene walk while its bounds lie wholly outside the camera's view, and out of a
+directional light's shadow map while they lie outside that map; a group the camera cannot see
+still casts into a map that reaches it. The group is hidden for the render alone, so nothing else
+sees it change. Its owner states the bounds in `userData.renderBounds` (`RENDER_BOUNDS`: a
+`Box3` in the frame of the group's parent, holding everything it draws) and keeps them true:
+`expandRenderBounds` measures content from the bounds its meshes carry, and code that adds or replaces geometry
+inside streamed content later (a landmark's next level of detail) calls
+`markRenderBoundsChanged(object)`, after which the group is not culled until its owner has
+measured it again. The terrain stream does all of this for its tiles. Over Seattle at High about
+half of the tiles on show lay outside the view of a low flight, and leaving them out took the
+main thread's time in a frame's render from 17-22 ms to 12-13 ms with the same draws.
+`cullRenderGroups: false` turns it off (`?cull=0` in World Explorer).
+
+An instanced detail switch (the level-of-detail batch for plants and props) chooses its level
+again only once the camera could have reached a handover: each choice keeps how far the
+measured distance was from the nearest threshold, and the camera's travel since, with any change
+in the error budgets, is weighed against that. In flight nearly every batch is well short of its
+next handover, and choosing again for each of some 2,200 of them every frame was 2.6 ms of a
+33 ms frame.
+
+Far detail stops drawing: a surface tile's signs, fixtures,
 signal lenses, markings and parked cars past their draw distance (`updateDetail`, see
 [surface rendering](surface-rendering.md)) and street props below 1.5 px (`vanishPixels`, see
 [worldgen](worldgen.md)); at High over a town that cut a fifth of the draws. A visibility pass makes
@@ -148,13 +181,33 @@ cuts on every frame, sharing one 4 ms budget a frame with `stream.update`: hosts
 ten times a second while the camera is still, and at one budget an update, ground that a descent
 had just shown stood uncut over its own harbor for most of a second.
 
+Where the stream's height source can cut off the main thread (`TerrainPyramidHeightSource.cutGround`,
+a `TerrainGroundCutter`; the elevation worker's source has one), the clipping is done there. The
+controller sends the mesh's arrays as copies, goes on to other ground, and swaps the cut in when
+it lands, so the frame's budget pays for gathering openings and the swap alone; a cut whose
+opening goes meanwhile is called off, and one the cutter fails is made on the main thread. A
+mesh of fewer than 5,000 vertices (`cutVertices`) is still cut on the main thread, in the pass
+that first shows it: a few milliseconds, against ground standing uncut for the trip's frames. A
+tile's land cover over a shoreline is some 38,000 vertices against 50 openings: 46 ms of clipping,
+of which a low flight over Seattle at High finished 48 in 50 seconds at 4 ms a frame, leaving most
+ground it passed waiting for its cut. The worker made some 250 in a minute of the same flight,
+and cutting fell from 7% of the main thread to under 2%.
+
 Earth hosts admit more while frames have time to spare: `createEarthAdmissionGovernor(backend)`
 smooths each frame's main-thread work and, through `earthAdmission`, switches the queue to 8 MiB
 of uploads a frame (and 4 ms of work on WebGL) below 10 ms of work, back to the renderer's
 defaults above 13 ms. Each terrain tile and layer passes several admission jobs; at 2 MiB a frame
 everything behind a building cell's upload waited 30 ms a job, and ground and buildings beneath a
 jet appeared a second late. A render-bound frame (High detail over a town) loses a sixth of its
-rate to the larger budget, so it keeps the defaults. This is not a hard GPU/driver time bound. Texture
+rate to the larger budget, so it keeps the defaults while it keeps up. Either budget carries a
+backlog (above) that grows it toward the arrival budget, 8 ms and 16 MiB, once work has waited
+`EARTH_BACKLOG_MS` (400 ms): a P-51 at 290 kt over Seattle at High always had busy frames, the
+2 ms published a quarter of the layers the flight asked for, each job waited 3 s on average for
+each of a layer's several turns, and no tile beyond 2 km had all of its layers on show at any
+point of the flight: bare ground ahead, buildings arriving beneath. Held at 4 ms the same flight kept its 30 frames a second and finished four
+fifths of the ground within 2 km; at 8 ms it finished nearly all of the view at 22 frames a
+second, drawing three times the triangles. The backlog moves between the two as the queue needs.
+This is not a hard GPU/driver time bound. Texture
 initialization, geometry preparation and async shader compilation use public Three facilities;
 shared resources share pending preparation promises. A cancelled tile cannot cancel another
 tile waiting on the same resource; queued work is dropped once every tile waiting for it has
@@ -165,8 +218,11 @@ camera and waits only for the selected levels. The other levels prepare in the q
 lane (`priority: 'background'`), which runs only in budget that normal jobs leave, and are dropped
 if their mesh or geometry is disposed first. This includes geometry-switch LODs whose current
 level is empty: invisible ground cover does not delay an aerial tile, and a later approach waits
-for its preparation before revealing it. WebGPU preparation shares the visible-light list between
-rendered frames instead of walking the whole scene for each mesh. A mesh that swaps its own material (an instanced
+for its preparation before revealing it. Preparation shares the visible-light list instead of
+walking the whole scene for each mesh, and the walk that finds the lights is made again only when
+the scene's own children change or a quarter of a second has passed (each frame still checks
+which of them are on show): once a frame, it was 1.2 ms of every frame of a flight over a city.
+A mesh that swaps its own material (an instanced
 detail switch's opaque and shadow-free twins) lists every material in `userData.materialVariants`,
 and the renderer sets `userData.materialReady(material)`, which the mesh's owner asks before
 switching. Until it returns true the owner keeps what it shows; the first question queues that
@@ -231,10 +287,21 @@ admitted job of up to 20 ms. The grading itself finds each sample row's polygon 
 ground edges once, instead of testing every edge of an airport's grounds for every sample: a tenth
 of a second a tile over Boeing Field.
 
+Road earthworks (`createTerrainRoadGrading`'s `transformHeightfield`) are graded in the worker
+too, where the source has `gradeEarthworks`. The host sends the tile's field and the road lines
+that reach it; the worker reads the reference ground from its own decoded tiles, grades, and
+meshes the result in the same trip, about 30 ms a town tile. On the main thread that was 2 ms
+slices between frames, outside the frame queue, and 4 to 9% of the thread in a low flight over a
+city. A reference tile is read as samples (`load`), without the full-resolution mesh
+`loadPrepared` builds for a tile to be drawn. Bridge profiles (`gradeTile`) are still worked out
+on the main thread, about 3% of it in that flight: a worker would need the tile's roads and its
+neighbors' copied across, most of which no bridge is near.
+
 The worker entry calls `installTerrainElevationWorker(self)`, exported from
 `@bendyline/molen-terrain/client` (use the worker-scope type cast shown by World Explorer when
 compiling with DOM rather than WebWorker types). The host reads archive bytes; the worker
-owns PNG decoding, its decoded tile cache, ancestor resampling and surface meshing. Worker
+owns PNG decoding, its decoded tile cache, ancestor resampling, surface meshing, road earthworks
+and ground cuts. Worker
 buffers transfer without detaching archive caches or reusable topology. Omitting the worker
 retains the in-thread path. Worker errors are surfaced; they do not silently trigger duplicate work.
 
@@ -393,7 +460,12 @@ rebase above it is applied when it shows again. `stats()` walks every displayed 
 exact byte totals and adds hidden tiles' tracked buffers; a live panel passes
 `{ geometry: 'tracked' }` for the retained estimate and visible-only counts. Ground cutouts stay on hidden tiles while their
 openings remain, keep the source grid's indices for triangles away from every opening, and
-re-count only the tiles whose ground they changed.
+re-count only the tiles whose ground they changed. A cut is its source grid's vertices as they
+are, then the few made on clipped edges, and the source stays for the next cut; once a cut is
+applied the source's attributes read from the cut's arrays, so the pair holds its vertices once in
+main memory. Over Seattle, where most ground meets water somewhere, the second copy was 174 of
+1,139 MiB on show at High (the page's array buffers fell from 1,403 to 1,233 MiB without it). The
+source's GPU buffers stay until its tile goes.
 
 Height queries prefer displayed terrain and fall back to resident heights outside the visible
 cut. An aircraft's center can pass behind its cockpit camera at a tile boundary; it must not wait

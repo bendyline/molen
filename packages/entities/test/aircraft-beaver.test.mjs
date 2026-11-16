@@ -56,7 +56,8 @@ it('Beaver live instruments, drooping ailerons and tailwheel stance use independ
   expect(v.feet).toBeCloseTo(10000, 8);
   expect(v.trueHeading).toBeCloseTo(Math.PI / 2, 8);
   expect(v.verticalFpm).toBeCloseTo(1000, 8);
-  expect(v.turnDegrees).toBeCloseTo(3, 8);
+  // A 3°/s left turn (yawRate is positive left) leans the needle left of centre.
+  expect(v.turnDegrees).toBeCloseTo(-3, 8);
   visual.update(sample, 0);
   root.updateMatrixWorld(true);
   for (const [name, source, sign] of [

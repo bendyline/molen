@@ -1,6 +1,20 @@
 /** Font-backed, batched lettering shared by Node, workers and renderers. No DOM or GPU state. */
 import { z } from 'zod';
 
+export {
+  type AtlasTextLayout,
+  type AtlasTextOptions,
+  assembleGlyphAtlasPixels,
+  createGlyphAtlasSet,
+  type GlyphAtlasDoc,
+  type GlyphAtlasFace,
+  type GlyphAtlasGlyph,
+  type GlyphAtlasPage,
+  type GlyphAtlasSet,
+  type GlyphAtlasSetPage,
+  parseGlyphAtlas,
+} from './glyph-atlas';
+
 /** Glyph coordinates and advance are in em units, Y up. Triangles face +Z. */
 export interface VectorGlyph {
   advance: number;

@@ -80,6 +80,24 @@ export interface BuildingAppearance {
   wall?: string;
   trim?: string;
 }
+/**
+ * A name set on a storefront's sign from a glyph atlas, in place of its sign model's own text.
+ * Used only when the batch has a glyph atlas set (`WorldgenBatchInput.glyphs`) that holds every
+ * character; otherwise the storefront shows `signModel` as before.
+ */
+export interface StorefrontSign {
+  /** The name as shown; the layout may break it over two lines. */
+  text: string;
+  /** Plate and letter colors, `#rrggbb`. */
+  plate: string;
+  ink: string;
+  /** Accent band along the plate's lower edge. */
+  stripe?: string;
+  /** Glyph atlas role or face id; default the set's default face. */
+  font?: string;
+  /** Extra advance between letters, em. */
+  letterSpacing?: number;
+}
 export interface StorefrontRequest {
   identity: string;
   /** Desired frontage anchor in local meters, projected onto an exterior edge. */
@@ -89,6 +107,7 @@ export interface StorefrontRequest {
   signSize?: Vec2;
   accent: string;
   width?: number;
+  sign?: StorefrontSign;
 }
 export interface ModelPlacementRequest {
   identity: string;
@@ -210,6 +229,11 @@ export interface WorldgenBudgets {
   maxInstancesPerRule: number;
   /** Non-building instances per batch: signs, mapped props, roof props, then scatter; 0 disables them. */
   maxInstances: number;
+  /**
+   * Named storefront signs per batch (see `StorefrontRequest.sign`); default 1,000. They count
+   * against `maxInstances` first, as sign models do.
+   */
+  maxSigns?: number;
   /** Model varieties admitted by procedural scatter (authored identity models are separate). */
   maxPropModels: number;
   /**

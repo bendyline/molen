@@ -187,12 +187,14 @@ export function addG1000Readouts({
       cy = my + 0.025,
       radius = 0.021;
     d.text('MAN -- --', [cx, my + 0.063, z - 0.001], 0.004, Math.PI, ink, 'display');
+    // side +1 is the left engine (+X, the pilot's left). Angles run clockwise as the crew sees
+    // them, so the left half scale takes negative angles and rises clockwise.
     for (const [engine, side, source, display] of [
       [1, 1, 'propRpm', 'rpmDisplay'],
       [2, -1, 'propRpm2', 'rpmDisplay2'],
     ]) {
       for (let rpm = 0; rpm <= 3000; rpm += 250) {
-        const angle = side * (2.4 - (rpm / 3000) * 1.68);
+        const angle = -side * (2.4 - (rpm / 3000) * 1.68);
         const p = (r) => [cx - Math.sin(angle) * r, cy + Math.cos(angle) * r, z - 0.001];
         d.rod(p(radius * 0.89), p(radius), 0.00045, ink);
       }
@@ -202,8 +204,8 @@ export function addG1000Readouts({
         radius * 0.78,
         source,
         [
-          [0, side * 2.4],
-          [3000, side * 0.72],
+          [0, -side * 2.4],
+          [3000, -side * 0.72],
         ],
         { responseSeconds: 0.1 },
       );

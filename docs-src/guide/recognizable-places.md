@@ -9,11 +9,37 @@ the archive's zoom-15 tiles.
 ## Identity library
 
 The Earth catalog recognizes **44 mapped source businesses** by exact aliases and verified source
-IDs. Each match selects a generic descriptor model rather than a source-business sign: for example,
-Walmart maps to `sign.mart_store`, Taco Bell maps to `sign.taco_place`, Best Buy maps to
+IDs. Each match selects a descriptor model, the sign a place shows when it has no name to show: for
+example, Walmart maps to `sign.mart_store`, Taco Bell maps to `sign.taco_place`, Best Buy maps to
 `sign.electronics_store`, and The Home Depot maps to `sign.hardware_store`. The
 [retail catalog](https://github.com/bendyline/molen/blob/main/content/earth/businesses/README.md) documents the
 source data and mapping policy.
+
+## Names on signs
+
+A storefront sign shows the name the map gives its place, so a street reads as its real
+counterpart does: Thai Tom and Samir's Mediterranean Grill on Seattle's University Way, スターバックス
+and 大垣書店 on Kyoto's Karasuma-dori.
+
+- **One name per chain.** A business the catalog recognizes shows the same name on every branch:
+  its first alias, or the alias the map wrote in another script. Its plate, letters and accent band
+  take its descriptor sign's palette (white on red for Safeway, green for Starbucks), never a logo,
+  emblem, wordmark or brand typeface.
+- **Its own name for everything else.** A place the catalog does not know shows its mapped name,
+  cleaned of store numbers, a trailing parenthesized branch (`(Downtown)`) and decorative symbols.
+  It takes a look from its category's family in the
+  [sign looks](https://github.com/bendyline/molen/blob/main/content/earth/businesses/sign-looks.json)
+  (`molen/sign-looks@1`), picked by the name, so every branch of a local chain matches.
+- **Fallbacks.** A name the loaded faces cannot set falls back to the map's English name, then to
+  the descriptor sign. So does a place without a name, and every place when the host passes
+  `signNames: 'generic'`.
+
+Names are set from glyph atlases (see [Fonts and lettering](typography.md#glyph-atlases)): the Earth
+pack's Latin faces, plus any region pack that adds its scripts, such as the Kyoto pack's Japanese.
+A tile's named signs are one mesh, two triangles a letter, drawn with one shared texture and
+material: on Seattle's University Way the 149 storefronts of one tile are 5,322 triangles, where
+their descriptor models were 59,233. Letters are drawn while they are a few pixels tall and plates
+until they are under two, then neither.
 
 Nine generic treatments cover grocery, restaurant, cafe, pharmacy, shop, department store, shopping
 mall, outlet center and strip mall. These also support unnamed points with known categories.
@@ -72,7 +98,8 @@ stores, enclosed malls, strip malls and outlet centers. Broad frontages raise an
 fascia to remain readable on taller shells; source heights and floor counts still win. The building
 generator adapts that treatment to a measured footprint; this is not a fixed building mesh.
 Mapped-business descriptors use `symbol: "letters"` with initials derived from their generic
-titles. Source recognition stays in the Earth catalog; model-facing names and emblems stay generic.
+titles. Source recognition stays in the Earth catalog and the descriptor models stay generic; the
+names a sign shows come from the map, set as described in [Names on signs](#names-on-signs).
 Furniture uses `generator: "boxes"` with ordered
 metric parts and optional detail tiers (0 near, 1 medium, 2 distant).
 
@@ -84,6 +111,13 @@ result as `places` to `semanticTileToBatch`, `createInThreadWorldgenGenerator` a
 only data crosses the Worker boundary. Without `places`, mapped businesses are not recognized and
 no street furniture is placed. Rendering cache keys include both content hashes, so palette and
 recipe changes invalidate cached terrain render output.
+
+To show names, add `signLooks` (the Earth pack's `sign-looks` document) and `glyphs` (every open
+pack's `glyph-atlas` documents, the Earth pack's first); `signNames: 'generic'` leaves them off.
+The renderers then need a `signMaterial`: `createSignMaterialAsync(backend, texture,
+range)` from `@bendyline/molen-worldgen/client`, over `createSignAtlasTexture` of the atlas pages.
+`loadEarthContent` and the Earth view do all of this: the content's `signAtlas()` reads the pages,
+and the view's `signNames` option turns names off.
 
 Landmarks alone are `createLandmarkLibrary({ catalog, models })` from
 `@bendyline/molen-worldgen/kernel`, or `resolveLandmarkCatalogDocuments(catalog, readDocument)` for
@@ -120,7 +154,10 @@ The engine uses generic `BuildingRequest.appearance` and `storefronts` fields; g
 and category matching stay in the Earth adapter. Custom scenes can supply those same fields through
 `worldgenBuilding`. Each storefront supplies an identity, local anchor, accent, model reference,
 optional native sign size, and desired width. Canonical signs are 4 × 1.35 m, front +Z, base Y=0.
-Signs and outdoor objects use shared instanced geometry and a shared vertex-color material.
+Signs and outdoor objects use shared instanced geometry and a shared vertex-color material. A
+storefront may also carry a `sign` (text, plate, ink, optional band, font role, letter spacing):
+with a glyph atlas set on the batch (`glyphs`), it is set as a name in the batch's sign mesh
+(`WorldgenBatchOutput.signs`); without one, or when the atlas lacks a letter, the sign model shows.
 
 ## Mapped outdoor objects
 
@@ -131,6 +168,12 @@ are ground-fitted, deduplicated and budgeted before procedural scatter.
 
 When the source supplies them, tree height/crown diameter/leaf type, lamp height, numeric direction,
 and bike-parking capacity influence the model. Missing dimensions use conservative defaults.
+Without a mapped direction, a lamp faces the nearest street within 18 m, even where a sidewalk
+mapped as its own line runs closer (a lamp in the planting strip has that sidewalk behind it);
+with no street in reach it faces the nearest path. Motorways, trunk and primary roads and roads
+of four or more lanes keep the mast-arm `street_lamp`, reaching over their traffic; other
+streets, paths and plazas get the post-top `street_lamp.post` where the library holds it. A
+mapped lamp height scales the arm's 7.2 m pole or the post's 4.8 m.
 A charging POI denotes a station, so the renderer places a representative pedestal rather than
 inventing a surveyed bank of connectors. The library includes a red/white fast-charger variant.
 

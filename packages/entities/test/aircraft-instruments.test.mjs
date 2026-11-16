@@ -1639,12 +1639,13 @@ it('keeps Baron engine gauges independent and hides only the unavailable sensor'
   expect(visual.missingNodes).toEqual([]);
   visual.update({ ...raw, trueAirspeed: raw.trueAirspeed - 1e-9 }, 0);
   expect(scene.getObjectByName('Baron-PFD-speed-2-6').visible).toBe(false);
+  // Left engine on the left half scale (negative angles turn toward the pilot's left).
   expect(scene.getObjectByName('Baron-MFD-tach-1').rotation.z).toBeCloseTo(
-    2.4 - (2500 / 3000) * 1.68,
+    -2.4 + (2500 / 3000) * 1.68,
     8,
   );
   expect(scene.getObjectByName('Baron-MFD-tach-2').rotation.z).toBeCloseTo(
-    -2.4 + (1800 / 3000) * 1.68,
+    2.4 - (1800 / 3000) * 1.68,
     8,
   );
   expect(scene.getObjectByName('Baron-standby-speed').rotation.z).toBeCloseTo(2.8, 8);

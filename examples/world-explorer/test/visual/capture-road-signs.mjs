@@ -10,6 +10,18 @@ const here = dirname(fileURLToPath(import.meta.url)),
   root = resolve(here, '../../../..');
 const out = resolve(root, '.artifacts/road-signs');
 await mkdir(out, { recursive: true });
+// Workers pack normals and colors into normalized bytes before transfer
+// (packages/terrain/src/compact-attributes.ts); the direct path keeps them as floats. That rounding
+// moves a lit pixel by a level or two in any channel; a missing, moved or misspelled sign moves
+// pixels by tens of levels.
+const QUANTIZATION_LEVELS = 4;
+/** Largest per-channel difference between two RGBA buffers. */
+function largestChannelDifference(a, b) {
+  if (a.length !== b.length) return Number.POSITIVE_INFINITY;
+  let worst = 0;
+  for (let i = 0; i < a.length; i++) worst = Math.max(worst, Math.abs(a[i] - b[i]));
+  return worst;
+}
 const server = await createServer({
   configFile: false,
   root: here,
@@ -74,13 +86,15 @@ try {
           PNG.sync.read(await page.screenshot()).data.equals(pixels),
           'Fixed scene must repeat exactly',
         );
-        if (worker)
+        const result = { backend, worker, name, stats: state.stats };
+        if (worker) {
+          result.directDifference = largestChannelDifference(pixels, direct.get(name));
           assert(
-            pixels.equals(direct.get(name)),
-            'Worker and direct sign geometry must render identically',
+            result.directDifference <= QUANTIZATION_LEVELS,
+            `Worker and direct sign geometry must render alike: ${backend} ${name} differs by ${result.directDifference} levels`,
           );
-        else direct.set(name, pixels);
-        results.push({ backend, worker, name, stats: state.stats });
+        } else direct.set(name, pixels);
+        results.push(result);
       }
       assert.deepEqual(errors, []);
       await page.close();

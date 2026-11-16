@@ -277,7 +277,17 @@ interface HttpRangeReaderOptions {
   onResponse(bytes: number): void;
 }
 
-/** Range reads of one URL, validated with If-Range when a strong ETag is known. */
+/** An ETag's opaque value: a CDN weakens the ETag of a response it compresses (`W/"…"`). */
+function etagValue(value: string | null | undefined): string | undefined {
+  return value?.replace(/^W\//, '');
+}
+
+/**
+ * Range reads of one URL, validated with If-Range when a strong ETag is known. A read of the
+ * whole file asks for it without a Range: a CDN compresses a full response but never a range,
+ * and a pack's JSON then crosses the network at a twentieth of its size. Its length is checked,
+ * and its ETag against the known one (compressed responses carry a weakened copy of it).
+ */
 function httpRangeReader(url: string, options: HttpRangeReaderOptions): RangeReader {
   const { fetch: fetcher, retry, signal, size } = options;
   let etag = options.etag;
@@ -286,10 +296,11 @@ function httpRangeReader(url: string, options: HttpRangeReaderOptions): RangeRea
     read: (offset, length, readSignal) =>
       withRetry(
         async (attemptSignal) => {
-          const headers: Record<string, string> = {
-            Range: `bytes=${offset}-${offset + length - 1}`,
-          };
-          if (etag !== undefined) headers['If-Range'] = etag;
+          const whole = offset === 0 && length === size && size > 0;
+          const headers: Record<string, string> = whole
+            ? {}
+            : { Range: `bytes=${offset}-${offset + length - 1}` };
+          if (etag !== undefined && !whole) headers['If-Range'] = etag;
           const response = await fetcher(url, {
             headers,
             signal:
@@ -297,6 +308,20 @@ function httpRangeReader(url: string, options: HttpRangeReaderOptions): RangeRea
                 ? attemptSignal
                 : AbortSignal.any([attemptSignal, readSignal]),
           });
+          if (whole && response.status === 200) {
+            const changed =
+              etag !== undefined &&
+              response.headers.has('etag') &&
+              etagValue(response.headers.get('etag')) !== etagValue(etag);
+            if (changed) throw new PackChangedError(url);
+            const all = await fetchBytes(response);
+            options.onResponse(all.length);
+            if (all.length !== size) throw new PackChangedError(url);
+            if (options.learnEtag && etag === undefined) {
+              etag = strongEtag(response.headers.get('etag') ?? undefined);
+            }
+            return all;
+          }
           if (response.status === 200) {
             // With If-Range, a full response means the file changed underneath us.
             if (etag !== undefined) throw new PackChangedError(url);

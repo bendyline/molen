@@ -175,7 +175,7 @@ describe('walk physics', () => {
 
   it('places beside vehicle roofs while allowing raised road surfaces', () => {
     const { root, walker, collision } = scene();
-    root.children[0]!.position.y += 2;
+    (root.children[0] as THREE.Object3D).position.y += 2;
     const car = box(2, 1.5, 4, 0, 2.75, 0);
     car.userData.vehicleGeometry = true;
     root.add(car);

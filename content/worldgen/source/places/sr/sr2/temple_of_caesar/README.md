@@ -15,7 +15,7 @@ Two registered recipes build the specific surviving ruins and modern shelter wit
 
 ## Model and axes
 
-2,835 triangles; 8,505 vertices; 5 material groups; 343,628 bytes. Native bounds: -10.442, -0.741, -13.670 to 21.564, 6.158, 14.335. Source hash: `sha256:276ee0ca3eaac4103a20d201bb49d2979b9af668bd3765335d5f23b8da0ddd32`.
+2,835 triangles; 8,505 vertices; 5 material groups; 343,628 bytes. Native bounds: -10.442, -0.741, -13.670 to 21.564, 6.158, 14.335. Source hash: `sha256:f318cdce71130f20e92f08ccb4a12cef7e739e27d0d2618191141fd9b0e65736`.
 
 {"x":"east","y":"up","z":"south"}
 

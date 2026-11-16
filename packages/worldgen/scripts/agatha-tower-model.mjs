@@ -365,21 +365,22 @@ function entrance(out) {
   }
   for (const s of [-1, 1]) {
     const sx = s * 1.0;
+    // An upward loft faces outward only when its rings run counterclockwise seen from above.
     loft(
       o,
       'limestone_raw',
       [
         [
           [sx - 0.16, 0, gap],
-          [sx + 0.16, 0, gap],
-          [sx + 0.16, 0, gap + run],
           [sx - 0.16, 0, gap + run],
+          [sx + 0.16, 0, gap + run],
+          [sx + 0.16, 0, gap],
         ],
         [
           [sx - 0.16, top + 0.75, gap],
-          [sx + 0.16, top + 0.75, gap],
-          [sx + 0.16, 0.75, gap + run],
           [sx - 0.16, 0.75, gap + run],
+          [sx + 0.16, 0.75, gap + run],
+          [sx + 0.16, top + 0.75, gap],
         ],
       ],
       limestone,
@@ -435,14 +436,15 @@ function cannon(out, x, z, a) {
       for (let k = 0; k < 24; k++) {
         const aa = (k * Math.PI) / 12,
           bb = ((k + 1) * Math.PI) / 12;
+        // Tread faces outward (+x first; the angle runs from +y toward +z).
         face(
           wheel,
           'wood',
           [
-            [-0.09, Math.cos(aa) * 0.2, Math.sin(aa) * 0.2],
             [0.09, Math.cos(aa) * 0.2, Math.sin(aa) * 0.2],
-            [0.09, Math.cos(bb) * 0.2, Math.sin(bb) * 0.2],
+            [-0.09, Math.cos(aa) * 0.2, Math.sin(aa) * 0.2],
             [-0.09, Math.cos(bb) * 0.2, Math.sin(bb) * 0.2],
+            [0.09, Math.cos(bb) * 0.2, Math.sin(bb) * 0.2],
           ],
           wood,
         );
@@ -471,10 +473,11 @@ function cannon(out, x, z, a) {
       [p(0.19, a, end), p(0.19, b, end), p(0.115, b, end), p(0.115, a, end)],
       iron,
     );
+    // The bore wall faces the barrel axis, where it is seen through the muzzle.
     face(
       barrel,
       'metal',
-      [p(0.115, b, end), p(0.115, a, end), p(0.115, a, end - 0.13), p(0.115, b, end - 0.13)],
+      [p(0.115, a, end), p(0.115, b, end), p(0.115, b, end - 0.13), p(0.115, a, end - 0.13)],
       iron,
     );
     triangle(barrel, 'metal', [[0, 0, -0.85], p(0.23, b, -0.85), p(0.23, a, -0.85)], iron);

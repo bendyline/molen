@@ -311,7 +311,6 @@ async function passageProbes() {
   );
 }
 async function foundationProbes() {
-  const frame = await json<{ geometry: { outline: number[][] } }>(`${folder}/map-frame.json`);
   // Tower part seams inside the joined palace are not exposed foundation faces.
   // Test the assembled occupied outer boundary, as the source geometry test does.
   const ids = ['interpreted-palace-forecourt-retaining-edge'];

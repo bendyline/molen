@@ -155,6 +155,49 @@ describe('urlRangeReader', () => {
     await expect(reader.read(10, 10)).rejects.toBeInstanceOf(PackChangedError);
   });
 
+  it('asks for a whole file without a Range, so a CDN can compress it, and checks it', async () => {
+    const bytes = noise(100 * KB, 9);
+    const { state, fetcher } = fakeServer(bytes, { etag: '"e1"' });
+    const reader = urlRangeReader('https://packs.example/a.json', {
+      size: bytes.length,
+      fetch: fetcher,
+    });
+    expect(await reader.read(0, bytes.length)).toEqual(bytes);
+    expect(state.requests).toEqual([{}]);
+    // A compressed response carries a weakened copy of the ETag: still the same file.
+    await reader.read(0, 10);
+    state.etag = 'W/"e1"';
+    expect(await reader.read(0, bytes.length)).toEqual(bytes);
+    state.etag = 'W/"e2"';
+    await expect(reader.read(0, bytes.length)).rejects.toBeInstanceOf(PackChangedError);
+    // A file of another size has changed too.
+    const short = fakeServer(bytes.subarray(0, 50 * KB));
+    const wrong = urlRangeReader('https://packs.example/b.json', {
+      size: bytes.length,
+      fetch: short.fetcher,
+    });
+    await expect(wrong.read(0, bytes.length)).rejects.toBeInstanceOf(PackChangedError);
+  });
+
+  it('serves every missing span of a whole-file read from one request (wholeFile)', async () => {
+    // Larger than the cache's 4 MiB spans: without wholeFile it would take two range requests.
+    const bytes = noise(7 * 1024 * KB, 10);
+    const { state, fetcher } = fakeServer(bytes);
+    const cache = createBlockCache(createMemoryByteStore());
+    const reader = cachingRangeReader(
+      urlRangeReader('https://packs.example/types.json', { size: bytes.length, fetch: fetcher }),
+      cache,
+      { key: 'file:types', url: 'https://packs.example/types.json' },
+      { wholeFile: true },
+    );
+    // Buffer.equals: a deep toEqual of 7 MiB takes longer than the test's timeout.
+    const same = (read: Uint8Array): boolean => Buffer.from(read).equals(Buffer.from(bytes));
+    expect(same(await reader.read(0, bytes.length))).toBe(true);
+    expect(state.requests).toEqual([{}]);
+    expect(same(await reader.read(0, bytes.length))).toBe(true);
+    expect(state.requests).toHaveLength(1);
+  });
+
   it('caches through cachingRangeReader and drops the archive when it changes', async () => {
     const bytes = noise(200 * KB, 6);
     const { state, fetcher } = fakeServer(bytes, { etag: '"e1"' });

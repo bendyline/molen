@@ -73,6 +73,15 @@ type ContactCar = Parameters<typeof vehicleObstacleContacts>[1]['cars'][number];
  * entities, to approach, board and collide with; farther ones are only their tile's merged mesh.
  */
 const PARKED_ENTITY_RADIUS = 300;
+/**
+ * Height (m) above or below a parked car at which that distance has shrunk to nothing: the
+ * radius is a cone's, widest at the observer's own level. Measured over the ground alone, a
+ * P-51 at 230 m and 290 kt made entities of every car in a 600 m swath of Seattle as it passed
+ * (a hundred or more a second, each destroyed again seconds later), none of which it could
+ * reach: 2% of the main thread, and its garbage. One descending to land has them beneath it
+ * before it is down.
+ */
+const PARKED_ENTITY_HEIGHT = 100;
 /** Match ambient traffic's street-distance detail, with hysteresis to prevent boundary churn. */
 const PARKED_MODEL_NEAR = 45;
 const PARKED_MODEL_FAR = 65;
@@ -223,6 +232,14 @@ export class EarthVehicles {
     rescanIntervalMs: 200,
   });
   private lastSync = -Infinity;
+  /**
+   * Where the host last said the observer was, for the syncs made here between its own (after a
+   * model has loaded, on boarding). Made without one, such a sync took every parked car on show
+   * for near: each became an entity, half a millisecond apiece, and the host's next sync
+   * destroyed all but the near ones again. In flight that was a frame of 100 ms or more each
+   * time a vehicle's model arrived.
+   */
+  private observer: [number, number, number] | undefined;
   private lastSettle = -Infinity;
   private sequence = 0;
   private readonly spawned = new Set<string>();
@@ -450,6 +467,7 @@ export class EarthVehicles {
     if (this.disposed) return;
     if (now - this.lastSync < 200) return;
     this.lastSync = now;
+    if (observer !== undefined) this.observer = [observer[0], observer[1], observer[2]];
     this.water.sync();
     const resident = new Map<string, VehiclePlacement>();
     // A set: a tagged group can sit under another (a garage under its tile), and a batch seen
@@ -481,7 +499,10 @@ export class EarthVehicles {
     // dormant vehicles, spawned as each tile streamed in under an aircraft and stepped every tick.
     const near = (position: readonly number[], radius: number): boolean =>
       observer === undefined ||
-      Math.hypot((position[0] ?? 0) - observer[0], (position[2] ?? 0) - observer[2]) <= radius;
+      Math.hypot((position[0] ?? 0) - observer[0], (position[2] ?? 0) - observer[2]) / radius +
+        Math.abs((position[1] ?? 0) - observer[1]) /
+          (PARKED_ENTITY_HEIGHT * (radius / PARKED_ENTITY_RADIUS)) <=
+        1;
     for (const [id, p] of resident)
       if (!this.world.exists(id) && near(p.position, PARKED_ENTITY_RADIUS)) {
         const components = this.types.components(p.kind);
@@ -1162,7 +1183,7 @@ export class EarthVehicles {
     this.lookYaw = 0;
     this.lookPitch = 0;
     this.lastSync = -Infinity;
-    this.sync(performance.now());
+    this.sync(performance.now(), this.observer);
     this.render();
     return true;
   }
@@ -1449,9 +1470,12 @@ export class EarthVehicles {
       this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
       const sin = Math.sin(state.yaw);
       const cos = Math.cos(state.yaw);
+      // From the car's own height, as the kernel's step reads it. From the sampled terrain, the
+      // ray started under a road on a fill more than 0.65 m above that terrain (a lakeshore road
+      // at Low to Balanced detail) and dropped a car taken out of traffic through the road.
       const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((z) =>
         (spec.cycle ? [0, 0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]).map((x) =>
-          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z),
+          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z, t.pos[1]),
         ),
       );
       if (heights.some((height) => height === undefined)) continue;
@@ -1608,7 +1632,7 @@ export class EarthVehicles {
       this.active.set(id, visual);
       this.showPromoted(id);
       this.lastSync = -Infinity;
-      this.sync(performance.now());
+      this.sync(performance.now(), this.observer);
       this.render();
     } catch (error) {
       if (controller.signal.aborted) return;

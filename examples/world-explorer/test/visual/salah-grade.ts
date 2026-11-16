@@ -330,13 +330,12 @@ async function foundationProbes() {
       mappedFeatures: { id: string; points: number[][] }[];
     }>(`${folder}/map-parts.json`),
     result = [];
+  const gate = data.components.find((c) => c.name === 'Southwest tower gate')?.points,
+    master = data.mappedFeatures.find((c) => c.id === 'way/373961974')?.points;
+  if (!gate || !master) throw Error('Missing mapped foundation outline');
   for (const [id, p, indices] of [
-    [
-      'southwest-gate',
-      data.components.find((c) => c.name === 'Southwest tower gate')!.points,
-      [0, 1],
-    ],
-    ['master', data.mappedFeatures.find((c) => c.id === 'way/373961974')!.points, [0]],
+    ['southwest-gate', gate, [0, 1]],
+    ['master', master, [0]],
   ] as const) {
     const ring =
         p[0][0] === p[p.length - 1][0] && p[0][1] === p[p.length - 1][1] ? p.slice(0, -1) : p,

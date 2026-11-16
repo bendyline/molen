@@ -285,6 +285,20 @@ describe('automatic bridge structures', () => {
     disposeTerrainSurfaceObject(object);
     expect(dispose).toHaveBeenCalledOnce();
   });
+  it('draws an unbroken barrier in deck-length pieces rather than one per 2 m sample', () => {
+    const object = createTerrainSurfaceObject(fixture(), context());
+    const p = vertices(object, 'surfaces:bridges');
+    // 200 m of deck in 6 m pieces with a barrier each side: about 2,300 vertices. With a barrier
+    // prism per 2 m sample it was over 5,000, nine-tenths of them barrier.
+    expect(p.count).toBeLessThan(3_000);
+    // Still one barrier along the whole span.
+    const tops = Array.from({ length: p.count }, (_, i) => i)
+      .filter((i) => Math.abs(p.getY(i) - 12.1) < 0.01)
+      .map((i) => p.getX(i));
+    expect(Math.min(...tops)).toBeCloseTo(0, 0);
+    expect(Math.max(...tops)).toBeCloseTo(200, 0);
+    disposeTerrainSurfaceObject(object);
+  });
   it('does not invent bridges for ground roads or render tunnels', () => {
     const tile = fixture(false);
     tile.transportation.push({

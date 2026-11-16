@@ -1,7 +1,7 @@
 import { createBlockCache, createMemoryByteStore } from '@bendyline/molen-pack/cache';
 import { PMTiles, type RangeResponse, type Source } from 'pmtiles';
-import { describe, expect, it } from 'vitest';
-import { cachingArchiveOpener } from '../src/archive-cache';
+import { describe, expect, it, vi } from 'vitest';
+import { CorruptTerrainArchiveError, cachingArchiveOpener } from '../src/archive-cache';
 import type { TerrainArchiveSetDescriptor } from '../src/archive-set';
 import { createTerrainArchiveSetArchive } from '../src/archive-set-client';
 import {
@@ -121,6 +121,87 @@ describe('cachingArchiveOpener', () => {
     expect(keys).toEqual(['sha256:ff', 'uncached https://a/y.pmtiles']);
     expect(await cache.store.getArchive('sha256:ff')).toMatchObject({ priority: 'low' });
     expect(cache.stats().storeArchives).toBe(1);
+  });
+
+  // A PNG archive large enough that its last tiles lie past the reader's first 16 KiB fetch.
+  const PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+  const pngArchive = (label: string, filler: number): Uint8Array => {
+    const tiles = [];
+    for (let y = 0; y < 8; y++) {
+      for (let x = 0; x < 8; x++) {
+        const body = text(`${label} 3/${x}/${y}`.padEnd(filler, '.'));
+        tiles.push({ z: 3, x, y, data: new Uint8Array([...PNG_SIGNATURE, ...body]) });
+      }
+    }
+    return writePmtilesArchive(tiles, { tileType: 'png', bounds: [-180, -85, 180, 85] });
+  };
+  const pngLabel = async (archive: TerrainTileArchive, x: number, y: number) => {
+    const tile = await archive.getZxy(3, x, y);
+    return tile === undefined
+      ? undefined
+      : new TextDecoder()
+          .decode(new Uint8Array(tile.data, PNG_SIGNATURE.length))
+          .replace(/\.+$/, '');
+  };
+  /** A source whose bytes can be swapped, always under the same strong ETag. */
+  class SwappableSource implements Source {
+    reads = 0;
+    constructor(public bytes: Uint8Array) {}
+    getKey(): string {
+      return 'https://tiles.example/elevation.pmtiles';
+    }
+    async getBytes(offset: number, length: number): Promise<RangeResponse> {
+      this.reads++;
+      return { data: this.bytes.slice(offset, offset + length).buffer, etag: '"v1"' };
+    }
+  }
+
+  it('repairs a cache holding another file at this URL and reads the real tile', async () => {
+    // One file cached under the URL, then another served there under the same validator: the
+    // cached header and directories point into the new file's bytes, which decode as garbage.
+    const cache = createBlockCache(createMemoryByteStore(), { blockBytes: 1024 });
+    const source = new SwappableSource(pngArchive('old', 400));
+    const open = cachingArchiveOpener(cache, { source: () => source });
+    expect(await pngLabel(open('https://tiles.example/elevation.pmtiles', 'e'), 0, 0)).toBe(
+      'old 3/0/0',
+    );
+    source.bytes = pngArchive('new', 403);
+    const drop = vi.spyOn(cache, 'drop');
+    const reopened = open('https://tiles.example/elevation.pmtiles', 'e');
+    // 7/7 is the last tile, past the bytes cached so far: it comes from the new file at the old
+    // file's offsets. The archive drops its cached bytes once and reads the new file whole.
+    expect(await pngLabel(reopened, 7, 7)).toBe('new 3/7/7');
+    expect(await pngLabel(reopened, 0, 0)).toBe('new 3/0/0');
+    expect(drop).toHaveBeenCalledOnce();
+  });
+
+  it('reports a tile corrupt at its source without refetching it again and again', async () => {
+    const cache = createBlockCache(createMemoryByteStore());
+    const tiles = [{ z: 0, x: 0, y: 0, data: text('not a png at all') }];
+    const bytes = writePmtilesArchive(tiles, { tileType: 'png', bounds: [-180, -85, 180, 85] });
+    const open = cachingArchiveOpener(cache, { source: () => new SwappableSource(bytes) });
+    const drop = vi.spyOn(cache, 'drop');
+    const archive = open('https://tiles.example/elevation.pmtiles', 'e');
+    await expect(archive.getZxy(0, 0, 0)).rejects.toBeInstanceOf(CorruptTerrainArchiveError);
+    await expect(archive.getZxy(0, 0, 0)).rejects.toBeInstanceOf(CorruptTerrainArchiveError);
+    expect(drop).toHaveBeenCalledOnce();
+  });
+
+  it('keeps cached bytes when the network, not the archive, fails', async () => {
+    const cache = createBlockCache(createMemoryByteStore());
+    const failing: Source = {
+      getKey: () => 'https://tiles.example/elevation.pmtiles',
+      getBytes: async () => {
+        throw new TypeError('network down');
+      },
+    };
+    const drop = vi.spyOn(cache, 'drop');
+    const archive = cachingArchiveOpener(cache, { source: () => failing })(
+      'https://tiles.example/elevation.pmtiles',
+      'e',
+    );
+    await expect(archive.getZxy(0, 0, 0)).rejects.toThrow('network down');
+    expect(drop).not.toHaveBeenCalled();
   });
 });
 

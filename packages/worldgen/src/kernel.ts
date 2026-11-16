@@ -8,6 +8,13 @@
  * modules, the client half, and this package's tests.
  */
 
+// Glyph atlases set storefront names (see StorefrontSign); re-exported for geographic adapters.
+export {
+  type AtlasTextLayout,
+  createGlyphAtlasSet,
+  type GlyphAtlasDoc,
+  type GlyphAtlasSet,
+} from '@bendyline/molen-materials/text';
 export { validateArchStyle } from './kernel/archstyle-schema';
 export type {
   ArchApplicability,
@@ -155,6 +162,7 @@ export type {
   ScatterPolygon,
   ScatterRequest,
   StorefrontRequest,
+  StorefrontSign,
   Vec2,
   Vec3,
   WorldgenBudgets,
@@ -205,6 +213,8 @@ export { installWorldgen, worldgenIndexOf, worldgenScriptApi } from './kernel/in
 export type { PropPlacement } from './kernel/props';
 export type { BuildingRecipe, RecipePart, RecipeProp, RecipeRoof } from './kernel/recipe';
 export { buildingMetrics } from './kernel/recipe';
+export type { SignMeshBuffers, SignPlacement } from './kernel/sign-mesh';
+export { buildSignMesh, signMeshTransferables } from './kernel/sign-mesh';
 export type { ResolvedStylePack, StylePackDocumentReader } from './kernel/stylepack';
 export {
   packIdentity,

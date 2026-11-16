@@ -526,6 +526,23 @@ Entity types come from every opened pack that provides `types` documents, merged
 library with the entities pack first: pass your own pack's id in `ids` (for example
 `[...Object.values(EARTH_PACK_IDS), 'my.app']`) and its figure or prop types sit beside the stock
 cars and aircraft in `content.types`. A type id declared by two packs is an error that names both.
+A type that fails its checks is left out, with any type that extends it, and reported through
+`onWarning` (default `console.warn`); the rest still load.
+
+Types are fully validated by default, which costs about half a second of main thread for the stock
+aircraft and vehicles before a view can mount. A host that serves packs it built and validated
+itself (`molen pack verify`, or `createTypeLibrary` in its build) can pass
+`loadEarthContent(packs, { typeChecks: 'structure' })`: only what resolving relies on is checked,
+and component fields this engine version does not know are kept instead of rejected.
+`loadEarthContent` reads types, fonts, the style pack and the catalogs at once, so a large types
+download does not hold up the rest.
+
+Storefront signs show the names the map gives their places, set from the `molen.earth` pack's
+glyph atlas; Japanese names need the Kyoto glyph pack, `molen.glyphs.kyoto`, opened beside it (pass
+its id in `ids`). Other scripts, and names no open pack can set, fall back to the map's English
+name, then to a generic descriptor such as `EATERY`. `signNames: 'generic'` on `mountEarthView`
+shows the descriptors everywhere, with no business name. See
+[Names on signs](recognizable-places.md#names-on-signs).
 
 `openPacksFromIndex(indexUrl, ids, fetchImpl)` accepts a host fetch implementation for the index,
 archive opening and subsequent asset requests. Landmark model bytes are loaded as nearby

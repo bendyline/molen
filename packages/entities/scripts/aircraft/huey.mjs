@@ -743,9 +743,10 @@ function addHueyCockpit(root) {
       source,
       property: 'rotation',
       axis: 'z',
+      // +Z rotation is clockwise on these -Z faces: the horizon bar turns against the bank.
       scale:
         style === 'attitude'
-          ? 1
+          ? -1
           : source === 'airspeed'
             ? 0.043
             : source === 'altitude'

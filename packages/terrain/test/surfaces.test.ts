@@ -26,6 +26,7 @@ import {
   disposeTerrainSurfaceObject,
   type TerrainSurfaceStats,
 } from '../src/surface-client';
+import type { TerrainStreetLight } from '../src/surface-lights';
 import { SurfaceNetwork } from '../src/surface-network';
 import { inferTerrainParkingAreas } from '../src/surface-parking';
 import type { TerrainParkedVehicle, TerrainSurfaceDetails } from '../src/surface-styles';
@@ -579,6 +580,25 @@ describe('surface styles', () => {
       },
     ];
     expect(stats(createTerrainSurfaceObject(tile, context())).junctions).toBe(0);
+  });
+
+  it('gives arterials mast arms over the road and other streets post-top lamps', () => {
+    // The fixture's four-lane primary runs along z = 60, its residential street along x = 60.
+    const object = createTerrainSurfaceObject(builtUp(fixture()), context());
+    const lights = object.userData.streetLights as TerrainStreetLight[];
+    // Mid-block lamps, clear of the corner lamps at the junction.
+    const midBlock = lights.filter((l) => Math.hypot(l.x - 60, l.z - 60) > 20);
+    const primary = midBlock.filter((l) => Math.abs(l.z - 60) < 8);
+    const residential = midBlock.filter((l) => Math.abs(l.x - 60) < 8);
+    expect(primary.length).toBeGreaterThan(0);
+    expect(residential.length).toBeGreaterThan(0);
+    expect(primary.every((l) => l.post === undefined)).toBe(true);
+    // Each arm's lens hangs over the carriageway (6 m half-width), its pole 0.7 m outside it.
+    for (const l of primary) expect(Math.abs(l.z - 60)).toBeLessThan(6);
+    expect(residential.every((l) => l.post === true)).toBe(true);
+    // A post's lantern stands on its pole at the sidewalk, 0.7 m outside the 4 m half-width.
+    for (const l of residential) expect(Math.abs(l.x - 60)).toBeCloseTo(4.7, 1);
+    disposeTerrainSurfaceObject(object);
   });
 
   it('keeps unlit roads and disabled styles dark and bounds lamps without reducing parking', () => {

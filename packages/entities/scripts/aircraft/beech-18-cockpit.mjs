@@ -78,7 +78,8 @@ export function beech18Cockpit(root, m) {
     trueHeading: { op: 'modulo', args: ['northYaw', 2 * Math.PI] },
     rpm1: { op: 'multiply', args: ['engine1', 2300] },
     rpm2: { op: 'multiply', args: ['engine2', 2300] },
-    turnDegrees: { op: 'multiply', args: ['yawRate', 180 / Math.PI] },
+    // Positive turning right, so the needle leans into the turn (yawRate is positive left).
+    turnDegrees: { op: 'multiply', args: ['yawRate', -180 / Math.PI] },
   });
   Object.assign(derived, {
     rollUp: { op: 'max', args: ['rollInput', 0] },

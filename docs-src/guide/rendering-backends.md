@@ -146,8 +146,11 @@ instance-matrix buffers; camera, material, animation and other uniforms continue
 normally. Revalidate this adapter before widening the three peer range. Large instance buffers retain Three's vertex-attribute path.
 
 Use `renderer.createRenderGroup()` for independent opaque terrain/content chunks. It returns
-a managed WebGPU `BundleGroup`, or a normal Three `Group` on WebGL. The pyramid terrain stream
-accepts `createTileGroup: () => renderer.createRenderGroup()`; World Explorer already uses it.
+a managed WebGPU `BundleGroup`, or a normal Three `Group` on WebGL, which the renderer leaves out
+of the scene walks and shadow maps its stated bounds cannot reach (see
+[graphics performance](graphics-performance.md#staged-preparation-and-admission)). The pyramid
+terrain stream accepts `createTileGroup: () => renderer.createRenderGroup()` and keeps each
+tile's bounds; World Explorer already uses it.
 The renderer checks command state on every frame, updating LOD and re-recording when the
 camera, hierarchy, visibility, transforms, draw counts, geometry, materials or lighting change.
 During camera motion it uses normal draw submission and skips command snapshots, retaining

@@ -8,6 +8,7 @@ import {
   type BusinessCategory,
   validateBusinessCatalogDocuments,
 } from './business-catalog-schema';
+import { normalizeBusinessName } from './business-names';
 
 export interface BusinessProfile {
   id: string;
@@ -44,18 +45,15 @@ export interface ResolvedBusiness {
   category: BusinessCategory;
   profile?: BusinessProfile;
   matchedBy: 'brand-id' | 'brand' | 'name' | 'category';
+  /** The catalog alias a brand or name match found, as the catalog writes it. */
+  matchedAlias?: string;
   width?: number;
   sharedWidth?: number;
   style?: string;
   sign: string;
   accent: string;
 }
-function normalized(value: string): string {
-  return value
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(/[’'\s.\-_/]/g, '');
-}
+const normalized = normalizeBusinessName;
 type PoiIdentity = Pick<TerrainPoiFeature, 'class' | 'name' | 'brand' | 'brandId'>;
 
 /** Exact normalized aliases with category checks; never substring-match a business name. */
@@ -68,7 +66,8 @@ function resolveWith(
   const categoryFor = (kind: string): ResolvedBusiness['category'] | undefined =>
     doc.categories.find((category) => category.kinds.includes(kind))?.id;
   let profile: BusinessProfile | undefined,
-    matchedBy: ResolvedBusiness['matchedBy'] = 'category';
+    matchedBy: ResolvedBusiness['matchedBy'] = 'category',
+    matchedAlias: string | undefined;
   const allows = (p: BusinessProfile): boolean =>
     p.categories.includes(poi.class) || ['building', 'yes', 'unknown'].includes(poi.class);
   if (poi.brandId) {
@@ -87,6 +86,7 @@ function resolveWith(
       );
       if (profile) {
         matchedBy = field;
+        matchedAlias = profile.aliases.find((alias) => normalized(alias) === name);
         break;
       }
     }
@@ -104,6 +104,7 @@ function resolveWith(
     category,
     ...(profile ? { profile } : {}),
     matchedBy,
+    ...(matchedAlias !== undefined ? { matchedAlias } : {}),
     sign: `builtin:${model}`,
     accent: profile?.accent ?? visual?.appearance.accent ?? '#405574',
     width: visual?.storefront.width ?? 18,

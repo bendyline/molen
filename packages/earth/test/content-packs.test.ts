@@ -107,7 +107,9 @@ describe('Earth pack byte cache', () => {
           headers: { 'content-type': 'application/json', etag: '"i1"' },
         });
       }
-      const match = /^bytes=(\d+)-(\d+)$/.exec(range ?? '');
+      // A read of the whole file asks without a Range (so a CDN may compress it).
+      if (range === null) return new Response(bytes.slice(), { headers: { etag: '"z1"' } });
+      const match = /^bytes=(\d+)-(\d+)$/.exec(range);
       if (match === null) throw new Error(`expected an explicit range, got ${range}`);
       const start = Number(match[1]);
       const end = Math.min(Number(match[2]), bytes.length - 1);

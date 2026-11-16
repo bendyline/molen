@@ -51,6 +51,21 @@ export {
 } from './client/scatter-material';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
+  createSignAtlasTexture,
+  createSignMaterial,
+  createSignMaterialAsync,
+  SIGN_INK_ATTRIBUTE,
+  SIGN_PLATE_ATTRIBUTE,
+  type SignAtlasPixels,
+  type SignMaterial,
+  signLettersMaterial,
+} from './client/sign-material';
+export {
+  createSignMeshObject,
+  SIGN_LETTER_PIXELS,
+  SIGN_PLATE_PIXELS,
+} from './client/sign-object';
+export {
   routeStructureModels,
   type StructureAcquireOptions,
   type StructureInstanceOptions,

@@ -162,24 +162,36 @@ Molen's own authored work under MIT. Only the identity data comes from the NSI.
 
 ## §4 Trademarks
 
-Two kinds of third-party name appear in this repository: business identities that the Earth view
-matches against map data (4a), and the manufacturer, model and year names that identify the
-reference vehicles and aircraft in the entities pack (4b). In both, the name is used to say what
-something *is*; no logo artwork, emblem geometry, wordmark or other trade dress is reproduced.
+Two kinds of third-party name appear in this repository: business names that the Earth view
+matches against map data and shows on storefront signs (4a), and the manufacturer, model and year
+names that identify the reference vehicles and aircraft in the entities pack (4b). In both, the
+name is used to say what something *is*; no logo artwork, emblem geometry, wordmark, brand
+typeface or other trade dress is reproduced.
 
-### 4a. Business identities in the Earth catalog
+### 4a. Business names in the Earth catalog and on storefront signs
 
-- **Paths:** `content/earth/businesses/catalog.json`,
+- **Paths:** `content/earth/businesses/catalog.json`, `content/earth/businesses/sign-looks.json`,
   `packages/worldgen-earth/test/fixtures/us-retail-library.batch.json`,
-  `packages/worldgen-earth/test/fixtures/store-library.batch.json`
+  `packages/worldgen-earth/test/fixtures/store-library.batch.json`, and the tests under
+  `packages/worldgen-earth/test/` that name places
 - **Local notice:** [`content/earth/businesses/README.md`](content/earth/businesses/README.md)
 
-The Earth business catalog contains real company names, aliases and stable source IDs solely to
-recognize mapped records. Those records route to generic descriptor models such as `mart_store`,
-`taco_place`, `electronics_store` and `hardware_store`. The default landmark pack's corresponding
-filenames, model IDs, titles and wordmarks are generic, and every mapped-business emblem is formed
-from the generic descriptor's initials. Source-inspired palettes remain as visual variants. Tests
-repeat some source names and identifiers to verify that mapping behavior.
+A storefront sign shows the name the map gives the place it belongs to. Most names come straight
+from the map data (OpenStreetMap through the Protomaps extract; see §1). For a business the Earth
+catalog recognizes, every branch shows one display name instead: the catalog's first alias, or the
+alias the map wrote in another script (マクドナルド). The catalog contains real company names,
+aliases and stable source IDs to recognize those records and to choose that name.
+
+The name is set in Molen's own lettering, never a brand typeface: Overpass, Molen Sign Serif and,
+for Kyoto, Molen Sign Gothic JP (see §2 and the glyph pack's notice). It stands on a plain plate,
+with an optional plain accent band. A recognized chain's plate, letter and band colors are
+source-inspired palettes taken from its descriptor sign; every other place takes a look from a
+small curated family by category. A named sign carries no emblem, mark or logo-shaped geometry.
+
+The descriptor models remain for places without a name and for hosts that ask for generic signs:
+`mart_store`, `taco_place`, `electronics_store`, `hardware_store` and the rest, whose filenames,
+model IDs, titles and wordmarks are generic and whose emblems are formed from the descriptor's
+initials. Tests repeat some source names and identifiers to verify this behavior.
 
 ### 4b. Vehicle, motorhome and aircraft identities in the entities pack
 
@@ -226,23 +238,27 @@ rebuild from source or re-fetch the pack after the next lock update.
 > All product names, company names, model names, logos, color schemes and other trade dress
 > referred to in this repository are the property of their respective owners. Molen and Bendyline
 > LLC are not affiliated with, endorsed by, sponsored by or approved by any of them, and no such
-> relationship is implied. Business names are used only to recognize real places that mapped data
-> identifies as those businesses; vehicle and aircraft names are used only to identify the real
-> type that a model is an original interpretation of. The MIT License in LICENSE grants rights in
-> this repository's software and data only; it grants no right, license or permission in any
-> trademark, service mark, trade name or trade dress of any third party.
+> relationship is implied. Business names are used to recognize real places that mapped data
+> identifies and to label each place with the name the map gives it; vehicle and aircraft names
+> are used only to identify the real type that a model is an original interpretation of. The MIT
+> License in LICENSE grants rights in this repository's software and data only; it grants no right,
+> license or permission in any trademark, service mark, trade name or trade dress of any third
+> party.
 >
-> The generated sign geometry uses generic text and initial emblems, not source logo artwork; the
-> generated vehicle geometry uses plain badges and fictional plates, not maker emblems or lettering.
+> Storefront signs set mapped names in Molen's own lettering on plain plates, with no source logo,
+> emblem, wordmark or brand typeface; signs without a name use generic text and initial emblems.
+> The generated vehicle geometry uses plain badges and fictional plates, not maker emblems or
+> lettering.
 >
 > A downstream redistributor's use of these names is that redistributor's own. Trademark analysis
 > depends on use, context and likelihood of confusion, so a use that is descriptive in this
 > repository may not be descriptive in your product. Take your own advice. The mapping catalog,
-> landmark pack and entity rosters are data, and every vehicle and aircraft type also carries a
-> name-free `genericLabel` (`Full-size pickup`) and, for wheeled vehicles, a generic `bodyStyle`
-> (`pickup`, `suv`, `motorhome`, …) that the Earth view reports beside the real name, so a host
-> can show the fleet without any manufacturer, model or type name and without changing engine
-> code.
+> sign looks, landmark pack and entity rosters are data. A host shows every storefront with its
+> generic descriptor, and no business name, by setting `signNames: 'generic'` on the Earth view;
+> every vehicle and aircraft type also carries a name-free `genericLabel` (`Full-size pickup`)
+> and, for wheeled vehicles, a generic `bodyStyle` (`pickup`, `suv`, `motorhome`, …) that the
+> Earth view reports beside the real name, so a host can show the fleet without any manufacturer,
+> model or type name. Neither needs a change to engine code.
 
 ---
 
@@ -438,8 +454,15 @@ WorldCover vintage in §1 and the image model version in §5.
 
 The Earth content pack includes compiled outline subsets of Overpass and Overpass Mono
 (copyright 2021 The Overpass Project Authors), and Molen Sign Serif, derived from Libre
-Baskerville (copyright 2012 The Libre Baskerville Project Authors). These font assets are
-licensed under SIL OFL 1.1, independently of the engine's MIT license. Full license texts,
+Baskerville (copyright 2012 The Libre Baskerville Project Authors), and a distance-field glyph
+atlas of Overpass and Molen Sign Serif for storefront signs (`signs.glyphs.*`). These font assets
+are licensed under SIL OFL 1.1, independently of the engine's MIT license. Full license texts,
 pinned source revisions and generation hashes accompany the assets in `content/earth/fonts/`.
 Original TTF inputs are in `content/earth/source/fonts/`. No font binaries are shipped in npm
 library packages.
+
+The Kyoto glyph pack (`content/glyphs-kyoto/`) holds a distance-field atlas of the Japanese
+letters Kyoto's storefront names use, as Molen Sign Gothic JP, rasterized from Noto Sans JP Medium
+(© 2014-2021 Adobe; Noto is a trademark of Google Inc.) under SIL OFL 1.1. Its OFL text, pinned
+upstream revision and hashes are in `content/glyphs-kyoto/glyphs/` and the pack's NOTICE; the
+original OTF input is in `content/glyphs-kyoto/source/fonts/`, outside the built pack.

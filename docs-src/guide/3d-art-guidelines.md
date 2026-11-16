@@ -25,10 +25,11 @@ reconstructions. Surface detail does not compensate for incorrect body or cabin 
 ## Recognition and shape
 
 Work from large to small: footprint and height, roof and massing, entrance and facade rhythm,
-then sign and surface detail. For a mapped business, use a generic category wordmark, an
-initial-based emblem, a controlled accent color, and an entrance treatment. Source-inspired
-palettes may distinguish descriptor variants, but model IDs, filenames, displayed names and
-emblem geometry stay generic.
+then sign and surface detail. A mapped business shows its mapped name on a plain plate, set in the
+shared lettering faces, in a look of plate, letter and band colors; a recognized chain's colors are
+source-inspired, never its logo, emblem or typeface. A descriptor model stands in where there is
+no name: a generic category wordmark, an initial-based emblem, a controlled accent color and an
+entrance treatment, with generic model IDs, filenames, titles and emblem geometry.
 
 Keep mapped footprints, courtyards, height, and minimum height when supplied. Missing height is
 unknown: the category recipe supplies a conservative default. An identified tenant does not
@@ -74,7 +75,7 @@ model; scene and tile budgets still control total instances and building vertice
 
 | Asset | Near target | Medium/distant treatment |
 | --- | --- | --- |
-| Identity sign | Under 650 triangles, one material | Remove small lettering first; retain symbol and color |
+| Identity sign | Descriptor model under 650 triangles, one material; a named sign about 10 plus 2 a letter | Remove small lettering first; retain symbol, plate and color |
 | Bench, rack, charger, lamp | 50–500 triangles | Merge slats/cables; retain silhouette |
 | Ordinary tree | 300–2,000 triangles | Fewer crown clusters, then a faceted crown/cone |
 | Small static building | 1,000–8,000 triangles | Remove furniture and small facade details |
@@ -84,8 +85,10 @@ model; scene and tile budgets still control total instances and building vertice
 
 Higher budgets need a visible reason and a distance fallback. Repeated street furniture and signs
 should be instanced by model reference. Prefer a shared vertex-color material; do not allocate
-one material or texture per store. Never put an unlimited number of signs on a complex outline:
-the current frontage contract admits at most twelve per generated building.
+one material or texture per store. Named signs follow the same rule: every one shares one glyph
+atlas texture and one material, and a tile's names are a single mesh. Never put an unlimited number
+of signs on a complex outline: the current frontage contract admits at most twelve per generated
+building.
 
 The sign library preserves exact geometry between instances. Source business identity controls
 matching; stable feature identity controls placement and variation. Do not use wall-clock time,

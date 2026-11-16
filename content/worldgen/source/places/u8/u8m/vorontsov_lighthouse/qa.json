@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.vorontsov_lighthouse",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:779c24e4c6335b67d8fc75cedd97d6a2598dc3498e75d8a6021cdb1f1d231f4a",
-  "sourceHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
-  "runtimeHash": "sha256:f1f5caca8c6f9f09c3193105b3d61c812e48813794287fcea233f53c12d3f3e7",
-  "captureReportHash": "sha256:be47ee96f8e09df7d5689624de457876156ecf024a159a1a49b429d5b320b5c3",
+  "inputHash": "sha256:f52625403b4dfcdb32b476fb646c95b60ebfe0ac9ac06403ce563ac44313afc8",
+  "sourceHash": "sha256:f02d56b1a23040bb8a60af00b60130945922cccf3822f4087973a9dde2b163fe",
+  "runtimeHash": "sha256:ebb4c6730b4ab430fc502999ccb25fa98287041ddf67f02917d64b105594ea35",
+  "captureReportHash": "sha256:9ed60d2ec1f5ce4d4d3d72818e25fdfe2082f85fd4412fc38b82dee9ef59b059",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,7 +23,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3f6176a9104f013c91f35e68450c7c5b751dd3aa08e5788ceac970634cdc5847",
+    "captureReportHash": "sha256:04c5db46004ed5f7ea335aaf388b1b6e9a5314c1a0d95aa263eacdb8bf8e0de1",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -39,7 +39,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:6a73b9d9c4809a09350f0468ed8ab482e5b4f932729dbce7151430c74139c41b",
+    "captureReportHash": "sha256:60b59a9b586f7e71b2928bd5f7556431863432fa9f9e64050d7d722d6668ecb7",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -343,5 +343,16 @@
     "framesVerified": 42,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:779c24e4c6335b67d8fc75cedd97d6a2598dc3498e75d8a6021cdb1f1d231f4a",
+      "previousSourceHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
+      "previousRuntimeHash": "sha256:f1f5caca8c6f9f09c3193105b3d61c812e48813794287fcea233f53c12d3f3e7",
+      "inputHash": "sha256:f52625403b4dfcdb32b476fb646c95b60ebfe0ac9ac06403ce563ac44313afc8",
+      "repair": "The quay's polygonSlab side walls faced inward: the rubble (0-0.62 m) and plaster (0.62-1.2 m) rims of the mapped base, the plaster service-head walls (1.17-3.91 m) and the concrete deck edge (3.91-4 m). From outside the near walls were culled and the quay rim read as see-through (scan: stone part 98%, plaster 35%, model 16.5%). Root cause: polygonSlab in lighthouse-blacksea-models.mjs, and its copies in vorontsov-browser-model.mjs (district/street detail and the skyline service head), reversed each wall quad when the outline's signed (x, z) area was negative; an unreversed quad already faces the edge's left, which is outward for these clockwise outlines, so every wall was turned inward. Fix: reverse only for a positive signed area. Outlines, vertices and material assignment are unchanged; the generic wall UV projection follows the normal, so those walls' texture runs mirrored. Note: the previous binding (source sha256:4b5dbd6c..., 54,128 triangles) predates the 2026-10-26 tubePath cowl change (53,872 triangles); the recaptured frames include it and show continuous blue cowls.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones)."
+    }
   }
 }

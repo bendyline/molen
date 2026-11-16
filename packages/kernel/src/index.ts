@@ -142,6 +142,7 @@ export {
 } from './snapshot';
 export {
   createTypeLibrary,
+  type TypeChecks,
   type TypeLibrary,
   type TypeLibraryOptions,
 } from './type-library';

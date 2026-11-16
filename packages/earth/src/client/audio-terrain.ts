@@ -33,8 +33,8 @@ export interface EarthAudioTerrainSample {
 function inRing(x: number, z: number, ring: Point[]): boolean {
   let result = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-    const a = ring[i]!,
-      b = ring[j]!;
+    const a = ring[i] as Point,
+      b = ring[j] as Point;
     if (a[1] > z !== b[1] > z && x < ((b[0] - a[0]) * (z - a[1])) / (b[1] - a[1]) + a[0])
       result = !result;
   }
@@ -52,8 +52,8 @@ function lineDistance(
 ): number {
   let best = Infinity;
   for (let i = 1; i < points.length + (closed ? 1 : 0); i++) {
-    const a = points[i - 1]!,
-      b = points[i % points.length]!;
+    const a = points[i - 1] as Point,
+      b = points[i % points.length] as Point;
     // Water polygons include tile clipping edges (sometimes buffered beyond 0..1). Those
     // seams are not beaches; real shoreline beyond this tile belongs to its neighbor.
     if (
@@ -236,7 +236,7 @@ export class EarthAudioTerrain {
         // A tunnel/overpass signal must not become a crossing on the street below.
         if (poi.tunnel || poi.bridge || (poi.layer ?? 0) !== 0) continue;
         result.intersectionDistance = Math.min(
-          result.intersectionDistance!,
+          result.intersectionDistance ?? Infinity,
           Math.hypot((poi.point[0] - u) * tileSize, (poi.point[1] - v) * tileSize),
         );
       }
@@ -248,7 +248,7 @@ export class EarthAudioTerrain {
           const heads = node.userData.trafficSignalHeads as TerrainTrafficSignal[] | undefined;
           for (const head of heads ?? [])
             result.intersectionDistance = Math.min(
-              result.intersectionDistance!,
+              result.intersectionDistance ?? Infinity,
               Math.max(0, Math.hypot(x - head.junction[0], z - head.junction[1]) - head.radius),
             );
           // Mesh geometry cannot contain a surface tile; skip the building/model subtrees.

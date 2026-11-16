@@ -39,6 +39,7 @@ import {
   createBuildingDetailLod,
   createInstancedPlacementLod,
   createInstancedPlacements,
+  createSignMeshObject,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
   type InteriorElevatorStop,
@@ -160,6 +161,13 @@ export interface WorldgenRendererOptions {
   materialDecorator?: BuildingMaterialDecorator;
   /** Prepared prop models; without it the classification layer keeps the default tree cones. */
   models?: ModelLibrary;
+  /**
+   * Material for storefront signs that show mapped names (`places.signs`), usually
+   * `createSignMaterialAsync` from `@bendyline/molen-worldgen/client` over the places' glyph
+   * atlas, for the renderer's backend. Caller-owned. Without it, places that set names generate
+   * signs nothing draws: pass places built with `signNames: 'generic'` instead.
+   */
+  signMaterial?: THREE.Material;
   /** Streamed geographic models; defaults to `models` when no separate library is supplied. */
   structureModels?: ModelLibrary;
   /** Full glTF hierarchy and PBR materials for authored structures; preferred over flattened props. */
@@ -409,6 +417,11 @@ export function createWorldgenSemanticRenderers(
     });
   const ownsGenerator = options.generator === undefined;
   const places = options.places;
+  if (places?.signs !== undefined && options.signMaterial === undefined)
+    console.warn(
+      '[molen] worldgen places set storefront names but no signMaterial draws them; ' +
+        "pass one, or build the places with signNames: 'generic'",
+    );
   const cache = options.cache;
   const atlasHash =
     options.atlas !== undefined ? hashJson(options.atlas as unknown as JsonValue) : undefined;
@@ -451,6 +464,7 @@ export function createWorldgenSemanticRenderers(
               renderCellsOnly: request.renderCellsOnly ?? false,
               identities: places?.businesses.hash ?? null,
               models: places?.landmarks.hash ?? null,
+              ...(places?.signs !== undefined ? { signs: places.signs.hash } : {}),
               environment: environmentHash,
               semantics: tileHash(request.tile),
               geometry: request.geom,
@@ -681,6 +695,16 @@ export function createWorldgenSemanticRenderers(
       boxes.userData.shadowCaster = true;
       group.add(boxes);
     }
+    // Named storefront signs: one mesh for the tile, letters near and plates farther out.
+    if (output.signs !== undefined && options.signMaterial !== undefined)
+      group.add(
+        createSignMeshObject(
+          output.signs,
+          options.signMaterial,
+          options.lodPolicy,
+          `${name}:signs`,
+        ),
+      );
     // Street props and signs vanish below 1.5 px; plants do not, as a distant forest is their sum.
     for (const object of await instancedProps(output.placements, context, name, PROP_VANISH_PIXELS))
       group.add(object);

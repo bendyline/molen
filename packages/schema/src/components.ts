@@ -3050,7 +3050,7 @@ const aircraftSpecSchema = z
         ancestors.add(parent);
         parent = support.parent;
       }
-      if (part.fragments && part.fragments.min.some((v, i) => v >= (part.fragments?.max[i] ?? 0)))
+      if (part.fragments?.min.some((v, i) => v >= (part.fragments?.max[i] ?? 0)))
         ctx.addIssue({
           code: 'custom',
           path: ['collisionParts', index, 'fragments'],

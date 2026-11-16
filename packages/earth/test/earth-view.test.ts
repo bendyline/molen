@@ -2,6 +2,8 @@
 // pyramid, navigation, markers and quality code, with only WebGL replaced. A procedural archive
 // supplies flat PNG16 elevation so streaming, placement and re-anchoring run end to end.
 
+import { setFlagsFromString } from 'node:v8';
+import { runInNewContext } from 'node:vm';
 import { createBlockCache, createMemoryByteStore } from '@bendyline/molen-pack/cache';
 import {
   encodePng16,
@@ -22,6 +24,8 @@ const viewerState = vi.hoisted(() => ({
   shadowQuality: undefined as string | undefined,
   cloudQuality: undefined as string | undefined,
   shadowRadius: undefined as number | undefined,
+  /** The latest viewer's scene, held weakly so tests can look at it without keeping it alive. */
+  scene: undefined as WeakRef<{ traverse(visit: (object: object) => void): void }> | undefined,
 }));
 
 vi.mock('@bendyline/molen-client', async (importOriginal) => {
@@ -68,6 +72,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         },
       };
       renderer.scene.add(renderer.worldRoot);
+      viewerState.scene = new WeakRef(renderer.scene);
       return {
         renderer,
         setCamera: (pose: { position: number[]; lookAt: number[] }) => {
@@ -89,6 +94,16 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
 });
 
 const { earthOrbitMaxRange, mountEarthView } = await import('../src/client/earth-view');
+
+// A real collection, to show what a handle still reaches: --expose-gc set at run time.
+setFlagsFromString('--expose-gc');
+const gc = runInNewContext('gc') as () => void;
+async function collectGarbage(): Promise<void> {
+  for (let i = 0; i < 3; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    gc();
+  }
+}
 
 // A frame queue standing in for requestAnimationFrame.
 let callbacks = new Map<number, (time: number) => void>();
@@ -270,6 +285,48 @@ describe('mountEarthView', () => {
     expect(canvas.style.touchAction).toBe('none');
     expect(errors).toEqual([]);
     view.dispose();
+  });
+
+  it('lets go of its streamed terrain on dispose, even while the host keeps the handle', async () => {
+    // A host often keeps a disposed handle (a stale closure, a dev tool): its tiles must not stay.
+    const { view } = await mount();
+    await pump(20);
+    await settle(view);
+    const meshes: WeakRef<object>[] = [];
+    viewerState.scene?.deref()?.traverse((object) => {
+      if ((object as { isMesh?: boolean }).isMesh) meshes.push(new WeakRef(object));
+    });
+    expect(meshes.length).toBeGreaterThan(0);
+    view.dispose();
+    await collectGarbage();
+    expect(meshes.filter((mesh) => mesh.deref() !== undefined)).toHaveLength(0);
+    // The handle still answers, with nothing streamed.
+    expect(view.stats().displayedTiles).toBe(0);
+    await expect(view.whenIdle()).resolves.toBeUndefined();
+  });
+
+  it('lets go of its terrain when disposed partway through a level change', async () => {
+    // A level change is applied a step per frame, each step holding the stack it changes.
+    const view = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+      style: { sky: false },
+      // Any streamed ground is over this budget, so the view steps down as soon as it has some.
+      memoryBudget: 1,
+    });
+    const start = view.stats().qualityLevel;
+    for (let frame = 0; frame < 600 && view.stats().qualityLevel === start; frame++) await pump(1);
+    expect(view.stats().qualityLevel).toBeLessThan(start);
+    const meshes: WeakRef<object>[] = [];
+    viewerState.scene?.deref()?.traverse((object) => {
+      if ((object as { isMesh?: boolean }).isMesh) meshes.push(new WeakRef(object));
+    });
+    expect(meshes.length).toBeGreaterThan(0);
+    view.dispose();
+    await collectGarbage();
+    expect(meshes.filter((mesh) => mesh.deref() !== undefined)).toHaveLength(0);
   });
 
   it('keeps the orbit camera within the distance the terrain draws', async () => {

@@ -443,9 +443,10 @@ function cockpit(root, m, shell) {
       source,
       property: 'rotation',
       axis: 'z',
+      // +Z rotation is clockwise on these -Z faces: the horizon bar turns against the bank.
       scale:
         source === 'roll'
-          ? 1
+          ? -1
           : source === 'heading'
             ? -1
             : source === 'altitude'

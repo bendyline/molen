@@ -983,12 +983,13 @@ function supportedWay(o, a, b, ya, yb, width, stairs) {
     ].map(([z, y]) => [x, y, z]);
     crest.push(ring);
   }
-  // Closed bounded earth support below the mapped narrow paved connector.
+  // Closed bounded earth support below the mapped narrow paved connector. face() orients by
+  // winding; for this ring order, going across the ring before along the way faces outward.
   for (let i = 1; i < crest.length; i++)
     for (let j = 0; j < 4; j++) {
       if (j === 0) continue;
       const k = (j + 1) % 4;
-      const q = [crest[i - 1][j], crest[i][j], crest[i][k], crest[i - 1][k]];
+      const q = [crest[i - 1][j], crest[i - 1][k], crest[i][k], crest[i][j]];
       face(f, 'earth', q, [0.39, 0.43, 0.25]);
     }
   for (const [i, reverse] of [

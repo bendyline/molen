@@ -152,10 +152,14 @@ function face(o, s, f, y0, y1, holes = [], depth = 0.38) {
       f.n,
     );
   for (const h of holes) {
+    // F mirrors when the core winds positively, so reveals take an explicit hint into the opening.
+    const k = Math.sign(area(h)),
+      o0 = f.P(0, 0);
     for (let i = 0; i < h.length; i++) {
       const a = h[i],
-        b = h[(i + 1) % h.length];
-      Q(o, 'trim', [f.P(...a), f.P(...b), f.P(...b, -depth), f.P(...a, -depth)]);
+        b = h[(i + 1) % h.length],
+        into = f.P(k * (a[1] - b[1]), k * (b[0] - a[0])).map((v, j) => v - o0[j]);
+      Q(o, 'trim', [f.P(...a), f.P(...b), f.P(...b, -depth), f.P(...a, -depth)], into);
     }
     const ids = earcut(h.flat());
     for (let i = 0; i < ids.length; i += 3)
@@ -321,8 +325,14 @@ function crown(o, d) {
       f.n.map((v) => -v),
     );
     Q(o, 'trim', [f.P(0, y), f.P(f.len, y), f.P(f.len, y, -0.6), f.P(0, y, -0.6)], [0, 1, 0]);
+    // One vertex order cannot suit both ends; each faces away from the blade.
     for (const x of [0, f.len])
-      Q(o, 'wall', [f.P(x, 151), f.P(x, y), f.P(x, y, -0.6), f.P(x, 151, -0.6)]);
+      Q(
+        o,
+        'wall',
+        [f.P(x, 151), f.P(x, y), f.P(x, y, -0.6), f.P(x, 151, -0.6)],
+        f.P(x ? 1 : -1, 0).map((v, j) => v - f.P(0, 0)[j]),
+      );
     if (d > 0) {
       const n = Math.max(1, Math.floor(f.len / (d === 1 ? 4 : 1.5)));
       for (let j = 0; j < n; j++) {

@@ -10,6 +10,7 @@ import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createLandcoverMesh, createLandcoverSurface } from '../src/semantic-client';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
 import { disposeTerrainSurfaceObject } from '../src/surface-client';
+import { expectSameAttribute } from './helpers/attributes';
 
 function fixture(): {
   tile: ReturnType<typeof createEmptyTerrainSemanticTile>;
@@ -144,11 +145,12 @@ describe('land-cover worker', () => {
     const result = bridge.generate(tile, context, options);
     thread.run();
     const mesh = (await result) as THREE.Mesh;
-    for (const attr of ['position', 'normal', 'color', 'agricultureRows', 'agricultureSoil']) {
-      expect(mesh.geometry.getAttribute(attr).array).toEqual(
-        direct.geometry.getAttribute(attr).array,
+    for (const attr of ['position', 'normal', 'color', 'agricultureRows', 'agricultureSoil'])
+      expectSameAttribute(
+        mesh.geometry.getAttribute(attr),
+        direct.geometry.getAttribute(attr),
+        attr,
       );
-    }
     expect(mesh.geometry.index?.array).toEqual(direct.geometry.index?.array);
     expect(context.heightfield.sampleHeight(235, 450)).toBe(before);
     expect(mesh.renderOrder).toBe(direct.renderOrder);
@@ -304,8 +306,10 @@ describe('land-cover worker', () => {
     thread.run();
     const mesh = (await pending) as THREE.Mesh;
     for (const name of ['agricultureRows', 'agricultureSoil']) {
-      expect(mesh.geometry.getAttribute(name).array).toEqual(
-        direct.geometry.getAttribute(name).array,
+      expectSameAttribute(
+        mesh.geometry.getAttribute(name),
+        direct.geometry.getAttribute(name),
+        name,
       );
       expect([...mesh.geometry.getAttribute(name).array].some((value) => value !== 0)).toBe(true);
     }

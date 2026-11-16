@@ -507,13 +507,14 @@ function hallGlass(o, d) {
     } else rect(q, 0, base, 5, 17, top - base, 1, 'plaster', 'plaster');
   }
   hip(q, 25, 2.2, 33.5, 35, 'tile', 'tile');
+  // part() orients by winding, and loft() faces out when each ring runs from -z over the crown.
   loft(
     q,
     'glass',
     [-12, 12].map((x) =>
       Array.from({ length: d ? 7 : 3 }, (_, i) => {
         const a = (i * Math.PI) / (d ? 6 : 2);
-        return [x, 34 + Math.sin(a) * 2, -0.8 + Math.cos(a) * 4.1];
+        return [x, 34 + Math.sin(a) * 2, -0.8 - Math.cos(a) * 4.1];
       }),
     ),
     colors.glass,

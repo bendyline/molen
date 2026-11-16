@@ -10,6 +10,7 @@ import {
   type TerrainLinePath,
   TerrainSurfaceMeshBuilder,
   terrainLinePath,
+  terrainPaintBeneath,
 } from './linear-features';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type { TerrainSemanticTile } from './semantic-types';
@@ -285,6 +286,7 @@ export function appendAirportSurfaces(
     across: number,
     width: number,
     length: number,
+    beneath: number,
   ): void => {
     const a = sampleTerrainLine(path, distance - length / 2, across - width / 2),
       b = sampleTerrainLine(path, distance + length / 2, across - width / 2);
@@ -301,7 +303,7 @@ export function appendAirportSurfaces(
       new THREE.Color(white),
       0.565,
     );
-    paint.surfaceSince(start, TERRAIN_SURFACE_KIND.paint, undefined, width);
+    paint.surfaceSince(start, TERRAIN_SURFACE_KIND.paint, undefined, width, 0, beneath);
   };
   for (const f of tile.transportation) {
     if (!isAeroway(f)) continue;
@@ -317,6 +319,9 @@ export function appendAirportSurfaces(
         f.surface ?? '',
       );
       const concrete = /^(CON)|concrete/i.test(f.surface ?? '');
+      // Markings fade into the pavement they are painted on as they narrow under a pixel.
+      const beneath = { color: concrete ? '#aaa79e' : '#646766' };
+      const beneathCode = terrainPaintBeneath(beneath);
       if (!stand)
         appendTerrainLineBand(
           pavement,
@@ -334,7 +339,13 @@ export function appendAirportSurfaces(
         appendTerrainLineBand(
           paint,
           path,
-          { width: 0.24, color: yellow, elevation: 0.535, surface: TERRAIN_SURFACE_KIND.paint },
+          {
+            width: 0.24,
+            color: yellow,
+            elevation: 0.535,
+            surface: TERRAIN_SURFACE_KIND.paint,
+            beneath,
+          },
           { spacing: 12, maxElements: 1500 },
         );
         continue;
@@ -349,6 +360,7 @@ export function appendAirportSurfaces(
             color: white,
             elevation: 0.565,
             surface: TERRAIN_SURFACE_KIND.paint,
+            beneath,
           },
           { spacing: 24, maxElements: 2500 },
         );
@@ -360,6 +372,7 @@ export function appendAirportSurfaces(
           color: white,
           elevation: 0.565,
           surface: TERRAIN_SURFACE_KIND.paint,
+          beneath,
           dash: [30, 30],
           phase: 0,
         },
@@ -371,10 +384,10 @@ export function appendAirportSurfaces(
         const fromEnd = (d: number): number => (end ? path.length - d : d);
         const stripes = Math.min(8, Math.floor((width - 4) / 5));
         for (let i = 0; i < stripes; i++)
-          rect(path, fromEnd(22), (i - (stripes - 1) / 2) * 4.5, 1.8, 30);
+          rect(path, fromEnd(22), (i - (stripes - 1) / 2) * 4.5, 1.8, 30, beneathCode);
         if (path.length > 1200)
           for (const side of [-1, 1])
-            rect(path, fromEnd(300), side * width * 0.27, width * 0.12, 40);
+            rect(path, fromEnd(300), side * width * 0.27, width * 0.12, 40, beneathCode);
         const label = f.ref?.split('/')[end];
         if (!label || !options.fonts) continue;
         const text = buildTextMesh(label, options.fonts, {
@@ -400,7 +413,7 @@ export function appendAirportSurfaces(
           const start = paint.vertexCount;
           paint.polygon(points, new THREE.Color(white), 0.565);
           // Stroke width drives the pavement shader's distance fade, just as for painted bands.
-          paint.surfaceSince(start, TERRAIN_SURFACE_KIND.paint, undefined, 2);
+          paint.surfaceSince(start, TERRAIN_SURFACE_KIND.paint, undefined, 2, 0, beneathCode);
         }
       }
     }

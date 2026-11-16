@@ -93,6 +93,46 @@ describe('golf course layouts', () => {
     expect(prepareLandSites(source, geometry(), false)).toBe(source);
   });
 
+  it('keeps a detailed course outline, its pond and its buildings exact', () => {
+    // A mapped course as OSM draws it: hundreds of outline points around a pond, with buildings.
+    const ring = (cu: number, cv: number, r: number, n: number): [number, number][] =>
+      Array.from({ length: n }, (_, k) => {
+        const a = (k / n) * Math.PI * 2;
+        const rr = r * (1 + 0.1 * Math.sin(a * 7) + 0.05 * Math.sin(a * 13 + 1));
+        return [cu + rr * Math.cos(a), cv + rr * Math.sin(a)];
+      });
+    const pond = ring(0.4, 0.45, 0.07, 120);
+    const tile = createEmptyTerrainSemanticTile();
+    tile.landcover.push({
+      class: 'golf_course',
+      polygons: [{ outer: ring(0.5, 0.5, 0.42, 700), holes: [pond] }],
+    });
+    const houses = [rectangle(0.6, 0.6, 0.62, 0.63), rectangle(0.3, 0.7, 0.33, 0.71)];
+    for (const [index, house] of houses.entries())
+      tile.buildings.push({
+        id: index,
+        polygons: [house],
+      } as TerrainSemanticTile['buildings'][number]);
+    const prepared = prepareLandSites(tile, geometry(0, 0, { size: 2600 }));
+    const outline = { outer: ring(0.5, 0.5, 0.42, 700) };
+    let fairway = 0;
+    let samples = 0;
+    for (let u = 0.005; u < 1; u += 0.01)
+      for (let v = 0.005; v < 1; v += 0.01) {
+        const found = classAt(prepared, [u, v]);
+        const off =
+          !pointInPolygon([u, v], outline) ||
+          pointInPolygon([u, v], { outer: pond }) ||
+          houses.some((house) => pointInPolygon([u, v], house));
+        if (off) expect(found, `golf ground at ${u.toFixed(3)}, ${v.toFixed(3)}`).toBeUndefined();
+        else {
+          samples++;
+          if (found === 'golf_fairway') fairway++;
+        }
+      }
+    expect(fairway / samples).toBeGreaterThan(0.2);
+  });
+
   it('reproduces a visit exactly, whatever order the map lists its land', () => {
     const first = prepareLandSites(course(), geometry());
     expect(prepareLandSites(course(), geometry())).toEqual(first);

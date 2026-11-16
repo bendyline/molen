@@ -23,9 +23,10 @@ it('rehosts a directory index and downloads only selected vehicle files on a no-
     });
     const first = await hostPacks(index, { outDir: join(root, 'first'), zipBelow: 0 });
     const second = await hostPacks(first.indexPath, { outDir: join(root, 'second') });
-    const entry = second.index.packs['example.fleet']!;
+    const entry = second.index.packs['example.fleet'];
+    if (!entry) throw new Error('example.fleet was not rehosted');
     const local = await openPackAt(join(root, 'second', entry.file));
-    expect(new Uint8Array(await local.readBytes('china.glb'))).toEqual(files[0]!.bytes);
+    expect(new Uint8Array(await local.readBytes('china.glb'))).toEqual(files[0]?.bytes);
     local.close();
     const requests: string[] = [];
     const pack = await openDirectoryPack(`https://fleet.test/${entry.file}`, {
@@ -65,8 +66,9 @@ describe('shared directory downloads', () => {
         size: 8,
         read: (_offset, _length, signal) =>
           new Promise((_resolve, reject) => {
-            signals.push(signal!);
-            signal!.addEventListener('abort', () => reject(signal!.reason), { once: true });
+            if (!signal) throw new Error('shared reads must carry an abort signal');
+            signals.push(signal);
+            signal.addEventListener('abort', () => reject(signal.reason), { once: true });
           }),
       }),
     });
@@ -77,10 +79,10 @@ describe('shared directory downloads', () => {
     a.abort();
     await one;
     expect(signals).toHaveLength(1);
-    expect(signals[0]!.aborted).toBe(false);
+    expect(signals[0]?.aborted).toBe(false);
     b.abort();
     await two;
-    expect(signals[0]!.aborted).toBe(true);
+    expect(signals[0]?.aborted).toBe(true);
     const three = pack.readBytes('car.glb').catch(() => undefined);
     expect(signals).toHaveLength(2);
     pack.close();

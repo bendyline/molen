@@ -63,6 +63,14 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   accessibility. Pinned Americana SVG inputs and archived reference/licensing HTML under model
   source bundles are excluded: they are upstream evidence, not maintained UI. Preserve their
   original bytes and hashes; fix accessibility in the application that presents the content.
+  Generated data (glyph atlases, PMTiles extracts) is excluded too; other content JSON and place
+  model scripts may be up to 16 MiB before Biome skips them.
+- Place model scripts (`content/worldgen/source/places/**/*.mjs`) and the shared recipes listed in
+  `authoring-index.json` feed `modelInputHash`, which capture and placement reports pin. A
+  lint-only edit to one of them stales its captures and reviews. Biome therefore does not report
+  unused bindings or `let`-for-`const` there. Clean those up while the model is being authored,
+  before it is captured. A recipe whose old warnings were waived is listed by name in
+  `biome.json`.
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
   (`pnpm typecheck`, `pnpm test:unit`) which rebuild the library packages first via `pre*`
   hooks, or run `pnpm -r --filter './packages/**' build` before invoking `tsc`/`vitest`
