@@ -20,7 +20,7 @@ Original authored geometry and shared procedural materials. Reference photograph
 
 ## Authored geometry and materials
 
-4,116,886 triangles, 8,229,292 vertices, 7 surface groups; 345,661,092 source bytes. SHA-256: `sha256:abcd6494186c442fbf8c6f0ec6059bb3096d685df58ef8205799cfdb420ad53c`. Actual bounds: -120.462, -18.035, -170.712 to 177.760, 70.102, 191.222 m.
+4,116,606 triangles, 8,231,716 vertices, 7 surface groups; 345,744,996 source bytes. SHA-256: `sha256:e1d31eb89e11d36f121aed943786748bd7a1d9fe09c43168f55924d3cd3d96e0`. Actual bounds: -120.462, -18.035, -170.712 to 177.760, 70.102, 191.222 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m), `matgraph:molen.worldgen.material.gravel` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center; +Z north-northwest, +X west. Y0 is upper public circulation around the open eastern bowl, with the field18m lower."}.
 

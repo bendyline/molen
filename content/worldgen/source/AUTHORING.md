@@ -55,14 +55,17 @@ counts only current, verified completions and retains each candidate's original 
    location, compass orientation and elevation datum require their own
    evidence. A flat test terrain capture verifies transforms, not real terrain or tides.
 5. Regenerate the source and authoring indexes, readiness ledger and galleries. The commands are
-   listed below. `pnpm source:check` checks the source bundles and authoring index.
-6. Run `pnpm assets:build --update-lock`, review the changed metadata, and run the repository
-   checks. The owner commits source and the lock. The Assets workflow publishes the pack.
+   listed below. `pnpm source:check` checks the source bundles and authoring index. Refresh the
+   ledger with `--ids=` for the models you changed: captured `shots/` stay on the machine that
+   took them, so a full rebuild in another checkout unbinds every review whose frames it lacks.
+6. Run `pnpm assets:build` and `pnpm assets:check`, review the changed metadata, and run the
+   repository checks. The owner commits the source; there is no lock file. CI builds the bundle
+   for the new inputs and publishes it from `main`.
 
 ```sh
 node packages/worldgen/scripts/index-structure-sources.mjs
 node packages/worldgen/scripts/index-structure-authoring.mjs
-node packages/worldgen-earth/scripts/build-structure-readiness.mjs
+node packages/worldgen-earth/scripts/build-structure-readiness.mjs --ids=<changed candidate ids>
 node packages/worldgen/scripts/build-structure-gallery.mjs
 node packages/worldgen/scripts/build-place-gallery.mjs
 ```

@@ -161,13 +161,15 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   batches do not update `review-lock.json` or publish screenshots. See the model review image
   policy in [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
-  write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
-  downloads the matching release (or builds from source when it is not published yet);
-  `pnpm assets:build` builds from source with no download. After a batch of model changes, run
-  `pnpm assets:build --update-lock` (or the Update asset lock workflow) and commit the source,
-  regenerated metadata and lock together; never commit a GLB or upload anything. The Assets
-  workflow proves the build and publishes the release. Generators must be byte-deterministic on
-  every OS and CPU; in generator code write `Math.pow` for any exponent but 2 or 0.5. See
+  write every GLB. The asset bundle is named after its inputs (`asset-build.json`, the generator
+  scripts and their imports, masters and declared source data), never its outputs; there is no
+  lock file. `pnpm assets:fetch` downloads the release for the current inputs (or builds from
+  source when it is not published yet); `pnpm assets:build` builds from source with no download.
+  After a batch of model changes, run `pnpm assets:build` then `pnpm assets:check`, and commit the
+  source and regenerated metadata together; never commit a GLB or upload anything.
+  `node scripts/asset-packs.mjs key --explain` names the inputs that changed. CI builds a bundle
+  whose inputs are unpublished and publishes it from `main`. Generators must be byte-deterministic
+  on every OS and CPU; in generator code write `Math.pow` for any exponent but 2 or 0.5. See
   [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Runtime content packs are separate.
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

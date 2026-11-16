@@ -116,10 +116,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   Keep DOM overlays out of a captured frame (world-explorer's `hud=0`): text metrics differ between
   platforms, and a frame that includes them is a font test wearing a render test's clothes.
 - **GLBs are generated, never committed.** Every model comes from a generator listed in
-  `asset-build.json` (or one of its few declared `masters`), and `asset-lock.json` pins the bytes.
-  A model change is a source change plus `pnpm assets:build --update-lock` (or the Update asset
-  lock workflow); the Assets workflow rebuilds from a clean checkout, fails on any byte difference
-  and publishes the release that `pnpm assets:fetch` downloads. Generators must be
+  `asset-build.json` (or one of its few declared `masters`). The bundle is named after those
+  inputs, not its bytes, and there is no lock file. A model change is a source change plus
+  `pnpm assets:build` and `pnpm assets:check`; CI builds a bundle whose inputs are unpublished and
+  publishes the release that `pnpm assets:fetch` downloads from `main`. Generators must be
   byte-deterministic on every OS and CPU: no clocks, unseeded randomness or locale formatting, no
   `**` except with a literal 2 or 0.5 (asset builds replace `Math`'s transcendental functions with
   CPU-independent ports; `**` bypasses them), and no hashes of checkout-dependent bytes. Asset

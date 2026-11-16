@@ -44,7 +44,7 @@ The elevator travels 30° up and 20° down and the rudder 25° each way; those a
 The cockpit is part of the main GLB and appears in exterior and seated views. Its layout and
 builder can change independently of any other aircraft. Generate an edited preview with
 `node models/generate.mjs --out /tmp/p-51-candidate.glb`; review it before adopting a new master.
-In the engine repository, `pnpm assets:build --update-lock` rebuilds the master and its lock. A
+In the engine repository, `pnpm assets:build` rebuilds the master and its runtime model. A
 direct run that should match those bytes needs the build's portable math:
 `node --import=./packages/worldgen/scripts/install-deterministic-math.mjs content/entities/source/aircraft/p-51/models/generate.mjs`
 from the repository root.

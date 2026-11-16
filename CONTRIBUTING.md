@@ -42,17 +42,17 @@ the browser tests.
 
 ```sh
 pnpm install
-pnpm assets:fetch  # download the GLBs pinned in asset-lock.json, or build them from source
+pnpm assets:fetch  # download the GLB bundle for the current asset inputs, or build it from source
 pnpm all       # clean install, build, and every check CI runs, in order
 pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, production audit
 ```
 
 GLBs are build outputs: the generators, source manifests, specs, shared materials, sidecars and
-review evidence are in Git, and `asset-lock.json` pins the bytes they build to. `pnpm assets:build`
-builds them from source; `pnpm assets:fetch` downloads the release CI published for the same
-lock. To change a model, edit its generator, run `pnpm assets:build --update-lock` and commit the
-result without any GLB. The Update asset lock workflow can do the build and commit for you. See
-[repository GLBs](content/ASSET-PACKS.md).
+review evidence are in Git. The GLB bundle is named after those inputs, not its bytes; there is
+no lock file. `pnpm assets:build` builds it from source; `pnpm assets:fetch` downloads the release
+CI published for the same inputs. To change a model, edit its generator, run `pnpm assets:build`
+and `pnpm assets:check`, and commit the source and regenerated metadata without any GLB. CI builds
+and publishes the new bundle from `main`. See [repository GLBs](content/ASSET-PACKS.md).
 
 Generated files come from generators, not from hand edits: the schema reference
 (`pnpm docs:gen`), the documentation site (`pnpm docs:site:gen`), and the script

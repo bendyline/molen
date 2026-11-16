@@ -14,10 +14,10 @@ approvals retain their original scope and are not automatically medium-fi approv
 | Source GLBs authored | 947 |
 | Runtime GLBs imported | 947 |
 | Portable visual reviews passed | 927 |
-| Shared-material reviews passed | 908 |
+| Shared-material reviews passed | 911 |
 | Active geographic previews | 926 |
 | Declared fidelity reviews passed | 868 |
-| Complete | 850 |
+| Complete | 853 |
 | Source models still to author | 53 |
 
 ## Authored models
@@ -703,10 +703,10 @@ for exact blockers, identity issues and all 1,000 candidates.
 | mineirao | [Mineirão](../places/7h/7h2/mineirao/README.md) | 1120300 | Passed | Pending | Passed | Passed | Pending |
 | lusail_stadium | [Lusail Stadium](../places/th/ths/lusail_stadium/README.md) | 466450 | Passed | Pending | Passed | Pending | Pending |
 | munich_olympic_stadium | [Munich Olympic Stadium](../places/u2/u28/munich_olympic_stadium/README.md) | 4116606 | Passed | Passed | Passed | Passed | Yes |
-| stade_velodrome | [Stade Vélodrome](../places/sp/spe/stade_velodrome/README.md) | 1291124 | Passed | Pending | Passed | Passed | Pending |
-| rostov_arena | [Rostov Arena](../places/ub/ubk/rostov_arena/README.md) | 1141112 | Passed | Pending | Passed | Passed | Pending |
+| stade_velodrome | [Stade Vélodrome](../places/sp/spe/stade_velodrome/README.md) | 1291124 | Passed | Passed | Passed | Passed | Yes |
+| rostov_arena | [Rostov Arena](../places/ub/ubk/rostov_arena/README.md) | 1141112 | Passed | Passed | Passed | Passed | Yes |
 | mordovia_arena | [Mordovia Arena](../places/v1/v18/mordovia_arena/README.md) | 1351284 | Pending | Pending | Pending | Pending | Pending |
-| volksparkstadion | [Volksparkstadion](../places/u1/u1x/volksparkstadion/README.md) | 1435024 | Passed | Pending | Passed | Passed | Pending |
+| volksparkstadion | [Volksparkstadion](../places/u1/u1x/volksparkstadion/README.md) | 1435024 | Passed | Passed | Passed | Passed | Yes |
 | mhparena | [MHPArena](../places/u0/u0w/mhparena/README.md) | 1005216 | Pending | Pending | Pending | Pending | Pending |
 | cape_town_stadium | [Cape Town Stadium](../places/k3/k3v/cape_town_stadium/README.md) | 1619042 | Passed | Passed | Passed | Passed | Yes |
 | johan_cruyff_arena | [Johan Cruyff Arena](../places/u1/u17/johan_cruyff_arena/README.md) | 1188102 | Passed | Passed | Passed | Passed | Yes |

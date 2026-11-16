@@ -171,8 +171,8 @@ browser packs explicitly.
 One invariant matters more than the rest: **build before you typecheck or test**, because packages
 consume each other's `dist`. The root scripts encode it.
 
-GLBs are build outputs of the generators in this repository, pinned byte for byte by
-`asset-lock.json`. `pnpm assets:fetch` downloads the snapshot CI built and published;
+GLBs are build outputs of the generators in this repository, bundled under a name derived from
+those inputs. `pnpm assets:fetch` downloads the bundle CI built and published for them;
 `pnpm assets:build` builds the same bytes from source. See [repository GLBs](content/ASSET-PACKS.md).
 
 ```sh

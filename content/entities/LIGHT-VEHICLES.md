@@ -106,9 +106,9 @@ two-wheelers lean into turns. Bicycles, kick scooters and boards are never parke
   software rasterizer the street tiles timed out before traffic spawned, and no captured frame
   shows the parked rows. Parked rows and traffic riders still need a look in a real browser.
 
-Not yet done: the asset lock. `pnpm assets:build --update-lock` reruns the one `entities-fleet`
-generator (all fleet models; the existing ones byte-identical) and imports the six new models;
-until then `pnpm assets:check` reports them as unpinned. Bulk renders stay in ignored `shots/`.
+`pnpm assets:build` reruns the one `entities-fleet` generator (all fleet models; the existing
+ones byte-identical) and imports the six new models; until then `pnpm assets:check` reports the
+installed bundle as built from other inputs. Bulk renders stay in ignored `shots/`.
 
 ## Reproduce
 
