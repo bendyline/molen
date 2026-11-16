@@ -17,7 +17,7 @@ Standing Temple of the Moon heritage compound: mapped red double-eaved green-roo
 
 ## Model and axes
 
-6,490 triangles; 19,470 vertices; 5 material groups; 782,216 bytes. Native bounds: -130.350, -5.715, -109.586 to 99.350, 14.676, 30.350. Source hash: `sha256:f0a82e615a606027f65d289c269f0994f1cf656a0901d3cd22a1e9fc08fd9848`.
+6,490 triangles; 19,470 vertices; 5 material groups; 782,216 bytes. Native bounds: -130.350, -5.715, -109.586 to 99.350, 14.676, 30.350. Source hash: `sha256:58cc785c090d515ee61117a5b6ffde5a271e5d44b2d0417dfdbec1ea9b7baf62`.
 
 {"x":"east","y":"up","z":"south"}
 

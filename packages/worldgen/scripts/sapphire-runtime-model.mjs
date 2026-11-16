@@ -176,8 +176,10 @@ function plant(o, x, y, z, detail) {
     const p = [x + 0.7 * Math.cos(a), y + 1.25, z + 0.7 * Math.sin(a)],
       q = [x + 0.7 * Math.cos(b), y + 1.25, z + 0.7 * Math.sin(b)];
     const color = [0.14 + 0.01 * (j % 3), 0.24 + 0.01 * (j % 4), 0.085];
-    face(o, 'foliage', [p, q, [x, y + 2.05, z]], color);
-    face(o, 'foliage', [q, p, [x, y + 0.7, z]], color);
+    // face() orients by winding, and p -> q turns clockwise seen from above, so the upper
+    // facet winds q, p and the lower one p, q to face out.
+    face(o, 'foliage', [q, p, [x, y + 2.05, z]], color);
+    face(o, 'foliage', [p, q, [x, y + 0.7, z]], color);
   }
 }
 
@@ -313,14 +315,18 @@ function retail(o, detail, sky = false) {
         blue,
       );
       for (const sign of [-1, 1]) {
-        let points = [
-          [sign * 24.4, 0.32, Math.min(z, end)],
-          [sign * 24.4, 0.32, Math.min(zn, end)],
-          [sign * b, yn, zn],
-          [sign * a, y, z],
-        ];
-        if (sign < 0) points = points.toReversed();
-        face(wall, detail === 0 ? 'glass' : 'clear_glass', points, blue);
+        const foot = [sign * 24.4, 0.32, Math.min(z, end)],
+          footNext = [sign * 24.4, 0.32, Math.min(zn, end)],
+          eave = [sign * a, y, z],
+          eaveNext = [sign * b, yn, zn];
+        // face() orients by winding. These orders face the overhanging sides out (opaque at
+        // far levels), keep each quad's split, and keep the corner that collapses past the mall.
+        face(
+          wall,
+          detail === 0 ? 'glass' : 'clear_glass',
+          sign > 0 ? [eaveNext, footNext, foot, eave] : [eave, foot, footNext, eaveNext],
+          blue,
+        );
         if (detail > 0)
           beam(wall, 'metal', [sign * a, y, z], [sign * b, yn, zn], 0.19, 0.27, silver);
       }
@@ -455,13 +461,14 @@ function roof(o, detail) {
   for (let j = 0; j < sides; j++) {
     const a = (j * 2 * Math.PI) / sides,
       b = ((j + 1) * 2 * Math.PI) / sides;
+    // a -> b turns clockwise seen from above, so each side winds back from b to face out.
     face(
       o,
       'metal',
       [
-        [0.345 * Math.cos(a), 242.2, 0.345 * Math.sin(a)],
-        [0.345 * Math.cos(b), 242.2, 0.345 * Math.sin(b)],
         [0.025 * Math.cos(b), 261, 0.025 * Math.sin(b)],
+        [0.345 * Math.cos(b), 242.2, 0.345 * Math.sin(b)],
+        [0.345 * Math.cos(a), 242.2, 0.345 * Math.sin(a)],
         [0.025 * Math.cos(a), 261, 0.025 * Math.sin(a)],
       ],
       silver,

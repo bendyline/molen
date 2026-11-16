@@ -78,6 +78,16 @@ function prism(f, role, outline, bottom, top, detail, seed = 0, eroded = false) 
       edges.push(i);
     }
   }
+  // Mapped outlines arrive wound either way. The side normals below point outward only for a
+  // positive area in (x, z), so take their sign from the ring; reversing it instead would move
+  // which edges carry brick.
+  const turn =
+    Math.sign(
+      ps.reduce((sum, [x, z], i) => {
+        const [nx, nz] = ps[(i + 1) % ps.length];
+        return sum + x * nz - nx * z;
+      }, 0),
+    ) || 1;
   const base = ps.map(([x, z]) => [x, typeof bottom === 'function' ? bottom(x, z) : bottom, z]),
     center = ps.reduce((a, p) => a.map((v, i) => v + p[i] / ps.length), [0, 0]),
     rim = ps.map(([x, z], i) => [
@@ -90,7 +100,7 @@ function prism(f, role, outline, bottom, top, detail, seed = 0, eroded = false) 
     ]);
   for (let i = 0; i < ps.length; i++) {
     const j = (i + 1) % ps.length,
-      n = [ps[j][1] - ps[i][1], 0, ps[i][0] - ps[j][0]];
+      n = [turn * (ps[j][1] - ps[i][1]), 0, turn * (ps[i][0] - ps[j][0])];
     if (eroded && detail >= 1) {
       const strip = detail === 1 ? 2 : 3;
       for (let k = 0; k < strip; k++) {

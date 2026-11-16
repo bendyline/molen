@@ -100,9 +100,11 @@ function rock(o, x, z, w, d, h, y, seed) {
     top = r1.map(([a, b]) => [a, y + h, b]);
   cap(o, 'stone', r0, y, -1);
   for (let i = 0; i < n; i++) {
-    const j = (i + 1) % n;
-    face(o, 'stone', [bottom[i], bottom[j], shoulder[j], shoulder[i]]);
-    face(o, 'stone', [shoulder[i], shoulder[j], top[j], top[i]]);
+    const j = (i + 1) % n,
+      // These point orders wind inward; turn each side away from the stone's centre.
+      out = [(r0[i][0] + r0[j][0]) / 2 - x, 0, (r0[i][1] + r0[j][1]) / 2 - z];
+    face(o, 'stone', [bottom[i], bottom[j], shoulder[j], shoulder[i]], out);
+    face(o, 'stone', [shoulder[i], shoulder[j], top[j], top[i]], out);
   }
   cap(o, 'stone', r1, y + h, 1);
 }
@@ -252,12 +254,18 @@ export function buildHouse(o, _frame, lod = 3) {
     berm1 = R.map((p) => p.map((v) => v * 0.6));
   for (let i = 0; i < R.length; i++) {
     const j = (i + 1) % R.length;
-    face(o, 'soil', [
-      [berm0[i][0], P.roofTop + 0.05, berm0[i][1]],
-      [berm0[j][0], P.roofTop + 0.05, berm0[j][1]],
-      [berm1[j][0], P.coverTop, berm1[j][1]],
-      [berm1[i][0], P.coverTop, berm1[i][1]],
-    ]);
+    // Outward edge normal, as in prism(): the point order alone faces the ring's winding.
+    face(
+      o,
+      'soil',
+      [
+        [berm0[i][0], P.roofTop + 0.05, berm0[i][1]],
+        [berm0[j][0], P.roofTop + 0.05, berm0[j][1]],
+        [berm1[j][0], P.coverTop, berm1[j][1]],
+        [berm1[i][0], P.coverTop, berm1[i][1]],
+      ],
+      [(R[j][1] - R[i][1]) * sg, 0, -(R[j][0] - R[i][0]) * sg],
+    );
   }
   cap(o, 'soil', berm0, P.roofTop + 0.05, -1);
   cap(o, 'soil', berm1, P.coverTop, 1);

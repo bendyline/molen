@@ -439,25 +439,24 @@ function build(out, tier) {
   for (let i = 0; i < n; i++) {
     const a = ends[0] + (503.74 * i) / n,
       b = ends[0] + (503.74 * (i + 1)) / n;
-    loft(
-      w,
-      'concrete',
-      [
-        [
-          [a, road(a) - 0.7, -halfWidth],
-          [a, road(a) - 0.7, halfWidth],
-          [a, road(a), halfWidth],
-          [a, road(a), -halfWidth],
-        ],
-        [
-          [b, road(b) - 0.7, -halfWidth],
-          [b, road(b) - 0.7, halfWidth],
-          [b, road(b), halfWidth],
-          [b, road(b), -halfWidth],
-        ],
-      ],
-      [0.55, 0.55, 0.52],
-    );
+    // The deck slab's former loft faces, with roadway, soffit and ends turned outward. The long
+    // sides stay inward-facing: the red fascia beams sit 1 cm inside the slab edge, and outward
+    // sides would cover them.
+    const [p, q] = [a, b].map((x) => [
+      [x, road(x) - 0.7, -halfWidth],
+      [x, road(x) - 0.7, halfWidth],
+      [x, road(x), halfWidth],
+      [x, road(x), -halfWidth],
+    ]);
+    for (const face of [
+      [p[0], q[0], q[1], p[1]],
+      [p[1], p[2], q[2], q[1]],
+      [p[2], q[2], q[3], p[3]],
+      [p[3], p[0], q[0], q[3]],
+      [p[3], p[0], p[1], p[2]],
+      [q[0], q[3], q[2], q[1]],
+    ])
+      quad(w, 'concrete', face, normalFor(...face), [0.55, 0.55, 0.52]);
     quad(
       w,
       'road',

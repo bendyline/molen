@@ -4,9 +4,9 @@
   "status": "completed",
   "reviewedOn": "2026-11-02",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:33edc47460a703b242e3ba94592b939f6ae03f433b15fb36f87e910b27eb25f7",
-  "sourceHash": "sha256:ee9a304299a8099045f3b0841044b0a515cc32ceb37f961e5c7cb60f8e327a95",
-  "runtimeHash": "sha256:b9f33dfb5881882ad6b964488834040a904aa738ce8a54e04c2756a13fbc8876",
+  "inputHash": "sha256:8e967a719d1f7cd00979564e986031d4941172920f2d153926358c511aa79eae",
+  "sourceHash": "sha256:3675cb9cb191c9c114d17a2ce861c38e9f254edb2af733dfb158d95051e337e4",
+  "runtimeHash": "sha256:951282c93410014b507b70f08eec11487aaf4816d75f45ffd6218d5a66ac160b",
   "visualReview": {
     "status": "passed",
     "captureReportHash": "sha256:75402353b8e1bdad97f2484ad6f7393c84206f2b3f4fed24f235637c36c87073",
@@ -23,7 +23,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:2ebb5533dd4197e9a5910183fedab27f6accd5ad62dd37dd243f758f3ced80b9",
+    "captureReportHash": "sha256:9fc3864fc8c5a824b99f0d78410e25dd5aba6d48ec6f32a666a6e38d11750b81",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,7 +37,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:18808c258b3265c497396925085b718e8b31eb98a2dbb6bfb4f2918198c67871",
+    "captureReportHash": "sha256:9ce48537ecd6d535a932c0ab0fc243dbd84e60f2a0f156cc2a6092f371071b7f",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -65,7 +65,7 @@
     ],
     "notes": "All23 current context frames personally inspected: economy/high, noon/late, street/block/skyline, silhouette, both whole views, four actual levels and transitions. Complete body, screened panorama and roof apron/cap remain at every level. Near levels add reveal ledges, mullions/lattice and denser separate stones. No whole natural hill mesh or lower gun-casemate proxy is included. Own original unmasked256m hilltop source field personally inspected. The coarse summit slopes sharply on one side: part of the lower body is buried against the uphill side and a substantial foundation face is exposed downhill. Entire roof/apron and upper panoramic screen remain visible, but the terrain contact is approximate and unsurveyed. Original approximate body frame, field, initial floor and main sections remain unchanged. No flattening, masking, cutout, source-field replacement, vertical fitting or body relocation was applied."
   },
-  "captureReportHash": "sha256:75402353b8e1bdad97f2484ad6f7393c84206f2b3f4fed24f235637c36c87073",
+  "captureReportHash": "sha256:6250be6ee8c3aaed823e711ecab9779fd89580f7c575ba5e2308057fec58c34a",
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:19ceb5ec25783a527bbda1c6d9db92377110281d9b7603e676fa5212668cae84",
@@ -200,5 +200,16 @@
     "Cleared original NPS2013aerial gives whole summit arrangement and station mass; original NPSNovember2025station photo shows concrete apron, dark screened panoramic opening and stone/earth cover. The newer photo supports broad form/material context, not exact2013appearance continuity. No exact2013capture date is certified beyond the source filename; dated2013visualization is approximate. Both exact image bytes, individual agency credits and explicit NPS public-domain policy are bound. Other credited design drawings, contractor report graphics/GoogleEarth backgrounds and interpretive-sign artwork remain unused. No photograph texture.",
     "Own original256m129x129 independent ground field and raw source tiles acquired before floor and main sections; frame, field, initial floor and sections frozen. No masking, flattening, cutout, finished-height fit, source-image fit or relocation of a mapped building. Approximate station-body coordinate was chosen as an original visual geographic estimate before its field. Native summit/footway remains context only, not a measured body footprint.",
     "Four complete authored levels retain whole body, screened opening, overhanging slab, closed rear and entire bounded stone/earth roof. Near levels add screen mullions/lattice, physical slit reveals, more individually modeled stones and rear door detail. Concealed internal rooms, drainage and interior equipment omitted. Historical approximate2013preview/currentWorldEligiblefalse. This associated station alone does not complete the GGRO facility."
-  ]
+  ],
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:33edc47460a703b242e3ba94592b939f6ae03f433b15fb36f87e910b27eb25f7",
+      "previousSourceHash": "sha256:ee9a304299a8099045f3b0841044b0a515cc32ceb37f961e5c7cb60f8e327a95",
+      "previousRuntimeHash": "sha256:b9f33dfb5881882ad6b964488834040a904aa738ce8a54e04c2756a13fbc8876",
+      "inputHash": "sha256:8e967a719d1f7cd00979564e986031d4941172920f2d153926358c511aa79eae",
+      "repair": "The rubble stones' side faces (stone_basalt_raw) and the sloped sides of the soil camouflage cover (stone_sandstone_raw) on the roof were wound inward, so from above the stones and berm read as hollow shells. Root cause: rock() and the berm loop in house-model.mjs passed no outward hint to face(), whose fallback keeps the points' own winding; the rock ring runs by increasing angle and nativeRing has positive x/z signed area, and for both the [low i, low j, high j, high i] order faces the centre. Fix: rock sides now take the horizontal direction from the stone's centre to the edge midpoint as their hint, and the berm sides take prism()'s signed-area edge normal. Points, materials and caps are unchanged; the rocks' non-planar shoulder quads now split along their other diagonal.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
+  }
 }

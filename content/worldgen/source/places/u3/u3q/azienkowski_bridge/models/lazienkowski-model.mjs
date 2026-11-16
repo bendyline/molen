@@ -97,10 +97,19 @@ const interpolate = (p, x) => {
 };
 export const lazienkowskiDeckY = (x) => interpolate(alignment.deckProfile, x);
 const groundY = (x) => Math.max(0, interpolate(alignment.terrainProfile, x) - 74);
+// Every section below is listed bottom-first or clockwise from above, the opposite of the
+// order loft() winds outward; reversing each ring turns the same faces back outside.
+const loftOut = (out, slot, rings, color) =>
+  loft(
+    out,
+    slot,
+    rings.map((ring) => ring.toReversed()),
+    color,
+  );
 function slab(out, slot, a, b, za, zb, depth, color) {
   const y0 = lazienkowskiDeckY(a),
     y1 = lazienkowskiDeckY(b);
-  loft(
+  loftOut(
     out,
     slot,
     [
@@ -126,7 +135,7 @@ function iGirder(out, slot, a, b, z, color, far) {
   const y0 = lazienkowskiDeckY(a),
     y1 = lazienkowskiDeckY(b);
   for (const offset of [0.2, 3.8])
-    loft(
+    loftOut(
       out,
       slot,
       [
@@ -161,7 +170,7 @@ function riverPier(out, slot, x, color) {
       [-2.1, 12],
       [-2.6, 10],
     ].map(([a, z]) => [x + a * s, y, z * s]);
-  loft(out, slot, [ring(y0, 0.92), ring(top, 1)], color);
+  loftOut(out, slot, [ring(y0, 0.92), ring(top, 1)], color);
 }
 function approachPier(out, slot, x, color, far) {
   const top = lazienkowskiDeckY(x) - 1.65,
@@ -190,7 +199,7 @@ function pathSlab(out, slot, points, width, depth, color) {
       [p[0] + nx, p[1], p[2] + nz],
       [p[0] - nx, p[1], p[2] - nz],
     ];
-    loft(out, slot, [ring(a), ring(b)], color);
+    loftOut(out, slot, [ring(a), ring(b)], color);
   }
 }
 function railing(out, slot, points, cfg, color) {
@@ -332,7 +341,7 @@ export function buildLazienkowskiLevel(out, level = 'master') {
       // Wearing surface is a separate shallow slab above the structural deck.
       const py = lazienkowskiDeckY(x),
         qy = lazienkowskiDeckY(q);
-      loft(
+      loftOut(
         out,
         S('road'),
         [

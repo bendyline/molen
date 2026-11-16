@@ -1,36 +1,43 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.temple_of_caesar",
-  "sourceHash": "sha256:276ee0ca3eaac4103a20d201bb49d2979b9af668bd3765335d5f23b8da0ddd32",
-  "runtimeHash": "sha256:e5e7dfca463fd0d2fc222114ca6e32d8c97ba2d3ece5b2033419d85aa5b60ceb",
-  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.temple_of_caesar",
+    "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04"
+  },
+  "sourceHash": "sha256:f318cdce71130f20e92f08ccb4a12cef7e739e27d0d2618191141fd9b0e65736",
+  "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5312,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:d713114741e2e242bf49418e9bfa52cb17dd4e0a4a8e90982ae9131d38185c7d",
+      "hash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
       "bytes": 34020,
-      "gzipBytes": 6441,
+      "gzipBytes": 6505,
       "triangles": 320,
       "cpuBytes": 32592,
       "gpuBytes": 32592,
@@ -40,9 +47,9 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:87ca34ea7cced3c41be155de4af70b21e9497a497dc970b1c5b8ec2e07a76fa7",
+      "hash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
       "bytes": 128004,
-      "gzipBytes": 39652,
+      "gzipBytes": 39678,
       "triangles": 1315,
       "cpuBytes": 121728,
       "gpuBytes": 121728,
@@ -52,9 +59,9 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:085b2d39f25d40319a92649aca58e14aefe990a5625c8ff9adf5646eafc1aa7c",
+      "hash": "sha256:3bc1270ef3ef4712fb5dc3f003bfc8b96f5486d457d6c939eee4f5e00820ab22",
       "bytes": 207208,
-      "gzipBytes": 68545,
+      "gzipBytes": 68498,
       "triangles": 2117,
       "cpuBytes": 200916,
       "gpuBytes": 200916,
@@ -64,9 +71,9 @@
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:bd97d05f52f174314369d01e7c3bb8f62c545fca61a0ba6ea6cb6ab74a3dde01",
+      "hash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
       "bytes": 274304,
-      "gzipBytes": 95092,
+      "gzipBytes": 94652,
       "triangles": 2835,
       "cpuBytes": 268008,
       "gpuBytes": 268008,
@@ -90,8 +97,11 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:00519a359f79970141647c4245701e1e4384918d0dbc9842854f802776d336f8",
+      "hash": "sha256:5bbc9a1908e9d6ca21ee0c05d20ef8b5dc68e36ecde6928c6ff9708a524b1606",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -125,14 +135,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:4ef284c37269ada9383763b83b434cf4b189755f042732227a2c98fe052ee90d",
+      "hash": "sha256:436b0ce20b9fcc2af7f2d837b549a5c789306ad2ec2729a09e5677805ab163fd",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -166,14 +187,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:9af5cbc3d51490723402e9b91d56cfe20973e340ca4903493431e621fd700026",
+      "hash": "sha256:242ebcfc5f48a10a586c3f665831380f926152a64fa5c5cae9a49492d4aa5a7f",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -207,14 +239,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:075d55b5302fdf7f6ea5de076e6e4247aaf6343561c960f3dd680aed7e278b05",
+      "hash": "sha256:910f29e0f3bd0bec082b518efe9878cca49b36e5b860e3fe0f659fe6d8d1b432",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -248,14 +291,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:a2e646527fd41c6646b48e21fa606f50974a98dfb99d2424cb1e195e71a4f303",
+      "hash": "sha256:6d941becc72ae02a562d21f7f0de302318b30bcf032f4a288f45511bc49e9007",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -289,14 +343,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:079c1b9bb4a16083373b999d9667a2d785060a89e847abd3dfa24037511bbaa8",
+      "hash": "sha256:00003ab200c31b1e038834714ee57a2aed8862bda8267d0030e41e9077de9ab9",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -330,14 +395,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:abcf65a5173a9347c5628380badc44f71d5bbd8b3fbf752921d1cd4ab314604c",
+      "hash": "sha256:d3125aa26db1f3238c7448a3f8513af560c0a47fcc2edfa7dd7b826566369a0f",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -371,14 +447,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:25ece8daf3b1aa0b921aa7dc470982583157773aa32af9ad86e17619a3dfafd8",
+      "hash": "sha256:f7b140bc6685025115a586ca7ada4b4993451d53c50a882602c1f11126f69486",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -412,14 +499,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:149209d75ad489043f0a3d4c1e521ce1341ebfdfc9ead563c569f6e539908a38",
+      "hash": "sha256:52da1b236bf32ba11dec0c42c4961885c9055b1282bce7873866404a362eaa6e",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -453,14 +551,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:fae8dbe3a60aac4c21a71852d83dd15c25f95b7305751fbb614697aba79ff664",
+      "hash": "sha256:de0127e867d17ac547aab2d26ad317cda100ac0a25b410670b2b5ee1e2deb33d",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -494,14 +603,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:28f6f2cc1e4213d9cd8a842ce30add0cf354c478669ee69769018b6e5dda2b5e",
+      "hash": "sha256:5c0a191b5a7a3e25ea92660620e36a4363c9f8bc020aefb0607717b6af14a696",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -535,14 +655,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:81d8a9fbb8d82c4ac081590a02d5d70493b07012970152100ffa574f0ffe713c",
+      "hash": "sha256:36df351017410ae6fc2d2a1880e4efd2fd44540edd310920db0b1ec690499ea5",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -576,14 +707,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:e2f323521cf7808617c2957424086b5cc16eb3afab56199e858a50bb5253f982",
+      "hash": "sha256:51553d1f68b2d7099448e6a8b68562beea5ca3ce1edde11e2ae67c7b77559ff9",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -617,14 +759,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/northwest-shelter-altar-and-curved-recess.png",
-      "hash": "sha256:a4a02933da05f493ebc4352103e50dee8e297d92d7c3a9c24b5faa31c2404f5a",
+      "hash": "sha256:4b93981ea19d806f7fd78f463c2ab305e146ee24b8acfbd25d859dd5888fefa8",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -658,14 +811,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/palatine-view-of-separated-ruin-cores.png",
-      "hash": "sha256:17a49be800bc91ca01587ab4b653ee22fc479d0f6a66175a27bf95fc30477f9f",
+      "hash": "sha256:4d43428f80b798ec3c61e64b0f14e08addd64215449f621fe40b84d0118294d0",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -699,14 +863,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/canopy-timber-understructure.png",
-      "hash": "sha256:59d681412f9f997426c444b03e99f9eb72093842327320596a41602c8452d05f",
+      "hash": "sha256:f6536264590fc335ace7f5c42116950c26d5440a94fe1ab25fc6fcdf27eabe3d",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -740,14 +915,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/podium-and-rough-brick-concrete-cores.png",
-      "hash": "sha256:26160eb4d366c9fab1d0e77b4f50a3f2cad1356fb662e5ed553a3c88ad3062be",
+      "hash": "sha256:6802560a7ad0b53e37c8cf1551759cb50d5595ae29cacbf47ce54e0f30214f3a",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -781,14 +967,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ruins-skyline.png",
-      "hash": "sha256:001f1f31bc56dbfb68aa8a190972e7c238b91f8dcf8d3b1f1a4c54132f9b6516",
+      "hash": "sha256:ffa0787722d7bca1dde11f608d9cb2178c596c8721cda01691efad7879b1539c",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -822,14 +1019,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ruins-district.png",
-      "hash": "sha256:61357d8533c70e004c11c92ba9dccdc9ee4bb7364f7304a96feb8979d83f95a6",
+      "hash": "sha256:a422257509921fa5d8a49938b967f2734ae0a8d881d8deef51a01674c5651361",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -863,14 +1071,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ruins-street.png",
-      "hash": "sha256:089393d85d82ec33aa3ae2bc6ae69a36fbaf82279d005c96e9535d5a364ba778",
+      "hash": "sha256:77bc6ba3ef00f7e4613fe9351a90b518e2e5a351871a02049d87246459ff7b82",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:3bc1270ef3ef4712fb5dc3f003bfc8b96f5486d457d6c939eee4f5e00820ab22",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -904,14 +1123,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ruins-closeup.png",
-      "hash": "sha256:e0759750d1ef1aa0ea98a64be6a0497a96404b2694e050a0d65a09b9a8f0a2e4",
+      "hash": "sha256:c8302d95900b7eca1e70e30321b92b3a0abe101a801685889419984a1aa7f638",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -945,14 +1175,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:fef726deac2aea287bf786e757e68febfd2b858d136a1b300ef0366b79de87f1",
+      "hash": "sha256:4121a687c0c878088733b3a8a6c389d615062fa8938d1c49739aefbbe001ec3c",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:d1f8a9ffb50972d3dc9016e2469d17d58b69d974b72fe2114bb8a2f9e75a937d",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -986,14 +1227,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:079c1b9bb4a16083373b999d9667a2d785060a89e847abd3dfa24037511bbaa8",
+      "hash": "sha256:00003ab200c31b1e038834714ee57a2aed8862bda8267d0030e41e9077de9ab9",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:8935d49df938debbfbae86e7274048c6c0d27c2ba04768696c533fa5e0a14cdb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -1027,14 +1279,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:14230b39b4c973fd59fb77f3a2c75c395ffa4662ea17706074fc97acf1c44a60",
+      "hash": "sha256:2cbe0db8c61428394166c69b934382fcc2c69cd960caec628b5be053b07d9484",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:3bc1270ef3ef4712fb5dc3f003bfc8b96f5486d457d6c939eee4f5e00820ab22",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1068,14 +1331,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:6786a0fe56a22467f1475f679f14dacf194eb224c347901e65a15be2ed6a65a5",
+      "hash": "sha256:7b18a367f029aa6625296e710ffc9fc78ed7c45fc5e00459c5f53e39ead275ea",
       "state": {
+        "assetId": "molen.worldgen.structure.temple_of_caesar",
+        "runtimeHash": "sha256:8d4c1751a0df92d37bfaa83674ad74782115be216751c25d6089706a125afb04",
+        "lodHash": "sha256:6341f1be1851ee0e7fb9068da16d786be3ce71a389fee6632a5887b3f6c911cf",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1109,8 +1383,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1.2,
+        "reviewCenter": [
+          5.5613,
+          2.7084,
+          0.3324
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem"
+        "reflections": "none"
       }
     }
   ],

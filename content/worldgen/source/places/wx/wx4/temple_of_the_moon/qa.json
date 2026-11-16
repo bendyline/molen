@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.temple_of_the_moon",
   "reviewedOn": "2026-10-19",
-  "inputHash": "sha256:d30b456093e2be9f015e7e24b927bb14c83a7623514685d103e07f332accd90b",
-  "sourceHash": "sha256:f0a82e615a606027f65d289c269f0994f1cf656a0901d3cd22a1e9fc08fd9848",
-  "runtimeHash": "sha256:d608070f9f14017c34827cee71aa5458b667f05f76f9c5bb498337b3ae4f77cf",
-  "captureReportHash": "sha256:43e63dadb4bc58421b67ba31c31ac65f0de1a719f4044ff228fc3863359962cb",
+  "inputHash": "sha256:1445f86732c023d8fb77636d75f7edf7061eee3ed9624dc2bb4f68d5af14c165",
+  "sourceHash": "sha256:58cc785c090d515ee61117a5b6ffde5a271e5d44b2d0417dfdbec1ea9b7baf62",
+  "runtimeHash": "sha256:9cdeb76a46705d0cc4c37b2101da62bdecda87f6d34191c8ae63c96c12ab641a",
+  "captureReportHash": "sha256:ac53313508e934c344845229178a35c035fb22340086609a57810a348cbab861",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -35,7 +35,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Five existing256-square graphs: plaster_lime, stone_limestone_raw, tile_ceramic, wood_plain and metal_bronze_cast. Eleven authored roles/tints merge to at most five runtime draws; plain wood grain is reused under red/blue/green/gold paint tints. Metric UVs and linear tints, each graph loaded once, zero embedded images. Master6490triangles/782216bytes. Four levels899/2846/5914/6490; initial371324bytes. Separate GPU streams and matching CPU/GPU accounting; eviction releases model geometry. Flat shared stage at anchor datum can bury negative-offset lower rooms; source/native terrain views show complete buildings with these same shared graphs.",
-    "captureReportHash": "sha256:8cc2a860b36588b90fc24fa194dc3ba5dc1edf5c1bbfdfa4d8561f7e6ba23693"
+    "captureReportHash": "sha256:0967c7a37ad9ce44bf6e66f082b1bc669a1b178ffd36fe7ead9590c2a8bdc15e"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -67,7 +67,7 @@
       "medium-fi/transition-closeup.png"
     ],
     "notes": "Inspected current noon/late/economy/high, context/silhouette, four levels/transitions and four detail views. Skyline retains double roofs, actual bell/central gate passages and three blocked stone portals; closed side gate arches and hall door fields simplify at distance. District adds hip-and-gable roofs/ridge scrolls and painted beam bands; street/close-up add lattice/studs and denser ornament. Palette remains coherent. Flat shared stage hides much of the lower hall and gate because their floors lie below anchor datum; terrain-bearing source/native and medium-fi views, plus actual approach/footing probes, establish contact. Independent procedural buildings, landscaping, paths and water are host context.",
-    "captureReportHash": "sha256:84ad853a569881917c02a08b9fc2c001e6a6e779664c17d76a6726f2d97d1eab"
+    "captureReportHash": "sha256:5b27c843da7b5111322256d88e0bc669d9274a8ccab34a6ee0f151550765ba31"
   },
   "geographicReview": {
     "status": "passed",
@@ -608,5 +608,16 @@
     "Ordinary-picture/map estimates: bell tower upper roof reaches about15m above its local floor; ground arch3.8m wide/5.4m tall, lower red chamber6.0m, upper chamber from7.0m to10.9m, two green roofs. Gate eave6.7m/ridge9.8m with three approximately4.2m wide arches. West hall eave4.5m/ridge7.3m and six lattice door panels. Lingxing center stone portal5.5m high, sides4.8m, gray blocked panels2.9m; inner wall3m high, short red outer walls3.2m. Absolute heights, painted/roof/door inventories, inner enclosure dimensions and hidden rooms remain approximate.",
     "Retain original pinned standard6m Mapzen ground, native park paths/water and all independent buildings. Each occupied building uses a level floor just above its sampled roof-envelope ground maximum, individually buried footing and narrow graded approaches. Enclosure footings/coping follow the sampled ground. No broad park slab, terrain flattening, water/ground cutout or invented reconstructed altar platform. Coarse DEM cannot resolve paving/door thresholds; absolute floor levels remain approximate.",
     "No intact altar reconstruction. Four2009 ordinary photographs establish standing heritage forms; later changes and hidden interiors are unverified. Gate/hall historical names are approximate, and Lingxing portal/enclosure allocation lacks separately mapped footprints. Modern transmission mast and southern park pavilions/landscaping remain host context. No copied text, sculpture or image atlas."
-  ]
+  ],
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:d30b456093e2be9f015e7e24b927bb14c83a7623514685d103e07f332accd90b",
+      "previousSourceHash": "sha256:f0a82e615a606027f65d289c269f0994f1cf656a0901d3cd22a1e9fc08fd9848",
+      "previousRuntimeHash": "sha256:d608070f9f14017c34827cee71aa5458b667f05f76f9c5bb498337b3ae4f77cf",
+      "inputHash": "sha256:1445f86732c023d8fb77636d75f7edf7061eee3ed9624dc2bb4f68d5af14c165",
+      "repair": "The enclosure walls drawn by wall() in moon-temple-heritage-model.mjs (the four gray inner-enclosure walls and every red outer-wall run, including the two gate wing walls) faced inward on all four sides: wall() offset its footprint quad to +n of a->b first, but gave each side the hint (z_j - z_i, x_i - x_j), which points back across the wall, and emit() turns each polygon toward its hint. From outside, those 96 triangles were back faces, so the GPU culled them and the walls read as see-through slivers. The side hints now use the opposite sign, (z_i - z_j, x_j - x_i), and the side quads are passed as lo[i], hi[i], hi[j], lo[j] so each splits on the same diagonal as before; vertex positions, materials and the coping faces are unchanged (verified triangle-by-triangle: same 6,490 triangles, 96 reversed). Above-horizon see-through scan: 55.2% of the model before (plaster_lime walls 83% of part, stone_limestone_raw trim 79%), 0.08% after in source and all four runtime LODs.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. siteIntegrationReview frames and modelHashes still describe the previous model and were not recaptured; vertex positions, placement and terrain fit are unchanged."
+    }
+  }
 }

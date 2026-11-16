@@ -1,36 +1,43 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.bank_of_america_tower",
-  "sourceHash": "sha256:646fdb37439b9e6b708a91214f03919d595d3b4c6f42202adebcbeced99e4225",
-  "runtimeHash": "sha256:64121f095d78c3131e74d48fee13f71b0aea4a324bb61e91e1099393cc5b44e6",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.bank_of_america_tower",
+    "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b"
+  },
+  "sourceHash": "sha256:e0d5fb852e0c300a5e12348d5b7189ac57d71cfdb8288e4090c917f144f570c6",
+  "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 12752,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:d38268bf960d112c5da53184027cc77cbb60227fbcad034ef5d7cc1ab5ec45f7",
+      "hash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
       "bytes": 64896,
-      "gzipBytes": 10984,
+      "gzipBytes": 10976,
       "triangles": 724,
       "cpuBytes": 63492,
       "gpuBytes": 63492,
@@ -40,36 +47,36 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:4d8957f5134842b4c286d7908a1cbd9e85afdfaeb0e050c2d23ae20a8be3ef08",
-      "bytes": 247068,
-      "gzipBytes": 59231,
+      "hash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
+      "bytes": 247140,
+      "gzipBytes": 59254,
       "triangles": 2897,
-      "cpuBytes": 237524,
-      "gpuBytes": 237524,
+      "cpuBytes": 237596,
+      "gpuBytes": 237596,
       "errorMeters": 1,
       "drawCalls": 8
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:f838038c67feafddc975c6679ea8f8d82adbbb2475da6f397e1f934923ec737e",
-      "bytes": 985692,
-      "gzipBytes": 252862,
+      "hash": "sha256:f1b18072312fb00200aa53e26a03a27b98e787ca0d893d15b3164f78827e5d9c",
+      "bytes": 985836,
+      "gzipBytes": 252916,
       "triangles": 11227,
-      "cpuBytes": 976112,
-      "gpuBytes": 976112,
+      "cpuBytes": 976256,
+      "gpuBytes": 976256,
       "errorMeters": 0.4,
       "drawCalls": 8
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:2328b3be3e5157b6b1ebcf6482f68a6eddbf9b58fb4f471001c8dba2f979180b",
-      "bytes": 1435708,
-      "gzipBytes": 354970,
+      "hash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
+      "bytes": 1435852,
+      "gzipBytes": 355065,
       "triangles": 17261,
-      "cpuBytes": 1426100,
-      "gpuBytes": 1426100,
+      "cpuBytes": 1426244,
+      "gpuBytes": 1426244,
       "errorMeters": 0.01,
       "drawCalls": 8
     }
@@ -81,8 +88,11 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:a52c95fbc806dfcd78b9cbda2676cfd1fa87c87c1aaf037722b3d8e174720b7b",
+      "hash": "sha256:5cd7e121fee5091c46852ce3ddc59a51e5b1acf3b7f769de04a409ff688b1134",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -113,13 +123,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:ff69c7572e4aa7a27fadd8d4d5d78606d03a353fd461e0b5db6a7f4f385317ba",
+      "hash": "sha256:261d04814d13f253c86cf2028222c8a8e90c138cea5e9679a85a60f93e39c3d6",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -150,13 +172,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:0555bc9449710c67095ff04d16f49709998e3c1402a9d1fec4210b1907d63b74",
+      "hash": "sha256:b22dd8866a501e561db12da59dd36e7a8452d25855b759fc69c5d5e3357ff328",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -187,13 +221,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:21cc54b3790b88ffec99cf37a1c0050c6656f54ee61b788e87ba6643b32549f6",
+      "hash": "sha256:a24d802cae9ca4cea0cc6e8e025c2526494803aac404c896e41a3cbdb30e9a5e",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -224,13 +270,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:0e308aadc2997dca5267da16de3c023c761ec5e1cc06535ed67a3f9d60cec82d",
+      "hash": "sha256:3f613c98d46fd444706cdd573c46073141aa9091e192727cfe0f8b2173c681a9",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -261,13 +319,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:d85ae4bd23caf572e53bf7bf11181c886bf9a134176ad14fa9f220b873c4f35f",
+      "hash": "sha256:bc011120e420648c83c6e8cc36671a1d24481dc67445a98a36301d1891c6fd9b",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -298,13 +368,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:ba868f38e7f5d150e4b1993acf653d6fad72e94d4876ffc5fb56cbc23e811b13",
+      "hash": "sha256:80a7c73763278ec982648f78d7116b15c0731bad86f5e4a4ad58a32cff7577d3",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -335,13 +417,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:ca080065173e41b4e0edcd97b49d1e0cac879fc123f908a118773c9b464fc80d",
+      "hash": "sha256:84b260624bdca020d657ad9766a386d292ae2ce058b114896020b76ce5c08cc7",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -372,13 +466,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:4b990be6b821f3bb062647ab23e7c2e49ccf9d4425a8b82bb6ef2adb13b0dc46",
+      "hash": "sha256:a85d5f8de365364b0313d28a72b43ea1ba615ccaba1a6c21f4efee11b9f282f4",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -409,13 +515,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:997d744cdf810962db4a4f3f7c5e16040a7a96781d63c68db67683758f75ce4e",
+      "hash": "sha256:85a3e4919e444ef230b839b0c6787ac17decf2d8fd5c4aeace6941a6252c5daa",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -446,13 +564,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:72d0a78e8f22bf0d287f7469e1ae2efba80eb6107c419b68070df78597dd7e8c",
+      "hash": "sha256:9e55739bb2a979d2eb83854b38cba99fb1e69bcc109d7740614f0138b272ae17",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -483,13 +613,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:148281023f23e2126195e5efae71370ee3a92bdd85f54ec98650281de6f317bd",
+      "hash": "sha256:a42410e6edfb1a8b15e31013bf47ebc661a5a79b755e74d320f0db744a509866",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -520,13 +662,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:a1054c56513ac9e90ef9fd483c5acea82559ed2114825ec36d1fd655069943cc",
+      "hash": "sha256:c8e3eb198332d0c6a63f14ca359cd51527ec5655be52890a68c7849812c4b962",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -557,13 +711,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crystal-facets.png",
-      "hash": "sha256:9a9c1452e409204323c0d11bf4842994f2193ea26dfb850f9316434d66432e02",
+      "hash": "sha256:3985eff832ae62aa4b3854c78859751f4cd2498657f73fa245c1f7df216941bd",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -594,13 +760,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown-screens.png",
-      "hash": "sha256:4006be1b14f2dc8c65a24515cedc9c7739cf5c77011c9fad6d8416bfdbbef09b",
+      "hash": "sha256:8779243b5ee255137cabba700891469f0fe4ae2b305887ad6ea5611695d28db1",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -631,13 +809,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/spire.png",
-      "hash": "sha256:0f8e3580f0f1e6fab62a53621ebb08f4719ffa070a6431109241227de9579f84",
+      "hash": "sha256:af6a4fc3b75472f4e0416aa05422ffd10e32bff95f1f14501355f7291a9a8711",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -668,13 +858,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/terrace-and-lobby.png",
-      "hash": "sha256:2ebba53294583b8daab389c59e3c63be465d706acdfbf55dfd99b62540242b8b",
+      "hash": "sha256:c4ef8d3fed1db27f275c6c33faed71670fadd6c4807821b2349b4eb807246817",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -705,13 +907,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/retained-theatre.png",
-      "hash": "sha256:a953e2a8fec55160512c565a302d04eaef56fbe8e54de0b3c82546520550fc34",
+      "hash": "sha256:61ea7226353b7aa74824f54c50bcd54322b4c5d55bae44907a228973dbcba3b2",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -742,13 +956,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:284a27b4da619a05c35a3be8a3c433b24e2b9ade756c068df3827d9bfec5bc98",
+      "hash": "sha256:b211a4f3bdc80f8310d9aa2fdc9a8faa58988a1d5c5feca85443be395cce9ea4",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -779,13 +1005,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-reviewed-complex.png",
-      "hash": "sha256:b985662faec89f253d0ee85c839d3ad1fa41c47b1191e842a7e4ecf08376edc4",
+      "hash": "sha256:5a77e9a0e73010254b3c111a8de3f02a8e178350aa180bdbf98996b935d60de4",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -816,13 +1054,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bamboo-openings.png",
-      "hash": "sha256:6030811e43b05d4a6436dec366cffaead38cac6d14d1f50f53dd23d11a462416",
+      "hash": "sha256:36927e797ea424668265470ff13a51209fbcad9cf50129206e3784aacda502f7",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -853,13 +1103,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/low-planted-roof.png",
-      "hash": "sha256:2ebb395d75600133332272240d3120d9587c2b87a7758f39a0e7e79803d1d8ce",
+      "hash": "sha256:cd9213b043aa37fa129621a8075e322c0bf1e5a94a7b517335fd07ea54ddf9f8",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -890,13 +1152,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-complex-skyline.png",
-      "hash": "sha256:e5cb19d01ffa87eea5056ca3c992813a746588082992e5b4eb42be54123c9e40",
+      "hash": "sha256:117e33aee63d615a5395d1da80e641fcf7236d9b23a35a1c116688387fbc03ce",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -927,13 +1201,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-complex-district.png",
-      "hash": "sha256:7ff7e4348c531da5904f073eed892a02557fc39074ac4cd4299f35d0d1c455b1",
+      "hash": "sha256:fa144b9897847085894f881754cea0283af796c00af6e54e573f99390a8e96b4",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -964,13 +1250,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-complex-street.png",
-      "hash": "sha256:4600fda4cf6777d76e83ce3bbd8a7cb26e82dcb79203587e46ca3cc98fce567c",
+      "hash": "sha256:12c6f0e256082e6ebc07c989544253672e25299be04daf0bca112a2496a255bd",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:f1b18072312fb00200aa53e26a03a27b98e787ca0d893d15b3164f78827e5d9c",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -1001,13 +1299,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-complex-closeup.png",
-      "hash": "sha256:b985662faec89f253d0ee85c839d3ad1fa41c47b1191e842a7e4ecf08376edc4",
+      "hash": "sha256:5a77e9a0e73010254b3c111a8de3f02a8e178350aa180bdbf98996b935d60de4",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -1038,13 +1348,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-theatre.png",
-      "hash": "sha256:d051561ea097d7bed89b1b3231fb4e2ce57c3fe24fc0a105960aff0bc4beed32",
+      "hash": "sha256:05a61be9bf335fe96d1e053a4750cf9e38ab1519a6537ff0d648ab00a66cd814",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:f1b18072312fb00200aa53e26a03a27b98e787ca0d893d15b3164f78827e5d9c",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -1075,13 +1397,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/close-bamboo-openings.png",
-      "hash": "sha256:6030811e43b05d4a6436dec366cffaead38cac6d14d1f50f53dd23d11a462416",
+      "hash": "sha256:36927e797ea424668265470ff13a51209fbcad9cf50129206e3784aacda502f7",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -1112,13 +1446,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/district-planted-roof.png",
-      "hash": "sha256:149fe757af8647744db2f2e14baf919d83651b4f365026c114a306ef667f82d2",
+      "hash": "sha256:a8b7d079becdf626f00688ce151ea4fc4a0161faf5c7011c8c70028b100a6530",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -1149,13 +1495,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:6b146b371356125c6d6a9f1a1f815b20f0bf59d4e53fe6cf128f21a389860632",
+      "hash": "sha256:3158f865bbeb2adcb050610a08a1cbbdbacaff40c22d7eb4dd9ec71bcc65d7ab",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:db6d5e390cb26eb19e5f0d452a6146da9c85c24238a4c407e504e78d543d6871",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -1186,13 +1544,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:d85ae4bd23caf572e53bf7bf11181c886bf9a134176ad14fa9f220b873c4f35f",
+      "hash": "sha256:bc011120e420648c83c6e8cc36671a1d24481dc67445a98a36301d1891c6fd9b",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:2cd383f1d7c038ce51c5f655cbe372e5959c7cc2042cdc434c94c8ebc687e87c",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -1223,13 +1593,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:124cd9da57dffd843cc1408727c6f796bc8a212eb4534899fe8a32666a7f0cfa",
+      "hash": "sha256:9a11c0f3f11ab1ad87d18aef2f453bc3c0be60a1097dc8c1e18eef15bfaa2aaf",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:f1b18072312fb00200aa53e26a03a27b98e787ca0d893d15b3164f78827e5d9c",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1260,13 +1642,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:d16575f6563bdb858b50c82b7b3da61bef2a7cd8b244d102b2d6f2055e59601e",
+      "hash": "sha256:1a46dc2040dfff2326233eaec33d54d468076fe049ad17ee8eca77244eb7d589",
       "state": {
+        "assetId": "molen.worldgen.structure.bank_of_america_tower",
+        "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+        "lodHash": "sha256:3d409a7926c61b26ac16f9dac7e3a59abe815a78048f4894b7f27b774f2149c2",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1297,6 +1691,15 @@
         },
         "neighborStyle": "molen.worldgen.catalog.brownstone",
         "contextScale": 4,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

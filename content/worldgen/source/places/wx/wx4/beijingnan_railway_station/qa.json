@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.beijingnan_railway_station",
   "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:874cdb4aab266aafe93d4960bb09948e0adba75ef890212cf4aadd84b2e7e7b0",
-  "sourceHash": "sha256:b8b1fb58e928cbf62da1cd40a05cb1fb94968580d8f5082b14930e349c99e8d0",
-  "runtimeHash": "sha256:4dbcfe88db94d51e0f183387a03f4ac461ad0310c14a71a11be0d50282d0d6b3",
-  "captureReportHash": "sha256:24d1b9030a9dd656b3f7015db105f60a84ce8fd57f8efe7d336f1f0681473a93",
+  "inputHash": "sha256:509011b63dd6bc20a726915619dec0a065d3e69843d77b68c015bb4912fcec74",
+  "sourceHash": "sha256:ba7cb20e40a19aa199255ff7092141283e2566122b9fd3dcbc544501ec22df09",
+  "runtimeHash": "sha256:ad34e30061dc523f5168b15df3998ede1c29ad050ccc1c6015cfabf005b61acd",
+  "captureReportHash": "sha256:89d6038d8772c9c6e9ebc90a039c1529f92a3fd3976f55ccc40bd151301c4bcc",
   "notes": "Whole individual Beijing South passenger station: complete mapped oval roof and both curved entrance fronts,rolled eaves/soffit and roof bands,raised transverse concourse,attached curved approach deck sections and supports,all thirteen whole native platforms and their connecting stairs. Preserve independent buildings,streets,rail lines and water. No blanket oval floor or terrain opening. Only ordinary whole-roof and southern-front pictures,current standard PMTiles and unchanged global viewer terrain. The whole oval layer2 roof is not a ground floor. Exact heights,roof-band profile,hidden facades,internal concourse extent,rail clearances,approach-deck road joins and threshold/platform grades remain explicit medium-fi estimates. Only two closed entrance crescents receive occupied-floor masks;the central railway corridor remains open. Independent buildings,roads,rail lines and water remain separate. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
   "visualReview": {
     "status": "passed",
@@ -70,7 +70,7 @@
     "status": "passed",
     "inputHash": "sha256:874cdb4aab266aafe93d4960bb09948e0adba75ef890212cf4aadd84b2e7e7b0",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:c813b9b3563a135d7caa064fafbbdcdbd86a2b408f1d7b209a04f34ab3b37a8d",
+    "captureReportHash": "sha256:22f63142c62d2a372a56a5d5bd27b6b9a28ed069ff36aa93aec952fc8822d9dd",
     "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
     "placementHash": "sha256:850aa15458ac0c0b683598cf65225262b9d965c71a496858cbc9b46c57772a94",
     "materialGraphs": {
@@ -1047,7 +1047,7 @@
   "mediumFiReview": {
     "status": "pending-native-terrain-fit",
     "inputHash": "sha256:874cdb4aab266aafe93d4960bb09948e0adba75ef890212cf4aadd84b2e7e7b0",
-    "captureReportHash": "sha256:fb7d71556eb53ca05af2161e8b52ae90f358df6dba5326b15df68dfae8ebb210",
+    "captureReportHash": "sha256:ba3beec3db1033ad4e8108cfdf03369d1a2a09a75f69e788fe27d1a6c1c12ea5",
     "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
@@ -1393,5 +1393,16 @@
     ],
     "initialBytes": 371720,
     "notes": "Master 60316triangles/7241316bytes. Four source-authored runtime tiers 844/3252/13736/23848 meet1k/4k/16k/64k caps with at most5near draws. Initial two levels 371720bytes;closeup 2223948bytes. Four focused tests pass: exact source/import/input pins,signed physical identity,13platforms and actual occupied floors;whole roof crest,raised concourse,closed floor crescents,open train corridor and complete13platform/stair connections in six GLBs;production one-component replacement preserving553exact independent footprints,roads/water and one off-origin terrain datum;isolated exact four-tier rebuild,existing shared graphs,zero images and separate GPU streams. Six Khronos-clean GLBs;285isolated draft probes also passed. Scene validation/30ticks pass,hashbc6475dd2f5646ac665aa87bf67b67500a6859d4680d9caded3d9df508c2c1fe. Physical-device/dense-city timing and numerical LOD errors remain unmeasured."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:874cdb4aab266aafe93d4960bb09948e0adba75ef890212cf4aadd84b2e7e7b0",
+      "previousSourceHash": "sha256:b8b1fb58e928cbf62da1cd40a05cb1fb94968580d8f5082b14930e349c99e8d0",
+      "previousRuntimeHash": "sha256:4dbcfe88db94d51e0f183387a03f4ac461ad0310c14a71a11be0d50282d0d6b3",
+      "inputHash": "sha256:509011b63dd6bc20a726915619dec0a065d3e69843d77b68c015bb4912fcec74",
+      "repair": "The two-level curved facade glazing round the oval (window_grid) faced inward, so from above the glazed rim read as a see-through band; the district level's horizontal facade bands (metal_painted), the edges of the four transverse approach decks (concrete) and the platform stair risers (concrete) were inside-out too. Root cause in models/station-model.mjs: facade() built its glass and band quads bottom-to-top along the positive-area oval with no hint, and Q()/T() then keep the points' own order, which faces those quads inward; slab() hinted [dz,0,-dx], which is outward only for positive-area rings, but approachDecks() passes [a, b, B, A], which has negative area; stair() risers had no hint and their order faces up the stair (-X). Fix: the facade glass and district bands take the outward edge normal the band offset already assumes, slab() signs its edge normal by the ring's area, and risers face +X toward the stair foot. Each triangle is only reversed, so points, diagonals and materials are unchanged; model-brief.json's expectedDraftMasterHash pin moves to the regenerated master.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. siteIntegrationReview frames and modelHashes still describe the previous model and were not recaptured; vertex positions, placement and terrain fit are unchanged."
+    }
   }
 }

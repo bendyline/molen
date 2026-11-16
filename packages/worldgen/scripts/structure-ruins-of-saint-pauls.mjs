@@ -36,6 +36,9 @@ const rect = (x, y, w, h) => [
   [x + w / 2, y + h],
   [x - w / 2, y + h],
 ];
+// Positive when a facade ring runs counter-clockwise seen from the front.
+const area = (r) =>
+  r.reduce((v, p, i) => v + p[0] * r[(i + 1) % r.length][1] - r[(i + 1) % r.length][0] * p[1], 0);
 function tri(o, s, ps, n, col = C[s]) {
   if (normalFor(...ps).reduce((v, a, i) => v + a * n[i], 0) < 0) ps = [ps[0], ps[2], ps[1]];
   o.addTriangle(
@@ -486,10 +489,17 @@ function stoneNiche(o, f, x, y, w, h, d, variant) {
 }
 function framedOpening(o, f, r, d, depth = 1.93) {
   if (d > 0) border(o, f, r, d === 3 ? 0.14 : 0.12, d, 0.08);
+  // This vertex order faces into the stone for a counter-clockwise opening; reveals face the opening.
+  const sign = area(r) > 0 ? -1 : 1;
   for (let i = 0; i < r.length; i++) {
     const j = (i + 1) % r.length,
       ps = [f.p(...r[i]), f.p(...r[i], -depth), f.p(...r[j], -depth), f.p(...r[j])];
-    Q(o, 'repair', ps, normalFor(...ps));
+    Q(
+      o,
+      'repair',
+      ps,
+      normalFor(...ps).map((v) => v * sign),
+    );
   }
 }
 function rectangleCarving(o, f, x, y, w, h, d) {
@@ -929,6 +939,8 @@ function build(o, _frame, d = 3) {
   );
   const back = { ...f, n: f.n.map((v) => -v) };
   panel(o, back, 'wall', contour, holes, -plan.facadeThicknessMeters);
+  // This vertex order faces into the stone for a counter-clockwise contour; sides face out.
+  const sign = area(contour) > 0 ? -1 : 1;
   for (let i = 0; i < contour.length; i++) {
     const j = (i + 1) % contour.length,
       ps = [
@@ -937,7 +949,12 @@ function build(o, _frame, d = 3) {
         f.p(...contour[j], -plan.facadeThicknessMeters),
         f.p(...contour[i], -plan.facadeThicknessMeters),
       ];
-    Q(o, 'wall', ps, normalFor(...ps));
+    Q(
+      o,
+      'wall',
+      ps,
+      normalFor(...ps).map((v) => v * sign),
+    );
   }
   for (const q of doors)
     framedOpening(o, f, rect(q.x, 0.65, q.w, q.h), d, plan.facadeThicknessMeters);

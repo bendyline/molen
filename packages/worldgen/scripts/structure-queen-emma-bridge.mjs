@@ -54,6 +54,9 @@ function Q(o, s, q, n, col = C[s]) {
   T(o, s, q.slice(0, 3), n, col);
   T(o, s, [q[0], q[2], q[3]], n, col);
 }
+// Positive when a plan ring (x, z) runs counter-clockwise.
+const area = (r) =>
+  r.reduce((a, q, i) => a + q[0] * r[(i + 1) % r.length][1] - r[(i + 1) % r.length][0] * q[1], 0);
 function cap(o, s, r, y, up = true) {
   const ix = earcut(r.flat());
   for (let i = 0; i < ix.length; i += 3)
@@ -177,10 +180,12 @@ function hull(o, x, d) {
             [-w / 2, h - 1.5],
             [-w / 2, -h + 1.5],
           ],
+    // loft faces outward only for rings that run clockwise in plan as they rise.
+    plan = area(r) > 0 ? [...r].reverse() : r,
     rings = [
       [-2.7, 0.62],
       [-1.12, 1],
-    ].map(([y, s]) => r.map((q) => [x + q[0] * s, y, q[1] * s]));
+    ].map(([y, s]) => plan.map((q) => [x + q[0] * s, y, q[1] * s]));
   loft(o, 'hull', rings, C.hull);
   if (d >= 2)
     cap(
@@ -306,12 +311,17 @@ function cabin(o, d) {
     for (let j = 0; j < N; j++) {
       const a = (Math.PI * 2 * j) / N,
         b = (Math.PI * 2 * (j + 1)) / N;
-      Q(o, 'machine', [
-        [0.65 * Math.cos(a), -1.1, 0.65 * Math.sin(a)],
-        [0.65 * Math.cos(b), -1.1, 0.65 * Math.sin(b)],
-        [0.65 * Math.cos(b), -0.32, 0.65 * Math.sin(b)],
-        [0.65 * Math.cos(a), -0.32, 0.65 * Math.sin(a)],
-      ]);
+      Q(
+        o,
+        'machine',
+        [
+          [0.65 * Math.cos(a), -1.1, 0.65 * Math.sin(a)],
+          [0.65 * Math.cos(b), -1.1, 0.65 * Math.sin(b)],
+          [0.65 * Math.cos(b), -0.32, 0.65 * Math.sin(b)],
+          [0.65 * Math.cos(a), -0.32, 0.65 * Math.sin(a)],
+        ],
+        [Math.cos((a + b) / 2), 0, Math.sin((a + b) / 2)],
+      );
     }
     for (const s of [-1, 1]) B(o, 'machine', -10, -1.4, s * 4.4, 1.2, 1.1, 0.6);
   }

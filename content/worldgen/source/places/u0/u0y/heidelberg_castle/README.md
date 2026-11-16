@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-7,655 triangles; 20,423 vertices; 5 material groups; 830,356 bytes. Native bounds: -75.590, -23.238, -75.861 to 92.799, 47.984, 105.799. Source hash: `sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab`.
+7,655 triangles; 20,423 vertices; 5 material groups; 830,356 bytes. Native bounds: -75.590, -23.238, -75.861 to 92.799, 47.984, 105.799. Source hash: `sha256:05fcc5c7a03d1113c527ffa5290ef21c814c2d6082f670c4f99854e0a8455e4b`.
 
 {"up":"+Y","longitudinal":"+X approximately south","front":"+Z approximately west","origin":"Mapped site anchor; Y0 standard PMTiles working terrain datum."}
 

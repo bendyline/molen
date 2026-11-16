@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.heidelberg_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:c9909a8900e9d3b65110f4a0009d39e088b7eb3410932839ca5487bff41cad86",
-  "sourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
-  "runtimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
-  "captureReportHash": "sha256:22084dee69a83966fdb2724328f1be1e1610823491e3794fd909eb616f032a7e",
+  "inputHash": "sha256:b9684211f0495c33b78d4d2be5eda5e9cff4052f8e9e8703716bb4c9fa9d67c8",
+  "sourceHash": "sha256:05fcc5c7a03d1113c527ffa5290ef21c814c2d6082f670c4f99854e0a8455e4b",
+  "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+  "captureReportHash": "sha256:ce99436ad628faa4d10ea6a2571a029659c990150d037c77b4c38cdda2cd496b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5b27c299e8c66beefebcdc40495dcbcbe91a29059d5c3630a3b22739d39484e4",
+    "captureReportHash": "sha256:b087080f0f3e8db5e039ea7caa2ea4766d0e84bdaf7419c3126e372cfa93447c",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -43,7 +43,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b5d6f222978ddd534435602ebc22e814bbb0fce2b1135756a79b71d4ba19dc9d",
+    "captureReportHash": "sha256:4f4714a90cfe79454080c60568705e3d009510571962f8cbe65a3cdca5877e09",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -360,5 +360,16 @@
     "framesVerified": 49,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:c9909a8900e9d3b65110f4a0009d39e088b7eb3410932839ca5487bff41cad86",
+      "previousSourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
+      "previousRuntimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
+      "inputHash": "sha256:b9684211f0495c33b78d4d2be5eda5e9cff4052f8e9e8703716bb4c9fa9d67c8",
+      "repair": "The glazed barrel vault on the Glass Hall wing (hallGlass() in heidelberg-runtime-model.mjs, the 'glass' loft) was inside out: part() re-derives every normal from winding, and the vault's profile ran from +z over the crown to -z, which makes loft() wind its curved faces, flat base and end caps inward. From above, the vault was all back faces, so it read as see-through. The profile now runs from -z over the crown to +z (same points in the opposite order), so the vault faces out. The vertex set, the per-plane areas and the materials are unchanged; every vault plane's normal is reversed and its planar quads and caps are re-split (24 vault triangles). Because reviewed() drops faces pointing straight down at skyline level, the skyline LOD now omits the vault's hidden flat base instead of its crown (967 -> 965 triangles). Above-horizon see-through scan: 2.2% of the model before (window glass 66% of part), 0.13% after in source and all runtime LODs (skyline 2.0% -> 0.18%); the remainder is scattered sub-1% sandstone slivers that were already present.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }

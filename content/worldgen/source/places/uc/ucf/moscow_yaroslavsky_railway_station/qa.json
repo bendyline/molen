@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.moscow_yaroslavsky_railway_station",
   "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:a800f99adea24d9da10f959497a856165bd68273baa728bf55c78afa6895e670",
-  "sourceHash": "sha256:25c87873707683e6516c7dbaa55f8901988e448718230e7b3afcec5ef45389f9",
-  "runtimeHash": "sha256:c4ea0d572d8f02cbce27e56d7dbbd31461acc3d5a4c1f8a8c52493a2833d1980",
-  "captureReportHash": "sha256:9e0989caf75a9f003c4e485b14cdaf475411df85ae3d7f89dd5bbf598a60eb57",
+  "inputHash": "sha256:32678cf3d8d421b77274d0e94a10ae8818922b5aa50666f7b5f67fd771ffc358",
+  "sourceHash": "sha256:88540fddc71c334abc4ff7ba2ba18de02d881201f8f23a6fcf1527b1d60211c1",
+  "runtimeHash": "sha256:341740138bfc2f0bb6c1b2ebbfe112ff6c1c00156af01a6329ddb45ccf088fd2",
+  "captureReportHash": "sha256:3349a6c6a7b25e938103e8d8caf5c5bf1c45b86d07dc7030d975471e15ffaf62",
   "notes": "Complete individual Yaroslavsky passenger-terminal exterior: the whole named historic front headhouse and connected modern rear concourse, the entire mapped comb-shaped rear boarding canopy and each physically connected mapped passenger platform. Preserve the independent Leningradsky terminal and its many detailed mapped facade parts to the west, Kazansky terminal across the square, postal/rail service properties, streets and rail network. The candidate reference coordinate is in the northern yard; the named passenger-terminal footprint supplies the model anchor. No trains, people, branding, lettering, ticket interfaces or navigable railway interiors. No imagined future shared canopy between the independent terminals. Two ordinary front/yard photographs and current standard PMTiles. Hidden facades, interior organization, present renovation details, intermediate levels, exact decorative motifs and tower/roof heights are medium-fi interpretations. Native 14m main envelope and 5m boarding canopy are map facts. Passenger platforms and a transverse apron retain physical continuity. Exact railway clearances and threshold grades remain unverified; ordinary viewer terrain contact must be checked before readiness. Independent Leningradsky, Kazansky, postal/rail properties and streets remain separate. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
   "visualReview": {
     "status": "passed",
@@ -70,7 +70,7 @@
     "status": "passed",
     "inputHash": "sha256:a800f99adea24d9da10f959497a856165bd68273baa728bf55c78afa6895e670",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:8cd120213e436327127ce93e661dd599bbde6d831aece79d7e272fa63faf56ab",
+    "captureReportHash": "sha256:1f144d2c5d514d94bd8579814b702b81cdf5da08721d2640466ebab9a779e85e",
     "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
     "placementHash": "sha256:2582b4371af1cbbd9036491750f40b50cdb2674808ee4434812853f8bc59aa34",
     "materialGraphs": {
@@ -1119,7 +1119,7 @@
   "mediumFiReview": {
     "status": "pending-native-terrain-fit",
     "inputHash": "sha256:a800f99adea24d9da10f959497a856165bd68273baa728bf55c78afa6895e670",
-    "captureReportHash": "sha256:fa45dc28610ca11ea99e125752b7533488b2e02f8f8cc09e8a6dee561f4d7213",
+    "captureReportHash": "sha256:b633b048ab62bcbfbfd4d17ac3c69f2de5d86324ee988ca7b387b3dbc411c561",
     "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
@@ -1441,5 +1441,16 @@
     ],
     "initialBytes": 253868,
     "notes": "Detailed master 77639 triangles / 9321436 bytes. Source-authored browser tiers 850 / 2186 / 7355 / 17473 meet 1k/4k/16k/64k triangle caps and at most eight near draws. Initial download 253868 bytes; close-up 1649328 bytes. Four focused tests pass: source/import/input pins, named physical terminal and signed frame/occupied-floor policy; individual spire/flared-roof/right-turret silhouette, upper glazing in front of the roof, whole rear canopy, continuous apron and eight complete platforms in six GLBs; production three-component replacement preserving all 1494 independent footprints, roads/water and one common off-origin terrain reference; isolated exact tier reconstruction, eight shared graphs, no embedded images and separate GPU streams. Six Khronos-clean GLBs. Scene validation/30 simulation ticks pass, hash 5c0f0842b8f4bfa9b19e1ca142939258e9a85a0c811368c4b9ca94826df45b9f. Physical-device/dense-city timing and numerical LOD errors remain unmeasured."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:a800f99adea24d9da10f959497a856165bd68273baa728bf55c78afa6895e670",
+      "previousSourceHash": "sha256:25c87873707683e6516c7dbaa55f8901988e448718230e7b3afcec5ef45389f9",
+      "previousRuntimeHash": "sha256:c4ea0d572d8f02cbce27e56d7dbbd31461acc3d5a4c1f8a8c52493a2833d1980",
+      "inputHash": "sha256:32678cf3d8d421b77274d0e94a10ae8818922b5aa50666f7b5f67fd771ffc358",
+      "repair": "The slopes of the three hipped roofs (long low wing, broad eastern flared roof, right turret) and the western spire's facets (slate) faced inward, so from above those roofs read hollow; the 4.1 m deep side walls of the main entrance gable (brick) were inside-out too. Root cause in models/station-model.mjs: roof() and pointedRoof() passed no facing hint to Q()/T(), which then keep the points' own order; the hip rings run x-,z- -> x+,z- -> x+,z+ -> x-,z+ and the spire ring by increasing angle, both positive x/z area, and for that winding [low i, low j, high j, high i] and [i, j, apex] face the axis. frontPanel()'s depth extrusion likewise kept the counter-clockwise outline's order, facing its sides inward. Fix: roof() hints each slope with its ring edge's outward normal, pointedRoof() with the horizontal direction from the spire axis to the facet's base edge, and frontPanel() with the outline's outward edge normal signed by its area. Each triangle is only reversed, so points, diagonals and materials are unchanged; model-brief.json's expectedDraftMasterHash pin moves to the regenerated master.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. siteIntegrationReview frames and modelHashes still describe the previous model and were not recaptured; vertex positions, placement and terrain fit are unchanged."
+    }
   }
 }

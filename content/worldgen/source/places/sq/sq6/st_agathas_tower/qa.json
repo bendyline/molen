@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.st_agathas_tower",
-  "inputHash": "sha256:b4ffc79f893287d935e716e4d8ec58081137c6f621da2a5a035427a138263b13",
-  "captureReportHash": "sha256:75b7378fff9342a00071864edb610b68ba1177fd679d40d8e7c557400a83f87f",
+  "inputHash": "sha256:4415951297c322c1ad2918b927e7d8430c15a5e4565ffcfcf75642f452bbb5c3",
+  "captureReportHash": "sha256:e54c554d2ec7c33016df6732338410f4a8ea0e649ec3a0a4bcfc789bca8771b7",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -27,7 +27,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e094418b41eb327de34201b1c0dcd7f91560e72994d72516edc40c71b7d796f5",
+    "captureReportHash": "sha256:a3bba4dbe18b8e2cb3430e58675d024306be8f2de1e414bde97a32798fd1783f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -54,5 +54,16 @@
     "target": "maximum",
     "status": "passed",
     "notes": "Passed for the detailed world-viewer exterior: custodian and national-inventory references establish the restored red tower, four projecting turrets, fishtail merlons, two-foot parapet, roughly3 m turret rise, rear windows, stair loopholes and fixed entrance bridge. The two restored roof cannons and surrounding fittings are represented. The mapped footprint and photographed proportions constrain the reconstructed overall heights. Small carving profiles, exact plaster stains, cannon casting marks and inscription lettering are not claimed as surveyed replicas. Plaque location and line structure are retained without fabricated text. Separate eighteenth-century entrenchments, interiors and temporary visitor displays are outside this tower exterior."
+  },
+  "sourceHash": "sha256:5673ea3d465be2b726cf1d46a4b6c1764034182db223e86afa3b95c088dd370e",
+  "runtimeHash": "sha256:b3ce827f2f8d1b9eb2e05c4b8cd618ef4f759381a1fab643d3fc777e282a05df",
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:b4ffc79f893287d935e716e4d8ec58081137c6f621da2a5a035427a138263b13",
+      "inputHash": "sha256:4415951297c322c1ad2918b927e7d8430c15a5e4565ffcfcf75642f452bbb5c3",
+      "repair": "The entrance stair's two limestone cheek walls were inside out: agatha-tower-model.mjs entrance() lofted each from rings running clockwise seen from above, and the shared loft() only faces outward for counterclockwise rings, so the side faces, sloped coping and end caps all faced into the wall and the cheeks read as see-through from outside (scan: stone_limestone_raw part 67%, model 2.5%). Fix: the same four corners listed in counterclockwise order. The same pass reversed two smaller inversions in cannon(): the wooden wheel treads faced the wheel axis and the muzzle bore wall faced away from it. Positions, triangle counts, materials and colours are unchanged; the generic UV projection follows the normal, so those faces' texture runs mirrored. Note: the previous binding (input sha256:b4ffc79f...) already differed from the pre-repair input hash (sha256:49a7174c...); the triangle count then and now is 137,914. This rebinding follows fresh captures of the repaired model.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }

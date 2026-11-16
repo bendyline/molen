@@ -1,36 +1,43 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.mir_castle_complex",
-  "sourceHash": "sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f",
-  "runtimeHash": "sha256:5e336fdc7a85f2f0482c6768219cebc50ff638a6aea9f26f2ff915805542e3e8",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.mir_castle_complex",
+    "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73"
+  },
+  "sourceHash": "sha256:333806740b2da56f85322cec7964dead2f0e11d6733e5dd8d17a6c1bd2eb3723",
+  "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 6240,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:df6483ba78cc697ae541bb20bb6594ebe77b5d33bdde3d0153ddd209622e7ba5",
+      "hash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
       "bytes": 78900,
-      "gzipBytes": 15534,
+      "gzipBytes": 15550,
       "triangles": 898,
       "cpuBytes": 77496,
       "gpuBytes": 77496,
@@ -40,9 +47,9 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:6c7da481deb01305317ff26e12c4a45c62ea7839489a95b5f62a81834d76adfc",
+      "hash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
       "bytes": 266864,
-      "gzipBytes": 74465,
+      "gzipBytes": 74544,
       "triangles": 3709,
       "cpuBytes": 258420,
       "gpuBytes": 258420,
@@ -52,9 +59,9 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:52b0d160f0f133d11e0425bd9d7b28593c44a1b05801a0d1f92ccc8e61fefb12",
+      "hash": "sha256:1f92c59124537806b3a1c465bd62124cb207f791e9f05d73bf04ba10066ef582",
       "bytes": 822480,
-      "gzipBytes": 237190,
+      "gzipBytes": 237265,
       "triangles": 13581,
       "cpuBytes": 812832,
       "gpuBytes": 812832,
@@ -64,9 +71,9 @@
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:2ca915f2a016638003a4b4cda5105bd9bda9ee84cedd59616238524bca552fcc",
+      "hash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
       "bytes": 3102128,
-      "gzipBytes": 903316,
+      "gzipBytes": 903339,
       "triangles": 41975,
       "cpuBytes": 3092364,
       "gpuBytes": 3092364,
@@ -77,7 +84,7 @@
   "terrainFixture": {
     "descriptor": {
       "path": "terrain-review.terrain.json",
-      "hash": "sha256:644a57773758b1a45f96ca5efee4d9d7589771c51b94778a6f04778fd64ced5a"
+      "hash": "sha256:e704d6e2247dbbee3ff5d25d0d7e23d9fa3b3c6a9ad690b6d3a6d5c54e0cc455"
     },
     "heightmap": {
       "path": "terrain-review.height.png",
@@ -90,8 +97,11 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:b0291675bf63ec3eb8063443c6ed122baa15fb1b8f310ec44385e190f654c391",
+      "hash": "sha256:82917c129797841a667873978bd4532d19057f8bd5aec44c1d4be7e9ca82ec9e",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -127,13 +137,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:fa7a41970c4be6b7c8425f2d00ed78988270da61850eb7c98ab7cde46e28cb68",
+      "hash": "sha256:69c41ef65cbb6ea83cb297935c638fb41b00d344ec85d7d572eb521a01100538",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -169,13 +191,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:f26ada47ca4c4b3634b0fd18e18a3a4f67a4dae2fd3ae5d2fe20163f527ca4f3",
+      "hash": "sha256:8004d3f830d47cae7c9bcccd0da1b7bf309fbf32cf22dcd9bec5e65084079225",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -211,13 +245,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:916d4f23c570677b808eef8de489a7ea1a623a23c1dce93ec36cd21dd3821a94",
+      "hash": "sha256:190199db22a981b8661860ab70ecb32a3025b1685ef3a0d243214ed0f1348758",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -253,13 +299,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:fb578f4e875ab2caa9c02618a0453e2980cea00adb77de084ad171d905e06516",
+      "hash": "sha256:7452a9ea3e388aaedbd4e3a50e4a6acc5dd468ffc7d8889a6677bc5afb45b231",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -295,13 +353,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:393450d7e86cc4f1e0d604785308caf054141220c485e46b316675a81de59262",
+      "hash": "sha256:623ada020563f95eac98e7275edd5bfad38294fcde44d48c7c60d03784dd7d8a",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -337,13 +407,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:b41f14dc5622f0d7e244b93b647282656501746c23725a51a6e702960185fd3d",
+      "hash": "sha256:c8cc44a158a752027fcf2cd7d8ad387c82979fbc75873f3893ef978681771187",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -379,13 +461,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b1752aa0bfa9f853bc659d710ae946449a43bc11e7389e126c98dc8642d924d2",
+      "hash": "sha256:d1279d8359498dfdbec8d41773efde1de287ba425376e59eed3278ae6b039be8",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -421,13 +515,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:28bf157fab05459ac77a3a760fbc9a9307149530d35351d85be17d70ab782a80",
+      "hash": "sha256:d063ec22c2dac798550785d75821ea0a14b5acc3702d7243854f635337ed9ac6",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -463,13 +569,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:d74c82463a96a1c1df5f1f026b21d9adf9b2e0a33b58fc1eaecb22584f5f755d",
+      "hash": "sha256:5793fbf19cf260d35aba684b32ceca067f5b32c5edccfac3786dd5c0401bb4d4",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -505,13 +623,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:10aa6c9f23e6f45fc675b5c8cebacb3645fc29eaa42d9ffa13872497e0ffdd22",
+      "hash": "sha256:770fc604a8ce979aadf6361f10e63a8c26757167549e9c1867548d17f937adbb",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -547,13 +677,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:51cb1e09723dd9aa4263cbb8fa2225e7ef53620fc5c318e080fdd565446bb5b1",
+      "hash": "sha256:62a69cca239a0ef2cae5e08d252ed488fe2e3e78fd31b7a0d05fdd4b53c8fbdc",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -589,13 +731,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:746efa67b92cb4379a564c3637feec1e5b8a8160b174d705725b5b284cef4ffc",
+      "hash": "sha256:b995a73aad1451f083b735d2ebef4f3be016ed963c881385937452edba5809d6",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -631,13 +785,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/castle-courtyard-plan.png",
-      "hash": "sha256:86ed33d95812f04a8727488a8dc2f1329d846ce2139a96eb8687b0ebf1da31e0",
+      "hash": "sha256:28d5a1ae8710647ab29a13c35327235cf961fcb9f85056878e717e875df1ce03",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -673,13 +839,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/west-gate-and-blind-niches.png",
-      "hash": "sha256:4f5c401424610a91c9bedad48bc51b75ef2f8411d61dda2dcac9eb5e37f7dc13",
+      "hash": "sha256:8985c01a73ff876447bd46205ba760b495e1b3d2569314afb2a3f11a986909a2",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -715,13 +893,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/southwest-brick-tower.png",
-      "hash": "sha256:b849906cab71fb234861a8e4480d7030898ee1d9178d23b090cd5df7b7eafd48",
+      "hash": "sha256:d79b0f2039cb79d6eb8a3392fd104d604d323ad8734979e9636190d89672a6b8",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -757,13 +947,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/northwest-pale-tower.png",
-      "hash": "sha256:ac26bd1fc7060591c36d268ed7bc361fe58dcb26b29946e9e5b63d7f629d451b",
+      "hash": "sha256:fbfc5c942dc304d26601c5a42cb217715cb114fc60962df4fb477c088b7a30eb",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -799,13 +1001,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-palace-and-gallery.png",
-      "hash": "sha256:ef9b06c6254070a115ea54acf5290550e47ea8f37e418392e84457197617cf35",
+      "hash": "sha256:573c9d43755a27760be116319fc6d6b224f3a86662621eae0b12a041d2094515",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -841,13 +1055,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/roof-tiles-and-dormers.png",
-      "hash": "sha256:9e8722f7be75dd24e65f0f3d89fdd150c67e05111404a03d540be5b07ad21852",
+      "hash": "sha256:2d73c50f13a104fb1976d8b8e950c9539e867fa40e354e9e1cd926147a8ef085",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -883,13 +1109,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/northeast-tower-and-bridge.png",
-      "hash": "sha256:c55ec89221de46781e6d38de32c6612fc9a2bdbad9729d1d3bba22848ea22cbe",
+      "hash": "sha256:cb9fb98ee91b563b18e925daae80f67ec488dc95014be0f9f73152088df0117c",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -925,13 +1163,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/southeast-pale-tower.png",
-      "hash": "sha256:7f6080de9bd655db9ad44f0c44eadca4877c8acc000f87d3ee4b0ff7997ceb13",
+      "hash": "sha256:34e84f19d209ef5311a9b05740c12b4fc6e531495fb698b22a5896818c616166",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -967,13 +1217,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/southern-wallwalk-and-balcony.png",
-      "hash": "sha256:d3feabe4eb12b7e24d29a69d4f4bab7d9690a3c9e1c2588c22aea02756dac896",
+      "hash": "sha256:eace3bd04e22604d65caa161d24ca47b4567ea21f143792b3fb47fd4aaf13999",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -1009,13 +1271,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-bridge-bank-and-steps.png",
-      "hash": "sha256:63d38e8218c0b60b2c8805ef92e473fd2c02e2dfdc083957e9a49591e9f1a79d",
+      "hash": "sha256:dccecb99f35f4cde71d495b733471e2f692e18b795ae026144d20783cbe581b7",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -1051,13 +1325,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-mir-skyline.png",
-      "hash": "sha256:0aed97d1166e3c734177087a49cfc98dd4a6c5f314af8a4c36d3b590e856aa35",
+      "hash": "sha256:12681ba91b75a2564eff0403382a692d60d714b08715f1ee591b9648e00f9c46",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -1093,13 +1379,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-mir-district.png",
-      "hash": "sha256:de58ec243a6878a65a2c5e94bc21ece326d2bb4545b43d86a8fc0647ffd660db",
+      "hash": "sha256:b967f0ca1618d3a81a10900857f4db8de28a347375f65f0f28cac5df2d53735a",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -1135,13 +1433,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-mir-street.png",
-      "hash": "sha256:381ef853b085f1759d53929c0f72bc4a9f20426d875ca9cbd77356e90598f254",
+      "hash": "sha256:7f0df76debe994eb04171dfe33e0a47966cb8e38e0df66def887e640cbc3281b",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:1f92c59124537806b3a1c465bd62124cb207f791e9f05d73bf04ba10066ef582",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -1177,13 +1487,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-mir-closeup.png",
-      "hash": "sha256:179068a63f92b2a20d66a4b5490d7142b2f5643059f737fc85938422a1b31448",
+      "hash": "sha256:9f267b1dbf3e09c6c1dbd1113af1e1749b7ff2366b2b912ee8ecf048a9bb93e9",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -1219,13 +1541,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:c8a0a167d9d78d0ba42a211760110d4fd7993e960b236ff986540107b51a331a",
+      "hash": "sha256:c83798e3882a4d07fdb6f665935ebe171e779850a8c7cf3cbbbf215f6ba81a37",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:4ce4829eed6eba28184c15cba85cac35bbaf758052b19f15c3b7e5a789a89645",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -1261,13 +1595,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:393450d7e86cc4f1e0d604785308caf054141220c485e46b316675a81de59262",
+      "hash": "sha256:623ada020563f95eac98e7275edd5bfad38294fcde44d48c7c60d03784dd7d8a",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:ee84be94ca6be8e783a8becef775cdddda8d499a0393c21815c37dc43a995695",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -1303,13 +1649,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:6151ae5672d4a0d60fa332f570812f4d61dc6c0cbd6e3a856f9dadef168fc059",
+      "hash": "sha256:26a51cb4d52922ca1595d2f1f9e478fbb30be560cf26e673c10894e4e4209655",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:1f92c59124537806b3a1c465bd62124cb207f791e9f05d73bf04ba10066ef582",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1345,13 +1703,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:69c0a54e0176d601a6c33018a908ae4dfee434259621f88ef52f7351843951bd",
+      "hash": "sha256:3882491e0d3000c44999bc954c8a983d704ede8ce75ca23259c571498d0b7c10",
       "state": {
+        "assetId": "molen.worldgen.structure.mir_castle_complex",
+        "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+        "lodHash": "sha256:e62676037763c382b96d0922c09ae84bfb6f581c04f03bd48c563167ade144de",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1387,6 +1757,15 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          10.7043,
+          11.2038,
+          -21.5495
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

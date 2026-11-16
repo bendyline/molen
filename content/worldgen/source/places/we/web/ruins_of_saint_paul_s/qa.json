@@ -4,9 +4,9 @@
   "status": "completed",
   "reviewedOn": "2026-10-20",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:3c6cd51363eb768caebe8d1ec8304b084589a05fa9df59c7fd0b29cb9f6708a4",
-  "sourceHash": "sha256:d6910f1205e851930ca34fa5d0a96d4c142c4953d087fe91757df114e68e5de4",
-  "runtimeHash": "sha256:e1bf0fe60b9ea6a95e2ead81687d6646d1d77822a4bdd60f88ff8cd6726d2e0a",
+  "inputHash": "sha256:2a1325337b38943edff7e336c2941177c63525231d5bb9b0aa9e668470515f97",
+  "sourceHash": "sha256:54bb3dd90392826cae71db9e063de5139b8692bb3840d0f820312064834aba8b",
+  "runtimeHash": "sha256:5058de1d5c95ecdc520def702b1bcdbf3426464ce917b70b180f061eef5f5cab",
   "visualReview": {
     "status": "passed",
     "captureReportHash": "sha256:0d73d537c589a058eabec77d20d9dc240330f4ed685c8833160c188b6b5f716e",
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:2c0ecbd97e40af0ec8883bb73ef5e68e06b396bda7bcfdd2bb02f08c804558ff",
+    "captureReportHash": "sha256:295e9b5880135c06be5a10cb8245b85600fced3821f3a2816d048e96fa8fe7a9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -39,7 +39,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7d624203320c8f18364a542349936fe6f4cc5165ee2e987ac123045f15ecc4df",
+    "captureReportHash": "sha256:d4fbd9b534c5673395bf8a8e3ac2953549e08d2b728e45946490bef536ae3182",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -64,7 +64,7 @@
     ],
     "notes": "All20current context frames inspected, covering noon/late economy/high street/block/skyline, silhouette,3details and4LODtransitions. Complete stepped facade, openings, pin finials and cross persist. Fine saints/robe folds, shell ribs, capital leaves, incision/joint strokes, small relief and inscription retire progressively. All4authored levels fit their budgets at624/1554/8181/58227triangles and1/4/4/4draws. Synthetic neighbors establish scale, lighting/material compatibility only, not Macau geography."
   },
-  "captureReportHash": "sha256:0d73d537c589a058eabec77d20d9dc240330f4ed685c8833160c188b6b5f716e",
+  "captureReportHash": "sha256:a418b0601186073dca8960cf83942fecf9196c5eebe83b2f502cb617485d7624",
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:55ded8f1d18f9db67bd7c3ea95e4f0b82239cb9aff21028d5a072004c4c4dc00",
@@ -181,5 +181,16 @@
     "Compiled native facade width21.29m/thickness1.93m/height26.2m controls scale. Exact elevation tier heights, sculptural projections, repair plaster, small thresholds and rear support/remnant sections are medium-fi photographic estimates, not a survey. Signed native outline faces south/slightly east; contradictory east-facing story prose is not used as a bearing control.",
     "Six patinated saints use statically baked public Molen figure anatomy under original long robes/attributes. Carved ship/dragon/skeleton/hourglass, angel figures, sun/star/dove, scrolls and capitals are bounded original relief; fine faces, exact iconographic identities, inscription fonts, Chinese characters and erosion are approximated or omitted. MATERDEIis the visible bounded Latin entrance inscription; other detailed writing is not invented.",
     "Fixed front point[0,4.5]is defined before terrain acquisition. Intrinsic footings extend.25m below datum; model/host-terrain contact and precise thresholds remain unverified. No whole-site slab or ground flattening."
-  ]
+  ],
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:3c6cd51363eb768caebe8d1ec8304b084589a05fa9df59c7fd0b29cb9f6708a4",
+      "previousSourceHash": "sha256:d6910f1205e851930ca34fa5d0a96d4c142c4953d087fe91757df114e68e5de4",
+      "previousRuntimeHash": "sha256:e1bf0fe60b9ea6a95e2ead81687d6646d1d77822a4bdd60f88ff8cd6726d2e0a",
+      "inputHash": "sha256:2a1325337b38943edff7e336c2941177c63525231d5bb9b0aa9e668470515f97",
+      "repair": "The facade's perimeter side walls (stone_granite) and its six door/window reveals (plaster_lime) were wound into the stone, so from any angle the near side/reveal was culled and the facade read as see-through at its edges and openings. Root cause: build() and framedOpening() in structure-ruins-of-saint-pauls.mjs passed each quad's own normal as its facing hint, and that vertex order faces inward for the counter-clockwise contour and openings. Fix: the hint is that normal negated when the ring's signed area is positive, so side walls face out of the stone and reveals face into the openings. Same polygons and materials; only facing changed. Regenerating at HEAD also carried in upstream changes that the committed runtime (source 22c713af, runtime d8363c09) already contained but source.json, spec.json and these reviews predated: source 58227 to 83643 triangles, most likely the 2026-11-08/09 shared figure rework baked into the six saints (runtime LODs unchanged from that runtime at 624/1554/8181/72075). The medium-fi note above predates that.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
+  }
 }

@@ -93,14 +93,23 @@ function panel(o, s, outer, holes, f, depth = 0) {
 function strip(o, s, f, x, y, w, h, depth = 0.02) {
   panel(o, s, rect(x, y, w, h), [], f, depth);
 }
+/** World direction out of a frame-local ring across its edge i, in the frame's plane. */
+function outward(f, r, i) {
+  const a = r[i],
+    b = r[(i + 1) % r.length],
+    k = Math.sign(area(r)),
+    x = k * (b[1] - a[1]);
+  return [f.u[0] * x, k * (a[0] - b[0]), f.u[1] * x];
+}
 function block(o, s, f, x, y, w, h, front, back = 0) {
   const r = rect(x, y, w, h);
   panel(o, s, r, [], f, front);
+  // Sides take an outward hint: this vertex order faces inward whenever front > back.
   for (let i = 0; i < 4; i++) {
     const a = r[i],
       b = r[(i + 1) % 4],
       ps = [f.P(...a, front), f.P(...b, front), f.P(...b, back), f.P(...a, back)];
-    Q(o, s, ps, normalFor(...ps));
+    Q(o, s, ps, outward(f, r, i));
   }
 }
 function cap(o, s, rings, y, up = true) {
@@ -397,6 +406,9 @@ function roof(o, d) {
           const P = (p) => [p[0], 8.1 + Math.max(0, value(p, planes[k])), p[1]];
           for (let t = 1; t < face.length - 1; t++)
             tri(o, 'roof', [P(face[0]), P(face[t]), P(face[t + 1])], [0, 1, 0]);
+          // Earcut cells wind counter-clockwise, where frame's normal points into the cell;
+          // a closing wall faces out of it.
+          const out = area(face) > 0 ? -1 : 1;
           for (let t = 0; t < face.length; t++) {
             const a = face[t],
               b = face[(t + 1) % face.length],
@@ -407,7 +419,12 @@ function roof(o, d) {
             if (onBoundary && Math.max(P(a)[1], P(b)[1]) > 8.1001) {
               const f = frame(a, b),
                 ps = [[a[0], 8.1, a[1]], [b[0], 8.1, b[1]], P(b), P(a)];
-              Q(o, 'wall', ps, f.n);
+              Q(
+                o,
+                'wall',
+                ps,
+                f.n.map((v) => v * out),
+              );
             }
           }
         }
@@ -457,7 +474,7 @@ function mission(o, d) {
     const a = outline[i],
       b = outline[(i + 1) % outline.length],
       ps = [f.P(...a, 0.15), f.P(...b, 0.15), f.P(...b, -0.3), f.P(...a, -0.3)];
-    Q(o, 'trim', ps, normalFor(...ps));
+    Q(o, 'trim', ps, outward(f, outline, i));
     if (d > 1 && i > 1 && i < outline.length - 1)
       beam(o, 'trim', f.P(...a, 0.19), f.P(...b, 0.19), 0.13, 0.13, C.trim);
   }
