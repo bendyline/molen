@@ -1,0 +1,477 @@
+{
+  "planId": "temple_of_the_inscriptions",
+  "id": "temple_of_the_inscriptions",
+  "assetId": "molen.worldgen.structure.temple_of_the_inscriptions",
+  "title": "Temple of the Inscriptions",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -92.04694,
+    "latitude": 17.48361
+  },
+  "size": [
+    54.75,
+    33.85999941825867,
+    42.3120002746582
+  ],
+  "actualBounds": {
+    "min": [
+      -34.5,
+      -3.2200000286102295,
+      -17.399999618530273
+    ],
+    "max": [
+      20.25,
+      30.639999389648438,
+      24.91200065612793
+    ]
+  },
+  "visualBrief": "The surviving stepped Temple of the Inscriptions at Palenque. Limestone terraces, the north stair, five-opening sanctuary, and surviving roof crest stubs.",
+  "nativeAxes": {
+    "x": "west-northwest",
+    "y": "up",
+    "z": "north-northeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Mexico-12-06-07_141.jpg",
+    "https://commons.wikimedia.org/wiki/File:Palenque_Palace.jpg"
+  ],
+  "stories": [
+    {
+      "id": "temple-of-the-inscriptions-wp",
+      "url": "https://qualla.com/temple-of-the-inscriptions/"
+    }
+  ],
+  "referenceInputHash": "fa85acf73182d0c1380e68051a20642511b917fa9e5e3ae4bce768ccc8a735c5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9g/9gn/temple_of_the_inscriptions/models/temple-of-the-inscriptions-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9g/9gn/temple_of_the_inscriptions/models/temple-of-the-inscriptions-model.mjs",
+    "level": "skyline",
+    "export": "inscriptionsSkyline",
+    "errorMeters": 0.86,
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "block": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "weather": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "inscriptionsDistrict",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "weather": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "inscriptionsStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "weather": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "inscriptionsCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "weather": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "plaster_lime"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "geographic-preview",
+    "anchor": [
+      -92.04694,
+      17.48361
+    ],
+    "heading": 2.5686956621516193,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -92.0468308488494,
+        17.48377802172544
+      ],
+      "modelHeight": 0,
+      "basis": "Original source terrain sampled in the plaza immediately north of the main stair. The rear extends into a rising hill."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -33.87,
+          -17.22
+        ],
+        [
+          19.95,
+          -17.22
+        ],
+        [
+          19.95,
+          17.28
+        ],
+        [
+          5.8,
+          17.28
+        ],
+        [
+          5.8,
+          24.4
+        ],
+        [
+          -5,
+          24.4
+        ],
+        [
+          -5,
+          17.28
+        ],
+        [
+          -33.87,
+          17.28
+        ]
+      ],
+      "basis": "Under the measured lower temple platform and main stair. Retains the independent original hill and the adjacent Temple XIII footprint outside the mask."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          20.1834,
+          -16.5433
+        ],
+        [
+          20.6442,
+          2.3677
+        ],
+        [
+          20.4116,
+          14.7977
+        ],
+        [
+          5.5666,
+          14.5841
+        ],
+        [
+          -4.7535,
+          14.843
+        ],
+        [
+          -19.6542,
+          14.7977
+        ],
+        [
+          -19.6521,
+          -16.4799
+        ]
+      ],
+      "basis": "The exact named standing pyramid in the local map. Replace directly overlapping generated geometry for this ruin."
+    },
+    "featureIds": [
+      "way/160083187",
+      "way/160083181"
+    ],
+    "source": "https://www.openstreetmap.org/way/160083187",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c9253cdccb620158b1c1bbce78f0e0e9a544bb3220da65a215d029ecfea07245",
+    "notes": "Named ruin way 160083187 fixes the temple location and angle, the plaza side, and the shared west boundary with Temple XIII. The mapped visible outline is about 40 by 31 m. Published archaeological measurements report about 55 by 35 m for the wider base. The wider lower extent is fitted mainly east of the mapped center while preserving the shared west edge."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing post-restoration exterior. Lower covered masonry, the asymmetric original base against the hill, individual reliefs and the shape of roof comb remnants are approximated. The lost upper comb and the concealed burial chambers are outside the exterior representation.",
+    "The OSM interpretation bounds the visible 40 m by 31 m shape. The archaeological 55 m by 35 m base dimensions guide a larger lower envelope. The placement preserves the boundary to Temple XIII and uses an estimated widened eastern toe.",
+    "The used independent source terrain is unchanged. The geographic display masks only beneath the modeled stepped envelope and lowest stair, where the coarse elevation source includes both mound and ground."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Tbachner and Candiderm released the two exact reference photographs to the public domain. OpenStreetMap outline under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "temple-skyline",
+      "position": [
+        -30,
+        33,
+        77
+      ],
+      "lookAt": [
+        -2,
+        13,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-district",
+      "position": [
+        -30,
+        33,
+        77
+      ],
+      "lookAt": [
+        -2,
+        13,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-street",
+      "position": [
+        -30,
+        33,
+        77
+      ],
+      "lookAt": [
+        -2,
+        13,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-closeup",
+      "position": [
+        -30,
+        33,
+        77
+      ],
+      "lookAt": [
+        -2,
+        13,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-pyramid-and-stair",
+      "position": [
+        -19,
+        8.8,
+        55
+      ],
+      "lookAt": [
+        0.7,
+        14.8,
+        2.5
+      ]
+    },
+    {
+      "name": "five-openings-and-roof-comb",
+      "position": [
+        -17.7,
+        29.6,
+        24.7
+      ],
+      "lookAt": [
+        0.2,
+        26.1,
+        -4.7
+      ]
+    },
+    {
+      "name": "east-terraces-and-hill-contact",
+      "position": [
+        -62,
+        22,
+        -12
+      ],
+      "lookAt": [
+        -2,
+        15,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3702,
+    "vertices": 11106,
+    "materials": 5,
+    "bytes": 791156,
+    "sha256": "sha256:9be1657d8f8f11167e295044ada75a8c8a7b5ee0efebfe0169f01c2bc1571f35"
+  }
+}

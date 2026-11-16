@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.piratini_palace",
+  "kind": "static-structure",
+  "title": "Piratini Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.piratini_palace",
+        "output": "assets/places/6f/6fe/piratini_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6561775947e67a2b1d54551ec7bdbfcc1c50e8a0833f48950e24e6a676151fcc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-piratini-palace",
+        "path": "models/generate-piratini-palace.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/piratini-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-11720-19252.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "reference-rights/iphan-and-state-architecture-facts.json",
+      "native-map/piratini-palace.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

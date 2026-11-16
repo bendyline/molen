@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tai_tam_tuk_reservoir_dam",
+  "kind": "static-structure",
+  "title": "Tai Tam Tuk Reservoir Dam",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tai_tam_tuk_reservoir_dam",
+        "output": "assets/places/we/wec/tai_tam_tuk_reservoir_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a9d8e3ac602bb3fb18327de9eb84c7306419510a98419a6147b50fa077e575b5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tai-tam-tuk-reservoir-dam",
+        "path": "models/generate-tai-tam-tuk-reservoir-dam.mjs"
+      },
+      {
+        "id": "tai-tam-tuk-reservoir-dam-model",
+        "path": "models/tai-tam-tuk-reservoir-dam-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/tuk-reservoir-way.json",
+      "reference-rights/engineering-facts.json",
+      "reference-rights/story-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/landsd-5m-site.asc",
+      "terrain-sources/landsd-5m-source.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

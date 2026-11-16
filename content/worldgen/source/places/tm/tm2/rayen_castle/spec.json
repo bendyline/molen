@@ -1,0 +1,357 @@
+{
+  "planId": "rayen_castle",
+  "id": "rayen_castle",
+  "assetId": "molen.worldgen.structure.rayen_castle",
+  "title": "Rayen Castle",
+  "wikidataId": "Q2631476",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 57.43826,
+    "latitude": 29.593224
+  },
+  "size": [
+    222.0261993408203,
+    24.123376846313477,
+    191.00200653076172
+  ],
+  "actualBounds": {
+    "min": [
+      -110.74690246582031,
+      -3.807088851928711,
+      -95.08910369873047
+    ],
+    "max": [
+      111.279296875,
+      20.316287994384766,
+      95.91290283203125
+    ]
+  },
+  "visualBrief": "The complete adobe ramparts of Rayen Castle, with rounded wall towers, an arched eastern entrance, lower ruins and the elevated inner citadel.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Arg-e-Rayen.jpg",
+    "https://commons.wikimedia.org/wiki/File:Arg-eRayen.JPG",
+    "https://commons.wikimedia.org/wiki/File:Arg-eRayen1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "rayen-castle-wp",
+      "url": "https://qualla.com/rayen-castle/"
+    }
+  ],
+  "referenceInputHash": "664dcd50725b448ab5d03eb1c0dd12a63e96d838b113d36f3f37fb56b00208ea",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tm/tm2/rayen_castle/models/rayen-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tm/tm2/rayen_castle/models/rayen-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.99
+      },
+      "adobe": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "adobe": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.47,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "adobe": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.99
+          },
+          "adobe": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "brick"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 1.21,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -5,
+        4,
+        -1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The exact Qualla views resolve rounded exposed merlons, tapered parapet and cylindrical gateway. The unchanged 384-metre native field provides the ground contact.",
+    "anchor": [
+      57.43826,
+      29.593224
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        57.43945836347764,
+        29.593212321954724
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain immediately outside the interpreted eastern entrance, reviewed with the public-domain Qualla elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/430999445"
+    ],
+    "source": "https://www.openstreetmap.org/way/430999445",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:83a1f7b23e2a27457d1c8991bec11c0f56e9d635f788791b83cb0f56a32e102d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The outer outline and tower arcs are mapped. Gateway station, wall thicknesses, sectional heights and position of interior groups are estimates.",
+    "The lower ruin courts and raised inner citadel are representative exterior geometry. Roof loss, room-level archaeological accuracy and unseen interior details are outside scope.",
+    "Modern terrain is preserved. Relative terrace heights and present foundation conditions remain approximate."
+  ],
+  "sourceLicense": "Original geometry from the three exact public-domain Qualla originals, municipal written facts, current ODbL footprint and original terrain.",
+  "qaLodCameras": [
+    {
+      "name": "rayen-castle-skyline",
+      "position": [
+        276,
+        139,
+        202
+      ],
+      "lookAt": [
+        -5,
+        4,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "rayen-castle-district",
+      "position": [
+        276,
+        139,
+        202
+      ],
+      "lookAt": [
+        -5,
+        4,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "rayen-castle-street",
+      "position": [
+        276,
+        139,
+        202
+      ],
+      "lookAt": [
+        -5,
+        4,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "rayen-castle-closeup",
+      "position": [
+        276,
+        139,
+        202
+      ],
+      "lookAt": [
+        -5,
+        4,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rayen-citadel-and-native-plateau",
+      "position": [
+        219,
+        105,
+        145
+      ],
+      "lookAt": [
+        4,
+        3,
+        3
+      ]
+    },
+    {
+      "name": "eastern-cylindrical-gate",
+      "position": [
+        135,
+        3.15,
+        -7.5
+      ],
+      "lookAt": [
+        110,
+        4.25,
+        1.1
+      ]
+    },
+    {
+      "name": "inner-citadel-and-adobe-ruins",
+      "position": [
+        43,
+        21,
+        43
+      ],
+      "lookAt": [
+        -40,
+        7,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19140,
+    "vertices": 57420,
+    "materials": 4,
+    "bytes": 2381088,
+    "sha256": "sha256:3fcc8761c370affe6aa6c85a6e89c845f6225ea960c0aff3d984749bfcc14cf0"
+  }
+}

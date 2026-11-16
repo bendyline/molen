@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.halidzor_fortress",
+  "kind": "static-structure",
+  "title": "Halidzor Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.halidzor_fortress",
+        "output": "assets/places/tn/tnb/halidzor_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3315f1c21f7301c32e34970e5ac669235b35d5ab4c34393cdafed0a2959a0ea4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-halidzor-fortress",
+        "path": "models/generate-halidzor-fortress.mjs"
+      },
+      {
+        "id": "halidzor-fortress-model",
+        "path": "models/halidzor-fortress-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-controls.json",
+      "reference-rights/architecture-and-restoration-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.height.png",
+      "terrain-review.terrain.json",
+      "terrain-sources/terrarium-15-20602-12497.png",
+      "terrain-sources/terrarium-15-20603-12497.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

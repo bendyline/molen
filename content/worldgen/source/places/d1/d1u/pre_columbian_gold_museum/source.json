@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pre_columbian_gold_museum",
+  "kind": "static-structure",
+  "title": "Pre-Columbian Gold Museum and Plaza de la Cultura",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pre_columbian_gold_museum",
+        "output": "assets/places/d1/d1u/pre_columbian_gold_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:22147900be1042f4fc324b60180587774fac1e027e59ef3441ce6e3ed813172b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pre-columbian-gold-museum",
+        "path": "models/generate-pre-columbian-gold-museum.mjs"
+      },
+      {
+        "id": "pre-columbian-gold-museum-model",
+        "path": "models/pre-columbian-gold-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-plaza-controls.json",
+      "reference-rights/commons-qualla-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8731-15475.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

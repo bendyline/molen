@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bayraktar_mosque",
+  "kind": "static-structure",
+  "title": "Bayraktar Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bayraktar_mosque",
+        "output": "assets/places/sw/swr/bayraktar_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9cebd55b4e606f9d3b99ba32394bac822ac881a042d2c4d99d64f9183c298b3f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bayraktar-mosque",
+        "path": "models/generate-bayraktar-mosque.mjs"
+      },
+      {
+        "id": "bayraktar-mosque-model",
+        "path": "models/bayraktar-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mosque-controls.json",
+      "reference-rights/commons-qualla-bayraktar-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19420-12960.png",
+      "terrain-sources/terrarium-15-19421-12960.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,500 @@
+{
+  "planId": "pre_columbian_gold_museum",
+  "id": "pre_columbian_gold_museum",
+  "assetId": "molen.worldgen.structure.pre_columbian_gold_museum",
+  "title": "Pre-Columbian Gold Museum and Plaza de la Cultura",
+  "wikidataId": "Q10941394",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.0766799,
+    "latitude": 9.9334988
+  },
+  "size": [
+    49.7781982421875,
+    15.843809127807617,
+    87.34011840820312
+  ],
+  "actualBounds": {
+    "min": [
+      -22.59701919555664,
+      -10.460000038146973,
+      -78.17440795898438
+    ],
+    "max": [
+      27.18117904663086,
+      5.3838090896606445,
+      9.16571044921875
+    ]
+  },
+  "visualBrief": "The Pre-Columbian Gold Museum under Plaza de la Cultura, with the built terrace, recessed glass entrance, sloping concrete shell, three sublevels and central spiral stair.",
+  "nativeAxes": {
+    "x": "south to north along Calle 5",
+    "y": "up",
+    "z": "toward the public entrance on Calle 5"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:MuseoBancoCentralDeCostaRica.JPG",
+    "https://commons.wikimedia.org/wiki/File:Museo_del_Oro_Procolombino.jpg"
+  ],
+  "stories": [
+    {
+      "id": "pre-columbian-gold-museum-wp",
+      "url": "https://qualla.com/pre-columbian-gold-museum/"
+    }
+  ],
+  "referenceInputHash": "51a9ec054bf3d3d41b1566e178d343cdd3ed3f6c0f9fb6f1a614ad5409d59f5f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d1/d1u/pre_columbian_gold_museum/models/pre-columbian-gold-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d1/d1u/pre_columbian_gold_museum/models/pre-columbian-gold-museum-model.mjs",
+    "level": "skyline",
+    "export": "goldMuseumSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_travertine",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "roof",
+        "graph": "stone_marble",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.17
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "goldMuseumDistrict",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.17
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "goldMuseumStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.17
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "goldMuseumCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.17
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_travertine",
+    "concrete_plain",
+    "stone_marble",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.84,
+    "cameraYaw": 0.1,
+    "focus": {
+      "center": [
+        0,
+        -3,
+        -23
+      ]
+    },
+    "groundY": -14.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The four corners of the mapped roof plaza and the signed entrance on Calle 5 locate the model. The museum owner documents a 12 m reinforced concrete enclosure with 60-degree inward sloping walls, three levels and a spiral stair. The original terrain grid was frozen before construction.",
+    "anchor": [
+      -84.0766799,
+      9.9334988
+    ],
+    "heading": 1.4288569479684758,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.07656253447992,
+        9.93348227985704
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain on the Calle 5 sidewalk beside the roof plaza."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -22.59702,
+          -76.05615
+        ],
+        [
+          -19.17085,
+          9.14171
+        ],
+        [
+          27.18118,
+          9.14171
+        ],
+        [
+          23.46356,
+          -78.17441
+        ]
+      ],
+      "basis": "The mapped public square forms the built roof and includes its recessed public entrance. The mask is bounded by that native polygon and restores original terrain on unload."
+    },
+    "featureIds": [
+      "relation/6275464",
+      "node/459837504",
+      "way/24857113"
+    ],
+    "source": "https://www.openstreetmap.org/relation/6275464",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8642629ce3d3c5c627d56b81f931f728fb7e2b6af5968f866c354e8f8802aae4",
+    "notes": "Native roof-square perimeter is exact. The museum owner documents the Calle 5 approach, three subterranean levels, inward-sloping concrete and central spiral. The adjacent theater has its own mapped footprint."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior roof bounds follow OpenStreetMap. The portal extent, terrace grades, precise stair/rail geometry, fountain position and modern fittings are estimates informed by the cleared photographs and public site notes.",
+    "The three-level internal massing follows the museum owner’s published vertical section facts. The gallery partitions, stair diameter and precise sublevel dimensions are estimated, with a simplified exhibition shell.",
+    "An approximate current placement masks the native ground within the actual built plaza boundaries, exposing the entrance court and replacing the modelled roof only. Native terrain data outside the authored roof is unchanged."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Architectural references are public domain or CC0. The mapped roof outline is OpenStreetMap ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "plaza-skyline",
+      "position": [
+        53,
+        40,
+        48
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -22
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "plaza-district",
+      "position": [
+        53,
+        40,
+        48
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -22
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "plaza-street",
+      "position": [
+        53,
+        40,
+        48
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -22
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "plaza-closeup",
+      "position": [
+        53,
+        40,
+        48
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -22
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-roof-and-calle-five-recess",
+      "position": [
+        53,
+        40,
+        48
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -22
+      ]
+    },
+    {
+      "name": "glazed-entrance-below-terrace",
+      "position": [
+        -0.5,
+        2.2,
+        8.3
+      ],
+      "lookAt": [
+        1,
+        -0.3,
+        -7
+      ]
+    },
+    {
+      "name": "steps-and-roof-edge",
+      "position": [
+        -13,
+        6.73,
+        20
+      ],
+      "lookAt": [
+        4,
+        0.1,
+        -4.4
+      ]
+    },
+    {
+      "name": "lower-galleries-and-spiral",
+      "position": [
+        9.5,
+        -5.15,
+        -22.6
+      ],
+      "lookAt": [
+        0.5,
+        -7.1,
+        -35
+      ]
+    },
+    {
+      "name": "concrete-section-from-lower-landing",
+      "position": [
+        -7.1,
+        -9.1,
+        -45.6
+      ],
+      "lookAt": [
+        1.1,
+        -4.2,
+        -35
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3312,
+    "vertices": 9936,
+    "materials": 6,
+    "bytes": 540632,
+    "sha256": "sha256:22147900be1042f4fc324b60180587774fac1e027e59ef3441ce6e3ed813172b"
+  }
+}

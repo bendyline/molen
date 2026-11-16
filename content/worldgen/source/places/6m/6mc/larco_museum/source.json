@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.larco_museum",
+  "kind": "static-structure",
+  "title": "Larco Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.larco_museum",
+        "output": "assets/places/6m/6mc/larco_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:160ded0f9769ff5b534d7f1de49b6d01f686e2f57a3dcc739d7d1b2b5fc5c4a3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-larco-museum",
+        "path": "models/generate-larco-museum.mjs"
+      },
+      {
+        "id": "larco-museum-model",
+        "path": "models/larco-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/larco-museum-controls.json",
+      "reference-rights/tichnor-65324.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9368-17490.png",
+      "terrain-sources/terrarium-15-9368-17491.png",
+      "preview.png",
+      "native-map/osm-larco-museum.json",
+      "reference-rights/10903343-original-commons.json",
+      "reference-rights/10903343-museum-courtyard.jpg",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

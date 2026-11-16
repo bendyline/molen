@@ -1,0 +1,643 @@
+{
+  "naip": "https://services.wvgis.wvu.edu/arcgis/rest/services/Imagery_BaseMaps_EarthCover/wv_imagery_NAIP_2007_1m/MapServer",
+  "rights": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-aerial-photography-national-agriculture-imagery-program-naip",
+  "rawMap": {
+    "path": "reference-originals/usda-naip-2007-map.png",
+    "sha256": "sha256:92cd666063f314ca7adcdf219306c883b3664c73e8beca8537b13799afa66599",
+    "width": 1100,
+    "height": 1025,
+    "extent": {
+      "xmin": -8824099.150341466,
+      "ymin": 4750058.824,
+      "xmax": -8823312.93365854,
+      "ymax": 4750791.435,
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+      }
+    },
+    "spatialReference": "EPSG:3857"
+  },
+  "sourceService": {
+    "currentVersion": 11.4,
+    "cimVersion": "3.4.0",
+    "serviceDescription": "Natural color imagery collected by the USDA's National Agriculture Imagery Program (NAIP) for the entire state of West Virginia. Data is organized into digital orthophoto quarter quadrangles. If you'd like to download only a few images, please utilize the USDA Geospatial Data Gateway. See the Supplemental Information section for instructions to get a copy of the entire dataset for West Virginia. \nThis imagery was collected in late summer, 2007. It was originally published in February of 2008 by the Aerial Photography Field Office of the Farm Service Agency, which is part of the U.S. Department of Agriculture. It was made available from the West Virginia GIS Tech Center in April of 2008. \nThis specific metadata and lineage pertains to the Falling Spring NW DOQQ from the FSA natural color database, however, it is applicable to all imagery from this dataset. \nAll data was delivered with 1-meter Ground Sample Distance (GSD). The imagery is rectified to a horizontal accuracy of within +/- 5 meters of reference digital ortho quarter quads from the National Digital Ortho Program.\nhttp://wvgis.wvu.edu/data/dataset.php?ID=302",
+    "mapName": "wv_imagery_NAIP_2007_1m",
+    "description": "Natural color imagery collected by the USDA's National Agriculture Imagery Program (NAIP) for the entire state of West Virginia. Data is organized into digital orthophoto quarter quadrangles. If you'd like to download only a few images, please utilize the USDA Geospatial Data Gateway. See the Supplemental Information section for instructions to get a copy of the entire dataset for West Virginia. \nThis imagery was collected in late summer, 2007. It was originally published in February of 2008 by the Aerial Photography Field Office of the Farm Service Agency, which is part of the U.S. Department of Agriculture. It was made available from the West Virginia GIS Tech Center in April of 2008. \nThis specific metadata and lineage pertains to the Falling Spring NW DOQQ from the FSA natural color database, however, it is applicable to all imagery from this dataset. \nAll data was delivered with 1-meter Ground Sample Distance (GSD). The imagery is rectified to a horizontal accuracy of within +/- 5 meters of reference digital ortho quarter quads from the National Digital Ortho Program.\nhttp://wvgis.wvu.edu/data/dataset.php?ID=302",
+    "copyrightText": "",
+    "supportsDynamicLayers": true,
+    "layers": [
+      {
+        "id": 0,
+        "name": "wv_naip_2007_utm17n_1meter",
+        "parentLayerId": -1,
+        "defaultVisibility": true,
+        "subLayerIds": [
+          1,
+          2,
+          3
+        ],
+        "minScale": 0,
+        "maxScale": 0,
+        "type": "Mosaic Layer",
+        "supportsDynamicLegends": false
+      },
+      {
+        "id": 1,
+        "name": "Boundary",
+        "parentLayerId": 0,
+        "defaultVisibility": false,
+        "subLayerIds": null,
+        "minScale": 0,
+        "maxScale": 0,
+        "type": "Feature Layer",
+        "geometryType": "esriGeometryPolygon",
+        "supportsDynamicLegends": true
+      },
+      {
+        "id": 2,
+        "name": "Footprint",
+        "parentLayerId": 0,
+        "defaultVisibility": false,
+        "subLayerIds": null,
+        "minScale": 0,
+        "maxScale": 0,
+        "type": "Feature Layer",
+        "geometryType": "esriGeometryPolygon",
+        "supportsDynamicLegends": true
+      },
+      {
+        "id": 3,
+        "name": "Image",
+        "parentLayerId": 0,
+        "defaultVisibility": true,
+        "subLayerIds": null,
+        "minScale": 0,
+        "maxScale": 0,
+        "type": "Raster Layer",
+        "supportsDynamicLegends": true
+      }
+    ],
+    "tables": [],
+    "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -20037700,
+      "falseY": -30241100,
+      "xyUnits": 10000,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    },
+    "singleFusedMapCache": true,
+    "tileInfo": {
+      "rows": 256,
+      "cols": 256,
+      "dpi": 96,
+      "format": "JPEG",
+      "compressionQuality": 75,
+      "origin": {
+        "x": -20037508.342787,
+        "y": 20037508.342787
+      },
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -20037700,
+        "falseY": -30241100,
+        "xyUnits": 148923141.92838538,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      },
+      "lods": [
+        {
+          "level": 0,
+          "resolution": 611.4962262813797,
+          "scale": 2311162.217155
+        },
+        {
+          "level": 1,
+          "resolution": 305.74811314055756,
+          "scale": 1155581.108577
+        },
+        {
+          "level": 2,
+          "resolution": 152.87405657041106,
+          "scale": 577790.554289
+        },
+        {
+          "level": 3,
+          "resolution": 76.43702828507324,
+          "scale": 288895.277144
+        },
+        {
+          "level": 4,
+          "resolution": 38.21851414253662,
+          "scale": 144447.638572
+        },
+        {
+          "level": 5,
+          "resolution": 19.10925707126831,
+          "scale": 72223.819286
+        },
+        {
+          "level": 6,
+          "resolution": 9.554628535634155,
+          "scale": 36111.909643
+        },
+        {
+          "level": 7,
+          "resolution": 4.77731426794937,
+          "scale": 18055.954822
+        },
+        {
+          "level": 8,
+          "resolution": 2.388657133974685,
+          "scale": 9027.977411
+        },
+        {
+          "level": 9,
+          "resolution": 1.1943285668550503,
+          "scale": 4513.988705
+        },
+        {
+          "level": 10,
+          "resolution": 0.5971642835598172,
+          "scale": 2256.994353
+        },
+        {
+          "level": 11,
+          "resolution": 0.29858214164761665,
+          "scale": 1128.497176
+        }
+      ]
+    },
+    "storageInfo": {
+      "storageFormat": "esriMapCacheStorageModeCompactV2",
+      "packetSize": 128
+    },
+    "initialExtent": {
+      "xmin": -9279828.756442908,
+      "ymin": 4574356.780409161,
+      "xmax": -8616137.593202535,
+      "ymax": 4839499.732557954,
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -20037700,
+        "falseY": -30241100,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      }
+    },
+    "fullExtent": {
+      "xmin": -9212106.498102305,
+      "ymin": 4458773.472556448,
+      "xmax": -8639882.844976107,
+      "ymax": 4966914.094629009,
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -20037700,
+        "falseY": -30241100,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      }
+    },
+    "datesInUnknownTimezone": false,
+    "minScale": 2311162.217155,
+    "maxScale": 1128.497176,
+    "units": "esriMeters",
+    "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+    "documentInfo": {
+      "Title": "wv_imagery_NAIP_2007_1m",
+      "Author": "",
+      "Comments": "Natural color imagery collected by the USDA's National Agriculture Imagery Program (NAIP) for the entire state of West Virginia. Data is organized into digital orthophoto quarter quadrangles. If you'd like to download only a few images, please utilize the USDA Geospatial Data Gateway. See the Supplemental Information section for instructions to get a copy of the entire dataset for West Virginia. \nThis imagery was collected in late summer, 2007. It was originally published in February of 2008 by the Aerial Photography Field Office of the Farm Service Agency, which is part of the U.S. Department of Agriculture. It was made available from the West Virginia GIS Tech Center in April of 2008. \nThis specific metadata and lineage pertains to the Falling Spring NW DOQQ from the FSA natural color database, however, it is applicable to all imagery from this dataset. \nAll data was delivered with 1-meter Ground Sample Distance (GSD). The imagery is rectified to a horizontal accuracy of within +/- 5 meters of reference digital ortho quarter quads from the National Digital Ortho Program.\nhttp://wvgis.wvu.edu/data/dataset.php?ID=302",
+      "Subject": "WV's NAIP 2007 1-meter resolution imagery",
+      "Category": "",
+      "Version": "3.0.0",
+      "AntialiasingMode": "Fast",
+      "TextAntialiasingMode": "Force",
+      "Keywords": "wv,imagery,naip"
+    },
+    "supportsQueryDomains": true,
+    "capabilities": "Map,Query,Data",
+    "supportedQueryFormats": "JSON, geoJSON, PBF",
+    "exportTilesAllowed": false,
+    "referenceScale": 0,
+    "datumTransformations": [
+      {
+        "geoTransforms": [
+          {
+            "wkid": 108001,
+            "latestWkid": 1241,
+            "transformForward": true,
+            "name": "NAD_1927_To_NAD_1983_NADCON"
+          }
+        ]
+      },
+      {
+        "geoTransforms": [
+          {
+            "wkid": 108001,
+            "latestWkid": 1241,
+            "transformForward": false,
+            "name": "NAD_1927_To_NAD_1983_NADCON"
+          }
+        ]
+      },
+      {
+        "geoTransforms": [
+          {
+            "wkid": 1188,
+            "latestWkid": 1188,
+            "transformForward": true,
+            "name": "NAD_1983_To_WGS_1984_1"
+          }
+        ]
+      },
+      {
+        "geoTransforms": [
+          {
+            "wkid": 1188,
+            "latestWkid": 1188,
+            "transformForward": false,
+            "name": "NAD_1983_To_WGS_1984_1"
+          }
+        ]
+      }
+    ],
+    "supportsDatumTransformation": true,
+    "archivingInfo": {
+      "supportsHistoricMoment": false
+    },
+    "supportsClipping": true,
+    "supportsSpatialFilter": true,
+    "supportsTimeRelation": true,
+    "supportsQueryDataElements": true,
+    "mapUnits": {
+      "uwkid": 9001
+    },
+    "maxSelectionCount": 2000,
+    "maxRecordCount": 2000,
+    "maxImageHeight": 4096,
+    "maxImageWidth": 4096,
+    "supportedExtensions": "KmlServer, WMSServer",
+    "resampling": false
+  },
+  "historicTrace": {
+    "turbineHall": {
+      "pixels": [
+        [
+          802,
+          304
+        ],
+        [
+          889,
+          304
+        ],
+        [
+          889,
+          621
+        ],
+        [
+          802,
+          621
+        ]
+      ],
+      "height": 26.8
+    },
+    "boilerNorth": {
+      "pixels": [
+        [
+          704,
+          292
+        ],
+        [
+          801,
+          292
+        ],
+        [
+          801,
+          386
+        ],
+        [
+          704,
+          386
+        ]
+      ],
+      "height": 65
+    },
+    "boilerMiddle": {
+      "pixels": [
+        [
+          705,
+          386
+        ],
+        [
+          801,
+          386
+        ],
+        [
+          801,
+          492
+        ],
+        [
+          705,
+          492
+        ]
+      ],
+      "height": 65
+    },
+    "boilerSouth": {
+      "pixels": [
+        [
+          699,
+          495
+        ],
+        [
+          800,
+          495
+        ],
+        [
+          800,
+          605
+        ],
+        [
+          699,
+          605
+        ]
+      ],
+      "height": 60
+    },
+    "coalFeedNorth": {
+      "pixels": [
+        [
+          638,
+          305
+        ],
+        [
+          698,
+          305
+        ],
+        [
+          698,
+          497
+        ],
+        [
+          638,
+          497
+        ]
+      ],
+      "height": 32
+    },
+    "exhaustWorks": {
+      "pixels": [
+        [
+          593,
+          302
+        ],
+        [
+          637,
+          300
+        ],
+        [
+          638,
+          498
+        ],
+        [
+          666,
+          512
+        ],
+        [
+          666,
+          579
+        ],
+        [
+          605,
+          582
+        ],
+        [
+          579,
+          529
+        ],
+        [
+          579,
+          389
+        ]
+      ],
+      "height": 13
+    },
+    "westernService": {
+      "pixels": [
+        [
+          351,
+          529
+        ],
+        [
+          414,
+          529
+        ],
+        [
+          414,
+          623
+        ],
+        [
+          351,
+          623
+        ]
+      ],
+      "height": 12
+    },
+    "transformerBank": {
+      "pixels": [
+        [
+          893,
+          326
+        ],
+        [
+          920,
+          326
+        ],
+        [
+          920,
+          605
+        ],
+        [
+          893,
+          605
+        ]
+      ],
+      "height": 6.8
+    },
+    "northTransfer": {
+      "pixels": [
+        [
+          471,
+          112
+        ],
+        [
+          514,
+          117
+        ],
+        [
+          510,
+          151
+        ],
+        [
+          474,
+          153
+        ]
+      ],
+      "height": 15
+    },
+    "coalStockTransfer": {
+      "pixels": [
+        [
+          376,
+          140
+        ],
+        [
+          415,
+          138
+        ],
+        [
+          426,
+          193
+        ],
+        [
+          391,
+          203
+        ]
+      ],
+      "height": 16
+    },
+    "northeastStores": {
+      "pixels": [
+        [
+          1020,
+          258
+        ],
+        [
+          1092,
+          258
+        ],
+        [
+          1092,
+          354
+        ],
+        [
+          1020,
+          354
+        ]
+      ],
+      "height": 7.4
+    },
+    "southernService": {
+      "pixels": [
+        [
+          703,
+          647
+        ],
+        [
+          788,
+          647
+        ],
+        [
+          788,
+          700
+        ],
+        [
+          703,
+          700
+        ]
+      ],
+      "height": 8.2
+    }
+  },
+  "rawOsmExtractSha256": "sha256:d7f2e07768030bbc97b7e269cb00c103ac1da356ff1a7792009c9e9ad9591fee",
+  "osmSource": "https://www.openstreetmap.org/way/839493843",
+  "stackCoordinates": {
+    "source": "https://www.epa.gov/sites/default/files/2017-01/documents/wv_attachment_1_modeling_reports.pdf",
+    "table": "4-2",
+    "crs": "EPSG:26917",
+    "transformedCrs": "EPSG:4326",
+    "data": [
+      {
+        "id": "epa:table-4-2/units-1-2",
+        "role": "main-stack-1-2",
+        "geo": [
+          -79.26519042746621,
+          39.20096824333546
+        ],
+        "utm": [
+          649798.98,
+          4340512.23
+        ],
+        "height": 226.46640000000002,
+        "flue": 8.8392,
+        "bottomRadius": 7.15,
+        "radius": 5.1
+      },
+      {
+        "id": "epa:table-4-2/unit-3",
+        "role": "main-stack-3",
+        "geo": [
+          -79.26439024993573,
+          39.20022433316357
+        ],
+        "utm": [
+          649869.66,
+          4340430.99
+        ],
+        "height": 176.47920000000002,
+        "flue": 6.4008,
+        "bottomRadius": 5.75,
+        "radius": 3.78
+      },
+      {
+        "id": "node/8010784923",
+        "role": "retained-short-stack-center",
+        "geo": [
+          -79.264241,
+          39.2008243
+        ],
+        "height": 100,
+        "bottomRadius": 4.15,
+        "radius": 3.34
+      },
+      {
+        "id": "node/8010784924",
+        "role": "retained-short-stack-north",
+        "geo": [
+          -79.2642258,
+          39.2013155
+        ],
+        "height": 100,
+        "bottomRadius": 4.05,
+        "radius": 3.28
+      }
+    ]
+  }
+}

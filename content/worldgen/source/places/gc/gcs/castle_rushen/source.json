@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.castle_rushen",
+  "kind": "static-structure",
+  "title": "Castle Rushen",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.castle_rushen",
+        "output": "assets/places/gc/gcs/castle_rushen/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a89226043505255c636b017fc17cf6ce2b798d2add7aaa6dc232eaefb154ed88"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-castle-rushen",
+        "path": "models/generate-castle-rushen.mjs"
+      },
+      {
+        "id": "castle-rushen-model",
+        "path": "models/castle-rushen-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/castle-controls.json",
+      "reference-rights/commons-castle-rushen-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15960-10509.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

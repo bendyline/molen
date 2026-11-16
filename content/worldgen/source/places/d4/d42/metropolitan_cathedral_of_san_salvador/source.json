@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.metropolitan_cathedral_of_san_salvador",
+  "kind": "static-structure",
+  "title": "Metropolitan Cathedral of San Salvador",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.metropolitan_cathedral_of_san_salvador",
+        "output": "assets/places/d4/d42/metropolitan_cathedral_of_san_salvador/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a8cd8f6cabc5cc0dab3560b69b98cd6193de91a78e055d8d020093af901aa7fa"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-san-salvador-cathedral",
+        "path": "models/generate-san-salvador-cathedral.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/san-salvador-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-metropolitan-cathedral.json",
+      "site-components.json",
+      "reference-rights/presidencia-31436690438.jpg",
+      "reference-rights/presidencia-31436690438-native.json",
+      "reference-rights/presidencia-43495384800.jpg",
+      "reference-rights/presidencia-43495384800-native.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8265-15124.png",
+      "terrain-sources/terrarium-15-8265-15125.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

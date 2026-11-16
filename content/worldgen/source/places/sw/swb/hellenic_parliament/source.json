@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hellenic_parliament",
+  "kind": "static-structure",
+  "title": "Hellenic Parliament",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hellenic_parliament",
+        "output": "assets/places/sw/swb/hellenic_parliament/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b58a66ee368ab77c8140d3964bc69eddf22c8c62e7e0ab914ec6674fafa9aa32"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hellenic-parliament",
+        "path": "models/generate-hellenic-parliament.mjs"
+      },
+      {
+        "id": "hellenic-parliament-model",
+        "path": "models/hellenic-parliament-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-parliament-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18544-12642.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

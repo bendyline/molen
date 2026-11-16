@@ -1,0 +1,65 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.arecibo_telescope",
+  "kind": "static-structure",
+  "title": "Arecibo Telescope",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.arecibo_telescope",
+        "output": "assets/places/de/de2/arecibo_telescope/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:97ac560eada2602cb1bfdb691a0bbf14c1414532351e45688d31afe57099423d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-arecibo-telescope",
+        "path": "models/generate-arecibo-telescope.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/arecibo-telescope-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-prince-gong-grounds.json",
+      "native-map/overture-mansion-roofprints.json",
+      "mapped-building-controls.json",
+      "room-and-roof-layout.json",
+      "reference-rights/hermann-luyken-qualla-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10307-14684.png",
+      "terrain-sources/terrarium-15-10307-14685.png",
+      "terrain-sources/terrarium-15-10308-14684.png",
+      "terrain-sources/terrarium-15-10308-14685.png",
+      "preview.png",
+      "native-map/osm-arecibo-telescope.json",
+      "mapped-tower-controls.json",
+      "reference-rights/alessandro-cai-qualla-original.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

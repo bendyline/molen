@@ -1,0 +1,502 @@
+{
+  "planId": "sao_pedro_theatre",
+  "id": "sao_pedro_theatre",
+  "assetId": "molen.worldgen.structure.sao_pedro_theatre",
+  "title": "Theatro São Pedro, Porto Alegre",
+  "wikidataId": "Q3776871",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -51.230375875,
+    "latitude": -30.031953424999998
+  },
+  "size": [
+    28.5,
+    21.67624545097351,
+    49.45124435424805
+  ],
+  "actualBounds": {
+    "min": [
+      -14.25,
+      -3.4862449169158936,
+      -23.103195190429688
+    ],
+    "max": [
+      14.25,
+      18.190000534057617,
+      26.34804916381836
+    ]
+  },
+  "visualBrief": "The restored neoclassical theatre on Praça Marechal Deodoro with a three-arch portico, balustraded balcony, pale seven-bay facade, bracketed cornice and hipped roof.",
+  "nativeAxes": {
+    "x": "across the main front toward the east",
+    "y": "up",
+    "z": "out toward the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:O_Teatro_S%C3%A3o_Pedro_-_1875_-_Luigi_Terragno.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sao-pedro-theatre-wp",
+      "url": "https://qualla.com/sao-pedro-theatre/"
+    }
+  ],
+  "referenceInputHash": "757f16e37a00eaf337727ff2ee04078dfbf0c8a6d7cc228769f0ae1055a4dc23",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6f/6fe/sao_pedro_theatre/models/sao-pedro-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6f/6fe/sao_pedro_theatre/models/sao-pedro-theatre-model.mjs",
+    "level": "skyline",
+    "export": "saoPedroSkyline",
+    "errorMeters": 1.65,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_tadelakt",
+        "roughness": 0.86
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.89
+      },
+      "enamel": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saoPedroDistrict",
+        "errorMeters": 0.64,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.89
+          },
+          "enamel": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76
+          }
+        }
+      },
+      "street": {
+        "export": "saoPedroStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.89
+          },
+          "enamel": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76
+          }
+        }
+      },
+      "closeup": {
+        "export": "saoPedroCloseup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.89
+          },
+          "enamel": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "plaster_tadelakt",
+    "clay_fired",
+    "stone_granite",
+    "wood_painted_lap"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.87,
+    "cameraYaw": 0.16,
+    "focus": {
+      "center": [
+        0,
+        5.9,
+        4.3
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The public-domain Terragno photograph controls the seven-bay front and bracketed entablature. The current theatre publication describes the restored finish, terrace access, symmetry and entrance stairs.",
+    "anchor": [
+      -51.230375875,
+      -30.031953424999998
+    ],
+    "heading": -0.08362320508769136,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -51.23039644070484,
+        -30.032158169384896
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade at the center of the mapped entrance elevation beside Praça Marechal Deodoro."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.98971,
+          22.65805
+        ],
+        [
+          5.35931,
+          22.66087
+        ],
+        [
+          -5.454,
+          22.6512
+        ],
+        [
+          -13.13243,
+          22.65805
+        ],
+        [
+          -13.14343,
+          9.83462
+        ],
+        [
+          -12.15733,
+          9.83017
+        ],
+        [
+          -12.16982,
+          -9.81864
+        ],
+        [
+          -12.98212,
+          -9.81758
+        ],
+        [
+          -12.99498,
+          -22.66319
+        ],
+        [
+          13.13769,
+          -22.6529
+        ],
+        [
+          13.13785,
+          -9.72803
+        ],
+        [
+          12.19017,
+          -9.72679
+        ],
+        [
+          12.20576,
+          9.84355
+        ],
+        [
+          12.97964,
+          9.84572
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Native footprint of the historic theatre and its recessed lateral elevations."
+    },
+    "featureIds": [
+      "way/205416275"
+    ],
+    "source": "https://www.openstreetmap.org/way/205416275",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7d42d05a53f2617744e8bd8d5384baed67caba9f20f01fb3c8f4b650fdc2a171",
+    "notes": "The mapped polygon establishes the main theatre perimeter and recessed sides, with frontage facing the Praça da Matriz. The portico projection and stair profile are separately inferred from the documented theatre facade."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_tadelakt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall and roof heights, window widths, the stage range and some side openings are estimated from mapped proportions, the archival elevation and written accounts.",
+    "The present exterior uses a warm off-white and cream finish based on the theatre publication and the mapped color. The adjoining Multipalco is outside the 1858 theatre scope."
+  ],
+  "sourceLicense": "Original geometry with OpenStreetMap ODbL 1.0 controls and the public-domain photograph by Luigi Terragno.",
+  "qaLodCameras": [
+    {
+      "name": "arcade-skyline",
+      "position": [
+        0.3,
+        5.25,
+        55
+      ],
+      "lookAt": [
+        0.1,
+        7.45,
+        22.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "arcade-district",
+      "position": [
+        0.3,
+        5.25,
+        55
+      ],
+      "lookAt": [
+        0.1,
+        7.45,
+        22.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "arcade-street",
+      "position": [
+        0.3,
+        5.25,
+        55
+      ],
+      "lookAt": [
+        0.1,
+        7.45,
+        22.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "arcade-closeup",
+      "position": [
+        0.3,
+        5.25,
+        55
+      ],
+      "lookAt": [
+        0.1,
+        7.45,
+        22.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "square-facing-arcade-and-balcony",
+      "position": [
+        0.3,
+        5.25,
+        55
+      ],
+      "lookAt": [
+        0.1,
+        7.45,
+        22.7
+      ]
+    },
+    {
+      "name": "side-recess-and-hipped-roof",
+      "position": [
+        54,
+        24,
+        21
+      ],
+      "lookAt": [
+        0,
+        6.4,
+        1.2
+      ]
+    },
+    {
+      "name": "original-range-from-the-rear",
+      "position": [
+        -45,
+        28,
+        -62
+      ],
+      "lookAt": [
+        0,
+        7,
+        -8.7
+      ]
+    },
+    {
+      "name": "three-open-portico-arches",
+      "position": [
+        -15,
+        3.5,
+        41
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        24.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19856,
+    "vertices": 59568,
+    "materials": 6,
+    "bytes": 2673608,
+    "sha256": "sha256:d25c829b556bd977c63eb297227dcd4bb786cdfa1adc63bf3f4a67b1f867579d"
+  }
+}

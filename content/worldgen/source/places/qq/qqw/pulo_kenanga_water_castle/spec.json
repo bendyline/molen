@@ -1,0 +1,420 @@
+{
+  "planId": "pulo_kenanga_water_castle",
+  "id": "pulo_kenanga_water_castle",
+  "assetId": "molen.worldgen.structure.pulo_kenanga_water_castle",
+  "title": "Pulo Kenanga Water Castle",
+  "wikidataId": null,
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 110.35987053975,
+    "latitude": -7.8089548566132
+  },
+  "size": [
+    98.26000213623047,
+    27.679999351501465,
+    56.48653030395508
+  ],
+  "actualBounds": {
+    "min": [
+      -49.130001068115234,
+      -5.199999809265137,
+      -28.24326515197754
+    ],
+    "max": [
+      49.130001068115234,
+      22.479999542236328,
+      28.24326515197754
+    ]
+  },
+  "visualBrief": "Gedhong Panggung, the intact five-part palace on Pulo Kenanga in Yogyakarta, with tall reddish earthen tile roofs, pale walls and stepped approaches circa 1859.",
+  "nativeAxes": {
+    "x": "west to east along Gedhong Panggung",
+    "y": "up",
+    "z": "north to south across the terraces"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1859-07-01",
+    "validFrom": "1859-01-01",
+    "validUntil": "1860-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Het_waterkasteel_te_Djokjakarta.jpg"
+  ],
+  "stories": [
+    {
+      "id": "taman-sari-yogyakarta-wp",
+      "url": "https://qualla.com/taman-sari-yogyakarta/"
+    }
+  ],
+  "referenceInputHash": "cfe0ac125e989b075089a3524f58627a618ec3693e06c65f8635c2914a903b22",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqw/pulo_kenanga_water_castle/models/pulo-kenanga-water-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqw/pulo_kenanga_water_castle/models/pulo-kenanga-water-castle-model.mjs",
+    "level": "skyline",
+    "export": "castleSkyline",
+    "errorMeters": 0.58,
+    "surfaces": {
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castleDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "castleStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "castleCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "plaster_lime",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      110.35987053975,
+      -7.8089548566132
+    ],
+    "heading": -0.18758175390767,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        110.35991281183455,
+        -7.808734218347251
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation next to the lower north terrace. Historical basin grade is approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/610990852",
+      "way/352969108",
+      "heritage:4367/west-pavilion",
+      "heritage:4367/west-gallery",
+      "heritage:4367/central-pavilion",
+      "heritage:4367/east-gallery",
+      "heritage:4367/east-pavilion",
+      "heritage:4367/lower-terrace",
+      "heritage:4367/middle-terrace",
+      "heritage:4367/upper-terrace"
+    ],
+    "source": "https://jogjacagar.jogjaprov.go.id/detail/4367/displayrecords-i-nama-warisan",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4b9f1b9f5429bc8387bf62173a20e77a1062537012c88c05b9d69c7ae21669fe",
+    "notes": "The provincial heritage coordinates fall within the broad mapped structure and control placement. Its long axis fits the surviving structure’s orientation. The map traces surviving fabric and is used as a registration guide. Historic exterior room sizes come from the measured provincial register."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The circa-1859 reconstruction covers Gedhong Panggung and its immediate terraces. The neighboring pavilions, bath complex, tunnels and former lake are outside the exterior scope.",
+    "The measured provincial survey fixes the room sizes, story levels and lower terrace dimensions. Roof pitches, tile shades, stair runs, ground level and the upper terrace outline are approximations.",
+    "The historic building is aligned to the provincial register coordinate and the surviving map outline. The independent ground review uses modern source heights. Historic water level and vertical registration are unknown."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Exact public-domain 1859 S. A. Buddingh plate. OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "pulo-kenanga-skyline",
+      "position": [
+        31,
+        28,
+        -82
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pulo-kenanga-district",
+      "position": [
+        31,
+        28,
+        -82
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "pulo-kenanga-street",
+      "position": [
+        31,
+        28,
+        -82
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "pulo-kenanga-closeup",
+      "position": [
+        31,
+        28,
+        -82
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "five-block-north-frontage",
+      "position": [
+        22,
+        15.5,
+        -65
+      ],
+      "lookAt": [
+        0,
+        9.8,
+        0
+      ]
+    },
+    {
+      "name": "central-roof-and-paired-stairs",
+      "position": [
+        -14,
+        18,
+        -36
+      ],
+      "lookAt": [
+        0,
+        12.4,
+        -1.5
+      ]
+    },
+    {
+      "name": "south-terraces-and-end-gable",
+      "position": [
+        61,
+        23,
+        44
+      ],
+      "lookAt": [
+        4,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16938,
+    "vertices": 50814,
+    "materials": 5,
+    "bytes": 2158176,
+    "sha256": "sha256:98cf678030e5dd58999bcd2f84581447167435dd8c3ec0e2fce7185fdf3b0893"
+  }
+}

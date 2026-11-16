@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dragon_pavilion",
+  "kind": "static-structure",
+  "title": "Dragon Pavilion, Kaifeng",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dragon_pavilion",
+        "output": "assets/places/ww/ww1/dragon_pavilion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:dde2033a29316a532b7ef953470f4f987e4b7df0fb4508ea1279def203e3e459"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dragon-pavilion",
+        "path": "models/generate-dragon-pavilion.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/dragon-pavilion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26791-13000.png",
+      "terrain-sources/terrarium-15-26792-13000.png",
+      "preview.png",
+      "native-map/dragon-pavilion.json",
+      "reference-rights/commons-zhangmoon618-three-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

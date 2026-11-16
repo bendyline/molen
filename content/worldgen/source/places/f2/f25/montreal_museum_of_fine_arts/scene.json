@@ -1,0 +1,210 @@
+{
+  "format": "molen/scene@3",
+  "name": "Montreal Museum of Fine Arts independent building ensemble",
+  "seed": "montreal_museum_of_fine_arts",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "montreal_museum_hornstein_pavilion",
+      "components": {
+        "transform": {
+          "pos": [
+            -26.35349999952259,
+            1.7432999999999979,
+            2.2041496126213866
+          ],
+          "rot": [
+            0,
+            0.4711000274222445,
+            0,
+            0.8820797946686912
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.montreal_museum_hornstein_pavilion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "montreal_museum_stewart_pavilion",
+      "components": {
+        "transform": {
+          "pos": [
+            -93.77634999963469,
+            7.1325,
+            -33.16213772553556
+          ],
+          "rot": [
+            0,
+            0.4711000274222445,
+            0,
+            0.8820797946686912
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.montreal_museum_stewart_pavilion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "montreal_museum_bourgie_pavilion",
+      "components": {
+        "transform": {
+          "pos": [
+            8.383999999601475,
+            0.6870999999999938,
+            -45.05116190154711
+          ],
+          "rot": [
+            0,
+            0.4711000274222445,
+            0,
+            0.8820797946686912
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.montreal_museum_bourgie_pavilion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "montreal_museum_desmarais_pavilion",
+      "components": {
+        "transform": {
+          "pos": [
+            8.407349999972027,
+            -0.45930000000000604,
+            14.05968423189731
+          ],
+          "rot": [
+            0,
+            0.4711000274222445,
+            0,
+            0.8820797946686912
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.montreal_museum_desmarais_pavilion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "montreal_museum_pavilion_for_peace",
+      "components": {
+        "transform": {
+          "pos": [
+            89.94914999970149,
+            -5.3759000000000015,
+            90.2571501691963
+          ],
+          "rot": [
+            0,
+            0.4711000274222445,
+            0,
+            0.8820797946686912
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.montreal_museum_pavilion_for_peace",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      30,
+      109,
+      215
+    ],
+    "lookAt": [
+      -5,
+      1,
+      5
+    ],
+    "fov": 49
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

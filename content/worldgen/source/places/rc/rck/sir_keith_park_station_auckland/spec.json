@@ -1,0 +1,395 @@
+{
+  "planId": "sir_keith_park_station_auckland",
+  "id": "sir_keith_park_station_auckland",
+  "assetId": "molen.worldgen.structure.sir_keith_park_station_auckland",
+  "title": "Sir Keith Park Station",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.71484875,
+    "latitude": -36.85950955
+  },
+  "size": [
+    8.84000015258789,
+    3.5399999022483826,
+    6.045499801635742
+  ],
+  "actualBounds": {
+    "min": [
+      -4.420000076293945,
+      -0.4300000071525574,
+      -4.159999847412109
+    ],
+    "max": [
+      4.420000076293945,
+      3.109999895095825,
+      1.8854999542236328
+    ]
+  },
+  "visualBrief": "The public-domain Qualla original shows pale pink weatherboard siding, a dark open doorway, a brown flat-looking fascia, an off-white station board and a pale green bench. Dimensions of the roof, bench and openings are inferred from the photo and plan.",
+  "nativeAxes": {
+    "x": "along the mapped building axis",
+    "y": "up",
+    "z": "across the mapped building axis"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Keith_Park_Train_Station_Motat.jpg"
+  ],
+  "stories": [
+    {
+      "id": "museum-of-transport-and-technology-wp",
+      "url": "https://qualla.com/museum-of-transport-and-technology/"
+    }
+  ],
+  "referenceInputHash": "sha256:6cd604fc2e77dcef533465b799feac61487485be39d506a4fa414ff8c19af28c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rck/sir_keith_park_station_auckland/models/sir-keith-park-station-auckland-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rck/sir_keith_park_station_auckland/models/sir-keith-park-station-auckland-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.12,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.73,
+        "metallic": 0.4
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "finish": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.4
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.034,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.4
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.016,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.4
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "finish": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_weatherboard",
+    "metal_corrugated",
+    "concrete_boardformed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7,
+    "cameraYaw": 2.47,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        1.27,
+        -1.55
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The mapped shelter enclosure is 4.97 m wide by 3.47 m deep. The door faces the mapped platform and railway. The extent of the immediate apron is estimated.",
+    "anchor": [
+      174.71484875,
+      -36.85950955
+    ],
+    "heading": 0.4643944461707278,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.71483517297483,
+        -36.85948786431051
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation sampled beside the rail-facing shelter threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/614275368",
+      "way/964833912",
+      "way/88760194"
+    ],
+    "source": "https://www.openstreetmap.org/way/614275368",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ccd452fc8d667080b03f9207815b61cb20204602f102306ad811e379b9a22b05",
+    "notes": "The OpenStreetMap railway shelter outline and adjoining platform locate the station. The rail-facing elevation follows the exact 2008 public-domain photograph in Qualla. Shelter height, rear wall, and bench detail are estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The station enclosure footprint comes from the current mapped polygon. The rear wall, threshold, exterior bench and roof slope are reconstructed from a single front view.",
+    "The unmodified terrain field provides approximate vertical placement at the threshold. The model includes the shelter and immediate apron."
+  ],
+  "sourceLicense": "Original exterior reconstruction from the public-domain Qualla photograph and attributed open footprint and terrain data.",
+  "qaLodCameras": [
+    {
+      "name": "sir-keith-park-station-auckland-skyline",
+      "position": [
+        8.8,
+        5.9,
+        -11.3
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sir-keith-park-station-auckland-district",
+      "position": [
+        8.8,
+        5.9,
+        -11.3
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sir-keith-park-station-auckland-street",
+      "position": [
+        8.8,
+        5.9,
+        -11.3
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sir-keith-park-station-auckland-closeup",
+      "position": [
+        8.8,
+        5.9,
+        -11.3
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rail-facing-shelter",
+      "position": [
+        1.5,
+        4.1,
+        -12
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ]
+    },
+    {
+      "name": "station-name-and-bench",
+      "position": [
+        0.2,
+        2.7,
+        -6.2
+      ],
+      "lookAt": [
+        -0.55,
+        1.46,
+        -1.7355
+      ]
+    },
+    {
+      "name": "rear-wall-and-roof",
+      "position": [
+        -7.3,
+        5.9,
+        8.6
+      ],
+      "lookAt": [
+        0,
+        1.27,
+        -1.55
+      ]
+    },
+    {
+      "name": "platform-edge-and-terrain",
+      "position": [
+        6.4,
+        2.5,
+        -8
+      ],
+      "lookAt": [
+        0,
+        0.45,
+        -1.7355
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 512,
+    "vertices": 1536,
+    "materials": 4,
+    "bytes": 164184,
+    "sha256": "sha256:10c9e2047bf9d523f1b8e8f181a8b77c99fa8e8b17e1773277624bc399ab52cb"
+  }
+}

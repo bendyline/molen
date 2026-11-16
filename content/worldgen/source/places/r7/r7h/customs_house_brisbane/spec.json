@@ -1,0 +1,406 @@
+{
+  "planId": "customs_house_brisbane",
+  "id": "customs_house_brisbane",
+  "assetId": "molen.worldgen.structure.customs_house_brisbane",
+  "title": "Customs House, Brisbane",
+  "wikidataId": "Q1146279",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.03115545,
+    "latitude": -27.465382499999997
+  },
+  "size": [
+    45.638240814208984,
+    27.9399995803833,
+    27.5871000289917
+  ],
+  "actualBounds": {
+    "min": [
+      -28.638914108276367,
+      -5.800000190734863,
+      -14.630000114440918
+    ],
+    "max": [
+      16.999326705932617,
+      22.139999389648438,
+      12.957099914550781
+    ]
+  },
+  "visualBrief": "Customs House in Brisbane has a ribbed copper dome over the round Long Room, a stone Queen Street colonnade, and a lower storey on the Brisbane River side.",
+  "nativeAxes": {
+    "x": "along Queen Street towards the northeast",
+    "y": "up",
+    "z": "towards the Brisbane River"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Custom_House_and_Garden_Reach,_Brisbane,_Australia.jpg"
+  ],
+  "stories": [
+    {
+      "id": "customs-house-brisbane-wp",
+      "url": "https://qualla.com/customs-house-brisbane/"
+    }
+  ],
+  "referenceInputHash": "0918d005427c6dc03dd85352f45868f51bba02a33a794d23f50da1f44250e631",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/customs_house_brisbane/models/customs-house-brisbane-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "joined-path.mjs": "sha256:ad80cf5f984f8be137edec6e88c26a8a062d6e5966ae4ed15bd314aadf2ac5bc"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/customs_house_brisbane/models/customs-house-brisbane-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.69,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86,
+        "metallic": 0.34
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58,
+        "metallic": 0.05
+      },
+      "fine": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.86
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.34
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.86
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.34
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.86
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.34
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.86
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.65,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -4,
+        7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Mapped walls and the original Queensland Government elevation raster at the Queen Street approach and exposed river basement. Architectural landing heights are estimates.",
+    "anchor": [
+      153.03115545,
+      -27.465382499999997
+    ],
+    "heading": 0.7190197642903309,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.03102755370656,
+        -27.465307411918392
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the Queen Street approach beside the main building."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/26253545"
+    ],
+    "source": "https://www.openstreetmap.org/way/26253545",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eacf063d9cc913cd6c824c5af8bc0d7512e4f2cce0930e3651d307df8122bf83",
+    "notes": "The mapped segment along Queen Street aligns the long walls. The mapped rounded northeast end locates the Long Room rotunda above the riverside basement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior follows the public-domain archival street view, mapped walls and written restoration record. Heights, window progression on less visible elevations, capitals and fine stone ornament are estimates.",
+    "The ongoing copper colour change after the 2024 replacement is represented by a muted transitional palette. Fine heritage inscriptions and exact railing ironwork are generalized.",
+    "Source Queensland Government terrain fixes the site slope. Landing and foundation positions are approximate. The adjoining river wall, precinct buildings and vegetation are outside scope."
+  ],
+  "sourceLicense": "Original architectural reconstruction using the verified public-domain State Library of Queensland postcard from the Qualla story, geographic mapping and written heritage records.",
+  "qaLodCameras": [
+    {
+      "name": "customs-house-brisbane-skyline",
+      "position": [
+        47,
+        28,
+        -57
+      ],
+      "lookAt": [
+        -4,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "customs-house-brisbane-district",
+      "position": [
+        47,
+        28,
+        -57
+      ],
+      "lookAt": [
+        -4,
+        7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "customs-house-brisbane-street",
+      "position": [
+        47,
+        28,
+        -57
+      ],
+      "lookAt": [
+        -4,
+        7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "customs-house-brisbane-closeup",
+      "position": [
+        47,
+        28,
+        -57
+      ],
+      "lookAt": [
+        -4,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "queen-street-portico",
+      "position": [
+        17,
+        7,
+        -33
+      ],
+      "lookAt": [
+        -13,
+        5.7,
+        -4
+      ]
+    },
+    {
+      "name": "long-room-dome",
+      "position": [
+        31,
+        23,
+        -20
+      ],
+      "lookAt": [
+        8.5,
+        13.6,
+        0
+      ]
+    },
+    {
+      "name": "river-basement",
+      "position": [
+        31,
+        9,
+        37
+      ],
+      "lookAt": [
+        -4,
+        3.7,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12380,
+    "vertices": 37140,
+    "materials": 6,
+    "bytes": 1548728,
+    "sha256": "sha256:fb3d217f40fa8c8180edfff66d7f83e139307cde54d2173c4d3262a44f1d14f0"
+  }
+}

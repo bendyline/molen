@@ -1,0 +1,596 @@
+{
+  "planId": "legislative_palace_of_uruguay",
+  "id": "legislative_palace_of_uruguay",
+  "assetId": "molen.worldgen.structure.legislative_palace_of_uruguay",
+  "title": "Legislative Palace of Uruguay",
+  "wikidataId": "Q283417",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -56.18717268,
+    "latitude": -34.89121195
+  },
+  "size": [
+    102.79999923706055,
+    51.95000076293945,
+    105.20000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -51.619998931884766,
+      -12,
+      -40.72999954223633
+    ],
+    "max": [
+      51.18000030517578,
+      39.95000076293945,
+      64.47000122070312
+    ]
+  },
+  "visualBrief": "The standing Legislative Palace at Montevideo, with pale neoclassical porticoes, the sculpted square lantern, four mapped courts and the monumental southern stairs.",
+  "nativeAxes": {
+    "x": "east-southeast",
+    "y": "up",
+    "z": "south-southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Palacio_Legislativo.JPG"
+  ],
+  "stories": [
+    {
+      "id": "legislative-palace-of-uruguay-wp",
+      "url": "https://qualla.com/legislative-palace-of-uruguay/"
+    }
+  ],
+  "referenceInputHash": "f3c82b7a5b08c86a19b58e87ec7633a604e98011d34a21a76c73725e3c494f07",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6c/6cb/legislative_palace_of_uruguay/models/legislative-palace-of-uruguay-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6c/6cb/legislative_palace_of_uruguay/models/legislative-palace-of-uruguay-model.mjs",
+    "level": "skyline",
+    "export": "legislativeSkyline",
+    "errorMeters": 0.96,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.15
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.49,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "legislativeDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "legislativeStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "legislativeCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.15
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_marble",
+    "stone_limestone_raw",
+    "stone_granite",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "geographic-preview",
+    "anchor": [
+      -56.18717268,
+      -34.89121195
+    ],
+    "heading": -0.37603732463514344,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -56.18744214847596,
+        -34.89177176423746
+      ],
+      "modelHeight": 0,
+      "basis": "Original source terrain at the site near the bottom of the photographed main steps. Stair placement and ramp grades are estimated."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -14.57,
+          39.98
+        ],
+        [
+          14.57,
+          39.98
+        ],
+        [
+          14.57,
+          47.1
+        ],
+        [
+          17.81,
+          47.1
+        ],
+        [
+          17.81,
+          55.7
+        ],
+        [
+          19.2,
+          55.7
+        ],
+        [
+          19.2,
+          63.86
+        ],
+        [
+          -19.2,
+          63.86
+        ],
+        [
+          -19.2,
+          55.7
+        ],
+        [
+          -17.81,
+          55.7
+        ],
+        [
+          -17.81,
+          47.1
+        ],
+        [
+          -14.57,
+          47.1
+        ]
+      ],
+      "basis": "Only the three modeled south stair flights. The original terrain remains intact beneath the review overlay and across the surrounding parcel."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.3672,
+          -34.582
+        ],
+        [
+          -10.3657,
+          -40.1478
+        ],
+        [
+          11.094,
+          -40.1472
+        ],
+        [
+          11.0895,
+          -35.6334
+        ],
+        [
+          43.8368,
+          -35.6372
+        ],
+        [
+          43.8397,
+          -15.3163
+        ],
+        [
+          47.4261,
+          -15.3081
+        ],
+        [
+          47.4275,
+          -9.6357
+        ],
+        [
+          50.5873,
+          -9.6386
+        ],
+        [
+          50.589,
+          10.1322
+        ],
+        [
+          46.221,
+          10.1334
+        ],
+        [
+          46.2153,
+          14.0971
+        ],
+        [
+          43.989,
+          14.1024
+        ],
+        [
+          43.986,
+          36.149
+        ],
+        [
+          28.132,
+          36.1492
+        ],
+        [
+          28.1343,
+          34.365
+        ],
+        [
+          10.8567,
+          34.3648
+        ],
+        [
+          10.8524,
+          40.1471
+        ],
+        [
+          -11.579,
+          40.1471
+        ],
+        [
+          -11.5784,
+          34.0072
+        ],
+        [
+          -28.8265,
+          34.0073
+        ],
+        [
+          -28.8178,
+          35.2725
+        ],
+        [
+          -44.2705,
+          35.2698
+        ],
+        [
+          -44.2748,
+          13.1304
+        ],
+        [
+          -46.5347,
+          13.125
+        ],
+        [
+          -46.5419,
+          8.8552
+        ],
+        [
+          -51.0282,
+          8.8552
+        ],
+        [
+          -51.0316,
+          -12.7102
+        ],
+        [
+          -46.4185,
+          -12.7123
+        ],
+        [
+          -46.412,
+          -15.1325
+        ],
+        [
+          -43.2691,
+          -15.1287
+        ],
+        [
+          -43.2708,
+          -34.5763
+        ]
+      ],
+      "basis": "Exact named civic building perimeter from the OpenStreetMap multipolygon. Match replacement to the palace footprint."
+    },
+    "featureIds": [
+      "way/81683741",
+      "way/1525305780",
+      "way/1525305781",
+      "way/1525305778",
+      "way/1525305779"
+    ],
+    "source": "https://www.openstreetmap.org/relation/20800840",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:123d5ee5856388f6d64104a297cadfeac45546eac93ac4e06bfce1723844e42a",
+    "notes": "The named OSM civic building relation 20800840 supplies a footprint with 32 outer vertices, four true courtyards, and the cardinal portico projections. The mapped south portico fixes heading. Stairs and ramps project beyond the wall trace."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing exterior. The native map grounds the building wall projections and four open light courts. Individual statues, coats of arms, cornice carving and concealed roof details are interpreted at medium fidelity.",
+    "Main stairs, ramp grades, window depths, rear capital details and exact height datums are approximate. The original source elevation samples are retained independently.",
+    "The ensemble is the palace itself with its attached podium and principal approach. Interior rooms, perimeter gardens, and transport or utility fixtures are outside the documented scope."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Federico Corral released the exact Qualla photograph to the public domain. Native OpenStreetMap footprint ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "palace-skyline",
+      "position": [
+        99,
+        62,
+        137
+      ],
+      "lookAt": [
+        0,
+        15,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palace-district",
+      "position": [
+        99,
+        62,
+        137
+      ],
+      "lookAt": [
+        0,
+        15,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "palace-street",
+      "position": [
+        99,
+        62,
+        137
+      ],
+      "lookAt": [
+        0,
+        15,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "palace-closeup",
+      "position": [
+        99,
+        62,
+        137
+      ],
+      "lookAt": [
+        0,
+        15,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-stairs-and-portico",
+      "position": [
+        -0.7,
+        3.5,
+        111
+      ],
+      "lookAt": [
+        0,
+        14,
+        29
+      ]
+    },
+    {
+      "name": "lantern-sculpture-and-courts",
+      "position": [
+        66,
+        61,
+        65
+      ],
+      "lookAt": [
+        0,
+        21,
+        2
+      ]
+    },
+    {
+      "name": "northern-and-western-porticoes",
+      "position": [
+        -90,
+        34,
+        -84
+      ],
+      "lookAt": [
+        0,
+        15,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 33706,
+    "vertices": 101118,
+    "materials": 5,
+    "bytes": 4333372,
+    "sha256": "sha256:2496c5be2b49e380416f3c8512201a877f2cbc7645095fce847b74754f0430ab"
+  }
+}

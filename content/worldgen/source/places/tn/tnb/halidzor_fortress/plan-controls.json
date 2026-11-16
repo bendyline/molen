@@ -1,0 +1,510 @@
+{
+  "format": "molen/structure-plan-controls@1",
+  "date": "2026-11-15",
+  "model": "halidzor_fortress",
+  "cell": "tn/tnb",
+  "title": "Halidzor Fortress",
+  "wikidataId": "Q5556110",
+  "geometryBasis": "Two native wall centerlines and three building polygons fix the irregular mapped fort and historic church precinct. The Armenian survey gives masonry and surviving tower dimensions. The named fortress node anchors this site at Kapan.",
+  "sectionBasis": "Source relief follows the 256 m Terrarium field. The architecture survey describes one-metre curtains, distinct exterior and interior east wall heights, a five-metre tower, and the broad vaulted church with 1.6 m walls and a two-metre bell opening.",
+  "terrainFrozenBeforeGeometry": {
+    "terrain-grid.json": "sha256:85427d8f4d96126d3909bff845d301d5b7aaf9e452ca9997b38edeea1c8a7678",
+    "terrain-review.height.png": "sha256:a5ad367fdf31dded74be8a37743a25e70b3d5de02f9bee64bec88f964cbbd7b5",
+    "terrain-review.terrain.json": "sha256:59c035f9aa888d0e86bbb1739feb3d7432aacecf70451f6e4ffd6802f1b75402",
+    "terrain-sources/terrarium-15-20602-12497.png": "sha256:72b0e2d903607cb02d1adf1b31127ec3f36f95882435d8b636574ad9a8ac3a9c",
+    "terrain-sources/terrarium-15-20603-12497.png": "sha256:37a19a5f74b984ee16c8afbfb5fadcd630d3430191d35a68dfc5a68bfb7127dc"
+  },
+  "dimensions": {
+    "wallWidth": 1,
+    "walls": [
+      {
+        "id": 682848205,
+        "points": [
+          [
+            -9.0901,
+            21.3956
+          ],
+          [
+            -37.3092,
+            4.7422
+          ],
+          [
+            -2.1475,
+            -43.8376
+          ],
+          [
+            19.1031,
+            -24.5459
+          ]
+        ],
+        "heights": [
+          3.9,
+          2.9,
+          2.4,
+          2.2
+        ],
+        "westRun": 1
+      },
+      {
+        "id": 541598187,
+        "points": [
+          [
+            23.6136,
+            -20.672
+          ],
+          [
+            35.3256,
+            -10.0633
+          ],
+          [
+            14.0405,
+            26.2491
+          ],
+          [
+            7.5636,
+            27.8744
+          ],
+          [
+            -0.7589,
+            26.4829
+          ],
+          [
+            -3.122,
+            25.2807
+          ]
+        ],
+        "heights": [
+          2.45,
+          3.4,
+          3.25,
+          3.45,
+          4.05,
+          4.05
+        ]
+      }
+    ],
+    "southernGate": {
+      "from": [
+        -9.0901,
+        21.3956
+      ],
+      "to": [
+        -3.122,
+        25.2807
+      ],
+      "position": [
+        -6.10605,
+        23.33815
+      ],
+      "openWidth": 2.45,
+      "springAboveGrade": 1.72,
+      "rise": 1.12,
+      "heightAboveGrade": 4
+    },
+    "southwestTower": {
+      "center": [
+        -36.9,
+        5.05
+      ],
+      "diameter": 5,
+      "aboveGrade": 5.4,
+      "wallWidth": 0.92
+    },
+    "church": {
+      "sourceWay": 541598186,
+      "measuredOutline": [
+        [
+          -1.6645,
+          18.557
+        ],
+        [
+          -1.9491,
+          6.7237
+        ],
+        [
+          7.2186,
+          6.5122
+        ],
+        [
+          7.3135,
+          10.1746
+        ],
+        [
+          12.1345,
+          10.0633
+        ],
+        [
+          12.3243,
+          18.223
+        ]
+      ],
+      "core": [
+        [
+          -1.9,
+          8.15
+        ],
+        [
+          10.98,
+          7.84
+        ],
+        [
+          11.21,
+          17.34
+        ],
+        [
+          -1.67,
+          17.65
+        ]
+      ],
+      "wallWidth": 1.6,
+      "clearSpan": 6.3,
+      "clearLengthToWidth": 1.54,
+      "bellOpeningDiameter": 2,
+      "floor": 1.62,
+      "roof": 9.52,
+      "belfry": {
+        "center": [
+          3.25,
+          12.66
+        ],
+        "openHeight": 1.51,
+        "peakHeight": 2.9
+      },
+      "wings": [
+        {
+          "kind": "north",
+          "levels": 2,
+          "footprint": [
+            [
+              -1.9,
+              8.15
+            ],
+            [
+              -2.06,
+              2.73
+            ],
+            [
+              6.42,
+              2.52
+            ],
+            [
+              7.23,
+              6.51
+            ],
+            [
+              7.265,
+              7.93
+            ]
+          ],
+          "upper": 9.52,
+          "lower": 5.6,
+          "terraceFrom": 5.5
+        },
+        {
+          "kind": "south",
+          "levels": 2,
+          "footprint": [
+            [
+              -1.67,
+              17.65
+            ],
+            [
+              11.21,
+              17.34
+            ],
+            [
+              12.33,
+              18.22
+            ],
+            [
+              12.41,
+              21.85
+            ],
+            [
+              -1.55,
+              22.18
+            ]
+          ],
+          "upper": 9.52,
+          "lower": 5.3,
+          "terraceFrom": 6.7
+        }
+      ]
+    },
+    "northTomb": {
+      "sourceWay": 541598188,
+      "footprint": [
+        [
+          7.7361,
+          -2.4602
+        ],
+        [
+          9.9526,
+          -9.4844
+        ],
+        [
+          14.0837,
+          -8.182
+        ],
+        [
+          11.8672,
+          -1.1577
+        ]
+      ],
+      "piers": 4,
+      "roofHeight": 4.3
+    },
+    "villageChurch": {
+      "sourceWay": 541598185,
+      "footprint": [
+        [
+          48.1587,
+          19.7481
+        ],
+        [
+          59.7671,
+          23.878
+        ],
+        [
+          56.3864,
+          33.3847
+        ],
+        [
+          46.7615,
+          29.9672
+        ],
+        [
+          44.7865,
+          29.2659
+        ]
+      ],
+      "naves": 1,
+      "standingHeights": [
+        2,
+        3.95,
+        4.45,
+        2.4,
+        1.3
+      ]
+    },
+    "refectoryTraces": [
+      [
+        -3.95,
+        -23
+      ],
+      [
+        10.6,
+        -17.85
+      ],
+      [
+        12.05,
+        -22.2
+      ],
+      [
+        -2.5,
+        -27.38
+      ]
+    ],
+    "cellsTraces": [
+      [
+        -28.45,
+        -2.6
+      ],
+      [
+        -21.15,
+        -12.1
+      ],
+      [
+        -18.7,
+        -10.1
+      ],
+      [
+        -25.75,
+        -0.8
+      ]
+    ],
+    "paths": [
+      {
+        "id": 421799008,
+        "points": [
+          [
+            10.4097,
+            32.7279
+          ],
+          [
+            13.1695,
+            30.3123
+          ]
+        ],
+        "kind": "path"
+      },
+      {
+        "id": 648634703,
+        "points": [
+          [
+            46.4424,
+            2.3043
+          ],
+          [
+            43.0444,
+            -6.7905
+          ]
+        ],
+        "kind": "steps"
+      },
+      {
+        "id": 648634704,
+        "points": [
+          [
+            20.8797,
+            35.1547
+          ],
+          [
+            25.4765,
+            39.5518
+          ],
+          [
+            33.5144,
+            20.9615
+          ],
+          [
+            38.5597,
+            13.9929
+          ],
+          [
+            46.4424,
+            2.3043
+          ]
+        ],
+        "kind": "footway"
+      },
+      {
+        "id": 648634708,
+        "points": [
+          [
+            41.078,
+            20.5941
+          ],
+          [
+            44.1915,
+            22.3307
+          ],
+          [
+            43.0703,
+            27.8521
+          ],
+          [
+            43.329,
+            30.8355
+          ],
+          [
+            46.9685,
+            32.1602
+          ]
+        ],
+        "kind": "steps"
+      },
+      {
+        "id": 648634709,
+        "points": [
+          [
+            -8.5037,
+            25.0803
+          ],
+          [
+            -11.4273,
+            29.778
+          ],
+          [
+            -12.2467,
+            30.8578
+          ]
+        ],
+        "kind": "path"
+      },
+      {
+        "id": 682845761,
+        "points": [
+          [
+            13.1695,
+            30.3123
+          ],
+          [
+            20.8797,
+            35.1547
+          ]
+        ],
+        "kind": "steps"
+      },
+      {
+        "id": 682845762,
+        "points": [
+          [
+            9.6766,
+            33.407
+          ],
+          [
+            10.4097,
+            32.7279
+          ]
+        ],
+        "kind": "steps"
+      },
+      {
+        "id": 682845764,
+        "points": [
+          [
+            6.9168,
+            35.8449
+          ],
+          [
+            9.6766,
+            33.407
+          ]
+        ],
+        "kind": "path"
+      },
+      {
+        "id": 682845765,
+        "points": [
+          [
+            -8.4433,
+            31.6815
+          ],
+          [
+            -6.6063,
+            32.8281
+          ],
+          [
+            6.9168,
+            35.8449
+          ]
+        ],
+        "kind": "steps"
+      }
+    ]
+  },
+  "requiredSourceDocuments": [
+    "map-frame.json",
+    "native-map/fort-controls.json",
+    "reference-images.json",
+    "imagery-evidence.json",
+    "reference-rights/architecture-and-restoration-facts.json",
+    "reference-rights/article-image-exclusions.json",
+    "primary-facts-reconstruction.json",
+    "research-preparation.json",
+    "construction-preparation.json",
+    "plan-controls.json",
+    "terrain-grid.json",
+    "terrain-review.height.png",
+    "terrain-review.terrain.json",
+    "terrain-sources/terrarium-15-20602-12497.png",
+    "terrain-sources/terrarium-15-20603-12497.png"
+  ],
+  "limitations": [
+    "The named node, two wall ways, three building polygons and mapped steps fix the site. The southern gateway occupies the mapped southwest approach gap. Tower height, belfry design, and roof divisions and heights are estimates.",
+    "The photographed material is excluded. The measured 5 m tower diameter, approximately 1 m curtain thickness, 1.6 m church wall thickness and a more than 6 m hall span inform the scaled exterior. A documented 2 m circular opening informs the bell stage.",
+    "The north tomb and village church are assigned to the two mapped polygons that fit the register positions. The refectory and western cells are marked by low traces in approximate positions. Standing wall crests vary to represent the partly restored condition.",
+    "The original terrain is unchanged. Local exterior grade is an approximate registration against the Terrarium field, especially along the walls and foundations on the east descent."
+  ]
+}

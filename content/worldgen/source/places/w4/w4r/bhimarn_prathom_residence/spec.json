@@ -1,0 +1,903 @@
+{
+  "planId": "bhimarn_prathom_residence",
+  "id": "bhimarn_prathom_residence",
+  "assetId": "molen.worldgen.structure.bhimarn_prathom_residence",
+  "title": "Bhimarn Prathom Residence and Connected Royal Halls",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.044684,
+    "latitude": 13.819557
+  },
+  "size": [
+    170.64046478271484,
+    17.477000802755356,
+    57.798279762268066
+  ],
+  "actualBounds": {
+    "min": [
+      -45.999664306640625,
+      0.15000000596046448,
+      -49.65827941894531
+    ],
+    "max": [
+      124.64080047607422,
+      17.62700080871582,
+      8.140000343322754
+    ]
+  },
+  "visualBrief": "Four connected royal halls with a blue-green tropical veranda at the east garden and stepped gold-edged Thai roofs to the north.",
+  "nativeAxes": {
+    "x": "north-northwest",
+    "y": "up",
+    "z": "east-northeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Samakkhi_Mukamat.jpg",
+    "https://commons.wikimedia.org/wiki/File:Phiman_Pathom.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sanam-chandra-palace-wp",
+      "url": "https://qualla.com/sanam-chandra-palace/"
+    }
+  ],
+  "referenceInputHash": "26d4c71bb5a0f8d4856882dfc07d0f2270a9c961a300c54f27561b69289aa663",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4r/bhimarn_prathom_residence/models/bhimarn-prathom-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4r/bhimarn_prathom_residence/models/bhimarn-prathom-model.mjs",
+    "level": "skyline",
+    "export": "bhimarnSkyline",
+    "errorMeters": 0.92,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "westernTile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "thaiTile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#484e4a",
+        "roughness": 0.72,
+        "metallic": 0
+      },
+      "gilt": {
+        "slot": "trim",
+        "localRef": "palette:#b89349",
+        "roughness": 0.74,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bhimarnDistrict",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "westernTile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "thaiTile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#484e4a",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gilt": {
+            "slot": "trim",
+            "localRef": "palette:#b89349",
+            "roughness": 0.74,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "bhimarnStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "westernTile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "thaiTile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#484e4a",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gilt": {
+            "slot": "trim",
+            "localRef": "palette:#b89349",
+            "roughness": 0.74,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "bhimarnCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "westernTile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "thaiTile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#484e4a",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gilt": {
+            "slot": "trim",
+            "localRef": "palette:#b89349",
+            "roughness": 0.74,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "tile_flat",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.34,
+    "cameraYaw": -0.4,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        38,
+        6,
+        -13
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The western two-storey garden residence and south annex share blue-grey roofs and painted gingerbread galleries. The northern two Thai volumes have orange-and-dark-blue layered roof planes, chofa finials and tiered trim. The terrain is original and relative section heights are estimated from the two originals and primary written sources.",
+    "anchor": [
+      100.044684,
+      13.819557
+    ],
+    "heading": 1.7276925685100732,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.04476669980376,
+        13.819624273044994
+      ],
+      "modelHeight": 0,
+      "basis": "East garden just outside the Bhimarn Prathom entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          57.62568,
+          0.71108
+        ],
+        [
+          46.11918,
+          0.70752
+        ],
+        [
+          34.90532,
+          0.70648
+        ],
+        [
+          34.90755,
+          -4.29464
+        ],
+        [
+          24.60361,
+          -4.77555
+        ],
+        [
+          24.49126,
+          -0.50322
+        ],
+        [
+          22.58113,
+          1.38343
+        ],
+        [
+          10.398,
+          1.23999
+        ],
+        [
+          10.30297,
+          7.25518
+        ],
+        [
+          1.6128,
+          7.11711
+        ],
+        [
+          1.82118,
+          -6.16894
+        ],
+        [
+          -4.04896,
+          -12.44925
+        ],
+        [
+          -20.35309,
+          3.69691
+        ],
+        [
+          -28.95219,
+          -4.99601
+        ],
+        [
+          -12.99474,
+          -20.80303
+        ],
+        [
+          -23.24093,
+          -31.2668
+        ],
+        [
+          -27.45436,
+          -27.07416
+        ],
+        [
+          -34.01809,
+          -33.67214
+        ],
+        [
+          -39.25975,
+          -28.53679
+        ],
+        [
+          -45.96393,
+          -35.38682
+        ],
+        [
+          -33.70748,
+          -47.39072
+        ],
+        [
+          -27.47787,
+          -41.03165
+        ],
+        [
+          -22.85265,
+          -45.61881
+        ],
+        [
+          -15.87186,
+          -38.59369
+        ],
+        [
+          -20.8742,
+          -33.61748
+        ],
+        [
+          -10.6965,
+          -23.07699
+        ],
+        [
+          -3.19721,
+          -30.51461
+        ],
+        [
+          5.41289,
+          -21.81995
+        ],
+        [
+          3.77165,
+          -20.20814
+        ],
+        [
+          5.4661,
+          -18.45168
+        ],
+        [
+          13.56238,
+          -26.38585
+        ],
+        [
+          11.98381,
+          -28.09114
+        ],
+        [
+          17.43523,
+          -33.12763
+        ],
+        [
+          30.36666,
+          -19.11999
+        ],
+        [
+          24.91524,
+          -14.08349
+        ],
+        [
+          21.60582,
+          -17.67139
+        ],
+        [
+          17.51244,
+          -13.66769
+        ],
+        [
+          21.26518,
+          -9.46245
+        ],
+        [
+          34.9014,
+          -8.95782
+        ],
+        [
+          34.90749,
+          -19.25529
+        ],
+        [
+          57.61686,
+          -19.25242
+        ],
+        [
+          57.62068,
+          -10.01496
+        ],
+        [
+          57.6157,
+          -5.92265
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            57.62568,
+            0.71108
+          ],
+          [
+            46.11918,
+            0.70752
+          ],
+          [
+            34.90532,
+            0.70648
+          ],
+          [
+            34.90755,
+            -4.29464
+          ],
+          [
+            24.60361,
+            -4.77555
+          ],
+          [
+            24.49126,
+            -0.50322
+          ],
+          [
+            22.58113,
+            1.38343
+          ],
+          [
+            10.398,
+            1.23999
+          ],
+          [
+            10.30297,
+            7.25518
+          ],
+          [
+            1.6128,
+            7.11711
+          ],
+          [
+            1.82118,
+            -6.16894
+          ],
+          [
+            -4.04896,
+            -12.44925
+          ],
+          [
+            -20.35309,
+            3.69691
+          ],
+          [
+            -28.95219,
+            -4.99601
+          ],
+          [
+            -12.99474,
+            -20.80303
+          ],
+          [
+            -23.24093,
+            -31.2668
+          ],
+          [
+            -27.45436,
+            -27.07416
+          ],
+          [
+            -34.01809,
+            -33.67214
+          ],
+          [
+            -39.25975,
+            -28.53679
+          ],
+          [
+            -45.96393,
+            -35.38682
+          ],
+          [
+            -33.70748,
+            -47.39072
+          ],
+          [
+            -27.47787,
+            -41.03165
+          ],
+          [
+            -22.85265,
+            -45.61881
+          ],
+          [
+            -15.87186,
+            -38.59369
+          ],
+          [
+            -20.8742,
+            -33.61748
+          ],
+          [
+            -10.6965,
+            -23.07699
+          ],
+          [
+            -3.19721,
+            -30.51461
+          ],
+          [
+            5.41289,
+            -21.81995
+          ],
+          [
+            3.77165,
+            -20.20814
+          ],
+          [
+            5.4661,
+            -18.45168
+          ],
+          [
+            13.56238,
+            -26.38585
+          ],
+          [
+            11.98381,
+            -28.09114
+          ],
+          [
+            17.43523,
+            -33.12763
+          ],
+          [
+            30.36666,
+            -19.11999
+          ],
+          [
+            24.91524,
+            -14.08349
+          ],
+          [
+            21.60582,
+            -17.67139
+          ],
+          [
+            17.51244,
+            -13.66769
+          ],
+          [
+            21.26518,
+            -9.46245
+          ],
+          [
+            34.9014,
+            -8.95782
+          ],
+          [
+            34.90749,
+            -19.25529
+          ],
+          [
+            57.61686,
+            -19.25242
+          ],
+          [
+            57.62068,
+            -10.01496
+          ],
+          [
+            57.6157,
+            -5.92265
+          ]
+        ],
+        [
+          [
+            57.62068,
+            -10.01496
+          ],
+          [
+            80.45437,
+            -10.01432
+          ],
+          [
+            80.44939,
+            -5.922
+          ],
+          [
+            57.6157,
+            -5.92265
+          ]
+        ],
+        [
+          [
+            123.14588,
+            -15.92304
+          ],
+          [
+            123.14663,
+            2.02546
+          ],
+          [
+            94.16091,
+            2.01467
+          ],
+          [
+            94.16176,
+            5.71393
+          ],
+          [
+            80.45714,
+            5.71284
+          ],
+          [
+            80.44939,
+            -5.922
+          ],
+          [
+            80.45437,
+            -10.01432
+          ],
+          [
+            80.4532,
+            -18.76982
+          ],
+          [
+            95.12705,
+            -18.76862
+          ],
+          [
+            95.12771,
+            -15.92304
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The four linked halls occupy the surveyed compound perimeter, narrow roofed link and northern audience hall."
+    },
+    "featureIds": [
+      "relation/21109795",
+      "way/260617818",
+      "way/260617823",
+      "way/96937112"
+    ],
+    "source": "https://www.openstreetmap.org/relation/21109795",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ca12ef8756b27bccf0100efc88325e537877a9352e304aee0e62814ccaffb304"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped compound perimeter, raised connecting gallery, court and audience hall perimeter are retained. Roof joins, threshold and storey heights, and the division of unmapped individual interiors are medium-fi estimates.",
+    "Only the east garden image of Bhimarn Prathom and corrected Vajariromaya original are used. The Aphirom Ruedi elevations and Samakkhi Mukhamat fenestration are inferred from government architectural descriptions and the shared layout.",
+    "Fine joinery, roof crest decorations and gable emblems are simplified. Closed windows and doors suggest the standing exterior; interior contents and art are outside the scope.",
+    "The original Terrarium terrain remains unchanged. The public grid helps register the connected plinths; doorstep, courtyard, stair and floor elevations are approximate."
+  ],
+  "sourceLicense": "Original authored geometry from exact Qualla public-domain originals, written architectural records, attributed OpenStreetMap and Terrarium ground.",
+  "qaLodCameras": [
+    {
+      "name": "bhimarn-prathom-skyline",
+      "position": [
+        18,
+        85,
+        135
+      ],
+      "lookAt": [
+        38,
+        6,
+        -13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bhimarn-prathom-district",
+      "position": [
+        18,
+        85,
+        135
+      ],
+      "lookAt": [
+        38,
+        6,
+        -13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bhimarn-prathom-street",
+      "position": [
+        18,
+        85,
+        135
+      ],
+      "lookAt": [
+        38,
+        6,
+        -13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bhimarn-prathom-closeup",
+      "position": [
+        18,
+        85,
+        135
+      ],
+      "lookAt": [
+        38,
+        6,
+        -13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bhimarn-prathom-east-gallery",
+      "position": [
+        -3,
+        13,
+        44
+      ],
+      "lookAt": [
+        4.6,
+        5,
+        -1.7
+      ]
+    },
+    {
+      "name": "vajariromaya-gilded-south-gallery",
+      "position": [
+        15.5,
+        18,
+        38
+      ],
+      "lookAt": [
+        40,
+        8,
+        -4
+      ]
+    },
+    {
+      "name": "samakkhi-mukhamat-audience-hall",
+      "position": [
+        144,
+        26,
+        45
+      ],
+      "lookAt": [
+        104,
+        7,
+        -7
+      ]
+    },
+    {
+      "name": "light-court-and-connected-roofs",
+      "position": [
+        56,
+        63,
+        -89
+      ],
+      "lookAt": [
+        30,
+        5,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8304,
+    "vertices": 24912,
+    "materials": 7,
+    "bytes": 1192552,
+    "sha256": "sha256:00370828ede2f2ec17df24f7086993922b7bae334aea566e155b93a7f6738bb8"
+  }
+}

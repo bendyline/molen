@@ -1,0 +1,376 @@
+{
+  "planId": "grand_egyptian_museum",
+  "id": "grand_egyptian_museum",
+  "assetId": "molen.worldgen.structure.grand_egyptian_museum",
+  "title": "Grand Egyptian Museum",
+  "wikidataId": "Q2583681",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.1196,
+    "latitude": 29.99455
+  },
+  "size": [
+    445.0736083984375,
+    59.934574127197266,
+    559.3438415527344
+  ],
+  "actualBounds": {
+    "min": [
+      -257.6761169433594,
+      -19,
+      -281.96246337890625
+    ],
+    "max": [
+      187.39749145507812,
+      40.934574127197266,
+      277.3813781738281
+    ]
+  },
+  "visualBrief": "Grand Egyptian Museum main building set into the plateau, with a broad folded concrete roof and shaded triangular-glazed entrance.",
+  "nativeAxes": {
+    "x": "east toward entrance forecourt",
+    "y": "up",
+    "z": "south toward the Giza pyramid plateau"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "grand-egyptian-museum-wp",
+      "url": "https://qualla.com/grand-egyptian-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:9f513db2708c163e294fde4c6e56d81e903412c50ca5cd93c330a69415e54099",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/grand_egyptian_museum/models/grand-egyptian-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/st/stq/grand_egyptian_museum/models/grand-egyptian-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 4.8,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 2.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.85,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.83,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -30,
+        21,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The architect explains five folded gallery bands and the sixth stair band connecting the shaded entry and plateau. The builder documents the 33,000 m² folded concrete canopy, 20 m cantilevers, 25 m ceilings and cable-supported glazing.",
+    "anchor": [
+      31.1196,
+      29.99455
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.120678712377643,
+        29.994109827524255
+      ],
+      "modelHeight": 0,
+      "basis": "Original public elevation in the Cairo-side entrance forecourt outside the facade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/16783121",
+      "way/652382736",
+      "way/1228577530"
+    ],
+    "source": "https://www.openstreetmap.org/relation/16783121",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:98aeec77c101b910db5b3caaedc76934bb05716c8d4ab9e917b43dcffc41c0eb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The 56-point outside ring and four-point internal opening are mapped. Roof folds, the exact positions of internal stair and structural supports, current glazing colors and facade panel rhythms are estimated from the architect’s and contractor’s written descriptions.",
+    "The main grade is varied with the source relief. Heights are estimates constrained by the building relation’s 46-metre label, the architect’s plateau description and the contractor’s documented sections. The original surface model preserves mixed roof and terrain pixels.",
+    "The model covers the main museum. The independently mapped Khufu Boat Museum, plaza monuments, artwork and surrounding buildings are outside this structure."
+  ],
+  "sourceLicense": "Original modeled geometry from native building and court rings, original topography, and written architect and contractor facts.",
+  "qaLodCameras": [
+    {
+      "name": "grand-egyptian-museum-skyline",
+      "position": [
+        683,
+        290,
+        615
+      ],
+      "lookAt": [
+        -30,
+        21,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "grand-egyptian-museum-district",
+      "position": [
+        683,
+        290,
+        615
+      ],
+      "lookAt": [
+        -30,
+        21,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "grand-egyptian-museum-street",
+      "position": [
+        683,
+        290,
+        615
+      ],
+      "lookAt": [
+        -30,
+        21,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "grand-egyptian-museum-closeup",
+      "position": [
+        683,
+        290,
+        615
+      ],
+      "lookAt": [
+        -30,
+        21,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "folded-museum-and-plateau",
+      "position": [
+        465,
+        264,
+        424
+      ],
+      "lookAt": [
+        -32,
+        18,
+        4
+      ]
+    },
+    {
+      "name": "cairo-side-glazed-entry",
+      "position": [
+        223,
+        22,
+        57
+      ],
+      "lookAt": [
+        50,
+        13,
+        38
+      ]
+    },
+    {
+      "name": "gallery-roof-and-open-court",
+      "position": [
+        -145,
+        273,
+        -189
+      ],
+      "lookAt": [
+        -56,
+        20,
+        26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2468,
+    "vertices": 7404,
+    "materials": 5,
+    "bytes": 405072,
+    "sha256": "sha256:d182fbbcb1c0e8816a5181347293f99279d100655629e52f286edc71224bd17f"
+  }
+}

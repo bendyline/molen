@@ -1,0 +1,635 @@
+{
+  "planId": "national_museum_of_india",
+  "id": "national_museum_of_india",
+  "assetId": "molen.worldgen.structure.national_museum_of_india",
+  "title": "National Museum of India",
+  "wikidataId": "Q1356138",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.219262,
+    "latitude": 28.611811
+  },
+  "size": [
+    127.27498245239258,
+    19.35777258872986,
+    162.09940719604492
+  ],
+  "actualBounds": {
+    "min": [
+      -61.282535552978516,
+      -0.5877721309661865,
+      -59.86020278930664
+    ],
+    "max": [
+      65.99244689941406,
+      18.770000457763672,
+      102.23920440673828
+    ]
+  },
+  "visualBrief": "The Janpath National Museum of India with its sandstone bays, open circular sculpture court and adjoining old Archaeological Survey of India block.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Interior_view_-_National_Museum,_New_Delhi_-_IMG_2213.JPG"
+  ],
+  "stories": [
+    {
+      "id": "national-museum-of-india-wp",
+      "url": "https://qualla.com/national-museum-of-india/"
+    }
+  ],
+  "referenceInputHash": "d1c88072f0b683837f72e04e65e9c176e8747a4b79abc68dfb2c9e8917fd87ef",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttn/national_museum_of_india/models/national-museum-of-india-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttn/national_museum_of_india/models/national-museum-of-india-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.75,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.55,
+        "metallic": 0.02
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.08
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "stone_ashlar",
+    "membrane",
+    "window_grid",
+    "metal_painted",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.27,
+    "focus": {
+      "center": [
+        -2,
+        4,
+        18
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The museum documents three levels and two building phases. The ASI block height is mapped at 15 m. Main roof height, west portico and most exterior window details use approximate sections. The exact Qualla image fixes the open court’s materials and three-level arrangement. The 768 m original field is preserved, with runtime terrain clearance bounded to the mapped circular court. The entrance level and adjacent facade grade anchors were estimated independently.",
+    "anchor": [
+      77.219262,
+      28.611811
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.21862650657468,
+        28.6118405998922
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the Janpath approach just outside the mapped public entrance."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          7.32942,
+          -11.7776
+        ],
+        [
+          3.9188,
+          -11.38798
+        ],
+        [
+          0.72317,
+          -10.11894
+        ],
+        [
+          -2.04247,
+          -8.07066
+        ],
+        [
+          -4.17288,
+          -5.3656
+        ],
+        [
+          -5.54104,
+          -2.21526
+        ],
+        [
+          -6.03944,
+          1.19112
+        ],
+        [
+          -5.63877,
+          4.60863
+        ],
+        [
+          -4.37811,
+          7.8035
+        ],
+        [
+          -2.32587,
+          10.56422
+        ],
+        [
+          0.37136,
+          12.69042
+        ],
+        [
+          3.5279,
+          14.05965
+        ],
+        [
+          6.92875,
+          14.56059
+        ],
+        [
+          10.34914,
+          14.15984
+        ],
+        [
+          13.54477,
+          12.90193
+        ],
+        [
+          16.30064,
+          10.84252
+        ],
+        [
+          18.44083,
+          8.14859
+        ],
+        [
+          19.79921,
+          4.99825
+        ],
+        [
+          20.30739,
+          1.59187
+        ],
+        [
+          19.90671,
+          -1.82564
+        ],
+        [
+          18.63628,
+          -5.02051
+        ],
+        [
+          16.58404,
+          -7.78123
+        ],
+        [
+          13.89658,
+          -9.91857
+        ],
+        [
+          10.74005,
+          -11.27666
+        ]
+      ],
+      "minHeight": 0.72,
+      "basis": "The original composite elevation samples cross the mapped open sculpture courtyard. Terrain clearance is limited to its native courtyard outline and preserves all source elevations."
+    },
+    "featureIds": [
+      "way/1272478682",
+      "way/1272478683",
+      "way/1272478684",
+      "way/1243005415",
+      "way/44186070",
+      "way/1243005414",
+      "way/378259127",
+      "node/11816215887",
+      "node/12917149347"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=77.2148,28.6078,77.2237,28.6158",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8427ba6dfb93b08f49d26c64aacaa1a59f30099461c43dc74af066eee606c1c0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The outer facade details, modeled roof services and exact entrance arrangement are estimates based on open map controls and written building information. The public-domain image directly documents the circular courtyard.",
+    "The sculpture plinths are schematic and the collection, staff areas and gallery interiors are outside the exterior model. Finished grades use the original composite elevation field.",
+    "The original elevation surface crosses the mapped circular court and low side facades. The viewer clears terrain only within the native court boundary, and neither the field nor grades outside the court were altered."
+  ],
+  "sourceLicense": "Independent geographic reconstruction using a creator-dedicated public-domain Qualla photo, ODbL map controls and the unchanged Terrarium elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "national-museum-of-india-skyline",
+      "position": [
+        -151,
+        96,
+        160
+      ],
+      "lookAt": [
+        -2,
+        4,
+        18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "national-museum-of-india-district",
+      "position": [
+        -151,
+        96,
+        160
+      ],
+      "lookAt": [
+        -2,
+        4,
+        18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "national-museum-of-india-street",
+      "position": [
+        -151,
+        96,
+        160
+      ],
+      "lookAt": [
+        -2,
+        4,
+        18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "national-museum-of-india-closeup",
+      "position": [
+        -151,
+        96,
+        160
+      ],
+      "lookAt": [
+        -2,
+        4,
+        18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "janpath-entrance-and-facade",
+      "position": [
+        -104,
+        13.5,
+        -17
+      ],
+      "lookAt": [
+        -48,
+        6,
+        -4
+      ]
+    },
+    {
+      "name": "circular-sculpture-courtyard",
+      "position": [
+        0.03193583333333372,
+        5.61,
+        6.790103333333333
+      ],
+      "lookAt": [
+        12.531935833333334,
+        6.11,
+        -1.9098966666666675
+      ]
+    },
+    {
+      "name": "north-galleries-and-polygonal-footprint",
+      "position": [
+        47,
+        46,
+        -110
+      ],
+      "lookAt": [
+        0,
+        5,
+        -17
+      ]
+    },
+    {
+      "name": "old-archaeological-survey-of-india-wing",
+      "position": [
+        83,
+        34,
+        144
+      ],
+      "lookAt": [
+        24,
+        6,
+        62
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13694,
+    "vertices": 41082,
+    "materials": 8,
+    "bytes": 2041516,
+    "sha256": "sha256:bf80a468404aa71ebd7d30388f56cb173747e48199fdcd3e16473aa926c70521"
+  }
+}

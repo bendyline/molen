@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.north_carolina_executive_mansion",
+  "kind": "static-structure",
+  "title": "North Carolina Executive Mansion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.north_carolina_executive_mansion",
+        "output": "assets/places/dq/dq2/north_carolina_executive_mansion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ee0bb7536350f7ed7f8544429237d62e671985ff2f05758e50f736a7739bc4e9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-north-carolina-executive-mansion",
+        "path": "models/generate-north-carolina-executive-mansion.mjs"
+      },
+      {
+        "id": "north-carolina-executive-mansion-model",
+        "path": "models/north-carolina-executive-mansion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mansion-controls.json",
+      "reference-rights/commons-qualla-mansion-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9226-12891.png",
+      "terrain-sources/terrarium-15-9226-12892.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

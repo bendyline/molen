@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lalbagh_fort",
+  "kind": "static-structure",
+  "title": "Lalbagh Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lalbagh_fort",
+        "output": "assets/places/wh/wh0/lalbagh_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:844e29ab62e77b1b703142bbf2259f648ac02ca2189e6ad9f98dec2a1db996e2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lalbagh-fort",
+        "path": "models/generate-lalbagh-fort.mjs"
+      },
+      {
+        "id": "lalbagh-fort-model",
+        "path": "models/lalbagh-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-plaza-controls.json",
+      "reference-rights/commons-qualla-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-24611-14160.png",
+      "preview.png",
+      "osm-fort-controls.json",
+      "garden-controls.json",
+      "reference-rights/commons-lalbagh-adjacent-hill-original.json",
+      "reference-rights/dvids-lalbagh-9853437.html",
+      "references/dvids-audience-hall-9853437.jpg",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

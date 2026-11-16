@@ -1,0 +1,604 @@
+{
+  "planId": "church_of_our_lady_of_mount_carmel_ouro_preto",
+  "id": "church_of_our_lady_of_mount_carmel_ouro_preto",
+  "assetId": "molen.worldgen.structure.church_of_our_lady_of_mount_carmel_ouro_preto",
+  "title": "Church of Our Lady of Mount Carmel (Ouro Preto)",
+  "wikidataId": "Q10300162",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -43.5044852,
+    "latitude": -20.3861022
+  },
+  "size": [
+    24.890000343322754,
+    32.82238817214966,
+    96.43096160888672
+  ],
+  "actualBounds": {
+    "min": [
+      -12.470000267028809,
+      -3.872387409210205,
+      -53.43000030517578
+    ],
+    "max": [
+      12.420000076293945,
+      28.950000762939453,
+      43.00096130371094
+    ]
+  },
+  "visualBrief": "The standing Rococo church of Our Lady of Mount Carmel in Ouro Preto, with rounded twin belfries, a sculpted and curved front, a terracotta roof and a long hillside stair.",
+  "nativeAxes": {
+    "x": "across the front facade",
+    "y": "up",
+    "z": "toward the principal entrance stair"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ouro_Preto_Egreja_do_Carmo_(1)_-_1-14948-0000-0000,_Acervo_do_Museu_Paulista_da_USP.jpg"
+  ],
+  "stories": [
+    {
+      "id": "church-of-our-lady-of-mount-carmel-ouro-preto-wp",
+      "url": "https://qualla.com/church-of-our-lady-of-mount-carmel-ouro-preto/"
+    }
+  ],
+  "referenceInputHash": "f347d5c296c3ae08f0971c033a59df130ed48d17c5c2f63d288dc51899b86092",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/7h/7h3/church_of_our_lady_of_mount_carmel_ouro_preto/models/church-of-our-lady-of-mount-carmel-ouro-preto-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/7h/7h3/church_of_our_lady_of_mount_carmel_ouro_preto/models/church-of-our-lady-of-mount-carmel-ouro-preto-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.27,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "stone_ashlar",
+    "tile_ceramic",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.18,
+    "focus": {
+      "center": [
+        0,
+        10,
+        -5
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Six main elevation levels are estimated from the 1923 front postcard relative to the measured width. The field is sampled before construction. Foundation and stair heights are adjusted to meet it without reshaping it.",
+    "anchor": [
+      -43.5044852,
+      -20.3861022
+    ],
+    "heading": -1.7352978539184207,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -43.50449938096432,
+        -20.38609999338024
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation immediately in front of the historic main church door."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          7.80315,
+          -52.98763
+        ],
+        [
+          7.72957,
+          -7.20653
+        ],
+        [
+          8.96123,
+          -7.40041
+        ],
+        [
+          11.49779,
+          -7.00701
+        ],
+        [
+          11.93987,
+          -4.61584
+        ],
+        [
+          11.48999,
+          -2.02371
+        ],
+        [
+          9.0057,
+          -1.55843
+        ],
+        [
+          7.75889,
+          -1.79571
+        ],
+        [
+          7.79676,
+          -0.95579
+        ],
+        [
+          5.91668,
+          -0.92929
+        ],
+        [
+          2.64171,
+          -0.33275
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          -2.48238,
+          -0.33892
+        ],
+        [
+          -5.81744,
+          -0.71612
+        ],
+        [
+          -7.81344,
+          -0.77615
+        ],
+        [
+          -7.81276,
+          -1.7917
+        ],
+        [
+          -9.07053,
+          -1.55118
+        ],
+        [
+          -11.58781,
+          -2.03239
+        ],
+        [
+          -12.1092,
+          -4.35752
+        ],
+        [
+          -11.58001,
+          -7.0157
+        ],
+        [
+          -9.10401,
+          -7.39498
+        ],
+        [
+          -7.87673,
+          -7.20735
+        ],
+        [
+          -7.86883,
+          -10.28671
+        ],
+        [
+          -7.84298,
+          -29.91229
+        ],
+        [
+          -7.80315,
+          -52.98845
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact named church way 182626926, independent of the mapped approach stair."
+    },
+    "featureIds": [
+      "way/182626926",
+      "way/1425371516"
+    ],
+    "source": "https://www.openstreetmap.org/way/182626926",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:655cd46f63384330f36ccac5d7f170cb768e5fc80fce912b8340d90340dd00b1",
+    "notes": "Building plan and stair endpoints are native. Stair profile, landing and foundation registration are inferred from the archival postcard and original elevation field."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The native postcard is monochrome. The pale plaster, sandstone trim, painted wood and terracotta are approximate colors, informed by historic materials.",
+    "Stone relief, carved escutcheon, tower crossfalls, rear openings and roof details are modeled at medium fidelity. No interior or garden furnishing is modeled.",
+    "The source field resolves the hill and slope. It cannot resolve individual steps or certify survey-grade positioning. The stair width, tread count and foundation contacts are estimates."
+  ],
+  "sourceLicense": "Independent reconstruction from the public-domain original Museu Paulista postcard, mapped ODbL footprints, and the provider elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "carmo-skyline",
+      "position": [
+        31,
+        36,
+        86
+      ],
+      "lookAt": [
+        0,
+        10,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "carmo-district",
+      "position": [
+        31,
+        36,
+        86
+      ],
+      "lookAt": [
+        0,
+        10,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "carmo-street",
+      "position": [
+        31,
+        36,
+        86
+      ],
+      "lookAt": [
+        0,
+        10,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "carmo-closeup",
+      "position": [
+        31,
+        36,
+        86
+      ],
+      "lookAt": [
+        0,
+        10,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "principal-stair-and-rococo-front",
+      "position": [
+        -13,
+        13,
+        64
+      ],
+      "lookAt": [
+        0,
+        11,
+        5
+      ]
+    },
+    {
+      "name": "carved-portal-and-twin-bells",
+      "position": [
+        9,
+        12,
+        40
+      ],
+      "lookAt": [
+        0,
+        14,
+        -1
+      ]
+    },
+    {
+      "name": "side-ridge-and-original-hillside",
+      "position": [
+        48,
+        30,
+        -18
+      ],
+      "lookAt": [
+        0,
+        9,
+        -18
+      ]
+    },
+    {
+      "name": "rear-and-tiled-roof",
+      "position": [
+        -40,
+        36,
+        -66
+      ],
+      "lookAt": [
+        0,
+        11,
+        -16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5850,
+    "vertices": 17550,
+    "materials": 7,
+    "bytes": 891404,
+    "sha256": "sha256:280bc5071840e60c86887484cf382adfd754c670112e596c21522d181b6418af"
+  }
+}

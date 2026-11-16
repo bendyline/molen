@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.christ_church_cathedral_fredericton",
+  "kind": "static-structure",
+  "title": "Christ Church Cathedral (Fredericton)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.christ_church_cathedral_fredericton",
+        "output": "assets/places/f8/f80/christ_church_cathedral_fredericton/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:21bf58c5d882834070036ead0ccd42dc5a9a05b6d0dcfaac14a0b3feb597555b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-christ-church-cathedral-fredericton",
+        "path": "models/generate-christ-church-cathedral-fredericton.mjs"
+      },
+      {
+        "id": "christ-church-cathedral-fredericton-model",
+        "path": "models/christ-church-cathedral-fredericton-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-qualla-fredericton-cathedral.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10318-11662.png",
+      "terrain-sources/terrarium-15-10318-11663.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

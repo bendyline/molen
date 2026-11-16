@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.holy_name_cathedral_brisbane",
+  "kind": "static-structure",
+  "title": "Holy Name Cathedral Site, Brisbane",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.holy_name_cathedral_brisbane",
+        "output": "assets/places/r7/r7h/holy_name_cathedral_brisbane/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:680b31136cc45fa20083f624bbd2a6c262e64b3d73a6aef06919a5b9de2c3862"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-holy-name-cathedral-brisbane",
+        "path": "models/generate-holy-name-cathedral-brisbane.mjs"
+      },
+      {
+        "id": "holy-name-cathedral-brisbane-model",
+        "path": "models/holy-name-cathedral-brisbane-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "qhr-600208-boundary.json",
+      "reference-rights/commons-qut-foundation-original.json",
+      "reference-rights/qut-foundation-original.html",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/queensland-government-dem-holy-name-cathedral.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

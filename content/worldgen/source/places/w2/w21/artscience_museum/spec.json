@@ -1,0 +1,803 @@
+{
+  "planId": "artscience_museum",
+  "id": "artscience_museum",
+  "assetId": "molen.worldgen.structure.artscience_museum",
+  "title": "ArtScience Museum",
+  "wikidataId": "Q2744014",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 103.85926029999999,
+    "latitude": 1.2860531000000002
+  },
+  "size": [
+    79.74032211303711,
+    68.00768375396729,
+    92.7816390991211
+  ],
+  "actualBounds": {
+    "min": [
+      -40.0760498046875,
+      -8.007683753967285,
+      -47.552528381347656
+    ],
+    "max": [
+      39.66427230834961,
+      60,
+      45.22911071777344
+    ]
+  },
+  "visualBrief": "Singapore’s ArtScience Museum with ten white gallery petals, a central rainwater oculus and splayed steel supports above the waterfront.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2013-02-10",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:ArtScience_Museum_View_from_Merlion_Park_20130210.JPG"
+  ],
+  "stories": [
+    {
+      "id": "artscience-museum-wp",
+      "url": "https://qualla.com/artscience-museum/"
+    }
+  ],
+  "referenceInputHash": "72323d3aa0c2ed9ca71802ba121d6042cdde08115aa31ba8cae902f1b064139c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w2/w21/artscience_museum/models/artscience-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w2/w21/artscience_museum/models/artscience-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.94,
+    "surfaces": {
+      "shell": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.04
+      },
+      "skin": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.04
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.17
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.16
+      },
+      "pond": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.39,
+        "metallic": 0.13
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "skin": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.04
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.17
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.16
+          },
+          "pond": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.13
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "skin": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.04
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.17
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.16
+          },
+          "pond": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.13
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.079,
+        "surfaces": {
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "skin": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.04
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.17
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.16
+          },
+          "pond": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.13
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.03,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      103.85926029999999,
+      1.2860531000000002
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        103.85926029999999,
+        1.2860531000000002
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM sampled near the center of the museum and waterfront platform."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.641085633174395,
+          25.10254517390675
+        ],
+        [
+          -12.787387564654004,
+          26.44951101250084
+        ],
+        [
+          -13.610944292293695,
+          27.71855320754357
+        ],
+        [
+          -25.007188738093305,
+          24.334440687429616
+        ],
+        [
+          -25.051705318478657,
+          22.608988580139872
+        ],
+        [
+          -25.10735104316957,
+          20.89466842191124
+        ],
+        [
+          -25.174125912166048,
+          18.41224377723019
+        ],
+        [
+          -27.221888586168934,
+          19.291667754491442
+        ],
+        [
+          -29.080455795906406,
+          20.09316808820134
+        ],
+        [
+          -30.81660241037494,
+          20.85014062559265
+        ],
+        [
+          -38.42893756770313,
+          9.673663749947929
+        ],
+        [
+          -37.26037734603085,
+          8.07066308252813
+        ],
+        [
+          -35.98052567497673,
+          6.300683178919798
+        ],
+        [
+          -34.75631972861354,
+          4.597494969776993
+        ],
+        [
+          -36.8263406928091,
+          4.285800395571582
+        ],
+        [
+          -38.41780842181602,
+          4.029765566745869
+        ],
+        [
+          -40.07605102298251,
+          3.539959807241381
+        ],
+        [
+          -40.10943845748075,
+          -9.028010703316017
+        ],
+        [
+          -38.67377875665946,
+          -10.007622222300277
+        ],
+        [
+          -37.16021504095458,
+          -10.898178148647355
+        ],
+        [
+          -35.479714151176964,
+          -11.721942380504192
+        ],
+        [
+          -36.80408240261642,
+          -13.44739448781865
+        ],
+        [
+          -38.1840963787468,
+          -14.916811766282681
+        ],
+        [
+          -39.64201436817922,
+          -16.56434023002107
+        ],
+        [
+          -31.851612892472723,
+          -27.050636262740007
+        ],
+        [
+          -30.148853712502426,
+          -26.571962452346064
+        ],
+        [
+          -28.5907734164122,
+          -26.02649694743716
+        ],
+        [
+          -26.721077062369165,
+          -25.859517711248625
+        ],
+        [
+          -26.69881877217649,
+          -29.110046842431533
+        ],
+        [
+          -26.687689627870924,
+          -31.347568607372697
+        ],
+        [
+          -26.732206208256276,
+          -33.406979187039504
+        ],
+        [
+          -14.21191812116973,
+          -37.058258485065004
+        ],
+        [
+          -14.612567339893237,
+          -34.79847282195218
+        ],
+        [
+          -14.812891948464218,
+          -32.18246478831536
+        ],
+        [
+          -15.424994921645816,
+          -29.043255147941288
+        ],
+        [
+          -15.992581316023612,
+          -26.271399827201762
+        ],
+        [
+          -16.827267187968864,
+          -22.130314769671777
+        ],
+        [
+          -15.970323025830936,
+          -24.06727390949336
+        ],
+        [
+          -13.466265408413628,
+          -29.744567939952898
+        ],
+        [
+          -12.653837825079501,
+          -31.314172760139936
+        ],
+        [
+          -11.652214779061506,
+          -33.23999995085097
+        ],
+        [
+          -11.084628384683711,
+          -34.33093096061935
+        ],
+        [
+          -9.48203150978968,
+          -36.3124178967348
+        ],
+        [
+          -8.16879240423733,
+          -36.53505687832775
+        ],
+        [
+          -6.866682442990543,
+          -36.34581374399228
+        ],
+        [
+          -4.930211218369483,
+          -34.030368335475046
+        ],
+        [
+          -3.6614886932024824,
+          -36.3124178967348
+        ],
+        [
+          -4.1400419268095785,
+          -40.520294648730314
+        ],
+        [
+          -7.2784608060196145,
+          -45.22910910929142
+        ],
+        [
+          2.3148621547334396,
+          -43.32554581672732
+        ],
+        [
+          12.609321247857245,
+          -38.549939661700684
+        ],
+        [
+          8.391375306164077,
+          -32.53868715886408
+        ],
+        [
+          7.645722593407977,
+          -30.379089037474266
+        ],
+        [
+          8.881057684076739,
+          -31.269644963821346
+        ],
+        [
+          9.660097831331079,
+          -31.314172760139936
+        ],
+        [
+          10.40575054408718,
+          -30.824367000635448
+        ],
+        [
+          11.040111807461454,
+          -29.744567939952898
+        ],
+        [
+          14.779504517129071,
+          -30.334561241155676
+        ],
+        [
+          17.795502802651715,
+          -29.855887430737013
+        ],
+        [
+          21.601670381315813,
+          -27.12855990629136
+        ],
+        [
+          23.961049113271507,
+          -28.430997948591575
+        ],
+        [
+          25.25202993021273,
+          -26.98384456827448
+        ],
+        [
+          27.911895577397217,
+          -24.000482215003114
+        ],
+        [
+          30.861118992341837,
+          -18.812993944048063
+        ],
+        [
+          29.03593921868415,
+          -16.497548535555545
+        ],
+        [
+          27.199630299139354,
+          -15.417749474848279
+        ],
+        [
+          24.96267216087105,
+          -13.926068298212595
+        ],
+        [
+          22.64781000771916,
+          -12.61249830685127
+        ],
+        [
+          27.31092174852118,
+          -11.27666441734301
+        ],
+        [
+          31.528867690214348,
+          -9.15046214318596
+        ],
+        [
+          36.90424470927424,
+          -4.775606155001917
+        ],
+        [
+          40.04266359006582,
+          -4.296932344607973
+        ],
+        [
+          40.04266359006582,
+          -0.679048893815239
+        ],
+        [
+          40.1094384590623,
+          3.0946818440802004
+        ],
+        [
+          39.66427266153499,
+          7.98160748989095
+        ],
+        [
+          36.60375779562699,
+          7.948211642658188
+        ],
+        [
+          31.194993342068866,
+          7.892551897253771
+        ],
+        [
+          22.202644208610298,
+          7.792364355555482
+        ],
+        [
+          25.864132903394328,
+          12.200616190972289
+        ],
+        [
+          29.06932665318239,
+          16.564340230070506
+        ],
+        [
+          32.76420278246466,
+          22.72030807092399
+        ],
+        [
+          34.51147854123875,
+          25.19160076654393
+        ],
+        [
+          31.228380776567104,
+          30.22324175039628
+        ],
+        [
+          27.856249851124755,
+          34.79847282200162
+        ],
+        [
+          25.474612828976387,
+          33.718673761294355
+        ],
+        [
+          19.06422532781872,
+          29.711172092744853
+        ],
+        [
+          14.256434703136625,
+          26.70554584132655
+        ],
+        [
+          9.181544597723983,
+          23.544072302805542
+        ],
+        [
+          9.392998352182074,
+          28.39760210138353
+        ],
+        [
+          9.91606816617452,
+          38.60559940712982
+        ],
+        [
+          9.938326456367195,
+          41.0991560008967
+        ],
+        [
+          -1.4690471337379813,
+          45.22910910931614
+        ],
+        [
+          -3.0048691396355336,
+          42.457253788576615
+        ],
+        [
+          -7.4676562702850315,
+          33.46263893246864
+        ],
+        [
+          -9.871551584207623,
+          28.776088370079187
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Mapped upper museum perimeter centered over the support structure."
+    },
+    "featureIds": [
+      "way/261191086",
+      "way/827855854"
+    ],
+    "source": "https://www.openstreetmap.org/relation/14314416",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c4cec199b6e7979c12cd904ce0e61bd4cda8b15b4a1837656e653b0eeb56d26f",
+    "notes": "The mapped lotus perimeter provides the approximate axes, widths and outer scale of the ten radial petals. Ground clearance and elevation vary across the promenade. The bay-facing image fixes the overall profile."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the Marina Bay waterfront museum exterior as photographed in February 2013, including its petals, open central oculus, support basket and entry pavilion. Interior galleries and neighboring Marina Bay Sands buildings are outside scope.",
+    "The mapped outline fixes the petal rim positions and compass directions. The heights of individual petals, shell profiles, underside junctions and glass details are estimated from the bay view and published overall dimensions.",
+    "The original regional elevation field provides the surrounding waterfront grade. The reflecting pool and access thresholds are represented approximately."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap data is ODbL. The exact Qualla view from Merlion Park is CC0 own work by 玄史生.",
+  "qaLodCameras": [
+    {
+      "name": "lotus-skyline",
+      "position": [
+        -128,
+        62,
+        87
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "lotus-district",
+      "position": [
+        -128,
+        62,
+        87
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lotus-street",
+      "position": [
+        -128,
+        62,
+        87
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lotus-closeup",
+      "position": [
+        -128,
+        62,
+        87
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-bay-ten-white-petals",
+      "position": [
+        -121,
+        20,
+        24
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "splayed-columns-and-glazed-finger-ends",
+      "position": [
+        -62,
+        11,
+        49
+      ],
+      "lookAt": [
+        -3,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "oculus-and-asymmetrical-roof",
+      "position": [
+        -7,
+        108,
+        -45
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8096,
+    "vertices": 24288,
+    "materials": 6,
+    "bytes": 1040572,
+    "sha256": "sha256:de02bd09df4ce52b4406220f2b4d01762cad48d50ad5e768628344d994db3873"
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "planId": "kailasa_temple_ellora",
+  "id": "kailasa_temple_ellora",
+  "assetId": "molen.worldgen.structure.kailasa_temple_ellora",
+  "title": "Kailasa Temple, Ellora",
+  "wikidataId": "Q1268562",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 75.17916667,
+    "latitude": 20.02388889
+  },
+  "size": [
+    89.56500053405762,
+    33.63808351755142,
+    50.760000228881836
+  ],
+  "actualBounds": {
+    "min": [
+      -29.684999465942383,
+      -0.7900000214576721,
+      -8.579999923706055
+    ],
+    "max": [
+      59.880001068115234,
+      32.84808349609375,
+      42.18000030517578
+    ]
+  },
+  "visualBrief": "Kailasa Temple carved from the cliff at Ellora, with the main Dravidian tower, rock court, low western gate, Nandi pavilion and the elephant plinth.",
+  "nativeAxes": {
+    "x": "east along the Kailasa court axis",
+    "y": "up",
+    "z": "south across the main court"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ellora_Caves_7.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cave_16_-_Inside_view,_Ellora_Caves.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kailasa-temple-ellora-wp",
+      "url": "https://qualla.com/kailasa-temple-ellora/"
+    }
+  ],
+  "referenceInputHash": "dcff73ae4fe81b7ef3a0efeebbe6c1f1c4314d009d38e1fb9b4fd90efdaf2920",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/tet/kailasa_temple_ellora/models/kailasa-temple-ellora-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/tet/kailasa_temple_ellora/models/kailasa-temple-ellora-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.6,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "carving": {
+        "slot": "trim",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "court": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_basalt_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.78,
+    "groundY": 0.01999999999999999,
+    "focus": {
+      "center": [
+        15,
+        9.3,
+        17
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Known 32 m rear scarp, 8 m plinth, connected axial sanctuary and 31 m tower. Qualla originals document coarse ash-gray and ochre basalt, bands of carving, elephant supports and full depth of exposed faces.",
+    "anchor": [
+      75.17916667,
+      20.02388889
+    ],
+    "heading": 0.014738326534762772,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        75.17881548484104,
+        20.02372231307392
+      ],
+      "modelHeight": 0,
+      "basis": "Original source grade west of the rock-cut courtyard entrance. The approximately 82 by 46 metre carved court and scarp require separate interpretation."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -24.5,
+          -6.2
+        ],
+        [
+          57.5,
+          -6.2
+        ],
+        [
+          57.5,
+          39.8
+        ],
+        [
+          -24.5,
+          39.8
+        ]
+      ],
+      "basis": "Documented 82 by 46 metre Kailasa court anchored to the native location. The carved floor and basalt scarp cover the entire opening. Source elevation remains independent."
+    },
+    "featureIds": [
+      "way/115566922"
+    ],
+    "source": "https://www.openstreetmap.org/way/115566922",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cf20e90aaf6d8be9c1e912bcbaa0c03104e4b142f90f46e3caeb3cd508fa74ba"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Positions of individual reliefs, vestibules, minor shrines and worn carving require interpretation. The measured court and overall vertical forms control the silhouette.",
+    "Original elevations over the known court are too coarse and slope through the structure. The model will supply the surveyed excavation as a bounded placement opening and include its floor and matching basalt rim. The original elevation samples and separate original-field preview are preserved.",
+    "Outside the Cave 16 court, neighboring caves, extensive interiors and fine inscriptions are outside scope. Individual carved figures are conveyed by general stone relief geometry."
+  ],
+  "sourceLicense": "Original reconstruction from exact CC0 Qualla photos, mapped Cave 16 site, original composite elevation and the State Party conservation report.",
+  "qaLodCameras": [
+    {
+      "name": "kailasa-temple-ellora-skyline",
+      "position": [
+        -92,
+        64,
+        103
+      ],
+      "lookAt": [
+        15,
+        9.3,
+        17
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kailasa-temple-ellora-district",
+      "position": [
+        -92,
+        64,
+        103
+      ],
+      "lookAt": [
+        15,
+        9.3,
+        17
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kailasa-temple-ellora-street",
+      "position": [
+        -92,
+        64,
+        103
+      ],
+      "lookAt": [
+        15,
+        9.3,
+        17
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kailasa-temple-ellora-closeup",
+      "position": [
+        -92,
+        64,
+        103
+      ],
+      "lookAt": [
+        15,
+        9.3,
+        17
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rock-court-and-sanctuary",
+      "position": [
+        -43,
+        46,
+        61
+      ],
+      "lookAt": [
+        14,
+        9,
+        18
+      ]
+    },
+    {
+      "name": "western-entrance-and-nandi",
+      "position": [
+        -53,
+        15,
+        17
+      ],
+      "lookAt": [
+        0,
+        11,
+        16
+      ]
+    },
+    {
+      "name": "elephant-plinth-and-tiered-shrine",
+      "position": [
+        6,
+        6.2,
+        37.3
+      ],
+      "lookAt": [
+        16,
+        5.55,
+        20
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17184,
+    "vertices": 51552,
+    "materials": 4,
+    "bytes": 2156328,
+    "sha256": "sha256:898ab35d652f22e90db786662e0cec0a28c0b7b9cd4fd2c7a3fbcdabba2f959f"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.french_lick_springs_hotel",
+  "kind": "static-structure",
+  "title": "French Lick Springs Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.french_lick_springs_hotel",
+        "output": "assets/places/dn/dnf/french_lick_springs_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9405e3bc829ab5551d37575658aa96670fd86f850af3cd524cd56444dc0f0ce"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-french-lick-springs-hotel",
+        "path": "models/generate-french-lick-springs-hotel.mjs"
+      },
+      {
+        "id": "french-lick-springs-hotel-model",
+        "path": "models/french-lick-springs-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-nyttend-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8499-12575.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

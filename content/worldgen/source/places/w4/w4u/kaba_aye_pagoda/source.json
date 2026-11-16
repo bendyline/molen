@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kaba_aye_pagoda",
+  "kind": "static-structure",
+  "title": "Kaba Aye Pagoda",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kaba_aye_pagoda",
+        "output": "assets/places/w4/w4u/kaba_aye_pagoda/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:882b887e882c6ea26955c7bf36b72f40d736d5f1cd05b8d1d39d845f4015df20"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kaba-aye-pagoda",
+        "path": "models/generate-kaba-aye-pagoda.mjs"
+      },
+      {
+        "id": "kaba-aye-pagoda-model",
+        "path": "models/kaba-aye-pagoda-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/pagoda-controls.json",
+      "reference-rights/commons-kaba-aye-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25136-14826.png",
+      "terrain-sources/terrarium-15-25136-14827.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

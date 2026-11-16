@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_aviation_museum_of_western_canada",
+  "kind": "static-structure",
+  "title": "Royal Aviation Museum of Western Canada",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_aviation_museum_of_western_canada",
+        "output": "assets/places/cb/cbf/royal_aviation_museum_of_western_canada/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7631da4cbc4fbfa553a92196b7ad3f3c1ba6adaee9a464023a0fcb8381b64619"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-royal-aviation-museum",
+        "path": "models/generate-royal-aviation-museum.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/royal-aviation-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-prince-gong-grounds.json",
+      "native-map/overture-mansion-roofprints.json",
+      "mapped-building-controls.json",
+      "room-and-roof-layout.json",
+      "reference-rights/hermann-luyken-qualla-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-7534-11126.png",
+      "terrain-sources/terrarium-15-7534-11127.png",
+      "preview.png",
+      "native-map/osm-royal-aviation-museum.json",
+      "reference-rights/airport-museum-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

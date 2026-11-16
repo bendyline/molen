@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.belfry_of_bruges",
+  "kind": "static-structure",
+  "title": "Belfry of Bruges",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.belfry_of_bruges",
+        "output": "assets/places/u1/u14/belfry_of_bruges/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:89a81301ccbaa166536fcf1881fc4ba81960c04885268dd81af152f41ccd8b92"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-belfry-of-bruges",
+        "path": "models/generate-belfry-of-bruges.mjs"
+      },
+      {
+        "id": "belfry-of-bruges-model",
+        "path": "models/belfry-of-bruges-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/belfry-controls.json",
+      "reference-rights/commons-belfry-of-bruges-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16677-10939.png",
+      "terrain-sources/terrarium-15-16677-10940.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

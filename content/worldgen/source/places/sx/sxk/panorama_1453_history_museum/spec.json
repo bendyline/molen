@@ -1,0 +1,495 @@
+{
+  "planId": "panorama_1453_history_museum",
+  "id": "panorama_1453_history_museum",
+  "assetId": "molen.worldgen.structure.panorama_1453_history_museum",
+  "title": "Panorama 1453 History Museum",
+  "wikidataId": "Q6090202",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.92041,
+    "latitude": 41.018154949999996
+  },
+  "size": [
+    69.01861572265625,
+    11.639679551124573,
+    54.24013900756836
+  ],
+  "actualBounds": {
+    "min": [
+      -34.51364517211914,
+      -0.6196790933609009,
+      -27.12592887878418
+    ],
+    "max": [
+      34.50497055053711,
+      11.020000457763672,
+      27.11421012878418
+    ]
+  },
+  "visualBrief": "Panorama 1453 History Museum, with a sloped glazed entrance and broad timber canopy set against the round exhibition hall.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-09-12",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Panorama1453TarihM%C3%BCzesi2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "panorama-1453-history-museum-wp",
+      "url": "https://qualla.com/panorama-1453-history-museum/"
+    }
+  ],
+  "referenceInputHash": "6e54425a02bda6d229d83e0429c3703360ca5fe2f00ce598105ce96db02812ae",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxk/panorama_1453_history_museum/models/panorama-1453-history-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxk/panorama_1453_history_museum/models/panorama-1453-history-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.63,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0.2
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.13
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.13
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.13
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.13
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "metal_standing_seam",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.93,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      28.92041,
+      41.018154949999996
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.92041,
+        41.018154949999996
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation sampled at the center of the mapped museum."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          21.098474067420796,
+          -26.388285292837764
+        ],
+        [
+          27.94371943562947,
+          -17.538385774969132
+        ],
+        [
+          33.520704618858325,
+          -9.812813113805023
+        ],
+        [
+          20.7877083267284,
+          -0.28386470207171427
+        ],
+        [
+          19.737824067769566,
+          8.822069645240578
+        ],
+        [
+          16.042231476437387,
+          15.534634939421412
+        ],
+        [
+          10.356058329899646,
+          20.66646346563943
+        ],
+        [
+          3.300836110137921,
+          23.660957767378676
+        ],
+        [
+          -4.350720369096753,
+          24.195291323102882
+        ],
+        [
+          -11.750304625930655,
+          22.191540489137108
+        ],
+        [
+          -15.025943513858339,
+          19.864963131262147
+        ],
+        [
+          -24.080145362696776,
+          26.388285292046792
+        ],
+        [
+          -29.010401842628994,
+          19.653456099447126
+        ],
+        [
+          -33.520704618858325,
+          13.475224360199526
+        ],
+        [
+          -24.567291658860835,
+          6.606811777877836
+        ],
+        [
+          -24.962048140353488,
+          -2.265351638409629
+        ],
+        [
+          -22.576711103953667,
+          -9.54564633594292
+        ],
+        [
+          -17.9488212905443,
+          -15.657086380724992
+        ],
+        [
+          -11.573924070458991,
+          -19.9206228781002
+        ],
+        [
+          -4.165940739455545,
+          -21.85758201760045
+        ],
+        [
+          3.4772166656095846,
+          -21.278720665829553
+        ],
+        [
+          10.515640737330616,
+          -18.228566618043224
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Named mapped perimeter, with the exhibition drum and entrance wings."
+    },
+    "featureIds": [
+      "way/1153649968"
+    ],
+    "source": "https://www.openstreetmap.org/way/1153649968",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:769767dda5420121e5eb7a1b5fe9daecd87aacb3d714c0a384ed1c148acd7408",
+    "notes": "The cleared photo records the tilted glazing, dark mullions and broad timber canopy. The large panoramic hemisphere cited by municipal sources is the exhibition structure; its exact exterior roof treatment is estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The September 2024 reconstruction covers the public glass entrance and connected exhibition hall. Exterior sculpture, cannon displays, signage lettering and interiors are outside its scope.",
+    "The cleared photo constrains the glazing, timber soffit, bracing and entrance canopy. The lower hall follows the mapped perimeter, with its unphotographed external roof surface and rear wall simplified.",
+    "Municipal sources give a 38 metre diameter for the interior panorama. The exterior crown is an approximate roof profile."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped outline is ODbL. The published Qualla photo is CC0 own work by Yasze.",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        -87,
+        29,
+        66
+      ],
+      "lookAt": [
+        -4,
+        5,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        -87,
+        29,
+        66
+      ],
+      "lookAt": [
+        -4,
+        5,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        -87,
+        29,
+        66
+      ],
+      "lookAt": [
+        -4,
+        5,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        -87,
+        29,
+        66
+      ],
+      "lookAt": [
+        -4,
+        5,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "sloped-glazing-and-timber-canopy",
+      "position": [
+        -48,
+        7.5,
+        34
+      ],
+      "lookAt": [
+        -26,
+        4.4,
+        20
+      ]
+    },
+    {
+      "name": "round-exhibition-hall",
+      "position": [
+        39,
+        32,
+        35
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        1
+      ]
+    },
+    {
+      "name": "entry-canopy-and-circular-roof",
+      "position": [
+        -45,
+        23,
+        44
+      ],
+      "lookAt": [
+        -9,
+        5.1,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1082,
+    "vertices": 3246,
+    "materials": 5,
+    "bytes": 241024,
+    "sha256": "sha256:8bac4734f262849ca3f01a3c1d2580d821b26253b006deb69f4df6cc3f01fa5e"
+  }
+}

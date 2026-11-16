@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lima_art_museum",
+  "kind": "static-structure",
+  "title": "Lima Art Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lima_art_museum",
+        "output": "assets/places/6m/6mc/lima_art_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6e91727131fc7ffbde0b77ffe1ead1737e5c5925b5017f61077813b95bde2c5e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lima-art-museum",
+        "path": "models/generate-lima-art-museum.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/lima-art-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-plaza-controls.json",
+      "reference-rights/commons-qualla-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9371-17489.png",
+      "terrain-sources/terrarium-15-9371-17490.png",
+      "terrain-sources/terrarium-15-9372-17489.png",
+      "terrain-sources/terrarium-15-9372-17490.png",
+      "preview.png",
+      "native-map/osm-way-40301549.json",
+      "references/nara-bpr-34782.jpg",
+      "reference-rights/nara-bpr-34782-native.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

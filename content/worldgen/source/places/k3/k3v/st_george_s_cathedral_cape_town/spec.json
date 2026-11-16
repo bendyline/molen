@@ -1,0 +1,640 @@
+{
+  "planId": "st_george_s_cathedral_cape_town",
+  "id": "st_george_s_cathedral_cape_town",
+  "assetId": "molen.worldgen.structure.st_george_s_cathedral_cape_town",
+  "title": "St. George's Cathedral, Cape Town",
+  "wikidataId": "Q2499579",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 18.4194119,
+    "latitude": -33.9248781
+  },
+  "size": [
+    60.11958122253418,
+    32.215585708618164,
+    56.70615005493164
+  ],
+  "actualBounds": {
+    "min": [
+      -30.145652770996094,
+      -2.915586471557617,
+      -28.35307502746582
+    ],
+    "max": [
+      29.973928451538086,
+      29.299999237060547,
+      28.35307502746582
+    ]
+  },
+  "visualBrief": "St. George’s Cathedral in Cape Town, with the stone Wale Street transept and paired porch, steep red roofs, pointed clerestory and rounded chancel end.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-01-01",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StGeorgesCathedral02.JPG"
+  ],
+  "stories": [
+    {
+      "id": "st-george-s-cathedral-cape-town-wp",
+      "url": "https://qualla.com/st-george-s-cathedral-cape-town/"
+    }
+  ],
+  "referenceInputHash": "7d6a5452e750135ead218a806020a17dda2e3b7e3e1b04023b17faa9d4f8d12e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/k3/k3v/st_george_s_cathedral_cape_town/models/st-georges-cathedral-cape-town-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/k3/k3v/st_george_s_cathedral_cape_town/models/st-georges-cathedral-cape-town-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "foundation",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.66,
+        "metallic": 0.03
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "foundation",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.03
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "foundation",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.03
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "foundation",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.66,
+            "metallic": 0.03
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_limestone_weathered",
+    "tile_flat",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.26,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      18.4194119,
+      -33.9248781
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        18.4194119,
+        -33.9248781
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled original elevation within the mapped cathedral outline."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -14.36346927928707,
+          -19.870529107053315
+        ],
+        [
+          -19.94259175158709,
+          -24.468024076756155
+        ],
+        [
+          -24.274724929752786,
+          -28.353074304966068
+        ],
+        [
+          -29.973927852708464,
+          -21.941071635484615
+        ],
+        [
+          -20.1458048218517,
+          -13.358338895478086
+        ],
+        [
+          -26.64862306769394,
+          -5.232016067520821
+        ],
+        [
+          -23.73898138105236,
+          -2.749591422295976
+        ],
+        [
+          -16.451021727354657,
+          3.317320825648432
+        ],
+        [
+          -13.836962688102192,
+          0.23377093023385417
+        ],
+        [
+          -8.765872891299617,
+          4.196744802909684
+        ],
+        [
+          -10.899610128257622,
+          7.046523767299435
+        ],
+        [
+          -7.491172723634146,
+          9.82951103722366
+        ],
+        [
+          -8.673503313846947,
+          11.221004671790286
+        ],
+        [
+          -4.951009346475082,
+          14.816624224510239
+        ],
+        [
+          -6.779926978200253,
+          17.043014040291425
+        ],
+        [
+          -1.4224914911959494,
+          21.59598121394757
+        ],
+        [
+          -3.463859151029447,
+          23.80010713130992
+        ],
+        [
+          1.8566285049281557,
+          28.353074304966068
+        ],
+        [
+          6.50281824584224,
+          23.243509677166884
+        ],
+        [
+          9.948203481512419,
+          26.315927623372044
+        ],
+        [
+          14.502023645301994,
+          21.172967148735584
+        ],
+        [
+          19.94259175158709,
+          24.790850599874368
+        ],
+        [
+          22.4735181712306,
+          25.52555923899515
+        ],
+        [
+          24.65344019675086,
+          25.24726051192363
+        ],
+        [
+          26.787177433708866,
+          24.468024075965182
+        ],
+        [
+          29.013284248119543,
+          22.386349598324465
+        ],
+        [
+          29.973927852708464,
+          20.171091731752693
+        ],
+        [
+          29.872321317412077,
+          18.178472846205363
+        ],
+        [
+          29.419710388320603,
+          15.940951081214761
+        ],
+        [
+          28.55143636118435,
+          14.070783636180037
+        ],
+        [
+          27.830953657906743,
+          12.990984575522207
+        ],
+        [
+          26.05745777258754,
+          11.43251170439628
+        ],
+        [
+          24.93054892878071,
+          10.07441391666693
+        ],
+        [
+          29.71529303603788,
+          4.230140649746961
+        ],
+        [
+          16.293993445980465,
+          -7.39161418883648
+        ],
+        [
+          17.68877406397343,
+          -9.128198244940153
+        ],
+        [
+          16.54339130480733,
+          -11.543831195699472
+        ],
+        [
+          15.019293278314994,
+          -13.64776957096805
+        ],
+        [
+          13.818488772742924,
+          -14.794360326882378
+        ],
+        [
+          10.871899255054638,
+          -16.219249808286282
+        ],
+        [
+          10.945794916819876,
+          -15.239638289722226
+        ],
+        [
+          10.751818804398983,
+          -14.605117191904244
+        ],
+        [
+          10.280733959948238,
+          -13.803616858317934
+        ],
+        [
+          9.227720777906645,
+          -12.746081696078937
+        ],
+        [
+          7.1771161605575955,
+          -14.438137956135916
+        ],
+        [
+          4.479924501696175,
+          -11.387983908349588
+        ],
+        [
+          -10.733344889039714,
+          -24.156329502056384
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Mapped named cathedral church footprint."
+    },
+    "featureIds": [
+      "way/141281671"
+    ],
+    "source": "https://www.openstreetmap.org/way/141281671",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4c764bffec6a055d85602ee61aa62ca086bfb4099072cb3ce459a124a1b2a8b6",
+    "notes": "The reconstruction follows the mapped cathedral perimeter and original terrain. Roof slopes and unsighted elevations depend on visual and architectural estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the named cathedral as seen in its 2006 Wale Street photograph. The projecting transept, twin entrance porch, tracery and buttresses are modeled directly from the published visual reference.",
+    "Roof heights and unphotographed south and chancel details use estimates. The lower exterior uses the modern mapped outline and original terrain.",
+    "Stone courses and leaded tracery are simplified at exterior viewing scale. The crypt and other interior spaces are outside this model."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The mapped outline is ODbL. The selected original photograph is public domain by Mike Hayes.",
+  "qaLodCameras": [
+    {
+      "name": "wale-street-skyline",
+      "position": [
+        16.575754453654437,
+        34,
+        -73.32969633301475
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wale-street-district",
+      "position": [
+        16.575754453654437,
+        34,
+        -73.32969633301475
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "wale-street-street",
+      "position": [
+        16.575754453654437,
+        34,
+        -73.32969633301475
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "wale-street-closeup",
+      "position": [
+        16.575754453654437,
+        34,
+        -73.32969633301475
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "wale-street-transept-and-twin-porch",
+      "position": [
+        28.6622420761108,
+        12,
+        -49.37292658097578
+      ],
+      "lookAt": [
+        13.563891823760347,
+        13.3,
+        -9.510038832377468
+      ]
+    },
+    {
+      "name": "transept-tracery-and-stepped-buttresses",
+      "position": [
+        30.711689977309927,
+        16,
+        -28.92048752593223
+      ],
+      "lookAt": [
+        13.53536471011728,
+        16,
+        -9.401936085940589
+      ]
+    },
+    {
+      "name": "rounded-chancel-and-crossing-roofs",
+      "position": [
+        27.956571370203413,
+        31,
+        60.56756654532791
+      ],
+      "lookAt": [
+        12.732101247009933,
+        13,
+        8.540116968513265
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3170,
+    "vertices": 9510,
+    "materials": 6,
+    "bytes": 700228,
+    "sha256": "sha256:9abe64f84870021421a316b4069a616476f5f182b9d2c382e1864c84d6e52967"
+  }
+}

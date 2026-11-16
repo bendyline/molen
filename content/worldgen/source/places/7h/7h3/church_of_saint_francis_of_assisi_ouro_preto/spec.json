@@ -1,0 +1,602 @@
+{
+  "planId": "church_of_saint_francis_of_assisi_ouro_preto",
+  "id": "church_of_saint_francis_of_assisi_ouro_preto",
+  "assetId": "molen.worldgen.structure.church_of_saint_francis_of_assisi_ouro_preto",
+  "title": "Church of Saint Francis of Assisi, Ouro Preto",
+  "wikidataId": "Q2337984",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -43.502778,
+    "latitude": -20.386812
+  },
+  "size": [
+    18.550000190734863,
+    30.903315544128418,
+    56.939998626708984
+  ],
+  "actualBounds": {
+    "min": [
+      -9.119999885559082,
+      -6.7833147048950195,
+      -33.119998931884766
+    ],
+    "max": [
+      9.430000305175781,
+      24.1200008392334,
+      23.81999969482422
+    ]
+  },
+  "visualBrief": "The standing Rococo church of São Francisco de Assis, with its warm stone frontispiece, two round recessed belfries, and terracotta nave and chancel roofs.",
+  "nativeAxes": {
+    "x": "across the frontispiece",
+    "y": "up",
+    "z": "toward Largo do Coimbra"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Igreja_S%C3%A3o_Francisco_de_Assis_(Ouro_Preto)_a_noite_-_17-06-2023_-_Ouro_Preto_-_Minas_Gerais_-_Brazil.jpg"
+  ],
+  "stories": [
+    {
+      "id": "church-of-saint-francis-of-assisi-ouro-preto-wp",
+      "url": "https://qualla.com/church-of-saint-francis-of-assisi-ouro-preto/"
+    }
+  ],
+  "referenceInputHash": "0b1bdcffea91155eacada77fca1dd026e1704014d20f672a7614f772ba557575",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/7h/7h3/church_of_saint_francis_of_assisi_ouro_preto/models/ouro-preto-sao-francisco-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/7h/7h3/church_of_saint_francis_of_assisi_ouro_preto/models/ouro-preto-sao-francisco-model.mjs",
+    "level": "skyline",
+    "export": "ouroPretoSkyline",
+    "errorMeters": 1.14,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ouroPretoDistrict",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "ouroPretoStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "ouroPretoCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone",
+    "stone_ashlar",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.83,
+    "cameraYaw": -0.45,
+    "focus": {
+      "center": [
+        0,
+        3,
+        -1
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original mapped outline fixes the advancing front, two round tower bases, nave, attached chancel and doors. The contemporary CC0 image and heritage documentation establish materials and front section. The original field was frozen before wall fitting.",
+    "anchor": [
+      -43.502778,
+      -20.386812
+    ],
+    "heading": 3.093485874734021,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -43.50276629444964,
+        -20.386584092934438
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the plaza beside the signed main entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.12178,
+          18.66143
+        ],
+        [
+          -7.36343,
+          18.47602
+        ],
+        [
+          -8.37074,
+          17.73323
+        ],
+        [
+          -8.93658,
+          16.61255
+        ],
+        [
+          -8.91316,
+          15.3632
+        ],
+        [
+          -8.32877,
+          14.26516
+        ],
+        [
+          -7.35764,
+          13.60544
+        ],
+        [
+          -7.3532,
+          12.17869
+        ],
+        [
+          -7.31767,
+          -2.48963
+        ],
+        [
+          -7.8173,
+          -4.40478
+        ],
+        [
+          -7.88145,
+          -8.12407
+        ],
+        [
+          -8.18579,
+          -32.67265
+        ],
+        [
+          8.0695,
+          -32.88686
+        ],
+        [
+          8.3677,
+          -8.24882
+        ],
+        [
+          8.43505,
+          -4.46282
+        ],
+        [
+          7.89614,
+          -2.85431
+        ],
+        [
+          7.85768,
+          11.97019
+        ],
+        [
+          7.8546,
+          13.64206
+        ],
+        [
+          8.6572,
+          14.47272
+        ],
+        [
+          9.00231,
+          15.78234
+        ],
+        [
+          8.65846,
+          17.10284
+        ],
+        [
+          7.71275,
+          18.07339
+        ],
+        [
+          6.40407,
+          18.44845
+        ],
+        [
+          4.03537,
+          20.89176
+        ],
+        [
+          4.9382,
+          21.85133
+        ],
+        [
+          4.3797,
+          22.40203
+        ],
+        [
+          3.5052,
+          21.59712
+        ],
+        [
+          0,
+          21.69901
+        ],
+        [
+          -3.3494,
+          21.78225
+        ],
+        [
+          -4.44292,
+          22.50358
+        ],
+        [
+          -4.9331,
+          21.86964
+        ],
+        [
+          -3.94648,
+          21.09772
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The named church way/182626848 is the physical replacement boundary."
+    },
+    "featureIds": [
+      "way/182626848",
+      "node/14187945225",
+      "node/14187945226",
+      "node/14187945227",
+      "node/14187945224",
+      "node/14187179177"
+    ],
+    "source": "https://www.openstreetmap.org/way/182626848",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a7c89aa7b16589c6db1310ddbb1e774850246789ced9e4b2eb7d63810e22fb5d",
+    "notes": "The native footprint controls the projecting frontispiece, twin curved towers, nave, rear chancel and position of the side doors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The present church’s 32-point footprint, round belfry bases and entrances follow OpenStreetMap. Standing upper levels, masonry joints and unseen roof transitions are architectural estimates.",
+    "The 2023 creator-dedicated exterior establishes visible palette, stone contrast, shutters, Rococo crest and the recessed towers. Fine religious relief is simplified.",
+    "The original terrain shows a substantial slope behind the standing church. Footing contact, steps and individual visible stone courses are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Exact supplemental creator CC0 exterior. OpenStreetMap footprint is ODbL 1.0 and terrain attribution is recorded in the original grid.",
+  "qaLodCameras": [
+    {
+      "name": "ouro-preto-skyline",
+      "position": [
+        44,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        -4.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ouro-preto-district",
+      "position": [
+        44,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        -4.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ouro-preto-street",
+      "position": [
+        44,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        -4.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ouro-preto-closeup",
+      "position": [
+        44,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        -4.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "church-from-largo-do-coimbra",
+      "position": [
+        44,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        -4.7
+      ]
+    },
+    {
+      "name": "rococo-portal-and-belfries",
+      "position": [
+        -8,
+        10,
+        56
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        17
+      ]
+    },
+    {
+      "name": "original-slope-and-side-openings",
+      "position": [
+        44,
+        12,
+        6
+      ],
+      "lookAt": [
+        0,
+        6,
+        -8
+      ]
+    },
+    {
+      "name": "twin-towers-and-tiled-hip-roofs",
+      "position": [
+        -30,
+        49,
+        -52
+      ],
+      "lookAt": [
+        0,
+        10,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4720,
+    "vertices": 14160,
+    "materials": 6,
+    "bytes": 731900,
+    "sha256": "sha256:5c947d0948834b645d686c2bbd7ab3298d7ef6f4db42e17db7d19cc759772e14"
+  }
+}

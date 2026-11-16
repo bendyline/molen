@@ -1,0 +1,477 @@
+{
+  "planId": "hotel_de_ville_boulogne_sur_mer",
+  "id": "hotel_de_ville_boulogne_sur_mer",
+  "assetId": "molen.worldgen.structure.hotel_de_ville_boulogne_sur_mer",
+  "title": "Hotel de Ville, Boulogne-sur-Mer",
+  "wikidataId": "Q107589129",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.6133725,
+    "latitude": 50.7249385
+  },
+  "size": [
+    44.215436935424805,
+    37.77488827705383,
+    66.25341773033142
+  ],
+  "actualBounds": {
+    "min": [
+      -17.36840057373047,
+      -2.774888277053833,
+      -63.57341766357422
+    ],
+    "max": [
+      26.847036361694336,
+      35,
+      2.680000066757202
+    ]
+  },
+  "visualBrief": "A ten-bay red-brick civic hall with limestone bays and balcony under dark slate, joined to the medieval square belfry and its clock and octagonal upper stage.",
+  "nativeAxes": {
+    "x": "northeast along the town hall front",
+    "y": "up",
+    "z": "southeast toward the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_ville_de_Boulogne-sur-Mer,_place_Godefroy_de_Bouillon.jpg",
+    "https://id.rijksmuseum.nl/200358926"
+  ],
+  "stories": [
+    {
+      "id": "hotel-de-ville-boulogne-sur-mer-wp",
+      "url": "https://qualla.com/hotel-de-ville-boulogne-sur-mer/"
+    }
+  ],
+  "referenceInputHash": "sha256:795d7d03e20a070721cde44a0f6ae5b34eb6e7f78ba772adac253a4e90434ba1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u11/hotel_de_ville_boulogne_sur_mer/models/hotel-de-ville-boulogne-sur-mer-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u11/hotel_de_ville_boulogne_sur_mer/models/hotel-de-ville-boulogne-sur-mer-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.57,
+        "metallic": 0.035
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.035
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.035
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.035
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "slate",
+    "window_grid",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.64,
+    "focus": {
+      "center": [
+        1,
+        13,
+        -18
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Three levels of brick and limestone, dark slate roof and additional attic, ten civic bays and two columns supporting the balcony. Retained belfry reaches 35 metres above the square.",
+    "anchor": [
+      1.6133725,
+      50.7249385
+    ],
+    "heading": 0.5760571327189592,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.6133879595740175,
+        50.72492343322084
+      ],
+      "modelHeight": 0,
+      "basis": "Original Terrarium sample just in front of the civic entrance at Place Godefroy de Bouillon."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/7379169",
+      "way/96175711",
+      "way/253073176"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7379169",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:21e87961a7525b0e4457a2e2964b0bf57c5a62e62b37ad622ce92f61e79d7b87"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The principal mapped city hall outline and belfry heritage location guide the model. The square belfry base and exact roof intersections are reconstructed from the archive view and architectural records.",
+    "Secondary façade bays and roof volumes are estimates. The historical museum photo informs retained belfry fabric and proportions. The municipal street front uses the 2004 public-domain exterior.",
+    "The original street terrain is preserved. Finished threshold and attached surfaces are approximate at terrain resolution."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "hotel-de-ville-boulogne-sur-mer-skyline",
+      "position": [
+        53,
+        32,
+        51
+      ],
+      "lookAt": [
+        1,
+        13,
+        -18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hotel-de-ville-boulogne-sur-mer-district",
+      "position": [
+        53,
+        32,
+        51
+      ],
+      "lookAt": [
+        1,
+        13,
+        -18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "hotel-de-ville-boulogne-sur-mer-street",
+      "position": [
+        53,
+        32,
+        51
+      ],
+      "lookAt": [
+        1,
+        13,
+        -18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "hotel-de-ville-boulogne-sur-mer-closeup",
+      "position": [
+        53,
+        32,
+        51
+      ],
+      "lookAt": [
+        1,
+        13,
+        -18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "place-godefroy-de-bouillon",
+      "position": [
+        16,
+        8,
+        41
+      ],
+      "lookAt": [
+        -1,
+        13,
+        -8
+      ]
+    },
+    {
+      "name": "balcony-and-civic-windows",
+      "position": [
+        -16,
+        6,
+        17
+      ],
+      "lookAt": [
+        -5.6,
+        5.2,
+        0
+      ]
+    },
+    {
+      "name": "square-keep-and-octagonal-stage",
+      "position": [
+        -24,
+        28,
+        -42
+      ],
+      "lookAt": [
+        -5.9,
+        26,
+        -14.6
+      ]
+    },
+    {
+      "name": "rear-wings-and-original-grade",
+      "position": [
+        39,
+        32,
+        -63
+      ],
+      "lookAt": [
+        5,
+        11,
+        -29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5554,
+    "vertices": 16662,
+    "materials": 6,
+    "bytes": 1037476,
+    "sha256": "sha256:9deed6a8f2ef27c6aa157a50393528a24c45f34c9c5411922856111e1c1290c6"
+  }
+}

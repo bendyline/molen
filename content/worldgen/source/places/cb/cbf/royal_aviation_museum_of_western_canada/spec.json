@@ -1,0 +1,457 @@
+{
+  "planId": "royal_aviation_museum_of_western_canada",
+  "id": "royal_aviation_museum_of_western_canada",
+  "assetId": "molen.worldgen.structure.royal_aviation_museum_of_western_canada",
+  "title": "Royal Aviation Museum of Western Canada",
+  "wikidataId": "Q3567485",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -97.2247367,
+    "latitude": 49.90124315
+  },
+  "size": [
+    102.92109680175781,
+    17.544449865818024,
+    84.84439849853516
+  ],
+  "actualBounds": {
+    "min": [
+      -50.23329162597656,
+      -0.7900000214576721,
+      -42.54658126831055
+    ],
+    "max": [
+      52.68780517578125,
+      16.75444984436035,
+      42.29781723022461
+    ]
+  },
+  "visualBrief": "The Royal Aviation Museum of Western Canada, with its tapered hangar envelope, projecting entrance canopy and vaulted glass northwest corner.",
+  "nativeAxes": {
+    "x": "west toward the airside corner",
+    "y": "up",
+    "z": "north toward the street entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "royal-aviation-museum-of-western-canada-wp",
+      "url": "https://qualla.com/royal-aviation-museum-of-western-canada/"
+    }
+  ],
+  "referenceInputHash": "sha256:98b9993e8d3fa4a488ccb7aa4a92941a8e5ca138379929f979ca92ef5660b6aa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/cb/cbf/royal_aviation_museum_of_western_canada/models/royal-aviation-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/cb/cbf/royal_aviation_museum_of_western_canada/models/royal-aviation-museum-model.mjs",
+    "level": "skyline",
+    "export": "royalAviationSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.85
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.89
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metalness": 0.24
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.74,
+        "metalness": 0.17
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "royalAviationDistrict",
+        "errorMeters": 1.24,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metalness": 0.24
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metalness": 0.17
+          }
+        }
+      },
+      "street": {
+        "export": "royalAviationStreet",
+        "errorMeters": 0.59,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metalness": 0.24
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metalness": 0.17
+          }
+        }
+      },
+      "closeup": {
+        "export": "royalAviationCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metalness": 0.24
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metalness": 0.17
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.48,
+    "cameraYaw": 0.14,
+    "focus": {
+      "center": [
+        0,
+        5,
+        0
+      ]
+    },
+    "groundY": 0,
+    "far": 1800,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native museum building way 1044672921, shared address with named campus way 1298193366, and exact north-facing doorway 11841783427.",
+    "anchor": [
+      -97.2247367,
+      49.90124315
+    ],
+    "heading": 3.0938507559535124,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -97.22438040163927,
+        49.90134869962788
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain grid sampled at the mapped north entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          52.50492,
+          42.12034
+        ],
+        [
+          46.77147,
+          16.47167
+        ],
+        [
+          33.65074,
+          -42.24658
+        ],
+        [
+          -49.85496,
+          -42.24658
+        ],
+        [
+          -49.69493,
+          -33.03767
+        ],
+        [
+          -49.96236,
+          -1.67511
+        ],
+        [
+          -50.05315,
+          9.19526
+        ],
+        [
+          -47.77792,
+          10.69139
+        ],
+        [
+          -30.05144,
+          9.85559
+        ],
+        [
+          -24.95745,
+          12.95561
+        ],
+        [
+          -1.6765,
+          27.11151
+        ]
+      ],
+      "minimumCoverage": 0.82,
+      "basis": "Native footprint of the current aviation museum at Wellington Avenue."
+    },
+    "featureIds": [
+      "way/1044672921",
+      "way/1298193366",
+      "node/11841783427"
+    ],
+    "source": "https://www.openstreetmap.org/way/1044672921",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5c36d7c0687843437abdbc94a1d91f5f892013cce75b6730fc311f6ecfc4734f",
+    "notes": "The exact mapped building includes the tapered western end and eastern service return. Museum visitor grounds extend outside the modeled exterior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The native building and entry fix the footprint and orientation. Roof fold, eave heights, canopy, windows, panel widths and airside openings are estimates based on the written architecture and current footprint.",
+    "The existing terrain field is preserved. Door thresholds, foundation depths and nearby paving are approximate. Aircraft, interiors, vehicles and other buildings are outside the model scope."
+  ],
+  "sourceLicense": "Original geometry from ODbL OpenStreetMap mapping and written factual dimensions and descriptions from the museum, architect and builder.",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        124,
+        64,
+        111
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        124,
+        64,
+        111
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        124,
+        64,
+        111
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        124,
+        64,
+        111
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "northwest-glazed-triangle",
+      "position": [
+        97,
+        14,
+        84
+      ],
+      "lookAt": [
+        19,
+        8,
+        24
+      ]
+    },
+    {
+      "name": "wellington-avenue-entry",
+      "position": [
+        -55,
+        7.4,
+        44
+      ],
+      "lookAt": [
+        -20,
+        4.3,
+        16
+      ]
+    },
+    {
+      "name": "airside-and-hangar-doors",
+      "position": [
+        64,
+        23,
+        -102
+      ],
+      "lookAt": [
+        0,
+        6,
+        -22
+      ]
+    },
+    {
+      "name": "tapered-roof-and-corner",
+      "position": [
+        76,
+        93,
+        67
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5703,
+    "vertices": 17109,
+    "materials": 5,
+    "bytes": 772828,
+    "sha256": "sha256:7631da4cbc4fbfa553a92196b7ad3f3c1ba6adaee9a464023a0fcb8381b64619"
+  }
+}

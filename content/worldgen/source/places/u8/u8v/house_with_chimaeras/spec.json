@@ -1,0 +1,411 @@
+{
+  "planId": "house_with_chimaeras",
+  "id": "house_with_chimaeras",
+  "assetId": "molen.worldgen.structure.house_with_chimaeras",
+  "title": "House with Chimaeras",
+  "wikidataId": "Q1440653",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 30.5285225,
+    "latitude": 50.445097
+  },
+  "size": [
+    26.78172779083252,
+    29.755168914794922,
+    50.17484664916992
+  ],
+  "actualBounds": {
+    "min": [
+      -14.072227478027344,
+      -12.25,
+      -25.214847564697266
+    ],
+    "max": [
+      12.709500312805176,
+      17.505168914794922,
+      24.959999084472656
+    ]
+  },
+  "visualBrief": "Kyiv’s House with Chimaeras in 2008, with the Bankova portico, steep downhill wing and sculptural roof.",
+  "nativeAxes": {
+    "x": "along the Bankova facade",
+    "y": "up",
+    "z": "toward Bankova Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-11-12",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:House_with_Chimeras.JPG"
+  ],
+  "stories": [
+    {
+      "id": "house-with-chimaeras-wp",
+      "url": "https://qualla.com/house-with-chimaeras/"
+    }
+  ],
+  "referenceInputHash": "29754d0341d272f6e63d3d2b06ac5a152cf110e176d8e8dec222ac32638a0083",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u8/u8v/house_with_chimaeras/models/house-with-chimaeras-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u8/u8v/house_with_chimaeras/models/house-with-chimaeras-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.56,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.042,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.56,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_limestone_raw",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      30.5285225,
+      50.445097
+    ],
+    "heading": 0.9385583521914658,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        30.528750886783016,
+        50.44494591560025
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain on the Bankova Street approach to the main door."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/23708614"
+    ],
+    "source": "https://www.openstreetmap.org/way/23708614",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cac04132ed659283ed2e45eec4cd732eb9f1c573361c77e03f61b6cc0d44591e",
+    "notes": "The mapped footprint places the stepped plan and the original hill determines the lower storeys exposed toward Ivan Franko Square."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The restored exterior is dated to November 2008. The slope and geographic footprint use original terrain and native geometry.",
+    "Roof groups and carvings are modeled with original medium-fi geometry from the documented animal and marine motifs. Individual sculptures are simplified and the hidden sides and exact opening widths are estimated.",
+    "The rendered colors use pale cement and gray roof from the documented building materials. The approved photograph uses strong night lighting, so exact daylight tint and roof fixtures are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Nejix’s exact exterior photograph was released to the public domain by the photographer. OpenStreetMap building geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "bankova-skyline",
+      "position": [
+        -42,
+        24,
+        71
+      ],
+      "lookAt": [
+        0,
+        5,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bankova-district",
+      "position": [
+        -42,
+        24,
+        71
+      ],
+      "lookAt": [
+        0,
+        5,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bankova-street",
+      "position": [
+        -42,
+        24,
+        71
+      ],
+      "lookAt": [
+        0,
+        5,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bankova-closeup",
+      "position": [
+        -42,
+        24,
+        71
+      ],
+      "lookAt": [
+        0,
+        5,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bankova-entrance-and-statuary",
+      "position": [
+        2.5,
+        12,
+        53
+      ],
+      "lookAt": [
+        -2,
+        8.1,
+        18.4
+      ]
+    },
+    {
+      "name": "cement-cornice-and-roof-figures",
+      "position": [
+        -27,
+        20.5,
+        45
+      ],
+      "lookAt": [
+        -6,
+        14.2,
+        17.7
+      ]
+    },
+    {
+      "name": "ivan-franko-square-downhill-wing",
+      "position": [
+        -32,
+        2,
+        -57
+      ],
+      "lookAt": [
+        0,
+        1,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16605,
+    "vertices": 49815,
+    "materials": 5,
+    "bytes": 2163676,
+    "sha256": "sha256:7be6ae774e6b3f7a81cdd088f119b518950d5674bf290da39d840bd074b1d918"
+  }
+}

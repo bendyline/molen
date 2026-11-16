@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.napier_prison",
+  "kind": "static-structure",
+  "title": "Napier Prison",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.napier_prison",
+        "output": "assets/places/rb/rbv/napier_prison/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:36942397e6d48e89cee10cdd6dc2709bb3f7ba2858c09a421a887314e7b706e4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-napier-prison",
+        "path": "models/generate-napier-prison.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/napier-prison-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-32487-20301.png",
+      "preview.png",
+      "reference-rights/commons-pseudopanax-native-record.json",
+      "native-map/napier-prison.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

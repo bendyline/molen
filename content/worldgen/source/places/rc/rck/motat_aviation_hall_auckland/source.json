@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.motat_aviation_hall_auckland",
+  "kind": "static-structure",
+  "title": "MOTAT Aviation Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.motat_aviation_hall_auckland",
+        "output": "assets/places/rc/rck/motat_aviation_hall_auckland/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9727f6c88dd38a8e10cd9a46c467b3c98aa3138974d99aa3bcd807887005ee22"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-motat-aviation-hall-auckland",
+        "path": "models/generate-motat-aviation-hall-auckland.mjs"
+      },
+      {
+        "id": "motat-aviation-hall-auckland-model",
+        "path": "models/motat-aviation-hall-auckland-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-aviation-hall-native-record.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-32286-19997.png",
+      "terrain-sources/terrarium-15-32287-19997.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

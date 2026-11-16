@@ -7,6 +7,84 @@ import test from 'node:test';
 import { inspectImageryPolicy } from './imagery-policy.mjs';
 import { inspectQuallaPrimaryRights } from './imagery-primary-rights.mjs';
 
+test('the Fort Témiscamingue archive proof requires both expiry records and the exact image', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-lac-rights-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const proofPath =
+    'content/worldgen/source/places/f0/f0r/fort_temiscamingue_blacksmith_forge/reference-rights/lac.json';
+  const checkedFile = path.join(root, proofPath);
+  fs.mkdirSync(path.dirname(checkedFile), { recursive: true });
+  const bytes = Buffer.from('sample photograph');
+  const artist = 'George McLaughlin';
+  const page = {
+    title: 'File:Fort Temiscamingue 1876.jpg',
+    imageinfo: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Fort_Temiscamingue_1876.jpg',
+        sha1: createHash('sha1').update(bytes).digest('hex'),
+        size: bytes.length,
+        extmetadata: {
+          Artist: { value: artist },
+          LicenseShortName: { value: 'Public domain' },
+          Copyrighted: { value: 'False' },
+          AttributionRequired: { value: 'false' },
+        },
+      },
+    ],
+    revisions: [
+      {
+        revid: 42,
+        slots: {
+          main: {
+            '*': '|Source={{LAC|Acc. No. 1966-094|3257337}}\n|Author=George McLaughlin\n|Date=1876\n{{PD-Canada}}{{PD-1923}}',
+          },
+        },
+      },
+    ],
+  };
+  const record = {
+    source:
+      'https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo%7Crevisions&titles=File%3AFort_Temiscamingue_1876.jpg',
+    query: { pages: { 1: page } },
+    archive: {
+      mikanId: 3257337,
+      url: 'https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?idnumber=3257337&app=fonandcol',
+      accession: '1966-094 NPC',
+      reproduction: 'PA-028724',
+      photographer: artist,
+      date: 1876,
+      restriction: 'Nil',
+      copyright: 'Expired',
+    },
+  };
+  const reference = {
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Fort_Temiscamingue_1876.jpg',
+    artist,
+    license: 'Public domain',
+    nativeRevision: 42,
+    originalReview: { rendition: 'exact-published-native-original' },
+    publicDomainEvidence: {
+      kind: 'commons-native-lac-expired-photo',
+      path: proofPath,
+      photoYear: 1876,
+      archiveItem: 3257337,
+    },
+  };
+  const inspect = (image = bytes) => {
+    const content = JSON.stringify(record);
+    fs.writeFileSync(checkedFile, content);
+    reference.publicDomainEvidence.sha256 = createHash('sha256').update(content).digest('hex');
+    return inspectQuallaPrimaryRights(reference, image, root).eligible;
+  };
+  assert.equal(inspect(), true);
+  assert.equal(inspect(Buffer.from('another photo')), false);
+  record.archive.copyright = 'Unknown';
+  assert.equal(inspect(), false);
+  record.archive.copyright = 'Expired';
+  page.revisions[0].slots.main['*'] = page.revisions[0].slots.main['*'].replace('{{PD-1923}}', '');
+  assert.equal(inspect(), false);
+});
+
 test('an omitted category needs a bound native government release and still requires published Qualla clearance', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-usace-rights-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

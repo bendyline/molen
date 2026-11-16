@@ -1,0 +1,637 @@
+{
+  "planId": "napier_prison",
+  "id": "napier_prison",
+  "assetId": "molen.worldgen.structure.napier_prison",
+  "title": "Napier Prison",
+  "wikidataId": "Q6964921",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 176.9188,
+    "latitude": -39.4847
+  },
+  "size": [
+    66.67245101928711,
+    18.563137531280518,
+    55.59902763366699
+  ],
+  "actualBounds": {
+    "min": [
+      -37.545501708984375,
+      -7.0564799308776855,
+      -37.499027252197266
+    ],
+    "max": [
+      29.126949310302734,
+      11.506657600402832,
+      18.100000381469727
+    ]
+  },
+  "visualBrief": "The former Napier Prison, its long rusticated sandstone wall, white-quoined stepped entrance, timber wings and enclosed yard.",
+  "nativeAxes": {
+    "x": "west along main stone wall",
+    "y": "up",
+    "z": "out to Coote Road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrance_of_Napier_historic_prison.jpg"
+  ],
+  "stories": [
+    {
+      "id": "napier-prison-wp",
+      "url": "https://qualla.com/napier-prison/"
+    }
+  ],
+  "referenceInputHash": "5be840032948f1731d03cb56854089c4bc636e200cf3b94339d84be0671f928c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rb/rbv/napier_prison/models/napier-prison-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rb/rbv/napier_prison/models/napier-prison-model.mjs",
+    "level": "skyline",
+    "export": "napierSkyline",
+    "errorMeters": 0.93,
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "boards": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "battens": {
+        "slot": "wall",
+        "graph": "wood_board_batten",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#e9e4dc",
+        "roughness": 0.79,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "napierDistrict",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "boards": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "battens": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4dc",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "napierStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "boards": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "battens": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4dc",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "napierCloseup",
+        "errorMeters": 0.067,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "boards": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "battens": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4dc",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "wood_weatherboard",
+    "wood_board_batten",
+    "metal_corrugated",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.67,
+    "cameraYaw": 0.46,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -7,
+        2.1,
+        -8
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Mapped main gate and exterior stairs on Coote Road, the surveyed 5.5 metre high, 0.50 metre thick sandstone boundary, the named timber cell blocks and the original hill grade.",
+    "anchor": [
+      176.9188,
+      -39.4847
+    ],
+    "heading": 2.969031080285484,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        176.91878030008462,
+        -39.484533500768215
+      ],
+      "modelHeight": 0,
+      "basis": "Foot of the mapped gate steps on the north Coote Road approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.25392,
+          11.13692
+        ],
+        [
+          -31.9028,
+          11.40248
+        ],
+        [
+          -32.03076,
+          1.66178
+        ],
+        [
+          -30.57058,
+          1.63328
+        ],
+        [
+          -30.58344,
+          0.35864
+        ],
+        [
+          -34.64698,
+          0.41151
+        ],
+        [
+          -36.12599,
+          0.432
+        ],
+        [
+          -36.47511,
+          -24.28755
+        ],
+        [
+          -28.83539,
+          -24.38744
+        ],
+        [
+          -28.93355,
+          -31.80558
+        ],
+        [
+          -21.20919,
+          -31.92022
+        ],
+        [
+          -21.06703,
+          -21.79781
+        ],
+        [
+          -5.97299,
+          -22.01047
+        ],
+        [
+          -6.07742,
+          -29.31452
+        ],
+        [
+          -1.44843,
+          -29.37555
+        ],
+        [
+          -1.34618,
+          -21.83382
+        ],
+        [
+          10.45018,
+          -22.00281
+        ],
+        [
+          10.59126,
+          -11.58641
+        ],
+        [
+          8.58256,
+          -11.55269
+        ],
+        [
+          8.67141,
+          -5.13861
+        ],
+        [
+          4.4517,
+          -5.08112
+        ],
+        [
+          4.35546,
+          -12.13801
+        ],
+        [
+          -2.70843,
+          -12.03678
+        ],
+        [
+          -2.75026,
+          -15.32902
+        ],
+        [
+          -22.05747,
+          -15.07131
+        ],
+        [
+          -21.92076,
+          -4.52985
+        ],
+        [
+          -2.7528,
+          -4.78589
+        ],
+        [
+          -2.70933,
+          -1.58434
+        ],
+        [
+          11.26419,
+          -1.7712
+        ],
+        [
+          11.37356,
+          6.66197
+        ],
+        [
+          14.82742,
+          6.61367
+        ],
+        [
+          14.91163,
+          13.40145
+        ],
+        [
+          9.00403,
+          13.48194
+        ],
+        [
+          8.96495,
+          11.2062
+        ],
+        [
+          1.84836,
+          11.3053
+        ],
+        [
+          1.77645,
+          5.58885
+        ],
+        [
+          -0.65845,
+          5.62905
+        ],
+        [
+          -0.71313,
+          1.41247
+        ],
+        [
+          -8.94369,
+          1.52494
+        ],
+        [
+          -8.91443,
+          3.99449
+        ],
+        [
+          -11.34278,
+          4.02225
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named roofed footprint behind the retained perimeter walls."
+    },
+    "featureIds": [
+      "way/222838698",
+      "way/1098387913",
+      "way/1098387914",
+      "way/1098387918",
+      "way/1098387919",
+      "way/1546497855",
+      "node/10057138364"
+    ],
+    "source": "https://www.openstreetmap.org/way/222838698",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:21755d02cd3250686c8dca13a42ac0c232d32c8b252daf2eff0fbb72ee8be228"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_board_batten",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped building shell and remaining enclosure are represented at medium fidelity. Roof ridge profiles, room wings, rear openings, changing wall levels, foundations and gate hardware follow the written survey and are estimated where exterior photographs provide no coverage.",
+    "The main gate follows the public-domain original. The plaque and crossed keys retain their historic position and scale, with simplified lettering and ironwork.",
+    "The source terrain is preserved. The alignment of the modeled stair threshold and courtyard floors with historic survey levels is approximate."
+  ],
+  "sourceLicense": "Original geometry based on an exact verified public-domain Qualla photograph, published written Heritage New Zealand evidence, OpenStreetMap ODbL geometry and attributed Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "napier-prison-skyline",
+      "position": [
+        47,
+        49,
+        73
+      ],
+      "lookAt": [
+        -7,
+        2.1,
+        -8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "napier-prison-district",
+      "position": [
+        47,
+        49,
+        73
+      ],
+      "lookAt": [
+        -7,
+        2.1,
+        -8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "napier-prison-street",
+      "position": [
+        47,
+        49,
+        73
+      ],
+      "lookAt": [
+        -7,
+        2.1,
+        -8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "napier-prison-closeup",
+      "position": [
+        47,
+        49,
+        73
+      ],
+      "lookAt": [
+        -7,
+        2.1,
+        -8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "coote-road-gate-and-approach",
+      "position": [
+        9.9,
+        3.7,
+        28.5
+      ],
+      "lookAt": [
+        4.9,
+        3.1,
+        14.1
+      ]
+    },
+    {
+      "name": "sandstone-wall-and-north-wing",
+      "position": [
+        -18,
+        12.4,
+        49
+      ],
+      "lookAt": [
+        -8,
+        1,
+        12.5
+      ]
+    },
+    {
+      "name": "yard-and-timber-service-wings",
+      "position": [
+        41,
+        30,
+        -49
+      ],
+      "lookAt": [
+        -13,
+        2.9,
+        -10
+      ]
+    },
+    {
+      "name": "east-wall-and-southern-wing",
+      "position": [
+        -62,
+        19,
+        -35
+      ],
+      "lookAt": [
+        -24,
+        1.5,
+        -14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5071,
+    "vertices": 15213,
+    "materials": 6,
+    "bytes": 769584,
+    "sha256": "sha256:36942397e6d48e89cee10cdd6dc2709bb3f7ba2858c09a421a887314e7b706e4"
+  }
+}

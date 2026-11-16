@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_saint_francis_of_assisi_ouro_preto",
+  "kind": "static-structure",
+  "title": "Church of Saint Francis of Assisi, Ouro Preto",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_saint_francis_of_assisi_ouro_preto",
+        "output": "assets/places/7h/7h3/church_of_saint_francis_of_assisi_ouro_preto/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5c947d0948834b645d686c2bbd7ab3298d7ef6f4db42e17db7d19cc759772e14"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-ouro-preto-sao-francisco",
+        "path": "models/generate-ouro-preto-sao-francisco.mjs"
+      },
+      {
+        "id": "ouro-preto-sao-francisco-model",
+        "path": "models/ouro-preto-sao-francisco-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-igreja-controls.json",
+      "reference-rights/commons-creator-first-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-12424-18279.png",
+      "terrain-sources/terrarium-15-12424-18280.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

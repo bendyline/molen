@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.throne_hall_of_dongola",
+  "kind": "static-structure",
+  "title": "Throne Hall of Dongola",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.throne_hall_of_dongola",
+        "output": "assets/places/se/sej/throne_hall_of_dongola/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8c7bfd2c28651b75ae5ba1424924f251bbf731e87f048ee0332a3afb916c4050"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-throne-hall-of-dongola",
+        "path": "models/generate-throne-hall-of-dongola.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/throne-hall-of-dongola-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-throne-hall.json",
+      "reference-rights/robert-hartmann-dongola-native.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19182-14696.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

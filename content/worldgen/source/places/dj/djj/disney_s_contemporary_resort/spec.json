@@ -1,0 +1,1473 @@
+{
+  "planId": "disney_s_contemporary_resort",
+  "id": "disney_s_contemporary_resort",
+  "assetId": "molen.worldgen.structure.disney_s_contemporary_resort",
+  "title": "Disney's Contemporary Resort and Bay Lake Tower",
+  "wikidataId": "Q2919960",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.57443,
+    "latitude": 28.41495
+  },
+  "size": [
+    178.83228302001953,
+    60.679999232292175,
+    323.3249969482422
+  ],
+  "actualBounds": {
+    "min": [
+      -34.306190490722656,
+      -0.6299999952316284,
+      -221
+    ],
+    "max": [
+      144.52609252929688,
+      60.04999923706055,
+      102.32499694824219
+    ]
+  },
+  "visualBrief": "The 1971 resort A-frame and the 2009 crescent Bay Lake Tower with their raised Sky Way Bridge, the two monorail beams through the main concourse, rooftop restaurant and tiered balconies.",
+  "nativeAxes": {
+    "x": "east toward Bay Lake",
+    "y": "up",
+    "z": "south along the Contemporary Tower"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:BayLakeTower.JPG",
+    "https://commons.wikimedia.org/wiki/File:Baylakecontemporary.jpg"
+  ],
+  "stories": [
+    {
+      "id": "disney-s-contemporary-resort-wp",
+      "url": "https://qualla.com/disney-s-contemporary-resort/"
+    }
+  ],
+  "referenceInputHash": "4601c4b99f2c644b11423bb1b55737b3d9bfb4ff24d47d812fcba0f2a9ea0787",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/djj/disney_s_contemporary_resort/models/disney-contemporary-resort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/djj/disney_s_contemporary_resort/models/disney-contemporary-resort-model.mjs",
+    "level": "skyline",
+    "export": "contemporaryResortSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "mass": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slabs": {
+        "slot": "foundation",
+        "graph": "stone_travertine",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.51,
+        "metallic": 0.13
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "contemporaryResortDistrict",
+        "errorMeters": 0.86,
+        "surfaces": {
+          "mass": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slabs": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.13
+          }
+        }
+      },
+      "street": {
+        "export": "contemporaryResortStreet",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "mass": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slabs": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.13
+          }
+        }
+      },
+      "closeup": {
+        "export": "contemporaryResortCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "mass": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slabs": {
+            "slot": "foundation",
+            "graph": "stone_travertine",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.13
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_travertine",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "cameraYaw": -0.45,
+    "focus": {
+      "center": [
+        44,
+        23,
+        -74
+      ]
+    },
+    "groundY": -0.6,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two native hotel perimeters, mapped roof parts, two through-site monorail lines and the raised bridge align the model. The A-frame has the owner’s documented 56.08 m height, 142.65 m length and 67.06 m width. Foundation contact is relative to the unmodified site elevation field.",
+    "anchor": [
+      -81.57443,
+      28.41495
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.57407252396295,
+        28.414914067553003
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified surrounding ground near the Contemporary Tower lakeside apron."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -32.78946,
+          71.63409
+        ],
+        [
+          -32.81883,
+          67.70451
+        ],
+        [
+          -32.9559,
+          63.5189
+        ],
+        [
+          -32.9559,
+          55.93804
+        ],
+        [
+          -32.93632,
+          2.73846
+        ],
+        [
+          -32.88737,
+          -27.79648
+        ],
+        [
+          -32.87758,
+          -37.4924
+        ],
+        [
+          -32.87758,
+          -44.83949
+        ],
+        [
+          -32.86779,
+          -46.55381
+        ],
+        [
+          -32.858,
+          -60.71365
+        ],
+        [
+          -32.858,
+          -64.39833
+        ],
+        [
+          -29.42142,
+          -64.39833
+        ],
+        [
+          -29.41163,
+          -68.14979
+        ],
+        [
+          -24.96659,
+          -68.13866
+        ],
+        [
+          -22.98885,
+          -68.13866
+        ],
+        [
+          -21.02089,
+          -68.12753
+        ],
+        [
+          -18.74942,
+          -68.12753
+        ],
+        [
+          -18.73963,
+          -75.65273
+        ],
+        [
+          -14.38272,
+          -75.64159
+        ],
+        [
+          -9.24254,
+          -75.63046
+        ],
+        [
+          -9.25233,
+          -68.58394
+        ],
+        [
+          -5.14997,
+          -68.53941
+        ],
+        [
+          -3.55407,
+          -68.56167
+        ],
+        [
+          17.59411,
+          -68.48375
+        ],
+        [
+          23.27278,
+          -68.51715
+        ],
+        [
+          27.00309,
+          -68.50601
+        ],
+        [
+          26.99329,
+          -65.53378
+        ],
+        [
+          31.8887,
+          -65.52265
+        ],
+        [
+          31.8887,
+          -63.86399
+        ],
+        [
+          31.87891,
+          -61.1478
+        ],
+        [
+          31.87891,
+          -60.25724
+        ],
+        [
+          31.86912,
+          -57.95293
+        ],
+        [
+          31.86912,
+          -56.90652
+        ],
+        [
+          31.85933,
+          -48.2904
+        ],
+        [
+          31.85933,
+          -47.32192
+        ],
+        [
+          31.84954,
+          -37.95995
+        ],
+        [
+          31.85933,
+          -37.04713
+        ],
+        [
+          31.82996,
+          -27.841
+        ],
+        [
+          31.82017,
+          -26.87253
+        ],
+        [
+          31.7908,
+          -17.55508
+        ],
+        [
+          31.80059,
+          -16.60887
+        ],
+        [
+          31.76142,
+          -14.9836
+        ],
+        [
+          35.53089,
+          -14.97247
+        ],
+        [
+          41.72848,
+          -14.95021
+        ],
+        [
+          41.69911,
+          -9.11707
+        ],
+        [
+          38.34086,
+          -9.1282
+        ],
+        [
+          38.23316,
+          15.12832
+        ],
+        [
+          41.56204,
+          15.13945
+        ],
+        [
+          41.53266,
+          21.85202
+        ],
+        [
+          35.44277,
+          21.82975
+        ],
+        [
+          31.61456,
+          21.85202
+        ],
+        [
+          31.67331,
+          23.36596
+        ],
+        [
+          31.67331,
+          24.30104
+        ],
+        [
+          31.75163,
+          33.57396
+        ],
+        [
+          31.74184,
+          34.48678
+        ],
+        [
+          31.78101,
+          43.64837
+        ],
+        [
+          31.7908,
+          44.61685
+        ],
+        [
+          31.81038,
+          53.95656
+        ],
+        [
+          31.81038,
+          54.95843
+        ],
+        [
+          31.80059,
+          64.19795
+        ],
+        [
+          31.80059,
+          65.09964
+        ],
+        [
+          30.52778,
+          65.09964
+        ],
+        [
+          30.51799,
+          67.50414
+        ],
+        [
+          30.53757,
+          71.35579
+        ],
+        [
+          27.8451,
+          71.36693
+        ],
+        [
+          25.8184,
+          71.37806
+        ],
+        [
+          25.82819,
+          75.15179
+        ],
+        [
+          22.03914,
+          75.16292
+        ],
+        [
+          -4.50378,
+          75.20745
+        ],
+        [
+          -8.31241,
+          75.21858
+        ],
+        [
+          -8.30262,
+          82.43208
+        ],
+        [
+          -14.38272,
+          82.44321
+        ],
+        [
+          -18.21093,
+          82.45435
+        ],
+        [
+          -18.22072,
+          75.26311
+        ],
+        [
+          -21.99018,
+          75.26311
+        ],
+        [
+          -24.89806,
+          75.27424
+        ],
+        [
+          -26.90518,
+          75.27424
+        ],
+        [
+          -26.90518,
+          71.6007
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -32.78946,
+            71.63409
+          ],
+          [
+            -32.81883,
+            67.70451
+          ],
+          [
+            -32.9559,
+            63.5189
+          ],
+          [
+            -32.9559,
+            55.93804
+          ],
+          [
+            -32.93632,
+            2.73846
+          ],
+          [
+            -32.88737,
+            -27.79648
+          ],
+          [
+            -32.87758,
+            -37.4924
+          ],
+          [
+            -32.87758,
+            -44.83949
+          ],
+          [
+            -32.86779,
+            -46.55381
+          ],
+          [
+            -32.858,
+            -60.71365
+          ],
+          [
+            -32.858,
+            -64.39833
+          ],
+          [
+            -29.42142,
+            -64.39833
+          ],
+          [
+            -29.41163,
+            -68.14979
+          ],
+          [
+            -24.96659,
+            -68.13866
+          ],
+          [
+            -22.98885,
+            -68.13866
+          ],
+          [
+            -21.02089,
+            -68.12753
+          ],
+          [
+            -18.74942,
+            -68.12753
+          ],
+          [
+            -18.73963,
+            -75.65273
+          ],
+          [
+            -14.38272,
+            -75.64159
+          ],
+          [
+            -9.24254,
+            -75.63046
+          ],
+          [
+            -9.25233,
+            -68.58394
+          ],
+          [
+            -5.14997,
+            -68.53941
+          ],
+          [
+            -3.55407,
+            -68.56167
+          ],
+          [
+            17.59411,
+            -68.48375
+          ],
+          [
+            23.27278,
+            -68.51715
+          ],
+          [
+            27.00309,
+            -68.50601
+          ],
+          [
+            26.99329,
+            -65.53378
+          ],
+          [
+            31.8887,
+            -65.52265
+          ],
+          [
+            31.8887,
+            -63.86399
+          ],
+          [
+            31.87891,
+            -61.1478
+          ],
+          [
+            31.87891,
+            -60.25724
+          ],
+          [
+            31.86912,
+            -57.95293
+          ],
+          [
+            31.86912,
+            -56.90652
+          ],
+          [
+            31.85933,
+            -48.2904
+          ],
+          [
+            31.85933,
+            -47.32192
+          ],
+          [
+            31.84954,
+            -37.95995
+          ],
+          [
+            31.85933,
+            -37.04713
+          ],
+          [
+            31.82996,
+            -27.841
+          ],
+          [
+            31.82017,
+            -26.87253
+          ],
+          [
+            31.7908,
+            -17.55508
+          ],
+          [
+            31.80059,
+            -16.60887
+          ],
+          [
+            31.76142,
+            -14.9836
+          ],
+          [
+            35.53089,
+            -14.97247
+          ],
+          [
+            41.72848,
+            -14.95021
+          ],
+          [
+            41.69911,
+            -9.11707
+          ],
+          [
+            38.34086,
+            -9.1282
+          ],
+          [
+            38.23316,
+            15.12832
+          ],
+          [
+            41.56204,
+            15.13945
+          ],
+          [
+            41.53266,
+            21.85202
+          ],
+          [
+            35.44277,
+            21.82975
+          ],
+          [
+            31.61456,
+            21.85202
+          ],
+          [
+            31.67331,
+            23.36596
+          ],
+          [
+            31.67331,
+            24.30104
+          ],
+          [
+            31.75163,
+            33.57396
+          ],
+          [
+            31.74184,
+            34.48678
+          ],
+          [
+            31.78101,
+            43.64837
+          ],
+          [
+            31.7908,
+            44.61685
+          ],
+          [
+            31.81038,
+            53.95656
+          ],
+          [
+            31.81038,
+            54.95843
+          ],
+          [
+            31.80059,
+            64.19795
+          ],
+          [
+            31.80059,
+            65.09964
+          ],
+          [
+            30.52778,
+            65.09964
+          ],
+          [
+            30.51799,
+            67.50414
+          ],
+          [
+            30.53757,
+            71.35579
+          ],
+          [
+            27.8451,
+            71.36693
+          ],
+          [
+            25.8184,
+            71.37806
+          ],
+          [
+            25.82819,
+            75.15179
+          ],
+          [
+            22.03914,
+            75.16292
+          ],
+          [
+            -4.50378,
+            75.20745
+          ],
+          [
+            -8.31241,
+            75.21858
+          ],
+          [
+            -8.30262,
+            82.43208
+          ],
+          [
+            -14.38272,
+            82.44321
+          ],
+          [
+            -18.21093,
+            82.45435
+          ],
+          [
+            -18.22072,
+            75.26311
+          ],
+          [
+            -21.99018,
+            75.26311
+          ],
+          [
+            -24.89806,
+            75.27424
+          ],
+          [
+            -26.90518,
+            75.27424
+          ],
+          [
+            -26.90518,
+            71.6007
+          ]
+        ],
+        [
+          [
+            63.82636,
+            -175.90706
+          ],
+          [
+            65.44185,
+            -182.24114
+          ],
+          [
+            67.21399,
+            -186.70505
+          ],
+          [
+            68.78052,
+            -190.65689
+          ],
+          [
+            73.96965,
+            -200.34169
+          ],
+          [
+            76.62297,
+            -204.02636
+          ],
+          [
+            77.651,
+            -208.82423
+          ],
+          [
+            76.38799,
+            -209.88177
+          ],
+          [
+            75.14455,
+            -210.50516
+          ],
+          [
+            73.10806,
+            -211.55156
+          ],
+          [
+            70.0827,
+            -213.08777
+          ],
+          [
+            68.25182,
+            -214.02285
+          ],
+          [
+            80.50992,
+            -219.46638
+          ],
+          [
+            87.48099,
+            -222.62785
+          ],
+          [
+            87.75513,
+            -222.14918
+          ],
+          [
+            90.68259,
+            -216.95056
+          ],
+          [
+            91.75958,
+            -215.97094
+          ],
+          [
+            98.63273,
+            -218.55356
+          ],
+          [
+            105.78003,
+            -220.16769
+          ],
+          [
+            113.96516,
+            -220.96919
+          ],
+          [
+            124.22594,
+            -220.73542
+          ],
+          [
+            132.0586,
+            -219.70015
+          ],
+          [
+            138.28556,
+            -217.97469
+          ],
+          [
+            145.31537,
+            -215.09152
+          ],
+          [
+            141.16406,
+            -205.6405
+          ],
+          [
+            141.9767,
+            -204.4939
+          ],
+          [
+            141.9767,
+            -203.10241
+          ],
+          [
+            141.39904,
+            -202.06714
+          ],
+          [
+            140.00874,
+            -201.72205
+          ],
+          [
+            138.40305,
+            -201.95582
+          ],
+          [
+            136.19032,
+            -202.82411
+          ],
+          [
+            131.02077,
+            -204.839
+          ],
+          [
+            131.02077,
+            -195.38797
+          ],
+          [
+            104.74221,
+            -195.1542
+          ],
+          [
+            104.62472,
+            -206.79822
+          ],
+          [
+            99.32788,
+            -204.4939
+          ],
+          [
+            92.52326,
+            -200.68678
+          ],
+          [
+            90.90778,
+            -199.07265
+          ],
+          [
+            88.26425,
+            -195.38797
+          ],
+          [
+            92.98343,
+            -192.03725
+          ],
+          [
+            91.36794,
+            -188.80899
+          ],
+          [
+            95.05908,
+            -186.50467
+          ],
+          [
+            92.64075,
+            -182.70868
+          ],
+          [
+            90.5651,
+            -177.74383
+          ],
+          [
+            89.73288,
+            -174.83839
+          ],
+          [
+            89.18459,
+            -172.91257
+          ],
+          [
+            88.14676,
+            -165.87717
+          ],
+          [
+            88.19572,
+            -164.68605
+          ],
+          [
+            88.19572,
+            -160.76761
+          ],
+          [
+            88.26425,
+            -158.49669
+          ],
+          [
+            89.30208,
+            -151.92884
+          ],
+          [
+            89.77204,
+            -150.54848
+          ],
+          [
+            91.26025,
+            -146.28494
+          ],
+          [
+            95.05908,
+            -139.13823
+          ],
+          [
+            91.9456,
+            -137.40165
+          ],
+          [
+            93.56109,
+            -134.18451
+          ],
+          [
+            88.14676,
+            -130.37739
+          ],
+          [
+            90.80008,
+            -127.01554
+          ],
+          [
+            91.60292,
+            -125.9914
+          ],
+          [
+            92.70929,
+            -125.29009
+          ],
+          [
+            94.13875,
+            -124.37727
+          ],
+          [
+            101.62872,
+            -121.16013
+          ],
+          [
+            104.8597,
+            -120.45882
+          ],
+          [
+            104.97719,
+            -130.72248
+          ],
+          [
+            130.79558,
+            -130.37739
+          ],
+          [
+            130.79558,
+            -126.91535
+          ],
+          [
+            130.79558,
+            -124.37727
+          ],
+          [
+            130.79558,
+            -120.00241
+          ],
+          [
+            139.78356,
+            -123.80954
+          ],
+          [
+            141.28155,
+            -123.57577
+          ],
+          [
+            142.0844,
+            -122.5405
+          ],
+          [
+            142.0844,
+            -121.61654
+          ],
+          [
+            141.39904,
+            -120.3475
+          ],
+          [
+            145.31537,
+            -110.78516
+          ],
+          [
+            135.17208,
+            -107.66821
+          ],
+          [
+            127.90729,
+            -105.82031
+          ],
+          [
+            110.39151,
+            -105.3639
+          ],
+          [
+            100.24822,
+            -106.86671
+          ],
+          [
+            90.33012,
+            -110.09498
+          ],
+          [
+            83.53529,
+            -114.12474
+          ],
+          [
+            81.9198,
+            -115.62756
+          ],
+          [
+            82.73244,
+            -116.66283
+          ],
+          [
+            81.82189,
+            -117.72036
+          ],
+          [
+            81.50859,
+            -118.07658
+          ],
+          [
+            80.80365,
+            -119.7909
+          ],
+          [
+            80.69595,
+            -120.83731
+          ],
+          [
+            80.88197,
+            -122.07295
+          ],
+          [
+            81.57712,
+            -123.23068
+          ],
+          [
+            80.5393,
+            -124.37727
+          ],
+          [
+            77.66079,
+            -122.41804
+          ],
+          [
+            73.15702,
+            -127.8393
+          ],
+          [
+            69.47567,
+            -134.40715
+          ],
+          [
+            67.64478,
+            -139.04918
+          ],
+          [
+            66.00972,
+            -143.168
+          ],
+          [
+            64.62921,
+            -149.62453
+          ],
+          [
+            65.37331,
+            -149.5466
+          ],
+          [
+            64.14946,
+            -155.23503
+          ],
+          [
+            63.88511,
+            -162.12571
+          ],
+          [
+            64.12009,
+            -169.50619
+          ],
+          [
+            64.86419,
+            -175.71782
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Use the two individually mapped hotel outlines to suppress intersecting fallback masses. The independently mapped convention center and South Garden Wing retain their own footprints."
+    },
+    "featureIds": [
+      "way/344910189",
+      "way/344911011",
+      "way/357831862",
+      "way/784960408",
+      "way/692834841",
+      "way/344887164",
+      "way/345308137",
+      "way/344890280"
+    ],
+    "source": "https://www.openstreetmap.org/way/344910189",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fa134e79d2504b04bd8985116890b1920a9f3ecd4a1e55814fc94d2988d3a5f2",
+    "notes": "The main mass follows the measured A-frame building parts and historic owner dimensions. The neighboring tower footprint and bridge come from their own native mapped outlines."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior of the two connected towers. Separate Garden Wing and convention center retain their mapped baseline context.",
+    "The main tower dimensions and functional levels follow Disney documentation. Individual bays, ramp and bridge heights, and Bay Lake Tower roofline heights and details are reconstructed estimates.",
+    "The photographer’s 2010 views establish color and architecture. Recent furniture, refurbishments, fitted interiors, logos and artwork are outside the model scope."
+  ],
+  "sourceLicense": "Original modeled geometry. The two reference photos are public domain. OpenStreetMap geometry is ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "resort-skyline",
+      "position": [
+        385,
+        82,
+        -72
+      ],
+      "lookAt": [
+        48,
+        24,
+        -69
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "resort-district",
+      "position": [
+        385,
+        82,
+        -72
+      ],
+      "lookAt": [
+        48,
+        24,
+        -69
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "resort-street",
+      "position": [
+        385,
+        82,
+        -72
+      ],
+      "lookAt": [
+        48,
+        24,
+        -69
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "resort-closeup",
+      "position": [
+        385,
+        82,
+        -72
+      ],
+      "lookAt": [
+        48,
+        24,
+        -69
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "both-towers-from-the-east",
+      "position": [
+        385,
+        82,
+        -72
+      ],
+      "lookAt": [
+        48,
+        24,
+        -69
+      ]
+    },
+    {
+      "name": "west-entries-and-bay-lake-curve",
+      "position": [
+        -280,
+        40,
+        -97
+      ],
+      "lookAt": [
+        50,
+        23,
+        -73
+      ]
+    },
+    {
+      "name": "a-frame-monorail-and-terraces",
+      "position": [
+        -53,
+        19,
+        -121
+      ],
+      "lookAt": [
+        -4,
+        25,
+        -33
+      ]
+    },
+    {
+      "name": "sky-way-bridge-and-inner-crescent",
+      "position": [
+        161,
+        27,
+        -78
+      ],
+      "lookAt": [
+        60,
+        15,
+        -92
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10754,
+    "vertices": 32262,
+    "materials": 5,
+    "bytes": 1409000,
+    "sha256": "sha256:3949c0a7be8a0a8310fcdc14468deaa807e905f2098068c830b94ae03ad2f29c"
+  }
+}

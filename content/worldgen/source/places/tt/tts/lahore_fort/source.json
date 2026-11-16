@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lahore_fort",
+  "kind": "static-structure",
+  "title": "Lahore Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lahore_fort",
+        "output": "assets/places/tt/tts/lahore_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:035372b380d7396100ae8708a9662adf19f676af83a20da3f0be30a6b7c12efc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lahore-fort",
+        "path": "models/generate-lahore-fort.mjs"
+      },
+      {
+        "id": "lahore-fort-model",
+        "path": "models/lahore-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23147-13350.png",
+      "terrain-sources/terrarium-15-23147-13351.png",
+      "terrain-sources/terrarium-15-23148-13350.png",
+      "terrain-sources/terrarium-15-23148-13351.png",
+      "references/alamgiri-gate-2024-original.jpg",
+      "reference-rights/alamgiri-gate-2024-commons.json",
+      "references/samuel-bourne-lahore-fort-original.jpg",
+      "reference-rights/british-library-bourne-lahore-fort.json",
+      "references/naulakha-airknight-original.jpg",
+      "reference-rights/naulakha-airknight-commons.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

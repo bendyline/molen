@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kailasa_temple_ellora",
+  "kind": "static-structure",
+  "title": "Kailasa Temple, Ellora",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kailasa_temple_ellora",
+        "output": "assets/places/te/tet/kailasa_temple_ellora/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:898ab35d652f22e90db786662e0cec0a28c0b7b9cd4fd2c7a3fbcdabba2f959f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kailasa-temple-ellora",
+        "path": "models/generate-kailasa-temple-ellora.mjs"
+      },
+      {
+        "id": "kailasa-temple-ellora-model",
+        "path": "models/kailasa-temple-ellora-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-kailasa-temple-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23226-14522.png",
+      "terrain-sources/terrarium-15-23226-14523.png",
+      "terrain-sources/terrarium-15-23227-14522.png",
+      "terrain-sources/terrarium-15-23227-14523.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

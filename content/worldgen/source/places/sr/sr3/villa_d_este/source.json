@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.villa_d_este",
+  "kind": "static-structure",
+  "title": "Villa d’Este",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.villa_d_este",
+        "output": "assets/places/sr/sr3/villa_d_este/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:92ee297c003a1b52e1235c2fb63003d6e2414a359a9cde9a8e7e9a8a09eb9d14"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-villa-d-este",
+        "path": "models/generate-villa-d-este.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/villa-d-este-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17548-12168.png",
+      "terrain-sources/terrarium-15-17548-12169.png",
+      "terrain-sources/terrarium-15-17549-12168.png",
+      "terrain-sources/terrarium-15-17549-12169.png",
+      "preview.png",
+      "reference-rights/commons-villa-d-este-five-native-photos.json",
+      "native-map/villa-d-este.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

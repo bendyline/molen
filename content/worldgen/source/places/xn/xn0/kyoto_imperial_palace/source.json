@@ -1,0 +1,69 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kyoto_imperial_palace",
+  "kind": "static-structure",
+  "title": "Kyoto Imperial Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kyoto_imperial_palace",
+        "output": "assets/places/xn/xn0/kyoto_imperial_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e8e776a502b693cfd346466bf091136d3810f36692737c349969e31cc3819ef5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kyoto-imperial-palace",
+        "path": "models/generate-kyoto-imperial-palace.mjs"
+      },
+      {
+        "id": "kyoto-imperial-palace-model",
+        "path": "models/kyoto-imperial-palace-model.mjs"
+      },
+      {
+        "id": "palace-gates",
+        "path": "models/palace-gates.mjs"
+      },
+      {
+        "id": "palace-perimeter",
+        "path": "models/palace-perimeter.mjs"
+      },
+      {
+        "id": "shishinden",
+        "path": "models/shishinden.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/palace-controls.json",
+      "reference-rights/commons-palace-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-28741-12976.png",
+      "preview.png",
+      "shishinden-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

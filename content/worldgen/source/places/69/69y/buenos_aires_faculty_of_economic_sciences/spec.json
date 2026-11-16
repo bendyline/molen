@@ -1,0 +1,451 @@
+{
+  "planId": "buenos_aires_faculty_of_economic_sciences",
+  "id": "buenos_aires_faculty_of_economic_sciences",
+  "assetId": "molen.worldgen.structure.buenos_aires_faculty_of_economic_sciences",
+  "title": "Faculty of Economic Sciences, University of Buenos Aires",
+  "wikidataId": "Q5854627",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.39784584693878,
+    "latitude": -34.60029537755102
+  },
+  "size": [
+    128.09330368041992,
+    24.57144594192505,
+    130.06229782104492
+  ],
+  "actualBounds": {
+    "min": [
+      -52.9900016784668,
+      -2.4000000953674316,
+      -59.38850021362305
+    ],
+    "max": [
+      75.10330200195312,
+      22.171445846557617,
+      70.67379760742188
+    ]
+  },
+  "visualBrief": "The UBA Faculty of Economic Sciences has a stone-trimmed Córdoba entrance and an arched Uriburu portal for the cultural center, with courts and connected annexes.",
+  "nativeAxes": {
+    "x": "south from Avenida Córdoba",
+    "y": "up",
+    "z": "west toward Presidente José Evaristo Uriburu"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 7
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Centro_Cultural_S%C3%A1bato.JPG"
+  ],
+  "stories": [
+    {
+      "id": "museum-of-foreign-debt-wp",
+      "url": "https://qualla.com/museum-of-foreign-debt/"
+    }
+  ],
+  "referenceInputHash": "3a51deac880f9ae94086267bb7976014946109b6d7f1780c37b03155e80e1826",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/69/69y/buenos_aires_faculty_of_economic_sciences/models/buenos-aires-faculty-of-economic-sciences-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/69/69y/buenos_aires_faculty_of_economic_sciences/models/buenos-aires-faculty-of-economic-sciences-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.41,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.9,
+        "metallic": 0.07
+      },
+      "annex": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.87
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.59,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "annex": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.87
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "annex": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.87
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.084,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "annex": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.87
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -2.2,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        11.4,
+        12.1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original street elevation establishes the approach height. The west façade section comes from the released photograph, with the other facades and roof heights inferred within the native footprint.",
+    "anchor": [
+      -58.39784584693878,
+      -34.60029537755102
+    ],
+    "heading": -1.5555603538334477,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.39810078085372,
+        -34.59985104280549
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade along the historic northern facade’s Avenida Córdoba sidewalk."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/1912524",
+      "relation/1912523",
+      "node/6439769968"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1912524",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:08f6321c6d7e17ce5776e122da856377df5cffbec49fd6fd6a1ef91108937893"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2010 west elevation is directly supported. Córdoba details, smaller court sections and most annex heights are estimates.",
+    "The university’s attached volumes are modeled as one exterior asset. The museum galleries are below street level, and the story anchor identifies them within the building."
+  ],
+  "sourceLicense": "Original geometry based on the exact public-domain Qualla photograph of the Uriburu elevation, written university sources, native mapping and original terrain.",
+  "qaLodCameras": [
+    {
+      "name": "buenos-aires-faculty-of-economic-sciences-skyline",
+      "position": [
+        -145,
+        84,
+        155
+      ],
+      "lookAt": [
+        0,
+        11.4,
+        12.1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "buenos-aires-faculty-of-economic-sciences-district",
+      "position": [
+        -145,
+        84,
+        155
+      ],
+      "lookAt": [
+        0,
+        11.4,
+        12.1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "buenos-aires-faculty-of-economic-sciences-street",
+      "position": [
+        -145,
+        84,
+        155
+      ],
+      "lookAt": [
+        0,
+        11.4,
+        12.1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "buenos-aires-faculty-of-economic-sciences-closeup",
+      "position": [
+        -145,
+        84,
+        155
+      ],
+      "lookAt": [
+        0,
+        11.4,
+        12.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "uriburu-museum-portal",
+      "position": [
+        19,
+        8.3,
+        105
+      ],
+      "lookAt": [
+        -2.15,
+        8.5,
+        68.8
+      ]
+    },
+    {
+      "name": "cordoba-portico",
+      "position": [
+        -108,
+        22,
+        12
+      ],
+      "lookAt": [
+        -46,
+        11.4,
+        21.7
+      ]
+    },
+    {
+      "name": "courtyards-and-annexes",
+      "position": [
+        122,
+        112,
+        -64
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25140,
+    "vertices": 75420,
+    "materials": 7,
+    "bytes": 3241332,
+    "sha256": "sha256:0aaa34556e066809325052f4c864c139e7e0f9e40787e712d1be1629e32e22da"
+  }
+}

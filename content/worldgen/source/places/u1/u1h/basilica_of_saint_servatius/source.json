@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_of_saint_servatius",
+  "kind": "static-structure",
+  "title": "Basilica of Saint Servatius",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_of_saint_servatius",
+        "output": "assets/places/u1/u1h/basilica_of_saint_servatius/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a729d590178d96f4fe3ef3bc016d98bcdb3087a53e894e9535d75d1802595f9f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-saint-servatius",
+        "path": "models/generate-saint-servatius.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/saint-servatius-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-plaza-controls.json",
+      "reference-rights/commons-qualla-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16901-10991.png",
+      "terrain-sources/terrarium-15-16901-10992.png",
+      "preview.png",
+      "native-map/osm-relation-10150897.json",
+      "reference-rights/commons-saint-servatius-qualla-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Tripura Sundari Temple model review",
+  "seed": "tripura_sundari_temple",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.tripura_sundari_temple",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            -11.314767360687256,
+            -2.2,
+            -4.812407970428467
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            62.41270694732666,
+            0.3,
+            62.41270694732666
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#b4b4a6",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -14.430581407157861,
+              32,
+              -27.888318706071004
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -29.018865074294737,
+      31,
+      -41.459684873378826
+    ],
+    "lookAt": [
+      -9.032886314343768,
+      8.8,
+      -4.290333883527137
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

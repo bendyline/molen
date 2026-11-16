@@ -1,0 +1,489 @@
+{
+  "planId": "prison_of_anemas",
+  "id": "prison_of_anemas",
+  "assetId": "molen.worldgen.structure.prison_of_anemas",
+  "title": "Prison of Anemas",
+  "wikidataId": "Q3081830",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.9407499,
+    "latitude": 41.0384537
+  },
+  "size": [
+    61.15764045715332,
+    26.035056829452515,
+    54.529250144958496
+  ],
+  "actualBounds": {
+    "min": [
+      -17.997148513793945,
+      -3.4372804164886475,
+      -12.677741050720215
+    ],
+    "max": [
+      43.160491943359375,
+      22.597776412963867,
+      41.85150909423828
+    ]
+  },
+  "visualBrief": "The paired masonry towers of Anemas on the Blachernae retaining wall above the Golden Horn, with their stepped footing, different masonry and surviving arches.",
+  "nativeAxes": {
+    "x": "northeast along the retaining wall",
+    "y": "up",
+    "z": "inward toward the old palace terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Millingen_-_Plan_of_Anemas_Prison.jpg",
+    "https://www.gutenberg.org/files/61475/61475-h/61475-h.htm"
+  ],
+  "stories": [
+    {
+      "id": "prison-of-anemas-wp",
+      "url": "https://qualla.com/prison-of-anemas/"
+    }
+  ],
+  "referenceInputHash": "8206a670fe470bce2d05ff45d9d9b5bbaf0c990ab4967d03d766767e23d207c7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxk/prison_of_anemas/models/prison-of-anemas-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxk/prison_of_anemas/models/prison-of-anemas-model.mjs",
+    "level": "skyline",
+    "export": "anemasSkyline",
+    "errorMeters": 1.03,
+    "surfaces": {
+      "cut": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_longformat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#e6dac5",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "anemasDistrict",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "cut": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e6dac5",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "anemasStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "cut": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e6dac5",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "anemasCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "cut": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#e6dac5",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "brick_longformat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.66,
+    "cameraYaw": -2.11,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        9,
+        11,
+        -0.6
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The Edson plan and 1899 survey give the lengths, north and south tower envelopes, wall height and gallery spacing. Exterior plates show rocky crowns, bands of brickwork, projecting columns, buttresses and tall openings.",
+    "anchor": [
+      28.9407499,
+      41.0384537
+    ],
+    "heading": 0.8823161424091233,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.940581097732526,
+        41.03858172471256
+      ],
+      "modelHeight": 0,
+      "basis": "Ground in front of the outer masonry, beyond the mapped projecting section."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.8,
+          -2.42242
+        ],
+        [
+          43.16,
+          -1.6898697458675045
+        ],
+        [
+          43.16,
+          12.65
+        ],
+        [
+          -17.8,
+          12.65
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -13.54,
+            -10.20133
+          ],
+          [
+            -2.57,
+            -10.31133
+          ],
+          [
+            -2.29,
+            4.124269999999999
+          ],
+          [
+            -13.85,
+            3.734269999999999
+          ]
+        ],
+        [
+          [
+            -1.59,
+            -10.13687
+          ],
+          [
+            13.043,
+            -10.36187
+          ],
+          [
+            13.62,
+            2.744530000000001
+          ],
+          [
+            -1.99,
+            3.204530000000001
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The modeled Anemas wall range and paired towers only."
+    },
+    "featureIds": [
+      "way/32394781",
+      "node/6373152085"
+    ],
+    "source": "https://www.openstreetmap.org/way/32394781",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a80f608d9be1014ef68c720f4225e87a02f5002d846a7c98a9537ffc93c05920"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing paired towers and the adjacent Blachernae retaining range, with approximated climbing masonry and chamber roofs.",
+    "The geometry combines the original surveyed plan, mapped wall, historical exterior plates and available site terrain. Fine stone profiles, tower crown breaks, exact restoration fabric and the vertical registration of the terrace remain approximate.",
+    "The original height field is preserved. Temporary restoration equipment, the neighbouring mosque, and unrelated lengths of the city walls are outside the modeled site."
+  ],
+  "sourceLicense": "Independent geometry using the exact public-domain Qualla plan, the two original 1899 public-domain plates, attributed OpenStreetMap and Terrarium source terrain.",
+  "qaLodCameras": [
+    {
+      "name": "prison-of-anemas-skyline",
+      "position": [
+        -45,
+        44,
+        -87
+      ],
+      "lookAt": [
+        9,
+        11,
+        -0.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "prison-of-anemas-district",
+      "position": [
+        -45,
+        44,
+        -87
+      ],
+      "lookAt": [
+        9,
+        11,
+        -0.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "prison-of-anemas-street",
+      "position": [
+        -45,
+        44,
+        -87
+      ],
+      "lookAt": [
+        9,
+        11,
+        -0.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "prison-of-anemas-closeup",
+      "position": [
+        -45,
+        44,
+        -87
+      ],
+      "lookAt": [
+        9,
+        11,
+        -0.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "both-anemas-towers-from-the-outside",
+      "position": [
+        -28,
+        13,
+        -41
+      ],
+      "lookAt": [
+        1,
+        11,
+        -6
+      ]
+    },
+    {
+      "name": "north-tower-stone-spolia-and-buttresses",
+      "position": [
+        39,
+        12,
+        -38
+      ],
+      "lookAt": [
+        20,
+        10,
+        -5
+      ]
+    },
+    {
+      "name": "rear-terrace-and-open-tower-crowns",
+      "position": [
+        31,
+        39,
+        38
+      ],
+      "lookAt": [
+        9,
+        14,
+        1
+      ]
+    },
+    {
+      "name": "outside-postern-and-masonry-bands",
+      "position": [
+        -19,
+        7.5,
+        -26
+      ],
+      "lookAt": [
+        -7,
+        11.4,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13104,
+    "vertices": 39312,
+    "materials": 5,
+    "bytes": 1933756,
+    "sha256": "sha256:a83ca744844b41d8e9e17f14853c76cf1dafe353c7b9f5429f82045c9e38f746"
+  }
+}

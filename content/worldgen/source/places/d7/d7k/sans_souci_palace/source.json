@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sans_souci_palace",
+  "kind": "static-structure",
+  "title": "Sans-Souci Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sans_souci_palace",
+        "output": "assets/places/d7/d7k/sans_souci_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:37cdd9fd54d831cc63c969c63cd1879c066c89b28e0992fc184b07a113e03a3a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sans-souci-palace-milot",
+        "path": "models/generate-sans-souci-palace-milot.mjs"
+      },
+      {
+        "id": "sans-souci-palace-milot-model",
+        "path": "models/sans-souci-palace-milot-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/sans-souci-palace-milot-controls.json",
+      "reference-rights/tichnor-65324.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9810-14563.png",
+      "preview.png",
+      "native-map/osm-sans-souci-palace-milot.json",
+      "reference-rights/commons-qualla-mackenzie-1830.json",
+      "reference-rights/kuestner-1836-native-commons.json",
+      "reference-originals/kuestner-1836-palace-at-milot.jpg",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

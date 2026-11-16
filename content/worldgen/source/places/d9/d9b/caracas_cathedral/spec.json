@@ -1,0 +1,374 @@
+{
+  "planId": "caracas_cathedral",
+  "id": "caracas_cathedral",
+  "assetId": "molen.worldgen.structure.caracas_cathedral",
+  "title": "Caracas Cathedral",
+  "wikidataId": "Q1736173",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.913718,
+    "latitude": 10.506051
+  },
+  "size": [
+    79.37399673461914,
+    43.66999816894531,
+    46.40028190612793
+  ],
+  "actualBounds": {
+    "min": [
+      -38.366798400878906,
+      -4.5,
+      -23.065282821655273
+    ],
+    "max": [
+      41.007198333740234,
+      39.16999816894531,
+      23.334999084472656
+    ]
+  },
+  "visualBrief": "Santa Ana Cathedral in Caracas with broad tile roofs, white stepped Baroque entrance and the historic clock and bell tower.",
+  "nativeAxes": {
+    "x": "west toward Plaza Bolívar",
+    "y": "up",
+    "z": "north along the west facade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lessman,_Federico_Carlos_-_Plaza_Major_mit_Kathedrale_(Zeno_Fotografie).jpg"
+  ],
+  "stories": [
+    {
+      "id": "caracas-cathedral-wp",
+      "url": "https://qualla.com/caracas-cathedral/"
+    }
+  ],
+  "referenceInputHash": "7a725c682d15db53206e784552538a3a7b9b3a76cb006a9bffe9705c26cf1d98",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d9/d9b/caracas_cathedral/models/caracas-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d9/d9b/caracas_cathedral/models/caracas-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.9,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.82,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.83,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        5,
+        14,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original Lessmann view supports the stepped pale masonry facade, bell tower and clay roof hierarchy. The modern inventory supplies five naves, ten north-wall windows and later clock and remodeling details.",
+    "anchor": [
+      -66.913718,
+      10.506051
+    ],
+    "heading": 2.9399993069634927,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.91409525390671,
+        10.506125094363258
+      ],
+      "modelHeight": 0,
+      "basis": "Original public elevation on the pedestrian approach from Plaza Bolívar."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/451058807"
+    ],
+    "source": "https://www.openstreetmap.org/way/451058807",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:11e2b3f8cd678e832526af1c3c779e97ba2dc2bb2e1c83abfbecf5ab39eefb05"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Section and tower heights, nave roof arrangements, window design, current ornament and vertical registration are approximate. The standing exterior combines exact archival imagery with the modern written inventory.",
+    "The model covers the cathedral’s envelope, attached sacristy and chapels. The separately mapped Museo Sacro, surrounding plazas, freestanding statues and the interior are separate scopes."
+  ],
+  "sourceLicense": "Original geometry based on the exact public-domain Lessmann photograph in Qualla, the mapped footprint, original terrain and the modern architectural inventory.",
+  "qaLodCameras": [
+    {
+      "name": "caracas-cathedral-skyline",
+      "position": [
+        105,
+        47,
+        -94
+      ],
+      "lookAt": [
+        5,
+        14,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "caracas-cathedral-district",
+      "position": [
+        105,
+        47,
+        -94
+      ],
+      "lookAt": [
+        5,
+        14,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "caracas-cathedral-street",
+      "position": [
+        105,
+        47,
+        -94
+      ],
+      "lookAt": [
+        5,
+        14,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "caracas-cathedral-closeup",
+      "position": [
+        105,
+        47,
+        -94
+      ],
+      "lookAt": [
+        5,
+        14,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bolivar-square-and-cathedral",
+      "position": [
+        101,
+        49,
+        -66
+      ],
+      "lookAt": [
+        10,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "baroque-front-and-clock",
+      "position": [
+        96,
+        14,
+        -18
+      ],
+      "lookAt": [
+        37,
+        17,
+        2
+      ]
+    },
+    {
+      "name": "north-wall-and-tiled-naves",
+      "position": [
+        -10,
+        52,
+        103
+      ],
+      "lookAt": [
+        -9,
+        15,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3438,
+    "vertices": 10314,
+    "materials": 5,
+    "bytes": 527256,
+    "sha256": "sha256:fd5f72b208d3657da3649791ecd5ccdae90c14ea8586f115c203b28b5eb13f3e"
+  }
+}

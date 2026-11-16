@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shenzhen_stock_exchange",
+  "kind": "static-structure",
+  "title": "Shenzhen Stock Exchange",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shenzhen_stock_exchange",
+        "output": "assets/places/ws/ws1/shenzhen_stock_exchange/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:01ddff91c4fb68073d284da5c22e458a5e2ab3cc6012c6b3746eb4e7b2f8ddb4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shenzhen-stock-exchange",
+        "path": "models/generate-shenzhen-stock-exchange.mjs"
+      },
+      {
+        "id": "shenzhen-stock-exchange-model",
+        "path": "models/shenzhen-stock-exchange-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/shenzhen-stock-exchange-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26764-14276.png",
+      "terrain-sources/terrarium-15-26765-14276.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

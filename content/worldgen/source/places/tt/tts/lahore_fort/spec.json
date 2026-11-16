@@ -1,0 +1,565 @@
+{
+  "planId": "lahore_fort",
+  "id": "lahore_fort",
+  "assetId": "molen.worldgen.structure.lahore_fort",
+  "title": "Lahore Fort",
+  "wikidataId": "Q613720",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 74.3148,
+    "latitude": 31.58822
+  },
+  "size": [
+    544.0523376464844,
+    48.498924255371094,
+    488.6975555419922
+  ],
+  "actualBounds": {
+    "min": [
+      -271.1611633300781,
+      -19.84892463684082,
+      -246.86582946777344
+    ],
+    "max": [
+      272.89117431640625,
+      28.649999618530273,
+      241.83172607421875
+    ]
+  },
+  "visualBrief": "The Lahore Fort enclosure with Alamgiri and Akbari gates, the north and west Picture Wall, and the principal courtyard buildings.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alamgiri_Gate_of_Lahore_Fort_2024.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hazuri_Bagh_Pavillion_and_Lahore_Fort_in_1863.jpg",
+    "https://commons.wikimedia.org/wiki/File:Naulakha_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lahore-fort-wp",
+      "url": "https://qualla.com/lahore-fort/"
+    }
+  ],
+  "referenceInputHash": "090bc87d2de0e34f3e2ce4d5a6d02305aae61bf635697919cf4013638a957535",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/tts/lahore_fort/models/lahore-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/tts/lahore_fort/models/lahore-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 4.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glaze": {
+        "slot": "trim",
+        "graph": "brick_glazed",
+        "roughness": 0.81,
+        "metallic": 0.03
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.81,
+            "metallic": 0.03
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.61,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.81,
+            "metallic": 0.03
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.81,
+            "metallic": 0.03
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_longformat",
+    "stone_ashlar",
+    "stone_sandstone_raw",
+    "stone_marble",
+    "plaster_lime",
+    "wood_plain",
+    "brick_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.32,
+    "focus": {
+      "center": [
+        -8,
+        9,
+        -21
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 17 m average Picture Wall height comes from the conservation record. Gate, parapets and buildings are scaled estimates from mapped widths, historical images and written records. Foundations extend into the original terrain, with no ground cutout.",
+    "anchor": [
+      74.3148,
+      31.58822
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        74.3148,
+        31.58822
+      ],
+      "modelHeight": 0,
+      "basis": "Original provider elevation near the center of the fort interior."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/105841051",
+      "way/605803675",
+      "way/604481265",
+      "way/605805877",
+      "way/605420151",
+      "way/605805879",
+      "way/604416172",
+      "way/605420150",
+      "way/903587787",
+      "way/604479624",
+      "way/605805885",
+      "way/604910486",
+      "way/605809382",
+      "way/604910475",
+      "way/605420134",
+      "way/605810352",
+      "way/904345332",
+      "way/904345333",
+      "way/605420135",
+      "way/605420136",
+      "way/605420192",
+      "way/316466004",
+      "way/288125843",
+      "way/604910479",
+      "way/604910480",
+      "way/604910487",
+      "way/605805876",
+      "way/605805878",
+      "way/605805882",
+      "way/605805884",
+      "way/607510499",
+      "way/607511909",
+      "way/604415683",
+      "way/1028243847"
+    ],
+    "source": "https://www.openstreetmap.org/way/105841051",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:50f22e608696325ceeacd3c3851aef01a762c16e6eda9de373f1b2da07f36404"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The medium-fidelity model covers the defensive walls, gatehouses and principal named exterior courts. Outer boundary paths and ordinary modern service sheds remain host context.",
+    "The Picture Wall repeats an original geometric interpretation of the documented panels. Historic tile scenes, stone reliefs and calligraphy are schematic.",
+    "Some roofs, interior-facing facades, rear passages, unbounded court ends and masonry heights are estimates. The British Library photograph documents a historical state and is used for persistent features."
+  ],
+  "sourceLicense": "Independent geographic reconstruction with public-domain photographs, ODbL footprint and fortification data, and unchanged Terrarium elevation samples.",
+  "qaLodCameras": [
+    {
+      "name": "lahore-fort-skyline",
+      "position": [
+        -498,
+        374,
+        407
+      ],
+      "lookAt": [
+        -8,
+        9,
+        -21
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "lahore-fort-district",
+      "position": [
+        -498,
+        374,
+        407
+      ],
+      "lookAt": [
+        -8,
+        9,
+        -21
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lahore-fort-street",
+      "position": [
+        -498,
+        374,
+        407
+      ],
+      "lookAt": [
+        -8,
+        9,
+        -21
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lahore-fort-closeup",
+      "position": [
+        -498,
+        374,
+        407
+      ],
+      "lookAt": [
+        -8,
+        9,
+        -21
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "alamgiri-gate-bastions-and-chhatris",
+      "position": [
+        -301,
+        17,
+        -33
+      ],
+      "lookAt": [
+        -212,
+        12,
+        -33
+      ]
+    },
+    {
+      "name": "picture-wall-and-northwestern-palaces",
+      "position": [
+        -305,
+        64,
+        -276
+      ],
+      "lookAt": [
+        -139,
+        8,
+        -168
+      ]
+    },
+    {
+      "name": "courts-and-pearl-mosque",
+      "position": [
+        22,
+        89,
+        115
+      ],
+      "lookAt": [
+        -39,
+        4,
+        -46
+      ]
+    },
+    {
+      "name": "akbari-gate-and-east-rampart",
+      "position": [
+        260,
+        33,
+        122
+      ],
+      "lookAt": [
+        190,
+        5,
+        75
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37053,
+    "vertices": 111159,
+    "materials": 8,
+    "bytes": 4695120,
+    "sha256": "sha256:035372b380d7396100ae8708a9662adf19f676af83a20da3f0be30a6b7c12efc"
+  }
+}

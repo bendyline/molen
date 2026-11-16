@@ -1,0 +1,494 @@
+{
+  "planId": "charters_towers_stock_exchange_arcade",
+  "id": "charters_towers_stock_exchange_arcade",
+  "assetId": "molen.worldgen.structure.charters_towers_stock_exchange_arcade",
+  "title": "Charters Towers Stock Exchange Arcade",
+  "wikidataId": "Q5086892",
+  "category": "commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 146.256792,
+    "latitude": -20.075913
+  },
+  "size": [
+    19.269999504089355,
+    11.658000230789185,
+    37.628000259399414
+  ],
+  "actualBounds": {
+    "min": [
+      -9.489999771118164,
+      -1.7799999713897705,
+      -17.204999923706055
+    ],
+    "max": [
+      9.779999732971191,
+      9.878000259399414,
+      20.42300033569336
+    ]
+  },
+  "visualBrief": "Charters Towers’ Royal Arcade with twin veranda wings, colored semicircular fanlight, tall glazed interior barrel vault and heritage shop fronts.",
+  "nativeAxes": {
+    "x": "northeast along Mosman Street frontage",
+    "y": "up",
+    "z": "out toward Mosman Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_54000_Charters_Towers_Stock_Exchange,_1891.jpg"
+  ],
+  "stories": [
+    {
+      "id": "charters-towers-stock-exchange-arcade-wp",
+      "url": "https://qualla.com/charters-towers-stock-exchange-arcade/"
+    }
+  ],
+  "referenceInputHash": "9ff8730f36e30c77ea94510210090adedfa369165be8628b7df032484a4d1c52",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rk/rk2/charters_towers_stock_exchange_arcade/models/stock-exchange-arcade-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rk/rk2/charters_towers_stock_exchange_arcade/models/stock-exchange-arcade-model.mjs",
+    "level": "skyline",
+    "export": "stockExchangeArcadeSkyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.86
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.69,
+        "metallic": 0.13,
+        "doubleSided": true
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_checker_fine",
+        "roughness": 0.76
+      },
+      "painted": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.71
+      },
+      "canopy": {
+        "slot": "window",
+        "localRef": "palette:#abc5cd",
+        "roughness": 0.39,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.4
+        ],
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stockExchangeArcadeDistrict",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.69,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_checker_fine",
+            "roughness": 0.76
+          },
+          "painted": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#abc5cd",
+            "roughness": 0.39,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.4
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "stockExchangeArcadeStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.69,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_checker_fine",
+            "roughness": 0.76
+          },
+          "painted": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#abc5cd",
+            "roughness": 0.39,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.4
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "stockExchangeArcadeCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.69,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_checker_fine",
+            "roughness": 0.76
+          },
+          "painted": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#abc5cd",
+            "roughness": 0.39,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.4
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_weathered",
+    "metal_corrugated",
+    "stone_checker_fine"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.78,
+    "cameraYaw": 0.3,
+    "focus": {
+      "center": [
+        0,
+        4.2,
+        1
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original street-side DEM datum. Width and depth use the mapped polygon. Clear vault, floor, facade heights and geometry are interpreted from written accounts and historic facade evidence.",
+    "anchor": [
+      146.256792,
+      -20.075913
+    ],
+    "heading": 1.2256089786646163,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        146.2569463992848,
+        -20.07596374975983
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the mapped Mosman Street entry, halfway between the two street corners."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.37078,
+          17.102742
+        ],
+        [
+          9.663313,
+          17.102742
+        ],
+        [
+          9.66886,
+          -16.89882
+        ],
+        [
+          -2.494634,
+          -17.136073
+        ],
+        [
+          -9.079682,
+          -17.190386
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Exact mapped Stock Exchange Arcade shell only."
+    },
+    "featureIds": [
+      "way/1141755213"
+    ],
+    "source": "https://www.openstreetmap.org/way/1141755213",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d6910d35b72c21c06a3f0c39479983b758214f3a011917009e9e06c4d362cc71",
+    "notes": "The five source vertices establish a nearly rectangular enclosure and street alignment. The shallow projecting veranda may extend beyond the roof outline."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_checker_fine",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.2,
+        0.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall, roof, interior passage and entry dimensions are estimates within the mapped footprint. The roof, street canopy, shop ranges and passage reflect primary descriptions. Painted colors and exact decorative patterns are interpreted from period construction.",
+    "The arcade passage and ground-floor glazing are represented. Individual offices, event displays and neighboring businesses are outside scope."
+  ],
+  "sourceLicense": "Original geometry informed by the public-domain John Oxley Library streetscape. OpenStreetMap geometry ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "arcade-skyline",
+      "position": [
+        31,
+        19,
+        51
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "arcade-district",
+      "position": [
+        31,
+        19,
+        51
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "arcade-street",
+      "position": [
+        31,
+        19,
+        51
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "arcade-closeup",
+      "position": [
+        31,
+        19,
+        51
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "mosman-street-canopy-and-vault",
+      "position": [
+        31,
+        19,
+        51
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "name": "street-fanlight-and-parapet",
+      "position": [
+        12,
+        4.3,
+        40
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        18
+      ]
+    },
+    {
+      "name": "open-tiled-arcade-and-iron-trusses",
+      "position": [
+        0.72,
+        2.32,
+        9.75
+      ],
+      "lookAt": [
+        0,
+        4.9,
+        -11
+      ]
+    },
+    {
+      "name": "glass-vault-and-rear-opening",
+      "position": [
+        14,
+        12,
+        -35
+      ],
+      "lookAt": [
+        0,
+        4.8,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10878,
+    "vertices": 32634,
+    "materials": 6,
+    "bytes": 1544616,
+    "sha256": "sha256:bd6d10644165fb1509fce174351e76d97ea092623b867659959776d2b2c5504e"
+  }
+}

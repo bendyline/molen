@@ -1,0 +1,559 @@
+{
+  "planId": "north_carolina_executive_mansion",
+  "id": "north_carolina_executive_mansion",
+  "assetId": "molen.worldgen.structure.north_carolina_executive_mansion",
+  "title": "North Carolina Executive Mansion",
+  "wikidataId": "Q7054484",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -78.63554765,
+    "latitude": 35.783128399999995
+  },
+  "size": [
+    43.21115684509277,
+    20.248929977416992,
+    47.78689956665039
+  ],
+  "actualBounds": {
+    "min": [
+      -22.68000030517578,
+      -1.798929214477539,
+      -23.920000076293945
+    ],
+    "max": [
+      20.531156539916992,
+      18.450000762939453,
+      23.866899490356445
+    ]
+  },
+  "visualBrief": "The Queen Anne Executive Mansion in Raleigh, with three brick front gables, multicolored slate, open timber galleries, a round turret, and marble entry stair.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-10-25",
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Halloween_2025,_NC_Executive_Mansion.jpg",
+    "https://commons.wikimedia.org/wiki/File:Halloween_2025_at_North_Carolina_Executive_Mansion.jpg"
+  ],
+  "stories": [
+    {
+      "id": "north-carolina-executive-mansion-wp",
+      "url": "https://qualla.com/north-carolina-executive-mansion/"
+    }
+  ],
+  "referenceInputHash": "24a20f410f0829567e30922bd7b3236339664c1eb542dff2f3fd9f87fdedf883",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dq2/north_carolina_executive_mansion/models/north-carolina-executive-mansion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dq/dq2/north_carolina_executive_mansion/models/north-carolina-executive-mansion-model.mjs",
+    "level": "skyline",
+    "export": "mansionSkyline",
+    "errorMeters": 0.68,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.09
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "mansionDistrict",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.09
+          }
+        }
+      },
+      "street": {
+        "export": "mansionStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.09
+          }
+        }
+      },
+      "closeup": {
+        "export": "mansionCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.09
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_sandstone_raw",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.22,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -78.63554765,
+      35.783128399999995
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -78.63554765,
+        35.783128399999995
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled original elevation at the center of the mapped mansion."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.312129748212443,
+          -18.22300064304303
+        ],
+        [
+          12.430673503834056,
+          -17.81111852783143
+        ],
+        [
+          12.295213929671275,
+          -15.195110493675532
+        ],
+        [
+          13.71302412991617,
+          -15.128318799210007
+        ],
+        [
+          12.990573071992445,
+          -0.8905559264706687
+        ],
+        [
+          20.531155981531747,
+          -0.5009377088869301
+        ],
+        [
+          20.097685347290845,
+          7.925947743769715
+        ],
+        [
+          12.94541988103263,
+          7.558593424604809
+        ],
+        [
+          12.710623287271586,
+          12.2896717832387
+        ],
+        [
+          10.507147564069221,
+          12.178352291935509
+        ],
+        [
+          10.218167140386399,
+          17.79998657704007
+        ],
+        [
+          6.217594411336686,
+          17.588479544434076
+        ],
+        [
+          5.9015220733346405,
+          23.866898825775447
+        ],
+        [
+          -9.649236931982717,
+          23.06539849218914
+        ],
+        [
+          -9.378317784940487,
+          17.911306068343258
+        ],
+        [
+          -13.767207957271285,
+          17.68866708652785
+        ],
+        [
+          -13.496288811512388,
+          12.378727375332087
+        ],
+        [
+          -15.221140710797364,
+          12.2896717832387
+        ],
+        [
+          -14.932160287114543,
+          6.590113854459198
+        ],
+        [
+          -20.151869175929292,
+          6.322947076597095
+        ],
+        [
+          -19.962225773128065,
+          2.649403880202201
+        ],
+        [
+          -19.88095002888706,
+          0.9350837225173618
+        ],
+        [
+          -17.16272792720279,
+          1.0686671114484134
+        ],
+        [
+          -17.054360267359236,
+          -0.968479570145611
+        ],
+        [
+          -20.531155980248414,
+          -1.469417279032541
+        ],
+        [
+          -20.314420663127965,
+          -5.766349623245028
+        ],
+        [
+          -14.715424969994093,
+          -5.476918947755064
+        ],
+        [
+          -14.435475185273232,
+          -11.042893486812542
+        ],
+        [
+          -13.053787538309523,
+          -10.976101792347016
+        ],
+        [
+          -12.629347543030583,
+          -19.347327500538523
+        ],
+        [
+          -5.20616292973014,
+          -18.96884123137323
+        ],
+        [
+          -5.106825910131876,
+          -20.972592066129977
+        ],
+        [
+          -4.953305060611834,
+          -23.86689882656642
+        ],
+        [
+          4.57401825629271,
+          -23.377093066888907
+        ],
+        [
+          4.420497406772668,
+          -20.427126561196353
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named WakeGIS-derived Executive Mansion polygon."
+    },
+    "featureIds": [
+      "way/47776615"
+    ],
+    "source": "https://www.openstreetmap.org/way/47776615",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e24abd1767d538987b8ec49d57c175adb9ffdd633c082ea0c0f9128916ad87ce",
+    "notes": "The two source photos show the principal west elevation. Roof joins and the exact eastern window arrangement are modeled from the mapped masses and Queens Anne architectural features."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "This exterior represents the permanent architecture visible in October 2025. Seasonal decorations, street furnishings and interior spaces are outside the model.",
+    "The two east-facing photographs guide the west elevation. Roof heights and joins, east-facing windows and side roof forms are approximate.",
+    "The massing follows the mapped mansion and verandas. The sampled terrain is retained and individual steps and grades remain approximate."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The mapped outline is ODbL. The two selected photos are CC0 by Willthacheerleader18.",
+  "qaLodCameras": [
+    {
+      "name": "blount-street-skyline",
+      "position": [
+        -66,
+        26,
+        31
+      ],
+      "lookAt": [
+        -2,
+        7,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "blount-street-district",
+      "position": [
+        -66,
+        26,
+        31
+      ],
+      "lookAt": [
+        -2,
+        7,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "blount-street-street",
+      "position": [
+        -66,
+        26,
+        31
+      ],
+      "lookAt": [
+        -2,
+        7,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "blount-street-closeup",
+      "position": [
+        -66,
+        26,
+        31
+      ],
+      "lookAt": [
+        -2,
+        7,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "blount-street-gables-and-marble-stair",
+      "position": [
+        -61,
+        9,
+        -1.1
+      ],
+      "lookAt": [
+        -13,
+        8.22,
+        -0.23
+      ]
+    },
+    {
+      "name": "slate-bands-eastern-turret-and-wing",
+      "position": [
+        38,
+        24,
+        -30
+      ],
+      "lookAt": [
+        0,
+        8,
+        -4.9
+      ]
+    },
+    {
+      "name": "timber-loggias-and-porch",
+      "position": [
+        -44,
+        11.8,
+        12.4
+      ],
+      "lookAt": [
+        -13,
+        7.2,
+        -1.4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2953,
+    "vertices": 8859,
+    "materials": 5,
+    "bytes": 503248,
+    "sha256": "sha256:ee0bb7536350f7ed7f8544429237d62e671985ff2f05758e50f736a7739bc4e9"
+  }
+}

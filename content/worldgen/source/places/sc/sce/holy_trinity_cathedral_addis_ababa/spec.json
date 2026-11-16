@@ -1,0 +1,513 @@
+{
+  "planId": "holy_trinity_cathedral_addis_ababa",
+  "id": "holy_trinity_cathedral_addis_ababa",
+  "assetId": "molen.worldgen.structure.holy_trinity_cathedral_addis_ababa",
+  "title": "Holy Trinity Cathedral, Addis Ababa",
+  "wikidataId": "Q2599114",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 38.766562,
+    "latitude": 9.030799
+  },
+  "size": [
+    61.88147163391113,
+    32.57237529754639,
+    29.0637845993042
+  ],
+  "actualBounds": {
+    "min": [
+      -42.170162200927734,
+      -2.3568830490112305,
+      -14.670271873474121
+    ],
+    "max": [
+      19.7113094329834,
+      30.215492248535156,
+      14.393512725830078
+    ]
+  },
+  "visualBrief": "Holy Trinity Cathedral in Addis Ababa with its open western arcade, wide steps, twin bulbous turrets, prominent dome, and the east sanctuary.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:AddisHolyTrinityChurch1969.jpg",
+    "https://commons.wikimedia.org/wiki/File:AddisJulianaHaile1969.jpg",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad8fd4f4-d0b4-102d-bcf8-003048976d84"
+  ],
+  "stories": [
+    {
+      "id": "holy-trinity-cathedral-addis-ababa-wp",
+      "url": "https://qualla.com/holy-trinity-cathedral-addis-ababa/"
+    }
+  ],
+  "referenceInputHash": "2552dcbeabdd9424adf82e85efd3ba1e940219c21b09f5775e0b086843c66ec7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sc/sce/holy_trinity_cathedral_addis_ababa/models/holy-trinity-cathedral-addis-ababa-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sc/sce/holy_trinity_cathedral_addis_ababa/models/holy-trinity-cathedral-addis-ababa-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.39,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.11
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.8,
+        "metallic": 0.14
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.52,
+        "metallic": 0.04
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.11
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.11
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.11
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "metal_standing_seam",
+    "metal_copper",
+    "wood_plain",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.31,
+    "focus": {
+      "center": [
+        -12,
+        10,
+        0
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One original Terrarium source tile fixes the western approach and site relief. The complete western archive view controls the seven-arched portico, the stepped stone gables, two bulbous finials and the main entry stairs. Nave, sanctuary and rear sections are approximate.",
+    "anchor": [
+      38.766562,
+      9.030799
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        38.7661817929228,
+        9.030800257635645
+      ],
+      "modelHeight": 0,
+      "basis": "Independent original approach grade from the western front of the footprint, near the photo-documented main stair."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/43456286"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=38.7622,9.0264,38.7704,9.0350",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:997324920fd9a957dde0591e24b505eb79f0a332477a28ca257e7b93e5c19ef6"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Main west facade proportions are reconstructed from the archive photographs. Side and rear elevations, the precise central drum and dome, restoration-era finish and individual statuary are exterior estimates.",
+    "The model covers the cathedral and entry sequence. The separately mapped museum, graves and compound buildings are outside its scope."
+  ],
+  "sourceLicense": "Independently modeled from a mapped building footprint, CC0 Dutch National Archives photographs and the unchanged Terrarium elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "holy-trinity-cathedral-addis-ababa-skyline",
+      "position": [
+        -79,
+        35,
+        58
+      ],
+      "lookAt": [
+        -12,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "holy-trinity-cathedral-addis-ababa-district",
+      "position": [
+        -79,
+        35,
+        58
+      ],
+      "lookAt": [
+        -12,
+        10,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "holy-trinity-cathedral-addis-ababa-street",
+      "position": [
+        -79,
+        35,
+        58
+      ],
+      "lookAt": [
+        -12,
+        10,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "holy-trinity-cathedral-addis-ababa-closeup",
+      "position": [
+        -79,
+        35,
+        58
+      ],
+      "lookAt": [
+        -12,
+        10,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "seven-arched-west-front",
+      "position": [
+        -75,
+        8.4,
+        -2.2
+      ],
+      "lookAt": [
+        -30,
+        10.7,
+        -0.17
+      ]
+    },
+    {
+      "name": "stone-piers-and-west-approach",
+      "position": [
+        -54,
+        4.9,
+        19.4
+      ],
+      "lookAt": [
+        -33.2,
+        6.8,
+        0
+      ]
+    },
+    {
+      "name": "central-dome-and-east-sanctuary",
+      "position": [
+        53,
+        19,
+        43
+      ],
+      "lookAt": [
+        0,
+        12,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8374,
+    "vertices": 25122,
+    "materials": 8,
+    "bytes": 1393844,
+    "sha256": "sha256:f58ad6268450b315b7c92904f238c9b3c360045dc92648a52af5b739ac2c8799"
+  }
+}

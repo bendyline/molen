@@ -1,0 +1,612 @@
+{
+  "planId": "kyoto_imperial_palace",
+  "id": "kyoto_imperial_palace",
+  "assetId": "molen.worldgen.structure.kyoto_imperial_palace",
+  "title": "Kyoto Imperial Palace",
+  "wikidataId": "Q1202239",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.76222222222222,
+    "latitude": 35.025277777777774
+  },
+  "size": [
+    249.0978775024414,
+    22.419039487838745,
+    449.86126708984375
+  ],
+  "actualBounds": {
+    "min": [
+      -113.91788482666016,
+      -3.741497755050659,
+      -223.11126708984375
+    ],
+    "max": [
+      135.17999267578125,
+      18.677541732788086,
+      226.75
+    ]
+  },
+  "visualBrief": "Kyoto Imperial Palace in April 2017, with Shishinden, Seiryoden, Kogosho and Otsunegoten, the connecting galleries, white-sand ceremonial court and the roofed gates set into the plaster perimeter.",
+  "nativeAxes": {
+    "x": "east across the palace",
+    "y": "up",
+    "z": "south toward Kenreimon"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2017-04-14",
+    "validFrom": "2017-01-01",
+    "validUntil": "2018-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Kenreimon_(open).JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Nikkamon-2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Seiryoden_Hirunoomashi_%26_Michodai-2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Sakuheimon-2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Shishinden_zenkei-2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto-gosho_Shishinden_zenkei-4-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kyoto-imperial-palace-wp",
+      "url": "https://qualla.com/kyoto-imperial-palace/"
+    }
+  ],
+  "referenceInputHash": "f737323c7436558d1a726b41b25bb185850172b43faeb086c7016c55b24bf6d9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/kyoto_imperial_palace/models/kyoto-imperial-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/kyoto_imperial_palace/models/kyoto-imperial-palace-model.mjs",
+    "level": "skyline",
+    "export": "palaceSkyline",
+    "errorMeters": 0.58,
+    "surfaces": {
+      "bark": {
+        "slot": "roof",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.93,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "palaceDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "bark": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "palaceStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "bark": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "palaceCloseup",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "bark": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.93,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_shingle",
+    "tile_ceramic",
+    "plaster_lime",
+    "wood_plain",
+    "stone_ashlar",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -2.7,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      135.76222222222222,
+      35.025277777777774
+    ],
+    "heading": 0.010002605752433866,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.76215323149535,
+        35.02374102368932
+      ],
+      "modelHeight": 0,
+      "basis": "Original field in the ceremonial South Garden between Shishinden and Shomeimon."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/99448140",
+      "way/99448148",
+      "way/99448149",
+      "way/99448152",
+      "way/99448155",
+      "way/99448156",
+      "way/99448163",
+      "way/99448166",
+      "way/99448169",
+      "way/99448192",
+      "way/99448213",
+      "way/99448224",
+      "way/99448230",
+      "way/99448251",
+      "way/102270121",
+      "way/102270162",
+      "way/102270174",
+      "way/551412145",
+      "way/551412146",
+      "way/551412148",
+      "way/551412149",
+      "way/551412150",
+      "way/551412153",
+      "way/554879243",
+      "way/554879245",
+      "way/554879246",
+      "way/554879247",
+      "way/554879256",
+      "way/554879257",
+      "way/554879258",
+      "way/554879263",
+      "way/554879265",
+      "way/554879266",
+      "way/554879268",
+      "way/554905780",
+      "way/554905787",
+      "way/554905790",
+      "way/554905795",
+      "way/554905796",
+      "way/554905800",
+      "way/554905802",
+      "way/554905806",
+      "way/554905808",
+      "way/554905812",
+      "way/554905814",
+      "way/554905823",
+      "way/554905829",
+      "way/554905831",
+      "way/554913927",
+      "way/554913928",
+      "way/554913929",
+      "way/554913941",
+      "way/554913942",
+      "way/554913943",
+      "way/554913944",
+      "way/554913945",
+      "way/554924438",
+      "way/554924441",
+      "way/554924442",
+      "way/554924447",
+      "way/554924448",
+      "way/554924459",
+      "way/554924460",
+      "way/554924462",
+      "way/554924469",
+      "way/554924470",
+      "way/554924473",
+      "way/554925316",
+      "way/554925317",
+      "way/554925318",
+      "way/554927237",
+      "way/554927238",
+      "way/554927239",
+      "way/554927240",
+      "way/554927241",
+      "way/554927247",
+      "way/554927249",
+      "way/554927252",
+      "way/554927254",
+      "way/554927257",
+      "way/554927258",
+      "way/554927722",
+      "way/554928047",
+      "way/554928049",
+      "way/554988530",
+      "way/554988540",
+      "way/554988543",
+      "way/581953278",
+      "way/581953279",
+      "way/581953280",
+      "way/582128072",
+      "way/582157072",
+      "way/582157073",
+      "way/582397069",
+      "way/582397070",
+      "way/582397071",
+      "way/582413333",
+      "way/582413334",
+      "way/584180502",
+      "way/584573461",
+      "way/584573463",
+      "way/584573475",
+      "way/584573481",
+      "way/584573482",
+      "way/584573483",
+      "way/584573484",
+      "way/584573485",
+      "way/584573486",
+      "way/584573487",
+      "way/681667189",
+      "way/681678300",
+      "way/681678302",
+      "way/1450112983"
+    ],
+    "source": "https://www.openstreetmap.org/way/554879249",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a2c2dc359f02e6dbc854068fb4d6cc4ab81a7fb205ed5cf0992241bce094e0d0",
+    "notes": "The named native enclosure and the building and roof ways within it establish the mapped compound. The six outer gates and the three principal ceremonial gates have separate controls. Wall segments and roof sections may include overlapping native roof and wall projections."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the April 2017 exterior. The Shishinden roof width, depth and overall height come from palace records. Floor, skirt breaks and trim profiles were estimated against the cleared photographs.",
+    "The ground retains the original source field. Individual foundations, finished court grades, the gate thresholds and step assumptions are approximate.",
+    "The perimeter follows the mapped enclosure and its gate openings. Its post spacing and roof cross-section are approximate. Smaller mapped ancillary roofs in the palace have estimated roof divisions, materials and heights.",
+    "Rooms, furnishings, delicate carvings, gardens and vegetation are outside the exterior structure model. Distant detail levels simplify minor roofs and retain the distinct halls, gates and compound outline."
+  ],
+  "sourceLicense": "Original geometry under the repository license. All six exact Qualla reference photographs are creator-released CC0. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "kyoto-palace-skyline",
+      "position": [
+        276,
+        249,
+        477
+      ],
+      "lookAt": [
+        9,
+        1,
+        20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kyoto-palace-district",
+      "position": [
+        276,
+        249,
+        477
+      ],
+      "lookAt": [
+        9,
+        1,
+        20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kyoto-palace-street",
+      "position": [
+        276,
+        249,
+        477
+      ],
+      "lookAt": [
+        9,
+        1,
+        20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kyoto-palace-closeup",
+      "position": [
+        276,
+        249,
+        477
+      ],
+      "lookAt": [
+        9,
+        1,
+        20
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "shishinden-and-south-garden",
+      "position": [
+        -29,
+        9.6,
+        187
+      ],
+      "lookAt": [
+        -9,
+        6.8,
+        124
+      ]
+    },
+    {
+      "name": "kenreimon-and-shomeimon",
+      "position": [
+        -9,
+        8.2,
+        260
+      ],
+      "lookAt": [
+        -9,
+        5.8,
+        216
+      ]
+    },
+    {
+      "name": "nikkamon-and-ceremonial-cloisters",
+      "position": [
+        54,
+        11,
+        131
+      ],
+      "lookAt": [
+        22,
+        4.3,
+        156
+      ]
+    },
+    {
+      "name": "seiryoden-east-veranda",
+      "position": [
+        -15,
+        8.3,
+        97
+      ],
+      "lookAt": [
+        -47,
+        3.8,
+        99
+      ]
+    },
+    {
+      "name": "residential-courtyards",
+      "position": [
+        114,
+        45,
+        54
+      ],
+      "lookAt": [
+        47,
+        4.3,
+        -23
+      ]
+    },
+    {
+      "name": "north-entrance-and-empress-residence",
+      "position": [
+        44,
+        21,
+        -251
+      ],
+      "lookAt": [
+        14,
+        4.3,
+        -192
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58830,
+    "vertices": 176490,
+    "materials": 6,
+    "bytes": 7229496,
+    "sha256": "sha256:e8e776a502b693cfd346466bf091136d3810f36692737c349969e31cc3819ef5"
+  }
+}

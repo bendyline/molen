@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.castle_of_san_felipe_de_lara",
+  "kind": "static-structure",
+  "title": "Castle of San Felipe de Lara",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.castle_of_san_felipe_de_lara",
+        "output": "assets/places/d4/d4b/castle_of_san_felipe_de_lara/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4dc273f1ecac731ad507df1f9cded03bc31879c6f0b646f20c7108583c994d08"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-san-felipe-de-lara",
+        "path": "models/generate-san-felipe-de-lara.mjs"
+      },
+      {
+        "id": "san-felipe-de-lara-model",
+        "path": "models/san-felipe-de-lara-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-igreja-controls.json",
+      "reference-rights/commons-creator-first-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8283-14942.png",
+      "preview.png",
+      "native-map/fort-bridge-and-waterfront.json",
+      "native-map/water-and-shore.json",
+      "reference-rights/commons-sjc196-riverside-photograph.json",
+      "native-water.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "terrain-shoreline-review.terrain.json",
+      "terrain-shoreline-review.height.png",
+      "terrain-shoreline-review-evidence.json",
+      "qa.json"
+    ]
+  }
+}

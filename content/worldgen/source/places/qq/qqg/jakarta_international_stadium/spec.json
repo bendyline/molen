@@ -1,0 +1,760 @@
+{
+  "planId": "jakarta_international_stadium",
+  "id": "jakarta_international_stadium",
+  "assetId": "molen.worldgen.structure.jakarta_international_stadium",
+  "title": "Jakarta International Stadium",
+  "wikidataId": "Q6124453",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 106.860166225,
+    "latitude": -6.125095125
+  },
+  "size": [
+    309.08843994140625,
+    81.67500305175781,
+    732.7513427734375
+  ],
+  "actualBounds": {
+    "min": [
+      -158.82620239257812,
+      -8.5,
+      -407.28570556640625
+    ],
+    "max": [
+      150.26223754882812,
+      73.17500305175781,
+      325.46563720703125
+    ]
+  },
+  "visualBrief": "Jakarta International Stadium with its perforated steel bowl, broad pale roof, open retractable panels, three seating tiers and the elevated east and west approaches.",
+  "nativeAxes": {
+    "x": "north along the pitch",
+    "y": "up",
+    "z": "east across the pitch"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "representedDate": "2023-11-17"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:U17_World_Cup_Brazil_England.jpg"
+  ],
+  "stories": [
+    {
+      "id": "jakarta-international-stadium-wp",
+      "url": "https://qualla.com/jakarta-international-stadium/"
+    }
+  ],
+  "referenceInputHash": "8f424b3ad6218ee3bcb9b92895fb7f2d7d3c9a9896b5fc8c21874448e81a8cb5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqg/jakarta_international_stadium/models/jakarta-international-stadium-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqg/jakarta_international_stadium/models/jakarta-international-stadium-model.mjs",
+    "level": "skyline",
+    "export": "stadiumSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0
+      },
+      "screen": {
+        "slot": "wall",
+        "graph": "metal_perforated_round",
+        "roughness": 0.52,
+        "metallic": 0.18
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.65,
+        "metallic": 0.28
+      },
+      "membrane": {
+        "slot": "roof",
+        "localRef": "palette:#fefeff",
+        "roughness": 0.35,
+        "metallic": 0.02,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.76
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      },
+      "field": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stadiumDistrict",
+        "errorMeters": 1.25,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_perforated_round",
+            "roughness": 0.52,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "membrane": {
+            "slot": "roof",
+            "localRef": "palette:#fefeff",
+            "roughness": 0.35,
+            "metallic": 0.02,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.76
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "field": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "stadiumStreet",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_perforated_round",
+            "roughness": 0.52,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "membrane": {
+            "slot": "roof",
+            "localRef": "palette:#fefeff",
+            "roughness": 0.35,
+            "metallic": 0.02,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.76
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "field": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "stadiumCloseup",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_perforated_round",
+            "roughness": 0.52,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "membrane": {
+            "slot": "roof",
+            "localRef": "palette:#fefeff",
+            "roughness": 0.35,
+            "metallic": 0.02,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.76
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "field": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted",
+    "metal_perforated_round",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "geographic-preview",
+    "anchor": [
+      106.860166225,
+      -6.125095125
+    ],
+    "heading": 1.5677269045448907,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        106.85908720530156,
+        -6.126325494765769
+      ],
+      "modelHeight": 0,
+      "basis": "Sample the original terrain near the southwest mapped stair approach outside the stadium shell and estimate plaza and raised concourse grades separately."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -142.8737,
+          -46.251
+        ],
+        [
+          -145.6822,
+          -32.8052
+        ],
+        [
+          -146.9749,
+          -22.3526
+        ],
+        [
+          -147.8337,
+          -12.0121
+        ],
+        [
+          -148.5034,
+          -1.7164
+        ],
+        [
+          -148.4342,
+          9.9274
+        ],
+        [
+          -148.4464,
+          20.4646
+        ],
+        [
+          -147.8902,
+          31.2215
+        ],
+        [
+          -145.2993,
+          41.1641
+        ],
+        [
+          -141.1717,
+          54.8984
+        ],
+        [
+          -136.9945,
+          66.6624
+        ],
+        [
+          -131.0908,
+          78.7532
+        ],
+        [
+          -123.0064,
+          90.472
+        ],
+        [
+          -114.7034,
+          100.8841
+        ],
+        [
+          -104.9448,
+          110.4062
+        ],
+        [
+          -94.2122,
+          118.0879
+        ],
+        [
+          -83.2069,
+          123.9758
+        ],
+        [
+          -70.602,
+          128.7297
+        ],
+        [
+          -57.2311,
+          132.784
+        ],
+        [
+          -44.5528,
+          136.0767
+        ],
+        [
+          -31.6322,
+          138.5053
+        ],
+        [
+          -19.8834,
+          140.0078
+        ],
+        [
+          -6.758,
+          140.2663
+        ],
+        [
+          6.0558,
+          140.5259
+        ],
+        [
+          17.7952,
+          138.9402
+        ],
+        [
+          29.7142,
+          137.8521
+        ],
+        [
+          43.7338,
+          135.6618
+        ],
+        [
+          55.0702,
+          133.358
+        ],
+        [
+          69.0528,
+          129.9946
+        ],
+        [
+          80.8149,
+          124.9223
+        ],
+        [
+          93.2831,
+          117.767
+        ],
+        [
+          104.1786,
+          109.6315
+        ],
+        [
+          113.1881,
+          99.9743
+        ],
+        [
+          121.7397,
+          89.8093
+        ],
+        [
+          129.9093,
+          78.4944
+        ],
+        [
+          135.8288,
+          66.7215
+        ],
+        [
+          140.2218,
+          54.5217
+        ],
+        [
+          143.7966,
+          40.4759
+        ],
+        [
+          145.6119,
+          29.8336
+        ],
+        [
+          146.9842,
+          19.9452
+        ],
+        [
+          147.5651,
+          9.7383
+        ],
+        [
+          147.5493,
+          -2.6583
+        ],
+        [
+          147.5719,
+          -13.428
+        ],
+        [
+          146.2832,
+          -23.452
+        ],
+        [
+          144.3359,
+          -34.0939
+        ],
+        [
+          140.7227,
+          -47.044
+        ],
+        [
+          136.3403,
+          -60.3791
+        ],
+        [
+          130.7812,
+          -72.6369
+        ],
+        [
+          122.587,
+          -83.8794
+        ],
+        [
+          113.7959,
+          -93.7145
+        ],
+        [
+          103.2496,
+          -102.3597
+        ],
+        [
+          92.826,
+          -110.9279
+        ],
+        [
+          80.6482,
+          -117.9965
+        ],
+        [
+          67.3423,
+          -122.6487
+        ],
+        [
+          55.1408,
+          -126.5516
+        ],
+        [
+          42.5864,
+          -129.3687
+        ],
+        [
+          30.0137,
+          -130.8908
+        ],
+        [
+          13.8456,
+          -132.3354
+        ],
+        [
+          -1.4961,
+          -132.9082
+        ],
+        [
+          -20.1934,
+          -131.4672
+        ],
+        [
+          -33.0355,
+          -130.0774
+        ],
+        [
+          -44.9524,
+          -128.292
+        ],
+        [
+          -57.7341,
+          -125.3529
+        ],
+        [
+          -71.6724,
+          -122.0892
+        ],
+        [
+          -85.4402,
+          -117.6527
+        ],
+        [
+          -98.2237,
+          -111.6919
+        ],
+        [
+          -107.9411,
+          -104.1687
+        ],
+        [
+          -116.6576,
+          -93.3059
+        ],
+        [
+          -124.7953,
+          -82.5114
+        ],
+        [
+          -132.4183,
+          -70.8439
+        ],
+        [
+          -138.2963,
+          -60.0563
+        ]
+      ],
+      "basis": "The exact mapped building outline excludes overlapping generic stadium geometry."
+    },
+    "featureIds": [
+      "way/881957189",
+      "way/881957188",
+      "way/980589317",
+      "way/980589318",
+      "way/1056370799",
+      "way/1056370800",
+      "way/1056370801",
+      "way/1056370802",
+      "way/1369362226",
+      "way/1369716350"
+    ],
+    "source": "https://www.openstreetmap.org/relation/11989546",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:56e7fe71453ba9b30d0e35f66fb917bf83909b4408fe864284b7d6eedc446996",
+    "notes": "OpenStreetMap building relation 11989546 joins a 71-vertex outer shell about 296 by 273 m to a four-corner football pitch. Pitch alignment sets the roof axes and anchor. Four mapped access stairs and two western approach polygons control the visible approach. Separate transport stops and adjacent structures are outside the scope. Way 1369362226 follows the elevated concourse and terminating way 1369716350 follows the east ramp. The west ramp is mapped with separate raised approach and bridge polygons."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_perforated_round",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.012,
+        0.012
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing stadium in the open-roof football configuration photographed on 17 November 2023. Roof modules are shown parked, with no moving parts. The licensed photograph informs the field, interior and the exposed roof structure. No photograph is embedded.",
+    "The named mapped building, elevated concourse, playing field, east ramp alignment and west ramp footprint determine the plan. The facade panel spacing, tiger-stripe perforation pattern, exact seat blocks, roof truss submembers and roof module parking positions are approximated from the published descriptions and dimensional controls.",
+    "The original 1024 m elevation field was acquired and frozen before authoring. The coarse dataset includes a deep anomalous return east of the stadium. Foundation depth, ramp gradients, concourse and pitch elevations are registered estimates. The nearby railway, bridge to the north and unattached training grounds are outside the model."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Nodanodaboo dedicated the exact photograph to CC0. OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "stadium-skyline",
+      "position": [
+        -304,
+        193,
+        -353
+      ],
+      "lookAt": [
+        -16,
+        29,
+        -33
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "stadium-district",
+      "position": [
+        -304,
+        193,
+        -353
+      ],
+      "lookAt": [
+        -16,
+        29,
+        -33
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "stadium-street",
+      "position": [
+        -304,
+        193,
+        -353
+      ],
+      "lookAt": [
+        -16,
+        29,
+        -33
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "stadium-closeup",
+      "position": [
+        -304,
+        193,
+        -353
+      ],
+      "lookAt": [
+        -16,
+        29,
+        -33
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southwest-concourse-and-steel-screen",
+      "position": [
+        -275,
+        40,
+        -289
+      ],
+      "lookAt": [
+        -25,
+        31,
+        -38
+      ]
+    },
+    {
+      "name": "open-roof-and-football-bowl",
+      "position": [
+        -41,
+        160,
+        -32
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "east-ramp-and-stadium-edge",
+      "position": [
+        -106,
+        88,
+        339
+      ],
+      "lookAt": [
+        22,
+        28,
+        63
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20468,
+    "vertices": 61404,
+    "materials": 6,
+    "bytes": 2547076,
+    "sha256": "sha256:32ff2690c14806e7ade9cd1a07eaf95682e3cde70f39a2d10ce0cacc94ae87a2"
+  }
+}

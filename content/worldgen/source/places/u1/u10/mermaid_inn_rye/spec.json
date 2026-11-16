@@ -1,0 +1,472 @@
+{
+  "planId": "mermaid_inn_rye",
+  "id": "mermaid_inn_rye",
+  "assetId": "molen.worldgen.structure.mermaid_inn_rye",
+  "title": "The Mermaid Inn",
+  "wikidataId": "Q7751082",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 0.7320537,
+    "latitude": 50.9500621
+  },
+  "size": [
+    43.04195690155029,
+    14.739999771118164,
+    30.074510097503662
+  ],
+  "actualBounds": {
+    "min": [
+      -9.46679973602295,
+      -3.0799999237060547,
+      -24.004192352294922
+    ],
+    "max": [
+      33.575157165527344,
+      11.65999984741211,
+      6.07031774520874
+    ]
+  },
+  "visualBrief": "The Mermaid Inn’s black and white timber wings, clay-tile roofs, brick chimneys and cobbled courtyard on Mermaid Street.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-07-24",
+    "validFrom": "2019-01-01",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hawkhurst_Gang_Smugglers_Trail,_Mermaid_Inn,_Rye.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mermaid_Inn,_Mermaid_Street,_Rye_(NHLE_Code_1251961)_(July_2011)_(1).jpg",
+    "https://commons.wikimedia.org/wiki/File:Mermaid_Inn,_Mermaid_Street,_Rye_(NHLE_Code_1251961)_(July_2011)_(2).jpg"
+  ],
+  "stories": [
+    {
+      "id": "the-mermaid-inn-rye-wp",
+      "url": "https://qualla.com/the-mermaid-inn-rye/"
+    }
+  ],
+  "referenceInputHash": "13dd11b6e6c16cec949e7f7c81aeb89e701f374520db8b04ce04360aa377934a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u10/mermaid_inn_rye/models/mermaid-inn-rye-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u10/mermaid_inn_rye/models/mermaid-inn-rye-model.mjs",
+    "level": "skyline",
+    "export": "innSkyline",
+    "errorMeters": 0.51,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "innDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "innStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.07
+          }
+        }
+      },
+      "closeup": {
+        "export": "innCloseup",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "wood_plain",
+    "brick",
+    "tile_flat",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      0.7320537,
+      50.9500621
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        0.7320537,
+        50.9500621
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM at the named inn point next to the street frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.147459174973728,
+          -6.8061729806249405
+        ],
+        [
+          19.39485847127021,
+          -19.895714736580793
+        ],
+        [
+          29.50606973124733,
+          -13.356341153728074
+        ],
+        [
+          17.717782433918725,
+          0.28317066288915616
+        ],
+        [
+          -5.412267606162608,
+          6.686356209422504
+        ]
+      ],
+      "minimumCoverage": 0.82,
+      "basis": "Approximate occupied eastern part of the wider mapped Mermaid Street row."
+    },
+    "featureIds": [
+      "way/244319005"
+    ],
+    "source": "https://www.openstreetmap.org/node/2536765350",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:388db69c765a755e0be6038dd8ea6ad83a229185080e1013d264c312c3290d38",
+    "notes": "The mapped row contains several attached properties. Roof-range boundaries and courtyard width are approximate. The model uses the eastern sector around the named inn and the measured street direction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the principal Mermaid Inn street wings and their inner courtyard in 2019. The shared building row continues into adjoining properties.",
+    "The street photographs determine the half-timbering, roof and chimney character. Exact property divisions at the rear, court and steps are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap data is ODbL. The exact Qualla image and two independently verified exterior photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "rye-inn-skyline",
+      "position": [
+        29.086711032038806,
+        19,
+        37.6027025802491
+      ],
+      "lookAt": [
+        6.376019691165997,
+        4,
+        -6.953155607194727
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "rye-inn-district",
+      "position": [
+        29.086711032038806,
+        19,
+        37.6027025802491
+      ],
+      "lookAt": [
+        6.376019691165997,
+        4,
+        -6.953155607194727
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "rye-inn-street",
+      "position": [
+        29.086711032038806,
+        19,
+        37.6027025802491
+      ],
+      "lookAt": [
+        6.376019691165997,
+        4,
+        -6.953155607194727
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "rye-inn-closeup",
+      "position": [
+        29.086711032038806,
+        19,
+        37.6027025802491
+      ],
+      "lookAt": [
+        6.376019691165997,
+        4,
+        -6.953155607194727
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "street-fronts-and-jettied-upper-storeys",
+      "position": [
+        30.066834382159126,
+        8,
+        18.654368663554763
+      ],
+      "lookAt": [
+        4.8187604250169445,
+        4,
+        -1.3339969888611143
+      ]
+    },
+    {
+      "name": "courtyard-arch-and-timber-studs",
+      "position": [
+        8.22274113613433,
+        2.1,
+        10.175000157647386
+      ],
+      "lookAt": [
+        3.2409972958709177,
+        2.95,
+        -7.745452635460202
+      ]
+    },
+    {
+      "name": "hipped-roofs-and-brick-chimneys",
+      "position": [
+        -31.56418526270696,
+        39,
+        -20.315073435789316
+      ],
+      "lookAt": [
+        10.927980718410717,
+        4,
+        -9.25090468105923
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3576,
+    "vertices": 10728,
+    "materials": 6,
+    "bytes": 654124,
+    "sha256": "sha256:be6c8b5f1f4821211d8459de1c4e3c2c2b9202882e3e17fefb40b6e858c1eb75"
+  }
+}

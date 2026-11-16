@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.legislative_palace_of_uruguay",
+  "kind": "static-structure",
+  "title": "Legislative Palace of Uruguay",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.legislative_palace_of_uruguay",
+        "output": "assets/places/6c/6cb/legislative_palace_of_uruguay/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2496c5be2b49e380416f3c8512201a877f2cbc7645095fce847b74754f0430ab"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-legislative-palace-of-uruguay",
+        "path": "models/generate-legislative-palace-of-uruguay.mjs"
+      },
+      {
+        "id": "legislative-palace-of-uruguay-model",
+        "path": "models/legislative-palace-of-uruguay-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-legislative-palace-of-uruguay.json",
+      "reference-rights/commons-federico-corral-2006.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-11269-19776.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

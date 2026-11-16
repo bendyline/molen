@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_saint_francis_of_assisi_sao_joao_del_rei",
+  "kind": "static-structure",
+  "title": "Church of Saint Francis of Assisi, São João del-Rei",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_saint_francis_of_assisi_sao_joao_del_rei",
+        "output": "assets/places/7h/7h0/church_of_saint_francis_of_assisi_sao_joao_del_rei/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:34c6e0f6b2617c858754edaabab2561e9f11bde63502d414b5ed68024e56f083"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sao-joao-del-rei-sao-francisco",
+        "path": "models/generate-sao-joao-del-rei-sao-francisco.mjs"
+      },
+      {
+        "id": "sao-joao-del-rei-sao-francisco-model",
+        "path": "models/sao-joao-del-rei-sao-francisco-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-igreja-controls.json",
+      "reference-rights/commons-creator-first-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-12355-18353.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "native-map/church-and-cemetery.json",
+      "reference-rights/museum-building-history.json",
+      "reference-rights/local-historical-inventory.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "planId": "tung_wah_hospital",
+  "id": "tung_wah_hospital",
+  "assetId": "molen.worldgen.structure.tung_wah_hospital",
+  "title": "Tung Wah Hospital",
+  "wikidataId": "Q2151127",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.1469074,
+    "latitude": 22.2851937
+  },
+  "size": [
+    37.840213775634766,
+    29.384912490844727,
+    40.68630409240723
+  ],
+  "actualBounds": {
+    "min": [
+      -18.920108795166016,
+      -10.014911651611328,
+      -20.343154907226562
+    ],
+    "max": [
+      18.92010498046875,
+      19.3700008392334,
+      20.343149185180664
+    ]
+  },
+  "visualBrief": "The historic Main Block of Tung Wah Hospital in Sheung Wan with a six-storey cream facade, two entrance porches and small-pane windows.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-05-05",
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E6%99%AE%E4%BB%81%E8%A1%97_Po_Yan_Street_%E6%9D%B1%E8%8F%AF%E9%86%AB%E9%99%A2_Tung_Wah_Hospital_Group_May_2025_R12S_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tung-wah-hospital-wp",
+      "url": "https://qualla.com/tung-wah-hospital/"
+    }
+  ],
+  "referenceInputHash": "f821d0da976e32a524b326ad864e624dc2dbc4ac8aa45ec4562346c4f03d5967",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/tung_wah_hospital/models/tung-wah-hospital-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/tung_wah_hospital/models/tung-wah-hospital-model.mjs",
+    "level": "skyline",
+    "export": "hospitalSkyline",
+    "errorMeters": 0.63,
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.73,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hospitalDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hospitalStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "hospitalCloseup",
+        "errorMeters": 0.042,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.73,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      114.1469074,
+      22.2851937
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.1469074,
+        22.2851937
+      ],
+      "modelHeight": 0,
+      "basis": "Original hill-side elevation at the center of the main block."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -18.87047700092794,
+          10.16346950955129
+        ],
+        [
+          -10.774300732541615,
+          0.5899933013758024
+        ],
+        [
+          6.891020257467146,
+          -20.29354317147433
+        ],
+        [
+          12.545983071178133,
+          -15.50680506758433
+        ],
+        [
+          18.870476999464156,
+          -10.163469509155803
+        ],
+        [
+          -6.891020258930933,
+          20.293543171869818
+        ],
+        [
+          -11.505634721573328,
+          16.38622904484558
+        ]
+      ],
+      "minimumCoverage": 0.87,
+      "basis": "Named historic Main Block footprint."
+    },
+    "featureIds": [
+      "way/1114912870",
+      "way/425557574"
+    ],
+    "source": "https://www.openstreetmap.org/way/1114912870",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d780b4beb19ee459ec849b0259ecc6f01d0feec410906ef04d80fe0f0168db7a",
+    "notes": "The 2025 Qualla original shows the assembly hall entrance. Placement of the two porches within the main block elevation is estimated from the registered outline and the official appraisal."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "This May 2025 exterior represents the 1934 Main Block, including the assembly-hall entrance. Modern hospital towers and indoor galleries are outside the scope.",
+    "The protected entrance columns, dark doors and steps follow the exact cleared photograph. Upper façade bay counts, roof fixtures, porch positions and the opposite elevations are approximate.",
+    "The hillside elevation grid varies sharply around the block and nearby towers. Original relief remains unchanged; paving levels and ground contact are estimates."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped outline is ODbL. The Qualla reference is CC0 own work by Suwm HorC POONZ.",
+  "qaLodCameras": [
+    {
+      "name": "main-block-skyline",
+      "position": [
+        -65.65205816211653,
+        21,
+        -4.450534695749127
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "main-block-district",
+      "position": [
+        -65.65205816211653,
+        21,
+        -4.450534695749127
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "main-block-street",
+      "position": [
+        -65.65205816211653,
+        21,
+        -4.450534695749127
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "main-block-closeup",
+      "position": [
+        -65.65205816211653,
+        21,
+        -4.450534695749127
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "classical-assembly-hall-porch",
+      "position": [
+        -6.757060755966343,
+        3,
+        -21.43226842730791
+      ],
+      "lookAt": [
+        -0.6305428722201256,
+        -1.6,
+        -11.797135910308585
+      ]
+    },
+    {
+      "name": "historic-main-block-and-two-porches",
+      "position": [
+        -23.029340361881342,
+        13,
+        -54.84204119557023
+      ],
+      "lookAt": [
+        -2.2905230227191415,
+        6,
+        -1.9373962636470545
+      ]
+    },
+    {
+      "name": "parapet-and-banded-elevations",
+      "position": [
+        4.822865099818905,
+        29,
+        40.75217751518253
+      ],
+      "lookAt": [
+        -0.6457987545490181,
+        9,
+        0.7635076742397138
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4711,
+    "vertices": 14133,
+    "materials": 4,
+    "bytes": 703776,
+    "sha256": "sha256:70e3f1fb2b07eeab17b245f6189cad855e7efc62d9a6358c1bdb9c036defd290"
+  }
+}

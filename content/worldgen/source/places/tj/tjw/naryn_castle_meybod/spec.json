@@ -1,0 +1,382 @@
+{
+  "planId": "naryn_castle_meybod",
+  "id": "naryn_castle_meybod",
+  "assetId": "molen.worldgen.structure.naryn_castle_meybod",
+  "title": "Naryn Castle, Meybod",
+  "wikidataId": "Q5882103",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 54.01446060000001,
+    "latitude": 32.226536949999996
+  },
+  "size": [
+    66.9362564086914,
+    29.007215976715088,
+    60.991947174072266
+  ],
+  "actualBounds": {
+    "min": [
+      -33.4681282043457,
+      -6.747215747833252,
+      -30.495973587036133
+    ],
+    "max": [
+      33.4681282043457,
+      22.260000228881836,
+      30.495973587036133
+    ]
+  },
+  "visualBrief": "The surviving earthen citadel at Meybod, with irregular adobe ramparts on an eroded mound, a round tower bearing geometric adobe patterns and the stepped inner keep.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Meybod_Narein_castle_Yazd_province.JPG"
+  ],
+  "stories": [
+    {
+      "id": "naryn-castle-meybod-wp",
+      "url": "https://qualla.com/naryn-castle-meybod/"
+    }
+  ],
+  "referenceInputHash": "b39477971c8b2a366489eb50dc453126988b4bcd4bef7094fdd2f9394263b327",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tj/tjw/naryn_castle_meybod/models/naryn-castle-meybod-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tj/tjw/naryn_castle_meybod/models/naryn-castle-meybod-model.mjs",
+    "level": "skyline",
+    "export": "narynSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "clay": {
+        "slot": "wall",
+        "graph": "earth_adobe",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "fill": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "trim",
+        "graph": "earth_adobe",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "narynDistrict",
+        "errorMeters": 0.51,
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "fill": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "narynStreet",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "fill": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "narynCloseup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "fill": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "earth_adobe",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "earth_adobe",
+    "earth_rammed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.27,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      54.01446060000001,
+      32.226536949999996
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        54.01446060000001,
+        32.226536949999996
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled original elevation at the center of the elevated mapped core."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          29.927323883345817,
+          25.442069620320012
+        ],
+        [
+          33.468127464924315,
+          -9.412062947011867
+        ],
+        [
+          14.6528999249679,
+          -26.967146645399637
+        ],
+        [
+          2.269504422026587,
+          -30.495974502863092
+        ],
+        [
+          -15.782943622198681,
+          -28.358640279966263
+        ],
+        [
+          -23.994594480579096,
+          -23.0487005687705
+        ],
+        [
+          -33.46812746559343,
+          26.455076986512317
+        ],
+        [
+          20.70805072957274,
+          30.49597450207212
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named mapped upper citadel footprint."
+    },
+    "featureIds": [
+      "way/1101180579"
+    ],
+    "source": "https://www.openstreetmap.org/way/1101180579",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:517d28df92f49257d0ba1949676b3ac521412b9f96d1dea7cbb27acf36f459b0",
+    "notes": "The model follows the named upper enclosure. The mound, visible tower placement, level heights and surviving wall tops require photo-based estimates within that outline."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_adobe",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.35,
+        0.75
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the photographed upper adobe citadel as it survived in 2009, within the named mapped polygon. The wider archaeological precinct is outside this asset.",
+    "The placement uses the original terrain field. The mound section, wall and tower heights, and exact positions of structures within the mapped outline are visual estimates.",
+    "The model reproduces the visible tower bands, keep massing and curtain damage. Unsighted wall faces and individual openings are approximate, and the exterior asset omits interior remains."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The geographic outline is ODbL. The published photograph used as a reference is public domain by Betta27.",
+  "qaLodCameras": [
+    {
+      "name": "south-citadel-skyline",
+      "position": [
+        61,
+        37,
+        92
+      ],
+      "lookAt": [
+        -2,
+        8.3,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "south-citadel-district",
+      "position": [
+        61,
+        37,
+        92
+      ],
+      "lookAt": [
+        -2,
+        8.3,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "south-citadel-street",
+      "position": [
+        61,
+        37,
+        92
+      ],
+      "lookAt": [
+        -2,
+        8.3,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "south-citadel-closeup",
+      "position": [
+        61,
+        37,
+        92
+      ],
+      "lookAt": [
+        -2,
+        8.3,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southern-mound-tower-and-keep",
+      "position": [
+        10,
+        15,
+        75
+      ],
+      "lookAt": [
+        -5,
+        11.7,
+        0
+      ]
+    },
+    {
+      "name": "patterned-round-tower",
+      "position": [
+        37,
+        20,
+        41
+      ],
+      "lookAt": [
+        17,
+        16,
+        12
+      ]
+    },
+    {
+      "name": "eastern-bastion-and-curtain",
+      "position": [
+        68,
+        26,
+        25
+      ],
+      "lookAt": [
+        9,
+        7,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2818,
+    "vertices": 8454,
+    "materials": 3,
+    "bytes": 439984,
+    "sha256": "sha256:9c05135e61af3f58925b8a4b255e38de408b17243cfeb0b13f2e34230181c158"
+  }
+}

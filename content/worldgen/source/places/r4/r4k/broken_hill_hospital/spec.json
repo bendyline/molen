@@ -1,0 +1,757 @@
+{
+  "planId": "broken_hill_hospital",
+  "id": "broken_hill_hospital",
+  "assetId": "molen.worldgen.structure.broken_hill_hospital",
+  "title": "Broken Hill Hospital",
+  "wikidataId": "Q16255574",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.4551,
+    "latitude": -31.9478
+  },
+  "size": [
+    258.0980682373047,
+    11.512087106704712,
+    117.7755126953125
+  ],
+  "actualBounds": {
+    "min": [
+      -127.29344177246094,
+      -3.447087526321411,
+      -75.17951202392578
+    ],
+    "max": [
+      130.80462646484375,
+      8.0649995803833,
+      42.59600067138672
+    ]
+  },
+  "visualBrief": "Standing Broken Hill hospital in its full mapped hospital wings and six open courtyards. Low linked masonry and corrugated-metal wings, a raised Thomas Street foyer, and the integrated rear emergency access.",
+  "nativeAxes": "+X northeast along Thomas Street, +Z southeast toward Thomas Street, +Y vertical.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "broken-hill-hospital-wp",
+      "url": "https://qualla.com/broken-hill-hospital/"
+    }
+  ],
+  "referenceInputHash": "sha256:b1823a07c02e20b0e6c4406cba9e385fc7ef495178cf1d373253807cc51d6eed",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r4/r4k/broken_hill_hospital/models/broken-hill-hospital-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r4/r4k/broken_hill_hospital/models/broken-hill-hospital-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "plinth": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.7,
+        "metallic": 0.28
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.13
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.48,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.28
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.28
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.28
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_sandstone",
+    "brick",
+    "metal_corrugated",
+    "metal_painted",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.35,
+    "focus": {
+      "center": [
+        0,
+        3.7,
+        -9
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Low masonry and corrugated-metal hospital of linked wards, with a taller steel-framed foyer and distinct rear emergency access. Approximate local foundations follow the original sloping ground.",
+    "anchor": [
+      141.4551,
+      -31.9478
+    ],
+    "heading": 0.6224717045470756,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.45541505071964,
+        -31.94803384412322
+      ],
+      "modelHeight": 0,
+      "basis": "Original Terrarium grade on the Thomas Street approach next to the projected front entrance bay."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          120.8533,
+          -74.8425
+        ],
+        [
+          119.9266,
+          -9.2178
+        ],
+        [
+          130.7644,
+          -9.0584
+        ],
+        [
+          130.5122,
+          8.806
+        ],
+        [
+          119.776,
+          8.6509
+        ],
+        [
+          119.4484,
+          32.1612
+        ],
+        [
+          101.9925,
+          31.9246
+        ],
+        [
+          102.3068,
+          9.5831
+        ],
+        [
+          93.7119,
+          9.4576
+        ],
+        [
+          93.3756,
+          33.4822
+        ],
+        [
+          70.4506,
+          33.171
+        ],
+        [
+          70.7853,
+          9.3918
+        ],
+        [
+          60.549,
+          9.2529
+        ],
+        [
+          60.2392,
+          30.7618
+        ],
+        [
+          54.9939,
+          30.6833
+        ],
+        [
+          54.9451,
+          34.1697
+        ],
+        [
+          47.0957,
+          34.0584
+        ],
+        [
+          47.1415,
+          30.6247
+        ],
+        [
+          40.3923,
+          30.5357
+        ],
+        [
+          40.6956,
+          9.2141
+        ],
+        [
+          32.354,
+          9.0921
+        ],
+        [
+          31.9902,
+          34.4672
+        ],
+        [
+          14.9958,
+          34.2193
+        ],
+        [
+          14.9644,
+          36.3206
+        ],
+        [
+          3.5701,
+          36.1591
+        ],
+        [
+          3.6056,
+          33.8415
+        ],
+        [
+          -22.3655,
+          33.4817
+        ],
+        [
+          -22.3858,
+          34.9196
+        ],
+        [
+          -30.9152,
+          34.7999
+        ],
+        [
+          -30.8914,
+          32.8713
+        ],
+        [
+          -39.8333,
+          32.7433
+        ],
+        [
+          -39.8123,
+          31.58
+        ],
+        [
+          -46.2145,
+          31.4934
+        ],
+        [
+          -46.2382,
+          33.9565
+        ],
+        [
+          -77.8672,
+          33.5099
+        ],
+        [
+          -77.6459,
+          17.4868
+        ],
+        [
+          -79.9171,
+          17.46
+        ],
+        [
+          -81.4145,
+          17.4404
+        ],
+        [
+          -81.6392,
+          33.7762
+        ],
+        [
+          -127.2524,
+          33.1318
+        ],
+        [
+          -127.1323,
+          24.2159
+        ],
+        [
+          -114.2329,
+          24.4025
+        ],
+        [
+          -113.8588,
+          -2.2669
+        ],
+        [
+          -113.8187,
+          -5.0607
+        ],
+        [
+          -98.873,
+          -4.8581
+        ],
+        [
+          -99.0782,
+          9.2309
+        ],
+        [
+          -91.3084,
+          9.3398
+        ],
+        [
+          -79.0028,
+          9.5113
+        ],
+        [
+          -78.6606,
+          -14.7969
+        ],
+        [
+          -40.1372,
+          -14.253
+        ],
+        [
+          -40.0844,
+          -18.3119
+        ],
+        [
+          -21.9551,
+          -18.0579
+        ],
+        [
+          -22.0079,
+          -14.1771
+        ],
+        [
+          -6.7653,
+          -13.9669
+        ],
+        [
+          -3.5096,
+          -13.9186
+        ],
+        [
+          -3.3132,
+          -27.4932
+        ],
+        [
+          1.3024,
+          -27.4282
+        ],
+        [
+          1.4969,
+          -41.4701
+        ],
+        [
+          27.6132,
+          -41.102
+        ],
+        [
+          27.414,
+          -26.9402
+        ],
+        [
+          32.4203,
+          -26.8689
+        ],
+        [
+          32.505,
+          -33.1109
+        ],
+        [
+          32.6486,
+          -43.161
+        ],
+        [
+          39.1381,
+          -43.0665
+        ],
+        [
+          39.2566,
+          -51.5588
+        ],
+        [
+          74.6477,
+          -51.0568
+        ],
+        [
+          74.5008,
+          -40.3378
+        ],
+        [
+          83.1676,
+          -40.2154
+        ],
+        [
+          91.7843,
+          -40.0878
+        ],
+        [
+          91.9441,
+          -51.3594
+        ],
+        [
+          99.7062,
+          -51.2561
+        ],
+        [
+          100.0325,
+          -75.1372
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Replace the mapped main hospital roofprint where it overlaps the authored exterior. Keep separate campus buildings outside the hospital outline."
+    },
+    "featureIds": [
+      "relation/15256286",
+      "way/1130557771",
+      "way/1130557772",
+      "way/1130557776",
+      "way/1130557775",
+      "way/1130557773",
+      "way/1130557774",
+      "way/671005079"
+    ],
+    "source": "https://www.openstreetmap.org/relation/15256286",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:442bdd842da79c5b9f0a47c3ba5c47230f8bbe5c574fc3df307beb4d29e3746d",
+    "notes": "Uses the complete standing hospital footprint and six courtyard rings within the campus. The frontage follows the Thomas Street alignment. Front and rear canopy extents are estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Ward eaves, roof pitches, levels, courtyard treatment, windows, materials palette and entrance canopies are estimated from the mapped shape and documented materials. The six courtyard rings and the street alignment come from the native map.",
+    "Awning locations are inferred within the mapped Thomas Street projection and the rear car-park side. Site structures outside the current main building outline are outside this model’s scope.",
+    "The original elevation field remains unchanged. Foundation steps and local thresholds are approximated from the coarse grade at the physical wing and entrance positions."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "broken-hill-hospital-skyline",
+      "position": [
+        218,
+        163,
+        282
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        -9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "broken-hill-hospital-district",
+      "position": [
+        218,
+        163,
+        282
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        -9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "broken-hill-hospital-street",
+      "position": [
+        218,
+        163,
+        282
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        -9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "broken-hill-hospital-closeup",
+      "position": [
+        218,
+        163,
+        282
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        -9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-hospital-thomas-street",
+      "position": [
+        57,
+        31,
+        110
+      ],
+      "lookAt": [
+        8,
+        3.1,
+        29
+      ]
+    },
+    {
+      "name": "hospital-rear-emergency-access",
+      "position": [
+        -45,
+        40,
+        -133
+      ],
+      "lookAt": [
+        17,
+        3.2,
+        -28
+      ]
+    },
+    {
+      "name": "six-hospital-courtyards",
+      "position": [
+        112,
+        233,
+        -155
+      ],
+      "lookAt": [
+        0,
+        3,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5542,
+    "vertices": 16626,
+    "materials": 6,
+    "bytes": 859948,
+    "sha256": "sha256:051a890b4a2f3f4572e8134cb2582e6255dcd13a0cc1bfe2487d5f31b87f7b40"
+  }
+}

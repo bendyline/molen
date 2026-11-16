@@ -1,0 +1,458 @@
+{
+  "planId": "fort_temiscamingue_carpentry_workshop",
+  "id": "fort_temiscamingue_carpentry_workshop",
+  "assetId": "molen.worldgen.structure.fort_temiscamingue_carpentry_workshop",
+  "title": "Fort Témiscamingue Carpentry Workshop",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.461989225,
+    "latitude": 47.288851474999994
+  },
+  "size": [
+    8.929999828338623,
+    6.911999881267548,
+    7.71999979019165
+  ],
+  "actualBounds": {
+    "min": [
+      -5.199999809265137,
+      -0.6800000071525574,
+      -3.859999895095825
+    ],
+    "max": [
+      3.7300000190734863,
+      6.23199987411499,
+      3.859999895095825
+    ]
+  },
+  "visualBrief": "Roy identifies the carpenter’s workshop as building 8 in the 1888 plan. The current rectangle and the Qualla view give approximate scale and overall timber appearance. The workshop doorway, light windows and small chimney are interpreted.",
+  "nativeAxes": {
+    "x": "east-northeast",
+    "y": "up",
+    "z": "southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1888-01-01",
+    "validFrom": "1887-01-01",
+    "validUntil": "1889-12-31",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Temiscamingue_1876.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-t-miscamingue-wp",
+      "url": "https://qualla.com/fort-t-miscamingue/"
+    }
+  ],
+  "referenceInputHash": "sha256:cb76f6bcd204658f7ea6e436b5bb220e961eae1242574c1cbef91a73b5c664f7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f0/f0r/fort_temiscamingue_carpentry_workshop/models/fort-temiscamingue-carpentry-workshop-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "fort-temiscamingue-outbuildings.mjs": "sha256:c62ac796f60b3052e585fe35e551be8fcbeab39405d730526c73e47c84546c8f",
+    "generate-fort-temiscamingue-outbuilding.mjs": "sha256:42188ef0b0ac086be10b709e3e4bb5fb25ebb532a6b9fcf3a516a0e828978a88"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f0/f0r/fort_temiscamingue_carpentry_workshop/models/fort-temiscamingue-carpentry-workshop-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.23,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "log": {
+        "slot": "wall",
+        "graph": "wood_log",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_log",
+    "wood_plain",
+    "shingle_cedar",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.78,
+    "cameraYaw": 3.93,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        2.953,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Roy identifies the carpenter’s workshop as building 8 in the 1888 plan. The current rectangle and the Qualla view give approximate scale and overall timber appearance. The workshop doorway, light windows and small chimney are interpreted.",
+    "anchor": [
+      -79.461989225,
+      47.288851474999994
+    ],
+    "heading": 0.34,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.4620404150828,
+        47.28883919241755
+      ],
+      "modelHeight": 0,
+      "basis": "Original present-day terrain beside the estimated western threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/224502740"
+    ],
+    "source": "https://www.openstreetmap.org/way/224502740",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:30ed7b2a5ddaef105b09fb7118ed61b88117195de7150701d9e3120cd05f870e",
+    "notes": "Quebec’s archaeological inventory locates the shop immediately west of the second forge. The modern mapped reconstruction west of the forge supplies a bounded estimate for the position and alignment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Quebec’s archaeological inventory locates the shop immediately west of the second forge. The modern mapped reconstruction west of the forge supplies a bounded estimate for the position and alignment.",
+    "Roy identifies the carpenter’s workshop as building 8 in the 1888 plan. The current rectangle and the Qualla view give approximate scale and overall timber appearance. The workshop doorway, light windows and small chimney are interpreted.",
+    "The original terrain comes from the modern source grid. The foundation and access are interpreted to fit that terrain. Details and proportions are approximate."
+  ],
+  "sourceLicense": "Original reconstruction from the public-domain Qualla photograph, primary historical records, and an unmodified modern digital elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "fort-temiscamingue-carpentry-workshop-skyline",
+      "position": [
+        -11.218,
+        8.209,
+        11.643999999999998
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-temiscamingue-carpentry-workshop-district",
+      "position": [
+        -11.218,
+        8.209,
+        11.643999999999998
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-temiscamingue-carpentry-workshop-street",
+      "position": [
+        -11.218,
+        8.209,
+        11.643999999999998
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-temiscamingue-carpentry-workshop-closeup",
+      "position": [
+        -11.218,
+        8.209,
+        11.643999999999998
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "shore-facing-entrance",
+      "position": [
+        -10.223999999999998,
+        6.491999999999999,
+        5.538
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ]
+    },
+    {
+      "name": "west-timber-detail",
+      "position": [
+        -8.5,
+        3.817,
+        0.06
+      ],
+      "lookAt": [
+        -3.4,
+        3.115,
+        0
+      ]
+    },
+    {
+      "name": "north-gable-and-roof",
+      "position": [
+        -5.821999999999999,
+        7.011999999999999,
+        -12.069999999999999
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ]
+    },
+    {
+      "name": "inland-grade-and-footings",
+      "position": [
+        10.295,
+        7.228,
+        5.751
+      ],
+      "lookAt": [
+        0,
+        2.953,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 590,
+    "vertices": 1770,
+    "materials": 5,
+    "bytes": 237380,
+    "sha256": "sha256:f3cb0ee08e3056d99c2102bfcc322e92f4e6de3a478347501f811a3771ffce1b"
+  }
+}

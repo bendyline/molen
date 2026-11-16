@@ -352,6 +352,33 @@ test('Gutenberg illustration proof requires the book-specific PD status, old cre
     }),
     false,
   );
+  const editionCatalog =
+    catalog + '<div about="[ebook:60759]"><td itemprop="headline">Historic Buildings</td></div>';
+  const editionBook =
+    '*** START OF THIS PROJECT GUTENBERG EBOOK HISTORIC BUILDINGS *** ' +
+    'Copyright, Canada, 1912, by <img src="images/plate.jpg" alt="[Illustration: Exterior.]" />';
+  const embedded = {
+    ...reference,
+    downloadUrl: reference.downloadUrl.replace('ill_pg_476_lg.jpg', 'plate.jpg'),
+    originalReview: {
+      ...reference.originalReview,
+      publicationYear: 1912,
+      primaryCaption: '[Illustration: Exterior.]',
+    },
+  };
+  assert.equal(check(editionCatalog, editionBook, embedded), true);
+  assert.equal(
+    check(editionCatalog, editionBook.replace('Exterior.', 'Interior.'), embedded),
+    false,
+  );
+  assert.equal(
+    check(editionCatalog, editionBook.replace('Canada, 1912', 'Canada, 1953'), embedded),
+    false,
+  );
+  assert.equal(
+    check(editionCatalog.replace('[ebook:60759]', '[ebook:12345]'), editionBook, embedded),
+    false,
+  );
   fs.writeFileSync(path.join(f.dir, reference.path), 'different pixels');
   assert.equal(check(), false);
 });
@@ -1223,6 +1250,63 @@ function fixture(t) {
   return { dir, html, reference, story, evidence, inspect };
 }
 
+test('Rijksmuseum originals require the item, creator and image-level public-domain statement', (t) => {
+  const f = fixture(t);
+  const sourceUrl = 'https://id.rijksmuseum.nl/200358926';
+  const downloadUrl = 'https://iiif.micr.io/nlLtr/full/max/0/default.jpg';
+  const image = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  fs.writeFileSync(path.join(f.dir, 'image.jpg'), image);
+  const reference = {
+    ...f.reference,
+    origin: 'rijksmuseum-public-domain',
+    sourceUrl,
+    downloadUrl,
+    accessionNumber: 'RP-F-F19788',
+    artist: 'Louis Caudevelle',
+    dateCreated: '1895',
+    sha256: hash(image),
+    originalReview: { status: 'inspected', rendition: 'native-archive-jpeg' },
+  };
+  const record = {
+    id: sourceUrl,
+    type: 'HumanMadeObject',
+    identified_by: [{ type: 'Identifier', content: 'RP-F-F19788' }],
+    produced_by: {
+      timespan: { begin_of_the_begin: '1895-01-01T00:00:00Z' },
+      referred_to_by: [{ content: 'Louis Caudevelle (mentioned on object)' }],
+    },
+    subject_of: [
+      {
+        digitally_carried_by: [
+          {
+            access_point: [{ id: downloadUrl }],
+            referred_to_by: [{ content: 'https://creativecommons.org/publicdomain/mark/1.0/' }],
+          },
+        ],
+      },
+      {
+        subject_to: [
+          { classified_as: [{ id: 'https://creativecommons.org/publicdomain/zero/1.0/' }] },
+        ],
+      },
+    ],
+  };
+  const check = (catalog = record, selection = reference) => {
+    const bytes = JSON.stringify(catalog);
+    fs.writeFileSync(path.join(f.dir, 'catalog.json'), bytes);
+    f.evidence.references = [
+      { ...selection, rightsEvidence: { path: 'catalog.json', sha256: hash(bytes), sourceUrl } },
+    ];
+    return f.inspect().status;
+  };
+  assert.equal(check(), 'passed');
+  assert.notEqual(check({ ...record, subject_of: record.subject_of.slice(1) }), 'passed');
+  assert.notEqual(check(record, { ...reference, accessionNumber: 'RP-F-other' }), 'passed');
+  assert.notEqual(check(record, { ...reference, artist: 'Other artist' }), 'passed');
+  fs.writeFileSync(path.join(f.dir, 'image.jpg'), 'different bytes');
+  assert.notEqual(check(), 'passed');
+});
+
 test('a supplemental-only model still needs the prior Qualla search, exact original and bound visual review', (t) => {
   const f = fixture(t),
     refs = {
@@ -1488,6 +1572,19 @@ test('a Commons original needs its creator release, matching author and exact na
   page.revisions[0].slots.main['*'] = '{{Information\n|Source=taken by author\n}}\n{{PD-self}}';
   write();
   assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  const original = page.imageinfo[0];
+  original.extmetadata.Credit.value = "uploader's creation";
+  page.revisions[0].slots.main['*'] =
+    "{{Information\n|Source = uploader's creation\n|Author= [[User:Photographer|Photographer]]\n}}\n{{PD-self}}";
+  original.user = 'SomeoneElse';
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  original.user = 'Photographer';
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  delete original.user;
+  original.extmetadata.Credit.value = 'taken by author';
+  page.revisions[0].slots.main['*'] = '{{Information\n|Source=taken by author\n}}\n{{PD-self}}';
   page.imageinfo[0].extmetadata.Restrictions = { value: 'Permission required' };
   write();
   assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
@@ -1515,6 +1612,36 @@ test('a Commons original needs its creator release, matching author and exact na
   page.revisions[0].slots.main['*'] = '{{cczero}}';
   write();
   assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  const originalRevision = page.revisions[0];
+  const originalUpload = page.imageinfo[0];
+  const uploadTime = '2010-07-16T17:37:39Z';
+  Object.assign(originalRevision, { user: 'Photographer', parentid: 0, timestamp: uploadTime });
+  Object.assign(originalUpload, { user: 'Photographer', timestamp: uploadTime, size: 15 });
+  originalRevision.slots.main['*'] =
+    '{{Information\n|Source={{own}}\n|Author=[[User:Photographer|Photographer]]\n}}\n{{cc-zero}}';
+  reference.creatorDedication = {
+    kind: 'contemporaneous-cc0-uploader-release',
+    username: 'Photographer',
+    revision: 123,
+  };
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  for (const edits of [
+    { user: 'LaterEditor' },
+    { parentid: 122 },
+    { timestamp: '2010-07-17T00:00:00Z' },
+  ]) {
+    const saved = { ...originalRevision };
+    Object.assign(originalRevision, edits);
+    write();
+    assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+    Object.assign(originalRevision, saved);
+  }
+  page.imageinfo.push({ ...originalUpload, user: 'OtherUploader' });
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  page.imageinfo.pop();
+  delete reference.creatorDedication;
   const ownPermission =
     '{{Information\n|Source={{own}}\n|Author=[[User:Photographer|Photographer]]\n|Permission={{cc0}}\n}}\n{{cc0}}';
   page.revisions[0].slots.main['*'] = ownPermission;

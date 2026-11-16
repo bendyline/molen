@@ -1,0 +1,347 @@
+{
+  "planId": "yah_leh_monument",
+  "id": "yah_leh_monument",
+  "assetId": "molen.worldgen.structure.yah_leh_monument",
+  "title": "Yah Leh Monument",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.0459755,
+    "latitude": 13.8190312
+  },
+  "size": [
+    1.6100000143051147,
+    2.4888150691986084,
+    1.3600000143051147
+  ],
+  "actualBounds": {
+    "min": [
+      -0.8050000071525574,
+      -0.25,
+      -0.6800000071525574
+    ],
+    "max": [
+      0.8050000071525574,
+      2.2388150691986084,
+      0.6800000071525574
+    ]
+  },
+  "visualBrief": "The life-size bronze cast of Yah Leh and its inscribed garden pedestal at Sanam Chandra Palace.",
+  "nativeAxes": {
+    "x": "west",
+    "y": "up",
+    "z": "north toward main approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "sanam-chandra-palace-wp",
+      "url": "https://qualla.com/sanam-chandra-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:2b71edb34d46fc51b1174137484927e9510b1effb163a87e6b1ddb83574489a7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4r/yah_leh_monument/models/yah-leh-monument-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4r/yah_leh_monument/models/yah-leh-monument-model.mjs",
+    "level": "skyline",
+    "export": "yahLehSkyline",
+    "errorMeters": 0.09,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.67,
+        "metallic": 0.46
+      },
+      "tablet": {
+        "slot": "trim",
+        "localRef": "palette:#968273",
+        "roughness": 0.73,
+        "metallic": 0.29
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "yahLehDistrict",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.46
+          },
+          "tablet": {
+            "slot": "trim",
+            "localRef": "palette:#968273",
+            "roughness": 0.73,
+            "metallic": 0.29
+          }
+        }
+      },
+      "street": {
+        "export": "yahLehStreet",
+        "errorMeters": 0.017,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.46
+          },
+          "tablet": {
+            "slot": "trim",
+            "localRef": "palette:#968273",
+            "roughness": 0.73,
+            "metallic": 0.29
+          }
+        }
+      },
+      "closeup": {
+        "export": "yahLehCloseup",
+        "errorMeters": 0.006,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.46
+          },
+          "tablet": {
+            "slot": "trim",
+            "localRef": "palette:#968273",
+            "roughness": 0.73,
+            "metallic": 0.29
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.53,
+    "cameraYaw": 0.65,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        1.13,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named memorial point and unchanged independent lawn elevations.",
+    "anchor": [
+      100.0459755,
+      13.8190312
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.0459755,
+        13.819047369601149
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified garden grade just north of the monument."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1123345225"
+    ],
+    "source": "https://www.openstreetmap.org/node/1123345225",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d6f78d4b1142c36e7b564a8417af4ca40aeb1880a6ea8c49fc0614c427f6e67f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The exact named monument point fixes the position. The pedestal dimensions beyond the measured sign and its garden-facing orientation are estimates.",
+    "The figure is an original model of a life-size long-coated dog based on the stated standing pose, drooping ears, neck ruff and bushy tail. Fine likeness and proportions are approximate.",
+    "The 112 by 66 cm plaque is modeled at the documented size. The sixteen lines use abstract relief strokes.",
+    "The terrain grid is reproduced unchanged and footing depth is approximate."
+  ],
+  "sourceLicense": "Original geometry from primary written records, a named OpenStreetMap point and Terrarium elevations.",
+  "qaLodCameras": [
+    {
+      "name": "yah-leh-monument-skyline",
+      "position": [
+        3.05,
+        2.8,
+        4.25
+      ],
+      "lookAt": [
+        0,
+        1.13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "yah-leh-monument-district",
+      "position": [
+        3.05,
+        2.8,
+        4.25
+      ],
+      "lookAt": [
+        0,
+        1.13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "yah-leh-monument-street",
+      "position": [
+        3.05,
+        2.8,
+        4.25
+      ],
+      "lookAt": [
+        0,
+        1.13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "yah-leh-monument-closeup",
+      "position": [
+        3.05,
+        2.8,
+        4.25
+      ],
+      "lookAt": [
+        0,
+        1.13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "elegy-plaque",
+      "position": [
+        0.14,
+        1.34,
+        2.9
+      ],
+      "lookAt": [
+        0,
+        0.95,
+        0
+      ]
+    },
+    {
+      "name": "standing-cast-profile",
+      "position": [
+        2,
+        2.2,
+        0.6
+      ],
+      "lookAt": [
+        0,
+        1.87,
+        -0.04
+      ]
+    },
+    {
+      "name": "cast-reverse-and-tail",
+      "position": [
+        -1.7,
+        2.45,
+        -1.8
+      ],
+      "lookAt": [
+        0,
+        1.79,
+        -0.11
+      ]
+    },
+    {
+      "name": "garden-and-pedestal",
+      "position": [
+        -3.3,
+        2.9,
+        4.5
+      ],
+      "lookAt": [
+        0,
+        1.13,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3032,
+    "vertices": 9096,
+    "materials": 3,
+    "bytes": 441532,
+    "sha256": "sha256:a1e40e3f64e0abd7bfbdbba537738b3226bb4c410db796c434ef8973400870b3"
+  }
+}

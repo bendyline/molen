@@ -1,0 +1,462 @@
+{
+  "planId": "cathedral_of_santo_domingo",
+  "id": "cathedral_of_santo_domingo",
+  "assetId": "molen.worldgen.structure.cathedral_of_santo_domingo",
+  "title": "Cathedral of Santo Domingo",
+  "wikidataId": "Q2391099",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -69.88394,
+    "latitude": 18.47303
+  },
+  "size": [
+    98.68220138549805,
+    21.251404762268066,
+    60.04211235046387
+  ],
+  "actualBounds": {
+    "min": [
+      -53.52065658569336,
+      -1.5614042282104492,
+      -17.551179885864258
+    ],
+    "max": [
+      45.16154479980469,
+      19.690000534057617,
+      42.49093246459961
+    ]
+  },
+  "visualBrief": "The Cathedral of Santo Domingo in 1899, with its three Gothic naves and ribbed vaults, limestone chapel elevations, Renaissance west front, and historic north clock and bell stage.",
+  "nativeAxes": {
+    "x": "along nave toward the east",
+    "y": "up",
+    "z": "across nave toward the south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1899-02-01",
+    "validFrom": "1899-01-01",
+    "validUntil": "1900-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Santo_Domingo_Cathedral_(1899).jpg",
+    "https://commons.wikimedia.org/wiki/File:Bulletin_of_the_Pan_American_Union_1915-03-_Vol_40_Iss_3_(IA_sim_bulletin-of-the-pan-american-union_1915-03_40_3).pdf"
+  ],
+  "stories": [
+    {
+      "id": "cathedral-of-santo-domingo-wp",
+      "url": "https://qualla.com/cathedral-of-santo-domingo/"
+    }
+  ],
+  "referenceInputHash": "57565ab94a88b4db080902eb3cef079888f3025b8a954a7545ea832fcb18c053",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d7/d7q/cathedral_of_santo_domingo/models/cathedral-of-santo-domingo-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d7/d7q/cathedral_of_santo_domingo/models/cathedral-of-santo-domingo-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.49,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.08
+      },
+      "shadow": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.099,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.039,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "tile_ceramic",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.28,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -69.88394,
+      18.47303
+    ],
+    "heading": 0.18802746381455604,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -69.88427762643602,
+        18.472886769760006
+      ],
+      "modelHeight": 0,
+      "basis": "Original source ground outside the western façade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/41565898",
+      "way/316385777",
+      "way/316385778"
+    ],
+    "source": "https://www.openstreetmap.org/way/41565898",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:00eb97191d311a285b5af9fe1a7c2c68b7c6bb6b72517d89cfde4d995f5272f9",
+    "notes": "The preserved mapped outline is the geometric control. Roof wings, vault height, forecourt history and the historic north belfry are assessed from original photographs and period descriptions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The preserved mapped enclosure controls the outer shape. The 1899 appearance uses the Qualla north photograph, with the surviving west front corroborated by a published 1915 photograph.",
+    "The historic clock tower, external chapel roof pitches, exact portal locations and floor heights are approximate. The nineteenth-century clock mechanism is simplified.",
+    "Interior geometry depicts the load-bearing nave, aisles and ribbed vaults with simplified chapel partitions. Furnishings, tombs, stained-glass art and carved relief figures are outside the model.",
+    "The original modern elevation source remains unchanged and is used as an estimate for the historical grade."
+  ],
+  "sourceLicense": "Original geometry under repository license. The exact Qualla 1899 photograph and original March 1915 publication are public domain. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "cathedral-skyline",
+      "position": [
+        -102,
+        53,
+        -92
+      ],
+      "lookAt": [
+        -4,
+        7,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "cathedral-district",
+      "position": [
+        -102,
+        53,
+        -92
+      ],
+      "lookAt": [
+        -4,
+        7,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cathedral-street",
+      "position": [
+        -102,
+        53,
+        -92
+      ],
+      "lookAt": [
+        -4,
+        7,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "cathedral-closeup",
+      "position": [
+        -102,
+        53,
+        -92
+      ],
+      "lookAt": [
+        -4,
+        7,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "parque-colon-and-the-historic-clock",
+      "position": [
+        16,
+        13,
+        -53
+      ],
+      "lookAt": [
+        7,
+        9,
+        -12
+      ]
+    },
+    {
+      "name": "west-front-and-paired-doors",
+      "position": [
+        -48,
+        6.6,
+        -4.8
+      ],
+      "lookAt": [
+        -26.5,
+        7.9,
+        -2.4
+      ]
+    },
+    {
+      "name": "gothic-nave-ribbed-vaults",
+      "position": [
+        -21.4,
+        4.4,
+        0.4
+      ],
+      "lookAt": [
+        6,
+        10,
+        0.83
+      ]
+    },
+    {
+      "name": "apse-and-chapel-buttresses",
+      "position": [
+        65,
+        26,
+        16
+      ],
+      "lookAt": [
+        16.2,
+        9.1,
+        3.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16292,
+    "vertices": 48876,
+    "materials": 6,
+    "bytes": 2259852,
+    "sha256": "sha256:c409dd3e33efbcc776a83089411eecf4dc4da8bf73e7f2b85f70a7c25a884a30"
+  }
+}

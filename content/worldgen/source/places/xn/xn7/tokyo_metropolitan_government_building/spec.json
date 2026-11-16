@@ -1,0 +1,670 @@
+{
+  "planId": "tokyo_metropolitan_government_building",
+  "id": "tokyo_metropolitan_government_building",
+  "assetId": "molen.worldgen.structure.tokyo_metropolitan_government_building",
+  "title": "Tokyo Metropolitan Government Main Building No. 1",
+  "wikidataId": "Q111973",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.69171004999998,
+    "latitude": 35.689501449999995
+  },
+  "size": [
+    110.71660995483398,
+    250.04996061325073,
+    46.909244537353516
+  ],
+  "actualBounds": {
+    "min": [
+      -55.55331039428711,
+      -6.649966716766357,
+      -23.203475952148438
+    ],
+    "max": [
+      55.163299560546875,
+      243.39999389648438,
+      23.705768585205078
+    ]
+  },
+  "visualBrief": "Kenzo Tange’s Main Building No. 1 in Nishi-Shinjuku, with its broad granite base, closely gridded facade, two tall stepped towers and open crowns.",
+  "nativeAxes": {
+    "x": "north along the tower pair",
+    "y": "up",
+    "z": "toward the east civic plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Around_Shinjuku_11.jpg",
+    "https://commons.wikimedia.org/wiki/File:Around_Shinjuku_14.jpg",
+    "https://commons.wikimedia.org/wiki/File:Shinjuku_central_park_southwest.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokyo_Metropolitan_Government_Building_No.1_-_Shinjuku,_Tokyo_-_DSC05442.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tokyo-metropolitan-government-building-wp",
+      "url": "https://qualla.com/tokyo-metropolitan-government-building/"
+    }
+  ],
+  "referenceInputHash": "50b2957029152aafffb12c9572ea1c679c3013cb78dee03f9b56c099fd66445e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/tokyo_metropolitan_government_building/models/tokyo-metropolitan-government-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/tokyo_metropolitan_government_building/models/tokyo-metropolitan-government-model.mjs",
+    "level": "skyline",
+    "export": "tochoSkyline",
+    "errorMeters": 1.89,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.08
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.26,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tochoDistrict",
+        "errorMeters": 0.84,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.26,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "tochoStreet",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.26,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "tochoCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.26,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "metal_painted",
+    "concrete_panel",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0.29,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        88,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-gsi-review.terrain.json",
+      "heightmap": "terrain-gsi-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The plaza-side sample from Japan’s official DEM5A controls site contact. The frozen global terrain serves as a documented comparison. The architect reports 243.4 m, and Tokyo’s authority identifies 48 levels and the floor-45 public observatories. Window dimensions, stone relief, crown mechanical details and vertical relationships within the entrance block are reconstructed.",
+    "anchor": [
+      139.69171004999998,
+      35.689501449999995
+    ],
+    "heading": 1.7619784851484357,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.69199157398714,
+        35.689545704503864
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the plaza-side approach in the mapped main elevation frame."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -48.82421,
+          -9.86874
+        ],
+        [
+          -48.77961,
+          -16.42616
+        ],
+        [
+          -42.80082,
+          -16.67798
+        ],
+        [
+          -42.76816,
+          -19.60013
+        ],
+        [
+          -42.7427,
+          -22.19216
+        ],
+        [
+          -39.66471,
+          -22.27789
+        ],
+        [
+          -25.69927,
+          -22.66918
+        ],
+        [
+          -22.06919,
+          -22.7954
+        ],
+        [
+          -22.06018,
+          -19.56129
+        ],
+        [
+          -22.04536,
+          -16.94305
+        ],
+        [
+          -16.20492,
+          -16.89011
+        ],
+        [
+          14.58982,
+          -16.59348
+        ],
+        [
+          20.62121,
+          -16.53121
+        ],
+        [
+          20.71071,
+          -19.57129
+        ],
+        [
+          20.78804,
+          -22.72424
+        ],
+        [
+          24.279,
+          -22.77609
+        ],
+        [
+          38.85537,
+          -22.98467
+        ],
+        [
+          41.89027,
+          -23.02349
+        ],
+        [
+          41.88382,
+          -19.70949
+        ],
+        [
+          41.88614,
+          -16.90949
+        ],
+        [
+          48.35173,
+          -16.86448
+        ],
+        [
+          48.46639,
+          -10.36833
+        ],
+        [
+          52.05243,
+          -10.20839
+        ],
+        [
+          54.95103,
+          -10.24597
+        ],
+        [
+          54.9104,
+          -7.22405
+        ],
+        [
+          54.96696,
+          6.89516
+        ],
+        [
+          54.88667,
+          9.94623
+        ],
+        [
+          51.6958,
+          9.85357
+        ],
+        [
+          48.75988,
+          9.9668
+        ],
+        [
+          48.57335,
+          16.67172
+        ],
+        [
+          42.86234,
+          16.65305
+        ],
+        [
+          42.8,
+          19.84573
+        ],
+        [
+          42.73403,
+          23.52579
+        ],
+        [
+          39.47821,
+          23.47581
+        ],
+        [
+          23.71901,
+          23.23444
+        ],
+        [
+          20.28145,
+          23.18612
+        ],
+        [
+          20.3382,
+          19.49507
+        ],
+        [
+          20.40212,
+          16.11851
+        ],
+        [
+          15.16622,
+          16.16416
+        ],
+        [
+          -15.87822,
+          16.45462
+        ],
+        [
+          -22.21547,
+          16.50813
+        ],
+        [
+          -22.31327,
+          19.94259
+        ],
+        [
+          -22.39514,
+          23.17754
+        ],
+        [
+          -25.92185,
+          23.12118
+        ],
+        [
+          -39.55593,
+          22.91354
+        ],
+        [
+          -42.70996,
+          22.86485
+        ],
+        [
+          -42.52148,
+          19.89918
+        ],
+        [
+          -42.33562,
+          16.53701
+        ],
+        [
+          -48.55547,
+          16.68691
+        ],
+        [
+          -48.52934,
+          10.75214
+        ],
+        [
+          -51.83169,
+          10.76682
+        ],
+        [
+          -55.32266,
+          10.81867
+        ],
+        [
+          -55.37333,
+          7.27259
+        ],
+        [
+          -54.98118,
+          -6.70452
+        ],
+        [
+          -54.88667,
+          -9.94623
+        ],
+        [
+          -52.07317,
+          -9.95423
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named Main Building No. 1 footprint way 89877471."
+    },
+    "featureIds": [
+      "way/89877471",
+      "way/568387704",
+      "way/568387705",
+      "way/568387706",
+      "way/568387707",
+      "way/568387708",
+      "way/568387709",
+      "way/245962674",
+      "way/245962675",
+      "way/89878322"
+    ],
+    "source": "https://www.openstreetmap.org/way/89877471",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8ab26d6dab9ee80f48e3f5a996f5000c86d535a409d57b5fa56a8793b06d8569"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Includes standing Main Building No. 1 and its entrance facades. The separately mapped No. 2, assembly, station, sculpture, artwork and raised public footbridges remain outside model geometry.",
+    "Native footprint, setbacks and documented 243.4 m rise determine scale. Window bay spacing, exact granite patterns, pilotis, rooftop mechanical fixtures and lighting details are reconstructed.",
+    "The site grade and foundation use Japan’s official DEM5A. The frozen global DEM independently shows rooftop and urban artifacts. Runtime snaps to its ordinary terrain provider. Plaza and entrance grades remain approximate."
+  ],
+  "sourceLicense": "Original geometry with cleared CC0 source photographs. Native mapped footprint and tower parts are ODbL 1.0. Created by editing GSI Tiles (Fundamental Geospatial Data DEM5A elevation). Attribution is recorded in the frozen field.",
+  "qaLodCameras": [
+    {
+      "name": "tocho-skyline",
+      "position": [
+        191,
+        152,
+        344
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tocho-district",
+      "position": [
+        191,
+        152,
+        344
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tocho-street",
+      "position": [
+        191,
+        152,
+        344
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tocho-closeup",
+      "position": [
+        191,
+        152,
+        344
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-towers-from-the-civic-plaza",
+      "position": [
+        191,
+        152,
+        344
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ]
+    },
+    {
+      "name": "stone-entrance-and-window-grid",
+      "position": [
+        36,
+        21,
+        79
+      ],
+      "lookAt": [
+        0,
+        24,
+        14
+      ]
+    },
+    {
+      "name": "open-crowns-and-mechanical-frames",
+      "position": [
+        56,
+        253,
+        134
+      ],
+      "lookAt": [
+        1,
+        226,
+        -1
+      ]
+    },
+    {
+      "name": "west-towers-and-rear-setbacks",
+      "position": [
+        -183,
+        171,
+        -317
+      ],
+      "lookAt": [
+        0,
+        123,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22444,
+    "vertices": 67332,
+    "materials": 5,
+    "bytes": 2947772,
+    "sha256": "sha256:8941b033f875e3f2b09cd69fea438b9155fdf41283425d97051a2e0feaff3a57"
+  }
+}

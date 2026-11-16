@@ -1,15 +1,16 @@
 {
   "format": "molen/structure-readiness@1",
   "title": "Qualla compat — local 100 — verified completion ledger",
-  "policy": "A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
+  "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 100,
-    "ready": 100,
+    "ready": 10,
     "started": 100,
     "pilotsReady": 5,
-    "technicallyValidated": 100,
+    "technicallyValidated": 10,
     "publicDomainImageryVerified": 100,
-    "publicDomainFidelityReviewed": 100
+    "publicDomainFidelityReviewed": 66,
+    "primaryFactsReconstructionsVerified": 0
   },
   "candidates": [
     {
@@ -630,19 +631,26 @@
       "sourcePath": "content/worldgen/source/places/dr/dr4/eastern_state_penitentiary",
       "order": 7,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "eastern-state-penitentiary",
         "placementHash": "sha256:101e625218e4a5ac59c20d436b4c1976a514b15d5a8a57460d4be56f953fdd3e",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:62d0ced59064732b0031ea9c0339e86806d6992564df96f3f398d8e610c1e561",
-      "technicalReadiness": "ready",
+      "inputHash": "sha256:f0bce6239a3ed1a8a16f2d9e5ca531118044cd2368a8f2c2d1297ccc0abe63b3",
+      "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": true,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
@@ -684,7 +692,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -695,19 +703,26 @@
       "sourcePath": "content/worldgen/source/places/dp/dpp/fallingwater",
       "order": 8,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "fallingwater",
         "placementHash": "sha256:46e2f5a03a6f96ed1b4234360e3954c1e3b4cd938776140d8ea7683006f59e4d",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:f1884a9cf1fd3904a38c95de633682950b62160149882214b88724f5aa61f080",
-      "technicalReadiness": "ready",
+      "inputHash": "sha256:260d37106b0674c73d9f483de9b4e47da7968afb4f2bf75d0eb48b040fdfca12",
+      "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": true,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
@@ -937,7 +952,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -1148,8 +1163,11 @@
       "sourcePath": "content/worldgen/source/places/9m/9mu/hotel_del_coronado",
       "order": 13,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hotel-del-coronado",
         "placementHash": "sha256:28be603a704942b1138050ac7be7be06a696351cf57a0c6a4f6be9099bc90b7f",
@@ -1157,11 +1175,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:1f655ca274de22bcecb18e6c9130a9c68bb5811ef023962640afa97b52a3803f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1246,8 +1264,11 @@
       "sourcePath": "content/worldgen/source/places/87/87z/hangar_37",
       "order": 14,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hangar-37",
         "placementHash": "sha256:7497179e68323d7f3c3702c77fcd551793df0bcaf1b2bba5befbc24c4f48eac4",
@@ -1255,11 +1276,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e1e5ca2ead28404c358e7b161400cf073eb5e126fdcc122dcb82dfe0007d3092",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1293,8 +1314,11 @@
       "sourcePath": "content/worldgen/source/places/u3/u33/reichstag",
       "order": 15,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "reichstag",
         "placementHash": "sha256:c1a44a07b2a56387718f792d77f0052dcc24ed76ddc16b678cd38616290039e2",
@@ -1302,11 +1326,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:bd8d5b76c89db640bf0673b3095b96b44e568ce3773afd9d868d8a39a7e53a88",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1346,8 +1370,11 @@
       "sourcePath": "content/worldgen/source/places/k3/k3v/robben_island_lighthouse",
       "order": 16,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "robben-island-lighthouse",
         "placementHash": "sha256:4bf77ec50e4da3aad3538c6921f7e5078e68a5b88f11d013ef1cd1d92c41aaf8",
@@ -1355,11 +1382,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:a8e80ae28dc2598bf9de62085f77e7bb52f32ffa3097599f6de13c6c5888b6f1",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1393,8 +1420,11 @@
       "sourcePath": "content/worldgen/source/places/k3/k3v/robben_island_prison",
       "order": 17,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "robben-island-prison",
         "placementHash": "sha256:4ca7c1101c9bca3c840aced1c997ac2e7703fb2a60b94eb4c7a546518b1f9a66",
@@ -1402,11 +1432,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:2fc8450d2f3f20c98705c55326ec2e52ad00b2eec3759bcb0de01a13f6358f58",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1440,8 +1470,11 @@
       "sourcePath": "content/worldgen/source/places/9q/9q9/winchester_mystery_house",
       "order": 18,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "winchester-mystery-house",
         "placementHash": "sha256:1965abe63f40f40575c203b76ba83a1a4ff2bad53e4159513ce79d8abfb5f8b5",
@@ -1449,11 +1482,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:aec264118b7e859430038552ec203d12403dc7fed66b2a6304ee7a92ddcaf7d3",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1487,20 +1520,28 @@
       "sourcePath": "content/worldgen/source/places/u3/u33/liebermann_villa",
       "order": 19,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "liebermann-villa",
         "placementHash": "sha256:284c25780fe40f355e84e3ff616518b6a157104f8fa6335a46a576c783488a28",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:85eddc6e9723386f8a97721256769f8c547a60c886fa84162dca0007e1cf1ac7",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:bc39c7f19781eea50f225ed9de21882ca4fa786cb3206cb96fbd3520318cc792",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1561,7 +1602,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -1572,20 +1613,25 @@
       "sourcePath": "content/worldgen/source/places/dq/dqc/lincoln_memorial",
       "order": 20,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "lincoln-memorial",
         "placementHash": "sha256:e68c2e0e83997850b400b9fedbb936eb9a0bf57191ba542ff7e3b4ed6817ec61",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:0a1563acd278d76ddbb6d5567d46a59abd5b38bca9044f0c0449020393390fc1",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1625,8 +1671,11 @@
       "sourcePath": "content/worldgen/source/places/dq/dqc/jefferson_memorial",
       "order": 21,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "jefferson-memorial",
         "placementHash": "sha256:036f0c9b1e4894cc3d6d2833801145ccc18d1eb33e9ca76b3c0b79d289629f80",
@@ -1634,11 +1683,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:94dcf987bc3273450b5eebb895e06bfecf3573d76ef74de88a155be08fb0f105",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1776,20 +1825,25 @@
       "sourcePath": "content/worldgen/source/places/9t/9tb/arizona_biltmore",
       "order": 22,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "arizona-biltmore",
         "placementHash": "sha256:befa295381b88f90dc11973859b9b64d6f6220db39a5db2587f0c0b2e8225ba4",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:9ccc91ff967887b7cfe8373b3d4dce5f2af03bd901be764ffbf57d62a9cb2977",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1835,8 +1889,11 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/hotel_chelsea",
       "order": 23,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hotel-chelsea",
         "placementHash": "sha256:ea8b52cb5f5f09ae109b0263f3487db16b418528b0c701dd35d2e3ca4fe4b173",
@@ -1844,11 +1901,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:bee32d064729ebf5196ffb96671b77e495d5a55564fffeec0afdd0a8e69fc21d",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1888,8 +1945,11 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/fraunces_tavern",
       "order": 24,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "fraunces-tavern",
         "placementHash": "sha256:e5f97f12e5d2ce74641145527e6d82e91dba3377e728973779a19e2718b4578c",
@@ -1897,11 +1957,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:667bfd043eecc95505e41f8c73fcf1d9c3b605c61877ab7aeef664fb0760d8a3",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1935,20 +1995,28 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/stonewall_inn",
       "order": 25,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "stonewall-inn",
         "placementHash": "sha256:54de44221b6220ff2a208fc583454a258dffad1a2c3f71a05a1c7e87cf30e5f6",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:b9a9f942d4f181f00e51f7392f66cea1a70cc1aebc9a8b11943e6b823fe25fb7",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:737f12f7436e32d9a0f1c30e683a88758dc5fdbfbc467221eb85f7c7054b297b",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -1971,7 +2039,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -1982,20 +2050,28 @@
       "sourcePath": "content/worldgen/source/places/gc/gcp/ritz_london",
       "order": 26,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "ritz-london",
         "placementHash": "sha256:7b7511d063af140fd45e9a8222384b6e1a97085b0b353372b355d13ed90bc034",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:da48461a955023ef27862ffcbfae6f760b779789e1ade54e456d8bc9c0dfd537",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:021fcae640c531d45d5d7e229b53f2b5aa0007fbf38f4668757c97c631c1d56a",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2088,7 +2164,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2099,20 +2175,25 @@
       "sourcePath": "content/worldgen/source/places/u1/u17/hotel_des_indes",
       "order": 27,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hotel-des-indes",
         "placementHash": "sha256:8288533016e34887abe226cc693ed5fe7324f469f3ceb0d971d159e853d1cef4",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e6c20066f9a0c131a099d58392082475888e6c9020415e49b6f02feb4f11e7a8",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2152,20 +2233,28 @@
       "sourcePath": "content/worldgen/source/places/qw/qw8/hotel_majapahit",
       "order": 28,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "hotel-majapahit",
         "placementHash": "sha256:3df59adcc4981c5e6c58e8f0d5bc4b2234cd494cefbff60763e055e7b517be1a",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:fa5c3250824c41d7f94dfb945f454799e13d6917e6114b397ee37d95dde0a548",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2216,7 +2305,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2227,8 +2316,11 @@
       "sourcePath": "content/worldgen/source/places/gb/gbu/jamaica_inn",
       "order": 29,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "jamaica-inn",
         "placementHash": "sha256:165094603956b2cecd195abcccd341e709a3311165aa690e9bcb6fe4165ee904",
@@ -2236,11 +2328,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:4e16da4b3a5ab2645f704520e07d79af84a62f3f0b2352a157eeba38685db3b6",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2274,8 +2366,11 @@
       "sourcePath": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel",
       "order": 30,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "ponce-de-leon-hotel",
         "placementHash": "sha256:8dcb86f66eba2c4c197c8dd67a1490d4dedaa71dffe470cfa4e4875eb1d51ed4",
@@ -2283,11 +2378,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:2ec423fa9f60adafd91318e86b11b64d9e4df498ae5f03e3401651f182b89641",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2327,8 +2422,11 @@
       "sourcePath": "content/worldgen/source/places/c3/c3j/banff_springs_hotel",
       "order": 31,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "banff-springs-hotel",
         "placementHash": "sha256:2bb78c7372f0f027d87b89adb0b9313f81a438f5dc6ff50ef2477bb7b7226979",
@@ -2336,11 +2434,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:a300231f20b5d785b3be7626dde11b3d9093a281a3e02922e095b6d1f45a4e5c",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2510,8 +2608,11 @@
       "sourcePath": "content/worldgen/source/places/9q/9q8/palace_hotel",
       "order": 32,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "palace-hotel",
         "placementHash": "sha256:8fef26325fec205fbe74355875141d4bc4f3a09dd8ce8f4c0f2d82e0b55177ea",
@@ -2519,11 +2620,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:13db7b5356f019e21c0a21bbf9f6f57b3c89153155dea0e4371d9b267cb86c73",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2596,20 +2697,28 @@
       "sourcePath": "content/worldgen/source/places/f2/f2m/chateau_frontenac",
       "order": 33,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "chateau-frontenac",
         "placementHash": "sha256:4541e575b18b79e5a6dd6678d0d50ea24c36af31af63e2e09ff5c77674df9616",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:a24376485ab90b082d3a15d3fa9c734a3e78df23f674dfca42cbd295706954ea",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:94367f179e6e099702d9aa6459a86bb1f87d833d4c41301555d6bae785a85df1",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2656,7 +2765,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2667,20 +2776,28 @@
       "sourcePath": "content/worldgen/source/places/f2/f24/chateau_laurier",
       "order": 34,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "chateau-laurier",
         "placementHash": "sha256:31cb6fd4ee37ef6f59e0928d8934fd8d492f0a339bbd7e1dd7214a752b5d0865",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:24f07c2b2c1cd4a6e16c56075271bef1e82f8ab5557ff672dd676dfed36656ee",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2727,7 +2844,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2738,20 +2855,25 @@
       "sourcePath": "content/worldgen/source/places/dh/dhm/hemingway_house",
       "order": 35,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hemingway-house",
         "placementHash": "sha256:9e9bc07e4ca61ae9c838763f966043eaa1981bc047369c18b2399065bfd6ac8e",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:42e38eca2fd1672b2fe74629f1bff50a932f9061646f08a2fd00a3fa0d64b4e7",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2785,20 +2907,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/ennis_house",
       "order": 36,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "ennis-house",
         "placementHash": "sha256:575de73c2208d84addcc60b9c6711497571af4e93940b3726df9e08864b446a8",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:fc934c8c2b2dabcfc503a8b8b2640a03b13e1d5a800da8170d5d32340991fa00",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:1f5b4738c2e859e5b57ed70fd3274aa5e8595d7d04da8eeaffb638c56ac46edc",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2821,7 +2951,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2832,20 +2962,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/hollyhock_house",
       "order": 37,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "hollyhock-house",
         "placementHash": "sha256:fb158c8147d7a35d3036c3bd879c327b14abcf9609b3fc18fad86f0e45d1959a",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:51532a40f2ef9bcffeb9ace2120ba3753bab5ea16d4b553e0033a50a609107ca",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:e9aab82c1aa53aebf3f4c5880a37a408454e715b021a73bad360219281f9e125",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2874,7 +3012,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2885,20 +3023,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/gamble_house",
       "order": 38,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "gamble-house",
         "placementHash": "sha256:691eea905fd85a3fc12c8e60648f659fa941c2cad27f63b37bcf2b1a6e5f5e63",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:8a139fb39123113cb4fc58a33e9f65d2bdced571b5cce9ef6dafa6b471b109a6",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:9cf14d58fb06d2be3ced1b9cb52efabe2c58c509fbd927a39138224fc089bdd9",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -2960,7 +3106,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -2971,20 +3117,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/getty_villa",
       "order": 39,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "getty-villa",
         "placementHash": "sha256:645ff421300fd5aea7c3fa0fa08656bb6471e6bf67b13161efc62715356c14a1",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:82a7da68ec40fb491c09713fabbb03c8cf7831cc16044d10076007d2f0beb686",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3048,7 +3202,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3059,8 +3213,11 @@
       "sourcePath": "content/worldgen/source/places/u1/u1j/beethoven_house",
       "order": 40,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "beethoven-house",
         "placementHash": "sha256:d2c1260ea0d1ae962eb0dbbe019b9618218a775cdfbd25b62cfd505f3b493da9",
@@ -3068,11 +3225,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:f7689f235837d17f23b24ea3be8823f6042ffeaf71d7b8a23933d25808a58be4",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3112,8 +3269,11 @@
       "sourcePath": "content/worldgen/source/places/u1/u1p/bach_house",
       "order": 41,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "bach-house",
         "placementHash": "sha256:11400cebb70bcc305fe984057c05dae3957849cf5c5cf1103dfbea305c6ae322",
@@ -3121,11 +3281,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3198,20 +3358,28 @@
       "sourcePath": "content/worldgen/source/places/gc/gcq/chatsworth_house",
       "order": 42,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "chatsworth-house",
         "placementHash": "sha256:6ff3e7234caa561c82da794c5c38d1a1d965fb00503fd128538129b74e2f4889",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:a26e5dbab8ef25c2a61e61ab55a22253ee12b564b240221ff2d590346b0c5235",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:7df979886c4a654fef5fc68a4ab42560b068473ce015d96f201fa23d9f2a7eff",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3234,7 +3402,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3245,20 +3413,28 @@
       "sourcePath": "content/worldgen/source/places/gc/gcp/stowe_house",
       "order": 43,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "stowe-house",
         "placementHash": "sha256:be1608d23faab130a8516f83051ed1b0dd78252a8aea4c4f5d173a4b94a5f1eb",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:c5ae6b55c26aedf74865516ab919ab58b9e592ab22e37f208532d0e3da57508f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:f3550b07897c7d780310d26b5ec213036c544b38e58cc8832035e0aff6f01734",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3347,7 +3523,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3358,8 +3534,11 @@
       "sourcePath": "content/worldgen/source/places/r3/r3g/cadmans_cottage",
       "order": 44,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "cadmans-cottage",
         "placementHash": "sha256:35868d27463c7ffc7890036796fa71d25cf6f87d6276b5c5483eb4e4d2af163d",
@@ -3367,11 +3546,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:627744f2b33b1d25bcd971e3836c23805ec09bbc50d2a3a10841c6ffafc7a563",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3405,20 +3584,28 @@
       "sourcePath": "content/worldgen/source/places/we/wec/blue_house_hong_kong",
       "order": 45,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "blue-house-hong-kong",
         "placementHash": "sha256:b0e7a98b7351d047262f2c6ffdc33e4417377ef1376f787f63548d0abc29ec45",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:e39ea29c485588cad8f1ca334d7a82c541eabea3faf92d1f5dd748349f8fd03e",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:d9839cfb9f937d6f95db270d21b9028fe80a5c95b8921c810616b6d6a0924247",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3441,7 +3628,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3452,20 +3639,28 @@
       "sourcePath": "content/worldgen/source/places/we/wec/flagstaff_house_hong_kong",
       "order": 46,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "flagstaff-house-hong-kong",
         "placementHash": "sha256:ba2be7fe4b5580c6d9580073dd95239b243b9f911dbc85f2f1887e1f77903283",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:b1be64a6d5e677bf5dda86117a1a4f64e98ddd24903a999725e17cccb77e6953",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:4042e9f713d6e87aba0b8fd2a17ef07c762e9e88cd08e4a3d5876f911049ed14",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3488,7 +3683,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3499,20 +3694,28 @@
       "sourcePath": "content/worldgen/source/places/r3/r3d/old_parliament_house_canberra",
       "order": 47,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "old-parliament-house-canberra",
         "placementHash": "sha256:a58f02472996dcf99376f4c6319d762a1d3cb7192cdfdb3e75925255fd2ddcc1",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:ebfcb162599331e6abc2355d173a5763b0b4790bef1f1ad5dd2e647748ea3878",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3541,7 +3744,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3552,20 +3755,28 @@
       "sourcePath": "content/worldgen/source/places/r3/r3d/parliament_house_canberra",
       "order": 48,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "parliament-house-canberra",
         "placementHash": "sha256:eb2b7eec9d5a2a31c7e96474a6998824111cfe20d91c5a5e9bb2ccf5dfdc25cd",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:3ba7327aed589180e5b02e249ce2923c0adaf98958002ae6184e76567ede699e",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:26247ca18fcdcae80d050bca284cfcd7d077f34e82f4633ea11f788d399c0068",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3600,7 +3811,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -3611,8 +3822,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsq/taipei_guest_house",
       "order": 49,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "taipei-guest-house",
         "placementHash": "sha256:54a4e1602dd1bb3ac396e0a970e0c8c8cb23d92efc646851ae3b2f61aec3901a",
@@ -3620,11 +3834,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:9a61c0f9c15c2a2dec5e67f928cf171dc856966f0ad26b06ca697927d079d35d",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3737,8 +3951,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsq/taipei_story_house",
       "order": 50,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "taipei-story-house",
         "placementHash": "sha256:f83991ea290197171f8c161b40cb8f1b3a691d9fcbdc5fe990ffea6684e88d50",
@@ -3746,11 +3963,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:5221848202bddb67a0dfec7b89c2581b70d83e4dd608d0edfdde5aad28b2f7e4",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3790,8 +4007,11 @@
       "sourcePath": "content/worldgen/source/places/te/te7/gateway_of_india",
       "order": 51,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "gateway-of-india",
         "placementHash": "sha256:7cb7271fc5baf46da6a1ac77988355dbaadae3ab97fdec71aa220ff32c3250fa",
@@ -3799,11 +4019,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:dacc72d78dca675fa781caaf581dd5264dbc3d1547c292c4d16709b6f99368ed",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3849,8 +4069,11 @@
       "sourcePath": "content/worldgen/source/places/wy/wyn/hiroshima_peace_memorial",
       "order": 52,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hiroshima-peace-memorial",
         "placementHash": "sha256:54844a7b2ffa5fca9d7525ea1aa9861ac6b8ed719814a617957e4becf1ff2c47",
@@ -3858,11 +4081,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e554d64f0ec4486dad6eee24deda0758636769c48a2ba3a855a829c91ac250fd",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -3984,8 +4207,11 @@
       "sourcePath": "content/worldgen/source/places/dq/dqc/washington_monument_baltimore",
       "order": 53,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "washington-monument-baltimore",
         "placementHash": "sha256:b9a1a2c3ce1fcd883f1725f762bbd3bb1f6aa17aa287fb3a930413841210b2f2",
@@ -3993,11 +4219,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:12e6ea2603d678c6d183c4bb3bfa1658a63c4bb84fcbd624488c534e986a5686",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4037,8 +4263,11 @@
       "sourcePath": "content/worldgen/source/places/dq/dqc/phoenix_shot_tower",
       "order": 54,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "phoenix-shot-tower",
         "placementHash": "sha256:437f13461b8f7c69f14db01a0b781caf81b504e1a738451ec1f30f6113330c8e",
@@ -4046,11 +4275,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:49e7464e28a7beb8dc21abe26251c721ea3ea707fe989a0bf3c8ee1cc41c65f8",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4090,8 +4319,11 @@
       "sourcePath": "content/worldgen/source/places/sx/sxk/nusretiye_clock_tower",
       "order": 55,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "nusretiye-clock-tower",
         "placementHash": "sha256:129cd448c411c89a5ca1383eb3e55c5300d89f4ebd6737eea8a831f56b369d6e",
@@ -4099,11 +4331,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e3e436efa56180bc44d6fdffc3cfdb3d3044e4199e4ed86debc0f6e580e0a163",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4137,8 +4369,11 @@
       "sourcePath": "content/worldgen/source/places/xn/xn0/kobe_port_tower",
       "order": 56,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "kobe-port-tower",
         "placementHash": "sha256:391d6788a97c5aac8a3d1f8144b312e5a4763a08ab1877a6f7f746a9e6ca57ba",
@@ -4146,11 +4381,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:f279b3f2d61c098af45f6e6051cd9b9203ca7c76ad8d2c8add2abb7043aded39",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4235,20 +4470,28 @@
       "sourcePath": "content/worldgen/source/places/xn/xn0/kyoto_tower",
       "order": 57,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "kyoto-tower",
         "placementHash": "sha256:aee88007a61d185acb71f5d36e3e4fdb56c235bc76883a7e8032d3f5f2e9ca9d",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:568085371c2cfe2226e62ecbf4c71ec540fb6932cd07abd1479efa2274681336",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:e5714364433462229d72643a60a59e58e83a508096326cdbf864d0ba81bb2aaa",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4360,7 +4603,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -4371,20 +4614,28 @@
       "sourcePath": "content/worldgen/source/places/sx/sx0/white_tower_of_thessaloniki",
       "order": 58,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "white-tower-of-thessaloniki",
         "placementHash": "sha256:b0147d2129e2625a5029dac2cec754f4fe5ca26530b8facb6331c3ccb1cdda2e",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:2ce2151757fde413d0ee9bd05c8c0ab25e7c42b64f8d530cc8ab3ed3b0c0327f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:53123f594a75f60361ce6f0338751aaa95bd1c2d5964a799590821706a83581d",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4431,7 +4682,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -4442,8 +4693,11 @@
       "sourcePath": "content/worldgen/source/places/sw/swb/tower_of_the_winds",
       "order": 59,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "tower-of-the-winds",
         "placementHash": "sha256:52fd46a88ef02a8f33a0a1e5002d2492612c0a4e6472ff91911f9576984a594d",
@@ -4451,11 +4705,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:02e66f5c772d6b69647039acf971b727547f4fb38c3bb85964fc80baeb431849",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4513,8 +4767,11 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/grand_central_terminal",
       "order": 60,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "grand-central-terminal",
         "placementHash": "sha256:60df464b0ddc8c25acfe6daae4d1f444f876e4baeab9b6d6c2d5bbc1796347b3",
@@ -4522,11 +4779,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:04aa0f1426b811c1dfebdf61580458c247a24151262e3b4398445c8c28a32308",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4572,20 +4829,28 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/hoboken_terminal",
       "order": 61,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "hoboken-terminal",
         "placementHash": "sha256:a90c4bdbafe06d99439607d963cb2bef65b36c975f449095ed7cf052c522fc23",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:dd84ff229c6bb4b94bbe86a208a22e6f12609b9ede080dccd3e16f19ae10510a",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:c99c0246cf45a67c9f9b1a42dec647069364940ea32bf7bd91a90b0c6f4be48b",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4626,7 +4891,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -4637,8 +4902,11 @@
       "sourcePath": "content/worldgen/source/places/gc/gcj/clevedon_pier",
       "order": 62,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "clevedon-pier",
         "placementHash": "sha256:985fec440deab136c6d5cdca03dbe14a39dffb046346e0ca1a58d51d07fe7daa",
@@ -4646,11 +4914,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:2aef4af47ab420c5bf020e9986554fcb3e9722eceaa1b2b91822e74a6353a20c",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4702,20 +4970,28 @@
       "sourcePath": "content/worldgen/source/places/gc/gcj/penarth_pier",
       "order": 63,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "penarth-pier",
         "placementHash": "sha256:0c1373b90b58c5452c280d86c662da968af9f0a2d0cc525dd3b10f09d56614a0",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:5cd8721f69c488f80bb6fc56c76cc6fdbdae41cd4bae70a31fa11d946b73bdb4",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:6fcbd7cdd1e11676207adedfc159b291fa6b381749b10191f6be84ac46bfc812",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4744,7 +5020,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -4755,8 +5031,11 @@
       "sourcePath": "content/worldgen/source/places/gc/gcx/saltburn_pier",
       "order": 64,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "saltburn-pier",
         "placementHash": "sha256:6095243cb74e1ce566ebba5d90bee18ab5999d0223d9a0e74295066d48587549",
@@ -4764,11 +5043,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:cd833b1f9a7e139ec8de3afe146ccd733337faaeea3531d1266fbff2a3637b42",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4838,8 +5117,11 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/santa_monica_pier",
       "order": 65,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "santa-monica-pier",
         "placementHash": "sha256:05dd81e60b24c155c859c34e06882a0c6dbc58f712f29b8bd80e57b315026931",
@@ -4847,11 +5129,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:fd0d6222a366eb055f6deb0198d61907f30867f6fe848f9be23e2181f4e8aa6d",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4903,8 +5185,11 @@
       "sourcePath": "content/worldgen/source/places/dn/dn6/ryman_auditorium",
       "order": 66,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "ryman-auditorium",
         "placementHash": "sha256:5440b5e6f2b144eefb9e262432d128272211b63210eaa2e8dfe5514e136b1ea7",
@@ -4912,11 +5197,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:6bf9dd1f8e4379d0e668a85bc4c63641bf4909da1bb456902908514e128b1757",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -4950,8 +5235,11 @@
       "sourcePath": "content/worldgen/source/places/gc/gcp/royal_albert_hall",
       "order": 67,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "royal-albert-hall",
         "placementHash": "sha256:c8914f08669929756f9f8394420239bb5e95aaa30a3125e7abeb6e0e403eaf98",
@@ -4959,11 +5247,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:b56b36702580f30a557582222cdd341ed9ea7f9a05e3158ac304cbac5b73b166",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5015,8 +5303,11 @@
       "sourcePath": "content/worldgen/source/places/dr/dr7/apollo_theater",
       "order": 68,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "apollo-theater",
         "placementHash": "sha256:4eb821525e3f44b2f7708c82f499d2fd0d4e9293363540cda93224d0cde5f800",
@@ -5024,11 +5315,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:b5636dff42f570a62493b275cf7709d1b074f3cba0d023b333fbc85309b73386",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5062,8 +5353,11 @@
       "sourcePath": "content/worldgen/source/places/9q/9q8/castro_theatre",
       "order": 69,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "castro-theatre",
         "placementHash": "sha256:797a49b4ea46062437dd63540e043acd907195aef6069618dbc84f8cfb9ca986",
@@ -5071,11 +5365,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:0889e87ce284b01c46699cfcc05abd62e772bf7a47d12b10f0cffa777908271c",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5115,8 +5409,11 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/graumans_chinese_theatre",
       "order": 70,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "graumans-chinese-theatre",
         "placementHash": "sha256:d04601fe01e35bce7a432c65f4b1d7f9a67d1564ab128a5719405ea58a14f2c9",
@@ -5124,11 +5421,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:ecb4784ba738d9d9cfea68927b8527246619fa558ae9e209a1d6399f58d6183e",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5162,8 +5459,11 @@
       "sourcePath": "content/worldgen/source/places/9m/9mu/spreckels_organ_pavilion",
       "order": 71,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "spreckels-organ-pavilion",
         "placementHash": "sha256:109e2aab92048055d5a97002885b6821e665da84d8805b0f8714aef119842b57",
@@ -5171,11 +5471,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:edcbc6b8d98bbe014e5d0c2493795c3e793def6ff1cfc6d2536de0efbaabca7b",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5271,8 +5571,11 @@
       "sourcePath": "content/worldgen/source/places/u1/u14/belfry_of_ghent",
       "order": 72,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "belfry-of-ghent",
         "placementHash": "sha256:a627224d1c64d74e4b61406aea80bbc18c535039595c46ed442f15cf7d2a2646",
@@ -5280,11 +5583,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:11870acfc900bd4a8f807b9c3264a4712b5d57df6d34968e4bc440ca6164af28",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5330,8 +5633,11 @@
       "sourcePath": "content/worldgen/source/places/u1/u17/dom_tower_of_utrecht",
       "order": 73,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "dom-tower-of-utrecht",
         "placementHash": "sha256:cbf0b07f49a258222a393959b256ca3db69f0d3f8df134f6b91b06a36ce65098",
@@ -5339,11 +5645,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:69e02badea18e74781edf5356c1cfb0a51d2aecec01885c0220778749c3fd5ed",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5409,8 +5715,11 @@
       "sourcePath": "content/worldgen/source/places/dp/dp3/tribune_tower",
       "order": 74,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "tribune-tower",
         "placementHash": "sha256:a42b61820054595792d70e5c25decb07fd5ade9fbd4a2dbb48515d829f7592da",
@@ -5418,11 +5727,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:17b1fb79fe8e5fae6bb929656f07805ef268bbc79999fe53dc8962cf5d7e33c4",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5462,8 +5771,11 @@
       "sourcePath": "content/worldgen/source/places/dh/dhw/freedom_tower_miami",
       "order": 75,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "freedom-tower-miami",
         "placementHash": "sha256:347594790fe0f58172313238efa882a8a86d4929fe75381e21c783dba47e2db4",
@@ -5471,11 +5783,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:9e5fa414c3ff874e9563912772ee95c402617b118d6652b7d9d8199a1d150f7f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5541,8 +5853,11 @@
       "sourcePath": "content/worldgen/source/places/gc/gcp/buckingham_palace",
       "order": 76,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "buckingham-palace",
         "placementHash": "sha256:265ff3694d845de8b3f4c993ad9630f3e5a9ba38893012f5a6145a2b68b8bdeb",
@@ -5550,11 +5865,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:1a55106652bbfc90fc5fee13c537b7c139bad3fcd9d8dca3ec7e7a00f2582dfb",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5650,8 +5965,11 @@
       "sourcePath": "content/worldgen/source/places/u0/u02/chateau_de_chenonceau",
       "order": 77,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "chateau-de-chenonceau",
         "placementHash": "sha256:ea2879e23eb513a1861a1bb271e3ddd30301e41c81ebd445e3ba3d09957a7194",
@@ -5659,11 +5977,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:7673014691657ea930af772e94bf9afa385d5c876443156314d4577b534ebd65",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5709,8 +6027,11 @@
       "sourcePath": "content/worldgen/source/places/u0/u03/chateau_de_chambord",
       "order": 78,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "chateau-de-chambord",
         "placementHash": "sha256:f55da64f0443fcc59ae5bd0e62dfdaee0689e5ae780445f91ff1cf95fe70538f",
@@ -5718,11 +6039,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:5f9f6f3c1a225e99057dc8d055b726a339d2456c907f156d5d49d881ecff9dcc",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5762,20 +6083,28 @@
       "sourcePath": "content/worldgen/source/places/u3/u31/dresden_castle",
       "order": 79,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "dresden-castle",
         "placementHash": "sha256:14c3b35025a96259da9f7f8099162a953acfe78e701a2ced18515616b66cb4fb",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:2744b3d5e65eea8034685a19426f1063febf77cee749c9b0033b81bce952b9d6",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:9d7d3848494796918b4113643b2c9710d7859b64615572e265b045bb2bb59362",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5810,7 +6139,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -5821,20 +6150,28 @@
       "sourcePath": "content/worldgen/source/places/ey/eyc/sintra_national_palace",
       "order": 80,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "sintra-national-palace",
         "placementHash": "sha256:555a2a2111c3588ff7752644667978123587d4eef6ef9fbbfb8ca3b31c4a1c63",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:e9b16afa4f11c506ca6666f4b54489c9c949b1975e01793feea97466791fca98",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:afa2ba8f10b0a291746cd5d60930b79a7bcd056acf35821af3d7f95beb2308f9",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5889,7 +6226,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -5900,8 +6237,11 @@
       "sourcePath": "content/worldgen/source/places/xn/xn3/nagoya_castle",
       "order": 81,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "nagoya-castle",
         "placementHash": "sha256:b9465b70d18057a31c13279f1694dbc888be4c236f614105d0fccba4ac303aa9",
@@ -5909,11 +6249,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:2d9e629a3100e8992ed61e35ceea690f8477183c4fb7c142c8cdfce3f629b4b2",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -5975,8 +6315,11 @@
       "sourcePath": "content/worldgen/source/places/xn/xn6/matsumoto_castle",
       "order": 82,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "matsumoto-castle",
         "placementHash": "sha256:af20b7320ec93d4b0c7f05d58f2564f53a4f7a150316b480fbea5d9fc6e21901",
@@ -5984,11 +6327,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:9d446d79127c7c76992e4863fcc630b42e4f527fc6f2011fef8597f9e8bc9450",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6028,8 +6371,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsj/fort_zeelandia",
       "order": 83,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "fort-zeelandia",
         "placementHash": "sha256:421c4d4d062d634ac38ce8587dc2fe12bc33f40bcc3510870a02d0a6008810b1",
@@ -6037,11 +6383,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e1bc5caae4726702cc70a90fefed97a30b50460a3f8974188e3b07779681c78f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6075,20 +6421,28 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/castle_clinton",
       "order": 84,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "castle-clinton",
         "placementHash": "sha256:d0b6690f56b2912b1bf9df38c9d9b2fe8bc3ba9a4528b797cd1dbed1c0d91ac3",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:bad787378e236d646c760fc89214cefb264cd9dfa91d17a2795344563a368f72",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:5166b8b9503cfda8990eba7efa87ef70c213704f3e4e87885b974ea20139b15b",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6123,7 +6477,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6134,20 +6488,28 @@
       "sourcePath": "content/worldgen/source/places/de/de2/el_morro",
       "order": 85,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "el-morro",
         "placementHash": "sha256:87861c124ddcf9c3d75cad82273e3108aebd01504b3110fb7618c20dcbe95bc5",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:30c6e25f5445ebb5ba36ae0a99b42557cfba5893913b785c8b0870237ed66723",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:e99ee29674c195426f36e0a055dd214f5571790dc3e33ca1f13aea2298bbc012",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6188,7 +6550,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6199,20 +6561,30 @@
       "sourcePath": "content/worldgen/source/places/sr/sr2/trevi_fountain",
       "order": 86,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "runtime-missing-or-hash-mismatch",
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "runtime-lods-missing-stale-or-over-budget",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "trevi-fountain",
         "placementHash": "sha256:f0d105472f454b316f367ad60ef4ec499429c276eba58f3d7d6c41db8fb79aee",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:4f1d57541065f16929dd1f443962b0c155f5e66f1793e56a65bd92a87e1a2885",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:2f9b97d7d56cb6105179a1e154d79618c15a98f732db818ce2eeca1a9c270c54",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6267,7 +6639,7 @@
           },
           "additional": []
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6278,8 +6650,11 @@
       "sourcePath": "content/worldgen/source/places/ey/eyc/belem_tower",
       "order": 87,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "belem-tower",
         "placementHash": "sha256:543435c21a287fae370ad111b054a53f629d434c9510b41485db14cd92dc3aa5",
@@ -6287,11 +6662,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:c4f6415b9bcb7ad1ee38e84f8014ca0b4133014a334006fa6a355e18aa9d309c",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6331,8 +6706,11 @@
       "sourcePath": "content/worldgen/source/places/ey/eyc/jeronimos_monastery",
       "order": 88,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "jeronimos-monastery",
         "placementHash": "sha256:fbf20acf1c704e794752d73e0cebec11fa6f72d4a496f102dd54bc4c7dcab162",
@@ -6340,11 +6718,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:9a7a55ababe0bf7a35450bc172eacb2ab69d48b27e73f57060e56a4d355f4744",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6384,20 +6762,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q8/alcatraz_federal_penitentiary",
       "order": 89,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "alcatraz-federal-penitentiary",
         "placementHash": "sha256:4a67e8adf743a7a1aeb94176ca8a1b33a49155dbf8fe28bb659e05e8707f4842",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:b2fccff735d979ab521b75263093bdb90b6d0ef8568e84cc13e7c5223ec22c5c",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:4a9d01f8444eadb300f4fd2d66976914153cf8a21b6b8eb7dd7097ae9fdcd49a",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6420,7 +6806,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6431,20 +6817,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q8/alcatraz_island_lighthouse",
       "order": 90,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "alcatraz-island-lighthouse",
         "placementHash": "sha256:30712e8ea703e6e8345a5926359fe2c3dceb4f0aac733a8d41debcc2bd1a7cc6",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:c5afc1a3368d1c028f21628347831d715391a4b84a18ea668c98efacad660c86",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:87aec218ad1419ea896ce4915cf4a585e369b9460a7d6bf5ef998904d96c90fc",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6467,7 +6861,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6478,20 +6872,28 @@
       "sourcePath": "content/worldgen/source/places/dq/dqg/absecon_lighthouse",
       "order": 91,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "absecon-lighthouse",
         "placementHash": "sha256:737a3fa0dc6d49ccae4606393052c2dd661de2b9e7debb480d9804aed3fee5af",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:1519a56a936b00077b08d6da017336c1f7c119a862e2cc01c344809f6258a744",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:3dcde00c5d6382aeddb8ea7e0a00e5a8d96c6520a735f67ff0e0ca8315765bb8",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6520,7 +6922,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6531,8 +6933,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsq/presidential_office_building_taipei",
       "order": 92,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "presidential-office-building-taipei",
         "placementHash": "sha256:d197324fbfbe1660f896f1685287b82d9a829e71ca718f2515d8ea0e33617203",
@@ -6540,11 +6945,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:ef159ed9bfa4535a1b79ab82f905774127b5e09b6bb41727638da512fbb1ceb0",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6578,8 +6983,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsq/sun_yat_sen_memorial_hall_taipei",
       "order": 93,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "sun-yat-sen-memorial-hall-taipei",
         "placementHash": "sha256:5f00c43711ca6dd74dec2359c4119445871ff498541cca6e3ae8a38580e009ef",
@@ -6587,11 +6995,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:11e4ecc988effab889048074fe24bd8acffdc02e0797d0139de801d0aed72c8f",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6625,8 +7033,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsq/taipei_confucius_temple",
       "order": 94,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "taipei-confucius-temple",
         "placementHash": "sha256:4fba4b5556a71001a4a382a38fe9d81177d2bbf94763d51540de0684e5065d36",
@@ -6634,11 +7045,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:07572fe58101891ee3d4492e0c33a150b6f52273a60559257b90202643645b40",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6672,8 +7083,11 @@
       "sourcePath": "content/worldgen/source/places/ws/wsj/hayashi_department_store",
       "order": 95,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "hayashi-department-store",
         "placementHash": "sha256:baab78bbe82bdadd1322eb1b07ff05518b438d0543fd757c744addc1ab8201c2",
@@ -6681,11 +7095,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:e40c1f7396dc0ec99b86f81db30ce4ddffcb9bcecc7d5952ed328704f5a44801",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6725,20 +7139,28 @@
       "sourcePath": "content/worldgen/source/places/9q/9q5/bradbury_building",
       "order": 96,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "bradbury-building",
         "placementHash": "sha256:8854cbbf9b173eaf001c25747232db3291d2903a6810efec7517b3166504466d",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:1b5a2a4555ae2cae20b0881fac4587add1aa49cfd7c4fe236537a95b21a61834",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:d4462a9d7d138c9f39023e47083602fd1122f6e4f56fbc723c95abf2605707d6",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6761,7 +7183,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6772,20 +7194,30 @@
       "sourcePath": "content/worldgen/source/places/dr/dr5/new_york_stock_exchange",
       "order": 97,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "runtime-missing-or-hash-mismatch",
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "runtime-lods-missing-stale-or-over-budget",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "new-york-stock-exchange",
         "placementHash": "sha256:14de44ae1198a8b393064fd4850e3bba2a2572d371bf0c0356dfb5baa78e2534",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:1db0303123283e6cbecdb1a697c83afa39b3a74003beba6cd5e48e400f89290e",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:be0e3dc502333ca76083ee779966e05580c66abf8566ef5d082233a09f7c6e31",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6808,7 +7240,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6819,20 +7251,28 @@
       "sourcePath": "content/worldgen/source/places/tt/ttn/humayuns_tomb",
       "order": 98,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "humayuns-tomb",
         "placementHash": "sha256:1aefe93db8112dc09cd150f27ebf9525a0e6063dfafd191cbb84e117c09e23e8",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:0f75ae2d6860c5a45a864494543738aacff6d6e07d18d52c3477583593ddb543",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:0fd3c864bf62f50ee57dee3c1d753303d8b738e33ef769d1bbfd04da1bd6219c",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6867,7 +7307,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -6878,8 +7318,11 @@
       "sourcePath": "content/worldgen/source/places/te/te7/taj_mahal_palace_hotel",
       "order": 99,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "current-asset-render-identity-unverified"
+      ],
       "geographic": {
         "activePlacement": "taj-mahal-palace-hotel",
         "placementHash": "sha256:fe4f2126a5d7d878916b44083a02b66c1df176e45831aae482c193ab83e47ed8",
@@ -6887,11 +7330,11 @@
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
       "inputHash": "sha256:dcfe8ad14c7b7657664031ddc48ac21769fa3c823ec11e57275c650a38d548d0",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6931,20 +7374,28 @@
       "sourcePath": "content/worldgen/source/places/f2/f25/notre_dame_basilica_montreal",
       "order": 100,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "review-inputs-stale-or-missing",
+        "visual-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "geographic-review-missing-or-unbound",
+        "current-asset-render-identity-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "notre-dame-basilica-montreal",
         "placementHash": "sha256:8355b9ccc2874b79908c3d7430806df7b4b9e3330dcf159abc5ee6f526a187a7",
-        "verified": true
+        "verified": false
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": true
+        "hashBoundReviewPassed": false
       },
-      "inputHash": "sha256:5c53c171be885b2fef82b3985e550bcbcaec9a22b10e17dc18b4b04fa2a7f83e",
-      "technicalReadiness": "ready",
-      "currentRenderIdentityVerified": true,
+      "inputHash": "sha256:8a4e7a51e173e7f9bb217267be5f9085af96ab244337f0435443e10a63239388",
+      "technicalReadiness": "needs-review",
+      "currentRenderIdentityVerified": false,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
         "status": "passed",
@@ -6967,7 +7418,7 @@
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     }
   ]

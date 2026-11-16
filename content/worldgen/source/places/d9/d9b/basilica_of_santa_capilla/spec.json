@@ -1,0 +1,479 @@
+{
+  "planId": "basilica_of_santa_capilla",
+  "id": "basilica_of_santa_capilla",
+  "assetId": "molen.worldgen.structure.basilica_of_santa_capilla",
+  "title": "Basilica of Santa Capilla, Caracas",
+  "wikidataId": "Q5721924",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.91470190000001,
+    "latitude": 10.50758115
+  },
+  "size": [
+    29.176729202270508,
+    31.59999918937683,
+    35.5550491809845
+  ],
+  "actualBounds": {
+    "min": [
+      -14.984500885009766,
+      -1.5499999523162842,
+      -34.35504913330078
+    ],
+    "max": [
+      14.192228317260742,
+      30.049999237060547,
+      1.2000000476837158
+    ]
+  },
+  "visualBrief": "Caracas’s standing salmon-painted Santa Capilla, with pale Gothic mouldings, a long arcaded street wall, three west portals and the slender crowning cross.",
+  "nativeAxes": {
+    "x": "south along the entrance front",
+    "y": "up",
+    "z": "west toward the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pink_Neo-Gothic_side_facade_of_Bas%C3%ADlica_Menor_Santa_Capilla_in_Caracas%2C_Venezuela.jpg",
+    "https://commons.wikimedia.org/wiki/File:Spire_of_Bas%C3%ADlica_Menor_Santa_Capilla_behind_a_neoclassical_facade_in_Caracas%2C_Venezuela.jpg"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-santa-capilla-wp",
+      "url": "https://qualla.com/basilica-of-santa-capilla/"
+    }
+  ],
+  "referenceInputHash": "ad93bee2b11158add64daa3d5d7ebb2ec691cadac6992bda484ac0cf4faa1c91",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d9/d9b/basilica_of_santa_capilla/models/santa-capilla-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d9/d9b/basilica_of_santa_capilla/models/santa-capilla-model.mjs",
+    "level": "skyline",
+    "export": "santaCapillaSkyline",
+    "errorMeters": 0.89,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#3d4b49",
+        "roughness": 0.69,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#453a32",
+        "roughness": 0.75,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "santaCapillaDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d4b49",
+            "roughness": 0.69,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#453a32",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "santaCapillaStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d4b49",
+            "roughness": 0.69,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#453a32",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "santaCapillaCloseup",
+        "errorMeters": 0.057,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d4b49",
+            "roughness": 0.69,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#453a32",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "concrete_plain",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.32,
+    "groundY": 0,
+    "cameraYaw": -0.57,
+    "focus": {
+      "center": [
+        0,
+        11,
+        -9
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact photographer-released 2014 side elevation and spire, the documented reconstructed west portal, and text evidence for the flat concrete roofs and corridor skylights.",
+    "anchor": [
+      -66.91470190000001,
+      10.50758115
+    ],
+    "heading": -1.7771023493163753,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.9147153138677,
+        10.507583910227204
+      ],
+      "modelHeight": 0,
+      "basis": "A sample just outside the west portal midpoint on Avenida Norte 2."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -13.89227,
+          0
+        ],
+        [
+          13.89227,
+          0
+        ],
+        [
+          13.32737,
+          -34.05521
+        ],
+        [
+          0.65376,
+          -33.63931
+        ],
+        [
+          -14.33713,
+          -32.88381
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact mapped basilica footprint."
+    },
+    "featureIds": [
+      "way/213199021"
+    ],
+    "source": "https://www.openstreetmap.org/way/213199021",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ea463ff5dfb625898e89e50e2eec78b132b0b6bd3da27c28b580d170df282ec2"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The footprint is the named mapped 27.8 m entrance front and approximately 34 m principal basilica depth. Surrounding buildings and street objects are outside the model.",
+    "Two exact 2014 exterior originals control the salmon, pale mouldings, prominent Urdaneta side arches and octagonal steeple. The west portal follows the restoration architect’s description. Its opening sizes, the rose and fine sculpture use approximate profiles.",
+    "The 30.05 m cross finial height, lancet positions, unpictured roof equipment and the less visible rear elevation are working estimates. The principal roofs follow documented concrete covers and the central skylight arrangement.",
+    "The original terrain is unchanged. Local street grade, threshold levels and height against the mapped terrain remain approximate."
+  ],
+  "sourceLicense": "Original geometry from two exact CC0 photographs by Wilfredor, attributed map and terrain, and historical and conservation descriptions.",
+  "qaLodCameras": [
+    {
+      "name": "santa-capilla-skyline",
+      "position": [
+        -38,
+        23,
+        42
+      ],
+      "lookAt": [
+        0,
+        11,
+        -9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "santa-capilla-district",
+      "position": [
+        -38,
+        23,
+        42
+      ],
+      "lookAt": [
+        0,
+        11,
+        -9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "santa-capilla-street",
+      "position": [
+        -38,
+        23,
+        42
+      ],
+      "lookAt": [
+        0,
+        11,
+        -9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "santa-capilla-closeup",
+      "position": [
+        -38,
+        23,
+        42
+      ],
+      "lookAt": [
+        0,
+        11,
+        -9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-triple-portal-and-spire",
+      "position": [
+        -1.3,
+        12.2,
+        49
+      ],
+      "lookAt": [
+        0,
+        13.2,
+        -3
+      ]
+    },
+    {
+      "name": "urdaneta-north-elevation",
+      "position": [
+        -43,
+        15,
+        -28
+      ],
+      "lookAt": [
+        -10,
+        11,
+        -14.7
+      ]
+    },
+    {
+      "name": "bell-stage-and-steeple-detail",
+      "position": [
+        -23,
+        22,
+        17
+      ],
+      "lookAt": [
+        0,
+        21.6,
+        -3.3
+      ]
+    },
+    {
+      "name": "nave-roofs-and-rear",
+      "position": [
+        25,
+        32,
+        -51
+      ],
+      "lookAt": [
+        0,
+        10,
+        -17
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11968,
+    "vertices": 35904,
+    "materials": 6,
+    "bytes": 1602928,
+    "sha256": "sha256:bf8e53312ade8b34c9978fe641e4c214610d022648f13a45f4ca792fd9735200"
+  }
+}

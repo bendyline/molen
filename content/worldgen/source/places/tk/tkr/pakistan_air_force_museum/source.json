@@ -1,0 +1,68 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pakistan_air_force_museum",
+  "kind": "static-structure",
+  "title": "Pakistan Air Force Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pakistan_air_force_museum",
+        "output": "assets/places/tk/tkr/pakistan_air_force_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:57ad92134f86eae3baff7eabf41d9d0df1f7c6e34376f530c297e683113abb61"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pakistan-air-force-museum",
+        "path": "models/generate-pakistan-air-force-museum.mjs"
+      },
+      {
+        "id": "pakistan-air-force-museum-model",
+        "path": "models/pakistan-air-force-museum-model.mjs"
+      },
+      {
+        "id": "archives-gallery",
+        "path": "models/archives-gallery.mjs"
+      },
+      {
+        "id": "park-entrance-and-monument",
+        "path": "models/park-entrance-and-monument.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "reference-rights/commons-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-22490-14045.png",
+      "terrain-sources/terrarium-15-22490-14046.png",
+      "terrain-sources/terrarium-15-22491-14045.png",
+      "terrain-sources/terrarium-15-22491-14046.png",
+      "preview.png",
+      "archive-gallery-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

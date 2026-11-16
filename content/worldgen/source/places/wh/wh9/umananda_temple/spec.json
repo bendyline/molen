@@ -1,0 +1,440 @@
+{
+  "planId": "umananda_temple",
+  "id": "umananda_temple",
+  "assetId": "molen.worldgen.structure.umananda_temple",
+  "title": "Umananda Temple",
+  "wikidataId": "Q7881086",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 91.74508854999999,
+    "latitude": 26.19669055
+  },
+  "size": [
+    35.08499813079834,
+    21.03506898880005,
+    21.18208408355713
+  ],
+  "actualBounds": {
+    "min": [
+      -24.258560180664062,
+      -7.1150689125061035,
+      -10.739371299743652
+    ],
+    "max": [
+      10.826437950134277,
+      13.920000076293945,
+      10.442712783813477
+    ]
+  },
+  "visualBrief": "The Umananda island temple with a ribbed white sanctuary, entrance hall, adjoining red shrine and hilltop terrace.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-07-30",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Umannda_Temple_across_ropeway.jpg",
+    "https://commons.wikimedia.org/wiki/File:Umannda_Temple.jpg"
+  ],
+  "stories": [
+    {
+      "id": "umananda-temple-wp",
+      "url": "https://qualla.com/umananda-temple/"
+    }
+  ],
+  "referenceInputHash": "943652caeaf650cf5554c6e10a639bf3c9acfa54439601fb0b93b0fa76efe081",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wh/wh9/umananda_temple/models/umananda-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wh/wh9/umananda_temple/models/umananda-temple-model.mjs",
+    "level": "skyline",
+    "export": "templeSkyline",
+    "errorMeters": 0.64,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "slab": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.08
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeCloseup",
+        "errorMeters": 0.049,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      91.74508854999999,
+      26.19669055
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        91.74508854999999,
+        26.19669055
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified public relief field sampled at the middle of the temple footprint."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.512915561878893,
+          0.08348961788416416
+        ],
+        [
+          7.875946719436804,
+          -6.9630341490197845
+        ],
+        [
+          10.512915563298348,
+          -0.08348961827965044
+        ],
+        [
+          -7.865958198841375,
+          6.9630341490197845
+        ],
+        [
+          -9.344258914812665,
+          3.445338239974775
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "The principal mapped island temple outline."
+    },
+    "featureIds": [
+      "way/253701794",
+      "node/1579094747"
+    ],
+    "source": "https://www.openstreetmap.org/way/253701794",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c222132f786835244748106ee4419a3ee0efcb89fc162df1776ced6e23f32178",
+    "notes": "The July 2024 images constrain the white sanctuary and entrance roofs. The original DEM gives the island grade only; minor shrine locations, terrace wall and unseen lower elevations are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the July 2024 sanctuary, attached entrance hall, nearby red shrine and terrace. Island vegetation, interior spaces, and separate lower campus buildings are outside scope.",
+    "Aerial images constrain roof colors, relative heights and forecourt arrangement. The red shrine and terrace positions, lower wall details and grade are estimates.",
+    "The native Copernicus DSM gives the original island relief at approximately 28 by 31 metre sample spacing. It does not resolve the smaller courtyards and steps."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap outlines are ODbL. Both Qualla photographs are CC0 own work by Newhunterr.",
+  "qaLodCameras": [
+    {
+      "name": "umananda-skyline",
+      "position": [
+        -50.809182216110074,
+        30,
+        -18.011857275975864
+      ],
+      "lookAt": [
+        -2.583225536661053,
+        5,
+        -1.1519313463667074
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "umananda-district",
+      "position": [
+        -50.809182216110074,
+        30,
+        -18.011857275975864
+      ],
+      "lookAt": [
+        -2.583225536661053,
+        5,
+        -1.1519313463667074
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "umananda-street",
+      "position": [
+        -50.809182216110074,
+        30,
+        -18.011857275975864
+      ],
+      "lookAt": [
+        -2.583225536661053,
+        5,
+        -1.1519313463667074
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "umananda-closeup",
+      "position": [
+        -50.809182216110074,
+        30,
+        -18.011857275975864
+      ],
+      "lookAt": [
+        -2.583225536661053,
+        5,
+        -1.1519313463667074
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "island-entry-forecourt-and-sanctuary",
+      "position": [
+        -35.170147574179936,
+        11,
+        -7.941077987931209
+      ],
+      "lookAt": [
+        -5.7424167465054605,
+        5,
+        -1.012249924402888
+      ]
+    },
+    {
+      "name": "white-dome-and-red-shrine",
+      "position": [
+        11.161489916093487,
+        18,
+        -26.76604458736747
+      ],
+      "lookAt": [
+        2.769033304579077,
+        7,
+        -3.9525250863380843
+      ]
+    },
+    {
+      "name": "roofline-from-ropeway",
+      "position": [
+        -26.905726009331293,
+        34,
+        -14.320681125937895
+      ],
+      "lookAt": [
+        -2.9410490842346397,
+        4.2,
+        -2.0857205671236474
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2505,
+    "vertices": 7515,
+    "materials": 5,
+    "bytes": 474380,
+    "sha256": "sha256:9874b4a92dd49250d8e795f5a1d7f19457e2d9b7471ef4d93c1a5df6b3e8a01a"
+  }
+}

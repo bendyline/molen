@@ -1,0 +1,568 @@
+{
+  "planId": "piratini_palace",
+  "id": "piratini_palace",
+  "assetId": "molen.worldgen.structure.piratini_palace",
+  "title": "Piratini Palace",
+  "wikidataId": "Q732922",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -51.23072778,
+    "latitude": -30.03376389
+  },
+  "size": [
+    62.46078872680664,
+    28.630001068115234,
+    74.6515884399414
+  ],
+  "actualBounds": {
+    "min": [
+      -33.44211959838867,
+      -10.600000381469727,
+      -39.7263298034668
+    ],
+    "max": [
+      29.01866912841797,
+      18.030000686645508,
+      34.92525863647461
+    ]
+  },
+  "visualBrief": "The government and residential wings of the Piratini Palace in Porto Alegre, with the Ionic plaza façade and Landowski sculptures, open court and rounded rear of the residence.",
+  "nativeAxes": {
+    "x": "west along the main facade",
+    "y": "up",
+    "z": "north toward the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "piratini-palace-wp",
+      "url": "https://qualla.com/piratini-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:78da7646050c795a05899fedd266e85242bb7e0074156e43a2726737f209c510",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6f/6fe/piratini_palace/models/piratini-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6f/6fe/piratini_palace/models/piratini-palace-model.mjs",
+    "level": "skyline",
+    "export": "piratiniSkyline",
+    "errorMeters": 0.88,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.94,
+        "metallic": 0.07
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.19
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#fdfcff",
+        "roughness": 0.58,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "piratiniDistrict",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.07
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.19
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfcff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "piratiniStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.07
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.19
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfcff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "piratiniCloseup",
+        "errorMeters": 0.078,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.07
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.19
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfcff",
+            "roughness": 0.58,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "stone_marble",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.75,
+    "cameraYaw": 0.47,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -1.94,
+        7.9,
+        4.1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The preserved source terrain ties the front threshold to the plaza and exposes the lower foundations toward the rear. The written restoration describes a two-storey architectural order over the stone plinth, eight giant Ionic half columns, paired center supports, dark grilles, continuous balconies and an open balustrade. The 2022 survey gives four administrative storeys and three residential storeys, counting levels outside the principal frontage composition.",
+    "anchor": [
+      -51.23072778,
+      -30.03376389
+    ],
+    "heading": 3.042508133894006,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -51.230668214317,
+        -30.033446149418317
+      ],
+      "modelHeight": 0,
+      "basis": "Original street sample directly in front of the midline of the government wing, beyond the wall and before the plaza."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.10324,
+          -31.81042
+        ],
+        [
+          23.23133,
+          -31.60883
+        ],
+        [
+          23.20632,
+          -29.42491
+        ],
+        [
+          22.91526,
+          -3.02864
+        ],
+        [
+          16.41838,
+          -3.10993
+        ],
+        [
+          16.18565,
+          8.48038
+        ],
+        [
+          28.39867,
+          8.48564
+        ],
+        [
+          28.39532,
+          32.51526
+        ],
+        [
+          -32.82212,
+          32.51526
+        ],
+        [
+          -32.81877,
+          8.48564
+        ],
+        [
+          -21.2453,
+          8.48736
+        ],
+        [
+          -21.32422,
+          -3.89979
+        ],
+        [
+          -29.3588,
+          -3.86177
+        ],
+        [
+          -29.46152,
+          -32.0759
+        ],
+        [
+          -9.80014,
+          -31.7707
+        ],
+        [
+          -9.65881,
+          -34.24585
+        ],
+        [
+          -8.42435,
+          -36.53882
+        ],
+        [
+          -5.99362,
+          -38.39136
+        ],
+        [
+          -2.87343,
+          -38.95883
+        ],
+        [
+          0.43723,
+          -38.29232
+        ],
+        [
+          2.60075,
+          -36.69513
+        ],
+        [
+          3.8847,
+          -34.49591
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The mapped government and residential palace wings, with the open interior court preserved in the authored exterior."
+    },
+    "featureIds": [
+      "relation/2798271",
+      "way/208075872",
+      "way/444048516"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2798271",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ecf68428853e3d8c391b39c3eca250b8ac36ad67b043fe477e3692b1f5794c6f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing exterior of the government and residential wings and their open internal courtyard. Roof furniture, floor elevations, step dimensions, grille patterns, and minor rear openings are estimated.",
+    "The original terrain sets the elevation change from the plaza to the rear. Entrance height, the local sidewalk landing, and lower wing contacts are approximate.",
+    "The documented eight engaged Ionic shafts, open balustrades, coat of arms, and Landowski sculpture locations are represented by authored geometry and simplified carving. Existing public Qualla candidates were screened first. The published interior view has assumed authorship, and the remaining exterior candidates used attribution terms or lacked confirmation of the exact original publication."
+  ],
+  "sourceLicense": "Original geometry based on Rio Grande do Sul and federal architectural documentation, ODbL OpenStreetMap geography and openly attributed Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "piratini-skyline",
+      "position": [
+        64,
+        34,
+        91
+      ],
+      "lookAt": [
+        -1.94,
+        7.9,
+        4.1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "piratini-district",
+      "position": [
+        64,
+        34,
+        91
+      ],
+      "lookAt": [
+        -1.94,
+        7.9,
+        4.1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "piratini-street",
+      "position": [
+        64,
+        34,
+        91
+      ],
+      "lookAt": [
+        -1.94,
+        7.9,
+        4.1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "piratini-closeup",
+      "position": [
+        64,
+        34,
+        91
+      ],
+      "lookAt": [
+        -1.94,
+        7.9,
+        4.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "ionic-plaza-front-and-statuary",
+      "position": [
+        -6,
+        15,
+        91
+      ],
+      "lookAt": [
+        -2.2,
+        9,
+        32
+      ]
+    },
+    {
+      "name": "portico-shield-and-landowski-statues",
+      "position": [
+        -15,
+        8.3,
+        55
+      ],
+      "lookAt": [
+        -2.4,
+        6,
+        32
+      ]
+    },
+    {
+      "name": "open-courtyard-and-connecting-passages",
+      "position": [
+        27,
+        39,
+        -1
+      ],
+      "lookAt": [
+        -2,
+        3.6,
+        -4
+      ]
+    },
+    {
+      "name": "residential-oval-and-terraces",
+      "position": [
+        47,
+        28,
+        -83
+      ],
+      "lookAt": [
+        -1.8,
+        4.8,
+        -22
+      ]
+    },
+    {
+      "name": "falling-east-terrace-and-palace-side",
+      "position": [
+        -65,
+        22,
+        -37
+      ],
+      "lookAt": [
+        -1.8,
+        4.3,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25354,
+    "vertices": 76062,
+    "materials": 6,
+    "bytes": 3255572,
+    "sha256": "sha256:6561775947e67a2b1d54551ec7bdbfcc1c50e8a0833f48950e24e6a676151fcc"
+  }
+}
