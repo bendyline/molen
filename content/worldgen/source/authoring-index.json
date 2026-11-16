@@ -35804,6 +35804,58 @@
         "packages/worldgen/scripts/structure-mesh.mjs",
         "packages/worldgen/scripts/structure-source-paths.mjs"
       ]
+    },
+    {
+      "id": "worldgen-victoria-high-school-british-columbia",
+      "command": [
+        "node",
+        "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia/models/generate-victoria-high-school-british-columbia.mjs"
+      ],
+      "implementation": [
+        "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia/models/generate-victoria-high-school-british-columbia.mjs",
+        "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia/models/victoria-high-school-british-columbia-model.mjs",
+        "packages/worldgen/scripts/authored-structure-mesh.mjs",
+        "packages/worldgen/scripts/deterministic-math.mjs",
+        "packages/worldgen/scripts/deterministic-pow.mjs",
+        "packages/worldgen/scripts/embed-graph-fallbacks.mjs",
+        "packages/worldgen/scripts/evidence-text-hash.mjs",
+        "packages/worldgen/scripts/generate-motat-building.mjs",
+        "packages/worldgen/scripts/install-deterministic-math.mjs",
+        "packages/worldgen/scripts/joined-path.mjs",
+        "packages/worldgen/scripts/landmark-model-helpers.mjs",
+        "packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs",
+        "packages/worldgen/scripts/polygon-triangulation.mjs",
+        "packages/worldgen/scripts/standard-materials.mjs",
+        "packages/worldgen/scripts/structure-asset-paths.mjs",
+        "packages/worldgen/scripts/structure-mesh.mjs",
+        "packages/worldgen/scripts/structure-source-paths.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-south-australian-museum",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r1/r1f/south_australian_museum/models/generate-south-australian-museum.mjs"
+      ],
+      "implementation": [
+        "content/worldgen/source/places/r1/r1f/south_australian_museum/models/generate-south-australian-museum.mjs",
+        "content/worldgen/source/places/r1/r1f/south_australian_museum/models/south-australian-museum-model.mjs",
+        "packages/worldgen/scripts/authored-structure-mesh.mjs",
+        "packages/worldgen/scripts/deterministic-math.mjs",
+        "packages/worldgen/scripts/deterministic-pow.mjs",
+        "packages/worldgen/scripts/embed-graph-fallbacks.mjs",
+        "packages/worldgen/scripts/evidence-text-hash.mjs",
+        "packages/worldgen/scripts/generate-motat-building.mjs",
+        "packages/worldgen/scripts/install-deterministic-math.mjs",
+        "packages/worldgen/scripts/joined-path.mjs",
+        "packages/worldgen/scripts/landmark-model-helpers.mjs",
+        "packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs",
+        "packages/worldgen/scripts/polygon-triangulation.mjs",
+        "packages/worldgen/scripts/standard-materials.mjs",
+        "packages/worldgen/scripts/structure-asset-paths.mjs",
+        "packages/worldgen/scripts/structure-mesh.mjs",
+        "packages/worldgen/scripts/structure-source-paths.mjs"
+      ]
     }
   ],
   "entries": [
@@ -86564,6 +86616,28 @@
       ]
     },
     {
+      "assetId": "molen.worldgen.structure.south_australian_museum",
+      "candidateId": "south_australian_museum",
+      "title": "South Australian Museum",
+      "sourceBundle": "content/worldgen/source/places/r1/r1f/south_australian_museum/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.south_australian_museum",
+          "output": "assets/places/r1/r1f/south_australian_museum/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:48ff05365751927cd05bebfd212a67a4113378ad1ef443e6a9d566142df5b0e9"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-south-australian-museum",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "content/worldgen/source/places/r1/r1f/south_australian_museum/models/south-australian-museum-model.mjs"
+      ]
+    },
+    {
       "assetId": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
       "candidateId": "south_building_royal_observatory_greenwich",
       "title": "South Building, Royal Observatory Greenwich",
@@ -92749,6 +92823,28 @@
       "recipes": [
         "content/worldgen/source/places/r7/r7h/victoria_bridge_brisbane/models/victoria-bridge-brisbane-model.mjs",
         "packages/worldgen/scripts/victoria-bridge-brisbane-runtime-overlay.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.victoria_high_school_british_columbia",
+      "candidateId": "victoria_high_school_british_columbia",
+      "title": "Victoria High School",
+      "sourceBundle": "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.victoria_high_school_british_columbia",
+          "output": "assets/places/c2/c28/victoria_high_school_british_columbia/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:cf989373b328ae27d4db22977515eb213b5b4212685d654eee265fe782f2a241"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-victoria-high-school-british-columbia",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia/models/victoria-high-school-british-columbia-model.mjs"
       ]
     },
     {

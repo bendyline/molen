@@ -1,6 +1,6 @@
 # Qualla compat · next 500 buildings
 
-**328 of 500 recorded complete.** The Royal Palace in Luang Prabang is placed and linked. Victoria High School (British Columbia) is next. [The Royal Palace in Luang Prabang model review](research/royal-palace-luang-prabang-completion-2026-11-16.json).
+**330 of 500 recorded complete.** South Australian Museum is placed and linked. Jagannath Temple, Puri is next. [South Australian Museum model review](research/south-australian-museum-completion-2026-11-16.json).
 
 The batch spans 100 countries and eight regions. Story locations are the starting points for site research. Each target has local published public-domain or CC0 candidate imagery. Each model’s precise building, footprint, era and original references are verified during authoring. Prior batches, existing catalog matches and other-device reservations are excluded.
 
@@ -271,8 +271,8 @@ The batch spans 100 countries and eight regions. Story locations are the startin
 | 261 | [Temple of Athena Polias (Priene)](https://qualla.com/temple-of-athena-polias-priene/) | Turkey | religious | Complete |
 | 262 | [Royal Palace, Luang Prabang](https://qualla.com/royal-palace-luang-prabang/) | Laos | palace-castle-fort | Complete |
 | 263 | [Douglas City Hall](https://qualla.com/douglas-city-hall-isle-of-man/) | Isle of Man | civic-institutional | Complete |
-| 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Canada | civic-institutional | Research started |
-| 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Australia | museum-library | Queued |
+| 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Canada | civic-institutional | Complete |
+| 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Australia | museum-library | Complete |
 | 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | India | religious | Queued |
 | 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Ethiopia | palace-castle-fort | Queued |
 | 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Myanmar | religious | Queued |

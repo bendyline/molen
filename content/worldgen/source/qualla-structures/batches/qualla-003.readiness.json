@@ -4,12 +4,12 @@
   "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 500,
-    "ready": 305,
-    "started": 328,
+    "ready": 307,
+    "started": 330,
     "pilotsReady": 0,
-    "technicallyValidated": 308,
-    "publicDomainImageryVerified": 300,
-    "publicDomainFidelityReviewed": 279,
+    "technicallyValidated": 310,
+    "publicDomainImageryVerified": 302,
+    "publicDomainFidelityReviewed": 281,
     "primaryFactsReconstructionsVerified": 26,
     "acceptedCatalogModels": 1
   },
@@ -26611,41 +26611,166 @@
       "candidateId": "victoria_high_school_british_columbia",
       "backlogTargetId": "QS-065011d54782",
       "title": "Victoria High School (British Columbia)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.victoria_high_school_british_columbia",
+      "sourcePath": "content/worldgen/source/places/c2/c28/victoria_high_school_british_columbia",
       "order": 264,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "victoria-high-school-british-columbia",
+        "placementHash": "sha256:47076163449eea0bef0bfb2db4e2992acb00dd5cda2e866f76696e08306c4eea",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
-      }
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:bd53bd231002d36d32a14670e03f6f32ddd836ec7008e8e79424e6ecb68d1462",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "reference-images/victoria-daily-times-1912-09-16-page-12.jpg",
+              "sourceUrl": "https://archive.org/details/victoriadailytimes19120916/page/n11/mode/1up",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
+      },
+      "storyState": "linked-and-repeat-verified"
     },
     {
       "candidateId": "south_australian_museum",
       "backlogTargetId": "QS-48fdd276d738",
       "title": "South Australian Museum",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.south_australian_museum",
+      "sourcePath": "content/worldgen/source/places/r1/r1f/south_australian_museum",
       "order": 265,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "south-australian-museum",
+        "placementHash": "sha256:9fc96cd126aed827e0bd4cc84722e39093616d8d3048fd2043c6cbd9cca2ea51",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
-      }
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:b97efaf5bac8fc7064205bfeb8bda2f9041f08768310fe7d2edfd8f42a169829",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/r/1/f/9/south-australian-museum-wp/14-pieces-in-front-of-the-sa-m.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:14_Pieces_in_front_of_the_SA_Museum.jpg",
+            "license": "CC0",
+            "artist": "CatherineSAHistory",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [],
+            "publishedIn": [
+              {
+                "storyId": "south-australian-museum-wp",
+                "articlePath": "_c/art/r/1/f/9/south-australian-museum-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/r/1/f/9/south-australian-museum-wp/metadata.json",
+            "sha256": "d5b83681fe20d8e9f8f741273fbb36c34e8f481d5f07fe636ef7355dc72459a4"
+          },
+          {
+            "path": "_m/r/1/f/9/south-australian-museum-wp/erecting-the-new-wing-of-the-m.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erecting_the_New_Wing_of_the_Museum(GN05524).jpg",
+            "license": "CC0",
+            "artist": "State Government Photographer",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [],
+            "publishedIn": [
+              {
+                "storyId": "south-australian-museum-wp",
+                "articlePath": "_c/art/r/1/f/9/south-australian-museum-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/r/1/f/9/south-australian-museum-wp/metadata.json",
+            "sha256": "1a0126ce7062e9a66ff44aca4672fa07f5212e74349869db1c9495cd1b45577d"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/r/1/f/9/south-australian-museum-wp/14-pieces-in-front-of-the-sa-m.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:14_Pieces_in_front_of_the_SA_Museum.jpg",
+                "license": "CC0",
+                "artist": "CatherineSAHistory",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [],
+                "publishedIn": [
+                  {
+                    "storyId": "south-australian-museum-wp",
+                    "articlePath": "_c/art/r/1/f/9/south-australian-museum-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/r/1/f/9/south-australian-museum-wp/metadata.json",
+                "sha256": "d5b83681fe20d8e9f8f741273fbb36c34e8f481d5f07fe636ef7355dc72459a4"
+              },
+              {
+                "path": "_m/r/1/f/9/south-australian-museum-wp/erecting-the-new-wing-of-the-m.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erecting_the_New_Wing_of_the_Museum(GN05524).jpg",
+                "license": "CC0",
+                "artist": "State Government Photographer",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [],
+                "publishedIn": [
+                  {
+                    "storyId": "south-australian-museum-wp",
+                    "articlePath": "_c/art/r/1/f/9/south-australian-museum-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/r/1/f/9/south-australian-museum-wp/metadata.json",
+                "sha256": "1a0126ce7062e9a66ff44aca4672fa07f5212e74349869db1c9495cd1b45577d"
+              }
+            ]
+          },
+          "additional": [
+            {
+              "path": "reference-images/history-trust-gn04985.jpg",
+              "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photograph_of_South_Australian_Museum(GN04985).jpg",
+              "blockers": [],
+              "eligible": true
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
+      },
+      "storyState": "linked-and-repeat-verified"
     },
     {
       "candidateId": "jagannath_temple_puri",

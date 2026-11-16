@@ -1,8 +1,8 @@
 # Qualla compat — local 500 — completion progress
 
-**305 / 500 have current verified evidence.** 328 targets started.
+**307 / 500 have current verified evidence.** 330 targets started.
 
-308 targets have technical validation. 300 reference sets meet the public-domain Qualla imagery policy.
+310 targets have technical validation. 302 reference sets meet the public-domain Qualla imagery policy.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
 
@@ -273,8 +273,8 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 261 | [Temple of Athena Polias (Priene)](https://qualla.com/temple-of-athena-polias-priene/) | Complete | Modeled, placed and linked |
 | 262 | [Royal Palace, Luang Prabang](https://qualla.com/royal-palace-luang-prabang/) | Complete | Modeled, placed and linked |
 | 263 | [Douglas City Hall](https://qualla.com/douglas-city-hall-isle-of-man/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Not started | source-model-missing |
-| 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Not started | source-model-missing |
+| 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Complete | Modeled, placed and linked |
+| 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Complete | Modeled, placed and linked |
 | 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | Not started | source-model-missing |
 | 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Not started | source-model-missing |
 | 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Not started | source-model-missing |

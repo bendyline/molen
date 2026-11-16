@@ -6,6 +6,10 @@ import { inspectArchivedAuthorReference } from './imagery-archived-author.mjs';
 import { inspectCarterExcavationReference } from './imagery-carter-excavation.mjs';
 import { inspectChileIlustradoReference } from './imagery-chile-ilustrado.mjs';
 import { inspectDanishFortDrawingReference } from './imagery-danish-fort-drawings.mjs';
+import {
+  inspectDhakaEmbassyReference,
+  inspectNewZealandEmbassyReference,
+} from './imagery-embassy-flickr.mjs';
 import { inspectExcavationPlanReference } from './imagery-excavation-plan.mjs';
 import { inspectExpiredUsBookReference } from './imagery-expired-us-book.mjs';
 import { inspectFlickrOriginalReference } from './imagery-flickr-original.mjs';
@@ -13,10 +17,6 @@ import { inspectGettyReference } from './imagery-getty.mjs';
 import { inspectCarpenterReference } from './imagery-loc-carpenter.mjs';
 import { inspectMoranCartagenaReference } from './imagery-moran-cartagena.mjs';
 import { inspectNdlTannaReference } from './imagery-ndl-tanna.mjs';
-import {
-  inspectDhakaEmbassyReference,
-  inspectNewZealandEmbassyReference,
-} from './imagery-embassy-flickr.mjs';
 import { inspectNpsAgencyReference } from './imagery-nps-agency.mjs';
 import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
@@ -62,18 +62,23 @@ function inspectVictoriaDailyTimesPage(dir, reference) {
   const page = Object.values(record?.query?.pages ?? {})[0];
   const wiki = page?.revisions?.[0]?.slots?.main?.content ?? '';
   const eligible =
-    !!leaf && digest(leaf) === expected && plainHash(reference.sha256) === expected &&
-    !!bytes && digest(bytes) === plainHash(reference.rightsEvidence?.sha256) &&
+    !!leaf &&
+    digest(leaf) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!bytes &&
+    digest(bytes) === plainHash(reference.rightsEvidence?.sha256) &&
     record?.archive?.identifier === identifier &&
     record.archive.title === 'Victoria Daily Times (1912-09-16)' &&
     record.archive.publisher === 'University of Victoria' &&
     page?.title === 'File:Victoria Daily Times (1912-09-16) (IA victoriadailytimes19120916).pdf' &&
     page.imageinfo?.[0]?.sha1 === '895c884ac183c7181e8cd02996055c4f447af0c0' &&
     page.imageinfo?.[0]?.extmetadata?.LicenseShortName?.value === 'Public domain' &&
-    wiki.includes('{{PD-Canada}}') && wiki.includes(`{{Internet Archive link|${identifier}}}`) &&
+    wiki.includes('{{PD-Canada}}') &&
+    wiki.includes(`{{Internet Archive link|${identifier}}}`) &&
     reference.sourceUrl === `https://archive.org/details/${identifier}/page/n11/mode/1up` &&
     reference.downloadUrl === `https://archive.org/download/${identifier}/page/n11.jpg` &&
-    reference.license === 'Public domain' && reference.visuallyReviewedForThisPolicy === true &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
     reference.originalReview?.status === 'inspected' &&
     reference.originalReview?.rendition === 'original-print-scan' &&
     reference.originalReview?.publicationDate === '1912-09-16' &&
@@ -2767,6 +2772,61 @@ export function inspectMuseoEgizioArchiveReference(dir, reference) {
   };
 }
 
+function inspectHistoryTrustGlassNegative(dir, reference) {
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const record = snapshotJson(snapshot);
+  const page = Object.values(record?.query?.pages ?? {}).find(
+    (item) => item.title === `File:${reference.filename}`,
+  );
+  const info = page?.imageinfo?.[0];
+  const first = page?.revisions?.[0];
+  const body = first?.slots?.main?.content ?? '';
+  const metadata = (key) => info?.extmetadata?.[key]?.value;
+  const accession = reference.accession ?? '';
+  const blockers = [];
+  if (
+    !image ||
+    digest(image) !== plainHash(reference.sha256) ||
+    image.length !== info?.size ||
+    createHash('sha1').update(image).digest('hex') !== info?.sha1 ||
+    !snapshot ||
+    digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256)
+  )
+    blockers.push('supplemental-history-trust-original-unbound');
+  if (
+    !/^GN\d{5}$/.test(accession) ||
+    !reference.filename?.endsWith(`(${accession}).jpg`) ||
+    first?.parentid !== 0 ||
+    first.user !== 'Htsa' ||
+    info?.user !== 'Htsa' ||
+    page.imageinfo.length !== 1 ||
+    record?.continue?.iicontinue ||
+    !(Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000) ||
+    !body.includes(`|accession number   = ${accession}\n`) ||
+    !/\|institution\s*=\s*The History Trust of South Australia\s*\n/.test(body) ||
+    !/\|medium\s*=\s*Glass Negatives\s*\n/.test(body) ||
+    !/\|permission\s*=\s*\{\{cc-zero\}\}/.test(body) ||
+    !/data\.history\.sa\.gov\.au\//.test(body) ||
+    reference.sourceUrl !== info.descriptionurl ||
+    reference.downloadUrl !== info.url ||
+    !info.url.startsWith('https://upload.wikimedia.org/') ||
+    reference.artist !== 'South Australian government photographer' ||
+    plainText(metadata('Artist')) !== reference.artist ||
+    reference.license !== 'CC0' ||
+    metadata('LicenseShortName') !== 'CC0' ||
+    metadata('AttributionRequired') !== 'false' ||
+    plainText(metadata('Restrictions'))
+  )
+    blockers.push('supplemental-history-trust-item-cc0-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 export function inspectImageryInventory({
   dir,
   qualla,
@@ -2835,6 +2895,7 @@ export function inspectImageryInventory({
           'commons-nara-bureau-of-public-roads',
           'commons-presidencia-sv-cc0',
           'commons-vrt-cc0',
+          'commons-history-trust-glass-negative-cc0',
           'commons-nlc-republic-era-original-book',
           'commons-dhaka-embassy-government-photo',
         ].includes(r.origin),
@@ -2957,6 +3018,9 @@ export function inspectImageryInventory({
                                                                             ),
     );
   additionalProof.push(
+    ...additional
+      .filter((r) => r.origin === 'commons-history-trust-glass-negative-cc0')
+      .map((r) => inspectHistoryTrustGlassNegative(dir, r)),
     ...additional
       .filter((r) => r.origin === 'commons-dhaka-embassy-government-photo')
       .map((r) => inspectDhakaEmbassyReference(dir, r)),
