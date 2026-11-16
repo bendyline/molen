@@ -43,6 +43,9 @@ materials are retained.
 
 Modern surfaces place lamps along paved streets with sidewalks and at intersections. Placement
 is bounded, terrain-aware and avoids mapped buildings and water. Long blocks get fixtures at roughly 28 m intervals, alternating sides.
+Arterials (motorways, trunk and primary roads, and any road of four or more lanes) get 7.4 m
+mast arms whose heads hang over the carriageway; other streets get 5 m post-top lanterns at the
+curb. A corner lamp is a mast arm when any road at its junction is an arterial.
 Bridges, tunnels and unpaved roads do not receive inferred block lighting. Explicit
 `tags.lit: "no"` disables block lamps. The existing surface style and `details.streetlights`
 control whether fixtures are generated; historic and unlit styles keep their own choices.

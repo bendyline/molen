@@ -13,11 +13,11 @@ approvals retain their original scope and are not automatically medium-fi approv
 | --- | ---: |
 | Source GLBs authored | 989 |
 | Runtime GLBs imported | 989 |
-| Portable visual reviews passed | 976 |
-| Shared-material reviews passed | 977 |
+| Portable visual reviews passed | 977 |
+| Shared-material reviews passed | 978 |
 | Active geographic previews | 967 |
-| Declared fidelity reviews passed | 952 |
-| Complete | 950 |
+| Declared fidelity reviews passed | 953 |
+| Complete | 951 |
 | Source models still to author | 11 |
 
 ## Authored models
@@ -691,7 +691,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | lange_jan | [Långe Jan](../places/u3/u3g/lange_jan/README.md) | 26764 | Passed | Passed | Passed | Passed | Yes |
 | lange_erik | [Långe Erik](../places/u6/u6h/lange_erik/README.md) | 26710 | Passed | Passed | Passed | Passed | Yes |
 | wis_oujscie_fortress | [Wisłoujście Fortress](../places/u3/u3t/wis_oujscie_fortress/README.md) | 101942 | Pending | Pending | Pending | Pending | Pending |
-| vorontsov_lighthouse | [Vorontsov Lighthouse](../places/u8/u8m/vorontsov_lighthouse/README.md) | 53872 | Pending | Pending | Pending | Pending | Pending |
+| vorontsov_lighthouse | [Vorontsov Lighthouse](../places/u8/u8m/vorontsov_lighthouse/README.md) | 53872 | Passed | Passed | Passed | Passed | Yes |
 | california_lighthouse | [California Lighthouse](../places/d6/d6n/california_lighthouse/README.md) | 36198 | Passed | Passed | Passed | Passed | Yes |
 | cape_hatteras_lighthouse | [Cape Hatteras Lighthouse](../places/dq/dq6/cape_hatteras_lighthouse/README.md) | 136850 | Passed | Passed | Passed | Passed | Yes |
 | rumeli_feneri | [Rumeli Feneri](../places/sx/sxk/rumeli_feneri/README.md) | 21710 | Passed | Passed | Passed | Passed | Yes |

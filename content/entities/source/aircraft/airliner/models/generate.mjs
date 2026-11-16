@@ -516,7 +516,8 @@ function mainPanel(body, D) {
     line.box([0.004, H * 0.14, 0.002], [0, 0, 0], line.amber);
     line.finish();
     bindings.push(
-      { node, source: 'roll', property: 'rotation', axis: 'z', scale: 1 },
+      // The face looks along -Z, where +Z rotation is clockwise: turn against the bank.
+      { node, source: 'roll', property: 'rotation', axis: 'z', scale: -1 },
       {
         node,
         source: 'pitch',

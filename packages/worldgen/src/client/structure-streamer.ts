@@ -1,3 +1,4 @@
+import { markRenderBoundsChanged } from '@bendyline/molen-client/instancing';
 import type { AssetBounds, AssetRuntimeLod, AssetRuntimeLods } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import {
@@ -535,6 +536,9 @@ export class StructureLodStreamer implements StructureModelSource {
         instance.root.add(object);
         instance.root.remove(previous);
         instance.child = object;
+        // A level of detail is not the size of the one before it: the render group it stands in
+        // must not be culled by bounds that leave some of it out.
+        markRenderBoundsChanged(instance.root);
         instance.root.userData.landmarkLod = this.level(slot, ready.level).name;
         disposeInstance(previous);
       }

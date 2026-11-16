@@ -65,22 +65,21 @@ it('tests finite discs against parked cars and aircraft, including floating orig
     aircraft: [],
   });
   expect(hit?.point[0]).toBeCloseTo(1002.45);
+  const car = {
+    transform: {
+      pos: [2, 0, 2] as [number, number, number],
+      rot: [0, 0, 0, 1] as [number, number, number, number],
+    },
+    spec: { width: 0.5, length: 0.5, height: 2 } as VehicleSpec,
+  };
   const scene = {
     origin: new THREE.Vector3(),
     octree: { sphereIntersect: () => false as const },
-    cars: [
-      {
-        transform: {
-          pos: [2, 0, 2] as [number, number, number],
-          rot: [0, 0, 0, 1] as [number, number, number, number],
-        },
-        spec: { width: 0.5, length: 0.5, height: 2 } as VehicleSpec,
-      },
-    ],
+    cars: [car],
     aircraft: [],
   };
   expect(aircraftObstacleContacts([discProbe], scene)).toHaveLength(0);
-  scene.cars[0]!.spec.height = 4;
+  car.spec.height = 4;
   expect(aircraftObstacleContacts([discProbe], scene)).toHaveLength(1);
   expect(
     aircraftObstacleContacts([discProbe], { ...scene, cars: [], aircraft: [[2, 1, 2]] }),

@@ -1,48 +1,55 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.heidelberg_castle",
-  "sourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
-  "runtimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.heidelberg_castle",
+    "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a"
+  },
+  "sourceHash": "sha256:05fcc5c7a03d1113c527ffa5290ef21c814c2d6082f670c4f99854e0a8455e4b",
+  "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 8272,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:24b0a5f3b622159372db49892b87872c94e53fac37e7433777dc7e5d5dd2e46b",
-      "bytes": 87300,
-      "gzipBytes": 17350,
-      "triangles": 967,
-      "cpuBytes": 85868,
-      "gpuBytes": 85868,
+      "hash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
+      "bytes": 87144,
+      "gzipBytes": 17320,
+      "triangles": 965,
+      "cpuBytes": 85712,
+      "gpuBytes": 85712,
       "errorMeters": 2,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:300709b667f80f28240665800b1f2a193206e5ce81fce8737373dabf350a416d",
+      "hash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
       "bytes": 297132,
-      "gzipBytes": 69518,
+      "gzipBytes": 69502,
       "triangles": 3355,
       "cpuBytes": 290960,
       "gpuBytes": 290960,
@@ -52,9 +59,9 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:979bea53634086370afcfe55b8972485c9aa61271f9321664ad9fd3d29cb621f",
+      "hash": "sha256:86a9fd99574096a4c1ad561c711cf7e964a1c66a1dc15f9a5b66c3f2af6086d1",
       "bytes": 516040,
-      "gzipBytes": 117650,
+      "gzipBytes": 117632,
       "triangles": 5787,
       "cpuBytes": 509852,
       "gpuBytes": 509852,
@@ -64,9 +71,9 @@
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:a14448b77c9a225afd6e571806d577a1657f65a105b3edffd79185bec92c1d85",
+      "hash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
       "bytes": 668908,
-      "gzipBytes": 153206,
+      "gzipBytes": 153188,
       "triangles": 7655,
       "cpuBytes": 662720,
       "gpuBytes": 662720,
@@ -90,8 +97,11 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:d7e71d3b41eef9942147ab49d3c6b80c16524745071b84eb223c80ccc80704f5",
+      "hash": "sha256:026a1b04341f3daf994b466f9fb5439b72aa3ae7e96144cc7f6872448cd7fd8d",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -122,13 +132,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:5e97192f94d4c15c261fe5dbacf676c2b8bb1e43226d3bc0afeb9e2c9efbe176",
+      "hash": "sha256:232344dc10d10f8cb0cc186fa4749f54cf657e0c29abf2f9ca48fda593ae36d1",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -159,13 +181,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:7fdfce389537f2087689cf790bccb3047011abb59c812a7de8b073c24ff954d5",
+      "hash": "sha256:df7ef1da40c14b46699c65338507aa3339c66e7d03a015886c153f7189f52bff",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -196,13 +230,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:3a1b22ad691c9937c5dd7c3df4652939f53ea3cd4bcf2569eb582d76e7252eda",
+      "hash": "sha256:22c490b1d43f020a5015e2e16382b8ebe0eb10f3c284d1ade6c4e69fa85892c5",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -233,13 +279,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:f3534e142b5491b323ce84ba09958e76be64d3e91b27382c0860837113fa066f",
+      "hash": "sha256:0d38b165cb0567cc2fde805036a707cab27f3bf45d01f0c2a76ec0f5b72d3e2e",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -270,13 +328,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:de69e01677bee64184dbe476cc665a02fb4c51e2e3ba6a85d85ccc9b6d288dc1",
+      "hash": "sha256:326dee8147637e190d75e83f90ff053cc5aa36874051a9b7e0d201dc2ed6e751",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -307,13 +377,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:0777548f7936a9d8dfd0ee3108aa5ab17310ddd33d646e8c832411a0bc9c4041",
+      "hash": "sha256:d42a0436166319e90b10d60abb2aefa9253dd57ca8062bccd09c74f7112700c3",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -344,13 +426,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:0b944d24c3117b8018099dbe7cc82ef33cce43ea5454451fc0c12cee982b187c",
+      "hash": "sha256:2f4792b96e766504b2e12852dc931642f9706d97fabf2e46980e35214cd65454",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -381,19 +475,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:fafdc551660db1ec234656d4fc144bebeec0a196ffd62284e2f645f1efda2d24",
+      "hash": "sha256:54f788293bc54be929e09cb2338bf2b3c4732c9e1446b83e9f06920edac6db50",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -418,19 +524,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:370f80014a818ee0b033ec58f0ecfad94b520c9917bcf97facf9a252ab27aaf2",
+      "hash": "sha256:9ce892c7d02a1c83cfe2808948f288a7ca7a91f4968b40e67108ba5a8f56d32e",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -455,19 +573,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:afd636e299d207c49328e555ebb8143531a90c17392e9fe9f416a4c6c02ec4a3",
+      "hash": "sha256:4e717b1afd7da9e5b412cefe035fbf633fd2d8eb4f423f3959c0ca51953aba42",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -492,19 +622,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:c9512a74a1ee21e6d02b9021cc5d9ccbf73f23ad237e08994aab28e57d0cb2ce",
+      "hash": "sha256:6e0a9872089e42aeef3b89dc60d64128db63758495c79cc93a93c34d3dcccbbf",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -529,19 +671,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:a0083276c83c3eb714ae634af6d38ab0d5d61d3b3f6add84c1c19b0be287b5ec",
+      "hash": "sha256:feb71560d44738747fdd0140d54ff158ffebb431cabc71f1402de8561fe9e277",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 53449,
+        "triangles": 53447,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -566,13 +720,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-gate-and-broken-tower.png",
-      "hash": "sha256:4ba98e3392d33a5c8c3fd5e441f76920ea236dbd9ae462d2337cb1bae3c26e8c",
+      "hash": "sha256:71ca917b6d008c30446777a3b66bd5b11d0a81213ce956819ca90d0380e81058",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -603,13 +769,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-terrace-and-friedrich.png",
-      "hash": "sha256:850b73c606a856d5fe2ea0b41785de6a6ed79b4504eef8f5aa74f364a914ca43",
+      "hash": "sha256:6ad982bf339ba5ba3e1b5272d0da4bcb2580df4e3c31d863115601a71cd33752",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -640,13 +818,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/west-english-wing.png",
-      "hash": "sha256:144b631018afb5886437e4ad6d4f3f4f2f8c99b88e89d2e1e1eed6a808b513a7",
+      "hash": "sha256:00a677f839c820a5876182ba05a2b21ef3b6b429cb5ee0a76c58bd1ce212ee08",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -677,13 +867,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/east-ruined-wings.png",
-      "hash": "sha256:922348650ac3884f32e4e677d97c1eb64de15c1df4f5f7c7b3c1a07c22449712",
+      "hash": "sha256:af71adfefda2f9297785516f2a2356fdf8e8a1af3d0d1d498d60e2478fa5aad5",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -714,13 +916,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-facades.png",
-      "hash": "sha256:9662f211b0e334da7cb4b3bfc0f72012ee7111316730bffdcb21523b9c5cccaf",
+      "hash": "sha256:aae8e20e4beaa4bc8671a4ec0d40b2e72df97fb64d79f110601e632ac36c33a2",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -751,13 +965,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/compound-plan.png",
-      "hash": "sha256:03158993ce56e4929c79c35957fdd898566e9d773d1e9d1da9b41b2f065a4dc5",
+      "hash": "sha256:d73741bf06f2e7cdaced2363e3128f36bc771678b8bd19bd43354f2c6fa75fe0",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -788,19 +1014,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-heidelberg-skyline.png",
-      "hash": "sha256:96f65d9dcfc2b168f222cf397c3fbceb75345a6e6465a255ff934549b8d2f269",
+      "hash": "sha256:7b98f75d72a7c93eed5e72f0d200ae6f2333f136432dfc7a3b89bd723605fb28",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -825,13 +1063,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-heidelberg-district.png",
-      "hash": "sha256:c8706736fd2abf6dd528683517db1453315a7ea818a85efa9e66e8f57ef1a6a2",
+      "hash": "sha256:205036184e0ba1958daeadf9542645ab8519bcf711d7a2c9f3b29919a49f04ae",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -862,13 +1112,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-heidelberg-street.png",
-      "hash": "sha256:80a28ad17fd2a6850ae6a017d6993217897df393b77e6cf1edccce90a2f54746",
+      "hash": "sha256:41e081f5e392127bbeb7031d3d35ba6a6210a1eee21c655276934891474d358a",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:86a9fd99574096a4c1ad561c711cf7e964a1c66a1dc15f9a5b66c3f2af6086d1",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -899,13 +1161,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-heidelberg-closeup.png",
-      "hash": "sha256:e21ebe2f055a97d02d1bd2eb5ac8635c1fecdbd0c0e250e2ad9e8fb78bae0415",
+      "hash": "sha256:da9d230f909bd2ed36736da6b06be7413b6e721b6abf7e0d0735079aebcd6013",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -936,19 +1210,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:10f03649bdbc1cbe5ecf9eb844bf9408512bed5d6af5d9cfb188cc2820a497f6",
+      "hash": "sha256:35d507438819e4c26f6ece98ee73dfd53ead062b50b9913bbcc8bc382d9f373a",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:1d5e01e489726af8d11c275613c558989cb76a9afda78b34c4dfe47c7640992f",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 61721,
+        "triangles": 61719,
         "groundY": -64,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/u0/u0y/heidelberg_castle/terrain-review.terrain.json",
@@ -973,13 +1259,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:de69e01677bee64184dbe476cc665a02fb4c51e2e3ba6a85d85ccc9b6d288dc1",
+      "hash": "sha256:326dee8147637e190d75e83f90ff053cc5aa36874051a9b7e0d201dc2ed6e751",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:183c4c96afd4a95b4424e7b21de607e60f724656a7373206fece9568a4bd9961",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -1010,13 +1308,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:adaed1264ed41dd7224a7b12424c8ec7ccc5c9a5f2f8f48ecb4fd697a600eea2",
+      "hash": "sha256:763bbe48051cfe3e26e8faf165948bfd33b3a3c4433fbb9ce0d26ef4c9fed135",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:86a9fd99574096a4c1ad561c711cf7e964a1c66a1dc15f9a5b66c3f2af6086d1",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1047,13 +1357,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:c6528ab6b729b61a3d2f8810f0905d603a4aea43ed01f243c37fdaadebe19b5b",
+      "hash": "sha256:010dde82a42c8412d19a0add53594175c542fc337f172f3e9bda0ac96bbffd18",
       "state": {
+        "assetId": "molen.worldgen.structure.heidelberg_castle",
+        "runtimeHash": "sha256:b4841f491cc9d0b4747471cfc32620db7492ba03db7297c45206f20c53e45e5a",
+        "lodHash": "sha256:98f8c5f6c50035dd4865fc5ead37d036685f6847e747769f7552d60dc821e1cf",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1084,6 +1406,15 @@
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
         "contextScale": 2,
+        "reviewCenter": [
+          8.6042,
+          12.3731,
+          14.9694
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

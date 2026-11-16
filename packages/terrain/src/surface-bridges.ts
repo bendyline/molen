@@ -5,6 +5,41 @@ import { sampleTerrainLine, type TerrainSurfaceMeshBuilder } from './linear-feat
 import type { TerrainSemanticPoint } from './semantic-types';
 import type { SurfaceRoad } from './surface-network';
 
+/** Unbroken stretches of sections marked `clear`, as [start, end] distances along the road. */
+function runsOf(
+  sections: readonly { start: number; end: number; clear: boolean }[],
+): [number, number][] {
+  const runs: [number, number][] = [];
+  for (const section of sections) {
+    if (!section.clear) continue;
+    const last = runs.at(-1);
+    if (last !== undefined && Math.abs(last[1] - section.start) < 1e-6) last[1] = section.end;
+    else runs.push([section.start, section.end]);
+  }
+  return runs;
+}
+
+/**
+ * Distances from `start` to `end` to draw a straight piece between: every path vertex in
+ * between (so a piece never cuts a bend) and pieces at most `step` meters long.
+ */
+function stations(
+  distances: readonly number[],
+  start: number,
+  end: number,
+  step: number,
+): number[] {
+  const breaks = [start, ...distances.filter((d) => d > start && d < end), end];
+  const out = [start];
+  for (let i = 1; i < breaks.length; i++) {
+    const a = breaks[i - 1] as number,
+      b = breaks[i] as number;
+    const pieces = Math.max(1, Math.ceil((b - a) / step - 1e-9));
+    for (let k = 1; k <= pieces; k++) out.push(k === pieces ? b : a + ((b - a) * k) / pieces);
+  }
+  return out;
+}
+
 /** A tile fragment cannot establish the elevation of an entire bridge. Use a bank-to-bank
  * profile for complete spans and deterministic terrain clearance at clipped ends. Hosts
  * with surveyed heights can supply deckElevation (absolute world Y). */
@@ -112,8 +147,11 @@ export function appendBridgeStructure(
       prism(d, next, 0, width, -thickness, -0.06, concrete, false);
     }
   }
-  // Barriers sit outside the paved shoulder and stop where a ramp's pavement opens into
-  // the deck. Short independent samples keep the merge opening close to the actual gore.
+  // Barriers sit outside the paved shoulder and stop where a ramp's pavement opens into the
+  // deck. Short samples (2 m) keep the merge opening close to the actual gore; each unbroken
+  // stretch is then drawn as one barrier, cut at the road's bends and every `sampleSpacing`
+  // meters like the deck. A prism per 2 m sample made barriers nine-tenths of a bridge's
+  // vertices: in Seattle, half the geometry of every tile it crossed.
   for (const sign of [-1, 1]) {
     const offset = sign * (width / 2 - 0.15);
     const sections: { start: number; end: number; clear: boolean }[] = [];
@@ -132,20 +170,21 @@ export function appendBridgeStructure(
         });
       }
     }
-    for (const [i, section] of sections.entries()) {
-      if (!section.clear) continue;
-      prism(
-        section.start,
-        section.end,
-        offset,
-        0.3,
-        0,
-        road.kind === 'rail' ? 0.55 : 1.1,
-        rail,
-        true,
-        !sections[i - 1]?.clear,
-        !sections[i + 1]?.clear,
-      );
+    for (const [start, end] of runsOf(sections)) {
+      const cuts = stations(road.path.distances, start, end, sampleSpacing);
+      for (let k = 1; k < cuts.length; k++)
+        prism(
+          cuts[k - 1] as number,
+          cuts[k] as number,
+          offset,
+          0.3,
+          0,
+          road.kind === 'rail' ? 0.55 : 1.1,
+          rail,
+          true,
+          k === 1,
+          k === cuts.length - 1,
+        );
     }
   }
   // Anchor piers to a world-coordinate grid, keeping their phase through clipped tiles.
@@ -187,6 +226,8 @@ export function appendBridgeStructure(
 
 /** Meters a retaining wall stands before the ramp on it gets a parapet. */
 const PARAPET_FROM = 1;
+/** Longest straight piece of a parapet run, meters (the bridge deck's detailed spacing). */
+const PARAPET_PIECE = 6;
 
 /**
  * A lifted ground approach needs a retaining volume, not a road floating above its bank, and
@@ -206,8 +247,12 @@ export function appendBridgeApproachSupport(
   const rail = new THREE.Color('#bfc1b8');
   const halfWidth = Math.max(0.3, road.width / 2 + shoulder - 0.05);
   const guard = road.kind === 'path' ? { width: 0.1, height: 1.1 } : { width: 0.3, height: 0.9 };
-  /** Whether the previous sample drew a parapet on each side, to cap its ends. */
-  const guarded = [false, false];
+  /**
+   * Where each side has a parapet, found per sample. Each unbroken stretch is drawn afterwards as
+   * one rail, in pieces of up to PARAPET_PIECE meters (a piece per 2 m sample made parapets most
+   * of a ramp's vertices).
+   */
+  const guarded: { start: number; end: number; clear: boolean }[][] = [[], []];
   const support = (
     distance: number,
     offset: number,
@@ -233,10 +278,7 @@ export function appendBridgeApproachSupport(
         [b, B] = support(next, -halfWidth),
         [c, C] = support(next, halfWidth),
         [e, E] = support(d, halfWidth);
-      if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) {
-        guarded.fill(false);
-        continue;
-      }
+      if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) continue;
       // Pavement supplies the top. Do not duplicate internal end faces at every sample:
       // opposite coplanar normals made the retaining walls stripe at their seams.
       for (const face of [
@@ -253,22 +295,38 @@ export function appendBridgeApproachSupport(
         [1, 1, e, c, E, C],
       ] as const) {
         const tall = Math.min(top0[1] - low0[1], top1[1] - low1[1]) >= PARAPET_FROM;
-        const inner = sign * halfWidth,
-          outer = sign * (halfWidth + guard.width);
+        const outer = sign * (halfWidth + guard.width);
         const open =
           !tall ||
           [d, (d + next) / 2, next].some((station) => {
             const p = sampleTerrainLine(road.path, station, outer);
             return parapet.covered?.(p.x, p.z) === true;
           });
-        if (open) {
-          guarded[side] = false;
-          continue;
-        }
-        const at = (station: number, offset: number, lift: number): [number, number, number] => {
-          const p = sampleTerrainLine(road.path, station, offset);
-          return [p.x, heightAt(p.x, p.z) + lift, p.z];
-        };
+        guarded[side]?.push({ start: d, end: next, clear: !open });
+      }
+    }
+  }
+  if (!parapet) return;
+  const at = (station: number, offset: number, lift: number): [number, number, number] => {
+    const p = sampleTerrainLine(road.path, station, offset);
+    return [p.x, heightAt(p.x, p.z) + lift, p.z];
+  };
+  for (const [side, sign] of [
+    [0, -1],
+    [1, 1],
+  ] as const) {
+    const inner = sign * halfWidth,
+      outer = sign * (halfWidth + guard.width);
+    for (const [start, end] of runsOf(guarded[side] ?? [])) {
+      const cuts = stations(
+        road.path.distances,
+        start,
+        end,
+        Math.max(sampleSpacing, PARAPET_PIECE),
+      );
+      for (let k = 1; k < cuts.length; k++) {
+        const d = cuts[k - 1] as number,
+          next = cuts[k] as number;
         const i0 = at(d, inner, -0.08),
           i1 = at(next, inner, -0.08),
           o0 = at(d, outer, -0.08),
@@ -280,8 +338,7 @@ export function appendBridgeApproachSupport(
         builder.face([i0, I0, I1, i1], rail);
         builder.face([o0, o1, O1, O0], rail);
         builder.face([I0, O0, O1, I1], rail);
-        if (!guarded[side]) builder.face([i0, o0, O0, I0], rail);
-        guarded[side] = true;
+        if (k === 1) builder.face([i0, o0, O0, I0], rail);
       }
     }
   }

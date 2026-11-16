@@ -10,6 +10,7 @@ describe('landmark model library', () => {
       for (const ref of [
         ...Object.keys(LANDMARKS.signDesigns).map((s) => `builtin:sign.${s}`),
         'builtin:street_lamp',
+        'builtin:street_lamp.post',
         'builtin:bench',
         'builtin:bike_rack',
         'builtin:charger',

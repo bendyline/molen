@@ -619,6 +619,48 @@ it('preserves POI identity, detail and measured props independently of label min
   ).toThrow(/geometry points/);
 });
 
+it('rejoins a name Protomaps split into script runs and keeps the English name beside it', () => {
+  const poi = (id: number, properties: TestFeature['properties']): TestFeature => ({
+    id,
+    type: 1,
+    properties: { kind: 'restaurant', ...properties },
+    geometry: [[{ x: 1024, y: 1024 }]],
+  });
+  const tile = createProtomapsTerrainMvtDecoder().decode(
+    encodeTile([
+      {
+        name: 'pois',
+        features: [
+          // Latin beside Han: no space, as Japanese writes it.
+          poi(1, { name: 'CoCo', name2: '壱番屋', script2: 'Han' }),
+          // Three runs, kana and Han and Latin.
+          poi(2, {
+            name: '嵐山',
+            script: 'Han',
+            name2: 'OMOKAGE',
+            name3: 'テラス',
+            script3: 'Katakana',
+          }),
+          // Scripts that space their words keep a space at the join.
+          poi(3, { name: 'Café', name2: 'Кафе', script2: 'Cyrillic', 'name:en': 'Cafe' }),
+          // No local name: the English one stands in, and is not repeated as nameLatin.
+          poi(4, { 'name:en': 'Corner Shop' }),
+          poi(5, { name: 'ローソン', script: 'Katakana', 'name:en': 'Lawson' }),
+        ],
+      },
+    ]),
+    { address: { level: 15, x: 0, z: 0 }, content: 'all', encoding: 'mvt', layers: ['poi'] },
+  );
+  if (tile instanceof Promise) throw new Error('expected synchronous decode');
+  expect(tile.pois?.map((p) => [p.name, p.nameLatin])).toEqual([
+    ['CoCo壱番屋', undefined],
+    ['嵐山OMOKAGEテラス', undefined],
+    ['Café Кафе', 'Cafe'],
+    ['Corner Shop', undefined],
+    ['ローソン', 'Lawson'],
+  ]);
+});
+
 it('preserves windmill and named structure identity without copying arbitrary map properties', () => {
   const tile = createProtomapsTerrainMvtDecoder().decode(
     encodeTile([

@@ -329,6 +329,87 @@ describe('camera-distance instance LOD', () => {
     library.dispose();
   });
 
+  it('chooses again only once the camera could have reached a handover, with the same result', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.conifer.fir';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+      await library.prepare(ref, 'horizon'),
+    ] as const;
+    const set: PlacementSet = {
+      setId: 'firs',
+      modelRef: ref,
+      count: 2,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 40, 0, 10, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    // One batch follows the flight as a frame loop would; its twin measures at every step.
+    const policies = [0, 1].map(() => ({
+      viewportHeight: 1080,
+      maxPixelError: 2,
+      horizonPixelError: 2,
+    }));
+    const roots = policies.map((screenSpace) =>
+      createInstancedPlacementLod(set, models, {
+        cellSize: Number.POSITIVE_INFINITY,
+        screenSpace,
+        vanishPixels: 1.5,
+      }),
+    );
+    const [lod, twin] = roots.map((root) => {
+      root.updateMatrixWorld(true);
+      return root.children[0] as THREE.LOD;
+    }) as [THREE.LOD, THREE.LOD];
+    let measured = 0;
+    const scale = lod.matrixWorld.getMaxScaleOnAxis.bind(lod.matrixWorld);
+    lod.matrixWorld.getMaxScaleOnAxis = () => {
+      measured++;
+      return scale();
+    };
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    const levels = new Set<number>();
+    let steps = 0;
+    // Past the batch at 30 m and out again, 5 m a frame, the budget swinging as a host's does
+    // with height above the ground.
+    for (let x = -4_000; x <= 4_000; x += 5) {
+      const budget = 2 + 3 * (1 + Math.sin(x / 300));
+      for (const policy of policies) policy.maxPixelError = budget;
+      camera.position.set(x, 60, 30);
+      camera.updateMatrixWorld();
+      lod.update(camera);
+      (twin as unknown as { slack: number }).slack = 0;
+      twin.update(camera);
+      steps++;
+      expect(lod.getCurrentLevel(), `level at ${x} m`).toBe(twin.getCurrentLevel());
+      expect(lod.children[0]?.visible, `shown at ${x} m`).toBe(twin.children[0]?.visible);
+      levels.add(lod.getCurrentLevel());
+    }
+    // Every level was shown on the way, and most frames measured nothing.
+    expect(levels.size).toBe(4);
+    expect(measured).toBeLessThan(steps / 3);
+    // Standing still measures nothing more, and a changed budget alone still decides.
+    const settle = (budget: number): void => {
+      for (const policy of policies) policy.maxPixelError = budget;
+      lod.update(camera);
+      (twin as unknown as { slack: number }).slack = 0;
+      twin.update(camera);
+    };
+    camera.position.set(80, 60, 30);
+    camera.updateMatrixWorld();
+    settle(2);
+    measured = 0;
+    settle(2);
+    expect(measured).toBe(0);
+    const before = lod.getCurrentLevel();
+    settle(40);
+    expect(measured).toBe(1);
+    expect(lod.getCurrentLevel()).toBeGreaterThan(before);
+    expect(lod.getCurrentLevel()).toBe(twin.getCurrentLevel());
+    for (const root of roots) disposeWorldgenObject(root);
+    library.dispose();
+  });
+
   it('bounds a spread set to a grid of batches', () => {
     const material = new THREE.MeshStandardMaterial();
     const model: PreparedModel = {

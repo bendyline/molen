@@ -420,7 +420,15 @@ export function semanticTileToBatch(
       // None of these maps holds a host's piece (see `mapped`).
       const occupants = businesses.get(piece);
       if (occupants !== undefined)
-        applyBusinessAppearance(request, piece, occupants, tile, size, options.pack.archstyles);
+        applyBusinessAppearance(
+          request,
+          piece,
+          occupants,
+          tile,
+          size,
+          options.pack.archstyles,
+          options.places?.signs,
+        );
       const parkingStructure = parkingStructures.get(piece);
       const use = buildingUses.get(piece);
       if (parkingStructure !== undefined)
@@ -505,6 +513,10 @@ export function semanticTileToBatch(
         }
       : {}),
     ...(options.budgets !== undefined ? { budgets: options.budgets } : {}),
+    // Storefront names are set from the places' glyph atlas (only storefronts carry a `sign`).
+    ...(options.places?.signs !== undefined && options.features?.buildings !== false
+      ? { glyphs: options.places.signs.glyphs }
+      : {}),
     tier: geom.levelBelowMax + Math.max(0, options.tierOffset ?? 0),
     interiors: options.features?.interiors === true && geom.levelBelowMax === 0,
     ...(centreRegion !== undefined ? { regionId: centreRegion.id } : {}),

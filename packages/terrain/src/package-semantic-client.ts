@@ -53,7 +53,8 @@ export interface CreateTerrainPackageSemanticLayersOptions
   /**
    * Decode tiles as admission jobs (usually the renderer's queue, as the stream's `admission`).
    * A tile's decode runs on the main thread as its bytes arrive, and several arriving together
-   * stacked into one late frame.
+   * stacked into one late frame. For a decoder that only posts the bytes to a worker, leave it
+   * out (`createProfiledTerrainPackageSemanticLayers` does when given a `decoderWorker`).
    */
   admission?: SceneAdmission;
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
@@ -109,6 +110,9 @@ export type CreateProfiledTerrainPackageSemanticLayersOptions = Omit<
   /**
    * A worker running `installTerrainSemanticDecoderWorker`: tiles decode there rather than on
    * the main thread, where a town tile took 10-18 ms of a frame. The host owns and ends it.
+   * Decodes then go straight to the worker, whatever `admission` says: queued as admission jobs
+   * they waited behind the frame's uploads (a median 3.4 s, up to 11 s, in a city) while the
+   * worker sat idle, and every layer built from them waited too.
    */
   decoderWorker?: TerrainSemanticDecoderWorker;
 };
@@ -379,9 +383,10 @@ export async function createProfiledTerrainPackageSemanticLayers(
       'terrain package semantic sidecars need a supported profile or an explicit decoder',
     );
   }
-  const { decoderWorker, ...rest } = options;
+  const { decoderWorker, admission, ...rest } = options;
   return createTerrainPackageSemanticLayers(pkg, {
     ...rest,
+    ...(decoderWorker === undefined && admission !== undefined ? { admission } : {}),
     decoder:
       decoderWorker !== undefined
         ? createTerrainSemanticDecoderWorker(decoderWorker)

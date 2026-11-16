@@ -698,6 +698,8 @@ function canyonContact(o, c) {
         }
       const [ax, ay] = v.at(-1),
         [bx, by] = w.at(-1);
+      // The collar's outer walls and end caps face away from the canyon, unlike the bank slopes.
+      // Retained terrain buries them in place; review stages show them.
       q(
         o,
         c,
@@ -708,7 +710,7 @@ function canyonContact(o, c) {
           [ax, -fullHeight, a.z],
         ],
         'rockDark',
-        [-side, 0, 0],
+        [side, 0, 0],
       );
     }
   }
@@ -730,7 +732,7 @@ function canyonContact(o, c) {
         [lo, f, z],
       ],
       'rockDark',
-      [0, 0, -side],
+      [0, 0, side],
     );
     for (const bank of [-1, 1]) {
       const section = levels(p, bank);
@@ -747,7 +749,7 @@ function canyonContact(o, c) {
             [a, -fullHeight, z],
           ],
           'rockDark',
-          [0, 0, -side],
+          [0, 0, side],
         );
       }
     }

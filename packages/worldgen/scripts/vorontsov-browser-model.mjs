@@ -59,7 +59,8 @@ function detail(out, mode) {
         [b[0], y1, b[1]],
         [a[0], y1, a[1]],
       ];
-      if (signed < 0) ps.reverse();
+      // Unreversed, the wall faces the edge's left: outward only for a clockwise (x, z) outline.
+      if (signed > 0) ps.reverse();
       quad(out, slot, ps, normalFor(...ps.slice(0, 3)), color);
     }
   }
@@ -463,7 +464,8 @@ function polygonSlab(out, slot, p, y0, y1, color, skipEdge = () => false) {
       [b[0], y1, b[1]],
       [a[0], y1, a[1]],
     ];
-    if (signed < 0) ps.reverse();
+    // Same facing rule as the detailed levels' slab walls.
+    if (signed > 0) ps.reverse();
     quad(out, slot, ps, normalFor(...ps.slice(0, 3)), color);
   }
 }

@@ -748,7 +748,7 @@ function cockpit412(root, m, sections) {
       for (let i = -2; i <= 2; i++)
         hd.rod([-0.035, i * 0.014, -0.003], [0.035, i * 0.014, -0.003], 0.0015, hd.ivory);
       hd.finish();
-      bindings.push({ node: h.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 });
+      bindings.push({ node: h.name, source: 'roll', property: 'rotation', axis: 'z', scale: -1 });
       d.rod([x - radius * 0.7, y, z - 0.012], [x + radius * 0.7, y, z - 0.012], 0.0025, d.amber);
     } else {
       const n = group(panelRoot, `412-needle-${u}-${v}`, [x, y, z - 0.008]),

@@ -185,7 +185,9 @@ it.each([
       0,
     );
     scene.updateMatrixWorld(true);
-    expect(ball.rotation.x * direction).toBeGreaterThan(0.01);
+    // Nose up drops the pilot-facing front of the horizon below the fixed symbol (more sky).
+    const front = new Vector3(0, 0, -0.01).applyQuaternion(ball.quaternion);
+    expect(front.y * direction).toBeLessThan(-1e-4);
     expect(ball.rotation.z * direction).toBeLessThan(-0.1);
     expect(symbol.getWorldPosition(new Vector3()).distanceTo(rest)).toBeLessThan(1e-8);
   }

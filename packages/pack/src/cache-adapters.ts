@@ -70,6 +70,12 @@ export interface CachingRangeReaderOptions {
    * 4 MiB), so a small pack costs one request on its first visit and none after.
    */
   wholeBelow?: number;
+  /**
+   * The file is only ever read whole (an unzipped pack's files): the spans the cache is missing
+   * come from one request for the whole file, however large. Over HTTP that request carries no
+   * Range (see `urlRangeReader`), so a CDN can compress it: a pack's JSON is a twentieth the size.
+   */
+  wholeFile?: boolean;
 }
 
 /**
@@ -83,23 +89,36 @@ export function cachingRangeReader(
   options: CachingRangeReaderOptions = {},
 ): RangeReader {
   const wholeBelow = options.wholeBelow ?? 4 * 1024 * 1024;
+  // With `wholeFile`, the one request a read's missing spans share (cleared when the read ends).
+  let fetching: Promise<Uint8Array> | undefined;
   // A PackChangedError from the reader makes the cache drop this archive's bytes.
   const handle = cache.open(
     { ...archive, size: archive.size ?? reader.size },
-    async (offset, length, signal) => ({ bytes: await reader.read(offset, length, signal) }),
+    async (offset, length, signal) => {
+      if (options.wholeFile !== true) return { bytes: await reader.read(offset, length, signal) };
+      fetching ??= reader.read(0, reader.size, signal).catch((error: unknown) => {
+        fetching = undefined;
+        throw error;
+      });
+      return { bytes: (await fetching).subarray(offset, offset + length) };
+    },
   );
   let whole: Promise<unknown> | undefined;
   return {
     size: reader.size,
     read: async (offset, length, signal) => {
-      if (reader.size <= wholeBelow) {
-        whole ??= handle.read(0, reader.size).catch((error: unknown) => {
-          whole = undefined;
-          throw error;
-        });
-        await whole;
+      try {
+        if (reader.size <= wholeBelow) {
+          whole ??= handle.read(0, reader.size).catch((error: unknown) => {
+            whole = undefined;
+            throw error;
+          });
+          await whole;
+        }
+        return (await handle.read(offset, length, signal)).bytes;
+      } finally {
+        fetching = undefined;
       }
-      return (await handle.read(offset, length, signal)).bytes;
     },
   };
 }

@@ -48,8 +48,7 @@ export async function inspectLocalCollection(entry, options, inspectMember) {
     const collection = doc.collections.find((c) => c.id === entry.modelIdentity);
     const members = entry.requiredMembers ?? [];
     if (
-      !collection ||
-      collection.identityKind !== 'site-members' ||
+      collection?.identityKind !== 'site-members' ||
       !members.length ||
       members.some((m) => m.collectionSourcePath || m.requiredMembers?.length) ||
       !same(collection.members.map((m) => m.id).sort(), members.map((m) => m.modelIdentity).sort())

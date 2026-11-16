@@ -13,7 +13,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
 import {
   embedCockpitTextures,
@@ -827,7 +827,11 @@ function boomHalf(sta, wl) {
     r = clamp(Math.abs(wl - s.center) / a, 0, 1);
   return s.breadth * Math.pow(1 - Math.pow(r, n), 1 / n);
 }
-/** Close a set of rings, each the same length, into one smooth indexed surface. */
+/**
+ * Close a set of rings, each the same length, into one smooth indexed surface. The faces point
+ * outward when each ring runs clockwise as seen from beyond the last ring, looking back at the
+ * first; a counterclockwise ring turns the surface inside out (back-face culled from outside).
+ */
 function ringSurface(parent, name, rings, material) {
   const n = rings[0].length,
     positions = rings.flat(2),
@@ -856,8 +860,9 @@ function boom(parent) {
     rings = stations.map((sta) => {
       const s = boomSection(sta);
       return Array.from({ length: n }, (_, i) => {
-        // Clockwise seen from behind, so computed normals face outward.
-        const a = (i * Math.PI * 2) / n,
+        // Clockwise seen from behind (crown, then the right side, where X is negative), so the
+        // faces point outward.
+        const a = (-i * Math.PI * 2) / n,
           c = Math.cos(a),
           z = Math.sin(a),
           up = c >= 0,
@@ -941,7 +946,8 @@ function pylon(parent) {
       half = (back - front) / 2,
       recess = 8 * clamp((nominal - 66) / 5, 0, 1);
     return Array.from({ length: n }, (_, i) => {
-      const a = (i * Math.PI * 2) / n,
+      // Clockwise seen from above (front, then the right side), so the faces point outward.
+      const a = (-i * Math.PI * 2) / n,
         c = Math.cos(a),
         z = Math.sin(a),
         u = signPow(c, 2 / 5),
@@ -1237,7 +1243,9 @@ function strut(parent, name, top, foot, material = olive) {
   const n = 18,
     rings = stations.map(([t, c, w]) =>
       Array.from({ length: n }, (_, i) => {
-        const v = (i * Math.PI * 2) / n,
+        // Leading edge, then the side away from `width`: clockwise seen from the foot, so the
+        // faces point outward.
+        const v = (-i * Math.PI * 2) / n,
           s = Math.sin(v);
         return a
           .clone()
@@ -1288,10 +1296,45 @@ function skids(parent) {
     }
   }
 }
+/** Split every triangle into four, `levels` times, interpolating every attribute. */
+function subdivide(geometry, levels) {
+  let result = geometry.index ? geometry.toNonIndexed() : geometry;
+  for (let level = 0; level < levels; level++) {
+    const next = new T.BufferGeometry();
+    for (const [key, attribute] of Object.entries(result.attributes)) {
+      const size = attribute.itemSize,
+        vertex = (i) => Array.from(attribute.array.subarray(i * size, (i + 1) * size)),
+        mid = (p, q) => p.map((v, k) => (v + q[k]) / 2),
+        values = [];
+      for (let i = 0; i < attribute.count; i += 3) {
+        const a = vertex(i),
+          b = vertex(i + 1),
+          c = vertex(i + 2),
+          ab = mid(a, b),
+          bc = mid(b, c),
+          ca = mid(c, a);
+        // Three corner triangles and the middle one, each wound like its parent.
+        for (const child of [
+          [a, ab, ca],
+          [ab, b, bc],
+          [ca, bc, c],
+          [ab, bc, ca],
+        ])
+          values.push(...child.flat());
+      }
+      next.setAttribute(key, new T.Float32BufferAttribute(values, size));
+    }
+    result = next;
+  }
+  return mergeVertices(result);
+}
 /** Map flat lettering, in its local XY, onto a side of the airframe. */
 function wrapText(parent, name, value, sta, wl, side, pixel, half, slope = 0) {
-  const object = text(parent, name, value, 0, 0, 0, pixel, dark),
-    positions = object.geometry.getAttribute('position');
+  const object = text(parent, name, value, 0, 0, 0, pixel, dark);
+  // Each glyph is one flat quad. Wrapped by its corners alone, the middle of a tall glyph cuts
+  // under the boom's curve (about 6 mm on the stencil); a 4 x 4 grid per glyph follows it.
+  object.geometry = subdivide(object.geometry, 2);
+  const positions = object.geometry.getAttribute('position');
   for (let i = 0; i < positions.count; i++) {
     const lx = positions.getX(i),
       ly = positions.getY(i),

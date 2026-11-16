@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-17,261 triangles; 42,405 vertices; 8 material groups; 1,738,288 bytes. Native bounds: -65.497, 0.000, -33.200 to 68.560, 365.800, 30.857. Source hash: `sha256:646fdb37439b9e6b708a91214f03919d595d3b4c6f42202adebcbeced99e4225`.
+17,261 triangles; 42,405 vertices; 8 material groups; 1,738,288 bytes. Native bounds: -65.497, 0.000, -33.200 to 68.560, 365.800, 30.857. Source hash: `sha256:e0d5fb852e0c300a5e12348d5b7189ac57d71cfdb8288e4090c917f144f570c6`.
 
 {"up":"+Y","longitudinal":"+X towardSixthAvenue","front":"-Z retained theatre toward43rdStreet; tower canopy+X","origin":"Ground-contact center of mapped whole block"}
 

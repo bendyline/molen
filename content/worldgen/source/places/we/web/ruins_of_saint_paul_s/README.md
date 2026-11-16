@@ -20,4 +20,4 @@ Six patinated saints use statically baked public Molen figure anatomy under orig
 
 Fixed front point[0,4.5]is defined before terrain acquisition. Intrinsic footings extend.25m below datum; model/host-terrain contact and precise thresholds remain unverified. No whole-site slab or ground flattening.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ruins_of_saint_paul_s`. Add `--check` to verify exact regeneration. 58227 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ruins_of_saint_paul_s`. Add `--check` to verify exact regeneration. 83643 triangles; 4 materials; no embedded photographs.

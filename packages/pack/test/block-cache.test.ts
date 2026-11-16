@@ -351,6 +351,61 @@ describe('createBlockCache', () => {
     expect(server.state.reads).toHaveLength(1);
   });
 
+  it('drops blocks a server without a strong validator left once one with a validator answers', async () => {
+    // A dev server (weak ETag) served one file at this URL; a proxy to production serves another.
+    const store: ByteStore = createMemoryByteStore();
+    const local = noise(192 * KB, 40);
+    const first = createBlockCache(store, { blockBytes: 64 * KB });
+    const devServer = spanSource(local, { etag: 'W/"192-1"' });
+    await first.open({ key: 'k', url: 'u' }, devServer.source).read(0, 64 * KB);
+    await first.flush();
+
+    const published = noise(192 * KB, 41);
+    const production = spanSource(published, { etag: '"p1"' });
+    const second = createBlockCache(store, { blockBytes: 64 * KB });
+    const archive = second.open({ key: 'k', url: 'u' }, production.source);
+    // Block 0 is stored from the dev server, block 1 is not: the read must be all production.
+    const read = await archive.read(32 * KB, 64 * KB);
+    expectBytes(read.bytes, published.subarray(32 * KB, 96 * KB));
+    expect(archive.etag()).toBe('"p1"');
+    // And it stays production from then on, cached under its validator.
+    expectBytes((await archive.read(0, 16 * KB)).bytes, published.subarray(0, 16 * KB));
+    await second.flush();
+    expect((await store.getArchive('k'))?.etag).toBe('"p1"');
+  });
+
+  it('reads past an archive stored under a strong validator when the server sends none', async () => {
+    const store: ByteStore = createMemoryByteStore();
+    const published = noise(192 * KB, 42);
+    const first = createBlockCache(store, { blockBytes: 64 * KB });
+    await first
+      .open({ key: 'k', url: 'u' }, spanSource(published, { etag: '"p1"' }).source)
+      .read(0, 64 * KB);
+    await first.flush();
+
+    const local = noise(192 * KB, 43);
+    const devServer = spanSource(local, { etag: 'W/"192-2"' });
+    const second = createBlockCache(store, { blockBytes: 64 * KB });
+    const read = await second.open({ key: 'k', url: 'u' }, devServer.source).read(32 * KB, 64 * KB);
+    expectBytes(read.bytes, local.subarray(32 * KB, 96 * KB));
+    // The production copy stays for when production answers again.
+    await second.flush();
+    expect((await store.getArchive('k'))?.etag).toBe('"p1"');
+  });
+
+  it('drops blocks fetched without a validator when a server with one takes over mid-session', async () => {
+    const local = noise(192 * KB, 44);
+    const server = spanSource(local);
+    const cache = createBlockCache(createMemoryByteStore(), { blockBytes: 64 * KB });
+    const archive = cache.open({ key: 'k', url: 'u' }, server.source);
+    await archive.read(0, 64 * KB);
+    const published = noise(192 * KB, 45);
+    server.state.bytes = published;
+    server.state.etag = '"p1"';
+    const read = await archive.read(32 * KB, 64 * KB);
+    expectBytes(read.bytes, published.subarray(32 * KB, 96 * KB));
+  });
+
   it('clears memory and the store', async () => {
     const bytes = noise(64 * KB, 21);
     const store = createMemoryByteStore();

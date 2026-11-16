@@ -5,7 +5,30 @@ import {
 } from '../src/package-semantic-client';
 import type { TerrainPackageDescriptor, TerrainTileArchive } from '../src/package-types';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
+import {
+  installTerrainSemanticDecoderWorker,
+  type TerrainSemanticDecoderWorker,
+} from '../src/semantic-decoder-worker';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
+
+/** A worker and its scope joined in memory: what one posts, the other's listeners hear. */
+function workerPair(): { main: TerrainSemanticDecoderWorker; scope: TerrainSemanticDecoderWorker } {
+  type Listener = (event: { data: unknown }) => void;
+  const toScope: Listener[] = [];
+  const toMain: Listener[] = [];
+  const deliver = (listeners: Listener[], data: unknown): void => {
+    for (const listener of listeners) listener({ data });
+  };
+  const main: TerrainSemanticDecoderWorker = {
+    postMessage: (data) => queueMicrotask(() => deliver(toScope, data)),
+    addEventListener: (_type, listener) => toMain.push(listener),
+  };
+  const scope: TerrainSemanticDecoderWorker = {
+    postMessage: (data) => queueMicrotask(() => deliver(toMain, data)),
+    addEventListener: (_type, listener) => toScope.push(listener),
+  };
+  return { main, scope };
+}
 
 function descriptor(semantics = true): TerrainPackageDescriptor {
   return {
@@ -354,6 +377,39 @@ describe('terrain package semantic layer wiring', () => {
       decoder: { decode: () => createEmptyTerrainSemanticTile() },
     });
     expect(bare.layers).toEqual([]);
+  });
+
+  it('sends decodes straight to a decoder worker rather than through admission', async () => {
+    const tileArchive: TerrainTileArchive = {
+      ...archive,
+      async getZxy() {
+        return { data: new Uint8Array([1]).buffer };
+      },
+    };
+    const { main, scope } = workerPair();
+    const decoded = vi.fn(() => createEmptyTerrainSemanticTile());
+    installTerrainSemanticDecoderWorker(scope, { decode: decoded });
+    const admitted: Array<string | undefined> = [];
+    const opened = await createProfiledTerrainPackageSemanticLayers(descriptor(), {
+      landcoverArchive: tileArchive,
+      featuresArchive: { ...tileArchive },
+      decoderWorker: main,
+      featuresLayer: { renderer: { createTile: () => undefined } },
+      admission: {
+        run: async (task, options) => {
+          admitted.push(options?.label);
+          return task();
+        },
+      },
+    });
+    await opened.layers
+      .find((layer) => layer.category === 'human-feature')
+      ?.createTile({
+        address: { level: 8, x: 0, z: 0 },
+        signal: new AbortController().signal,
+      } as TerrainPyramidTileLayerContext);
+    expect(decoded).toHaveBeenCalled();
+    expect(admitted).not.toContain('semantic-decode');
   });
 
   it('selects a decoder only for an explicitly supported package profile', async () => {

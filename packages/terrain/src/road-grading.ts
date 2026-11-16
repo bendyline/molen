@@ -9,7 +9,6 @@
  */
 import { gradeTransportSeparationSteps } from './grade-separation';
 import type { Heightfield } from './heightfield';
-import { pointInPolygon, polygonBounds } from './polygon';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayerContext } from './pyramid-stream';
 import {
   type TerrainPyramidDescriptor,
@@ -24,14 +23,16 @@ import {
   clipRoadLine,
   ROAD_PROFILE_WINDOW,
   type RoadEarthworkLine,
+  roadEarthworkLineReaches,
   roadEarthworkLines,
+  roadEarthworkWater,
   roadProfileHeight,
+  roadReferenceGround,
 } from './road-earthworks';
 import type { TerrainSemanticTileRenderer, TerrainSemanticTileSource } from './semantic-client';
 import type {
   TerrainBridgeProfileSample,
   TerrainSemanticLine,
-  TerrainSemanticPolygon,
   TerrainSemanticTile,
   TerrainTransportationFeature,
   TerrainWaterFeature,
@@ -166,23 +167,16 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
    * level two below the finest (about the resolution elevation data is surveyed at), whichever
    * tile asks. Returns undefined when that level has nothing there.
    */
-  const reference = async (
+  const reference = (
     pyramid: TerrainPyramidDescriptor,
     source: TerrainPyramidHeightSource,
     bounds: readonly [number, number, number, number],
     level: number,
-  ): Promise<((x: number, z: number) => number) | undefined> => {
-    const size = terrainPyramidTileSize(pyramid, level);
-    const count = terrainPyramidTileCount(level);
-    const column = (x: number): number =>
-      Math.max(0, Math.min(count - 1, Math.floor((x - pyramid.origin[0]) / size)));
-    const row = (z: number): number =>
-      Math.max(0, Math.min(count - 1, Math.floor((z - pyramid.origin[1]) / size)));
-    const tiles = new Map<string, Heightfield>();
-    const wanted: Promise<void>[] = [];
-    for (let z = row(bounds[1]); z <= row(bounds[3]); z++)
-      for (let x = column(bounds[0]); x <= column(bounds[2]); x++) {
-        const address = { level, x, z };
+  ): Promise<((x: number, z: number) => number) | undefined> =>
+    roadReferenceGround(
+      pyramid,
+      (address) => {
+        // Kept for the tiles around: failures and gaps are asked for again.
         const key = terrainPyramidTileKey(address);
         let pending = fields.get(key);
         if (!pending) {
@@ -192,30 +186,11 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
             if (value === undefined && fields.get(key) === asked) fields.delete(key);
           });
         }
-        remember(fields, key, pending, 48);
-        wanted.push(
-          pending.then((field) => {
-            if (field) tiles.set(`${x}/${z}`, field);
-          }),
-        );
-      }
-    await Promise.all(wanted);
-    if (tiles.size === 0) return undefined;
-    let last: Heightfield | undefined,
-      lastX = -1,
-      lastZ = -1;
-    const fallback = tiles.values().next().value as Heightfield;
-    return (x, z) => {
-      const cx = column(x),
-        cz = row(z);
-      if (cx !== lastX || cz !== lastZ || !last) {
-        lastX = cx;
-        lastZ = cz;
-        last = tiles.get(`${cx}/${cz}`) ?? fallback;
-      }
-      return last.sampleHeight(x, z);
-    };
-  };
+        return remember(fields, key, pending, 48);
+      },
+      bounds,
+      level,
+    );
   const referenceLevel = (pyramid: TerrainPyramidDescriptor, level: number): number =>
     Math.max(pyramid.minLevel, Math.min(level, pyramid.maxLevel - 2));
 
@@ -244,6 +219,31 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
       if (lines.length === 0) return heightfield;
       // As far as a bench and its blend reach past the tile, and a profile's window past that.
       const reach = 16 + spacing * 2.7 + ROAD_PROFILE_WINDOW + 12;
+      const lakes = (
+        around.find((tile) => tile.dx === 0 && tile.dz === 0)?.roads.water ?? []
+      ).flatMap((feature) => feature.polygons ?? []);
+      if (source.gradeEarthworks) {
+        // Off the main thread where the source can: a town tile's thousands of stations were
+        // 4-9% of it in a low flight over a city, taken between frames a slice at a time.
+        const reaching = lines.filter((line) =>
+          roadEarthworkLineReaches(line, origin, [tileSize, tileSize], spacing),
+        );
+        if (reaching.length === 0) return heightfield;
+        const graded = await source.gradeEarthworks(
+          {
+            address,
+            heightfield,
+            surfaceResolution: side,
+            maxSpacing,
+            lines: reaching,
+            water: lakes,
+            referenceLevel: referenceLevel(pyramid, address.level),
+            reach,
+          },
+          signal,
+        );
+        return graded ?? heightfield;
+      }
       const ground = await reference(
         pyramid,
         source,
@@ -256,28 +256,7 @@ export function createTerrainRoadGrading(options: TerrainRoadGradingOptions): Te
         referenceLevel(pyramid, address.level),
       );
       if (signal.aborted || !ground) return heightfield;
-      const own = around.find((tile) => tile.dx === 0 && tile.dz === 0)?.roads;
-      const lakes = (own?.water ?? [])
-        .flatMap((feature) => feature.polygons ?? [])
-        .map((polygon): [TerrainSemanticPolygon, ReturnType<typeof polygonBounds>] => [
-          polygon,
-          polygonBounds(polygon),
-        ]);
-      const water =
-        lakes.length === 0
-          ? undefined
-          : (x: number, z: number): boolean => {
-              const u = (x - origin[0]) / tileSize,
-                v = (z - origin[1]) / tileSize;
-              return lakes.some(
-                ([polygon, bounds]) =>
-                  u >= bounds[0] &&
-                  u <= bounds[2] &&
-                  v >= bounds[1] &&
-                  v <= bounds[3] &&
-                  pointInPolygon([u, v], polygon),
-              );
-            };
+      const water = roadEarthworkWater(lakes, origin, tileSize);
       const pass = beginRoadEarthworks(heightfield, ground, {
         surfaceResolution: side,
         maxSpacing,

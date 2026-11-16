@@ -522,7 +522,8 @@ function build(out, level) {
         beam(out, 'metal', [a[0], roof(a), a[1]], [b[0], roof(b), b[1]], 0.12, 0.14, trim);
     }
     if (rise) {
-      const polygon = plan.map((q) => [q[0], roof(q), q[1]]).toReversed();
+      // partPlan() rings are clockwise in (x, z), which already winds the sloped roof upward.
+      const polygon = plan.map((q) => [q[0], roof(q), q[1]]);
       facetedGlazing(out, polygon, {
         tint: tint.map((v) => v + 0.04),
         trim,

@@ -18,7 +18,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-41,975 triangles; 93,435 vertices; 8 material groups; 3,872,036 bytes. Native bounds: -52.000, -9.717, -81.239 to 73.409, 32.125, 38.140. Source hash: `sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f`.
+41,975 triangles; 93,435 vertices; 8 material groups; 3,872,036 bytes. Native bounds: -52.000, -9.717, -81.239 to 73.409, 32.125, 38.140. Source hash: `sha256:333806740b2da56f85322cec7964dead2f0e11d6733e5dd8d17a6c1bd2eb3723`.
 
 {"up":"+Y","longitudinal":"+X east-southeast, 12.866 degrees south of east","front":"+Z south-southwest; entrance on west/-X","origin":"Retained signed castle anchor; Y0 decoded 175.0822 m numeric working datum."}
 

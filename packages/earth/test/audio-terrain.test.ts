@@ -89,7 +89,7 @@ describe('mapped World audio context', () => {
     terrain.observer.added(object, tile, context(100));
     expect(terrain.sample(95, 50).coastDistance).toBeCloseTo(15);
     expect(terrain.sample(195, 50).coastDistance).toBeCloseTo(85); // not 5 m from the artificial edge
-    tile.water[0]!.class = 'lake';
+    (tile.water[0] as TerrainSemanticTile['water'][number]).class = 'lake';
     expect(terrain.sample(95, 50).coastDistance).toBe(Infinity);
     expect(terrain.sample(95, 50).riverDistance).toBe(Infinity);
     tile.water = [

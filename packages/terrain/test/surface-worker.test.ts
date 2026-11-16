@@ -28,6 +28,7 @@ import {
   installTerrainSurfaceWorker,
   type TerrainSurfaceWorker,
 } from '../src/surface-worker';
+import { expectSameAttribute } from './helpers/attributes';
 
 function context(): TerrainPyramidTileLayerContext {
   return {
@@ -266,7 +267,7 @@ describe('surface worker', () => {
       const a = actual?.getObjectByName('surface:road-signs') as THREE.Mesh | undefined;
       const b = direct.getObjectByName('surface:road-signs') as THREE.Mesh | undefined;
       for (const name of ['position', 'normal', 'color'])
-        expect(a?.geometry.getAttribute(name).array).toEqual(b?.geometry.getAttribute(name).array);
+        expectSameAttribute(a?.geometry.getAttribute(name), b?.geometry.getAttribute(name), name);
       if (actual) disposeTerrainSurfaceObject(actual);
       disposeTerrainSurfaceObject(direct);
     }
@@ -420,18 +421,13 @@ describe('surface worker', () => {
       for (const [index, child] of directMeshes.entries()) {
         const expected = child as THREE.Mesh;
         const mesh = actualMeshes[index] as THREE.Mesh;
-        for (const attr of ['position', 'normal', 'color']) {
-          const actual = mesh.geometry.getAttribute(attr)?.array;
-          const wanted = expected.geometry.getAttribute(attr)?.array;
-          // Compare exact transferable bytes without recursively boxing millions of numbers.
-          expect(actual?.constructor).toBe(wanted?.constructor);
-          if (actual && wanted)
-            expect(
-              Buffer.from(actual.buffer, actual.byteOffset, actual.byteLength).equals(
-                Buffer.from(wanted.buffer, wanted.byteOffset, wanted.byteLength),
-              ),
-            ).toBe(true);
-        }
+        // Exact bytes, or packed bytes within a quantization step (helpers/attributes.ts).
+        for (const attr of ['position', 'normal', 'color'])
+          expectSameAttribute(
+            mesh.geometry.getAttribute(attr),
+            expected.geometry.getAttribute(attr),
+            attr,
+          );
         expect(mesh.castShadow).toBe(expected.castShadow);
         expect(mesh.receiveShadow).toBe(expected.receiveShadow);
         expect((mesh.material as THREE.MeshStandardMaterial).roughness).toBe(
@@ -497,15 +493,11 @@ describe('surface worker', () => {
     for (const [index, expected] of wanted.entries()) {
       const mesh = got[index] as THREE.Mesh;
       for (const attr of ['position', 'normal', 'color']) {
-        const a = mesh.geometry.getAttribute(attr)?.array;
-        const b = expected.geometry.getAttribute(attr)?.array;
-        expect(a?.length).toBe(b?.length);
-        if (a && b)
-          expect(
-            Buffer.from(a.buffer, a.byteOffset, a.byteLength).equals(
-              Buffer.from(b.buffer, b.byteOffset, b.byteLength),
-            ),
-          ).toBe(true);
+        expectSameAttribute(
+          mesh.geometry.getAttribute(attr),
+          expected.geometry.getAttribute(attr),
+          attr,
+        );
       }
       const instances = mesh as THREE.InstancedMesh;
       if (instances.isInstancedMesh)
@@ -624,5 +616,4 @@ describe('surface worker', () => {
   });
 });
 
-import { Buffer } from 'node:buffer';
 import { PARKED_VEHICLES } from './helpers/content';

@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import { aircraftCameraPose, createAircraftVisual } from '../src/aircraft';
 
+type Engine = NonNullable<AircraftSpec['engine']>;
+
 const SPEC: AircraftSpec = {
   label: 'Test helicopter',
   model: 'helicopter',
@@ -73,8 +75,8 @@ it('publishes individual shaft RPM without confusing normalized RPM with revolut
     ...SPEC,
     engine: undefined,
     engines: [
-      { ...SPEC.engine!, id: 'left', rotorAngularSpeed: 100 },
-      { ...SPEC.engine!, id: 'right', rotorAngularSpeed: 200 },
+      { ...(SPEC.engine as Engine), id: 'left', rotorAngularSpeed: 100 },
+      { ...(SPEC.engine as Engine), id: 'right', rotorAngularSpeed: 200 },
     ],
     visual: {
       ...SPEC.visual,

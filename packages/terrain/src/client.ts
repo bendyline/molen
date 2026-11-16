@@ -7,7 +7,12 @@ export {
   setTerrainGroundCutouts,
   setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
+  type TerrainGroundCutAttribute,
   TerrainGroundCutoutController,
+  type TerrainGroundCutoutOptions,
+  type TerrainGroundCutRequest,
+  type TerrainGroundCutResult,
+  type TerrainGroundCutter,
   type TerrainGroundOutline,
   terrainGroundSourceGeometry,
 } from './ground-cutout';
@@ -17,7 +22,11 @@ import type { TerrainDescriptor } from './descriptor-types';
 import type { Heightfield } from './heightfield';
 import { buildChunkGeometry, type ChunkMeshOptions, lodStepForDistance } from './mesh';
 
-export { type CachingArchiveOpenerOptions, cachingArchiveOpener } from './archive-cache';
+export {
+  type CachingArchiveOpenerOptions,
+  CorruptTerrainArchiveError,
+  cachingArchiveOpener,
+} from './archive-cache';
 export {
   createTerrainArchiveSetArchive,
   type TerrainArchiveSetArchive,
@@ -62,6 +71,7 @@ export {
   type TerrainLineProfile,
   type TerrainLineRepeater,
   type TerrainLineSample,
+  type TerrainPaintBeneath,
   type TerrainRoadWear,
   type TerrainSurfaceKind,
   terrainLinePath,

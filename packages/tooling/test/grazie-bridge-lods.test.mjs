@@ -8,7 +8,6 @@ import {
   grazieArchY,
   grazieControls,
   grazieDeckY,
-  grazieGroundY,
   grazieSurfaces,
 } from '../../../content/worldgen/source/places/sr/srb/ponte_alle_grazie/models/grazie-model.mjs';
 import { createEmptyTerrainSemanticTile, heightfieldFromPng } from '../../terrain/dist/kernel.mjs';

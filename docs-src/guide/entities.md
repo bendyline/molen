@@ -48,7 +48,10 @@ The entity type id and renderable asset ref are identical, such as
 `molen.entities.tree.conifer.pine`. For the type definitions, list the pack in the project's
 `packs` (see [Projects & types](project.md)); the CLI then resolves every `molen.entities.*` type.
 In code, read the documents the manifest `provides` as `types` and pass them to
-`createTypeLibrary` from `@bendyline/molen-kernel/content`.
+`createTypeLibrary` from `@bendyline/molen-kernel/content`. It validates every document against
+the schema by default; `{ checks: 'structure' }` checks only what resolving needs (the envelope,
+type shapes, namespaces, script sources and `extends` cycles), for content validated where it was
+built, and `onSkip` leaves out a failing type, with any that extend it, instead of throwing.
 
 In the engine repository, run `molen asset list` in `content/entities`, `molen types check --project
 content/entities/project.json`, or render `content/entities/scenes/gallery.scene.json` with

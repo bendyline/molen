@@ -4,8 +4,14 @@ import { ringSignedArea } from './geometry2d';
 import type { MeshBufferBuilder } from './mesh-buffers';
 import { modelBox } from './model-primitives';
 import type { PropPlacement } from './props';
+import type { SignPlacement } from './sign-mesh';
 import type { StorefrontRequest, Vec2, Vec3 } from './types';
 
+/**
+ * Fascia, canopy, door and pilasters into `out`, and each storefront's sign: a model placement
+ * (returned), or, for a storefront with a `sign` name when `named` collects them, a
+ * {@link SignPlacement} for the batch's sign mesh.
+ */
 export function buildStorefronts(
   requests: readonly StorefrontRequest[],
   outline: readonly Vec2[],
@@ -15,6 +21,7 @@ export function buildStorefronts(
   simplified: boolean,
   out: MeshBufferBuilder,
   openEntrance = false,
+  named?: SignPlacement[],
 ): PropPlacement[] {
   const groups = new Map<number, Array<{ request: StorefrontRequest; t: number }>>();
   // A bounded number of identity markers per building, sorted independently of source order.
@@ -110,7 +117,7 @@ export function buildStorefronts(
       const native = request.signSize ?? [4, 1.35];
       const scale = Math.min((width * 0.88) / native[0], (band * 0.84) / native[1]);
       if (scale <= 0) continue;
-      props.push({
+      const model: PropPlacement = {
         model: request.signModel,
         x: x + nx * 0.28,
         y: bottom + (band - native[1] * scale) / 2,
@@ -118,7 +125,20 @@ export function buildStorefronts(
         yaw,
         scale,
         color: [1, 1, 1],
-      });
+      };
+      if (named !== undefined && request.sign !== undefined)
+        named.push({
+          identity: request.identity,
+          sign: request.sign,
+          x,
+          y: bottom + band / 2,
+          z,
+          yaw,
+          maxWidth: width * 0.88,
+          height: band * 0.84,
+          fallback: model,
+        });
+      else props.push(model);
     }
   }
   return props;

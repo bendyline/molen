@@ -421,8 +421,9 @@ reference and proportion work; Bendy styling is not a substitute for the real ve
 - Never bake directional light, shadows, ambient occlusion or dirt gradients into base color.
 - Glass is a dark blue-grey pane with a modest reflection, not a mirror: the shared window graphs
   give frames a satin roughness and panes a smooth one, so the sky reflects in the pane and
-  brightens it toward grazing angles. Identity lettering is geometry or vertex color, not a
-  texture per business.
+  brightens it toward grazing angles.
+- Identity lettering is geometry, vertex color, or letters from the one shared glyph atlas
+  (storefront names), never a texture per business.
 - Photographs from research are evidence, not textures, and never ship inside a model.
 
 ## Procedural buildings that fit any footprint

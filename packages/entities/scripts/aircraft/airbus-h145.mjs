@@ -638,7 +638,7 @@ function cockpit(root, m, shell) {
       dd = detailKit(g, 'horizon');
     dd.box([0.061 * fit, 0.0014, 0.001], [0, 0, 0], dd.amber);
     dd.finish();
-    bindings.push({ node: g.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 });
+    bindings.push({ node: g.name, source: 'roll', property: 'rotation', axis: 'z', scale: -1 });
   }
   screen(720, 866, 0.239 * fit, 0.323 * fit, 'engine');
   glassDisplay(d, px(522), py(811), z - 0.018, 0.092 * fit, 0.094 * fit, 'attitude');

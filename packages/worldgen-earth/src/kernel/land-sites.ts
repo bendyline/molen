@@ -22,7 +22,7 @@ import {
   type Vec2,
   type Vec3,
 } from '@bendyline/molen-worldgen/kernel';
-import polygonClipping, { type MultiPolygon, type Polygon } from 'polygon-clipping';
+import polygonClipping, { type MultiPolygon } from 'polygon-clipping';
 import { distance, InfillBins } from './infill-geometry';
 import { isLandcoverDesignation } from './labels';
 import type { TileGeometry } from './semantic-adapter';
@@ -117,10 +117,70 @@ const cover = (polygon: TerrainSemanticPolygon): Cover => ({
   polygon,
   bounds: ringBounds(polygon.outer),
 });
-const clipPolygon = (polygon: TerrainSemanticPolygon): Polygon => [
-  polygon.outer,
-  ...(polygon.holes ?? []),
-];
+/**
+ * A ring cut to an axis-aligned box (Sutherland–Hodgman), or undefined when no area is left. A
+ * concave ring can come back with edges running along the box: the clipper treats those as the
+ * coincident edges they are.
+ */
+function clipRingToBox(ring: readonly Vec2[], box: Bounds): Vec2[] | undefined {
+  let points = ring as Vec2[];
+  // Edges in order: u ≥ box[0], v ≥ box[1], u ≤ box[2], v ≤ box[3].
+  for (let edge = 0; edge < 4 && points.length > 0; edge++) {
+    const axis = edge & 1;
+    const limit = box[edge] as number;
+    const low = edge < 2;
+    const next: Vec2[] = [];
+    for (let k = 0; k < points.length; k++) {
+      const a = points[k] as Vec2;
+      const b = points[(k + 1) % points.length] as Vec2;
+      const av = axis === 0 ? a[0] : a[1];
+      const bv = axis === 0 ? b[0] : b[1];
+      const inA = low ? av >= limit : av <= limit;
+      const inB = low ? bv >= limit : bv <= limit;
+      if (inA) next.push(a);
+      if (inA !== inB) {
+        const t = (limit - av) / (bv - av);
+        next.push(
+          axis === 0 ? [limit, a[1] + t * (b[1] - a[1])] : [a[0] + t * (b[0] - a[0]), limit],
+        );
+      }
+    }
+    points = next;
+  }
+  const out: Vec2[] = [];
+  for (const point of points) {
+    const last = out[out.length - 1];
+    if (last === undefined || last[0] !== point[0] || last[1] !== point[1]) out.push(point);
+  }
+  const first = out[0];
+  const end = out[out.length - 1];
+  if (first && end && out.length > 1 && first[0] === end[0] && first[1] === end[1]) out.pop();
+  if (out.length < 3) return undefined;
+  let area = 0;
+  for (let k = 0; k < out.length; k++) {
+    const a = out[k] as Vec2,
+      b = out[(k + 1) % out.length] as Vec2;
+    area += a[0] * b[1] - b[0] * a[1];
+  }
+  return area !== 0 ? out : undefined;
+}
+
+/** The polygons of `covers` that reach into `box`, cut to it (see clipRingToBox). */
+function boxClip(covers: readonly Cover[], box: Bounds): MultiPolygon {
+  const out: MultiPolygon = [];
+  for (const { polygon, bounds } of covers) {
+    if (!overlaps(bounds, box)) continue;
+    const outer = clipRingToBox(polygon.outer, box);
+    if (outer === undefined) continue;
+    const rings: Vec2[][] = [outer];
+    for (const hole of polygon.holes ?? []) {
+      const cut = clipRingToBox(hole, box);
+      if (cut !== undefined) rings.push(cut);
+    }
+    out.push(rings);
+  }
+  return out;
+}
 
 /** A rounded, slightly lobed outline around a center: `along` is its first axis's direction. */
 function blob(
@@ -456,7 +516,6 @@ function withGolf(
     );
   const least = 4 / (geom.size * geom.size);
   const polygons = new Map<GolfKind, TerrainSemanticPolygon[]>();
-  const courseClip: MultiPolygon = course.map(({ polygon }) => clipPolygon(polygon));
   for (const shape of shapes) {
     const bounds = ringBounds(shape.ring);
     if (!overlaps(bounds, seen)) continue;
@@ -470,12 +529,13 @@ function withGolf(
       pieces = [{ outer: shape.ring }];
     else {
       try {
-        let clipped = polygonClipping.intersection([shape.ring], courseClip);
-        if (cuts.length > 0 && clipped.length > 0)
-          clipped = polygonClipping.difference(
-            clipped,
-            cuts.map(({ polygon }) => clipPolygon(polygon)),
-          );
+        // Only what lies over the shape's bounds can shape its pieces, so the course and the
+        // blockers are cut to those bounds first: each operation then sees a few dozen edges, not
+        // a whole course outline (a detailed course cost seconds a tile, on the main thread too).
+        const near = boxClip(course, bounds);
+        let clipped = near.length > 0 ? polygonClipping.intersection([shape.ring], near) : [];
+        const nearCuts = cuts.length > 0 && clipped.length > 0 ? boxClip(cuts, bounds) : [];
+        if (nearCuts.length > 0) clipped = polygonClipping.difference(clipped, nearCuts);
         pieces = clipped.flatMap(([outer, ...holes]) =>
           outer ? [{ outer, ...(holes.length > 0 ? { holes } : {}) }] : [],
         );

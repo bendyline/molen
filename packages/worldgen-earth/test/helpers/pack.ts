@@ -57,3 +57,18 @@ export async function loadDefaultPlacesDocs(): Promise<PlacesContentDocs> {
 
 /** The default places content (landmarks and business catalog), built once for tests. */
 export const PLACES: PlacesContent = createPlacesContent(await loadDefaultPlacesDocs());
+
+/** The shipped Latin sign glyph atlas document (metrics only). */
+export async function loadSignGlyphs(): Promise<unknown> {
+  return JSON.parse(
+    await readFile(resolve(here, '../../../../content/earth/fonts/signs.glyphs.json'), 'utf8'),
+  );
+}
+
+/** The shipped places documents plus the sign looks and glyph atlas that set real names. */
+export async function loadNamedPlacesDocs(): Promise<PlacesContentDocs> {
+  const signLooks = JSON.parse(
+    await readFile(resolve(here, '../../../../content/earth/businesses/sign-looks.json'), 'utf8'),
+  );
+  return { ...(await loadDefaultPlacesDocs()), signLooks, glyphs: [await loadSignGlyphs()] };
+}

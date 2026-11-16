@@ -648,8 +648,9 @@ function bell206Cockpit(root, m) {
       source,
       property: 'rotation',
       axis: 'z',
+      // +Z rotation is clockwise on these -Z faces: the horizon bar turns against the bank.
       scale: attitude
-        ? 1
+        ? -1
         : source === 'airspeed'
           ? 0.044
           : source === 'altitude'

@@ -14,6 +14,12 @@
  * the validator of a keyed archive mid-session makes the cache drop that archive's bytes and
  * re-read, never mix versions.
  *
+ * Only a strong ETag vouches for stored bytes. A URL can be answered by more than one server
+ * over time (a development server on a port, then a proxy to production), and blocks kept from a
+ * server that sent no strong ETag are of unknown origin: the first strong one drops them. A
+ * server sending none for an archive stored under a strong one is read past the cache for the
+ * session, leaving the stored version in place. Mixed, two versions' blocks decode as garbage.
+ *
  * The store holds a byte budget. Blocks are evicted least recently used first, with a priority
  * that biases recency: `high` blocks count as a week newer than they are, `low` ones as a day
  * older, so a planet base layer outlives a street-level tile seen at the same time.
@@ -296,8 +302,13 @@ interface ArchiveState {
   /** `keyBy: 'etag'` archives: the etag is part of the key and never relearned. */
   fixedEtag: boolean;
   meta: Promise<void> | undefined;
-  /** The server changed validators twice this session; reads bypass the cache. */
+  /**
+   * Reads bypass the cache: the server changed validators twice this session, or sent none for
+   * an archive stored under a strong one.
+   */
   unstable: boolean;
+  /** Blocks stored in an earlier session with no strong validator: nothing vouches for them. */
+  unvalidated: boolean;
 }
 
 /** Blocks one read started loading; cancelled when every waiting read aborts. */
@@ -378,6 +389,7 @@ export function createBlockCache(
         fixedEtag: fixedEtag !== undefined,
         meta: undefined,
         unstable: false,
+        unvalidated: false,
       };
       states.set(key, state);
     } else if (archive.size !== undefined && state.declaredSize === undefined) {
@@ -402,6 +414,7 @@ export function createBlockCache(
       }
       state.size ??= stored.size;
       if (!state.fixedEtag) state.etag ??= stored.etag;
+      state.unvalidated = !state.fixedEtag && state.etag === undefined;
     })();
     return state.meta;
   };
@@ -533,7 +546,29 @@ export function createBlockCache(
       for (let n = 0; n < count; n++) settle(start + n, changed);
       return;
     }
+    if (learned !== undefined && state.etag === undefined && state.unvalidated) {
+      // Blocks stored with no validator came from a server that could not vouch for them (a dev
+      // server's weak ETag), perhaps serving another file at this URL. Mixed with this server's
+      // blocks they decode as garbage, so start over with what this server sends.
+      state.unvalidated = false;
+      await dropState(state);
+      state.etag = learned;
+      const changed = new GenerationChanged(state.key);
+      for (let n = 0; n < count; n++) settle(start + n, changed);
+      return;
+    }
+    if (learned === undefined && state.etag !== undefined && !state.fixedEtag) {
+      // The stored blocks are this archive under a strong validator, and this server sends none:
+      // it may be serving another file at the same URL. Read past the cache for the session and
+      // keep the stored version for when its server returns.
+      state.unstable = true;
+      const changed = new GenerationChanged(state.key);
+      for (let n = 0; n < count; n++) settle(start + n, changed);
+      return;
+    }
     if (learned !== undefined && state.etag === undefined) state.etag = learned;
+    // Kept without a validator: a later strong one cannot tell whether these are its bytes.
+    if (state.etag === undefined && !state.fixedEtag) state.unvalidated = true;
     if (bytes.length < want) {
       if (state.size !== undefined) {
         const short = new Error(
@@ -745,6 +780,7 @@ export function createBlockCache(
     } catch (error) {
       if (!(error instanceof GenerationChanged)) throw error;
     }
+    if (state.unstable) return passthrough(source, offset, length, signal, etag);
     try {
       return await readBlocks(state, offset, length, signal, etag, source);
     } catch (error) {

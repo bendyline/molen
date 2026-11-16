@@ -87,6 +87,99 @@ interface Candidate {
   cz: number;
 }
 
+const weightsOf = new WeakMap<object, number[]>();
+
+/** A population's variant weights, read once per variant list. */
+function variantWeights(variants: readonly { weight: number }[]): number[] {
+  let weights = weightsOf.get(variants);
+  if (weights === undefined) {
+    weights = variants.map((variant) => variant.weight);
+    weightsOf.set(variants, weights);
+  }
+  return weights;
+}
+
+interface RuleCandidate {
+  candidate: Candidate;
+  model: string;
+  base: string;
+}
+
+/** The order a rule over its cap keeps candidates by: lowest draw, then cell (unique per rule). */
+function drawOrder(u: number, cz: number, cx: number, q: Candidate): number {
+  return u - q.u || cz - q.cz || cx - q.cx;
+}
+
+/**
+ * The `cap` candidates of one rule with the lowest draws: in arrival order while no more than
+ * `cap` arrive, else in draw order. That is what keeping every candidate, then sorting and
+ * truncating, gives, without holding them all: a dense rule over a large request once held millions
+ * of candidates to keep a few thousand. Past the cap the kept ones are a max-heap (`heap`, indices
+ * into `items`), so a candidate is compared with the worst one kept.
+ */
+class LowestDraws {
+  private readonly items: RuleCandidate[] = [];
+  private heap: number[] | undefined;
+  constructor(private readonly cap: number) {}
+
+  /** True when a candidate with this draw and cell would not be kept (only once past the cap). */
+  rejects(u: number, cz: number, cx: number): boolean {
+    const heap = this.heap;
+    if (heap === undefined) return false;
+    const worst = this.items[heap[0] as number];
+    return worst === undefined || drawOrder(u, cz, cx, worst.candidate) > 0;
+  }
+
+  add(entry: RuleCandidate): void {
+    if (this.heap === undefined) {
+      if (this.items.length < this.cap) {
+        this.items.push(entry);
+        return;
+      }
+      this.heap = this.items.map((_, index) => index);
+      for (let i = (this.heap.length >> 1) - 1; i >= 0; i--) this.siftDown(i);
+    }
+    const top = this.heap[0];
+    if (top === undefined) return;
+    const { u, cz, cx } = entry.candidate;
+    if (drawOrder(u, cz, cx, (this.items[top] as RuleCandidate).candidate) >= 0) return;
+    this.items[top] = entry;
+    this.siftDown(0);
+  }
+
+  result(): RuleCandidate[] {
+    if (this.heap !== undefined)
+      this.items.sort((p, q) =>
+        drawOrder(p.candidate.u, p.candidate.cz, p.candidate.cx, q.candidate),
+      );
+    return this.items;
+  }
+
+  /** Whether kept item `a` comes after `b` in draw order (worse). */
+  private after(a: number, b: number): boolean {
+    const p = (this.items[a] as RuleCandidate).candidate;
+    return drawOrder(p.u, p.cz, p.cx, (this.items[b] as RuleCandidate).candidate) > 0;
+  }
+
+  private siftDown(start: number): void {
+    const heap = this.heap as number[];
+    let at = start;
+    for (;;) {
+      const left = at * 2 + 1;
+      if (left >= heap.length) return;
+      const right = left + 1;
+      let worst = left;
+      if (right < heap.length && this.after(heap[right] as number, heap[left] as number))
+        worst = right;
+      if (!this.after(heap[worst] as number, heap[at] as number)) return;
+      const swap = heap[at] as number;
+      heap[at] = heap[worst] as number;
+      heap[worst] = swap;
+      at = worst;
+    }
+  }
+}
+
 const JITTER = 0.7;
 /** Cells visited between cooperative yields. */
 const CHUNK = 16_384;
@@ -300,7 +393,7 @@ export function* samplePlacementsSteps(
     const cellX1 = Math.floor(Math.max(...grid.map((p) => p[0] as number)));
     const cellZ0 = Math.floor(Math.min(...grid.map((p) => p[1] as number)));
     const cellZ1 = Math.floor(Math.max(...grid.map((p) => p[1] as number)));
-    const ruleCandidates: Array<{ candidate: Candidate; model: string; base: string }> = [];
+    const ruleCandidates = new LowestDraws(cap);
     for (let cz = cellZ0; cz <= cellZ1; cz++) {
       for (let cx = cellX0; cx <= cellX1; cx++) {
         if (++visited % CHUNK === 0) yield { done: ruleIndex, total: doc.rules.length };
@@ -326,6 +419,8 @@ export function* samplePlacementsSteps(
           if (!pointInPolygon([x, z], polygon.ring, polygon.holes)) continue;
           hash = fmix32(hash ^ polygon.seed);
         }
+        // Past the rule's cap, a draw that cannot make the cut skips the lookups below.
+        if (ruleCandidates.rejects(unit01(hash, 2), cz, cx)) continue;
         if (row?.headland && polygon) {
           let margin = false;
           for (const ring of [polygon.ring, ...(polygon.holes ?? [])]) {
@@ -418,34 +513,21 @@ export function* samplePlacementsSteps(
               ? -angle
               : 0;
         const [r, g, b] = tintFor(population, hash);
-        ruleCandidates.push({
-          model: (() => {
-            const variants = population.variants;
-            const model =
-              variants?.[
-                pickWeighted(
-                  unit01(hash, 10),
-                  variants.map((v) => v.weight),
-                )
-              ]?.model ?? population.model;
-            return input.modelAt?.(model, x, z) ?? model;
-          })(),
+        // No closure here: one capturing this cell's values made V8 allocate a scope, with its
+        // numbers boxed, for every cell visited, rejected or not (gigabytes for a large request).
+        const variants = population.variants;
+        const variant =
+          variants?.[pickWeighted(unit01(hash, 10), variantWeights(variants))]?.model ??
+          population.model;
+        ruleCandidates.add({
+          model: input.modelAt?.(variant, x, z) ?? variant,
           base: input.modelAt?.(population.model, x, z) ?? population.model,
           candidate: { x, y: y - 0.15, z, yaw, scale, widthScale, r, g, b, u, cx, cz },
         });
       }
     }
-    if (ruleCandidates.length > cap) {
-      ruleCandidates.sort(
-        (p, q) =>
-          p.candidate.u - q.candidate.u ||
-          p.candidate.cz - q.candidate.cz ||
-          p.candidate.cx - q.candidate.cx,
-      );
-      ruleCandidates.length = cap;
-    }
     const growth = Math.max(1, rule.lod?.coverGrowth ?? doc.defaults.lod.coverGrowth ?? 1);
-    for (const entry of ruleCandidates)
+    for (const entry of ruleCandidates.result())
       accepted.push({ ...entry, rule: ruleIndex, layer, keep, growth });
     yield { done: ruleIndex + 1, total: doc.rules.length };
   }

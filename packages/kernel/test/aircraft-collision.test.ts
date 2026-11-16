@@ -100,7 +100,7 @@ describe('aircraft section collisions', () => {
     expect(forward).toHaveLength(2);
     expect(forward[0]?.disc?.normal[2]).toBeCloseTo(1);
     expect(hover[0]?.disc?.normal[1]).toBeCloseTo(1);
-    expect(hover[0]?.center[1]).toBeGreaterThan(forward[0]!.center[1] + 2);
+    expect(hover[0]?.center[1]).toBeGreaterThan((forward[0]?.center[1] as number) + 2);
     const banked = aircraftCollisionProbes(
       { ...pose(), rot: vehicleRotation(0, 0, Math.PI / 2) },
       tilt,

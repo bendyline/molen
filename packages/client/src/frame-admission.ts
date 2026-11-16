@@ -27,10 +27,26 @@ export interface SceneAdmission {
   /** Jobs waiting, where the queue can say, so optional work can hold off behind a backlog. */
   readonly pending?: number;
 }
+/**
+ * A larger frame budget for work that is backing up. Once the oldest waiting job (not a
+ * background one) has waited `afterMs`, the frame's time and byte budgets grow with its wait and
+ * reach these at twice that; a limit left out, or below the ordinary one, stays as it is. A fixed
+ * small budget protects the frame rate of a view that keeps up and starves one that does not: a
+ * city streaming in under an aircraft asked for more than twice the work 2 ms a frame could
+ * publish, each job waited 3 s (21 s at worst) for each of the several turns a tile's layer
+ * takes, and the ground ahead stayed bare while the queue used a twentieth of the main thread.
+ */
+export interface AdmissionBacklog {
+  afterMs: number;
+  maxMilliseconds?: number;
+  maxBytes?: number;
+}
 export interface FrameAdmissionOptions {
   maxMilliseconds?: number;
   maxBytes?: number;
   maxJobs?: number;
+  /** See `AdmissionBacklog`; none by default. */
+  backlog?: AdmissionBacklog | undefined;
   /**
    * How long a background job waits (ms, default 750) before the lane takes turns with the others,
    * and how many other jobs run between its turns (default 8). In flight normal work never runs
@@ -84,6 +100,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private maxMs: number;
   private maxBytes: number;
   private maxJobs: number;
+  private backlog: AdmissionBacklog | undefined;
   private urgentStreak = 0;
   private orderedStreak = 0;
   /** Jobs from the other lanes since the background lane last ran one. */
@@ -103,19 +120,23 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.maxMs = options.maxMilliseconds ?? 2;
     this.maxBytes = options.maxBytes ?? 2 * 1024 * 1024;
     this.maxJobs = options.maxJobs ?? 32;
+    this.backlog = undefined;
     this.backgroundWaitMs = options.backgroundWaitMs ?? 750;
     this.backgroundShare = options.backgroundShare ?? 8;
     if (!(this.backgroundWaitMs >= 0) || !(this.backgroundShare >= 1))
       throw new RangeError(
         'Background admission needs a nonnegative wait and a share of 1 or more',
       );
-    this.setLimits({});
+    this.setLimits({ backlog: options.backlog });
   }
   /**
    * Change the per-frame budget from the next frame on; omitted limits keep their values. A host
-   * can admit more when frames have time to spare (an adaptive quality tier, say).
+   * can admit more when frames have time to spare (an adaptive quality tier, say). `backlog` is
+   * replaced when the key is present: `undefined` takes the backlog budget away.
    */
-  setLimits(limits: Pick<FrameAdmissionOptions, 'maxMilliseconds' | 'maxBytes' | 'maxJobs'>): void {
+  setLimits(
+    limits: Pick<FrameAdmissionOptions, 'maxMilliseconds' | 'maxBytes' | 'maxJobs' | 'backlog'>,
+  ): void {
     const next = [
       limits.maxMilliseconds ?? this.maxMs,
       limits.maxBytes ?? this.maxBytes,
@@ -123,7 +144,33 @@ export class FrameAdmissionQueue implements SceneAdmission {
     ] as const;
     if (!next.every((v) => Number.isFinite(v) && v > 0))
       throw new RangeError('Admission budgets must be finite and positive');
+    const backlog = 'backlog' in limits ? limits.backlog : this.backlog;
+    if (
+      backlog !== undefined &&
+      (!(Number.isFinite(backlog.afterMs) && backlog.afterMs > 0) ||
+        ![backlog.maxMilliseconds, backlog.maxBytes].every(
+          (v) => v === undefined || (Number.isFinite(v) && v > 0),
+        ))
+    )
+      throw new RangeError('A backlog budget needs a positive wait and positive limits');
     [this.maxMs, this.maxBytes, this.maxJobs] = next;
+    this.backlog = backlog === undefined ? undefined : { ...backlog };
+  }
+  /**
+   * How far into its backlog budget the queue is, 0 to 1: by how long the oldest job outside the
+   * background lane has waited. Urgent jobs sit ahead of the others, each kind in arrival order
+   * but for the ordered jobs taken from among them, so the oldest is the first of either kind.
+   */
+  private pressure(now: number): number {
+    const backlog = this.backlog;
+    const first = this.jobs[0];
+    if (backlog === undefined || first === undefined) return 0;
+    let oldest = first.queued;
+    if (first.options.priority === 'urgent') {
+      const normal = this.jobs.find((job) => job.options.priority !== 'urgent');
+      if (normal !== undefined && normal.queued < oldest) oldest = normal.queued;
+    }
+    return Math.max(0, Math.min(1, (now - oldest - backlog.afterMs) / backlog.afterMs));
   }
   run<T>(task: () => T, options: AdmissionOptions = {}): Promise<T> {
     if (this.disposed || options.signal?.aborted)
@@ -222,9 +269,15 @@ export class FrameAdmissionQueue implements SceneAdmission {
   flush(): void {
     if (this.disposed || this.paused) return;
     const sinceLast = this.lastFlushEnd === undefined ? 0 : this.clock() - this.lastFlushEnd;
-    const budget = this.frameBudget(sinceLast);
+    // Work that has waited too long takes more of the frame (see AdmissionBacklog).
+    const pressure = this.pressure(this.clock());
+    const grown = (base: number, most: number | undefined): number =>
+      most !== undefined && most > base ? base + (most - base) * pressure : base;
+    const maxMs = grown(this.maxMs, this.backlog?.maxMilliseconds);
+    const maxBytes = grown(this.maxBytes, this.backlog?.maxBytes);
+    const budget = this.frameBudget(sinceLast, maxMs);
     if (this.overrunMs > 0) {
-      const repaid = Math.max(this.maxMs, (sinceLast * this.maxMs) / NOMINAL_FRAME_MS);
+      const repaid = Math.max(maxMs, (sinceLast * maxMs) / NOMINAL_FRAME_MS);
       this.overrunMs = Math.max(0, this.overrunMs - repaid);
       this.lastFlushEnd = this.clock();
       this.continuing = this.pending > 0;
@@ -281,7 +334,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
         count > 0 &&
         (count >= this.maxJobs ||
           this.clock() - start + (this.expected.get(label) ?? 0) > budget ||
-          bytes + cost > this.maxBytes)
+          bytes + cost > maxBytes)
       )
         break;
       lane.splice(index, 1);
@@ -326,20 +379,21 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.request();
   }
   /**
-   * This frame's work allowance: the fixed budget, or for sustained software-rendering frames the
-   * same share of the shortest recent one. One long frame (a hitch) changes nothing.
+   * This frame's work allowance: the budget (`maxMs`, the ordinary one or what a backlog has grown
+   * it to), or for sustained software-rendering frames the same share of the shortest recent one.
+   * One long frame (a hitch) changes nothing.
    */
-  private frameBudget(sinceLast: number): number {
+  private frameBudget(sinceLast: number, maxMs: number): number {
     if (!this.continuing) this.recentFrames.length = 0;
     else {
       this.recentFrames.push(sinceLast);
       if (this.recentFrames.length > SLOW_FRAMES) this.recentFrames.shift();
     }
-    if (this.recentFrames.length < SLOW_FRAMES) return this.maxMs;
+    if (this.recentFrames.length < SLOW_FRAMES) return maxMs;
     const shortest = Math.min(...this.recentFrames);
     return shortest >= SLOW_FRAME_MS
-      ? Math.max(this.maxMs, (shortest * this.maxMs) / NOMINAL_FRAME_MS)
-      : this.maxMs;
+      ? Math.max(maxMs, (shortest * maxMs) / NOMINAL_FRAME_MS)
+      : maxMs;
   }
   dispose(): void {
     this.disposed = true;

@@ -1608,6 +1608,14 @@ type MolenWorldgenBuildingData = {
     signSize?: [number, number];
     accent: string;
     width?: number;
+    sign?: {
+      text: string;
+      plate: string;
+      ink: string;
+      stripe?: string;
+      font?: string;
+      letterSpacing?: number;
+    };
   }[];
   outline: [number, number][];
   holes?: [number, number][][];

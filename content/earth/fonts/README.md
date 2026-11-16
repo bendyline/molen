@@ -18,6 +18,11 @@ root, after materials/client builds) regenerates the glyph meshes and `build.jso
   `e7db6ca603fd4862010383ff17ffd6cc4ffac1c0`, `ofl/librebaskerville/LibreBaskerville[wght].ttf`.
   See `LibreBaskerville-OFL.txt`.
 
+`signs.glyphs.json` and `signs.glyphs.0.r8` are the storefront sign atlas (`molen/glyph-atlas@1`):
+Overpass semibold (`bold`), Overpass regular (`sans`) and Molen Sign Serif (`serif`) as signed
+distance fields, 48 texels to the em with a 4-texel range, on one 2048 × 880 page of raw bytes.
+The same build writes them from the same sources; `build.json` records their hashes.
+
 The subset retains available Basic Latin, Latin-1, Latin Extended-A, typographic punctuation
 and arrows. Unsupported characters use a visible replacement glyph. More scripts require
 additional fonts and, for connected/complex scripts, a shaping stage; the current engine lays

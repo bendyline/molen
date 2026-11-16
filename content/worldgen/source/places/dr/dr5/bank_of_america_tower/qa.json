@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.bank_of_america_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:0ab68ece8017da36f35cd5d9ff8048cef10310f8b469df3052f3f0671ce2d52f",
-  "sourceHash": "sha256:646fdb37439b9e6b708a91214f03919d595d3b4c6f42202adebcbeced99e4225",
-  "runtimeHash": "sha256:64121f095d78c3131e74d48fee13f71b0aea4a324bb61e91e1099393cc5b44e6",
-  "captureReportHash": "sha256:51c5157c7bf9468e45229b2f31e61e8a8faa4fa05f64a0066af31d08b70ef9b8",
+  "inputHash": "sha256:ea3b5a2453abfc11ad175a8fbf3ca737e48e21b7c4d865363fdde867df80a0a1",
+  "sourceHash": "sha256:e0d5fb852e0c300a5e12348d5b7189ac57d71cfdb8288e4090c917f144f570c6",
+  "runtimeHash": "sha256:201934b55eade752b8646dc7c3026776adbacdb1c073a6bfadb5b028c2eb323b",
+  "captureReportHash": "sha256:57bc83de90ccfb936437a14dd6b573ddeff3e6e110ed080143fb37eb6d1227a7",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,11 +25,11 @@
       "shots/low-planted-roof.png"
     ],
     "notes": "Actually inspected all61 final images:14portable,14shared,33medium-fi. Whole turntables and four explicit browser levels retain the complete asymmetric crystalline shaft, sloping crown/wells, offset365.8m pipe spire and both lower podium wings. Near views show redbrick/cream five-bay retained theatre with two blind upper arches, side urn niches and end pediments. Bamboo-colored cantilever canopy has three visibly open rectangles and no unsupported outer columns. Low green roof beds visibly contact the podium roof, replacing unsupported trees. No missing tower section observed. North-up overlay aligns whole-block outline, eastern tower and north theatre side. Whole views include pipe tip; original crown/spire and street framing intentionally crop it. Glass is opaque and faceting intentional.",
-    "captureReportHash": "sha256:51c5157c7bf9468e45229b2f31e61e8a8faa4fa05f64a0066af31d08b70ef9b8"
+    "captureReportHash": "sha256:57bc83de90ccfb936437a14dd6b573ddeff3e6e110ed080143fb37eb6d1227a7"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:22902f5ba6b1b6e2ee34637157b48bdc8f8b6f51ea34d03e6a7cdc2824d76f4e",
+    "captureReportHash": "sha256:b348f80969631f605b7c132d48c665da9d62c2626d42aecf9636dc147374af32",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -50,7 +50,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f415ab08874d7ee295f127ed797dd0e720b616940da6426f8d15162e66c4e505",
+    "captureReportHash": "sha256:ffb83d638e5ba5b16d657e0dbdc425ae4cc65e5e4294c79dfb0c7e811a6bbb20",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -311,5 +311,16 @@
     "glbsByteUnchanged": 6,
     "inspectedImagesVerified": 61,
     "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:0ab68ece8017da36f35cd5d9ff8048cef10310f8b469df3052f3f0671ce2d52f",
+      "previousSourceHash": "sha256:646fdb37439b9e6b708a91214f03919d595d3b4c6f42202adebcbeced99e4225",
+      "previousRuntimeHash": "sha256:64121f095d78c3131e74d48fee13f71b0aea4a324bb61e91e1099393cc5b44e6",
+      "inputHash": "sha256:ea3b5a2453abfc11ad175a8fbf3ca737e48e21b7c4d865363fdde867df80a0a1",
+      "repair": "Every sloped roof facet from the mapped building parts in build() of boa-runtime-model.mjs faced down: these are the large, nearly vertical crystal faces of the crown and the small sloped tops beside the mast. partPlan() already returns each part ring clockwise in (x, z), which is the order that faces the walls out and the roof plane up, and the recipe also reversed the ring for the roof. Since facetedGlazing() orients the facet by its winding, every roof facet was a back face from outside and read as see-through. The roof ring is no longer reversed. The roof glass keeps the same vertex set and per-plane area, with each plane's normal reversed and its planar facets re-split (14 triangles). As intended by facetedGlazing(), the frame strips on those facets now sit 0.02 m proud of the glass on the outside instead of 0.02 m behind it (813 strip triangles moved 0.04 m along the facet normal; same count and area). Nothing in signature-tower-global-models.mjs was changed. Above-horizon see-through scan: 24.4% of the model before (window glass 32% of part), 0.02% after in source and close-up/street, 0.00% at district and skyline.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones)."
+    }
   }
 }

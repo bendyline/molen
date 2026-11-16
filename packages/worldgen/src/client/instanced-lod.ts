@@ -159,6 +159,14 @@ class InstancedDetailSwitch extends THREE.LOD {
   private appliedShadow: boolean | undefined;
   /** What the last view-camera choice saw; see `update`. */
   private readonly seen = new Float64Array(24).fill(Number.NaN);
+  /**
+   * How far that choice was from changing: the smallest relative gap between the distance it
+   * measured and any distance it compared against (0: unknown, choose again). See `moved`.
+   */
+  private slack = 0;
+  /** The distance that choice measured, and world meters of camera travel per unit of it. */
+  private measured = 0;
+  private stretch = 1;
   constructor(
     readonly policy: ScreenSpaceLodPolicy,
     readonly bounds: THREE.Box3,
@@ -212,7 +220,17 @@ class InstancedDetailSwitch extends THREE.LOD {
       this.selected = level;
       this.seen[0] = Number.NaN;
     } else if (this.moved(perspective, height, error, horizonError)) {
+      const own = this.matrixWorld.elements;
       const scale = this.matrixWorld.getMaxScaleOnAxis();
+      // The smallest axis scale: camera travel shortens the measured distance by at most the
+      // ratio of the two (1 for the uniform scales batches have).
+      const least = Math.sqrt(
+        Math.min(
+          (own[0] as number) ** 2 + (own[1] as number) ** 2 + (own[2] as number) ** 2,
+          (own[4] as number) ** 2 + (own[5] as number) ** 2 + (own[6] as number) ** 2,
+          (own[8] as number) ** 2 + (own[9] as number) ** 2 + (own[10] as number) ** 2,
+        ),
+      );
       const focal = height / (2 * Math.tan((perspective.fov * Math.PI) / 360));
       // The world matrix is current here, as for THREE.LOD; worldToLocal would first recompose
       // every ancestor's, for each of a view's hundreds of batches every moving frame.
@@ -230,10 +248,30 @@ class InstancedDetailSwitch extends THREE.LOD {
         else break;
       }
       this.selected = level;
+      // Every distance this choice, or the next one from here, compares against: each handover
+      // with and without its hysteresis, and the approach to it either way (see APPROACH).
+      let slack = Number.POSITIVE_INFINITY;
+      const gap = (threshold: number): void => {
+        if (!(threshold > 0)) return;
+        const relative = Math.abs(threshold - distance) / Math.max(threshold, distance);
+        if (relative < slack) slack = relative;
+      };
+      for (let i = 1; i < this.geometries.length; i++) {
+        const threshold = handover(i);
+        gap(threshold);
+        gap(threshold * 0.85);
+        gap(threshold * APPROACH);
+        gap(threshold / APPROACH);
+      }
       if (this.vanishPixels > 0) {
         const vanishAt = (scale * this.vanishSize * focal) / this.vanishPixels;
         this.vanished = distance >= (this.vanished ? vanishAt * 0.85 : vanishAt);
+        gap(vanishAt);
+        gap(vanishAt * 0.85);
       }
+      this.slack = least > 0 ? slack : 0;
+      this.measured = distance;
+      this.stretch = least > 0 ? scale / (least * perspective.zoom) : 1;
       // A camera within a quarter of a handover asks for the level across it now, so its material
       // is built by the time the batch gets there rather than started then (see below).
       if (ready !== undefined) {
@@ -293,6 +331,13 @@ class InstancedDetailSwitch extends THREE.LOD {
    * of main thread. The level's mesh state is still applied on every update, since the host may
    * set shadow flags or visibility on the batch in between. The camera's world matrix is current
    * here, as THREE.LOD itself assumes.
+   *
+   * A moving camera cannot change the choice either until it has covered the gap to the nearest
+   * handover. The last choice kept that gap as a share of its distance (`slack`); the camera's
+   * travel since and any change in the error budgets (a host relaxes them with height) are
+   * weighed against it, each as an upper bound on its relative effect. In flight nearly every
+   * batch is well short of its next handover, and choosing again for each of them every frame
+   * was 2.6 ms of a 33 ms frame at High over Seattle.
    */
   private moved(
     camera: THREE.PerspectiveCamera,
@@ -303,17 +348,26 @@ class InstancedDetailSwitch extends THREE.LOD {
     const seen = this.seen,
       view = camera.matrixWorld.elements,
       own = this.matrixWorld.elements;
-    let same =
-      seen[0] === view[12] &&
-      seen[1] === view[13] &&
-      seen[2] === view[14] &&
-      seen[3] === camera.fov &&
-      seen[4] === camera.zoom &&
-      seen[5] === height &&
-      seen[6] === error &&
-      seen[23] === horizonError;
+    let same = seen[3] === camera.fov && seen[4] === camera.zoom && seen[5] === height;
     for (let i = 0; same && i < 16; i++) same = seen[7 + i] === own[i];
-    if (same) return false;
+    if (same) {
+      const dx = (view[12] as number) - (seen[0] as number),
+        dy = (view[13] as number) - (seen[1] as number),
+        dz = (view[14] as number) - (seen[2] as number);
+      const budgets = (seen[6] as number) === error && (seen[23] as number) === horizonError;
+      if (dx === 0 && dy === 0 && dz === 0 && budgets) return false;
+      const travel = Math.sqrt(dx * dx + dy * dy + dz * dz) * this.stretch;
+      // NaN (a choice to make again) fails every comparison and falls through.
+      if (this.slack > 0 && travel < this.measured) {
+        const change =
+          travel / (this.measured - travel) +
+          (budgets
+            ? 0
+            : relativeChange(error, seen[6] as number) +
+              relativeChange(horizonError, seen[23] as number));
+        if (change < this.slack) return false;
+      }
+    }
     seen[0] = view[12] as number;
     seen[1] = view[13] as number;
     seen[2] = view[14] as number;
@@ -328,6 +382,8 @@ class InstancedDetailSwitch extends THREE.LOD {
 }
 /** How far past a handover (as a factor of its distance) a batch asks for the level across it. */
 const APPROACH = 1.25;
+/** An upper bound on how far apart two positive values are, as the logarithm of their ratio. */
+const relativeChange = (a: number, b: number): number => Math.abs(a - b) / Math.min(a, b);
 const cameraPosition = new THREE.Vector3();
 const inverseWorld = new THREE.Matrix4();
 

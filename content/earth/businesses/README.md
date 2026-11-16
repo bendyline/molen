@@ -5,7 +5,9 @@ the expansion added 36 mappings and four retail-center categories. For example, 
 records select `sign.mart_store`, Taco Bell selects `sign.taco_place`, Best Buy selects
 `sign.electronics_store`, and The Home Depot selects `sign.hardware_store`.
 
-Rendered filenames, model IDs, titles, wordmarks and emblems are generic category descriptions.
+Storefront signs show mapped names (see [Names on signs](#names-on-signs)). The descriptor
+models' filenames, model IDs, titles, wordmarks and emblems stay generic category descriptions:
+they are what a place without a name shows, and every place when a host asks for generic signs.
 Each emblem is formed from the descriptor's initials; source-inspired palettes distinguish visual
 variants without displaying source names or logos. Source aliases and brand IDs below were checked
 against the OpenStreetMap Name Suggestion Index at revision
@@ -56,13 +58,33 @@ Generic category models: `sign.mall`, `sign.department_store`, `sign.outlet_mall
 
 Architectural styles: `big_box`, `warehouse`, `restaurant`, `department_store`, `shopping_mall`, `strip_mall`, `outlet_mall`, under `molen.worldgen.generic`. Landmark `storefront.style` is an optional preference applied only to a directly identified low-rise host when that style exists in the active pack. Mapped dimensions remain authoritative.
 
+## Names on signs
+
+A recognized place's sign shows its name, set from the glyph atlases (`fonts/signs.glyphs.json`,
+plus any region glyph pack) in a look from [sign-looks.json](sign-looks.json)
+(`molen/sign-looks@1`):
+
+- A chain in the catalog shows one display name on every branch: its first alias, a `display`
+  from the looks document, or the alias the map wrote in another script (マクドナルド). Its plate,
+  letters and accent band take its descriptor sign's palette (`background`, `foreground`, `mark`);
+  the looks document's `chains` can override any of them, as it does for Safeway's white on red.
+- Any other named place shows its own mapped name, cleaned (store numbers, a trailing
+  parenthesized branch and decorative symbols go), in a look its category's family picks by the
+  name, so branches of a local chain match.
+- A name the atlases cannot set falls back to the map's English name, then to the descriptor sign;
+  so does a place with no name.
+
+A look is plate, letter and band colors, a font role (`bold`, `sans`, `serif`), case and letter
+spacing. It never carries a logo, emblem or brand typeface, and a named sign has no emblem.
+
 ## Source identities and trademarks
 
-The real names and aliases in [catalog.json](catalog.json) are detection-only source metadata and
-may be trademarks of their respective owners. Molen is not affiliated with, endorsed by or
-sponsored by any of them. They exist so a mapped business can be recognized and routed to a
-generic visual descriptor; the default landmark pack does not display those names or source logos.
-See the root [NOTICE](../../../../../NOTICE.md) for the repository-wide inventory.
+The real names and aliases in [catalog.json](catalog.json) may be trademarks of their respective
+owners. Molen is not affiliated with, endorsed by or sponsored by any of them. They recognize a
+mapped business and choose the name its signs show; they are set in Molen's own lettering, and no
+source logo, emblem or wordmark is reproduced. A host that sets `signNames: 'generic'` on the Earth
+view shows the generic descriptors instead, with no business name. See the root
+[NOTICE](../../../../../NOTICE.md) for the repository-wide inventory.
 
 ## Data source and license
 

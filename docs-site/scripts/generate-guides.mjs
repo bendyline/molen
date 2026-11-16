@@ -101,6 +101,7 @@ const GUIDE_ORDER = [
   'boats',
   'aircraft',
   'vehicle-interiors',
+  'glass',
   'liveries',
   'livery-gallery',
   'livery-catalog',

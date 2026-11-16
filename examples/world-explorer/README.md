@@ -325,7 +325,9 @@ separate workers.
 `?autopilot=circle` or `?autopilot=straight` flies a repeatable path from the URL's start
 (`speed` in m/s, `radius` in meters, `dive` in radians, `start` seconds to wait first), for
 reproducing a streaming problem exactly; `?tier=N` holds one adaptive tier while comparing runs.
-See [the flight measurements](test/performance/README.md).
+`?admissionMs=N` (with `admissionMiB=`) holds one streaming budget a frame instead of the one
+that grows while work backs up, and `?cull=0` walks every tile on show every frame, in view or
+not: both for comparison. See [the flight measurements](test/performance/README.md).
 
 The performance HUD reports frame/p90 and optional asynchronous GPU timing, actual rendered
 draws/triangles, resolution and memory budgets. Streaming selection runs at 10 Hz; navigation runs

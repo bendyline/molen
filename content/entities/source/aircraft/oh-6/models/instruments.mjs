@@ -115,11 +115,14 @@ export function instrumentParts(api) {
     const ticks = [];
     const start = type === 'compass' || id === 'altimeter' ? 0 : -2.3;
     const sweep = type === 'compass' || id === 'altimeter' ? Math.PI * 2 : 4.6;
+    // The face looks at the pilot along local -Z, so the pilot's right is local -X. Scales run
+    // clockwise as the pilot sees them, the way a positive needle rotation about Z turns.
+    const at = (a, radius) => [-Math.sin(a) * radius, Math.cos(a) * radius];
     for (let i = 0; i <= 40; i++) {
       const a = start + (i / 40) * sweep;
       const major = i % 5 === 0;
       const geometry = new T.BoxGeometry(r * 0.016, r * (major ? 0.13 : 0.055), 0.001);
-      geometry.rotateZ(-a).translate(Math.sin(a) * r * 0.82, Math.cos(a) * r * 0.82, -0.005);
+      geometry.rotateZ(a).translate(...at(a, r * 0.82), -0.005);
       ticks.push(geometry);
     }
     mesh(instrument, `${id}-scale`, mergeGeometries(ticks), paper);
@@ -129,7 +132,7 @@ export function instrumentParts(api) {
         instrument,
         `${id}-number-${i}`,
         number,
-        Math.sin(a) * r * 0.63,
+        -Math.sin(a) * r * 0.63,
         Math.cos(a) * r * 0.63,
         -0.006,
         r * 0.037,

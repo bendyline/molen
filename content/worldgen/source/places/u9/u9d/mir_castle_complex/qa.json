@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.mir_castle_complex",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:6e22a3860aa9c9da092adf40697078dbf10a15aed2e296d2491927de416f84cc",
-  "sourceHash": "sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f",
-  "runtimeHash": "sha256:5e336fdc7a85f2f0482c6768219cebc50ff638a6aea9f26f2ff915805542e3e8",
-  "captureReportHash": "sha256:c1b9ff614a26fb54ed6995724f597b043570a71eeef0e88ee95a13a8affbfff8",
+  "inputHash": "sha256:d9351ff72d994d02e6a3b1f5fa369e15ba4f7ce9149bbea43612168349b0fc70",
+  "sourceHash": "sha256:333806740b2da56f85322cec7964dead2f0e11d6733e5dd8d17a6c1bd2eb3723",
+  "runtimeHash": "sha256:c857e7abfd9de9aa44288820e6d99088d753b221df55d6c1712f122dbf05ec73",
+  "captureReportHash": "sha256:685fba44174bb73c655a900ecb9a3e8b6c921f576352138d2266a225ffde4907",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -29,7 +29,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9f9873c2f5931e3125ab3c1f6af1243f99016d046eea7d6dab5368ae6ec144e3",
+    "captureReportHash": "sha256:55cfe3c266d303ec47b82a6cad4ca75b456706ced7b71b5e491ec8bd2f0405ef",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -51,7 +51,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ecd22279b14d2b18f12bab15ff883d0e1cec3589e56383ce6a18872aa8efb9c4",
+    "captureReportHash": "sha256:86bead7ead208958467c0163c387a74864d7acc7e0e563c560a67f125ca35558",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -420,5 +420,16 @@
     "framesVerified": 61,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:6e22a3860aa9c9da092adf40697078dbf10a15aed2e296d2491927de416f84cc",
+      "previousSourceHash": "sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f",
+      "previousRuntimeHash": "sha256:5e336fdc7a85f2f0482c6768219cebc50ff638a6aea9f26f2ff915805542e3e8",
+      "inputHash": "sha256:d9351ff72d994d02e6a3b1f5fa369e15ba4f7ce9149bbea43612168349b0fc70",
+      "repair": "The rammed-earth banks under the mapped approach connectors (supportedWay() in mir-runtime-model.mjs: the north bridge approach, the steps and the west gate approach) faced inward on both slopes and the base. face() orients each quad by its winding, and the slope/base quads were listed along the way before across the crest ring ([crest[i-1][j], crest[i][j], crest[i][k], crest[i-1][k]]), which for this ring order winds inward; only the two end caps (built separately) faced out. From above, the slopes were back faces, so the GPU culled them and the bank read as see-through. The quads now list across the ring first ([crest[i-1][j], crest[i-1][k], crest[i][k], crest[i][j]]), keeping the same diagonal; vertex positions, materials and the paved tops/end caps are unchanged (verified triangle-by-triangle: same 41,975 triangles, 144 earth triangles reversed). Above-horizon see-through scan: 9.1% of the model before (earth_rammed foundation 92% of part), 0.09% after in source and closeup, 0.05-0.42% across runtime LODs, where the remainder is pre-existing scattered sub-1% simplification slivers.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones); terrainReview grade shots predate the repair and were not recaptured."
+    }
   }
 }

@@ -51,6 +51,79 @@ function tileWith(pois: TerrainPoiFeature[]): TerrainSemanticTile {
   return tile;
 }
 
+describe('mapped street lamps', () => {
+  // A street along z = 50 m with its sidewalk mapped as its own line at z = 43 m, as Seattle's are.
+  const street = (subclass: string, lanes?: number): TerrainSemanticTile['transportation'] => [
+    {
+      class: 'major_road',
+      subclass,
+      ...(lanes !== undefined ? { lanes } : {}),
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+    },
+    {
+      class: 'path',
+      subclass: 'sidewalk',
+      lines: [
+        [
+          [0, 0.43],
+          [1, 0.43],
+        ],
+      ],
+    },
+  ];
+  const lamp = (point: [number, number]): TerrainPoiFeature => ({
+    id: 1,
+    class: 'street_lamp',
+    point,
+  });
+
+  it('reaches over the street, not the sidewalk mapped behind it', () => {
+    // In the planting strip: 2 m from the sidewalk, 5 m from the street's centre line.
+    const tile = tileWith([lamp([0.3, 0.45])]);
+    tile.transportation = street('secondary');
+    const [request] = mappedPropRequests(tile, geom, false, PLACES.landmarks);
+    expect(request?.model).toBe('builtin:street_lamp.post');
+    // +Z, toward the street (the sidewalk would be pi).
+    expect(request?.yaw).toBeCloseTo(0);
+  });
+
+  it('keeps the mast arm on arterials and faces the path with no street in reach', () => {
+    const arterial = tileWith([lamp([0.3, 0.45])]);
+    arterial.transportation = street('primary');
+    expect(mappedPropRequests(arterial, geom, false, PLACES.landmarks)[0]?.model).toBe(
+      'builtin:street_lamp',
+    );
+    const wide = tileWith([lamp([0.3, 0.45])]);
+    wide.transportation = street('secondary', 4);
+    expect(mappedPropRequests(wide, geom, false, PLACES.landmarks)[0]?.model).toBe(
+      'builtin:street_lamp',
+    );
+    // 25 m from the street, 2 m south of a park path: a post-top facing the path.
+    const park = tileWith([lamp([0.3, 0.25])]);
+    park.transportation = [
+      ...street('primary'),
+      {
+        class: 'path',
+        subclass: 'footway',
+        lines: [
+          [
+            [0, 0.23],
+            [1, 0.23],
+          ],
+        ],
+      },
+    ];
+    const [request] = mappedPropRequests(park, geom, false, PLACES.landmarks);
+    expect(request?.model).toBe('builtin:street_lamp.post');
+    expect(Math.abs(request?.yaw ?? 0)).toBeCloseTo(Math.PI);
+  });
+});
+
 describe('props a map override places', () => {
   it('places its trees and furniture one level coarser than mapped ones', () => {
     const tile = tileWith([
@@ -81,13 +154,13 @@ describe('props a map override places', () => {
     expect(next.map((request) => request.model)).toEqual([
       'builtin:tree.mapped.broadleaf',
       'builtin:bench',
-      'builtin:street_lamp',
+      'builtin:street_lamp.post',
       'builtin:bike_rack',
       'builtin:charger',
     ]);
     expect(next[0]?.scale).toEqual([6, 12, 6]);
     expect(next[1]?.yaw).toBe(0.5);
-    expect(next[2]?.scale).toEqual([1, 0.5, 1]);
+    expect(next[2]?.scale).toEqual([1, 0.75, 1]);
     expect(mappedPropRequests(tile, coarser(2), true, PLACES.landmarks)).toEqual([]);
     // As for mapped objects: trees with the scatter pass, furniture where the library holds it.
     expect(

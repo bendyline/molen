@@ -159,7 +159,11 @@ function roof(out) {
             soffit(a1, panelT(a1, j + 1)),
             soffit(a0, u),
           ];
+          // The membrane ceiling is also seen from above, through the clear inner glass. One face
+          // is wound from reversed corners and splits on the other diagonal, so runtime LODs,
+          // which drop a repeated vertex triple, keep both; they enclose a sliver, never cross.
           face(out, 'membrane', low, white, [0, -1, 0]);
+          face(out, 'membrane', low, white, [0, 1, 0]);
         }
       }
     // Horizontal stabilizing ring trusses remain legible behind the transparent inner glass.

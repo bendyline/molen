@@ -6,6 +6,7 @@
 export { CONTENT_KEY, contentDrift, keyframeContent } from './content';
 export {
   createTypeLibrary,
+  type TypeChecks,
   type TypeLibrary,
   type TypeLibraryOptions,
 } from './type-library';

@@ -1,6 +1,7 @@
 /** Off-thread terrain-grid draping and vertex welding. No WebGL context is created in workers. */
 import * as THREE from 'three';
 import { terrainBuildingCoverage } from './building-coverage';
+import { compactAttribute, packSnorm8x4, packUnorm8x4 } from './compact-attributes';
 import { markTerrainGroundSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
@@ -74,11 +75,12 @@ interface Result {
   id: number;
   geometry?: {
     positions: Float32Array;
-    normals: Float32Array;
-    colors: Float32Array;
+    /** Unit and [0, 1] attributes packed into normalized bytes (compact-attributes.ts). */
+    normals: Int8Array;
+    colors: Uint8Array;
     agricultureRows: Float32Array;
-    agricultureSoil: Float32Array;
-    landcoverBlend: Float32Array;
+    agricultureSoil: Uint8Array;
+    landcoverBlend: Uint8Array;
     landcoverDetail: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
@@ -148,14 +150,18 @@ export function installTerrainLandcoverWorker(
       );
       const result: Result = { id: request.id };
       if (mesh) {
+        const read = (name: string) => mesh.geometry.getAttribute(name);
+        const packed = (name: string, pack: typeof packUnorm8x4 | typeof packSnorm8x4) =>
+          pack(read(name).array, read(name).itemSize);
         result.geometry = {
-          positions: mesh.geometry.getAttribute('position').array as Float32Array,
-          normals: mesh.geometry.getAttribute('normal').array as Float32Array,
-          colors: mesh.geometry.getAttribute('color').array as Float32Array,
-          agricultureRows: mesh.geometry.getAttribute('agricultureRows').array as Float32Array,
-          agricultureSoil: mesh.geometry.getAttribute('agricultureSoil').array as Float32Array,
-          landcoverBlend: mesh.geometry.getAttribute('landcoverBlend').array as Float32Array,
-          landcoverDetail: mesh.geometry.getAttribute('landcoverDetail').array as Float32Array,
+          positions: read('position').array as Float32Array,
+          // Unit normals, linear colors and blend weights fit normalized bytes.
+          normals: packed('normal', packSnorm8x4) as Int8Array,
+          colors: packed('color', packUnorm8x4) as Uint8Array,
+          agricultureRows: read('agricultureRows').array as Float32Array,
+          agricultureSoil: packed('agricultureSoil', packUnorm8x4) as Uint8Array,
+          landcoverBlend: packed('landcoverBlend', packUnorm8x4) as Uint8Array,
+          landcoverDetail: read('landcoverDetail').array as Float32Array,
           indices: mesh.geometry.index?.array as Uint16Array | Uint32Array,
         };
         mesh.geometry.dispose();
@@ -241,11 +247,11 @@ export function createTerrainLandcoverWorkerBridge(
       const data = result.geometry;
       const geometry = new THREE.BufferGeometry();
       geometry.setAttribute('position', new THREE.BufferAttribute(data.positions, 3));
-      geometry.setAttribute('normal', new THREE.BufferAttribute(data.normals, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(data.colors, 3));
+      geometry.setAttribute('normal', compactAttribute(data.normals));
+      geometry.setAttribute('color', compactAttribute(data.colors));
       geometry.setAttribute('agricultureRows', new THREE.BufferAttribute(data.agricultureRows, 4));
-      geometry.setAttribute('agricultureSoil', new THREE.BufferAttribute(data.agricultureSoil, 3));
-      geometry.setAttribute('landcoverBlend', new THREE.BufferAttribute(data.landcoverBlend, 4));
+      geometry.setAttribute('agricultureSoil', compactAttribute(data.agricultureSoil));
+      geometry.setAttribute('landcoverBlend', compactAttribute(data.landcoverBlend));
       geometry.setAttribute('landcoverDetail', new THREE.BufferAttribute(data.landcoverDetail, 2));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);

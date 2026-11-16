@@ -5,6 +5,7 @@ import type { VehiclePlacement } from '@bendyline/molen-schema';
 /** Off-thread road topology, parking inference, terrain draping and fixture placement. */
 import * as THREE from 'three';
 import { AIRPORT_PAVEMENT_MESH, tagAirportPavement } from './airport-surfaces';
+import { compactAttribute, packSnorm8x4, packUnorm8x4 } from './compact-attributes';
 import { Heightfield } from './heightfield';
 import { type TerrainLandcoverWorker, takeMostUrgent } from './landcover-worker';
 import { TERRAIN_PAVEMENT } from './linear-features';
@@ -58,8 +59,9 @@ interface MeshData {
   castShadow: boolean;
   pavement?: boolean;
   positions?: Float32Array;
-  normals?: Float32Array;
-  colors?: Float32Array;
+  /** Packed normals and colors (compact-attributes.ts): normalized bytes, four per vertex. */
+  normals?: Int8Array;
+  colors?: Uint8Array;
   surfaceDetail?: Float32Array;
   /** Present for welded meshes, whose triangles share vertices. */
   index?: Uint16Array | Uint32Array;
@@ -138,8 +140,10 @@ export function installTerrainSurfaceWorker(
             mesh.geometry.computeBoundingSphere();
             sphere = mesh.geometry.boundingSphere as THREE.Sphere;
             data.positions = mesh.geometry.getAttribute('position').array as Float32Array;
-            data.normals = mesh.geometry.getAttribute('normal').array as Float32Array;
-            data.colors = mesh.geometry.getAttribute('color').array as Float32Array;
+            const normal = mesh.geometry.getAttribute('normal');
+            const color = mesh.geometry.getAttribute('color');
+            data.normals = packSnorm8x4(normal.array, normal.itemSize);
+            data.colors = packUnorm8x4(color.array, color.itemSize);
             transfer.push(
               data.positions.buffer as ArrayBuffer,
               data.normals.buffer as ArrayBuffer,
@@ -344,8 +348,8 @@ export function createTerrainSurfaceWorkerBridge(
           'position',
           new THREE.BufferAttribute(data.positions as Float32Array, 3),
         );
-        geometry.setAttribute('normal', new THREE.BufferAttribute(data.normals as Float32Array, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(data.colors as Float32Array, 3));
+        geometry.setAttribute('normal', compactAttribute(data.normals as Int8Array));
+        geometry.setAttribute('color', compactAttribute(data.colors as Uint8Array));
         if (data.surfaceDetail)
           geometry.setAttribute('surfaceDetail', new THREE.BufferAttribute(data.surfaceDetail, 4));
         if (data.index) geometry.setIndex(new THREE.BufferAttribute(data.index, 1));

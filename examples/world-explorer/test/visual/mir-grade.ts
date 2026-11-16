@@ -287,7 +287,9 @@ async function passageProbes() {
   const parts = await json<{ features: { id: string; points: number[][] }[] }>(
     `${folder}/map-parts.json`,
   );
-  const [a, b] = parts.features.find((f) => f.id === 'way/128319139')!.points,
+  const passage = parts.features.find((f) => f.id === 'way/128319139')?.points;
+  if (!passage) throw Error('Missing mapped passage');
+  const [a, b] = passage,
     dx = b[0] - a[0],
     dz = b[1] - a[1],
     len = Math.hypot(dx, dz),

@@ -110,6 +110,8 @@ import {
   type BuildingMaterialDecorator,
   createBuildingWeatheringAsync,
   createScatterMaterialAsync,
+  createSignAtlasTexture,
+  createSignMaterialAsync,
   type ScreenSpaceLodPolicy,
 } from '@bendyline/molen-worldgen/client';
 import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/client';
@@ -555,6 +557,8 @@ async function loadWorldgen(options: {
   /** Land cover drawn as a texture on distant tiles: see `createEarthWorldgen`'s `farLandcover`. */
   farGroundMaterial?: THREE.Material;
   modelMaterial?: THREE.Material;
+  /** Draws storefront signs that show mapped names; without it signs stay generic. */
+  signMaterial?: THREE.Material;
   buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
@@ -622,6 +626,9 @@ async function loadWorldgen(options: {
         }
       : {}),
     ...(options.modelMaterial ? { modelMaterial: options.modelMaterial } : {}),
+    // Storefronts show mapped names; `?signs=generic` shows every sign's descriptor instead.
+    ...(options.signMaterial ? { signMaterial: options.signMaterial } : {}),
+    ...(params.get('signs') === 'generic' ? { signNames: 'generic' as const } : {}),
     ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
@@ -817,13 +824,15 @@ async function main(): Promise<void> {
   const styleId = new URLSearchParams(location.search).has('nostyles')
     ? 'none'
     : (new URLSearchParams(location.search).get('style') ?? 'default');
-  // Content packs download while the terrain manifest loads.
-  const contentLoad = loadExplorerContent(new URL('./', location.href), { styleId }).then(
-    (content) => {
-      startupStage('content-packs');
-      return content;
-    },
-  );
+  // Content packs download while the terrain manifest loads; a region adds its own (its glyphs).
+  const regionPacks = selectedRegion(new URLSearchParams(location.search))?.packs;
+  const contentLoad = loadExplorerContent(new URL('./', location.href), {
+    styleId,
+    ...(regionPacks !== undefined ? { packs: regionPacks } : {}),
+  }).then((content) => {
+    startupStage('content-packs');
+    return content;
+  });
   const loaded = await loadPackage();
   startupStage('terrain-manifest');
   const start = selectedStart();
@@ -923,6 +932,8 @@ async function main(): Promise<void> {
     },
     backend: selectedRendererBackend(params),
     optimizeWebGpu: params.get('gpuOptimizations') !== '0',
+    // `?cull=0` walks every tile on show every frame, in view or not, for comparison (WebGL).
+    cullRenderGroups: params.get('cull') !== '0',
     // Keep silhouette and surface-marking edges smooth when adaptive quality renders below the
     // display resolution. Three uses 4x MSAA on WebGPU and requests context MSAA on WebGL.
     antialias: selectedAntialias(params),
@@ -991,6 +1002,17 @@ async function main(): Promise<void> {
   const buildingDecorator = groundMaterial
     ? await createBuildingWeatheringAsync(viewer.renderer.backend)
     : undefined;
+  // Storefront names: one glyph atlas texture and one material for every sign.
+  const signAtlas = content.worldgen?.signAtlas;
+  const signGlyphs = content.worldgen?.places.signs?.glyphs;
+  const signMaterial =
+    signAtlas !== undefined && signGlyphs !== undefined && params.get('signs') !== 'generic'
+      ? await createSignMaterialAsync(
+          viewer.renderer.backend,
+          createSignAtlasTexture(await signAtlas()),
+          signGlyphs.distanceRange,
+        )
+      : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -1047,6 +1069,7 @@ async function main(): Promise<void> {
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
         ...(farGroundMaterial ? { farGroundMaterial } : {}),
         ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
+        ...(signMaterial ? { signMaterial } : {}),
         ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
         surfaceRenderer,
@@ -2285,6 +2308,18 @@ async function main(): Promise<void> {
   let frameMax = 0;
   let previousCpuMs = 0;
   const admissionGovernor = createEarthAdmissionGovernor(viewer.renderer.backend);
+  // `?admissionMs=<ms>` (with `admissionMiB=`, default 16) holds one streaming budget a frame,
+  // for measuring what a budget costs and buys; without it the governor chooses, and the budget
+  // grows while work backs up (see earthAdmission).
+  const pinnedAdmission =
+    Number(params.get('admissionMs')) > 0
+      ? {
+          maxMilliseconds: Number(params.get('admissionMs')),
+          maxBytes: (Number(params.get('admissionMiB')) || 16) * 1024 * 1024,
+          backlog: undefined,
+        }
+      : undefined;
+  if (pinnedAdmission !== undefined) viewer.renderer.admission.setLimits(pinnedAdmission);
   let lastGpuMs: number | undefined;
   let lastGpuTime = -Infinity;
   let surfaceGeometryRevision = -1;
@@ -2552,9 +2587,17 @@ async function main(): Promise<void> {
       flare: frameInput.jump,
     });
     if (landing) standAt(landing);
-    // Last frame's camera and shadow map: parked and distant aircraft draw without their
-    // cockpits, and the flown one leaves a shadow map too coarse for it (a flickering cockpit).
-    flight.render(camera.pos, viewer.renderer.shadowTexelSize);
+    // Parked and distant aircraft draw without their cockpits, and a cockpit's parts too small to
+    // see from the camera leave the frame (AircraftVisual.updateView). Flying, that needs this
+    // frame's camera: last frame's trailed the aircraft by the ticks run since (2 m each at
+    // 120 m/s), so single dial numerals and screws flashed as frames ran 0, 1 or 2 ticks. The
+    // shadow map is last frame's: the flown aircraft leaves one too coarse for it.
+    const flightCamera = flight.cameraPose(
+      flyby ? 'flyby' : vehicles.view,
+      vehicles.lookYaw,
+      vehicles.lookPitch,
+    );
+    flight.render(flightCamera?.position ?? camera.pos, viewer.renderer.shadowTexelSize);
     cockpitPointer.update();
     flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
     pilotVision.update(flight.state);
@@ -2569,11 +2612,6 @@ async function main(): Promise<void> {
       graphics.record('ambient-render', performance.now() - ambientStarted);
     }
     wildlife?.update(params.has('freeze') ? 0 : dt, camera.pos);
-    const flightCamera = flight.cameraPose(
-      flyby ? 'flyby' : vehicles.view,
-      vehicles.lookYaw,
-      vehicles.lookPitch,
-    );
     const vehicleCamera =
       flightCamera ??
       vehicles.cameraPose() ??
@@ -3217,7 +3255,8 @@ async function main(): Promise<void> {
     graphics.record(streamingBusy ? 'loading-frame-cpu' : 'steady-frame-cpu', previousCpuMs);
     // A larger streaming budget only while frames have time to spare (see earthAdmission).
     const admission = admissionGovernor.sample(previousCpuMs, frameMs);
-    if (admission !== undefined) viewer.renderer.admission.setLimits(admission);
+    if (admission !== undefined && pinnedAdmission === undefined)
+      viewer.renderer.admission.setLimits(admission);
     frameHandle = requestAnimationFrame(frame);
   }
   const removeActivity = observePageActivity((active) => {

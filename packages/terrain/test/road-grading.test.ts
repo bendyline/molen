@@ -1,12 +1,23 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { bridgeDeckHeightFn } from '../src/bridge-profile';
+import {
+  createTerrainElevationWorkerSource,
+  type ElevationStageTiming,
+  type ElevationWorkerLike,
+  installTerrainElevationWorker,
+} from '../src/elevation-worker';
 import { TERRAIN_GRADE_SEPARATION } from '../src/grade-separation';
 import { Heightfield } from '../src/heightfield';
 import { terrainLinePath } from '../src/line-path';
-import type {
-  TerrainPyramidHeightSource,
-  TerrainPyramidTileLayerContext,
+import { buildChunkGeometry } from '../src/mesh';
+import { createTerrainPackagePyramidHeightSource } from '../src/package-client';
+import type { TerrainPackageDescriptor } from '../src/package-types';
+import { encodePng16 } from '../src/png16';
+import {
+  surfaceDescriptor,
+  type TerrainPyramidHeightSource,
+  type TerrainPyramidTileLayerContext,
 } from '../src/pyramid-stream';
 import {
   type TerrainPyramidDescriptor,
@@ -118,7 +129,116 @@ const tileOf = (transportation: TerrainTransportationFeature[]): TerrainSemantic
   transportation,
 });
 
+/** Two ends of an in-process channel that copies what crosses, as a worker's does. */
+function ports(): [ElevationWorkerLike, ElevationWorkerLike] {
+  type Event = { data?: unknown; message?: string };
+  const listeners = [new Set<(event: Event) => void>(), new Set<(event: Event) => void>()];
+  return [0, 1].map((side) => ({
+    postMessage(message: unknown, transfer?: Transferable[]) {
+      const data = structuredClone(message, { transfer: transfer ?? [] });
+      queueMicrotask(() => {
+        for (const handler of listeners[1 - side] ?? []) handler({ data });
+      });
+    },
+    addEventListener(type: 'message' | 'error', handler: (event: Event) => void) {
+      if (type === 'message') listeners[side]?.add(handler);
+    },
+    removeEventListener(_type: 'message' | 'error', handler: (event: Event) => void) {
+      listeners[side]?.delete(handler);
+    },
+  })) as [ElevationWorkerLike, ElevationWorkerLike];
+}
+
 describe('road grading across tiles', () => {
+  it('grades in the elevation worker to the ground the main thread makes, meshed in one trip', async () => {
+    // The hillside as an elevation archive, so both ways read the same stored heights.
+    const side = pyramid.tileResolution;
+    const archive = {
+      async getZxy(level: number, x: number, y: number) {
+        const size = terrainPyramidTileSize(pyramid, level);
+        const data = new Float32Array(side * side);
+        for (let row = 0; row < side; row++)
+          for (let column = 0; column < side; column++)
+            data[row * side + column] =
+              (hillside((x + column / (side - 1)) * size, (y + row / (side - 1)) * size) -
+                RANGE.min) /
+              (RANGE.max - RANGE.min);
+        return { data: encodePng16({ width: side, height: side, data }).slice().buffer };
+      },
+    };
+    const pkg = { tileMatrix: { scheme: 'xyz' } } as TerrainPackageDescriptor;
+    const direct = createTerrainPackagePyramidHeightSource(pkg, pyramid, archive);
+    const [host, thread] = ports();
+    installTerrainElevationWorker(thread);
+    const timings: ElevationStageTiming[] = [];
+    const worker = createTerrainElevationWorkerSource(host, pkg, pyramid, archive, {
+      onTiming: (timing) => timings.push(timing),
+    });
+    const roads = (): TerrainSemanticTileSource =>
+      featuresFor({
+        // A street across the tile, one along its edge in the neighbor, one out of reach.
+        '3/3': [
+          way([
+            [0.1, 0.2],
+            [0.9, 0.7],
+          ]),
+        ],
+        '4/3': [
+          way([
+            [0.015, 0],
+            [0.015, 1],
+          ]),
+          way([
+            [0.6, 0],
+            [0.6, 1],
+          ]),
+        ],
+      });
+    const address = { level: 3, x: 3, z: 3 };
+    const onMain = createTerrainRoadGrading({ features: roads() });
+    const inWorker = createTerrainRoadGrading({ features: roads() });
+    const mainContext = await context(direct, address);
+    const workerContext = await context(worker, address);
+    // A field read for its heights alone costs the worker no mesh.
+    expect(timings.filter((timing) => timing.stage === 'mesh')).toHaveLength(0);
+    expect(workerContext.heightfield.copySamples()).toEqual(mainContext.heightfield.copySamples());
+    const expected = await onMain.transformHeightfield(mainContext, direct);
+    const graded = await inWorker.transformHeightfield(workerContext, worker);
+    expect(expected).not.toBe(mainContext.heightfield);
+    expect(graded).not.toBe(workerContext.heightfield);
+    expect(graded.copySamples()).toEqual(expected.copySamples());
+    expect(timings.filter((timing) => timing.stage === 'earthworks')).toHaveLength(1);
+    // The mesh the stream asks for next came back with the field: no second trip.
+    const meshes = timings.filter((timing) => timing.stage === 'mesh').length;
+    expect(meshes).toBe(1);
+    const geometry = await worker.meshPrepared?.(graded, address, workerContext.signal, 65);
+    expect(timings.filter((timing) => timing.stage === 'mesh')).toHaveLength(meshes);
+    expect(geometry).toEqual(
+      buildChunkGeometry(graded, surfaceDescriptor(pyramid, address), address.x, address.z, {
+        localCoordinates: true,
+      }),
+    );
+    // A tile no road reaches keeps its field, without asking the worker anything.
+    const empty = { level: 3, x: 1, z: 6 };
+    const emptyContext = await context(worker, empty);
+    const before = timings.length;
+    expect(await inWorker.transformHeightfield(emptyContext, worker)).toBe(
+      emptyContext.heightfield,
+    );
+    expect(timings).toHaveLength(before);
+    // Cancelled on the way: the tile's own field, as when grading on the main thread.
+    const cancelled = new AbortController();
+    const pending = inWorker.transformHeightfield(
+      { ...workerContext, signal: cancelled.signal },
+      worker,
+    );
+    cancelled.abort();
+    expect(await pending).toBe(workerContext.heightfield);
+    onMain.dispose();
+    inWorker.dispose();
+    worker.dispose?.();
+  });
+
   it('levels the ground for a road in the next tile that runs along the shared edge', async () => {
     const heights = heightsFor(hillside);
     const features = featuresFor({

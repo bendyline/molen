@@ -3,7 +3,10 @@ import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import { createAircraftDamageVisual } from '../src/aircraft-damage';
 
-const parts: NonNullable<AircraftSpec['collisionParts']> = [
+type Part = NonNullable<AircraftSpec['collisionParts']>[number];
+type Debris = NonNullable<AircraftStateData['debris']>[number];
+
+const parts: Part[] = [
   {
     id: 'wing',
     role: 'leftWing',
@@ -27,16 +30,19 @@ it('separates a nested rotor once, including when its supporting wing detaches l
   rotor.name = 'rotor';
   wing.add(rotor);
   const visual = createAircraftDamageVisual(model, {
-    collisionParts: [...parts, { ...parts[0]!, id: 'rotor', nodes: ['rotor'], center: [0, 1, 0] }],
+    collisionParts: [
+      ...parts,
+      { ...(parts[0] as Part), id: 'rotor', nodes: ['rotor'], center: [0, 1, 0] },
+    ],
   });
   const state = damaged();
   state.damage = { rotor: { integrity: 0, detached: true } };
-  state.debris = [{ ...state.debris![0]!, part: 'rotor' }];
+  state.debris = [{ ...(state.debris?.[0] as Debris), part: 'rotor' }];
   visual.update(state);
   const rotorPiece = model.getObjectByName('debris:rotor');
   expect(rotorPiece?.getObjectByName('rotor')).toBeDefined();
   state.damage.wing = { integrity: 0, detached: true };
-  state.debris.push({ ...state.debris[0]!, part: 'wing' });
+  state.debris.push({ ...(state.debris[0] as Debris), part: 'wing' });
   visual.update(state);
   expect(model.getObjectByName('debris:wing')?.getObjectByName('rotor')).toBeUndefined();
   expect(model.getObjectByName('debris:rotor')).toBe(rotorPiece);

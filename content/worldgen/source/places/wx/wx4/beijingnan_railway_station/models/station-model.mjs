@@ -589,7 +589,14 @@ function edge(ring, i) {
 }
 function slab(o, c, ring, y0, y1, s = 'base') {
   ring = openRing(ring);
-  const ix = earcut(ring.flat());
+  const ix = earcut(ring.flat()),
+    // Approach decks pass negative-area rings; sign the outward edge normal by the area.
+    sg = Math.sign(
+      ring.reduce((sum, a, i) => {
+        const b = ring[(i + 1) % ring.length];
+        return sum + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    );
   for (let i = 0; i < ix.length; i += 3) {
     T(
       o,
@@ -622,7 +629,7 @@ function slab(o, c, ring, y0, y1, s = 'base') {
       ],
       s,
       C[s],
-      [b[1] - a[1], 0, a[0] - b[0]],
+      [(b[1] - a[1]) * sg, 0, (a[0] - b[0]) * sg],
     );
   }
 }
@@ -936,7 +943,10 @@ function facade(o, c) {
           z = (a[1] + b[1]) / 2,
           closed = z < controls.floorBands[0] || z > controls.floorBands[1],
           lo = closed ? controls.floor : controls.upperFloor,
-          hi = 27.3;
+          hi = 27.3,
+          // Outward for this positive-area ring (as the band offset below assumes); the
+          // bottom-to-top point order alone faces the wall inward.
+          out = [b[1] - a[1], 0, a[0] - b[0]];
         Q(
           o,
           c,
@@ -948,6 +958,7 @@ function facade(o, c) {
           ],
           'glass',
           C.glass,
+          out,
         );
         Q(
           o,
@@ -960,6 +971,7 @@ function facade(o, c) {
           ],
           'glass',
           C.glass,
+          out,
         );
         if (c.detail) {
           const L = Math.hypot(b[0] - a[0], b[1] - a[1]),
@@ -1000,6 +1012,7 @@ function facade(o, c) {
                   ],
                   'metal',
                   C.metal,
+                  out,
                 );
               }
             }
@@ -1071,6 +1084,7 @@ function stair(o, c, x, z) {
       C.stone,
       [0, 1, 0],
     );
+    // Each riser faces the stair foot at x0 (+X); this point order alone faces it uphill.
     if (n > 1)
       Q(
         o,
@@ -1083,6 +1097,7 @@ function stair(o, c, x, z) {
         ],
         'stone',
         C.stone,
+        [1, 0, 0],
       );
   }
   if (c.detail)

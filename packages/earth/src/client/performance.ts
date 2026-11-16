@@ -52,7 +52,8 @@ const AMBIENT = [
 ] as const;
 
 /**
- * How long an adaptive level must hold before adaptation turns sticky, ms. The quick defaults
+ * How long an adaptive level must hold once the view has settled (the Earth view holds its level
+ * while a view first arrives) before adaptation turns sticky, ms. The quick defaults
  * calibrate a device within seconds; afterwards every change swaps resolution, shadows and
  * building detail across the whole view (Low and Medium differ in worldgen quality, so a step
  * regenerates every resident town tile), and the defaults flipped a jet between them every
@@ -85,14 +86,55 @@ export const EARTH_STICKY_QUALITY = {
  * Without spare time, the renderer's defaults (2 MiB, and 2 ms on WebGL): a render-bound frame
  * (High detail over a town) lost a sixth of its rate to the larger budget.
  * `createEarthAdmissionGovernor` chooses between them.
+ *
+ * Either one grows toward the arrival budget (`earthArrivalAdmission`) while work has been
+ * waiting longer than `EARTH_BACKLOG_MS` (the queue's `backlog`). The busy budget assumes the
+ * view keeps up on it. A P-51 at 290 kt over Seattle at High did not: its frames were always
+ * busy, the 2 ms published a quarter of the layers the flight asked for, each job waited 3 s on
+ * average (21 s at worst) for each of a layer's several turns, and beyond 2 km no tile had all
+ * of its layers on show at any point of the flight. With 4 ms the same flight kept
+ * its 30 frames a second and finished four fifths of the ground within 2 km; with 8 ms it
+ * finished nearly all of the view at 22 frames a second, drawing three times the triangles.
  */
 export function earthAdmission(
   backend: 'auto' | 'webgl' | 'webgpu' | undefined,
   spare: boolean,
-): { maxBytes: number; maxMilliseconds?: number } {
+): EarthAdmissionLimits {
   return {
     maxBytes: (spare ? 8 : 2) * MIB,
     ...(backend === 'webgl' ? { maxMilliseconds: spare ? 4 : 2 } : {}),
+    backlog: { afterMs: EARTH_BACKLOG_MS, ...earthArrivalAdmission(backend) },
+  };
+}
+
+/** A frame's streaming budget for an Earth view: `renderer.admission.setLimits` takes it. */
+export interface EarthAdmissionLimits {
+  maxBytes: number;
+  maxMilliseconds?: number;
+  backlog?: { afterMs: number; maxBytes: number; maxMilliseconds?: number };
+}
+
+/**
+ * How long streamed work waits for a frame before the budget starts to grow, ms; it is at the
+ * arrival budget at twice this. A view that keeps up publishes a job within a few frames.
+ */
+export const EARTH_BACKLOG_MS = 400;
+
+/**
+ * Main-thread admission budget while a view arrives (a first mount, a jump): from then until the
+ * stream first has nothing left to load (see the Earth view's settling), whatever the frame costs.
+ * The governor's busy budget (2 MiB and 2 ms a frame) let one 4-5 ms town job through a frame:
+ * over a city, semantic objects, worldgen requests and building assembly each waited a median of
+ * 1-14 s in the queue though all of the admitted work came to under a tenth of the time, and the
+ * coarse ground stayed for minutes. Arrival trades a few frames a second for that work.
+ */
+export function earthArrivalAdmission(backend: 'auto' | 'webgl' | 'webgpu' | undefined): {
+  maxBytes: number;
+  maxMilliseconds?: number;
+} {
+  return {
+    maxBytes: 16 * MIB,
+    ...(backend === 'webgl' ? { maxMilliseconds: 8 } : {}),
   };
 }
 
@@ -107,10 +149,7 @@ const BUSY_WORK_MS = 13;
  * limits when the choice changes; pass them to `renderer.admission.setLimits`. Starts busy.
  */
 export function createEarthAdmissionGovernor(backend: 'auto' | 'webgl' | 'webgpu' | undefined): {
-  sample(
-    workMs: number,
-    frameMs: number,
-  ): { maxBytes: number; maxMilliseconds?: number } | undefined;
+  sample(workMs: number, frameMs: number): EarthAdmissionLimits | undefined;
   readonly spare: boolean;
 } {
   let smoothed: number | undefined;
@@ -208,6 +247,8 @@ export interface EarthDeviceMemory {
   touch?: boolean;
   /** `navigator.hardwareConcurrency`, logical cores. */
   cores?: number;
+  /** The view draws through a software rasterizer (molen-client's `Renderer.softwareRasterizer`). */
+  softwareRasterizer?: boolean;
 }
 
 function browserDeviceMemory(): EarthDeviceMemory {
@@ -278,11 +319,19 @@ export const EARTH_INDEPENDENT_LAYERS: readonly ['hydrology', 'classification'] 
 ];
 
 /**
+ * Share of the memory budget that ground the camera has left may keep (the warm cache). The rest
+ * is for what is on screen and coming up. Without a share of its own the warm cache filled the
+ * whole budget: in Seattle at 384 MiB, 370 MB resident with 127 MB on screen, and a larger budget,
+ * meant to show more, mostly kept more hidden (2 GiB ran a tab out of memory within minutes).
+ */
+const WARM_SHARE = 0.5;
+
+/**
  * A terrain budget for an Earth view, from a tier's or a preset's. Ground just left must stay warm
- * up to the device's memory budget, whatever the level. A dense city's view alone can pass a
+ * within the device's memory budget, whatever the level: a dense city's view alone can pass a
  * tier's own byte cap, and with no room for hidden tiles everything leaves the cache the moment it
- * leaves the view: a circle at 250 m/s then rebuilt 70% of its tiles, and the capacity that took
- * was not spent on the ground ahead.
+ * leaves the view (a circle at 250 m/s then rebuilt 70% of its tiles, and the capacity that took
+ * was not spent on the ground ahead). It keeps up to `WARM_SHARE` of the budget.
  */
 export function earthTerrainBudget(
   base: TerrainPyramidBudget,
@@ -296,6 +345,7 @@ export function earthTerrainBudget(
       ? { surroundDetail: SURROUND_DETAIL, surroundDistance: SURROUND_DISTANCE }
       : {}),
     maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
+    maxHiddenBytes: Math.round(memoryBudget * WARM_SHARE),
     maxResidentTiles: Math.max(
       base.maxResidentTiles,
       Math.min(MAX_RESIDENT_TILES, Math.round(memoryBudget / MIB)),
@@ -309,14 +359,18 @@ export function earthWorldgenCacheBytes(tierBytes: number, memoryBudget: number)
 }
 
 /**
- * The adaptive level a view starts at before measuring frames: 1 (Low) on touch devices and at
- * 2 GiB or less, 2 (Medium) at 4 GiB, otherwise 3 (Balanced). Calibration then moves it, so a
- * phone does not first stream a desktop's detail.
+ * The adaptive level a view starts at before measuring frames: 0 (Economy) on a software
+ * rasterizer, 1 (Low) on touch devices and at 2 GiB or less, 2 (Medium) at 4 GiB, otherwise 3
+ * (Balanced). Calibration then moves it, so a phone does not first stream a desktop's detail. A
+ * software rasterizer starts lowest because frame time does not lower detail while a view
+ * settles (AdaptiveQualitySample.settling): held at a desktop level it drew about a frame a
+ * second, which starved the per-frame streaming the arrival was waiting on.
  */
 export function earthInitialQualityLevel(
   device: EarthDeviceMemory = browserDeviceMemory(),
 ): number {
   const { deviceMemory, touch } = device;
+  if (device.softwareRasterizer === true) return 0;
   if (touch === true || (deviceMemory !== undefined && deviceMemory <= 2)) return 1;
   if (deviceMemory !== undefined && deviceMemory <= 4) return 2;
   return 3;

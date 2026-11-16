@@ -1017,15 +1017,14 @@ function roof(o, c, x, z, w, d, lo, hi, s = 'roof', levels = 3, frontLimit = Inf
       [x - (w * k) / 2, lo + (hi - lo) * t, Math.min(frontLimit, z + (d * k) / 2)],
     ];
   });
+  // Rings run with positive x/z area, so the bare point order faces each slope inward.
   for (let i = 0; i < levels; i++)
-    for (let j = 0; j < 4; j++)
-      Q(
-        o,
-        c,
-        [rings[i][j], rings[i][(j + 1) % 4], rings[i + 1][(j + 1) % 4], rings[i + 1][j]],
-        s,
-        C[s],
-      );
+    for (let j = 0; j < 4; j++) {
+      const a = rings[i][j],
+        b = rings[i][(j + 1) % 4],
+        out = [b[2] - a[2], 0, a[0] - b[0]];
+      Q(o, c, [a, b, rings[i + 1][(j + 1) % 4], rings[i + 1][j]], s, C[s], out);
+    }
   Q(o, c, rings.at(-1), s, C[s], [0, 1, 0]);
   if (c.fine) {
     for (const i of [0, levels])
@@ -1045,13 +1044,26 @@ function pointedRoof(o, c, x, z, w, d, lo, hi) {
       lo,
       z + (d / 2) * Math.sin((j / n) * Math.PI * 2),
     ]);
-  for (let i = 0; i < n; i++) T(o, c, [ring[i], ring[(i + 1) % n], [x, hi, z]], 'roof', C.roof);
+  // Turn each facet away from the spire axis; the ring's own order faces it inward.
+  for (let i = 0; i < n; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % n];
+    T(o, c, [a, b, [x, hi, z]], 'roof', C.roof, [(a[0] + b[0]) / 2 - x, 0, (a[2] + b[2]) / 2 - z]);
+  }
   if (c.near)
     for (let i = 0; i < n; i++)
       beam(adapter(o, c), 'metal', ring[i], [x, hi, z], 0.045, 0.055, C.metal);
 }
 function frontPanel(o, c, outer, holes, z, s = 'trim', depth = 0) {
   if (depth) {
+    // The bare point order faces a positive-area outline's sides inward; hint the outward edge
+    // normal, signed by the outline's area.
+    const sg = Math.sign(
+      outer.reduce((sum, a, j) => {
+        const b = outer[(j + 1) % outer.length];
+        return sum + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    );
     for (let j = 0; j < outer.length; j++) {
       const a = outer[j],
         b = outer[(j + 1) % outer.length];
@@ -1066,6 +1078,7 @@ function frontPanel(o, c, outer, holes, z, s = 'trim', depth = 0) {
         ],
         s,
         C[s],
+        [(b[1] - a[1]) * sg, (a[0] - b[0]) * sg, 0],
       );
     }
   }

@@ -1,4 +1,9 @@
-import { FrameAdmissionQueue } from '@bendyline/molen-client';
+import {
+  FrameAdmissionQueue,
+  markRenderBoundsChanged,
+  RENDER_BOUNDS,
+  RENDER_BOUNDS_STALE,
+} from '@bendyline/molen-client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
@@ -556,6 +561,109 @@ describe('screen-space terrain pyramid', () => {
       pending[0]?.resolve(new THREE.Group());
       await expect.poll(() => pending.length).toBe(2);
       expect(pending[1]?.level).toBe(1);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('starts the family replacing ground on screen even when finer leaves fill the window', async () => {
+    const d = descriptor();
+    const pending: Array<{ level: number }> = [];
+    // Ground arrives coarse first, then the leaves, and the middle generation last.
+    let openLeaves!: () => void;
+    let openMiddle!: () => void;
+    const leaves = new Promise<void>((resolve) => (openLeaves = resolve));
+    const middle = new Promise<void>((resolve) => (openMiddle = resolve));
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        load: async (address) => {
+          if (address.level === 2) await leaves;
+          if (address.level === 1) await middle;
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 32,
+        maxResidentTiles: 64,
+        maxConcurrentLoads: 32,
+        maxConcurrentLayerLoads: 2,
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              // The coarse tile builds at once; finer ones take a city's minute.
+              if (address.level === 0) return new THREE.Group();
+              pending.push({ level: address.level });
+              return new Promise<THREE.Object3D>(() => undefined);
+            },
+          },
+        ],
+      },
+    );
+    try {
+      // The coarse tile shows with its layer; then the leaves' layers take the whole window.
+      await expect.poll(() => stream.stats().displayed).toBe(1);
+      openLeaves();
+      await expect.poll(() => pending.filter((job) => job.level === 2).length).toBe(2);
+      openMiddle();
+      await expect.poll(() => stream.loading().tiles).toBe(0);
+      for (let i = 0; i < 5; i++) stream.update(VIEW);
+      // The leaves still hold the window, yet the generation that replaces the coarse tile on
+      // screen is under way beside them.
+      await expect.poll(() => pending.some((job) => job.level === 1)).toBe(true);
+      expect(pending.filter((job) => job.level === 2)).toHaveLength(2);
+      expect(stream.stats().maxDisplayedLevel).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('replaces a placeholder far coarser than the selected ground without waiting for its layers', async () => {
+    const d = descriptor({ maxLevel: 6 });
+    let openFine!: () => void;
+    const fine = new Promise<void>((resolve) => (openFine = resolve));
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        load: async (address) => {
+          if (address.level > 0) await fine;
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 0.05,
+        viewDistance: 100,
+        maxSelectedTiles: 64,
+        maxResidentTiles: 512,
+        maxConcurrentLoads: 64,
+        maxConcurrentLayerLoads: 4,
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              // The coarse tile builds at once; finer layers never finish.
+              if (address.level === 0) return new THREE.Group();
+              return new Promise<THREE.Object3D>(() => undefined);
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await expect.poll(() => stream.stats().displayed).toBe(1);
+      expect(stream.stats().maxDisplayedLevel).toBe(0);
+      openFine();
+      await expect.poll(() => stream.loading().tiles).toBe(0);
+      for (let i = 0; i < 5; i++) stream.update(VIEW);
+      // Bare finer ground shows rather than the zoom-0 tile it was waiting behind.
+      await expect.poll(() => stream.stats().maxDisplayedLevel ?? 0).toBeGreaterThan(3);
     } finally {
       stream.dispose();
     }
@@ -1300,6 +1408,46 @@ describe('screen-space terrain pyramid', () => {
       expect(prepared.get(surface.uuid)?.receive).toBe(true);
       expect(tile.matrixAutoUpdate).toBe(false);
       expect(tile.children.every((child) => !child.matrixAutoUpdate)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('holds ground the camera has left to maxHiddenBytes, never what is on screen', async () => {
+    const d = descriptor({ rootSize: 256, maxLevel: 4 });
+    const view = {
+      ...VIEW,
+      position: [60, 10, 60] as [number, number, number],
+      direction: [0, -0.3, -1] as [number, number, number],
+      aspect: 1.4,
+    };
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: view,
+        maxScreenSpaceError: 1,
+        viewDistance: 120,
+        maxSelectedTiles: 64,
+        maxResidentTiles: 512,
+        maxResidentBytes: 1 << 30,
+        maxConcurrentLoads: 8,
+      },
+    );
+    try {
+      await stream.whenIdle();
+      // Fly to the far corner: the first view's ground is left behind but kept warm.
+      stream.update({ ...view, position: [200, 10, 200] });
+      await stream.whenIdle();
+      const shown = new Set(stream.displayedTiles().map(terrainPyramidTileKey));
+      const hidden = () => stream.pressure().residentBytes - stream.pressure().displayedBytes;
+      const warm = hidden();
+      expect(warm).toBeGreaterThan(0);
+      stream.setBudget({ maxHiddenBytes: 0 });
+      stream.update({ ...view, position: [200, 10, 200] });
+      // What the camera left goes; everything on screen stays.
+      expect(hidden()).toBeLessThan(warm / 2);
+      expect(new Set(stream.displayedTiles().map(terrainPyramidTileKey))).toEqual(shown);
     } finally {
       stream.dispose();
     }
@@ -4988,6 +5136,57 @@ describe('refreshing resident layers', () => {
       // Nothing was touched by the calls that threw.
       expect(detail.disposed).toEqual([]);
       expect(stream.stats().refreshingLayers).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+});
+
+describe('terrain pyramid tile bounds', () => {
+  it('states where each tile draws, and keeps that true as content arrives and changes size', async () => {
+    const d = descriptor();
+    const source: TerrainPyramidHeightSource = { load: async (address) => flatTile(d, address) };
+    // A tower 40 m tall that stands 30 m outside its tile's ground.
+    const towers = (): THREE.Object3D => {
+      const group = new THREE.Group();
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(4, 40, 4));
+      tower.position.set(-30, 20, 2);
+      group.add(tower);
+      return group;
+    };
+    const stream = createTerrainPyramidStream(d, source, {
+      initialView: VIEW,
+      viewDistance: 100,
+      maxScreenSpaceError: 10000,
+      maxSelectedTiles: 4,
+      maxResidentTiles: 8,
+      maxConcurrentLoads: 4,
+      layers: [{ id: 'towers', category: 'human-feature', createTile: towers }],
+    });
+    try {
+      await stream.whenIdle();
+      const tile = stream.object.children.find((child) => child.name === 'tile:0/0/0');
+      if (tile === undefined) throw new Error('no tile');
+      const size = terrainPyramidTileSize(d, 0);
+      // In the stream object's frame, as a renderer culling the tile's group reads them.
+      const bounds = tile.userData[RENDER_BOUNDS] as THREE.Box3;
+      expect(bounds.min.x).toBeLessThanOrEqual(tile.position.x);
+      expect(bounds.max.x).toBeGreaterThanOrEqual(tile.position.x + size);
+      expect(bounds.max.z).toBeGreaterThanOrEqual(tile.position.z + size);
+      // The tower too, though it overhangs the ground.
+      expect(bounds.min.x).toBeLessThanOrEqual(tile.position.x - 32);
+      expect(bounds.max.y).toBeGreaterThanOrEqual(40);
+      expect(bounds.max.y).toBeLessThan(100);
+      // Content that grows after publication (a landmark's next level, say) asks for new bounds.
+      const layer = tile.children.find((child) => child.name.startsWith('layer:towers'));
+      const mast = new THREE.Mesh(new THREE.BoxGeometry(1, 200, 1));
+      mast.position.set(0, 100, 0);
+      layer?.add(mast);
+      markRenderBoundsChanged(mast);
+      expect(tile.userData[RENDER_BOUNDS_STALE]).toBe(true);
+      stream.updateTransitions();
+      expect(tile.userData[RENDER_BOUNDS_STALE]).toBeUndefined();
+      expect((tile.userData[RENDER_BOUNDS] as THREE.Box3).max.y).toBeGreaterThanOrEqual(200);
     } finally {
       stream.dispose();
     }

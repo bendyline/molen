@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.poniatowski_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:e56ac7acee9a8e1a13daeb57bd08180cb095247c507cbe6877e4e6347297bf46",
-  "sourceHash": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c",
-  "runtimeHash": "sha256:2f99724af4398155adb301672d7b0956da00fd0a9e64f7010ca9f0b7be1c5f45",
-  "captureReportHash": "sha256:04b97f8b47a6c6a0fa095a6a8b7f6314107cd2c63fbd4cfffe6d09b36ba78b20",
+  "inputHash": "sha256:06765d31a32f75f40b564d88ffa56b4b4600728679fcf848a01077fb33544c2e",
+  "sourceHash": "sha256:4d5b329ef4b4758f6fc0e7504bf4b057cf9c321fd279739d4eac6044021eaee9",
+  "runtimeHash": "sha256:8cd46d5816664ad08ac6317fa525087b5225ef15a1d54cd03ef624fa45b50b00",
+  "captureReportHash": "sha256:a65d6190865a1e3b42a599511b4f8040af963cf9661da5c9c96622f11d68fba3",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -36,7 +36,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:dc0e3b2d28e248bf1515e40eb01b5c62ccca6b9d598725f469ef23a9c828f2f6",
+    "captureReportHash": "sha256:962f9b84d5b3d183ebc710ed74062e7c26b6966c4732954d8634f635f28c1727",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -65,7 +65,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:318943170d302f252b703103e376edd86db49c6950bf6a56d91e764a4623017f",
+    "captureReportHash": "sha256:a094fdaff8b87e68686c137e354bf53b421d1116521e3c7022eb10e048e1ff76",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -387,5 +387,16 @@
     "framesVerified": 82,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:e56ac7acee9a8e1a13daeb57bd08180cb095247c507cbe6877e4e6347297bf46",
+      "previousSourceHash": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c",
+      "previousRuntimeHash": "sha256:2f99724af4398155adb301672d7b0956da00fd0a9e64f7010ca9f0b7be1c5f45",
+      "inputHash": "sha256:06765d31a32f75f40b564d88ffa56b4b4600728679fcf848a01077fb33544c2e",
+      "repair": "The browser deck slab in poniatowski-browser-model.mjs build() was lofted from a bottom-first ring, so the whole slab faced inward and the strip between roadway and fascia showed the deck underside 0.7 m below. Its roadway, soffit and end faces are now emitted outward as explicit quads with the same diagonals. The two long sides deliberately keep their inward winding: the red fascia beams sit 1 cm inside the slab edge (outer face at z=±12.39 against the slab at ±12.4) and outward sides would hide them. A full fix needs the fascia moved about 1 cm outward, which is left to the owner. The original master deck in poniatowski-bridge-model.mjs was already wound correctly.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones)."
+    }
   }
 }

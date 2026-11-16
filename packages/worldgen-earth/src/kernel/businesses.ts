@@ -12,10 +12,12 @@ import {
   type ResolvedStylePack,
   ringCentroid,
   type StorefrontRequest,
+  type StorefrontSign,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
 import type { BuildingPiece } from './building-parts';
 import type { BusinessCatalog, ResolvedBusiness } from './business-catalog';
+import type { SignNamer } from './sign-names';
 
 interface Occupant {
   poi: TerrainPoiFeature;
@@ -88,6 +90,40 @@ export function associateBusinesses(
   }
   return output;
 }
+/** How far a frontage's road access counts in its score, in tile units. */
+const ACCESS_REACH = 0.03;
+
+const segmentsByRoads = new WeakMap<TerrainSemanticTile['transportation'], Float64Array>();
+
+/**
+ * A tile's surface road segments as [ax, az, bx, bz] runs, read once per tile: placing a frontage
+ * for each business measured every edge of its building against every road in the tile.
+ */
+function roadSegments(tile: TerrainSemanticTile): Float64Array {
+  const roads = tile.transportation;
+  const known = segmentsByRoads.get(roads);
+  if (known !== undefined) return known;
+  let count = 0;
+  for (const road of roads)
+    if (!road.tunnel) for (const line of road.lines) count += Math.max(0, line.length - 1);
+  const segments = new Float64Array(count * 4);
+  let at = 0;
+  for (const road of roads) {
+    if (road.tunnel) continue;
+    for (const line of road.lines)
+      for (let j = 1; j < line.length; j++) {
+        const a = line[j - 1] as Vec2,
+          b = line[j] as Vec2;
+        segments[at++] = a[0];
+        segments[at++] = a[1];
+        segments[at++] = b[0];
+        segments[at++] = b[1];
+      }
+  }
+  segmentsByRoads.set(roads, segments);
+  return segments;
+}
+
 function frontagePoint(
   poi: TerrainPoiFeature,
   piece: BuildingPiece,
@@ -102,6 +138,35 @@ function frontagePoint(
     }),
   );
   const minimum = Math.min(longest, 6 / size);
+  // Road access counts only up to ACCESS_REACH, and every candidate point lies on the outline:
+  // segments farther than that from the outline's bounds cannot change a score.
+  let minX = Number.POSITIVE_INFINITY,
+    minZ = Number.POSITIVE_INFINITY,
+    maxX = Number.NEGATIVE_INFINITY,
+    maxZ = Number.NEGATIVE_INFINITY;
+  for (const [x, z] of ring) {
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (z < minZ) minZ = z;
+    if (z > maxZ) maxZ = z;
+  }
+  const reach = ACCESS_REACH * 1.01;
+  const segments = roadSegments(tile);
+  const near: number[] = [];
+  for (let k = 0; k < segments.length; k += 4) {
+    const ax = segments[k] as number,
+      az = segments[k + 1] as number,
+      bx = segments[k + 2] as number,
+      bz = segments[k + 3] as number;
+    if (
+      (ax < bx ? bx : ax) < minX - reach ||
+      (ax < bx ? ax : bx) > maxX + reach ||
+      (az < bz ? bz : az) < minZ - reach ||
+      (az < bz ? az : bz) > maxZ + reach
+    )
+      continue;
+    near.push(ax, az, bx, bz);
+  }
   let best: { point: Vec2; score: number } | undefined;
   for (let i = 0; i < ring.length; i++) {
     const a = ring[i] as Vec2,
@@ -116,29 +181,19 @@ function frontagePoint(
     );
     const point: Vec2 = [a[0] + dx * t, a[1] + dz * t];
     let access = Number.POSITIVE_INFINITY;
-    for (const road of tile.transportation) {
-      if (road.tunnel) continue;
-      for (const line of road.lines)
-        for (let j = 1; j < line.length; j++) {
-          const ra = line[j - 1] as Vec2,
-            rb = line[j] as Vec2,
-            rx = rb[0] - ra[0],
-            rz = rb[1] - ra[1];
-          const rt = Math.max(
-            0,
-            Math.min(
-              1,
-              ((point[0] - ra[0]) * rx + (point[1] - ra[1]) * rz) / (rx * rx + rz * rz || 1),
-            ),
-          );
-          access = Math.min(
-            access,
-            Math.hypot(point[0] - ra[0] - rt * rx, point[1] - ra[1] - rt * rz),
-          );
-        }
+    for (let k = 0; k < near.length; k += 4) {
+      const rax = near[k] as number,
+        raz = near[k + 1] as number,
+        rx = (near[k + 2] as number) - rax,
+        rz = (near[k + 3] as number) - raz;
+      const rt = Math.max(
+        0,
+        Math.min(1, ((point[0] - rax) * rx + (point[1] - raz) * rz) / (rx * rx + rz * rz || 1)),
+      );
+      access = Math.min(access, Math.hypot(point[0] - rax - rt * rx, point[1] - raz - rt * rz));
     }
     const distance = Math.hypot(point[0] - poi.point[0], point[1] - poi.point[1]);
-    const score = distance + Math.min(access, 0.03) * 0.45;
+    const score = distance + Math.min(access, ACCESS_REACH) * 0.45;
     if (!best || score < best.score) best = { point, score };
   }
   return best?.point ?? poi.point;
@@ -150,6 +205,8 @@ export function applyBusinessAppearance(
   tile: TerrainSemanticTile,
   size: number,
   styles: ResolvedStylePack['archstyles'],
+  /** Sets mapped names on the signs; without it every sign keeps its descriptor text. */
+  namer?: SignNamer,
 ): void {
   if (!occupants.length) return;
   request.interiorLabels = [
@@ -231,25 +288,43 @@ export function applyBusinessAppearance(
       trim: standalone.business.profile.accent,
     };
   const used = new Set<string>();
-  request.storefronts = signs
-    .filter((o) => {
-      const [u, v] = o.poi.point;
-      if (request.clipped && (u < 0 || v < 0 || u >= 1 || v >= 1)) return false;
-      const key = identity(o.poi);
-      if (used.has(key)) return false;
-      used.add(key);
-      return true;
-    })
-    .sort((a, b) => (identity(a.poi) < identity(b.poi) ? -1 : 1))
+  const shown = signs.filter((o) => {
+    const [u, v] = o.poi.point;
+    if (request.clipped && (u < 0 || v < 0 || u >= 1 || v >= 1)) return false;
+    const key = identity(o.poi);
+    if (used.has(key)) return false;
+    used.add(key);
+    return true;
+  });
+  const named = new Map<Occupant, StorefrontSign>();
+  if (namer !== undefined)
+    for (const o of shown) {
+      const sign = namer.sign(o.poi, o.business);
+      if (sign !== undefined) named.set(o, sign);
+    }
+  // Past twelve tenants, names are what a street reads: a building's own business, then chains,
+  // then other named places, before descriptor-only signs. Without names, identity order as ever.
+  const rank = (o: Occupant): number =>
+    (o.direct ? 4 : 0) + (o.business.profile ? 2 : 0) + (named.has(o) ? 1 : 0);
+  request.storefronts = shown
+    .sort(
+      (a, b) =>
+        (namer !== undefined ? rank(b) - rank(a) : 0) ||
+        (identity(a.poi) < identity(b.poi) ? -1 : 1),
+    )
     .slice(0, 12)
     .map((o): StorefrontRequest => {
       const p = frontagePoint(o.poi, piece, tile, size);
+      const sign = named.get(o);
       return {
         identity: identity(o.poi),
         at: [p[0] * size, p[1] * size],
         signModel: o.business.sign,
-        accent: o.business.accent,
+        // A named place's fascia, canopy and pilasters take its plate, so sign and band read as
+        // one storefront; a chain's accent is its descriptor's.
+        accent: sign !== undefined && !o.business.profile ? sign.plate : o.business.accent,
         width: standalone ? (o.business.width ?? 18) : (o.business.sharedWidth ?? 9),
+        ...(sign !== undefined ? { sign } : {}),
       };
     });
 }

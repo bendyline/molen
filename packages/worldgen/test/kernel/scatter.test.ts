@@ -247,6 +247,35 @@ describe('scatter sampling', () => {
     expect(steep).toHaveLength(0);
   });
 
+  it('keeps a tighter rule cap a subset of a looser one, without sampling ground it drops', () => {
+    let samples = 0;
+    const counted = {
+      ...FLAT_GROUND,
+      sampleHeight: (x: number, z: number): number => {
+        samples++;
+        return FLAT_GROUND.sampleHeight(x, z);
+      },
+    };
+    const run = (cap: number): { keys: string[]; samples: number } => {
+      samples = 0;
+      const sets = samplePlacements({
+        request: request([0, 0, 400, 400]),
+        doc,
+        pack: identity,
+        ground: counted,
+        budget: { maxInstancesPerRule: cap, maxInstances: 1_000_000, maxPropModels: 8 },
+        tier: 0,
+      });
+      return { keys: positions(sets), samples };
+    };
+    const tight = run(50);
+    const loose = new Set(run(500).keys);
+    const open = run(100_000);
+    for (const key of tight.keys) expect(loose.has(key)).toBe(true);
+    // Once a rule is past its cap, a candidate whose draw cannot make the cut stops early.
+    expect(tight.samples).toBeLessThan(open.samples / 2);
+  });
+
   it('caps instances uniformly and orders output by cell', () => {
     const capped = samplePlacements({
       request: request([0, 0, 400, 400]),

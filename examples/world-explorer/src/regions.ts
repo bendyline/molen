@@ -41,6 +41,11 @@ export interface WorldRegion {
       'road' | 'parking' | 'sidewalk' | 'curb' | 'railElectrification' | 'railGauge'
     >
   >;
+  /**
+   * Further content packs the region opens, such as the glyphs its storefront names are set in;
+   * other regions never download them.
+   */
+  packs?: readonly string[];
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -95,6 +100,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
     // JR and private railways around Kyoto run under overhead catenary, on 1,067 mm gauge.
     surfaces: { railElectrification: 'all', railGauge: 1.067 },
+    // Japanese letters for the city's storefront names (content/glyphs-kyoto).
+    packs: ['molen.glyphs.kyoto'],
   },
   {
     id: 'yuma',

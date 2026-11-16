@@ -74,12 +74,13 @@ export function earthSoundscapeSelection(
       pool = clips.filter((c) => c.category === category && c.region === 'global');
     if (region === 'polar' && ['birds', 'night', 'insects'].includes(category)) pool = [];
     if (pool.length)
-      result[`soundscape.${category}`] =
+      result[`soundscape.${category}`] = (
         pool[
           (Math.floor(Math.max(0, seconds) / (83 + (hash32(category) % 37))) +
             hash32(region, category)) %
             pool.length
-        ]!.id;
+        ] as EarthSoundscapeClip
+      ).id;
   }
   return result;
 }

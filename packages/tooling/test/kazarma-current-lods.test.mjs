@@ -2,7 +2,13 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import * as levels from '../../worldgen/scripts/kazarma-current-lods.mjs';
+import {
+  buildKazarmaCloseup,
+  buildKazarmaDistrict,
+  buildKazarmaSkyline,
+  buildKazarmaStreet,
+  kazarmaRoadHeight,
+} from '../../worldgen/scripts/kazarma-current-lods.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
@@ -30,14 +36,13 @@ function hit(o, d, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(b, cross(q, a)) / det;
 }
 it('keeps the asymmetric corbelled passage open and road continuous at every browser budget', () => {
-  for (const [name, cap] of Object.entries({
-    Skyline: 1000,
-    District: 4000,
-    Street: 16000,
-    Closeup: 64000,
-  })) {
-    const build = levels['buildKazarma' + name],
-      mesh = new MeshBufferBuilder();
+  for (const [name, build, cap] of [
+    ['Skyline', buildKazarmaSkyline, 1000],
+    ['District', buildKazarmaDistrict, 4000],
+    ['Street', buildKazarmaStreet, 16000],
+    ['Closeup', buildKazarmaCloseup, 64000],
+  ]) {
+    const mesh = new MeshBufferBuilder();
     build(mesh);
     expect(mesh.finalize().triangleCount).toBeLessThanOrEqual(cap);
     const ts = [];
@@ -54,7 +59,7 @@ it('keeps the asymmetric corbelled passage open and road continuous at every bro
     for (const x of [-10, -4, 0, 4, 10]) {
       const road = ts.filter((t) => {
         const v = hit([x, 6, 0], [0, -1, 0], t.p);
-        return v !== null && Math.abs(6 - v - levels.kazarmaRoadHeight(x)) < 0.06;
+        return v !== null && Math.abs(6 - v - kazarmaRoadHeight(x)) < 0.06;
       });
       expect(road.length).toBeGreaterThan(0);
       expect(road.every((t) => t.n[1] > 0.9)).toBe(true);
@@ -75,7 +80,7 @@ it('reproduces the repaired detailed source and mapped central crossing with a d
   expect(f.centerline[1][0] - f.centerline[0][0]).toBeCloseTo(7.944, 3);
   expect(s.sourceFacts.publishedDimensionsMeters).toEqual([22, 5.6, 4]);
   expect(t.basis).toContain('not sampled');
-  expect(s.geographicProposal.terrainReference.modelHeight).toBe(levels.kazarmaRoadHeight(-11));
+  expect(s.geographicProposal.terrainReference.modelHeight).toBe(kazarmaRoadHeight(-11));
   expect(s.geographicProposal.heading).toBe(1.486301543755);
 });
 it('reproduces four image-free derivatives with two reused material graphs and a small initial download', async () => {

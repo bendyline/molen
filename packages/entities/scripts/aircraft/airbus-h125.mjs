@@ -458,7 +458,7 @@ function cockpit(root, m, shell, apertures) {
     hd = detailKit(horizon, 'horizon');
   hd.box([0.047, 0.0015, 0.001], [0, 0, 0], hd.amber);
   hd.finish();
-  bindings.push({ node: horizon.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 });
+  bindings.push({ node: horizon.name, source: 'roll', property: 'rotation', axis: 'z', scale: -1 });
   const engineScreen = (u, v) => {
     const [x, y] = at(u, v);
     d.box([0.112, 0.089, 0.012], [x, y, z - 0.007], m.trim);

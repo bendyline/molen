@@ -30,14 +30,15 @@ describe('regional fleet profiles', () => {
   });
   it('caps model variety with stable weighted sampling independent of document order', () => {
     const weights = Object.fromEntries(Array.from({ length: 100 }, (_, i) => [`car${i}`, i + 1]));
-    const doc = { ...catalog, regions: {}, profiles: [{ id: 'global', title: 'Global', weights }] };
+    const profile = { id: 'global', title: 'Global', weights };
+    const doc = { ...catalog, regions: {}, profiles: [profile] };
     const a = createFleetLibrary([doc], new Set(Object.keys(weights)), 12).select();
     const b = createFleetLibrary(
       [
         {
           ...doc,
           profiles: [
-            { ...doc.profiles[0]!, weights: Object.fromEntries(Object.entries(weights).reverse()) },
+            { ...profile, weights: Object.fromEntries(Object.entries(weights).reverse()) },
           ],
         },
       ],

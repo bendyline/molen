@@ -179,7 +179,9 @@ describe('mapped outdoor objects', () => {
     expect(result[0]?.model).toBe('builtin:tree.mapped.needleleaf');
     expect(result[1]?.yaw).toBe(1.2);
     expect(result[2]?.scale).toEqual([2, 1, 1]);
-    expect(result[3]?.scale).toEqual([1, 0.5, 1]);
+    // No street in reach: a post-top lamp, its 4.8 m scaled to the mapped height.
+    expect(result[3]?.model).toBe('builtin:street_lamp.post');
+    expect(result[3]?.scale).toEqual([1, 0.75, 1]);
     expect(result[4]?.model).toBe('builtin:charger.fast');
     expect(mappedPropRequests(t, geom, true, undefined)).toHaveLength(1);
     expect(mappedPropRequests(t, geom, false, PLACES.landmarks)).toHaveLength(4);
