@@ -397,7 +397,9 @@ function roof(out, lod) {
 }
 
 function draw(out, lod) {
-  outline.forEach((_, i) => frontage(out, i, lod));
+  outline.forEach((_, i) => {
+    frontage(out, i, lod);
+  });
   roof(out, lod);
 }
 

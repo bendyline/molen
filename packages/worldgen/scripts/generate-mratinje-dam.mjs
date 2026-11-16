@@ -183,7 +183,10 @@ const source = {
         sha256: sourceHash,
       },
     ],
-    generators: [{ id: 'mratinje_dam', path: 'models/dam-model.mjs' }],
+    generators: [
+      { id: 'mratinje_dam', path: 'models/dam-model.mjs' },
+      { id: 'mratinje-gorge-fit', path: 'models/gorge-fit.mjs' },
+    ],
     scripts: [],
     textures: [],
     sounds: [],

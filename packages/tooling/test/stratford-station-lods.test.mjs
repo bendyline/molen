@@ -138,7 +138,9 @@ it('retains whole canopy families, curved hall, actual floor and complete open-t
           [rightX, rightY] = along[upperIndex],
           level = leftY + ((rightY - leftY) * (x - leftX)) / (rightX - leftX),
           y = top(x, z, 19);
-        expect.soft(y, f.name + ' canopy ' + r.name + ' at ' + t).toBeGreaterThan(r.eave + level - 0.48);
+        expect
+          .soft(y, f.name + ' canopy ' + r.name + ' at ' + t)
+          .toBeGreaterThan(r.eave + level - 0.48);
         expect.soft(y).toBeLessThan(r.crown + level - 0.12);
       }
     }

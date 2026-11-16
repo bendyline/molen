@@ -368,8 +368,6 @@ for (const model of authoredPlaceModels.filter(
           'research-preparation.json',
           'construction-preparation.json',
           'plan-controls.json',
-          'native-map/larco-museum-controls.json',
-          'reference-rights/tichnor-65324.json',
           ...(hasTerrain
             ? ['terrain-grid.json', 'terrain-review.terrain.json', 'terrain-review.height.png']
             : []),

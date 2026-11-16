@@ -431,22 +431,21 @@ const ksiazPalmData = [
 ];
 
 import {
-  buildKsiazPalmService,
-  buildKsiazPalmServiceSkyline,
-  ksiazPalmServiceSurfaces,
-} from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
+  buildPalmForecourt,
+  buildPalmForecourtSkyline,
+  surfaces as palmForecourtSurfaces,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/models/palm-forecourt.mjs';
 
 import {
   buildWestGreenhouses,
   buildWestGreenhousesSkyline,
   surfaces as westGreenhouseSurfaces,
 } from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_west_greenhouses/models/west-greenhouses.mjs';
-
 import {
-  buildPalmForecourt,
-  buildPalmForecourtSkyline,
-  surfaces as palmForecourtSurfaces,
-} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_forecourt/models/palm-forecourt.mjs';
+  buildKsiazPalmService,
+  buildKsiazPalmServiceSkyline,
+  ksiazPalmServiceSurfaces,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
 
 const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_administration/map-frame.json',

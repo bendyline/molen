@@ -275,7 +275,9 @@ function shell(out, ring, top, lod, { basilica = false } = {}) {
       }
     }
   };
-  ring.forEach((a, i) => strip(i, a, ring[(i + 1) % ring.length]));
+  ring.forEach((a, i) => {
+    strip(i, a, ring[(i + 1) % ring.length]);
+  });
 }
 
 function portal(out, half, start, spring, clearance, top, depth, lod) {

@@ -31,6 +31,11 @@ import { inspectAugerLidarPrimaryFacts } from './primary-facts-auger-lidar.mjs';
 import { inspectAugerSurfacePrimaryFacts } from './primary-facts-auger-surface.mjs';
 import { augerTowerCases, inspectAugerTowerPrimaryFacts } from './primary-facts-auger-towers.mjs';
 import { inspectAugerWeatherMeterPrimaryFacts } from './primary-facts-auger-weather-meter.mjs';
+import {
+  babaFaridCase,
+  babaFaridModel,
+  inspectBabaFaridFacts,
+} from './primary-facts-baba-farid.mjs';
 import { inspectBerlinPrimaryFacts } from './primary-facts-berlin.mjs';
 import {
   birdsvilleHospitalCase,
@@ -41,6 +46,11 @@ import { inspectBoljoonPrimaryFacts } from './primary-facts-boljoon.mjs';
 import { inspectBosschaPrimaryFacts } from './primary-facts-bosscha.mjs';
 import { inspectBrisbanePrimaryFacts } from './primary-facts-brisbane.mjs';
 import { inspectBristolPrimaryFacts } from './primary-facts-bristol.mjs';
+import {
+  brokenHillHospitalCase,
+  brokenHillHospitalModel,
+  inspectBrokenHillHospitalFacts,
+} from './primary-facts-broken-hill-hospital.mjs';
 import { inspectBruneiPrimaryFacts } from './primary-facts-brunei.mjs';
 import { inspectBujagaliPrimaryFacts } from './primary-facts-bujagali.mjs';
 import {
@@ -69,6 +79,7 @@ import {
   grandEgyptianMuseumModel,
   inspectGrandEgyptianMuseumFacts,
 } from './primary-facts-grand-egyptian-museum.mjs';
+import { halidzorCase, halidzorModel, inspectHalidzorFacts } from './primary-facts-halidzor.mjs';
 import {
   herbertCottageCase,
   herbertCottageModel,
@@ -77,12 +88,12 @@ import {
 import { inspectHobartPrimaryFacts } from './primary-facts-hobart.mjs';
 import { hungLauCase, inspectHungLauPrimaryFacts } from './primary-facts-hung-lau.mjs';
 import { inspectIndependencePrimaryFacts } from './primary-facts-independence.mjs';
-import { inspectKaptaiPrimaryFacts } from './primary-facts-kaptai.mjs';
 import {
   inspectMilitaryMuseumFacts,
   militaryMuseumCase,
   militaryMuseumModel,
 } from './primary-facts-johannesburg-military-museum.mjs';
+import { inspectKaptaiPrimaryFacts } from './primary-facts-kaptai.mjs';
 import { inspectLagosTheatrePrimaryFacts } from './primary-facts-lagos-theatre.mjs';
 import { inspectLasRaicesPrimaryFacts } from './primary-facts-las-raices.mjs';
 import { inspectLitoralPrimaryFacts, litoralCases } from './primary-facts-litoral.mjs';
@@ -94,44 +105,13 @@ import {
   inspectLitoralMicrosoftEstimatedPrimaryFacts,
   litoralMicrosoftEstimatedCases,
 } from './primary-facts-litoral-microsoft-estimated.mjs';
+import { inspectLytteltonPrimaryFacts } from './primary-facts-lyttelton.mjs';
+import { inspectMaputoPrimaryFacts } from './primary-facts-maputo.mjs';
+import { inspectMarkarPrimaryFacts } from './primary-facts-markar.mjs';
 import {
   inspectMontrealMuseumFacts,
   montrealMuseumCases,
 } from './primary-facts-montreal-museum.mjs';
-import {
-  byewashValveCase,
-  byewashValveModel,
-  inspectByewashValveFacts,
-  inspectIntermediateDamFacts,
-  inspectIntermediateValveFacts,
-  inspectTukChimneyFacts,
-  inspectTukDamFacts,
-  inspectTukMasonryBridgeFacts,
-  inspectTukPumpingStationFacts,
-  inspectTukReservoirMemberFacts,
-  inspectUpperReservoirFacts,
-  intermediateDamCase,
-  intermediateDamModel,
-  intermediateValveCase,
-  intermediateValveModel,
-  tukChimneyCase,
-  tukChimneyModel,
-  tukDamCase,
-  tukDamModel,
-  tukMasonryBridgeCases,
-  tukPumpingStationCases,
-  tukReservoirCases,
-  upperReservoirCases,
-} from './primary-facts-tai-tam-waterworks.mjs';
-import {
-  brokenHillHospitalCase,
-  brokenHillHospitalModel,
-  inspectBrokenHillHospitalFacts,
-} from './primary-facts-broken-hill-hospital.mjs';
-import { halidzorCase, halidzorModel, inspectHalidzorFacts } from './primary-facts-halidzor.mjs';
-import { inspectLytteltonPrimaryFacts } from './primary-facts-lyttelton.mjs';
-import { inspectMaputoPrimaryFacts } from './primary-facts-maputo.mjs';
-import { inspectMarkarPrimaryFacts } from './primary-facts-markar.mjs';
 import { inspectMountElliottFacts, mountElliottCase } from './primary-facts-mount-elliott.mjs';
 import { inspectMroAskapPrimaryFacts } from './primary-facts-mro-askap.mjs';
 import { inspectMroBasePrimaryFacts } from './primary-facts-mro-base.mjs';
@@ -199,6 +179,31 @@ import {
 } from './primary-facts-shenzhen-stock-exchange.mjs';
 import { inspectSorpePrimaryFacts } from './primary-facts-sorpe.mjs';
 import {
+  byewashValveCase,
+  byewashValveModel,
+  inspectByewashValveFacts,
+  inspectIntermediateDamFacts,
+  inspectIntermediateValveFacts,
+  inspectTukChimneyFacts,
+  inspectTukDamFacts,
+  inspectTukMasonryBridgeFacts,
+  inspectTukPumpingStationFacts,
+  inspectTukReservoirMemberFacts,
+  inspectUpperReservoirFacts,
+  intermediateDamCase,
+  intermediateDamModel,
+  intermediateValveCase,
+  intermediateValveModel,
+  tukChimneyCase,
+  tukChimneyModel,
+  tukDamCase,
+  tukDamModel,
+  tukMasonryBridgeCases,
+  tukPumpingStationCases,
+  tukReservoirCases,
+  upperReservoirCases,
+} from './primary-facts-tai-tam-waterworks.mjs';
+import {
   inspectTartuArtMuseumFacts,
   tartuArtMuseumCase,
   tartuArtMuseumModel,
@@ -220,22 +225,10 @@ import {
 } from './primary-facts-tehran-museum.mjs';
 import { inspectTehriPrimaryFacts } from './primary-facts-tehri.mjs';
 import {
-  babaFaridCase,
-  babaFaridModel,
-  inspectBabaFaridFacts,
-} from './primary-facts-baba-farid.mjs';
-import {
   inspectThewalaiKhanetFacts,
   thewalaiKhanetCase,
   thewalaiKhanetModel,
 } from './primary-facts-thewalai-khanet.mjs';
-import { inspectXumaPrimaryFacts } from './primary-facts-xuma.mjs';
-import {
-  inspectYahLehMonumentFacts,
-  yahLehMonumentCase,
-  yahLehMonumentModel,
-} from './primary-facts-yah-leh-monument.mjs';
-import { inspectZiaMuseumFacts, ziaMuseumCase } from './primary-facts-zia-museum.mjs';
 import {
   inspectTytuvenaiHouseFacts,
   tytuvenaiHouseCase,
@@ -249,6 +242,13 @@ import {
   inspectTytuvenaiPerimeterFacts,
   tytuvenaiPerimeterCases,
 } from './primary-facts-tytuvenai-perimeter.mjs';
+import { inspectXumaPrimaryFacts } from './primary-facts-xuma.mjs';
+import {
+  inspectYahLehMonumentFacts,
+  yahLehMonumentCase,
+  yahLehMonumentModel,
+} from './primary-facts-yah-leh-monument.mjs';
+import { inspectZiaMuseumFacts, ziaMuseumCase } from './primary-facts-zia-museum.mjs';
 
 const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const read = (p) => JSON.parse(fs.readFileSync(p));
@@ -581,8 +581,7 @@ export function inspectPrimaryFactsReconstruction({
       return inspectSaintSarkisTehranFacts({ dir, proof, controls, frame });
     if (proof.case === thewalaiKhanetCase)
       return inspectThewalaiKhanetFacts({ dir, proof, controls, frame });
-    if (proof.case === babaFaridCase)
-      return inspectBabaFaridFacts({ dir, proof, controls, frame });
+    if (proof.case === babaFaridCase) return inspectBabaFaridFacts({ dir, proof, controls, frame });
     if (proof.case === yahLehMonumentCase)
       return inspectYahLehMonumentFacts({ dir, proof, controls, frame });
     if (proof.case === piratiniCase) return inspectPiratiniFacts({ dir, proof, controls, frame });

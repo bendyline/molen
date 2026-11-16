@@ -1,7 +1,7 @@
 /** Granite curtain walls, rounded tower faces and a narrow vaulted entry. */
 import {
-  triangle,
   transform,
+  triangle,
 } from '../../../../../../../../packages/worldgen/scripts/heritage-tower-detail-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';

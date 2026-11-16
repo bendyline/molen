@@ -396,5 +396,6 @@ const nativeFrame = JSON.parse(readFileSync(new URL('../map-frame.json', import.
 model.buildingCutout = {
   outline: nativeFrame.geometry.outline,
   minimumCoverage: 0.92,
-  basis: 'Replace the mapped main hospital roofprint where it overlaps the authored exterior. Keep separate campus buildings outside the hospital outline.',
+  basis:
+    'Replace the mapped main hospital roofprint where it overlaps the authored exterior. Keep separate campus buildings outside the hospital outline.',
 };

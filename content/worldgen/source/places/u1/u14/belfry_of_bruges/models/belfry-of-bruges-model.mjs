@@ -12,8 +12,8 @@ import {
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import {
   box,
-  profile,
   prism,
+  profile,
 } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const plan = JSON.parse(readFileSync(new URL('../plan-controls.json', import.meta.url)));

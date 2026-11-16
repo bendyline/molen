@@ -62,7 +62,10 @@ const area = (ring) =>
     return sum + x * b - a * z;
   }, 0);
 const outward = (ring) => (area(ring) > 0 ? ring : [...ring].reverse());
-const forEdges = (ring, each) => ring.forEach((a, i) => each(a, ring[(i + 1) % ring.length]));
+const forEdges = (ring, each) =>
+  ring.forEach((a, i) => {
+    each(a, ring[(i + 1) % ring.length]);
+  });
 const at = (a, b, t) => [mix(a[0], b[0], t), mix(a[1], b[1], t)];
 
 function roofCap(ring) {

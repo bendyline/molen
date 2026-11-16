@@ -343,7 +343,9 @@ function substation(out, lod) {
 
 function build(out, lod) {
   longHall(out, lod);
-  ['boilerNorth', 'boilerMiddle', 'boilerSouth'].forEach((role, i) => boiler(out, role, i, lod));
+  ['boilerNorth', 'boilerMiddle', 'boilerSouth'].forEach((role, i) => {
+    boiler(out, role, i, lod);
+  });
   for (const [role, tint] of [
     ['coalFeedNorth', color.framework],
     ['exhaustWorks', color.warm],

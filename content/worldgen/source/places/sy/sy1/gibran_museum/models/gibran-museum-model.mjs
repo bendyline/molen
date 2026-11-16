@@ -536,7 +536,9 @@ function build(out, lod) {
   ]);
   terrace(out, lod);
   ivy(out, lod);
-  rocks.forEach((r, index) => rock(out, r, lod, index));
+  rocks.forEach((r, index) => {
+    rock(out, r, lod, index);
+  });
 }
 
 export const gibranSkyline = (out) => build(out, 0);

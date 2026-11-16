@@ -1,4 +1,5 @@
 import { perimeterModel } from '../../../../../../../../packages/worldgen/scripts/tytuvenai-perimeter-geometry.mjs';
+
 const asset = perimeterModel(import.meta.url, {
   standing: false,
   scale: 0.29,

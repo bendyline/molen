@@ -295,7 +295,9 @@ function stockade(out, lod) {
     [endNear(sw, nw), stop(west, gateWidth / 2)],
     [stop(west, -gateWidth / 2), nw],
   ];
-  segments.forEach(([a, b], i) => palisadeRun(out, a, b, lod, i));
+  segments.forEach(([a, b], i) => {
+    palisadeRun(out, a, b, lod, i);
+  });
   portal(out, west, 1, lod);
   portal(out, east, -1, lod);
 }

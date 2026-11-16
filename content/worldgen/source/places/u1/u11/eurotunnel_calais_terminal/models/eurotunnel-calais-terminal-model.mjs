@@ -252,7 +252,9 @@ function glazedFront(out, lod) {
       fascia(out, 'frames', s - 0.025, s + 0.025, faceBase, glassY, depth + 0.018, shade.gray);
     }
   }
-  controls.entranceStations.forEach((station) => entry(out, station, lod));
+  controls.entranceStations.forEach((station) => {
+    entry(out, station, lod);
+  });
 }
 
 function canopy(out, lod) {

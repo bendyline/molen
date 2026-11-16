@@ -414,7 +414,7 @@ function draw(out, detail) {
     plan.dimensions.baseNorthwestRoofY,
     plan.dimensions.baseSouthwestRoofY,
   ];
-  rings.forEach((ring, i) =>
+  rings.forEach((ring, i) => {
     shell(
       out,
       ring,
@@ -423,8 +423,8 @@ function draw(out, detail) {
       i === 0 ? colors.siding : colors.bright,
       colors.asphalt,
       detail,
-    ),
-  );
+    );
+  });
   for (const section of halls) hall(out, section, detail);
   equipment(out, detail);
 }

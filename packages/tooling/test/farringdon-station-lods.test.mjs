@@ -120,11 +120,19 @@ it('keeps whole mapped canopy families, heritage and both entrance hosts, closed
       const rim = contact.aprons[i];
       const direction = sub(rim[2], rim[1]);
       const length = Math.hypot(...direction);
-      const actual = top(x + 0.03 * direction[0] / length, z + 0.03 * direction[1] / length, entrance.thresholdY + 0.18);
-      expect.soft(actual, `${f.name} ${entrance.name} entry threshold`).toBeCloseTo(entrance.thresholdY, 1);
+      const actual = top(
+        x + (0.03 * direction[0]) / length,
+        z + (0.03 * direction[1]) / length,
+        entrance.thresholdY + 0.18,
+      );
+      expect
+        .soft(actual, `${f.name} ${entrance.name} entry threshold`)
+        .toBeCloseTo(entrance.thresholdY, 1);
     }
     expect.soft(top(0, -128), f.name + ' complete low western ticket hall').toBeCloseTo(6.8, 1);
-    expect.soft(top(-169, 177), f.name + ' attached Long Lane corner').toBeCloseTo(controls.eastGrade + 23, 2);
+    expect
+      .soft(top(-169, 177), f.name + ' attached Long Lane corner')
+      .toBeCloseTo(controls.eastGrade + 23, 2);
     expect
       .soft(top(-5, -180), f.name + ' full Bloomcrown')
       .toBeCloseTo(controls.bloomGrade + 34, 2);

@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-export const controls = JSON.parse(readFileSync(new URL('../model-controls.json', import.meta.url)));
+export const controls = JSON.parse(
+  readFileSync(new URL('../model-controls.json', import.meta.url)),
+);
 const C = {
   wall: [0.49, 0.41, 0.31],
   trim: [0.62, 0.53, 0.4],

@@ -2,8 +2,8 @@
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { normalFor } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const data = (name) => JSON.parse(readFileSync(new URL(`../${name}`, import.meta.url)));
 const plan = data('plan-controls.json');

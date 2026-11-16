@@ -9,6 +9,7 @@ import {
 } from '../../../../../../../../packages/worldgen/scripts/heritage-tower-detail-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
+
 const carved = rgb('d0b597');
 const ochre = rgb('b7966f');
 const white = rgb('e2d4af');

@@ -423,7 +423,9 @@ function driveway(out) {
 }
 
 function draw(out, level) {
-  planSections.forEach((section, i) => buildSection(out, section, level, i));
+  planSections.forEach((section, i) => {
+    buildSection(out, section, level, i);
+  });
   driveway(out);
   coveredEntry(out, level);
 }

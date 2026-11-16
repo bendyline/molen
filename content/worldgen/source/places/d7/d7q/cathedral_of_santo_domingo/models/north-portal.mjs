@@ -1,8 +1,8 @@
 /** The cathedral’s historic north portal, chapter room, clock and belfry. */
 import {
   face,
-  triangle,
   transform,
+  triangle,
 } from '../../../../../../../../packages/worldgen/scripts/heritage-tower-detail-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';

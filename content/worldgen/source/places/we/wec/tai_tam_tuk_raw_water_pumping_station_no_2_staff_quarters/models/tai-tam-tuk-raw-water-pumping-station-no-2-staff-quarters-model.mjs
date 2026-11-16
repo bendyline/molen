@@ -1,3 +1,4 @@
+import { palette } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import {
   archedWindow,
   bounds,
@@ -11,7 +12,6 @@ import {
   sideWall,
   stair,
 } from '../../../../../../../../packages/worldgen/scripts/tai-tam-pumping-compound-geometry.mjs';
-import { palette } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const colors = palette({
   wall: 'a65f49',

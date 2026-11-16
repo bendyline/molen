@@ -217,9 +217,11 @@ function pitched(out, range, y, peak, lod, across = false, hip = false) {
         [r, mix(n, s, 0.5)],
       ];
   if (hip)
-    t.forEach((v, i) =>
-      v.forEach((k, j) => (v[j] = mix(k, (t[0][j] + t[1][j]) / 2, i ? 0.24 : 0.2))),
-    );
+    t.forEach((v, i) => {
+      v.forEach((k, j) => {
+        v[j] = mix(k, (t[0][j] + t[1][j]) / 2, i ? 0.24 : 0.2);
+      });
+    });
   const e = p.map(([x, z]) => site(x, y, z)),
     c = t.map(([x, z]) => site(x, peak, z));
   const sets = across
@@ -240,7 +242,9 @@ function pitched(out, range, y, peak, lod, across = false, hip = false) {
         [e[1], e[2], c[1]],
         [e[3], e[0], c[0]],
       ];
-  sets.forEach((q, i) => draw(out, 'roof', q, up, i ? tone.lead : tone.darkLead));
+  sets.forEach((q, i) => {
+    draw(out, 'roof', q, up, i ? tone.lead : tone.darkLead);
+  });
   ends.forEach((q, i) => {
     const edge = across ? [i ? 2 : 0, i ? 3 : 1] : [i ? 3 : 1, i ? 0 : 2],
       f = wallFrame(p[edge[0]], p[edge[1]]);

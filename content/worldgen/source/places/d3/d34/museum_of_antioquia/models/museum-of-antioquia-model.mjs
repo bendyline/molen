@@ -437,7 +437,9 @@ function draw(out, level) {
   perimeter(out, level);
   horizontal(out, outline, allCourts, d.mainRoofY, colors.roof);
   elevatedEntrance(out, level);
-  allCourts.forEach((ring, index) => courtyard(out, ring, index, level));
+  allCourts.forEach((ring, index) => {
+    courtyard(out, ring, index, level);
+  });
 }
 export const skyline = (out) => draw(out, 0);
 export const district = (out) => draw(out, 1);

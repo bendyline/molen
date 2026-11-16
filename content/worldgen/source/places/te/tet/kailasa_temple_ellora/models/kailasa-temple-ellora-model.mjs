@@ -2,8 +2,8 @@
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import fs from 'node:fs';
 import {
-  normalFor,
   loft,
+  normalFor,
   radialRing,
   sphere,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';

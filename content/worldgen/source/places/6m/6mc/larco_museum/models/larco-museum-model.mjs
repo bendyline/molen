@@ -15,9 +15,8 @@ import {
   cleanRing,
   rgb,
 } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
-
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
+import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const plan = JSON.parse(readFileSync(new URL('../plan-controls.json', import.meta.url)));
 const frame = JSON.parse(readFileSync(new URL('../map-frame.json', import.meta.url)));

@@ -256,7 +256,9 @@ function octagon(x, z, r) {
 }
 
 function build(out, lod) {
-  body.forEach((p, i) => elevation(out, body[(i + 1) % body.length], p, i, lod));
+  body.forEach((p, i) => {
+    elevation(out, body[(i + 1) % body.length], p, i, lod);
+  });
   slab(out, canopy, dim.wallTop - 0.08, dim.platformTop, 'concrete', color.body);
   for (const [x, z] of turretCenters) {
     const radius = dim.turretRadius;

@@ -368,8 +368,6 @@ for (const model of authoredPlaceModels.filter(
           'research-preparation.json',
           'construction-preparation.json',
           'plan-controls.json',
-          'native-map/taipei-futai-street-mansion-controls.json',
-          'reference-rights/commons-nlc-shantung-1925.json',
           ...(hasTerrain
             ? ['terrain-grid.json', 'terrain-review.terrain.json', 'terrain-review.height.png']
             : []),

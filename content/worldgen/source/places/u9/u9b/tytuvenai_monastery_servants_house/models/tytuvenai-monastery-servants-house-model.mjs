@@ -1,4 +1,5 @@
 import { outbuildingModel } from '../../../../../../../../packages/worldgen/scripts/tytuvenai-outbuilding-geometry.mjs';
+
 const asset = outbuildingModel(import.meta.url, {
   barn: false,
   scale: 0.45,

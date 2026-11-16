@@ -6,8 +6,8 @@ import {
   triangle,
 } from '../../../../../../../../packages/worldgen/scripts/heritage-tower-detail-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-import { box, tube } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
+import { box, tube } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`../${file}.json`, import.meta.url)));
 const plan = read('plan-controls');

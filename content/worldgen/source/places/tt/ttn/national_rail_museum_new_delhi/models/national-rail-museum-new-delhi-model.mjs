@@ -132,14 +132,7 @@ function jamb(out, x, y, w, h, lod, door = false) {
 function edgeFrame(out, p, q) {
   return transform(out, -Math.atan2(q[1] - p[1], q[0] - p[0]), [p[0], 0, p[1]]);
 }
-function facade(
-  out,
-  ring,
-  floor,
-  eave,
-  lod,
-  { frontal = -1, main = false, cafe = false } = {},
-) {
+function facade(out, ring, floor, eave, lod, { frontal = -1, main = false, cafe = false } = {}) {
   for (let i = 0; i < ring.length; i++) {
     const a = ring[i],
       b = ring[(i + 1) % ring.length];

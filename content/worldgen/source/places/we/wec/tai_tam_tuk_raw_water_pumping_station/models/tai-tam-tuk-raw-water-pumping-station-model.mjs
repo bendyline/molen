@@ -1,4 +1,8 @@
 import {
+  pairs,
+  palette,
+} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import {
   archedWindow,
   bounds,
   box,
@@ -13,10 +17,6 @@ import {
   sash,
   sideWall,
 } from '../../../../../../../../packages/worldgen/scripts/tai-tam-pumping-compound-geometry.mjs';
-import {
-  palette,
-  pairs,
-} from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 
 const colors = palette({
   brick: 'a37060',

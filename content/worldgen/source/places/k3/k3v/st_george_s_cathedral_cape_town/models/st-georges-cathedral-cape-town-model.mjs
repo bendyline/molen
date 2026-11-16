@@ -165,9 +165,9 @@ function tracery(out, point, center, depth, y0, y1, width, normal, lod) {
       [x + width * 0.093, t],
       [x, t - width * 0.1],
     ];
-    diamond.forEach((a, i) =>
-      stroke(out, 'trim', point, a, diamond[(i + 1) % 4], width * 0.022, depth, normal, tint.rim),
-    );
+    diamond.forEach((a, i) => {
+      stroke(out, 'trim', point, a, diamond[(i + 1) % 4], width * 0.022, depth, normal, tint.rim);
+    });
     if (lod >= 2)
       stroke(
         out,
@@ -430,9 +430,9 @@ function porch(out, lod, middle) {
         [center + 0.38, 8.38],
         [center, 7.99],
       ];
-      ring.forEach((a, j) =>
-        stroke(out, 'trim', point, a, ring[(j + 1) % 4], 0.123, 0.142, north, tint.light),
-      );
+      ring.forEach((a, j) => {
+        stroke(out, 'trim', point, a, ring[(j + 1) % 4], 0.123, 0.142, north, tint.light);
+      });
     }
   }
   const n = lod === 0 ? 2 : lod === 1 ? 3 : 6;

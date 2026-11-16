@@ -242,7 +242,9 @@ function porch(out, lod, x, index) {
 }
 function build(out, lod) {
   block(out, lod);
-  S.porchPositions.forEach((x, i) => porch(out, lod, x, i));
+  S.porchPositions.forEach((x, i) => {
+    porch(out, lod, x, i);
+  });
 }
 export const hospitalSkyline = (out) => build(out, 0);
 export const hospitalDistrict = (out) => build(out, 1);
@@ -291,7 +293,7 @@ export const hospitalModel = {
     {
       name: 'classical-assembly-hall-porch',
       position: world(12, 3.0, -19),
-      lookAt: world(8.6, -1.60, -8.1),
+      lookAt: world(8.6, -1.6, -8.1),
     },
     {
       name: 'historic-main-block-and-two-porches',

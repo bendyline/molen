@@ -368,11 +368,6 @@ for (const model of authoredPlaceModels.filter(
           'research-preparation.json',
           'construction-preparation.json',
           'plan-controls.json',
-          'native-map/osm-prince-gong-grounds.json',
-          'native-map/overture-mansion-roofprints.json',
-          'mapped-building-controls.json',
-          'room-and-roof-layout.json',
-          'reference-rights/hermann-luyken-qualla-originals.json',
           ...(hasTerrain
             ? ['terrain-grid.json', 'terrain-review.terrain.json', 'terrain-review.height.png']
             : []),
