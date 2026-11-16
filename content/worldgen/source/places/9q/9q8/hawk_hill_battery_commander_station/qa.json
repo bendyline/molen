@@ -9,7 +9,7 @@
   "runtimeHash": "sha256:951282c93410014b507b70f08eec11487aaf4816d75f45ffd6218d5a66ac160b",
   "visualReview": {
     "status": "passed",
-    "captureReportHash": "sha256:75402353b8e1bdad97f2484ad6f7393c84206f2b3f4fed24f235637c36c87073",
+    "captureReportHash": "sha256:6250be6ee8c3aaed823e711ecab9779fd89580f7c575ba5e2308057fec58c34a",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -209,7 +209,7 @@
       "previousRuntimeHash": "sha256:b9f33dfb5881882ad6b964488834040a904aa738ce8a54e04c2756a13fbc8876",
       "inputHash": "sha256:8e967a719d1f7cd00979564e986031d4941172920f2d153926358c511aa79eae",
       "repair": "The rubble stones' side faces (stone_basalt_raw) and the sloped sides of the soil camouflage cover (stone_sandstone_raw) on the roof were wound inward, so from above the stones and berm read as hollow shells. Root cause: rock() and the berm loop in house-model.mjs passed no outward hint to face(), whose fallback keeps the points' own winding; the rock ring runs by increasing angle and nativeRing has positive x/z signed area, and for both the [low i, low j, high j, high i] order faces the centre. Fix: rock sides now take the horizontal direction from the stone's centre to the edge midpoint as their hint, and the berm sides take prism()'s signed-area edge normal. Points, materials and caps are unchanged; the rocks' non-planar shoulder quads now split along their other diagonal.",
-      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained. Still bound to the previous model: runtimeLodReview level hashes describe the previous runtime LODs (the medium-fi recapture covers the repaired ones)."
     }
   }
 }

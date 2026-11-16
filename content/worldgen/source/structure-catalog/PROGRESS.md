@@ -13,11 +13,11 @@ approvals retain their original scope and are not automatically medium-fi approv
 | --- | ---: |
 | Source GLBs authored | 947 |
 | Runtime GLBs imported | 947 |
-| Portable visual reviews passed | 924 |
-| Shared-material reviews passed | 905 |
+| Portable visual reviews passed | 927 |
+| Shared-material reviews passed | 908 |
 | Active geographic previews | 926 |
-| Declared fidelity reviews passed | 865 |
-| Complete | 847 |
+| Declared fidelity reviews passed | 868 |
+| Complete | 850 |
 | Source models still to author | 53 |
 
 ## Authored models
@@ -620,7 +620,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | tyholttarnet | [Tyholttårnet](../places/u5/u5r/tyholttarnet/README.md) | 133426 | Passed | Passed | Passed | Passed | Yes |
 | sukharev_tower | [Sukharev Tower](../places/uc/ucf/sukharev_tower/README.md) | 462244 | Pending | Pending | Pending | Pending | Pending |
 | turtle_tower | [Turtle Tower](../places/w7/w7e/turtle_tower/README.md) | 269320 | Passed | Passed | Passed | Passed | Yes |
-| st_agathas_tower | [St. Agatha's Tower](../places/sq/sq6/st_agathas_tower/README.md) | 137914 | Pending | Pending | Pending | Pending | Pending |
+| st_agathas_tower | [St. Agatha's Tower](../places/sq/sq6/st_agathas_tower/README.md) | 137914 | Passed | Passed | Passed | Passed | Yes |
 | hidirlik_tower | [Hidirlik Tower](../places/sw/swt/hidirlik_tower/README.md) | 77044 | Passed | Passed | Passed | Passed | Yes |
 | vijaya_stambha | [Vijaya Stambha](../places/ts/tsm/vijaya_stambha/README.md) | 851816 | Passed | Passed | Passed | Passed | Yes |
 | gros_horloge | [Gros Horloge](../places/u0/u0b/gros_horloge/README.md) | 273346 | Passed | Passed | Passed | Passed | Yes |
@@ -676,7 +676,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | lange_jan | [Långe Jan](../places/u3/u3g/lange_jan/README.md) | 26764 | Passed | Passed | Passed | Passed | Yes |
 | lange_erik | [Långe Erik](../places/u6/u6h/lange_erik/README.md) | 26710 | Passed | Passed | Passed | Passed | Yes |
 | wis_oujscie_fortress | [Wisłoujście Fortress](../places/u3/u3t/wis_oujscie_fortress/README.md) | 101942 | Pending | Pending | Pending | Pending | Pending |
-| vorontsov_lighthouse | [Vorontsov Lighthouse](../places/u8/u8m/vorontsov_lighthouse/README.md) | 53872 | Pending | Pending | Pending | Pending | Pending |
+| vorontsov_lighthouse | [Vorontsov Lighthouse](../places/u8/u8m/vorontsov_lighthouse/README.md) | 53872 | Passed | Passed | Passed | Passed | Yes |
 | california_lighthouse | [California Lighthouse](../places/d6/d6n/california_lighthouse/README.md) | 36198 | Passed | Passed | Passed | Passed | Yes |
 | cape_hatteras_lighthouse | [Cape Hatteras Lighthouse](../places/dq/dq6/cape_hatteras_lighthouse/README.md) | 136850 | Passed | Passed | Passed | Passed | Yes |
 | rumeli_feneri | [Rumeli Feneri](../places/sx/sxk/rumeli_feneri/README.md) | 21710 | Passed | Passed | Passed | Passed | Yes |
@@ -708,7 +708,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | mordovia_arena | [Mordovia Arena](../places/v1/v18/mordovia_arena/README.md) | 1351284 | Pending | Pending | Pending | Pending | Pending |
 | volksparkstadion | [Volksparkstadion](../places/u1/u1x/volksparkstadion/README.md) | 1435024 | Passed | Pending | Passed | Passed | Pending |
 | mhparena | [MHPArena](../places/u0/u0w/mhparena/README.md) | 1005216 | Pending | Pending | Pending | Pending | Pending |
-| cape_town_stadium | [Cape Town Stadium](../places/k3/k3v/cape_town_stadium/README.md) | 1605362 | Pending | Pending | Pending | Pending | Pending |
+| cape_town_stadium | [Cape Town Stadium](../places/k3/k3v/cape_town_stadium/README.md) | 1619042 | Passed | Passed | Passed | Passed | Yes |
 | johan_cruyff_arena | [Johan Cruyff Arena](../places/u1/u17/johan_cruyff_arena/README.md) | 1188102 | Passed | Passed | Passed | Passed | Yes |
 | rostec_arena | [Rostec Arena](../places/u3/u3w/rostec_arena/README.md) | 635206 | Passed | Passed | Passed | Passed | Yes |
 | samara_arena | [Samara Arena](../places/v1/v17/samara_arena/README.md) | 1349990 | Passed | Passed | Passed | Passed | Yes |

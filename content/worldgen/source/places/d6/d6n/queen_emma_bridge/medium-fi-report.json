@@ -4,38 +4,40 @@
   "assetId": "molen.worldgen.structure.queen_emma_bridge",
   "renderedAsset": {
     "assetId": "molen.worldgen.structure.queen_emma_bridge",
-    "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611"
+    "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b"
   },
-  "sourceHash": "sha256:837a02666670d1894b8cb337a044e2f6ab9fe7655cb0144d001377f38c34fb01",
-  "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-  "fixtureHash": "sha256:68c857128f67ab8b4f019adb0867e1117b2074ccf7bbaecd51114341fce107a9",
+  "sourceHash": "sha256:f9ddb881723b3ee5db1ac50c45dced738d81fc66d41835219ad935a1b92dcbfc",
+  "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 6240,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+      "hash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
       "bytes": 90652,
-      "gzipBytes": 15110,
+      "gzipBytes": 15175,
       "triangles": 976,
       "cpuBytes": 83472,
       "gpuBytes": 83472,
@@ -45,9 +47,9 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+      "hash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
       "bytes": 312724,
-      "gzipBytes": 49368,
+      "gzipBytes": 49393,
       "triangles": 3972,
       "cpuBytes": 305496,
       "gpuBytes": 305496,
@@ -57,9 +59,9 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:eee504b05e792d1a2a8da224d62845ebd5e8fed098ea9e9be51555561acf3f43",
+      "hash": "sha256:7f9f0ce6a182988515baa6f0dde7399884916e0553271aefb81c84782b939947",
       "bytes": 883504,
-      "gzipBytes": 138668,
+      "gzipBytes": 138701,
       "triangles": 11296,
       "cpuBytes": 876192,
       "gpuBytes": 876192,
@@ -69,9 +71,9 @@
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+      "hash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
       "bytes": 1477872,
-      "gzipBytes": 234461,
+      "gzipBytes": 234506,
       "triangles": 18914,
       "cpuBytes": 1470540,
       "gpuBytes": 1470540,
@@ -86,11 +88,11 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:4b8359ef07300c66b097a6b8364a9ee783f1e04134f9cb448f8545262fd761a7",
+      "hash": "sha256:3077e678ca56edea0b9fae5d798d06d2e407017fede6a86fdbb852808cb07ae3",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -120,17 +122,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:6bc5a6e59d6a2ea0600d45563705ee7681fb12d3f24fb753da72aaf31263fa2e",
+      "hash": "sha256:fe24bac02dcf2c5e7ff4cc8c3b4259716fd53b6c3aca7b8600cefd10c497834b",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -160,17 +170,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:f56f79a400f9a5ede1d8216e2653f424a52a483383693a6ed7589f4493e58459",
+      "hash": "sha256:3b8333887d55ab4e6dae8f4c5f6e510d222f3b380692533c7a6272e02cb24d2d",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -200,17 +218,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:78dbc6559b535b8846919f84a236773fe3cd836cdb50d53eec0718aa64e36777",
+      "hash": "sha256:822786e78f9a191762966585690620797fb23136b58eba4e23104dcbeec6e3d3",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -240,17 +266,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:4426ad529a22d48361f6f7cc0d5612160e50bb80f3c3c30e355a5d3f307c1645",
+      "hash": "sha256:118d6580d5019b5005cc2a77b14823107c9b2c7d7406e46d9244d475ec778eb7",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -280,17 +314,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:40d3270ae46dbed7c7e96e7f6f9b5defb9362887c8f105b5e71807c81e2caa0b",
+      "hash": "sha256:b856b4b838c35bda22d903208435f794c7a1aa0551ae8dad79f19fc20b02c387",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -320,17 +362,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:8f8f83a80893329a3f269b3e9b62018de9495f8e50430a0749647cfb478ec7ff",
+      "hash": "sha256:2b3f113c49ca24c299d43ebd0008f4a82f24539a92e32db89de31271f1535924",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -360,17 +410,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:a742de57a92539c7001f1af9d2cc750e1637fbddfaca4b586c2bf2d633ba1e5c",
+      "hash": "sha256:d911b40f67656e55bcc03d45604854d9a544916d1904510786488e4037414bd5",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -400,17 +458,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:3e3f7a50931113b2ae606b2eca92c777b75553a3bf18039df7898d7e6dd1b0f7",
+      "hash": "sha256:fc7c1ae5ed942c752052437c2cdabe2b040b0bc732025fd9122000bc91144fce",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -440,17 +506,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:5781d1168fb72cb1985d7166aa410822e5cbf8e25b4898f2b041c4baec449bab",
+      "hash": "sha256:ce3a746766a1e4f2614ad8f3762793ad5cb224d3811303f8ec1644934f29d1dc",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -480,17 +554,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:721456ccb708f9eaac749c083f8a85ca416916b1408e94149ba0fd7d0a5b9e7f",
+      "hash": "sha256:89f4d199ec1bc9a766c31494d2b3502c82e482fbf82253db54e533daae30aa2f",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -520,17 +602,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:4681cd7da59d336bddf104dd2ba24d25d35c94d45d2ad4763b946436e0660d48",
+      "hash": "sha256:c0a132e56a08673fb5344551fd114575e5b2196d1d06651926a27b0ab5d488c8",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -560,17 +650,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:ac88345e7911afd8cb3bb0267158b393e438c9b2c5666516b038189ffc2253ea",
+      "hash": "sha256:845b14f5fedb5b8f1418f86db97e01d72b8fea729e28a3ac0eb230f1668250fe",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -600,17 +698,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/whole-native-pontoon-bridge-and-hinge-approach.png",
-      "hash": "sha256:7cb041e9390c5a00ecd6fc5d5e8945782ae88ad5fb357d712eee723c545d304b",
+      "hash": "sha256:ccd7aaf1efc70f5b6c6ce2aea59427e2c9477e64ea44b0e2a6a7b154e3a88080",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -640,17 +746,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/sixteen-boat-pontoons-stringers-and-open-water-gaps.png",
-      "hash": "sha256:d97bcd34ee247ba62c395255828261d06ab990fe6245fab8bc921d23f35b4e85",
+      "hash": "sha256:5790b96a1c60164a0ca9f048d21ef43af3fe1d260b4ef8d7312363f87bf87865",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -680,17 +794,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transverse-light-arches-woodwalk-and-open-rails.png",
-      "hash": "sha256:0ed9951a59ac04b5c10d58115d5ba82f76de7fd949aff0596c0a068f7eee00ee",
+      "hash": "sha256:9156da295f7e814ebb30c3152b631569bf3661dd2c317297df7c1a411a1b701c",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -720,17 +842,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/punda-freeend-glazed-operator-cabin-and-intrinsic-hardware.png",
-      "hash": "sha256:833a179686215b99c09b4e7b16484838f84cc1c196913b9fff1b028645b36199",
+      "hash": "sha256:4105946b11118e2c5330a83f2dff96f015e1f0ab2a88c2e0b6125adfd5883fce",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -760,17 +890,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:acfc78b7fa50588f1c6f106c6703e8d50d59ed8ef9d4cb03e07989f823d4c851",
+      "hash": "sha256:f24d6543d6bf3db6033088d5a6d0a19b7b578e93d8e53b6c52bfdc9c8c585ea2",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:4e3e034d335080a94eed13ebefc11ef563cd0d34e0bd6343487096690865d848",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:13c7cd590e3be1855011bdff94b149c03b27168a1c1c88f0a58e5c21d209309c",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -800,17 +938,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:40d3270ae46dbed7c7e96e7f6f9b5defb9362887c8f105b5e71807c81e2caa0b",
+      "hash": "sha256:b856b4b838c35bda22d903208435f794c7a1aa0551ae8dad79f19fc20b02c387",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:aadbc16a2e0832c911414d0ecd8ce820b0be74af51d341ffcd876b9d6ef46fd8",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:f1a4852d797fd6671ee2e3bb3c06cb84bab36dce28774667568deaa33bb2727d",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -840,17 +986,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:c22c81faa7235d0c21a8af4445bfacd61068e35abd94552c279a82455da2e75f",
+      "hash": "sha256:c16711adb891782c1f9d296994d085f6c2b6babdd41a7850b5ca059100ff7c25",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:eee504b05e792d1a2a8da224d62845ebd5e8fed098ea9e9be51555561acf3f43",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:7f9f0ce6a182988515baa6f0dde7399884916e0553271aefb81c84782b939947",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -880,17 +1034,25 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:a28411b5396d7b4965eaed01dab6cc96d9552b26e0afaa66b7591b4e30fefd73",
+      "hash": "sha256:048cb3d4f30e30b81f08c557c12f36467e2492b593eb09b844f7da320bbc9220",
       "state": {
         "assetId": "molen.worldgen.structure.queen_emma_bridge",
-        "runtimeHash": "sha256:1022460c9bf01e57d76027070afe5f12f570c9e4871b67249e7d34f41b83e611",
-        "lodHash": "sha256:ca83cfe986bcf843a74665695929a15272eaada57acf26d0339cc784c9731537",
+        "runtimeHash": "sha256:903d24c74fb4987b8ed3407c0057a7b0e984a7b948a463994508b1548bd1c17b",
+        "lodHash": "sha256:e784c4472d8c025df3d7d0c264c930f4c172fbeac5a78cc52272fd71b2db4d7a",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -920,6 +1082,14 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 3,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.cape_town_stadium",
-  "inputHash": "sha256:48409d223395838efddd745abf423be0d17be4090f344b81ff57044cd44535ea",
-  "captureReportHash": "sha256:b9c31c32e2bf057bf23cd1b962e600610883c053816104212c0fa03f11543774",
+  "inputHash": "sha256:dda7a4f54fab370dbaef4d221d8bbdfa5159ecef09fd08e1eb5394a3127b91c6",
+  "captureReportHash": "sha256:0c20da275dad3e3fe9d447eaa172de1f9484c22337d5a12b89860d8ff199b1a4",
   "visualReview": {
     "status": "passed",
     "scope": "Completed permanent exterior and visible stadium bowl.",
@@ -30,7 +30,7 @@
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:f80e49773e459d4abedcf53b21bf352de2511e74719765cc6caacdad0a777c65",
+    "captureReportHash": "sha256:39fa046eab7be22441bdf8a2531919337a46f5dc54d7c470ea334e9726235f2f",
     "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
     "materialGraphs": {
       "matgraph:molen.worldgen.material.membrane": {
@@ -81,5 +81,16 @@
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
     "notes": "Architect, roof engineer and operator references establish the varying50m/38m rim,72concrete pylons, glass roof with16m clear edge, silver horizontal fabric, three pearly tiers and current rugby configuration.2020/21 hospitality volumes replace upper long-side seats. Exact suite divisions, seat inventory, member profiles and local podium sections remain reconstructed; no enclosed interiors or temporary sponsor/event scenery are claimed."
+  },
+  "sourceHash": "sha256:156401d98f33edc53f1b5f7b0287ba8bba1cda4aab0de22e18e6a6a43978e7ab",
+  "runtimeHash": "sha256:a2cf1de968502c30f4d0d9a0d2ed1596744570eecd797df49d83d4132165db8c",
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:48409d223395838efddd745abf423be0d17be4090f344b81ff57044cd44535ea",
+      "inputHash": "sha256:dda7a4f54fab370dbaef4d221d8bbdfa5159ecef09fd08e1eb5394a3127b91c6",
+      "repair": "The roof's membrane ceiling (the soffit under the fritted glass cells, j >= 6) was a single sheet facing down. It reads correctly from inside the bowl, but from above, through the clear 16 m inner acrylic strip, the eye meets its top side, which was culled, so the seating showed through under the inner edge of the opaque roof (scan: membrane part 89%, model 2.1%; closeup/street/district LODs 87/82/85%). Root cause: cape-town-stadium-model.mjs roof() emitted only face(..., [0, -1, 0]) for that sheet. Fix: a matching upper face(..., [0, 1, 0]) on the same corners, the pattern this recipe already uses for the catwalk. Being wound from reversed corners it splits on the other diagonal, so the runtime LOD builder (which drops repeated vertex triples) keeps both sides, and the two halves enclose a sliver rather than cross. The downward faces are unchanged; triangles 1,605,362 -> 1,619,042. Note: the previous binding (input sha256:48409d22...) already differed from the pre-repair input hash (sha256:2fa97b53...); this rebinding follows fresh captures of the repaired model.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }
