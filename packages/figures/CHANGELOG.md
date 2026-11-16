@@ -1,3 +1,12 @@
+## @bendyline/molen-figures [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.15...@bendyline/molen-figures@0.0.16) (2026-11-16)
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.12
+* **@bendyline/molen-schema:** upgraded to 0.0.12
+* **@bendyline/molen-client:** upgraded to 0.0.16
+
 ## @bendyline/molen-figures [0.0.15](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.14...@bendyline/molen-figures@0.0.15) (2026-11-14)
 
 

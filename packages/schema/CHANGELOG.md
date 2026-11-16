@@ -1,3 +1,9 @@
+## @bendyline/molen-schema [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.11...@bendyline/molen-schema@0.0.12) (2026-11-16)
+
+### Bug Fixes
+
+* Lint updates ([94abdf4](https://github.com/bendyline/molen/commit/94abdf4e950e9239028fabe7a16c01a0fb1639f7))
+
 ## @bendyline/molen-schema [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.10...@bendyline/molen-schema@0.0.11) (2026-11-14)
 
 ### Bug Fixes
