@@ -4,7 +4,12 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:488f159991d14e7ed65160899417df3c062ede0bc8553d5789fd2b8bf4e8d99d",
   "sourceHash": "sha256:31b658ba480c35e21e0544b0c1baeb0f28b0ca7ab8eac191a57833851036a3a4",
@@ -123,5 +128,60 @@
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:d485ecccedaa5e9a30a40e90dbb60dc69b582572d43f11ffe4759d9c2342a7f4",
+    "masterHash": "sha256:488f159991d14e7ed65160899417df3c062ede0bc8553d5789fd2b8bf4e8d99d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:459a2eed42639f5173d1a56f0c9159f649a7d4ea4b92394b61d789f32a4f7b66",
+        "bytes": 35184,
+        "gzipBytes": 8878,
+        "triangles": 343,
+        "cpuBytes": 29096,
+        "gpuBytes": 29096,
+        "errorMeters": 3,
+        "drawCalls": 5
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:4d0109db2db34f5551804a731d09adee7e1311bd51cad8aebb3c0000be2597a7",
+        "bytes": 66940,
+        "gzipBytes": 16524,
+        "triangles": 709,
+        "cpuBytes": 60812,
+        "gpuBytes": 60812,
+        "errorMeters": 1.25,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:20b0d52a0372c2647f0428510f3531a11581da35e830d43ab566b7db42c46476",
+        "bytes": 782720,
+        "gzipBytes": 153374,
+        "triangles": 8625,
+        "cpuBytes": 776540,
+        "gpuBytes": 776540,
+        "errorMeters": 0.4,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:55df2e3923ca38118ec5723d67598575b67e377d9b0f50fe2a709833c456cf45",
+        "bytes": 2885012,
+        "gzipBytes": 528525,
+        "triangles": 31305,
+        "cpuBytes": 2878796,
+        "gpuBytes": 2878796,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ]
+  }
 }

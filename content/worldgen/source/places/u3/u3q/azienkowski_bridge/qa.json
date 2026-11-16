@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.azienkowski_bridge",
   "reviewedOn": "2026-10-31",
-  "inputHash": "sha256:1349c7d5f1fb548b7bb0ab4fdf0b472f645410090cc5bc1eb04a2154ba51827e",
-  "sourceHash": "sha256:a7d54c2555463d536ee6076ee2162a83d794416cc8d5261aae006e3b208fca06",
-  "runtimeHash": "sha256:1a91076e72c0175007c847f43a1b9815ba1da95d05f36b2d83ce8e4801b9216d",
-  "captureReportHash": "sha256:54e147713d80d8416842d07f9022305716678248a21a73ee87a802e14dd08f73",
+  "inputHash": "sha256:2d4b7e7e1bef55f996a11fc4c49308e17b286f780ab4343b4b9d38bf4a137f98",
+  "sourceHash": "sha256:b5791746115458f90bff4f5e937e732f46ddce26388d5c053cb0695cac806c3a",
+  "runtimeHash": "sha256:7eda5ec4343cd478cecd9b82f97cf7d2b604d3303962fad0644c5378336a82d2",
+  "captureReportHash": "sha256:6965e8cc86b81fcf7ffea7b4a257267526012d02ffe6db698c51ee7f4d5f782b",
   "visualReview": {
     "status": "passed",
     "inputHash": "sha256:1349c7d5f1fb548b7bb0ab4fdf0b472f645410090cc5bc1eb04a2154ba51827e",
@@ -79,7 +79,7 @@
     "status": "passed",
     "inputHash": "sha256:1349c7d5f1fb548b7bb0ab4fdf0b472f645410090cc5bc1eb04a2154ba51827e",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:97994104bd3e24b299ec5b5fe0477e831dc3db4e4762bfedf5b2117917aff29b",
+    "captureReportHash": "sha256:eef8179054fc45cd40a7f7efa569bf20532b1d4b4e408cb7b4617d01638ef1cd",
     "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
     "placementHash": "sha256:705063f7b2c9d76ec6b546ebea4ff3de030dc029663d6a190bd821d35faa9dd6",
     "materialGraphs": {
@@ -1088,7 +1088,7 @@
   "mediumFiReview": {
     "status": "passed",
     "inputHash": "sha256:1349c7d5f1fb548b7bb0ab4fdf0b472f645410090cc5bc1eb04a2154ba51827e",
-    "captureReportHash": "sha256:3751768fdb145f094538ea0722f67ef1fffaa920cf77804f218dff687790a777",
+    "captureReportHash": "sha256:e39c8aa1301d6cef8b8de8beda7df0870a923687c29572ddcf8e3f26be41c89d",
     "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
@@ -1314,5 +1314,16 @@
     ],
     "initialBytes": 271308,
     "notes": "Four authored browser tiers with at most four draws, separate position/normal streams and no private/embedded images. Detailed source master remains separate. Physical laptop/phone and dense-city timings are not measured."
+  },
+  "reviewMaintenance": {
+    "windingRepair": {
+      "reviewedOn": "2026-11-15",
+      "previousInputHash": "sha256:1349c7d5f1fb548b7bb0ab4fdf0b472f645410090cc5bc1eb04a2154ba51827e",
+      "previousSourceHash": "sha256:a7d54c2555463d536ee6076ee2162a83d794416cc8d5261aae006e3b208fca06",
+      "previousRuntimeHash": "sha256:1a91076e72c0175007c847f43a1b9815ba1da95d05f36b2d83ce8e4801b9216d",
+      "inputHash": "sha256:2d4b7e7e1bef55f996a11fc4c49308e17b286f780ab4343b4b9d38bf4a137f98",
+      "repair": "Every loft in lazienkowski-model.mjs was inside-out: the deck slabs (concrete), the 3.5 cm wearing course, the four steel girder webs and flanges, the four river piers and the three lower cycle-path slabs listed each section ring bottom-first (or clockwise from above), the opposite of the order authored-structure-mesh loft() winds outward, so every face pointed into its solid and the near side was culled (14.9% of the model saw through, 72% of the deck concrete). A loftOut() helper now reverses each ring before lofting, so the same faces wind and face outward; vertex positions and materials are unchanged (vertex multiset, triangle counts and per-material areas identical; scan 0.00% on source and all four LODs). Recaptured frames show the deck edges, road and path decks solid, without the transverse segment seams and see-through soffit boxes of the old frames; the deck sides and piers now take sun and shadow on their outward faces. The pre-existing diagonal shadow banding on the road and girder webs in medium-fi high frames is unchanged.",
+      "evidence": "Inside-out faces found by a software depth-raster see-through scan of every runtime GLB (back faces of single-sided opaque materials nearest the viewer from above-horizon views). Same polygons with corrected facing; a non-planar quad may split along its other diagonal. Rescan of source and all four runtime LODs is clean. Portable, shared-surface and medium-fi frames were recaptured from the repaired model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }
