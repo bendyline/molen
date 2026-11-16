@@ -71,7 +71,7 @@ function nearest(ts, o, d, frontOnly = false) {
 
 const frame = await read(source + '/map-frame.json'),
   layout = await read(source + '/layout.json');
-it('pins the named headquarters, separate institution identity, signed east portico and complete source', async () => {
+it('pins the named headquarters, separate institution identity, signed west portico and complete source', async () => {
   const m = await read(source + '/source.json'),
     asset = await read(installed + '/asset.json'),
     p = await read(source + '/placement-report.json'),
@@ -92,7 +92,7 @@ it('pins the named headquarters, separate institution identity, signed east port
   expect(p.entry.replaceFootprint).toBe(true);
   expect(p.entry.elevation).toBe(0);
   expect(p.entry.datum).toBe('terrain');
-  expect(p.entry.groundCutout.minHeight).toBe(-8);
+  expect(p.entry.groundCutout.minHeight).toBe(-9.05);
   expect(
     reviewedSourceMapFrame({
       frameBytes: await readFile(source + '/map-frame.json'),
@@ -133,26 +133,27 @@ it('preserves the whole body, roof, all four open portico columns, closed doors,
       )
       .toBeCloseTo(-8, 2);
     expect
-      .soft(10 + nearest(ts, [0, 10, 24.4], [0, 1, 0], false), f.name + ' solid entablature soffit')
-      .toBeCloseTo(12.7, 2);
-    const door = 40 - nearest(ts, [0, 8, 40], [0, 0, -1], true);
+      .soft(10 + nearest(ts, [0, 10, -24.4], [0, 1, 0], true), f.name + ' west entablature soffit')
+      .toBeCloseTo(11.65, 2);
+    const door = -40 + nearest(ts, [0, 6, -40], [0, 0, 1], true);
     expect
       .soft(door, f.name + ' open central intercolumniation reaches closed entry')
-      .toBeGreaterThan(21.6);
-    expect.soft(door).toBeLessThan(22.2);
-    for (const x of [-5.7, -1.9, 1.9, 5.7])
-      expect
-        .soft(40 - nearest(ts, [x, 8, 40], [0, 0, -1], true), f.name + ' all four actual columns')
-        .toBeGreaterThan(25.6);
+      .toBeGreaterThan(-22.2);
+    expect.soft(door).toBeLessThan(-21.6);
+    for (const x of [-5.7, -1.9, 1.9, 5.7]) {
+      const column = -40 + nearest(ts, [x, 8, -40], [0, 0, 1], true);
+      expect.soft(column, f.name + ' all four actual columns').toBeLessThan(-25.6);
+      expect.soft(column).toBeGreaterThan(-26.1);
+    }
     expect
       .soft(
-        10 - nearest(ts, [0, 10, 29.5], [0, -1, 0], true),
+        10 - nearest(ts, [0, 10, -32.1], [0, -1, 0], true),
         f.name + ' complete descending stair toe',
       )
-      .toBeCloseTo(0.3, 2);
+      .toBeCloseTo(-3.57, 2);
     expect
-      .soft(-20 + nearest(ts, [0, -20, 28], [0, 1, 0], true), f.name + ' closed stair underside')
-      .toBeCloseTo(-8, 2);
+      .soft(-20 + nearest(ts, [0, -20, -28], [0, 1, 0], true), f.name + ' closed stair underside')
+      .toBeCloseTo(-9.05, 2);
     for (const side of [-1, 1]) {
       const x = 30 * side,
         d = [-side, 0, 0];
@@ -162,8 +163,11 @@ it('preserves the whole body, roof, all four open portico columns, closed doors,
       expect.soft(nearest(ts, [x, 5.5, 0], d, true)).toBeLessThan(17);
     }
     expect
-      .soft(-40 + nearest(ts, [0, 5.5, -40], [0, 0, 1], true), f.name + ' closed west rear')
-      .toBeGreaterThan(-22.3);
+      .soft(40 - nearest(ts, [0, 5.5, 40], [0, 0, -1], true), f.name + ' closed east rear wing')
+      .toBeGreaterThan(29);
+    expect
+      .soft(40 - nearest(ts, [0, 40, 26], [0, -1, 0], true), f.name + ' complete rear wing roof')
+      .toBeCloseTo(18.76, 2);
   }
 }, 60000);
 it('uses the production viewer to replace theprincipal headquarters and preserve all independent native neighbors', async () => {
@@ -323,7 +327,11 @@ it('uses the production viewer to replace theprincipal headquarters and preserve
     expect(
       landmark.position.y,
       'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(0, 31), 2);
+    ).toBeCloseTo(
+      field.sampleHeight(...local(placed.terrainReference.anchor)) -
+        placed.terrainReference.modelHeight,
+      2,
+    );
     expect(seen.length).toBeGreaterThan(0);
     expect(
       seen.at(-1).sort(),

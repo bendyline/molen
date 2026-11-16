@@ -172,5 +172,6 @@ it('covers the own perimeter within 2mm and keeps courtyard walls facing their o
     ),
   );
   expect(spec.sitePart.identity).toEqual({ type: 'relation', id: 3532583 });
-  expect(spec.geographicProposal.featureIds).toEqual(['relation/3532583']);
+  // The relation and its mapped outer member both identify this same palm house.
+  expect(spec.geographicProposal.featureIds).toEqual(['relation/3532583', 'way/263009992']);
 });

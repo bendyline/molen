@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import {
   buildKsiazGate,
@@ -9,6 +10,11 @@ it.each(ksiazGateModels)('keeps $key deterministic, shared and within browser bu
   key,
 }) => {
   const id = `molen.worldgen.structure.${key}`,
+    spec = JSON.parse(
+      readFileSync(
+        new URL(`../../../content/worldgen/source/places/u3/u35/${key}/spec.json`, import.meta.url),
+      ),
+    ),
     levels = [];
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -25,14 +31,18 @@ it.each(ksiazGateModels)('keeps $key deterministic, shared and within browser bu
       types = new Map(),
       positions = [];
     expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : key === 'ksiaz_lion_gate' ? 3 : 2);
-    if (name !== 'skyline')
+    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : key === 'ksiaz_lion_gate' ? 4 : 3);
+    if (name !== 'skyline') {
+      expect(g.materials.map((material) => material.extras.molenSurface.ref)).toContain(
+        'matgraph:molen.worldgen.material.stone_sandstone_raw',
+      );
       for (const material of g.materials) {
         expect(['wall', 'roof', 'trim', 'foundation', 'window', 'door']).toContain(
           material.extras.molenSurface.slot,
         );
         expect(material.extras.molenSurface.ref).toMatch(/^matgraph:molen\.worldgen\.material\./);
       }
+    }
     for (const m of g.meshes)
       for (const p of m.primitives) {
         positions.push(g.accessors[p.attributes.POSITION]);
@@ -43,7 +53,9 @@ it.each(ksiazGateModels)('keeps $key deterministic, shared and within browser bu
         }
       }
     for (const group of types.values()) expect(group.size).toBe(1);
-    expect(Math.min(...positions.map((p) => p.min[1]))).toBe(0);
+    // Curved wings follow the reviewed slope; tier sampling differs by less than 0.5 mm.
+    expect(spec.actualBounds.min[1]).toBeLessThan(0);
+    expect(Math.min(...positions.map((p) => p.min[1]))).toBeCloseTo(spec.actualBounds.min[1], 3);
     levels.push(a);
   }
   expect(levels[0].bytes.length + levels[1].bytes.length).toBeLessThan(3_000_000);

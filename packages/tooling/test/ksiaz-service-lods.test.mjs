@@ -1,9 +1,18 @@
+import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { buildKsiazService } from '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it('keeps the forester house deterministic, textured and within all browser LOD budgets', async () => {
   const id = 'molen.worldgen.structure.ksiaz_forester_house',
+    frame = JSON.parse(
+      readFileSync(
+        new URL(
+          '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/map-frame.json',
+          import.meta.url,
+        ),
+      ),
+    ),
     levels = [];
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -20,10 +29,13 @@ it('keeps the forester house deterministic, textured and within all browser LOD 
       types = new Map(),
       positions = [];
     expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 5);
+    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 6);
     if (name !== 'skyline') {
       const shared = g.materials.filter((m) => m.extras?.molenSurface);
-      expect(shared).toHaveLength(4);
+      expect(shared).toHaveLength(5);
+      expect(shared.map((m) => m.extras.molenSurface.ref)).toContain(
+        'matgraph:molen.worldgen.material.stone_sandstone_raw',
+      );
       for (const m of shared)
         expect(['wall', 'roof', 'trim', 'foundation']).toContain(m.extras.molenSurface.slot);
     }
@@ -37,7 +49,7 @@ it('keeps the forester house deterministic, textured and within all browser LOD 
         }
       }
     for (const group of types.values()) expect(group.size).toBe(1);
-    expect(Math.min(...positions.map((a) => a.min[1]))).toBe(0);
+    expect(Math.min(...positions.map((a) => a.min[1]))).toBeCloseTo(frame.siteFit.footingBottom, 5);
     expect(Math.max(...positions.map((a) => a.max[1]))).toBeLessThan(13);
     levels.push(a);
   }

@@ -3,6 +3,15 @@ import { expect, it } from 'vitest';
 import { buildOldKsiaz } from '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
+const frame = JSON.parse(
+  readFileSync(
+    new URL(
+      '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/map-frame.json',
+      import.meta.url,
+    ),
+  ),
+);
+
 it('keeps the mapped ruin within all deterministic browser LOD and shared material budgets', async () => {
   const id = 'molen.worldgen.structure.old_ksiaz_ruins',
     levels = [];
@@ -41,7 +50,12 @@ it('keeps the mapped ruin within all deterministic browser LOD and shared materi
         }
       }
     for (const t of types.values()) expect(t.size).toBe(1);
-    expect(Math.min(...positions.map((a) => a.min[1]))).toBe(0);
+    const footingBottom = Math.min(
+      ...frame.siteFit.walls.flatMap((wall) =>
+        wall.segments.flatMap((segment) => segment.rows.map((row) => row.base)),
+      ),
+    );
+    expect(Math.min(...positions.map((a) => a.min[1]))).toBeCloseTo(footingBottom, 5);
     expect(Math.max(...positions.map((a) => a.max[1]))).toBeLessThan(12);
     levels.push(a);
   }
@@ -57,18 +71,18 @@ function hit(x, y, t) {
   return u >= -1e-5 && v >= -1e-5 && u + v <= 1.00001;
 }
 it('preserves real portal and pointed-window openings and outward wall caps at every level', () => {
-  const f = JSON.parse(
-    readFileSync(
-      new URL(
-        '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/map-frame.json',
-        import.meta.url,
-      ),
-    ),
-  );
+  const f = frame;
   const [a, b] = f.geometry.centerlines.find((w) => w.way === f.controls.mainFacadeWay).points,
     l = Math.hypot(b[0] - a[0], b[1] - a[1]),
     ux = (b[0] - a[0]) / l,
     uz = (b[1] - a[1]) / l;
+  const rows = f.siteFit.walls.find((wall) => wall.way === f.controls.mainFacadeWay).segments[0]
+    .rows;
+  const base = (x) => {
+    const t = Math.max(0, Math.min(rows.length - 1, (x / l) * (rows.length - 1))),
+      i = Math.min(rows.length - 2, Math.floor(t));
+    return rows[i].base + (rows[i + 1].base - rows[i].base) * (t - i);
+  };
   const local = (p) => [
     (p[0] - a[0]) * ux + (p[2] - a[1]) * uz,
     p[1],
@@ -85,19 +99,18 @@ it('preserves real portal and pointed-window openings and outward wall caps at e
       t.local.every((p) => Math.abs(p[2]) < 0.7 && p[0] >= -1e-3 && p[0] <= l + 1e-3),
     );
     for (const [x, y] of [
-      [l * 0.78, 2.9],
-      [l * 0.21, 6.2],
-      [l * 0.47, 6.2],
+      [f.siteFit.portal.offset, 1.3],
+      [l * 0.21, 4.65],
+      [l * 0.47, 4.65],
+      [l * 0.78, 4.65],
     ])
       expect(slab.some((t) => hit(x, y, t.local))).toBe(false);
     expect(slab.some((t) => hit(l * 0.58, 3.8, t.local))).toBe(true);
-    const bottom = triangles.filter((t) => t.p.every((p) => p[1] === 0));
+    const bottom = slab.filter((t) => t.local.every(([x, y]) => Math.abs(y - base(x)) < 1e-5));
     expect(bottom.length).toBeGreaterThan(0);
-    for (const t of bottom) expect(t.n[1]).toBeLessThan(-0.99);
+    for (const t of bottom) expect(t.n[1]).toBeLessThan(-0.9);
     // Elevated horizontal/diagonal cap surfaces close the broken wall tops, not a roof plane.
-    const tops = triangles.filter(
-      (t) => t.s === 'rubble' && Math.abs(t.n[1]) > 0.01 && !t.p.every((p) => p[1] === 0),
-    );
+    const tops = slab.filter((t) => t.s === 'rubble' && t.local.every(([x, y]) => y > base(x) + 1));
     expect(tops.some((t) => t.n[1] > 0.8)).toBe(true);
   }
 });
