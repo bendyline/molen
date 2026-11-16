@@ -77,6 +77,49 @@ It needs an installed Chrome, because Playwright's Chromium finds no WebGPU adap
 flights themselves are the explorer's `?autopilot=` URL parameter, which also works by hand:
 `/?mode=human&autopilot=circle&speed=250&alt=900&radius=4000`.
 
+`admittedMsPerSecond` is the main-thread time the frame queue spent publishing streamed work per
+second of flight: beside the queue's waits (`admission-wait` in the stages) it says whether the
+view is short of budget or of work. `--params=admissionMs=8` holds one budget a frame, and
+`--params=cull=0` turns off the renderer's tile culling, for comparison. A profiled flight
+(`--profile`) streams about a third less than an unprofiled one, so compare like with like.
+
+### A low flight at High, 2026-11-15
+
+A P-51's line out of Boeing Field over SODO at 149 m/s and 243 m, manual High, on the NVIDIA
+laptop above in headless Edge (WebGL):
+
+```sh
+node test/performance/run-flight-streaming.mjs --flight=straight --lat=47.50 --lon=-122.288 \
+  --yaw=-1.94668 --speed=149 --alt=243 --quality=high --seconds=100 --channel=msedge
+```
+
+| Streaming budget a frame | 2 ms (before) | held at 4 ms | held at 8 ms | grows with the backlog |
+| --- | ---: | ---: | ---: | ---: |
+| Ground within 2 km finished | 16% | 81% | 96% | 90% |
+| 2 to 5 km finished | 0% | 38% | 74% | 63% |
+| 5 to 10 km finished | 0% | 49% | 87% | 72% |
+| Layers built in 100 s | 250 | 566 | 957 | 847 |
+| Mean wait in the frame queue | 3.1 s | 0.6 s | 0.13 s | 0.44 s |
+| Queue work a second | about 44 ms | 82 ms | 103 ms | 100 ms |
+| Frames a second | 30 | 30 | 22 | 28 |
+| Triangles drawn | 2.7 M | 6.3 M | 8.4 M | 7.5 M |
+
+Ground that is not finished shows a coarser finished tile (`stale`) in the three right-hand
+columns and bare ground before. At 2 ms the frames were always busy (19 ms of main-thread work
+at High), so the queue never left its smallest budget, and even a view held still was loading
+24 layers after 90 seconds. The frame rate lands on 30 or 20 here (two or three display
+refreshes), which makes a single flight's rate a coarse reading: a change to what a frame costs
+is better measured by switching it off and on every two seconds within one flight. Measured that
+way, leaving tiles outside the view out of the scene walk took the main thread's time in a
+frame's render from 17-22 ms to 12-13 ms over three flights, with the same draws (two of them
+with other work loading the machine, which moves both figures but not their order).
+
+Not done, and what each costs on the main thread in that flight: road grading for a tile's ground
+(`transformHeightfield`: 4 to 9%, about 27 ms a tile in 2 ms slices outside the frame queue, and
+a worker's job by rights), ground cutting for water and bores (5 to 11%, up to 4 ms a frame),
+parked cars becoming entities under a low fast aircraft (about 2%), and three's matrix walk of
+each in-view tile's static content (about 4%).
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately

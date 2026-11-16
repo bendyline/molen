@@ -1061,6 +1061,112 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('leaves render groups out of the scene walk and the shadow maps they cannot reach', () => {
+    // What a shadow map's own walk finds on show, as three's shadow pass would.
+    const shadowWalks: boolean[][] = [];
+    const shadowMap = webgl.shadowMap as {
+      enabled: boolean;
+      render?: (lights: THREE.Light[], scene: THREE.Object3D, camera: THREE.Camera) => void;
+    };
+    shadowMap.render = () => shadowWalks.push(groups.map((group) => group.visible));
+    const renderer = new Renderer();
+    shadowMap.enabled = true;
+    const tiles = new THREE.Group();
+    tiles.position.set(1_000, 0, 0);
+    renderer.scene.add(tiles);
+    // Bounds are in the parent's frame, which sits 1 km east.
+    const tile = (x: number, z: number): THREE.Group => {
+      const group = renderer.createRenderGroup();
+      group.userData.renderBounds = new THREE.Box3(
+        new THREE.Vector3(x - 1_050, 0, z - 50),
+        new THREE.Vector3(x - 950, 30, z + 50),
+      );
+      tiles.add(group);
+      return group;
+    };
+    const ahead = tile(0, -500);
+    const behind = tile(0, 500);
+    const unbounded = renderer.createRenderGroup();
+    tiles.add(unbounded);
+    const stale = tile(0, 800);
+    stale.userData.renderBoundsStale = true;
+    const hiddenByOwner = tile(0, -300);
+    hiddenByOwner.visible = false;
+    const groups = [ahead, behind, unbounded, stale, hiddenByOwner];
+    renderer.camera.position.set(0, 10, 0);
+    renderer.camera.lookAt(0, 10, -100);
+    // The sun's map reaches the ground behind the camera and not the ground ahead of it.
+    const sun = new THREE.DirectionalLight();
+    sun.position.set(0, 1_000, 500);
+    sun.target.position.set(0, 0, 500);
+    sun.shadow.camera.left = sun.shadow.camera.bottom = -100;
+    sun.shadow.camera.right = sun.shadow.camera.top = 100;
+    sun.shadow.camera.near = 1;
+    sun.shadow.camera.far = 3_000;
+    sun.shadow.camera.updateProjectionMatrix();
+    sun.updateMatrixWorld();
+    sun.target.updateMatrixWorld();
+    // Content its owner added while it was out of view has no world matrices yet.
+    behind.userData.renderMatricesStale = true;
+    const matrices = vi.spyOn(behind, 'updateMatrixWorld');
+    // The pass as the renderer left it wrapped, which is what three calls.
+    const drawShadows = (lights: THREE.Light[], scene: THREE.Object3D, camera: THREE.Camera) =>
+      shadowMap.render?.(lights, scene, camera);
+    const walks: boolean[][] = [];
+    webgl.render.mockImplementation((scene: THREE.Scene) => {
+      if (scene !== renderer.scene) return;
+      walks.push(groups.map((group) => group.visible));
+      matrices.mockClear();
+      // Three draws its shadow maps inside the render, after the scene's own walk.
+      drawShadows([sun], scene, renderer.camera);
+      walks.push(groups.map((group) => group.visible));
+    });
+    renderer.render();
+    // Only the tile behind the camera is left out; a group without bounds, one whose bounds are
+    // out of date and one its owner hid are as they were.
+    expect(walks[0]).toEqual([true, false, true, true, false]);
+    // The sun reaches behind the camera, with that tile's matrices brought up to date for it,
+    // and not ahead; the stale tile keeps casting.
+    expect(shadowWalks).toEqual([[false, true, true, true, false]]);
+    expect(matrices).toHaveBeenCalledTimes(1);
+    expect(behind.userData.renderMatricesStale).toBe(false);
+    // Back as the camera has them for the rest of the render, and all shown again after it.
+    expect(walks[1]).toEqual([true, false, true, true, false]);
+    expect(groups.map((group) => group.visible)).toEqual([true, true, true, true, false]);
+    // A light of another kind keeps every group on show.
+    shadowWalks.length = 0;
+    drawShadows([new THREE.SpotLight()], renderer.scene, renderer.camera);
+    expect(shadowWalks).toEqual([[true, true, true, true, false]]);
+    // A group made but not attached yet (a tile still loading) is culled once it is, and one
+    // that has left the scene is left alone.
+    const late = renderer.createRenderGroup();
+    late.userData.renderBounds = (behind.userData.renderBounds as THREE.Box3).clone();
+    renderer.render();
+    tiles.add(late);
+    tiles.remove(behind);
+    groups.splice(0, groups.length, late, behind);
+    walks.length = 0;
+    renderer.render();
+    expect(walks[0]).toEqual([false, true]);
+    expect(late.visible && behind.visible).toBe(true);
+    renderer.dispose();
+    // Turned off, nothing is hidden at any point.
+    const plain = new Renderer({ cullRenderGroups: false });
+    const kept = plain.createRenderGroup();
+    kept.userData.renderBounds = new THREE.Box3(
+      new THREE.Vector3(-50, 0, 450),
+      new THREE.Vector3(50, 30, 550),
+    );
+    plain.scene.add(kept);
+    plain.camera.position.set(0, 10, 0);
+    plain.camera.lookAt(0, 10, -100);
+    const seen: boolean[] = [];
+    webgl.render.mockImplementation(() => seen.push(kept.visible));
+    plain.render();
+    expect(seen.every(Boolean)).toBe(true);
+    plain.dispose();
+  });
+
   it('keeps synchronous construction on WebGL and directs async preferences to the factory', () => {
     for (const backend of ['auto', 'webgpu'] as const) {
       expect(() => new Renderer({ backend })).toThrow('Use await Renderer.create()');

@@ -74,6 +74,66 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('gives work that has waited too long more of each frame, and takes it back once it keeps up', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 2,
+      maxBytes: 100,
+      backlog: { afterMs: 400, maxMilliseconds: 8, maxBytes: 400 },
+      now: () => time,
+      schedule: () => {},
+    });
+    // Each job takes a millisecond and uploads 50 bytes; a frame comes every 16 ms.
+    let done = 0;
+    // Jobs still queued at the end are rejected by `dispose`.
+    const add = (count: number): void => {
+      for (let i = 0; i < count; i++)
+        queue
+          .run(
+            () => {
+              time += 1;
+              done++;
+            },
+            { bytes: 50 },
+          )
+          .catch(() => {});
+    };
+    const frame = (): number => {
+      const before = done;
+      queue.flush();
+      time += 16;
+      return done - before;
+    };
+    add(200);
+    // A fresh queue keeps its ordinary budget: two jobs fill the frame's bytes (and its time).
+    expect(frame()).toBe(2);
+    // Half a second on, the oldest job has waited past the limit and the budget is growing.
+    while (time < 600) frame();
+    const growing = frame();
+    expect(growing).toBeGreaterThan(2);
+    expect(growing).toBeLessThan(8);
+    // From twice the limit the frame takes the whole backlog budget: eight 1 ms jobs, 400 bytes.
+    while (time < 900) frame();
+    expect(frame()).toBe(8);
+    // Caught up: new work is a frame old, and gets the ordinary budget again.
+    while (queue.pending > 0) frame();
+    add(20);
+    expect(frame()).toBe(2);
+    // Background work waiting its turn is not a backlog.
+    while (queue.pending > 0) frame();
+    queue.run(() => done++, { priority: 'background', bytes: 50 }).catch(() => {});
+    time += 5_000;
+    add(20);
+    expect(frame()).toBeLessThanOrEqual(3);
+    // Without the option, and with it taken away, the budget never grows.
+    queue.setLimits({ backlog: undefined });
+    add(200);
+    time += 5_000;
+    expect(frame()).toBe(2);
+    expect(() => queue.setLimits({ backlog: { afterMs: 0 } })).toThrow(RangeError);
+    queue.dispose();
+  });
+
   it('admits urgent work ahead of normal work, in its own order, within limits set later', () => {
     const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
     const order: string[] = [];

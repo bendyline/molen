@@ -8,6 +8,12 @@
  */
 
 import type { SceneAdmission } from '@bendyline/molen-client';
+import {
+  expandRenderBounds,
+  RENDER_BOUNDS,
+  RENDER_BOUNDS_STALE,
+  RENDER_MATRICES_STALE,
+} from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
 import {
@@ -399,8 +405,9 @@ export interface TerrainPyramidStatsOptions {
    * `'measured'` (the default) walks every resident tile's objects for byte totals, so it also
    * finds geometry an adapter added without calling `refreshMemoryUsage()`. `'tracked'` reports
    * the retained estimate `pressure()` keeps and counts triangles, draws and instances among
-   * visible objects only. The full walk took several milliseconds over a warm cache; a panel
-   * refreshing a few times a second stalled a frame each time.
+   * visible objects only, at most a second ago. The full walk took several milliseconds over a
+   * warm cache; a panel refreshing a few times a second stalled a frame each time, and the walk
+   * of the visible objects alone was still 3 ms each time over a city at High.
    */
   geometry?: 'measured' | 'tracked';
 }
@@ -1113,6 +1120,12 @@ const MIN_LEAD_SECONDS = 1;
 const MAX_LEAD_SECONDS = 6;
 /** With no update for this long the camera has stopped, however fast it was going, ms. */
 const TRACK_SILENCE_MS = 1_200;
+/**
+ * Meters added round each part of a tile's content in the bounds a renderer may cull it by (see
+ * `refreshRenderBounds`): room for the small things that move without saying so, a crossing
+ * gate's arm or a signal's head.
+ */
+const RENDER_BOUNDS_PADDING = 8;
 
 /**
  * `userData` flag for a tile layer object that drapes its whole tile with opaque ground (for
@@ -1212,6 +1225,8 @@ function skipHiddenWorldMatrices(object: THREE.Object3D): void {
       if (force === true) this.matrixWorldNeedsUpdate = true;
       return;
     }
+    // This walk reaches whatever was added since the last one.
+    if (this.userData[RENDER_MATRICES_STALE] === true) this.userData[RENDER_MATRICES_STALE] = false;
     THREE.Object3D.prototype.updateMatrixWorld.call(this, force);
   };
 }
@@ -1444,6 +1459,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly independentCategories: ReadonlySet<TerrainTileLayerCategory>;
   private readonly layerVisibility = new Map<string, boolean>();
   private readonly resident = new Map<string, ResidentTile>();
+  /** Each resident tile by its group, for what is told about the group alone. */
+  private readonly tileObjects = new WeakMap<THREE.Object3D, ResidentTile>();
   /** Height probes repeat within a finest-level cell (wheels, collision sweeps, parked craft).
    * Cache the ordered fields, not sampled heights; visibility/residency changes invalidate it. */
   private readonly heightProbeTiles = new Map<string, readonly ResidentTile[]>();
@@ -1543,6 +1560,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private layerLatencyMs = 1_000;
   /** Ends travel when updates stop, for a host that updates only while the camera moves. */
   private trackSilence: ReturnType<typeof setTimeout> | undefined;
+  /** The last count of visible triangles, draws and instances (see `stats`). */
+  private visibleGeometry: { at: number; stats: ObjectGeometryStats } | undefined;
 
   constructor(
     private readonly descriptor: TerrainPyramidDescriptor,
@@ -1822,6 +1841,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
 
   private plan(view: TerrainPyramidView): void {
     this.view = view;
+    this.refreshStaleRenderBounds();
     // Order work for where the camera will be once it is done, not where it is now.
     this.lead = this.travelling()
       ? this.predictedView(
@@ -2084,6 +2104,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   updateTransitions(nowMs = performance.now()): void {
+    this.refreshStaleRenderBounds();
     for (const [tile, start] of this.morphing) {
       const morph = tile.morph;
       if (!morph) {
@@ -2111,6 +2132,43 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.renewCutWindow(performance.now());
       this.cutGround();
       this.refreshDisplayedBytes();
+    }
+  }
+
+  /**
+   * Where a tile's content is, for a renderer that leaves tiles out of the scene walks they
+   * cannot be seen in (`RENDER_BOUNDS` on the tile's group, in the stream object's frame): the
+   * ground and every layer object, from the bounds their meshes carry. Kept true as layers
+   * arrive (`growRenderBounds`); content that changes size later asks for this again with
+   * `markRenderBoundsChanged`, and until it has run the renderer does not cull the tile.
+   */
+  private refreshRenderBounds(tile: ResidentTile): void {
+    const bounds = new THREE.Box3();
+    // The ground among them: a cut ground mesh draws part of its source and keeps its bounds.
+    for (const child of tile.object.children)
+      expandRenderBounds(bounds, child, tile.object, RENDER_BOUNDS_PADDING);
+    bounds.translate(tile.object.position);
+    tile.object.userData[RENDER_BOUNDS] = bounds;
+    delete tile.object.userData[RENDER_BOUNDS_STALE];
+  }
+
+  /** A layer object has joined the tile: its bounds now hold that too. */
+  private growRenderBounds(tile: ResidentTile, object: THREE.Object3D): void {
+    const bounds = tile.object.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
+    if (bounds === undefined || tile.object.userData[RENDER_BOUNDS_STALE] === true) {
+      this.refreshRenderBounds(tile);
+      return;
+    }
+    const added = expandRenderBounds(new THREE.Box3(), object, tile.object, RENDER_BOUNDS_PADDING);
+    if (!added.isEmpty()) bounds.union(added.translate(tile.object.position));
+  }
+
+  /** Work out again the bounds of tiles on show whose content asked for it. */
+  private refreshStaleRenderBounds(): void {
+    for (const object of this.object.children) {
+      if (object.userData[RENDER_BOUNDS_STALE] !== true) continue;
+      const tile = this.tileObjects.get(object);
+      if (tile !== undefined) this.refreshRenderBounds(tile);
     }
   }
 
@@ -2386,6 +2444,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
 
   /** Take a tile's layer object (or its empty mark) away, to be built again when next wanted. */
   private dropLayer(tile: ResidentTile, id: string): void {
+    // Its bounds may shrink: worked out again before the tile is next culled by them.
+    tile.object.userData[RENDER_BOUNDS_STALE] = true;
     tile.emptyLayers.delete(id);
     const object = tile.layers.get(id);
     if (object === undefined) return;
@@ -2407,9 +2467,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     }
     const failures = this.retries.counts();
     const layerFailures = this.layerRetries.counts();
-    const visibleGeometry = objectGeometryStats(this.object, true);
+    const tracked = options.geometry === 'tracked';
+    const now = performance.now();
+    const recent =
+      tracked && this.visibleGeometry !== undefined && now - this.visibleGeometry.at < 1_000
+        ? this.visibleGeometry.stats
+        : undefined;
+    const visibleGeometry = recent ?? objectGeometryStats(this.object, true);
+    if (recent === undefined) this.visibleGeometry = { at: now, stats: visibleGeometry };
     let allocatedBytes = this.geometryBytes;
-    if (options.geometry !== 'tracked') {
+    if (!tracked) {
       const counted = new Set<ArrayBufferLike>();
       allocatedBytes = objectGeometryStats(this.object, false, counted).bytes;
       // Hidden tiles are out of the scene graph, and walking them would make a large cache cost a
@@ -2821,6 +2888,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             ...(morph ? { morph } : {}),
             emptyLayers: new Set(),
           });
+          this.tileObjects.set(object, this.resident.get(key) as ResidentTile);
           this.buildCounts.tiles++;
           if (this.tileBuilds.has(key)) this.buildCounts.rebuiltTiles++;
           this.tileBuilds.add(key);
@@ -2828,6 +2896,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           this.decodedHeightBytes +=
             heightfield.cols * heightfield.rows * Float32Array.BYTES_PER_ELEMENT;
           this.object.add(object);
+          this.refreshRenderBounds(this.resident.get(key) as ResidentTile);
           this.refreshBorderNormals(this.resident.get(key) as ResidentTile);
           this.requestVisibility();
         },
@@ -3621,6 +3690,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             current.layers.set(layer.id, object);
             current.object.add(object);
             if (replaced !== undefined) layer.disposeTile?.(replaced);
+            // What was replaced may have reached farther: start over rather than keep its extent.
+            if (replaced !== undefined) this.refreshRenderBounds(current);
+            else this.growRenderBounds(current, object);
+            // No world matrices yet: a renderer leaving this tile out of the scene's walk (it
+            // is outside the view) brings them up to date before a shadow map draws it.
+            current.object.userData[RENDER_MATRICES_STALE] = true;
             this.trackAllocations(current);
             this.requestVisibility();
             if (refreshed) this.settleRefresh(key);

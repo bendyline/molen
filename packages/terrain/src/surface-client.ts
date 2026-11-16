@@ -13,9 +13,11 @@ import {
   TERRAIN_SURFACE_KIND,
   type TerrainBoxPlacement,
   type TerrainLineBand,
+  type TerrainPaintBeneath,
   type TerrainRoadWear,
   TerrainSurfaceMeshBuilder,
   terrainLinePath,
+  terrainPaintBeneath,
   weldTerrainSurfaceMesh,
 } from './linear-features';
 import { normalizeRing, pointInPolygon, polygonBounds } from './polygon';
@@ -306,6 +308,12 @@ export function createTerrainSurfaceObject(
   let twoWheelers: TerrainParkedVehicle[] | undefined;
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
+  // What markings are painted on: from afar they fade into these (TerrainLineBand.beneath).
+  const roadBeneath: TerrainPaintBeneath = { color: style.road };
+  const parkingBeneath: TerrainPaintBeneath = {
+    color: style.parking,
+    surface: TERRAIN_SURFACE_KIND.parking,
+  };
   const group = new THREE.Group();
   group.name = 'semantic:surfaces';
   // Draped over the ground: receives sun shadows, never casts them onto itself.
@@ -1303,7 +1311,12 @@ export function createTerrainSurfaceObject(
       band(
         marks,
         road,
-        { ...line, elevation: elevation + 0.045, surface: TERRAIN_SURFACE_KIND.paint },
+        {
+          ...line,
+          elevation: elevation + 0.045,
+          surface: TERRAIN_SURFACE_KIND.paint,
+          beneath: roadBeneath,
+        },
         filter,
       );
     // Edge lines along the outside of the travel lanes: on freeways and ramps, on country roads
@@ -1398,10 +1411,16 @@ export function createTerrainSurfaceObject(
   ];
 
   const white = new THREE.Color(style.white);
-  const paintPolygon = (points: readonly TerrainSemanticPoint[], lift: number): void => {
+  const roadPaint = terrainPaintBeneath(roadBeneath);
+  /** A road mark's `stroke` is its narrowest dimension, meters: what fades it with distance. */
+  const paintPolygon = (
+    points: readonly TerrainSemanticPoint[],
+    lift: number,
+    stroke: number,
+  ): void => {
     const start = marks.vertexCount;
     marks.polygon(points, white, lift);
-    marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
+    marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint, undefined, stroke, 0, roadPaint);
   };
   /**
    * A lane arrow centered at (x, z), pointing along (fx, fz): straight (`turn` 0) or turning to
@@ -1421,13 +1440,13 @@ export function createTerrainSurfaceObject(
       z + fz * u + fx * v,
     ];
     if (turn === 0) {
-      paintPolygon(rectangle(...at(-0.45, 0), fx, fz, 0.16, 1.5), lift);
-      paintPolygon([at(0.3, -0.3), at(1.2, 0), at(0.3, 0.3)], lift);
+      paintPolygon(rectangle(...at(-0.45, 0), fx, fz, 0.16, 1.5), lift, 0.16);
+      paintPolygon([at(0.3, -0.3), at(1.2, 0), at(0.3, 0.3)], lift, 0.4);
       return;
     }
-    paintPolygon(rectangle(...at(-0.5, 0), fx, fz, 0.16, 1.4), lift);
-    paintPolygon(rectangle(...at(0.12, turn * 0.25), -fz * turn, fx * turn, 0.16, 0.5), lift);
-    paintPolygon([at(-0.15, turn * 0.5), at(0.12, turn * 0.95), at(0.4, turn * 0.5)], lift);
+    paintPolygon(rectangle(...at(-0.5, 0), fx, fz, 0.16, 1.4), lift, 0.16);
+    paintPolygon(rectangle(...at(0.12, turn * 0.25), -fz * turn, fx * turn, 0.16, 0.5), lift, 0.16);
+    paintPolygon([at(-0.15, turn * 0.5), at(0.12, turn * 0.95), at(0.4, turn * 0.5)], lift, 0.3);
   };
   for (const node of network.junctions) {
     if (!inTile(node.x, node.z)) continue;
@@ -1453,6 +1472,7 @@ export function createTerrainSurfaceObject(
             paintPolygon(
               rectangle(x - arm.dz * offset, z + arm.dx * offset, arm.dx, arm.dz, 0.5, 2.6),
               lift,
+              0.5,
             );
           }
           if (control?.signal)
@@ -1468,6 +1488,7 @@ export function createTerrainSurfaceObject(
                     0.2,
                   ),
                   lift,
+                  0.2,
                 );
         }
         if (!style.markings || !incomingArm(arm)) continue;
@@ -1488,6 +1509,7 @@ export function createTerrainSurfaceObject(
               0.45,
             ),
             lift,
+            0.45,
           );
         else if (yielding) {
           // A yield line: a row of triangles pointing at approaching traffic ("shark teeth").
@@ -1503,6 +1525,7 @@ export function createTerrainSurfaceObject(
                 [cx + arm.dz * 0.25, cz - arm.dx * 0.25],
               ],
               lift,
+              0.4,
             );
           }
         }
@@ -1974,6 +1997,7 @@ export function createTerrainSurfaceObject(
                   color: style.white,
                   elevation: 0.345,
                   surface: TERRAIN_SURFACE_KIND.paint,
+                  beneath: parkingBeneath,
                 });
               }
             }

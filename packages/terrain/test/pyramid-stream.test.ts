@@ -1,4 +1,9 @@
-import { FrameAdmissionQueue } from '@bendyline/molen-client';
+import {
+  FrameAdmissionQueue,
+  markRenderBoundsChanged,
+  RENDER_BOUNDS,
+  RENDER_BOUNDS_STALE,
+} from '@bendyline/molen-client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
@@ -5131,6 +5136,57 @@ describe('refreshing resident layers', () => {
       // Nothing was touched by the calls that threw.
       expect(detail.disposed).toEqual([]);
       expect(stream.stats().refreshingLayers).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+});
+
+describe('terrain pyramid tile bounds', () => {
+  it('states where each tile draws, and keeps that true as content arrives and changes size', async () => {
+    const d = descriptor();
+    const source: TerrainPyramidHeightSource = { load: async (address) => flatTile(d, address) };
+    // A tower 40 m tall that stands 30 m outside its tile's ground.
+    const towers = (): THREE.Object3D => {
+      const group = new THREE.Group();
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(4, 40, 4));
+      tower.position.set(-30, 20, 2);
+      group.add(tower);
+      return group;
+    };
+    const stream = createTerrainPyramidStream(d, source, {
+      initialView: VIEW,
+      viewDistance: 100,
+      maxScreenSpaceError: 10000,
+      maxSelectedTiles: 4,
+      maxResidentTiles: 8,
+      maxConcurrentLoads: 4,
+      layers: [{ id: 'towers', category: 'human-feature', createTile: towers }],
+    });
+    try {
+      await stream.whenIdle();
+      const tile = stream.object.children.find((child) => child.name === 'tile:0/0/0');
+      if (tile === undefined) throw new Error('no tile');
+      const size = terrainPyramidTileSize(d, 0);
+      // In the stream object's frame, as a renderer culling the tile's group reads them.
+      const bounds = tile.userData[RENDER_BOUNDS] as THREE.Box3;
+      expect(bounds.min.x).toBeLessThanOrEqual(tile.position.x);
+      expect(bounds.max.x).toBeGreaterThanOrEqual(tile.position.x + size);
+      expect(bounds.max.z).toBeGreaterThanOrEqual(tile.position.z + size);
+      // The tower too, though it overhangs the ground.
+      expect(bounds.min.x).toBeLessThanOrEqual(tile.position.x - 32);
+      expect(bounds.max.y).toBeGreaterThanOrEqual(40);
+      expect(bounds.max.y).toBeLessThan(100);
+      // Content that grows after publication (a landmark's next level, say) asks for new bounds.
+      const layer = tile.children.find((child) => child.name.startsWith('layer:towers'));
+      const mast = new THREE.Mesh(new THREE.BoxGeometry(1, 200, 1));
+      mast.position.set(0, 100, 0);
+      layer?.add(mast);
+      markRenderBoundsChanged(mast);
+      expect(tile.userData[RENDER_BOUNDS_STALE]).toBe(true);
+      stream.updateTransitions();
+      expect(tile.userData[RENDER_BOUNDS_STALE]).toBeUndefined();
+      expect((tile.userData[RENDER_BOUNDS] as THREE.Box3).max.y).toBeGreaterThanOrEqual(200);
     } finally {
       stream.dispose();
     }

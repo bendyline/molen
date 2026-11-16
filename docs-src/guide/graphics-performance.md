@@ -81,6 +81,13 @@ or more each while work waits), also get that share of themselves as budget: 2 m
 software frame left streaming under half a percent of the time, and a town's semantic layers
 spent their two-minute deadline in the queue. Interactive rates and a single long frame keep the
 fixed budget. `setLimits` changes the budget from the next frame on.
+
+A fixed small budget protects the frame rate of a view that keeps up, and starves one that does
+not. `backlog: { afterMs, maxMilliseconds, maxBytes }` (in the options or `setLimits`) lets the
+budget grow while work is backing up: once the oldest waiting job outside the background lane
+has waited `afterMs`, the frame's time and byte budgets rise with its wait and reach the backlog
+values at twice that. They fall back as soon as the queue keeps up again, so a view at rest and a
+slow pan never pay for it.
 A job's `priority` is `'normal'`, `'background'` or `'urgent'` (ahead of normal jobs, in its own
 order). Background jobs run in budget normal jobs leave and, once one has waited
 `backgroundWaitMs` (default 750), take a turn after every `backgroundShare` other jobs (default
@@ -137,7 +144,33 @@ Kyoto, some 1.4 million of the objects each collection walks.
 
 Three updates every object's world matrix each frame, hidden ones included. Hidden terrain tiles,
 pooled ambient figures (each with its skeleton) and the explorer's parked-aircraft cockpits skip
-that walk until they show again. Far detail stops drawing: a surface tile's signs, fixtures,
+that walk until they show again.
+
+Three also culls one mesh at a time, and only once it has walked to it: for world matrices, for
+levels of detail and what to draw, and once more for each shadow map. A streamed world keeps
+most of its tiles outside the view, finished and ready for a turn of the camera. On WebGL the
+renderer leaves a render group (`createRenderGroup`, which the terrain stream uses for each tile)
+out of the scene walk while its bounds lie wholly outside the camera's view, and out of a
+directional light's shadow map while they lie outside that map; a group the camera cannot see
+still casts into a map that reaches it. The group is hidden for the render alone, so nothing else
+sees it change. Its owner states the bounds in `userData.renderBounds` (`RENDER_BOUNDS`: a
+`Box3` in the frame of the group's parent, holding everything it draws) and keeps them true:
+`expandRenderBounds` measures content from the bounds its meshes carry, and code that adds or replaces geometry
+inside streamed content later (a landmark's next level of detail) calls
+`markRenderBoundsChanged(object)`, after which the group is not culled until its owner has
+measured it again. The terrain stream does all of this for its tiles. Over Seattle at High about
+half of the tiles on show lay outside the view of a low flight, and leaving them out took the
+main thread's time in a frame's render from 17-22 ms to 12-13 ms with the same draws.
+`cullRenderGroups: false` turns it off (`?cull=0` in World Explorer).
+
+An instanced detail switch (the level-of-detail batch for plants and props) chooses its level
+again only once the camera could have reached a handover: each choice keeps how far the
+measured distance was from the nearest threshold, and the camera's travel since, with any change
+in the error budgets, is weighed against that. In flight nearly every batch is well short of its
+next handover, and choosing again for each of some 2,200 of them every frame was 2.6 ms of a
+33 ms frame.
+
+Far detail stops drawing: a surface tile's signs, fixtures,
 signal lenses, markings and parked cars past their draw distance (`updateDetail`, see
 [surface rendering](surface-rendering.md)) and street props below 1.5 px (`vanishPixels`, see
 [worldgen](worldgen.md)); at High over a town that cut a fifth of the draws. A visibility pass makes
@@ -154,7 +187,15 @@ of uploads a frame (and 4 ms of work on WebGL) below 10 ms of work, back to the 
 defaults above 13 ms. Each terrain tile and layer passes several admission jobs; at 2 MiB a frame
 everything behind a building cell's upload waited 30 ms a job, and ground and buildings beneath a
 jet appeared a second late. A render-bound frame (High detail over a town) loses a sixth of its
-rate to the larger budget, so it keeps the defaults. This is not a hard GPU/driver time bound. Texture
+rate to the larger budget, so it keeps the defaults while it keeps up. Either budget carries a
+backlog (above) that grows it toward the arrival budget, 8 ms and 16 MiB, once work has waited
+`EARTH_BACKLOG_MS` (400 ms): a P-51 at 290 kt over Seattle at High always had busy frames, the
+2 ms published a quarter of the layers the flight asked for, each job waited 3 s on average for
+each of a layer's several turns, and no tile beyond 2 km had all of its layers on show at any
+point of the flight: bare ground ahead, buildings arriving beneath. Held at 4 ms the same flight kept its 30 frames a second and finished four
+fifths of the ground within 2 km; at 8 ms it finished nearly all of the view at 22 frames a
+second, drawing three times the triangles. The backlog moves between the two as the queue needs.
+This is not a hard GPU/driver time bound. Texture
 initialization, geometry preparation and async shader compilation use public Three facilities;
 shared resources share pending preparation promises. A cancelled tile cannot cancel another
 tile waiting on the same resource; queued work is dropped once every tile waiting for it has
@@ -165,8 +206,11 @@ camera and waits only for the selected levels. The other levels prepare in the q
 lane (`priority: 'background'`), which runs only in budget that normal jobs leave, and are dropped
 if their mesh or geometry is disposed first. This includes geometry-switch LODs whose current
 level is empty: invisible ground cover does not delay an aerial tile, and a later approach waits
-for its preparation before revealing it. WebGPU preparation shares the visible-light list between
-rendered frames instead of walking the whole scene for each mesh. A mesh that swaps its own material (an instanced
+for its preparation before revealing it. Preparation shares the visible-light list instead of
+walking the whole scene for each mesh, and the walk that finds the lights is made again only when
+the scene's own children change or a quarter of a second has passed (each frame still checks
+which of them are on show): once a frame, it was 1.2 ms of every frame of a flight over a city.
+A mesh that swaps its own material (an instanced
 detail switch's opaque and shadow-free twins) lists every material in `userData.materialVariants`,
 and the renderer sets `userData.materialReady(material)`, which the mesh's owner asks before
 switching. Until it returns true the owner keeps what it shows; the first question queues that

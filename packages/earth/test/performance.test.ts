@@ -2,6 +2,7 @@ import { terrainPyramidBudgetForQuality } from '@bendyline/molen-terrain/client'
 import { describe, expect, it } from 'vitest';
 import {
   createEarthAdmissionGovernor,
+  EARTH_BACKLOG_MS,
   earthAdmission,
   earthArrivalAdmission,
   earthInitialQualityLevel,
@@ -42,21 +43,34 @@ describe('earth device detail policy', () => {
   });
 
   it('admits more streaming work only while frames have time to spare', () => {
-    expect(earthAdmission('webgl', true)).toEqual({ maxBytes: 8 * MIB, maxMilliseconds: 4 });
-    expect(earthAdmission('webgl', false)).toEqual({ maxBytes: 2 * MIB, maxMilliseconds: 2 });
-    // WebGPU keeps its own (larger) time default.
-    expect(earthAdmission('webgpu', true)).toEqual({ maxBytes: 8 * MIB });
+    // Either budget grows to the arrival budget while work has been waiting (the backlog).
+    const backlog = { afterMs: EARTH_BACKLOG_MS, maxBytes: 16 * MIB, maxMilliseconds: 8 };
+    expect(earthAdmission('webgl', true)).toEqual({
+      maxBytes: 8 * MIB,
+      maxMilliseconds: 4,
+      backlog,
+    });
+    expect(earthAdmission('webgl', false)).toEqual({
+      maxBytes: 2 * MIB,
+      maxMilliseconds: 2,
+      backlog,
+    });
+    // WebGPU keeps its own (larger) time default, with and without a backlog.
+    expect(earthAdmission('webgpu', true)).toEqual({
+      maxBytes: 8 * MIB,
+      backlog: { afterMs: EARTH_BACKLOG_MS, maxBytes: 16 * MIB },
+    });
     const governor = createEarthAdmissionGovernor('webgl');
     expect(governor.spare).toBe(false);
     // Light frames for a while: spare, once.
     const changes = Array.from({ length: 200 }, () => governor.sample(6, 8.3)).filter(Boolean);
-    expect(changes).toEqual([{ maxBytes: 8 * MIB, maxMilliseconds: 4 }]);
+    expect(changes).toEqual([{ maxBytes: 8 * MIB, maxMilliseconds: 4, backlog }]);
     // Between the thresholds the choice stands; sustained heavy work takes it back.
     expect(Array.from({ length: 200 }, () => governor.sample(11.5, 16.7)).filter(Boolean)).toEqual(
       [],
     );
     const back = Array.from({ length: 200 }, () => governor.sample(20, 25)).filter(Boolean);
-    expect(back).toEqual([{ maxBytes: 2 * MIB, maxMilliseconds: 2 }]);
+    expect(back).toEqual([{ maxBytes: 2 * MIB, maxMilliseconds: 2, backlog }]);
     expect(governor.sample(Number.NaN, 16)).toBeUndefined();
   });
   it('preserves flight preparation capacity and cache when render quality drops', () => {

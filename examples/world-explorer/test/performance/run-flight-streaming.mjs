@@ -192,6 +192,8 @@ try {
   const first = flying[0];
   const last = flying[flying.length - 1];
   const delta = (name) => final.stats[name] - opening.stats[name];
+  const counted = (name) =>
+    (final.graphics.counters[name] ?? 0) - (opening.graphics.counters[name] ?? 0);
   const worst = (values) => Math.max(...values);
   const tiers = [];
   for (const sample of samples) {
@@ -226,6 +228,9 @@ try {
     ),
     tiers,
     bands,
+    // Main-thread time the frame queue spent publishing streamed work, per second of flight.
+    admittedMsPerSecond: +(counted('admission-work-ms') / seconds).toFixed(1),
+    admittedJobs: counted('admission-jobs'),
     builtTiles: delta('builtTiles'),
     rebuiltTiles: delta('rebuiltTiles'),
     builtLayers: delta('builtLayers'),

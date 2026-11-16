@@ -33,7 +33,8 @@ export {
  * Surface kinds for draped bands and areas, read by the pavement material through the
  * `surfaceDetail` attribute (x: meters along the band, y: meters across it from its edge,
  * z: `kind * 128 + width`, w: a road's lane width and wear grade (`TERRAIN_ROAD_WEAR_STEP`),
- * otherwise its fraying edges; see `TerrainLineBand.fray`).
+ * paint's surface beneath (`TerrainLineBand.beneath`), otherwise its fraying edges; see
+ * `TerrainLineBand.fray`).
  */
 export const TERRAIN_SURFACE_KIND: {
   readonly plain: 0;
@@ -80,6 +81,42 @@ export type TerrainRoadWear = 0 | 1 | 2 | 3;
  */
 export const TERRAIN_ROAD_WEAR_STEP = 16;
 
+/** The surface paint lies on; see `TerrainLineBand.beneath`. */
+export interface TerrainPaintBeneath {
+  color: string;
+  /**
+   * Its kind, a road by default. Paint fading into a parking lot (`TERRAIN_SURFACE_KIND.parking`)
+   * takes on the lot's oil stains; any other surface is shaded as plain asphalt.
+   */
+  surface?: TerrainSurfaceKind;
+}
+
+/**
+ * Paint's `surfaceDetail.w` packs the surface beneath it: that surface's color as 6-bit sRGB
+ * channels, `r * 4096 + g * 64 + b`, plus this flag over a parking lot. The sum stays under 2^19,
+ * where an interpolated varying still rounds back to the whole number every vertex wrote.
+ */
+export const TERRAIN_PAINT_ON_PARKING = 262_144;
+
+/** The modern style's road; paint with nothing said about its surface lies on that. */
+const DEFAULT_PAINT_BENEATH: TerrainPaintBeneath = { color: '#646766' };
+let defaultPaintBeneath: number | undefined;
+
+/** Pack the surface beneath paint for `surfaceDetail.w` (see `TERRAIN_PAINT_ON_PARKING`). */
+export function terrainPaintBeneath(beneath?: TerrainPaintBeneath): number {
+  if (beneath === undefined)
+    return (defaultPaintBeneath ??= terrainPaintBeneath(DEFAULT_PAINT_BENEATH));
+  // getHex reads the color back in sRGB, the space its 6 bits are spent evenly in.
+  const hex = new THREE.Color(beneath.color).getHex();
+  const channel = (shift: number): number => Math.round((((hex >> shift) & 255) * 63) / 255);
+  return (
+    channel(16) * 4096 +
+    channel(8) * 64 +
+    channel(0) +
+    (beneath.surface === TERRAIN_SURFACE_KIND.parking ? TERRAIN_PAINT_ON_PARKING : 0)
+  );
+}
+
 /** `userData` flag on draped pavement meshes that a host pavement material may replace. */
 export const TERRAIN_PAVEMENT: 'terrainPavement' = 'terrainPavement';
 
@@ -105,6 +142,12 @@ export interface TerrainLineBand {
    * `surfaceDetail.w = fray + 4 * variant`: a track band's gauge and sleepers.
    */
   variant?: number;
+  /**
+   * Paint only: the surface it lies on (default the modern style's road). Where the line narrows
+   * under a pixel the pavement material fades it into that surface, so distant markings melt
+   * into the asphalt instead of breaking into dashes that beat into moiré.
+   */
+  beneath?: TerrainPaintBeneath;
   /**
    * Height of a vertical face dropping from the band's inner edge (the one toward the line), as
    * a curb's face drops to the road beside it. Draped bands only; 0 or absent for none.
@@ -221,7 +264,9 @@ export class TerrainSurfaceMeshBuilder {
 
   /**
    * Tag everything appended since `start` with a surface kind and band coordinates. `fray` marks
-   * the band edges that fray into the ground: 1 at across 0, 2 at the full width, 3 both.
+   * the band edges that fray into the ground: 1 at across 0, 2 at the full width, 3 both. Paint
+   * never frays; there it is `terrainPaintBeneath`'s code instead (0 for the modern road), and
+   * `width` is the stroke the pavement material fades it by.
    */
   surfaceSince(
     start: number,
@@ -233,7 +278,12 @@ export class TerrainSurfaceMeshBuilder {
   ): void {
     if (this.vertexCount <= start) return;
     const code = kind * 128 + Math.min(127, Math.max(0, width));
-    const w = kind === TERRAIN_SURFACE_KIND.road ? laneWidth : fray;
+    const w =
+      kind === TERRAIN_SURFACE_KIND.road
+        ? laneWidth
+        : kind === TERRAIN_SURFACE_KIND.paint && fray === 0
+          ? terrainPaintBeneath()
+          : fray;
     const entry = this.attributes.get('surfaceDetail') ?? {
       size: 4,
       values: new GrowableFloats(),
@@ -608,6 +658,9 @@ export function appendTerrainLineBand(
   }
   const period = dash ? dash[0] + dash[1] : 0;
   const color = new THREE.Color(band.color);
+  // surfaceDetail.w: paint's surface beneath, else the fray mask and variant (below).
+  const packed =
+    band.surface === TERRAIN_SURFACE_KIND.paint ? terrainPaintBeneath(band.beneath) : undefined;
   // Across runs from the band's edge on the line's negative side (0) to its positive side.
   const offset = band.offset ?? 0;
   const outerEnd = offset > 0;
@@ -707,7 +760,7 @@ export function appendTerrainLineBand(
           band.lanes !== undefined && band.lanes > 0
             ? Math.min(12, band.width / band.lanes) + TERRAIN_ROAD_WEAR_STEP * (band.wear ?? 0)
             : 0,
-          fray + 4 * Math.max(0, Math.min(63, Math.round(band.variant ?? 0))),
+          packed ?? fray + 4 * Math.max(0, Math.min(63, Math.round(band.variant ?? 0))),
         );
       }
       if (builder.vertexCount > start) count++;

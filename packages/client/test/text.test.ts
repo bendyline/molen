@@ -14,7 +14,7 @@ describe('font outline compiler and geometry adapter', () => {
         { stdio: 'pipe' },
       ),
     ).not.toThrow();
-  });
+  }, 120_000); // Rebuilds the vector fonts and every sign glyph atlas (Kyoto's too): 15-30 s.
   it('compiles actual TTF curves deterministically with correct metrics and counters', () => {
     const bytes = readFileSync(
       new URL('../../../content/earth/source/fonts/Overpass-SemiBold.ttf', import.meta.url),

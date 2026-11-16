@@ -50,6 +50,7 @@ export type {
 } from './client-core';
 export { createClientCore } from './client-core';
 export type {
+  AdmissionBacklog,
   AdmissionOptions,
   AdmissionSample,
   FrameAdmissionOptions,
@@ -105,6 +106,15 @@ export type {
 export type { DecoderConfig } from './three/loaders';
 export { createGltfLoader } from './three/loaders';
 export { MaterialResolver, materialFromBaked } from './three/materials';
+export {
+  boxOutsideView,
+  expandRenderBounds,
+  markRenderBoundsChanged,
+  RENDER_BOUNDS,
+  RENDER_BOUNDS_STALE,
+  RENDER_MATRICES_STALE,
+  viewProjection,
+} from './three/render-bounds';
 export type {
   AutoWorldOriginOptions,
   CameraPose,

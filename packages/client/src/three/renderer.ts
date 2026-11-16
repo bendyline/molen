@@ -25,6 +25,14 @@ import {
   type GpuFrameTimerOptions,
 } from './gpu-frame-timer';
 import {
+  boxOutsideView,
+  RENDER_BOUNDS,
+  RENDER_BOUNDS_STALE,
+  RENDER_MATRICES_STALE,
+  type ViewDepth,
+  viewProjection,
+} from './render-bounds';
+import {
   focusDirectionalShadow,
   SHADOW_MAP_SIZE,
   type ShadowFocus,
@@ -64,6 +72,22 @@ interface InitializedRenderer {
 
 /** Renderer strings of the software rasterizers browsers fall back to (see softwareRasterizer). */
 const SOFTWARE_RASTERIZER = /swiftshader|llvmpipe|softpipe|lavapipe|basic render driver/i;
+/** How long the lights gathered for warm-up builds stand, ms (see `sceneLights`). */
+const LIGHTS_REFRESH_MS = 250;
+/** How often a group seen only by a shadow map has its levels of detail chosen again, ms. */
+const SHADOW_LOD_MS = 500;
+const cullMatrix = new THREE.Matrix4();
+const cullBox = new THREE.Box3();
+/** Frames (render groups' parents) whose world matrix a culling pass has brought up to date. */
+const cullFrames = new WeakMap<THREE.Object3D, number>();
+let cullPass = 0;
+
+/** Whether `group` is under `scene`: a group its owner has detached keeps its parent. */
+function groupInScene(group: THREE.Object3D, scene: THREE.Object3D): boolean {
+  for (let cursor: THREE.Object3D | null = group.parent; cursor !== null; cursor = cursor.parent)
+    if (cursor === scene) return true;
+  return false;
+}
 
 /** A WebGPU adapter that rasterizes on the CPU, by its own flag or its description. */
 function softwareAdapter(adapter: GPUAdapter): boolean {
@@ -109,6 +133,12 @@ export interface RendererOptions {
   backendProbeTimeoutMs?: number;
   /** Persistent instance buffers and managed tile command caches. Defaults to true on WebGPU. */
   optimizeWebGpu?: boolean;
+  /**
+   * WebGL: leave render groups that state their bounds (see `createRenderGroup`) out of each
+   * scene walk they cannot be seen in, and out of each shadow map they cannot cast into. Default
+   * true; false walks every group every frame, for comparison.
+   */
+  cullRenderGroups?: boolean;
   /** Device loss requires a new viewer/canvas. Auto fallback applies during initialization. */
   onDeviceLost?: (reason: string) => void;
   canvas?: HTMLCanvasElement | OffscreenCanvas;
@@ -264,7 +294,21 @@ export class Renderer {
   /** Per material, one prepared mesh of each kind it draws; see `prepareMaterialChange`. */
   private readonly materialMeshes = new WeakMap<THREE.Material, Map<string, WeakRef<THREE.Mesh>>>();
   /** The scene's visible lights for warm-up builds, gathered once between rendered frames. */
+  /**
+   * WebGL render groups, for `cullRenderGroups`. Held weakly: a group is made before its owner
+   * attaches it (a tile's, several frames before) and may never be, and one its owner has let
+   * go of must not be kept alive here.
+   */
+  private readonly renderGroups = new Set<WeakRef<THREE.Object3D>>();
+  /** Groups left out of the scene walk under way, to show again when it ends. */
+  private readonly culledGroups: THREE.Object3D[] = [];
+  private cullGroups = false;
+  private releaseShadowCulling: (() => void) | undefined;
   private preparationLights: THREE.Object3D[] | undefined;
+  /** Every light the last walk of the scene found on show, and when it was (see `sceneLights`). */
+  private foundLights: THREE.Object3D[] | undefined;
+  private foundLightsChildren = -1;
+  private foundLightsAt = Number.NEGATIVE_INFINITY;
   /**
    * Per mesh, builds of the materials it swaps to itself (`null`: prepared with the mesh); see
    * `prepareVariants`.
@@ -760,6 +804,9 @@ export class Renderer {
       this.cloudBackend.installShadows(this.cloudShadows);
       this.cloudBackend.installSnowCover(this.snowCover);
     } else {
+      this.cullGroups = opts.cullRenderGroups !== false;
+      // Before the far shadow wraps the same pass, so that its own drawing comes through here.
+      if (this.cullGroups) this.installShadowCulling(this.three as THREE.WebGLRenderer);
       const far = new FarShadow(this.three as THREE.WebGLRenderer);
       this.farShadow = far;
       this.releaseCloudShadows = installWebGlCloudShadows(
@@ -1494,16 +1541,42 @@ export class Renderer {
     });
   }
 
-  /** The scene's visible lights, gathered once between rendered frames for warm-up builds. */
+  /**
+   * The scene's visible lights, for warm-up builds, as of this frame. Finding them is a walk of
+   * the whole visible scene, and made once between rendered frames that was 1.2 ms of every frame
+   * that prepared anything over a streamed city (two lights among nine thousand objects), which
+   * in flight is all of them. So the lights found stand for `LIGHTS_REFRESH_MS`, or until the
+   * scene's own children change, and each frame only checks which of them are still on show. A
+   * light that appears deeper in the scene counts from the next walk: until then a warm-up is
+   * built, and remembered, for the lights before it, so it is prepared again rather than taken
+   * for ready.
+   */
   private sceneLights(): THREE.Object3D[] {
-    this.preparationLights ??= (() => {
+    if (this.preparationLights !== undefined) return this.preparationLights;
+    const now = performance.now();
+    const children = this.scene.children.length;
+    if (
+      this.foundLights === undefined ||
+      children !== this.foundLightsChildren ||
+      now - this.foundLightsAt >= LIGHTS_REFRESH_MS
+    ) {
       const lights: THREE.Object3D[] = [];
       // The prototype's walk: a compile in progress replaces the scene's own with this list.
       THREE.Object3D.prototype.traverseVisible.call(this.scene, (object) => {
         if ((object as THREE.Light).isLight) lights.push(object);
       });
-      return lights;
-    })();
+      this.foundLights = lights;
+      this.foundLightsChildren = children;
+      this.foundLightsAt = now;
+    }
+    const scene = this.scene;
+    this.preparationLights = this.foundLights.filter((light) => {
+      for (let cursor: THREE.Object3D | null = light; cursor !== null; cursor = cursor.parent) {
+        if (!cursor.visible) return false;
+        if (cursor === scene) return true;
+      }
+      return false;
+    });
     return this.preparationLights;
   }
 
@@ -1705,6 +1778,8 @@ export class Renderer {
       if (hidden.light.visible !== hidden.visible) this.shadowCastersWarmed = false;
       hidden.light.visible = hidden.visible;
       this.hiddenAmbient = undefined;
+      // Shown again: the next warm-up looks for it rather than waiting out the last walk.
+      this.foundLights = undefined;
     }
     if (light === undefined) return;
     this.hiddenAmbient ??= { light, visible: light.visible };
@@ -1716,8 +1791,11 @@ export class Renderer {
     const warmup = this.shadowCasterWarmup();
     if (warmup !== undefined) this.scene.add(warmup);
     try {
+      this.cullOutOfView();
       this.optimized(() => this.three.render(this.scene, this.camera));
     } finally {
+      for (const group of this.culledGroups) group.visible = true;
+      this.culledGroups.length = 0;
       if (warmup !== undefined) {
         warmup.removeFromParent();
         for (const child of warmup.children) {
@@ -1727,6 +1805,161 @@ export class Renderer {
         }
       }
     }
+  }
+
+  /**
+   * Hide, for the scene walk about to start, every render group whose bounds lie wholly outside
+   * the camera's view: three then skips it and everything under it when it brings world matrices
+   * up to date, updates levels of detail and gathers what to draw, none of which can draw
+   * anything from it. Shown again when the render ends (see `renderScene`), so nothing outside the
+   * render sees a group hidden. Shadow maps are walked on their own terms (`installShadowCulling`).
+   */
+  private cullOutOfView(): void {
+    if (!this.cullGroups || this.renderGroups.size === 0) return;
+    const camera = this.camera;
+    // As three's render will: the camera's world matrix and its inverse, current for this frame.
+    if (camera.parent === null && camera.matrixWorldAutoUpdate) camera.updateMatrixWorld();
+    viewProjection(camera, cullMatrix);
+    for (const ref of this.renderGroups) {
+      const group = ref.deref();
+      if (group === undefined) {
+        this.renderGroups.delete(ref);
+        continue;
+      }
+      // Not attached yet, or let go of.
+      const parent = group.parent;
+      if (parent === null) continue;
+      const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
+      if (bounds === undefined || !group.visible || bounds.isEmpty()) continue;
+      // Content changed size since the bounds were worked out: not culled until they are again.
+      if (group.userData[RENDER_BOUNDS_STALE] === true) continue;
+      if (!groupInScene(group, this.scene)) continue;
+      // The frame the bounds are in: brought up to date here, since the walk that would is the
+      // one being pruned (a floating-origin rebase moves it between frames).
+      if (cullFrames.get(parent) !== cullPass) {
+        cullFrames.set(parent, cullPass);
+        parent.updateWorldMatrix(true, false);
+      }
+      cullBox.copy(bounds).applyMatrix4(parent.matrixWorld);
+      if (!boxOutsideView(cullMatrix, cullBox.min, cullBox.max)) continue;
+      group.visible = false;
+      this.culledGroups.push(group);
+    }
+    cullPass++;
+  }
+
+  /**
+   * Walk each shadow map's casters without the render groups that cannot cast into it. A map is
+   * drawn from its light, so what counts is the light's own view, not the camera's: groups hidden
+   * for the camera come back for a light that reaches them (with their world matrices and levels
+   * of detail brought up to date, which the scene's walk skipped), and groups the camera sees stay
+   * out of a map that ends short of them. The sun's focused map covers a few hundred meters of a
+   * view tens of kilometers deep, and three walked every object of that view for it. Lights
+   * other than directional ones keep every group, as before.
+   */
+  private installShadowCulling(renderer: THREE.WebGLRenderer): void {
+    const shadowMap = renderer.shadowMap as unknown as {
+      render(lights: THREE.Light[], scene: THREE.Object3D, camera: THREE.Camera): void;
+    };
+    const render = shadowMap.render;
+    // A renderer without a shadow pass of its own (a test double) has nothing to prune.
+    if (typeof render !== 'function') return;
+    const matrices: THREE.Matrix4[] = [];
+    const depths: ViewDepth[] = [];
+    /** When each group out of view last had its levels of detail chosen for a shadow map. */
+    const shadowLods = new WeakMap<THREE.Object3D, number>();
+    shadowMap.render = (lights, scene, camera): void => {
+      if (
+        !this.cullGroups ||
+        this.renderGroups.size === 0 ||
+        lights.length === 0 ||
+        !renderer.shadowMap.enabled
+      ) {
+        render.call(shadowMap, lights, scene, camera);
+        return;
+      }
+      // Only maps about to be drawn, as three decides it.
+      const shadowOf = (light: THREE.Light): THREE.LightShadow | undefined =>
+        (light as THREE.Light & { shadow?: THREE.LightShadow }).shadow;
+      const drawn = lights.filter((light) => {
+        const shadow = shadowOf(light);
+        return shadow !== undefined && (shadow.autoUpdate || shadow.needsUpdate);
+      });
+      const directional = drawn.every(
+        (light) => (light as THREE.DirectionalLight).isDirectionalLight,
+      );
+      let count = 0;
+      if (directional)
+        for (const light of drawn) {
+          const shadow = shadowOf(light) as THREE.LightShadow;
+          shadow.updateMatrices(light);
+          let matrix = matrices[count];
+          if (matrix === undefined) {
+            matrix = new THREE.Matrix4();
+            matrices[count] = matrix;
+          }
+          viewProjection(shadow.camera, matrix);
+          // The map's whole box, as three culls its casters: ground far along the light lines up
+          // with the map's sides without being in it.
+          const lens = shadow.camera as THREE.OrthographicCamera;
+          depths[count] = { view: lens.matrixWorldInverse, near: lens.near, far: lens.far };
+          count++;
+        }
+      const changed: THREE.Object3D[] = [];
+      const hidden = new Set(this.culledGroups);
+      const now = performance.now();
+      for (const ref of this.renderGroups) {
+        const group = ref.deref();
+        const parent = group?.parent;
+        if (group === undefined || parent === null || parent === undefined) continue;
+        const culled = hidden.has(group);
+        if (!culled && !group.visible) continue;
+        const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
+        let reached =
+          !directional ||
+          bounds === undefined ||
+          bounds.isEmpty() ||
+          group.userData[RENDER_BOUNDS_STALE] === true;
+        if (!reached) {
+          cullBox.copy(bounds as THREE.Box3).applyMatrix4(parent.matrixWorld);
+          for (let i = 0; i < count && !reached; i++)
+            reached = !boxOutsideView(
+              matrices[i] as THREE.Matrix4,
+              cullBox.min,
+              cullBox.max,
+              depths[i],
+            );
+        }
+        if (reached === !culled) continue;
+        group.visible = reached;
+        changed.push(group);
+        if (!reached) continue;
+        // Left out of the scene's walk this frame. Its world matrices are behind if the walk it
+        // skipped was a forced one (a rebase), which a group that skips hidden walks remembers
+        // in its own flag, or if its owner has added content since (RENDER_MATRICES_STALE); and
+        // its levels of detail were last chosen when it was in view, so they are chosen again
+        // for the view camera, every so often. A low sun's map takes in a dozen such tiles
+        // behind the camera, and walking each of them twice a frame cost what culling saved.
+        if (group.matrixWorldNeedsUpdate || group.userData[RENDER_MATRICES_STALE] === true) {
+          group.userData[RENDER_MATRICES_STALE] = false;
+          group.updateMatrixWorld();
+        }
+        if (now - (shadowLods.get(group) ?? Number.NEGATIVE_INFINITY) < SHADOW_LOD_MS) continue;
+        shadowLods.set(group, now);
+        group.traverseVisible((object) => {
+          const lod = object as THREE.LOD;
+          if (lod.isLOD && lod.autoUpdate) lod.update(camera);
+        });
+      }
+      try {
+        render.call(shadowMap, lights, scene, camera);
+      } finally {
+        for (const group of changed) group.visible = !group.visible;
+      }
+    };
+    this.releaseShadowCulling = (): void => {
+      shadowMap.render = render;
+    };
   }
 
   /**
@@ -1847,9 +2080,18 @@ export class Renderer {
     return this.occlusion?.camera === this.camera ? this.occlusion.pass : undefined;
   }
 
-  /** Use for independent terrain/content chunks. WebGPU caches eligible opaque draw commands. */
+  /**
+   * Use for independent terrain/content chunks. WebGPU caches eligible opaque draw commands.
+   * WebGL leaves a group out of the scene walks it cannot be seen in, once its owner states its
+   * bounds in `userData.renderBounds` (see `RENDER_BOUNDS`) and keeps them true as its content
+   * changes (`expandRenderBounds`, `markRenderBoundsChanged`): see `cullRenderGroups`.
+   */
   createRenderGroup(): THREE.Group {
-    return this.optimizer?.createGroup() ?? new THREE.Group();
+    const optimized = this.optimizer?.createGroup();
+    if (optimized !== undefined) return optimized;
+    const group = new THREE.Group();
+    if (this.cullGroups) this.renderGroups.add(new WeakRef(group));
+    return group;
   }
 
   /** Last completed visible frame, excluding offscreen resource preparation. */
@@ -1887,6 +2129,8 @@ export class Renderer {
     this.activeWeather = undefined;
     this.releaseCloudShadows?.();
     this.farShadow?.dispose();
+    this.releaseShadowCulling?.();
+    this.renderGroups.clear();
     this.cloudTextures.dispose();
     this.reflections?.dispose();
     this.hideReflectedAmbient(undefined);

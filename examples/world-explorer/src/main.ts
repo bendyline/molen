@@ -930,6 +930,8 @@ async function main(): Promise<void> {
     },
     backend: selectedRendererBackend(params),
     optimizeWebGpu: params.get('gpuOptimizations') !== '0',
+    // `?cull=0` walks every tile on show every frame, in view or not, for comparison (WebGL).
+    cullRenderGroups: params.get('cull') !== '0',
     // Keep silhouette and surface-marking edges smooth when adaptive quality renders below the
     // display resolution. Three uses 4x MSAA on WebGPU and requests context MSAA on WebGL.
     antialias: selectedAntialias(params),
@@ -2301,6 +2303,18 @@ async function main(): Promise<void> {
   let frameMax = 0;
   let previousCpuMs = 0;
   const admissionGovernor = createEarthAdmissionGovernor(viewer.renderer.backend);
+  // `?admissionMs=<ms>` (with `admissionMiB=`, default 16) holds one streaming budget a frame,
+  // for measuring what a budget costs and buys; without it the governor chooses, and the budget
+  // grows while work backs up (see earthAdmission).
+  const pinnedAdmission =
+    Number(params.get('admissionMs')) > 0
+      ? {
+          maxMilliseconds: Number(params.get('admissionMs')),
+          maxBytes: (Number(params.get('admissionMiB')) || 16) * 1024 * 1024,
+          backlog: undefined,
+        }
+      : undefined;
+  if (pinnedAdmission !== undefined) viewer.renderer.admission.setLimits(pinnedAdmission);
   let lastGpuMs: number | undefined;
   let lastGpuTime = -Infinity;
   let surfaceGeometryRevision = -1;
@@ -3236,7 +3250,8 @@ async function main(): Promise<void> {
     graphics.record(streamingBusy ? 'loading-frame-cpu' : 'steady-frame-cpu', previousCpuMs);
     // A larger streaming budget only while frames have time to spare (see earthAdmission).
     const admission = admissionGovernor.sample(previousCpuMs, frameMs);
-    if (admission !== undefined) viewer.renderer.admission.setLimits(admission);
+    if (admission !== undefined && pinnedAdmission === undefined)
+      viewer.renderer.admission.setLimits(admission);
     frameHandle = requestAnimationFrame(frame);
   }
   const removeActivity = observePageActivity((active) => {

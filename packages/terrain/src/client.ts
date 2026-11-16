@@ -66,6 +66,7 @@ export {
   type TerrainLineProfile,
   type TerrainLineRepeater,
   type TerrainLineSample,
+  type TerrainPaintBeneath,
   type TerrainRoadWear,
   type TerrainSurfaceKind,
   terrainLinePath,

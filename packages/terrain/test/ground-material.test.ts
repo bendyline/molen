@@ -12,6 +12,7 @@ import {
   setTerrainGroundOrigin,
   setTerrainGroundSnow,
 } from '../src/ground-material';
+import { TERRAIN_PAINT_ON_PARKING } from '../src/linear-features';
 
 function compile(material: THREE.MeshStandardMaterial): THREE.WebGLProgramParametersWithUniforms {
   const shader = {
@@ -164,6 +165,17 @@ describe('terrain ground variation', () => {
     setTerrainGroundOrigin(webgpu, [12_345, -6_789]);
     webgl.dispose();
     webgpu.dispose();
+  });
+
+  it('fades paint under a pixel into the surface its own vertices say it lies on', () => {
+    const shader = compile(createTerrainPavementMaterial());
+    // The parking flag terrainPaintBeneath packs is the one the shader reads.
+    expect(shader.fragmentShader).toContain(`step(${TERRAIN_PAINT_ON_PARKING - 0.5}, paintCode)`);
+    expect(shader.fragmentShader).toContain(
+      'paint = mix(beneath / max(base, vec3(0.001)) * asphalt, paint,',
+    );
+    // Paint's packed surface is never read as a fray mask.
+    expect(shader.fragmentShader).toContain('* (1.0 - isRoad - isPaint);');
   });
 
   it('lays snow above a snow line without rebuilding a shader, on both backends', async () => {

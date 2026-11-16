@@ -107,7 +107,8 @@ setTerrainGroundOrigin(pavement, [worldOrigin[0], worldOrigin[2]]);
 
 The material reads a `surfaceDetail` attribute the surface builder writes on every road, sidewalk,
 curb, marking and lot: meters along the band, meters across it from its edge, the surface kind
-and band width, and a road's lane width and wear grade. Roads and lots get asphalt aggregate
+and band width, and a road's lane width and wear grade or the surface a marking is painted on.
+Roads and lots get asphalt aggregate
 (within a few meters, crisp pale chips and dark pits a few centimeters across), blotchy wear,
 polished wheel tracks and an oil line in each lane, grit in the gutters, storm-drain grates,
 manhole covers and the odd darker repaired section; asphalt and concrete both get hairline cracks.
@@ -117,7 +118,12 @@ on secondary and tertiary roads (1), more on residential streets (2) and most on
 alleys (3). A band sets its grade with `wear` beside `lanes`; lots get oil
 stains; sidewalks and footways get 1.5 m saw-cut slabs and curbs 3 m ones, each slab its own
 tone, weathered with water stains and, close up, the odd spot of gum; plazas and pedestrian areas get a half-meter paver grid; markings wear through to the
-asphalt. Detail fades to the plain swatch with distance, so it never shimmers, and each layer's
+asphalt. A marking narrower than a pixel fades into the color and shading of the
+surface it lies on (`beneath` on a paint `TerrainLineBand`, a road's by default; a parking lot's
+lines take on its oil stains), so from the air lines and rows of bays melt into the asphalt
+instead of breaking into dashes that beat into moiré. A mark drawn with `surfaceSince` passes its
+narrowest dimension as the width, which sets that fade.
+Detail fades to the plain swatch with distance, so it never shimmers, and each layer's
 noise is evaluated only where it still shows: distant pavement skips the fine layers, and only
 fragments within 2 m of a frayed edge evaluate the fray. `setMaterial(undefined)` restores the plain material. Your own geometry can opt in with
 `TerrainSurfaceMeshBuilder.surfaceSince(start, TERRAIN_SURFACE_KIND.road, …)`, or a

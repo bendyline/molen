@@ -86,16 +86,39 @@ export const EARTH_STICKY_QUALITY = {
  * Without spare time, the renderer's defaults (2 MiB, and 2 ms on WebGL): a render-bound frame
  * (High detail over a town) lost a sixth of its rate to the larger budget.
  * `createEarthAdmissionGovernor` chooses between them.
+ *
+ * Either one grows toward the arrival budget (`earthArrivalAdmission`) while work has been
+ * waiting longer than `EARTH_BACKLOG_MS` (the queue's `backlog`). The busy budget assumes the
+ * view keeps up on it. A P-51 at 290 kt over Seattle at High did not: its frames were always
+ * busy, the 2 ms published a quarter of the layers the flight asked for, each job waited 3 s on
+ * average (21 s at worst) for each of a layer's several turns, and beyond 2 km no tile had all
+ * of its layers on show at any point of the flight. With 4 ms the same flight kept
+ * its 30 frames a second and finished four fifths of the ground within 2 km; with 8 ms it
+ * finished nearly all of the view at 22 frames a second, drawing three times the triangles.
  */
 export function earthAdmission(
   backend: 'auto' | 'webgl' | 'webgpu' | undefined,
   spare: boolean,
-): { maxBytes: number; maxMilliseconds?: number } {
+): EarthAdmissionLimits {
   return {
     maxBytes: (spare ? 8 : 2) * MIB,
     ...(backend === 'webgl' ? { maxMilliseconds: spare ? 4 : 2 } : {}),
+    backlog: { afterMs: EARTH_BACKLOG_MS, ...earthArrivalAdmission(backend) },
   };
 }
+
+/** A frame's streaming budget for an Earth view: `renderer.admission.setLimits` takes it. */
+export interface EarthAdmissionLimits {
+  maxBytes: number;
+  maxMilliseconds?: number;
+  backlog?: { afterMs: number; maxBytes: number; maxMilliseconds?: number };
+}
+
+/**
+ * How long streamed work waits for a frame before the budget starts to grow, ms; it is at the
+ * arrival budget at twice this. A view that keeps up publishes a job within a few frames.
+ */
+export const EARTH_BACKLOG_MS = 400;
 
 /**
  * Main-thread admission budget while a view arrives (a first mount, a jump): from then until the
@@ -126,10 +149,7 @@ const BUSY_WORK_MS = 13;
  * limits when the choice changes; pass them to `renderer.admission.setLimits`. Starts busy.
  */
 export function createEarthAdmissionGovernor(backend: 'auto' | 'webgl' | 'webgpu' | undefined): {
-  sample(
-    workMs: number,
-    frameMs: number,
-  ): { maxBytes: number; maxMilliseconds?: number } | undefined;
+  sample(workMs: number, frameMs: number): EarthAdmissionLimits | undefined;
   readonly spare: boolean;
 } {
   let smoothed: number | undefined;

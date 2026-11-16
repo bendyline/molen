@@ -1,10 +1,14 @@
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { Heightfield } from '../src/heightfield';
 import {
   appendTerrainLineBand,
+  TERRAIN_PAINT_ON_PARKING,
   TERRAIN_SURFACE_KIND,
+  type TerrainPaintBeneath,
   TerrainSurfaceMeshBuilder,
   terrainLinePath,
+  terrainPaintBeneath,
   weldTerrainSurfaceMesh,
 } from '../src/linear-features';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
@@ -84,6 +88,79 @@ describe('pavement surface detail', () => {
     expect(Math.min(...across)).toBeCloseTo(0, 3);
     expect(Math.max(...across)).toBeCloseTo(7, 3);
     mesh.geometry.dispose();
+  });
+
+  it('packs the surface beneath paint, which a line fades into once it is under a pixel', () => {
+    const path = terrainLinePath(
+      [
+        [0.1, 0.5],
+        [0.9, 0.5],
+      ],
+      100,
+    );
+    const packed = (beneath?: TerrainPaintBeneath): number => {
+      const builder = new TerrainSurfaceMeshBuilder(context());
+      appendTerrainLineBand(builder, path, {
+        width: 0.1,
+        color: '#cdcbbf',
+        surface: TERRAIN_SURFACE_KIND.paint,
+        ...(beneath ? { beneath } : {}),
+      });
+      const mesh = builder.mesh('paint');
+      const detail = mesh?.geometry.getAttribute('surfaceDetail');
+      if (!mesh || !detail) throw new Error('expected a paint mesh');
+      const w = detail.getW(0);
+      for (let i = 0; i < detail.count; i++) expect(detail.getW(i)).toBe(w);
+      mesh.geometry.dispose();
+      return w;
+    };
+    // Read back as the pavement shaders do: the parking flag, then 6-bit sRGB channels.
+    const decode = (code: number): { parking: boolean; srgb: number[] } => {
+      const parking = code >= TERRAIN_PAINT_ON_PARKING;
+      const rgb = code - (parking ? TERRAIN_PAINT_ON_PARKING : 0);
+      return {
+        parking,
+        srgb: [Math.floor(rgb / 4096), Math.floor(rgb / 64) % 64, rgb % 64].map(
+          (c) => (c * 255) / 63,
+        ),
+      };
+    };
+    const near = (decoded: { srgb: number[] }, hex: number): void => {
+      const expected = [(hex >> 16) & 255, (hex >> 8) & 255, hex & 255];
+      // Half of a 6-bit step: about 2 of 255 in sRGB.
+      for (const [i, c] of decoded.srgb.entries())
+        expect(Math.abs(c - (expected[i] as number))).toBeLessThan(2.1);
+    };
+    const lot = decode(packed({ color: '#6e7170', surface: TERRAIN_SURFACE_KIND.parking }));
+    expect(lot.parking).toBe(true);
+    near(lot, 0x6e7170);
+    // Unsaid, it is the modern road; a regional road keeps its warmer tint.
+    const road = decode(packed());
+    expect(road.parking).toBe(false);
+    near(road, 0x646766);
+    near(decode(packed({ color: '#625a4e' })), 0x625a4e);
+    // Whole numbers under 2^19, which an interpolated varying still rounds back to exactly.
+    for (const color of ['#ffffff', '#000001', '#aaa79e'])
+      for (const surface of [TERRAIN_SURFACE_KIND.road, TERRAIN_SURFACE_KIND.parking]) {
+        const code = packed({ color, surface });
+        expect(Number.isInteger(code)).toBe(true);
+        expect(code).toBeLessThan(2 ** 19);
+      }
+    // A mark drawn without a band, its surface unsaid, lies on the modern road too.
+    const builder = new TerrainSurfaceMeshBuilder(context());
+    builder.polygon(
+      [
+        [10, 10],
+        [11, 10],
+        [11, 11],
+      ],
+      new THREE.Color('#ffffff'),
+      0.3,
+    );
+    builder.surfaceSince(0, TERRAIN_SURFACE_KIND.paint, undefined, 0.5);
+    const mark = builder.mesh('mark');
+    expect(mark?.geometry.getAttribute('surfaceDetail').getW(0)).toBe(terrainPaintBeneath());
+    mark?.geometry.dispose();
   });
 
   it('marks the edges that fray into the ground, outer or inner by the band offset', () => {
