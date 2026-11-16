@@ -323,6 +323,157 @@ export function subtractTerrainGroundGeometry(
   }
 }
 
+/** One attribute of a ground geometry as plain values, to cross to a cut made elsewhere and back. */
+export interface TerrainGroundCutAttribute {
+  name: string;
+  array: THREE.TypedArray;
+  itemSize: number;
+  normalized: boolean;
+}
+
+interface CutGroup {
+  start: number;
+  count: number;
+  materialIndex?: number;
+}
+
+/**
+ * A ground geometry and the openings to cut from it, as plain arrays: what
+ * `subtractTerrainGroundGeometry` reads, for a `TerrainGroundCutter` that makes the cut in a
+ * worker. Posted without a transfer list, the arrays are copied and the geometry stays whole.
+ */
+export interface TerrainGroundCutRequest {
+  attributes: TerrainGroundCutAttribute[];
+  index: THREE.TypedArray | undefined;
+  groups: CutGroup[];
+  drawRange: { start: number; count: number };
+  /** The source's bounds where it has them (box min and max, sphere center and radius). */
+  bounds: number[] | undefined;
+  outlines: TerrainGroundOutline[];
+  maxHeights: (number | undefined)[];
+  minHeights: (number | undefined)[];
+}
+
+/** The cut geometry on its way back (see `TerrainGroundCutRequest`). */
+export interface TerrainGroundCutResult {
+  attributes: TerrainGroundCutAttribute[];
+  index: THREE.TypedArray | undefined;
+  groups: CutGroup[];
+  bounds: number[] | undefined;
+}
+
+/**
+ * Makes a cut somewhere other than the calling thread. Resolves to undefined when it cannot
+ * (cancelled, or nobody there to make it), and the controller then makes the cut itself.
+ */
+export type TerrainGroundCutter = (
+  request: TerrainGroundCutRequest,
+  signal: AbortSignal,
+) => Promise<TerrainGroundCutResult | undefined>;
+
+function plainBounds(geometry: THREE.BufferGeometry): number[] | undefined {
+  const box = geometry.boundingBox,
+    sphere = geometry.boundingSphere;
+  if (box === null || sphere === null) return undefined;
+  return [...box.min.toArray(), ...box.max.toArray(), ...sphere.center.toArray(), sphere.radius];
+}
+
+function plainAttributes(geometry: THREE.BufferGeometry): TerrainGroundCutAttribute[] | undefined {
+  const attributes: TerrainGroundCutAttribute[] = [];
+  for (const [name, attribute] of Object.entries(geometry.attributes)) {
+    // Interleaved or generic attributes do not cross as they are: such a cut is made here.
+    if (!(attribute instanceof THREE.BufferAttribute) || !ArrayBuffer.isView(attribute.array))
+      return undefined;
+    attributes.push({
+      name,
+      array: attribute.array,
+      itemSize: attribute.itemSize,
+      normalized: attribute.normalized,
+    });
+  }
+  return attributes;
+}
+
+function geometryFrom(
+  attributes: readonly TerrainGroundCutAttribute[],
+  index: THREE.TypedArray | undefined,
+  groups: readonly CutGroup[],
+  bounds: readonly number[] | undefined,
+): THREE.BufferGeometry {
+  const geometry = new THREE.BufferGeometry();
+  // In the order given: a cut lays its vertices out by it.
+  for (const { name, array, itemSize, normalized } of attributes)
+    geometry.setAttribute(name, new THREE.BufferAttribute(array, itemSize, normalized));
+  if (index !== undefined) geometry.setIndex(new THREE.BufferAttribute(index, 1));
+  for (const group of groups) geometry.addGroup(group.start, group.count, group.materialIndex);
+  if (bounds !== undefined) {
+    const n = bounds as number[];
+    geometry.boundingBox = new THREE.Box3(
+      new THREE.Vector3(n[0], n[1], n[2]),
+      new THREE.Vector3(n[3], n[4], n[5]),
+    );
+    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(n[6], n[7], n[8]), n[9]);
+  }
+  return geometry;
+}
+
+/**
+ * A cut as a request a `TerrainGroundCutter` can take elsewhere, or undefined for a geometry that
+ * cannot cross as plain arrays (interleaved attributes, morph targets).
+ */
+export function terrainGroundCutRequest(
+  source: THREE.BufferGeometry,
+  outlines: readonly TerrainGroundOutline[],
+  maxHeights: readonly (number | undefined)[] = [],
+  minHeights: readonly (number | undefined)[] = [],
+): TerrainGroundCutRequest | undefined {
+  const attributes = plainAttributes(source);
+  if (attributes === undefined || Object.keys(source.morphAttributes).length > 0) return undefined;
+  if (source.index !== null && !ArrayBuffer.isView(source.index.array)) return undefined;
+  return {
+    attributes,
+    index: source.index === null ? undefined : source.index.array,
+    groups: source.groups.map((group) => ({ ...group })),
+    drawRange: { start: source.drawRange.start, count: source.drawRange.count },
+    bounds: plainBounds(source),
+    outlines: [...outlines],
+    maxHeights: [...maxHeights],
+    minHeights: [...minHeights],
+  };
+}
+
+/**
+ * Make the cut a `TerrainGroundCutRequest` asks for (`subtractTerrainGroundGeometry`, on the
+ * geometry rebuilt from its arrays). `transfer` lists the result's buffers, for a worker to hand
+ * them back without a copy.
+ */
+export function cutTerrainGroundRequest(request: TerrainGroundCutRequest): {
+  result: TerrainGroundCutResult;
+  transfer: ArrayBufferLike[];
+} {
+  const source = geometryFrom(request.attributes, request.index, request.groups, request.bounds);
+  source.setDrawRange(request.drawRange.start, request.drawRange.count);
+  const cut = subtractTerrainGroundGeometry(
+    source,
+    request.outlines,
+    request.maxHeights,
+    request.minHeights,
+  );
+  const attributes = plainAttributes(cut) as TerrainGroundCutAttribute[];
+  const index = cut.index === null ? undefined : cut.index.array;
+  const transfer = new Set<ArrayBufferLike>(attributes.map(({ array }) => array.buffer));
+  if (index !== undefined) transfer.add(index.buffer);
+  return {
+    result: {
+      attributes,
+      index,
+      groups: cut.groups.map((group) => ({ ...group })),
+      bounds: plainBounds(cut),
+    },
+    transfer: [...transfer],
+  };
+}
+
 /** A sliced cut pauses once a slice has run SLICE_MS, checking the clock every SLICE_CHECK work
  * units: a triangle copied whole counts 1, one near an opening 5, and a clipped one CLIP_WORK
  * more for each opening it is clipped against (one under many water triangles can take a
@@ -917,6 +1068,35 @@ function cutVersions(source: THREE.BufferGeometry): number[] {
   return versions;
 }
 
+/**
+ * Keep one copy of the vertices a cut has in common with its source. A cut is the source's
+ * vertices exactly as they are, then the few made on clipped edges, under an index of its own;
+ * the source stays (openings change, and its normals are refreshed as neighbors load), so every
+ * cut mesh held its vertices twice. Over Seattle, where most ground meets water somewhere, that
+ * second copy was a fifth of all the geometry on show at High. The source's attributes read
+ * from the cut's arrays instead: the same values at the same length, so nothing is uploaded
+ * again, and normals written to the source land in the cut's own (see copyCutNormals). An
+ * attribute the cut stores differently (widened to floats) keeps its own array.
+ */
+function shareCutVertices(source: THREE.BufferGeometry, cut: THREE.BufferGeometry): void {
+  for (const [name, from] of Object.entries(source.attributes)) {
+    const to = cut.getAttribute(name);
+    if (!(from instanceof THREE.BufferAttribute) || !(to instanceof THREE.BufferAttribute))
+      continue;
+    const kept = from.array,
+      made = to.array;
+    if (
+      kept.constructor !== made.constructor ||
+      from.itemSize !== to.itemSize ||
+      from.normalized !== to.normalized ||
+      made.length < kept.length ||
+      kept.buffer === made.buffer
+    )
+      continue;
+    from.array = made.subarray(0, kept.length);
+  }
+}
+
 /** Copy the source's normals onto the cut's copies of its vertices, which come first. */
 function copyCutNormals(state: CutState): void {
   const from = state.source.getAttribute('normal');
@@ -942,18 +1122,44 @@ function copyCutNormals(state: CutState): void {
   (to as THREE.BufferAttribute).needsUpdate = true;
 }
 
-/** A cut in progress, advanced a slice at a time (see terrainGroundCutSteps). */
+/**
+ * A cut in progress: advanced here a slice at a time (see terrainGroundCutSteps), or away with a
+ * `TerrainGroundCutter` until its result lands.
+ */
 interface CutJob {
   /** The mesh's pass inputs when the job last checked its openings (see `settled`). */
   inputs: number[];
   key: string;
   depends: number[];
   source: THREE.BufferGeometry;
-  steps: Generator<void, THREE.BufferGeometry>;
+  /** Starts the cut here: at once without a cutter, or if the one it was sent to fails. */
+  make: () => Generator<void, THREE.BufferGeometry>;
+  steps?: Generator<void, THREE.BufferGeometry>;
+  remote?: { result?: THREE.BufferGeometry; failed?: true; controller: AbortController };
+}
+
+export interface TerrainGroundCutoutOptions {
+  /**
+   * Make cuts off the calling thread. A tile's land cover over a shoreline is tens of thousands
+   * of vertices and dozens of openings: 46 ms of clipping on average over Seattle, 160 ms at
+   * worst, which a controller on a 4 ms budget spread over fifteen frames while every tile
+   * behind it waited its turn. Sent away, the cut costs this thread a copy of the mesh's arrays;
+   * the ground keeps its current state until the result is back.
+   */
+  cut?: TerrainGroundCutter;
+  /**
+   * Fewest vertices a mesh has for its cut to be sent away (default 5,000, a 65-sample grid and
+   * its skirts). A smaller one is a few milliseconds to cut here, in the pass that first shows
+   * it; away, its ground would stand uncut over its water for the frames the trip takes.
+   */
+  cutVertices?: number;
+  /** A cut sent away has come back: `pending` is true, and an `update` applies it. */
+  onResult?: () => void;
 }
 
 /** Coordinates cutouts across tile and LOD boundaries. No material or source grid is mutated. */
 export class TerrainGroundCutoutController {
+  constructor(private readonly options: TerrainGroundCutoutOptions = {}) {}
   private readonly active = new Map<THREE.Mesh, CutState>();
   private readonly jobs = new Map<THREE.Mesh, CutJob>();
   /**
@@ -968,11 +1174,55 @@ export class TerrainGroundCutoutController {
   get changedMeshes(): ReadonlySet<THREE.Mesh> {
     return this.changed;
   }
-  /** Whether the last `update` left cuts for a later one, its time budget spent. */
+  /**
+   * Whether an `update` has work waiting: the last one left cuts for a later one, its time budget
+   * spent, or a cut sent away (see `TerrainGroundCutoutOptions.cut`) has come back since. Cuts
+   * still away are not work: `onResult` says when one lands.
+   */
   get pending(): boolean {
-    return this.deferred;
+    return this.deferred || this.arrived;
   }
   private deferred = false;
+  private arrived = false;
+
+  /** Send a cut away; its job reads the result (or the failure) in a later update. */
+  private send(
+    cut: TerrainGroundCutter,
+    request: TerrainGroundCutRequest,
+  ): NonNullable<CutJob['remote']> {
+    const controller = new AbortController();
+    const remote: NonNullable<CutJob['remote']> = { controller };
+    const landed = (): void => {
+      if (controller.signal.aborted) return;
+      this.arrived = true;
+      this.options.onResult?.();
+    };
+    cut(request, controller.signal).then(
+      (result) => {
+        if (controller.signal.aborted) return;
+        if (result === undefined) remote.failed = true;
+        else
+          remote.result = geometryFrom(
+            result.attributes,
+            result.index,
+            result.groups,
+            result.bounds,
+          );
+        landed();
+      },
+      () => {
+        remote.failed = true;
+        landed();
+      },
+    );
+    return remote;
+  }
+
+  /** Give up a job: a cut still away is called off, one back and never shown is released. */
+  private abandon(job: CutJob | undefined): void {
+    job?.remote?.controller.abort();
+    job?.remote?.result?.dispose();
+  }
   /**
    * Bring every visible ground mesh's cut up to date. With `budgetMs`, cutting stops once that
    * much time has passed: a cut in progress resumes in the next update, its ground keeping the
@@ -984,6 +1234,7 @@ export class TerrainGroundCutoutController {
   update(root: THREE.Object3D, budgetMs: number = Number.POSITIVE_INFINITY): boolean {
     this.changed.clear();
     this.deferred = false;
+    this.arrived = false;
     let started = performance.now();
     let stepped = false;
     // Weak registries avoid walking every building in regions with no ground openings.
@@ -1163,6 +1414,11 @@ export class TerrainGroundCutoutController {
           seen.add(mesh);
           copyCutNormals(current);
           settle(true);
+          // A cut begun for other openings, which have since gone back to these, is not wanted.
+          if (job !== undefined) {
+            this.abandon(job);
+            this.jobs.delete(mesh);
+          }
           continue;
         }
         // A cut in progress from the same openings resumes without rebuilding its key, a long string.
@@ -1213,16 +1469,32 @@ export class TerrainGroundCutoutController {
             current.depends = depends;
             copyCutNormals(current);
             settle(true);
+            if (job !== undefined) {
+              this.abandon(job);
+              this.jobs.delete(mesh);
+            }
             continue;
           }
           if (job === undefined || job.key !== key || job.source !== source) {
-            job = {
-              inputs,
-              key,
-              depends,
-              source,
-              steps: terrainGroundCutSteps(source, outlines, maxHeights, minHeights),
-            };
+            this.abandon(job);
+            const make = (): Generator<void, THREE.BufferGeometry> =>
+              terrainGroundCutSteps(source, outlines, maxHeights, minHeights);
+            // Small ground is cut here, as soon as it shows (see `cutVertices`).
+            const cutter =
+              (source.getAttribute('position')?.count ?? 0) >= (this.options.cutVertices ?? 5000)
+                ? this.options.cut
+                : undefined;
+            const request =
+              cutter === undefined
+                ? undefined
+                : terrainGroundCutRequest(source, outlines, maxHeights, minHeights);
+            job = { inputs, key, depends, source, make };
+            if (cutter !== undefined && request !== undefined) {
+              job.remote = this.send(cutter, request);
+              // Sending is this pass's work on the cut, as a slice is: what follows keeps to
+              // the budget.
+              stepped = true;
+            } else job.steps = make();
             this.jobs.set(mesh, job);
           } else job.depends = depends;
         }
@@ -1231,15 +1503,28 @@ export class TerrainGroundCutoutController {
       if (job === undefined) continue;
       seen.add(mesh);
       let rendered: THREE.BufferGeometry | undefined;
-      // Every cut works in slices, the first in a pass too; at least one slice per update.
-      while (!spent()) {
-        stepped = true;
-        const step = job.steps.next();
-        if (step.done) {
-          rendered = step.value;
-          break;
-        }
+      const remote = job.remote;
+      if (remote?.failed) {
+        // Whoever was to make it could not: made here after all.
+        job.remote = undefined;
+        job.steps = job.make();
+      } else if (remote !== undefined) {
+        // Still away: nothing to do until it lands, which `onResult` and `pending` report.
+        if (remote.result === undefined) continue;
+        rendered = remote.result;
       }
+      const steps = job.steps;
+      // Every cut made here works in slices, the first in a pass too; at least one slice per
+      // update.
+      if (steps !== undefined)
+        while (!spent()) {
+          stepped = true;
+          const step = steps.next();
+          if (step.done) {
+            rendered = step.value;
+            break;
+          }
+        }
       if (rendered === undefined) {
         this.deferred = true;
         continue;
@@ -1275,13 +1560,18 @@ export class TerrainGroundCutoutController {
       states.set(mesh, state);
       this.active.set(mesh, state);
       mesh.geometry = cut;
+      shareCutVertices(source, cut);
       this.changed.add(mesh);
       changed = true;
       settle(true);
     }
     const shown = new Set(targets);
     // A cut whose ground left the view (or the scene) is dropped; it starts over if needed.
-    for (const mesh of [...this.jobs.keys()]) if (!seen.has(mesh)) this.jobs.delete(mesh);
+    for (const [mesh, job] of [...this.jobs])
+      if (!seen.has(mesh)) {
+        this.abandon(job);
+        this.jobs.delete(mesh);
+      }
     const attached = (object: THREE.Object3D): boolean => {
       for (let cursor: THREE.Object3D | null = object; cursor; cursor = cursor.parent)
         if (cursor === root) return true;
@@ -1302,11 +1592,13 @@ export class TerrainGroundCutoutController {
   /** Restore original grids before normal tile disposal. */
   restore(root: THREE.Object3D): void {
     root.traverse((object) => {
+      this.abandon(this.jobs.get(object as THREE.Mesh));
       this.jobs.delete(object as THREE.Mesh);
       this.active.get(object as THREE.Mesh)?.release();
     });
   }
   dispose(): void {
+    for (const job of this.jobs.values()) this.abandon(job);
     this.jobs.clear();
     for (const state of this.active.values()) state.release();
   }

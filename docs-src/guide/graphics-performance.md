@@ -181,6 +181,18 @@ cuts on every frame, sharing one 4 ms budget a frame with `stream.update`: hosts
 ten times a second while the camera is still, and at one budget an update, ground that a descent
 had just shown stood uncut over its own harbor for most of a second.
 
+Where the stream's height source can cut off the main thread (`TerrainPyramidHeightSource.cutGround`,
+a `TerrainGroundCutter`; the elevation worker's source has one), the clipping is done there. The
+controller sends the mesh's arrays as copies, goes on to other ground, and swaps the cut in when
+it lands, so the frame's budget pays for gathering openings and the swap alone; a cut whose
+opening goes meanwhile is called off, and one the cutter fails is made on the main thread. A
+mesh of fewer than 5,000 vertices (`cutVertices`) is still cut on the main thread, in the pass
+that first shows it: a few milliseconds, against ground standing uncut for the trip's frames. A
+tile's land cover over a shoreline is some 38,000 vertices against 50 openings: 46 ms of clipping,
+of which a low flight over Seattle at High finished 48 in 50 seconds at 4 ms a frame, leaving most
+ground it passed waiting for its cut. The worker made some 250 in a minute of the same flight,
+and cutting fell from 7% of the main thread to under 2%.
+
 Earth hosts admit more while frames have time to spare: `createEarthAdmissionGovernor(backend)`
 smooths each frame's main-thread work and, through `earthAdmission`, switches the queue to 8 MiB
 of uploads a frame (and 4 ms of work on WebGL) below 10 ms of work, back to the renderer's
@@ -275,10 +287,21 @@ admitted job of up to 20 ms. The grading itself finds each sample row's polygon 
 ground edges once, instead of testing every edge of an airport's grounds for every sample: a tenth
 of a second a tile over Boeing Field.
 
+Road earthworks (`createTerrainRoadGrading`'s `transformHeightfield`) are graded in the worker
+too, where the source has `gradeEarthworks`. The host sends the tile's field and the road lines
+that reach it; the worker reads the reference ground from its own decoded tiles, grades, and
+meshes the result in the same trip, about 30 ms a town tile. On the main thread that was 2 ms
+slices between frames, outside the frame queue, and 4 to 9% of the thread in a low flight over a
+city. A reference tile is read as samples (`load`), without the full-resolution mesh
+`loadPrepared` builds for a tile to be drawn. Bridge profiles (`gradeTile`) are still worked out
+on the main thread, about 3% of it in that flight: a worker would need the tile's roads and its
+neighbors' copied across, most of which no bridge is near.
+
 The worker entry calls `installTerrainElevationWorker(self)`, exported from
 `@bendyline/molen-terrain/client` (use the worker-scope type cast shown by World Explorer when
 compiling with DOM rather than WebWorker types). The host reads archive bytes; the worker
-owns PNG decoding, its decoded tile cache, ancestor resampling and surface meshing. Worker
+owns PNG decoding, its decoded tile cache, ancestor resampling, surface meshing, road earthworks
+and ground cuts. Worker
 buffers transfer without detaching archive caches or reusable topology. Omitting the worker
 retains the in-thread path. Worker errors are surfaced; they do not silently trigger duplicate work.
 
@@ -437,7 +460,12 @@ rebase above it is applied when it shows again. `stats()` walks every displayed 
 exact byte totals and adds hidden tiles' tracked buffers; a live panel passes
 `{ geometry: 'tracked' }` for the retained estimate and visible-only counts. Ground cutouts stay on hidden tiles while their
 openings remain, keep the source grid's indices for triangles away from every opening, and
-re-count only the tiles whose ground they changed.
+re-count only the tiles whose ground they changed. A cut is its source grid's vertices as they
+are, then the few made on clipped edges, and the source stays for the next cut; once a cut is
+applied the source's attributes read from the cut's arrays, so the pair holds its vertices once in
+main memory. Over Seattle, where most ground meets water somewhere, the second copy was 174 of
+1,139 MiB on show at High (the page's array buffers fell from 1,403 to 1,233 MiB without it). The
+source's GPU buffers stay until its tile goes.
 
 Height queries prefer displayed terrain and fall back to resident heights outside the visible
 cut. An aircraft's center can pass behind its cockpit camera at a tile boundary; it must not wait

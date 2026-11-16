@@ -370,7 +370,12 @@ Parked cars become simulation entities only within 300 m of the observer passed 
 approach, board and collide with; farther ones that nobody moved are reclaimed and stay part of
 their tile's merged mesh. Under an aircraft a town's parked cars were otherwise thousands of
 dormant entities, spawned as each tile streamed in and visited every tick. The `vehicles` system
-also passes over a dormant car after one lookup until a write replaces its state.
+also passes over a dormant car after one lookup until a write replaces its state. Height counts
+against that distance: it shrinks to nothing 100 m above or below a car, so an aircraft crossing a
+town at a few hundred meters makes entities of none, and one landing meets them as it comes down.
+`sync` remembers its observer for the passes `EarthVehicles` runs itself (after `enter`, and when
+a model loads), which had no observer and made an entity of every parked car in every loaded tile
+each time a car's model arrived.
 
 Passengers use the same mount contract. A `mountable` lists seats with a role: `driver` seats
 drive, `passenger` seats ride. `mountEntity(world, actor, vehicle, 'passenger')` seats someone

@@ -104,8 +104,10 @@ let defaultPaintBeneath: number | undefined;
 
 /** Pack the surface beneath paint for `surfaceDetail.w` (see `TERRAIN_PAINT_ON_PARKING`). */
 export function terrainPaintBeneath(beneath?: TerrainPaintBeneath): number {
-  if (beneath === undefined)
-    return (defaultPaintBeneath ??= terrainPaintBeneath(DEFAULT_PAINT_BENEATH));
+  if (beneath === undefined) {
+    defaultPaintBeneath ??= terrainPaintBeneath(DEFAULT_PAINT_BENEATH);
+    return defaultPaintBeneath;
+  }
   // getHex reads the color back in sRGB, the space its 6 bits are spent evenly in.
   const hex = new THREE.Color(beneath.color).getHex();
   const channel = (shift: number): number => Math.round((((hex >> shift) & 255) * 63) / 255);

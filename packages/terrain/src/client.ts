@@ -7,7 +7,12 @@ export {
   setTerrainGroundCutouts,
   setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
+  type TerrainGroundCutAttribute,
   TerrainGroundCutoutController,
+  type TerrainGroundCutoutOptions,
+  type TerrainGroundCutRequest,
+  type TerrainGroundCutResult,
+  type TerrainGroundCutter,
   type TerrainGroundOutline,
   terrainGroundSourceGeometry,
 } from './ground-cutout';

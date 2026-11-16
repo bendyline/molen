@@ -20,6 +20,7 @@ import {
   markTerrainGroundCutScope,
   markTerrainGroundSurface,
   TerrainGroundCutoutController,
+  type TerrainGroundCutter,
   terrainGroundSourceGeometry,
 } from './ground-cutout';
 import type { Heightfield } from './heightfield';
@@ -43,6 +44,7 @@ import {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from './pyramid-types';
+import type { RoadEarthworksRequest } from './road-earthworks';
 import type { TerrainQualityPreset, TerrainStreamStats, TerrainTileLayerCategory } from './stream';
 import {
   applySurfaceHeightMorph,
@@ -143,6 +145,23 @@ export interface TerrainPyramidHeightSource {
     signal: AbortSignal,
     maxResolution: number,
   ): Promise<ChunkGeometry | undefined>;
+  /**
+   * Grade a tile's ground for its roads (see `gradeRoadEarthworks`) where it does not hold the
+   * main thread: the elevation worker's source does it there, and meshes the result, which
+   * `meshPrepared` then hands over for the field this returns. Resolves to the request's own
+   * field when nothing moved, and to undefined when cancelled. Undefined leaves the road grading
+   * to do it itself, a slice at a time.
+   */
+  gradeEarthworks?(
+    request: RoadEarthworksRequest,
+    signal: AbortSignal,
+  ): Promise<Heightfield | undefined>;
+  /**
+   * Cut openings from ground meshes off the main thread (a `TerrainGroundCutter`): the stream
+   * hands it to its cutout controller. Undefined leaves each cut to be made in slices between
+   * frames.
+   */
+  cutGround?: TerrainGroundCutter;
   dispose?(): void;
 }
 
@@ -1492,7 +1511,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private layerPumpScheduled = false;
   private idleWaiters: Array<() => void> = [];
   private budget: TerrainPyramidBudget;
-  private readonly groundCutouts = new TerrainGroundCutoutController();
+  private readonly groundCutouts: TerrainGroundCutoutController;
   /**
    * Whether ground cutouts must be recomputed: a surface, layer or tile changed visibility or a
    * surface's grid changed. The pass walks every cutter (a city's tunnels hold thousands) and
@@ -1569,6 +1588,18 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     private readonly options: TerrainPyramidStreamOptions,
   ) {
     requireDescriptor(descriptor);
+    const cut = source.cutGround;
+    this.groundCutouts = new TerrainGroundCutoutController(
+      cut === undefined
+        ? {}
+        : {
+            cut: (request, signal) => cut.call(source, request, signal),
+            // Applied in the next frame's pass (see updateTransitions), or the next update's.
+            onResult: () => {
+              this.cutoutsDirty = true;
+            },
+          },
+    );
     this.clock = options.now ?? (() => performance.now());
     const finest = terrainPyramidTileSize(descriptor, descriptor.maxLevel);
     // A step past a few of the finest tiles within one update is a teleport, not travel.

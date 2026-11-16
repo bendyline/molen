@@ -253,11 +253,45 @@ describe('earth vehicles', () => {
   it('makes parked cars entities only near the observer, and reclaims them behind it', () => {
     const { vehicles } = setup();
     vehicles.world.destroy('car');
-    vehicles.sync(300, [5000, 150, 2000]);
+    vehicles.sync(300, [5000, 1.7, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.sync(600, [1100, 1.7, 2000]);
+    expect(vehicles.world.exists('car')).toBe(true);
+    vehicles.sync(900, [1000 + 300 * 1.25, 1.7, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.dispose();
+  });
+  it('keeps far parked cars out of the world when a near car gets its model', async () => {
+    const { placements, vehicles } = setup();
+    const near = placements[0];
+    if (near === undefined) throw new Error('no placement');
+    placements.push({ ...near, id: 'far', position: [3000, 0, 2000] });
+    vehicles.world.destroy('car');
+    vehicles.sync(300, [1000, 1.7, 2004]);
+    expect(vehicles.world.exists('car')).toBe(true);
+    expect(vehicles.world.exists('far')).toBe(false);
+    // The model arrives and the vehicles sync again by themselves: still for that observer.
+    await Promise.resolve();
+    expect(vehicles.object.children).toHaveLength(1);
+    expect(vehicles.world.exists('far')).toBe(false);
+    // Boarding syncs too.
+    expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+    expect(vehicles.world.exists('far')).toBe(false);
+    vehicles.dispose();
+  });
+  it('leaves parked cars alone under an aircraft until it comes down to them', () => {
+    const { vehicles } = setup();
+    vehicles.world.destroy('car');
+    // Overhead at 230 m, and 100 m to the side at 150 m: out of reach either way.
+    vehicles.sync(300, [1000, 230, 2000]);
     expect(vehicles.world.exists('car')).toBe(false);
     vehicles.sync(600, [1100, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    // On the way down the cars beneath are there before the wheels are.
+    vehicles.sync(900, [1100, 40, 2000]);
     expect(vehicles.world.exists('car')).toBe(true);
-    vehicles.sync(900, [1000 + 300 * 1.25, 150, 2000]);
+    // Climbing away gives them up again, with the same margin as walking away does.
+    vehicles.sync(1200, [1100, 100, 2000]);
     expect(vehicles.world.exists('car')).toBe(false);
     vehicles.dispose();
   });

@@ -8,9 +8,18 @@
  * so the terrain mesh, everything draped on it and everything that drives on it agree.
  */
 import { Heightfield } from './heightfield';
+import { pointInPolygon, polygonBounds } from './polygon';
+import {
+  type TerrainPyramidDescriptor,
+  type TerrainPyramidTileAddress,
+  terrainPyramidTileCount,
+  terrainPyramidTileOrigin,
+  terrainPyramidTileSize,
+} from './pyramid-types';
 import type {
   TerrainSemanticLine,
   TerrainSemanticPoint,
+  TerrainSemanticPolygon,
   TerrainTransportationFeature,
 } from './semantic-types';
 import { isAeroway, transportKind, transportWidth } from './transport-features';
@@ -47,6 +56,27 @@ export interface RoadEarthworkLine {
    * one tile are graded into that tile and each of its neighbors.
    */
   heights: Float32Array;
+}
+
+/**
+ * Grading one tile's ground for its roads, as a source that can do it off the main thread is
+ * asked to (`TerrainPyramidHeightSource.gradeEarthworks`): everything `gradeRoadEarthworks`
+ * needs but the reference ground, which is read from `referenceLevel` wherever the work is done.
+ */
+export interface RoadEarthworksRequest {
+  address: TerrainPyramidTileAddress;
+  /** The tile's ground as it was loaded. */
+  heightfield: Heightfield;
+  /** Vertices along a side of the rendered ground grid (see `RoadEarthworkOptions`). */
+  surfaceResolution: number;
+  maxSpacing: number;
+  /** The ways that reach the tile (`roadEarthworkLineReaches`), its own and its neighbors'. */
+  lines: readonly Pick<RoadEarthworkLine, 'points' | 'halfWidth' | 'bounds'>[];
+  /** The tile's mapped water, tile-normalized: left as it is, except under a road. */
+  water: readonly TerrainSemanticPolygon[];
+  /** The elevation level the reference ground is read at, and how far past the tile, meters. */
+  referenceLevel: number;
+  reach: number;
 }
 
 export interface RoadEarthworkOptions {
@@ -256,6 +286,149 @@ export interface RoadEarthworkPass {
   finish(): Heightfield;
 }
 
+/** How far beyond a way's half width its grading reaches on a grid of `spacing` meters. */
+function gradingReach(spacing: number): { margin: number; blend: number } {
+  // A vertex belongs to the bench if a cell it corners can reach under the road.
+  return { margin: spacing * 1.25, blend: Math.max(8, spacing * 1.6) };
+}
+
+/**
+ * Whether a way can move any vertex of ground at `origin`, `size` across, rendered `spacing`
+ * meters between vertices: the test a pass makes of each line it is given, for a caller that
+ * would rather not hand it the rest (a neighborhood's ways, sent to a worker).
+ */
+export function roadEarthworkLineReaches(
+  line: Pick<RoadEarthworkLine, 'halfWidth' | 'bounds'>,
+  origin: readonly [number, number],
+  size: readonly [number, number],
+  spacing: number,
+): boolean {
+  const { margin, blend } = gradingReach(spacing);
+  const reach = line.halfWidth + margin + blend;
+  const { bounds } = line;
+  return !(
+    bounds[2] < origin[0] - reach ||
+    bounds[0] > origin[0] + size[0] + reach ||
+    bounds[3] < origin[1] - reach ||
+    bounds[1] > origin[1] + size[1] + reach
+  );
+}
+
+/**
+ * The natural ground over a world rectangle, as a function of position alone: one elevation
+ * level (`level`), whichever tile asks, read through `load`. Undefined when that level has
+ * nothing there.
+ */
+export async function roadReferenceGround(
+  pyramid: TerrainPyramidDescriptor,
+  load: (address: TerrainPyramidTileAddress) => Promise<Heightfield | undefined>,
+  bounds: readonly [number, number, number, number],
+  level: number,
+): Promise<((x: number, z: number) => number) | undefined> {
+  const size = terrainPyramidTileSize(pyramid, level);
+  const count = terrainPyramidTileCount(level);
+  const column = (x: number): number =>
+    Math.max(0, Math.min(count - 1, Math.floor((x - pyramid.origin[0]) / size)));
+  const row = (z: number): number =>
+    Math.max(0, Math.min(count - 1, Math.floor((z - pyramid.origin[1]) / size)));
+  const tiles = new Map<string, Heightfield>();
+  const wanted: Promise<void>[] = [];
+  for (let z = row(bounds[1]); z <= row(bounds[3]); z++)
+    for (let x = column(bounds[0]); x <= column(bounds[2]); x++)
+      wanted.push(
+        load({ level, x, z }).then((field) => {
+          if (field) tiles.set(`${x}/${z}`, field);
+        }),
+      );
+  await Promise.all(wanted);
+  if (tiles.size === 0) return undefined;
+  let last: Heightfield | undefined,
+    lastX = -1,
+    lastZ = -1;
+  const fallback = tiles.values().next().value as Heightfield;
+  return (x, z) => {
+    const cx = column(x),
+      cz = row(z);
+    if (cx !== lastX || cz !== lastZ || !last) {
+      lastX = cx;
+      lastZ = cz;
+      last = tiles.get(`${cx}/${cz}`) ?? fallback;
+    }
+    return last.sampleHeight(x, z);
+  };
+}
+
+/** `RoadEarthworkOptions.water` for a tile's mapped water (tile-normalized polygons). */
+export function roadEarthworkWater(
+  polygons: readonly TerrainSemanticPolygon[],
+  origin: readonly [number, number],
+  tileSize: number,
+): ((x: number, z: number) => boolean) | undefined {
+  if (polygons.length === 0) return undefined;
+  const lakes = polygons.map(
+    (polygon): [TerrainSemanticPolygon, ReturnType<typeof polygonBounds>] => [
+      polygon,
+      polygonBounds(polygon),
+    ],
+  );
+  return (x, z) => {
+    const u = (x - origin[0]) / tileSize,
+      v = (z - origin[1]) / tileSize;
+    return lakes.some(
+      ([polygon, bounds]) =>
+        u >= bounds[0] &&
+        u <= bounds[2] &&
+        v >= bounds[1] &&
+        v <= bounds[3] &&
+        pointInPolygon([u, v], polygon),
+    );
+  };
+}
+
+/**
+ * Grade a tile as a `RoadEarthworksRequest` asks, in one go: for whoever does it where a tile's
+ * tens of milliseconds hold nothing up (a worker). `load` reads an elevation tile. Returns the
+ * request's own field when nothing moves.
+ */
+export async function gradeRoadEarthworksRequest(
+  pyramid: TerrainPyramidDescriptor,
+  load: (address: TerrainPyramidTileAddress) => Promise<Heightfield | undefined>,
+  request: RoadEarthworksRequest,
+): Promise<Heightfield> {
+  const { heightfield, address } = request;
+  const origin = terrainPyramidTileOrigin(pyramid, address);
+  const tileSize = terrainPyramidTileSize(pyramid, address.level);
+  const { reach } = request;
+  const ground = await roadReferenceGround(
+    pyramid,
+    load,
+    [
+      origin[0] - reach,
+      origin[1] - reach,
+      origin[0] + tileSize + reach,
+      origin[1] + tileSize + reach,
+    ],
+    request.referenceLevel,
+  );
+  if (!ground) return heightfield;
+  const water = roadEarthworkWater(request.water, origin, tileSize);
+  const pass = beginRoadEarthworks(heightfield, ground, {
+    surfaceResolution: request.surfaceResolution,
+    maxSpacing: request.maxSpacing,
+    ...(water ? { water } : {}),
+  });
+  if (!pass) return heightfield;
+  for (const line of request.lines)
+    pass.add({
+      points: line.points,
+      halfWidth: line.halfWidth,
+      bounds: line.bounds,
+      // Profiles are a function of the reference ground alone: read again here, the same.
+      heights: new Float32Array(line.points.length >> 1).fill(Number.NaN),
+    });
+  return pass.finish();
+}
+
 /**
  * `gradeRoadEarthworks` a line at a time. Undefined when the tile's rendered grid is too coarse
  * to grade (`maxSpacing`).
@@ -272,9 +445,7 @@ export function beginRoadEarthworks(
     spacingZ = sizeZ / (side - 1);
   const spacing = Math.max(spacingX, spacingZ);
   if (spacing > (options.maxSpacing ?? 28)) return undefined;
-  // A vertex belongs to the bench if a cell it corners can reach under the road.
-  const margin = spacing * 1.25;
-  const blend = Math.max(8, spacing * 1.6);
+  const { margin, blend } = gradingReach(spacing);
   const maxChange = options.maxChange ?? 12;
   const walls = spacing <= WALL_SPACING;
   const count = side * side;
