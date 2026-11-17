@@ -513,6 +513,82 @@ describe('scatter sampling', () => {
     const all = new Set(positions(shrubs(full)));
     for (const pos of positions(shrubs(capped))) expect(all.has(pos)).toBe(true);
   });
+
+  it('plants gardens from their own pool, by role and quarter by quarter', () => {
+    const population = (model: string, weight = 1) => ({
+      model,
+      weight,
+      scale: { min: 1, max: 1 },
+      yaw: 'random' as const,
+      align: 'up' as const,
+    });
+    const planted: ScatterDoc = {
+      ...doc,
+      rules: [
+        ...doc.rules,
+        {
+          id: 'beds',
+          classes: ['forest'],
+          layer: 'garden',
+          densityPerHectare: 3000,
+          minSpacing: 0.5,
+          populations: [
+            population('builtin:bed.a', 3),
+            population('builtin:bed.b', 2),
+            population('builtin:bed.c', 1),
+          ],
+        },
+        {
+          id: 'small_trees',
+          classes: ['forest'],
+          layer: 'garden',
+          densityPerHectare: 40,
+          minSpacing: 3,
+          populations: [population('builtin:small.a'), population('builtin:small.b')],
+        },
+      ],
+    };
+    const req = request([0, 0, 200, 200]);
+    const run = (extra: Record<string, number>) =>
+      samplePlacements({
+        request: req,
+        doc: planted,
+        pack: identity,
+        ground: FLAT_GROUND,
+        budget: { ...budget, ...extra },
+        tier: 0,
+      });
+    const garden = (sets: PlacementSet[]) =>
+      sets.filter((set) => /:(bed|small)\./.test(set.modelRef));
+    const count = (sets: PlacementSet[]) => sets.reduce((sum, set) => sum + set.count, 0);
+    // No garden budget, no garden: the layer is closed like the other optional pools.
+    expect(garden(run({}))).toEqual([]);
+    const tight = run({ maxGardenInstances: 100_000, maxGardenModels: 2 });
+    const roomy = run({ maxGardenInstances: 100_000, maxGardenModels: 16 });
+    // The canopy keeps its own instances and model slots whatever is planted beneath it.
+    expect(positions(tight.filter((set) => !garden([set]).length))).toEqual(positions(sample(req)));
+    // By count the beds would take both slots; by role the few small trees keep one.
+    const refs = garden(tight).map((set) => set.modelRef);
+    expect(refs.some((ref) => ref.includes('small'))).toBe(true);
+    expect(refs.some((ref) => ref.includes('bed'))).toBe(true);
+    // A species without a slot becomes its rule's kept one: nothing planted is lost.
+    expect(count(garden(tight))).toBe(count(garden(roomy)));
+    expect(new Set(garden(roomy).map((set) => set.modelRef)).size).toBe(5);
+    // The slots are per quarter of the batch, which is what a host draws them by.
+    const byQuarter = new Map<number, Set<string>>();
+    for (const set of garden(tight))
+      for (let index = 0; index < set.count; index++) {
+        const offset = index * PLACEMENT_STRIDE;
+        const quarter =
+          ((set.data[offset] as number) >= 100 ? 1 : 0) +
+          ((set.data[offset + 2] as number) >= 100 ? 2 : 0);
+        byQuarter.set(quarter, (byQuarter.get(quarter) ?? new Set()).add(set.modelRef));
+      }
+    expect(byQuarter.size).toBe(4);
+    for (const models of byQuarter.values()) expect(models.size).toBeLessThanOrEqual(2);
+    // And the pool caps its own instances.
+    expect(count(garden(run({ maxGardenInstances: 50, maxGardenModels: 16 })))).toBe(50);
+  });
 });
 
 it('varies crown width independently without reshuffling placements, height, or tint', () => {

@@ -4,7 +4,9 @@ import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import {
   DEFAULT_ROAD_SIGN_PROFILE,
   roadSignExitLabel,
+  streetSignName,
   type TerrainRoadSignProfile,
+  type TerrainStreetNameStyle,
 } from './road-sign-styles';
 import { resolveTerrainRouteMarker, type TerrainRouteShieldLibrary } from './route-shields';
 import type { TerrainSemanticTile } from './semantic-types';
@@ -14,6 +16,9 @@ import {
   type SurfaceJunction,
   type SurfaceNetwork,
   type SurfaceRoad,
+  sortedJunctionArms,
+  surfaceHash,
+  surfaceJunctionCorners,
 } from './surface-network';
 import type { SurfaceSign } from './surface-sign-mesh';
 
@@ -22,6 +27,51 @@ export function postedSpeed(value: string | undefined): [string, string] | undef
   const match = value?.trim().match(/^(\d+(?:\.\d+)?)\s*(mph|km\/h|kmh|kph)?$/i);
   if (!match || Number(match[1]) <= 0 || Number(match[1]) > 300) return undefined;
   return [String(Number(match[1])), match[2]?.toLowerCase() === 'mph' ? 'MPH' : 'KM/H'];
+}
+
+/** Street-name signs a detail tile may carry, apart from the 48 other boards: blade posts, then mast panels. */
+export const STREET_NAME_SIGNS_PER_TILE = 64;
+
+/**
+ * The legend posted for a road at a junction, or undefined: paths, rails, freeways, ramps and turn
+ * connectors carry none, nor does a compound label such as "A Street & B Avenue".
+ */
+export function postedStreetName(
+  road: SurfaceRoad,
+  style: Readonly<TerrainStreetNameStyle>,
+): string | undefined {
+  const name = road.feature.name?.trim();
+  if (!name || /[&;]/.test(name) || isSurfaceLink(road)) return undefined;
+  if (road.kind !== 'street' && road.kind !== 'service') return undefined;
+  return streetSignName(style, name);
+}
+
+/**
+ * The street a signal approach crosses, as posted: the named arm most nearly perpendicular to it
+ * (at least 30 degrees), other than the approach's own street. Where the cross street changes name
+ * across the junction, the arm on the driving side wins.
+ */
+export function crossStreetName(
+  node: SurfaceJunction,
+  approach: SurfaceJunction['arms'][number],
+  style: Readonly<TerrainStreetNameStyle>,
+  side: 1 | -1,
+): { name: string; road: SurfaceRoad } | undefined {
+  const own = postedStreetName(approach.road, style);
+  let best: { name: string; road: SurfaceRoad } | undefined;
+  let score = 0.5;
+  for (const arm of node.arms) {
+    if (arm === approach) continue;
+    const name = postedStreetName(arm.road, style);
+    if (!name || name === own) continue;
+    const turn = (approach.dz * arm.dx - approach.dx * arm.dz) * side;
+    const value = Math.abs(turn) + (turn > 0 ? 0.01 : 0);
+    if (value > score) {
+      score = value;
+      best = { name, road: arm.road };
+    }
+  }
+  return best;
 }
 
 function nearest(path: TerrainLinePath, x: number, z: number): { distance: number; along: number } {
@@ -95,7 +145,8 @@ export function planSurfaceSigns(
   const inside = (x: number, z: number): boolean =>
     x >= 2 && z >= 2 && x < context.tileSize - 2 && z < context.tileSize - 2;
   const add = (sign: SurfaceSign, road: SurfaceRoad): void => {
-    if (result.length >= Math.min(48, maximum) || !inside(sign.x, sign.z)) return;
+    const boards = result.filter((s) => s.kind !== 'street-name').length;
+    if (boards >= 48 || result.length >= maximum || !inside(sign.x, sign.z)) return;
     const clear = (x: number, z: number): boolean =>
       inside(x, z) && !blocked(x, z) && !network.occupied(x, z, 0.5, road);
     if (sign.span) {
@@ -417,5 +468,63 @@ export function planSurfaceSigns(
       }
     }
   }
+
+  // Corner blades name the two streets that form one corner of each unsignalized junction; at a
+  // signal the mast arms carry the names instead (see surface-client).
+  const names = appearance.streetNames;
+  let posts = 0;
+  if (names)
+    for (const node of network.junctions) {
+      if (posts >= STREET_NAME_SIGNS_PER_TILE || result.length >= maximum) break;
+      if (!inside(node.x, node.z) || controls.get(node)?.signal) continue;
+      // A post stands on the ground; skip junctions on or under a structure.
+      if (node.arms.some((arm) => arm.road.feature.bridge || arm.road.feature.tunnel)) continue;
+      const corners = surfaceJunctionCorners(node, sortedJunctionArms(node)).flatMap((corner) => {
+        const first = postedStreetName(corner.a.road, names),
+          second = postedStreetName(corner.b.road, names);
+        return first && second && first !== second ? [{ corner, first, second }] : [];
+      });
+      // World coordinates choose the corner, so a junction in two tiles' buffers agrees.
+      const start = Math.floor(
+        surfaceHash(context.origin[0] + node.x, context.origin[1] + node.z) * corners.length,
+      );
+      for (let k = 0; k < corners.length; k++) {
+        const { corner, first, second } = corners[(start + k) % corners.length] as (typeof corners)[number];
+        // A step in from the lamp's corner: on the sidewalk, near the curb ramp.
+        const x = corner.x - Math.cos(corner.direction) * 1.1,
+          z = corner.z - Math.sin(corner.direction) * 1.1;
+        if (!inside(x, z) || blocked(x, z) || network.occupied(x, z, 0.5)) continue;
+        const pair = [first, second].sort().join('\n');
+        // Divided roads can meet at neighboring nodes: one post names the pair.
+        if (
+          result.some(
+            (s) =>
+              s.pattern === 'street-name-blade' &&
+              [...s.lines].sort().join('\n') === pair &&
+              Math.hypot(s.x - x, s.z - z) < 40,
+          )
+        )
+          break;
+        const { a, b } = corner;
+        result.push({
+          kind: 'street-name',
+          pattern: 'street-name-blade',
+          appearance,
+          evidence: ['name', 'junction-corner'],
+          roadId: a.road.feature.id,
+          x,
+          z,
+          ground: ground(a.road, x, z),
+          // The lower blade runs along the first street; the upper one turns to the second.
+          dx: -a.dz,
+          dz: a.dx,
+          bladeTurn: Math.atan2(b.dz, b.dx) - Math.atan2(a.dz, a.dx),
+          lines: [first, second],
+          source: 'mapped',
+        });
+        posts++;
+        break;
+      }
+    }
   return result;
 }

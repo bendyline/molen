@@ -80,6 +80,12 @@ export interface WildlifeHabitat {
   water: boolean;
   /** False on roads, buildings, steep terrain, or insufficiently known terrain. */
   safe: boolean;
+  /**
+   * True where a road is all that makes the point unsafe: known, level habitat clear of
+   * buildings. Nothing spawns or stands there, but an animal in flight may pass over it. Never
+   * true where `safe` is; a host that cannot tell a road from a building omits it.
+   */
+  overflight?: boolean;
 }
 
 const id = z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/);

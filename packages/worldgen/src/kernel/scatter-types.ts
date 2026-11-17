@@ -78,8 +78,12 @@ export interface ScatterRule {
   avoid?: Partial<ScatterAvoid>;
   populations: ScatterPopulation[];
   lod?: Partial<ScatterLod>;
-  /** Trees, shoulder-height brush, and low ground detail have independent budget pools. */
-  layer?: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
+  /**
+   * Trees, shoulder-height brush, and low ground detail have independent budget pools. `garden`
+   * is planted ornamental vegetation (yards, parks, verges): its own pool, so a wood in the same
+   * batch cannot thin a neighborhood's planting, nor the planting the wood's brush.
+   */
+  layer?: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden';
 }
 
 export interface ScatterDoc {

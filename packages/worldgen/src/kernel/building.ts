@@ -663,6 +663,18 @@ export function generateBuilding(
         ...(keepBands && recipe.facade.details
           ? { details: recipe.facade.details, roof: surfaces.roof, raised: recipe.minHeight > 0 }
           : {}),
+        // A simplified facade still shows where its building is entered: the style's entrance as
+        // a bare door leaf, on the wall the detailed building would put it on.
+        ...(!keepBands &&
+        keepWindows &&
+        input.request.access === undefined &&
+        recipe.facade.details?.entrance !== undefined
+          ? {
+              details: { entrance: recipe.facade.details.entrance },
+              raised: recipe.minHeight > 0,
+              plainEntrance: true,
+            }
+          : {}),
         ...(input.request.access
           ? {
               entranceAt: input.request.access.to,

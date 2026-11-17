@@ -46,11 +46,23 @@ import {
   type SurfaceJunction,
   SurfaceNetwork,
   type SurfaceRoad,
+  sortedJunctionArms,
+  surfaceHash,
+  surfaceJunctionCorners,
 } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
 import { appendTerrainRailways, dressTerrainRailMeshes, TERRAIN_RAIL_MESHES } from './surface-rail';
-import { appendSurfaceSign } from './surface-sign-mesh';
-import { planSurfaceSigns } from './surface-signage';
+import {
+  appendSurfaceSign,
+  STREET_NAME_MAST,
+  type SurfaceSign,
+  streetNamePanelWidth,
+} from './surface-sign-mesh';
+import {
+  crossStreetName,
+  planSurfaceSigns,
+  STREET_NAME_SIGNS_PER_TILE,
+} from './surface-signage';
 import {
   appendTerrainSignalLenses,
   type TerrainSignalHead,
@@ -264,11 +276,7 @@ function midpoint(a: TerrainSemanticPoint, b: TerrainSemanticPoint): TerrainSema
   return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
 }
 
-function hash(x: number, z: number): number {
-  let value = Math.imul(Math.round(x * 10), 73856093) ^ Math.imul(Math.round(z * 10), 19349663);
-  value = Math.imul(value ^ (value >>> 16), 0x45d9f3b);
-  return ((value ^ (value >>> 16)) >>> 0) / 4294967296;
-}
+const hash = surfaceHash;
 
 /** Parked kinds at most this wide (meters) are two-wheelers, parked in rows across a bay. */
 const PARKED_TWO_WHEELER_WIDTH = 1;
@@ -796,9 +804,11 @@ export function createTerrainSurfaceObject(
       : [];
   group.userData.roadSigns = signs;
   const signFaces = new TerrainSurfaceMeshBuilder(context);
+  // Street names are small lettering: their own mesh, with a shorter draw distance.
+  const nameFaces = new TerrainSurfaceMeshBuilder(context);
   for (const sign of signs)
     appendSurfaceSign(
-      signFaces,
+      sign.kind === 'street-name' ? nameFaces : signFaces,
       fixtures,
       sign,
       options.fonts,
@@ -807,6 +817,8 @@ export function createTerrainSurfaceObject(
     );
   fixtureCount += signs.length;
   stats.roadSigns = signs.length;
+  stats.streetNameSigns = signs.filter((sign) => sign.kind === 'street-name').length;
+  let mastNames = 0;
   // Mapped residential land, for clutter that belongs to homes (not shops on a residential road).
   const homes = tile.landcover
     .filter((feature) => feature.class === 'residential')
@@ -1576,7 +1588,7 @@ export function createTerrainSurfaceObject(
         }
       }
     if (!style.streetlights && !style.trafficSignals) continue;
-    const arms = [...node.arms].sort((a, b) => Math.atan2(a.dz, a.dx) - Math.atan2(b.dz, b.dx));
+    const arms = sortedJunctionArms(node);
     const phaseGroups = arms.map(() => -1);
     let phaseCount = 0;
     for (const [i, arm] of arms.entries()) {
@@ -1595,32 +1607,8 @@ export function createTerrainSurfaceObject(
       if (opposite >= 0) phaseGroups[opposite] = phaseCount;
       phaseCount++;
     }
-    for (let i = 0; i < arms.length && fixtureCount < maxFixtures; i++) {
-      const a = arms[i],
-        b = arms[(i + 1) % arms.length];
-      if (!a || !b) continue;
-      const angle = (Math.atan2(b.dz, b.dx) - Math.atan2(a.dz, a.dx) + Math.PI * 2) % (Math.PI * 2);
-      if (angle > Math.PI + 0.1 || angle < 0.3) continue;
-      const direction = Math.atan2(a.dz, a.dx) + angle / 2;
-      // Intersect the two outer sidewalk edges, including divided carriageway widths.
-      const ax = a.x - a.dz * (a.width / 2 + 1.5);
-      const az = a.z + a.dx * (a.width / 2 + 1.5);
-      const bx = b.x + b.dz * (b.width / 2 + 1.5);
-      const bz = b.z - b.dx * (b.width / 2 + 1.5);
-      const cross = a.dx * b.dz - a.dz * b.dx;
-      let x: number, z: number;
-      if (Math.abs(cross) < 0.15) {
-        // The uninterrupted side of a T-junction has a straight curb, not a corner.
-        if (angle < 3) continue;
-        const distance = Math.max(a.width, b.width) / 2 + 1.5;
-        x = node.x + Math.cos(direction) * distance;
-        z = node.z + Math.sin(direction) * distance;
-      } else {
-        const along = ((bx - ax) * b.dz - (bz - az) * b.dx) / cross;
-        x = ax + a.dx * along;
-        z = az + a.dz * along;
-      }
-      if (Math.hypot(x - node.x, z - node.z) > node.radius + 15) continue;
+    for (const { a, b, index: i, x, z, direction } of surfaceJunctionCorners(node, arms)) {
+      if (fixtureCount >= maxFixtures) break;
       if (!inTile(x, z) || blocked(x, z) || network.occupied(x, z, 0.4)) continue;
       const y =
         context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z) + 0.45;
@@ -1672,6 +1660,60 @@ export function createTerrainSurfaceObject(
           context.origin[1] + sz + acrossZ * reach,
         );
         const top = Math.max(y + 7.4, roadHeight + approach.road.elevation + 7.4);
+        const oneway = approach.road.feature.oneway === true;
+        const lanes = Math.min(
+          3,
+          Math.max(
+            1,
+            Math.floor(inferLaneCount(approach.road.feature, approach.width) / (oneway ? 1 : 2)),
+          ),
+        );
+        // Head positions along the arm, measured from the pole.
+        const distances = Array.from(
+          { length: lanes },
+          (_, lane) =>
+            lateral +
+            (oneway ? -approach.width / 2 : 0) +
+            (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2)),
+        );
+        // The cross street's name hangs beside the heads, between them and the pole when it
+        // fits there, else past the last head on a longer arm.
+        let armReach = reach;
+        const named =
+          signProfile.streetNames && mastNames < STREET_NAME_SIGNS_PER_TILE
+            ? crossStreetName(node, approach, signProfile.streetNames, side)
+            : undefined;
+        if (named) {
+          const width = streetNamePanelWidth(named.name, STREET_NAME_MAST);
+          const inner = Math.min(...distances) - 0.45 - 0.25;
+          let along: number;
+          if (inner - 0.6 >= width) along = inner - width / 2;
+          else {
+            along = Math.max(...distances) + 0.45 + 0.25 + width / 2;
+            armReach = Math.max(reach, along + width / 2 + 0.2);
+          }
+          const sign: SurfaceSign = {
+            kind: 'street-name',
+            pattern: 'street-name-mast',
+            appearance: signProfile,
+            evidence: ['name', control.source === 'mapped' ? 'traffic_signals' : 'inferred-signal'],
+            roadId: named.road.feature.id,
+            x: sx + acrossX * along,
+            z: sz + acrossZ * along,
+            ground: y,
+            dx: approach.dx,
+            dz: approach.dz,
+            lines: [named.name],
+            source: 'mapped',
+            // Hung just under the arm, whose underside is 11 cm below `top`.
+            hang: top - 0.17 - STREET_NAME_MAST.height / 2 - y,
+          };
+          appendSurfaceSign(nameFaces, fixtures, sign, options.fonts, options.signFont);
+          signs.push(sign);
+          stats.roadSigns++;
+          stats.streetNameSigns++;
+          mastNames++;
+        }
         fixtures.push(
           {
             x: sx,
@@ -1684,27 +1726,15 @@ export function createTerrainSurfaceObject(
           { x: sx, z: sz, y: y + 0.16, yaw: armYaw, size: [0.52, 0.32, 0.52], color: '#969c99' },
           { x: sx, z: sz, y: top - 0.1, yaw: armYaw, size: [0.34, 0.4, 0.34], color: '#626d73' },
           {
-            x: sx + (acrossX * reach) / 2,
-            z: sz + (acrossZ * reach) / 2,
+            x: sx + (acrossX * armReach) / 2,
+            z: sz + (acrossZ * armReach) / 2,
             y: top,
             yaw: armYaw,
-            size: [0.2, 0.22, reach],
+            size: [0.2, 0.22, armReach],
             color: '#626d73',
           },
         );
-        const oneway = approach.road.feature.oneway === true;
-        const lanes = Math.min(
-          3,
-          Math.max(
-            1,
-            Math.floor(inferLaneCount(approach.road.feature, approach.width) / (oneway ? 1 : 2)),
-          ),
-        );
-        for (let lane = 0; lane < lanes; lane++) {
-          const distance =
-            lateral +
-            (oneway ? -approach.width / 2 : 0) +
-            (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2));
+        for (const distance of distances) {
           const head: TerrainSignalHead = {
             x: sx + acrossX * distance,
             z: sz + acrossZ * distance,

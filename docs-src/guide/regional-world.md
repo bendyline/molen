@@ -22,7 +22,7 @@ catalogs across those packs, validates references, and passes plain documents to
 An architecture-only catalog works without an ecological atlas. A catalog scoped to a different
 style pack is omitted, so a custom style pack can retain the ecological content.
 
-The ecological atlas and catalog total about 169 KB gzip (173 KB as a content pack). Its 264 procedural plant presets need no
+The ecological atlas and catalog total about 207 KB gzip (212 KB as a content pack). Its 546 procedural plant presets need no
 GLB downloads. The architectural atlas is about 313 KB gzip; ordinary regional recipes are small
 JSON files using the default pack's shared material graphs. Authored landmark GLBs continue to
 use the existing geographically sharded, lazy model archives.
@@ -105,15 +105,15 @@ placement seeds stay tied to individual scatter IDs/versions rather than unrelat
 ## Plant and building selection
 
 The plant families cover broadleaf, conifer, palm, cactus, succulent, bamboo, banana, grass, fern, reed,
-mangrove, deadwood, shrub, thicket, forb, vine, mat, and fallen-wood silhouettes. Habitats combine canopy, understory, ground cover, open land,
-parks, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
+mangrove, deadwood, shrub, thicket, forb, vine, mat, fallen-wood, clipped hedge, and rock silhouettes. Habitats combine canopy, understory, ground cover, open land,
+parks, yards, verges, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
 desert profiles and avoid applying Australian eucalyptus profiles to New Zealand.
 
-Each of the 88 plant forms has a base, spreading, and slender preset, available in
+Each of the 182 plant forms has a base, spreading, and slender preset, available in
 every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
 crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
 trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
-All 19 procedural families share the existing near/medium/far triangle limits.
+All 21 procedural families share the existing near/medium/far triangle limits.
 
 ### Brush and ground coverage
 
@@ -125,7 +125,8 @@ trunk and hanging from their branches. They do not attach to arbitrary mapped tr
 
 Natural forest, wood, scrub and heath receive an `understory` scatter layer. Open grassland and
 savanna receive sparser brush. Cultivated polygons, parks, gardens and residential land do not
-receive wild overgrowth from these rules. Explicit wetland labels permit sedge patches; desert
+receive wild overgrowth from these rules; yards and parks are planted instead (see
+[Yards, parks and verges](#yards-parks-and-verges)). Explicit wetland labels permit sedge patches; desert
 profiles retain sparse dry forms and never acquire humid forest plants.
 
 The optional clustering `sharedSeed` coordinates broad patches across vegetation layers while
@@ -136,10 +137,53 @@ building clearances than trees; road surfaces, buildings and water remain exclud
 
 Earth tiles reserve `maxUnderstoryInstances` / `maxUnderstoryModels` separately from canopy and
 groundcover. At the finest level, Economy allows 450 brush instances/two models, Balanced
-1,600/three, and High 2,400/four. One coarser level retains 80/250/400 instances respectively;
-coarser levels omit brush. Existing groundcover instance caps stay at 0/5,000/8,000, with
-0/five/seven model slots. Economy keeps simplified shrub masses while omitting fine blades and
+1,800/four, and High 2,800/six. One coarser level retains 80/250/400 instances respectively;
+coarser levels omit brush. Groundcover instance caps are 0/6,500/10,000, with
+0/seven/ten model slots. Economy keeps simplified shrub masses while omitting fine blades and
 litter. These are per-tile limits, not whole-scene frame-rate guarantees.
+
+A model slot is what a walker reads as variety: a tile draws only its commonest species in each
+layer, and the rest take the place of their rule's commonest one. Ground cover and beds, which
+have no distant form, stop drawing about 165 m from the edge of their quarter of the tile at
+High on a 1080-line view (sooner at lower quality). That is nearer than before, and it is what
+pays for the larger counts: a tuft a quarter of a kilometer off is a pixel or two.
+
+### Yards, parks and verges
+
+Planted ground has its own scatter layer, `garden`, with its own budget
+(`maxGardenInstances` / `maxGardenModels`: 700/three at Economy, 5,000/nine at Balanced and
+9,000/fourteen at High on the finest level), so a wood in the same tile cannot thin a
+neighborhood's planting and the planting cannot thin the wood. Each habitat plants by role:
+
+| Rule | Land | What it places |
+| --- | --- | --- |
+| `yard_shrubs`, `yard_beds` | Residential land and inferred yards | Garden shrubs and clipped globes, with flower beds, ornamental grasses, ferns and mulch gathered round them |
+| `yard_ornamentals` | The same | Small flowering and red-leaved trees, columnar conifers, hedge runs |
+| `lawn_flowers` | Yards and parks | Clover, daisies and other low flowers in mown grass |
+| `park_shrubs`, `park_beds` | Parks, gardens, cemeteries, greens | Larger shrub borders and planted beds |
+| `street_planting` | Commercial, retail, civic, school and hospital land | Sparse landscaping shrubs and hedges |
+
+Shrubs and beds share one density field, so a yard is planted in pockets a few meters across
+with lawn between them. Rough ground is separate and stays in the wild layers: `verge_grass` and
+`verge_brush` put rank grass, weeds, wildflowers and pioneer brush on unmapped ground, `waste_ground`
+puts weeds on industrial and railway land, and `outcrops` puts stones on open dry, cold and
+desert ground.
+
+The 83 forms added for this are regional lists, not a planting survey: rhododendron, hydrangea
+and sword fern in Pacific Northwest yards, sheared azalea mounds and cloud-pruned pines in
+Japan, oleander, lavender and pencil cypress round the Mediterranean, hibiscus and croton in the
+tropics, bottlebrush in Australia. A preset's optional `bloom` color draws blossom as part of the
+plant's own mesh, and small ornamental trees carry theirs as the spring color of their
+`phenology`, so a cherry is pink in its spring months.
+
+A tile draws each garden model once per quarter, so the layer chooses its models quarter by
+quarter and by role: each rule's commonest species there first, then each rule's second. A street
+therefore differs from the next, and the few trees and hedges are not crowded out by the beds.
+Lists are nearly flat for the same reason.
+
+Limits: hedge runs are placed like any other plant, at a random bearing, and do not follow a lot
+line or a fence. Blossom on shrubs and beds does not follow the month. Planting follows mapped
+land use, so a yard mapped as nothing in particular gets verge grass, not a garden.
 
 The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
 is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
@@ -232,12 +276,13 @@ selects residential versus commercial pools; see [building infill](worldgen.md#i
 Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred
 entrance fits an eligible exterior wall, reserves a ground-floor window bay, and yields to known
 structural openings, open ground floors, and raised buildings. It is a visual entrance; it does
-not create a traversable opening or claim a surveyed door position. Industrial and farm recipes
+not create a traversable opening or claim a surveyed door position. A building drawn with the
+simplified facade a crowded tile falls back to keeps the same entrance as a bare door leaf. Industrial and farm recipes
 also include high windows and larger service doors.
 
 ## Agricultural land use
 
-All 36 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
+All 38 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
 agricultural overrides (including the Corn Belt, Cerrado/Pampas and Indus/Gangetic plains). It activates only on
 mapped or retrieved farmland, cropland, orchards, vineyards, plantations and pasture. Climate
 alone never turns natural habitat into a farm. Ordinary farmland receives agricultural
@@ -246,7 +291,7 @@ appearance from the ecology pack without another download.
 The 22 crop recipes cover maize, soybean, small cereals, rice, cotton, sugarcane, sunflower,
 rapeseed, root vegetables, sorghum; olive, fruit, date, coconut, oil-palm, coffee, tea, banana,
 rubber and grape cultivation; and pasture/fallow surfaces. Ten annual forms each have three
-procedural variants. The complete catalog now has 264 plant recipes and 474 appearances with
+procedural variants. The complete catalog now has 546 plant recipes and 837 appearances with
 crop stages and deciduous seasons. Several source tags share a visual recipe: wheat, barley
 and rye use the small-cereal model. Preserve the source `crop` tag when presenting observations;
 `cultivation.crop` identifies a rendering recipe.
@@ -340,12 +385,12 @@ different order does not change selection. Earth and World Explorer load it by d
 is in the host's pack index. `ambient: { wildlife: false }` disables animals in `mountEarthView`;
 World Explorer accepts `?wildlife=0`. Frozen captures retain the existing ambient opt-in rule.
 
-The catalog has 90 recipes: three adult body/coat forms for each of 21 named mammal taxa and nine
-functional bird, reptile, fish, and insect groups. These are modest visual variations, not claims
+The catalog has 111 recipes: three adult body/coat forms for each of 21 named mammal taxa and of
+sixteen functional groups (birds, reptiles, fish, insects, and an unnamed cat and rabbit). These are modest visual variations, not claims
 about sex, age or subspecies. Each trio shares habitat/range/season gates and divides the previous
 visual density equally; total expected abundance and population caps stay unchanged. Mammal country membership comes from Mammal Diversity Database v2.5 under
 CC BY 4.0. A quarter-degree Natural Earth map-unit grid preserves overseas territory distinctions.
-The range document compresses to about 30 KB; the recipe catalog adds about 6 KB (40 KB as a content pack). No animal GLBs
+The range document compresses to about 30 KB; the recipe catalog adds about 7.5 KB (41 KB as a content pack). No animal GLBs
 are downloaded. Source hashes, transformations, licenses, and limitations ship in the pack.
 
 Country membership is a coarse limit, not within-country occupancy. Named taxa require an
@@ -355,12 +400,26 @@ explicit mapped conservation habitat, and water-dependent animals require mapped
 An uncovered range cell cannot authorize a named mammal. Unnamed functional groups deliberately
 make no precise species claim. These choices and visual densities are authored priors, not a census.
 
-Wildlife reads the finest displayed land-cover and human-feature tiles. Unknown terrain, built
-areas, roads, buildings, water inappropriate to the animal, and steep slopes reject placement.
+Seven of the functional groups live in towns: small songbirds, a crow-sized dark bird, pigeons,
+waterfowl grazing lawns within 60 m of mapped water, butterflies, cats and rabbits. They carry no
+taxon and no range: habitat places them, within broad biome limits for the waterfowl and
+butterflies and on temperate Nearctic and Palearctic ground for the rabbit. Their
+visual densities are several times the wild groups', because roads and houses leave only part of
+a block to stand on and a small bird is seen from tens of meters, not hundreds.
+
+Wildlife reads the finest displayed land-cover and human-feature tiles. Residential land is the
+`yard` habitat: its lawns and gardens are usable between the houses and streets, which keep their
+buffers. Gardens, cemeteries, village greens, recreation grounds and golf courses count as `park`,
+and a park, lawn or wood mapped on residential land is that habitat, in whichever order the map
+lists them. Unknown terrain, commercial, industrial and other built-up land, roads, buildings,
+water inappropriate to the animal, and steep slopes reject placement.
 Island/courtyard holes remain usable. Swimming animals share the rendered water datum; flight
-uses a bounded clearance. The 20 Hz kernel uses stable world-grid candidates, independent seeds,
-plain restorable state, bounded wandering, and path substeps. Population, distance and pose caps
-follow Earth quality. Models share recipe geometry, use one opaque skinned draw per animal, and
+uses a bounded clearance, and a flying animal may cross a road on its way but never a building
+(the habitat has no building heights). The 20 Hz kernel uses stable world-grid candidates,
+independent seeds, plain restorable state, bounded wandering, and path substeps. Earth quality
+sets the population, the nearest candidates first: 6, 8, 12, 16, 24 and 32 animals from Minimum
+to Ultra (`earthPerformanceTier(level).ambient.animals`). Distance and pose caps follow quality
+too. Models share recipe geometry, use one opaque skinned draw per animal, and
 dispose with the terrain stream. Tiny animals disappear at short distances.
 
 An explicit vegetation month also suppresses the generic insect/lizard groups in the coarse
@@ -373,7 +432,10 @@ priors, not a migration simulation. They are independent of the named visual mam
 Crickets still use the generic recording gated by regional habitat and season. Both retain
 weather, height and vehicle suppression. Composing hosts supply `EarthAudioFrame.location`
 and `regionalAmbience` from `EarthWildlife.ambience`; older packs without a birdsong catalog
-retain the generic bird soundscape. See [Sound and music](audio.md).
+retain the generic bird soundscape. A listener on a street or path hears the habitat the road
+runs through; inside a building's footprint or on built-up land there is none. The habitat
+reported in residential land is `yard`, so a birdsong profile is heard there only when its
+`habitats` name it. See [Sound and music](audio.md).
 
 ## Authoring and verification in this repository
 

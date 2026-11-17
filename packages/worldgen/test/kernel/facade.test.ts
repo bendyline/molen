@@ -147,6 +147,54 @@ describe('facades', () => {
     }
   });
 
+  it('keeps a bare door on a simplified facade, for eight vertices', () => {
+    const raw = testStyle('test.pack.entry', { roof: GABLE_ONLY }) as Record<string, unknown>;
+    const withEntrance = (entrance: boolean): ArchStyleDoc => {
+      const parsed = validateByKind('archstyle' as never, {
+        ...raw,
+        facade: {
+          ...(raw.facade as object),
+          ...(entrance
+            ? { details: { entrance: { width: 1.1, height: 2.1, style: 'single' } } }
+            : {}),
+        },
+      });
+      if (!parsed.ok) throw new Error(parsed.formatted);
+      return parsed.value as ArchStyleDoc;
+    };
+    const doored = withEntrance(true),
+      blank = withEntrance(false);
+    const simple = build(doored, { simplified: true });
+    const plain = build(blank, { simplified: true });
+    const slotVertices = (buffers: MeshBuffers, slot: string): number =>
+      new Set(
+        buffers.groups
+          .filter((group) => group.slot === slot)
+          .flatMap((group) => [...buffers.indices.slice(group.start, group.start + group.count)]),
+      ).size;
+    // A leaf and its light, with no frame, handle or threshold. The leaf is the only trim a
+    // simplified facade has, and the door takes the ground-floor window bay it stands in.
+    expect(slotVertices(plain.buffers, 'trim')).toBe(0);
+    expect(slotVertices(simple.buffers, 'trim')).toBe(4);
+    expect(simple.buffers.vertexCount - plain.buffers.vertexCount).toBeGreaterThan(0);
+    expect(simple.buffers.vertexCount - plain.buffers.vertexCount).toBeLessThanOrEqual(8);
+    // The detailed building draws the same door its own way, in place of a framed window.
+    expect(build(doored).buffers.positions).not.toEqual(build(blank).buffers.positions);
+    // Walls and roof alone carry no facade, so no door either.
+    expect(build(doored, { tier: 2 }).buffers.vertexCount).toBe(
+      build(blank, { tier: 2 }).buffers.vertexCount,
+    );
+    // A raised part has no ground to enter from.
+    const raised = { identity: 'f:2', labels: ['house'], outline: SHAPES.box as Vec2[] };
+    expect(
+      build(doored, { simplified: true, request: { ...raised, height: 9, minHeight: 3 } }).buffers
+        .vertexCount,
+    ).toBe(
+      build(blank, { simplified: true, request: { ...raised, height: 9, minHeight: 3 } }).buffers
+        .vertexCount,
+    );
+  });
+
   it('emits punched windows and bands at full detail and drops them at coarser tiers', () => {
     const doc = style({ roof: GABLE_ONLY });
     const full = build(doc);

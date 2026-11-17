@@ -131,6 +131,12 @@ export interface CreateEarthWorldgenOptions {
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
   interiors?: boolean;
+  /**
+   * Detail the buildings nearest a viewer on the ground first, regenerating the tiles round them
+   * as they walk (default true). Off, a tile keeps the buildings it first chose, largest first:
+   * for captures that compare frames from a still camera.
+   */
+  viewerFocus?: boolean;
   /** Landcover class colors (forest, grass, park, urban_area…) over the style pack's palette. */
   landcoverColors?: Readonly<Record<string, string>>;
   /**
@@ -452,6 +458,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       (options.interiors ?? true)
         ? { furnish: createGarageFurnisher(options.content.parkedVehicles ?? []) }
         : false,
+    ...(options.viewerFocus === false ? { viewerFocus: false } : {}),
     propLod: options.propLod ?? true,
     ...(options.landcoverColors !== undefined ||
     options.groundMaterial !== undefined ||

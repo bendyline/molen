@@ -9,7 +9,9 @@ export type TerrainRoadSignPatternId =
   | 'yield'
   | 'attraction'
   | 'route-guide'
-  | 'route-marker';
+  | 'route-marker'
+  | 'street-name-mast'
+  | 'street-name-blade';
 
 export interface TerrainRoadSignPattern {
   id: TerrainRoadSignPatternId;
@@ -115,5 +117,25 @@ export const TERRAIN_ROAD_SIGN_PATTERNS: readonly TerrainRoadSignPattern[] = [
     placement: 'A repeated overhead route and destination board on the mainline.',
     fallback:
       'Omit if the route and destination are unknown. Route numbers are never treated as exit numbers.',
+  },
+  {
+    id: 'street-name-mast',
+    title: 'Mast-arm street name',
+    family: 'junction',
+    cues: ['name', 'traffic_signals'],
+    placement:
+      'A panel hung from each signal mast arm, facing arriving traffic and naming the street it crosses.',
+    fallback:
+      'Requires a region with a street-name style and a named cross street. Unnamed roads, ramps and turn connectors get no panel; names are abbreviated, never invented.',
+  },
+  {
+    id: 'street-name-blade',
+    title: 'Corner street name blades',
+    family: 'junction',
+    cues: ['name', 'junction topology'],
+    placement:
+      'Two double-sided blades on one corner post, each parallel to the street it names.',
+    fallback:
+      'Requires two differently named streets forming a corner. Signalized junctions carry their names on the masts instead.',
   },
 ];

@@ -39,6 +39,43 @@
     },
     {
       "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Open the door",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
+    },
+    {
+      "type": "screenshot",
+      "name": "01b-front-door"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Close the door",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "wait",
+      "durationMs": 1200
+    },
+    {
+      "type": "screenshot",
+      "name": "01c-door-open"
+    },
+    {
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait-for",
       "selector": "#location",
       "text": "-122.01421",
       "timeoutMs": 240000

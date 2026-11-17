@@ -24,7 +24,9 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
    [medium-fi style guide](docs-src/guide/medium-fi.md); the corpus audit and its backlog are in
    [content/worldgen/source/MEDIUM-FI-REVIEW.md](content/worldgen/source/MEDIUM-FI-REVIEW.md),
    and the whole-scene review of the World Explorer against that guide, with its backlog, is in
-   [examples/world-explorer/VISUAL-REVIEW.md](examples/world-explorer/VISUAL-REVIEW.md).
+   [examples/world-explorer/VISUAL-REVIEW.md](examples/world-explorer/VISUAL-REVIEW.md); the
+   review from eye height (houses, doors, yards, planting, animals) is in
+   [examples/world-explorer/GROUND-LEVEL-REVIEW.md](examples/world-explorer/GROUND-LEVEL-REVIEW.md).
    Vehicles, people, animals and other moving models also follow
    [content/entities/MODEL-QUALITY.md](content/entities/MODEL-QUALITY.md) (proportion archetypes,
    family review, the `model-sheet.mjs` review tool).

@@ -25,6 +25,8 @@ export {
 export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
 export {
+  type InteriorDoorQuery,
+  type InteriorDoorState,
   type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,

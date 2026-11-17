@@ -109,6 +109,21 @@ describe('earth device detail policy', () => {
     expect(earthInitialQualityLevel({ deviceMemory: 8, softwareRasterizer: true })).toBe(0);
   });
 
+  it('gives each tier its own wildlife count, apart from its pedestrians', () => {
+    const tiers = Array.from({ length: 6 }, (_, level) => earthPerformanceTier(level));
+    expect(tiers.map((tier) => [tier.name, tier.ambient.animals])).toEqual([
+      ['Minimum', 6],
+      ['Low', 8],
+      ['Medium', 12],
+      ['Balanced', 16],
+      ['High', 24],
+      ['Ultra', 32],
+    ]);
+    // Half the pedestrians, the count before, was 4 to 7 animals.
+    for (const tier of tiers)
+      expect(tier.ambient.animals).toBeGreaterThan(tier.ambient.pedestrians * 0.5 + 1);
+  });
+
   it('coordinates six monotonically increasing detail and working-set budgets', () => {
     const tiers = Array.from({ length: 6 }, (_, level) => earthPerformanceTier(level));
     expect(new Set(tiers.map((tier) => tier.name)).size).toBe(6);

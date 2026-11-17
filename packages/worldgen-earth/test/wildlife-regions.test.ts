@@ -42,7 +42,7 @@ describe('regional wildlife content', () => {
     );
   });
   it('ships bounded compact recipes and attributed ranges', () => {
-    expect(fauna.animals).toHaveLength(90);
+    expect(fauna.animals).toHaveLength(111);
     expect(ranges.taxa).toHaveLength(21);
     expect(
       gzipSync(read('wildlife/ranges.json')).length +
@@ -56,7 +56,7 @@ describe('regional wildlife content', () => {
   it('keeps each body variant in its original range and habitat, splitting visual density three ways', () => {
     const species = new Map(fauna.animals?.map((animal) => [animal.id, animal]));
     const rules = fauna.populations?.[0]?.rules ?? [];
-    expect(rules).toHaveLength(90);
+    expect(rules).toHaveLength(111);
     for (const base of fauna.animals ?? []) {
       if (/\.(compact|rangy)$/.test(base.id)) continue;
       const original = rules.find((r) => r.animal === base.id);
@@ -111,6 +111,93 @@ describe('regional wildlife content', () => {
     expect(noRanges.wildlife(x, z).every((choice) => choice.species.taxon === undefined)).toBe(
       true,
     );
+  });
+
+  it('offers town and garden groups by habitat, with no species or range claimed', () => {
+    const groups = [
+      'town_songbird_group',
+      'town_corvid_group',
+      'town_pigeon_group',
+      'lawn_waterfowl_group',
+      'garden_butterfly_group',
+      'domestic_cat_group',
+      'garden_rabbit_group',
+    ];
+    const named = (name: string) =>
+      (fauna.animals ?? []).filter((animal) => animal.id.split('.')[3] === name);
+    for (const group of groups) {
+      expect(named(group), group).toHaveLength(3);
+      for (const animal of named(group)) {
+        expect(animal.taxon, animal.id).toBeUndefined();
+        expect(animal.range, animal.id).toBeUndefined();
+      }
+    }
+    // Only named mammals carry a taxon, and each has its range: 21 of them, as before.
+    expect(new Set((fauna.animals ?? []).flatMap((animal) => animal.taxon ?? [])).size).toBe(21);
+    // What a habitat offers at a place: the choices whose rule names that habitat.
+    const [sx, sz] = projectWgs84(-122.33, 47.61);
+    const offered = (habitat: string, context = {}, x = sx, z = sz): string[] => [
+      ...new Set(
+        env
+          .wildlife(x, z, context)
+          .filter((choice) => choice.habitats.includes(habitat))
+          .map((choice) => choice.species.id.split('.')[3] as string),
+      ),
+    ];
+    // Seattle: temperate conifer forest, Nearctic, United States.
+    expect(env.ecology?.resolve(sx, sz)).toMatchObject({ biome: 5, realm: 'Nearctic' });
+    expect(offered('yard').sort()).toEqual([
+      'domestic_cat_group',
+      'eastern_grey_squirrel',
+      'garden_butterfly_group',
+      'garden_rabbit_group',
+      'town_corvid_group',
+      'town_pigeon_group',
+      'town_songbird_group',
+      'woodland_songbird',
+    ]);
+    expect(offered('park').sort()).toEqual([
+      'eastern_grey_squirrel',
+      'flower_visiting_insect',
+      'garden_butterfly_group',
+      'garden_rabbit_group',
+      'town_corvid_group',
+      'town_pigeon_group',
+      'town_songbird_group',
+      'woodland_songbird',
+    ]);
+    // Grazing waterfowl need mapped water within 60 m of the lawn.
+    expect(offered('park', { waterDistance: 61 })).not.toContain('lawn_waterfowl_group');
+    expect(offered('park', { waterDistance: 60 })).toContain('lawn_waterfowl_group');
+    expect(offered('grass', { waterDistance: 10 })).toContain('lawn_waterfowl_group');
+    expect(offered('yard', { waterDistance: 10 })).not.toContain('lawn_waterfowl_group');
+    // The cat keeps to yards; the rabbit to temperate Nearctic and Palearctic ground.
+    expect(offered('park')).not.toContain('domestic_cat_group');
+    expect(offered('yard', {}, ...projectWgs84(8.4, 48.9))).toContain('garden_rabbit_group');
+    for (const [lon, lat] of [
+      [134, -24],
+      [151.2, -33.87],
+      [-60, -3],
+      [77.2, 28.6],
+    ] as const) {
+      const yard = offered('yard', {}, ...projectWgs84(lon, lat));
+      expect(yard, `${lon}, ${lat}`).not.toContain('garden_rabbit_group');
+      expect(yard, `${lon}, ${lat}`).not.toContain('eastern_grey_squirrel');
+      expect(yard, `${lon}, ${lat}`).toContain('town_songbird_group');
+      expect(yard, `${lon}, ${lat}`).toContain('domestic_cat_group');
+    }
+    // Garden butterflies sit the cold season out with the other insects.
+    const winter = createRegionalEnvironment(
+      { atlas: ecology, catalogs: [plants, fauna], wildlifeRanges: ranges, vegetationMonth: 1 },
+      1,
+    );
+    const inWinter = winter.wildlife(sx, sz).map((choice) => choice.species.id.split('.')[3]);
+    expect(inWinter).not.toContain('garden_butterfly_group');
+    expect(inWinter).toContain('town_songbird_group');
+    // No rule names a habitat the Earth view never reports.
+    const rules = fauna.populations?.[0]?.rules ?? [];
+    expect(rules.flatMap((rule) => rule.habitats)).not.toContain('wood');
+    expect(rules.flatMap((rule) => rule.habitats)).not.toContain('coast');
   });
 
   it('resolves fauna independently and rejects accidental channel ambiguity and missing references', () => {

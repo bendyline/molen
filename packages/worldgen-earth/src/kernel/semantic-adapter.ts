@@ -101,6 +101,12 @@ export interface SemanticAdapterOptions {
   /** Added to the detail tier derived from the level (economy quality starts one tier lower). */
   tierOffset?: number;
   /**
+   * Where a viewer stands on the ground, in world X/Z. At the finest level the buildings within
+   * `BUILDING_FOCUS_RADIUS` of it take the tile's detail budget first, nearest first: the ones a
+   * walker can reach get their facades, entrances and interiors before the largest in the tile.
+   */
+  focus?: readonly [number, number];
+  /**
    * Landmarks and business identities for mapped places. Without them, mapped businesses are
    * not recognized and street furniture is not placed.
    */
@@ -155,6 +161,14 @@ function hostBuildingChoices(
 
 /** Scatter label for ground that no mapped landcover or land-use polygon covers. */
 export const OPEN_GROUND_LABEL = 'open_ground';
+
+/**
+ * Meters round a viewer on the ground within which a tile's buildings are queued nearest first
+ * (`SemanticAdapterOptions.focus`). About as far as a compact detail budget reaches in a dense
+ * suburb: a Seattle tile's 320,000 vertices detail 148 of its buildings, the farthest of them at
+ * this radius. Beyond it the queue is by size, as it is without a viewer.
+ */
+export const BUILDING_FOCUS_RADIUS = 140;
 
 /** Build the scatter request: land polygons with labels plus road, water, and building exclusions. */
 export function scatterRequestFromTile(
@@ -519,6 +533,16 @@ export function semanticTileToBatch(
       : {}),
     tier: geom.levelBelowMax + Math.max(0, options.tierOffset ?? 0),
     interiors: options.features?.interiors === true && geom.levelBelowMax === 0,
+    ...(options.focus !== undefined && geom.levelBelowMax === 0
+      ? {
+          focus: {
+            // The buildings' frame: world units from the tile's origin, as their outlines are.
+            x: options.focus[0] - geom.originX,
+            z: options.focus[1] - geom.originZ,
+            radius: BUILDING_FOCUS_RADIUS / geom.metersPerUnit,
+          },
+        }
+      : {}),
     ...(centreRegion !== undefined ? { regionId: centreRegion.id } : {}),
     skippedByOwnership,
     clippedPieces,

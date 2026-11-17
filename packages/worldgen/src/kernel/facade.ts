@@ -84,6 +84,12 @@ export interface FacadeInput {
   }[];
   /** Internal layout reservation so a fallback entrance does not overlap a punched window. */
   entranceReservation?: { edge: number; start: number; end: number };
+  /**
+   * Draw the fallback entrance as a door leaf and its light alone, with no frame, handle or
+   * mullion: eight vertices, which a simplified facade can spend on every building of a crowded
+   * batch. A street of houses with windows and no way in reads as a row of sheds.
+   */
+  plainEntrance?: boolean;
 }
 
 export interface FacadeStats {
@@ -621,11 +627,13 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
       ...input.trim,
       color: [input.trim.color[0] * 0.42, input.trim.color[1] * 0.42, input.trim.color[2] * 0.42],
     };
+    const plain = input.plainEntrance === true;
     wallQuad(edge, 0.065, start, end, bottom, top, UNIT_UV, panel, out);
-    windowFrame(edge, start, end, bottom, top, input.trim, out, input.relief === true, true);
+    if (!plain)
+      windowFrame(edge, start, end, bottom, top, input.trim, out, input.relief === true, true);
     if (entrance.style === 'service') {
       // Broad shutter panels read as a working loading entrance, with bounded horizontal ribs.
-      for (let i = 1; i < 7; i++) {
+      for (let i = 1; i < (plain ? 0 : 7); i++) {
         const y = bottom + (entrance.height * i) / 7;
         wallQuad(edge, 0.075, start + 0.04, end - 0.04, y, y + 0.025, UNIT_UV, input.trim, out);
       }
@@ -645,6 +653,7 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
           input.window,
           out,
         );
+        if (plain) continue;
         wallQuad(
           edge,
           0.09,
@@ -657,7 +666,7 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
           out,
         );
       }
-      if (panes === 2)
+      if (panes === 2 && !plain)
         wallQuad(
           edge,
           0.08,

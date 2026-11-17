@@ -392,5 +392,79 @@
       "unit": ".artifacts/regional-world/agriculture-final-unit.log",
       "golden": ".artifacts/regional-world/agriculture-golden.log"
     }
+  },
+  "streetLevelPlanting": {
+    "status": "started",
+    "started": "2026-11-15",
+    "objective": "Make ground walked on look planted and lived in: yards, parks, verges and street land with regional shrubs, beds, hedges, small trees and rough-ground cover, within bounded draws and downloads.",
+    "baseFormsAdded": 83,
+    "plantsAdded": 249,
+    "familiesAdded": ["hedge", "rock"],
+    "presetFieldsAdded": ["bloom"],
+    "habitats": 38,
+    "composition": [
+      "A separate garden scatter layer and budget plants residential land, inferred yards, parks, gardens, cemeteries and street land; a wood in the same tile cannot thin it.",
+      "Garden models are kept by role (each rule its commonest species first) and chosen per quarter of a tile, which is how a host draws them.",
+      "Shrubs and beds share one density field, so planting forms pockets a few meters across with lawn between.",
+      "Rough ground stays in the wild layers: verge grass and brush on unmapped ground, weeds on industrial and railway land, stones on open dry, cold and desert ground.",
+      "Eleven climate zones carry their own nearly flat lists; small ornamental trees blossom through their spring phenology color."
+    ],
+    "budgets": {
+      "gardenInstancesFinest": {
+        "economy": 700,
+        "balanced": 5000,
+        "high": 9000
+      },
+      "gardenModelsFinest": {
+        "economy": 3,
+        "balanced": 9,
+        "high": 14
+      },
+      "understoryInstancesFinest": {
+        "economy": 450,
+        "balanced": 1800,
+        "high": 2800
+      },
+      "understoryModelsFinest": {
+        "economy": 2,
+        "balanced": 4,
+        "high": 6
+      },
+      "groundCoverInstancesFinest": {
+        "economy": 0,
+        "balanced": 6500,
+        "high": 10000
+      },
+      "groundCoverModelsFinest": {
+        "economy": 0,
+        "balanced": 7,
+        "high": 10
+      },
+      "nearOnlyReach": 0.65
+    },
+    "delivery": {
+      "catalogBytes": 2165401,
+      "atlasAndCatalogGzipBytes": 207000,
+      "note": "Habitats in one zone repeat its lists further apart than gzip looks back; sharing them is the way to shrink this."
+    },
+    "measurements": {
+      "tile": "Seattle package, level 15, Wallingford (5248/11436), High quality, WebGL budgets",
+      "scatterInstances": {
+        "before": 1205,
+        "after": 7630
+      },
+      "plantModels": {
+        "before": 19,
+        "after": 47
+      }
+    },
+    "limits": [
+      "Regional lists are authored visual priors, reviewed only in the Pacific Northwest.",
+      "Hedge runs take a random bearing; nothing follows a lot line or fence.",
+      "Blossom on shrubs and beds does not follow the month.",
+      "Planting follows mapped land use; unmapped yards receive verge cover instead.",
+      "Street and yard canopy species were not changed."
+    ],
+    "review": "examples/world-explorer/GROUND-LEVEL-REVIEW.md"
   }
 }

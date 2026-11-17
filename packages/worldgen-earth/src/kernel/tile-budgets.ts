@@ -26,25 +26,44 @@ const SCATTER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
  */
 const GROUND_COVER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [0],
-  balanced: [5000],
-  high: [8000],
+  balanced: [6500],
+  high: [10_000],
 };
+// A model is a draw per quarter tile in view, and what a walker reads as variety: a tile shows
+// only its commonest species, so seven left a meadow, a wood's floor and a verge sharing them.
 const GROUND_COVER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [0],
-  balanced: [5],
-  high: [7],
+  balanced: [7],
+  high: [10],
 };
 
 // Broad shrub masses survive Economy and one coarser tile; blades and litter remain near-only.
 const UNDERSTORY_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [450, 80],
-  balanced: [1600, 250],
-  high: [2400, 400],
+  balanced: [1800, 250],
+  high: [2800, 400],
 };
 const UNDERSTORY_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [2, 1],
-  balanced: [3, 2],
-  high: [4, 2],
+  balanced: [4, 2],
+  high: [6, 2],
+};
+
+/**
+ * Planted ground (the `garden` layer): yard shrubs and beds, hedges, small ornamental trees, park
+ * borders. Its own pool, so a wood in the same tile cannot thin a neighborhood's planting. Most
+ * of it is near-detail-only beds, which a coarser tile does not draw at all, so that level keeps
+ * only a hint of the shrubs.
+ */
+const GARDEN_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [700, 100],
+  balanced: [5000, 300],
+  high: [9000, 500],
+};
+const GARDEN_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [3, 1],
+  balanced: [9, 2],
+  high: [14, 3],
 };
 
 const SCATTER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
@@ -84,6 +103,8 @@ export function worldgenTileBudgetForQuality(
     maxGroundCoverModels: byLevel(GROUND_COVER_MODELS[quality], levelBelowMax),
     maxUnderstoryInstances: byLevel(UNDERSTORY_INSTANCES[quality], levelBelowMax),
     maxUnderstoryModels: byLevel(UNDERSTORY_MODELS[quality], levelBelowMax),
+    maxGardenInstances: byLevel(GARDEN_INSTANCES[quality], levelBelowMax),
+    maxGardenModels: byLevel(GARDEN_MODELS[quality], levelBelowMax),
     maxAgricultureInstances: byLevel(
       quality === 'economy' ? [500, 100] : quality === 'balanced' ? [3500, 600] : [6500, 1000],
       levelBelowMax,

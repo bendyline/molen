@@ -108,7 +108,8 @@ main thread each time it is drawn. `renderer.farShadowInfo` reports its radius, 
 been drawn and how long the last drawing took.
 `renderer.shadowTexelSize` reports the meters one texel covers as of the last frame (`undefined`
 while sun shadows are off), for hosts that keep a subject the map cannot resolve out of the
-shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide).
+shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide and
+`VehicleVisual.updateShadows` in the vehicles guide).
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.

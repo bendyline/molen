@@ -7,7 +7,7 @@ import { DEFAULT_ROAD_SIGN_PROFILE, type TerrainRoadSignProfile } from './road-s
 import type { TerrainRouteMarker, TerrainRouteShieldLibrary } from './route-shields';
 
 export interface SurfaceSign {
-  kind: 'stop' | 'yield' | 'speed' | 'guide' | 'exit' | 'attraction' | 'route';
+  kind: 'stop' | 'yield' | 'speed' | 'guide' | 'exit' | 'attraction' | 'route' | 'street-name';
   routeShield?: TerrainRouteMarker;
   pattern: TerrainRoadSignPatternId;
   /** Shared resolved country convention; source text and pattern identity remain separate. */
@@ -32,6 +32,241 @@ export interface SurfaceSign {
   allWay?: boolean;
   /** Overhead gantry span; absent for roadside signs. */
   span?: number;
+  /** A street name hung from a signal mast arm: panel center height above `ground`; no support. */
+  hang?: number;
+  /**
+   * A pair of street-name blades on one post: the upper blade (`lines[1]`) turns this far (radians,
+   * as `atan2(dz, dx)` turns) from the lower one, which faces `dx, dz` and names `lines[0]`.
+   */
+  bladeTurn?: number;
+}
+
+/** Street-name panel proportions, in meters: lettering em size, panel height, side padding, width. */
+export interface StreetNamePanel {
+  em: number;
+  height: number;
+  padding: number;
+  minWidth: number;
+  maxWidth: number;
+}
+
+/** Overhead panel on a signal mast arm: capitals about 23 cm, a little over the MUTCD's 8 inches. */
+export const STREET_NAME_MAST: Readonly<StreetNamePanel> = {
+  em: 0.32,
+  height: 0.5,
+  padding: 0.18,
+  minWidth: 1.4,
+  maxWidth: 4,
+};
+
+/** Corner blade: capitals about 12 cm, as on a local street's 6-inch blade. */
+export const STREET_NAME_BLADE: Readonly<StreetNamePanel> = {
+  em: 0.17,
+  height: 0.22,
+  padding: 0.08,
+  minWidth: 0.6,
+  maxWidth: 1.5,
+};
+
+/** Blade centers above the post's footing; the post stops just above the upper blade. */
+const BLADE_HEIGHTS = [2.9, 3.14] as const;
+
+/**
+ * A panel's width for its legend, from Overpass-like advances so the planner needs no font (within a
+ * few percent for street names). Longer legends shrink to fit the widest panel.
+ */
+export function streetNamePanelWidth(legend: string, panel: Readonly<StreetNamePanel>): number {
+  let advance = 0;
+  for (const c of legend)
+    advance +=
+      c === ' '
+        ? 0.25
+        : /[iljtfrI.,'1]/.test(c)
+          ? 0.33
+          : /[mwMW]/.test(c)
+            ? 0.85
+            : /[A-Z]/.test(c)
+              ? 0.66
+              : /\d/.test(c)
+                ? 0.6
+                : 0.56;
+  return Math.min(
+    panel.maxWidth,
+    Math.max(panel.minWidth, advance * panel.em + panel.padding * 2),
+  );
+}
+
+/** The library font a sign letters with: the requested role or face, else the highway role. */
+function signFontId(
+  fonts: FontLibrary,
+  appearance: Readonly<TerrainRoadSignProfile>,
+  font?: string,
+): string {
+  const requested = font ?? appearance.font;
+  const resolved = requested ? (fonts.roles?.[requested] ?? requested) : undefined;
+  return resolved && fonts.fonts[resolved]
+    ? resolved
+    : (fonts.roles?.highway ?? fonts.defaultFont);
+}
+
+/** Lettering as 2D triangles centered on the origin, Y up. */
+function letterTriangles(
+  value: string,
+  fonts: FontLibrary,
+  font: string,
+  options: { size: number; maxWidth: number; maxHeight: number },
+): [number, number][][] {
+  const mesh = buildTextMesh(value, fonts, {
+    font,
+    ...options,
+    align: 'center',
+    verticalAlign: 'center',
+    maxCharacters: 80,
+  });
+  const triangles: [number, number][][] = [];
+  for (let i = 0; i < mesh.indices.length; i += 3) {
+    const points: [number, number][] = [];
+    for (let j = 0; j < 3; j++) {
+      const index = (mesh.indices[i + j] as number) * 3;
+      points.push([mesh.positions[index] as number, mesh.positions[index + 1] as number]);
+    }
+    triangles.push(points);
+  }
+  return triangles;
+}
+
+/**
+ * Street names: a single-faced panel hung from a mast arm (`hang`), or a post carrying two
+ * double-faced blades (`bladeTurn`). Faces go to `builder`; the post and straps are fixtures.
+ */
+function appendStreetNameSign(
+  builder: TerrainSurfaceMeshBuilder,
+  fixtures: TerrainBoxPlacement[],
+  sign: SurfaceSign,
+  fonts?: FontLibrary,
+  font?: string,
+): void {
+  const appearance = sign.appearance ?? DEFAULT_ROAD_SIGN_PROFILE;
+  const style = appearance.streetNames;
+  const panelColor = new THREE.Color(style?.panelColor ?? appearance.exitColor);
+  const ink = new THREE.Color(style?.inkColor ?? '#eeeadd');
+  const back = new THREE.Color('#a2aaa7');
+  const fontId = fonts ? signFontId(fonts, appearance, font) : undefined;
+  const { x, z, ground } = sign;
+  const panel = (
+    legend: string,
+    nx: number,
+    nz: number,
+    y: number,
+    size: Readonly<StreetNamePanel>,
+    twoFaced: boolean,
+  ): number => {
+    const width = streetNamePanelWidth(legend, size),
+      height = size.height,
+      half = 0.015,
+      border = Math.min(0.03, height * 0.08);
+    // `mirror` draws the far face: u and depth negate, so it reads (and winds) from behind.
+    const quad = (w: number, h: number, depth: number, color: THREE.Color, mirror: number): void => {
+      const corners: [number, number][] = [
+        [-w / 2, -h / 2],
+        [w / 2, -h / 2],
+        [w / 2, h / 2],
+        [-w / 2, h / 2],
+      ];
+      builder.face(
+        corners.map(
+          ([u, v]) =>
+            [
+              x + nz * u * mirror + nx * depth * mirror,
+              y + v,
+              z - nx * u * mirror + nz * depth * mirror,
+            ] as const,
+        ),
+        color,
+      );
+    };
+    const letters =
+      fonts && fontId && legend
+        ? letterTriangles(legend, fonts, fontId, {
+            size: size.em,
+            maxWidth: width - size.padding * 2,
+            maxHeight: height - border * 4,
+          })
+        : [];
+    for (const mirror of twoFaced ? [1, -1] : [1]) {
+      quad(width, height, half, ink, mirror);
+      quad(width - border * 2, height - border * 2, half + 0.003, panelColor, mirror);
+      for (const triangle of letters)
+        builder.face(
+          triangle.map(
+            ([u, v]) =>
+              [
+                x + nz * u * mirror + nx * (half + 0.007) * mirror,
+                y + v,
+                z - nx * u * mirror + nz * (half + 0.007) * mirror,
+              ] as const,
+          ),
+          ink,
+        );
+    }
+    if (!twoFaced) {
+      quad(width, height, half, back, -1);
+      // Edges close the gap between the two faces when seen side-on.
+      for (const [w, h, cu, cv] of [
+        [width, 0, 0, height / 2],
+        [width, 0, 0, -height / 2],
+        [0, height, width / 2, 0],
+        [0, height, -width / 2, 0],
+      ] as const) {
+        const a: [number, number] = [cu - w / 2, cv - h / 2],
+          b: [number, number] = [cu + w / 2, cv + h / 2];
+        builder.face(
+          [
+            [x + nz * a[0] - nx * half, y + a[1], z - nx * a[0] - nz * half],
+            [x + nz * b[0] - nx * half, y + b[1], z - nx * b[0] - nz * half],
+            [x + nz * b[0] + nx * half, y + b[1], z - nx * b[0] + nz * half],
+            [x + nz * a[0] + nx * half, y + a[1], z - nx * a[0] + nz * half],
+          ],
+          back,
+        );
+      }
+    }
+    return width;
+  };
+  if (sign.hang !== undefined) {
+    const y = ground + sign.hang;
+    const width = panel(sign.lines[0] ?? '', sign.dx, sign.dz, y, STREET_NAME_MAST, false);
+    // Two straps up into the mast arm above.
+    for (const u of [-1, 1])
+      fixtures.push({
+        x: x + sign.dz * u * (width / 2 - 0.25),
+        z: z - sign.dx * u * (width / 2 - 0.25),
+        y: y + STREET_NAME_MAST.height / 2 + 0.07,
+        yaw: Math.atan2(sign.dx, sign.dz),
+        size: [0.05, 0.16, 0.04],
+        color: '#626d73',
+      });
+    return;
+  }
+  const turn = sign.bladeTurn ?? Math.PI / 2;
+  const upper: [number, number] = [
+    sign.dx * Math.cos(turn) - sign.dz * Math.sin(turn),
+    sign.dx * Math.sin(turn) + sign.dz * Math.cos(turn),
+  ];
+  const top = ground + BLADE_HEIGHTS[1] + STREET_NAME_BLADE.height / 2 + 0.08;
+  fixtures.push(
+    {
+      x,
+      z,
+      y: (ground + top) / 2,
+      yaw: Math.atan2(sign.dx, sign.dz),
+      size: [0.075, top - ground, 0.075],
+      color: '#9ca5a4',
+    },
+    { x, z, y: top + 0.03, yaw: 0, size: [0.1, 0.06, 0.1], color: '#9ca5a4' },
+  );
+  panel(sign.lines[0] ?? '', sign.dx, sign.dz, ground + BLADE_HEIGHTS[0], STREET_NAME_BLADE, true);
+  panel(sign.lines[1] ?? '', upper[0], upper[1], ground + BLADE_HEIGHTS[1], STREET_NAME_BLADE, true);
 }
 
 export function appendSurfaceSign(
@@ -42,6 +277,10 @@ export function appendSurfaceSign(
   font?: string,
   routeShields?: TerrainRouteShieldLibrary,
 ): void {
+  if (sign.kind === 'street-name') {
+    appendStreetNameSign(builder, fixtures, sign, fonts, font);
+    return;
+  }
   const { x, z, dx, dz, ground } = sign;
   const appearance = sign.appearance ?? DEFAULT_ROAD_SIGN_PROFILE;
   const designs = sign.routeShield
@@ -131,11 +370,8 @@ export function appendSurfaceSign(
     );
   const text = (value: string, cy: number, w: number, h: number, color: string, cx = 0): void => {
     if (!fonts || !value) return;
-    const requested = font ?? appearance.font;
-    const resolved = requested ? (fonts.roles?.[requested] ?? requested) : undefined;
     const mesh = buildTextMesh(value, fonts, {
-      font:
-        resolved && fonts.fonts[resolved] ? resolved : (fonts.roles?.highway ?? fonts.defaultFont),
+      font: signFontId(fonts, appearance, font),
       maxWidth: w,
       maxHeight: h,
       size: h * 2,

@@ -176,7 +176,7 @@ describe('wildlife mapped habitat', () => {
     const fine = new THREE.Group();
     root.add(fine);
     const land = empty();
-    land.landcover.push({ class: 'residential', polygons: [square] });
+    land.landcover.push({ class: 'commercial', polygons: [square] });
     index.observer('landcover').added(fine, land, context(200));
     index.sync([100, 5, 100], 300);
     expect(index.sample(100, 100, 0.5)?.safe).toBe(false);
@@ -186,5 +186,143 @@ describe('wildlife mapped habitat', () => {
     expect(index.sample(100, 100, 0.5)?.safe).toBe(true);
     index.clear();
     expect(index.sample(100, 100, 0.5)).toBeUndefined();
+  });
+
+  /** One 400 m tile of the given land cover and human features, both displayed. */
+  function town(
+    landcover: TerrainSemanticTile['landcover'],
+    features: Partial<TerrainSemanticTile> = {},
+  ): WildlifeHabitatTiles {
+    const root = new THREE.Group(),
+      cover = new THREE.Group(),
+      built = new THREE.Group();
+    root.add(cover, built);
+    const index = new WildlifeHabitatTiles(root, 0);
+    index.observer('landcover').added(cover, { ...empty(), landcover }, context());
+    index.observer('features').added(built, { ...empty(), ...features }, context());
+    index.sync([200, 5, 200], 300);
+    return index;
+  }
+  const rectangle = (x0: number, z0: number, x1: number, z1: number) => ({
+    outer: [
+      [x0, z0],
+      [x1, z0],
+      [x1, z1],
+      [x0, z1],
+    ] as [number, number][],
+  });
+
+  it('makes residential land a yard between its houses and streets, which keep their buffers', () => {
+    // A house at 40..80 m and an 8 m street along z = 200 m, on a residential tile.
+    const index = town([{ class: 'residential', polygons: [square] }], {
+      buildings: [{ polygons: [rectangle(0.1, 0.1, 0.2, 0.2)] }],
+      transportation: [
+        {
+          class: 'minor_road',
+          width: 8,
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+        },
+      ],
+    });
+    // The lawn.
+    expect(index.sample(120, 120, 0.2)).toMatchObject({
+      kind: 'yard',
+      safe: true,
+      overflight: false,
+    });
+    // Inside the house, and within its 1 m buffer plus the animal's margin.
+    expect(index.sample(60, 60, 0.2)).toMatchObject({ safe: false, overflight: false });
+    expect(index.sample(81, 60, 0.2)).toMatchObject({ safe: false, overflight: false });
+    expect(index.sample(81.5, 60, 0.2)).toMatchObject({ kind: 'yard', safe: true });
+    // On the street and within its 2 m buffer: still a yard, closed to all but flight.
+    expect(index.sample(300, 200, 0.2)).toMatchObject({
+      kind: 'yard',
+      safe: false,
+      overflight: true,
+    });
+    expect(index.sample(300, 206, 0.2)).toMatchObject({ safe: false, overflight: true });
+    expect(index.sample(300, 206.5, 0.2)).toMatchObject({ safe: true, overflight: false });
+  });
+
+  it('keeps built-up land and unknown ground closed, to flight as well', () => {
+    for (const use of [
+      'commercial',
+      'industrial',
+      'retail',
+      'construction',
+      'landfill',
+      'quarry',
+      'airport',
+      'aerodrome',
+      'urban_area',
+    ])
+      expect(town([{ class: use, polygons: [square] }]).sample(120, 120, 0.2), use).toMatchObject({
+        kind: 'unknown',
+        safe: false,
+        overflight: false,
+      });
+    // No land cover under the point, with and without a street on it.
+    const street = {
+      transportation: [
+        {
+          class: 'minor_road',
+          width: 8,
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ] as [number, number][],
+          ],
+        },
+      ],
+    };
+    const bare = town([{ class: 'residential', polygons: [rectangle(0, 0, 0.25, 1)] }], street);
+    expect(bare.sample(300, 120, 0.2)).toMatchObject({
+      kind: 'unknown',
+      safe: false,
+      overflight: false,
+    });
+    expect(bare.sample(300, 200, 0.2)).toMatchObject({
+      kind: 'unknown',
+      safe: false,
+      overflight: false,
+    });
+    expect(bare.sample(50, 200, 0.2)).toMatchObject({ kind: 'yard', overflight: true });
+  });
+
+  it('lets a park, lawn or wood mapped on residential land win in either order', () => {
+    const residential = { class: 'residential', polygons: [square] };
+    for (const [use, kind] of [
+      ['park', 'park'],
+      ['grass', 'grass'],
+      ['wood', 'forest'],
+      ['meadow', 'meadow'],
+      ['wetland', 'wetland'],
+      ['garden', 'park'],
+      ['cemetery', 'park'],
+      ['village_green', 'park'],
+      ['recreation_ground', 'park'],
+      ['golf_course', 'park'],
+    ] as const) {
+      const green = { class: use, polygons: [rectangle(0.5, 0.5, 0.75, 0.75)] };
+      for (const landcover of [
+        [residential, green],
+        [green, residential],
+      ]) {
+        const index = town(landcover);
+        expect(index.sample(250, 250, 0.2), use).toMatchObject({ kind, safe: true });
+        expect(index.sample(120, 120, 0.2), use).toMatchObject({ kind: 'yard', safe: true });
+      }
+    }
+    // Between two habitats neither of which is the residential land, the later still wins.
+    const lawn = { class: 'grass', polygons: [rectangle(0.5, 0.5, 0.75, 0.75)] };
+    const park = { class: 'park', polygons: [square] };
+    expect(town([park, lawn]).sample(250, 250, 0.2)?.kind).toBe('grass');
+    expect(town([lawn, park]).sample(250, 250, 0.2)?.kind).toBe('park');
   });
 });

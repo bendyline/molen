@@ -5,8 +5,11 @@ import { animalVariants } from './animal-variants.mjs';
 const root = new URL('../', import.meta.url);
 const animals = [];
 const rules = [];
-const land = ['forest', 'wood', 'scrub', 'grass', 'meadow'];
+// Habitats are the Earth view's observed kinds. Mapped woods arrive as `forest`; residential
+// land, between its houses and streets, as `yard`; gardens, cemeteries and greens as `park`.
+const land = ['forest', 'scrub', 'grass', 'meadow'];
 const grass = ['grass', 'meadow', 'scrub'];
+const town = ['yard', 'park'];
 function animal(
   name,
   taxon,
@@ -114,7 +117,7 @@ animal(
   ['antlers', 'palmate', 'long-neck'],
   [6],
   ['Nearctic', 'Palearctic'],
-  ['forest', 'wood', 'wetland'],
+  ['forest', 'wetland'],
   { density: 2 },
 );
 animal(
@@ -127,7 +130,7 @@ animal(
   ['antlers'],
   [6, 11],
   ['Nearctic', 'Palearctic'],
-  ['forest', 'wood', 'grass', 'scrub', 'tundra'],
+  ['forest', 'grass', 'scrub', 'tundra'],
   { density: 4 },
 );
 animal(
@@ -309,7 +312,7 @@ animal(
   ['bushy-tail'],
   [4, 5, 6],
   ['Palearctic'],
-  ['forest', 'wood', 'park'],
+  ['forest', 'park', 'yard'],
   { density: 15, speed: 0.55, roam: 12 },
 );
 animal(
@@ -322,7 +325,7 @@ animal(
   ['bushy-tail'],
   [4, 5],
   ['Nearctic'],
-  ['forest', 'wood', 'park'],
+  ['forest', 'park', 'yard'],
   { density: 15, speed: 0.55, roam: 12 },
 );
 // These silhouettes represent functional groups. They deliberately have no scientific name or
@@ -337,7 +340,7 @@ animal(
   [],
   [1, 2, 3, 4, 5, 6, 12],
   null,
-  ['forest', 'wood', 'park', 'scrub'],
+  ['forest', 'park', 'scrub', 'yard'],
   { motion: 'fly', speed: 3, clearance: 8, roam: 45, rest: 0, density: 45 },
 );
 animal(
@@ -350,7 +353,7 @@ animal(
   ['raptor'],
   [2, 4, 5, 6, 7, 8, 10, 11, 12, 13],
   null,
-  ['grass', 'meadow', 'scrub', 'forest', 'wood', 'tundra'],
+  ['grass', 'meadow', 'scrub', 'forest', 'tundra'],
   { motion: 'fly', speed: 5, clearance: 30, roam: 90, rest: 0, density: 1 },
 );
 animal(
@@ -363,7 +366,7 @@ animal(
   ['parrot', 'long-tail'],
   [1, 2, 7],
   ['Neotropic', 'Afrotropic', 'Indomalayan', 'Australasia'],
-  ['forest', 'wood'],
+  ['forest'],
   { motion: 'fly', speed: 3.5, clearance: 14, roam: 55, rest: 0, density: 12 },
 );
 animal(
@@ -402,7 +405,7 @@ animal(
   [],
   null,
   null,
-  ['beach', 'coast'],
+  ['beach'],
   { motion: 'fly', speed: 4, clearance: 10, roam: 65, rest: 0, density: 22 },
 );
 animal(
@@ -439,10 +442,109 @@ animal(
   '#c7a36a',
   '#6d684b',
   [],
-  [1, 2, 4, 7, 8, 9, 12, 14],
+  [1, 2, 4, 5, 7, 8, 9, 12, 14],
   null,
   ['meadow', 'grass', 'park'],
   { motion: 'fly', clearance: 0.6, speed: 0.2, roam: 3, rest: 0, density: 30, margin: 0.05 },
+);
+// Town and garden groups: the animals of lawns, gardens and parks between houses, where the
+// habitat is residential land (`yard`) or tended green space (`park`). Like the groups above they
+// name no species and assert no range; a walking bird is drawn with folded wings and legs.
+// Their densities are far above the wild groups' on purpose. A walker sees a small bird within
+// some 60 m, and roads and houses leave a quarter to two thirds of a block to stand on (seven
+// Seattle and Bellevue blocks, measured): at a fifth of these densities the nearest animal
+// there was 20 to 144 m off, and no nearer than 50 m in three of the seven.
+animal(
+  'town_songbird_group',
+  null,
+  'bird',
+  [0.15, 0.18, 0.08],
+  '#8a6f55',
+  '#c9b693',
+  [],
+  null,
+  null,
+  town,
+  { motion: 'fly', speed: 3, clearance: 4, roam: 30, rest: 0, density: 240 },
+);
+animal(
+  'town_corvid_group',
+  null,
+  'bird',
+  [0.3, 0.46, 0.17],
+  '#2a2b2f',
+  '#3b3d43',
+  [],
+  null,
+  null,
+  ['yard', 'park', 'grass'],
+  { speed: 0.35, roam: 20, rest: 0.45, density: 75 },
+);
+animal(
+  'town_pigeon_group',
+  null,
+  'bird',
+  [0.21, 0.32, 0.13],
+  '#858b93',
+  '#5e646d',
+  [],
+  null,
+  null,
+  town,
+  { speed: 0.3, roam: 10, rest: 0.4, density: 75 },
+);
+// Geese and their like grazing a lawn beside the water they came out of.
+animal(
+  'lawn_waterfowl_group',
+  null,
+  'bird',
+  [0.7, 0.9, 0.3],
+  '#8c8371',
+  '#4b4840',
+  ['waterfowl'],
+  [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14],
+  null,
+  ['park', 'grass'],
+  { nearWater: 60, speed: 0.3, roam: 14, rest: 0.6, density: 150 },
+);
+animal(
+  'garden_butterfly_group',
+  null,
+  'insect',
+  [0.03, 0.05, 0.018],
+  '#5b5647',
+  '#ece8d4',
+  [],
+  [1, 2, 4, 5, 7, 8, 9, 12, 14],
+  null,
+  ['yard', 'park', 'meadow', 'grass'],
+  { motion: 'fly', clearance: 1.2, speed: 0.8, roam: 8, rest: 0, density: 45, margin: 0.05 },
+);
+animal(
+  'domestic_cat_group',
+  null,
+  'feline',
+  [0.25, 0.46, 0.13],
+  '#85796a',
+  '#d6cdb8',
+  [],
+  null,
+  null,
+  ['yard'],
+  { speed: 0.5, roam: 16, rest: 0.8, density: 12 },
+);
+animal(
+  'garden_rabbit_group',
+  null,
+  'lagomorph',
+  [0.2, 0.36, 0.14],
+  '#8f8572',
+  '#d8cfba',
+  [],
+  [4, 5, 8],
+  ['Nearctic', 'Palearctic'],
+  ['yard', 'park', 'grass', 'meadow'],
+  { motion: 'hop', speed: 0.9, roam: 14, rest: 0.7, density: 30 },
 );
 const baseAnimals = [...animals];
 animals.splice(0, animals.length, ...baseAnimals.flatMap(animalVariants));

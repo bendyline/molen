@@ -9,6 +9,7 @@ import {
   agriculturePlants,
 } from './agriculture-presets.mjs';
 import { brushComposition, brushPlants } from './brush-presets.mjs';
+import { gardenComposition, gardenPlants } from './garden-presets.mjs';
 import { plantVariants } from './plant-variants.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -419,6 +420,7 @@ const plants = [
     lean: 0.08,
   }),
   ...brushPlants(plant),
+  ...gardenPlants(plant),
   ...agriculturePlants(plant),
 ];
 
@@ -533,6 +535,19 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     name,
     surface === desert ? 'desert' : surface === dry ? 'dry' : surface === wet ? 'wet' : 'temperate',
   );
+  const garden = gardenComposition(name);
+  // A region's extra woodland forms join the habitat's own at a minor weight, so the stand keeps
+  // its character and a tile with room for more species shows them.
+  const joined = (list, extras = [], weight = 0.5) => {
+    if (!list.length) return list;
+    const present = new Set(list.map((entry) => (Array.isArray(entry) ? entry[0] : entry)));
+    return [
+      ...list,
+      ...extras.filter((entry) => !present.has(entry)).map((entry) => [entry, weight]),
+    ];
+  };
+  brush.shrubs = joined(brush.shrubs, garden.forestShrubs);
+  brush.herbs = joined(brush.herbs, garden.forestHerbs);
   const rules = [];
   const add = (ruleId, classes, names, density, layer = 'canopy', extra = {}) => {
     if (!names.length || density <= 0) return;
@@ -671,16 +686,23 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     },
   );
   if (brush.floor.includes('fallen_log'))
-    add('forest_debris', ['forest', 'wood'], ['fallen_log'], 12, 'understory', {
-      notClasses: wildExclusions,
-      minSpacing: 0.5,
-      avoid: { roads: 3, buildings: 3, water: 1 },
-      clustering: brushClustering,
-    });
+    add(
+      'forest_debris',
+      ['forest', 'wood'],
+      joined([['fallen_log', 3]], garden.debris, 1),
+      16,
+      'understory',
+      {
+        notClasses: wildExclusions,
+        minSpacing: 0.5,
+        avoid: { roads: 3, buildings: 3, water: 1 },
+        clustering: brushClustering,
+      },
+    );
   add(
     'meadow',
     ['grass', 'grassland', 'meadow'],
-    [...cover, ...brush.herbs],
+    joined([...cover, ...brush.herbs], garden.meadow, 0.3),
     surface === desert ? 180 : 4800,
     'groundcover',
     {
@@ -713,6 +735,109 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     notClasses: wildExclusions,
     slopeMax: 0.35,
   });
+  // Planted ground. Yards, parks and street land are planted in pockets a lot or two across, the
+  // shrubs and the beds beneath them sharing one density field so a bed gathers round its shrubs.
+  // The `garden` layer has its own budget: a wood in the same tile cannot thin it. Densities are
+  // nominal: the pocket field keeps about a sixth of a shrub rule and a quarter of a bed rule,
+  // and a compact host halves both, so 1,100 shrubs a hectare plants about three a yard.
+  const yard = ['residential', 'home_canopy'];
+  const park = ['park', 'garden', 'cemetery', 'village_green'];
+  const street = ['commercial', 'retail', 'civic', 'school', 'university', 'college', 'hospital'];
+  const rough = ['industrial', 'railway', 'brownfield', 'construction', 'landfill', 'urban_area'];
+  const pocket = (scale, threshold, seedOffset, detailScale = 5) => ({
+    scale,
+    threshold,
+    contrast: 2.6,
+    seedOffset,
+    sharedSeed: 113,
+    detailScale,
+  });
+  const planted = (ruleId, classes, names, density, extra) =>
+    add(ruleId, classes, names ?? [], density * (surface === desert ? 0.6 : 1), 'garden', {
+      notClasses: knownCrops,
+      slopeMax: 0.6,
+      ...extra,
+    });
+  planted('yard_shrubs', yard, garden.yardShrubs, 1100, {
+    minSpacing: 0.9,
+    avoid: { roads: 1.6, buildings: 0.7, water: 0.6 },
+    clustering: pocket(16, 0.46, 23),
+  });
+  planted('yard_beds', yard, garden.yardBeds, 2000, {
+    minSpacing: 0.5,
+    avoid: { roads: 0.7, buildings: 0.45, water: 0.4 },
+    clustering: pocket(16, 0.42, 23, 4),
+  });
+  planted('yard_ornamentals', yard, garden.yardTrees, 90, {
+    minSpacing: 3,
+    avoid: { roads: 2.4, buildings: 2.8, water: 1 },
+    clustering: { scale: 30, threshold: 0.3, contrast: 2.2, seedOffset: 29 },
+  });
+  planted('lawn_flowers', [...yard, ...park], garden.lawn, 520, {
+    minSpacing: 0.5,
+    avoid: { roads: 0.5, buildings: 0.6, water: 0.4 },
+    clustering: pocket(22, 0.5, 31, 6),
+  });
+  planted('park_shrubs', park, garden.parkShrubs, 520, {
+    minSpacing: 0.9,
+    avoid: { roads: 2.2, buildings: 1.5, water: 0.8 },
+    clustering: pocket(38, 0.48, 37, 7),
+  });
+  planted('park_beds', park, garden.parkBeds, 1500, {
+    minSpacing: 0.5,
+    avoid: { roads: 1.2, buildings: 0.8, water: 0.5 },
+    clustering: pocket(38, 0.46, 37, 5),
+  });
+  planted('street_planting', street, garden.urban, 300, {
+    minSpacing: 0.9,
+    avoid: { roads: 1.8, buildings: 0.8, water: 0.6 },
+    clustering: pocket(26, 0.5, 41, 6),
+  });
+  // Rough ground. Verges, vacant lots and unmapped ground between land uses go to rank grass,
+  // weeds and pioneer brush; the wild layers hold them, beside the forest floor they resemble.
+  add(
+    'verge_brush',
+    ['open_ground'],
+    garden.vergeBrush ?? [],
+    surface === desert ? 70 : 130,
+    'understory',
+    {
+      notClasses: wildExclusions,
+      minSpacing: 0.9,
+      avoid: { roads: 2, buildings: 2, water: 0.6 },
+      clustering: { ...brushClustering, scale: 34, threshold: 0.44 },
+    },
+  );
+  add(
+    'verge_grass',
+    ['open_ground'],
+    garden.vergeGrass ?? [],
+    surface === desert ? 240 : surface === dry ? 900 : 1700,
+    'groundcover',
+    {
+      notClasses: wildExclusions,
+      avoid: { roads: 0.4, buildings: 0.5, water: 0.25 },
+      clustering: { ...brushClustering, scale: 34, threshold: 0.3, detailScale: 4 },
+    },
+  );
+  add('waste_ground', rough, garden.weeds ?? [], surface === desert ? 120 : 520, 'groundcover', {
+    notClasses: wildExclusions,
+    avoid: { roads: 0.6, buildings: 0.4, water: 0.25 },
+    clustering: { ...brushClustering, scale: 26, threshold: 0.5, detailScale: 4 },
+  });
+  add(
+    'outcrops',
+    ['open_ground', 'scrub', 'heath', 'grassland', 'bare_rock', 'barren'],
+    garden.outcrops ?? [],
+    surface === desert ? 46 : 26,
+    'understory',
+    {
+      notClasses: wildExclusions,
+      minSpacing: 1.2,
+      avoid: { roads: 3, buildings: 3, water: 1 },
+      clustering: { scale: 70, threshold: 0.5, contrast: 2.4, seedOffset: 43 },
+    },
+  );
   scatters.push({
     format: 'molen/scatter@1',
     id,

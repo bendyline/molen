@@ -130,6 +130,9 @@ pinpoint errors with did-you-mean hints for palette names. The sections:
   square plans). Roofs are built per wing: an L becomes two gable wings meeting in a valley.
   Outlines that do not decompose, cut pieces at tile edges, and anything beyond `maxWingSpan` fall
   back to flat (with a parapet when the choice has one) or, for small irregular plans, a skillion.
+  A parapet is drawn no taller than 0.9 m (`MAX_PARAPET_HEIGHT`) whatever the choice asks for, so
+  a walker who lands on a flat roof can jump onto it and over; under a mapped `height` the wall
+  below keeps whatever the parapet gives up.
 - `facade`: bay widths, window rhythm, base bands, and cornice. Windows and trim are generated
   geometry with cell UVs for glass and metric UVs for solid materials.
 - `materials` and `palettes`: one weighted material choice per part (wall, roof, trim, foundation,
@@ -253,7 +256,13 @@ tussock) and `builtin:groundcover.fern`, each under 70 triangles, plus small shr
 A rule joins it with `"layer": "groundcover"`, which gives it its own instance and model budget
 (`maxGroundCoverInstances`, `maxGroundCoverModels`), so thousands of clumps never thin the trees
 or take their model slots. Ground cover models draw only at the near level; the medium and far
-levels are empty, so the clumps fade out about 400 meters away instead of shimmering. The Earth
+levels are empty, so the clumps stop drawing at 65% of the distance a shrub would hand over to
+its medium level (about 165 meters from a batch's edge at High on a 1080-line view) instead of
+shimmering. `"layer": "understory"` and `"layer": "garden"` are two more pools with budgets of
+their own (`maxUnderstoryInstances`, `maxGardenInstances` and their `…Models`): shoulder-height
+wild brush, and planted ground such as yards and park borders. The garden pool keeps models by
+role, each rule's commonest species first, and chooses them separately in each quarter of the
+batch, which is how a host draws them. The Earth
 adapter labels land that no map polygon covers `open_ground` (the `OPEN_GROUND_LABEL` export), as a
 tile-wide polygon that every mapped polygon paints over, so verges and unmapped meadows can carry
 ground cover too. The default packs place it in meadows, parks, yards, forest floors and open
@@ -493,7 +502,15 @@ plants on it unless a pack names its class.
 numbers are sized for real footprints: a zoom-15 suburb puts 800 to 1,600 houses in a zoom-14
 tile, and a downtown about 1,700 footprints and parts.
 
-A batch spends its budget in priority order, largest footprints first. First every building gets
+A batch spends its budget in priority order, largest footprints first. That suits a view from the
+air; for someone on the ground the buildings that matter are the nearest. `WorldgenBatchInput.focus`
+(`{ x, z, radius }` in the buildings' frame) queues the buildings within `radius` of a viewer
+nearest first, ahead of every other, so the same budget details and opens the doors of what the
+viewer can walk up to. The Earth renderers set it themselves: once the position passed to
+`updateInteriors` is down among the buildings and moving at a walk, the finest tiles within 90 m
+are regenerated round it, and again each 36 m it moves (never while it is inside a building, and
+the tile shown stays until its replacement is ready). In a dense Seattle tile of 1,091 buildings,
+where the largest 75 were detailed, that details the nearest 148, out to 140 m. First every building gets
 walls and its roof shape (the style's coarsest tier); only when even that does not fit does a
 building become an instanced stand-in. Then buildings gain a simplified facade while it fits, then
 the largest (`detailedCount`) gain full detail. The simplified facade preserves the authored
@@ -539,7 +556,9 @@ cells draw only their active LOD; keep `maxPropModels` small because each model 
 visible cell. The per-tile placement budgets still bound the resident instance data. Balanced quality
 allows 6,000 nearby placements, 2,400 one level below, and 800 two levels below. Economy uses
 2,200 / 800 / 200; high uses 9,000 / 3,600 / 1,200. Ground cover has its own budget on the finest
-level only: 5,000 placements and 3 models at Balanced, 8,000 and 4 at High, none at Economy.
+level only: 6,500 placements and 7 models at Balanced, 10,000 and 10 at High, none at Economy.
+Planted ground (the `garden` layer) has 5,000 placements and 9 models at Balanced and 9,000 and
+14 at High on the finest level, a few hundred one level below, and 700 and 3 at Economy.
 The forest rules fill nearby crowns while
 understory is limited to the finest tier; parks and yards retain lower densities and all
 placements retain road, building, and water clearances.

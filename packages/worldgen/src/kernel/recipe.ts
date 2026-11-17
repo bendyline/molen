@@ -31,6 +31,14 @@ import type { BuildingRequest, RGB } from './types';
 /** The one palette reference every flat-colored part collapses onto (color lives in vertices). */
 export const WHITE_REF: string = 'palette:#ffffff';
 
+/**
+ * Tallest parapet drawn, meters, whatever the style asks for: low enough that a walker who lands
+ * on a flat roof (bailing out of an aircraft, say) can jump onto it and over. The walk
+ * controller's jump clears about 1.1 m; this keeps a margin below that, and
+ * `examples/world-explorer/src/walk-parapets.test.ts` checks the two still agree.
+ */
+export const MAX_PARAPET_HEIGHT: number = 0.9;
+
 export interface RecipeOptions {
   /** Replace every textured material by vertex colors (draw-call budgets). */
   collapseMaterials?: boolean;
@@ -359,7 +367,10 @@ export function resolveBuildingRecipe(
   const parapet =
     choice?.parapet !== undefined
       ? {
-          height: sampleRange(choice.parapet.height, unit01(roofSeed, 4)),
+          height: Math.min(
+            MAX_PARAPET_HEIGHT,
+            sampleRange(choice.parapet.height, unit01(roofSeed, 4)),
+          ),
           thickness: choice.parapet.thickness,
         }
       : undefined;

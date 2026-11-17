@@ -53,6 +53,15 @@ export type { Bounds2 } from './kernel/geometry2d';
 export { clipRingToRect, pointInRing, ringArea, ringCentroid } from './kernel/geometry2d';
 export { resolveInteriorProfile, validateInteriorCatalog } from './kernel/interior-catalog';
 export {
+  buildInteriorDoorFrame,
+  buildInteriorDoorLeaf,
+  INTERIOR_DOOR_OPEN_ANGLE,
+  INTERIOR_DOOR_THICKNESS,
+  type InteriorDoor,
+  type InteriorDoorLeaf,
+  interiorDoors,
+} from './kernel/interior-doors';
+export {
   generateInteriorGeometry,
   generateInteriorGeometrySteps,
 } from './kernel/interior-geometry';
@@ -212,7 +221,7 @@ export type { WorldgenHandle } from './kernel/install';
 export { installWorldgen, worldgenIndexOf, worldgenScriptApi } from './kernel/install';
 export type { PropPlacement } from './kernel/props';
 export type { BuildingRecipe, RecipePart, RecipeProp, RecipeRoof } from './kernel/recipe';
-export { buildingMetrics } from './kernel/recipe';
+export { buildingMetrics, MAX_PARAPET_HEIGHT } from './kernel/recipe';
 export type { SignMeshBuffers, SignPlacement } from './kernel/sign-mesh';
 export { buildSignMesh, signMeshTransferables } from './kernel/sign-mesh';
 export type { ResolvedStylePack, StylePackDocumentReader } from './kernel/stylepack';

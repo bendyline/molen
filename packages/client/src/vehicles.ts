@@ -64,8 +64,27 @@ export interface VehicleVisual {
     glassState?: GlassStateData,
     damageState?: VehicleDamageState,
   ): void;
+  /**
+   * The sun shadow map's texel size in meters (`Renderer.shadowTexelSize`) while the view is from
+   * one of this vehicle's own seats. Hosts pass `undefined` for every other vehicle and view.
+   * While texels are coarser than SEAT_SHADOW_TEXEL the vehicle casts no sun shadow, until they
+   * are SEAT_SHADOW_RETURN or finer. It still receives shadows from terrain, buildings, trees,
+   * other vehicles and clouds.
+   */
+  updateShadows(texel: number | undefined): void;
   dispose(): void;
 }
+
+/**
+ * Sun shadow-map texel (meters) beyond which a vehicle seen from its own seat stops casting. From
+ * the seat its dashboard is under a meter away, and the roof, pillars and doors shade it in blocks
+ * that jump as the vehicle drives across the map's texel grid: driving on High (0.14 m texels)
+ * at 28 km/h with a low sun behind, 4% of a pickup's cockpit view changed from one frame to the
+ * next, the instrument cluster in and out of shade; 0.75% at 0.04 m, 0.5% at 0.029 m, none at
+ * 0.025 m. A driving view's map is always far coarser (it spans hundreds of meters).
+ */
+const SEAT_SHADOW_TEXEL = 0.027;
+const SEAT_SHADOW_RETURN = 0.025;
 
 interface Wheel {
   node: THREE.Object3D;
@@ -174,6 +193,9 @@ export function createVehicleVisual(
   const damage = createAircraftDamageVisual(model, {
     collisionParts: vehicle.spec?.collisionParts,
   });
+  // Parts updateShadows took out of the shadow pass carry `userData.seatShadowOut`, which
+  // survives cloning: damage sections and debris cloned meanwhile cast again with the rest.
+  let shadowsOut = false;
   return {
     setLivery(data) {
       appearance?.dispose();
@@ -210,6 +232,23 @@ export function createVehicleVisual(
       animation?.update(telemetry, timeSeconds);
       glass?.update(glassState, timeSeconds ?? 0);
       damage.update(damageState ?? {});
+    },
+    updateShadows(texel) {
+      const out =
+        texel !== undefined && texel > (shadowsOut ? SEAT_SHADOW_RETURN : SEAT_SHADOW_TEXEL);
+      if (out === shadowsOut) return;
+      shadowsOut = out;
+      model.traverse((object) => {
+        const mesh = object as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        if (out && mesh.castShadow) {
+          mesh.castShadow = false;
+          mesh.userData.seatShadowOut = true;
+        } else if (!out && mesh.userData.seatShadowOut === true) {
+          mesh.castShadow = true;
+          delete mesh.userData.seatShadowOut;
+        }
+      });
     },
     dispose() {
       damage.reset();

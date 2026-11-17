@@ -31,7 +31,7 @@ describe('regional procedural plants', () => {
   });
   it('varies branching and fronds in every family without changing bounds, density or topology', () => {
     const families = new Map(catalog.plants.map((p) => [p.family, p]));
-    expect(families.size).toBe(19);
+    expect(families.size).toBe(21);
     for (const p of families.values()) {
       const base = createPlantGeometry({ ...p, shapeSeed: 0 });
       const a = createPlantGeometry({ ...p, shapeSeed: 137 });

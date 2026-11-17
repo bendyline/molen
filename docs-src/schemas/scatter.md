@@ -442,9 +442,10 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
               "canopy",
               "understory",
               "groundcover",
-              "agriculture"
+              "agriculture",
+              "garden"
             ],
-            "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
+            "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets), groundcover (low patches) and garden (planted ornamental shrubs, hedges and small trees in yards, parks and verges) have independent caps and never thin canopy trees or each other."
           },
           "slopeMax": {
             "type": "number",

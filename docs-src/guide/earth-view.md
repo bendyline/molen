@@ -347,7 +347,7 @@ walker. `actors.adopt(pedestrianId)` turns an ambient pedestrian into an actor (
 ```ts
 const view = await mountEarthView({ /* … */ interaction: { reach: 2.5, pedestrians: true } });
 view.setInteraction({ pedestrians: false }); // change it later, e.g. only while a game runs
-view.interactable();   // { kind: 'actor' | 'vehicle' | 'pedestrian' | 'none', id?, distance? }
+view.interactable();   // { kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'door' | 'none', id?, distance?, open? }
 view.on('interact', (interaction) => {
   if (interaction.kind === 'actor') {
     interaction.claim();   // the view does nothing else with this press
@@ -355,17 +355,24 @@ view.on('interact', (interaction) => {
   } else if (interaction.kind === 'pedestrian') {
     const id = view.actors.adopt(interaction.id);   // stop them and talk
     if (id) talkTo(id);
+  } else if (interaction.kind === 'door' && !interaction.open && !hasKey) {
+    interaction.claim();   // keep this door shut until the player finds the key
+    say('Locked.');
   }
 });
 ```
 
 The interact key (E, or F, or the right mouse button) emits `interact` first with what it found. On
 foot that is the nearest of: a car or aircraft within reach of its door (aircraft can be boarded on
-foot too), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
-sight, and, with `interaction.pedestrians`, an ambient pedestrian. Aboard, it is the vehicle the
-viewer is in; otherwise `none`. A handler that calls `claim()` synchronously takes the press, and
-nothing else happens. Unclaimed, the view boards or leaves a vehicle as it always did (or explains
-why there is nothing to board), and does nothing for an actor or a pedestrian.
+foot too), a building's door within 1.8 m and in front of the walker (`open` says whether it is
+open), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
+sight, and, with `interaction.pedestrians`, an ambient pedestrian. Standing in a lift, it is the
+`elevator`. Aboard, it is the vehicle the viewer is in; otherwise `none`. A handler that calls
+`claim()` synchronously takes the press, and nothing else happens. Unclaimed, the view boards or
+leaves a vehicle as it always did (or explains why there is nothing to board), opens or shuts a
+door (away from the walker, so it never swings into them), takes a lift up a floor, and does
+nothing for an actor or a pedestrian. A door opens onto rooms that are built, waiting for them
+if need be; see [Doors](building-interiors.md#doors).
 
 ### Overrides: replacing mapped places
 

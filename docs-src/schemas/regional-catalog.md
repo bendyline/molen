@@ -681,9 +681,10 @@ Composable ecological and architectural channels with explicit dependency versio
                     "canopy",
                     "understory",
                     "groundcover",
-                    "agriculture"
+                    "agriculture",
+                    "garden"
                   ],
-                  "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
+                  "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets), groundcover (low patches) and garden (planted ornamental shrubs, hedges and small trees in yards, parks and verges) have independent caps and never thin canopy trees or each other."
                 },
                 "slopeMax": {
                   "type": "number",
@@ -968,6 +969,8 @@ Composable ecological and architectural channels with explicit dependency versio
               "vine",
               "mat",
               "fallenwood",
+              "hedge",
+              "rock",
               "crop"
             ]
           },
@@ -1025,6 +1028,10 @@ Composable ecological and architectural channels with explicit dependency versio
             "type": "boolean"
           },
           "climber": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "bloom": {
             "type": "string",
             "pattern": "^#[0-9a-fA-F]{6}$"
           },

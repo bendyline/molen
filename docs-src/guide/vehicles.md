@@ -605,6 +605,16 @@ and `dispose()`. `signals` feeds the interior and `vehicle.visual.animation` bin
 them keep the wheels planted. The camera helper accepts a transform, `vehicle.spec`, view, look offsets, and an
 optional obstruction-distance callback.
 
+While the view is from a vehicle's own seat (the cockpit view), hosts pass
+`renderer.shadowTexelSize` to that vehicle's `visual.updateShadows(texel)` each frame, and
+`undefined` for every other vehicle and view. From the seat the dashboard is under a meter away,
+and the vehicle's roof, pillars and doors shaded it in blocks that jumped as it drove across the
+sun shadow map's texel grid (a driving view's map spans hundreds of meters, 0.14 m texels on
+High). Coarser than 0.027 m, the vehicle casts no sun shadow; at 0.025 m or finer it casts
+again. It still receives shadows from terrain, buildings, trees, other vehicles and clouds.
+`EarthVehicles` does this for the mounted vehicle from its `shadowTexel` field, which the Earth
+view and the world explorer set each frame.
+
 Surface objects expose `userData.vehicles: VehiclePlacement[]`; each record has an `id`, external
 type `kind`, `color`, resolved `spec`, absolute metric `position`, and `yaw`, with optional
 terrain-alignment `pitch` and `roll`. IDs derive from world-space bay positions rather

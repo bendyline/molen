@@ -174,9 +174,9 @@ const rule = z.strictObject({
     .describe('Noise-modulated density for natural clumps and clearings.')
     .optional(),
   layer: z
-    .enum(['canopy', 'understory', 'groundcover', 'agriculture'])
+    .enum(['canopy', 'understory', 'groundcover', 'agriculture', 'garden'])
     .describe(
-      'Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees.',
+      'Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets), groundcover (low patches) and garden (planted ornamental shrubs, hedges and small trees in yards, parks and verges) have independent caps and never thin canopy trees or each other.',
     )
     .default('canopy'),
   slopeMax: unit.describe('Slope limit for this rule (0 = flat, 1 = vertical).').optional(),

@@ -43,6 +43,9 @@ export interface ScatterBudget {
   maxUnderstoryModels?: number;
   maxAgricultureInstances?: number;
   maxAgricultureModels?: number;
+  /** Instances and model varieties for `garden` rules: planted yards, parks and verges. */
+  maxGardenInstances?: number;
+  maxGardenModels?: number;
 }
 
 export interface ScatterSampleInput {
@@ -265,7 +268,10 @@ export function* samplePlacementsSteps(
   const agricultureInstances = input.budget.maxAgricultureInstances ?? 0;
   const agricultureModels = input.budget.maxAgricultureModels ?? 0;
   const agricultureOpen = agricultureInstances > 0 && agricultureModels > 0;
-  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen) return [];
+  const gardenInstances = input.budget.maxGardenInstances ?? 0;
+  const gardenModels = input.budget.maxGardenModels ?? 0;
+  const gardenOpen = gardenInstances > 0 && gardenModels > 0;
+  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen && !gardenOpen) return [];
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
@@ -278,7 +284,7 @@ export function* samplePlacementsSteps(
     model: string;
     base: string;
     rule: number;
-    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden';
     /** The rule's kept share at this tier, and how far its crowns may widen to hold cover. */
     keep: number;
     growth: number;
@@ -294,11 +300,13 @@ export function* samplePlacementsSteps(
     if (
       layer === 'agriculture'
         ? !agricultureOpen
-        : layer === 'groundcover'
-          ? !groundOpen
-          : layer === 'understory'
-            ? !understoryOpen
-            : !canopyOpen
+        : layer === 'garden'
+          ? !gardenOpen
+          : layer === 'groundcover'
+            ? !groundOpen
+            : layer === 'understory'
+              ? !understoryOpen
+              : !canopyOpen
     )
       continue;
     if (rule.densityPerHectare <= 0) continue;
@@ -541,7 +549,7 @@ export function* samplePlacementsSteps(
     p.candidate.cz - q.candidate.cz ||
     p.candidate.cx - q.candidate.cx;
   const pool = (
-    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture',
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden',
     maxInstances: number,
     maxModels: number,
   ) => {
@@ -571,6 +579,23 @@ export function* samplePlacementsSteps(
           },
         };
       }
+    if (layer !== 'garden') return admit(entries, maxModels, false);
+    // A host draws each model once per quarter of the batch, so planting chooses its models
+    // quarter by quarter: the same draws, and a neighborhood that differs from the next one
+    // instead of one handful of species for the whole batch.
+    const midX = (bounds[0] + bounds[2]) / 2,
+      midZ = (bounds[1] + bounds[3]) / 2;
+    const quarters: (typeof entries)[] = [[], [], [], []];
+    for (const entry of entries)
+      (
+        quarters[
+          (entry.candidate.x >= midX ? 1 : 0) + (entry.candidate.z >= midZ ? 2 : 0)
+        ] as typeof entries
+      ).push(entry);
+    return quarters.flatMap((quarter) => admit(quarter, maxModels, true));
+  };
+  /** The entries a model budget keeps, each with the model it is drawn as. */
+  function admit(entries: typeof accepted, maxModels: number, byRole: boolean): typeof accepted {
     const counts = new Map<string, number>();
     for (const entry of entries) counts.set(entry.base, (counts.get(entry.base) ?? 0) + 1);
     // Reserve one fallback per species before spending spare draws on interchangeable forms.
@@ -578,9 +603,41 @@ export function* samplePlacementsSteps(
     const kept = new Set(
       [...counts.entries()]
         .sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1))
-        .slice(0, Math.max(0, maxModels))
+        .slice(0, Math.max(0, byRole ? 0 : maxModels))
         .map(([model]) => model),
     );
+    if (byRole) {
+      // Planting is by role: a rule is the shrubs of a yard, its beds, its small trees. Counted
+      // together the beds alone would take every slot, and a rule left with no species drops
+      // out, so the few trees and hedges would vanish. Each rule's commonest species is kept
+      // first, largest rule first, then each rule's second, until the slots are spent.
+      const perRule = new Map<number, Map<string, number>>();
+      for (const entry of entries) {
+        let byBase = perRule.get(entry.rule);
+        if (byBase === undefined) {
+          byBase = new Map();
+          perRule.set(entry.rule, byBase);
+        }
+        byBase.set(entry.base, (byBase.get(entry.base) ?? 0) + 1);
+      }
+      const ranked = [...perRule.entries()]
+        .map(([rule, byBase]) => ({
+          rule,
+          total: [...byBase.values()].reduce((sum, count) => sum + count, 0),
+          species: [...byBase.entries()].sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1)),
+        }))
+        .sort((p, q) => q.total - p.total || p.rule - q.rule);
+      for (let round = 0; kept.size < maxModels; round++) {
+        let offered = false;
+        for (const { species } of ranked) {
+          const next = species[round];
+          if (next === undefined) continue;
+          offered = true;
+          if (kept.size < maxModels) kept.add(next[0]);
+        }
+        if (!offered) break;
+      }
+    }
     // A species past the cap gives its places to its own rule's most common kept species, so a
     // tight budget simplifies a mixed stand rather than thinning it. A rule with no kept species
     // (a crop row, a lone riparian stand) still drops out.
@@ -616,13 +673,14 @@ export function* samplePlacementsSteps(
     return retained.map((entry) =>
       kept.has(entry.model) ? entry : { ...entry, model: entry.base },
     );
-  };
+  }
   const perModel = new Map<string, Candidate[]>();
   for (const entry of [
     ...pool('canopy', input.budget.maxInstances, input.budget.maxPropModels),
     ...pool('understory', understoryInstances, understoryModels),
     ...pool('groundcover', groundCoverInstances, groundCoverModels),
     ...pool('agriculture', agricultureInstances, agricultureModels),
+    ...pool('garden', gardenInstances, gardenModels),
   ]) {
     let list = perModel.get(entry.model);
     if (list === undefined) {

@@ -248,6 +248,9 @@ export interface WorldgenBudgets {
   maxUnderstoryModels?: number;
   maxAgricultureInstances?: number;
   maxAgricultureModels?: number;
+  /** Planted ornamental vegetation (the `garden` layer); omitted or zero disables it. */
+  maxGardenInstances?: number;
+  maxGardenModels?: number;
   maxMaterialGroups: number;
 }
 

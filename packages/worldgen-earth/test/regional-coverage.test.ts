@@ -306,7 +306,10 @@ describe('shipped global ecological coverage', () => {
             expect(library.plants[variant.model], variant.model).toBeDefined();
         }
     expect(atlasBytes.length + catalogBytes.length).toBeLessThan(2_500_000);
-    expect(gzipSync(atlasBytes).length + gzipSync(catalogBytes).length).toBeLessThan(190_000);
+    // 119 KB before the garden and street-level forms (83 of them, and eleven planting rules a
+    // habitat); 207 KB with them. Habitats repeat their region's lists further apart than gzip
+    // looks back, so the next large addition should share lists between habitats, not grow this.
+    expect(gzipSync(atlasBytes).length + gzipSync(catalogBytes).length).toBeLessThan(215_000);
   });
 
   it('distinguishes representative regions without exporting iconic species to the wrong realm', () => {

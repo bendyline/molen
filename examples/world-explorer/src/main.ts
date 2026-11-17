@@ -110,6 +110,7 @@ import {
   createScatterMaterialAsync,
   createSignAtlasTexture,
   createSignMaterialAsync,
+  type InteriorDoorState,
   type ScreenSpaceLodPolicy,
 } from '@bendyline/molen-worldgen/client';
 import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/client';
@@ -630,6 +631,10 @@ async function loadWorldgen(options: {
     ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
+    // A walker's surroundings are regenerated nearest first some seconds after they arrive.
+    // Frozen captures compare frames from a still camera, so they keep the first choice;
+    // `?focus=0` does the same for a side-by-side look.
+    viewerFocus: !params.has('freeze') && params.get('focus') !== '0',
     onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
     onTileStats: (output, elapsed) => {
       options.telemetry.record('worldgen-total', elapsed);
@@ -1928,7 +1933,7 @@ async function main(): Promise<void> {
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
-    'WASD walk · Shift run · Space jump · E board vehicle · P personal ride · click to look · Esc release mouse';
+    'WASD walk · Shift run · Space jump · E open door / board vehicle · P personal ride · click to look · Esc release mouse';
   const swimHelp =
     'WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · click to look · Esc release mouse';
   const boatHelp =
@@ -2188,10 +2193,32 @@ async function main(): Promise<void> {
     } else help.textContent = vehicles.message || 'No room to set a ride down here';
     canvas.focus();
   };
+  /** The building door the walker faces within reach, if any. */
+  const doorAhead = (): InteriorDoorState | undefined =>
+    navigation === 'walk' && walker.ready && !vehicles.mountedId && !flight.mountedKind
+      ? worldgen?.doorAt(camera.pos, { facing: cameraForward(camera.yaw, 0) })
+      : undefined;
+  const doorPrompt = (door: InteriorDoorState): string =>
+    door.locked
+      ? 'The door is locked'
+      : door.waiting
+        ? 'Opening the door…'
+        : door.open
+          ? 'E · Close the door'
+          : 'E · Open the door';
+  /** Open or shut the door ahead; false when there is none. */
+  const useDoor = (): boolean => {
+    const door = doorAhead();
+    if (!door) return false;
+    worldgen?.setDoor(door.id, !door.open, [walker.feet.x, walker.feet.y, walker.feet.z]);
+    return true;
+  };
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
     // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
     if (!vehicles.mountedId && rideLift(1)) return;
+    // A door in front of the walker comes before a car behind them; an aircraft's prompt wins.
+    if (!vehicles.mountedId && !flight.nearest(camera.pos) && useDoor()) return;
     if (vehicles.mountedId) {
       const car = vehicles.mountedId;
       // Out through the door, which shuts once the walker moves off.
@@ -2570,6 +2597,8 @@ async function main(): Promise<void> {
     }
     if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
     if ((frameInput.recover ?? 0) > 0) vehicles.recover();
+    // Last frame's shadow map: from the driver's seat the car leaves one too coarse for its cabin.
+    vehicles.shadowTexel = viewer.renderer.shadowTexelSize;
     vehicles.update(dt, {
       throttle: frameInput.move.forward,
       steering: frameInput.move.right,
@@ -3049,6 +3078,7 @@ async function main(): Promise<void> {
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;
       const nearAircraft =
         navigation === 'walk' && walker.ready ? flight.nearest(camera.pos) : undefined;
+      const nearDoor = nearAircraft ? undefined : doorAhead();
       // The building a walker faces, read from the map only when the walker moved.
       const replacePrompt = explorerOverrides.tick();
       const navigationText = flight.mountedKind
@@ -3061,20 +3091,22 @@ async function main(): Promise<void> {
                 ? ((vehicles.waiting ? undefined : explorerTrains.status()) ??
                   `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`)
                 : vehicles.message ||
-                  (nearVehicle
-                    ? vehicles.closedDoor(nearVehicle, camera.pos)
-                      ? `E · Open the ${vehicles.label(nearVehicle)} door`
-                      : `E · Enter ${vehicles.label(nearVehicle)}`
-                    : navigation === 'walk'
-                      ? !walker.ready
-                        ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
-                        : walker.waitingForTerrain
-                          ? 'Waiting for terrain…'
-                          : walker.swimming
-                            ? 'Swimming · Return to shore to walk'
-                            : (liftStatus(walker.feet) ??
-                              `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}${replacePrompt !== undefined ? ` · ${replacePrompt}` : ''}`)
-                      : 'Fly mode · Explore from above')));
+                  (nearDoor
+                    ? doorPrompt(nearDoor)
+                    : nearVehicle
+                      ? vehicles.closedDoor(nearVehicle, camera.pos)
+                        ? `E · Open the ${vehicles.label(nearVehicle)} door`
+                        : `E · Enter ${vehicles.label(nearVehicle)}`
+                      : navigation === 'walk'
+                        ? !walker.ready
+                          ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
+                          : walker.waitingForTerrain
+                            ? 'Waiting for terrain…'
+                            : walker.swimming
+                              ? 'Swimming · Return to shore to walk'
+                              : (liftStatus(walker.feet) ??
+                                `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}${replacePrompt !== undefined ? ` · ${replacePrompt}` : ''}`)
+                        : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
