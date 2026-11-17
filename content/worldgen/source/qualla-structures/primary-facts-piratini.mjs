@@ -4,7 +4,7 @@ import { join } from 'node:path';
 
 export const piratiniCase = 'piratini-palace-government-and-residential-wings';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function pinned(dir, record, expected) {
   if (record?.path !== expected) throw Error('Unexpected palace evidence path');

@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const augerFdCases = {
   'auger-primary-whole-FD-building-way118753321-2018': 'los_leones_fluorescence_building',
   'auger-primary-whole-FD-building-way120426728-2018': 'los_morados_fluorescence_building',
@@ -47,12 +47,12 @@ export function inspectAugerFdPrimaryFacts({ dir, proof, controls: P, frame: f }
       return fail('auger-fd-written-facts-unbound');
     if (
       hash(bytes) !== n.sha256 ||
-      !j.sourceUrl?.endsWith('/way/' + identity[0] + '/full.json') ||
+      !j.sourceUrl?.endsWith(`/way/${identity[0]}/full.json`) ||
       w?.tags?.name !== identity[1] ||
       w.tags.building !== 'yes' ||
       w.nodes.length !== 12 ||
       w.nodes[0] !== w.nodes.at(-1) ||
-      n.featureId !== 'way/' + identity[0]
+      n.featureId !== `way/${identity[0]}`
     )
       return fail('auger-fd-original-native-outline-unbound');
     if (

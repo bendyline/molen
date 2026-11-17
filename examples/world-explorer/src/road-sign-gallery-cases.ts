@@ -246,5 +246,69 @@ export function roadSignGalleryCases(
         'A source route number inside the state’s marker. Number 28 is a synthetic example; the network selects the artwork.',
     });
   }
+  if (profile?.streetNames) {
+    const named = (): TerrainSemanticTile => {
+      const tile = cross();
+      Object.assign(tile.transportation[0] as TerrainTransportationFeature, {
+        name: 'Oak Street',
+      });
+      Object.assign(tile.transportation[1] as TerrainTransportationFeature, {
+        name: 'Northeast Pine Avenue',
+      });
+      return tile;
+    };
+    const style = profile.streetNames;
+    if (style.mastArms) {
+      const signal = named();
+      signal.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+      cases.push({
+        pattern: 'street-name-mast',
+        tile: signal,
+        tags: { highway: 'traffic_signals', name: 'Northeast Pine Avenue' },
+        caption:
+          'Each mast arm names the street its traffic is about to cross, abbreviated as signs post it.',
+      });
+    }
+    if (style.mount === 'wall') {
+      // A building on each corner, 2 m behind the footways, carries the plates.
+      const walled = named();
+      const box = (x0: number, z0: number, x1: number, z1: number) => ({
+        class: 'building',
+        height: 12,
+        polygons: [
+          {
+            outer: [
+              [x0 / 400, z0 / 400],
+              [x1 / 400, z0 / 400],
+              [x1 / 400, z1 / 400],
+              [x0 / 400, z1 / 400],
+            ] as [number, number][],
+          },
+        ],
+      });
+      walled.buildings = [
+        box(207.5, 207.5, 240, 240),
+        box(160, 207.5, 192.5, 240),
+        box(207.5, 160, 240, 192.5),
+        box(160, 160, 192.5, 192.5),
+      ];
+      cases.push({
+        pattern: 'street-name-wall',
+        tile: walled,
+        tags: { name: 'Oak Street; Northeast Pine Avenue', building: 'yes' },
+        caption:
+          'A plate for each street on the corner building, facing the street it names; a low frame stands in where no wall is near.',
+      });
+    } else
+      cases.push({
+        pattern: 'street-name-blade',
+        tile: named(),
+        tags: { name: 'Oak Street; Northeast Pine Avenue' },
+        caption:
+          style.panel === 'plate'
+            ? 'Two plates on one corner post, each running along the street it names.'
+            : 'Two blades on one corner post, each running along the street it names.',
+      });
+  }
   return cases;
 }

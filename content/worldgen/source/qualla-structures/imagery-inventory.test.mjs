@@ -352,8 +352,7 @@ test('Gutenberg illustration proof requires the book-specific PD status, old cre
     }),
     false,
   );
-  const editionCatalog =
-    catalog + '<div about="[ebook:60759]"><td itemprop="headline">Historic Buildings</td></div>';
+  const editionCatalog = `${catalog}<div about="[ebook:60759]"><td itemprop="headline">Historic Buildings</td></div>`;
   const editionBook =
     '*** START OF THIS PROJECT GUTENBERG EBOOK HISTORIC BUILDINGS *** ' +
     'Copyright, Canada, 1912, by <img src="images/plate.jpg" alt="[Illustration: Exterior.]" />';

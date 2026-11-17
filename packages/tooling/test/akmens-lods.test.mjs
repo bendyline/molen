@@ -31,23 +31,23 @@ it('keeps continuous road and both sidewalks, open water spans and granite suppo
   for (const name of ['source', 'master', 'skyline', 'district', 'street', 'closeup']) {
     const hit = await geometry(
       name === 'source'
-        ? source + '/models/source.glb'
+        ? `${source}/models/source.glb`
         : resolve(sidecar, '..', name === 'master' ? 'model.glb' : `model.${name}.glb`),
     );
     for (const x of [-260, -220, -150, -100, -40, 10, 70, 130, 205, 260]) {
-      expect(Math.abs(30 - hit([x, 30, 6], [0, -1, 0]) - deck(x)), name + ' roadway').toBeLessThan(
+      expect(Math.abs(30 - hit([x, 30, 6], [0, -1, 0]) - deck(x)), `${name} roadway`).toBeLessThan(
         0.16,
       );
       for (const z of [-12, 12])
         expect(
           Math.abs(30 - hit([x, 30, z], [0, -1, 0]) - deck(x) - 0.2),
-          name + ' sidewalk',
+          `${name} sidewalk`,
         ).toBeLessThan(0.16);
     }
     for (const x of [-224, -166, -107, -48, 10, 69, 136, 211])
-      expect(hit([x, 2, 25], [0, 0, -1], 50), name + ' open water').toBe(Infinity);
+      expect(hit([x, 2, 25], [0, 0, -1], 50), `${name} open water`).toBe(Infinity);
     for (const x of C.piers)
-      expect(hit([x, 1.5, 25], [0, 0, -1], 50), name + ' granite pier').toBeLessThan(14);
+      expect(hit([x, 1.5, 25], [0, 0, -1], 50), `${name} granite pier`).toBeLessThan(14);
   }
 }, 120000);
 it('retains all seven globes and truly open railing cells beside solid decorative plaques', async () => {
@@ -77,13 +77,13 @@ it('retains all seven globes and truly open railing cells beside solid decorativ
 }, 120000);
 it('rebuilds exact shared-material browser tiers, preserves the detailed source and uses separate GPU streams', async () => {
   const before = JSON.parse(await readFile(sidecar)),
-    src = digest(await readFile(source + '/models/source.glb')),
+    src = digest(await readFile(`${source}/models/source.glb`)),
     master = digest(await readFile(resolve(sidecar, '../model.glb')));
   expect(src).toBe('4174dd4eee0cbfef851a50a703a7f5b07746b3dbf4600caf1ded25635a397cf5');
   await buildModelLandmarkLods(sidecar, { force: true });
   const after = JSON.parse(await readFile(sidecar));
   expect(after.runtimeLods.levels).toEqual(before.runtimeLods.levels);
-  expect(digest(await readFile(source + '/models/source.glb'))).toBe(src);
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(src);
   expect(digest(await readFile(resolve(sidecar, '../model.glb')))).toBe(master);
   expect(after.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,

@@ -7,7 +7,7 @@ export const saoJoaoFrancisCase = 'sao-joao-del-rei-standing-rococo-church-nativ
 const historyUrl =
   'https://museudainconfidencia.museus.gov.br/wp-content/uploads/2019/11/Oficinadoinconfidencia_n2.pdf';
 const inventoryUrl = 'https://saojoaodelreitransparente.com.br/works/view/698';
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function pinned(dir, record, expectedPath) {
   if (record?.path !== expectedPath) throw Error('Evidence path mismatch');

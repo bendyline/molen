@@ -23,7 +23,7 @@ test('expired excavation plan binds all named contributors, exact original editi
     },
     record = {
       metadata: m,
-      files: [{ name: id + '.pdf', size: String(pdf.length), sha1: hash(pdf, 'sha1') }],
+      files: [{ name: `${id}.pdf`, size: String(pdf.length), sha1: hash(pdf, 'sha1') }],
     },
     r = {
       origin: 'archive-expired-excavation-plan',
@@ -34,9 +34,9 @@ test('expired excavation plan binds all named contributors, exact original editi
       title: m.title,
       artist: m.creator.join('; '),
       catalogCreators: [...m.creator],
-      sourceUrl: 'https://archive.org/details/' + id,
-      downloadUrl: 'https://archive.org/download/' + id + '/' + id + '.pdf',
-      rightsEvidence: { path: 'catalog.json', sourceUrl: 'https://archive.org/metadata/' + id },
+      sourceUrl: `https://archive.org/details/${id}`,
+      downloadUrl: `https://archive.org/download/${id}/${id}.pdf`,
+      rightsEvidence: { path: 'catalog.json', sourceUrl: `https://archive.org/metadata/${id}` },
       visuallyReviewedForThisPolicy: true,
       originalReview: {
         status: 'inspected',
@@ -78,7 +78,7 @@ test('expired excavation plan binds all named contributors, exact original editi
     { sha256: hash('other') },
     { originalReview: { ...r.originalReview, pagesInspected: [11] } },
     { originalReview: { ...r.originalReview, scope: 'unrelated photograph' } },
-    { downloadUrl: r.downloadUrl + '?reprint' },
+    { downloadUrl: `${r.downloadUrl}?reprint` },
   ])
     assert(!inspectExcavationPlanReference(d, { ...r, ...patch }).eligible);
   record.files[0].sha1 = hash('different', 'sha1');

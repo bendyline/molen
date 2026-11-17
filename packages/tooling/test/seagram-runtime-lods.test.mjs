@@ -11,7 +11,7 @@ const source = resolve('../../content/worldgen/source/places/dr/dr5/seagram_buil
 const installed = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const runtime = await runtimeLodFixture(installed),
   read = async (p) => JSON.parse(await readFile(p));
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 async function triangles(path) {
   const d = await new NodeIO().readBinary(await readFile(path));
   return d
@@ -49,9 +49,9 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('preserves the detailed master and the signed Park Avenue frame independently of the rear bustle', async () => {
-  const spec = await read(source + '/spec.json'),
-    m = await read(source + '/map-frame.json');
-  expect(hash(await readFile(source + '/models/source.glb'))).toBe(
+  const spec = await read(`${source}/spec.json`),
+    m = await read(`${source}/map-frame.json`);
+  expect(hash(await readFile(`${source}/models/source.glb`))).toBe(
     'sha256:708547d760a77815f7e2aa590550e632f6c64411f5f64eed88aedb66d361b819',
   );
   expect(spec.mesh.triangles).toBe(286644);
@@ -66,9 +66,9 @@ it('preserves the detailed master and the signed Park Avenue frame independently
   expect(m.elements.map((e) => e.id).sort()).toEqual([145341258, 145341297, 289866849]);
 });
 it('retains the full-height rear bay, unequal lower wings, open colonnade and depressed reflecting pools in all tiers', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const level of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + level.file);
+    const ts = await triangles(`${runtime}/${level.file}`);
     expect(ts.flat().reduce((h, p) => Math.max(h, p[1]), 0)).toBeCloseTo(157, 3);
     for (const [x, z, y] of [
       [0, 0, 157],
@@ -82,21 +82,21 @@ it('retains the full-height rear bay, unequal lower wings, open colonnade and de
     ])
       expect(
         nearest(ts, [x, 200, z], [0, -1, 0]),
-        level.name + ' roof/plaza ' + x + '/' + z,
+        `${level.name} roof/plaza ${x}/${z}`,
       ).toBeCloseTo(200 - y, 3);
-    expect(nearest(ts, [18, 5, 40], [0, 0, -1]), level.name + ' open column bay').toBeGreaterThan(
+    expect(nearest(ts, [18, 5, 40], [0, 0, -1]), `${level.name} open column bay`).toBeGreaterThan(
       60,
     );
-    expect(nearest(ts, [18, 15, 40], [0, 0, -1]), level.name + ' enclosed office').toBeLessThan(27);
-    expect(nearest(ts, [2.5, 5, 40], [0, 0, -1]), level.name + ' recessed lobby').toBeCloseTo(
+    expect(nearest(ts, [18, 15, 40], [0, 0, -1]), `${level.name} enclosed office`).toBeLessThan(27);
+    expect(nearest(ts, [2.5, 5, 40], [0, 0, -1]), `${level.name} recessed lobby`).toBeCloseTo(
       40 - ((3 * 8.4582 + 0.9144) / 2 - 2.8),
       3,
     );
   }
 }, 60000);
 it('rebuilds exact four-draw tiers within browser budgets with shared graphs and separate GPU streams', async () => {
-  const result = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    original = await read(installed + '/asset.json');
+  const result = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    original = await read(`${installed}/asset.json`);
   expect(result.levels[0].bytes + result.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -105,7 +105,7 @@ it('rebuilds exact four-draw tiers within browser budgets with shared graphs and
     closeup: 64000,
   })) {
     const l = result.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hash(b)).toBe(original.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);

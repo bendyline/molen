@@ -31,8 +31,8 @@ it('retains the restored drum, narrow bottle and asymmetric wing at skyline dist
   ).toBe(true);
 });
 it('round trips the OSM national-map wing with the authority tower anchor', async () => {
-  const spec = JSON.parse(await readFile(source + '/spec.json')),
-    bytes = await readFile(source + '/map-frame.json'),
+  const spec = JSON.parse(await readFile(`${source}/spec.json`)),
+    bytes = await readFile(`${source}/map-frame.json`),
     frame = JSON.parse(bytes);
   const footprint = sourceLocalFootprint(spec, bytes).footprint;
   footprint.forEach((p, i) => {
@@ -48,9 +48,9 @@ it('round trips the OSM national-map wing with the authority tower anchor', asyn
   expect(frame.authorityControl.heightMeters).toBe(30.6);
 });
 it('reuses the current small initial download while preserving the detailed import', async () => {
-  const bytes = await readFile(runtime + '/asset.json');
-  const lods = await buildModelLandmarkLods(runtime + '/asset.json');
-  expect(await readFile(runtime + '/asset.json')).toEqual(bytes);
+  const bytes = await readFile(`${runtime}/asset.json`);
+  const lods = await buildModelLandmarkLods(`${runtime}/asset.json`);
+  expect(await readFile(`${runtime}/asset.json`)).toEqual(bytes);
   expect(lods.levels[0].triangles).toBeLessThanOrEqual(1000);
   expect(lods.levels[2].triangles).toBeLessThanOrEqual(16000);
   expect(lods.levels[2].errorMeters).toBeLessThan(0.1);

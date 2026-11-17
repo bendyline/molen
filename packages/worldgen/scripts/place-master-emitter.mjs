@@ -159,7 +159,7 @@ function reviewScene(assetId, title, box, camera) {
   const size = box.max.map((v, i) => v - box.min[i]);
   const center = box.min.map((v, i) => (v + box.max[i]) / 2);
   const span = Math.max(size[0], size[2]);
-  const far = Math.max(span * 1.6, size[1] * 1.5);
+  const far = Math.max(span * 0.95, size[1] * 1.25);
   const round = (value) => Math.round(value * 100) / 100;
   return {
     format: 'molen/scene@3',
@@ -180,7 +180,7 @@ function reviewScene(assetId, title, box, camera) {
           transform: {
             pos: [round(center[0]), -0.16, round(center[2])],
             rot: [0, 0, 0, 1],
-            scale: [round(span * 2.4), 0.3, round(span * 2.4)],
+            scale: [round(span * 1.6), 0.3, round(span * 1.6)],
           },
           renderable: {
             kind: 'primitive',
@@ -207,11 +207,11 @@ function reviewScene(assetId, title, box, camera) {
     camera: {
       mode: 'fixed',
       position: camera?.position ?? [
-        round(center[0] + far * 0.55),
-        round(Math.max(size[1] * 0.6, 12)),
-        round(center[2] + far),
+        round(center[0] + far * 0.7),
+        round(Math.max(size[1] * 0.75, 14)),
+        round(center[2] + far * 0.9),
       ],
-      lookAt: camera?.lookAt ?? [round(center[0]), round(size[1] * 0.38), round(center[2])],
+      lookAt: camera?.lookAt ?? [round(center[0]), round(size[1] * 0.4), round(center[2])],
       fov: 42,
     },
     physics: { engine: 'none' },
@@ -351,10 +351,13 @@ export async function emitPlaceMaster(model) {
       ],
     },
   };
+  const preview = fs.existsSync(path.join(dir, 'preview.png'))
+    ? '\n![Molen preview](preview.png)\n'
+    : '';
   const readme = `# ${model.title} — ${model.planId}
 
 ${model.brief}
-
+${preview}
 Built by \`${sourcePath}/models/${generatorName}\` with the shared emitter
 \`packages/worldgen/scripts/place-master-emitter.mjs\`: ${mesh.triangleCount} triangles,
 ${parts.length} materials, no embedded bitmaps. The runtime asset is \`${assetId}\`; its runtime

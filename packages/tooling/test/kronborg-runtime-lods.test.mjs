@@ -89,8 +89,8 @@ it('reproduces the original master and binds fresh signed component evidence to 
   kronborgStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(337000);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`);
   expect(frame.identity.tags.wikidata).toBe('Q189358');
   expect(frame.identity.id).toBe(1588209);
   expect(frame.features).toHaveLength(13);
@@ -104,32 +104,32 @@ it('reproduces the original master and binds fresh signed component evidence to 
   expect(spec.geographicProposal.status).toBe('preview-proposal');
 });
 it('preserves the north passage, courtyard floor,59m Trumpeter and separate masonry rather than a land platform', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file));
-    expect(nearest(d.triangles, [10, 120, 10], [0, -1, 0]), l.name + ' open courtyard').toBeCloseTo(
+    const d = decode(await readFile(`${runtime}/${l.file}`));
+    expect(nearest(d.triangles, [10, 120, 10], [0, -1, 0]), `${l.name} open courtyard`).toBeCloseTo(
       120,
       4,
     );
     expect(
       nearest(d.triangles, [70, 3.2, 0], [-1, 0, 0]),
-      l.name + ' open north vault',
+      `${l.name} open north vault`,
     ).toBeGreaterThan(65);
     expect(
       nearest(d.triangles, [35, 1, 0], [0, -1, 0]),
-      l.name + ' continuous passage paving',
+      `${l.name} continuous passage paving`,
     ).toBeCloseTo(1, 4);
     expect(
       nearest(d.triangles, [-65, 120, 0], [0, -1, 0]),
-      l.name + ' no filled fortress land',
+      `${l.name} no filled fortress land`,
     ).toBe(Infinity);
     expect(
       nearest(d.triangles, [0, 120, 60], [0, -1, 0]),
-      l.name + ' no filled fortress land',
+      `${l.name} no filled fortress land`,
     ).toBe(Infinity);
     expect(
       nearest(d.triangles, [15, -4, 10], [0, 0, 1]),
-      l.name + ' occupied buried foundation',
+      `${l.name} occupied buried foundation`,
     ).toBeCloseTo(22.5, 3);
     expect(d.triangles.reduce((n, t) => Math.max(n, ...t.map((p) => p[1])), -Infinity)).toBeCloseTo(
       59,

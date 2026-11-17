@@ -91,24 +91,24 @@ it('reproduces the original master and binds fresh signed component evidence to 
   hofburgStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(606293);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`);
   expect(frame.identity.tags.wikidata).toBe('Q46242');
   expect(frame.identity.id).toBe(3898175);
   expect(frame.features).toHaveLength(123);
   expect(frame.cachedVertexMaxErrorMeters).toBeLessThan(0.001);
-  const grade = await read(source + '/site-grade.json');
+  const grade = await read(`${source}/site-grade.json`);
   expect(grade.grid.heights).toHaveLength(10197);
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
-  expect(await sourceHash(source + '/grade-source.tif')).toBe(grade.sourceRasterHash);
+  expect(await sourceHash(`${source}/grade-source.tif`)).toBe(grade.sourceRasterHash);
   expect(grade.verticalDatum).toContain('Wiener Null');
   expect(spec.geographicProposal.buildingCutout.outlines).toHaveLength(19);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBeCloseTo(-0.3728, 5);
   expect(spec.geographicProposal.status).toBe('preview-proposal');
 }, 120000);
 it('preserves court holes and diagonal Michaeler passage, with continuous roof plans and grounded Albertina', async () => {
-  const asset = await read(runtime + '/asset.json');
-  const plans = await read(source + '/roof-plans.json');
+  const asset = await read(`${runtime}/asset.json`);
+  const plans = await read(`${source}/roof-plans.json`);
   for (const level of Object.values(plans.levels))
     for (const item of Object.values(level))
       for (const p of item.parts) {
@@ -116,22 +116,22 @@ it('preserves court holes and diagonal Michaeler passage, with continuous roof p
         expect(p.faces.every((f) => f.every((p) => p.every(Number.isFinite)))).toBe(true);
       }
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file));
+    const d = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z] of [
       [197.57, -130.66],
       [59.46, -14.05],
       [101.12, 114],
     ])
-      expect(nearest(d.triangles, [x, 100, z], [0, -1, 0]), l.name + ' open mapped court').toBe(
+      expect(nearest(d.triangles, [x, 100, z], [0, -1, 0]), `${l.name} open mapped court`).toBe(
         Infinity,
       );
     expect(
       nearest(d.triangles, [182, 3.2, 37], [-Math.SQRT1_2, 0, -Math.SQRT1_2]),
-      l.name + ' diagonal passage',
+      `${l.name} diagonal passage`,
     ).toBeGreaterThan(70);
     expect(
       nearest(d.triangles, [-220, 100, 195], [0, -1, 0]),
-      l.name + ' no duplicate bastion land',
+      `${l.name} no duplicate bastion land`,
     ).toBe(Infinity);
     expect(d.triangles.reduce((n, t) => Math.max(n, ...t.map((p) => p[1])), -Infinity)).toBeCloseTo(
       66.7,

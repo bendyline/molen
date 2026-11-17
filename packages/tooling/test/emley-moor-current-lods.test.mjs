@@ -72,14 +72,14 @@ const nearest = (ts, o, d) =>
 
 it('keeps all four north platforms, twenty turret bays and the full modern antenna envelope at every level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     const values = ts.flat(1).map((p) => p[1]);
     expect(values.reduce((a, b) => Math.max(a, b), -Infinity)).toBeCloseTo(319, 4);
     expect(values.reduce((a, b) => Math.min(a, b), Infinity)).toBe(0);
     for (const y of [27.4, 33.5, 39.6, 45.7])
       expect(
         nearest(ts, [1.7, y + 2, -12.5], [0, -1, 0]),
-        name + ' north platform ' + y,
+        `${name} north platform ${y}`,
       ).toBeCloseTo(2, 3);
     for (let i = 0; i < 20; i++) {
       const a = ((i + 0.5) * 2 * Math.PI) / 20,
@@ -88,7 +88,7 @@ it('keeps all four north platforms, twenty turret bays and the full modern anten
           [12 * Math.sin(a), 265.5, 12 * Math.cos(a)],
           [-Math.sin(a), 0, -Math.cos(a)],
         );
-      expect(hit, name + ' turret bay ' + i).toBeGreaterThan(5);
+      expect(hit, `${name} turret bay ${i}`).toBeGreaterThan(5);
       expect(hit).toBeLessThan(5.2);
     }
   }
@@ -96,21 +96,21 @@ it('keeps all four north platforms, twenty turret bays and the full modern anten
 it('reproduces the exact historical source and binds compass controls without stretching to the smaller map ring', async () => {
   const gen = await readFile('../worldgen/scripts/generate-heritage-towers.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const wrap = Function(
     'normalize',
     'cross',
     'surfaces',
     'MATERIAL_REPEAT_METERS',
-    gen.slice(gen.indexOf('function wrap('), gen.indexOf('async function emit(')) + 'return wrap;',
+    `${gen.slice(gen.indexOf('function wrap('), gen.indexOf('async function emit('))}return wrap;`,
   )(normalize, cross, surfaces, MATERIAL_REPEAT_METERS);
   const b = new MeshBufferBuilder(),
     used = new Map();
   emleyMoor.build(wrap(b, used));
   const m = b.finalize();
   emleyMoor.decorateMesh(m);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -127,12 +127,12 @@ it('reproduces the exact historical source and binds compass controls without st
   expect(s.sourceFacts.baseDiameterMeters).toBe(24.38);
 });
 it('rebuilds exact deterministic budgeted derivatives with shared textures and separate position/normal streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -149,7 +149,7 @@ it('rebuilds exact deterministic budgeted derivatives with shared textures and s
   }
   expect([...refs].sort()).toEqual(
     ['metal_painted', 'concrete_plain', 'metal_copper']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

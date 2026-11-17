@@ -71,16 +71,16 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+const frame = await read(`${source}/map-frame.json`),
+  layout = await read(`${source}/layout.json`);
 it('pins the exact historic station identity, signed frontage and separately retained Westend and service buildings', async () => {
-  const m = await read(source + '/source.json'),
-    asset = await read(installed + '/asset.json'),
-    p = await read(source + '/placement-report.json'),
-    spec = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(m.files.models[0].sha256);
+  const m = await read(`${source}/source.json`),
+    asset = await read(`${installed}/asset.json`),
+    p = await read(`${source}/placement-report.json`),
+    spec = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(m.files.models[0].sha256);
   expect(asset.sourceHash).toBe(m.files.models[0].sha256);
-  expect(hashBytes(await readFile(installed + '/' + asset.files.main))).toBe(asset.hash);
+  expect(hashBytes(await readFile(`${installed}/${asset.files.main}`))).toBe(asset.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, asset.id));
   expect(frame.anchor).toEqual([19.057600009, 47.510566076]);
   expect(frame.heading).toBe(0.708150995419);
@@ -107,7 +107,7 @@ it('pins the exact historic station identity, signed frontage and separately ret
   expect(p.entry.terrainReference.anchor).toEqual([19.056575548864323, 47.51018640454274]);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: m,
       spec,
       placement: p.entry,
@@ -116,11 +116,11 @@ it('pins the exact historic station identity, signed frontage and separately ret
   ).toBeDefined();
 });
 it('keeps all four domes, complete banked wings and pitched hall, closed entrances, genuinely open galleries and rail/court areas in all six GLBs', async () => {
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     files = [
-      { name: 'source', path: source + '/models/source.glb' },
-      { name: 'import', path: installed + '/' + asset.files.main },
-      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: runtime + '/' + l.file })),
+      { name: 'source', path: `${source}/models/source.glb` },
+      { name: 'import', path: `${installed}/${asset.files.main}` },
+      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: `${runtime}/${l.file}` })),
     ],
     { controls, nativePlans } = await import(
       '../../../content/worldgen/source/places/u2/u2m/budapest_nyugati_railway_station/models/station-model.mjs'
@@ -130,12 +130,12 @@ it('keeps all four domes, complete banked wings and pitched hall, closed entranc
       top = (x, z) => 50 - nearest(ts, [x, 50, z], [0, -1, 0], true);
     for (const p of controls.towers) {
       expect
-        .soft(top(p.x + 0.02, p.z + 0.02), f.name + ' complete dome and spire ' + p.index)
+        .soft(top(p.x + 0.02, p.z + 0.02), `${f.name} complete dome and spire ${p.index}`)
         .toBeGreaterThan(33);
       expect.soft(top(p.x + 0.02, p.z + 0.02)).toBeLessThan(36.81);
     }
     for (const z of [-49, 14]) {
-      expect.soft(top(-64, z), f.name + ' closed pavilion barrel roof').toBeGreaterThan(23.35);
+      expect.soft(top(-64, z), `${f.name} closed pavilion barrel roof`).toBeGreaterThan(23.35);
       expect.soft(top(-64, z)).toBeLessThan(23.51);
     }
     for (const [x, z, y] of [
@@ -145,11 +145,11 @@ it('keeps all four domes, complete banked wings and pitched hall, closed entranc
       [-63, 45, 8],
       [56, 45, 8],
     ])
-      expect.soft(top(x, z), f.name + ' full connected wing ' + x + ',' + z).toBeCloseTo(y, 2);
+      expect.soft(top(x, z), `${f.name} full connected wing ${x},${z}`).toBeCloseTo(y, 2);
     for (const x of [-65, 0, 70])
-      expect.soft(top(x, -18), f.name + ' continuous full pitched hall').toBeCloseTo(28.3, 2);
+      expect.soft(top(x, -18), `${f.name} continuous full pitched hall`).toBeCloseTo(28.3, 2);
     expect
-      .soft(-20 + nearest(ts, [-62, -20, -18], [0, 1, 0], true), f.name + ' closed foyer floor')
+      .soft(-20 + nearest(ts, [-62, -20, -18], [0, 1, 0], true), `${f.name} closed foyer floor`)
       .toBeCloseTo(-6.3, 2);
     for (const [x, z] of [
       [0, -18],
@@ -158,13 +158,13 @@ it('keeps all four domes, complete banked wings and pitched hall, closed entranc
       expect
         .soft(
           nearest(ts, [x, 2, z], [0, -1, 0], true),
-          f.name + ' native rail/courtyard floor stays open',
+          `${f.name} native rail/courtyard floor stays open`,
         )
         .toBe(Infinity);
     expect
       .soft(
         nearest(ts, [105, 3, -18], [-1, 0, 0], true),
-        f.name + ' open rear train approach below high screen',
+        `${f.name} open rear train approach below high screen`,
       )
       .toBeGreaterThan(150);
     for (const i of [362, 363]) {
@@ -173,31 +173,31 @@ it('keeps all four domes, complete banked wings and pitched hall, closed entranc
       expect
         .soft(
           nearest(ts, [-100, 11, zc + 0.45], [1, 0, 0], true),
-          f.name + ' upper gallery is a real recess',
+          `${f.name} upper gallery is a real recess`,
         )
         .toBeGreaterThan(25);
       if (f.name !== 'skyline') {
         const glass = await triangles(f.path, 'window'),
           g = nearest(glass, [-100, 11, zc + 0.45], [1, 0, 0], true);
-        expect.soft(Number.isFinite(g), f.name + ' actual closed gallery room glazing').toBe(true);
+        expect.soft(Number.isFinite(g), `${f.name} actual closed gallery room glazing`).toBe(true);
         expect
           .soft(
             nearest(ts, [-100, 11, zc + 0.45], [1, 0, 0], true),
-            f.name + ' gallery backer remains visible',
+            `${f.name} gallery backer remains visible`,
           )
           .toBeCloseTo(g, 2);
         const door = await triangles(f.path, 'door'),
           d = nearest(door, [-100, 3.05, zc], [1, 0, 0], true);
-        expect.soft(Number.isFinite(d), f.name + ' actual closed timber entrance').toBe(true);
+        expect.soft(Number.isFinite(d), `${f.name} actual closed timber entrance`).toBe(true);
         expect.soft(nearest(ts, [-100, 3.05, zc], [1, 0, 0], true)).toBeCloseTo(d, 2);
       }
     }
   }
 }, 60000);
 it('uses the production viewer to replace the whole passenger building and preserve all independent native neighbors', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -226,7 +226,7 @@ it('uses the production viewer to replace the whole passenger building and prese
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         height: f.properties.height ?? 30,
         minHeight: f.properties.min_height ?? 0,
@@ -242,12 +242,12 @@ it('uses the production viewer to replace the whole passenger building and prese
   const owned = layout.nativeMap.ownedParts,
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
-  expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
+  expect(all).toHaveLength((await read(`${source}/mapped-parts.json`)).parts.length);
   expect(target).toHaveLength(30);
   expect(neighbor).toHaveLength(1325);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -261,8 +261,8 @@ it('uses the production viewer to replace the whole passenger building and prese
       model.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial()));
     }
   const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     objects = new StructureModelLibrary(async () => model),
     seen = [],
@@ -389,7 +389,7 @@ it('uses the production viewer to replace the whole passenger building and prese
       heightfield: field,
       signal: new AbortController().signal,
     });
-    const landmark = root?.getObjectByName('structure:' + placed.id);
+    const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
@@ -402,7 +402,7 @@ it('uses the production viewer to replace the whole passenger building and prese
       JSON.stringify({ remaining: seen.at(-1), owned: target.map((p) => p.id) }),
     ).toEqual(neighbor.map((b) => b.id).sort());
     for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+      expect(neighbor.map((b) => b.id)).toContain(`native-${i}`);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
@@ -410,8 +410,8 @@ it('uses the production viewer to replace the whole passenger building and prese
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -420,7 +420,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -439,7 +439,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

@@ -104,17 +104,17 @@ it('reproduces the original master and retains signed fresh map and numeric terr
   karlstejnStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(556934);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.tags.wikidata).toBe('Q266698');
   expect(frame.identity.version).toBe(27);
   expect(frame.features).toHaveLength(35);
   expect(frame.cachedVertexMaxErrorMeters).toBeLessThan(0.006);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -126,19 +126,19 @@ it('reproduces the original master and retains signed fresh map and numeric terr
     grade.grid.heights[5100] - grade.datumMeters,
   );
   expect(spec.geographicProposal.groundModelY).toBe(0);
-  expect(await sourceHash(source + '/grade-source.tif')).toBe(grade.sourceRasterHash);
+  expect(await sourceHash(`${source}/grade-source.tif`)).toBe(grade.sourceRasterHash);
   expect(grade.grid.heights).toHaveLength(10201);
   expect(grade.datumMeters).toBe(300);
   expect(spec.actualBounds.max[1]).toBeCloseTo(grade.workingFloors[443238530] + 62, 3);
 });
 it('keeps courts open, occupied mapped feet buried and the gate and timber passage clear', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json');
+  const asset = await read(`${runtime}/asset.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`);
   const { karlstejnGround } = await import('../../worldgen/scripts/karlstejn-runtime-model.mjs');
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
-    expect(nearest(triangles, [-18, 150, 15], [0, -1, 0]), l.name + ' open central court').toBe(
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
+    expect(nearest(triangles, [-18, 150, 15], [0, -1, 0]), `${l.name} open central court`).toBe(
       Infinity,
     );
     const a = [12.39, -71.56],
@@ -150,15 +150,15 @@ it('keeps courts open, occupied mapped feet buried and the gate and timber passa
         grade.workingFloors[453018676] + 1.7,
         (a[1] + b[1]) / 2 - n[1],
       ];
-    expect(nearest(triangles, start, [n[0], 0, n[1]]), l.name + ' north gate').toBeGreaterThan(7.3);
+    expect(nearest(triangles, start, [n[0], 0, n[1]]), `${l.name} north gate`).toBeGreaterThan(7.3);
     const deck = (grade.workingFloors[443238530] + 4.5 + grade.workingFloors[443238531] + 16.5) / 2;
     expect(
       nearest(triangles, [47, deck - 2, 6.3], [0, 1, 0]),
-      l.name + ' skyway underside',
+      `${l.name} skyway underside`,
     ).toBeCloseTo(2, 1);
     expect(
       nearest(triangles, [47, deck - 1, 6.3], [0, -1, 0]),
-      l.name + ' open space below skyway',
+      `${l.name} open space below skyway`,
     ).toBe(Infinity);
     if (l.name === 'skyline' || l.name === 'district') continue;
     for (const id of ['way/443238530', 'way/443238531', 'way/443238533']) {
@@ -181,17 +181,17 @@ it('keeps courts open, occupied mapped feet buried and the gate and timber passa
             [x + n[0] * 3, karlstejnGround(x, z) + 0.12, z + n[1] * 3],
             [-n[0], 0, -n[1]],
           );
-        expect(hit.distance, l.name + ' foundation ' + id + ' edge' + i).toBeLessThan(4.2);
+        expect(hit.distance, `${l.name} foundation ${id} edge${i}`).toBeLessThan(4.2);
         expect(
           dot(hit.normal, [n[0], 0, n[1]]),
-          l.name + ' outward foundation ' + id + ' edge' + i,
+          `${l.name} outward foundation ${id} edge${i}`,
         ).toBeGreaterThan(0.8);
       }
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -201,7 +201,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -211,7 +211,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

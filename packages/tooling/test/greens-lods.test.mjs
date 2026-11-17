@@ -40,36 +40,36 @@ it('preserves five open main barrels,two east culverts,four pier noses and conti
   for (const name of ['source', 'master', 'skyline', 'district', 'street', 'closeup']) {
     const g = await geometry(
       name === 'source'
-        ? source + '/models/source.glb'
+        ? `${source}/models/source.glb`
         : resolve(sidecar, '..', name === 'master' ? 'model.glb' : `model.${name}.glb`),
     );
     for (const [a, b] of [...C.spans, ...C.culverts]) {
       const x = (a + b) / 2;
-      expect(g.hit([x, 1.35, 15], [0, 0, -1]), name + ' open barrel ' + x).toBe(Infinity);
+      expect(g.hit([x, 1.35, 15], [0, 0, -1]), `${name} open barrel ${x}`).toBe(Infinity);
       expect(
         g.hit([x, deckY(x) - 0.22, 15], [0, 0, -1]),
-        name + ' solid spandrel ' + x,
+        `${name} solid spandrel ${x}`,
       ).toBeLessThan(12);
       const top = 12 - g.hit([x, 12, 0], [0, -1, 0]);
       expect(Math.abs(top - deckY(x))).toBeLessThan(name === 'skyline' ? 0.08 : 0.035);
       expect(intrados(x)).toBeGreaterThan(2.7);
     }
     for (const x of C.piers) {
-      expect(12 - g.hit([x, 12, 4.8], [0, -1, 0]), name + ' projecting nose').toBeGreaterThan(1.5);
+      expect(12 - g.hit([x, 12, 4.8], [0, -1, 0]), `${name} projecting nose`).toBeGreaterThan(1.5);
       if (!['skyline'].includes(name))
-        expect(g.hit([x, 3.1, 10], [0, 0, -1]), name + ' downstream panel').toBeLessThan(6.0);
+        expect(g.hit([x, 3.1, 10], [0, 0, -1]), `${name} downstream panel`).toBeLessThan(6.0);
     }
     for (const x of [-38.6, -30, -16, 0, 14, 28, 38.6]) {
       expect(
         Math.abs(12 - g.hit([x, 12, 0.4], [0, -1, 0]) - deckY(x)),
-        name + ' road',
+        `${name} road`,
       ).toBeLessThan(0.09);
       expect(
         Math.abs(12 - g.hit([x, 12, -3.05], [0, -1, 0]) - deckY(x) - 0.12),
-        name + ' north walk',
+        `${name} north walk`,
       ).toBeLessThan(0.09);
       const south = 12 - g.hit([x, 12, 3.65], [0, -1, 0]);
-      expect(south - deckY(x), name + ' south stone parapet').toBeGreaterThan(0.95);
+      expect(south - deckY(x), `${name} south stone parapet`).toBeGreaterThan(0.95);
     }
     for (const [x, sign] of [
       [C.west, -1],
@@ -78,20 +78,20 @@ it('preserves five open main barrels,two east culverts,four pier noses and conti
       for (const z of [-4.25, 0, 4.0])
         expect(
           Number.isFinite(g.hit([x + sign * 0.3, 12, z], [0, -1, 0])),
-          name + ' mouth ' + z,
+          `${name} mouth ${z}`,
         ).toBe(true);
   }
 }, 120000);
 
 it('rebuilds budgeted shared-surface LODs deterministically while preserving the original master and separate GPU streams', async () => {
   const before = JSON.parse(await readFile(sidecar)),
-    src = digest(await readFile(source + '/models/source.glb')),
+    src = digest(await readFile(`${source}/models/source.glb`)),
     master = digest(await readFile(resolve(sidecar, '../model.glb')));
   expect(src).toBe('2accbaf1e7e62645681339da54e0a76280a0ed00ef2893b20ba5e09f1469b66e');
   await buildModelLandmarkLods(sidecar, { force: true });
   const after = JSON.parse(await readFile(sidecar));
   expect(after.runtimeLods.levels).toEqual(before.runtimeLods.levels);
-  expect(digest(await readFile(source + '/models/source.glb'))).toBe(src);
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(src);
   expect(digest(await readFile(resolve(sidecar, '../model.glb')))).toBe(master);
   expect(after.runtimeLods.levels.slice(0, 2).reduce((n, x) => n + x.bytes, 0)).toBeLessThan(
     3000000,

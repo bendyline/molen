@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const augerCampusCases = {
   'auger-primary-whole-campus-east-service-way313007097-2018':
     'malargue_campus_east_service_building',
@@ -52,11 +52,11 @@ export function inspectAugerCampusPrimaryFacts({ dir, proof, controls: P, frame:
       return fail('auger-campus-written-facts-unbound');
     if (
       hash(bytes) !== n.sha256 ||
-      j.sourceUrl !== 'https://www.openstreetmap.org/api/0.6/way/' + c.id + '/full.json' ||
+      j.sourceUrl !== `https://www.openstreetmap.org/api/0.6/way/${c.id}/full.json` ||
       w?.tags?.building !== 'yes' ||
       w.nodes.length !== c.corners + 1 ||
       w.nodes[0] !== w.nodes.at(-1) ||
-      n.featureId !== 'way/' + c.id ||
+      n.featureId !== `way/${c.id}` ||
       P.nativeFeatureId !== n.featureId
     )
       return fail('auger-campus-native-outline-unbound');

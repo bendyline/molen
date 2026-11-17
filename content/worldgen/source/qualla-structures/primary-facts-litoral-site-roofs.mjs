@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const identities = {
   litoral_west_block_01: ['6792W3X3+QMMV', 39, 2.5, 0.9225, 0.87, 6],
   litoral_west_block_02: ['6792W3X3+MM9Q', 36, 2.5, 0.9334, 0.87, 4],
@@ -67,7 +67,7 @@ export function inspectLitoralSiteRoofPrimaryFacts({ dir, proof, controls: P, fr
       pavilion = null,
       authorHeight = null,
     ] = identities[P.model] ?? [];
-    const id = 'google-open-buildings:' + code;
+    const id = `google-open-buildings:${code}`;
     if (
       !code ||
       litoralSiteRoofCases[proof.case] !== P.model ||
@@ -99,9 +99,8 @@ export function inspectLitoralSiteRoofPrimaryFacts({ dir, proof, controls: P, fr
     const precision = minimumConfidence === 0.78 ? 80 : minimumConfidence === 0.823 ? 85 : 90;
     if (
       ![0.78, 0.823, 0.87].includes(minimumConfidence) ||
-      Number(
-        data.footprintThresholdRecord?.['confidence_threshold_' + precision + '%_precision'],
-      ) !== minimumConfidence ||
+      Number(data.footprintThresholdRecord?.[`confidence_threshold_${precision}%_precision`]) !==
+        minimumConfidence ||
       P.footprintConfidenceThreshold !== minimumConfidence ||
       P.footprintConfidenceThresholdPrecisionPercent !== precision ||
       P.estimatedHorizontalUncertaintyMeters < (minimumConfidence === 0.78 ? 7 : 5)
@@ -223,7 +222,7 @@ export function inspectLitoralSiteRoofPrimaryFacts({ dir, proof, controls: P, fr
       originalWay = siteXml.match(/<way\b[^>]*\bid="46012320"[^>]*>([\s\S]*?)<\/way>/)?.[1],
       siteIds = [...originalWay.matchAll(/<nd ref="(\d+)"\s*\/>/g)].map((m) => m[1]),
       siteCoords = siteIds.map((id) => {
-        const n = siteXml.match(new RegExp('<node\\b[^>]*\\bid="' + id + '"[^>]*>'));
+        const n = siteXml.match(new RegExp(`<node\\b[^>]*\\bid="${id}"[^>]*>`));
         const a = Object.fromEntries(
           [...n[0].matchAll(/([\w:]+)="([^"]*)"/g)].map((m) => [m[1], m[2]]),
         );
@@ -264,7 +263,7 @@ export function inspectLitoralSiteRoofPrimaryFacts({ dir, proof, controls: P, fr
       method: 'primary-facts-only',
       imageryUsed: false,
       evidenceHash: hash(Buffer.from(JSON.stringify(proof))),
-      notes: `Whole separately mapped ${corners}-corner Google v3 roof inside the original named prison perimeter; specific building use unverified. Original WKT retained; ${authorOnly ? 'no passing source height observations; nominal ' + authorHeight + ' m is an author visualization estimate, not a source value' : height + ' m estimated numerical relative height retained'}; facade, roof section, openings and condition estimated. Approximate 2023 preview; other roofs, open yards and whole prison remain separate. All imagery unused.`,
+      notes: `Whole separately mapped ${corners}-corner Google v3 roof inside the original named prison perimeter; specific building use unverified. Original WKT retained; ${authorOnly ? `no passing source height observations; nominal ${authorHeight} m is an author visualization estimate, not a source value` : `${height} m estimated numerical relative height retained`}; facade, roof section, openings and condition estimated. Approximate 2023 preview; other roofs, open yards and whole prison remain separate. All imagery unused.`,
     };
   } catch {
     return fail('litoral-google-original-evidence-unreadable');

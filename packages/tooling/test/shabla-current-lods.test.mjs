@@ -69,33 +69,33 @@ const nearest = (ts, o, d) =>
   Math.min(...ts.map((p) => hit(o, d, p)).filter((t) => t !== null && t > 0));
 it('keeps both gallery decks open, their railings complete and the full32m tip in all browser levels', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [3.6, 15, 3.6], [0, -1, 0]), name + ' lower gallery deck').toBeCloseTo(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [3.6, 15, 3.6], [0, -1, 0]), `${name} lower gallery deck`).toBeCloseTo(
       2.77,
       4,
     );
-    expect(nearest(ts, [0.4, 12.45, 5], [0, 0, -1]), name + ' open lower gallery').toBeGreaterThan(
+    expect(nearest(ts, [0.4, 12.45, 5], [0, 0, -1]), `${name} open lower gallery`).toBeGreaterThan(
       1.5,
     );
-    expect(nearest(ts, [0.4, 13.1, 5], [0, 0, -1]), name + ' lower top rail').toBeGreaterThan(0.8);
-    expect(nearest(ts, [0.4, 13.1, 5], [0, 0, -1]), name + ' lower top rail').toBeLessThan(1);
-    expect(nearest(ts, [0, 33, 0], [0, -1, 0]), name + ' conductor32m').toBeCloseTo(1, 3);
-    expect(nearest(ts, [-5, 8, -11], [0, -1, 0]), name + ' complete keeper roof').toBeGreaterThan(
+    expect(nearest(ts, [0.4, 13.1, 5], [0, 0, -1]), `${name} lower top rail`).toBeGreaterThan(0.8);
+    expect(nearest(ts, [0.4, 13.1, 5], [0, 0, -1]), `${name} lower top rail`).toBeLessThan(1);
+    expect(nearest(ts, [0, 33, 0], [0, -1, 0]), `${name} conductor32m`).toBeCloseTo(1, 3);
+    expect(nearest(ts, [-5, 8, -11], [0, -1, 0]), `${name} complete keeper roof`).toBeGreaterThan(
       3,
     );
-    expect(nearest(ts, [-5, 8, -11], [0, -1, 0]), name + ' complete keeper roof').toBeLessThan(4.3);
+    expect(nearest(ts, [-5, 8, -11], [0, -1, 0]), `${name} complete keeper roof`).toBeLessThan(4.3);
   }
 });
 it('retains real recessed shaft openings at district, street and closeup', async () => {
   const apothem = (y) => 2.94 - ((y - 12.23) * 1.02) / 17.17;
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const [lo, y] of [
       [12.23, 13.35],
       [17.7, 18.65],
       [23.7, 24.65],
     ]) {
-      expect(nearest(ts, [0.14, y, 4], [0, 0, -1]), name + ' recessed aperture').toBeCloseTo(
+      expect(nearest(ts, [0.14, y, 4], [0, 0, -1]), `${name} recessed aperture`).toBeCloseTo(
         4 - apothem(y) * (1 - 0.28 / apothem(lo)),
         4,
       );
@@ -121,8 +121,8 @@ it('reproduces the original source master and uses municipal tower position with
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
   expect(m.triangleCount).toBe(7738);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -139,12 +139,12 @@ it('reproduces the original source master and uses municipal tower position with
   expect(f.heightControl.mappedFocalHeightMeters).toBe(36);
 });
 it('rebuilds budgeted levels with seven reused graphs and no embedded textures', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -162,7 +162,7 @@ it('rebuilds budgeted levels with seven reused graphs and no embedded textures',
       'stone_granite',
       'wood_plain',
     ]
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

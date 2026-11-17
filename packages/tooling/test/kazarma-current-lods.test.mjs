@@ -54,7 +54,7 @@ it('keeps the asymmetric corbelled passage open and road continuous at every bro
             const v = hit([x, y, -3.1], [0, 0, 1], t.p);
             return v !== null && v > 0 && v < 6.2;
           }),
-          name + ' passage',
+          `${name} passage`,
         ).toHaveLength(0);
     for (const x of [-10, -4, 0, 4, 10]) {
       const road = ts.filter((t) => {
@@ -73,9 +73,9 @@ it('keeps the asymmetric corbelled passage open and road continuous at every bro
   }
 });
 it('reproduces the repaired detailed source and mapped central crossing with a declared relative bank contact', async () => {
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
-    t = await read(source + '/terrain-context.json');
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
+    t = await read(`${source}/terrain-context.json`);
   expect(f.features.find((v) => v.id === 306121794).tags.wikidata).toBe('Q254087');
   expect(f.centerline[1][0] - f.centerline[0][0]).toBeCloseTo(7.944, 3);
   expect(s.sourceFacts.publishedDimensionsMeters).toEqual([22, 5.6, 4]);
@@ -84,13 +84,13 @@ it('reproduces the repaired detailed source and mapped central crossing with a d
   expect(s.geographicProposal.heading).toBe(1.486301543755);
 });
 it('reproduces four image-free derivatives with two reused material graphs and a small initial download', async () => {
-  const a = await read(runtime + '/asset.json'),
-    master = await readFile(runtime + '/model.glb');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  expect((await readFile(runtime + '/model.glb')).equals(master)).toBe(true);
+  const a = await read(`${runtime}/asset.json`),
+    master = await readFile(`${runtime}/model.glb`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  expect((await readFile(`${runtime}/model.glb`)).equals(master)).toBe(true);
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   for (const l of a.runtimeLods.levels) {
-    const bytes = await readFile(runtime + '/' + l.file),
+    const bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);
     expect(l.drawCalls).toBeLessThanOrEqual(2);

@@ -104,16 +104,16 @@ it('preserves the original detailed source and registers fresh signed evidence',
   hohenzollernStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(349299);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json'),
-    cut = await read(source + '/ground-cutout.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`),
+    cut = await read(`${source}/ground-cutout.json`);
   expect(frame.identity.tags.wikidata).toBe('Q156457');
   expect(frame.identity.version).toBe(51);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -124,23 +124,23 @@ it('preserves the original detailed source and registers fresh signed evidence',
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(835.9281);
   expect(grade.architectureShift).toBe(-10.4563);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
   expect(cut.areaMeters2).toBeLessThan(500);
   expect(cut.retainedGroundIslands.length).toBeGreaterThan(0);
 });
 it('keeps both mapped gate passages open and exterior platform feet below terrain', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    gates = await read(source + '/gate-frame.json'),
-    parts = await read(source + '/map-parts-reviewed.json');
+  const asset = await read(`${runtime}/asset.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    gates = await read(`${source}/gate-frame.json`),
+    parts = await read(`${source}/map-parts-reviewed.json`);
   const { hohenzollernGround } = await import(
     '../../worldgen/scripts/hohenzollern-runtime-model.mjs'
   );
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     // Test the curved lower route, including the excavation liner before the
     // gate. Rays only inside the gate would miss a blocked approach.
     for (const [id, lo, hi] of [
@@ -149,7 +149,7 @@ it('keeps both mapped gate passages open and exterior platform feet below terrai
       [275154210, 1.3, 6],
       [275154214, 6, 7],
     ]) {
-      const p = parts.features.find((f) => f.id === 'way/' + id).points,
+      const p = parts.features.find((f) => f.id === `way/${id}`).points,
         lengths = p.slice(1).map((b, i) => Math.hypot(b[0] - p[i][0], b[1] - p[i][1])),
         total = lengths.reduce((n, x) => n + x, 0);
       let walked = 0;
@@ -172,7 +172,7 @@ it('keeps both mapped gate passages open and exterior platform feet below terrai
             ],
             direction,
           ),
-          l.name + ' lower route segment ' + id + ':' + i,
+          `${l.name} lower route segment ${id}:${i}`,
         ).toBeGreaterThan(distance - 0.1);
         walked += length;
       }
@@ -191,7 +191,7 @@ it('keeps both mapped gate passages open and exterior platform feet below terrai
             ],
             [d[0], 0, d[1]],
           ),
-          l.name + ' ' + g.name + ' open through passage',
+          `${l.name} ${g.name} open through passage`,
         ).toBeGreaterThan(g.depth - 0.4);
     }
     const p = frame.geometry.outline,
@@ -216,13 +216,13 @@ it('keeps both mapped gate passages open and exterior platform feet below terrai
           [x + n[0] * 3, hohenzollernGround(x, z) + 0.12, z + n[1] * 3],
           [-n[0], 0, -n[1]],
         ).distance,
-        l.name + ' outer platform foot ' + i,
+        `${l.name} outer platform foot ${i}`,
       ).toBeLessThan(4.2);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -232,7 +232,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -242,7 +242,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

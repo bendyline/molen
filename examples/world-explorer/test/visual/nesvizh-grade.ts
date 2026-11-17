@@ -301,7 +301,7 @@ async function passageProbes() {
       x = a[0] + (b[0] - a[0]) * t,
       z = a[1] + (b[1] - a[1]) * t;
     return {
-      name: 'bridge-arch-' + k,
+      name: `bridge-arch-${k}`,
       p: new THREE.Vector3(x + n[0] * 4, grade.workingCourtFloor - 2, z + n[1] * 4),
       d: new THREE.Vector3(-n[0], 0, -n[1]),
       required: 7.5,
@@ -315,7 +315,7 @@ async function passageProbes() {
     d = [(end[0] - start[0]) / dl, (end[1] - start[1]) / dl];
   for (const side of [-0.5, 0, 0.5])
     probes.push({
-      name: 'west-entrance-' + side,
+      name: `west-entrance-${side}`,
       p: new THREE.Vector3(
         start[0] - 3 * d[0] - side * d[1],
         grade.workingCourtFloor + 1.8,

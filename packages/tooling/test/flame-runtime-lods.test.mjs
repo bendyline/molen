@@ -108,7 +108,7 @@ it('reproduces original Flame Towers and preserves four independent mapped footp
   ]);
   for (const part of m.parts) {
     const baseline = prior.parts.find((p) => p.role === part.role),
-      fresh = m.elements.find((p) => 'way/' + p.id === part.id);
+      fresh = m.elements.find((p) => `way/${p.id}` === part.id);
     expect(part.local).toEqual(baseline.local);
     expect(fresh.geometry).toEqual(baseline.geometry);
     for (const [i, p] of fresh.geometry.slice(0, -1).entries()) {

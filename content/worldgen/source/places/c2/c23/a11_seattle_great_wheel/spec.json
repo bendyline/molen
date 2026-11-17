@@ -2,12 +2,106 @@
   "planId": "A11",
   "id": "molen.worldgen.structure.a11_seattle_great_wheel",
   "title": "Seattle Great Wheel",
-  "visualBrief": "Wheel, rim, spokes and gondola rhythm",
+  "wikidataId": "Q7442108",
+  "visualBrief": "The white 175 ft (53 m) observation wheel at the end of Pier 57, standing perpendicular to the waterfront and overhanging Elliott Bay: a twin-chord rim with 42 enclosed navy-glass gondolas hanging outside it, crossed spokes from a long hub with round white covers, two splayed A-frames carrying the axle, a white-ribbed glass boarding canopy, and the timber pier-end deck on piles.",
   "size": [
-    70,
-    55,
-    55
+    52.26,
+    58.22,
+    19.9
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -26.13,
+      -4.6,
+      -9.2
+    ],
+    "max": [
+      26.13,
+      53.62,
+      10.7
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-seattle-great-wheel.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Frame: the mapped glass-roofed base 35184768695710 (OSM way 396606878, building=roof) under the OSM attraction=big_wheel node 1809238334 (height 53); wheel plane along the base outline, about 245/65 deg azimuth; Pier 57 shed 35184538999531 for context",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "Overall height 175 feet (53.3 m); 42 climate-controlled enclosed gondolas of up to eight passengers; extends 40 feet (12.2 m) out over Elliott Bay; opened June 29, 2012 at Pier 57, 1301 Alaskan Way",
+      "source": "https://en.wikipedia.org/wiki/Seattle_Great_Wheel"
+    },
+    {
+      "fact": "Wheel plane faces Colman Dock and the Space Needle line (seen face-on from the ferry approach and from the Pier 58/59 overlook, edge-on along the pier)",
+      "source": "https://commons.wikimedia.org/wiki/Category:Seattle_Great_Wheel"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.3424999,
+      47.6061669
+    ],
+    "heading": -2.709898,
+    "groundAtAnchor": 4.96,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Rim, pivot-circle and hub dimensions (45 m rim, 50 m gondola circle, hub 28.5 m above the deck) are estimated from the published overall height and photographs; the lattice spokes are single tubes and the rim truss is two chords with ties.",
+    "Gondolas are drawn hanging plumb at every station; the glass-floored VIP gondola, LED lighting and the maintenance stair on one leg are omitted.",
+    "The boarding canopy and platforms are simplified; the pier-end deck, piles and railings stand in for the platform the wheel occupies beyond the mapped Pier 57 shed. Deck top is 0.25 m above the anchor ground, which is the pier deck level in the explorer elevation.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9888,
+    "vertices": 29664,
+    "materials": 5,
+    "bytes": 1189836,
+    "sha256": "sha256:5e007e542954e04096223ebb1da0788e38f9c3b88b54c4dff402169018f0f14e"
+  }
 }

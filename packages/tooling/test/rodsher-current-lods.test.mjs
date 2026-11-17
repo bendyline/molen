@@ -70,30 +70,30 @@ const nearest = (ts, o, d) =>
 
 it('retains the full vane, recessed doorway, four panels and open gallery at every browser level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 21, 0], [0, -1, 0]), name + ' vane tip').toBeCloseTo(0.55, 4);
-    expect(nearest(ts, [0.1, 1.1, -4], [0, 0, 1]), name + ' door depth').toBeCloseTo(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 21, 0], [0, -1, 0]), `${name} vane tip`).toBeCloseTo(0.55, 4);
+    expect(nearest(ts, [0.1, 1.1, -4], [0, 0, 1]), `${name} door depth`).toBeCloseTo(
       4 - 3.1 * Math.cos(Math.PI / 8) + 0.3,
       4,
     );
-    expect(nearest(ts, [2.4, 14.5, 0], [0, -1, 0]), name + ' lower deck').toBeCloseTo(1.28, 4);
-    expect(nearest(ts, [1.9, 18, 0], [0, -1, 0]), name + ' upper deck').toBeCloseTo(2.52, 4);
-    expect(nearest(ts, [0.25, 13.95, 4], [0, 0, -1]), name + ' rail gap').toBeGreaterThan(2.4);
+    expect(nearest(ts, [2.4, 14.5, 0], [0, -1, 0]), `${name} lower deck`).toBeCloseTo(1.28, 4);
+    expect(nearest(ts, [1.9, 18, 0], [0, -1, 0]), `${name} upper deck`).toBeCloseTo(2.52, 4);
+    expect(nearest(ts, [0.25, 13.95, 4], [0, 0, -1]), `${name} rail gap`).toBeGreaterThan(2.4);
     for (const x of [-0.7, 0.7])
       for (const y of [3.6, 6.1]) {
         const d = nearest(ts, [x, y, 4], [0, 0, -1]);
-        expect(d, name + ' panel surface').toBeGreaterThan(1.06);
+        expect(d, `${name} panel surface`).toBeGreaterThan(1.06);
         expect(d).toBeLessThan(1.08);
       }
   }
 });
 it('preserves arched shaft-window recesses, clear lantern glazing and exact original source bytes', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const b = await readFile(runtime + '/model.' + name + '.glb'),
+    const b = await readFile(`${runtime}/model.${name}.glb`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(
       nearest(geometry(b), [0.06, 9.3, 4], [0, 0, -1]),
-      name + ' arched window back',
+      `${name} arched window back`,
     ).toBeCloseTo(4 - 2.58 * Math.cos(Math.PI / 8) + 0.3, 4);
     const glass = g.materials.filter((m) => m.alphaMode === 'BLEND');
     expect(glass).toHaveLength(1);
@@ -101,7 +101,7 @@ it('preserves arched shaft-window recesses, clear lantern glazing and exact orig
   }
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       metricTriangleUv: true,
@@ -112,8 +112,8 @@ it('preserves arched shaft-window recesses, clear lantern glazing and exact orig
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
   expect(m.triangleCount).toBe(38480);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -128,12 +128,12 @@ it('preserves arched shaft-window recesses, clear lantern glazing and exact orig
   expect(s.sourceFacts.modeledVaneTopMeters).toBe(20.45);
 });
 it('rebuilds exact pinned derivatives within all budgets with four shared graph bindings and separate vertex streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -150,7 +150,7 @@ it('rebuilds exact pinned derivatives within all budgets with four shared graph 
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'metal_painted', 'wood_plain', 'concrete_plain']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

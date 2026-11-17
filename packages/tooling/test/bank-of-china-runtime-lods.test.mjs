@@ -10,7 +10,7 @@ const source = resolve('../../content/worldgen/source/places/we/wec/bank_of_chin
 const installed = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const runtime = await runtimeLodFixture(installed);
 const read = async (p) => JSON.parse(await readFile(p));
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 function decode(bytes) {
   const g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
   const bin = 28 + bytes.readUInt32LE(12);
@@ -78,18 +78,18 @@ function local(m, p) {
   ];
 }
 it('preserves the detailed source and signs all roof quadrants and mast centers to retained map data', async () => {
-  const m = await read(source + '/georeferencing-baseline.json');
+  const m = await read(`${source}/georeferencing-baseline.json`);
   const evidence = await read(resolve('../../content/earth/structures/georeferencing.json'));
   expect(m).toEqual(evidence.candidates.find((x) => x.candidateId === 'bank_of_china_tower'));
-  const parts = (await read(source + '/map-parts.json')).elements;
+  const parts = (await read(`${source}/map-parts.json`)).elements;
   expect(parts.find((x) => x.id === 25604760).tags.wikidata).toBe('Q214855');
   expect(m.heading).toBeCloseTo(1.293228519094, 12);
   expect(m.anchor).toEqual([114.16156875, 22.2792677]);
-  const master = await readFile(source + '/models/source.glb');
+  const master = await readFile(`${source}/models/source.glb`);
   expect(hash(master)).toBe(
     'sha256:7193bb67a6a8939d205e5274f0992b55fc8a48bf7df2d2cc7e2d8150704a7cad',
   );
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.mesh.triangles).toBe(156097);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(true);
@@ -97,11 +97,11 @@ it('preserves the detailed source and signs all roof quadrants and mast centers 
     expect(parts.find((p) => p.id === id).geometry).toHaveLength(4);
 });
 it('retains four independent inclined roofs, both grounded masts and full-height structural diagonals at every tier', async () => {
-  const m = await read(source + '/georeferencing-baseline.json');
-  const parts = (await read(source + '/map-parts.json')).elements;
-  const asset = await read(runtime + '/asset.json');
+  const m = await read(`${source}/georeferencing-baseline.json`);
+  const parts = (await read(`${source}/map-parts.json`)).elements;
+  const asset = await read(`${runtime}/asset.json`);
   for (const level of asset.runtimeLods.levels) {
-    const { triangles: ts, glassTriangles } = decode(await readFile(runtime + '/' + level.file));
+    const { triangles: ts, glassTriangles } = decode(await readFile(`${runtime}/${level.file}`));
     expect(Math.max(...ts.flat().map((p) => p[1]))).toBeCloseTo(367.4, 3);
     for (const id of [279949066, 279949067, 279949068, 279949069]) {
       const p = parts.find((p) => p.id === id),
@@ -124,7 +124,7 @@ it('retains four independent inclined roofs, both grounded masts and full-height
         const y = +p.tags.height + 5 - (+p.tags['roof:height'] * (dot(q, dir) - lo)) / (hi - lo);
         expect(
           nearest(glassTriangles, [q[0], 400, q[1]], [0, -1, 0]),
-          level.name + ' roof ' + id,
+          `${level.name} roof ${id}`,
         ).toBeCloseTo(400 - y, 2);
       }
     }
@@ -134,24 +134,24 @@ it('retains four independent inclined roofs, both grounded masts and full-height
         .geometry.slice(0, -1)
         .map((p) => local(m, p));
       const q = [0, 1].map((i) => plan.reduce((s, p) => s + p[i] / plan.length, 0));
-      expect(nearest(ts, [q[0], 400, q[1]], [0, -1, 0]), level.name + ' mast ' + id).toBeCloseTo(
+      expect(nearest(ts, [q[0], 400, q[1]], [0, -1, 0]), `${level.name} mast ${id}`).toBeCloseTo(
         32.6,
         3,
       );
       expect(
         nearest(ts, [q[0] + 5, 330, q[1]], [-1, 0, 0]),
-        level.name + ' mast body',
+        `${level.name} mast body`,
       ).toBeLessThan(5);
     }
     // Continuous opaque enclosure must not have the old per-pane holes.
     for (let y = 20; y < 80; y += 17)
       for (const z of [-17, -7, 8, 18])
-        expect(nearest(ts, [80, y, z], [-1, 0, 0]), level.name + ' wall').toBeLessThan(60);
+        expect(nearest(ts, [80, y, z], [-1, 0, 0]), `${level.name} wall`).toBeLessThan(60);
   }
 }, 60000);
 it('rebuilds exact pinned tiers within transfer/draw budgets with shared textures and separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  const installedAsset = await read(installed + '/asset.json');
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  const installedAsset = await read(`${installed}/asset.json`);
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -160,7 +160,7 @@ it('rebuilds exact pinned tiers within transfer/draw budgets with shared texture
     closeup: 64000,
   })) {
     const level = after.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + level.file),
+      bytes = await readFile(`${runtime}/${level.file}`),
       { g } = decode(bytes);
     expect(hash(bytes)).toBe(installedAsset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(level.triangles).toBeLessThanOrEqual(cap);

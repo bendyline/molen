@@ -1,0 +1,277 @@
+{
+  "source": {
+    "map": "examples/world-explorer/public/terrain/seattle-bellevue-sammamish/world.pmtiles",
+    "layer": "buildings",
+    "zoom": 15,
+    "ground": "examples/world-explorer/public/terrain/seattle-bellevue-sammamish/elevation.pmtiles",
+    "groundZoom": 14,
+    "attribution": "OpenStreetMap contributors (Protomaps); terrain per the region LICENSES.md",
+    "command": "node packages/worldgen/scripts/map-footprint-frame.mjs --center=-122.3318,47.60209 --radius=150 --features=35184424870493,35184790229218,35184790229216,35184790229217 --anchor=-122.3318661,47.6019531 --heading=edge:35184790229218+180"
+  },
+  "frame": "Model metres: +Y up from the ground at the anchor; +X along heading (radians counterclockwise from east seen from above); placement rotation.y = heading.",
+  "anchor": [
+    -122.3318661,
+    47.6019531
+  ],
+  "heading": -1.03411,
+  "headingBasis": "longest mapped edge of feature 35184790229218 +180 deg",
+  "groundAtAnchor": 13.42,
+  "groundRelative": {
+    "min": -0.86,
+    "max": 3.63
+  },
+  "features": [
+    {
+      "id": "35184424870493",
+      "kind": "building",
+      "height": 75,
+      "pieces": [
+        {
+          "tile": "15/5249/11444",
+          "crossesTileEdge": false,
+          "outline": [
+            [
+              -15.93,
+              8.71
+            ],
+            [
+              -16.09,
+              -5.2
+            ],
+            [
+              -13.91,
+              -5.32
+            ],
+            [
+              -14.11,
+              -11.29
+            ],
+            [
+              -16.11,
+              -11.07
+            ],
+            [
+              -16.27,
+              -27.34
+            ],
+            [
+              2.61,
+              -27.58
+            ],
+            [
+              2.72,
+              -25.4
+            ],
+            [
+              8.59,
+              -25.43
+            ],
+            [
+              8.48,
+              -27.6
+            ],
+            [
+              22.84,
+              -27.72
+            ],
+            [
+              24.36,
+              -11.36
+            ],
+            [
+              12.52,
+              8.53
+            ],
+            [
+              -15.93,
+              8.71
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.63,
+            1.04,
+            0.98,
+            1.7,
+            1.75,
+            3.63,
+            3.17,
+            2.96,
+            2.68,
+            2.88,
+            2.32,
+            0.85,
+            -0.86,
+            -0.63
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184790229218",
+      "kind": "building_part",
+      "kindDetail": "yes",
+      "height": 141,
+      "pieces": [
+        {
+          "tile": "15/5249/11444",
+          "crossesTileEdge": false,
+          "outline": [
+            [
+              -9.27,
+              7.75
+            ],
+            [
+              -10.03,
+              7.06
+            ],
+            [
+              -10.09,
+              -7.02
+            ],
+            [
+              -9.4,
+              -7.78
+            ],
+            [
+              9.04,
+              -8.06
+            ],
+            [
+              9.8,
+              -7.37
+            ],
+            [
+              9.92,
+              6.99
+            ],
+            [
+              9.23,
+              7.75
+            ],
+            [
+              -9.27,
+              7.75
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.64,
+            -0.56,
+            1.03,
+            1.1,
+            0.84,
+            0.75,
+            -0.75,
+            -0.81,
+            -0.64
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184790229216",
+      "kind": "building_part",
+      "kindDetail": "yes",
+      "height": 141.1,
+      "pieces": [
+        {
+          "tile": "15/5249/11444",
+          "crossesTileEdge": false,
+          "outline": [
+            [
+              1.13,
+              0.12
+            ],
+            [
+              0.61,
+              0.98
+            ],
+            [
+              -0.39,
+              1.09
+            ],
+            [
+              -1.08,
+              0.68
+            ],
+            [
+              -1.19,
+              -0.32
+            ],
+            [
+              -0.78,
+              -1.01
+            ],
+            [
+              0.05,
+              -1.23
+            ],
+            [
+              0.92,
+              -0.71
+            ],
+            [
+              1.13,
+              0.12
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.04,
+            -0.13,
+            -0.12,
+            -0.06,
+            0.06,
+            0.13,
+            0.13,
+            0.06,
+            -0.04
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184790229217",
+      "kind": "building_part",
+      "kindDetail": "yes",
+      "height": 148,
+      "pieces": [
+        {
+          "tile": "15/5249/11444",
+          "crossesTileEdge": false,
+          "outline": [
+            [
+              0.23,
+              0.05
+            ],
+            [
+              -0.32,
+              0.19
+            ],
+            [
+              -0.46,
+              -0.36
+            ],
+            [
+              0.26,
+              -0.4
+            ],
+            [
+              0.23,
+              0.05
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.02,
+            -0.02,
+            0.05,
+            0.03,
+            -0.02
+          ]
+        }
+      ]
+    }
+  ]
+}

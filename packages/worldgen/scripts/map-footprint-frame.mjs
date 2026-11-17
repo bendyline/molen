@@ -236,9 +236,7 @@ let headingBasis;
 if (headingArg.startsWith('edge:')) {
   const [, spec] = headingArg.split(':');
   const [id, extra = '0'] = spec.split(/(?=[+-])/);
-  const piece = pieces
-    .filter((p) => p.id === id)
-    .sort((a, b) => b.area - a.area)[0];
+  const piece = pieces.filter((p) => p.id === id).sort((a, b) => b.area - a.area)[0];
   if (!piece) throw new Error(`Feature ${id} is not mapped near the center`);
   heading = longestEdge(piece.rings[0]).angle + (Number(extra) * Math.PI) / 180;
   headingBasis = `longest mapped edge of feature ${id}${extra !== '0' ? ` ${extra} deg` : ''}`;

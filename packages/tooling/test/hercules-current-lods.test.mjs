@@ -69,7 +69,7 @@ const nearest = (ts, o, d) =>
   Math.min(...ts.map((p) => hit(o, d, p)).filter((t) => t !== null && t > 0));
 it('retains forty genuine recessed aperture backs at every near level', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (let face = 0; face < 4; face++)
       for (let row = 0; row < 5; row++)
         for (const column of [-1, 1]) {
@@ -81,19 +81,19 @@ it('retains forty genuine recessed aperture backs at every near level', async ()
             z = 6.875;
           expect(
             nearest(ts, [x * c + z * s, y, -x * s + z * c], [-s, 0, -c]),
-            name + ' face ' + face + ' row ' + row,
+            `${name} face ${face} row ${row}`,
           ).toBeCloseTo(1.3, 4);
         }
   }
 });
 it('keeps the complete podium, open landing, steps and full-height offset cylinder', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const b = await readFile(runtime + '/model.' + name + '.glb'),
+    const b = await readFile(`${runtime}/model.${name}.glb`),
       ts = geometry(b);
-    expect(nearest(ts, [8, 5, 8], [0, -1, 0]), name + ' podium top').toBeCloseTo(3.6, 4);
-    expect(nearest(ts, [0, 4, 16.75], [0, -1, 0]), name + ' landing steps').toBeCloseTo(2.94, 4);
-    expect(nearest(ts, [0, 2, 19], [0, 0, -1]), name + ' parapet opening').toBeGreaterThan(12);
-    expect(nearest(ts, [2.5, 56, -2.15], [0, -1, 0]), name + ' lightning rod').toBeCloseTo(1, 3);
+    expect(nearest(ts, [8, 5, 8], [0, -1, 0]), `${name} podium top`).toBeCloseTo(3.6, 4);
+    expect(nearest(ts, [0, 4, 16.75], [0, -1, 0]), `${name} landing steps`).toBeCloseTo(2.94, 4);
+    expect(nearest(ts, [0, 2, 19], [0, 0, -1]), `${name} parapet opening`).toBeGreaterThan(12);
+    expect(nearest(ts, [2.5, 56, -2.15], [0, -1, 0]), `${name} lightning rod`).toBeCloseTo(1, 3);
   }
 });
 it('preserves a byte-reproducible original master recipe and an explicitly signed northeast landing', async () => {
@@ -115,8 +115,8 @@ it('preserves a byte-reproducible original master recipe and an explicitly signe
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
 
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -132,12 +132,12 @@ it('preserves a byte-reproducible original master recipe and an explicitly signe
   expect(f.heightControl.excludeMappedHeightMeters).toBe(1);
 });
 it('rebuilds strict browser budgets with three reused graphs and no embedded images', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -147,7 +147,7 @@ it('rebuilds strict browser budgets with three reused graphs and no embedded ima
   }
   expect([...refs].sort()).toEqual(
     ['stone_ashlar', 'metal_painted', 'stone_granite']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

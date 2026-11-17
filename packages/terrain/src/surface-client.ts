@@ -37,6 +37,7 @@ import {
 } from './surface-bridges';
 import { incomingArm, surfaceJunctionControls } from './surface-controls';
 import {
+  appendTerrainSignGlow,
   appendTerrainStreetLights,
   type TerrainStreetLight,
   updateTerrainStreetLights,
@@ -56,9 +57,15 @@ import {
   appendSurfaceSign,
   STREET_NAME_MAST,
   type SurfaceSign,
+  signFontLetters,
   streetNamePanelWidth,
 } from './surface-sign-mesh';
-import { crossStreetName, planSurfaceSigns, STREET_NAME_SIGNS_PER_TILE } from './surface-signage';
+import {
+  crossStreetName,
+  planSurfaceSigns,
+  STREET_NAME_SIGNS_PER_TILE,
+  surfaceFacadeIndex,
+} from './surface-signage';
 import {
   appendTerrainSignalLenses,
   type TerrainSignalHead,
@@ -86,7 +93,7 @@ export interface TerrainSurfaceStats {
   streetFurniture: number;
   trafficSignals: number;
   roadSigns: number;
-  /** Of `roadSigns`: corner blade posts and mast-arm name panels. */
+  /** Of `roadSigns`: corner name posts, wall and frame nameplates, and mast-arm name panels. */
   streetNameSigns: number;
   parkingBays: number;
   parkedCars: number;
@@ -789,6 +796,10 @@ export function createTerrainSurfaceObject(
     x >= 0 && z >= 0 && x < context.tileSize && z < context.tileSize;
   const signsShown =
     detailed && style.roadSigns !== false && (style.roadSigns || style.id === 'modern');
+  // Street names the fonts cannot letter (a Japanese name in a Latin face) are not posted.
+  const lettered = options.fonts
+    ? signFontLetters(options.fonts, signProfile, options.signFont)
+    : undefined;
   const signs: SurfaceSign[] = signsShown
     ? planSurfaceSigns(
         tile,
@@ -800,12 +811,20 @@ export function createTerrainSurfaceObject(
         bridgeProfiles,
         signProfile,
         options.routeShields,
+        {
+          ...(lettered ? { lettered } : {}),
+          ...(signProfile.streetNames?.mount === 'wall'
+            ? { facades: surfaceFacadeIndex(tile.buildings, context.tileSize) }
+            : {}),
+        },
       )
     : [];
   group.userData.roadSigns = signs;
   const signFaces = new TerrainSurfaceMeshBuilder(context);
   // Street names are small lettering: their own mesh, with a shorter draw distance.
   const nameFaces = new TerrainSurfaceMeshBuilder(context);
+  // Blank backs and edges: apart, so only the lettered faces glow at night.
+  const signBacks = new TerrainSurfaceMeshBuilder(context);
   for (const sign of signs)
     appendSurfaceSign(
       sign.kind === 'street-name' ? nameFaces : signFaces,
@@ -814,12 +833,17 @@ export function createTerrainSurfaceObject(
       options.fonts,
       options.signFont,
       options.routeShields,
+      signBacks,
     );
-  // Blade posts have their own cap (STREET_NAME_SIGNS_PER_TILE): names never crowd out signals.
-  const bladePosts = signs.filter((sign) => sign.kind === 'street-name').length;
-  fixtureCount += signs.length - bladePosts;
+  // Corner names have their own cap (STREET_NAME_SIGNS_PER_TILE): never crowding out signals.
+  const cornerNames = signs.filter((sign) => sign.kind === 'street-name');
+  // A junction is one post, or two plates (walls or frames).
+  const namedCorners =
+    cornerNames.filter((sign) => sign.mount === 'post').length +
+    Math.ceil(cornerNames.filter((sign) => sign.mount !== 'post').length / 2);
+  fixtureCount += signs.length - cornerNames.length;
   stats.roadSigns = signs.length;
-  stats.streetNameSigns = bladePosts;
+  stats.streetNameSigns = cornerNames.length;
   // Mapped residential land, for clutter that belongs to homes (not shops on a residential road).
   const homes = tile.landcover
     .filter((feature) => feature.class === 'residential')
@@ -1682,8 +1706,8 @@ export function createTerrainSurfaceObject(
         // budget bounds these too.
         let armReach = reach;
         const named =
-          signsShown && signProfile.streetNames
-            ? crossStreetName(node, approach, signProfile.streetNames, side)
+          signsShown && signProfile.streetNames?.mastArms
+            ? crossStreetName(node, approach, signProfile.streetNames, side, lettered)
             : undefined;
         if (named) {
           const width = streetNamePanelWidth(named.name, STREET_NAME_MAST);
@@ -1710,7 +1734,15 @@ export function createTerrainSurfaceObject(
             // Hung just under the arm, whose underside is 11 cm below `top`.
             hang: top - 0.17 - STREET_NAME_MAST.height / 2 - y,
           };
-          appendSurfaceSign(nameFaces, fixtures, sign, options.fonts, options.signFont);
+          appendSurfaceSign(
+            nameFaces,
+            fixtures,
+            sign,
+            options.fonts,
+            options.signFont,
+            undefined,
+            signBacks,
+          );
           signs.push(sign);
           stats.roadSigns++;
           stats.streetNameSigns++;
@@ -2118,19 +2150,23 @@ export function createTerrainSurfaceObject(
   if (signMesh) group.add(signMesh);
   const nameMesh = weldTerrainSurfaceMesh(nameFaces.mesh('surface:street-names', undefined, false));
   if (nameMesh) group.add(nameMesh);
+  const backMesh = weldTerrainSurfaceMesh(signBacks.mesh('surface:sign-backs', undefined, false));
+  if (backMesh) group.add(backMesh);
   const fixtureMesh = createTerrainBoxInstances(fixtures, 'surface:street-fixtures');
   if (fixtureMesh) group.add(fixtureMesh);
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
   appendTerrainStreetLights(group, streetLights, context);
+  // Last, as the worker host adds it: the two build the same children in the same order.
+  appendTerrainSignGlow(group);
   markTerrainSurfaceDetail(group);
   stats.detailLimited =
     remaining <= 0 ||
     fixtureCount >= maxFixtures ||
     streetLights.length >= maxStreetlights ||
     signs.length - stats.streetNameSigns >= 48 ||
-    bladePosts >= STREET_NAME_SIGNS_PER_TILE;
+    namedCorners >= STREET_NAME_SIGNS_PER_TILE;
   return group;
 }
 
@@ -2189,8 +2225,11 @@ export interface TerrainSurfaceRenderer {
  * draws for tiles kilometers away, where a sign, a signal lens or a lane line is under a pixel.
  */
 const FIXTURE_DISTANCE = 900;
-/** Street-name lettering: past this its capitals are a pixel or two tall even on a mast panel. */
-const STREET_NAME_DISTANCE = 400;
+/**
+ * Street-name lettering, measured to the tile's footprint: past ~150 m its capitals are under two
+ * pixels even on a mast panel, and a city tile's double-faced plates run to ~170k triangles.
+ */
+const STREET_NAME_DISTANCE = 250;
 const MARKING_DISTANCE = 1500;
 const PARKED_CAR_DISTANCE = 1500;
 /** Rails in 3D and catenary wires: centimeters across, so they hand over to the track shading
@@ -2214,9 +2253,9 @@ export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
         ? MARKING_DISTANCE
         : child.name === 'surface:parked-cars'
           ? PARKED_CAR_DISTANCE
-          : child.name === 'surface:street-names'
+          : child.name === 'surface:street-names' || child.name === 'surface:night-street-names'
             ? STREET_NAME_DISTANCE
-            : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
+            : /^surface:(road-signs|sign-backs|street-fixtures|signal-|night-)/.test(child.name)
               ? FIXTURE_DISTANCE
               : child.name === TERRAIN_RAIL_MESHES.rails
                 ? RAIL_DISTANCE

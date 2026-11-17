@@ -24,7 +24,11 @@ import {
   type TerrainSurfaceGenerator,
   type TerrainSurfaceStats,
 } from './surface-client';
-import { appendTerrainStreetLights, type TerrainStreetLight } from './surface-lights';
+import {
+  appendTerrainSignGlow,
+  appendTerrainStreetLights,
+  type TerrainStreetLight,
+} from './surface-lights';
 import { appendTerrainRailLamps, type TerrainRailLamp } from './surface-rail';
 import type { SurfaceSign } from './surface-sign-mesh';
 import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
@@ -369,6 +373,7 @@ export function createTerrainSurfaceWorkerBridge(
     appendTerrainSignalLenses(group, result.signalHeads ?? []);
     appendTerrainStreetLights(group, result.streetLights ?? [], job.context);
     appendTerrainRailLamps(group, result.railLamps ?? []);
+    appendTerrainSignGlow(group);
     markTerrainSurfaceDetail(group);
     return group;
   };

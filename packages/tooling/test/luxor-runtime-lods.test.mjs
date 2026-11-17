@@ -96,15 +96,15 @@ const surfaces = {
   recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
 };
 it('reproduces unchanged Luxor master and independently signs pyramid, wings, Sphinx and obelisk', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildLuxor(a.wrap(b), prior);
   const mesh = b.finalize();
   smoothMeshNormals(mesh, ['wall'], 30);
   expect(mesh.triangleCount).toBe(271559);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(m.anchor).toEqual(prior.anchor);
   expect(m.heading).toBe(prior.heading);
@@ -144,12 +144,12 @@ it('reproduces unchanged Luxor master and independently signs pyramid, wings, Sp
     true,
   );
   expect(m.heading).toBeCloseTo(0.006126645406, 10);
-  expect(decode(await readFile(source + '/models/source.glb')).g.images ?? []).toHaveLength(0);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.images ?? []).toHaveLength(0);
 }, 120000);
 it('retains analytic sloping pyramid, all22 step roofs, east Sphinx passage and obelisk at every level', async () => {
-  const m = await read(source + '/map-frame.json'),
-    asset = await read(runtime + '/asset.json'),
-    master = decode(await readFile(source + '/models/source.glb'));
+  const m = await read(`${source}/map-frame.json`),
+    asset = await read(`${runtime}/asset.json`),
+    master = decode(await readFile(`${source}/models/source.glb`));
   const project = (p) => {
     const e = (p.lon - m.anchor[0]) * 111319.490793 * Math.cos((m.anchor[1] * Math.PI) / 180),
       south = -(p.lat - m.anchor[1]) * 111319.490793;
@@ -159,14 +159,14 @@ it('retains analytic sloping pyramid, all22 step roofs, east Sphinx passage and 
     ];
   };
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file));
+    const d = decode(await readFile(`${runtime}/${l.file}`));
     for (const y of [12, 42, 74, 100])
       for (let k = 0; k < 4; k++) {
         const a = (k * Math.PI) / 2,
           dir = [-Math.cos(a), 0, -Math.sin(a)],
           o = [100 * Math.cos(a), y, 100 * Math.sin(a)],
           expected = 100 - (91.44 * (106.68 - y)) / (106.68 - 0.4);
-        expect(Math.abs(nearest(d.triangles, o, dir) - expected), l.name + 'pyramid').toBeLessThan(
+        expect(Math.abs(nearest(d.triangles, o, dir) - expected), `${l.name}pyramid`).toBeLessThan(
           0.1,
         );
       }
@@ -174,7 +174,7 @@ it('retains analytic sloping pyramid, all22 step roofs, east Sphinx passage and 
       const ring = part.geometry.slice(0, -1).map(project),
         x = ring.reduce((n, p) => n + p[0] / ring.length, 0),
         z = ring.reduce((n, p) => n + p[1] / ring.length, 0);
-      expect(nearest(d.triangles, [x, 115, z], [0, -1, 0]), l.name + 'roof' + part.id).toBeCloseTo(
+      expect(nearest(d.triangles, [x, 115, z], [0, -1, 0]), `${l.name}roof${part.id}`).toBeCloseTo(
         115 - Number(part.tags.height) - 0.22,
         2,
       );
@@ -194,7 +194,7 @@ it('retains analytic sloping pyramid, all22 step roofs, east Sphinx passage and 
         expect(Number.isFinite(hit.distance)).toBe(true);
         expect(
           Math.abs(hit.distance - ref.distance) * Math.abs(dot(v, ref.normal)),
-          l.name + 'body' + x + '/' + y,
+          `${l.name}body${x}/${y}`,
         ).toBeLessThanOrEqual(l.errorMeters + 0.015);
       }
     for (const y of [19, 24.65, 27.1, 30.5, 32.5]) {
@@ -202,10 +202,10 @@ it('retains analytic sloping pyramid, all22 step roofs, east Sphinx passage and 
         v = [-1, 0, 0],
         ref = nearestWithNormal(master.triangles, o, v),
         hit = nearestWithNormal(d.triangles, o, v);
-      expect(Number.isFinite(hit.distance), l.name + 'head' + y).toBe(true);
+      expect(Number.isFinite(hit.distance), `${l.name}head${y}`).toBe(true);
       expect(
         Math.abs(hit.distance - ref.distance) * Math.abs(dot(v, ref.normal)),
-        l.name + 'head' + y,
+        `${l.name}head${y}`,
       ).toBeLessThanOrEqual(l.errorMeters + 0.015);
     }
     expect(nearest(d.triangles, [223.7, 60, -1.45], [0, -1, 0]), l.name).toBeCloseTo(17.33, 2);
@@ -221,7 +221,7 @@ it('rebuilds four levels within download/triangle/draw budgets and separate vert
     3000000,
   );
   for (const [i, l] of next.runtimeLods.levels.entries()) {
-    const bytes = await readFile(runtime + '/' + l.file);
+    const bytes = await readFile(`${runtime}/${l.file}`);
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(4);
     const { g } = decode(bytes);

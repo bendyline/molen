@@ -101,6 +101,47 @@ export function appendTerrainStreetLights(
   }
 }
 
+/**
+ * Sign faces that light up after dark, and how strongly. Street names read as lit panels; the
+ * other boards as retroreflective faces caught by lamps and headlights. Blank backs never glow.
+ */
+const SIGN_GLOW: Readonly<Record<string, number>> = {
+  'surface:street-names': 0.85,
+  'surface:road-signs': 0.6,
+};
+
+/**
+ * Night overlays for a surface tile's lettered sign faces: each shares its face mesh's geometry
+ * (no copy) and draws it unlit, fading in with the night factor like the lamps. Call after the
+ * face meshes are in `group`, on direct and worker-built tiles alike.
+ */
+export function appendTerrainSignGlow(group: THREE.Object3D): void {
+  for (const [name, strength] of Object.entries(SIGN_GLOW)) {
+    const faces = group.children.find((child) => child.name === name) as THREE.Mesh | undefined;
+    if (!faces?.isMesh) continue;
+    const material = new THREE.MeshBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      depthWrite: false,
+      opacity: 0,
+      // Coplanar with the lit faces: pull forward so the overlay wins the depth test.
+      polygonOffset: true,
+      polygonOffsetFactor: -1,
+      polygonOffsetUnits: -2,
+      side: THREE.DoubleSide,
+    });
+    material.visible = false;
+    const glow = new THREE.Mesh(faces.geometry, material);
+    glow.name = `surface:night-${name.slice('surface:'.length)}`;
+    // The face mesh owns (and disposes) the shared geometry.
+    glow.userData.terrainOwnedMaterial = true;
+    glow.userData.nightStrength = strength;
+    glow.userData.walkIgnore = true;
+    glow.userData.shadowCaster = false;
+    group.add(glow);
+  }
+}
+
 /** Updates emission only; tile geometry and street-detail distance culling stay intact. */
 export function updateTerrainStreetLights(object: THREE.Object3D, factor: number): void {
   if (!Number.isFinite(factor)) throw new Error('Night factor must be finite');
@@ -108,7 +149,11 @@ export function updateTerrainStreetLights(object: THREE.Object3D, factor: number
   for (const child of object.children) {
     if (!child.name.startsWith('surface:night-')) continue;
     const material = (child as THREE.Mesh).material as THREE.MeshBasicMaterial;
-    material.opacity = night * (child.name === 'surface:night-pools' ? 0.38 : 1);
+    const strength =
+      child.name === 'surface:night-pools'
+        ? 0.38
+        : ((child.userData.nightStrength as number | undefined) ?? 1);
+    material.opacity = night * strength;
     material.visible = night > 0;
   }
 }

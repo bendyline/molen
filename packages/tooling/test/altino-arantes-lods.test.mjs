@@ -14,8 +14,8 @@ import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('preserves the independently mapped upper core and northwest address entrance', async () => {
   const base = resolve('../../content/worldgen/source/places/6g/6gy/edificio_altino_arantes');
-  const frame = JSON.parse(await readFile(base + '/map-frame.json')),
-    parts = JSON.parse(await readFile(base + '/map-parts.json'));
+  const frame = JSON.parse(await readFile(`${base}/map-frame.json`)),
+    parts = JSON.parse(await readFile(`${base}/map-parts.json`));
   const raw = parts.elements
     .find((e) => e.id === 425691323)
     .geometry.slice(0, -1)

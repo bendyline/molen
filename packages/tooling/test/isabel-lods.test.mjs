@@ -35,7 +35,7 @@ it('keeps three open water spans, hollow circles, road/walk support and both low
   for (const name of ['source', 'master', 'skyline', 'district', 'street', 'closeup']) {
     const hit = await geometry(
       name === 'source'
-        ? source + '/models/source.glb'
+        ? `${source}/models/source.glb`
         : resolve(sidecar, '..', name === 'master' ? 'model.glb' : `model.${name}.glb`),
     );
     for (const span of C.spans) {
@@ -77,13 +77,13 @@ it('keeps three open water spans, hollow circles, road/walk support and both low
 
 it('rebuilds exact budgeted shared-material tiers without changing the detailed masters or duplicating GPU streams', async () => {
   const before = JSON.parse(await readFile(sidecar));
-  const src = digest(await readFile(source + '/models/source.glb'));
+  const src = digest(await readFile(`${source}/models/source.glb`));
   const master = digest(await readFile(resolve(sidecar, '../model.glb')));
   expect(src).toBe('2031467a44ec03e3c9ffe10db8698b61915f411ca0c8a1dda9f775f426895f1d');
   await buildModelLandmarkLods(sidecar, { force: true });
   const after = JSON.parse(await readFile(sidecar));
   expect(after.runtimeLods.levels).toEqual(before.runtimeLods.levels);
-  expect(digest(await readFile(source + '/models/source.glb'))).toBe(src);
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(src);
   expect(digest(await readFile(resolve(sidecar, '../model.glb')))).toBe(master);
   expect(after.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,

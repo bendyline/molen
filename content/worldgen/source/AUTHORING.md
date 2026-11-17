@@ -74,6 +74,29 @@ See [Repository GLBs](../../ASSET-PACKS.md) for the complete build and release w
 Shared procedural materials are baked once by the viewer and reused. Portable fallback
 materials remain in the GLB; photographs from research are not embedded as textures.
 
+## Footprint-framed place masters
+
+The placed Seattle landmarks (A01–A12, 2026-11-16) are built from their mapped outlines, so a
+model and its placement share one frame and nothing sits crosswise:
+
+1. `node packages/worldgen/scripts/map-footprint-frame.mjs --center=<lon>,<lat> --list` lists
+   the mapped buildings and parts near a point, read from the explorer region's `world.pmtiles`.
+   Rerun it with `--features=<ids> --anchor=<lon>,<lat> --heading=edge:<id>[+deg]
+   --out=<bundle>/footprint.json`. That writes the outlines in the model frame (+X along the
+   heading, +Y up from the ground at the anchor) and their ground heights from
+   `elevation.pmtiles`.
+2. Write `<bundle>/models/generate-<name>.mjs` against `footprint.json` with the
+   facade/opening/roof vocabulary in `packages/worldgen/scripts/place-recipe-kit.mjs`, and finish
+   with `emitPlaceMaster` from `place-master-emitter.mjs`. The emitter reprojects UVs onto shared
+   material graphs and writes `models/source.glb`, `spec.json`, `scene.json`, `source.json` and
+   `README.md`. Register the generator in `asset-build.json`.
+3. Copy the anchor and heading from `footprint.json` into the placement, with
+   `replaceFootprint: true`, then import, generate runtime LODs and rebuild the placement
+   catalogs.
+
+`generate-structure-catalog.mjs` skips these plan entries (`dedicatedIds`). The Space Needle
+left `generate-site-structures.mjs` for its own bundle generator.
+
 ## Rebuild audit — 2026-10-01, before this round
 
 The full registered generator build recreated all **726 locked generated GLBs**, byte for

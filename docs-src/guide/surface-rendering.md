@@ -266,6 +266,28 @@ await surfaces.setOptions({
   `details.inferStopSigns` to retain only mapped stops, or `details.roadSigns` to hide all signs.
   Historical and minimal styles omit signs. Sign faces and lettering are batched geometry with
   host-supplied fonts and no per-sign textures; the worker produces the same geometry as the direct renderer.
+- Street names come from the roads' mapped `name`, styled by the sign profile's `streetNames`.
+  Each junction names the two streets that form one of its corners; the corner varies from
+  junction to junction. With `mount: "post"` (the default) both names share one corner post,
+  each panel running along the street it names and lettered on both faces: narrow `blade`s as
+  in North America, or taller `plate`s as on German and Swiss posts. With `mount: "wall"` each
+  street gets a plate on the corner building's wall that runs along and faces it, as in Britain,
+  France and Italy; where no wall stands near the corner, the plate stands on a low two-legged
+  frame at the back of the footway. A style with `mastArms` also hangs a panel from each signal
+  mast arm naming the street its traffic is about to cross (the named arm most nearly
+  perpendicular to the approach), beside the signal heads or past them on a longer arm, and
+  leaves those junctions' corners bare. `letterCase: "upper"` letters names in capitals. The
+  style's abbreviations turn spelled-out map names into what signs post ("Northeast 45th
+  Street" becomes "NE 45th St"); a direction or street type that is the whole name stays
+  spelled out ("North Street" becomes "North St"). The content catalog's U.S. profiles use white
+  blades and mast panels on green; Britain and Italy black capitals on white wall plates, France
+  white on blue; Germany Zeichen 437 plates and Switzerland white-on-blue plates on posts; the
+  generic fallbacks neutral plates on posts. Unnamed roads, paths, ramps, freeways and compound
+  connector labels ("A Street & B Avenue") get no sign, nor does a name the host's sign font
+  cannot letter (a Japanese name in a Latin face), and junctions on bridges or in tunnels get no
+  corner name. Names are never invented. Street names are a separate `surface:street-names`
+  mesh drawn within 250 m of the tile, nearer than the other boards' 900 m, since their
+  lettering is a pixel or two tall beyond that.
 - Parking, plazas, and pedestrian polygons are filled, with holes retained. Pedestrian polygons
   and mapped paths use distinct heights above parking pavement, including inferred lots, so
   overlapping sidewalk and asphalt fills remain stable at walking height. Land cover, paved
@@ -353,8 +375,11 @@ those tags. There are no live Overpass requests or extra network lookups during 
 Numeric OSM speeds without a unit are km/h; explicit `mph` stays mph. Variable, conditional and
 country-code speed values are not interpreted. Road signs, gantry positions and sparse spacing
 are visual approximations, using a right-hand-traffic layout, with a maximum of 48 signs per
-detail tile inside its shared fixture budget. Labels fit uniformly within the panel (bounded to 80 characters); unsupported
-glyphs use a question mark. `stats().roadSigns` counts the placed boards. Ambient traffic uses
+detail tile inside its shared fixture budget. Street names sit outside both limits: 64 named
+corners per tile, and one mast panel per signal mast, so names never crowd out signals or lights.
+Labels fit uniformly within the panel (bounded to 80 characters); unsupported
+glyphs use a question mark. `stats().roadSigns` counts the placed boards, and
+`stats().streetNameSigns` how many of them are street names. Ambient traffic uses
 the more conservative signal inference and treats mapped stop controls as give-way controls;
 this change does not add a full-stop/dwell simulation for the decorative signs.
 
@@ -732,7 +757,9 @@ See [Fonts and lettering](typography.md) for the shared layout engine and custom
 ## Road sign pattern library
 
 The world-explorer sample includes **Road sign library** (`road-signs.html`), linked from its
-main view. It renders ten patterns from synthetic semantic tiles through the production
+main view. It renders twelve patterns in the United States and ten elsewhere (route markers and
+mast-arm names are U.S. conventions; each region shows its own corner street names) from
+synthetic semantic tiles through the production
 detector, with country/state selectors, a 50-state route-marker collection, searchable cards,
 rotatable 3D previews, and source-cue annotations. The samples
 are demonstrations, not records of surveyed signs. All hardware positions are estimated.
@@ -749,6 +776,9 @@ are demonstrations, not records of surveyed signs. All hardware positions are es
 | `attraction` | Ramp `destination` with aligned `destination:colour=brown` | Nearby tourism POIs alone do not establish an exit or driving distance |
 | `route-guide` | Motorway `ref`/`shield_text`, name, or destination | Omit when labels are unknown |
 | `route-marker` | Exact supported `network` plus `shield_text`/`ref`; explicit state reference; local `SR`/`SH` plus state geography | Omit ambiguous or unsupported networks; never invent a route number |
+| `street-name-mast` | Signal junction plus a named cross street; a `streetNames` style with `mastArms` | No panel without a named cross street at 30 degrees or more |
+| `street-name-blade` | Two differently named streets forming a corner (at signals too, unless mast arms carry the names) | No post for unnamed roads, ramps, paths, freeways or junctions on structures |
+| `street-name-wall` | The same corner cues, a `mount: "wall"` style, and building footprints | A low frame where no wall runs along and faces the street near the corner |
 
 The MVT decoder retains `destination:colour` as `destinationColour`. Semicolon entries align
 with the destination list, including empty entries. A single brown colour applies to the

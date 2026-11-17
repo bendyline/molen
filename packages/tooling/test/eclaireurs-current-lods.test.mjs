@@ -72,41 +72,41 @@ it('keeps the recessed doorway, open gallery, panels and full 11m tower above th
   const footingHeight = 1.1;
   const aboveFooting = ([x, y, z]) => [x, y + footingHeight, z];
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     expect(
       nearest(ts, aboveFooting([0, 1.1, 2]), [0, 0, -1]),
-      name + ' recessed wooden door',
+      `${name} recessed wooden door`,
     ).toBeCloseTo(0.78, 4);
-    expect(nearest(ts, aboveFooting([0.9, 12, 0]), [0, -1, 0]), name + ' gallery deck').toBeCloseTo(
+    expect(nearest(ts, aboveFooting([0.9, 12, 0]), [0, -1, 0]), `${name} gallery deck`).toBeCloseTo(
       2.89,
       4,
     );
     expect(
       nearest(ts, aboveFooting([0.3, 9.3, 2]), [0, 0, -1]),
-      name + ' open rail gap',
+      `${name} open rail gap`,
     ).toBeGreaterThan(1);
-    expect(nearest(ts, aboveFooting([0.3, 9.89, 2]), [0, 0, -1]), name + ' top rail').toBeLessThan(
+    expect(nearest(ts, aboveFooting([0.3, 9.89, 2]), [0, 0, -1]), `${name} top rail`).toBeLessThan(
       1.18,
     );
     expect(
       nearest(ts, aboveFooting([0, 12, 0]), [0, -1, 0]),
-      name + ' complete finial',
+      `${name} complete finial`,
     ).toBeCloseTo(1, 4);
-    expect(nearest(ts, [1.6, 2, 0], [0, -1, 0]), name + ' rock contact plane').toBeCloseTo(
+    expect(nearest(ts, [1.6, 2, 0], [0, -1, 0]), `${name} rock contact plane`).toBeCloseTo(
       2 - footingHeight,
       4,
     );
     for (const x of [-0.43, 0.65])
       expect(
         nearest(ts, aboveFooting([x, 9.6, -2]), [0, 0, 1]),
-        name + ' inclined panel above middle rail',
+        `${name} inclined panel above middle rail`,
       ).toBeCloseTo(1.234528302, 4);
   }
 });
 it('reproduces the original source master and labels the preview doorway bearing as approximate', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = ');
-  const surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+  const surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const b = new MeshBufferBuilder(),
     authoring = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -116,7 +116,7 @@ it('reproduces the original source master and labels the preview doorway bearing
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation', 'wall'], 32);
   expect(m.triangleCount).toBe(8320);
-  const s = await read(source + '/spec.json'),
+  const s = await read(`${source}/spec.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -130,12 +130,12 @@ it('reproduces the original source master and labels the preview doorway bearing
   expect(p.replaceFootprint).toBe(false);
 });
 it('rebuilds budgeted levels with four shared graphs and no embedded images', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -145,7 +145,7 @@ it('rebuilds budgeted levels with four shared graphs and no embedded images', as
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'metal_painted', 'wood_plain', 'stone_limestone_weathered']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

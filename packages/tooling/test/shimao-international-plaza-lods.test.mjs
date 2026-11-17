@@ -74,16 +74,16 @@ function nearest(ts, o, d) {
 }
 
 it('reconstitutes the complete source and corrected mapped hotel frame with unmodified native western post contacts', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    grid = await read(source + '/terrain-grid.json'),
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grid = await read(`${source}/terrain-grid.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(shimaoSurfaces);
   buildShimaoLevel(a.wrap(b), 'master');
   const m = b.finalize(),
     bytes = Buffer.from(encodeGlb(m, a.materials(m.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([121.471232578, 31.236348944]);
   expect(frame.heading).toBe(0.278612723552);
   expect(frame.mappedIdentity.hotelPois).toHaveLength(2);
@@ -93,10 +93,10 @@ it('reconstitutes the complete source and corrected mapped hotel frame with unmo
   expect(frame.anchor[1] - brief.referenceCoordinate.latitude).toBeGreaterThan(0.0018);
   expect(shimaoControls.tower.height).toBe(333.3);
   expect(shimaoControls.podium.topY).toBe(35);
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png),
-    ts = await triangles(source + '/models/source.glb');
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png),
+    ts = await triangles(`${source}/models/source.glb`);
   for (const u of [10, 22, 34, 46]) {
     const p = shimaoEntryPoint(u, 0, 9.2),
       ground = shimaoGroundY(p[0], p[2]);
@@ -106,22 +106,22 @@ it('reconstitutes the complete source and corrected mapped hotel frame with unmo
       'physical canopy post below native field',
     ).toBeCloseTo(1.4, 2);
   }
-  const roof = await triangles(source + '/models/source.glb', ['roof', 'window']);
+  const roof = await triangles(`${source}/models/source.glb`, ['roof', 'window']);
   for (const mast of shimaoControls.tower.masts) {
     const [x, z] = mast.center,
       y = 400 - nearest(roof, [x, 400, z], [0, -1, 0]);
     expect(y, 'mast base physically embeds in crown').toBeGreaterThan(mast.baseY);
   }
-  const p = (await read(source + '/placement-report.json')).entry;
+  const p = (await read(`${source}/placement-report.json`)).entry;
   expect(p.replaceFootprint).toBe(true);
   expect(p.elevation).toBe(10);
   expect(p.anchor).toEqual(frame.anchor);
   expect(p.heading).toBe(frame.heading);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
-      sourceManifest: await read(source + '/source.json'),
-      spec: await read(source + '/spec.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
+      sourceManifest: await read(`${source}/source.json`),
+      spec: await read(`${source}/spec.json`),
       placement: p,
       geographicReviewed: true,
     }),
@@ -129,48 +129,48 @@ it('reconstitutes the complete source and corrected mapped hotel frame with unmo
   ).toBeDefined();
 }, 30000);
 it('keeps both333m spires,triangular crown dip,sloping shoulders and whole low mall;near tiers keep the recessed entry and lattice', async () => {
-  const asset = await read(runtime + '/asset.json'),
+  const asset = await read(`${runtime}/asset.json`),
     e = shimaoControls.entrance,
     dx = e.q[0] - e.p[0],
     dz = e.q[1] - e.p[1],
     L = Math.hypot(dx, dz),
     inside = [dz / L, 0, -dx / L];
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file);
+    const ts = await triangles(`${runtime}/${l.file}`);
     for (const m of shimaoControls.tower.masts)
       expect(
         350 - nearest(ts, [m.center[0], 350, m.center[1]], [0, -1, 0]),
-        l.name + ' physical twin mast top',
+        `${l.name} physical twin mast top`,
       ).toBeCloseTo(333.3, 2);
     const high = 350 - nearest(ts, [-8.5, 350, -7.5], [0, -1, 0]),
       dip = 350 - nearest(ts, [-18.5, 350, 6.35], [0, -1, 0]);
-    expect(high, l.name + ' upper crown').toBeGreaterThan(282);
-    expect(high - dip, l.name + ' real recessed V crown').toBeGreaterThan(30);
+    expect(high, `${l.name} upper crown`).toBeGreaterThan(282);
+    expect(high - dip, `${l.name} real recessed V crown`).toBeGreaterThan(30);
     expect(dip).toBeGreaterThan(244);
     expect(dip).toBeLessThan(252);
     const wing = 300 - nearest(ts, [20.8, 300, 34.5], [0, -1, 0]);
-    expect(wing, l.name + ' lower broad eastern shoulder').toBeGreaterThan(184);
+    expect(wing, `${l.name} lower broad eastern shoulder`).toBeGreaterThan(184);
     expect(wing).toBeLessThan(192);
     expect(
       100 - nearest(ts, [-50, 100, 0], [0, -1, 0]),
-      l.name + ' complete low podium/pavilion',
+      `${l.name} complete low podium/pavilion`,
     ).toBeGreaterThan(34);
     expect(100 - nearest(ts, [-50, 100, 0], [0, -1, 0])).toBeLessThan(45);
-    expect(nearest(ts, [-100, 100, 0], [0, -1, 0]), l.name + ' no unrelated neighbor').toBe(
+    expect(nearest(ts, [-100, 100, 0], [0, -1, 0]), `${l.name} no unrelated neighbor`).toBe(
       Infinity,
     );
     if (['street', 'closeup'].includes(l.name)) {
       expect(
         nearest(ts, shimaoEntryPoint(28.8, 3.2, 12), inside),
-        l.name + ' physical recessed vestibule',
+        `${l.name} physical recessed vestibule`,
       ).toBeGreaterThan(13);
       expect(nearest(ts, shimaoEntryPoint(28.8, 3.2, 12), inside)).toBeLessThan(14);
       expect(
         nearest(ts, shimaoEntryPoint(28.8, 3.2, -0.5), [0, 1, 0]),
-        l.name + ' vestibule ceiling',
+        `${l.name} vestibule ceiling`,
       ).toBeCloseTo(2.6, 2);
       const p = shimaoEntryPoint(26, 20, 4.1);
-      expect(nearest(ts, p, [0, -1, 0]), l.name + ' physical sloped canopy roof').toBeCloseTo(
+      expect(nearest(ts, p, [0, -1, 0]), `${l.name} physical sloped canopy roof`).toBeCloseTo(
         20 - (e.canopyBackY + ((e.canopyFrontY - e.canopyBackY) * 4.1) / e.canopyDepth),
         1,
       );
@@ -178,9 +178,9 @@ it('keeps both333m spires,triangular crown dip,sloping shoulders and whole low m
   }
 }, 60000);
 it('uses the production viewer to replace the actual native building parts while retaining nearby buildings', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -209,7 +209,7 @@ it('uses the production viewer to replace the actual native building parts while
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         height: f.properties.height ?? 30,
         minHeight: f.properties.min_height ?? 0,
@@ -228,9 +228,9 @@ it('uses the production viewer to replace the actual native building parts while
   expect(target).toHaveLength(6);
   expect(target[0].height).toBe(333);
   expect(neighbor).toHaveLength(4);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -274,8 +274,8 @@ it('uses the production viewer to replace the actual native building parts while
     const tile = createEmptyTerrainSemanticTile();
     tile.buildings = [...target, ...neighbor];
     const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     );
     root = await renderers.humanFeatures.createTile(tile, {
       address: { level: 14, x: 0, z: 0 },
@@ -296,7 +296,7 @@ it('uses the production viewer to replace the actual native building parts while
       heightfield: field,
       signal: new AbortController().signal,
     });
-    expect(root?.getObjectByName('structure:' + placed.id)).toBeDefined();
+    expect(root?.getObjectByName(`structure:${placed.id}`)).toBeDefined();
     expect(seen.length).toBeGreaterThan(0);
     expect(seen.at(-1).sort()).toEqual(neighbor.map((b) => b.id).sort());
   } finally {
@@ -306,8 +306,8 @@ it('uses the production viewer to replace the actual native building parts while
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with five shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -316,7 +316,7 @@ it('rebuilds four exact budgeted tiers with five shared graphs, no image copies 
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -332,7 +332,7 @@ it('rebuilds four exact budgeted tiers with five shared graphs, no image copies 
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     if (name !== 'skyline') {

@@ -43,8 +43,8 @@ const native = ([x, y, z]) => {
   return [p[0], y, p[1]];
 };
 it('separates public DTM observations from the reconstructed floor within all browser budgets', async () => {
-  const g = await read(source + '/terrain-grid.json'),
-    spec = await read(source + '/spec.json');
+  const g = await read(`${source}/terrain-grid.json`),
+    spec = await read(`${source}/spec.json`);
   expect(g.verticalDatum).toBe('ODN');
   expect(g.modelDatumElevationMeters).toBe(56.28);
   expect(g.observations.points).toHaveLength(29);
@@ -74,7 +74,7 @@ it('separates public DTM observations from the reconstructed floor within all br
   }
 });
 it('keeps both scaled water arches, the open Gloriette court and mapped gate route clear', async () => {
-  const f = await read(source + '/map-frame.json'),
+  const f = await read(`${source}/map-frame.json`),
     k = f.controls,
     b = k.coveredBridge,
     n = [-b.archAxis[1], b.archAxis[0]],
@@ -90,7 +90,7 @@ it('keeps both scaled water arches, the open Gloriette court and mapped gate rou
             const v = hit(o, d, t.p);
             return v !== null && v > 0.001 && v < 9.999;
           }),
-          level + ' water arch',
+          `${level} water arch`,
         ).toHaveLength(0);
       }
     for (const [x, z] of [
@@ -103,7 +103,7 @@ it('keeps both scaled water arches, the open Gloriette court and mapped gate rou
           const v = hit(native([x, leedsCurrentY(5), z]), [0, 1, 0], t.p);
           return v !== null && v > 0;
         }),
-        level + ' courtyard',
+        `${level} courtyard`,
       ).toHaveLength(0);
     if (level !== 'skyline')
       for (let i = 0; i < route.length - 1; i++) {
@@ -116,16 +116,16 @@ it('keeps both scaled water arches, the open Gloriette court and mapped gate rou
             const v = hit([a[0], 7.7, a[1]], d, t.p);
             return v !== null && v > 0.001 && v < len - 0.001;
           }),
-          level + ' gate route',
+          `${level} gate route`,
         ).toHaveLength(0);
       }
   }
 });
 it('reproduces the exact graded source and four shared-material levels with no embedded images', async () => {
-  const a = await read(runtime + '/asset.json'),
-    master = await readFile(runtime + '/model.glb');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  expect(await readFile(runtime + '/model.glb')).toEqual(master);
+  const a = await read(`${runtime}/asset.json`),
+    master = await readFile(`${runtime}/model.glb`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  expect(await readFile(`${runtime}/model.glb`)).toEqual(master);
   const g = JSON.parse(master.toString('utf8', 20, 20 + master.readUInt32LE(12)));
   expect(g.images ?? []).toHaveLength(0);
   expect(g.materials.filter((m) => m.extras?.molenSurface)).toHaveLength(5);

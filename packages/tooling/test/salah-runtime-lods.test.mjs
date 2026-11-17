@@ -95,10 +95,10 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   salahStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(320144);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.tags.wikidata).toBe('Q277531');
   expect(frame.identity.version).toBe(2);
 
@@ -106,7 +106,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(frame.currentMapReconciliation.maxSavedOutlineErrorMeters).toBeLessThan(0.0007);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -117,14 +117,14 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(405.8169);
   expect(grade.workingPalaceFloor).toBe(19.9364);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout.outline).toEqual(grade.moat.outline);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('opens the dated moat and gate at each tier without replacing the western landscape', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json');
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`);
   const a = [340.949, -35.974],
     b = [351.368, -36.305],
     len = Math.hypot(b[0] - a[0], b[1] - a[1]),
@@ -132,18 +132,18 @@ it('opens the dated moat and gate at each tier without replacing the western lan
     normal = [-axis[1], axis[0]],
     center = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     expect(
       80 - nearest(triangles, [370, 80, 10], [0, -1, 0]),
-      l.name + ' open rock-cut moat',
+      `${l.name} open rock-cut moat`,
     ).toBeCloseTo(grade.moat.floor, 3);
     expect(
       80 - nearest(triangles, [359.549, 80, -21.47], [0, -1, 0]),
-      l.name + ' isolated rock needle',
+      `${l.name} isolated rock needle`,
     ).toBeCloseTo(grade.moat.floor + 29.3, 3);
     expect(
       nearest(triangles, [-300, 80, 0], [0, -1, 0]),
-      l.name + ' preserved natural western landscape',
+      `${l.name} preserved natural western landscape`,
     ).toBe(Infinity);
     for (const lateral of [-0.3, 0, 0.3])
       expect(
@@ -156,7 +156,7 @@ it('opens the dated moat and gate at each tier without replacing the western lan
           ],
           [normal[0], 0, normal[1]],
         ),
-        l.name + ' Frankish gate ' + lateral,
+        `${l.name} Frankish gate ${lateral}`,
       ).toBeGreaterThan(25);
   }
   const catalog = await read(resolve('../../content/earth/structures/placements/authoring.json')),
@@ -170,7 +170,7 @@ it('opens the dated moat and gate at each tier without replacing the western lan
     expect(index.query(bounds, { viewingDate })).toHaveLength(0);
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -180,7 +180,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -190,7 +190,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

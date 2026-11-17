@@ -2,12 +2,128 @@
   "planId": "A04",
   "id": "molen.worldgen.structure.a04_seattle_central_library",
   "title": "Seattle Central Library",
-  "visualBrief": "Faceted glass and steel envelope",
+  "wikidataId": "Q2531939",
+  "visualBrief": "The 2004 OMA/LMN Central Library on the block between Fourth and Fifth Avenues, Madison and Spring Streets: a stack of shifted platforms wrapped in one faceted skin of glass under a light diamond steel grid. Two-storey storefront and a covered plaza under the cantilevered meeting platform on Fourth Avenue, the sloping living-room roof falling to Fifth Avenue, the books-spiral box cantilevered over Spring Street, the reading-room slopes, and the headquarters platform cantilevered over Fifth Avenue and Madison Street, with the core penthouse on the roof.",
   "size": [
-    65,
-    58,
-    55
+    72.38,
+    68.6,
+    74.68
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -26.24,
+      -7,
+      -65.14
+    ],
+    "max": [
+      46.14,
+      61.6,
+      9.54
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-seattle-central-library.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: the mapped OSM building 35184409145274 (the block outline, with its chamfered corners) and its roof parts 35184830292122/26/28/31, which show the flat headquarters roof and the reading-room slopes toward Spring Street, Fourth Avenue and Madison Street",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "11 storeys, 185 ft (56.4 m) to the roof, 362,987 sq ft; address 1000 Fourth Avenue on the block bounded by Fourth and Fifth Avenues and Madison and Spring Streets; level 1 faces Fourth Avenue, level 3 faces Fifth Avenue",
+      "source": "https://en.wikipedia.org/wiki/Seattle_Central_Library"
+    },
+    {
+      "fact": "Diamond grid 4 ft wide by 7 ft tall (4 ft on a side); nearly 10,000 diamonds over about 130,000 sq ft of curtain wall; platforms from bottom to top: staff, living room, meeting, mixing chamber, four-level books platform, reading room, one-storey headquarters cantilevering up to 28 ft; 213 ft concrete core in the southwest quadrant",
+      "source": "https://enr.com/articles/29464-seattle-146-s-eccentric-145-book-behemoth-146-shatters-stereotypes"
+    },
+    {
+      "fact": "Diamonds 7 ft tall at their tallest and 4 ft wide at their widest; the Fourth Avenue entrance sits beneath a large cantilevered section; the grade change between the entrances fits a staff level between the two public floors",
+      "source": "https://homepages.bluffton.edu/~SULLIVANM/washington/seattle/library/northandwest.html"
+    },
+    {
+      "fact": "Platforms cantilever up to 52 ft; a diamond steel grid ties the platform trusses together and carries the curtain wall",
+      "source": "https://www.mka.com/projects/seattle-central-library/"
+    },
+    {
+      "fact": "Level 3 living room along Fifth Avenue reaches 50 ft in height; Books Spiral on levels 6 through 9",
+      "source": "https://spl.org/hours-and-locations/central-library/central-library-highlights/central-library-architecture"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.333052,
+      47.606623
+    ],
+    "heading": -1.008773,
+    "groundAtAnchor": 49.19,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Platform heights and plan offsets are read from street photographs (the Fifth Avenue elevation and the views from Fourth and Madison and Fifth and Spring) and the mapped roof parts; they are estimates, not survey levels.",
+    "Every skin plane spans straight between two platform edges, so the folds are simplified: the V-shaped plane under the books platform at Fourth and Madison, the sloped columns at the Fifth and Spring corner and the headquarters bevel toward Madison Street are approximations.",
+    "Glass is clear, mesh-laminated (light) or seen from below per plane; the scattered opaque diamonds and the interior (red floor, yellow escalators, books spiral) are not modelled.",
+    "The explorer terrain has a 5-9 m pit over this block that reaches about 25 m east of Fifth Avenue, so the level 3 Fifth Avenue entrance (modelled at real grade, 9.3 m above Fourth Avenue) can stand above the drawn street there.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20847,
+    "vertices": 62541,
+    "materials": 7,
+    "bytes": 2505712,
+    "sha256": "sha256:a2d402b44dce0ccdef0d9a4ccdb5b6b8c7fc02caeefabb4a68dc9adf8e7c77b9"
+  }
 }

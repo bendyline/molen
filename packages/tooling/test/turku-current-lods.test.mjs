@@ -35,7 +35,7 @@ function hit(origin, d, p) {
   return u < -0.00001 || v < -0.00001 || u + v > 1.00001 ? null : dot(b, cross(q, a)) / det;
 }
 it('separates measured city height from the reconstructed bailey datum within four strict budgets', async () => {
-  const relief = await read(source + '/terrain-grid.json');
+  const relief = await read(`${source}/terrain-grid.json`);
   expect(relief.source.points).toHaveLength(27);
   expect(relief.source.contours).toHaveLength(107);
   expect(
@@ -65,7 +65,7 @@ it('separates measured city height from the reconstructed bailey datum within fo
   }
 });
 it('keeps all three mapped passage centre lines clear after height changes and coarse plaster coverage', async () => {
-  const frame = await read(source + '/map-frame.json');
+  const frame = await read(`${source}/map-frame.json`);
   for (const level of ['skyline', 'district', 'street', 'closeup']) {
     const ts = triangles(level);
     for (const gate of frame.controls.passages) {
@@ -85,10 +85,10 @@ it('keeps all three mapped passage centre lines clear after height changes and c
   }
 });
 it('reproduces the exact repaired source and four shared-material browser levels without changing its master', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    master = await readFile(runtime + '/model.glb');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  expect(await readFile(runtime + '/model.glb')).toEqual(master);
+  const asset = await read(`${runtime}/asset.json`),
+    master = await readFile(`${runtime}/model.glb`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  expect(await readFile(`${runtime}/model.glb`)).toEqual(master);
   const g = JSON.parse(master.toString('utf8', 20, 20 + master.readUInt32LE(12)));
   expect(
     g.materials.some(

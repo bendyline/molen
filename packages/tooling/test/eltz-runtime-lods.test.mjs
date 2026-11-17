@@ -101,10 +101,10 @@ it('reproduces original master and verifies signed map and retained ground', asy
   eltzStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(5356);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.id).toBe(238981197);
   expect(frame.identity.version).toBe(12);
   expect(frame.identity.tags.wikidata).toBe('Q153426');
@@ -112,7 +112,7 @@ it('reproduces original master and verifies signed map and retained ground', asy
   expect(frame.anchor).toEqual([7.336610781, 50.205058905]);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -123,7 +123,7 @@ it('reproduces original master and verifies signed map and retained ground', asy
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(140.498);
   expect(grade.workingCourtFloor).toBe(1.6368);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
@@ -131,20 +131,20 @@ it('reproduces original master and verifies signed map and retained ground', asy
   expect(frame.reviewedApproach.way).toBe(531706381);
 });
 it('retains roofless court, entrance opening, continuous parapets and outward foundation contact', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json'),
-    frame = await read(source + '/map-frame.json');
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`),
+    frame = await read(`${source}/map-frame.json`);
   const [a, b] = frame.reviewedApproach.points,
     len = Math.hypot(b[0] - a[0], b[1] - a[1]),
     along = [(b[0] - a[0]) / len, 0, (b[1] - a[1]) / len],
     normal = [-along[2], 0, along[0]];
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
-    expect(90 - nearest(triangles, [1, 90, 0], [0, -1, 0]), l.name + ' open court').toBeCloseTo(
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
+    expect(90 - nearest(triangles, [1, 90, 0], [0, -1, 0]), `${l.name} open court`).toBeCloseTo(
       grade.workingCourtFloor,
       3,
     );
-    expect(90 - nearest(triangles, [20.5, 90, -10], [0, -1, 0]), l.name + ' chimney').toBeCloseTo(
+    expect(90 - nearest(triangles, [20.5, 90, -10], [0, -1, 0]), `${l.name} chimney`).toBeCloseTo(
       28.5 + grade.workingCourtFloor,
       3,
     );
@@ -154,13 +154,13 @@ it('retains roofless court, entrance opening, continuous parapets and outward fo
         [a[0] - 2 * along[0], grade.outerGateFloor + 1.5, a[1] - 2 * along[2]],
         along,
       ),
-      l.name + ' outer gate opening',
+      `${l.name} outer gate opening`,
     ).toBeGreaterThan(4);
     for (const sign of [-1, 1]) {
       const o = [a[0] + sign * 5 * along[0], grade.outerGateFloor + 5, a[1] + sign * 5 * along[2]],
         d = along.map((v) => -sign * v),
         hit = nearestWithNormal(triangles, o, d);
-      expect(hit.distance, l.name + ' exterior spandrel').toBeLessThan(4.5);
+      expect(hit.distance, `${l.name} exterior spandrel`).toBeLessThan(4.5);
       expect(
         dot(
           hit.normal,
@@ -179,7 +179,7 @@ it('retains roofless court, entrance opening, continuous parapets and outward fo
             [x + 6 * n[0], y + 0.001, z + 6 * n[2]],
             n.map((v) => -v),
           );
-        expect(hit.distance, l.name + ' parapet/deck contact').toBeLessThan(4.1);
+        expect(hit.distance, `${l.name} parapet/deck contact`).toBeLessThan(4.1);
         expect(dot(hit.normal, n)).toBeGreaterThan(0.9);
       }
     const q = frame.geometry.outline.slice(0, -1),
@@ -202,13 +202,13 @@ it('retains roofless court, entrance opening, continuous parapets and outward fo
           [x + 3 * n[0], eltzGround(x, z) + 0.12, z + 3 * n[2]],
           n.map((v) => -v),
         );
-      expect(hit.distance, l.name + ' foundation').toBeLessThan(4.2);
+      expect(hit.distance, `${l.name} foundation`).toBeLessThan(4.2);
       expect(dot(hit.normal, n)).toBeGreaterThan(0.6);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -218,7 +218,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -228,7 +228,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

@@ -2,6 +2,8 @@
 
 Collegiate Gothic library on Red Square: the 1926 west wing with eleven tall pointed stained-glass windows between brick buttresses topped by terra-cotta figures and stone pinnacles, three west portals, a pierced cast-stone parapet, end oriels and a slate gable with copper cresting; the angled 1935 south wing in the same dress; and the 1963 concrete-and-glass east wing.
 
+![Molen preview](preview.png)
+
 Built by `content/worldgen/source/places/c2/c23/a12_suzzallo_library_seattle/models/generate-suzzallo-library.mjs` with the shared emitter
 `packages/worldgen/scripts/place-master-emitter.mjs`: 12127 triangles,
 8 materials, no embedded bitmaps. The runtime asset is `molen.worldgen.structure.a12_suzzallo_library_seattle`; its runtime

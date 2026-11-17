@@ -18,8 +18,9 @@ import {
   disposeTerrainSurfaceObject,
   type TerrainSurfaceStats,
 } from '../src/surface-client';
+import { updateTerrainStreetLights } from '../src/surface-lights';
 import { STREET_NAME_MAST, type SurfaceSign, streetNamePanelWidth } from '../src/surface-sign-mesh';
-import type { TerrainSignalHead } from '../src/surface-signals';
+import { type TerrainSignalHead, updateTerrainSurfaceSignals } from '../src/surface-signals';
 import type { TerrainSurfaceOptions } from '../src/surface-styles';
 
 const json = (path: string) =>
@@ -212,7 +213,7 @@ describe('street-name signs', () => {
     expect(bladeLetters / glyphs(blade)).toBeGreaterThan((1.5 * mastLetters) / glyphs(mast));
   });
 
-  it('names nothing without a mapped name, a regional style, or signs at all', () => {
+  it('names nothing without a mapped name, a street-name style, or signs at all', () => {
     const unnamed = crossing();
     for (const road of unnamed.transportation) delete road.name;
     expect(surface(unnamed).stats.streetNameSigns).toBe(0);
@@ -223,9 +224,10 @@ describe('street-name signs', () => {
     expect(surface(compound).stats.streetNameSigns).toBe(0);
     const signal = crossing();
     signal.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    const unstyled: TerrainRoadSignProfile = { ...us };
+    delete unstyled.streetNames;
     for (const options of [
-      { signProfile: profile('de') },
-      { signProfile: profile('generic') },
+      { signProfile: unstyled },
       { details: { roadSigns: false } },
       { style: '1910' },
     ] as TerrainSurfaceOptions[]) {
@@ -279,5 +281,178 @@ describe('street-name panel width', () => {
     expect(mast('University Way NE')).toBeGreaterThan(mast('NE 45th St'));
     expect(mast('A very long street name that a city would never post overhead')).toBe(4);
     expect(mast('Oak')).toBe(STREET_NAME_MAST.minWidth);
+  });
+});
+
+describe('regional street-name conventions', () => {
+  /** A 12 m building on each corner, its walls 2 m behind the footways' outer edges. */
+  function built(): TerrainSemanticTile {
+    const tile = crossing();
+    const box = (x0: number, z0: number, x1: number, z1: number) => ({
+      class: 'building',
+      height: 12,
+      polygons: [
+        {
+          outer: [
+            [x0 / 400, z0 / 400],
+            [x1 / 400, z0 / 400],
+            [x1 / 400, z1 / 400],
+            [x0 / 400, z1 / 400],
+          ] as [number, number][],
+        },
+      ],
+    });
+    tile.buildings = [
+      box(207.5, 208, 240, 240),
+      box(160, 208, 192.5, 240),
+      box(207.5, 160, 240, 192),
+      box(160, 160, 192.5, 192),
+    ];
+    return tile;
+  }
+  const named = (signs: readonly SurfaceSign[]) => signs.filter((s) => s.kind === 'street-name');
+
+  it('fixes a capitalized plate for each street to the corner wall that faces it', () => {
+    const { signs } = surface(built(), { signProfile: profile('gb') });
+    const plates = named(signs);
+    expect(plates).toHaveLength(2);
+    for (const plate of plates) {
+      expect(plate).toMatchObject({ pattern: 'street-name-wall', mount: 'wall' });
+      expect(plate.evidence).toContain('facade');
+      // Spelled out, in capitals, facing the street it names from a wall 2 m behind the footway.
+      if (plate.lines[0] === 'NORTHEAST 45TH STREET') {
+        expect(Math.abs(plate.dz)).toBeGreaterThan(0.99);
+        expect((200 - plate.z) * plate.dz).toBeGreaterThan(0);
+        expect(Math.abs(Math.abs(plate.z - 200) - 7.94)).toBeLessThan(1e-6);
+      } else {
+        expect(plate.lines).toEqual(['UNIVERSITY WAY NORTHEAST']);
+        expect(Math.abs(plate.dx)).toBeGreaterThan(0.99);
+        expect((200 - plate.x) * plate.dx).toBeGreaterThan(0);
+        expect(Math.abs(Math.abs(plate.x - 200) - 7.44)).toBeLessThan(1e-6);
+      }
+    }
+    // Both on the same corner building's two walls.
+    const [first, second] = plates as [SurfaceSign, SurfaceSign];
+    expect(Math.sign(first.x - 200)).toBe(Math.sign(second.x - 200));
+    expect(Math.sign(first.z - 200)).toBe(Math.sign(second.z - 200));
+  });
+
+  it('stands a plate on a low frame where no wall is near, signals or not', () => {
+    const signal = crossing();
+    signal.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    for (const tile of [crossing(), signal]) {
+      const plates = named(surface(tile, { signProfile: profile('fr') }).signs);
+      expect(plates).toHaveLength(2);
+      expect(plates.every((p) => p.mount === 'frame' && p.pattern === 'street-name-wall')).toBe(
+        true,
+      );
+      // At the back of the footway (outer edge 6 m from 45th's centerline, 5.5 m from the
+      // avenue's), running along the street it names.
+      const street = plates.find((p) => p.lines[0] === 'NORTHEAST 45TH STREET');
+      const avenue = plates.find((p) => p.lines[0] === 'UNIVERSITY WAY NORTHEAST');
+      expect(Math.abs(Math.abs((street as SurfaceSign).z - 200) - 6)).toBeLessThan(1e-6);
+      expect(Math.abs(Math.abs((avenue as SurfaceSign).x - 200) - 5.5)).toBeLessThan(1e-6);
+    }
+  });
+
+  it('puts taller plates on a corner post, mixed case and unabbreviated, at signals too', () => {
+    const signal = crossing();
+    signal.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    for (const tile of [crossing(), signal]) {
+      const { signs } = surface(tile, { signProfile: profile('de') });
+      expect(signs.some((s) => s.pattern === 'street-name-mast')).toBe(false);
+      const posts = named(signs);
+      expect(posts).toHaveLength(1);
+      expect(posts[0]).toMatchObject({ pattern: 'street-name-blade', mount: 'post' });
+      expect([...(posts[0] as SurfaceSign).lines].sort()).toEqual([
+        'Northeast 45th Street',
+        'University Way Northeast',
+      ]);
+    }
+    // Plates stand taller than blades: compare the two assemblies' lettered faces.
+    const span = (id: string): number => {
+      const sign = named(surface(crossing(), { signProfile: profile(id) }).signs)[0];
+      const object = createTerrainRoadSignObject(sign as SurfaceSign, context());
+      const mesh = object.getObjectByName('surface:street-names') as THREE.Mesh;
+      mesh.geometry.computeBoundingBox();
+      const box = mesh.geometry.boundingBox as THREE.Box3;
+      disposeTerrainSurfaceObject(object);
+      return box.max.y - box.min.y;
+    };
+    expect(span('de')).toBeGreaterThan(span('us') * 1.3);
+  });
+
+  it('leaves unposted a name its sign font cannot letter', () => {
+    const tile = crossing();
+    (tile.transportation[0] as { name?: string }).name = '四条通';
+    (tile.transportation[1] as { name?: string }).name = '烏丸通';
+    const left = profile('generic-left');
+    expect(named(surface(tile, { signProfile: left, fonts }).signs)).toEqual([]);
+    // Latin names in the same region are posted.
+    expect(named(surface(crossing(), { signProfile: left, fonts }).signs)).toHaveLength(1);
+  });
+});
+
+describe('street signs at night', () => {
+  it('lights the lettered faces after dark, sharing their geometry, never the blank backs', () => {
+    const object = createTerrainSurfaceObject(crossing(), context(), { signProfile: us, fonts });
+    for (const [faces, strength] of [
+      ['street-names', 0.85],
+      ['road-signs', 0.6],
+    ] as const) {
+      const mesh = object.getObjectByName(`surface:${faces}`) as THREE.Mesh;
+      const glow = object.getObjectByName(`surface:night-${faces}`) as THREE.Mesh;
+      const material = glow.material as THREE.MeshBasicMaterial;
+      expect(glow.geometry).toBe(mesh.geometry);
+      expect(glow.userData.detailDistance).toBe(mesh.userData.detailDistance);
+      expect(material.visible).toBe(false);
+      updateTerrainStreetLights(object, 1);
+      expect(material.visible).toBe(true);
+      expect(material.opacity).toBeCloseTo(strength, 6);
+      updateTerrainStreetLights(object, 0);
+      expect(material.visible).toBe(false);
+    }
+    const backs = object.getObjectByName('surface:sign-backs') as THREE.Mesh;
+    expect(backs).toBeDefined();
+    expect(
+      object.children.some(
+        (child) => child !== backs && (child as THREE.Mesh).geometry === backs.geometry,
+      ),
+    ).toBe(false);
+    disposeTerrainSurfaceObject(object);
+  });
+
+  it('rings each lit signal lens with a glow in its color, after dark only', () => {
+    const tile = crossing();
+    tile.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    const object = createTerrainSurfaceObject(tile, context(), { signProfile: us });
+    const lit = object.getObjectByName('surface:signal-lit') as THREE.InstancedMesh;
+    const glow = object.getObjectByName('surface:night-signal-glow') as THREE.InstancedMesh;
+    const material = glow.material as THREE.MeshBasicMaterial;
+    expect(glow.count).toBe(lit.count);
+    expect(material.blending).toBe(2); // THREE.AdditiveBlending
+    expect(material.visible).toBe(false);
+    updateTerrainStreetLights(object, 1);
+    expect(material.visible).toBe(true);
+    expect(material.opacity).toBe(1);
+    for (const color of ['red', 'green'] as const) {
+      updateTerrainSurfaceSignals(object, 0, () => color);
+      for (let i = 0; i < lit.count; i++) {
+        const litMatrix = lit.instanceMatrix.array.slice(i * 16, i * 16 + 16);
+        const glowMatrix = glow.instanceMatrix.array.slice(i * 16, i * 16 + 16);
+        // The same lens height, a few millimeters further out toward traffic.
+        expect(glowMatrix[13]).toBeCloseTo(litMatrix[13] as number, 6);
+        expect(
+          Math.hypot(
+            (glowMatrix[12] as number) - (litMatrix[12] as number),
+            (glowMatrix[14] as number) - (litMatrix[14] as number),
+          ),
+        ).toBeCloseTo(0.008, 4);
+        const shade = glow.instanceColor?.array.slice(i * 3, i * 3 + 3) ?? [];
+        const lens = lit.instanceColor?.array.slice(i * 3, i * 3 + 3) ?? [];
+        expect([...shade]).toEqual([...lens]);
+      }
+    }
+    disposeTerrainSurfaceObject(object);
   });
 });

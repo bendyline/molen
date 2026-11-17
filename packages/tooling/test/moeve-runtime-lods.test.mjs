@@ -109,9 +109,9 @@ it('reproduces unchanged detailed Moeve and verifies independent east-west cores
   buildMoeve(a.wrap(b));
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(410898);
-  const spec = await read(source + '/spec.json'),
-    m = await read(source + '/map-frame.json'),
-    prior = await read(source + '/georeferencing-baseline.json');
+  const spec = await read(`${source}/spec.json`),
+    m = await read(`${source}/map-frame.json`),
+    prior = await read(`${source}/georeferencing-baseline.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(m.anchor).toEqual(prior.anchor);
   expect(m.heading).toBe(prior.heading);
@@ -142,15 +142,15 @@ it('reproduces unchanged detailed Moeve and verifies independent east-west cores
   expect(Math.max(...west.map(project).map((p) => p[0]))).toBeLessThan(-13);
   expect(Math.abs(Math.max(...east.map(project).map((p) => p[0])) - 26.5)).toBeLessThan(0.2);
   expect(m.heading).toBeCloseTo(-0.20327044179, 10);
-  const g = decode(await readFile(source + '/models/source.glb')).g;
+  const g = decode(await readFile(`${source}/models/source.glb`)).g;
   expect(g.materials).toHaveLength(4);
   expect(g.images ?? []).toHaveLength(0);
 }, 120000);
 it('keeps three office blocks, recessed belts, full cores and genuinely open curved crown', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    master = decode(await readFile(source + '/models/source.glb'));
+  const asset = await read(`${runtime}/asset.json`),
+    master = decode(await readFile(`${source}/models/source.glb`));
   for (const level of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + level.file));
+    const d = decode(await readFile(`${runtime}/${level.file}`));
     for (const y of [31, 65, 96, 140, 163, 193, 215])
       for (let k = 0; k < 24; k++) {
         const a = (k * Math.PI) / 12,
@@ -158,10 +158,10 @@ it('keeps three office blocks, recessed belts, full cores and genuinely open cur
           o = [80 * Math.cos(a), y, 80 * Math.sin(a)],
           ref = nearestWithNormal(master.triangles, o, dir),
           hit = nearestWithNormal(d.triangles, o, dir);
-        expect(Number.isFinite(hit.distance), level.name + ' ' + y + '/' + k).toBe(true);
+        expect(Number.isFinite(hit.distance), `${level.name} ${y}/${k}`).toBe(true);
         expect(
           Math.abs(hit.distance - ref.distance) * Math.abs(dot(dir, ref.normal)),
-          level.name + ' ' + y + '/' + k,
+          `${level.name} ${y}/${k}`,
         ).toBeLessThanOrEqual(level.errorMeters + 0.015);
       }
     // Across the middle of the high arch there is empty air, not a filled facade.
@@ -180,7 +180,7 @@ it('keeps three office blocks, recessed belts, full cores and genuinely open cur
     ])
       expect(
         Math.abs(80 - nearest(d.triangles, [0, y, 80], [0, 0, -1]) - z),
-        level.name + 'profile' + y,
+        `${level.name}profile${y}`,
       ).toBeLessThan(0.4);
   }
 }, 120000);
@@ -192,7 +192,7 @@ it('rebuilds every browser level below phone and draw budgets with separate vert
     3000000,
   );
   for (const [i, l] of next.runtimeLods.levels.entries()) {
-    const bytes = await readFile(runtime + '/' + l.file);
+    const bytes = await readFile(`${runtime}/${l.file}`);
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     const { g } = decode(bytes);
     expect(g.images ?? []).toHaveLength(0);

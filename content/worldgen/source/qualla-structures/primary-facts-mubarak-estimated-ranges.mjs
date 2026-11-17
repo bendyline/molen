@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const mubarakEasternEstimatedCases = {
   'mubarak-eastern-original-ring-estimated-68564691-9e5a-4e56-86d8-138ac2d324c5':
     'mubarak_mandi_eastern_riverfront_range',

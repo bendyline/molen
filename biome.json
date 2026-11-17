@@ -100,19 +100,75 @@
       ],
       "linter": {
         "rules": {
+          "complexity": {
+            "noFlatMapIdentity": "off",
+            "noUselessContinue": "off",
+            "useFlatMap": "off"
+          },
           "correctness": {
             "noUnusedFunctionParameters": "off",
             "noUnusedImports": "off",
             "noUnusedVariables": "off"
           },
           "style": {
-            "useConst": "off"
+            "useConst": "off",
+            "useExponentiationOperator": "off",
+            "useTemplate": "off"
           }
         }
       }
     },
     {
-      "includes": ["packages/worldgen/scripts/generalife-model.mjs"],
+      "includes": [
+        "packages/worldgen/scripts/generate-*.mjs",
+        "packages/worldgen/scripts/caracalla-baths-model.mjs",
+        "packages/worldgen/scripts/fort-temiscamingue-outbuildings.mjs",
+        "packages/worldgen/scripts/oviedo-cathedral-model.mjs",
+        "packages/worldgen/scripts/shirvanshah-palace-model.mjs",
+        "packages/worldgen/scripts/structure-statue-of-the-empress-josephine.mjs",
+        "packages/worldgen/scripts/zwinger-model.mjs",
+        "packages/tooling/scripts/source-runtime-lods.mjs"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noFlatMapIdentity": "off"
+          },
+          "style": {
+            "useTemplate": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["packages/worldgen/scripts/structure-collections.mjs"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "useOptionalChain": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "content/worldgen/source/places/r1/r1f/adelaide_gaol/models/adelaide-gaol-model.mjs",
+        "content/worldgen/source/places/tt/tts/lahore_fort/models/lahore-fort-model.mjs"
+      ],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noAccumulatingSpread": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "packages/worldgen/scripts/generalife-model.mjs",
+        "content/worldgen/source/places/w4/w4r/yah_leh_monument/models/yah-leh-monument-model.mjs",
+        "content/worldgen/source/places/ws/wsq/taipei_main_station/models/station-model.mjs"
+      ],
       "linter": {
         "rules": {
           "suspicious": {

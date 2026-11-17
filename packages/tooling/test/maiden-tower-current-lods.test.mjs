@@ -74,7 +74,7 @@ const nearest = (ts, o, d) =>
 it('preserves the exact historical source master and uses real fort controls without inventing a tower QID', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const study = lighthouseExpansionStudies.find((s) => s.id === 'maidens_tower'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
@@ -85,8 +85,8 @@ it('preserves the exact historical source master and uses real fort controls wit
   buildMaiden(a.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -108,31 +108,31 @@ it('preserves the exact historical source master and uses real fort controls wit
 });
 it('keeps the full ensemble at every distance and retains recessed east entry and connected timber stair in near levels', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 34, 0], [0, -1, 0]), name + ' full mast').toBeCloseTo(1.5, 4);
-    expect(nearest(ts, [8, 20, -8], [0, -1, 0]), name + ' west pavilion roof').toBeGreaterThan(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 34, 0], [0, -1, 0]), `${name} full mast`).toBeCloseTo(1.5, 4);
+    expect(nearest(ts, [8, 20, -8], [0, -1, 0]), `${name} west pavilion roof`).toBeGreaterThan(
       13.5,
     );
-    expect(nearest(ts, [8, 20, -8], [0, -1, 0]), name + ' west pavilion roof').toBeLessThan(15.1);
+    expect(nearest(ts, [8, 20, -8], [0, -1, 0]), `${name} west pavilion roof`).toBeLessThan(15.1);
     if (name !== 'skyline') {
       expect(
         nearest(ts, [0, 2, 5], [0, 0, -1]),
-        name + ' recessed east Fatih entrance',
+        `${name} recessed east Fatih entrance`,
       ).toBeCloseTo(5 - 3.2 + (0.45 * 6.4) / 7.6, 4);
       expect(
         nearest(ts, [9.3, 7, 8.35], [0, -1, 0]),
-        name + ' top stair joins 4.1m timber deck',
+        `${name} top stair joins 4.1m timber deck`,
       ).toBeCloseTo(2.9, 4);
     }
   }
 });
 it('reproduces four exact browser derivatives within strict caps and uses six shared graphs with separate GPU streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -149,7 +149,7 @@ it('reproduces four exact browser derivatives within strict caps and uses six sh
   }
   expect([...refs].sort()).toEqual(
     ['stone_ashlar', 'plaster_lime', 'tile_ceramic', 'metal_painted', 'wood_plain', 'stone_granite']
-      .map((n) => 'matgraph:molen.worldgen.material.' + n)
+      .map((n) => `matgraph:molen.worldgen.material.${n}`)
       .sort(),
   );
 });

@@ -28,7 +28,19 @@ const selection = process.argv
   .split(',');
 const referenceIds = new Set(['A01', 'C01', 'C02']);
 // Placed Seattle landmarks, authored from mapped footprints by their own bundle generators.
-const dedicatedIds = new Set(['A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12']);
+const dedicatedIds = new Set([
+  'A02',
+  'A03',
+  'A04',
+  'A05',
+  'A06',
+  'A07',
+  'A08',
+  'A09',
+  'A10',
+  'A11',
+  'A12',
+]);
 const materials = {
   wall: { name: 'structure-cladding', roughness: 0.67, metallic: 0.16 },
   roof: { name: 'roof-or-deck', roughness: 0.78, metallic: 0.1 },

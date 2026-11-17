@@ -100,17 +100,17 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   shanhaiStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(5338);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.id).toBe(414001373);
   expect(frame.identity.version).toBe(6);
   expect(frame.identity.tags.wikidata).toBeUndefined();
   expect(frame.currentMapReconciliation.maxSavedVertexErrorMeters).toBeLessThan(0.000664);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -121,28 +121,28 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(26);
   expect(grade.workingCourtFloor).toBe(0.12);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps the barrel passage open and platform feet outward-facing at every tier', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json');
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`);
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     for (const lateral of [-0.5, 0, 0.5])
       expect(
         nearest(triangles, [lateral, grade.workingCourtFloor + 2, 25], [0, 0, -1]),
-        l.name + ' barrel passage',
+        `${l.name} barrel passage`,
       ).toBeGreaterThan(50);
-    expect(80 - nearest(triangles, [0, 80, 0], [0, -1, 0]), l.name + ' roof crown').toBeGreaterThan(
+    expect(80 - nearest(triangles, [0, 80, 0], [0, -1, 0]), `${l.name} roof crown`).toBeGreaterThan(
       24.5,
     );
     if (l.name !== 'skyline')
       expect(
         Math.max(...triangles.flat().map((p) => p[1])),
-        l.name + ' ridge ornaments',
+        `${l.name} ridge ornaments`,
       ).toBeCloseTo(25.45 + grade.architectureShift, 3);
     for (const [x, z, nx, nz] of [
       [-15, 15.2, 0, 1],
@@ -151,13 +151,13 @@ it('keeps the barrel passage open and platform feet outward-facing at every tier
     ]) {
       const h = shanhaiGround(x, z) + 0.12,
         hit = nearestWithNormal(triangles, [x + nx * 3, h, z + nz * 3], [-nx, 0, -nz]);
-      expect(hit.distance, l.name + ' outward footing ' + x + ',' + z).toBeLessThan(3.1);
+      expect(hit.distance, `${l.name} outward footing ${x},${z}`).toBeLessThan(3.1);
       expect(hit.normal[0] * nx + hit.normal[2] * nz).toBeGreaterThan(0.95);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -167,7 +167,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -177,7 +177,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

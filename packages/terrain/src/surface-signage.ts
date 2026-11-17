@@ -1,5 +1,6 @@
 /** Roadside and overhead sign placement from source semantics and bounded topology inference. */
 import { sampleTerrainLine, type TerrainLinePath } from './line-path';
+import { normalizeRing, pointInPolygon } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import {
   DEFAULT_ROAD_SIGN_PROFILE,
@@ -9,7 +10,7 @@ import {
   type TerrainStreetNameStyle,
 } from './road-sign-styles';
 import { resolveTerrainRouteMarker, type TerrainRouteShieldLibrary } from './route-shields';
-import type { TerrainSemanticTile } from './semantic-types';
+import type { TerrainBuildingFeature, TerrainSemanticTile } from './semantic-types';
 import type { SurfaceControl } from './surface-controls';
 import {
   isSurfaceLink,
@@ -20,7 +21,7 @@ import {
   surfaceHash,
   surfaceJunctionCorners,
 } from './surface-network';
-import type { SurfaceSign } from './surface-sign-mesh';
+import { STREET_NAME_WALL, type SurfaceSign, streetNamePanelWidth } from './surface-sign-mesh';
 
 /** Only literal posted limits are usable: no implicit country codes, conditional or variable limits. */
 export function postedSpeed(value: string | undefined): [string, string] | undefined {
@@ -30,23 +31,129 @@ export function postedSpeed(value: string | undefined): [string, string] | undef
 }
 
 /**
- * Corner blade posts a detail tile may carry, outside the 48 boards and the shared fixture budget
+ * Junctions a detail tile may name at a corner (one post, or two wall or frame plates), outside
+ * the 48 boards and the shared fixture budget
  * (a host that allows no fixtures still gets none). Mast panels come one per signal mast instead.
  */
 export const STREET_NAME_SIGNS_PER_TILE = 64;
 
+/** One straight stretch of a building's outer wall, in tile meters. */
+export interface SurfaceFacade {
+  /** Start of the wall, its unit direction and length. */
+  x: number;
+  z: number;
+  tx: number;
+  tz: number;
+  length: number;
+  /** Unit normal out of the building. */
+  nx: number;
+  nz: number;
+  /** Building height above its base, when mapped. */
+  height?: number;
+}
+
+/** What the host knows that street names need beyond the road network. */
+export interface SurfaceStreetNameOptions {
+  /** Whether the host's fonts letter a legend; a name they cannot letter is not posted. */
+  lettered?: (legend: string) => boolean;
+  /** Building walls with any part within `reach` meters of a point, for `mount: 'wall'`. */
+  facades?: (x: number, z: number, reach: number) => readonly SurfaceFacade[];
+}
+
+/** How far from a street corner a nameplate may sit on a building wall. */
+const WALL_REACH = 12;
+
+/**
+ * Building walls by grid cell, answering `SurfaceStreetNameOptions.facades`. Raised parts
+ * (bridges between buildings, overhangs) and underground ones carry no plates.
+ */
+export function surfaceFacadeIndex(
+  buildings: readonly TerrainBuildingFeature[],
+  tileSize: number,
+): (x: number, z: number, reach: number) => SurfaceFacade[] {
+  const size = 16;
+  const cells = new Map<string, SurfaceFacade[]>();
+  for (const building of buildings) {
+    if ((building.minHeight ?? 0) > 0.5 || (building.layer ?? 0) < 0) continue;
+    for (const polygon of building.polygons) {
+      const ring = normalizeRing(polygon.outer);
+      if (ring.length < 3) continue;
+      for (let i = 0; i < ring.length; i++) {
+        const a = ring[i] as readonly [number, number],
+          b = ring[(i + 1) % ring.length] as readonly [number, number];
+        const x = a[0] * tileSize,
+          z = a[1] * tileSize,
+          dx = b[0] * tileSize - x,
+          dz = b[1] * tileSize - z;
+        const length = Math.hypot(dx, dz);
+        if (length < 1.5) continue;
+        const tx = dx / length,
+          tz = dz / length;
+        // Outward is whichever side of the wall's middle lies outside the footprint.
+        const outside = !pointInPolygon(
+          [(x + dx / 2 + tz * 0.2) / tileSize, (z + dz / 2 - tx * 0.2) / tileSize],
+          polygon,
+        );
+        const facade: SurfaceFacade = {
+          x,
+          z,
+          tx,
+          tz,
+          length,
+          nx: outside ? tz : -tz,
+          nz: outside ? -tx : tx,
+          ...(building.height !== undefined ? { height: building.height } : {}),
+        };
+        for (
+          let cx = Math.floor(Math.min(x, x + dx) / size);
+          cx <= Math.floor(Math.max(x, x + dx) / size);
+          cx++
+        )
+          for (
+            let cz = Math.floor(Math.min(z, z + dz) / size);
+            cz <= Math.floor(Math.max(z, z + dz) / size);
+            cz++
+          ) {
+            const key = `${cx}/${cz}`;
+            const cell = cells.get(key) ?? [];
+            cell.push(facade);
+            cells.set(key, cell);
+          }
+      }
+    }
+  }
+  return (x, z, reach) => {
+    const found = new Set<SurfaceFacade>();
+    for (let cx = Math.floor((x - reach) / size); cx <= Math.floor((x + reach) / size); cx++)
+      for (let cz = Math.floor((z - reach) / size); cz <= Math.floor((z + reach) / size); cz++)
+        for (const facade of cells.get(`${cx}/${cz}`) ?? []) {
+          if (found.has(facade)) continue;
+          const t = Math.max(
+            0,
+            Math.min(facade.length, (x - facade.x) * facade.tx + (z - facade.z) * facade.tz),
+          );
+          if (Math.hypot(facade.x + facade.tx * t - x, facade.z + facade.tz * t - z) <= reach)
+            found.add(facade);
+        }
+    return [...found];
+  };
+}
+
 /**
  * The legend posted for a road at a junction, or undefined: paths, rails, freeways, ramps and turn
- * connectors carry none, nor does a compound label such as "A Street & B Avenue".
+ * connectors carry none, nor does a compound label such as "A Street & B Avenue", nor a name the
+ * host's fonts cannot letter.
  */
 export function postedStreetName(
   road: SurfaceRoad,
   style: Readonly<TerrainStreetNameStyle>,
+  lettered?: (legend: string) => boolean,
 ): string | undefined {
   const name = road.feature.name?.trim();
   if (!name || /[&;]/.test(name) || isSurfaceLink(road)) return undefined;
   if (road.kind !== 'street' && road.kind !== 'service') return undefined;
-  return streetSignName(style, name);
+  const legend = streetSignName(style, name);
+  return lettered && !lettered(legend) ? undefined : legend;
 }
 
 /**
@@ -59,13 +166,14 @@ export function crossStreetName(
   approach: SurfaceJunction['arms'][number],
   style: Readonly<TerrainStreetNameStyle>,
   side: 1 | -1,
+  lettered?: (legend: string) => boolean,
 ): { name: string; road: SurfaceRoad } | undefined {
   const own = postedStreetName(approach.road, style);
   let best: { name: string; road: SurfaceRoad } | undefined;
   let score = 0.5;
   for (const arm of node.arms) {
     if (arm === approach) continue;
-    const name = postedStreetName(arm.road, style);
+    const name = postedStreetName(arm.road, style, lettered);
     if (!name || name === own) continue;
     const turn = (approach.dz * arm.dx - approach.dx * arm.dz) * side;
     const value = Math.abs(turn) + (turn > 0 ? 0.01 : 0);
@@ -138,6 +246,7 @@ export function planSurfaceSigns(
   deckProfiles: ReadonlyMap<SurfaceRoad, (x: number, z: number) => number>,
   appearance: Readonly<TerrainRoadSignProfile> = DEFAULT_ROAD_SIGN_PROFILE,
   routeShields?: TerrainRouteShieldLibrary,
+  streets: SurfaceStreetNameOptions = {},
 ): SurfaceSign[] {
   const result: SurfaceSign[] = [];
   const side = appearance.drivingSide === 'left' ? -1 : 1;
@@ -472,64 +581,162 @@ export function planSurfaceSigns(
     }
   }
 
-  // Corner blades name the two streets that form one corner of each unsignalized junction; at a
-  // signal the mast arms carry the names instead (see surface-client).
+  // Each junction names the two streets that form one of its corners: both on one corner post,
+  // or (`mount: 'wall'`) a plate for each on the corner building's walls, standing on a low frame
+  // where no wall is near. Where the style hangs names from mast arms, a signalized junction is
+  // left to those (see surface-client).
   const names = appearance.streetNames;
-  let posts = 0;
-  if (names)
-    for (const node of network.junctions) {
-      if (posts >= Math.min(STREET_NAME_SIGNS_PER_TILE, maximum)) break;
-      if (!inside(node.x, node.z) || controls.get(node)?.signal) continue;
-      // A post stands on the ground; skip junctions on or under a structure.
-      if (node.arms.some((arm) => arm.road.feature.bridge || arm.road.feature.tunnel)) continue;
-      const corners = surfaceJunctionCorners(node, sortedJunctionArms(node)).flatMap((corner) => {
-        const first = postedStreetName(corner.a.road, names),
-          second = postedStreetName(corner.b.road, names);
-        return first && second && first !== second ? [{ corner, first, second }] : [];
-      });
-      // World coordinates choose the corner, so a junction in two tiles' buffers agrees.
-      const start = Math.floor(
-        surfaceHash(context.origin[0] + node.x, context.origin[1] + node.z) * corners.length,
+  const lettered = streets.lettered;
+  type Corner = ReturnType<typeof surfaceJunctionCorners>[number];
+  type Arm = Corner['a'];
+  /** A plate on the wall nearest the corner that runs along `arm`'s street and faces it. */
+  const wallPlate = (corner: Corner, arm: Arm, name: string): SurfaceSign | undefined => {
+    const width = streetNamePanelWidth(name, STREET_NAME_WALL);
+    let best: { x: number; z: number; nx: number; nz: number; distance: number } | undefined;
+    for (const facade of streets.facades?.(corner.x, corner.z, WALL_REACH) ?? []) {
+      // Along the street, facing it, at most a front garden back from the carriageway.
+      if (Math.abs(facade.tx * arm.dx + facade.tz * arm.dz) < 0.85) continue;
+      const out = (arm.x - facade.x) * facade.nx + (arm.z - facade.z) * facade.nz;
+      if (out < arm.width / 2 + 0.5 || out > arm.width / 2 + 10) continue;
+      if (facade.length < width + 0.6 || (facade.height !== undefined && facade.height < 3.2))
+        continue;
+      // As near the corner as the whole plate fits on the wall.
+      const along = Math.max(
+        width / 2 + 0.3,
+        Math.min(
+          facade.length - width / 2 - 0.3,
+          (corner.x - facade.x) * facade.tx + (corner.z - facade.z) * facade.tz,
+        ),
       );
-      for (let k = 0; k < corners.length; k++) {
-        const { corner, first, second } = corners[
-          (start + k) % corners.length
-        ] as (typeof corners)[number];
+      const x = facade.x + facade.tx * along + facade.nx * 0.06,
+        z = facade.z + facade.tz * along + facade.nz * 0.06;
+      const distance = Math.hypot(x - corner.x, z - corner.z);
+      // A party wall faces the next building, not the street.
+      if (distance > WALL_REACH || blocked(x + facade.nx * 0.4, z + facade.nz * 0.4)) continue;
+      if (!inside(x, z) || (best && best.distance <= distance)) continue;
+      best = { x, z, nx: facade.nx, nz: facade.nz, distance };
+    }
+    if (!best) return undefined;
+    return {
+      kind: 'street-name',
+      pattern: 'street-name-wall',
+      mount: 'wall',
+      appearance,
+      evidence: ['name', 'facade'],
+      roadId: arm.road.feature.id,
+      x: best.x,
+      z: best.z,
+      ground: context.heightfield.sampleHeight(
+        context.origin[0] + best.x,
+        context.origin[1] + best.z,
+      ),
+      dx: best.nx,
+      dz: best.nz,
+      lines: [name],
+      source: 'mapped',
+    };
+  };
+  /** A low frame at the back of the footway, running out along `arm` from the corner. */
+  const framePlate = (corner: Corner, arm: Arm, name: string): SurfaceSign | undefined => {
+    const out = streetNamePanelWidth(name, STREET_NAME_WALL) / 2 + 0.6;
+    const x = corner.x + arm.dx * out,
+      z = corner.z + arm.dz * out;
+    if (!inside(x, z) || blocked(x, z) || network.occupied(x, z, 0.4)) return undefined;
+    return {
+      kind: 'street-name',
+      pattern: 'street-name-wall',
+      mount: 'frame',
+      appearance,
+      evidence: ['name', 'junction-corner'],
+      roadId: arm.road.feature.id,
+      x,
+      z,
+      ground: ground(arm.road, x, z),
+      dx: -arm.dz,
+      dz: arm.dx,
+      lines: [name],
+      source: 'mapped',
+    };
+  };
+  /** Both names at one corner of the junction, or undefined where no corner has room. */
+  const nameCorner = (
+    corners: readonly { corner: Corner; first: string; second: string }[],
+  ): SurfaceSign[] | undefined => {
+    if (names?.mount !== 'wall') {
+      for (const { corner, first, second } of corners) {
         // A step in from the lamp's corner: on the sidewalk, near the curb ramp.
         const x = corner.x - Math.cos(corner.direction) * 1.1,
           z = corner.z - Math.sin(corner.direction) * 1.1;
         if (!inside(x, z) || blocked(x, z) || network.occupied(x, z, 0.5)) continue;
-        const pair = [first, second].sort().join('\n');
-        // Divided roads can meet at neighboring nodes: one post names the pair.
-        if (
-          result.some(
-            (s) =>
-              s.pattern === 'street-name-blade' &&
-              [...s.lines].sort().join('\n') === pair &&
-              Math.hypot(s.x - x, s.z - z) < 40,
-          )
-        )
-          break;
         const { a, b } = corner;
-        result.push({
-          kind: 'street-name',
-          pattern: 'street-name-blade',
-          appearance,
-          evidence: ['name', 'junction-corner'],
-          roadId: a.road.feature.id,
-          x,
-          z,
-          ground: ground(a.road, x, z),
-          // The lower blade runs along the first street; the upper one turns to the second.
-          dx: -a.dz,
-          dz: a.dx,
-          bladeTurn: Math.atan2(b.dz, b.dx) - Math.atan2(a.dz, a.dx),
-          lines: [first, second],
-          source: 'mapped',
-        });
-        posts++;
-        break;
+        return [
+          {
+            kind: 'street-name',
+            pattern: 'street-name-blade',
+            mount: 'post',
+            appearance,
+            evidence: ['name', 'junction-corner'],
+            roadId: a.road.feature.id,
+            x,
+            z,
+            ground: ground(a.road, x, z),
+            // The lower panel runs along the first street; the upper one turns to the second.
+            dx: -a.dz,
+            dz: a.dx,
+            bladeTurn: Math.atan2(b.dz, b.dx) - Math.atan2(a.dz, a.dx),
+            lines: [first, second],
+            source: 'mapped',
+          },
+        ];
       }
+      return undefined;
+    }
+    // The corner whose buildings carry the most names wins; frames make up the rest.
+    let best: { signs: SurfaceSign[]; walls: number } | undefined;
+    for (const { corner, first, second } of corners) {
+      const signs: SurfaceSign[] = [];
+      let walls = 0;
+      for (const [arm, name] of [
+        [corner.a, first],
+        [corner.b, second],
+      ] as const) {
+        const onWall = wallPlate(corner, arm, name);
+        if (onWall) walls++;
+        const sign = onWall ?? framePlate(corner, arm, name);
+        if (sign) signs.push(sign);
+      }
+      if (signs.length === 2 && (!best || walls > best.walls)) best = { signs, walls };
+      if (best?.walls === 2) break;
+    }
+    return best?.signs;
+  };
+  let posts = 0;
+  const served: { pair: string; x: number; z: number }[] = [];
+  if (names)
+    for (const node of network.junctions) {
+      if (posts >= Math.min(STREET_NAME_SIGNS_PER_TILE, maximum)) break;
+      if (!inside(node.x, node.z) || (names.mastArms && controls.get(node)?.signal)) continue;
+      // A post stands on the ground; skip junctions on or under a structure.
+      if (node.arms.some((arm) => arm.road.feature.bridge || arm.road.feature.tunnel)) continue;
+      const corners = surfaceJunctionCorners(node, sortedJunctionArms(node)).flatMap((corner) => {
+        const first = postedStreetName(corner.a.road, names, lettered),
+          second = postedStreetName(corner.b.road, names, lettered);
+        return first && second && first !== second ? [{ corner, first, second }] : [];
+      });
+      if (!corners.length) continue;
+      // World coordinates choose the first corner tried, so a junction in two tiles' buffers agrees.
+      const start = Math.floor(
+        surfaceHash(context.origin[0] + node.x, context.origin[1] + node.z) * corners.length,
+      );
+      const signs = nameCorner([...corners.slice(start), ...corners.slice(0, start)]);
+      if (!signs) continue;
+      // Divided roads can meet at neighboring nodes: one corner names the pair.
+      const pair = [...new Set(signs.flatMap((sign) => sign.lines))].sort().join('\n');
+      if (served.some((s) => s.pair === pair && Math.hypot(s.x - node.x, s.z - node.z) < 40))
+        continue;
+      served.push({ pair, x: node.x, z: node.z });
+      result.push(...signs);
+      posts++;
     }
   return result;
 }

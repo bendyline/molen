@@ -63,7 +63,7 @@ function hit(o, d, p) {
 it('retains all 24 real recessed ports after reducing street and closeup meshes', async () => {
   expect(kihnuPorts).toHaveLength(24);
   for (const name of ['street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const h of kihnuPorts) {
       const r = kihnuRadius(h.y),
         radial = [Math.sin(h.angle), 0, Math.cos(h.angle)],
@@ -77,15 +77,15 @@ it('retains all 24 real recessed ports after reducing street and closeup meshes'
             ),
           )
           .filter((t) => t !== null && t > 0 && t < 2);
-      expect(ds.length, name + ' port ' + JSON.stringify(h)).toBeGreaterThan(0);
+      expect(ds.length, `${name} port ${JSON.stringify(h)}`).toBeGreaterThan(0);
       expect(Math.min(...ds)).toBeGreaterThan(1.06);
       expect(Math.min(...ds)).toBeLessThan(1.2);
     }
   }
 });
 it('preserves the tower height and signed map frame while embedding the site foundations', async () => {
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json');
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`);
   expect(s.sourceFacts.heightMeters).toBe(28.3);
   expect(s.actualBounds.max[1]).toBeCloseTo(28.3, 1);
   expect(s.actualBounds.min[1]).toBeCloseTo(-0.18, 2);
@@ -101,12 +101,12 @@ it('preserves the tower height and signed map frame while embedding the site fou
   expect(s.geographicProposal.buildingCutout.outlines).toEqual(f.viewerMap.buildingOutlines);
 });
 it('reproduces four independent levels within budgets and with six canonical material graphs', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3_000_000);
   const graphs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file);
+    const b = await readFile(`${runtime}/${l.file}`);
     const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -120,7 +120,7 @@ it('reproduces four independent levels within budgets and with six canonical mat
   }
   expect([...graphs].sort()).toEqual(
     ['brick', 'concrete_plain', 'metal_painted', 'stone', 'stone_granite', 'wood_plain']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

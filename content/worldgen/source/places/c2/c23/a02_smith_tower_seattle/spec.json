@@ -2,12 +2,124 @@
   "planId": "A02",
   "id": "molen.worldgen.structure.a02_smith_tower_seattle",
   "title": "Smith Tower, Seattle",
-  "visualBrief": "Tapered historic tower and pyramidal roof",
+  "wikidataId": "Q1196348",
+  "visualBrief": "Seattle's 1914 white terra-cotta skyscraper at Second Avenue and Yesler Way: a 21-storey base block over a two-storey granite plinth with storefronts and a round-arched entrance, heavy cornices, and a slender chamfered shaft rising flush with the Second Avenue front in a pier-and-spandrel grid to the 35th-floor observation balcony with its white steel cage, crowned by a steep terra-cotta pyramid with three tiers of small arched dormers, a bronze collar, the glass globe and a finial.",
   "size": [
-    65,
-    147,
-    55
+    43.08,
+    148.61,
+    38.74
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -17.426,
+      -1.86,
+      -28.875
+    ],
+    "max": [
+      25.655,
+      146.75,
+      9.864
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-smith-tower.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: mapped OSM base 35184424870493 (75 m) and tower part 35184790229218 (141 m), with the crown parts 35184790229216 and 35184790229217 at its centre; the shaft is 20.0 m along Second Avenue by 15.7 m with chamfered corners",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "38 floors; 140.8 m (462 ft) architectural height to the top of the pyramid, 147.5 m (484 ft) to the tip; observatory at 119.5 m (392 ft)",
+      "source": "https://www.skyscrapercenter.com/building/wd/9676"
+    },
+    {
+      "fact": "462 ft to the top of the pyramid per the permit plans; a mounted tower with a broad base and a slender shaft; heavy cornices; pyramid with three tiers of small arched windows and a hollow glass globe on top; observation deck and function room on the 35th story with a balcony whose masonry balusters were replaced by a cage of white-painted steel bars",
+      "source": "https://www.historylink.org/File/4310"
+    },
+    {
+      "fact": "Lower part 236 ft (22 stories, including the attic), tower an additional 20 stories; Washington granite on the first two floors and terra cotta above; light courts begin at the third floor; bronze window sash",
+      "source": "https://pcad.lib.washington.edu/building/4149"
+    },
+    {
+      "fact": "Granite skin on the first and second floors, terra cotta on the rest; crowned by an 8-foot (2.4 m) glass globe",
+      "source": "https://en.wikipedia.org/wiki/Smith_Tower"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.3318661,
+      47.6019531
+    ],
+    "heading": -1.03411,
+    "groundAtAnchor": 13.42,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Floor heights are a uniform 3.43 m above the two-storey plinth, fitted so the 35th floor lands near the published observatory height; the base cornice and attic are estimated from photographs.",
+    "Terra-cotta ornament (capitals, lion and Indian heads, cartouches) is reduced to piers, spandrel bands, mullions and stepped cornices; window sash is not modelled.",
+    "Bay counts (five on the long shaft faces, four on the short) and the dormer counts per tier are estimated; the pyramid is a straight-sided pyramid over the chamfered shaft plan.",
+    "The base follows the mapped outline, including its two shallow light-court notches; the alley and party walls carry the same grid above the plinth and no ground-floor openings.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10482,
+    "vertices": 31446,
+    "materials": 7,
+    "bytes": 1261916,
+    "sha256": "sha256:a006d2563c2f80523aaa1c5c7a43b947ead1acafd5146a86fb05c1f6b0c9a6d7"
+  }
 }

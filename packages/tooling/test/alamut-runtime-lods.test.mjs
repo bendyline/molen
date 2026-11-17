@@ -107,16 +107,16 @@ it('reproduces the original mesh and verifies fresh signed map and public terrai
   alamutStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(271061);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.tags.wikidata).toBe('Q4706020');
   expect(frame.identity.version).toBe(3);
   expect(frame.cachedVertexMaxErrorMeters).toBeLessThan(0.001);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -127,14 +127,14 @@ it('reproduces the original mesh and verifies fresh signed map and public terrai
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(2098.7457);
   expect(grade.architectureShift).toBe(-25.47);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps all cut reservoirs open and cliff front faces buried on the retained grade', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json');
+  const asset = await read(`${runtime}/asset.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`);
   const { alamutGround } = await import('../../worldgen/scripts/alamut-runtime-model.mjs');
   const reservoirs = [
     [-74, -19.5, 2.8],
@@ -144,13 +144,13 @@ it('keeps all cut reservoirs open and cliff front faces buried on the retained g
     [21.95, 5.8, 2.2],
   ];
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z, depth] of reservoirs) {
       const floor = grade.workingPlateauIntercept - 0.032 * x + 0.012 * z - depth + 0.03;
-      expect(floor, l.name + ' cut floor above host ' + x).toBeGreaterThan(alamutGround(x, z));
+      expect(floor, `${l.name} cut floor above host ${x}`).toBeGreaterThan(alamutGround(x, z));
       expect(
         nearest(triangles, [x, 60, z], [0, -1, 0]),
-        l.name + ' roofless reservoir ' + x,
+        `${l.name} roofless reservoir ${x}`,
       ).toBeCloseTo(60 - floor, 2);
     }
     const ring = frame.features.find((f) => f.id === 'way/590499418').native,
@@ -175,13 +175,13 @@ it('keeps all cut reservoirs open and cliff front faces buried on the retained g
           [x + 12 * n[0], alamutGround(x, z) + 0.12, z + 12 * n[1]],
           [-n[0], 0, -n[1]],
         ).distance,
-        l.name + ' outward cliff ' + i,
+        `${l.name} outward cliff ${i}`,
       ).toBeLessThan(16);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -191,7 +191,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -201,7 +201,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

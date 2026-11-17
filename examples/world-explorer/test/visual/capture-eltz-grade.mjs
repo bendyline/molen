@@ -79,7 +79,7 @@ try {
     );
     assert(
       Math.abs(state.modelOriginElevation) < 0.0001,
-      'Retained terrain/model reference mismatch: ' + JSON.stringify(state),
+      `Retained terrain/model reference mismatch: ${JSON.stringify(state)}`,
     );
     const probes = await page.evaluate(
       (points) => points.map((p) => window.eltzGradeQA.probe(p)),
@@ -92,7 +92,7 @@ try {
     for (const p of probes) {
       assert(
         p.clearance !== null && Math.abs(p.clearance) < 0.08,
-        'Signed open-ground datum mismatch: ' + JSON.stringify(p),
+        `Signed open-ground datum mismatch: ${JSON.stringify(p)}`,
       );
     }
     const foundations = await page.evaluate(() => window.eltzGradeQA.foundationProbes());
@@ -107,7 +107,7 @@ try {
     for (const p of passages)
       assert(
         p.distance === null || p.distance > p.clear,
-        'Blocked model gate ' + JSON.stringify(p),
+        `Blocked model gate ${JSON.stringify(p)}`,
       );
     states.push({ ...state, probes, foundations, paving, passages });
     for (const camera of [

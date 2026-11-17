@@ -71,8 +71,8 @@ const nearest = (ts, o, d) =>
 const height = (y) => 12.65 + ((y - 12.3) * (16.95 - 12.65)) / (16.6 - 12.3);
 it('keeps the full offshore ensemble and closes square corners around truly recessed portholes', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 32, 0], [0, -1, 0]), name + ' full finial').toBeCloseTo(1.05, 4);
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 32, 0], [0, -1, 0]), `${name} full finial`).toBeCloseTo(1.05, 4);
     const distance = 0.95 / Math.sqrt(2) + Math.sqrt(2.55 * 2.55 - (0.95 * 0.95) / 2);
     for (const a of [0, (-5 * Math.PI) / 8, (3 * Math.PI) / 4]) {
       const hit = nearest(
@@ -80,17 +80,17 @@ it('keeps the full offshore ensemble and closes square corners around truly rece
         [(distance + 2) * Math.sin(a), 22.5, (distance + 2) * Math.cos(a)],
         [-Math.sin(a), 0, -Math.cos(a)],
       );
-      expect(hit, name + ' all three projecting bays').toBeGreaterThan(0.8);
+      expect(hit, `${name} all three projecting bays`).toBeGreaterThan(0.8);
       expect(hit).toBeLessThan(1.3);
     }
     if (name === 'street' || name === 'closeup') {
       const pane = nearest(ts, [0, height(13.8), 4], [0, 0, -1]);
-      expect(pane, name + ' recessed porthole').toBeGreaterThan(1.2);
+      expect(pane, `${name} recessed porthole`).toBeGreaterThan(1.2);
       expect(pane).toBeLessThan(1.25);
       for (const x of [-0.17, 0.17])
         for (const y of [-0.17, 0.17]) {
           const wall = nearest(ts, [x, height(13.8 + y), 4], [0, 0, -1]);
-          expect(wall, name + ' no corner gap').toBeGreaterThan(1.05);
+          expect(wall, `${name} no corner gap`).toBeGreaterThan(1.05);
           expect(wall).toBeLessThan(1.14);
         }
     }
@@ -99,7 +99,7 @@ it('keeps the full offshore ensemble and closes square corners around truly rece
 it('preserves the exact original master separately from the surveyed caisson/bay/aperture refinements', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -109,8 +109,8 @@ it('preserves the exact original master separately from the surveyed caisson/bay
   buildRoterSandMaster(a.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -125,12 +125,12 @@ it('preserves the exact original master separately from the surveyed caisson/bay
   expect(s.sourceFacts.reviewedCaisson.circleRadiusMeters).toBe(7.3);
 });
 it('rebuilds exact deterministic budgeted derivatives with shared textures and separate position/normal streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -152,6 +152,6 @@ it('rebuilds exact deterministic budgeted derivatives with shared textures and s
       ).toBe(true);
   }
   expect([...refs].sort()).toEqual(
-    ['metal_painted', 'wood_plain'].map((g) => 'matgraph:molen.worldgen.material.' + g).sort(),
+    ['metal_painted', 'wood_plain'].map((g) => `matgraph:molen.worldgen.material.${g}`).sort(),
   );
 });

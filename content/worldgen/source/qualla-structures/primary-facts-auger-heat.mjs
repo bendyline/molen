@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const augerHeatCases = {
   'auger-primary-whole-HEAT-way213400124-2018': 'coihueco_heat_telescope_1',
   'auger-primary-whole-HEAT-way213400126-2018': 'coihueco_heat_telescope_2',
@@ -54,7 +54,7 @@ export function inspectAugerHeatPrimaryFacts({ dir, proof, controls: P, frame: f
       (w.tags.name ?? null) !== identity[1] ||
       w.nodes.length !== 5 ||
       w.nodes[0] !== w.nodes.at(-1) ||
-      n.featureId !== 'way/' + identity[0]
+      n.featureId !== `way/${identity[0]}`
     )
       return fail('auger-heat-original-native-outline-unbound');
     if (

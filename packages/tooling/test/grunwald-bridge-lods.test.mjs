@@ -60,17 +60,17 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('rebuilds the exact detailed source and retains distinct river span, portal axes, tram alignment and native bank profile', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    alignment = await read(source + '/alignment.json'),
-    grid = await read(source + '/terrain-grid.json');
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    alignment = await read(`${source}/alignment.json`),
+    grid = await read(`${source}/terrain-grid.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(grunwaldSurfaces);
   buildGrunwaldLevel(a.wrap(b), 'master');
   const mesh = b.finalize(),
     bytes = Buffer.from(encodeGlb(mesh, a.materials(mesh.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([17.052553228, 51.109484456]);
   expect(frame.heading).toBe(0.347095676446);
   const legacy = await read(resolve('../../content/earth/structures/georeferencing.json'));
@@ -82,57 +82,57 @@ it('rebuilds the exact detailed source and retains distinct river span, portal a
   expect(alignment.waterCrossingX).toEqual([-57, 57]);
   expect(alignment.tramMapCenterlines).toHaveLength(2);
   expect(alignment.tramCenterlines.every((l) => l[0][0] === -88 && l.at(-1)[0] === 88)).toBe(true);
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png);
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png);
   for (const x of [-88, 88])
     expect(grunwaldDeckY(x) - field.sampleHeight(x, grunwaldCenterZ(x))).toBeCloseTo(0.22, 2);
-  const placement = await read(source + '/placement-report.json');
+  const placement = await read(`${source}/placement-report.json`);
   expect(placement.entry.elevation).toBe(grid.modelDatumElevationMeters);
   expect(placement.entry.replaceFootprint).toBe(false);
   expect(placement.entry.replaceRoads.includeConnectedApproaches).toBe(true);
   expect(placement.entry.bounds).toHaveLength(4);
 }, 30000);
 it('retains the complete road, genuinely open portal arches and near upper band chambers while keeping the river open', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file);
+    const ts = await triangles(`${runtime}/${l.file}`);
     for (const x of [-80, -40, 0, 40, 80])
       expect(
         Math.abs(
           // A pedestrian-height probe stays below the intended overhead tram cross-spans.
           nearest(ts, [x, grunwaldDeckY(x) + 1.5, grunwaldCenterZ(x) + 4], [0, -1, 0]) - 1.5,
         ),
-        l.name + ' complete road ' + x,
+        `${l.name} complete road ${x}`,
       ).toBeLessThan(0.1);
     for (const x of grunwaldControls.gates) {
       const y = grunwaldDeckY(x),
         z = grunwaldCenterZ(x);
       expect(
         nearest(ts, [x - 3, y + 5, z], [1, 0, 0]),
-        l.name + ' open roadway portal',
+        `${l.name} open roadway portal`,
       ).toBeGreaterThan(6);
       expect(
         nearest(ts, [x - 3, y + 13.3, z], [1, 0, 0]),
-        l.name + ' solid arch head',
+        `${l.name} solid arch head`,
       ).toBeLessThan(5);
       if (l.name !== 'skyline')
         for (const sign of [-1, 1])
           expect(
             nearest(ts, [x - 2, y + 12, z + sign * 9.45], [1, 0, 0]),
-            l.name + ' upper band chamber',
+            `${l.name} upper band chamber`,
           ).toBeGreaterThan(3.65);
     }
-    expect(nearest(ts, [0, 1, grunwaldCenterZ(0)], [0, 0, 1]), l.name + ' open river').toBe(
+    expect(nearest(ts, [0, 1, grunwaldCenterZ(0)], [0, 0, 1]), `${l.name} open river`).toBe(
       Infinity,
     );
     expect(grunwaldBandY(0) - grunwaldDeckY(0)).toBeCloseTo(2.56, 5);
   }
 }, 60000);
 it('removes mapped road/tram bridge duplicates and preserves the transverse northeast bank street', async () => {
-  const placement = (await read(source + '/placement-report.json')).entry,
-    map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json');
+  const placement = (await read(`${source}/placement-report.json`)).entry,
+    map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`);
   const local = ([lon, lat]) => {
     const E = (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
       S = -(lat - frame.anchor[1]) * 111319.490793;
@@ -189,15 +189,15 @@ it('removes mapped road/tram bridge duplicates and preserves the transverse nort
   );
   for (const [i, r] of trams.entries())
     tile.transportation.push({
-      id: 'tram-' + i,
+      id: `tram-${i}`,
       class: 'rail',
       subclass: 'tram',
       bridge: true,
       lines: [r.points.map(point)],
     });
   const field = heightfieldFromPng(
-    await read(source + '/terrain-review.terrain.json'),
-    await readFile(source + '/terrain-review.height.png'),
+    await read(`${source}/terrain-review.terrain.json`),
+    await readFile(`${source}/terrain-review.height.png`),
   );
   const result = withoutStructureRoads(
     tile,
@@ -211,8 +211,8 @@ it('removes mapped road/tram bridge duplicates and preserves the transverse nort
   ).toHaveLength(0);
 }, 30000);
 it('rebuilds exact browser tiers with shared granite/blue metal, no images and separate GPU streams within budgets', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -221,7 +221,7 @@ it('rebuilds exact browser tiers with shared granite/blue metal, no images and s
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hashBytes(b)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -231,7 +231,7 @@ it('rebuilds exact browser tiers with shared granite/blue metal, no images and s
       for (const graph of ['stone_granite', 'metal_painted'])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

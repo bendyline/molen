@@ -58,7 +58,7 @@ export function inspectAndenesPrimaryFacts({ dir, proof, controls, frame }) {
       [1026009624, controls.nativeBaseRing],
     ]) {
       const w = native.elements.find((n) => n.type === 'way' && n.id === id),
-        feature = frame.features?.find((f) => f.id === 'way/' + id);
+        feature = frame.features?.find((f) => f.id === `way/${id}`);
       if (
         !w ||
         !feature ||

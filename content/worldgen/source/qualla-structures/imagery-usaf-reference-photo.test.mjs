@@ -18,8 +18,8 @@ test('exact published USAF aerial requires its native employee grant and inspect
     image = Buffer.from('exact published aerial'),
     pdf = Buffer.from('%PDF-original government publication'),
     dir = 'content/worldgen/source/places/9q/9qd/base',
-    file = dir + '/reference-rights/native.json',
-    book = dir + '/reference-plans/usaf-reference-series-1989.pdf';
+    file = `${dir}/reference-rights/native.json`,
+    book = `${dir}/reference-plans/usaf-reference-series-1989.pdf`;
   const citation =
       'Active Air Force Bases Within the United States of America on 17 September 1982 USAF Reference Series, OFFICE OF AIR FORCE HISTORY UNITED STATES AIR FORCE WASHINGTON, D.C., 1989',
     ref = {

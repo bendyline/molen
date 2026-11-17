@@ -106,14 +106,14 @@ const surfaces = {
   },
 };
 it('reproduces detailed original Cayan and independently signs the northeast podium frame', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildCayan(a.wrap(b));
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(489408);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(m.anchor).toEqual(prior.anchor);
@@ -127,16 +127,16 @@ it('reproduces detailed original Cayan and independently signs the northeast pod
   expect(spec.sourceFacts.totalTwistDegrees).toBe(90);
   expect(spec.sourceFacts.ownerFloorCount).toBe(73);
   expect(spec.sourceFacts.architectFloorCount).toBe(75);
-  const d = decode(await readFile(source + '/models/source.glb'));
+  const d = decode(await readFile(`${source}/models/source.glb`));
   expect(d.g.images).toHaveLength(1);
   expect(d.g.images[0].name).toBe('Canonical metal_perforated_round_open fallback');
   expect(d.g.materials).toHaveLength(4);
 }, 60000);
 it('keeps six closed twisting walls, recessed near balconies, open lattice crown and attached podium', async () => {
-  const master = decode(await readFile(source + '/models/source.glb')).triangles,
-    asset = await read(runtime + '/asset.json');
+  const master = decode(await readFile(`${source}/models/source.glb`)).triangles,
+    asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file)),
+    const d = decode(await readFile(`${runtime}/${l.file}`)),
       ts = d.triangles,
       allowance = { skyline: 2, district: 2, street: 1.8, closeup: 0.15 }[l.name];
     for (const y of [39, 78, 137, 198, 265, 289])
@@ -146,16 +146,16 @@ it('keeps six closed twisting walls, recessed near balconies, open lattice crown
           v = [-Math.cos(t), 0, -Math.sin(t)],
           hit = nearestWithNormal(master, o, v),
           target = hit.distance;
-        expect(Number.isFinite(target), l.name + ' source ' + y + '/' + k).toBe(true);
+        expect(Number.isFinite(target), `${l.name} source ${y}/${k}`).toBe(true);
         expect(
           Math.abs(nearest(ts, o, v) - target) * Math.abs(dot(hit.normal, v)),
-          l.name + ' projected wall ' + y + '/' + k,
+          `${l.name} projected wall ${y}/${k}`,
         ).toBeLessThan(allowance);
       }
-    expect(nearest(ts, [10, 320, 10], [0, -1, 0]), l.name + ' open crown').toBeCloseTo(28.3, 1);
-    expect(nearest(ts, [0, 320, 3], [0, -1, 0]), l.name + ' mechanical core').toBeCloseTo(21.8, 1);
+    expect(nearest(ts, [10, 320, 10], [0, -1, 0]), `${l.name} open crown`).toBeCloseTo(28.3, 1);
+    expect(nearest(ts, [0, 320, 3], [0, -1, 0]), `${l.name} mechanical core`).toBeCloseTo(21.8, 1);
     expect(ts.flat().reduce((m, p) => Math.max(m, p[1]), 0)).toBeGreaterThanOrEqual(306.3);
-    expect(nearest(ts, [27, 40, 18], [0, -1, 0]), l.name + ' northeast podium roof').toBeCloseTo(
+    expect(nearest(ts, [27, 40, 18], [0, -1, 0]), `${l.name} northeast podium roof`).toBeCloseTo(
       18.9,
       1,
     );
@@ -205,7 +205,7 @@ it('keeps six closed twisting walls, recessed near balconies, open lattice crown
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -214,7 +214,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);

@@ -71,7 +71,7 @@ const nearest = (ts, o, d) =>
 it('preserves the exact operator-photo source and signed sea-level pier placement', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')(),
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)(),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -80,8 +80,8 @@ it('preserves the exact operator-photo source and signed sea-level pier placemen
   buildVorontsov(a.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['trim'], 32);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -106,25 +106,25 @@ it('preserves the exact operator-photo source and signed sea-level pier placemen
 });
 it('retains supported asymmetric quay, full tower, recessed harbor facade and access stair across browser distances', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 35, 0], [0, -1, 0]), name + ' full main mast').toBeGreaterThan(3.7);
-    expect(nearest(ts, [0, 35, 0], [0, -1, 0]), name + ' full main mast').toBeLessThan(5.7);
-    expect(nearest(ts, [2, 10, 6], [0, -1, 0]), name + ' supported service deck').toBeCloseTo(6, 4);
-    expect(nearest(ts, [2.5, 10, 13], [0, -1, 0]), name + ' descending stair').toBeGreaterThan(6.7);
-    expect(nearest(ts, [2.5, 10, 13], [0, -1, 0]), name + ' descending stair').toBeLessThan(7.2);
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 35, 0], [0, -1, 0]), `${name} full main mast`).toBeGreaterThan(3.7);
+    expect(nearest(ts, [0, 35, 0], [0, -1, 0]), `${name} full main mast`).toBeLessThan(5.7);
+    expect(nearest(ts, [2, 10, 6], [0, -1, 0]), `${name} supported service deck`).toBeCloseTo(6, 4);
+    expect(nearest(ts, [2.5, 10, 13], [0, -1, 0]), `${name} descending stair`).toBeGreaterThan(6.7);
+    expect(nearest(ts, [2.5, 10, 13], [0, -1, 0]), `${name} descending stair`).toBeLessThan(7.2);
     if (name !== 'skyline')
-      expect(nearest(ts, [0, 5, 5], [0, 0, -1]), name + ' recessed tower door').toBeGreaterThan(
+      expect(nearest(ts, [0, 5, 5], [0, 0, -1]), `${name} recessed tower door`).toBeGreaterThan(
         2.9,
       );
   }
 });
 it('rebuilds exact four derivatives with four shared graphs, strict budgets and separate position streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -141,7 +141,7 @@ it('rebuilds exact four derivatives with four shared graphs, strict budgets and 
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'stone', 'metal_painted', 'concrete_plain']
-      .map((n) => 'matgraph:molen.worldgen.material.' + n)
+      .map((n) => `matgraph:molen.worldgen.material.${n}`)
       .sort(),
   );
 });

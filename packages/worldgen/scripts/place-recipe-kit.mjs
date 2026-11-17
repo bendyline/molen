@@ -10,6 +10,7 @@ import { normalize } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 export { rgb };
+
 const REF = 'palette:#ffffff';
 const UV3 = [
   [0, 0],
@@ -23,7 +24,11 @@ const UV4 = [
   [0, 1],
 ];
 const sub = (a, b) => a.map((v, i) => v - b[i]);
-const cross3 = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const cross3 = (a, b) => [
+  a[1] * b[2] - a[2] * b[1],
+  a[2] * b[0] - a[0] * b[2],
+  a[0] * b[1] - a[1] * b[0],
+];
 const faceNormal = (a, b, c) => normalize(cross3(sub(b, a), sub(c, a)));
 
 /** Triangle a→b→c, counterclockwise seen from the side it faces. */
@@ -89,7 +94,19 @@ export function fbox(out, slot, F, u0, u1, y0, y1, d0, d1, color, { bottom = fal
 
 /** Axis-aligned box (all six faces unless bottom: false). */
 export function abox(out, slot, lo, hi, color, { bottom = true } = {}) {
-  fbox(out, slot, facade([lo[0], hi[2]], [1, 0]), 0, hi[0] - lo[0], lo[1], hi[1], -(hi[2] - lo[2]), 0, color, { bottom });
+  fbox(
+    out,
+    slot,
+    facade([lo[0], hi[2]], [1, 0]),
+    0,
+    hi[0] - lo[0],
+    lo[1],
+    hi[1],
+    -(hi[2] - lo[2]),
+    0,
+    color,
+    { bottom },
+  );
 }
 
 /** Points of a pointed (two-centred) arch over a span of halfWidth, apex `rise` above spring. */
@@ -142,7 +159,11 @@ export function opening(out, F, u, y0, width, height, options = {}) {
   } = options;
   const half = width / 2;
   const headRise =
-    head === 'flat' ? 0 : head === 'round' ? half : (rise ?? (head === 'tudor' ? half * 0.55 : half * 1.6));
+    head === 'flat'
+      ? 0
+      : head === 'round'
+        ? half
+        : (rise ?? (head === 'tudor' ? half * 0.55 : half * 1.6));
   const spring = y0 + height - headRise;
   const headPoints =
     head === 'flat'
@@ -198,11 +219,34 @@ export function opening(out, F, u, y0, width, height, options = {}) {
       quad4(out, frameSlot, back[0], back[1], front[1], front[0], frame);
       quad4(out, frameSlot, front[3], front[2], back[2], back[3], frame);
     }
-    if (sill) fbox(out, frameSlot, F, u - half - frameWidth, u + half + frameWidth, y0 - 0.2, y0, 0, frameDepth + 0.08, frame);
+    if (sill)
+      fbox(
+        out,
+        frameSlot,
+        F,
+        u - half - frameWidth,
+        u + half + frameWidth,
+        y0 - 0.2,
+        y0,
+        0,
+        frameDepth + 0.08,
+        frame,
+      );
   }
   for (let i = 1; i <= mullions; i++) {
     const mu = u - half + (width * i) / (mullions + 1);
-    fbox(out, frameSlot, F, mu - 0.06, mu + 0.06, y0, spring + (head === 'flat' ? 0 : headRise * 0.4), d, d + 0.08, mullionColor);
+    fbox(
+      out,
+      frameSlot,
+      F,
+      mu - 0.06,
+      mu + 0.06,
+      y0,
+      spring + (head === 'flat' ? 0 : headRise * 0.4),
+      d,
+      d + 0.08,
+      mullionColor,
+    );
   }
   for (let i = 1; i <= transoms; i++) {
     const ty = y0 + ((spring - y0) * i) / (transoms + 1);
@@ -211,7 +255,10 @@ export function opening(out, F, u, y0, width, height, options = {}) {
 }
 
 const ringArea = (ring) =>
-  ring.reduce((a, p, i) => a + p[0] * ring[(i + 1) % ring.length][1] - ring[(i + 1) % ring.length][0] * p[1], 0) / 2;
+  ring.reduce(
+    (a, p, i) => a + p[0] * ring[(i + 1) % ring.length][1] - ring[(i + 1) % ring.length][0] * p[1],
+    0,
+  ) / 2;
 
 /**
  * Orient a footprint ring so that wallFace(ring[i], ring[i+1]) faces outward: counterclockwise
@@ -224,27 +271,75 @@ export function outwardRing(ring) {
 }
 
 /** Walls of a (possibly concave) ring from y0 to y1, plus caps; holes become courtyards. */
-export function extrude(out, slot, ring, y0, y1, color, { holes = [], top = true, bottom = false, topSlot = slot, topColor = color } = {}) {
+export function extrude(
+  out,
+  slot,
+  ring,
+  y0,
+  y1,
+  color,
+  { holes = [], top = true, bottom = false, topSlot = slot, topColor = color } = {},
+) {
   const outer = outwardRing(ring);
   const walls = (r) => {
     for (let i = 0; i < r.length; i++) {
       const a = r[i],
         b = r[(i + 1) % r.length];
       if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 1e-4) continue;
-      quad4(out, slot, [a[0], y0, a[1]], [b[0], y0, b[1]], [b[0], y1, b[1]], [a[0], y1, a[1]], color);
+      quad4(
+        out,
+        slot,
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], y1, b[1]],
+        [a[0], y1, a[1]],
+        color,
+      );
     }
   };
   walls(outer);
   const innerHoles = holes.map((h) => outwardRing(h).reverse());
   for (const h of innerHoles) walls(h);
-  if (top && !out.addCap(topSlot, REF, outer, innerHoles, () => y1, [0, 1, 0], (p) => p, topColor))
+  if (
+    top &&
+    !out.addCap(
+      topSlot,
+      REF,
+      outer,
+      innerHoles,
+      () => y1,
+      [0, 1, 0],
+      (p) => p,
+      topColor,
+    )
+  )
     throw new Error('extrude: cap triangulation failed');
-  if (bottom && !out.addCap(slot, REF, outer, innerHoles, () => y0, [0, -1, 0], (p) => p, color))
+  if (
+    bottom &&
+    !out.addCap(
+      slot,
+      REF,
+      outer,
+      innerHoles,
+      () => y0,
+      [0, -1, 0],
+      (p) => p,
+      color,
+    )
+  )
     throw new Error('extrude: cap triangulation failed');
 }
 
 /** Bands just proud of every wall of a ring, e.g. ribbon windows or a string course. */
-export function ribbon(out, slot, ring, y0, y1, color, { offset = 0.04, minLength = 1.5, inset = 0.4 } = {}) {
+export function ribbon(
+  out,
+  slot,
+  ring,
+  y0,
+  y1,
+  color,
+  { offset = 0.04, minLength = 1.5, inset = 0.4 } = {},
+) {
   const r = outwardRing(ring);
   for (let i = 0; i < r.length; i++) {
     const F = wallFace(r[i], r[(i + 1) % r.length]);
@@ -261,7 +356,17 @@ export function ribbon(out, slot, ring, y0, y1, color, { offset = 0.04, minLengt
  * Gable roof whose ridge runs from a to b ([x, z]); `width` across, eaves at yEave, ridge at
  * yRidge, `overhang` past the walls. Gable-end triangles go to endSlot when given.
  */
-export function gableRoof(out, slot, a, b, width, yEave, yRidge, color, { overhang = 0.5, endSlot, endColor, ends = [true, true] } = {}) {
+export function gableRoof(
+  out,
+  slot,
+  a,
+  b,
+  width,
+  yEave,
+  yRidge,
+  color,
+  { overhang = 0.5, endSlot, endColor, ends = [true, true] } = {},
+) {
   const F = facade(a, [b[0] - a[0], b[1] - a[1]]);
   const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
   const h = width / 2 + overhang;
@@ -274,17 +379,52 @@ export function gableRoof(out, slot, a, b, width, yEave, yRidge, color, { overha
   quad4(out, slot, F.P(u0, yEave - drop, h), F.P(u1, yEave - drop, h), ridge1, ridge0, color);
   quad4(out, slot, F.P(u1, yEave - drop, -h), F.P(u0, yEave - drop, -h), ridge0, ridge1, color);
   // Undersides so the overhang never shows a missing face.
-  quad4(out, slot, F.P(u1, yEave - drop - 0.02, h), F.P(u0, yEave - drop - 0.02, h), F.P(u0, yEave - 0.02, h - overhang), F.P(u1, yEave - 0.02, h - overhang), color);
-  quad4(out, slot, F.P(u0, yEave - drop - 0.02, -h), F.P(u1, yEave - drop - 0.02, -h), F.P(u1, yEave - 0.02, -h + overhang), F.P(u0, yEave - 0.02, -h + overhang), color);
+  quad4(
+    out,
+    slot,
+    F.P(u1, yEave - drop - 0.02, h),
+    F.P(u0, yEave - drop - 0.02, h),
+    F.P(u0, yEave - 0.02, h - overhang),
+    F.P(u1, yEave - 0.02, h - overhang),
+    color,
+  );
+  quad4(
+    out,
+    slot,
+    F.P(u0, yEave - drop - 0.02, -h),
+    F.P(u1, yEave - drop - 0.02, -h),
+    F.P(u1, yEave - 0.02, -h + overhang),
+    F.P(u0, yEave - 0.02, -h + overhang),
+    color,
+  );
   if (endSlot) {
     const w = width / 2;
-    if (ends[0]) tri(out, endSlot, F.P(0, yEave, w), F.P(0, yRidge, 0), F.P(0, yEave, -w), endColor ?? color);
-    if (ends[1]) tri(out, endSlot, F.P(length, yEave, -w), F.P(length, yRidge, 0), F.P(length, yEave, w), endColor ?? color);
+    if (ends[0])
+      tri(out, endSlot, F.P(0, yEave, w), F.P(0, yRidge, 0), F.P(0, yEave, -w), endColor ?? color);
+    if (ends[1])
+      tri(
+        out,
+        endSlot,
+        F.P(length, yEave, -w),
+        F.P(length, yRidge, 0),
+        F.P(length, yEave, w),
+        endColor ?? color,
+      );
   }
 }
 
 /** Regular polygonal prism (tower) centred at [x, z]; `rotation` turns the first vertex. */
-export function tower(out, slot, center, radius, sides, y0, y1, color, { rotation = 0, top = true, topSlot = slot, topColor = color } = {}) {
+export function tower(
+  out,
+  slot,
+  center,
+  radius,
+  sides,
+  y0,
+  y1,
+  color,
+  { rotation = 0, top = true, topSlot = slot, topColor = color } = {},
+) {
   const ring = Array.from({ length: sides }, (_, i) => {
     const a = rotation + (i / sides) * Math.PI * 2;
     return [center[0] + radius * Math.cos(a), center[1] + radius * Math.sin(a)];
@@ -307,7 +447,15 @@ export function spire(out, slot, center, radius, sides, y0, height, color, { rot
 }
 
 /** Lofted ring stack: layers of [y, radiusX, radiusZ]; `sides` facets; open or capped ends. */
-export function lathe(out, slot, center, layers, sides, color, { capTop = true, capBottom = false, rotation = 0 } = {}) {
+export function lathe(
+  out,
+  slot,
+  center,
+  layers,
+  sides,
+  color,
+  { capTop = true, capBottom = false, rotation = 0 } = {},
+) {
   const point = (layer, i) => {
     const a = rotation + (i / sides) * Math.PI * 2;
     return [center[0] + layer[1] * Math.cos(a), layer[0], center[1] + layer[2] * Math.sin(a)];

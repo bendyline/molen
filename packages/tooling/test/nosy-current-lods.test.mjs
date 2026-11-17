@@ -71,7 +71,7 @@ const nearest = (ts, o, d) =>
 it('preserves the historical source recipe while binding reviewed repair and an explicitly approximate north-northeast entrance', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')(),
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)(),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -80,9 +80,9 @@ it('preserves the historical source recipe while binding reviewed repair and an 
   buildNosyAlanana(a.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['trim'], 32);
-  const s = await read(source + '/spec.json'),
-    scope = await read(source + '/review-scope.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    scope = await read(`${source}/review-scope.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -103,20 +103,20 @@ it('preserves the historical source recipe while binding reviewed repair and an 
 });
 it('retains full sixty-metre mast, supported canopy, connected landing and sixteen recessed staggered openings across near models', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 65, 0], [0, -1, 0]), name + ' full aerial').toBeCloseTo(5, 4);
-    expect(nearest(ts, [0, 2, 4.8], [0, -1, 0]), name + ' connected podium landing').toBeCloseTo(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 65, 0], [0, -1, 0]), `${name} full aerial`).toBeCloseTo(5, 4);
+    expect(nearest(ts, [0, 2, 4.8], [0, -1, 0]), `${name} connected podium landing`).toBeCloseTo(
       1.2,
       4,
     );
-    expect(nearest(ts, [0, 5, 4], [0, -1, 0]), name + ' supported entrance canopy').toBeCloseTo(
+    expect(nearest(ts, [0, 5, 4], [0, -1, 0]), `${name} supported entrance canopy`).toBeCloseTo(
       1.8,
       4,
     );
     if (name === 'skyline') continue;
     expect(
       nearest(ts, [0.29, 1.8, 6], [0, 0, -1]),
-      name + ' exposed recessed wooden door',
+      `${name} exposed recessed wooden door`,
     ).toBeCloseTo(2.755, 4);
     for (let j = 0; j < 8; j++)
       for (const [f, y] of [
@@ -129,21 +129,21 @@ it('retains full sixty-metre mast, supported canopy, connected landing and sixte
           sn = Math.sin(a),
           r = 3.55 - ((height - 0.8) * 1.73) / 52.1,
           dist = nearest(ts, [0.14 * c + 6 * sn, height, -0.14 * sn + 6 * c], [-sn, 0, -c]);
-        expect(dist, name + ' recessed opening ' + f + '/' + y).toBeGreaterThan(6 - r + 0.14);
-        expect(dist, name + ' backed opening ' + f + '/' + y).toBeLessThan(6 - r + 0.4);
+        expect(dist, `${name} recessed opening ${f}/${y}`).toBeGreaterThan(6 - r + 0.14);
+        expect(dist, `${name} backed opening ${f}/${y}`).toBeLessThan(6 - r + 0.4);
       }
   }
-  const master = geometry(await readFile(source + '/models/source.glb'));
+  const master = geometry(await readFile(`${source}/models/source.glb`));
   expect(nearest(master, [0, 2, 4.8], [0, -1, 0])).toBeCloseTo(1.2, 4);
   expect(nearest(master, [0.29, 1.8, 6], [0, 0, -1])).toBeCloseTo(2.755, 4);
 });
 it('regenerates four identical budgeted levels using four shared graphs and separate twelve-byte GPU position streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -160,7 +160,7 @@ it('regenerates four identical budgeted levels using four shared graphs and sepa
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'metal_painted', 'wood_plain', 'concrete_plain']
-      .map((n) => 'matgraph:molen.worldgen.material.' + n)
+      .map((n) => `matgraph:molen.worldgen.material.${n}`)
       .sort(),
   );
 });

@@ -2,12 +2,115 @@
   "planId": "A03",
   "id": "molen.worldgen.structure.a03_columbia_center_seattle",
   "title": "Columbia Center, Seattle",
-  "visualBrief": "Three stepped tower sections",
+  "wikidataId": "Q908703",
+  "visualBrief": "Seattle's tallest building (1985): three interlocking shafts of near-black smoked glass banded by dark metal spandrels, each with one concave face (west at 280 m, southeast at 223 m, northeast at 160 m) stepping down around one another, with setback crowns, on a three-storey Carnelian granite podium that fills the steep block between Fourth and Fifth Avenues, with the Fourth Avenue lobby and canopy and the Fifth Avenue plaza entrance under the northeast face.",
   "size": [
-    65,
-    284,
-    55
+    73.82,
+    289.39,
+    77.03
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -40.047,
+      -8.39,
+      -34.391
+    ],
+    "max": [
+      33.77,
+      281,
+      42.642
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-columbia-center.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: mapped OSM parts 35184790221357 (280 m) with its crown 35184790221349 (286 m), 35184790221352 (223 m) with its crown 35184790221347 (226 m), 35184703382703 (160 m) and the podium 35184479213120 (14 m); heights stand on the Fourth Avenue sidewalk",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "76 floors above ground; architectural height 284 m (933 ft), roof 286 m (937 ft); three concave facades with two setbacks so it reads as three towers side by side; base clad in Rosa Purino Carnelian granite; Fifth Avenue is higher than Fourth and Cherry Street beside it slopes 17.1%",
+      "source": "https://en.wikipedia.org/wiki/Columbia_Center"
+    },
+    {
+      "fact": "Three large arcs placed back to back, facing west, south and east toward Elliott Bay, Mount Rainier and the Cascades; dark coloration; the block bounded by Fourth and Fifth Avenues, Columbia and Cherry Streets",
+      "source": "https://pcad.lib.washington.edu/building/4218/"
+    },
+    {
+      "fact": "Three curved volumes with their concave facades facing outward, each a different height; dark glass with dark metal spandrels giving a subtle horizontal stripe; the three lower levels clad in pink granite",
+      "source": "https://buildingsdb.com/WA/seattle/columbia-center/"
+    },
+    {
+      "fact": "Clad in smoked tempered glass and Carnelian granite; dark, concave facade enhanced by setbacks",
+      "source": "https://skyrisecities.com/news/2016/10/seattles-granite-king-views-columbia-center.23274"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.3306682,
+      47.604531
+    ],
+    "heading": -1.010161,
+    "groundAtAnchor": 42.23,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Segment heights are the mapped part heights over the Fourth Avenue sidewalk (5 m under the anchor); the published 284/286 m top is within 2 m of the crown here. Rooftop equipment and the 295 m tip are not modelled.",
+    "Plan curves follow the mapped outlines (about 0.3 m tile precision), with smoothed normals on the curved glass; the setback crowns are the mapped inner parts.",
+    "The curtain wall is one glass face per wall with a spandrel band per 3.68 m storey; vertical mullions (about 1.5 m apart, under the closeup error) are not drawn.",
+    "The podium deck height, its window bays, the Fourth Avenue canopy and the Fifth Avenue entrance are estimated; the podium deck is drawn as plain paving and the underground concourse is omitted.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11980,
+    "vertices": 35940,
+    "materials": 6,
+    "bytes": 1441212,
+    "sha256": "sha256:a502986a23faeb663487f274d9da60e3b401521ec391bf94b8c42e08b877f2bb"
+  }
 }

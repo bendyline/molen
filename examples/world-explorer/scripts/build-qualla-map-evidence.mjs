@@ -93,7 +93,7 @@ for (const id of ids) {
             ),
           );
           if (distance > 350) continue;
-          const key = layerName + '/' + f.id,
+          const key = `${layerName}/${f.id}`,
             previous = features.get(key);
           if (
             previous &&
@@ -127,7 +127,7 @@ for (const id of ids) {
     attribution: '© OpenStreetMap contributors; Protomaps basemap',
     features: [...features.values()].sort((a, b) => a.distance - b.distance),
   };
-  fs.writeFileSync(path.join(out, `${id}-map.json`), JSON.stringify(result, null, 2) + '\n');
+  fs.writeFileSync(path.join(out, `${id}-map.json`), `${JSON.stringify(result, null, 2)}\n`);
   console.log(
     JSON.stringify({
       id,

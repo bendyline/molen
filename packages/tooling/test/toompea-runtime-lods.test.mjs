@@ -101,10 +101,10 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   toompeaStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(9769);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.id).toBe(3502552);
   expect(frame.identity.version).toBe(22);
   expect(frame.identity.tags.wikidata).toBe('Q859010');
@@ -115,7 +115,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(frame.anchor).toEqual([24.737375127, 59.435763956]);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -126,14 +126,14 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(43.8842);
   expect(grade.workingCourtFloor).toBe(0.8497);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps three roofless courts, backed porch openings, signed towers and outward foundations at every tier', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json'),
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`),
     q = grade.foundationOutline.slice(0, -1),
     sign =
       q.reduce((n, a, i) => {
@@ -143,7 +143,7 @@ it('keeps three roofless courts, backed porch openings, signed towers and outwar
         ? -1
         : 1;
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z] of [
       [30, 15],
       [20, -10],
@@ -151,13 +151,13 @@ it('keeps three roofless courts, backed porch openings, signed towers and outwar
     ])
       expect(
         80 - nearest(triangles, [x, 80, z], [0, -1, 0]),
-        l.name + ' roofless court',
+        `${l.name} roofless court`,
       ).toBeCloseTo(grade.workingCourtFloor, 3);
     const x = -64.5775,
       z = -33.161;
     expect(
       80 - nearest(triangles, [x, 80, z], [0, -1, 0]),
-      l.name + ' Tall Hermann mast',
+      `${l.name} Tall Hermann mast`,
     ).toBeCloseTo(grade.hermannFlagTop, 3);
     for (const [xp, zp, angle, depth, offsets] of [[-22.6, 39.2, 0.0054, 3, [-5.15, 0, 5.15]]])
       for (const lateral of offsets) {
@@ -169,8 +169,8 @@ it('keeps three roofless courts, backed porch openings, signed towers and outwar
             zp + dz * (depth + 0.35) - Math.sin(angle) * lateral,
           ],
           dist = nearest(triangles, p, [-dx, 0, -dz]);
-        expect(dist, l.name + ' open backed palace porch').toBeGreaterThan(2.65);
-        expect(dist, l.name + ' closed palace backing').toBeLessThan(3.7);
+        expect(dist, `${l.name} open backed palace porch`).toBeGreaterThan(2.65);
+        expect(dist, `${l.name} closed palace backing`).toBeLessThan(3.7);
       }
     for (const i of [4, 11, 35]) {
       const a = q[i],
@@ -184,13 +184,13 @@ it('keeps three roofless courts, backed porch openings, signed towers and outwar
           [xx + n[0] * 3, toompeaGround(xx, zz) + 0.12, zz + n[1] * 3],
           [-n[0], 0, -n[1]],
         );
-      expect(hit.distance, l.name + ' foundation').toBeLessThan(4.2);
+      expect(hit.distance, `${l.name} foundation`).toBeLessThan(4.2);
       expect(hit.normal[0] * n[0] + hit.normal[2] * n[1]).toBeGreaterThan(0.85);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -200,7 +200,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -210,7 +210,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

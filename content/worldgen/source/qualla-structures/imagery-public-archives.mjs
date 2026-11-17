@@ -172,7 +172,7 @@ function museuPaulistaPostcardMatches(dir, reference, image, record) {
         info.sha1 === sha1 &&
         body.includes('|wikidata = Q90302489') &&
         body.includes('{{Museu Paulista license|PD|old}}') &&
-        body.includes('|photographer = ' + reference.artist) &&
+        body.includes(`|photographer = ${reference.artist}`) &&
         rights?.Artist?.value === reference.artist &&
         rights.LicenseShortName?.value === 'Public domain' &&
         rights.Copyrighted?.value === 'False' &&
@@ -203,8 +203,8 @@ function puertoRicoNaipMatches(reference, record) {
       'https://www.usgs.gov/centers/eros/science/usgs-eros-archive-aerial-photography-national-agriculture-imagery-program-naip' &&
     reference.artist === 'USDA and USGS The National Map' &&
     reference.sourceUrl === service &&
-    reference.rightsEvidence?.sourceUrl === service + '?f=pjson' &&
-    imageUrl.origin + imageUrl.pathname === service + '/export' &&
+    reference.rightsEvidence?.sourceUrl === `${service}?f=pjson` &&
+    imageUrl.origin + imageUrl.pathname === `${service}/export` &&
     q.get('f') === 'image' &&
     q.get('bboxSR') === '4326' &&
     q.get('imageSR') === '4326' &&

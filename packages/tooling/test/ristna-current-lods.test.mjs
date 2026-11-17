@@ -76,7 +76,7 @@ it('preserves all sixteen service ports and four stair windows at both near leve
     })),
   ];
   for (const name of ['street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const h of holes) {
       const radial = [Math.sin(h.angle), 0, Math.cos(h.angle)],
         o = radial.map((v, i) => v * (h.r + 1) + (i === 1 ? h.y : 0)),
@@ -90,14 +90,14 @@ it('preserves all sixteen service ports and four stair windows at both near leve
           )
           .filter((t) => t !== null && t > 0 && t < 2);
       expect(ds.length).toBeGreaterThan(0);
-      expect(Math.min(...ds), name + ' ' + JSON.stringify(h)).toBeGreaterThan(1 + h.depth * 0.7);
+      expect(Math.min(...ds), `${name} ${JSON.stringify(h)}`).toBeGreaterThan(1 + h.depth * 0.7);
       expect(Math.min(...ds)).toBeLessThan(1 + h.depth * 2);
     }
   }
 });
 it('retains the exact source master and distinguishes authority location from reconstructed orientation', async () => {
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json');
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`);
   expect(s.sourceFacts.heightMeters).toBe(27.2);
   expect(s.sourceFacts.structuralRibs).toBe(8);
   expect(s.sourceFacts.basis).toContain('Mehikoorma');
@@ -108,12 +108,12 @@ it('retains the exact source master and distinguishes authority location from re
   expect(f.evidenceDate).toBe('2026-09-28T01:56:51Z');
 });
 it('reproduces independent budgeted browser levels with three canonical shared textures', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -132,7 +132,7 @@ it('reproduces independent budgeted browser levels with three canonical shared t
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'metal_painted', 'stone_granite']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

@@ -32,10 +32,16 @@ export interface SurfaceSign {
   allWay?: boolean;
   /** Overhead gantry span; absent for roadside signs. */
   span?: number;
+  /**
+   * How a street name stands: hung from a signal `mast` arm (`hang`), two panels on a corner
+   * `post` (`bladeTurn`), a plate fixed to a building `wall` (facing `dx, dz` from the wall), or a
+   * plate on a low two-legged `frame`. Absent: `mast` with `hang`, else `post`.
+   */
+  mount?: 'mast' | 'post' | 'wall' | 'frame';
   /** A street name hung from a signal mast arm: panel center height above `ground`; no support. */
   hang?: number;
   /**
-   * A pair of street-name blades on one post: the upper blade (`lines[1]`) turns this far (radians,
+   * A pair of street-name panels on one post: the upper one (`lines[1]`) turns this far (radians,
    * as `atan2(dz, dx)` turns) from the lower one, which faces `dx, dz` and names `lines[0]`.
    */
   bladeTurn?: number;
@@ -68,8 +74,37 @@ export const STREET_NAME_BLADE: Readonly<StreetNamePanel> = {
   maxWidth: 1.5,
 };
 
-/** Blade centers above the post's footing; the post stops under the lower blade. */
-const BLADE_HEIGHTS = [2.9, 3.14] as const;
+/** A European corner-post plate (German Zeichen 437 proportions): capitals about 14 cm. */
+export const STREET_NAME_PLATE: Readonly<StreetNamePanel> = {
+  em: 0.2,
+  height: 0.34,
+  padding: 0.12,
+  minWidth: 0.8,
+  maxWidth: 1.8,
+};
+
+/** A nameplate on a wall or low frame, as in Britain, France and Italy: capitals about 16 cm. */
+export const STREET_NAME_WALL: Readonly<StreetNamePanel> = {
+  em: 0.23,
+  height: 0.4,
+  padding: 0.14,
+  minWidth: 0.9,
+  maxWidth: 2.4,
+};
+
+/** Panel centers above a corner post's footing; the post stops under the lower panel. */
+const POST_HEIGHTS = { blade: [2.9, 3.14], plate: [2.35, 2.73] } as const;
+/** A wall plate's center above the ground: above heads and shop doors, below most fascias. */
+export const STREET_NAME_WALL_HEIGHT = 2.7;
+/** A low frame plate's center: its bottom edge about 0.9 m above the footway. */
+const FRAME_HEIGHT = 1.1;
+
+/** The panel a street-name style puts on its corner posts. */
+export function streetNamePostPanel(
+  appearance: Readonly<TerrainRoadSignProfile>,
+): Readonly<StreetNamePanel> {
+  return appearance.streetNames?.panel === 'plate' ? STREET_NAME_PLATE : STREET_NAME_BLADE;
+}
 
 /**
  * A panel's width for its legend, from Overpass-like advances so the planner needs no font (within a
@@ -104,6 +139,23 @@ function signFontId(
   return resolved && fonts.fonts[resolved] ? resolved : (fonts.roles?.highway ?? fonts.defaultFont);
 }
 
+/**
+ * Whether the font a profile's signs letter with has every character of a legend, so a name in a
+ * script it lacks (Japanese in a Latin face) is left unposted rather than drawn as question marks.
+ */
+export function signFontLetters(
+  fonts: FontLibrary,
+  appearance: Readonly<TerrainRoadSignProfile>,
+  font?: string,
+): (legend: string) => boolean {
+  const face = fonts.fonts[signFontId(fonts, appearance, font)];
+  return (legend) =>
+    face !== undefined &&
+    Array.from(legend.normalize('NFC')).every(
+      (char) => /\s/.test(char) || Object.hasOwn(face.glyphs, char),
+    );
+}
+
 /** Lettering as 2D triangles centered on the origin, Y up. */
 function letterTriangles(
   value: string,
@@ -131,11 +183,14 @@ function letterTriangles(
 }
 
 /**
- * Street names: a single-faced panel hung from a mast arm (`hang`), or a post carrying two
- * double-faced blades (`bladeTurn`). Faces go to `builder`; the post and straps are fixtures.
+ * Street names, by `mount`: a single-faced panel hung from a mast arm, a post carrying two
+ * double-faced panels, a single-faced plate on a wall, or a double-faced plate on a low frame.
+ * Lettered faces go to `builder`, blank backs and edges to `backs` (only the lettered faces glow
+ * at night); posts, legs and straps are fixtures.
  */
 function appendStreetNameSign(
   builder: TerrainSurfaceMeshBuilder,
+  backs: TerrainSurfaceMeshBuilder,
   fixtures: TerrainBoxPlacement[],
   sign: SurfaceSign,
   fonts?: FontLibrary,
@@ -145,6 +200,7 @@ function appendStreetNameSign(
   const style = appearance.streetNames;
   const panelColor = new THREE.Color(style?.panelColor ?? appearance.exitColor);
   const ink = new THREE.Color(style?.inkColor ?? '#eeeadd');
+  const edge = new THREE.Color(style?.borderColor ?? style?.inkColor ?? '#eeeadd');
   const back = new THREE.Color('#a2aaa7');
   const fontId = fonts ? signFontId(fonts, appearance, font) : undefined;
   const { x, z, ground } = sign;
@@ -162,6 +218,7 @@ function appendStreetNameSign(
       border = Math.min(0.03, height * 0.08);
     // `mirror` draws the far face: u and depth negate, so it reads (and winds) from behind.
     const quad = (
+      target: TerrainSurfaceMeshBuilder,
       w: number,
       h: number,
       depth: number,
@@ -174,7 +231,7 @@ function appendStreetNameSign(
         [w / 2, h / 2],
         [-w / 2, h / 2],
       ];
-      builder.face(
+      target.face(
         corners.map(
           ([u, v]) =>
             [
@@ -195,8 +252,8 @@ function appendStreetNameSign(
           })
         : [];
     for (const mirror of twoFaced ? [1, -1] : [1]) {
-      quad(width, height, half, ink, mirror);
-      quad(width - border * 2, height - border * 2, half + 0.003, panelColor, mirror);
+      quad(builder, width, height, half, edge, mirror);
+      quad(builder, width - border * 2, height - border * 2, half + 0.003, panelColor, mirror);
       for (const triangle of letters)
         builder.face(
           triangle.map(
@@ -211,7 +268,7 @@ function appendStreetNameSign(
         );
     }
     if (!twoFaced) {
-      quad(width, height, half, back, -1);
+      quad(backs, width, height, half, back, -1);
       // Edges close the gap between the two faces when seen side-on.
       for (const [w, h, cu, cv] of [
         [width, 0, 0, height / 2],
@@ -221,7 +278,7 @@ function appendStreetNameSign(
       ] as const) {
         const a: [number, number] = [cu - w / 2, cv - h / 2],
           b: [number, number] = [cu + w / 2, cv + h / 2];
-        builder.face(
+        backs.face(
           [
             [x + nz * a[0] - nx * half, y + a[1], z - nx * a[0] - nz * half],
             [x + nz * b[0] - nx * half, y + b[1], z - nx * b[0] - nz * half],
@@ -234,8 +291,10 @@ function appendStreetNameSign(
     }
     return width;
   };
-  if (sign.hang !== undefined) {
-    const y = ground + sign.hang;
+  const yaw = Math.atan2(sign.dx, sign.dz);
+  const mount = sign.mount ?? (sign.hang !== undefined ? 'mast' : 'post');
+  if (mount === 'mast') {
+    const y = ground + (sign.hang ?? 7);
     const width = panel(sign.lines[0] ?? '', sign.dx, sign.dz, y, STREET_NAME_MAST, false);
     // Two straps up into the mast arm above.
     for (const u of [-1, 1])
@@ -243,43 +302,63 @@ function appendStreetNameSign(
         x: x + sign.dz * u * (width / 2 - 0.25),
         z: z - sign.dx * u * (width / 2 - 0.25),
         y: y + STREET_NAME_MAST.height / 2 + 0.07,
-        yaw: Math.atan2(sign.dx, sign.dz),
+        yaw,
         size: [0.05, 0.16, 0.04],
         color: '#626d73',
       });
     return;
   }
+  if (mount === 'wall') {
+    panel(
+      sign.lines[0] ?? '',
+      sign.dx,
+      sign.dz,
+      ground + STREET_NAME_WALL_HEIGHT,
+      STREET_NAME_WALL,
+      false,
+    );
+    return;
+  }
+  if (mount === 'frame') {
+    const y = ground + FRAME_HEIGHT;
+    const width = panel(sign.lines[0] ?? '', sign.dx, sign.dz, y, STREET_NAME_WALL, true);
+    const top = y + STREET_NAME_WALL.height / 2;
+    for (const u of [-1, 1])
+      fixtures.push({
+        x: x + sign.dz * u * (width / 2 - 0.1),
+        z: z - sign.dx * u * (width / 2 - 0.1),
+        y: (ground + top) / 2,
+        yaw,
+        size: [0.06, top - ground, 0.06],
+        color: '#3a4044',
+      });
+    return;
+  }
+  const size = streetNamePostPanel(appearance);
+  const heights = POST_HEIGHTS[size === STREET_NAME_PLATE ? 'plate' : 'blade'];
   const turn = sign.bladeTurn ?? Math.PI / 2;
   const upper: [number, number] = [
     sign.dx * Math.cos(turn) - sign.dz * Math.sin(turn),
     sign.dx * Math.sin(turn) + sign.dz * Math.cos(turn),
   ];
-  // The blades sit on the post, not around it: a post through them would hide the middle
-  // letter. A saddle under the lower blade, and a bracket in the gap between the two.
-  const half = STREET_NAME_BLADE.height / 2;
-  const post = ground + BLADE_HEIGHTS[0] - half;
-  const yaw = Math.atan2(sign.dx, sign.dz);
+  // The panels sit on the post, not around it: a post through them would hide the middle
+  // letter. A saddle under the lower panel, and a bracket in the gap between the two.
+  const half = size.height / 2;
+  const post = ground + heights[0] - half;
   fixtures.push(
     { x, z, y: (ground + post) / 2, yaw, size: [0.075, post - ground, 0.075], color: '#9ca5a4' },
     { x, z, y: post - 0.02, yaw, size: [0.1, 0.05, 0.1], color: '#9ca5a4' },
     {
       x,
       z,
-      y: ground + (BLADE_HEIGHTS[0] + BLADE_HEIGHTS[1]) / 2,
+      y: ground + (heights[0] + heights[1]) / 2,
       yaw,
-      size: [0.07, BLADE_HEIGHTS[1] - BLADE_HEIGHTS[0] - half * 2 + 0.04, 0.07],
+      size: [0.07, heights[1] - heights[0] - half * 2 + 0.04, 0.07],
       color: '#9ca5a4',
     },
   );
-  panel(sign.lines[0] ?? '', sign.dx, sign.dz, ground + BLADE_HEIGHTS[0], STREET_NAME_BLADE, true);
-  panel(
-    sign.lines[1] ?? '',
-    upper[0],
-    upper[1],
-    ground + BLADE_HEIGHTS[1],
-    STREET_NAME_BLADE,
-    true,
-  );
+  panel(sign.lines[0] ?? '', sign.dx, sign.dz, ground + heights[0], size, true);
+  panel(sign.lines[1] ?? '', upper[0], upper[1], ground + heights[1], size, true);
 }
 
 export function appendSurfaceSign(
@@ -289,9 +368,11 @@ export function appendSurfaceSign(
   fonts?: FontLibrary,
   font?: string,
   routeShields?: TerrainRouteShieldLibrary,
+  /** Blank backs and edges; with the lettered faces when omitted. Only faces glow at night. */
+  backs: TerrainSurfaceMeshBuilder = builder,
 ): void {
   if (sign.kind === 'street-name') {
-    appendStreetNameSign(builder, fixtures, sign, fonts, font);
+    appendStreetNameSign(builder, backs, fixtures, sign, fonts, font);
     return;
   }
   const { x, z, dx, dz, ground } = sign;
@@ -364,8 +445,9 @@ export function appendSurfaceSign(
     points: readonly (readonly [number, number])[],
     depth: number,
     color: string,
+    target: TerrainSurfaceMeshBuilder = builder,
   ): void => {
-    builder.face(
+    target.face(
       points.map(([u, v]) => [x + dz * u + dx * depth, y + v, z - dx * u + dz * depth] as const),
       new THREE.Color(color),
     );
@@ -417,7 +499,7 @@ export function appendSurfaceSign(
               ] as [number, number],
           );
         face(points, 0.055 + n * 0.00005, layer.color);
-        if (n === 0) face([...points].reverse(), -0.055, '#a2aaa7');
+        if (n === 0) face([...points].reverse(), -0.055, '#a2aaa7', backs);
       }
     });
     const label = (value: string, box: readonly number[], color: string): void =>
@@ -458,11 +540,11 @@ export function appendSurfaceSign(
     ];
   };
   const edge = polygon(1);
-  face([...edge].reverse(), -0.055, '#a2aaa7');
+  face([...edge].reverse(), -0.055, '#a2aaa7', backs);
   for (let i = 0; i < edge.length; i++) {
     const a = edge[i] as [number, number],
       b = edge[(i + 1) % edge.length] as [number, number];
-    builder.face(
+    backs.face(
       [
         [x + dz * a[0] - dx * 0.055, y + a[1], z - dx * a[0] - dz * 0.055],
         [x + dz * b[0] - dx * 0.055, y + b[1], z - dx * b[0] - dz * 0.055],

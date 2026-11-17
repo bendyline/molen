@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export function inspectFrayChimneyPrimaryFacts({ dir, proof, controls: P, frame: f }) {
   const fail = (reason) => ({ status: 'needs-review', reason });
   try {

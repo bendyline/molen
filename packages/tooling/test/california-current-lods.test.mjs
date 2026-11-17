@@ -71,7 +71,7 @@ const nearest = (ts, o, d) =>
 it('preserves exact original source and the actual tower center with explicitly reconstructed southwest entrance', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')(),
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)(),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -80,8 +80,8 @@ it('preserves exact original source and the actual tower center with explicitly 
   buildCalifornia(a.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['wall', 'trim'], 32);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -105,9 +105,9 @@ it('preserves exact original source and the actual tower center with explicitly 
 });
 it('keeps full vane and all fourteen deep alternating window apertures plus four upper vents in every near level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 32, 0], [0, -1, 0]), name + ' full vane').toBeCloseTo(1.17, 4);
-    expect(nearest(ts, [0, 4, 3.3], [0, -1, 0]), name + ' real entrance steps').toBeLessThan(4);
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 32, 0], [0, -1, 0]), `${name} full vane`).toBeCloseTo(1.17, 4);
+    expect(nearest(ts, [0, 4, 3.3], [0, -1, 0]), `${name} real entrance steps`).toBeLessThan(4);
     if (name === 'skyline') continue;
     for (let f = 0; f < 4; f++)
       for (const y of [...(f % 2 ? [4.38, 9.58, 14.78, 19.98] : [7, 12.2, 17.4]), 22.45]) {
@@ -117,18 +117,18 @@ it('keeps full vane and all fourteen deep alternating window apertures plus four
           height = y + 0.2,
           r = 2.11 - ((height - 3.79) * 0.68) / (23.88 - 3.79),
           distance = nearest(ts, [0.12 * c + 5 * sn, height, -0.12 * sn + 5 * c], [-sn, 0, -c]);
-        expect(distance, name + ' recessed window ' + f + '/' + y).toBeGreaterThan(5 - r + 0.075);
-        expect(distance, name + ' filled window ' + f + '/' + y).toBeLessThan(5 - r + 0.25);
+        expect(distance, `${name} recessed window ${f}/${y}`).toBeGreaterThan(5 - r + 0.075);
+        expect(distance, `${name} filled window ${f}/${y}`).toBeLessThan(5 - r + 0.25);
       }
   }
 });
 it('reproduces exact four browser levels within strict budgets and reuses five shared graphs with separate GPU streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -145,7 +145,7 @@ it('reproduces exact four browser levels within strict budgets and reuses five s
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'stone_limestone', 'metal_painted', 'stone_granite', 'wood_plain']
-      .map((n) => 'matgraph:molen.worldgen.material.' + n)
+      .map((n) => `matgraph:molen.worldgen.material.${n}`)
       .sort(),
   );
 });

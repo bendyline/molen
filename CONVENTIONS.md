@@ -68,9 +68,13 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - Place model scripts (`content/worldgen/source/places/**/*.mjs`) and the shared recipes listed in
   `authoring-index.json` feed `modelInputHash`, which capture and placement reports pin. A
   lint-only edit to one of them stales its captures and reviews. Biome therefore does not report
-  unused bindings or `let`-for-`const` there. Clean those up while the model is being authored,
-  before it is captured. A recipe whose old warnings were waived is listed by name in
-  `biome.json`.
+  unused bindings, `let`-for-`const`, string concatenation or `flatMap`/`continue`/`Math.pow`
+  nits there. Clean those up while the model is being authored, before it is captured. A recipe
+  whose old warnings were waived is listed by name in `biome.json`. Generator entry scripts
+  (`packages/worldgen/scripts/generate-*.mjs`) skip the string-concatenation rule as a family:
+  most are recipes, and every one is an asset-build job whose edit reruns it and moves the bundle
+  key. Measured dimensions Biome mistakes for math constants (`0.434` m read as `LOG10E`) are
+  waived per file, as are false accumulating-spread reports on two-point `reduce` pairs.
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
   (`pnpm typecheck`, `pnpm test:unit`) which rebuild the library packages first via `pre*`
   hooks, or run `pnpm -r --filter './packages/**' build` before invoking `tsc`/`vitest`

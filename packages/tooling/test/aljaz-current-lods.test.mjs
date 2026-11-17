@@ -63,7 +63,7 @@ function hit(o, d, p) {
 
 it('retains all eight real viewing recesses in district, street and closeup', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (let i = 0; i < 8; i++) {
       const a = (i * Math.PI) / 4,
         y = i % 2 ? 1.01 : 1.595,
@@ -71,13 +71,13 @@ it('retains all eight real viewing recesses in district, street and closeup', as
         o = [0.675 * Math.sin(a), y, 0.675 * Math.cos(a)],
         d = [-Math.sin(a), 0, -Math.cos(a)],
         ds = ts.map((p) => hit(o, d, p)).filter((t) => t !== null && t > 0 && t < 2);
-      expect(Math.min(...ds), name + ' viewing window ' + i).toBeGreaterThan(0.06);
+      expect(Math.min(...ds), `${name} viewing window ${i}`).toBeGreaterThan(0.06);
       expect(Math.min(...ds)).toBeLessThan(0.09);
     }
   }
 });
 it('preserves the original source master and labels the preview doorway bearing as approximate', async () => {
-  const s = await read(source + '/spec.json'),
+  const s = await read(`${source}/spec.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -91,12 +91,12 @@ it('preserves the original source master and labels the preview doorway bearing 
   expect(p.replaceFootprint).toBe(false);
 });
 it('rebuilds four budgeted levels with one shared graph and no embedded images', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);

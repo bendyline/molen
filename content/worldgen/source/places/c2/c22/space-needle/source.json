@@ -4,19 +4,32 @@
   "kind": "static-structure",
   "title": "Space Needle",
   "files": {
-    "definitions": ["spec.json", "scene.json"],
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
     "models": [
       {
         "path": "models/source.glb",
         "assetId": "molen.worldgen.structure.space_needle",
         "output": "assets/places/c2/c22/space-needle/asset.json",
         "pipeline": "import",
-        "sha256": "sha256:3f26ee472c694a9a55926d0c317b9f459d09fa164530c3c10e3ea81ef754d949"
+        "sha256": "sha256:b383752e08d8659480323b1c5b72d783fc039e455357e1137c355cc24c8ec3af"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-space-needle",
+        "path": "models/generate-space-needle.mjs"
       }
     ],
     "scripts": [],
     "textures": [],
     "sounds": [],
-    "documents": ["README.md", "preview.png"]
+    "documents": [
+      "README.md",
+      "footprint.json",
+      "preview.png"
+    ]
   }
 }

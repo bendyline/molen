@@ -84,16 +84,16 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+const frame = await read(`${source}/map-frame.json`),
+  layout = await read(`${source}/layout.json`);
 it('pins the named barrier source,signed sea/lake frame and explicit construction limits', async () => {
-  const m = await read(source + '/source.json'),
-    a = await read(installed + '/asset.json'),
-    p = await read(source + '/placement-report.json'),
-    s = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(m.files.models[0].sha256);
+  const m = await read(`${source}/source.json`),
+    a = await read(`${installed}/asset.json`),
+    p = await read(`${source}/placement-report.json`),
+    s = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(m.files.models[0].sha256);
   expect(a.sourceHash).toBe(m.files.models[0].sha256);
-  expect(hashBytes(await readFile(installed + '/' + a.files.main))).toBe(a.hash);
+  expect(hashBytes(await readFile(`${installed}/${a.files.main}`))).toBe(a.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.anchor).toEqual([5.225, 53.022]);
   expect(frame.heading).toBe(0.717344);
@@ -121,7 +121,7 @@ it('pins the named barrier source,signed sea/lake frame and explicit constructio
   ]);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: m,
       spec: s,
       placement: p.entry,
@@ -130,7 +130,7 @@ it('pins the named barrier source,signed sea/lake frame and explicit constructio
   ).toBeDefined();
 });
 it('keeps the entire levee,five open sluice banks,bridge decks and three lock chambers in six GLBs', async () => {
-  const a = await read(installed + '/asset.json'),
+  const a = await read(`${installed}/asset.json`),
     c = (
       await import(
         '../../../content/worldgen/source/places/u1/u17/afsluitdijk/models/station-model.mjs'
@@ -146,41 +146,41 @@ it('keeps the entire levee,five open sluice banks,bridge decks and three lock ch
       return p.at(-1)[1];
     },
     files = [
-      { name: 'source', path: source + '/models/source.glb' },
-      { name: 'import', path: installed + '/' + a.files.main },
-      ...a.runtimeLods.levels.map((l) => ({ name: l.name, path: runtime + '/' + l.file })),
+      { name: 'source', path: `${source}/models/source.glb` },
+      { name: 'import', path: `${installed}/${a.files.main}` },
+      ...a.runtimeLods.levels.map((l) => ({ name: l.name, path: `${runtime}/${l.file}` })),
     ];
   for (const f of files) {
     const ts = await triangles(f.path),
       top = (x, z, Y = 30) => Y - nearest(ts, [x, Y, z], [0, -1, 0]),
       check = (n, v, lo, hi) => {
-        expect.soft(v, f.name + ' ' + n).toBeGreaterThanOrEqual(lo);
-        expect.soft(v, f.name + ' ' + n).toBeLessThanOrEqual(hi);
+        expect.soft(v, `${f.name} ${n}`).toBeGreaterThanOrEqual(lo);
+        expect.soft(v, `${f.name} ${n}`).toBeLessThanOrEqual(hi);
       };
     for (const x of [-14000, -8000, 0, 5000, 11000, 14500])
-      check('complete road ' + x, top(x, Z(x) + 8), 4.88, 4.95);
+      check(`complete road ${x}`, top(x, Z(x) + 8), 4.88, 4.95);
     check('whole raised seaward crest', top(0, Z(0) - 24), 7.8, 8.21);
     for (const s of c.spans) {
       const x = s.min + 2 + (s.max - s.min - 4) * 0.1,
         z = Z(x);
-      check('whole ' + s.name + ' deck', top(x, z + 8), 4.89, 4.91);
-      check('open underside ' + s.name, nearest(ts, [x, 0.4, z + 8], [0, 1, 0]), 3.99, 4.01);
+      check(`whole ${s.name} deck`, top(x, z + 8), 4.89, 4.91);
+      check(`open underside ${s.name}`, nearest(ts, [x, 0.4, z + 8], [0, 1, 0]), 3.99, 4.01);
       if (s.kind === 'sluice') {
-        check('free water flow ' + s.name, nearest(ts, [x, 0.4, z - 65], [0, 0, 1]), 120, Infinity);
-        check('structural pier ' + s.name, top(s.min + 2, Z(s.min + 2) - 5), 4.4, 15);
+        check(`free water flow ${s.name}`, nearest(ts, [x, 0.4, z - 65], [0, 0, 1]), 120, Infinity);
+        check(`structural pier ${s.name}`, top(s.min + 2, Z(s.min + 2) - 5), 4.4, 15);
       }
     }
     for (const l of c.locks) {
       const p = l.center ?? l.centerline[0].map((v, i) => (v + l.centerline[1][i]) / 2),
         hit = nearest(ts, [p[0], 0.4, p[1]], [0, 1, 0]);
-      expect.soft(hit, f.name + ' open ' + l.name + ' chamber').toBe(Infinity);
+      expect.soft(hit, `${f.name} open ${l.name} chamber`).toBe(Infinity);
     }
   }
 }, 45000);
 it('uses production sea-level placement to replace only the authored hydraulic components and bridge segments', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -209,7 +209,7 @@ it('uses production sea-level placement to replace only the authored hydraulic c
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         // Match the production decoder: omit unsupported negative basement heights.
         ...(f.properties.height >= 0 ? { height: f.properties.height } : {}),
@@ -227,12 +227,12 @@ it('uses production sea-level placement to replace only the authored hydraulic c
   const owned = layout.nativeMap.ownedParts,
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
-  expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
+  expect(all).toHaveLength((await read(`${source}/mapped-parts.json`)).parts.length);
   expect(target).toHaveLength(68);
   expect(neighbor).toHaveLength(573);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -246,8 +246,8 @@ it('uses production sea-level placement to replace only the authored hydraulic c
       model.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial()));
     }
   const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     objects = new StructureModelLibrary(async () => model),
     seen = [],
@@ -385,7 +385,7 @@ it('uses production sea-level placement to replace only the authored hydraulic c
       heightfield: field,
       signal: new AbortController().signal,
     });
-    const landmark = root?.getObjectByName('structure:' + placed.id);
+    const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
@@ -451,7 +451,7 @@ it('uses production sea-level placement to replace only the authored hydraulic c
     for (const n of neighbor)
       expect(
         actual.find((b) => b.id === n.id)?.polygons,
-        'independent footprint changed ' + n.id,
+        `independent footprint changed ${n.id}`,
       ).toEqual(n.polygons);
     const fragments = actual.filter((b) => !expected.has(b.id));
     for (const b of fragments) {
@@ -472,7 +472,7 @@ it('uses production sea-level placement to replace only the authored hydraulic c
         }),
     );
     for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+      expect(neighbor.map((b) => b.id)).toContain(`native-${i}`);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
@@ -480,8 +480,8 @@ it('uses production sea-level placement to replace only the authored hydraulic c
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -490,7 +490,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -506,7 +506,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

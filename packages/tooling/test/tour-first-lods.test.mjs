@@ -75,16 +75,16 @@ function nearest(ts, o, d) {
 }
 
 it('reconstitutes the complete modern three-wing source andsigned native frame with unmodified terrain contacts', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    grid = await read(source + '/terrain-grid.json'),
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grid = await read(`${source}/terrain-grid.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(tourFirstSurfaces);
   buildTourFirstLevel(a.wrap(b), 'master');
   const m = b.finalize(),
     bytes = Buffer.from(encodeGlb(m, a.materials(m.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([2.251592115, 48.888812545]);
   expect(frame.heading).toBe(-0.441150290015);
   expect(frame.mappedIdentity.wikidataId).toBe('Q1509747');
@@ -94,10 +94,10 @@ it('reconstitutes the complete modern three-wing source andsigned native frame w
     brief.references.some((r) => r.url.includes('P1L.webp')),
     'historical AXA facade excluded',
   ).toBe(false);
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png),
-    ts = await triangles(source + '/models/source.glb');
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png),
+    ts = await triangles(`${source}/models/source.glb`);
   for (const u of [16.5, 31.5]) {
     const p = tourFirstEntryPoint(u, 0, 5.8),
       ground = tourFirstGroundY(p[0], p[2]);
@@ -107,66 +107,63 @@ it('reconstitutes the complete modern three-wing source andsigned native frame w
       'actual canopy post below unchanged native field',
     ).toBeCloseTo(1.4, 2);
   }
-  const p = (await read(source + '/placement-report.json')).entry;
+  const p = (await read(`${source}/placement-report.json`)).entry;
   expect(p.replaceFootprint).toBe(true);
   expect(p.elevation).toBe(42);
   expect(p.anchor).toEqual(frame.anchor);
   expect(p.heading).toBe(frame.heading);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
-      sourceManifest: await read(source + '/source.json'),
-      spec: await read(source + '/spec.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
+      sourceManifest: await read(`${source}/source.json`),
+      spec: await read(`${source}/spec.json`),
       placement: p,
       geographicReviewed: true,
     }),
   ).toBeDefined();
 }, 30000);
 it('retains all three sloping roofs andwhole low parent;near tiers keep a physical vestibule andcanopy without floor bands across the opening', async () => {
-  const asset = await read(runtime + '/asset.json'),
+  const asset = await read(`${runtime}/asset.json`),
     e = tourFirstControls.entrance,
     dx = e.q[0] - e.p[0],
     dz = e.q[1] - e.p[1],
     L = Math.hypot(dx, dz),
     inside = [dz / L, 0, -dx / L];
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file),
-      roof = await triangles(runtime + '/' + l.file, l.name === 'skyline' ? undefined : 'roof');
+    const ts = await triangles(`${runtime}/${l.file}`),
+      roof = await triangles(`${runtime}/${l.file}`, l.name === 'skyline' ? undefined : 'roof');
     for (const w of tourFirstControls.wings) {
       // Stay outside the joined central overlap,where the taller wing correctly covers lower roofs.
       for (const t of [0, 0.45]) {
         const [x, z] = w.outer.map((v, i) => v + (w.inner[i] - v) * t);
         const y = 250 - nearest(roof, [x, 250, z], [0, -1, 0]);
-        expect(y, l.name + ' actual sloping ' + w.name + ' roof').toBeCloseTo(
-          tourFirstRoof(w, x, z),
-          1,
-        );
+        expect(y, `${l.name} actual sloping ${w.name} roof`).toBeCloseTo(tourFirstRoof(w, x, z), 1);
       }
     }
     expect(
       50 - nearest(ts, [-34, 50, 0], [0, -1, 0]),
-      l.name + ' whole low parent',
+      `${l.name} whole low parent`,
     ).toBeGreaterThan(11.9);
     expect(50 - nearest(ts, [-34, 50, 0], [0, -1, 0])).toBeLessThan(15);
     expect(
       nearest(ts, [-100, 100, 0], [0, -1, 0]),
-      l.name + ' no independent neighboring tower',
+      `${l.name} no independent neighboring tower`,
     ).toBe(Infinity);
     if (['street', 'closeup'].includes(l.name)) {
       for (const y of [6.5, 7.8]) {
         const p = tourFirstEntryPoint(24.7, y, 12),
           d = nearest(ts, p, inside);
-        expect(d, l.name + ' physical recessed doorway,no crossing floor band').toBeGreaterThan(
+        expect(d, `${l.name} physical recessed doorway,no crossing floor band`).toBeGreaterThan(
           13.5,
         );
         expect(d).toBeLessThan(13.8);
       }
       expect(
         nearest(ts, tourFirstEntryPoint(24.7, 6.5, -0.5), [0, 1, 0]),
-        l.name + ' actual vestibule ceiling',
+        `${l.name} actual vestibule ceiling`,
       ).toBeCloseTo(2.3, 2);
       const p = tourFirstEntryPoint(24.7, 20, 4.1);
-      expect(nearest(ts, p, [0, -1, 0]), l.name + ' actual sloping entrance canopy').toBeCloseTo(
+      expect(nearest(ts, p, [0, -1, 0]), `${l.name} actual sloping entrance canopy`).toBeCloseTo(
         20 - (e.canopyBackY + ((e.canopyFrontY - e.canopyBackY) * 4.1) / e.canopyDepth),
         1,
       );
@@ -174,9 +171,9 @@ it('retains all three sloping roofs andwhole low parent;near tiers keep a physic
   }
 }, 60000);
 it('uses the production viewer to replace the actual native building parts while retaining nearby buildings', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -205,7 +202,7 @@ it('uses the production viewer to replace the actual native building parts while
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         height: f.properties.height ?? 30,
         minHeight: f.properties.min_height ?? 0,
@@ -225,9 +222,9 @@ it('uses the production viewer to replace the actual native building parts while
   expect(target[0].height).toBe(225);
 
   expect(neighbor).toHaveLength(4);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -271,8 +268,8 @@ it('uses the production viewer to replace the actual native building parts while
     const tile = createEmptyTerrainSemanticTile();
     tile.buildings = [...target, ...neighbor];
     const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     );
     root = await renderers.humanFeatures.createTile(tile, {
       address: { level: 14, x: 0, z: 0 },
@@ -293,7 +290,7 @@ it('uses the production viewer to replace the actual native building parts while
       heightfield: field,
       signal: new AbortController().signal,
     });
-    expect(root?.getObjectByName('structure:' + placed.id)).toBeDefined();
+    expect(root?.getObjectByName(`structure:${placed.id}`)).toBeDefined();
     expect(seen.length).toBeGreaterThan(0);
     expect(seen.at(-1).sort()).toEqual(neighbor.map((b) => b.id).sort());
   } finally {
@@ -303,8 +300,8 @@ it('uses the production viewer to replace the actual native building parts while
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with four shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -313,7 +310,7 @@ it('rebuilds four exact budgeted tiers with four shared graphs, no image copies 
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -323,7 +320,7 @@ it('rebuilds four exact budgeted tiers with four shared graphs, no image copies 
       for (const graph of ['window_grid', 'metal_painted', 'membrane', 'stone_granite'])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

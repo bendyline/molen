@@ -79,7 +79,7 @@ try {
     );
     assert(
       Math.abs(state.modelOriginElevation) < 0.0001,
-      'Retained terrain/model reference mismatch: ' + JSON.stringify(state),
+      `Retained terrain/model reference mismatch: ${JSON.stringify(state)}`,
     );
     const probes = await page.evaluate(
       (points) => points.map((p) => window.mirGradeQA.probe(p)),
@@ -92,7 +92,7 @@ try {
     for (const p of probes) {
       assert(
         p.clearance !== null && Math.abs(p.clearance) < 0.08,
-        'Signed open-ground datum mismatch: ' + JSON.stringify(p),
+        `Signed open-ground datum mismatch: ${JSON.stringify(p)}`,
       );
     }
     const foundations = await page.evaluate(() => window.mirGradeQA.foundationProbes());
@@ -104,7 +104,7 @@ try {
       passages = await page.evaluate(() => window.mirGradeQA.passageProbes());
     assert(
       passages.every((p) => p.distance === null || p.distance > 4.6),
-      'Four bridge arch passages must remain open:' + JSON.stringify({ level, passages }),
+      `Four bridge arch passages must remain open:${JSON.stringify({ level, passages })}`,
     );
     states.push({ ...state, probes, foundations, paving, passages });
     for (const camera of [

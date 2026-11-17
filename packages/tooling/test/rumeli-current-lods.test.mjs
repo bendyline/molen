@@ -77,23 +77,23 @@ const yaw = Math.atan2(-2.8, 1.04),
   towardDoor = [-Math.sin(yaw), 0, -Math.cos(yaw)];
 it('renders outward-facing gallery/tier tops, open cage and complete mast at all four levels', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 34, 0], [0, -1, 0]), name + ' full mast').toBeCloseTo(0.2, 4);
-    expect(nearest(ts, [2, 31, 0], [0, -1, 0]), name + ' repaired gallery top').toBeCloseTo(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 34, 0], [0, -1, 0]), `${name} full mast`).toBeCloseTo(0.2, 4);
+    expect(nearest(ts, [2, 31, 0], [0, -1, 0]), `${name} repaired gallery top`).toBeCloseTo(
       5.955,
       4,
     );
-    expect(nearest(ts, [4, 12, 0], [0, -1, 0]), name + ' lower ledge top').toBeCloseTo(1.23, 4);
-    expect(nearest(ts, [0.6, 28.4, 4], [0, 0, -1]), name + ' cage air gap').toBeGreaterThan(3);
+    expect(nearest(ts, [4, 12, 0], [0, -1, 0]), `${name} lower ledge top`).toBeCloseTo(1.23, 4);
+    expect(nearest(ts, [0.6, 28.4, 4], [0, 0, -1]), `${name} cage air gap`).toBeGreaterThan(3);
     const door = nearest(ts, entry([0.2, 1.1, 2]), towardDoor);
-    expect(door, name + ' real door depth').toBeGreaterThan(2.15);
+    expect(door, `${name} real door depth`).toBeGreaterThan(2.15);
     expect(door).toBeLessThan(2.3);
   }
 });
 it('reproduces the historical inward-wound source exactly while preserving the reviewed mapped identity and dimensions', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -110,8 +110,8 @@ it('reproduces the historical inward-wound source exactly while preserving the r
       [0, -1, 0],
     ),
   ).toBeCloseTo(6.05, 4);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -126,12 +126,12 @@ it('reproduces the historical inward-wound source exactly while preserving the r
   expect(s.sourceFacts.modeledRadarMastHeightMeters).toBe(33.8);
 });
 it('rebuilds exact deterministic budgeted derivatives with shared textures and separate position/normal streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -154,7 +154,7 @@ it('rebuilds exact deterministic budgeted derivatives with shared textures and s
   }
   expect([...refs].sort()).toEqual(
     ['plaster_lime', 'stone_limestone', 'metal_painted', 'stone_granite', 'wood_plain']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

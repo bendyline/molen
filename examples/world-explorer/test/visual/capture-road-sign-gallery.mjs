@@ -38,7 +38,9 @@ try {
       throw new Error(`${errors.join('; ')}; ${error.message}`);
     });
   const state = await page.evaluate(() => window.roadSignGalleryQA);
-  assert.equal(new Set(state.patterns.map((p) => p.id)).size, 10);
+  // The U.S. view: nine shared patterns, its route marker and its two street-name patterns;
+  // elsewhere the nine and the region's corner street names (a post, or wall plates).
+  assert.equal(new Set(state.patterns.map((p) => p.id)).size, 12);
   assert.equal(state.patterns.find((p) => p.id === 'all-way-stop').count, 4);
   assert(state.patterns.every((p) => p.count > 0 && p.evidence.length));
   assert(
@@ -82,7 +84,7 @@ try {
       );
     const regional = await page.evaluate(() => window.roadSignGalleryQA);
     assert.equal(regional.profile, id);
-    assert.equal(regional.patterns.length, id === 'us' ? 10 : 9);
+    assert.equal(regional.patterns.length, id === 'us' ? 12 : 10);
     assert(regional.patterns.every((pattern) => pattern.appearance === id && pattern.count > 0));
     assert.equal(
       regional.patterns.find((p) => p.id === 'street-speed').shape,

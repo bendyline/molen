@@ -11,7 +11,8 @@ export type TerrainRoadSignPatternId =
   | 'route-guide'
   | 'route-marker'
   | 'street-name-mast'
-  | 'street-name-blade';
+  | 'street-name-blade'
+  | 'street-name-wall';
 
 export interface TerrainRoadSignPattern {
   id: TerrainRoadSignPatternId;
@@ -126,15 +127,26 @@ export const TERRAIN_ROAD_SIGN_PATTERNS: readonly TerrainRoadSignPattern[] = [
     placement:
       'A panel hung from each signal mast arm, facing arriving traffic and naming the street it crosses.',
     fallback:
-      'Requires a region with a street-name style and a named cross street. Unnamed roads, ramps and turn connectors get no panel; names are abbreviated, never invented.',
+      'Requires a region whose street-name style hangs names from mast arms, and a named cross street. Unnamed roads, ramps and turn connectors get no panel; names are abbreviated, never invented.',
   },
   {
     id: 'street-name-blade',
-    title: 'Corner street name blades',
+    title: 'Corner street name post',
     family: 'junction',
     cues: ['name', 'junction topology'],
-    placement: 'Two double-sided blades on one corner post, each parallel to the street it names.',
+    placement:
+      'Two double-sided panels on one corner post, each parallel to the street it names: narrow blades in North America, taller plates in much of Europe.',
     fallback:
-      'Requires two differently named streets forming a corner. Signalized junctions carry their names on the masts instead.',
+      'Requires two differently named streets forming a corner, in a region with a street-name style. Signalized junctions with mast-arm names carry them there instead.',
+  },
+  {
+    id: 'street-name-wall',
+    title: 'Corner nameplates',
+    family: 'junction',
+    cues: ['name', 'junction topology', 'building footprints'],
+    placement:
+      'A plate for each street on the corner building wall facing it, as in Britain, France and Italy, or on a low two-legged frame where no wall stands near the corner.',
+    fallback:
+      'Requires two differently named streets forming a corner, in a region whose style mounts names on walls. Walls must run along and face the street they name.',
   },
 ];

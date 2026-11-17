@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const tatesSupportCases = {
   'tates-primary-whole-service-4046724307T20050430-2019': 'tates_cairn_southwest_service_building',
   'tates-primary-whole-service-4047524315T20050430-2019': 'tates_cairn_north_service_structure',
@@ -36,7 +36,7 @@ export function inspectTatesSupportPrimaryFacts({ dir, proof, controls: P, frame
       return fail('tates-support-primary-facts-unbound');
     if (
       hash(bytes) !== n.sha256 ||
-      !j.sourceUrl?.startsWith(source + '/0/query?') ||
+      !j.sourceUrl?.startsWith(`${source}/0/query?`) ||
       !feat ||
       !j.features.some(
         (e) =>
@@ -44,7 +44,7 @@ export function inspectTatesSupportPrimaryFacts({ dir, proof, controls: P, frame
           e.properties.BuildingNameEN ===
             "Tate's Cairn Meteorological Station Hong Kong Observatory",
       ) ||
-      n.featureId !== 'csdi/' + P.officialBuildingCSUID
+      n.featureId !== `csdi/${P.officialBuildingCSUID}`
     )
       return fail('tates-support-original-record-unbound');
     if (

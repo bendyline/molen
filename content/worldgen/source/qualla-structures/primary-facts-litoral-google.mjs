@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const identities = {
   litoral_pavilion_12_north_block: ['6792W3X4+WCGG', 1, 4, 0.8392, 0.823, 4],
   litoral_pavilion_10_southeast_block: ['6792W3X4+GGP4', 2, 5.5, 0.8014, 0.78, 4],
@@ -49,7 +49,7 @@ export function inspectLitoralGooglePrimaryFacts({ dir, proof, controls: P, fram
       m = data.modelRecord;
     const [code, count, height, confidence, minimumConfidence = 0.87, corners = 4] =
       identities[P.model] ?? [];
-    const id = 'google-open-buildings:' + code,
+    const id = `google-open-buildings:${code}`,
       pavilion = Number(P.model.match(/^litoral_pavilion_(\d+)_/)?.[1]);
     if (
       !code ||
@@ -158,8 +158,8 @@ export function inspectLitoralGooglePrimaryFacts({ dir, proof, controls: P, fram
       return fail('litoral-google-original-wkt-changed');
     if (
       data.compoundIdentity.poi.properties.name !==
-        'Pabellón ' + String(pavilion).padStart(2, '0') ||
-      data.compoundIdentity.area.id !== 'landuse/' + (35185886821920 + pavilion)
+        `Pabellón ${String(pavilion).padStart(2, '0')}` ||
+      data.compoundIdentity.area.id !== `landuse/${35185886821920 + pavilion}`
     )
       return fail('litoral-google-compound-identity-invalid');
     const anchor = [0, 1].map((k) => ring.slice(0, -1).reduce((s, p) => s + p[k] / corners, 0)),
