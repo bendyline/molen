@@ -1,0 +1,265 @@
+{
+  "id": "georgia_guidestones",
+  "planId": "georgia_guidestones",
+  "assetId": "molen.worldgen.structure.georgia_guidestones",
+  "title": "Georgia Guidestones",
+  "category": "monument",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2021-06-01",
+    "validFrom": "1980-03-22",
+    "validUntil": "2022-07-06"
+  },
+  "wikidataId": "Q958391",
+  "referenceCoordinate": {
+    "longitude": -82.89439058303833,
+    "latitude": 34.232062882377306
+  },
+  "visualBrief": "Four full-size rock-pitched granite wings surround the central gnomon. A cardinal capstone, separate explanatory tablet, inscribed faces, a solar slot and two open bores reproduce the standing monument.",
+  "nativeAxes": "+X points east, +Z south and +Y up.",
+  "actualBounds": {
+    "min": [
+      -10.449999809265137,
+      -0.6200000047683716,
+      -5.099999904632568
+    ],
+    "max": [
+      4.800000190734863,
+      5.551000118255615,
+      4.5
+    ]
+  },
+  "size": [
+    15.25,
+    6.171000123023987,
+    9.599999904632568
+  ],
+  "geometrySource": "Original deterministic geometry from standing and erection photographs, the original tablet, fabricator dimensions and pre-demolition imagery.",
+  "materialMethod": "Shared granite and compacted gravel use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Georgia_Guidstones.jpg",
+    "https://commons.wikimedia.org/wiki/File:Georgia_Guidestones_Explanatory_Tablet.jpg",
+    "https://egaonline.com/sites/default/files/The%20Georgia%20Guidestones.pdf"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      -82.89439058303833,
+      34.232062882377306
+    ],
+    "heading": 0,
+    "bounds": [
+      -82.89452096787029,
+      34.23200898349349,
+      -82.89432539062236,
+      34.23211678122662
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 226.49366,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The five individual foundations intersect the standard Terrarium surface at the historic park.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:63e39e26047b95bff93f3b3ed7f0bc3170b0ff6cb5a33702fd6a144b42acaf6f",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q958391",
+    "notes": "The pre-demolition aerial image locates the granite cluster and the west tablet. The fabricator’s dimensions determine the five uprights and capstone. The central stone and capstone use cardinal axes, with approximately 55-degree outer axes based on the tablet diagram and the documented lunar alignment. The engraved panels use script-specific marks and line layouts to convey the original carving at viewer distances. Small differences in lettering, exact tablet size, rough edge contours and ground-level landscaping are approximate. The viewing date selects the standing monument. Surrounding terrain, roads and fields come from modern map data."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnj/georgia_guidestones/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:1a93566fc10848128704809c5c735a57ce9381bcc4349ec651492cf0de1fb162"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dn/dnj/georgia_guidestones/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:bee2570ab4f56da4ec7a196880332dbeaa5d72fd426269b4074bd853551b2818",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.88
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.94
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.88
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The pre-demolition aerial image locates the granite cluster and the west tablet. The fabricator’s dimensions determine the five uprights and capstone. The central stone and capstone use cardinal axes, with approximately 55-degree outer axes based on the tablet diagram and the documented lunar alignment.",
+    "The engraved panels use script-specific marks and line layouts to convey the original carving at viewer distances. Small differences in lettering, exact tablet size, rough edge contours and ground-level landscaping are approximate.",
+    "The viewing date selects the standing monument. Surrounding terrain, roads and fields come from modern map data."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-front-and-capstone",
+      "position": [
+        0.9,
+        3.35,
+        13.7
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "southwest-inscriptions-and-gnomon",
+      "position": [
+        -5.1,
+        2.34,
+        8.8
+      ],
+      "lookAt": [
+        -0.2,
+        2.58,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "western-explanatory-tablet",
+      "position": [
+        -12.4,
+        4.08,
+        7.1
+      ],
+      "lookAt": [
+        -7.2,
+        1.41,
+        1.8
+      ],
+      "fov": 57
+    },
+    {
+      "name": "north-engraved-slabs",
+      "position": [
+        3.7,
+        4.2,
+        -11.5
+      ],
+      "lookAt": [
+        0,
+        2.75,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "overhead-radial-plan",
+      "position": [
+        6.9,
+        15.4,
+        10.8
+      ],
+      "lookAt": [
+        -1.3,
+        2.1,
+        0.5
+      ],
+      "fov": 51
+    },
+    {
+      "name": "through-the-east-aisle",
+      "position": [
+        6.8,
+        2.15,
+        -0.66
+      ],
+      "lookAt": [
+        0,
+        2.45,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23926,
+    "vertices": 49402,
+    "materials": 2,
+    "bytes": 2067572,
+    "sha256": "sha256:5c42dc01566356db9aabbee1ffc28ff5c3a4f6bd5a22f4b008963d1e8710a707"
+  }
+}

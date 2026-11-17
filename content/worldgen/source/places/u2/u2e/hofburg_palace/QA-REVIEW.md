@@ -1,4 +1,8 @@
-# hofburg_palace Hofburg Palace — reviewed medium-fi preview
+# Hofburg Palace — reviewed medium-fi preview
+
+## Current State Hall placement
+
+The State Hall wing and roof pavilion now render with the independently placed [Austrian National Library](../austrian_national_library/README.md). Hofburg uses 19 occupied footprint masks over its modeled wings, Augustinian Church and Palmenhaus. Native terrain, open courts and paths remain visible. The [current placement review](shared-capture-report.json) covers both models at all four detail levels. The notes below describe the earlier whole-palace review.
 
 Reviewed 2026-10-11. **89 final images inspected**: 16 portable, 16 with shared materials, 32 medium-fi, and 25 against retained city terrain.
 

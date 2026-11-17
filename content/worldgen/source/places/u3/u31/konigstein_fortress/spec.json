@@ -1,0 +1,602 @@
+{
+  "planId": "konigstein_fortress",
+  "id": "konigstein_fortress",
+  "assetId": "molen.worldgen.structure.konigstein_fortress",
+  "title": "Königstein Fortress",
+  "wikidataId": "Q700562",
+  "category": "fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 14.0585,
+    "latitude": 50.9191
+  },
+  "size": [
+    574.1307373046875,
+    77.95525741577148,
+    404.7758026123047
+  ],
+  "actualBounds": {
+    "min": [
+      -309.0484313964844,
+      -61.46885681152344,
+      -224.37460327148438
+    ],
+    "max": [
+      265.0823059082031,
+      16.486400604248047,
+      180.4011993408203
+    ]
+  },
+  "visualBrief": "Königstein Fortress on the Elbe sandstone plateau, with its ramparts, western gate complex and timber ramp, 49 mapped structures, the garrison church and golden Friedrichsburg.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:K%C3%B6nigstein041.jpg",
+    "https://commons.wikimedia.org/wiki/File:Festung_K%C3%B6nigstein,_Georgenburg_(Juni_2026).jpg"
+  ],
+  "stories": [
+    {
+      "id": "konigstein-fortress-wp",
+      "url": "https://qualla.com/konigstein-fortress/"
+    }
+  ],
+  "referenceInputHash": "536dd26246295f54bb07819c4eec06467560525d6c0459583c4b2c5509119dd7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u31/konigstein_fortress/models/konigstein-fortress-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u31/konigstein_fortress/models/konigstein-fortress-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 5.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "ashlar": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.84,
+        "metallic": 0.02
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.55,
+        "metallic": 0.03
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.55,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "stone_ashlar",
+    "plaster_lime",
+    "slate",
+    "tile_flat",
+    "window_grid",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.78,
+    "focus": {
+      "center": [
+        -12,
+        -5,
+        -12
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original Saxony DGM1 elevation controls wall and building contact. The Qualla Friedrichsburg and CC0 Georgenburg originals help set silhouette and visible finish.",
+    "anchor": [
+      14.0585,
+      50.9191
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        14.0585,
+        50.9191
+      ],
+      "modelHeight": 0,
+      "basis": "Saxon DGM 1 m nadir on the central fortress plateau."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "osm/way/36973311",
+      "osm/way/23267112",
+      "osm/way/23267114",
+      "osm/way/23267124",
+      "osm/way/23267125",
+      "osm/way/23267127",
+      "osm/way/23267128",
+      "osm/way/23267129",
+      "osm/way/23267130",
+      "osm/way/23267131",
+      "osm/way/23267132",
+      "osm/way/23267134",
+      "osm/way/23267136",
+      "osm/way/23267145",
+      "osm/way/23267773",
+      "osm/way/26555210",
+      "osm/way/26555283",
+      "osm/way/26555378",
+      "osm/way/30284053",
+      "osm/way/36971392",
+      "osm/way/68284570",
+      "osm/way/174900960",
+      "osm/way/174900968",
+      "osm/way/174900970",
+      "osm/way/174900971",
+      "osm/way/174900974",
+      "osm/way/174900975",
+      "osm/way/174901013",
+      "osm/way/321584584",
+      "osm/way/358641218",
+      "osm/way/439809393",
+      "osm/way/439809399",
+      "osm/way/1001463985",
+      "osm/way/1002626538",
+      "osm/way/1299955592",
+      "osm/way/1299955601",
+      "osm/way/1299969708",
+      "osm/way/1299979306",
+      "osm/way/1300853183",
+      "osm/way/1300881082",
+      "osm/way/1300901092",
+      "osm/way/1300938856",
+      "osm/way/1300938861",
+      "osm/way/1302241956",
+      "osm/way/1302276348",
+      "osm/way/1302276351",
+      "osm/way/1302286602",
+      "osm/way/1533591801",
+      "osm/way/1534007361",
+      "osm/way/1534015405",
+      "osm/way/1535595586",
+      "osm/way/1535616148",
+      "osm/way/23267144",
+      "osm/way/439809414",
+      "osm/way/494992716",
+      "osm/way/494992717",
+      "osm/way/1000527946",
+      "osm/way/1300938853",
+      "osm/way/1300951927",
+      "osm/way/1300951928"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/way/36973311/full.json",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c8b7fe7e72b5c32b583594aca70db0da35a7de147c63db3fcf72708f1ab9d81d",
+    "notes": "The named outline follows the fortress perimeter. The outside walls and buildings may differ in offset from the measured plateau rim."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The named perimeter follows the fortress edge. Visible parapet heights and where masonry becomes sandstone are approximate. The narrower plateau walls and lower western works follow the separate terrain elevation bands.",
+    "The native building polygons set plan, and selected OpenStreetMap heights help size principal masses. Roof shapes, many floor heights and window or dormer positions are estimates, especially for unmapped distinctions within connected buildings.",
+    "The scope is the exterior and visible mouths of the western passages. Underground rooms, artifacts and decorative text are outside this model."
+  ],
+  "sourceLicense": "Reconstructed from the public-domain Qualla Friedrichsburg photo, Romzig’s CC0 original, OSM plans and unchanged GeoSN DGM source elevations.",
+  "qaLodCameras": [
+    {
+      "name": "konigstein-fortress-skyline",
+      "position": [
+        436,
+        269,
+        -467
+      ],
+      "lookAt": [
+        -12,
+        -5,
+        -12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "konigstein-fortress-district",
+      "position": [
+        436,
+        269,
+        -467
+      ],
+      "lookAt": [
+        -12,
+        -5,
+        -12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "konigstein-fortress-street",
+      "position": [
+        436,
+        269,
+        -467
+      ],
+      "lookAt": [
+        -12,
+        -5,
+        -12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "konigstein-fortress-closeup",
+      "position": [
+        436,
+        269,
+        -467
+      ],
+      "lookAt": [
+        -12,
+        -5,
+        -12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-bridge-and-dark-ramp",
+      "position": [
+        -149.3,
+        -23.65,
+        -116.4
+      ],
+      "lookAt": [
+        -126.5,
+        -22.08,
+        -104.5
+      ]
+    },
+    {
+      "name": "georgenburg-and-western-works",
+      "position": [
+        -215,
+        29,
+        -182
+      ],
+      "lookAt": [
+        -134,
+        -3.4,
+        -129
+      ]
+    },
+    {
+      "name": "friedrichsburg-and-stone-parapet",
+      "position": [
+        32.5,
+        1.62,
+        -91.3
+      ],
+      "lookAt": [
+        62,
+        4,
+        -96
+      ]
+    },
+    {
+      "name": "sandstone-cliff-and-plateau",
+      "position": [
+        368,
+        115,
+        293
+      ],
+      "lookAt": [
+        36,
+        -11,
+        17
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12252,
+    "vertices": 36756,
+    "materials": 8,
+    "bytes": 1758188,
+    "sha256": "sha256:fb999b04c213c6c088cc77d05c0313b551fa802b829968ff59efd83eae89420f"
+  }
+}

@@ -1,8 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.c_ragan_palace",
-  "inputHash": "sha256:09592cb133ee9588dcd4556a4eded3e1e723e150d7c603dcd9c09b47ecde26ca",
-  "placementHash": "sha256:5ce0fdc7b82547ca6d4dc4097cd07a97a8ed0d61908ba8ff9a4eafe3d223cf30",
+  "inputHash": "sha256:399f8f70f2802235d24fff77b8c27cda335061698344bc45f8870f9694f46629",
+  "sourceHash": "sha256:90d13b6a4ceffdc18ac396783f2055f7bca30495768f09e5f22d6c8587b1a3be",
+  "runtimeHash": "sha256:84ad3cec6b199e657ce8dc3d4d7d8c7d43a55ebca0c2ec3c72bfd82d136da16f",
+  "placementHash": "sha256:07b67216b8ab6a163435dea58f19767a96f7010576d4aabf2e875723445ba3f0",
   "entry": {
     "id": "c.ragan.palace",
     "title": "Çırağan Palace",
@@ -13,7 +15,7 @@
     ],
     "heading": 0.40690002573,
     "datum": "sea-level",
-    "elevation": 11,
+    "elevation": 3.65,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q273225",
@@ -131,9 +133,49 @@
           16
         ]
       ],
-      "additionalOutlines": [],
+      "additionalOutlines": [
+        [
+          [
+            -91,
+            45.15
+          ],
+          [
+            82,
+            45.15
+          ],
+          [
+            82,
+            50.379999999999995
+          ],
+          [
+            61,
+            50.23
+          ],
+          [
+            31,
+            50.03
+          ],
+          [
+            0,
+            49.83
+          ],
+          [
+            -31,
+            49.49
+          ],
+          [
+            -61,
+            49.309999999999995
+          ],
+          [
+            -91,
+            49.12
+          ]
+        ]
+      ],
       "minHeight": -10,
-      "basis": "Only exact occupied principal palace and the integral southwestern landing/two bounded stair flights. Gardens,quay,modern hotel and native surrounding field remain unchanged."
+      "basis": "The occupied buildings, supported covered landing and stair flights, and the immediate edge beneath the modeled waterfront wall. Surrounding paving, garden plots and the native water are retained.",
+      "preservePaving": true
     },
     "buildingCutout": {
       "outline": [
@@ -299,14 +341,14 @@
     },
     "bounds": [
       29.01444658842974,
-      41.04303188979225,
-      29.01610030932484,
+      41.04273683256504,
+      29.016444419970693,
       41.043876110223934
     ],
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/498861861",
-    "note": "Complete historic principal Çırağan Palace exterior from both native clips: three projecting waterfront pavilion groups and two inset bays,two tall ornamental window stories above a low rusticated basement,paired slender columns/pilasters,original layered curved window-head frames,deep cornices and paneled attic,three closed shallow green/gray hipped roof groups,and the integral southwestern raised entrance/balcony with two genuinely divided supported exterior stair flights. All glazing and principal door are closed. No mapped or pictured open court is supported. Independent modern hotel,gardens,pool,quay,gates,helipad and estate buildings stay native. Original geometric trim replaces figurative carving,heraldry and inscriptions; interiors are outside scope. Native principal parts have no height tags. Picture-guided approximate2.4m basement,first-story glazing3.0–8.2m,second-story glazing10.1–15.3m,19m attic/eave and2.4m shallow roof rise above the common source base. The current standard global field uses an11m reference,not a surveyed historic floor. Two unchanged standard Terrarium tiles show strong coastal urban-surface bias,with lower outer waterfront samples around3–7m. This provisional geographic datum must pass visual native fit; an oversized coastal plinth must remain an explicit unresolved issue rather than a readiness approval. +X east-northeast along the historic waterfront palace toward the Bosphorus bridge; +Z south-southeast toward the waterfront/garden promenade and strait; -Z north-northwest inland; +Y up. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Retained PMTiles establish the occupied palace, the grass plots, the quay and the signed Bosphorus frontage. Exterior photographs establish a low court and a low rusticated basement, with two stair flights at the southwestern entrance. A low granite-facing strip follows the mapped seawall on the historic frontage. A 3.5 m local visualization grade ties the model to the court. The aligned offshore grade removes residual positive elevation over the sea near the mapped quay."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The palace meets its waterfront court on both divided stair flights, with the principal seawall facing along the mapped shore."
 }

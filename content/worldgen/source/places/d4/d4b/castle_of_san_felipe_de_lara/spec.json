@@ -1,0 +1,592 @@
+{
+  "planId": "castle_of_san_felipe_de_lara",
+  "id": "castle_of_san_felipe_de_lara",
+  "assetId": "molen.worldgen.structure.castle_of_san_felipe_de_lara",
+  "title": "Castle of San Felipe de Lara",
+  "wikidataId": "Q672368",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -88.9940783,
+    "latitude": 15.63707915
+  },
+  "size": [
+    68.01327705383301,
+    11.703593254089355,
+    49.45108413696289
+  ],
+  "actualBounds": {
+    "min": [
+      -30.393190383911133,
+      -6.800000190734863,
+      -33.04108428955078
+    ],
+    "max": [
+      37.620086669921875,
+      4.903593063354492,
+      16.40999984741211
+    ]
+  },
+  "visualBrief": "Restored colonial castle with gray river curtains, stepped masonry batteries, tile-roofed lookouts and stone approach bridge at Río Dulce.",
+  "nativeAxes": {
+    "x": "along the long main curtain wall",
+    "y": "up",
+    "z": "inland from the main curtain wall"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Castillo_De_San_Felipe.JPG"
+  ],
+  "stories": [
+    {
+      "id": "castle-of-san-felipe-de-lara-wp",
+      "url": "https://qualla.com/castle-of-san-felipe-de-lara/"
+    }
+  ],
+  "referenceInputHash": "4197438c5ce0c0d0a70adad116075552365ff99cf5171e1131513281959cefed",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d4/d4b/castle_of_san_felipe_de_lara/models/san-felipe-de-lara-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d4/d4b/castle_of_san_felipe_de_lara/models/san-felipe-de-lara-model.mjs",
+    "level": "skyline",
+    "export": "castleSkyline",
+    "errorMeters": 1.31,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "basement": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "coping": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castleDistrict",
+        "errorMeters": 0.63,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "basement": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "castleStreet",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "basement": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "castleCloseup",
+        "errorMeters": 0.079,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "basement": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "coping": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.98,
+    "cameraYaw": 0.33,
+    "groundY": -6.45,
+    "focus": {
+      "center": [
+        2,
+        -0.6,
+        -1.7
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-shoreline-review.terrain.json",
+      "heightmap": "terrain-shoreline-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The upper approach registers against the original mapped landward bridge landing. Archaeology gives a 4 m high and approximately 20 m wide river bastion and different courtyard levels. The solid curtain bottoms follow the local relief with estimated defenses and support levels.",
+    "anchor": [
+      -88.9940783,
+      15.63707915
+    ],
+    "heading": 0.4338133144044976,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -88.99432374887371,
+        15.636941050630979
+      ],
+      "modelHeight": 0,
+      "basis": "Raw relief source sampled at the mapped landward bridge landing. Water level is a separate review control."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.51047,
+          -16.90873
+        ],
+        [
+          -23.43582,
+          -5.10878
+        ],
+        [
+          -17.95899,
+          -5.12349
+        ],
+        [
+          -17.9682,
+          -1.53312
+        ],
+        [
+          -17.97503,
+          0.59841
+        ],
+        [
+          -17.97682,
+          2.74455
+        ],
+        [
+          -17.99567,
+          7.63089
+        ],
+        [
+          -23.36625,
+          7.64575
+        ],
+        [
+          -23.32266,
+          16.06978
+        ],
+        [
+          -15.89462,
+          16.0511
+        ],
+        [
+          -15.90792,
+          11.92276
+        ],
+        [
+          8.17661,
+          10.17346
+        ],
+        [
+          8.94869,
+          7.53764
+        ],
+        [
+          21.84687,
+          0.58178
+        ],
+        [
+          23.43035,
+          2.79979
+        ],
+        [
+          26.63712,
+          1.48812
+        ],
+        [
+          28.58625,
+          0.69801
+        ],
+        [
+          31.48201,
+          -1.06444
+        ],
+        [
+          32.8313,
+          -3.21204
+        ],
+        [
+          33.465,
+          -6.05919
+        ],
+        [
+          33.10442,
+          -8.2137
+        ],
+        [
+          31.26078,
+          -10.71172
+        ],
+        [
+          28.8335,
+          -12.51091
+        ],
+        [
+          26.87532,
+          -13.94556
+        ],
+        [
+          23.93546,
+          -15.78591
+        ],
+        [
+          20.31587,
+          -15.59787
+        ],
+        [
+          20.51206,
+          -12.80794
+        ],
+        [
+          -15.98232,
+          -12.80794
+        ],
+        [
+          -15.99562,
+          -16.93628
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Replace only the named castle boundary from OpenStreetMap relation 7138060."
+    },
+    "featureIds": [
+      "relation/7138060",
+      "relation/7138061",
+      "relation/7138062",
+      "way/485036024",
+      "way/485036029",
+      "way/485036032"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7138060",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9c51fe02289e068b95904238cb48d6b4c459a958b0b435bcd7aa8fae4d8d4799"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Represents the standing reconstruction with the mapped castle, approach bridge and waterfront stone edge. The river parapet height is documented. Internal subdivisions, other wall heights, turret roof pitches and precise arch and crenel positions are estimates.",
+    "The static drawbridge leaf, fittings and courtyard transitions represent visible architectural form. Rooms and moving machinery are outside exterior scope.",
+    "The original public DEM is preserved. The waterfront review uses a separate mapped water plane and a coastally adjusted derivative of the original terrain to approximate shoreline grade. Runtime retains the mapped terrain and water. Vertical registration remains approximate."
+  ],
+  "sourceLicense": "Original 3D geometry. Verified original photographer public-domain release. OpenStreetMap outlines ODbL 1.0. Elevation attribution in source grid.",
+  "qaLodCameras": [
+    {
+      "name": "san-felipe-skyline",
+      "position": [
+        29,
+        21,
+        73
+      ],
+      "lookAt": [
+        4,
+        -1.23,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "san-felipe-district",
+      "position": [
+        29,
+        21,
+        73
+      ],
+      "lookAt": [
+        4,
+        -1.23,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "san-felipe-street",
+      "position": [
+        29,
+        21,
+        73
+      ],
+      "lookAt": [
+        4,
+        -1.23,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "san-felipe-closeup",
+      "position": [
+        29,
+        21,
+        73
+      ],
+      "lookAt": [
+        4,
+        -1.23,
+        -3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "lake-front-and-tile-roofs",
+      "position": [
+        3,
+        6,
+        60
+      ],
+      "lookAt": [
+        4,
+        -1.4,
+        1
+      ]
+    },
+    {
+      "name": "round-river-battery",
+      "position": [
+        47,
+        7,
+        -26
+      ],
+      "lookAt": [
+        24,
+        -1.13,
+        -7
+      ]
+    },
+    {
+      "name": "entry-bridge-and-gate",
+      "position": [
+        -43,
+        5.6,
+        22
+      ],
+      "lookAt": [
+        -21,
+        -0.2,
+        1.6
+      ]
+    },
+    {
+      "name": "terraces-and-landward-walls",
+      "position": [
+        38,
+        37,
+        38
+      ],
+      "lookAt": [
+        2,
+        -0.7,
+        0.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6258,
+    "vertices": 18774,
+    "materials": 6,
+    "bytes": 1111052,
+    "sha256": "sha256:4dc273f1ecac731ad507df1f9cded03bc31879c6f0b646f20c7108583c994d08"
+  }
+}

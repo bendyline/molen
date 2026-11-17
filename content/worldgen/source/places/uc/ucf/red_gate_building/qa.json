@@ -1,0 +1,556 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.red_gate_building",
+  "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+  "sourceHash": "sha256:342efba891e9056aa98706608be7f5beab7227793666d63e29b0c91b60cea9e2",
+  "runtimeHash": "sha256:f75c38a36f0aee581967bf9a8a5fa8c8541b2eed56fcbbccdbc5fd9716a8a051",
+  "reviewedOn": "2026-11-14",
+  "captureReportHash": "sha256:3ee83a7b6a0cabc9f6f0da9613ff48ed82571b94f3cf3bf5eec7e676ea5b60f1",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "notes": "The source reproduces the Red Gate Building as an independent Seven Sisters asset. Facade carving, window details and the door bank are photo-proportioned.",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+    "notes": "Inspected nine isolated views of the limestone tiers, rear court, granite portico and bronze crown. The native views cover the sloped Metro frontage.",
+    "captureReportHash": "sha256:3ee83a7b6a0cabc9f6f0da9613ff48ed82571b94f3cf3bf5eec7e676ea5b60f1",
+    "inspectedFrames": [
+      "preview.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:bd8475e30b80b8621d0d06646e723b07732a299971ed427d31c6a679476e4dac"
+      }
+    ]
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+    "notes": "Nine shared-surface views cover limestone, painted metal, granite, wood and the spire. The schematic flat plane lies above the Metro thresholds.",
+    "captureReportHash": "sha256:70d85ba8c74ebc992e4aa0415ebfe429b62bd851ea35d2f2c80f169cd7509f82",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/rear-courtyard.png",
+      "shots/shared/entrance-and-masonry.png",
+      "shots/shared/spire-and-limestone-crown.png",
+      "shots/shared/metro-doors.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:1b7e6cc1f370d9debcd3ac49aeb88fece7d66fe4ed8f5ce7733cda2f1400fe83"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:76345c849710badaeeb2cc0a1d550503ac566d114d8ec5cc608ad15ca1e70d8c"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:bdcf7dd523512dc3984531dfe44918c48adae2f01dae6f9da8639eacb521e7cb"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:bf04ed51c21e2f014897bf5a66f355475d82ea43f2005f863f6bd9040706bd62"
+      },
+      {
+        "path": "shots/shared/rear-courtyard.png",
+        "hash": "sha256:270cc11036a1e5928a342e34e64272b3d94c9238cafe29cd0a3530ef62d04fda"
+      },
+      {
+        "path": "shots/shared/entrance-and-masonry.png",
+        "hash": "sha256:867360820058f11e121ad9262d10580c450692964c479afe6050160520684221"
+      },
+      {
+        "path": "shots/shared/spire-and-limestone-crown.png",
+        "hash": "sha256:d7c4ecc2e9acd19ab9144051faa5aa75240c4c904062177b79952d6c1239d44a"
+      },
+      {
+        "path": "shots/shared/metro-doors.png",
+        "hash": "sha256:f3a7fdca78aab54eb183a23dafcaf16e28978cc5e081e2efe00d8135a501038d"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:321d37fa0ef1931e072d884ffbf4b7252674f2742fdae90962f4ab3c7f7b6f92"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_copper": {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+    "notes": "Inspected 25 scale, lighting, detail and switching views. The skyline keeps the courtyard wings and tiered profile. Street and close-up show open rooftop arches and the near entrance trim.",
+    "captureReportHash": "sha256:a7259829830fee09e46141965d491f195e24b5e211d2ea246c7146819ed8d7bc",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/rear-courtyard.png",
+      "medium-fi/entrance-and-masonry.png",
+      "medium-fi/spire-and-limestone-crown.png",
+      "medium-fi/metro-doors.png",
+      "medium-fi/red-gate-building-skyline.png",
+      "medium-fi/red-gate-building-district.png",
+      "medium-fi/red-gate-building-street.png",
+      "medium-fi/red-gate-building-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:df47bbece0468b35abdd4d190cc3e2da7670c082b4413eca06f0a607ee012f2f"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:6aa53a6047c1f111940244d244821fff884d65bbfe8f1ab72eaa84a55453d4cc"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:1cd0e2de835c7f4ad4fae400019e7060da245554113dfb528677460c89d3f08e"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:e85d96b0cb3e7715f1531c9345fcddaa5d92cf8395c4ae8c370233bf4041b236"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:cfc9e980f9f57471834323521469c8d0a1fd08c23534b0d012564e3aa26ebf26"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:c55fe57b099a5b577ae0199f76436ec91930e4c4c5cee812e65fa5ab1c598c2c"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:8e3e303efff810d4572e03b0b15e73f344197b6b98d6d621193335d142245f7a"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:3b03aa9a2b0cc9b1237da6efea7c6966b6d96e345916d10ff74f02ee26a14eca"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:0702058661c5cba75619a1bfb32436a6abb4ffbfddd0cd3ea296eeb20b913b87"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:d2d1bf533f5a85344666582727df2be102689fab6b043ad0daad3280c0314142"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:e37fba3087cca9838b22830f2e3d6444be8e41387873557c3a1e1e4f56dfda13"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:ff9071fe0c7c9fae6b75fe0535812596867aa247e3ba182a61d511d5fb79c567"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:b2e432c07e18fcefbcd5060a2b0cf52f037e3fcc93f58e0ba11f1c435b752dd5"
+      },
+      {
+        "path": "medium-fi/rear-courtyard.png",
+        "hash": "sha256:04ae0902e3dbebc2d100dd2089e2c77a92b447a2381fc64a3583be29d3015842"
+      },
+      {
+        "path": "medium-fi/entrance-and-masonry.png",
+        "hash": "sha256:ccf293e625481541c3bcb3148e5ac039d84083e3497bfc257e03127645967662"
+      },
+      {
+        "path": "medium-fi/spire-and-limestone-crown.png",
+        "hash": "sha256:49fd5a7517bb4566af8f323a59e295481a7948ed6540d310a7830e952a3382b6"
+      },
+      {
+        "path": "medium-fi/metro-doors.png",
+        "hash": "sha256:0fe1f506ead93e72b33e3bea81014468db336eb7fff69e69c7a6e914eb48e0a0"
+      },
+      {
+        "path": "medium-fi/red-gate-building-skyline.png",
+        "hash": "sha256:be66e83a2abe3385209a704d1b766dfb490c9375f6dd498c7b92e22688698ab7"
+      },
+      {
+        "path": "medium-fi/red-gate-building-district.png",
+        "hash": "sha256:17e7a33015baef56a8a868675b60564e447e1720311c68b7774baa19273634a4"
+      },
+      {
+        "path": "medium-fi/red-gate-building-street.png",
+        "hash": "sha256:e4449f4f1db20ab59313d8eb700dc44f35ed3c37377a33ce6516d72083b76fb4"
+      },
+      {
+        "path": "medium-fi/red-gate-building-closeup.png",
+        "hash": "sha256:47fe39f19b0605ba18d42c5c0d5153d4225f50848fbeea5085bbadca160e944b"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:0a80ae92cb12f0814807752d38ac96dfe04ccf6ca9169f2e81541f639e37d53f"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:c55fe57b099a5b577ae0199f76436ec91930e4c4c5cee812e65fa5ab1c598c2c"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:e9957a911de2dcaa0fb4198f944c540531492d5eaf78bf201ca2447d4ca9ca52"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:bd6e4cacae4216c9f4aad503a03f2ffe836ca41ab1eed48bd6012d67ebf61351"
+      }
+    ]
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+    "notes": "The four budgets preserve the long open court and tiered limestone massing. The near levels carry stepped cornices, the portal and the dark bronze spire."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "inputHash": "sha256:22ac4be4084068fb7808e559b3e69d9167e4fa8ccc34ba914038ed3e48ced04d",
+    "placementHash": "sha256:0655b0a04252cc60a74a28c96288d09e492d6ec487c1739e49e5a37ff5e56982",
+    "mapFrameHash": "sha256:30180f026440f819934224e132c50ba6ac118f7c7e8f3946cb559dd6f4108c70",
+    "notes": "The mapped parent, two separately masked rear parts and upper footprints establish the site and orientation. The portico faces the Garden Ring and the Metro door bank follows the Kalanchevskaya frontage. The outer step sits 13.4 cm above the sampled pavement.",
+    "native": {
+      "levels": [
+        "skyline",
+        "district",
+        "street",
+        "closeup"
+      ],
+      "ownedBuildingIds": [
+        35184404634512,
+        35184577095033,
+        35184577095034,
+        35184577095035,
+        35184577095036,
+        35184577095037,
+        35184577095038,
+        35184577095039,
+        35184577095040,
+        35184577095041,
+        35184577095042,
+        35184577095043,
+        35184577095044,
+        35184577095045,
+        35184577095046,
+        35184577095047,
+        35184577095048,
+        35184577095049,
+        35184577095050,
+        35184577095051,
+        35184577095052,
+        35184577095053,
+        35184577762988,
+        35184577762989,
+        35185364208647,
+        35185364997779,
+        35185364997780,
+        35185508219765
+      ],
+      "retainedNeighborBuildings": 30,
+      "roadFeaturesAtEntry": 241,
+      "allCourtProbesOpen": true,
+      "nearShoulderArchesOpen": true,
+      "sampledStepContactMeters": 0.1339,
+      "failedLoadRestoredOwnedFootprints": true,
+      "geometryReleasedOnUnload": true,
+      "fixtureHash": "sha256:04bc43cd1258119b439222891b81e0bbfccf6d97f19a9b7c3d8d6b5d4b50ed50",
+      "frames": [
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-square.png",
+          "hash": "sha256:5128a947045024bcc34d3240bd395046644c9169cf69f18595a380bfe75ae5fd"
+        },
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-portico.png",
+          "hash": "sha256:cc24309ead99a1cd133122b31ba7cdd68d732eb345c337052d71c4965dd7170c"
+        },
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-rear-court.png",
+          "hash": "sha256:997c4be51035572207d5c64388b108ecbc07d9eb9cd4a5023bf0a2ec09103f15"
+        },
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-metro.png",
+          "hash": "sha256:b72023a46b3c9fdc769e9b8caa8a51a2c96aa07ddac1ab85302e0138b1560360"
+        },
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-crown.png",
+          "hash": "sha256:00aa51dc3007f659b4c69e7251b1688d0ef05e72ded9029499555c35b996315d"
+        },
+        {
+          "level": "skyline",
+          "frame": "red_gate_building-skyline-skyline.png",
+          "hash": "sha256:9c7941ef78195cca8dffcc7932f6c83ce7af3d563f7de4fc020c47654b5af5a3"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-square.png",
+          "hash": "sha256:aa59032f831485e9be8d9165f6967256ff7f728a50e871fea5577ae92ff8d775"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-portico.png",
+          "hash": "sha256:fb052b8a28145959fadbd25d8915c35d54dc764b1fb7b570028e4821278b3945"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-rear-court.png",
+          "hash": "sha256:9f4445dd458675dff57831035aaada5b9af4db2cd0c8c10adbd85427df3c2465"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-metro.png",
+          "hash": "sha256:56eac68c8db0a70e4dd8a17808e73fba299ef6a090f107aed121faf395119d63"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-crown.png",
+          "hash": "sha256:2bf0a33989076029a00a30f0e1a883564c934cd7bc8e788368290cc18e621487"
+        },
+        {
+          "level": "district",
+          "frame": "red_gate_building-district-skyline.png",
+          "hash": "sha256:57d47d601ccb9e76e1fab5cf22660de159dc0ac55524636e7016dae46acf607c"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-square.png",
+          "hash": "sha256:1f01b870d5762ea11df67c9ed98d13ae3c8547dff4a3c833a2d0f81861f70a02"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-portico.png",
+          "hash": "sha256:7d47ef4623f2ca044e4730da75899ad98e43ca67e6ed58b46eb035e9ec35086c"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-rear-court.png",
+          "hash": "sha256:dad44c72041b8966ece20b623ca35d905c7c019a8c6d2002285dfd89ac50d751"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-metro.png",
+          "hash": "sha256:81a034d973ef7fd0706c7cf14bf56eb20be914a14d2e4a5260f6494d87db00ba"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-crown.png",
+          "hash": "sha256:6dc27f0d6b434eaf08bbed1836dac50915b7672916e010c9343e14b9b567836b"
+        },
+        {
+          "level": "street",
+          "frame": "red_gate_building-street-skyline.png",
+          "hash": "sha256:49917d6539036f53a4ccb90f8d801483bfe4f824c968abe834628db78bc40ef2"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-square.png",
+          "hash": "sha256:44f2ea41590ede63ade27a5ef7aa88cb6a9c9e37b1a393469fc874ac093889a5"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-portico.png",
+          "hash": "sha256:1d3422b3fd7b3162f30e2498b97c49fe5ac6a74606a1116fdb4a0f32818f28e6"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-rear-court.png",
+          "hash": "sha256:26e9a259813acbe4d22eaa1d2201d8a6c6984c3dcdb5919832ab04386ea4574c"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-metro.png",
+          "hash": "sha256:9b13dcfcf52a54e48f1e92a8742780788c0556580d8c03d66462233a2d764c6b"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-crown.png",
+          "hash": "sha256:bc82276c97ef96f51ca2e99a90fce15a5273be52ec234d054661bbfd400b5ecf"
+        },
+        {
+          "level": "closeup",
+          "frame": "red_gate_building-closeup-skyline.png",
+          "hash": "sha256:b1c9a3a108785650b9c56381566a7e8d66a4be53db330744dd60347abe469117"
+        },
+        {
+          "level": "failure",
+          "frame": "red_gate_building-failure-portico.png",
+          "hash": "sha256:274d435cc67aee4db6fac069866869cd0fa1b3c86d5ea5899181d5df3f2eb7a8"
+        }
+      ]
+    }
+  },
+  "validation": {
+    "glbs": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/uc/ucf/red_gate_building/models/source.glb",
+        "hash": "sha256:342efba891e9056aa98706608be7f5beab7227793666d63e29b0c91b60cea9e2",
+        "bytes": 5201428,
+        "triangles": 46124,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -48.360633850097656,
+          -16,
+          -99.37487030029297
+        ],
+        "max": [
+          47.074771881103516,
+          138.10906982421875,
+          17.164749145507812
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/uc/ucf/red_gate_building/model.glb",
+        "hash": "sha256:f75c38a36f0aee581967bf9a8a5fa8c8541b2eed56fcbbccdbc5fd9716a8a051",
+        "bytes": 5200872,
+        "triangles": 46124,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -48.360633850097656,
+          -16,
+          -99.37487030029297
+        ],
+        "max": [
+          47.074771881103516,
+          138.10906982421875,
+          17.164749145507812
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/uc/ucf/red_gate_building/model.skyline.glb",
+        "hash": "sha256:e283637252163d93f4eef11986984733c0acca56e2caed5362a9671e505d7bf1",
+        "bytes": 68096,
+        "triangles": 754,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -47.66400146484375,
+          -14.432999610900879,
+          -98.8759994506836
+        ],
+        "max": [
+          46.446998596191406,
+          138,
+          16.904531478881836
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/uc/ucf/red_gate_building/model.district.glb",
+        "hash": "sha256:82fcfd9294bbb04597d6545693e729129f904084bf1395151767f0cf6106af50",
+        "bytes": 308292,
+        "triangles": 3558,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -47.79899978637695,
+          -16,
+          -98.9699935913086
+        ],
+        "max": [
+          47.06655502319336,
+          138.10906982421875,
+          16.904531478881836
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/uc/ucf/red_gate_building/model.street.glb",
+        "hash": "sha256:064550e0dfd04c4e23fc65873685b9bf1bbe3e93262cd10fbd4822a38056b4c8",
+        "bytes": 1327624,
+        "triangles": 15834,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -48.360633850097656,
+          -16,
+          -99.21643829345703
+        ],
+        "max": [
+          47.074771881103516,
+          138.10906982421875,
+          16.904531478881836
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/uc/ucf/red_gate_building/model.closeup.glb",
+        "hash": "sha256:54af878203025bf71077315794d9027d548bdfdb7e01aa1462d8b60dd2967093",
+        "bytes": 3763964,
+        "triangles": 46124,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -48.360633850097656,
+          -16,
+          -99.37487030029297
+        ],
+        "max": [
+          47.074771881103516,
+          138.10906982421875,
+          17.164749145507812
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "initialBytes": 376388,
+    "inspectedViews": 68
+  }
+}

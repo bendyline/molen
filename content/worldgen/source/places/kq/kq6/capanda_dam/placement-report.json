@@ -1,8 +1,9 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.capanda_dam",
-  "inputHash": "sha256:0b5f46c10fedb3f40b121b7198e561e4e462cb969e277b9709948a212f858535",
-  "placementHash": "sha256:17a698e7a12c31fdf1e34d9c1ac1581f9195a696dbeb0cb27be242f78ebd8201",
+  "inputHash": "sha256:9ca44e60cb9123013d8521ead545e875f55ccce6ff010f5f228ee68b9c5bd0ca",
+  "sourceHash": "sha256:751783eee011958683aa7f98f7f8e13589f65f74dea487c43793fa34a3b46a07",
+  "runtimeHash": "sha256:a7b5bec75f55a14a6e318dd4900f3c5bdd8f2952f09eca8fb1daff24cf5af133",
   "entry": {
     "id": "capanda.dam",
     "title": "Capanda Dam",
@@ -12,8 +13,8 @@
       -9.795258874
     ],
     "heading": -1.118970338564,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 956,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q2885177",
@@ -443,14 +444,6 @@
       "minimumCoverage": 0.95,
       "basis": "Only the owned Capanda powerhouse building, native PMTiles feature 35184574517272."
     },
-    "terrainReference": {
-      "anchor": [
-        15.462947809146828,
-        -9.790590988983547
-      ],
-      "modelHeight": 2.334894156250016,
-      "basis": "The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending."
-    },
     "bounds": [
       15.462904576369548,
       -9.800742302085771,
@@ -506,7 +499,8 @@
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/202428441",
-    "note": "Capanda Dam with both concrete wings, four deep spillway chutes, yellow crest machinery, switchyard, downstream generator hall and walled tailrace. The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Capanda Dam with angled concrete wings, four spillway chutes, yellow crest gantries, a switchyard, a downstream powerhouse and a fitted tailrace bank. The retained shoreline gives a representative 956 m reservoir stage. The crest is modeled at 961 m, and the downstream reach uses a representative 875 m stage. The fixed model datum and water stages share the same reference."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "placementHash": "sha256:4717cde3eb0016e26979933dbee144a516025f63347732604e1f44c78a828a6f",
+  "review": "Fixed 956 m vertical reference on the retained signed frame. Mapped water stages and occupied crest and powerhouse footprints are pinned in the Earth placement."
 }

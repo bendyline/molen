@@ -1,4 +1,4 @@
-/** The order an Earth view's earthworks apply in: roads, then airfields. */
+/** Compose the ground adjustments shared by Earth hosts. */
 import type {
   TerrainPyramidStreamOptions,
   TerrainRoadGrading,
@@ -7,17 +7,18 @@ import type {
 type Grading = NonNullable<TerrainPyramidStreamOptions['transformHeightfield']>;
 
 /**
- * One `transformHeightfield` from a road grading and an airport grading, either of which may be
- * absent. Roads are leveled first and the airfield after them, so a runway stays level where a
- * service road crosses the field; undefined when there is neither.
+ * Roads are leveled first, followed by bounded site corrections and airfields. A site keeps its
+ * shared grade where ordinary roadway sampling picked up a building or other surface return.
  */
 export function composeEarthGroundGrading(
   roads: TerrainRoadGrading | undefined,
   airports: Grading | undefined,
+  sites?: Grading,
 ): Grading | undefined {
-  if (!roads) return airports;
+  if (!roads && !sites) return airports;
   return async (context, source) => {
-    const leveled = await roads.transformHeightfield(context, source);
-    return airports ? airports({ ...context, heightfield: leveled }, source) : leveled;
+    const leveled = roads ? await roads.transformHeightfield(context, source) : context.heightfield;
+    const graded = sites ? await sites({ ...context, heightfield: leveled }, source) : leveled;
+    return airports ? airports({ ...context, heightfield: graded }, source) : graded;
   };
 }

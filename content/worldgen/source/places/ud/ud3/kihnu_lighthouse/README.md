@@ -22,13 +22,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-106,033 triangles, 247,021 vertices, 8 surface groups; 10,169,692 source bytes. SHA-256: `sha256:0195df002f2c3420dbf1b0a0341ce53da548c3a7c5ee9c68a09b3f9556b45358`. Actual bounds: -3.150, 0.000, -14.840 to 5.754, 28.324, 3.517 m.
+106,033 triangles, 247,021 vertices, 8 surface groups; 10,169,712 source bytes. SHA-256: `sha256:87c66a10b4fb7051840470dc7c566017b2803179be25bbeb3f8f728ab96e8196`. Actual bounds: -3.150, -0.180, -14.840 to 5.754, 28.324, 3.517 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.brick` (1.92 × 0.9 m), `matgraph:molen.worldgen.material.stone` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.stone_granite` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Aid 840 fixes the authority center and 28.3 m height. The mapped oil-store rectangle resolves the signed ensemble rotation at heading PI, matching the original west/south offset and 0.191 rad store rotation. Main north entry remains an explicitly landward-access reconstruction. The offset broader mapped tower ring does not stretch the photo-proportioned shaft. Both source floors Y=0 contact the common host ground; no surveyed site elevation is asserted. Proposed anchor 23.97109316, 58.097058 (longitude, latitude), heading 3.141592653589793 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
+Aid 840 fixes the tower center and 28.3 m above-base height. The mapped oil store southwest of the tower establishes the signed heading. The north entry follows landward access. The low stone store follows the standard terrain 0.14 m above the tower origin and both foundations extend below the field. Proposed anchor 23.97109316, 58.097058 (longitude, latitude), heading 3.141592653589793 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 

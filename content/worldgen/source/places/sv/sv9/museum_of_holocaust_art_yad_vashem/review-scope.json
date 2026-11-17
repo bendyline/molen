@@ -9,7 +9,8 @@
     "pmtiles-fit.json",
     "surface-means.json",
     "terrain-review.terrain.json",
-    "terrain-review.height.png"
+    "terrain-review.height.png",
+    "court-fit.json"
   ],
   "surfaceOverrides": {
     "concrete": {
@@ -47,6 +48,21 @@
       "slot": "trim",
       "roughness": 0.8,
       "metallic": 0
+    },
+    "pavers": {
+      "graph": "stone_limestone",
+      "slot": "foundation",
+      "roughness": 0.94
+    },
+    "bark": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.96
+    },
+    "leaves": {
+      "localRef": "palette:#ffffff",
+      "slot": "trim",
+      "roughness": 1
     }
   },
   "previewGround": false,
@@ -61,9 +77,9 @@
       20.214725837399346
     ],
     "lookAt": [
-      0.0,
+      0,
       3.06,
-      0.0
+      0
     ],
     "fov": 52
   },
@@ -90,9 +106,9 @@
         15.150066067563108
       ],
       "lookAt": [
-        0.0,
+        0,
         3.06,
-        0.0
+        0
       ],
       "fov": 60
     },
@@ -119,12 +135,12 @@
         20.214725837399346
       ],
       "lookAt": [
-        0.0,
+        0,
         3.06,
-        0.0
+        0
       ],
       "fov": 52,
-      "name": "yad-art-skyline",
+      "name": "gallery-skyline",
       "reviewLod": "skyline"
     },
     {
@@ -134,42 +150,42 @@
         20.214725837399346
       ],
       "lookAt": [
-        0.0,
+        0,
         3.06,
-        0.0
+        0
       ],
       "fov": 52,
-      "name": "yad-art-district",
+      "name": "gallery-district",
       "reviewLod": "district"
     },
     {
+      "name": "gallery-street",
       "position": [
-        -48.17016565592004,
-        44.06,
-        20.214725837399346
+        -17.99413416974671,
+        3.66,
+        -1.7947522060590115
       ],
       "lookAt": [
-        0.0,
-        3.06,
-        0.0
+        -5.308058019346823,
+        2.46,
+        -2.4828451549075448
       ],
-      "fov": 52,
-      "name": "yad-art-street",
+      "fov": 61,
       "reviewLod": "street"
     },
     {
+      "name": "gallery-closeup",
       "position": [
-        -48.17016565592004,
-        44.06,
-        20.214725837399346
+        -17.99413416974671,
+        3.66,
+        -1.7947522060590115
       ],
       "lookAt": [
-        0.0,
-        3.06,
-        0.0
+        -5.308058019346823,
+        2.46,
+        -2.4828451549075448
       ],
-      "fov": 52,
-      "name": "yad-art-closeup",
+      "fov": 61,
       "reviewLod": "closeup"
     }
   ],
@@ -223,6 +239,21 @@
             "slot": "trim",
             "roughness": 0.8,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       },
@@ -265,6 +296,21 @@
             "slot": "trim",
             "roughness": 0.8,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       },
@@ -307,13 +353,28 @@
             "slot": "trim",
             "roughness": 0.8,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       }
     }
   },
   "geographic": {
-    "status": "draft-proposal",
+    "status": "preview-proposal",
     "anchor": [
       35.174499079585075,
       31.773549956900386
@@ -322,25 +383,25 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
-    "groundContactReviewed": false,
-    "groundContactBasis": "Use the original Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered courtyard attachment internal[-5.1,7.2], datum804.8569433196519m, floor0.06m above it. Original outside ground and entry approach stay intact; only occupied gallery floor is cut and sealed. The footprint-limited protective foundation covers the lowest original boundary sample. Coarse hillside levels are not the real excavated, flat Square of Hope: review the approach, portal and exposed foundation before activation. Do not flatten the independent courtyard or claim surveyed thresholds.",
-    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines.",
+    "replaceFootprint": true,
     "mapIdentity": {
       "maxDistance": 8
     },
     "bounds": [
-      35.174304434909715,
-      31.77332063591637,
-      35.174689700946914,
-      31.77377813768492
+      35.17423226027158,
+      31.77326655414993,
+      35.17468441753396,
+      31.773773646108502
     ],
     "terrainReference": {
       "anchor": [
-        35.17440655126736,
-        31.77355968969093
+        35.17453546860756,
+        31.77332299508358
       ],
-      "modelHeight": 0,
-      "basis": "Use the original Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered courtyard attachment internal[-5.1,7.2], datum804.8569433196519m, floor0.06m above it. Original outside ground and entry approach stay intact; only occupied gallery floor is cut and sealed. The footprint-limited protective foundation covers the lowest original boundary sample. Coarse hillside levels are not the real excavated, flat Square of Hope: review the approach, portal and exposed foundation before activation. Do not flatten the independent courtyard or claim surveyed thresholds."
+      "modelHeight": -1.85914,
+      "basis": "Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines."
     },
     "buildingCutout": {
       "outline": [
@@ -387,44 +448,94 @@
     "groundCutout": {
       "outline": [
         [
-          -15.420354151949084,
-          -18.085775633428767
+          -15.42035,
+          -18.08578
         ],
         [
-          6.40928300142744,
-          22.52789516886672
+          -6.02853,
+          -22.40097
         ],
         [
-          15.039604666715803,
-          17.958849207943757
+          15.0396,
+          17.95885
         ],
         [
-          -6.028533516194102,
-          -22.40096874338174
+          6.40928,
+          22.5279
+        ],
+        [
+          6.39034,
+          22.49265
+        ],
+        [
+          1.11199,
+          27.55081
+        ],
+        [
+          -1.94051,
+          29.04825
+        ],
+        [
+          -22.75066,
+          -13.37292
+        ],
+        [
+          -15.39547,
+          -18.03947
         ]
       ],
       "outlines": [
         [
           [
-            -15.420354151949084,
-            -18.085775633428767
+            -15.42035,
+            -18.08578
           ],
           [
-            6.40928300142744,
-            22.52789516886672
+            -6.02853,
+            -22.40097
           ],
           [
-            15.039604666715803,
-            17.958849207943757
+            15.0396,
+            17.95885
           ],
           [
-            -6.028533516194102,
-            -22.40096874338174
+            6.40928,
+            22.5279
+          ],
+          [
+            6.39034,
+            22.49265
+          ],
+          [
+            1.11199,
+            27.55081
+          ],
+          [
+            -1.94051,
+            29.04825
+          ],
+          [
+            -22.75066,
+            -13.37292
+          ],
+          [
+            -15.39547,
+            -18.03947
           ]
         ]
       ],
-      "basis": "Occupied mapped gallery floor only; preserve independent courtyard, approach and all neighbouring terrain."
+      "preservePaving": true,
+      "basis": "Locally expose the two occupied floors and their precisely bounded half of the photographed court. Adjacent pavement and raw terrain imagery remain host context."
     },
-    "notes": "Shared campus Q156591 with independent way74078306/native35184446167138. The named map POI lies beside the southwest long face; the museum's own labelled entry and Square of Hope photos identify that face and the deeply recessed portal. The ordinary campus aerial confirms the narrow gallery along the courtyard. Internal +X follows the mapped long axis south-southeast; +Z faces west-southwest into the courtyard. Heading0 bakes these signed axes into world east/south. Portal location at internalX -5.1m is an approximation guided by the named map point, not a surveyed entrance. No independent member Wikidata ID is asserted. Use the original Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered courtyard attachment internal[-5.1,7.2], datum804.8569433196519m, floor0.06m above it. Original outside ground and entry approach stay intact; only occupied gallery floor is cut and sealed. The footprint-limited protective foundation covers the lowest original boundary sample. Coarse hillside levels are not the real excavated, flat Square of Hope: review the approach, portal and exposed foundation before activation. Do not flatten the independent courtyard or claim surveyed thresholds."
+    "notes": "Shared campus Q156591 with independent way74078306/native35184446167138. The named map POI lies beside the southwest long face; the museum's own labelled entry and Square of Hope photos identify that face and the deeply recessed portal. The ordinary campus aerial confirms the narrow gallery along the courtyard. Internal +X follows the mapped long axis south-southeast; +Z faces west-southwest into the courtyard. Heading0 bakes these signed axes into world east/south. Portal location at internalX -5.1m is an approximation guided by the named map point, not a surveyed entrance. No independent member Wikidata ID is asserted. Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines."
+  },
+  "limitations": [
+    "The court and visual threshold elevations are fitted to the standard terrain and photographs. Exact threshold levels, planting and transitions beyond the local square remain approximate.",
+    "The detached terrace architecture and interiors remain outside this model."
+  ],
+  "appearance": {
+    "identity": "Narrow pale gallery with deep metal-lined portal, inset side door and flat roof beside the Square of Hope.",
+    "master": "Paving follows the fitted open court with a level threshold at the modeled entrance.",
+    "browser": "The courtyard floor and threshold survive all four levels."
   }
 }

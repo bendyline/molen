@@ -28,7 +28,7 @@ const linear = (hex) =>
     metal: linear('637578'),
   };
 
-function build(out, detail) {
+function build(out, detail, reconstruction = r) {
   const emit = (role, points, target) => {
     let ps = points.map((p) => p.map(Math.fround));
     const first = ps
@@ -66,9 +66,15 @@ function build(out, detail) {
       );
     }
   };
-  buildWinterPalace(emit, detail, r);
+  buildWinterPalace(emit, detail, reconstruction);
 }
-export const buildWinterSkyline = (o) => build(o, 0),
+// Keep the entrance voids at skyline distance with the district shell and vaults.
+const skyline = {
+  ...r,
+  bodyLevels: [r.bodyLevels[1]],
+  portalBands: [r.portalBands[1]],
+};
+export const buildWinterSkyline = (o) => build(o, 0, skyline),
   buildWinterDistrict = (o) => build(o, 1),
   buildWinterStreet = (o) => build(o, 2),
   buildWinterCloseup = (o) => build(o, 3);

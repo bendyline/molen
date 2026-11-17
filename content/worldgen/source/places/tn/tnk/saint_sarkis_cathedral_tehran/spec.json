@@ -1,0 +1,559 @@
+{
+  "planId": "saint_sarkis_cathedral_tehran",
+  "id": "saint_sarkis_cathedral_tehran",
+  "assetId": "molen.worldgen.structure.saint_sarkis_cathedral_tehran",
+  "title": "Saint Sarkis Cathedral, Tehran",
+  "wikidataId": "Q2082848",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.4148982,
+    "latitude": 35.7149291
+  },
+  "size": [
+    18.67413330078125,
+    27.93999981880188,
+    38.35490620136261
+  ],
+  "actualBounds": {
+    "min": [
+      -9.712928771972656,
+      -1.7000000476837158,
+      -36.774906158447266
+    ],
+    "max": [
+      8.961204528808594,
+      26.239999771118164,
+      1.5800000429153442
+    ]
+  },
+  "visualBrief": "Saint Sarkis in Tehran, with a marble-clad cross-shaped nave, two western bells and a large faceted lantern over the crossing.",
+  "nativeAxes": {
+    "x": "south along the front",
+    "y": "up",
+    "z": "west towards the entrance approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "saint-sarkis-cathedral-tehran-wp",
+      "url": "https://qualla.com/saint-sarkis-cathedral-tehran/"
+    }
+  ],
+  "referenceInputHash": "sha256:8d15a6261322b29759111e2a2db065dd049c282e06a194ded5d94eba89e30c3a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tn/tnk/saint_sarkis_cathedral_tehran/models/saint-sarkis-tehran-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tn/tnk/saint_sarkis_cathedral_tehran/models/saint-sarkis-tehran-model.mjs",
+    "level": "skyline",
+    "export": "saintSarkisSkyline",
+    "errorMeters": 0.93,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#3c4949",
+        "roughness": 0.66,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "localRef": "palette:#a8aaa2",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saintSarkisDistrict",
+        "errorMeters": 0.47,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#3c4949",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "localRef": "palette:#a8aaa2",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "saintSarkisStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#3c4949",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "localRef": "palette:#a8aaa2",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "saintSarkisCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#3c4949",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "localRef": "palette:#a8aaa2",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_marble",
+    "stone_limestone_raw",
+    "metal_standing_seam",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.38,
+    "groundY": 0,
+    "cameraYaw": -0.47,
+    "focus": {
+      "center": [
+        0,
+        10.5,
+        -14
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Primary written survey and tourism authority identify the white marble cladding, recessed and narrow high windows, polygonal apse, glass-lit drum, opaque conical roof and two western bell towers.",
+    "anchor": [
+      51.4148982,
+      35.7149291
+    ],
+    "heading": -1.5469205278785256,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.41486833603935,
+        35.7149285209618
+      ],
+      "modelHeight": 0,
+      "basis": "West approach below the principal entry plinth."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.54313,
+          0
+        ],
+        [
+          4.54313,
+          0
+        ],
+        [
+          4.58758,
+          -1.86138
+        ],
+        [
+          6.8827,
+          -1.91506
+        ],
+        [
+          6.8559,
+          -4.98962
+        ],
+        [
+          8.07054,
+          -5.49403
+        ],
+        [
+          8.05638,
+          -11.89537
+        ],
+        [
+          8.88121,
+          -11.92992
+        ],
+        [
+          8.77326,
+          -21.39838
+        ],
+        [
+          8.07215,
+          -21.41512
+        ],
+        [
+          8.12771,
+          -33.06759
+        ],
+        [
+          6.13097,
+          -34.31772
+        ],
+        [
+          3.89437,
+          -32.51773
+        ],
+        [
+          1.0417,
+          -36.62716
+        ],
+        [
+          -1.79614,
+          -36.69493
+        ],
+        [
+          -5.27651,
+          -33.1707
+        ],
+        [
+          -6.55842,
+          -34.51225
+        ],
+        [
+          -8.78467,
+          -33.14598
+        ],
+        [
+          -8.79698,
+          -20.50702
+        ],
+        [
+          -9.63293,
+          -20.47274
+        ],
+        [
+          -9.57394,
+          -11.28572
+        ],
+        [
+          -8.75063,
+          -11.25702
+        ],
+        [
+          -8.79137,
+          -5.35425
+        ],
+        [
+          -6.63051,
+          -3.98266
+        ],
+        [
+          -6.67733,
+          -2.02189
+        ],
+        [
+          -4.71034,
+          -1.85739
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named Armenian Apostolic cathedral footprint."
+    },
+    "featureIds": [
+      "way/480654425"
+    ],
+    "source": "https://www.openstreetmap.org/way/480654425",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1a7de1ea1f21b5a14fc7b88c3760ee2b3b5937c64b16a09c436bf4694dc696a6"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing marble-clad cathedral after the west and central glazing changes. The bell tower and dome heights, window spacing and joinery are working estimates.",
+    "The source survey records the surveyed form in writing. Exterior visual estimates include the western trim, steel-and-glass bell crowns, marble joints and main roof pitch.",
+    "The coarse source ground remains original. Site grade, stair depth and foundation registration are approximate. The detached courtyard monument, precinct wall and Prelacy offices are outside the scope."
+  ],
+  "sourceLicense": "Original geometry using publicly documented architectural facts, attributed OpenStreetMap and original Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "saint-sarkis-skyline",
+      "position": [
+        -30,
+        20,
+        40
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -14
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "saint-sarkis-district",
+      "position": [
+        -30,
+        20,
+        40
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -14
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "saint-sarkis-street",
+      "position": [
+        -30,
+        20,
+        40
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -14
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "saint-sarkis-closeup",
+      "position": [
+        -30,
+        20,
+        40
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -14
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "western-doors-and-twin-bells",
+      "position": [
+        0.5,
+        10.8,
+        40
+      ],
+      "lookAt": [
+        0,
+        10.9,
+        -6
+      ]
+    },
+    {
+      "name": "marble-nave-niches-and-lantern",
+      "position": [
+        -32,
+        17,
+        -19
+      ],
+      "lookAt": [
+        -3,
+        11,
+        -16
+      ]
+    },
+    {
+      "name": "polygonal-apse-and-crossing",
+      "position": [
+        24,
+        17,
+        -54
+      ],
+      "lookAt": [
+        0,
+        9,
+        -23
+      ]
+    },
+    {
+      "name": "dome-and-open-bell-crowns",
+      "position": [
+        21,
+        26,
+        11
+      ],
+      "lookAt": [
+        0,
+        17.9,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2956,
+    "vertices": 8868,
+    "materials": 6,
+    "bytes": 502888,
+    "sha256": "sha256:3831ec32c9948f8ab375429fb244f100d883ad8149bedfb104cdc643ceb12f66"
+  }
+}

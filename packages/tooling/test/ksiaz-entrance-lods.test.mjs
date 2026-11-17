@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import {
   buildKsiazEntrance,
@@ -10,6 +11,14 @@ it.each(
 )('keeps $key source-specific, deterministic and within browser budgets', async ({ key }) => {
   const id = `molen.worldgen.structure.${key}`,
     levels = [];
+  const frame = JSON.parse(
+    readFileSync(
+      new URL(
+        `../../../content/worldgen/source/places/u3/u35/${key}/map-frame.json`,
+        import.meta.url,
+      ),
+    ),
+  );
   for (const [name, cap] of Object.entries({
     skyline: 1000,
     district: 4000,
@@ -23,7 +32,7 @@ it.each(
     expect(a.triangles).toBeLessThanOrEqual(cap);
     const g = JSON.parse(a.bytes.toString('utf8', 20, 20 + a.bytes.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials.length).toBeLessThanOrEqual(5);
+    expect(g.materials.length).toBeLessThanOrEqual(6);
     const types = new Map(),
       positions = [];
     for (const mesh of g.meshes)
@@ -36,7 +45,9 @@ it.each(
         }
       }
     for (const typesInView of types.values()) expect(typesInView.size).toBe(1);
-    expect(Math.min(...positions.map((p) => p.min[1]))).toBe(0);
+    expect(Math.min(...positions.map((p) => p.min[1]))).toBe(
+      Math.fround(frame.siteFit.footingBottom),
+    );
     expect(Math.max(...positions.map((p) => p.max[1]))).toBeLessThanOrEqual(22);
     levels.push(a);
   }

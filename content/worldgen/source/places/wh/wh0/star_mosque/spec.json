@@ -1,0 +1,405 @@
+{
+  "planId": "star_mosque",
+  "id": "star_mosque",
+  "assetId": "molen.worldgen.structure.star_mosque",
+  "title": "Star Mosque",
+  "wikidataId": "Q2993411",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 90.40155865,
+    "latitude": 23.715666
+  },
+  "size": [
+    33.93849992752075,
+    11.872800350189209,
+    20.64859962463379
+  ],
+  "actualBounds": {
+    "min": [
+      -27.683799743652344,
+      -1.4800000190734863,
+      -10.324299812316895
+    ],
+    "max": [
+      6.254700183868408,
+      10.392800331115723,
+      10.324299812316895
+    ]
+  },
+  "visualBrief": "Star Mosque in old Dhaka has a tiled five-bay verandah, five white domes with blue stars and a fountain in its east forecourt.",
+  "nativeAxes": {
+    "x": "from east forecourt west into the mosque",
+    "y": "up",
+    "z": "toward the north along the facade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ambassador_Earl_Miller_visited_Temple%2C_Mosque%2C_and_Church_(51687083522).jpg"
+  ],
+  "stories": [
+    {
+      "id": "star-mosque-wp",
+      "url": "https://qualla.com/star-mosque/"
+    }
+  ],
+  "referenceInputHash": "b05580ba859105dafde6209ecc0a5b22ef2cbb7d6f00967a30b4a974f334f6d1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wh/wh0/star_mosque/models/star-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wh/wh0/star_mosque/models/star-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.44,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "tiles": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.79
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "details": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.84
+      },
+      "openings": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "water": {
+        "slot": "trim",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.37
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.79
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "details": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.84
+          },
+          "openings": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.37
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.79
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "details": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.84
+          },
+          "openings": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.37
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.022,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.79
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "details": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.84
+          },
+          "openings": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.37
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_glazed",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -2.1,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -7,
+        4.4,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original relief anchors the eastern forecourt. The surviving prayer hall and extension retain the five-dome sequence recorded by the project architect. Heights and hidden roof details are visually bounded estimates.",
+    "anchor": [
+      90.40155865,
+      23.715666
+    ],
+    "heading": -3.1350710011260268,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        90.40163453880477,
+        23.71566645313212
+      ],
+      "modelHeight": 0,
+      "basis": "Ground sample in the east forecourt just outside the mapped entrance edge."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/245019710",
+      "way/588937816"
+    ],
+    "source": "https://www.openstreetmap.org/way/245019710",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bcb789f90443876579b9eae8d24f760ebbcd175280064cc936f75c9447cc9a5c"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The current public-domain photo establishes the arcade, tile palette and ornament. The current dome heights, spacing and lantern details are approximate.",
+    "The fountain follows the survey envelope with an approximate star plan. The broader precinct, street furniture and temporary canopies are outside the model scope."
+  ],
+  "sourceLicense": "Original architectural geometry based on the official public-domain photograph, conservation project account, Open Cities Dhaka footprint survey and original terrain.",
+  "qaLodCameras": [
+    {
+      "name": "star-mosque-skyline",
+      "position": [
+        -37,
+        14,
+        -28
+      ],
+      "lookAt": [
+        -7,
+        4.4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "star-mosque-district",
+      "position": [
+        -37,
+        14,
+        -28
+      ],
+      "lookAt": [
+        -7,
+        4.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "star-mosque-street",
+      "position": [
+        -37,
+        14,
+        -28
+      ],
+      "lookAt": [
+        -7,
+        4.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "star-mosque-closeup",
+      "position": [
+        -37,
+        14,
+        -28
+      ],
+      "lookAt": [
+        -7,
+        4.4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "east-verandah-and-tile-ornament",
+      "position": [
+        -23,
+        6.5,
+        -13
+      ],
+      "lookAt": [
+        -3.1,
+        4.8,
+        0
+      ]
+    },
+    {
+      "name": "five-star-domes-and-finials",
+      "position": [
+        -17,
+        16.4,
+        16
+      ],
+      "lookAt": [
+        0.5,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "forecourt-fountain-and-site",
+      "position": [
+        -49,
+        17,
+        14
+      ],
+      "lookAt": [
+        -13,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13763,
+    "vertices": 41289,
+    "materials": 6,
+    "bytes": 1767476,
+    "sha256": "sha256:0dd1ebafd64321d6b8cea2f060200cc21b45afc987e2000e0fb3fa2dbe52e2eb"
+  }
+}

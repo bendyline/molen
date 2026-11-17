@@ -70,7 +70,8 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+  layout = await read(source + '/layout.json'),
+  site = await read(source + '/models/site-fit.json');
 it('pins source/import bytes, the signed whole Stratford frame and actual closed floor policy', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),
@@ -88,7 +89,8 @@ it('pins source/import bytes, the signed whole Stratford frame and actual closed
   expect(layout.nativeMap.preservedNeighbors).toHaveLength(2687);
   expect(s.sourceFacts.mainRoofHeight).toBe(11);
   expect(s.sourceFacts.canopyFamilies).toBe(9);
-  expect(p.entry.groundCutout.outlines).toHaveLength(1);
+  expect(p.entry.groundCutout.outlines).toEqual([p.entry.groundCutout.outline, site.apron]);
+  expect(p.entry.replaceRoads.bridgeFeatureIds).toEqual([frame.mappedIdentity.footbridgeId]);
   expect(
     reviewedSourceMapFrame({
       frameBytes: await readFile(source + '/map-frame.json'),
@@ -130,9 +132,16 @@ it('retains whole canopy families, curved hall, actual floor and complete open-t
         if (hits.length < 2) continue;
         hits.sort((a, b) => a - b);
         const z = (hits[0] + hits.at(-1)) / 2,
-          y = top(x, z, 6);
-        expect.soft(y, f.name + ' canopy ' + r.name + ' at ' + t).toBeGreaterThanOrEqual(4.45);
-        expect.soft(y).toBeLessThanOrEqual(5.2);
+          along = site.platforms[r.name].along,
+          upperIndex = along.findIndex(([end]) => end > x),
+          [leftX, leftY] = along[Math.max(0, upperIndex - 1)],
+          [rightX, rightY] = along[upperIndex],
+          level = leftY + ((rightY - leftY) * (x - leftX)) / (rightX - leftX),
+          y = top(x, z, 19);
+        expect
+          .soft(y, f.name + ' canopy ' + r.name + ' at ' + t)
+          .toBeGreaterThan(r.eave + level - 0.48);
+        expect.soft(y).toBeLessThan(r.crown + level - 0.12);
       }
     }
     for (let j = 0; j < controls.footbridge.length - 1; j++) {
@@ -356,7 +365,12 @@ it('uses the production viewer to replace the whole passenger building and prese
       'production renderer uses the single shared native terrain datum',
     ).toBeCloseTo(field.sampleHeight(85, 60), 2);
     expect(seen.length).toBeGreaterThan(0);
-    expect(seenContext.at(-1)).toEqual(originalContext);
+    const currentContext = seenContext.at(-1),
+      independentRoads = (roads) => roads.filter((f) => f.id !== frame.mappedIdentity.footbridgeId);
+    expect(currentContext.water).toEqual(originalContext.water);
+    expect(independentRoads(currentContext.transportation)).toEqual(
+      independentRoads(originalContext.transportation),
+    );
     const remaining = new Set(seen.at(-1)),
       expected = new Set(neighbor.map((b) => b.id));
     expect(

@@ -1,0 +1,427 @@
+{
+  "planId": "mount_storm_power_station",
+  "id": "mount_storm_power_station",
+  "assetId": "molen.worldgen.structure.mount_storm_power_station",
+  "title": "Mount Storm Power Station",
+  "wikidataId": "Q6923900",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.26465,
+    "latitude": 39.20062
+  },
+  "size": [
+    410.4257125854492,
+    244.3433976173401,
+    325.6802062988281
+  ],
+  "actualBounds": {
+    "min": [
+      -114.53569793701172,
+      -7.261000156402588,
+      -202.9073028564453
+    ],
+    "max": [
+      295.8900146484375,
+      237.0823974609375,
+      122.77290344238281
+    ]
+  },
+  "visualBrief": "The generating buildings, coal conveyor and four stacks of Mount Storm Power Station on the west bank of the cooling lake in fall 2000.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2000-10-01",
+    "validFrom": "2000-09-01",
+    "validUntil": "2000-12-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Mount_Storm_Power_Plant,_Aerial.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mount_Storm_Power_Plant,_Areial.jpg"
+  ],
+  "stories": [
+    {
+      "id": "mount-storm-power-station-wp",
+      "url": "https://qualla.com/mount-storm-power-station/"
+    }
+  ],
+  "referenceInputHash": "5ce46f6b76b75480a43e4f1f08008bafcd10d32f3d96c74a38d25d6f8adfb9d6",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnz/mount_storm_power_station/models/mount-storm-power-station-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnz/mount_storm_power_station/models/mount-storm-power-station-model.mjs",
+    "level": "skyline",
+    "export": "plantSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cladding": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.88,
+        "metallic": 0.08
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.25
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "plantDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "plantStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "plantCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_corrugated",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -79.26465,
+      39.20062
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.26393129323837,
+        39.20062
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain beside the east wall of the turbine hall."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "usda:naip-2007/wv/turbineHall",
+      "usda:naip-2007/wv/boilerNorth",
+      "usda:naip-2007/wv/boilerMiddle",
+      "usda:naip-2007/wv/boilerSouth",
+      "usda:naip-2007/wv/coalFeedNorth",
+      "usda:naip-2007/wv/exhaustWorks",
+      "usda:naip-2007/wv/westernService",
+      "usda:naip-2007/wv/transformerBank",
+      "usda:naip-2007/wv/northTransfer",
+      "usda:naip-2007/wv/coalStockTransfer",
+      "usda:naip-2007/wv/northeastStores",
+      "usda:naip-2007/wv/southernService",
+      "epa:table-4-2/units-1-2",
+      "epa:table-4-2/unit-3",
+      "node/8010784923",
+      "node/8010784924"
+    ],
+    "source": "https://www.openstreetmap.org/way/839493843",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bd8f2cae8c7630bafe47bffdece421c9adc909c4463b3ba554f9f0d9ab7b59c0",
+    "notes": "Two public-domain Qualla aerials set the 2000 exterior. Georeferenced 2007 USDA map control supplements the missing core building footprints after comparison to the 2000 images; federal stack records and OpenStreetMap fix the four stack positions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior is dated to fall 2000. The scope covers the visible generating complex and attached conveyor approach, with the reservoir and open coal yard supplied by the surrounding scene.",
+    "The four stack positions use EPA or OpenStreetMap controls and only the two tallest stack heights are verified measurements. Short stack heights, attached machinery, elevations and cladding are approximate.",
+    "The USDA orthophoto is from 2007. It fixes the visible 2000-era generating campus in plan, with later exhaust equipment and full lake and stockyard infrastructure outside scope. Foundations are estimated from the original terrain without altering it."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Exact public-domain photographs by Raeky and geographic control from the public-domain USDA NAIP archive. OpenStreetMap data under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "mount-storm-skyline",
+      "position": [
+        360,
+        242,
+        -565
+      ],
+      "lookAt": [
+        36,
+        76,
+        -23
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mount-storm-district",
+      "position": [
+        360,
+        242,
+        -565
+      ],
+      "lookAt": [
+        36,
+        76,
+        -23
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "mount-storm-street",
+      "position": [
+        360,
+        242,
+        -565
+      ],
+      "lookAt": [
+        36,
+        76,
+        -23
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "mount-storm-closeup",
+      "position": [
+        360,
+        242,
+        -565
+      ],
+      "lookAt": [
+        36,
+        76,
+        -23
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "turbine-hall-and-boiler-roofs",
+      "position": [
+        272,
+        115,
+        106
+      ],
+      "lookAt": [
+        84,
+        37,
+        -2
+      ]
+    },
+    {
+      "name": "stacks-and-western-ducts",
+      "position": [
+        -191,
+        110,
+        104
+      ],
+      "lookAt": [
+        2,
+        104,
+        -2
+      ]
+    },
+    {
+      "name": "northern-coal-conveyor",
+      "position": [
+        119,
+        86,
+        -280
+      ],
+      "lookAt": [
+        -3,
+        35,
+        -134
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6896,
+    "vertices": 20688,
+    "materials": 5,
+    "bytes": 950452,
+    "sha256": "sha256:3d7786caf766a842ad51cedf63dee416b9e90d574d81f5ada8e4c1136df73dcc"
+  }
+}

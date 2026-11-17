@@ -16,15 +16,13 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/watts-towers-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-1,079,668 triangles; 1,990,678 vertices; 4 material groups; 84,623,156 source bytes. Source hash: `sha256:c8f9ee81fc1c5d98db730905ea99a988ccbf1a4c6758d2b659e3170f7f34b81f`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+1,079,676 triangles; 1,990,694 vertices; 4 material groups; 84,623,828 source bytes. Source hash: `sha256:8e9de67dcc51fd32f35ac2f1f5decbf13e38dea4c1d56cac701c946da1c2b5a2`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs watts_towers`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- Original exterior reconstruction, not a conservation replica: every mosaic shard, shell, bottle bottom and embossed imprint is not copied; deterministic small colored pieces preserve material scale, palette and distribution. Published framing counts, different tower silhouettes and named components are retained.
-- Individual component centers, irregular tube bends, secondary sculpture heights and small ornament are proportional from primary plans/photographs rather than a laser survey. Conflicting source heights are recorded explicitly.
-- The 1950s house volume is absent, as in the surviving monument. Nearby arts-center buildings, temporary conservation scaffolding and the outer modern security fence are outside this sculpture asset.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Mosaic variation and small ornament use shared surfaces and authored color geometry. Individual shards, shell patterns and framing bends are interpreted from photographs.
+- Internal sculpture positions are proportional. The modern security fence, amphitheater and arts center are outside the sculpture asset.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

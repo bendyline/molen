@@ -34,7 +34,7 @@
   "exportLabel": "Molen original Hermitage Bridge master",
   "expectedDraftMasterHash": "sha256:aaa0cc2acf737aca407aaf76a91e09c006b5501cf724a80de34e8b3a80134df4",
   "visualBrief": "Complete individual Hermitage Bridge exterior: one shallow open granite barrel, warm-gray granite spandrels and radial arch blocks, sparse broad courses, rounded retained corner profiles, full road and both broad outer walks with three short mapped stepped reaches, solid low-crown parapets and layered granite coping/cornice. Exclude the separate tall enclosed museum connection and adjacent quays/buildings.",
-  "heightPolicy": "Fixed29m visualization datum. Approximate32m end decks and32.6m crown, with local canal review water 28.310m. The unmodified global city field contains strong building/surface returns. The standard native renderer derives incompatible connected canal/Neva levels: this is not a surveyed elevation or a certified native shoreline fit. Keep native water acceptance pending if the rendered mismatch remains.",
+  "heightPolicy": "The 14.55 m model origin meets embankment paving at 17.55 m and reaches 18.15 m at the crown. The shared Neva and Winter Canal plane is 14.29 m. The 17.50 m embankment ground follows the nearby standard terrain control and blends into the original field.",
   "nativeAxes": "+X crosses southwest from Hermitage Theatre toward Old Hermitage; +Z faces northwest toward Neva. The low road bridge is separate from the enclosed museum arch.",
   "sourceFacts": {
     "retainedLongestAxisMeters": 16.134,
@@ -256,8 +256,8 @@
     ]
   },
   "limitations": [
-    "Fixed29m visualization datum. Approximate32m end decks and32.6m crown, with local canal review water 28.310m. The unmodified global city field contains strong building/surface returns. The standard native renderer derives incompatible connected canal/Neva levels: this is not a surveyed elevation or a certified native shoreline fit. Keep native water acceptance pending if the rendered mismatch remains.",
-    "Ordinary photos and current PMTiles guide this original medium-fi exterior. Granite courses and arch ring joints, vault profile, low crown, broad walks/short steps, rounded corners and concealed foundations are approximate. No copied photo pixels, downloaded meshes, readable signs, boats, buses or furnished interiors. Neighboring museum connection, buildings, quay walls and roads remain native. Native water and bank fit require current visual acceptance; do not count this preview ready from geometry tests alone. Physical laptop/phone measurements remain pending."
+    "The joined water stage and waterfront grade are visualization elevations derived from the retained terrain. Stone courses, vault profile, rounded corners, step counts and concealed foundations are approximate.",
+    "The separate enclosed museum crossing and neighboring buildings and quays are outside the bridge model. The viewer supplies their mapped context."
   ],
   "materialMethod": "Two shared granite/concrete graphs supply three semantic bindings. Metric UVs and sRGB-to-linear palette conversion; zero embedded images. Sparse geometric courses and vault joints complement the reusable granite surface.",
   "references": [
@@ -288,9 +288,9 @@
     {
       "name": "canal-facing-vault",
       "position": [
-        -2,
-        7,
-        -25
+        0,
+        6.2,
+        -16
       ],
       "lookAt": [
         0,
@@ -357,7 +357,7 @@
     }
   ],
   "mediumFiContext": {
-    "groundY": 0,
+    "groundY": 2.95,
     "scale": 1.2,
     "focus": {
       "center": [
@@ -370,10 +370,10 @@
     "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
     "terrain": {
       "descriptor": "terrain-review.terrain.json",
-      "heightmap": "terrain-review.height.png"
+      "heightmap": "terrain-graded.height.png"
     },
     "water": {
-      "path": "native-water.json"
+      "path": "runtime-water.json"
     }
   },
   "runtimeLodOverlay": {

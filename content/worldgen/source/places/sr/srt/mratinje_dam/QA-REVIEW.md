@@ -1,17 +1,24 @@
 # Mratinje Dam
 
-Reviewed 2026-11-03. **43 current catalog views and five standard-water comparison views inspected.**
+The 220 m double-curvature arch retains the curved roadway, three crest spillways, five outlet mouths in the nearer tiers, inspection gallery and tunnel approaches. The fitted gorge includes the west road bench, retaining lattice and mapped service house.
 
-The double-curvature concrete arch has three crown spillway recesses, five recessed circular outlet mouths, the curved road with blue railings, two red-roof service wings, a lower gallery and two approach portals.
+The fitted west approach connects to the rendered M-3 pavement within 9 mm at the sampled points. The dry rock rim meets the retained terrain within 26 mm at 15 sampled rim controls. The road bench covers the remaining western control. Piva Lake and tailwater stay at their representative 651.65 m and 534.18 m stages.
 
-The 246.83 m PMTiles crest road gives the fixed anchor [18.842596634, 43.27257545] and heading 1.9781604311 radians. Local +X runs northwest across the road and +Z points downstream. The crest is fixed at 678 m. The shape extends beyond the mapped driving line into approximated abutments.
+![Mratinje Dam across the Piva gorge](site-preview.png)
 
-Five shared graphs supply board-formed concrete, plain concrete, painted metal, standing seam roofing and window glazing. All six GLBs have zero embedded images. The viewer releases the geometry and restores the native ground when the preview unloads.
+The local fixture keeps 12 neighboring buildings, 42 transportation records and all water inputs. The authored asset replaces the matching crest road, the fitted portion of the M-3 approach and one mapped service house. The other 37 transportation records keep their mapped coordinates. The renderer caps uphill approach supports below the road surface, including on steep crossfall. A failed load restores the full native map.
 
-The design fixture uses a 675.25 m normal reservoir and an illustrative 530 m downstream stage. Seven retained standard Terrarium tiles give representative stages of 651.65 m and 534.18 m. The review keeps all original elevation samples.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 988 | 89,516 | 6 |
+| district | 3,150 | 273,608 | 7 |
+| street | 8,414 | 738,044 | 7 |
+| closeup | 12,358 | 1,149,080 | 7 |
 
-The detailed master contains 4,840 triangles. The four viewer tiers contain 942, 1444, 4352, 4768 triangles. Skyline plus district are 183,968 bytes and close-up is 362,844 bytes. Four focused checks verify source and runtime hashes, the signed placement, recessed gates and outlets, the road crown and deterministic tier rebuilds. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+The first two levels total 363,124 bytes. Six GLBs validated with zero errors or warnings. Four focused tests and 376 placement probes passed. 76 renders were inspected.
 
-The standard terrain obscures parts of the arch and the adjacent approach. Its upstream stage is 23.60 m below normal reservoir level. The runtime placement remains a preview pending abutment and water fit. The gallery, portal dimensions and rock contact are approximations. The model does not depict active flow or underground machinery.
+The gorge edge, roadway grades, portal recesses and service-house details are original visualization estimates from ordinary photographs and the standard native map. The outer M-3 road remains in the surrounding native terrain.
 
-Rebuild with `node packages/worldgen/scripts/generate-mratinje-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=mratinje_dam`.
+The water elevations are representative sampled stages. Underground machinery, tunnel interiors and operating discharge are outside the exterior scope.
+
+[Gorge controls](models/gorge-fit.json) · [QA evidence](qa.json) · [Crest photograph](https://commons.wikimedia.org/wiki/File:MratinjeDam.JPG)

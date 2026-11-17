@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tartu_art_museum",
+  "kind": "static-structure",
+  "title": "Tartu Art Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tartu_art_museum",
+        "output": "assets/places/ud/ud7/tartu_art_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b61028fd400c69cbc34e93e0538aeee4c3ab4af7fe98d0ab4c56427e94b62ebc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tartu-art-museum",
+        "path": "models/generate-tartu-art-museum.mjs"
+      },
+      {
+        "id": "tartu-art-museum-model",
+        "path": "models/tartu-art-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/leaning-house-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18815-9803.png",
+      "terrain-sources/terrarium-15-18815-9804.png",
+      "terrain-sources/terrarium-15-18816-9803.png",
+      "terrain-sources/terrarium-15-18816-9804.png",
+      "terrain-sources/terrarium-15-18817-9803.png",
+      "terrain-sources/terrarium-15-18817-9804.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

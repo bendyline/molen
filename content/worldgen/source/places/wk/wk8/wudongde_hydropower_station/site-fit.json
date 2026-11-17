@@ -1,0 +1,76 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 913.95816425,
+  "crestElevation": 988,
+  "sites": [
+    {
+      "name": "Wudongde Dam near tailrace channel",
+      "anchor": [
+        102.63402758,
+        26.324833519
+      ],
+      "heading": 0.292,
+      "bounds": [
+        -44,
+        52,
+        20,
+        279
+      ],
+      "elevation": 849.5,
+      "blend": 23,
+      "basis": "Keep the channel center inside the mapped tailrace below its operating water surface."
+    },
+    {
+      "name": "Wudongde Dam spill tunnel stilling basin",
+      "anchor": [
+        102.63402758,
+        26.324833519
+      ],
+      "heading": 0.292,
+      "bounds": [
+        221,
+        954,
+        285,
+        1055
+      ],
+      "elevation": 866.5,
+      "blend": 21,
+      "basis": "Keep the central bed of the mapped stilling basin below its separate operating water surface."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 68541873,
+      "name": "Wudongde Reservoir",
+      "elevation": 975,
+      "basis": "Representative normal pool below the 988 m arch crest."
+    },
+    {
+      "id": 9421908422,
+      "name": "Jinsha River tailwater at Wudongde",
+      "elevation": 855.32,
+      "basis": "Representative tailwater level sampled from the retained local gorge terrain."
+    },
+    {
+      "id": 5062363042,
+      "name": "Jinsha River below Wudongde",
+      "elevation": 855.32,
+      "basis": "The mapped downstream reach joins the Wudongde tailrace."
+    },
+    {
+      "id": 10358282762,
+      "name": "Wudongde spill tunnel stilling basin",
+      "elevation": 873.18,
+      "basis": "Representative level sampled within the separately mapped spill tunnel basin."
+    },
+    {
+      "id": 35185407924840,
+      "name": "Wudongde buried spill tunnels",
+      "hideLines": true,
+      "basis": "The three mapped lines are below grade. The receiving basin has its own water polygon."
+    }
+  ],
+  "waterStageNotes": "Representative reservoir, Jinsha tailwater and separately mapped spill tunnel basin stages.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

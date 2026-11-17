@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rajiv_lochan_temple",
+  "kind": "static-structure",
+  "title": "Rajiv Lochan Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rajiv_lochan_temple",
+        "output": "assets/places/tg/tgd/rajiv_lochan_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ee44a3ed58f6d0dcbfea19537e710166dade3a9a548144928e77401f3e802c13"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-rajiv-lochan-temple",
+        "path": "models/generate-rajiv-lochan-temple.mjs"
+      },
+      {
+        "id": "rajiv-lochan-temple-model",
+        "path": "models/rajiv-lochan-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/temple-controls.json",
+      "reference-rights/commons-rajiv-lochan-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23836-14431.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "id": "summer_palace_wenchang_tower",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_wenchang_tower",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.27395123243332,
+    "latitude": 39.99521942928655
+  },
+  "title": "Summer Palace · Wenchang Tower",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "Battlemented grey-brick gate fort with a through-vault and two levels of red timber, painted bracket sets and upturned green tiled roofs.",
+  "nativeAxes": "+Z follows the pedestrian passage. The pavilion bearing follows the mapped building.",
+  "actualBounds": {
+    "min": [
+      -7.909999847412109,
+      -1.86899995803833,
+      -5.789999961853027
+    ],
+    "max": [
+      9.016819953918457,
+      16.422826766967773,
+      5.789999961853027
+    ]
+  },
+  "size": [
+    16.926819801330566,
+    18.291826725006104,
+    11.579999923706055
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_stack",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://chinatour.net/beijing/attraction/summer-palace/attractions/wenchang-pavilion/",
+    "https://english.visitbeijing.com.cn/a1/a-XEPKIEEDBD255879B65EDF"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.27395123243332,
+      39.99521942928655
+    ],
+    "heading": 0.27227741373166,
+    "bounds": [
+      116.27365543879279,
+      39.99500486709999,
+      116.2742463313057,
+      39.99543384276656
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 52,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.08021,
+          -6.96421
+        ],
+        [
+          8.83406,
+          -4.4207
+        ],
+        [
+          7.08021,
+          6.96422
+        ],
+        [
+          -8.89558,
+          4.64102
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.08021,
+            -6.96421
+          ],
+          [
+            8.83406,
+            -4.4207
+          ],
+          [
+            7.08021,
+            6.96422
+          ],
+          [
+            -8.89558,
+            4.64102
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Only occupied footprints of the documented buildings are replaced."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7b3f41342988b1c62ba6815a6f10f6e3a595c6ae04e129ca9072a2e727ec7ab1",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The pavilion bearing follows the mapped outline. The masonry vault straddles the mapped pedestrian route. Wall heights, corner roofs and decorative trim are reconstructed from photographs."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_wenchang_tower/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:8560d0ce7fe730055f6c706a9d2ac46e7973fbd8962fb22bb20745e9141f2169"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_wenchang_tower/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_stack"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.5,
+        "metallic": 0.6
+      }
+    },
+    "inputHash": "sha256:1ac95bdeada9daa7ca882e1f3b5d49243671a86ed84b156113c0de9458266c31",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The pavilion bearing follows the mapped outline. The masonry vault straddles the mapped pedestrian route. Wall heights, corner roofs and decorative trim are reconstructed from photographs."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        32,
+        20,
+        33
+      ],
+      "lookAt": [
+        1,
+        7,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "detail",
+      "position": [
+        6.6,
+        4,
+        23
+      ],
+      "lookAt": [
+        1,
+        7.6,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -21,
+        9,
+        -26
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "elevated",
+      "position": [
+        27,
+        54,
+        21
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7824,
+    "vertices": 15680,
+    "materials": 7,
+    "bytes": 662664,
+    "sha256": "sha256:7f261b2723db3b478a539735774f046396deb7c498cd2cd75991e31ec9013151"
+  }
+}

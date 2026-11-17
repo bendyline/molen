@@ -163,21 +163,28 @@ for (const model of ksiazStableModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: 'preview-proposal',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: frame.siteFit.contact.modelHeight,
+      groundContactReviewed: true,
+      groundContactBasis: frame.siteFit.contact.basis,
+      terrainReference: frame.siteFit.contact,
+      bounds: frame.siteFit.bounds,
+      buildingCutout: frame.siteFit.buildingCutout,
+      groundCutout: frame.siteFit.groundCutout,
+      surfacePassageIds: [frame.siteFit.gate.transportationId],
       replaceFootprint: false,
-      featureIds: [`way/${model.way}`],
+      featureIds: frame.elements.map((element) => `way/${element.id}`),
       source: frame.sourceUrl,
       mapGeometrySource: 'map-frame.json',
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
       notes:
-        'Own connected stable outline and adjacent riding-hall outline; named semantic parts follow the primary plan. Facade bays, boundaries, heights and shared datum are proposed. Inactive until component/terrain fit reviewed.',
+        'The mapped service road runs through an open arch between the two measured façade lines. Fitted plinths support the two mapped buildings. The riding court follows the terrain inside the quadrangle.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -192,9 +199,9 @@ for (const model of ksiazStableModels.filter(
     limitations: [
       'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own stable and adjacent hall-complex rings. Range boundaries, facade bays, roof/tower heights and common datum are photographic/plan interpretations.',
-      'No independent Wikidata identifier asserted. Hall identity, component registration and terrain fit remain provisional.',
+      'The stable ranges and carriage house form one exterior mesh with a separate riding hall. The model uses the two mapped footprints.',
       'References combine the 2005 labeled plan/photos with current operator aerial; facade/restoration details are not surveyed.',
-      'Exterior ensemble only. No unique textures, copied photos, interior, horses, carriages or garden reconstruction. Terrain/component fit, streaming and physical-device timing remain pending.',
+      'The estate model represents the architectural exteriors, open gateway and riding court. Internal rooms, furnishings and horses are outside its scope.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -286,21 +293,21 @@ for (const model of ksiazStableModels.filter(
   const readme =
     '# ' +
     model.title +
-    '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
+    '\n\n![Shared Molen preview](preview.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [site review](QA-REVIEW.md) for the terrain fit and runtime views.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own stable quadrangle and adjacent hall rings; Y0 estimated shared contact. Roof profiles, component boundaries and facades interpreted from primary sources. No independent Wikidata identity asserted. Hall association and real geographic/terrain fit remain pending.\n\n' +
+    'Terrain sampled at the main gate sets the datum. The documentary plan and operator photos guide the roof profiles, part boundaries and façades.\n\n' +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/generate-ksiaz-stables.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +
     mesh.triangleCount +
-    ' triangles;' +
+    ' triangles, ' +
     bytes.length +
     ' source bytes;' +
     mesh.groups.length +

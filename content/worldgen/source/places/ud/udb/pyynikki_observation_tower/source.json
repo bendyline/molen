@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pyynikki_observation_tower",
+  "kind": "static-structure",
+  "title": "Pyynikki Observation Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pyynikki_observation_tower",
+        "output": "assets/places/ud/udb/pyynikki_observation_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:abb62635711181c30e72023e1fbb5e44883fd85ccece064a55137772cb086c38"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pyynikki-observation-tower",
+        "path": "models/generate-pyynikki-observation-tower.mjs"
+      },
+      {
+        "id": "pyynikki-observation-tower-model",
+        "path": "models/pyynikki-observation-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18543-9236.png",
+      "terrain-sources/terrarium-15-18543-9237.png",
+      "terrain-sources/terrarium-15-18544-9236.png",
+      "terrain-sources/terrarium-15-18544-9237.png",
+      "preview.png",
+      "native-map/observation-tower-controls.json",
+      "reference-rights/commons-qualla-pyynikki-original.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

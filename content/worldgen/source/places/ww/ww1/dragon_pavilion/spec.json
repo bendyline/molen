@@ -1,0 +1,499 @@
+{
+  "planId": "dragon_pavilion",
+  "id": "dragon_pavilion",
+  "assetId": "molen.worldgen.structure.dragon_pavilion",
+  "title": "Dragon Pavilion, Kaifeng",
+  "wikidataId": "Q5305247",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.3466546,
+    "latitude": 34.809384
+  },
+  "size": [
+    85.08097839355469,
+    27.12000074982643,
+    62.31476974487305
+  ],
+  "actualBounds": {
+    "min": [
+      -34.91999816894531,
+      -0.41999998688697815,
+      -32.58477020263672
+    ],
+    "max": [
+      50.160980224609375,
+      26.700000762939453,
+      29.729999542236328
+    ]
+  },
+  "visualBrief": "The standing Dragon Pavilion in Kaifeng, its golden double-eaved roof over red columns, raised masonry platform and 72-step stair with a carved dragon ramp.",
+  "nativeAxes": {
+    "x": "east across the terrace",
+    "y": "up",
+    "z": "south down the stairs"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dragon_Pavilion_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dragon_Pavilion_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dragon_Pavilion_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "dragon-pavilion-wp",
+      "url": "https://qualla.com/dragon-pavilion/"
+    }
+  ],
+  "referenceInputHash": "b8a2abef325b8635e62217f7e6e6a12b747f3b1bf8c4cc8de1ea60c88bd2c3a0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ww/ww1/dragon_pavilion/models/dragon-pavilion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ww/ww1/dragon_pavilion/models/dragon-pavilion-model.mjs",
+    "level": "skyline",
+    "export": "dragonSkyline",
+    "errorMeters": 1.03,
+    "surfaces": {
+      "terrace": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_board_batten",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#eee6d5",
+        "roughness": 0.82,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "dragonDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "terrace": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#eee6d5",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "dragonStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "terrace": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#eee6d5",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "dragonCloseup",
+        "errorMeters": 0.067,
+        "surfaces": {
+          "terrace": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_board_batten",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#eee6d5",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_longformat",
+    "stone_limestone_raw",
+    "tile_ceramic",
+    "wood_board_batten"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.58,
+    "cameraYaw": 0.4,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        11,
+        -4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The three exact Qualla public-domain views and official scenic site identifying the 72 stone steps, central carved dragon ramp, imperial balustrades and double yellow-glazed hip-and-gable roof.",
+    "anchor": [
+      114.3466546,
+      34.809384
+    ],
+    "heading": -0.07229024059279163,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.34662924552266,
+        34.809097556387584
+      ],
+      "modelHeight": 0,
+      "basis": "Paved approach sample just below the mapped foot of the 72-step southern stair."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -33.98881,
+          -32.39477
+        ],
+        [
+          -33.99646,
+          -0.10515
+        ],
+        [
+          -8.0165,
+          -0.1003
+        ],
+        [
+          -8.16678,
+          4.53128
+        ],
+        [
+          -8.01377,
+          25.62584
+        ],
+        [
+          -8.0179,
+          29.3651
+        ],
+        [
+          8.00142,
+          29.37696
+        ],
+        [
+          8.00313,
+          25.98386
+        ],
+        [
+          8.01128,
+          4.33074
+        ],
+        [
+          8.0165,
+          0.1003
+        ],
+        [
+          31.63245,
+          0.10893
+        ],
+        [
+          31.63424,
+          -14.9252
+        ],
+        [
+          50.08139,
+          -14.92175
+        ],
+        [
+          50.09098,
+          -21.87581
+        ],
+        [
+          30.58073,
+          -21.88041
+        ],
+        [
+          30.58909,
+          -32.39477
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Mapped pavilion, platform and principal stairs."
+    },
+    "featureIds": [
+      "way/1368905633"
+    ],
+    "source": "https://www.openstreetmap.org/way/1368905633",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b80cdee550eb979ad767c3456b0df7f23bf8d64cdfcbb9d9c3a1270cf58afb1a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_board_batten",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The recognizable exterior covers the standing pavilion, raised red platform, stone balustrades and two 72-step runs with a carved central ramp.",
+    "Official total height and platform height are used. Roof curvature, timber bay widths, small ridge figures, eastern lower extension levels and stone relief pattern are estimated from the mapped plan and public-domain photographs.",
+    "The original terrain is preserved. It is a coarse elevation field and the platform step levels are approximate. Temporary vegetation, signs and park features outside the named approach are excluded."
+  ],
+  "sourceLicense": "Original model from three exact photographer-released public-domain Qualla originals, the operator’s dimensions, attributed OpenStreetMap geometry and Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "dragon-pavilion-skyline",
+      "position": [
+        69,
+        46,
+        79
+      ],
+      "lookAt": [
+        0,
+        11,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "dragon-pavilion-district",
+      "position": [
+        69,
+        46,
+        79
+      ],
+      "lookAt": [
+        0,
+        11,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "dragon-pavilion-street",
+      "position": [
+        69,
+        46,
+        79
+      ],
+      "lookAt": [
+        0,
+        11,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "dragon-pavilion-closeup",
+      "position": [
+        69,
+        46,
+        79
+      ],
+      "lookAt": [
+        0,
+        11,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "dragon-pavilion-from-the-south",
+      "position": [
+        0,
+        7.7,
+        86
+      ],
+      "lookAt": [
+        0,
+        13.25,
+        0
+      ]
+    },
+    {
+      "name": "carved-stair-and-deep-eaves",
+      "position": [
+        0.4,
+        3.5,
+        34
+      ],
+      "lookAt": [
+        0,
+        14.8,
+        -8.2
+      ]
+    },
+    {
+      "name": "roof-form-and-terrace-railings",
+      "position": [
+        56,
+        42,
+        -55
+      ],
+      "lookAt": [
+        -2,
+        16,
+        -13
+      ]
+    },
+    {
+      "name": "lower-stair-terrace-wall-and-twin-roofs",
+      "position": [
+        -57,
+        7.9,
+        33
+      ],
+      "lookAt": [
+        -5,
+        12,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26316,
+    "vertices": 78948,
+    "materials": 5,
+    "bytes": 3320672,
+    "sha256": "sha256:dde2033a29316a532b7ef953470f4f987e4b7df0fb4508ea1279def203e3e459"
+  }
+}

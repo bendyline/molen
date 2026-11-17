@@ -12,7 +12,7 @@ import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-tr
 const controlsBytes = readFileSync(new URL('../layout.json', import.meta.url));
 if (
   createHash('sha256').update(controlsBytes).digest('hex') !==
-  '4f866b4c1700701cc1a78e2c0ef68fbc497fa5b7556e0b3d1c6b20aa0ff47456'
+  'd817ecd368c039e223dd9abba86561702d65f94501561f869977a59b4379f1f9'
 )
   throw Error('Catherine Palace controls changed: update explicit geometry input pin');
 export const catherineControls = JSON.parse(controlsBytes);
@@ -599,6 +599,55 @@ function hip(o, c, r) {
     }
   }
 }
+const chapelCorniceY = a.floorY + Math.min(...a.domes.map((dome) => dome.drumLo)) + 0.06;
+
+function chapelBase(o, c) {
+  const ring = (y, x0, z0, x1, z1) => [
+    [x0, y, z0],
+    [x0, y, z1],
+    [x1, y, z1],
+    [x1, y, z0],
+  ];
+  const lower = ring(a.floorY + 15.9, 137.2, 7.18, 151.9, 20.95);
+  const upper = ring(chapelCorniceY, 138.63, 8.15, 149.82, 19.54);
+  const mid = [
+    ring(a.floorY + 17.45, 137.14, 7.12, 151.96, 21.01),
+    ring(a.floorY + 19.3, 137.82, 7.58, 150.9, 20.4),
+  ];
+  loft(o, S(c, 'stone'), c.far ? [lower, upper] : [lower, ...mid, upper], C.stone);
+  if (!c.far && !c.flat) {
+    for (const sign of [-1, 1]) {
+      for (const dome of a.domes.slice(1).filter((dome) => sign * (dome.center[1] - 13.8) > 0)) {
+        const [x, z] = dome.center;
+        const faceZ = z + sign * 2.43;
+        const profile = [
+          [a.floorY + 17.2, 1.13, faceZ + sign * 0.54],
+          [a.floorY + 19.0, 0.94, faceZ + sign * 0.49],
+          [a.floorY + 21.5, 0.55, faceZ + sign * 0.09],
+          [chapelCorniceY - 0.04, 0.42, faceZ - sign * 0.62],
+        ];
+        loft(
+          o,
+          'stone',
+          profile.map(([y, w, z]) => ring(y, x - w, z - 0.38, x + w, z + 0.38)),
+          C.stone,
+        );
+        const [lo, hi] = [profile[1], profile[2]];
+        span(
+          o,
+          c,
+          [x, lo[0], lo[2] + sign * 0.4],
+          [x, hi[0], hi[2] + sign * 0.4],
+          0.15,
+          0.14,
+          'gold',
+          C.gold,
+        );
+      }
+    }
+  }
+}
+
 function domes(o, c) {
   for (const d of a.domes) {
     const center = d.center,
@@ -610,7 +659,7 @@ function domes(o, c) {
       o,
       S(c, 'wall'),
       [
-        radialRing(lo, r * 0.67, r * 0.67, n, center),
+        radialRing(Math.min(lo, chapelCorniceY - 0.035), r * 0.67, r * 0.67, n, center),
         radialRing(hi, r * 0.67, r * 0.67, n, center),
       ],
       C.wall,
@@ -811,8 +860,7 @@ export function buildCatherineLevel(output, level = 'master') {
   }
   facades(o, c);
   for (const r of a.roofs) hip(o, c, r);
-  // The chapel's raised hipped base supports the five independently modeled drums.
-  hip(o, c, { name: 'chapel-base', b: [137.2, 7.46, 151.9, 19.85], eave: 16.8, rise: 6.1 });
+  chapelBase(o, c);
   domes(o, c);
   crowns(o, c);
   entrance(o, c);

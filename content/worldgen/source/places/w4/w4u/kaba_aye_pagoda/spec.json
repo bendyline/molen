@@ -1,0 +1,496 @@
+{
+  "planId": "kaba_aye_pagoda",
+  "id": "kaba_aye_pagoda",
+  "assetId": "molen.worldgen.structure.kaba_aye_pagoda",
+  "title": "Kaba Aye Pagoda",
+  "wikidataId": "Q6343700",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 96.15449670000001,
+    "latitude": 16.8568295
+  },
+  "size": [
+    49.53510093688965,
+    35.38759994506836,
+    49.26780128479004
+  ],
+  "actualBounds": {
+    "min": [
+      -24.166095733642578,
+      -1.25,
+      -23.887033462524414
+    ],
+    "max": [
+      25.36900520324707,
+      34.13759994506836,
+      25.380767822265625
+    ]
+  },
+  "visualBrief": "Kaba Aye’s gilded bell and spire rise over a circular prayer hall and five red-and-gold gabled porches.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-03-14",
+    "validFrom": "2015-01-01",
+    "validUntil": "2016-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kaba_Aye_Paya_2.JPG"
+  ],
+  "stories": [
+    {
+      "id": "kaba-aye-pagoda-wp",
+      "url": "https://qualla.com/kaba-aye-pagoda/"
+    }
+  ],
+  "referenceInputHash": "9f9164c8388dc4aa76731121b9bb78877baca94f317131d3c258df37f686299f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4u/kaba_aye_pagoda/models/kaba-aye-pagoda-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4u/kaba_aye_pagoda/models/kaba-aye-pagoda-model.mjs",
+    "level": "skyline",
+    "export": "pagodaSkyline",
+    "errorMeters": 0.69,
+    "surfaces": {
+      "gold": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.49,
+        "metallic": 0.47
+      },
+      "cream": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "green": {
+        "slot": "wall",
+        "graph": "tile_glazed",
+        "roughness": 0.78,
+        "metallic": 0.04
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pagodaDistrict",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.49,
+            "metallic": 0.47
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.78,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "pagodaStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.49,
+            "metallic": 0.47
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.78,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "pagodaCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.49,
+            "metallic": 0.47
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.78,
+            "metallic": 0.04
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "plaster_lime",
+    "stone_limestone",
+    "tile_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      96.15449670000001,
+      16.8568295
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        96.15449670000001,
+        16.8568295
+      ],
+      "modelHeight": 0,
+      "basis": "Original regional elevation at the center of the mapped worship grounds."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          17,
+          0
+        ],
+        [
+          16.16796077701761,
+          5.253288904374106
+        ],
+        [
+          13.753288904374106,
+          9.992349288972044
+        ],
+        [
+          9.992349288972044,
+          13.753288904374106
+        ],
+        [
+          5.253288904374107,
+          16.16796077701761
+        ],
+        [
+          1.0409497792752501e-15,
+          17
+        ],
+        [
+          -5.253288904374105,
+          16.167960777017612
+        ],
+        [
+          -9.992349288972042,
+          13.753288904374106
+        ],
+        [
+          -13.753288904374104,
+          9.992349288972045
+        ],
+        [
+          -16.16796077701761,
+          5.253288904374108
+        ],
+        [
+          -17,
+          2.0818995585505003e-15
+        ],
+        [
+          -16.167960777017615,
+          -5.253288904374097
+        ],
+        [
+          -13.753288904374106,
+          -9.992349288972042
+        ],
+        [
+          -9.992349288972045,
+          -13.753288904374104
+        ],
+        [
+          -5.2532889043741084,
+          -16.16796077701761
+        ],
+        [
+          -3.1228493378257506e-15,
+          -17
+        ],
+        [
+          5.253288904374103,
+          -16.167960777017612
+        ],
+        [
+          9.99234928897204,
+          -13.75328890437411
+        ],
+        [
+          13.753288904374104,
+          -9.992349288972047
+        ],
+        [
+          16.16796077701761,
+          -5.253288904374109
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Reconstructed round hall within the mapped pagoda grounds."
+    },
+    "featureIds": [
+      "way/186911800"
+    ],
+    "source": "https://www.openstreetmap.org/way/186911800",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b7323ff2e282cea47ecc267c54f5437e547642d1ebf522d6a89a7a39c598a7a9",
+    "notes": "The mapped outline describes the exterior grounds only. The radial building footprint, entrance orientation and associated steps are modeled from the photographed exterior and published approximate diameter."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the March 2015 exterior of the central Kaba Aye Pagoda. The surrounding grounds and separately named cave are outside scope.",
+    "The photograph fixes the cladding, bell curve, trim and one porch. Other porches, exact gateway axes, relief details and ground registration are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap map data is ODbL. C1815 released the exact Qualla exterior photo as CC0 own work.",
+  "qaLodCameras": [
+    {
+      "name": "yangon-pagoda-skyline",
+      "position": [
+        49,
+        39,
+        70
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "yangon-pagoda-district",
+      "position": [
+        49,
+        39,
+        70
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "yangon-pagoda-street",
+      "position": [
+        49,
+        39,
+        70
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "yangon-pagoda-closeup",
+      "position": [
+        49,
+        39,
+        70
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "gilded-stupa-and-red-entrance",
+      "position": [
+        -36,
+        13,
+        59
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "scalloped-arches-and-mosaic-columns",
+      "position": [
+        22,
+        8,
+        45
+      ],
+      "lookAt": [
+        7,
+        6.4,
+        17
+      ]
+    },
+    {
+      "name": "porches-and-round-prayer-hall",
+      "position": [
+        -39,
+        56,
+        -40
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9408,
+    "vertices": 28224,
+    "materials": 5,
+    "bytes": 1279516,
+    "sha256": "sha256:882b887e882c6ea26955c7bf36b72f40d736d5f1cd05b8d1d39d845f4015df20"
+  }
+}

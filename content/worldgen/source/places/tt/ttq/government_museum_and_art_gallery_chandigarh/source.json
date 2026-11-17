@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.government_museum_and_art_gallery_chandigarh",
+  "kind": "static-structure",
+  "title": "Government Museum and Art Gallery, Chandigarh",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.government_museum_and_art_gallery_chandigarh",
+        "output": "assets/places/tt/ttq/government_museum_and_art_gallery_chandigarh/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:57548b666f5946c89b9f1a6d7cfe3e202b94e90a7deb1e26a03ce84a8ad11fda"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chandigarh-art-museum",
+        "path": "models/generate-chandigarh-art-museum.mjs"
+      },
+      {
+        "id": "chandigarh-art-museum-model",
+        "path": "models/chandigarh-art-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23373-13440.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "reference-rights/primary-source-facts.json",
+      "native-map/museum-and-architecture-museum.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

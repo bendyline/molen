@@ -1,0 +1,122 @@
+{
+  "fidelityTarget": "medium-fi",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 0.3,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "appearance": {
+    "identity": "Red plaster tower on a splayed base, four turret crowns with fishtail merlons, recessed elevated entry and independent timber bridge at the stone stairs.",
+    "master": "Original detailed facade, roof fittings and stair geometry with a recessed foundation extension and fitted lowest risers.",
+    "exclusions": "The surrounding entrenchment, adjoining mast, interiors and movable exhibits remain separate. The fitted grades describe the ordinary host terrain.",
+    "browser": "Authored skyline and district tiers preserve the four turret silhouettes and the separate timber bridge over its open gap. Street and close-up keep the original rail, tread and roof details."
+  },
+  "geographic": {
+    "notes": "Mapped Red Tower way 91447984 and entrance node 3898282959 fix orientation. The modeled stone flight meets the sampled site path and uses a short timber bridge consistent with the custodian’s photograph. PMTiles bridge 35184758581593 represents this approach and is replaced when the model is present. The modeled bridge span uses visual proportions and the surrounding mapped paths remain visible.",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The tower center at Y=0 uses the standard Terrarium field. The base extends 0.65 m below that datum and the stair toe fits the draped path.",
+    "bounds": [
+      14.34261,
+      35.97447,
+      14.3431,
+      35.97479
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.342853,
+        35.9746775
+      ],
+      "modelHeight": 0,
+      "basis": "The native sample at the model footprint center locates the tower and entry stair."
+    },
+    "replaceRoads": {
+      "length": 2.6,
+      "width": 8.7,
+      "outline": [
+        [
+          1,
+          7.35
+        ],
+        [
+          3.6,
+          7.35
+        ],
+        [
+          3.6,
+          16.05
+        ],
+        [
+          1,
+          16.05
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184758581593
+      ]
+    }
+  },
+  "sourceDocuments": [
+    "pmtiles-map.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/agatha-tower-model.mjs",
+    "export": "buildAgathaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAgathaDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "limestone_raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    },
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.04
+      }
+    }
+  }
+}

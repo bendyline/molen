@@ -87,6 +87,7 @@ export const ksiazPalmServiceSurfaces = {
   plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.9, metallic: 0 },
   tile: { slot: 'roof', graph: 'tile_ceramic', roughness: 0.88, metallic: 0 },
   rubble: { slot: 'foundation', graph: 'stone_drywall', roughness: 0.92, metallic: 0 },
+  paving: { slot: 'foundation', graph: 'stone_sandstone_raw', roughness: 0.91, metallic: 0 },
   timber: { slot: 'trim', graph: 'wood_plain', roughness: 0.86, metallic: 0 },
   brick: { slot: 'trim', graph: 'brick', roughness: 0.9, metallic: 0 },
   glass: { slot: 'window', roughness: 0.58, metallic: 0.04 },
@@ -308,7 +309,50 @@ function cap(o, poly, height, col, slot) {
       [0, 1, 0],
     );
 }
-function walls(o, poly, low, high, col, slot) {
+function wallSpan(o, a, b, low, high, col, slot, normal, doors) {
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1],
+    length = Math.hypot(dx, dz);
+  if (length < 1e-6) return;
+  const at = (t) => [a[0] + dx * t, a[1] + dz * t];
+  const height = typeof high === 'function' ? high : () => high;
+  const band = (t0, t1, bottom, top) => {
+    if (t1 - t0 < 1e-6) return;
+    const u = at(t0),
+      v = at(t1);
+    face(
+      o,
+      [
+        [u[0], bottom, u[1]],
+        [v[0], bottom, v[1]],
+        [v[0], top(v), v[1]],
+        [u[0], top(u), u[1]],
+      ],
+      col,
+      slot,
+      normal,
+    );
+  };
+  const openings = doors
+    .flatMap((door) => {
+      const [x, z] = door.center.map((v, i) => v - a[i]);
+      if (Math.abs(x * dz - z * dx) / length > 0.001) return [];
+      const center = (x * dx + z * dz) / length;
+      const start = Math.max(0, (center - door.width / 2) / length);
+      const end = Math.min(1, (center + door.width / 2) / length);
+      return start < end ? [{ ...door, start, end }] : [];
+    })
+    .sort((u, v) => u.start - v.start);
+  let cursor = 0;
+  for (const door of openings) {
+    band(cursor, door.start, low, height);
+    if (door.sill > low) band(door.start, door.end, low, () => door.sill);
+    band(door.start, door.end, door.head, height);
+    cursor = door.end;
+  }
+  band(cursor, 1, low, height);
+}
+function walls(o, poly, low, high, col, slot, doors = []) {
   const sign = Math.sign(
     poly.reduce((s, a, i) => {
       const b = poly[(i + 1) % poly.length];
@@ -317,29 +361,26 @@ function walls(o, poly, low, high, col, slot) {
   );
   for (let i = 0; i < poly.length; i++) {
     const a = poly[i],
-      b = poly[(i + 1) % poly.length],
-      ya = typeof high === 'function' ? high(a) : high,
-      yb = typeof high === 'function' ? high(b) : high;
-    face(
+      b = poly[(i + 1) % poly.length];
+    wallSpan(
       o,
-      [
-        [a[0], low, a[1]],
-        [b[0], low, b[1]],
-        [b[0], yb, b[1]],
-        [a[0], ya, a[1]],
-      ],
+      a,
+      b,
+      low,
+      high,
       col,
       slot,
       [sign * (b[1] - a[1]), 0, -sign * (b[0] - a[0])],
+      doors,
     );
   }
 }
-function shell(o, poly, roof, eave, col = 'wall', base = 0.35) {
-  cap(o, poly, () => 0, 'stone', 'rubble');
-  walls(o, poly, 0, base, 'stone', 'rubble');
-  walls(o, poly, base, roof ?? eave, col, 'plaster');
+function shell(o, poly, bottom, eave, col = 'wall', doors = []) {
+  walls(o, poly, bottom, 0.35, 'stone', 'rubble');
+  walls(o, poly, 0.35, eave, col, 'plaster', doors);
 }
-function splitRoof(o, poly, axis, cuts, height) {
+function splitRoof(o, poly, axis, cuts, height, bottom, doors = []) {
+  walls(o, poly, bottom, 0.35, 'stone', 'rubble');
   const lo = Math.min(...poly.map((p) => p[axis])) - 1,
     hi = Math.max(...poly.map((p) => p[axis])) + 1,
     edges = [lo, ...cuts.filter((v) => v > lo && v < hi).sort((a, b) => a - b), hi];
@@ -370,17 +411,16 @@ function splitRoof(o, poly, axis, cuts, height) {
         q = params[j],
         u = a.map((v, k) => v + (b[k] - v) * p),
         v = a.map((w, k) => w + (b[k] - w) * q);
-      face(
+      wallSpan(
         o,
-        [
-          [u[0], 0.35, u[1]],
-          [v[0], 0.35, v[1]],
-          [v[0], height(v), v[1]],
-          [u[0], height(u), u[1]],
-        ],
+        u,
+        v,
+        0.35,
+        height,
         'wall',
         'plaster',
         [sign * (b[1] - a[1]), 0, -sign * (b[0] - a[0])],
+        doors,
       );
     }
   }
@@ -401,16 +441,117 @@ function facade(o, poly, i) {
     normal,
   };
 }
-function openings(o, poly, d, rows = [1.15], bay = 3.7) {
+function openings(o, poly, d, rows = [1.15], bay = 3.7, doors = []) {
   if (d < 1) return;
   for (let i = 0; i < poly.length; i++) {
     const { q, length } = facade(o, poly, i);
     if (length < 2.2) continue;
     const n = Math.max(1, Math.floor(length / bay));
-    for (let j = 0; j < n; j++)
-      for (const y of rows)
-        window(q, ((j + 0.5) * length) / n - length / 2, y, 1.05, y < 1 ? 0.65 : 1.45, d);
+    const a = poly[i],
+      b = poly[(i + 1) % poly.length];
+    for (let j = 0; j < n; j++) {
+      const t = (j + 0.5) / n,
+        x = (t - 0.5) * length;
+      const [px, pz] = a.map((v, k) => v + (b[k] - v) * t);
+      for (const y of rows) {
+        if (
+          doors.some(
+            (door) =>
+              y < door.head &&
+              y + 1.45 > door.sill &&
+              Math.hypot(px - door.center[0], pz - door.center[1]) < door.width / 2 + 0.55,
+          )
+        )
+          continue;
+        window(q, x, y, 1.05, y < 1 ? 0.65 : 1.45, d);
+      }
+    }
   }
+}
+function recessedDoor(o, door, d, glazed = false) {
+  const { center, angle, width, sill, head, recess } = door;
+  const q = local(o, ...center, angle),
+    edge = width / 2;
+  for (const x of [-edge, edge])
+    face(
+      q,
+      [
+        [x, sill, 0],
+        [x, sill, -recess],
+        [x, head, -recess],
+        [x, head, 0],
+      ],
+      'cream',
+      'plaster',
+      [-Math.sign(x), 0, 0],
+    );
+  face(
+    q,
+    [
+      [-edge, head, 0],
+      [edge, head, 0],
+      [edge, head, -recess],
+      [-edge, head, -recess],
+    ],
+    'cream',
+    'plaster',
+    [0, -1, 0],
+  );
+  panel(q, 0, sill, -recess, width, head - sill, 'board', 'timber');
+  if (d >= 1) {
+    for (const x of [-edge + 0.04, edge - 0.04, 0])
+      box(q, x, sill, -recess + 0.06, 0.08, head - sill, 0.09);
+    if (glazed)
+      for (const x of [-edge / 2, edge / 2])
+        panel(q, x, sill + 1.05, -recess + 0.08, edge - 0.16, head - sill - 1.21, 'glass', 'glass');
+  }
+}
+function entrance(o, fit, d, glazed = false) {
+  const door = fit.entry;
+  const { depth, threshold, nearWidth, width, toeHeights } = fit.apron;
+  const q = local(o, ...door.center, door.angle);
+  recessedDoor(o, door, d, glazed);
+  const at = (z, y) => {
+    const w = (nearWidth + ((width - nearWidth) * (z + 0.16)) / (depth + 0.16)) / 2;
+    return [
+      [-w, y[0], z],
+      [w, y[1], z],
+    ];
+  };
+  const low = toeHeights.map((v) => v - 0.008);
+  const heel = at(-0.16, [door.sill, door.sill]),
+    stepTop = at(threshold, [door.sill, door.sill]);
+  const stepBottom = at(threshold, low),
+    toe = at(depth, toeHeights);
+  const tread = (a, b) => face(q, [...a, b[1], b[0]], 'stone', 'paving', [0, 1, 0]);
+  tread(heel, stepTop);
+  // The threshold reaches the door leaf inside the wall, beyond the external approach polygon.
+  const back = [
+    [-door.width / 2, door.sill, -door.recess],
+    [door.width / 2, door.sill, -door.recess],
+  ];
+  tread(back, heel);
+  tread(stepBottom, toe);
+  face(q, [...stepBottom, stepTop[1], stepTop[0]], 'stone', 'paving', [0, 0, 1]);
+  for (const [a, b] of [
+    [heel, stepTop],
+    [stepBottom, toe],
+  ])
+    for (const i of [0, 1])
+      face(
+        q,
+        [a[i], b[i], [b[i][0], fit.footingBottom, b[i][2]], [a[i][0], fit.footingBottom, a[i][2]]],
+        'stone',
+        'paving',
+        [i === 0 ? -1 : 1, 0, 0],
+      );
+  face(
+    q,
+    [...toe, [toe[1][0], fit.footingBottom, depth], [toe[0][0], fit.footingBottom, depth]],
+    'stone',
+    'paving',
+    [0, 0, 1],
+  );
 }
 function framing(q, width, low, high, d, diagonal = true) {
   // Continuous solid plaster behind the sparse framing prevents open-looking upper storeys.
@@ -549,18 +690,19 @@ function hip(o, rect, eave, brk, ridge) {
 }
 function administration(o, f, d) {
   const c = f.controls,
+    fit = f.siteFit,
     loop = f.geometry.outline.slice(0, -1),
     main = clip(loop, 1, c.annexZ, false),
     annex = clip(loop, 1, c.annexZ, true);
   const core = clip(main, 0, -6.72, true),
     westPorch = clip(main, 0, -6.72, false);
-  shell(o, core, null, c.eave, 'ochre');
-  shell(o, westPorch, null, 3.45, 'ochre');
+  shell(o, core, fit.footingBottom, c.eave, 'ochre', [fit.entry]);
+  shell(o, westPorch, fit.footingBottom, 3.45, 'ochre');
   cap(o, westPorch, () => 3.45, 'roof', 'tile');
-  shell(o, annex, null, c.annexRoof, 'ochre');
+  shell(o, annex, fit.footingBottom, c.annexRoof, 'ochre');
   cap(o, annex, () => c.annexRoof, 'roof', 'tile');
   hip(o, { minX: -7.0, maxX: 8.05, minZ: -8.85, maxZ: 3.38 }, c.eave, c.break, c.ridge);
-  openings(o, main, d, [1.2]);
+  openings(o, main, d, [1.2], 3.7, [fit.entry]);
   openings(o, annex, d, [1.0]);
   for (const [x, angle, west] of [
     [7.76, Math.PI / 2, false],
@@ -587,7 +729,6 @@ function administration(o, f, d) {
       box(q, 0, 3.92, 0.64, 6.25, 0.22, 1.55, 'cream', 'plaster');
       for (const u of [-2.7, 2.7]) box(q, u, 0.35, 1.2, 0.43, 3.57, 0.35, 'cream', 'plaster');
       if (d >= 1) {
-        panel(q, 0, 0.55, 0.25, 1.35, 2.65, 'board', 'timber');
         window(q, -1.8, 0.9, 1.7, 2.35, d);
         for (const y of [4.18, 5.12]) box(q, 0, y, 1.37, 6.05, 0.09, 0.09);
         for (const u of [-2.9, -1.45, 0, 1.45, 2.9]) box(q, u, 4.13, 1.37, 0.09, 1.05, 0.09);
@@ -610,22 +751,23 @@ function administration(o, f, d) {
     box(o, x, 7.7, -2.0, 0.8, 2.0, 0.75, 'brick', 'brick');
     if (d >= 2) box(o, x, 9.7, -2.0, 0.98, 0.16, 0.95, 'cream', 'plaster');
   }
+  entrance(o, fit, d, true);
 }
 function utility(o, f, d) {
   const c = f.controls,
+    fit = f.siteFit,
     main = f.geometry.outline.slice(0, -1),
     south = f.geometry.components[0].outline.slice(0, -1),
     center = -0.62,
     h = (p) => c.eave + (c.ridge - c.eave) * Math.max(0, 1 - Math.abs(p[0] - center) / 4.8),
     hs = (p) =>
       c.southEave + (c.southRidge - c.southEave) * Math.max(0, 1 - Math.abs(p[0] - 0.75) / 5.0);
-  for (const [p, height, eave, cuts] of [
-    [main, h, c.eave, [center]],
-    [south, hs, c.southEave, [0.75]],
+  for (const [p, height, cuts] of [
+    [main, h, [center]],
+    [south, hs, [0.75]],
   ]) {
-    shell(o, p, null, eave);
-    splitRoof(o, p, 0, cuts, height);
-    openings(o, p, d, [1.08]);
+    splitRoof(o, p, 0, cuts, height, fit.footingBottom, [fit.entry]);
+    openings(o, p, d, [1.08], 3.7, [fit.entry]);
   }
   // Continuous upper east timber band follows the actual sloping mapped side.
   for (let i = 0; i < main.length; i++) {
@@ -704,9 +846,76 @@ function utility(o, f, d) {
       const q = projection(o, -3.48, z, -Math.PI / 2, 1.4, 1.6, 6.4, 7.28, d);
       window(q, 0, 5.0, 0.9, 1.23, d);
     }
+  entrance(o, fit, d);
+}
+function westStair(o, fit, d) {
+  const { leftX, rightX, z0, z1, landingZ, landingWidth, steps, upper, toeY } = fit.westAccess;
+  const low = Math.max(...toeY),
+    run = (z1 - z0) / steps,
+    rise = (upper.sill - low) / steps;
+  const x = (leftX + rightX) / 2,
+    width = rightX - leftX;
+  for (let i = 0; i < steps; i++) {
+    const z = z0 + i * run,
+      y = low + (i + 1) * rise;
+    box(o, x, y - 0.13, z + run / 2, width, 0.13, run, 'board', 'timber');
+    if (i > 0) box(o, x, y - rise - 0.025, z + 0.007, width, rise + 0.025, 0.035, 'timber');
+  }
+  // The sloping strings run down to the yard, with the first tread supported by stone.
+  for (const u of [leftX + 0.065, rightX - 0.065]) {
+    const q = local(o, u, 0, Math.PI / 2);
+    beam(q, [-z0, low - 0.14], [-z1, upper.sill - 0.14], 0.24, 0, 'timber');
+    if (d >= 1) {
+      beam(q, [-z0, low + 0.98], [-z1, upper.sill + 0.98], 0.09, 0, 'timber');
+      for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+        box(o, u, low + (upper.sill - low) * t, z0 + (z1 - z0) * t, 0.09, 0.99, 0.09);
+      }
+    }
+  }
+  box(
+    o,
+    x,
+    fit.footingBottom,
+    z0 + run / 2,
+    width,
+    low + rise - 0.13 - fit.footingBottom,
+    run,
+    'stone',
+    'rubble',
+  );
+  const edge = upper.center[0] + upper.recess;
+  const front = landingZ + landingWidth / 2;
+  box(
+    o,
+    (leftX + edge) / 2,
+    upper.sill - 0.12,
+    (z1 + front) / 2,
+    edge - leftX,
+    0.12,
+    front - z1,
+    'board',
+    'timber',
+  );
+  if (d >= 1) {
+    for (const u of [leftX + 0.065, rightX - 0.065, edge - 0.32]) {
+      box(o, u, upper.sill, front - 0.055, 0.09, 1.0, 0.09);
+    }
+    box(
+      o,
+      (leftX + edge - 0.25) / 2,
+      upper.sill + 0.94,
+      front - 0.055,
+      edge - 0.25 - leftX,
+      0.09,
+      0.09,
+    );
+    box(o, leftX + 0.065, upper.sill + 0.94, (front + z1) / 2, 0.09, 0.09, front - z1);
+  }
+  recessedDoor(o, upper, d, true);
 }
 function residence(o, f, d) {
   const c = f.controls,
+    fit = f.siteFit,
     p = f.geometry.outline.slice(0, -1),
     annex = f.geometry.components[0].outline.slice(0, -1),
     cz = -0.86,
@@ -716,10 +925,10 @@ function residence(o, f, d) {
         ? c.eave + (c.break - c.eave) * Math.max(0, 1 - (dist - 3.4) / 3.5)
         : c.ridge - ((c.ridge - c.break) * dist) / 3.4;
     };
-  shell(o, p, null, c.eave);
-  splitRoof(o, p, 1, [cz - 3.4, cz, cz + 3.4], roof);
-  openings(o, p, d, [1.2]);
-  shell(o, annex, null, c.annexRoof);
+  const doors = [fit.entry, fit.westAccess.upper];
+  splitRoof(o, p, 1, [cz - 3.4, cz, cz + 3.4], roof, fit.footingBottom, doors);
+  openings(o, p, d, [1.2], 3.7, doors);
+  shell(o, annex, fit.footingBottom, c.annexRoof);
   cap(o, annex, () => c.annexRoof, 'roof', 'tile');
   openings(o, annex, d, [1.0]);
   const east = local(o, 9.8, cz, Math.PI / 2);
@@ -744,15 +953,12 @@ function residence(o, f, d) {
     box(o, x, 9.2, cz, 0.73, 2.0, 0.67, 'brick', 'brick');
     if (d >= 2) box(o, x, 11.2, cz, 0.92, 0.15, 0.85, 'brick', 'brick');
   }
-  if (d >= 2) {
-    const west = local(o, -5.2, cz, -Math.PI / 2);
-    for (let i = 0; i < 7; i++)
-      box(west, 0, 0.1 + i * 0.45, 0.3 + i * 0.44, 1.3, 0.15, 0.46, 'stone', 'rubble');
-    box(west, 0, 3.3, 3.15, 1.4, 0.17, 1.0, 'timber');
-  }
+  entrance(o, fit, d);
+  westStair(o, fit, d);
 }
 function boiler(o, f, d) {
   const c = f.controls,
+    fit = f.siteFit,
     p = f.geometry.outline.slice(0, -1),
     b = c.boiler,
     cx = (b.minX + b.maxX) / 2,
@@ -760,12 +966,11 @@ function boiler(o, f, d) {
     roof = (v) => c.eave + (c.ridge - c.eave) * Math.max(0, 1 - Math.abs(v[0] - cx) / half),
     center = clip(clip(p, 0, b.minX, true), 0, b.maxX, false);
   for (const poly of [clip(p, 0, b.minX, false), clip(p, 0, b.maxX, true)]) {
-    shell(o, poly, null, c.wingRoof, 'ochre');
+    shell(o, poly, fit.footingBottom, c.wingRoof, 'ochre');
     cap(o, poly, () => c.wingRoof, 'cream', 'plaster');
     openings(o, poly, d, [1.02], 5.0);
   }
-  shell(o, center, null, c.eave);
-  splitRoof(o, center, 0, [cx], roof);
+  splitRoof(o, center, 0, [cx], roof, fit.footingBottom);
   openings(o, center, d, [1.0], 4.0);
   const north = local(o, cx, b.minZ, Math.PI);
   gable(north, half * 2, c.eave, c.ridge, d);
@@ -787,23 +992,25 @@ function boiler(o, f, d) {
     for (const x of [-5.5, 4.8]) window(north, x, 1.2, 1.05, 1.5, d);
   }
   // Source-specific half-round stair oriel. It is an interpreted attachment, not a mapped independent ring.
-  const arc = [];
-  for (let i = 0; i <= 6; i++) {
-    const a = (Math.PI * i) / 6;
-    arc.push([Math.cos(a) * 1.38, Math.sin(a) * 1.32]);
-  }
+  const arc = [
+    0,
+    Math.PI / 6,
+    Math.PI / 3,
+    Math.PI / 2 - 0.342,
+    Math.PI / 2 + 0.342,
+    (2 * Math.PI) / 3,
+    (5 * Math.PI) / 6,
+    Math.PI,
+  ].map((a) => [Math.cos(a) * 1.38, Math.sin(a) * 1.32]);
   const oriel = local(o, cx, b.minZ, Math.PI);
   cap(oriel, arc, () => 3.8, 'cream', 'plaster');
-  walls(oriel, arc, 0.35, 3.8, 'wall', 'plaster');
+  walls(oriel, arc, fit.footingBottom, 0.35, 'stone', 'rubble');
+  walls(oriel, arc, 0.35, 3.8, 'wall', 'plaster', [{ ...fit.entry, center: [0, arc[3][1]] }]);
   walls(oriel, arc, 3.8, 7.45, 'cream', 'plaster');
   for (let i = 0; i < arc.length - 1; i++) {
     const { q, length } = facade(oriel, arc, i);
     framing(q, length, 3.8, 7.35, d, false);
     if (d >= 1) window(q, 0, 4.6, length * 0.66, 1.53, d);
-  }
-  if (d >= 1) {
-    const q = facade(oriel, arc, 3).q;
-    panel(q, 0, 0.35, 0.075, 0.73, 2.45, 'board', 'timber');
   }
   for (let i = 1; i < arc.length; i++)
     face(
@@ -826,6 +1033,7 @@ function boiler(o, f, d) {
     box(o, x, y, z, w, top - y, w, 'brick', 'brick');
     if (d >= 2) box(o, x, top, z, w + 0.2, 0.17, w + 0.2, 'brick', 'brick');
   }
+  entrance(o, fit, d);
 }
 export function buildKsiazPalmService(o, key, level = 'closeup') {
   const f = frames.get(key),

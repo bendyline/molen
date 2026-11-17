@@ -73,7 +73,12 @@ for (const [id, module] of recipes.filter(([id]) => !selected || selected.includ
     heading: placement.heading,
     elevationMode: placement.datum,
     elevationMeters: placement.elevation,
+    bounds: placement.bounds,
+    minLevel: placement.minLevel,
     replaceFootprint: false,
+    ...(placement.status === 'preview'
+      ? { groundModelY: 0, groundContactReviewed: true, groundContactBasis: placement.note }
+      : {}),
     ...(placement.replaceRoads ? { replaceRoads: placement.replaceRoads } : {}),
     ...(placement.groundCutout ? { groundCutout: placement.groundCutout } : {}),
     ...(placement.buildingCutout ? { buildingCutout: placement.buildingCutout } : {}),
@@ -81,7 +86,9 @@ for (const [id, module] of recipes.filter(([id]) => !selected || selected.includ
     mapGeometryHash: hashEvidenceText(frameBytes),
     mapGeometryLicense: 'ODbL-1.0',
     attribution: '© OpenStreetMap contributors',
+    mapIdentity: placement.mapIdentity,
     source: placement.source,
+    notes: placement.note,
     wikidataId: brief.wikidataId,
     ...(brief.reviewSurface ? { reviewSurface: brief.reviewSurface } : {}),
   };

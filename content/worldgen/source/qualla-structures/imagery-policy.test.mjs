@@ -53,6 +53,28 @@ test('matching published Qualla metadata and original bytes qualify', (t) => {
   f.put(f.image.path, 'replacement pixels');
   assert.ok(f.run().references[0].blockers.includes('original-bytes-unbound'));
 });
+test('an exact public-domain original can cite its publication in a related story', (t) => {
+  const f = fixture(t);
+  const related = { id: 'related', sourcePath: '_c/art/a/b/c/d/related.json' };
+  const references = [{ ...f.reference, publishedStory: related }];
+  f.put(f.story.sourcePath, { media: { images: [] } });
+  f.put(related.sourcePath, { id: related.id, media: { images: [f.image] } });
+  assert.deepEqual(f.run({ references }).references[0].publishedIn, [
+    { storyId: related.id, articlePath: related.sourcePath },
+  ]);
+  assert.equal(f.run({ references }).status, 'passed');
+  for (const overrides of [
+    { id: 'other' },
+    { media: { images: [{ ...f.image, license: 'CC BY 3.0' }] } },
+  ]) {
+    f.put(related.sourcePath, { id: related.id, media: { images: [f.image] }, ...overrides });
+    assert.ok(
+      f
+        .run({ references })
+        .references[0].blockers.includes('not-in-matching-published-qualla-media'),
+    );
+  }
+});
 test('a published PNG hero matches its original metadata without inheriting a stale JPEG', (t) => {
   const f = fixture(t),
     image = { ...f.image, path: '_m/a/b/c/d/story/hero.png', license: 'CC0' },

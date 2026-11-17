@@ -1,0 +1,210 @@
+{
+  "format": "molen/scene@3",
+  "name": "Sanam Chandra Palace independent building ensemble",
+  "seed": "sanam_chandra_palace",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "chaleemongkolasana_residence",
+      "components": {
+        "transform": {
+          "pos": [
+            69.49041908277957,
+            -4.424800000000001,
+            1.0853650125804688
+          ],
+          "rot": [
+            0,
+            -0.999762031205749,
+            0,
+            0.021814695949176666
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.chaleemongkolasana_residence",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bhimarn_prathom_residence",
+      "components": {
+        "transform": {
+          "pos": [
+            -69.83092592099001,
+            -4.407300000000001,
+            -73.13700859539304
+          ],
+          "rot": [
+            0,
+            0.7603464109514171,
+            0,
+            0.6495177713914367
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.bhimarn_prathom_residence",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "thap_khwan_residence",
+      "components": {
+        "transform": {
+          "pos": [
+            35.23435031443939,
+            -2.055300000000001,
+            79.27048822773928
+          ],
+          "rot": [
+            0,
+            -0.10013417152216868,
+            0,
+            0.9949739432234238
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.thap_khwan_residence",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "thewalai_khanet",
+      "components": {
+        "transform": {
+          "pos": [
+            13.204098453415785,
+            -8.2392,
+            -80.58708760081235
+          ],
+          "rot": [
+            0,
+            -0.7150443555508326,
+            0,
+            0.6990790867955461
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.thewalai_khanet",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "yah_leh_monument",
+      "components": {
+        "transform": {
+          "pos": [
+            69.77687721531737,
+            -5.4492,
+            -14.605121305319381
+          ],
+          "rot": [
+            0,
+            1,
+            0,
+            6.123233995736766e-17
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.yah_leh_monument",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      107,
+      190,
+      174
+    ],
+    "lookAt": [
+      0,
+      -4,
+      -40
+    ],
+    "fov": 43
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

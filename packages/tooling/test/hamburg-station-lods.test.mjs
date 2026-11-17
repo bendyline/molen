@@ -70,7 +70,10 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+  layout = await read(source + '/layout.json'),
+  placement = await read(source + '/placement-draft.json'),
+  mappedParts = (await read(source + '/mapped-parts.json')).parts,
+  canopyParts = mappedParts.filter((part) => placement.canopy.mappedFeatureIds.includes(part.id));
 it('pins Hamburg source, signed exact identity, native part heights and actual occupied-floor masks', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),
@@ -96,7 +99,15 @@ it('pins Hamburg source, signed exact identity, native part heights and actual o
   ).toBe(true);
   expect(s.sourceFacts.nativePartFacts.filter((p) => p.properties.height === 45)).toHaveLength(3);
   expect(s.sourceFacts.authoredLevels.mainCrown).toBe(26);
-  expect(p.entry.groundCutout.outlines).toHaveLength(6);
+  expect(canopyParts.map((part) => part.index)).toEqual([198, 199, 201, 232]);
+  expect(placement.aprons).toHaveLength(8);
+  expect(p.entry.groundCutout.outlines).toHaveLength(14);
+  expect(p.entry.groundCutout.outlines.slice(0, 6)).toEqual(layout.groundCutout.outlines);
+  expect(p.entry.groundCutout.outlines.slice(6)).toEqual(
+    placement.aprons.map((apron) =>
+      [...apron.inside, ...apron.edge.toReversed()].map(([x, , z]) => [x, z]),
+    ),
+  );
   expect(s.actualBounds.max[1]).toBe(45);
   expect(
     reviewedSourceMapFrame({
@@ -214,12 +225,13 @@ it('uses the production viewer to replace the whole passenger building and prese
         bb,
       });
     }
-  const owned = layout.nativeMap.ownedParts,
+  // The four Hachmannplatz canopy records are now authored with the passenger building.
+  const owned = [...layout.nativeMap.ownedParts, ...canopyParts.map((part) => part.index)],
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
   expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
-  expect(target).toHaveLength(52);
-  expect(neighbor).toHaveLength(1428);
+  expect(target).toHaveLength(56);
+  expect(neighbor).toHaveLength(1424);
   const asset = await read(installed + '/asset.json'),
     doc = await new NodeIO().readBinary(
       await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
@@ -382,8 +394,8 @@ it('uses the production viewer to replace the whole passenger building and prese
       [...remaining].filter((id) => !expected.has(id)),
       'station components left duplicated',
     ).toEqual([]);
-    for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+    for (const i of layout.nativeMap.preservedNeighbors.filter((i) => !owned.includes(i)))
+      expect([...remaining]).toContain('native-' + i);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();

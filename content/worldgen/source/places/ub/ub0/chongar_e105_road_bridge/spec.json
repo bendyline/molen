@@ -1,0 +1,614 @@
+{
+  "id": "chongar_e105_road_bridge",
+  "planId": "chongar_e105_road_bridge",
+  "collectionId": "chongar_bridges",
+  "assetId": "molen.worldgen.structure.chongar_e105_road_bridge",
+  "title": "Chongar E105 road bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q30889174",
+  "mapFeatureId": "way/838836728",
+  "referenceCoordinate": {
+    "longitude": 34.55253437162281,
+    "latitude": 45.98797688801311
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2023-05-18",
+    "validFrom": "2023-05-18",
+    "validUntil": "2023-05-19"
+  },
+  "nativeAxes": "+X runs southeast from the northwest approach toward the opposite embankment. +Z faces southwest toward open water.",
+  "visualBrief": "The low E105 concrete deck curves through the approach, with two asphalt lanes, light parapets, black and white approach barriers, longitudinal girders and concrete pier caps.",
+  "size": [
+    183.90040588378906,
+    7.110000133514404,
+    15.212999820709229
+  ],
+  "actualBounds": {
+    "min": [
+      -92.1852035522461,
+      -1.5199999809265137,
+      -6.5960001945495605
+    ],
+    "max": [
+      91.71520233154297,
+      5.590000152587891,
+      8.616999626159668
+    ]
+  },
+  "referencePages": [
+    "https://babel.ua/en/news/95488-after-the-attack-on-the-chonhar-bridge-the-occupiers-built-a-pontoon-crossing-satellite-images",
+    "https://commons.wikimedia.org/wiki/File:%D0%9C%D1%96%D1%81%D1%82_%D1%87%D0%B5%D1%80%D0%B5%D0%B7_%D0%A1%D0%B8%D0%B2%D0%B0%D1%88._%D0%9A%D0%9F%D0%9F_%C2%AB%D0%A7%D0%BE%D0%BD%D0%B3%D0%B0%D1%80%C2%BB._(16230417060).jpg",
+    "https://commons.wikimedia.org/wiki/File:%D0%97_%D0%9A%D1%80%D0%B8%D0%BC%D1%83_(16416711262).jpg",
+    "https://www.openstreetmap.org/way/838836728"
+  ],
+  "geometrySource": "Deterministic bridge geometry from independent mapped centerlines, shoreline elevation samples and dated exterior photographs.",
+  "materialMethod": "Metric UVs use shared concrete and painted metal. The railway adds shared ballast and timber. There are no embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub0/chongar_e105_road_bridge/models/bridge-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ub0/chongar_e105_road_bridge/models/bridge-model.mjs",
+    "inputHash": "sha256:1643ac09bebef0b53d45a17c676bc39df918951c1daba35bc5ad1f8c7c6744e8",
+    "export": "buildSkyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed"
+      },
+      "paving": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "name": "Road markings and heads"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Road markings and heads"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "reviewSurface": "water",
+    "anchor": [
+      34.55253437162281,
+      45.98797688801311
+    ],
+    "heading": -0.47325783411781164,
+    "bounds": [
+      34.5513847434264,
+      45.98738314075647,
+      34.55368399981923,
+      45.9884587823415
+    ],
+    "source": "https://www.openstreetmap.org/way/838836728",
+    "notes": "The E105 lines and tile shore establish the curve and both landings. The slim concrete deck and visible girder proportions follow the dated exterior photographs. The two photographed permanent road decks appear together on 18 May 2023.",
+    "orientationPolicy": "approximate-visualization",
+    "mapIdentity": {
+      "maxDistance": 12
+    },
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Absolute sea-level datum in the standard viewer. The deck and approach heights are inferred from photographed proportions, mapped shorelines and sampled Terrarium.",
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 183.4304,
+      "width": 11.6,
+      "outline": [
+        [
+          -91.7152,
+          -6.13
+        ],
+        [
+          -69.7036,
+          -4.6728
+        ],
+        [
+          -58.6641,
+          -3.942
+        ],
+        [
+          -46.2291,
+          -3.783
+        ],
+        [
+          -44.0233,
+          -3.7413
+        ],
+        [
+          -29.9891,
+          -3.476
+        ],
+        [
+          -27.5751,
+          -3.313
+        ],
+        [
+          -20.1773,
+          -3.4381
+        ],
+        [
+          -2.157,
+          -3.743
+        ],
+        [
+          5.5029,
+          -3.9378
+        ],
+        [
+          40.3547,
+          -4.824
+        ],
+        [
+          66.0349,
+          -5.477
+        ],
+        [
+          91.7152,
+          -6.13
+        ],
+        [
+          91.7152,
+          6.13
+        ],
+        [
+          66.0349,
+          6.783
+        ],
+        [
+          40.3547,
+          7.436
+        ],
+        [
+          5.5029,
+          8.3222
+        ],
+        [
+          -2.157,
+          8.517
+        ],
+        [
+          -20.1773,
+          8.8219
+        ],
+        [
+          -27.5751,
+          8.947
+        ],
+        [
+          -29.9891,
+          8.784
+        ],
+        [
+          -44.0233,
+          8.5187
+        ],
+        [
+          -46.2291,
+          8.477
+        ],
+        [
+          -58.6641,
+          8.318
+        ],
+        [
+          -69.7036,
+          7.5872
+        ],
+        [
+          -91.7152,
+          6.13
+        ]
+      ],
+      "deckHeights": [
+        2.06,
+        1.97
+      ],
+      "deckEndpoints": [
+        [
+          -91.7152,
+          0
+        ],
+        [
+          91.7152,
+          0
+        ]
+      ],
+      "deckProfile": [
+        [
+          -91.7152,
+          2.06,
+          0
+        ],
+        [
+          -69.7036,
+          2.58,
+          1.4572
+        ],
+        [
+          -58.6641,
+          3.1689,
+          2.188
+        ],
+        [
+          -46.2291,
+          3.8323,
+          2.347
+        ],
+        [
+          -44.0233,
+          3.95,
+          2.3887
+        ],
+        [
+          -29.9891,
+          4.256,
+          2.654
+        ],
+        [
+          -27.5751,
+          4.3087,
+          2.817
+        ],
+        [
+          -20.1773,
+          4.47,
+          2.6919
+        ],
+        [
+          -2.157,
+          4.4981,
+          2.387
+        ],
+        [
+          5.5029,
+          4.51,
+          2.1922
+        ],
+        [
+          40.3547,
+          4.08,
+          1.306
+        ],
+        [
+          66.0349,
+          3.3,
+          0.653
+        ],
+        [
+          91.7152,
+          1.97,
+          0
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35185210925560,
+        35185567680200,
+        35185900859170
+      ],
+      "includeConnectedApproaches": true,
+      "additionalDecks": [
+        {
+          "length": 118.4157,
+          "width": 8.4,
+          "outline": [
+            [
+              -41.8489,
+              22.5026
+            ],
+            [
+              -41.4489,
+              22.5026
+            ],
+            [
+              -17.9805,
+              21.9058
+            ],
+            [
+              76.1668,
+              19.1455
+            ],
+            [
+              76.5668,
+              19.1455
+            ],
+            [
+              76.5668,
+              27.5455
+            ],
+            [
+              76.1668,
+              27.5455
+            ],
+            [
+              -17.9805,
+              30.3058
+            ],
+            [
+              -41.4489,
+              30.9026
+            ],
+            [
+              -41.8489,
+              30.9026
+            ]
+          ],
+          "bridgeFeatureIds": [
+            35184642243241
+          ]
+        }
+      ]
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c8d386ef76979379299ae0547d6d3f630075f14d4bea353165e4ff03cdbf2b57",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors",
+    "minLevel": 13
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and location evidence is recorded in qa.json.",
+  "limitations": [
+    "Pier spacing, underside profiles and precise clearance are visual reconstructions. Terrain and water levels depend on the host data.",
+    "This is a reconstruction at the dated exterior reference. Present-day use, damage and traffic are outside its scope."
+  ],
+  "mediumFiContext": {
+    "surface": "water",
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        3,
+        0
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pier-and-girder",
+      "position": [
+        -12,
+        2.55,
+        36.14
+      ],
+      "lookAt": [
+        5,
+        2,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "deck-and-approach",
+      "position": [
+        -96.7152,
+        7,
+        5.5
+      ],
+      "lookAt": [
+        -48.715199999999996,
+        3.4,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "channel-side",
+      "position": [
+        39,
+        12,
+        -73.37216
+      ],
+      "lookAt": [
+        5,
+        3.25,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "chongar-e105-road-bridge-skyline",
+      "position": [
+        -80.70937599999999,
+        26,
+        113.72684799999999
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chongar-e105-road-bridge-district",
+      "position": [
+        -80.70937599999999,
+        26,
+        113.72684799999999
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "chongar-e105-road-bridge-street",
+      "position": [
+        -80.70937599999999,
+        26,
+        113.72684799999999
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "chongar-e105-road-bridge-closeup",
+      "position": [
+        -80.70937599999999,
+        26,
+        113.72684799999999
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8794,
+    "vertices": 18654,
+    "materials": 4,
+    "bytes": 779892,
+    "sha256": "sha256:188b5292e4a73fab9ec248875986f221ba54b869801e994032d4bcfeaf3b3d3d"
+  }
+}

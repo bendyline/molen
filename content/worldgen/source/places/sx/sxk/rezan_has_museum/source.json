@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rezan_has_museum",
+  "kind": "static-structure",
+  "title": "Rezan Has Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rezan_has_museum",
+        "output": "assets/places/sx/sxk/rezan_has_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:928885df3b0d870ae238d30ddfcc39ad0d89f2a8a541956eed8d37db7bc4ce09"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-rezan-has-museum",
+        "path": "models/generate-rezan-has-museum.mjs"
+      },
+      {
+        "id": "rezan-has-museum-model",
+        "path": "models/rezan-has-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19019-12282.png",
+      "terrain-sources/terrarium-15-19020-12282.png",
+      "preview.png",
+      "reference-rights/commons-original-museum-arch.json",
+      "native-map/cibali-museum-wing.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

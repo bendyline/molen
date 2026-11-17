@@ -1,9 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-  "sourceHash": "sha256:3bed108692457c378a70257d188bd683440d26e319a0ed597ac48368bb141004",
-  "runtimeHash": "sha256:c4fc3d9edf3b8a69183ff94462ebebd2e37e6cdf263232674e649aabe0f4c0eb",
-  "placementHash": "sha256:1f055136b1f8a7360c8c6b2148ec89272d8f0d718317e14a6cac54304ca4346f",
+  "inputHash": "sha256:af35353af72c80fa95266c589a97c6b66d9afbfb819dd589b9df9fcc677120d2",
+  "sourceHash": "sha256:6c9b9fb2cbfac489ed72d32a47d07a22bbd02f339ff25d53161789e44dbed6f6",
+  "runtimeHash": "sha256:25be9078bed2532acee25d2650fa022b87f6c9cff9d5ce7d6df0db3226fd5c70",
+  "placementHash": "sha256:615765c3e46213508a2b2601c7c0285571c6d6bb01cd5830d416a9ece5c1110c",
   "entry": {
     "id": "ksiaz.zamkowy-hotel",
     "title": "Hotel Zamkowy at Książ",
@@ -18,9 +19,87 @@
     "orientation": "fixed",
     "replaceFootprint": false,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/236837151",
-    "note": "Separate source-specific component of ksiaz_castle_and_park_complex, identified by OSM way/236837151. Own ring and signed forecourt axis reconstruct the mapped plan; vertical datum, terrain and facade fit remain unapproved. Draft never renders. No independent Wikidata ID or broad name match is invented."
+    "note": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade.",
+    "terrainReference": {
+      "anchor": [
+        16.29354320732098,
+        50.84331071927903
+      ],
+      "modelHeight": -0.34,
+      "basis": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade."
+    },
+    "bounds": [
+      16.293252188489078,
+      50.84313501749811,
+      16.29370754224942,
+      50.84342995845332
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.486782,
+          -11.275578
+        ],
+        [
+          6.90482,
+          -11.240633
+        ],
+        [
+          6.540476,
+          11.400863
+        ],
+        [
+          -6.741892,
+          11.212245
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps outline for the former tax office at Piastów Śląskich 5."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          6.676001,
+          1.164916
+        ],
+        [
+          6.703917,
+          -1.164916
+        ],
+        [
+          8.213809,
+          -1.146825
+        ],
+        [
+          8.185893,
+          1.183008
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            6.4,
+            -10.9
+          ],
+          [
+            13,
+            -10.9
+          ],
+          [
+            13,
+            10.9
+          ],
+          [
+            6.4,
+            10.9
+          ]
+        ]
+      ],
+      "basis": "The model supplies the ground below the entrance steps. Clear inferred parking pavement between the principal façade and the outer approach while keeping the mapped service roads."
+    }
   },
-  "review": "Inactive OSM-based site-component draft. Appearance review does not approve geographic placement."
+  "review": "The NID address and labeled aerial identify the building. The exact map footprint, approach terrain and roof orientation were verified in the Earth viewer."
 }

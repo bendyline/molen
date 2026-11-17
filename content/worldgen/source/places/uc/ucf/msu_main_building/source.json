@@ -1,0 +1,43 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.msu_main_building",
+  "kind": "static-structure",
+  "title": "Moscow State University main building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.msu_main_building",
+        "output": "assets/places/uc/ucf/msu_main_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8a3d4a64beec520a76fb02e5656517e3f136284fa5db36a4a190b34aaa83f35d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "msu_main_building",
+        "path": "models/msu-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "map-frame.json",
+      "README.md",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.png",
+      "preview.png"
+    ]
+  }
+}

@@ -1,12 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.watts_towers",
-  "inputHash": "sha256:7caf935ccacb92648caa2ba480876a33e24e0e80ddff288a373b18d82cba4a2c",
-  "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
+  "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+  "sourceHash": "sha256:8e9de67dcc51fd32f35ac2f1f5decbf13e38dea4c1d56cac701c946da1c2b5a2",
+  "runtimeHash": "sha256:aa35af051a866bcbd0428d7cc5d8851f76915ed25c28de2aa5433ad7927f0111",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:792d7b179926e76114cf7d18f337c1a581a3814bbe24e7858b84feb527c9bd81",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
-  "placementHash": "sha256:c0d85d971a5aa131b0bfea41b24ee86619a28ac81b019db01d4d0eadee101510",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:296fac9d32c7d56e65f0e10df957efa70bf5dacdec42a04c1ff6673c35db9ad4",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -20,7 +25,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:a7bed4c87ea2454cc57451ed1d003bccb115706de64cd1fc8b4257bf460bd14c",
+      "hash": "sha256:a741e0e2c204065352ac9adee2938ad8c4239881edbed8a54c30f986a311724b",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -30,54 +35,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:cd95232982de2c02b1d634d96b3ebf413ca11537f60982a972ba98781a4ff280",
+      "hash": "sha256:f747cb860dfd8196793abc7b2ab654ccaeaf626282d7255f42c050e3a80b65b8",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -87,54 +116,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:16033513eb6a6c0bdea28231e472d42b3dd0bf184712b85dddcee9abab29412c",
+      "hash": "sha256:f25c31df38019b3bd26c17a8d642dd673db1951d738607949f62a1db24b40b8d",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -144,54 +197,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:dc73fe02475a4ed6bf38a7cd446c85a2a656ecec4d1bee471d03239742820118",
+      "hash": "sha256:823f1bd7b468e113f442b0b4d8d80f92c2c0331c3f3013a9249fafcdffa8d15c",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -201,54 +278,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/street-ensemble.png",
-      "hash": "sha256:1a9078af352e1ce4035295843225dfcb3b04291b9db259d7faf09823f7d8d444",
+      "hash": "sha256:acd507d1d4581633b740070e03161c062432324fef49626dfa514d3a1b35a715",
       "camera": {
         "name": "street-ensemble",
         "position": [
@@ -267,54 +368,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/north-ensemble.png",
-      "hash": "sha256:e5362288192a3205a4a32005f49d38be156f1d2eccea7329fcfe24e9af7418f8",
+      "hash": "sha256:0e9decd0c6b44b6d7dd15ad3912c494527bc99796cdc31debf1a9d95810caf6f",
       "camera": {
         "name": "north-ensemble",
         "position": [
@@ -333,54 +458,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/west-loops.png",
-      "hash": "sha256:5f5f6942dfd663dcb457d1e888906dad82ffd8420dca87e59a5a7f843fd959ed",
+      "hash": "sha256:2046a347bf9e70c172b2f567962a0de67fd4483aba0f89ce2d76f5a6ebd93744",
       "camera": {
         "name": "west-loops",
         "position": [
@@ -399,54 +548,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
-        "draws": 5,
-        "renderedTriangles": 1079670
+        "draws": 4,
+        "renderedTriangles": 1037822
       }
     },
     {
       "path": "shots/shared/center-east-hearts.png",
-      "hash": "sha256:2d6ae2d5e8556f50d60e9c5ebd66388a0fea01bf874cb9a49388528127b2dedd",
+      "hash": "sha256:bca210e20fd0acd2e2ba66819fd39e24f51b47ee04f49ceddf364ffc34274cac",
       "camera": {
         "name": "center-east-hearts",
         "position": [
@@ -465,54 +638,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/tower-bases-mosaic.png",
-      "hash": "sha256:d21e22faf54eb7dc7ae7030440ebf51a6568f0899124cb75fdb88f4ffbbcb742",
+      "hash": "sha256:fd556693607b69c3439c3a0337ab86a96a955305ba8ecaedd67e4c3e5eadd168",
       "camera": {
         "name": "tower-bases-mosaic",
         "position": [
@@ -531,54 +728,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/gazebo-and-fountain.png",
-      "hash": "sha256:ba92b4ff83fa4344333de490f756083c10cdfe9c366bbe9dbb3eb13710549790",
+      "hash": "sha256:e807b028171eb5b7c77ecb57fc731504ddbc7d088de8df142d9a7402f603c963",
       "camera": {
         "name": "gazebo-and-fountain",
         "position": [
@@ -597,54 +818,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
-        "draws": 5,
-        "renderedTriangles": 1079670
+        "draws": 4,
+        "renderedTriangles": 1037822
       }
     },
     {
       "path": "shots/shared/gazebo-spire.png",
-      "hash": "sha256:e9078ab8b7f6a36cc30c306c8186c3c5266058f0bdc39fc72ec07662f9036977",
+      "hash": "sha256:e470d446ed08736937c51d755b3ba81fb0ef135ab9e3e6868cd51c7347d8b5f4",
       "camera": {
         "name": "gazebo-spire",
         "position": [
@@ -663,54 +908,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/ship-and-masts.png",
-      "hash": "sha256:3f2392ef27a816e5d911fa1165b3042818cfe724e6604a374afea26572b6416d",
+      "hash": "sha256:8f663cfaf1f152e0476bd2e05e3b39107e1ebfead3c5b6a1101233eacb2161b7",
       "camera": {
         "name": "ship-and-masts",
         "position": [
@@ -729,54 +998,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/street-wall-and-canopy.png",
-      "hash": "sha256:a97b33523fc97b9c2b326ee19b4f0e4fc31141245e0795cca006755bd416fc63",
+      "hash": "sha256:4dfeb7a24374143d1ae8ab42c41a711422d2f6e036bf06e58f97f3d19326562f",
       "camera": {
         "name": "street-wall-and-canopy",
         "position": [
@@ -795,54 +1088,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
-        "draws": 5,
-        "renderedTriangles": 1079670
+        "draws": 4,
+        "renderedTriangles": 1037822
       }
     },
     {
       "path": "shots/shared/aerial-site.png",
-      "hash": "sha256:6d63d5541cf92b0fe829d8f088eb1f7e66aca2f7a8d771561d0c5e6a5282b1b1",
+      "hash": "sha256:0966b5fde14acbc1df710718d82abab91a377d736c556f0c4664c0bdbe9acbe8",
       "camera": {
         "name": "aerial-site",
         "position": [
@@ -861,54 +1178,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:e646272c0c949efb711bd6a6249f3c7572245719551c5f743d7521d8b54f207a",
+      "hash": "sha256:c3f4c86f02a59a1e4d193d6b6f516ee2aa79664f74b68b1b906ff2715fbf18e2",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -927,54 +1268,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 5,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:11b3c122d248abfefb7d4dc8e4f7304317479f1621f16b401297876df859429b",
+      "hash": "sha256:75b2d8c8046d740c1a8b107575038fd709470c7ba9142d9af85e2330ddfa3591",
       "camera": {
         "name": "placement",
         "placement": true
@@ -984,49 +1349,73 @@
         "mode": "geographic-flat-terrain",
         "placementId": "watts.towers",
         "position": [
+          -64.34783926978707,
           0,
-          0,
-          0
+          -64.36979618202895
         ],
-        "heading": -0.015039326521494084,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 1079668,
+        "triangles": 1079676,
         "bounds": {
           "min": [
-            -22.280746854010296,
+            -22.27701560035348,
             0,
-            -16.66660808804811
+            -16.652289773337543
           ],
           "max": [
-            20.18926477836796,
-            30.33750343322754,
-            5.522911195780145
+            19.870674218982458,
+            30.604644775390625,
+            5.520294760353863
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -22.27701488735055,
+            0,
+            -16.65229013265105
+          ],
+          "max": [
+            19.87067336147248,
+            30.604644775390625,
+            5.5202919879862025
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d8881ff2-70a9-4c1d-a180-dbba52ec8955",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "af51c5eb-fe1b-4730-bbd0-b8aa97dde67a"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "262f2a72-14d7-4016-b310-fc339b50c1aa",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2c4e4d13-36f0-43cf-9b1d-20267bdfb8fa"
         },
         "loads": [
           "molen.worldgen.structure.watts_towers"
         ],
         "selectionBounds": [
-          -118.24242719656768,
-          33.937571826937365,
-          -118.23965527073973,
-          33.93987151406463
+          -118.241737981457,
+          33.93815007650047,
+          -118.24035201854304,
+          33.93929992001929
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "watts.towers",
+            "coordinate": [
+              -118.24104123365372,
+              33.938721678265445
+            ],
+            "height": 0.304769
+          }
         ],
         "visibleStructures": [
           "watts.towers"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.plaster_lime": 1
         },
         "draws": 6,
-        "renderedTriangles": 1079670
+        "renderedTriangles": 1079678
       }
     }
   ],

@@ -163,21 +163,30 @@ for (const model of ksiazPalmModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: 'preview-proposal',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: frame.siteFit.contact.modelHeight,
+      groundContactReviewed: true,
+      groundContactBasis: frame.reconstruction.registration,
+      terrainReference: {
+        anchor: frame.siteFit.contact.anchor,
+        modelHeight: frame.siteFit.contact.modelHeight,
+        basis: frame.reconstruction.registration,
+      },
+      bounds: frame.siteFit.bounds,
+      buildingCutout: frame.siteFit.buildingCutout,
+      groundCutout: frame.siteFit.groundCutout,
       replaceFootprint: false,
-      featureIds: [`relation/${model.way}`],
+      featureIds: frame.siteFit.evidence.mappedFeatures,
       source: frame.sourceUrl,
       mapGeometrySource: 'map-frame.json',
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own connected Palm House multipolygon, two true courtyard holes and main entrance. Central facade direction is supported by mapped entrance and operator exterior photos. Other facade/roof subdivisions and shared terrain datum remain estimated; activation pending geographic review.',
+      notes: frame.reconstruction.registration,
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -190,11 +199,9 @@ for (const model of ksiazPalmModels.filter(
     sourceLicense:
       'Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.',
     limitations: [
-      'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
-      'Own Palm House outer ring and both courtyard holes. Central barrel hall and porch follow operator photos; roof subdivisions, pane counts, unseen facades and common datum are original interpretations.',
-      'No independent Wikidata identifier asserted. Own named relation supplies identity; actual facade and terrain fit remain pending.',
-      'Primary operator gallery has no confirmed capture dates; complete current alteration state is unconfirmed.',
-      'Connected glasshouse exterior only. No unique textures, copied photos, interiors, flora/fauna or garden reconstruction. Separate greenhouses and service buildings remain pending. Terrain fit, streaming and physical-device timing remain pending.',
+      'This model covers the connected glasshouse exteriors and their entrance, with the separate greenhouses, service buildings and gardens represented in the estate inventory.',
+      'The barrel hall and porch follow operator photos. The rear roof subdivisions, pane counts and entrance details are reconstructions.',
+      'The green-tinted glazing represents the glass from outside. Interior plants and rooms are outside this model.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -286,25 +293,25 @@ for (const model of ksiazPalmModels.filter(
   const readme =
     '# ' +
     model.title +
-    '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
+    '\n\n![Shared Molen preview](preview.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the terrain fit and viewer captures.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own Palm House multipolygon retains both courtyards and mapped entrance. Central brick piers, barrel roof, lantern and porch interpreted from primary operator photos; surrounding single-storey glasshouses follow mapped outer/inner rings. Published15m central height is retained to the lantern apex. Roof partitions, pane counts, unseen elevations and real terrain fit remain pending.\n\n' +
+    'The single-storey glasshouses follow the mapped exterior and the two courtyard rings. Brick piers, the curved roof, lantern and porch follow the operator photographs. The lantern rises 15 m above the entrance datum. The fitted landing joins the mapped footway.\n\n' +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/generate-ksiaz-palm-house.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +
     mesh.triangleCount +
-    ' triangles;' +
+    ' triangles, ' +
     bytes.length +
-    ' source bytes;' +
+    ' source bytes and ' +
     mesh.groups.length +
-    ' merged material groups;no embedded images. Three existing shared brick, lime plaster and painted metal graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Two courtyards remain truly open; no embedded images. Runtime LODs are separate generated outputs.\n\n' +
+    ' merged material groups. Brick, plaster, painted metal and sandstone use shared material graphs with metric UVs. The glass is tinted and all four runtime detail levels are generated separately.\n\n' +
     'Source hash: ' +
     hash(bytes) +
     '\n';

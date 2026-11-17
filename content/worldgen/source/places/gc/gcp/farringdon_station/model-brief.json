@@ -68,9 +68,9 @@
     }
   },
   "exportLabel": "Molen original complete Farringdon surface interchange and both Elizabeth-line entrance hosts source",
-  "expectedDraftMasterHash": "sha256:df7400caeb3a25b306bb3e615d8b2e884c9d70a1d313e0f3d06dc5eaa5fab48d",
-  "visualBrief": "Complete Farringdon aboveground interchange exterior:both whole mapped main arched platform-canopy sections andwestern glazed long roof,heritage Cowcross headhouse/annexes andprojecting glass/metal canopy,modern west mainline ticket hall/lifts,Bloom western Elizabeth-line entrance host andthe separate Kaleidoscope eastern entrance host nearLindseyStreet/LongLane. Preserve theindependent cityblocks,SmithfieldMarket halls,Barbican station,roads/alleys andintervening ground. No underground platform/tunnel interior,trains,people,signs,roundels,logos or obsoleteconstruction pit.",
-  "heightPolicy": "Maplayer2 doesnot establish surveyed raillevels. Main barrel8m eaves/12m crown,west14m eaves/20m crown,heritage8m andsecondary5m canopies areexplicit picture/map interpretations. WesternBloom height34m isphoto-estimated because nativeheightisabsent;native easternhost23m isretained. Host associations arephysicalpicture/map fits,not separately Wikidata-tagged identities. Exact undergroundstation interiors andheritage lettering areomitted. Maincanopy8/12m,westgabledroof14/20m,heritage8m,modernhall14m,Bloomestimate34m,easternnative23m. One unchanged standard global field sample directly outside the heritage Cowcross entry[40,-128],10.0307664m,defines commonY=0. The previous lower courtyard reference is superseded. Bloom/Kaleidoscope fixed source offsets preserve their original approximate absolute entry grades;no per-part runtime offsets or altered field.",
+  "expectedDraftMasterHash": "sha256:c7e56560e77f12024a49a3345ccb94f157c2b1d053887a3fe7285c8b0196dcb8",
+  "visualBrief": "Farringdon’s two glazed canopy families, Cowcross heritage entrance and modern mainline hall, low western ticket hall and Bloom offices, and the complete Kaleidoscope eastern host including its Long Lane corner wing.",
+  "heightPolicy": "One native terrain datum anchors the signed complete above-ground ensemble. Facade plinths follow locally sampled host grade. Portals are level across their opening and their granite approach strips taper to native paving. The continuous upper facades, paired canopy roofs and platform corridor use their original heights.",
   "nativeAxes": "+X NNW alongmainline canopies awayfromCowcrossStreet; -X SSE towardCowcross/Bloom westernentry; +Z ENE towardTurnmillStreet/remoteKaleidoscope easternentry; -Z WSW towardFarringdonRoad; +Yup.",
   "sourceFacts": {
     "nativePartFacts": [
@@ -81,6 +81,14 @@
           "sort_rank": 400,
           "kind": "building",
           "height": 20
+        }
+      },
+      {
+        "index": 1466,
+        "id": 35184514410228,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building"
         }
       },
       {
@@ -162,6 +170,33 @@
         }
       },
       {
+        "index": 1867,
+        "id": 35184940218242,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 1868,
+        "id": 35184940218243,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 1869,
+        "id": 35184940218256,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
         "index": 1870,
         "id": 35184940218358,
         "properties": {
@@ -212,6 +247,15 @@
           "kind": "building",
           "height": 23
         }
+      },
+      {
+        "index": 1966,
+        "id": 35185299446285,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 23
+        }
       }
     ],
     "ownedNativeParts": 15,
@@ -236,14 +280,74 @@
       -128
     ],
     "terrainTiles": 4,
-    "occupiedMasks": 3
+    "occupiedMasks": 3,
+    "entranceThresholds": [
+      {
+        "name": "heritage",
+        "heading": 2.012658284323024,
+        "point": [
+          42.77792115802589,
+          -127.23729978832515
+        ],
+        "thresholdY": 0.865257,
+        "centerNativeApproachY": 0.473705,
+        "depth": 1.35,
+        "width": 3.5
+      },
+      {
+        "name": "modern",
+        "heading": 2.012658284323024,
+        "point": [
+          40.10136198076076,
+          -158.0626292622699
+        ],
+        "thresholdY": -1.675363,
+        "centerNativeApproachY": -2.017411,
+        "depth": 1.5,
+        "width": 5.6
+      },
+      {
+        "name": "west",
+        "heading": 2.012658284323024,
+        "point": [
+          24.840127344045452,
+          -131.99908681412487
+        ],
+        "thresholdY": -1.63847,
+        "centerNativeApproachY": -1.69847,
+        "depth": 2.2,
+        "width": 8.4
+      },
+      {
+        "name": "bloom",
+        "heading": 2.012658284323024,
+        "point": [
+          26.189444833329727,
+          -174.5497918278404
+        ],
+        "thresholdY": -3.09477,
+        "centerNativeApproachY": -3.15477,
+        "depth": 1.2,
+        "width": 4.5
+      },
+      {
+        "name": "east",
+        "heading": 2.012658284323024,
+        "point": [
+          -173.58515316164366,
+          172.22367636782613
+        ],
+        "thresholdY": 7.159475,
+        "centerNativeApproachY": 7.099475,
+        "depth": 2,
+        "width": 7.2
+      }
+    ]
   },
   "materialMethod": "Seven existing shared256px graphs:stone_limestone,clay_fired,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane;one palette roof group forlowgreenplanting. Atmost8mergedsemantic groups,metricUVs,linearcolors;zero embedded/private images. Only actual windows andglazed canopies usewindow graph;opaque stone,claypanels,steel androofs keepsemantics.",
   "limitations": [
-    "Complete Farringdon aboveground interchange exterior:both whole mapped main arched platform-canopy sections andwestern glazed long roof,heritage Cowcross headhouse/annexes andprojecting glass/metal canopy,modern west mainline ticket hall/lifts,Bloom western Elizabeth-line entrance host andthe separate Kaleidoscope eastern entrance host nearLindseyStreet/LongLane. Preserve theindependent cityblocks,SmithfieldMarket halls,Barbican station,roads/alleys andintervening ground. No underground platform/tunnel interior,trains,people,signs,roundels,logos or obsoleteconstruction pit.",
-    "Maplayer2 doesnot establish surveyed raillevels. Main barrel8m eaves/12m crown,west14m eaves/20m crown,heritage8m andsecondary5m canopies areexplicit picture/map interpretations. WesternBloom height34m isphoto-estimated because nativeheightisabsent;native easternhost23m isretained. Host associations arephysicalpicture/map fits,not separately Wikidata-tagged identities. Exact undergroundstation interiors andheritage lettering areomitted. Main canopy8m eaves/12m crown andwestglazed gable14/20m use one consistent heightfunction forpanes/ribs,clippedtotheactualnative plans. Heritage8m,modernhall14m,lowcanopies5m,lifts8m;Bloom16mred/28mpale/34mglazedcrown estimate,Kaleidoscope5mground/19.5moffice/23mnativecrown. One unchanged standard global field sample outside Cowcross at[30.036685,-140.665552],7.685114543304351m,defines commonY=0. Bloom andKaleidoscope sourcegrades are fixed offsets -0.7193549093385991/7.202273056283683m fromtheir own outsidefield samples;no per-part runtime host offsets orflattening. Floors are their grade+.65m;exactthresholds unsurveyed.",
-    "Four ordinary exterior pictures andcurrentPMTiles. The2012 aerial establishesmaincanopy family,not currentBloomconstructionstatus;obsoletepit omitted. Bloom andeastentrance host associations,hidden/rearfacades,floor inventories,canopy profiles andframe counts are explicit medium-fi interpretations. No copied facadeetching/signs. Exact rail-platform grades,thresholds,stairs andnavigable undergroundinteriors areunverified. Physical laptop/phone timing andnumericalLODerrors remainunmeasured.",
-    "Seven existing shared256px graphs:stone_limestone,clay_fired,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane;one palette roof group forlowgreenplanting. Atmost8mergedsemantic groups,metricUVs,linearcolors;zero embedded/private images. Only actual windows andglazed canopies usewindow graph;opaque stone,claypanels,steel androofs keepsemantics. Skyline preservesboth wholecanopyfamilies,heritage/modernhalls andbothcompleteheight-steppedentrancehosts. Districtaddscoarsepanes andribs;streetaddsrealrecesses andsampledstructuralframes;closeupaddsfullwindowbays,canopyribs/supports,redheritageframes,cornicebrackets,hostcoloredinfills andfins. Detailedmaster separatelyrefines roofmeshes,frames,seams andreveals."
+    "The short thresholds, aprons and lobby recesses approximate current street grades using the standard host terrain and PMTiles pavement. Canopy profiles and underground rail levels are visual estimates.",
+    "The western low ticket hall roof and Bloom height are inferred from current street and aerial photographs. The model shows the above-ground building envelopes and recessed doors. Platform interiors, escalators, train service and street furnishings use the host scene."
   ],
   "references": [
     {
@@ -269,6 +373,11 @@
     {
       "url": "https://build.protomaps.com/20261031.pmtiles",
       "observed": "Complete Farringdon aboveground interchange exterior:both whole mapped main arched platform-canopy sections andwestern glazed long roof,heritage Cowcross headhouse/annexes andprojecting glass/metal canopy,modern west mainline ticket hall/lifts,Bloom western Elizabeth-line entrance host andthe separate Kaleidoscope eastern entrance host nearLindseyStreet/LongLane. Preserve theindependent cityblocks,SmithfieldMarket halls,Barbican station,roads/alleys andintervening ground. No underground platform/tunnel interior,trains,people,signs,roundels,logos or obsoleteconstruction pit. Maplayer2 doesnot establish surveyed raillevels. Main barrel8m eaves/12m crown,west14m eaves/20m crown,heritage8m andsecondary5m canopies areexplicit picture/map interpretations. WesternBloom height34m isphoto-estimated because nativeheightisabsent;native easternhost23m isretained. Host associations arephysicalpicture/map fits,not separately Wikidata-tagged identities. Exact undergroundstation interiors andheritage lettering areomitted."
+    },
+    {
+      "url": "https://www.jra.co.uk/projects/bloom-clerkenwell",
+      "imageUrl": "https://cdn.sanity.io/images/99h1sfez/production/be43e3f257f7b946438a816785027b0a8806c335-3840x2160.jpg",
+      "observed": "Current oblique aerial establishes the lower hall volume behind the Cowcross frontage next to the stepped Bloom office roof. The PMTiles Cowcross train entrance point sits on the low hall frontage."
     }
   ],
   "cameras": [

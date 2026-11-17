@@ -9,7 +9,7 @@ import { structureSourcePath } from './structure-source-paths.mjs';
 
 const mapBytes = readFileSync(structureSourcePath('st_agathas_tower', 'map-frame.json'));
 const map = JSON.parse(mapBytes),
-  red = [0.61, 0.22, 0.2],
+  red = [0.61, 0.17, 0.17],
   pale = [0.75, 0.58, 0.47],
   limestone = [0.72, 0.65, 0.47],
   dark = [0.065, 0.068, 0.062];
@@ -147,12 +147,12 @@ function wall(out, width, y0, y1, openings = [], slot = 'plaster', color = red) 
     );
   }
 }
-function cordon(out, ring, y) {
+function cordon(out, ring, y, segments = 8) {
   for (let i = 0; i < ring.length; i++) {
     const { out: o, width: w } = edgeFrame(out, ring[i], ring[(i + 1) % ring.length]);
-    for (let k = 0; k < 8; k++) {
-      const a = -Math.PI / 2 + (k * Math.PI) / 8,
-        b = a + Math.PI / 8;
+    for (let k = 0; k < segments; k++) {
+      const a = -Math.PI / 2 + (k * Math.PI) / segments,
+        b = a + Math.PI / segments;
       face(
         o,
         'plaster',
@@ -167,15 +167,20 @@ function cordon(out, ring, y) {
     }
   }
 }
-function mainBody(out) {
+function mainBody(out, level = 'master') {
+  const skyline = level === 'skyline';
   loft(
     out,
     'plaster',
-    [outline.map(([x, z]) => [x, 0, z]), upper.map(([x, z]) => [x, 3.16, z])],
+    [
+      outline.map(([x, z]) => [x, -0.65, z]),
+      outline.map(([x, z]) => [x, 0, z]),
+      upper.map(([x, z]) => [x, 3.16, z]),
+    ],
     red,
     { cap: false },
   );
-  cordon(out, upper, 3.16);
+  if (!skyline) cordon(out, upper, 3.16, level === 'master' ? 8 : 2);
   for (let i = 0; i < upper.length; i++) {
     const a = upper[i],
       b = upper[(i + 1) % upper.length],
@@ -183,6 +188,10 @@ function mainBody(out) {
     let holes = [];
     if (i === 7) {
       const door = 2.2608 * 0.965 - (a[0] + b[0]) / 2;
+      if (skyline) {
+        wall(o, w, 3.16, 9.4, [{ x: door, w: 1.34, y: 3.3, h: 2.05, door: true }]);
+        continue;
+      }
       facade(
         o,
         'plaster',
@@ -205,17 +214,20 @@ function mainBody(out) {
         ],
         red,
       );
-      box(o, 'limestone_raw', [door - 0.68, 6.48, 0.015], [door + 0.68, 7.1, 0.052], limestone);
-      for (let row = 0; row < 6; row++)
-        for (let col = 0; col < 12; col++)
-          box(
-            o,
-            'shadow',
-            [door - 0.52 + col * 0.086, 6.55 + row * 0.079, 0.053],
-            [door - 0.48 + col * 0.086, 6.57 + row * 0.079, 0.056],
-            [0.28, 0.27, 0.21],
-          );
-      box(o, 'limestone_raw', [door - 0.3, 5.89, 0.01], [door + 0.3, 6.08, 0.054], limestone);
+      if (!skyline) {
+        box(o, 'limestone_raw', [door - 0.68, 6.48, 0.015], [door + 0.68, 7.1, 0.052], limestone);
+        box(o, 'limestone_raw', [door - 0.3, 5.89, 0.01], [door + 0.3, 6.08, 0.054], limestone);
+      }
+      if (level === 'master')
+        for (let row = 0; row < 6; row++)
+          for (let col = 0; col < 12; col++)
+            box(
+              o,
+              'shadow',
+              [door - 0.52 + col * 0.086, 6.55 + row * 0.079, 0.053],
+              [door - 0.48 + col * 0.086, 6.57 + row * 0.079, 0.056],
+              [0.28, 0.27, 0.21],
+            );
       continue;
     }
     if (i === 17)
@@ -230,7 +242,7 @@ function mainBody(out) {
         { x: 0, w: 0.19, y: 4.15, h: 0.68 },
         { x: 0, w: 0.15, y: 7.38, h: 0.42 },
       ];
-    wall(o, w, 3.3, 9.4, holes);
+    wall(o, w, skyline ? 3.16 : 3.3, 9.4, skyline ? [] : holes);
   }
   // The roof is a single gun platform, bounded by the documented two-foot parapet.
   box(out, 'plaster', [-7.42, 9.28, -7.98], [7.3, 9.4, 8.05], [0.7, 0.58, 0.48]);
@@ -254,7 +266,7 @@ function mainBody(out) {
   ]) {
     const { out: o, width: w } = edgeFrame(out, a, b);
     box(o, 'plaster', [-w / 2, 9.4, -0.38], [w / 2, 10.01, 0.04], red);
-    box(o, 'plaster', [-w / 2, 9.97, -0.41], [w / 2, 10.05, 0.08], red);
+    if (!skyline) box(o, 'plaster', [-w / 2, 9.97, -0.41], [w / 2, 10.05, 0.08], red);
   }
 }
 function triangularPrism(out, points, depth, color) {
@@ -312,7 +324,8 @@ const turrets = [
   { x: 7.02, z: 7.05, w: 2.73, d: 3.49, sx: 1, sz: 1 },
   { x: 6.93, z: -6.86, w: 4.03, d: 3.71, sx: 1, sz: -1 },
 ];
-function turret(out, t) {
+function turret(out, t, level = 'master') {
+  const skyline = level === 'skyline';
   const o = transform(out, 0, [t.x, 0, t.z]);
   const rect = [
     [-t.w / 2, -t.d / 2],
@@ -320,7 +333,7 @@ function turret(out, t) {
     [t.w / 2, t.d / 2],
     [t.w / 2, -t.d / 2],
   ];
-  cordon(o, rect, 9.37);
+  if (!skyline) cordon(o, rect, 9.37, level === 'master' ? 8 : 2);
   for (let i = 0; i < 4; i++) {
     const a = rect[i],
       b = rect[(i + 1) % 4],
@@ -330,16 +343,21 @@ function turret(out, t) {
     wall(
       q,
       w,
-      9.43,
-      12.1,
-      exterior
-        ? [{ x: 0, w: 0.46, y: 10.58, h: 0.51 }]
-        : door
-          ? [{ x: 0, w: 0.78, y: 9.43, h: 1.93, door: true }]
-          : [{ x: 0, w: 0.15, y: 9.67, h: 0.65 }],
+      skyline ? 9.4 : 9.43,
+      skyline ? 12.18 : 12.1,
+      skyline
+        ? []
+        : exterior
+          ? [{ x: 0, w: 0.46, y: 10.58, h: 0.51 }]
+          : level !== 'master'
+            ? []
+            : door
+              ? [{ x: 0, w: 0.78, y: 9.43, h: 1.93, door: true }]
+              : [{ x: 0, w: 0.15, y: 9.67, h: 0.65 }],
     );
-    box(q, 'plaster', [-w / 2, 12.1, -0.25], [w / 2, 12.18, 0.035], red);
-    const n = Math.max(3, Math.round(w / 0.88));
+    if (!skyline) box(q, 'plaster', [-w / 2, 12.1, -0.25], [w / 2, 12.18, 0.035], red);
+    if (skyline && !exterior) continue;
+    const n = skyline ? 2 : Math.max(3, Math.round(w / (level === 'master' ? 0.88 : 1.02)));
     for (let k = 0; k < n; k++) merlon(q, -w / 2 + 0.22 + (k * (w - 0.44)) / (n - 1), 12.18, 0.43);
   }
   box(
@@ -350,18 +368,20 @@ function turret(out, t) {
     [0.6, 0.44, 0.34],
   );
 }
-function entrance(out) {
+function entrance(out, level = 'master') {
   const x = 2.2608 * 0.965,
     z = 8.3059 * 0.965,
     top = 3.3,
+    foot = 0.38,
     gap = 2.3,
     run = 6.16,
-    n = 18;
+    n = level === 'skyline' ? 8 : 18;
   const o = transform(out, 0, [x, 0, z]);
   for (let i = 0; i < n; i++) {
     const near = gap + run - ((i + 1) * run) / n,
       far = gap + run - (i * run) / n;
-    box(o, 'limestone_raw', [-0.82, 0, near], [0.82, (top * (i + 1)) / n, far], limestone);
+    const tread = foot + ((top - foot) * (i + 1)) / n;
+    box(o, 'limestone_raw', [-0.82, -0.2, near], [0.82, tread, far], limestone);
   }
   for (const s of [-1, 1]) {
     const sx = s * 1.0;
@@ -371,40 +391,44 @@ function entrance(out) {
       'limestone_raw',
       [
         [
-          [sx - 0.16, 0, gap],
-          [sx - 0.16, 0, gap + run],
-          [sx + 0.16, 0, gap + run],
-          [sx + 0.16, 0, gap],
+          [sx - 0.16, -0.2, gap],
+          [sx - 0.16, -0.2, gap + run],
+          [sx + 0.16, -0.2, gap + run],
+          [sx + 0.16, -0.2, gap],
         ],
         [
           [sx - 0.16, top + 0.75, gap],
-          [sx - 0.16, 0.75, gap + run],
-          [sx + 0.16, 0.75, gap + run],
+          [sx - 0.16, foot + 0.75, gap + run],
+          [sx + 0.16, foot + 0.75, gap + run],
           [sx + 0.16, top + 0.75, gap],
         ],
       ],
       limestone,
     );
-    beam(
-      o,
-      'metal',
-      [s * 0.82, 0.65, gap + run],
-      [s * 0.82, top + 0.65, gap],
-      0.043,
-      0.043,
-      [0.14, 0.15, 0.13],
-    );
+    if (level !== 'skyline')
+      beam(
+        o,
+        'metal',
+        [s * 0.82, foot + 0.65, gap + run],
+        [s * 0.82, top + 0.65, gap],
+        0.043,
+        0.043,
+        [0.14, 0.15, 0.13],
+      );
   }
   const wood = [0.31, 0.25, 0.16];
-  for (let k = 0; k < 15; k++)
-    box(
-      o,
-      'wood',
-      [-0.81, top - 0.17, (k * gap) / 15],
-      [0.81, top - 0.08, ((k + 1) * gap) / 15 - 0.011],
-      wood,
-    );
+  if (level !== 'master') box(o, 'wood', [-0.81, top - 0.24, 0], [0.81, top - 0.08, gap], wood);
+  else
+    for (let k = 0; k < 15; k++)
+      box(
+        o,
+        'wood',
+        [-0.81, top - 0.17, (k * gap) / 15],
+        [0.81, top - 0.08, ((k + 1) * gap) / 15 - 0.011],
+        wood,
+      );
   for (const s of [-1, 1]) {
+    if (level === 'skyline') continue;
     box(o, 'wood', [s * 0.66 - 0.065, top - 0.31, 0], [s * 0.66 + 0.065, top - 0.17, gap], wood);
     for (let k = 0; k < 4; k++)
       box(
@@ -414,7 +438,9 @@ function entrance(out) {
         [s * 0.79 + 0.045, top + 0.9, (k * gap) / 3 + 0.04],
         wood,
       );
-    for (const y of [top + 0.2, top + 0.52, top + 0.87])
+    for (const y of level === 'district'
+      ? [top + 0.25, top + 0.87]
+      : [top + 0.2, top + 0.52, top + 0.87])
       beam(o, 'metal', [s * 0.79, y, 0], [s * 0.79, y, gap], 0.032, 0.032, [0.27, 0.28, 0.24]);
   }
 }
@@ -516,6 +542,16 @@ function build(raw) {
   for (const t of turrets) turret(out, t);
   entrance(out);
   fittings(raw);
+}
+export function buildAgathaSkyline(out) {
+  mainBody(out, 'skyline');
+  for (const t of turrets) turret(out, t, 'skyline');
+  entrance(out, 'skyline');
+}
+export function buildAgathaDistrict(out) {
+  mainBody(out, 'district');
+  for (const t of turrets) turret(out, t, 'district');
+  entrance(out, 'district');
 }
 export const agathaTower = {
   id: 'st_agathas_tower',

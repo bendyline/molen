@@ -1,0 +1,609 @@
+{
+  "planId": "hacienda_lealtad",
+  "id": "hacienda_lealtad",
+  "assetId": "molen.worldgen.structure.hacienda_lealtad",
+  "title": "Hacienda Lealtad",
+  "wikidataId": "Q64026737",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.8707111,
+    "latitude": 18.2502019
+  },
+  "size": [
+    39.775779724121094,
+    13.987158417701721,
+    77.29450988769531
+  ],
+  "actualBounds": {
+    "min": [
+      -29.5,
+      -1.8570524454116821,
+      -39.760250091552734
+    ],
+    "max": [
+      10.275779724121094,
+      12.130105972290039,
+      37.53425979614258
+    ]
+  },
+  "visualBrief": "Lares hillside coffee estate with a timber and brick casa grande, corrugated zinc roof, timber coffee-range balcony, stepped dependencies and a masonry glácil.",
+  "nativeAxes": {
+    "x": "east along the principal house eaves",
+    "y": "up",
+    "z": "south toward the lower outbuildings"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20180731-FS_IITF-GSP-055_(43262429634).jpg",
+    "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer"
+  ],
+  "stories": [
+    {
+      "id": "hacienda-lealtad-wp",
+      "url": "https://qualla.com/hacienda-lealtad/"
+    }
+  ],
+  "referenceInputHash": "3575b71265a3416fca34291733eeb148e88f0309e3ac85aad2fe00900157f889",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/de/de0/hacienda_lealtad/models/hacienda-lealtad-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/de/de0/hacienda_lealtad/models/hacienda-lealtad-model.mjs",
+    "level": "skyline",
+    "export": "haciendaLealtadSkyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "joinery": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "door",
+        "graph": "brick_flemish",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.87,
+        "metallic": 0.13
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "haciendaLealtadDistrict",
+        "errorMeters": 0.68,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "joinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "door",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "haciendaLealtadStreet",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "joinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "door",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "haciendaLealtadCloseup",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "joinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "door",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_weatherboard",
+    "wood_plain",
+    "stone_drywall",
+    "brick_flemish",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.81,
+    "cameraYaw": 0.17,
+    "focus": {
+      "center": [
+        -5,
+        6,
+        -3
+      ]
+    },
+    "groundY": -2.3,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The municipality’s directions, USGS roof imagery and measured OpenStreetMap ways establish the hillside placement. The municipality’s building description supplies the timber-over-brick construction, zinc gable, coffee machinery balcony and the masonry dry court. Original terrain fixes grade.",
+    "anchor": [
+      -66.8707111,
+      18.2502019
+    ],
+    "heading": 0.014078140546464247,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.8708134458853,
+        18.250214007549957
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground in the central court on the west of the main mapped range."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.51311,
+          -10.06986
+        ],
+        [
+          7.51118,
+          -10.06986
+        ],
+        [
+          7.51326,
+          10.05873
+        ],
+        [
+          -7.51102,
+          10.05873
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.51311,
+            -10.06986
+          ],
+          [
+            7.51118,
+            -10.06986
+          ],
+          [
+            7.51326,
+            10.05873
+          ],
+          [
+            -7.51102,
+            10.05873
+          ]
+        ],
+        [
+          [
+            7.4978,
+            -36.15479
+          ],
+          [
+            -0.31647,
+            -36.09781
+          ],
+          [
+            -0.28137,
+            -30.3304
+          ],
+          [
+            -0.20655,
+            -18.37244
+          ],
+          [
+            7.60757,
+            -18.41829
+          ]
+        ],
+        [
+          [
+            -0.31647,
+            -36.09781
+          ],
+          [
+            -0.28137,
+            -30.3304
+          ],
+          [
+            -6.77318,
+            -30.33273
+          ],
+          [
+            -6.83213,
+            -39.66306
+          ],
+          [
+            -0.3397,
+            -39.70525
+          ]
+        ],
+        [
+          [
+            0.89876,
+            17.26888
+          ],
+          [
+            10.20878,
+            17.61149
+          ],
+          [
+            9.74769,
+            30.08515
+          ],
+          [
+            0.43767,
+            29.74254
+          ]
+        ],
+        [
+          [
+            -14.03937,
+            30.67429
+          ],
+          [
+            -6.07474,
+            30.45244
+          ],
+          [
+            -5.88508,
+            37.2574
+          ],
+          [
+            -13.8497,
+            37.47926
+          ]
+        ],
+        [
+          [
+            -8.58376,
+            -33.15262
+          ],
+          [
+            -16.2365,
+            -33.30489
+          ],
+          [
+            -16.3877,
+            -25.56955
+          ],
+          [
+            -8.7348,
+            -25.42841
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.84,
+      "basis": "Masks only the individually mapped roof envelopes used by the hacienda model."
+    },
+    "featureIds": [
+      "way/531503791",
+      "way/531575315",
+      "way/531575314",
+      "way/531503804",
+      "way/531503800",
+      "way/531575317",
+      "way/531575312"
+    ],
+    "source": "https://lares.pr.gov/lugar/lealtad-hacienda/",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4c742ba194179164b9ddb7a54e6c34437394de3ef96cc31fdba83dd4bc2bc015",
+    "notes": "USGS aerial view confirms the characteristic building cluster at the municipality’s actual visitor site. Probable functions for the house, processing range and outbuildings follow written local descriptions and the road-facing layout."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The main visitor buildings use the municipality’s published site, about 2.3 km from the Qualla article’s locality marker. The individual building functions and the drying terrace’s exact orientation are inferred from the mapped roofs, farm documentation and slope.",
+    "The USDA Qualla view shows an interior. Exterior siding color, window placements, rails, wheel detail and final elevations are reasonable estimates supported by the timber construction and masonry descriptions."
+  ],
+  "sourceLicense": "Original geometry informed by public-domain USDA and USGS photography. OpenStreetMap geometry ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "estate-skyline",
+      "position": [
+        -74,
+        33,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        5,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "estate-district",
+      "position": [
+        -74,
+        33,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        5,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "estate-street",
+      "position": [
+        -74,
+        33,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        5,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "estate-closeup",
+      "position": [
+        -74,
+        33,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        5,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "hacienda-and-drying-court-from-west",
+      "position": [
+        -74,
+        33,
+        -62
+      ],
+      "lookAt": [
+        -4,
+        5,
+        -2
+      ]
+    },
+    {
+      "name": "casa-grande-porch-and-waterwheel",
+      "position": [
+        -29,
+        9.5,
+        24
+      ],
+      "lookAt": [
+        -4,
+        5,
+        2
+      ]
+    },
+    {
+      "name": "coffee-range-and-hillside-foundations",
+      "position": [
+        -30,
+        14,
+        -45
+      ],
+      "lookAt": [
+        0,
+        5,
+        -23
+      ]
+    },
+    {
+      "name": "hacienda-roofs-and-secondary-buildings",
+      "position": [
+        35,
+        30,
+        69
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22606,
+    "vertices": 67818,
+    "materials": 6,
+    "bytes": 2963752,
+    "sha256": "sha256:4b775868b9e5c8950efefe3f5f61522fb56a7c3e891ed93cf97207c1fcf13fbe"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 423.544849,
+  "crestElevation": 425.4,
+  "sites": [
+    {
+      "name": "Sennar Dam Gezira intake channel",
+      "anchor": [
+        33.635197691647626,
+        13.547626120624546
+      ],
+      "heading": -3.0054182806199643,
+      "bounds": [
+        885.649802,
+        5,
+        943.649802,
+        112
+      ],
+      "elevation": 416.65,
+      "blend": 31,
+      "basis": "The mapped canal begins beside the intake. Fit the local bank to the representative stage and leave the embankment outside the channel intact."
+    },
+    {
+      "name": "Sennar Dam Managil intake channel",
+      "anchor": [
+        33.635197691647626,
+        13.547626120624546
+      ],
+      "heading": -3.0054182806199643,
+      "bounds": [
+        1043.789105,
+        5,
+        1108.789105,
+        112
+      ],
+      "elevation": 416.65,
+      "blend": 31,
+      "basis": "The mapped canal begins beside the intake. Fit the local bank to the representative stage and leave the embankment outside the channel intact."
+    },
+    {
+      "name": "Sennar Dam east rail tie",
+      "anchor": [
+        33.635197691647626,
+        13.547626120624546
+      ],
+      "heading": -3.0054182806199643,
+      "bounds": [
+        -689.568278,
+        -12,
+        -639.568278,
+        12
+      ],
+      "elevation": 425.34,
+      "blend": 24,
+      "basis": "Fit the retained railway to the modeled crest rail at the end of the mapped bridge way. Blend the shoulder into the local earth embankment."
+    },
+    {
+      "name": "Sennar Dam west rail tie",
+      "anchor": [
+        33.635197691647626,
+        13.547626120624546
+      ],
+      "heading": -3.0054182806199643,
+      "bounds": [
+        1107.448541,
+        -12,
+        1196.448541,
+        12
+      ],
+      "elevation": 425.34,
+      "blend": 24,
+      "basis": "Fit the retained railway to the modeled crest rail at the end of the mapped bridge way. Blend the shoulder into the local earth embankment."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 181553933,
+      "name": "Sennar upstream Blue Nile",
+      "elevation": 421.7,
+      "basis": "The retained upstream reach shares the documented representative reservoir level."
+    },
+    {
+      "id": 181553930,
+      "name": "Blue Nile at Sennar Dam",
+      "split": {
+        "anchor": [
+          33.635197691647626,
+          13.547626120624546
+        ],
+        "heading": -3.0054182806199643,
+        "negativeZ": 421.7,
+        "positiveZ": 410.3
+      },
+      "basis": "The retained multi-polygon contains two disconnected pieces beside the wall. Classify them in the signed crest frame."
+    },
+    {
+      "id": 6039701452,
+      "name": "Blue Nile downstream at Sennar",
+      "elevation": 410.3,
+      "basis": "The modeled lower sluice reach shares the representative tailwater level."
+    },
+    {
+      "id": 8144972960,
+      "name": "Sennar irrigation channels",
+      "elevation": 416,
+      "basis": "Representative canal stage that meets the lower intake masonry."
+    },
+    {
+      "id": 35184453986751,
+      "name": "Managil Canal duplicate ribbon",
+      "hideLines": true,
+      "basis": "The retained canal polygon and headworks show this channel width."
+    },
+    {
+      "id": 35184453986769,
+      "name": "Al Jazeera Canal duplicate ribbon",
+      "hideLines": true,
+      "basis": "The retained canal polygon and headworks show this channel width."
+    }
+  ],
+  "waterStageNotes": "Representative visual stages. The signed PMTiles crest frame separates the two disjoint Blue Nile polygons beside the masonry. Canal stages are illustrative.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

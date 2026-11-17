@@ -2,13 +2,13 @@
 
 ![Molen preview](preview.png)
 
-Capanda Dam with both concrete wings, four deep spillway chutes, yellow crest machinery, switchyard, downstream generator hall and walled tailrace.
+Capanda Dam with angled concrete wings, four spillway chutes, yellow crest gantries, a switchyard, a downstream powerhouse and a fitted tailrace bank.
 
 Rebuild: `node packages/worldgen/scripts/generate-capanda-dam.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=capanda_dam`. Detailed source and four browser tiers are separate ignored GLB outputs.
 
-The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending.
+The retained shoreline gives a representative 956 m reservoir stage. The crest is modeled at 961 m, and the downstream reach uses a representative 875 m stage. The fixed model datum and water stages share the same reference.
 
-The standard raw elevation field samples well below the modeled reservoir surface. The authored terrain review places the water at its estimated shoreline level. The normal runtime water mesh currently uses the lower DEM-derived datum.
+The retained terrain has coarse banks. The modeled apron and narrow tailrace spur fit the mapped plan. Reference photographs guide the exterior equipment and fenestration.
 
 Gate machinery, individual switchyard equipment, concrete elevations and tailrace water level are visual approximations.
 

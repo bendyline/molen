@@ -1,9 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-  "sourceHash": "sha256:5c11c192891b6cbffb272b2de252cb335d9e03fb5e44a9dc03a91622c06e52fa",
-  "runtimeHash": "sha256:d4408a4f7ab1b11e3604551b90d704c7525579453f194abe94b746bdf5a40e7b",
-  "placementHash": "sha256:736c5e9b29f36a46bf4f17dae136c36b9b70d171d4d464fde3dc797f0ccdd402",
+  "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+  "sourceHash": "sha256:be3dfcd73817613c00259185819ad05c22ddd882fdf85acd8e87ad328cb1a1a4",
+  "runtimeHash": "sha256:e83d1f929653c4ebc38b693b88f0faeb3ba11c7b26ab5a3a703310e8473d01cd",
+  "placementHash": "sha256:656ac3d406cf8035aabd3089ace3d1e56f69d2f00357ddfe36c7b63cb9c85123",
   "entry": {
     "id": "ksiaz.palm-administration",
     "title": "Lubiechów Palm House administration",
@@ -16,11 +17,157 @@
     "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
-    "replaceFootprint": false,
+    "replaceFootprint": true,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/263010003",
-    "note": "Own mapped feature(s) way/263010003. Individual NID survey-card identity and cardinal elevations interpreted on the official ensemble plan. Roof/body dimensions, present facade state, exact component associations and terrain contact remain unreviewed. Exterior only; no parent QID reuse or broad name matching."
+    "note": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain.",
+    "terrainReference": {
+      "anchor": [
+        16.306475285351524,
+        50.829668567715274
+      ],
+      "modelHeight": 0.205,
+      "basis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
+    },
+    "bounds": [
+      16.3062149087682,
+      50.82955374723334,
+      16.30649257123357,
+      50.82973219830415
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.774442,
+          3.302135
+        ],
+        [
+          -7.688315,
+          -3.300708
+        ],
+        [
+          -6.74547,
+          -3.315343
+        ],
+        [
+          -6.638854,
+          -8.598203
+        ],
+        [
+          7.69532,
+          -8.632079
+        ],
+        [
+          7.879715,
+          3.247771
+        ],
+        [
+          7.502577,
+          3.253625
+        ],
+        [
+          7.395961,
+          8.536485
+        ],
+        [
+          -6.558148,
+          8.753076
+        ],
+        [
+          -6.643028,
+          3.284574
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.774442,
+            3.302135
+          ],
+          [
+            -7.688315,
+            -3.300708
+          ],
+          [
+            -6.74547,
+            -3.315343
+          ],
+          [
+            -6.638854,
+            -8.598203
+          ],
+          [
+            7.69532,
+            -8.632079
+          ],
+          [
+            7.879715,
+            3.247771
+          ],
+          [
+            7.502577,
+            3.253625
+          ],
+          [
+            7.395961,
+            8.536485
+          ],
+          [
+            -6.558148,
+            8.753076
+          ],
+          [
+            -6.643028,
+            3.284574
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps masks for the mapped service building and its integral components."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          7.609799,
+          -2.078506
+        ],
+        [
+          7.593712,
+          -3.758429
+        ],
+        [
+          9.211722,
+          -3.973933
+        ],
+        [
+          9.23164,
+          -1.894028
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            7.609799,
+            -2.078506
+          ],
+          [
+            7.593712,
+            -3.758429
+          ],
+          [
+            9.211722,
+            -3.973933
+          ],
+          [
+            9.23164,
+            -1.894028
+          ]
+        ]
+      ],
+      "basis": "The sandstone landing fills its own cutout and meets the retained approach at the toe."
+    }
   },
-  "review": "Inactive source-specific draft. Flat-ground ensemble and exterior appearance review do not approve actual terrain, surveyed dimensions or complete Palm House/ksiaz_castle_and_park_complex scope."
+  "review": "Verified the mapped footprints and visible approaches against the retained Protomaps and Terrarium data at all four detail levels."
 }

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.london_stadium",
+  "kind": "static-structure",
+  "title": "London Stadium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.london_stadium",
+        "output": "assets/places/gc/gcp/london_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7c578a8c80f01fcecf25d2888805c94b46eea52beffd0a32dd1fb6e36a52791d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-london-stadium",
+        "path": "models/generate-london-stadium.mjs"
+      },
+      {
+        "id": "london-stadium-model",
+        "path": "models/london-stadium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-london-stadium-qualla-cc0.json",
+      "reference-rights/commons-london-stadium-exterior-cc0.json",
+      "reference-images/london-stadium-exterior-01.jpg",
+      "reference-images/london-stadium-exterior-02.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16382-10891.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

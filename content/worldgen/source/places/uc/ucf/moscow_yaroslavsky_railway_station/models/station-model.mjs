@@ -42,6 +42,8 @@ const cfg = {
   closeup: { round: 14, detail: true, recess: true, fine: true, near: true },
   master: { round: 32, detail: true, recess: true, fine: true, near: true, master: true },
 };
+export const entranceSill = { bounds: [12.95, 53.75, 24.05, 54.92], height: 1.25 };
+export const entranceApproach = { bounds: [17.7, 54.92, 21.55, 59.65], endHeight: 1.51 };
 export const controls = {
   anchor: [37.65736162662506, 55.7767766699601],
   heading: 0.26536400430958873,
@@ -1230,6 +1232,70 @@ function historicRoofs(o, c) {
     'wall',
     4.1,
   );
+  // The front photograph shows a low sill between the arched entrance and the square.
+  const [sillWest, sillNorth, sillEast, sillSouth] = entranceSill.bounds;
+  box(o, c, sillWest, sillEast, 0.94, entranceSill.height, sillNorth, sillSouth, 'trim');
+  const [west, north, east, south] = entranceApproach.bounds;
+  const slope = [
+    [west, north],
+    [east, north],
+    [east, south],
+    [west, south],
+  ];
+  const top = slope.map(([x, z]) => [
+    x,
+    z === north ? entranceSill.height : entranceApproach.endHeight,
+    z,
+  ]);
+  Q(o, c, top, 'trim', C.trim, [0, 1, 0]);
+  for (let i = 0; i < top.length; i++) {
+    const a = top[i],
+      b = top[(i + 1) % top.length];
+    if (i !== 0)
+      Q(o, c, [[a[0], 0.94, a[2]], [b[0], 0.94, b[2]], b, a], 'trim', C.trim, [
+        b[2] - a[2],
+        0,
+        a[0] - b[0],
+      ]);
+  }
+  if (c.detail) {
+    const doorPaint = lin('45433e');
+    const doorTop = 3.8;
+    for (const u of [14.8, 16.65, 18.5, 20.35, 22.2]) {
+      beam(
+        adapter(o, c),
+        'metal',
+        [u, controls.floor, 54.05],
+        [u, doorTop, 54.05],
+        0.12,
+        0.13,
+        doorPaint,
+      );
+    }
+    beam(
+      adapter(o, c),
+      'metal',
+      [14.8, doorTop, 54.05],
+      [22.2, doorTop, 54.05],
+      0.16,
+      0.13,
+      doorPaint,
+    );
+    for (const x of [15.725, 17.575, 19.425, 21.275])
+      Q(
+        o,
+        c,
+        [
+          [x - 0.86, 1.28, 54.06],
+          [x + 0.86, 1.28, 54.06],
+          [x + 0.86, 1.99, 54.06],
+          [x - 0.86, 1.99, 54.06],
+        ],
+        'metal',
+        doorPaint,
+        [0, 0, 1],
+      );
+  }
   for (const x of [4.4, 32.6]) {
     roundColumn(o, c, [x, 52.5], 8.8, 18.2, 2.4, 'trim');
     if (c.detail) {
@@ -1289,10 +1355,42 @@ function historicRoofs(o, c) {
       beam(adapter(o, c), 'metal', [x, 30.2, 38.5], [x, 32.4, 38.5], 0.07, 0.08, C.metal);
   }
 }
+// The western pair of islands and their tracks stop farther south than the central tracks.
+// Stop each part of the transverse apron before its mapped buffers.
+const westApronEdge = -78.28;
+const mainApronEdge = -90.2;
+const boardingApron = [
+  [-69, westApronEdge],
+  [-51, westApronEdge],
+  [-51, mainApronEdge],
+  [42, mainApronEdge],
+  [42, -56],
+  [31, -55],
+  [13.29, -54.9],
+  [13.29, -45],
+  [-39, -45],
+  [-69, -54],
+];
+
 function platforms(o, c) {
   for (const p of controls.platforms)
     for (const poly of p.polys) {
       solid(o, c, poly, -9, controls.platformFloor, 'base');
+      // Short pedestrian joins prolong the mapped nose edge to the apron without
+      // widening the platforms into the adjacent track corridors.
+      const [a, b] = openRing(poly[0])
+        .toSorted((u, v) => v[1] - u[1])
+        .slice(0, 2);
+      const edgeZ = a[0] < -51 ? westApronEdge : mainApronEdge;
+      const nose = a[0] < b[0] ? [a, b] : [b, a];
+      slab(
+        o,
+        c,
+        [nose[0], nose[1], [nose[1][0], edgeZ], [nose[0][0], edgeZ]],
+        -9,
+        controls.platformFloor,
+        'base',
+      );
       if (c.detail)
         for (const r of poly)
           beamPath(
@@ -1305,15 +1403,7 @@ function platforms(o, c) {
             true,
           );
     }
-  // Transverse boarding apron connects actual platform noses to the mapped canopy/concourse.
-  const apron = [
-    [-69, -94],
-    [40, -94],
-    [40, -45],
-    [-69, -45],
-    [-69, -94],
-  ];
-  slab(o, c, apron, -9, controls.platformFloor, 'base');
+  slab(o, c, boardingApron, -9, controls.platformFloor, 'base');
   for (const poly of controls.groups.canopy) {
     solid(o, c, poly, 4.8, 5, 'canopy');
     if (c.detail) {

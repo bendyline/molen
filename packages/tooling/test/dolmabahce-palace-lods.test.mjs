@@ -81,7 +81,8 @@ it('binds the complete connected waterfront palace and inland harem return to ex
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.heading).toBeCloseTo(0.3694984483984076, 12);
   expect(frame.mappedIdentity.featureIds).toEqual([35184547605283, 35184636037994, 35184636037969]);
-  expect(p.entry.elevation).toBe(11);
+  const fit = await read(source + '/site-fit.json');
+  expect(p.entry.elevation).toBe(fit.baseElevation);
   expect(p.entry.datum).toBe('sea-level');
   expect(p.entry.buildingCutout.minimumCoverage).toBe(0.98);
   expect(p.entry.buildingCutout.outlines).toHaveLength(1);
@@ -100,10 +101,7 @@ it('binds the complete connected waterfront palace and inland harem return to ex
   ).toBeDefined();
 });
 it('keeps the raised hall, complete low palace and inland return, open garden gap, real recesses and supported entry corners', async () => {
-  const field = heightfieldFromPng(
-    await read(source + '/terrain-review.terrain.json'),
-    await readFile(source + '/terrain-review.height.png'),
-  );
+  const fit = await read(source + '/site-fit.json');
   for (const l of (await read(runtime + '/asset.json')).runtimeLods.levels) {
     const ts = await triangles(runtime + '/' + l.file),
       wall = l.name === 'skyline' ? ts : await triangles(runtime + '/' + l.file, 'wall');
@@ -147,10 +145,12 @@ it('keeps the raised hall, complete low palace and inland return, open garden ga
         N = [e.N[0], 0, e.N[1]];
       for (const sign of [-1, 1]) {
         const [x, , z] = F((sign * e.approachWidth) / 2, 0, e.approachDistance),
-          expected = field.sampleHeight(x, z);
+          // The entrance now meets the fitted court/footway, not the raw coastal DEM.
+          expected =
+            fit.entrances.find((entry) => entry.owner === e.owner).foot - fit.baseElevation;
         expect(
           20 - nearest(ts, [x, 20, z].map(Math.fround), [0, -1, 0], true),
-          l.name + ' native entry corner',
+          l.name + ' fitted entry corner',
         ).toBeCloseTo(expected, 2);
       }
       if (['street', 'closeup'].includes(l.name)) {

@@ -1,0 +1,509 @@
+{
+  "planId": "lima_art_museum",
+  "id": "lima_art_museum",
+  "assetId": "molen.worldgen.structure.lima_art_museum",
+  "title": "Lima Art Museum",
+  "wikidataId": "Q522813",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.0370119,
+    "latitude": -12.0604431
+  },
+  "size": [
+    64.60000038146973,
+    25.62808656692505,
+    102.10600280761719
+  ],
+  "actualBounds": {
+    "min": [
+      -32.97999954223633,
+      -5.400000095367432,
+      -51.08000183105469
+    ],
+    "max": [
+      31.6200008392334,
+      20.228086471557617,
+      51.0260009765625
+    ]
+  },
+  "visualBrief": "The oyster-white neorenaissance Exhibition Palace in Lima, with round-headed twin windows, strong cornices, two projecting porticos and an iron-columned central court.",
+  "nativeAxes": {
+    "x": "west along the north frontage",
+    "y": "up",
+    "z": "toward Paseo Colón"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Peru_-_34782_-_Palacio_de_la_Exposicion_in_Lima.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lima-art-museum-wp",
+      "url": "https://qualla.com/lima-art-museum/"
+    }
+  ],
+  "referenceInputHash": "19ee6ab127d6bd5312bcda772758e8f5d36eae39a7c2a0961c95b43d8e4ed619",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6m/6mc/lima_art_museum/models/lima-art-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6m/6mc/lima_art_museum/models/lima-art-museum-model.mjs",
+    "level": "skyline",
+    "export": "limaArtMuseumSkyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_tadelakt",
+        "roughness": 0.83
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.92
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.87,
+        "metallic": 0.08
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "limaArtMuseumDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.83
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "limaArtMuseumStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.83
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "limaArtMuseumCloseup",
+        "errorMeters": 0.071,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.83
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "plaster_tadelakt",
+    "stone_basalt_raw",
+    "metal_corrugated",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.81,
+    "cameraYaw": 0.17,
+    "focus": {
+      "center": [
+        0,
+        7,
+        0
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original relief fixed before geometry. The NARA photograph controls the facade modules and crest proportions. Official conservation records support retained cornices, balustrades and both central pavilions. Vertical heights are estimated.",
+    "anchor": [
+      -77.0370119,
+      -12.0604431
+    ],
+    "heading": -3.060536451159356,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.03704584988478,
+        -12.06000700231866
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the center of the north pavilion frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          31.124238,
+          42.936387
+        ],
+        [
+          31.15625,
+          -43.238081
+        ],
+        [
+          10.940382,
+          -43.24968
+        ],
+        [
+          10.938063,
+          -48.733669
+        ],
+        [
+          -1.600331,
+          -48.735869
+        ],
+        [
+          -13.843058,
+          -48.747557
+        ],
+        [
+          -13.849752,
+          -43.152614
+        ],
+        [
+          -32.504985,
+          -43.149123
+        ],
+        [
+          -32.556613,
+          33.586267
+        ],
+        [
+          -32.543375,
+          42.834946
+        ],
+        [
+          -12.75338,
+          42.84546
+        ],
+        [
+          -12.758202,
+          48.686246
+        ],
+        [
+          12.264333,
+          48.686246
+        ],
+        [
+          12.261944,
+          42.934222
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "Mapped standing Palacio de la Exposición perimeter."
+    },
+    "featureIds": [
+      "way/40301549"
+    ],
+    "source": "https://www.openstreetmap.org/way/40301549",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d631bd17ec84ace8c4ce9c8672c66eb70ad468bf353c5e54f86f6b69421ee028",
+    "notes": "North and south projecting pavilions are conserved in the native outer footprint. Shape and height of interior setbacks require separate building documentation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_tadelakt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Facade and roof heights, side bay spacing, relief sculpture and colors are interpretations. The terrace and plinth adapt to mapped grade.",
+    "Central courtyard width comes from a Universidad de San Martín de Porres measured study. Selected interior galleries, site parking, neighboring buildings and park monuments are outside the modeled exterior.",
+    "Current museum restoration report controls the standing building. The archival photograph predates that work."
+  ],
+  "sourceLicense": "Original geometry informed by the public-domain U.S. Bureau of Public Roads archive photograph and the museum’s published restoration descriptions. OpenStreetMap geometry ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "palace-skyline",
+      "position": [
+        110,
+        63,
+        140
+      ],
+      "lookAt": [
+        0,
+        7,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palace-district",
+      "position": [
+        110,
+        63,
+        140
+      ],
+      "lookAt": [
+        0,
+        7,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "palace-street",
+      "position": [
+        110,
+        63,
+        140
+      ],
+      "lookAt": [
+        0,
+        7,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "palace-closeup",
+      "position": [
+        110,
+        63,
+        140
+      ],
+      "lookAt": [
+        0,
+        7,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "paseo-colon-and-northeast-corner",
+      "position": [
+        110,
+        63,
+        140
+      ],
+      "lookAt": [
+        0,
+        7,
+        5
+      ]
+    },
+    {
+      "name": "paseo-colon-three-portal-front",
+      "position": [
+        -12,
+        11,
+        88
+      ],
+      "lookAt": [
+        0,
+        10,
+        44
+      ]
+    },
+    {
+      "name": "park-entrance-and-southern-pavilion",
+      "position": [
+        -54,
+        23,
+        -94
+      ],
+      "lookAt": [
+        -6,
+        8,
+        -26
+      ]
+    },
+    {
+      "name": "central-courtyard-and-roof-bands",
+      "position": [
+        -28,
+        48,
+        12
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 52279,
+    "vertices": 156837,
+    "materials": 6,
+    "bytes": 6505848,
+    "sha256": "sha256:6e91727131fc7ffbde0b77ffe1ead1737e5c5925b5017f61077813b95bde2c5e"
+  }
+}

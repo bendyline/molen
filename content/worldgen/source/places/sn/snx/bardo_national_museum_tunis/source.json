@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bardo_national_museum_tunis",
+  "kind": "static-structure",
+  "title": "Bardo National Museum (Tunis)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bardo_national_museum_tunis",
+        "output": "assets/places/sn/snx/bardo_national_museum_tunis/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0d335d9c54ba634664d41411d30891e9273bad3476ed23c89f1c4941112e12d0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bardo-national-museum-tunis",
+        "path": "models/generate-bardo-national-museum-tunis.mjs"
+      },
+      {
+        "id": "bardo-national-museum-tunis-model",
+        "path": "models/bardo-national-museum-tunis-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/garden-original.jpg",
+      "reference-rights/garden-commons.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17306-12775.png",
+      "terrain-sources/terrarium-15-17306-12776.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

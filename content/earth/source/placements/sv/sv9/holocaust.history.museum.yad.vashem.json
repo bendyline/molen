@@ -14,7 +14,7 @@
     "wikidata": "Q156591",
     "maxDistance": 8
   },
-  "replaceFootprint": false,
+  "replaceFootprint": true,
   "buildingCutout": {
     "outline": [
       [
@@ -143,7 +143,7 @@
       ]
     ],
     "minimumCoverage": 0.995,
-    "basis": "Shared Yad Vashem Q156591; distinct named OSM way74078313/native35184446167145 is the History Museum, not the whole campus. The fifteen-point PMTiles outline fixes the southeast entrance, northwest flare and signed long axis. Heading0 with internal+X toward southeast/+Z southwest baked into east/south model coordinates. Hall of Names skylight internal[-70,-19] is a picture-led integrated roof estimate, not a separate mapped building or surveyed position. Preserve all independent buildings, including Hall of Remembrance way74078348."
+    "basis": "Distinct OSM way 74078313 and native building 35184446167145 identify the museum within the shared Q156591 campus. The east gable, west flared wings and two mapped bridge ends fix the signed frame. The long axis is built in east/south coordinates and uses heading zero. The Hall of Names belongs to the museum. The Hall of Remembrance and other campus ranges have separate placements."
   },
   "terrainReference": {
     "anchor": [
@@ -151,16 +151,70 @@
       31.773711468746473
     ],
     "modelHeight": 0,
-    "basis": "Retain original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered southeast approach provider internal[72,13], datum793.3169542466442m. No ground cutout: the museum is partly underground, so its original hillside must continue over buried lower faces. Only the named native building is replaced. Foundation below the occupied prism and a closed balcony retain contact where coarse grade falls. Exact entrances, thresholds/accessibility and underground terrain/interiors are unverified."
+    "basis": "The off-footprint Terrarium sample fixes the datum. The buried gallery range retains native terrain over both sides. Two bridge portions follow the PMTiles footway endpoints and join the native approaches. The west stairs and terminal heights are picture-led approximations."
   },
   "bounds": [
-    35.17425883735646,
-    31.773605666361412,
-    35.17617832695018,
-    31.774813359546677
+    35.17422713687876,
+    31.773578716902886,
+    35.176338773449935,
+    31.774840309005203
   ],
+  "replaceRoads": {
+    "length": 38.77594,
+    "width": 3.85,
+    "outline": [
+      [
+        69.76265,
+        41.59603
+      ],
+      [
+        97.90029,
+        14.48142
+      ],
+      [
+        95.2288,
+        11.70913
+      ],
+      [
+        67.09115,
+        38.82374
+      ]
+    ],
+    "includeTransverseBridges": true,
+    "bridgeFeatureIds": [
+      35184617278660
+    ],
+    "additionalDecks": [
+      {
+        "length": 10.14379,
+        "width": 2.6,
+        "outline": [
+          [
+            -71.33895,
+            -42.18556
+          ],
+          [
+            -76.82709,
+            -33.30002
+          ],
+          [
+            -74.61502,
+            -31.93373
+          ],
+          [
+            -69.12688,
+            -40.81928
+          ]
+        ],
+        "includeTransverseBridges": true,
+        "bridgeFeatureIds": [
+          35184617278660
+        ]
+      }
+    ]
+  },
   "minLevel": 13,
-  "status": "draft",
+  "status": "preview",
   "source": "https://www.openstreetmap.org/way/74078313",
-  "note": "Shared Yad Vashem Q156591; distinct named OSM way74078313/native35184446167145 is the History Museum, not the whole campus. The fifteen-point PMTiles outline fixes the southeast entrance, northwest flare and signed long axis. Heading0 with internal+X toward southeast/+Z southwest baked into east/south model coordinates. Hall of Names skylight internal[-70,-19] is a picture-led integrated roof estimate, not a separate mapped building or surveyed position. Preserve all independent buildings, including Hall of Remembrance way74078348. Retain original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered southeast approach provider internal[72,13], datum793.3169542466442m. No ground cutout: the museum is partly underground, so its original hillside must continue over buried lower faces. Only the named native building is replaced. Foundation below the occupied prism and a closed balcony retain contact where coarse grade falls. Exact entrances, thresholds/accessibility and underground terrain/interiors are unverified. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+  "note": "Distinct OSM way 74078313 and native building 35184446167145 identify the museum within the shared Q156591 campus. The east gable, west flared wings and two mapped bridge ends fix the signed frame. The long axis is built in east/south coordinates and uses heading zero. The Hall of Names belongs to the museum. The Hall of Remembrance and other campus ranges have separate placements. The off-footprint Terrarium sample fixes the datum. The buried gallery range retains native terrain over both sides. Two bridge portions follow the PMTiles footway endpoints and join the native approaches. The west stairs and terminal heights are picture-led approximations. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
 }

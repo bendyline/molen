@@ -1,0 +1,448 @@
+{
+  "planId": "bogor_palace",
+  "id": "bogor_palace",
+  "assetId": "molen.worldgen.structure.bogor_palace",
+  "title": "Bogor Palace",
+  "wikidataId": "Q911762",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 106.79735,
+    "latitude": -6.597996
+  },
+  "size": [
+    215.96564483642578,
+    30.940000534057617,
+    78.1504020690918
+  ],
+  "actualBounds": {
+    "min": [
+      -102.71499633789062,
+      -6.5,
+      -38.970001220703125
+    ],
+    "max": [
+      113.25064849853516,
+      24.440000534057617,
+      39.18040084838867
+    ]
+  },
+  "visualBrief": "The present Bogor Palace with white ceremonial colonnades, red roof ranges, two connected wings and the gold-topped central cupola.",
+  "nativeAxes": {
+    "x": "east lengthwise along the palace",
+    "y": "up",
+    "z": "south toward the botanic garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Istana_Bogor_side.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bogor-palace-wp",
+      "url": "https://qualla.com/bogor-palace/"
+    }
+  ],
+  "referenceInputHash": "dd7494bd0d6fecee711d0c85ff9fc2a49f2f576fae28482d068516b564fa1ec9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qq/qqg/bogor_palace/models/bogor-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qq/qqg/bogor_palace/models/bogor-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.45,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.79,
+        "metallic": 0.22
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.99,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "tile_ceramic",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.47,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        5,
+        6,
+        4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Verified standing exterior shows white Corinthian-style columns, two principal roof heights, a pinkish terracotta tile roof and gold-colored shallow dome over a white lantern.",
+    "anchor": [
+      106.79735,
+      -6.597996
+    ],
+    "heading": 0.012146688348075255,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        106.7973998798865,
+        -6.598377208523374
+      ],
+      "modelHeight": 0,
+      "basis": "Original source garden grade outside the south garden steps. Stair levels and precise foundation datums are estimated."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/244071888"
+    ],
+    "source": "https://www.openstreetmap.org/way/244071888",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:926b5c48801da02594e2cf582e5c6dfd4b805bd83fb62431e2d2c818f7c51dbb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Roof ridges, window and column cadence away from the photographed façade, exact condition of the far wings and absolute floor elevations are medium-fidelity approximations.",
+    "This is the standing palace and its connected ranges. The detached Balai Kirti building, the botanical estate, interiors, fences and gardens are outside the exterior scope."
+  ],
+  "sourceLicense": "Original reconstruction from the exact photographer-dedicated public-domain Qualla exterior, mapped palace extent, original terrain and Indonesian institutional history.",
+  "qaLodCameras": [
+    {
+      "name": "bogor-palace-skyline",
+      "position": [
+        107,
+        62,
+        174
+      ],
+      "lookAt": [
+        5,
+        6,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bogor-palace-district",
+      "position": [
+        107,
+        62,
+        174
+      ],
+      "lookAt": [
+        5,
+        6,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bogor-palace-street",
+      "position": [
+        107,
+        62,
+        174
+      ],
+      "lookAt": [
+        5,
+        6,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bogor-palace-closeup",
+      "position": [
+        107,
+        62,
+        174
+      ],
+      "lookAt": [
+        5,
+        6,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "garden-portico-and-two-wings",
+      "position": [
+        118,
+        43,
+        121
+      ],
+      "lookAt": [
+        5,
+        6,
+        4
+      ]
+    },
+    {
+      "name": "garden-columns-and-gold-cupola",
+      "position": [
+        31,
+        12,
+        69
+      ],
+      "lookAt": [
+        4,
+        10.6,
+        20
+      ]
+    },
+    {
+      "name": "northern-colonnade-and-roofs",
+      "position": [
+        43,
+        24,
+        -116
+      ],
+      "lookAt": [
+        1,
+        8,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8435,
+    "vertices": 25305,
+    "materials": 6,
+    "bytes": 1332632,
+    "sha256": "sha256:355c4ada3c3eccf613edf86141115ba6a0052ed9ba95743cf794f8b483e29d93"
+  }
+}

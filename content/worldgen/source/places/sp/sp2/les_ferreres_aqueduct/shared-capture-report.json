@@ -1,17 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.les_ferreres_aqueduct",
-  "inputHash": "sha256:85aa623b24bda99ae40bd14a1bbf79d2a1134deb226e394099135a574b8b7a36",
-  "sourceHash": "sha256:d6d81ae687e33c6fba0575dabf621eb325ed5b8869f5860fe2d223dae71c22ce",
-  "runtimeHash": "sha256:e1186d40ab6c8aab9de695af024c39fa7f35f3e9ed0d1961f051388941f11716",
-  "reviewGroundY": null,
-  "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
-  "footprintEvidenceHash": "sha256:58f1b32c217263639f0449f6df3bd7bdd04af190df14a3d525a3b3e4c81edd4e",
-  "reflectionMode": "sky-pmrem",
+  "inputHash": "sha256:8e2fb39b4d47a14804e84347fd882fa8081cb4f89a4adc3aeef639e0c327cec5",
+  "sourceHash": "sha256:4b916e22b35f03b6fd10f2530242afbba6507475f21d04a0ab53265d9f0d71e9",
+  "runtimeHash": "sha256:83a5e87d2b6426a30e35d3bda539ea7734ce0311d22ee07d3e25b3dff03e42c8",
+  "reviewGroundY": -0.2,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:1f9c2a2ec18b5f571a146fe33f3f99dcd9ab6546c19de1441232d0d87b336b1d",
+  "reflectionMode": "none",
   "clippingMode": "legacy",
   "reviewBoundedPlacement": true,
   "targetOnly": true,
-  "placementHash": null,
+  "placementHash": "sha256:f3f1cb44391b2ae8c71d28c7f87cea756cce10d86d44f9743fa8b87a8caf413d",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_sandstone": {
       "path": "materials/stone_sandstone.matgraph.json",
@@ -21,6 +21,10 @@
       "path": "materials/stone_sandstone_raw.matgraph.json",
       "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
     },
+    "matgraph:molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
     "matgraph:molen.worldgen.material.stone_limestone_raw": {
       "path": "materials/stone_limestone_raw.matgraph.json",
       "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
@@ -29,223 +33,347 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:ab8d21e7584881ddf09d36dd62fe15176153528355562287fff4d746206eb74c",
+      "hash": "sha256:c6da2a903d66c45304408e100bbef80b710254ae0e76930138c1a286b5436d11",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:c53ab0766eaaccd8d5fda129259ad85f2fd6466f5d67b8f43372420fc300feb7",
+      "hash": "sha256:51525d639115f9222ed074aeb27c50bafaa697c5f582685e2f6ea3e00130bcdf",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:d9ae4e624c6993b424d7acf21ac576b0ed8bb3bd5aa2ff8978ec55969447398a",
+      "hash": "sha256:0e575dd44a6f319d2d2b9e145ec01890158672b1a68f805639eec0615e8fc290",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:25ddcdf7829baf5f26f71d3f46d5adcb54f3bd1e796ff8e3b31cb54148962c3e",
+      "hash": "sha256:d2dc73f8d07752ddfaa8b6f4145a99654468be8bbc6e96a20c773da55257fe7c",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/whole-east-arcades.png",
-      "hash": "sha256:b7a29d76e4504c518de2a1f7cd657d17361e0a71f19e5fd00f34f250de909edc",
+      "hash": "sha256:bda8c2330853fd95145db1fc23bea7c63ff7bbfeb6e62a9cd60ca57332e8c64e",
       "camera": {
         "name": "whole-east-arcades",
         "position": [
@@ -262,54 +390,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/complete-west-elevation.png",
-      "hash": "sha256:cdd9350d07bb84a4c870695052c1bdc687f1afac16686563aee2d87c855d1b1b",
+      "hash": "sha256:1b39254712081929f167a0c7e1b6b546d19df247c550cdaaa9d3adf7c732445a",
       "camera": {
         "name": "complete-west-elevation",
         "position": [
@@ -326,54 +485,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/lower-and-upper-openings.png",
-      "hash": "sha256:cb81d7d6485dd9e2d2e779c6b3a2c88da39ecc0bfcf39f96e9c2bc8ffa88f1c5",
+      "hash": "sha256:c827da075cd757ac3794061f2c74a926bdcd6549559e0fcee2084fc9eb671067",
       "camera": {
         "name": "lower-and-upper-openings",
         "position": [
@@ -390,54 +580,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/upper-arch-and-impost.png",
-      "hash": "sha256:13f7d39e18b9fe7e46cbe84799b361a51a6a8035b118de0aff0c8a31c6ed5047",
+      "hash": "sha256:8887cfb016d80515b3756df594d8fd9528e9d914678c91f98bb5212d5eb8759c",
       "camera": {
         "name": "upper-arch-and-impost",
         "position": [
@@ -454,54 +675,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/rusticated-pier-and-lower-vault.png",
-      "hash": "sha256:60d1b911dc7f367bc00e8ecdf0fbfc270a474167b9d71a1047a1c9372454c90c",
+      "hash": "sha256:2236b46f4e8c423208c85e76b2799ab10ddcccb9e1fff2ff9711054c4823e5a0",
       "camera": {
         "name": "rusticated-pier-and-lower-vault",
         "position": [
@@ -518,54 +770,85 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
       }
     },
     {
       "path": "shots/shared/open-channel-walk.png",
-      "hash": "sha256:1a43dcbaf801e80a6f523bf20f45a17550abef12de5177267ee6207f80530cad",
+      "hash": "sha256:542adab0bf1419bcebb3c397613b2125798c20e4b6641d1cf8b51de491e91807",
       "camera": {
         "name": "open-channel-walk",
         "position": [
@@ -582,49 +865,165 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 3,
-        "triangles": 27280,
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
         "bounds": {
           "min": [
-            -121.11274719238281,
-            0.025468749925494194,
-            -1.2599999904632568
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
           ],
           "max": [
-            121.11274719238281,
-            27,
-            3.404865026473999
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
           ]
         },
-        "reviewGroundY": 0,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "63a6862e-690a-4919-909e-807d9eaf9436",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "dcf5e58d-9f07-4e3c-94a9-c33fbe3492b3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "2b1dd5a5-2a2d-4ff1-886f-21bafdeaa5a6"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
         },
         "loads": [
           "molen.worldgen.structure.les_ferreres_aqueduct"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 27282
+        "draws": 5,
+        "renderedTriangles": 29336
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:161e69a82a2732f1deb37aba4fc1e160cde2029c754ede4756e41f72a27bf343",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
+        "mode": "geographic-flat-terrain",
+        "placementId": "les.ferreres.aqueduct",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 1.9642307890327135,
+        "meshes": 4,
+        "triangles": 29242,
+        "bounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -89.93615429548467,
+            -0.2745312452316284,
+            -129.21644659758923
+          ],
+          "max": [
+            89.93615429548467,
+            29.69537925720215,
+            129.21644659758923
+          ]
+        },
+        "reviewGroundY": -0.2,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "843b47dd-34f0-4d41-ae30-91258c804efd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "79565932-ee94-4482-a866-01170056b52b",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "7b0a0f43-d552-4b1b-b2f3-de994f3ff54f",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9066353c-9d44-445d-996c-bb589f17372a"
+        },
+        "loads": [
+          "molen.worldgen.structure.les_ferreres_aqueduct"
+        ],
+        "selectionBounds": [
+          1.2422603409088764,
+          41.14469560125211,
+          1.245534117957243,
+          41.1471608738763
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "les.ferreres.aqueduct",
+            "coordinate": [
+              1.2444511055946337,
+              41.14492338813642
+            ],
+            "height": 25.2
+          }
+        ],
+        "visibleStructures": [
+          "les.ferreres.aqueduct"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "draws": 6,
+        "renderedTriangles": 29336
       }
     }
   ],
@@ -634,8 +1033,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

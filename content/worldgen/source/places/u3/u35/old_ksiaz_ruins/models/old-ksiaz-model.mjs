@@ -13,13 +13,14 @@ export const oldKsiazModels = [
     component: 'old-ksiaz',
     wikidata: 'Q9386558',
     brief:
-      'Roofless romantic ruin with its own mapped masonry traces, broken high facade, real pointed openings, lower rectangular windows, dressed-stone arched portal and low open courtyard walls.',
+      'Roofless masonry ruins with Gothic window openings, a dressed-stone portal and stairs, and a trail breach through the hillside return wall.',
     primaryDescription:
-      'Independent Stary Książ ruin, own way/239074431, Q9386558 and NID A/5214/621. Surviving appearance follows primary 2014 photographs and an interior panorama; wall associations and heights are proposed.',
+      'Independent Stary Książ ruin, own way/239074431, Q9386558 and NID A/5214/621. The surviving masonry follows exterior photographs and a courtyard panorama.',
     references: [
       'https://www.ksiaz.walbrzych.pl/turystyka/zamek',
       'https://commons.wikimedia.org/wiki/File:Old_Ksi%C4%85%C5%BC_Castle_02.JPG',
       'https://commons.wikimedia.org/wiki/File:Stary_Ksi%C4%85%C5%BC_8.jpg',
+      'https://cit.walbrzych.pl/miejsce/stary-ksiaz/',
     ],
     cameras: [
       { name: 'portal-and-broken-high-wall', position: [42, 23, -38], lookAt: [0, 4, 0] },
@@ -161,7 +162,7 @@ function round(x, y, w, h, n) {
     }),
   ];
 }
-function outlineTrim(o, hole, width, depth, slot, color) {
+function outlineTrim(o, hole, width, depth, slot, color, sides = [-1, 1]) {
   // Offset a sampled loop from its center. Avoid per-stone meshes and tiny joints.
   const cx = (Math.min(...hole.map((p) => p[0])) + Math.max(...hole.map((p) => p[0]))) / 2;
   const cy = (Math.min(...hole.map((p) => p[1])) + Math.max(...hole.map((p) => p[1]))) / 2;
@@ -173,7 +174,8 @@ function outlineTrim(o, hole, width, depth, slot, color) {
   ]);
   for (let i = 0; i < hole.length; i++) {
     const j = (i + 1) % hole.length;
-    for (const z of [-depth / 2 - 0.015, depth / 2 + 0.015])
+    for (const sign of sides) {
+      const z = sign * (depth / 2 + 0.015);
       face(
         o,
         [
@@ -186,25 +188,28 @@ function outlineTrim(o, hole, width, depth, slot, color) {
         slot,
         [0, 0, Math.sign(z)],
       );
+    }
   }
 }
-function brokenProfile(length, height, phase, steps) {
+function brokenProfile(start, end, base, height, phase, steps) {
+  const stations = Array.from({ length: steps + 1 }, (_, i) => start + ((end - start) * i) / steps);
   return [
-    [0, 0],
-    [length, 0],
-    ...Array.from({ length: steps + 1 }, (_, i) => {
-      const x = (length * (steps - i)) / steps;
-      return [x, height + 0.18 * Math.cos(i * 2.7 + phase) + 0.11 * Math.sin(i * 4.3 + phase)];
-    }),
+    ...stations.map((x) => [x, base(x)]),
+    ...stations
+      .toReversed()
+      .map((x, i) => [
+        x,
+        height(x) + 0.18 * Math.cos(i * 2.7 + phase) + 0.11 * Math.sin(i * 4.3 + phase),
+      ]),
   ];
 }
-function ledge(o, length, y, depth) {
+function ledge(o, length, y, depth, rise = 0) {
   face(
     o,
     [
       [0, y, depth / 2 + 0.07],
-      [length, y, depth / 2 + 0.07],
-      [length, y + 0.15, depth / 2 + 0.07],
+      [length, y + rise, depth / 2 + 0.07],
+      [length, y + rise + 0.15, depth / 2 + 0.07],
       [0, y + 0.15, depth / 2 + 0.07],
     ],
     'portal',
@@ -215,11 +220,64 @@ function ledge(o, length, y, depth) {
     o,
     [
       [0, y + 0.15, depth / 2],
-      [length, y + 0.15, depth / 2],
-      [length, y + 0.15, depth / 2 + 0.07],
+      [length, y + rise + 0.15, depth / 2],
+      [length, y + rise + 0.15, depth / 2 + 0.07],
       [0, y + 0.15, depth / 2 + 0.07],
     ],
     'portal',
+    'dressed',
+    [0, 1, 0],
+  );
+}
+function portalLandings(o, portal, wallDepth) {
+  for (const { side, depth, toe, steps } of portal.sides) {
+    const near = wallDepth / 2 - 0.02,
+      start = 0.81,
+      transition = depth - 0.14;
+    const rows = [[near, [0, 0]]];
+    let level = [0, 0];
+    for (let i = 1; i <= steps; i++) {
+      const z = start + ((transition - start) * (i - 1)) / steps;
+      const below = toe.map((height) => ((height + 0.045) * i) / steps);
+      rows.push([z, level], [z, below]);
+      level = below;
+    }
+    rows.push([transition, level], [depth, toe]);
+    const bottom = Math.min(0, ...toe) - 0.31;
+    const V = (x, y, z) => [portal.offset + (x * portal.width) / 2, y, side * z];
+    for (let i = 1; i < rows.length; i++) {
+      const [az, a] = rows[i - 1],
+        [bz, b] = rows[i];
+      face(
+        o,
+        [V(-1, a[0], az), V(1, a[1], az), V(1, b[1], bz), V(-1, b[0], bz)],
+        'stone',
+        'dressed',
+        az === bz ? [0, 0, side] : [0, 1, 0],
+      );
+      if (az !== bz)
+        for (const [j, x] of [-1, 1].entries())
+          face(
+            o,
+            [V(x, bottom, az), V(x, bottom, bz), V(x, b[j], bz), V(x, a[j], az)],
+            'stone',
+            'rubble',
+            [x, 0, 0],
+          );
+    }
+  }
+  const x = portal.offset,
+    w = portal.width / 2,
+    z = wallDepth / 2;
+  face(
+    o,
+    [
+      [x - w, 0, -z],
+      [x + w, 0, -z],
+      [x + w, 0, z],
+      [x - w, 0, z],
+    ],
+    'stone',
     'dressed',
     [0, 1, 0],
   );
@@ -230,19 +288,25 @@ export function buildOldKsiaz(o, key = 'old_ksiaz_ruins', level = 'closeup') {
   if (d === undefined) throw Error(`Unknown level ${level}`);
   const c = frame.controls,
     thickness = c.wallThickness,
-    steps = d < 2 ? 4 : 10;
-  for (const trace of frame.geometry.centerlines)
+    steps = d < 2 ? 4 : d === 2 ? 8 : 14;
+  const fit = frame.siteFit;
+  for (const [traceIndex, trace] of frame.geometry.centerlines.entries())
     for (let i = 0; i < trace.points.length - 1; i++) {
       const { q, length } = wallSpace(o, trace.points[i], trace.points[i + 1]);
+      const { rows, gaps } = fit.walls[traceIndex].segments[i];
+      const ground = (x, field) => {
+        const t = (x * (rows.length - 1)) / length;
+        const j = Math.min(rows.length - 2, Math.floor(t));
+        return rows[j][field] + (rows[j + 1][field] - rows[j][field]) * (t - j);
+      };
+      const base = (x) => ground(x, 'base');
       const main = trace.way === c.mainFacadeWay,
         north = trace.way === c.northFacadeWay && i === c.northFacadeSegment;
       const holes = [];
       let profile;
       if (main) {
         // Unequal surviving heights: tallest broken portion opposite the dressed portal.
-        profile = [
-          [0, 0],
-          [length, 0],
+        const crown = [
           [length, 7.7],
           [length * 0.89, 7.75],
           [length * 0.77, 8.05],
@@ -252,40 +316,68 @@ export function buildOldKsiaz(o, key = 'old_ksiaz_ruins', level = 'closeup') {
           [length * 0.19, 9.9],
           [0, 7.8],
         ];
-        const portal = round(length * 0.78, c.courtyardHeight, 1.58, 2.6, d < 2 ? 6 : 12);
+        const chippedCrown =
+          d === 3
+            ? crown.flatMap(([x, y], j) => {
+                const next = crown[j + 1];
+                return next
+                  ? [
+                      [x, y],
+                      [(x + next[0]) / 2, (y + next[1]) / 2 - 0.12],
+                    ]
+                  : [[x, y]];
+              })
+            : crown;
+        profile = [
+          ...rows.map(({ base }, j) => [(length * j) / (rows.length - 1), base]),
+          ...chippedCrown.map(([x, y]) => [x, y - c.courtyardHeight]),
+        ];
+        const portal = round(fit.portal.offset, 0, 1.58, 2.6, d < 2 ? 6 : steps + 2);
         holes.push(
           portal,
-          pointed(length * 0.21, 5.25, 1.13, 2.2, steps),
-          pointed(length * 0.47, 5.25, 1.13, 2.2, steps),
-          pointed(length * 0.78, 5.25, 1.13, 2.2, steps),
+          pointed(length * 0.21, 3.55, 1.13, 2.2, steps),
+          pointed(length * 0.47, 3.55, 1.13, 2.2, steps),
+          pointed(length * 0.78, 3.55, 1.13, 2.2, steps),
         );
         if (d >= 1)
           holes.push(
-            rectangle(length * 0.19, 2.3, 0.75, 1.35),
-            rectangle(length * 0.43, 2.3, 0.75, 1.35),
-            rectangle(length * 0.94, 2.3, 0.55, 1.35),
+            rectangle(length * 0.19, 0.6, 0.75, 1.35),
+            rectangle(length * 0.43, 0.6, 0.75, 1.35),
+            rectangle(length * 0.94, 0.6, 0.55, 1.35),
           );
         pierced(q, profile, holes, thickness);
-        outlineTrim(q, portal, d < 2 ? 0.2 : 0.32, thickness, 'dressed', 'portal');
+        outlineTrim(q, portal, d < 2 ? 0.2 : 0.32, thickness, 'dressed', 'portal', [1]);
+        if (d === 3) outlineTrim(q, portal, 0.09, thickness + 0.08, 'dressed', 'portal', [1]);
+        portalLandings(q, fit.portal, thickness);
         if (d >= 1)
           for (const h of holes.slice(1)) outlineTrim(q, h, 0.14, thickness, 'brick', 'brick');
         if (d >= 2) {
-          ledge(q, length, 4.7, thickness);
-          ledge(q, 2.75, 4.24, thickness);
+          ledge(q, length, 3.0, thickness);
+          ledge(q, 2.75, 2.54, thickness);
         }
       } else if (north) {
-        profile = brokenProfile(length, c.northWallHeight, 0.4, d < 2 ? 6 : 18);
+        const rise = fit.galleryFloor[1] - fit.galleryFloor[0];
+        const floor = (t) => fit.galleryFloor[0] + t * rise;
+        profile = brokenProfile(
+          0,
+          length,
+          base,
+          (x) => floor(x / length) + c.northWallHeight - c.courtyardHeight,
+          0.4,
+          d < 2 ? 6 : d === 2 ? 18 : 26,
+        );
         for (const t of [0.1, 0.24, 0.42, 0.61, 0.79])
-          holes.push(pointed(length * t, 3.65, 1.28, 2.35, steps));
+          holes.push(pointed(length * t, floor(t) + 1.95, 1.28, 2.35, steps));
         holes.push(
-          rectangle(length * 0.32, 1.5, 0.97, 3.0),
-          rectangle(length * 0.91, 1.5, 0.97, 3.0),
+          rectangle(length * 0.32, floor(0.32) + 0.11, 0.97, 3.0),
+          rectangle(length * 0.91, floor(0.91) + 0.11, 0.97, 3.0),
         );
         if (d >= 1)
-          for (const t of [0.12, 0.56, 0.75]) holes.push(rectangle(length * t, 0.6, 0.7, 1.0));
+          for (const t of [0.12, 0.56, 0.75])
+            holes.push(rectangle(length * t, floor(t) - 0.48, 0.7, 1.0));
         pierced(q, profile, holes, thickness);
         if (d >= 1) for (const h of holes) outlineTrim(q, h, 0.12, thickness, 'brick', 'brick');
-        if (d >= 2) ledge(q, length, 2.6, thickness);
+        if (d >= 2) ledge(q, length, floor(0) + 0.9, thickness, rise);
       } else {
         const height =
           trace.way === 898350440
@@ -299,17 +391,30 @@ export function buildOldKsiaz(o, key = 'old_ksiaz_ruins', level = 'closeup') {
                 : i === 4
                   ? 3.8
                   : 3.3;
-        profile = brokenProfile(
-          length,
-          height,
-          (trace.way % 17) + i,
-          d < 2 ? 2 : Math.max(3, Math.ceil(length / 1.8)),
-        );
-        if (length > 5.5 && d >= 1)
-          for (let x = 2; x < length - 1.5; x += 3.4) holes.push(rectangle(x, 0.7, 0.7, 1.15));
-        pierced(q, profile, holes, thickness * 0.86);
-        if (d >= 2)
-          for (const h of holes) outlineTrim(q, h, 0.12, thickness * 0.86, 'brick', 'brick');
+        const intervals = [0, ...gaps.flat(), length];
+        for (let j = 1; j < intervals.length; j += 2) {
+          const start = intervals[j - 1],
+            end = intervals[j],
+            span = end - start;
+          const grade = (x) => ground(x, 'grade');
+          const discontinuity = gaps.length ? 0.75 : 0;
+          const rump = (x) => grade(x) + height - discontinuity;
+          const range = brokenProfile(
+            start,
+            end,
+            base,
+            rump,
+            (trace.way % 17) + i,
+            d < 2 ? Math.max(2, Math.ceil(span / 6)) : Math.max(3, Math.ceil(span / 1.8)),
+          );
+          const windows = [];
+          if (span > 5.5 && d >= 1)
+            for (let x = start + 2; x < end - 1.5; x += 3.4)
+              windows.push(rectangle(x, grade(x) + 0.7, 0.7, 1.15));
+          pierced(q, range, windows, thickness * 0.86);
+          if (d >= 2)
+            for (const h of windows) outlineTrim(q, h, 0.12, thickness * 0.86, 'brick', 'brick');
+        }
       }
     }
 }

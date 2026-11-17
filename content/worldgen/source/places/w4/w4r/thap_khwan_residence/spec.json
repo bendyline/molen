@@ -1,0 +1,404 @@
+{
+  "planId": "thap_khwan_residence",
+  "id": "thap_khwan_residence",
+  "assetId": "molen.worldgen.structure.thap_khwan_residence",
+  "title": "Thap Khwan Residence",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.04565595,
+    "latitude": 13.818187900000002
+  },
+  "size": [
+    30.170000076293945,
+    10.236513614654541,
+    24.330066680908203
+  ],
+  "actualBounds": {
+    "min": [
+      -15.085000038146973,
+      -0.5901646614074707,
+      -10.675374984741211
+    ],
+    "max": [
+      15.085000038146973,
+      9.64634895324707,
+      13.654691696166992
+    ]
+  },
+  "visualBrief": "Eight dark teak pavilions with steep curved clay tile roofs surround a raised deck open to the sky.",
+  "nativeAxes": {
+    "x": "east-southeast",
+    "y": "up",
+    "z": "south-southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Thap_Khwan.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sanam-chandra-palace-wp",
+      "url": "https://qualla.com/sanam-chandra-palace/"
+    }
+  ],
+  "referenceInputHash": "fa8b0e4164de30cfee0fdac65695f6734c371f0f595d543791130ff054fb1e5b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4r/thap_khwan_residence/models/thap-khwan-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4r/thap_khwan_residence/models/thap-khwan-model.mjs",
+    "level": "skyline",
+    "export": "thapSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#5d493d",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#474139",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "thapDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#5d493d",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#474139",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "thapStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#5d493d",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#474139",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "thapCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#5d493d",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#474139",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_plain",
+    "tile_flat"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.47,
+    "cameraYaw": 0.36,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        4,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Visible dark frame-and-panel teak, open undercrofts, steep cambered tiled gables and tapered braces follow the exact original and architectural survey. Deck and stairs fit the unchanged independent terrain.",
+    "anchor": [
+      100.04565595,
+      13.818187900000002
+    ],
+    "heading": -0.20060453905852682,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.04563290825169,
+        13.818077862911498
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground beyond the south stair approaches."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.16665,
+          10.5019
+        ],
+        [
+          15.16856,
+          10.5019
+        ],
+        [
+          15.16665,
+          -10.5019
+        ],
+        [
+          -15.16856,
+          -10.5019
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named mapped perimeter of the connected raised teak houses."
+    },
+    "featureIds": [
+      "way/260617816"
+    ],
+    "source": "https://www.openstreetmap.org/way/260617816",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c4399dff6afa0b602a52485d8a805353dc53fe1c4a5e0576f40a72b8d4e141c1"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The native outline governs the overall scale and heading. The eight house envelopes, roof heights and exact spacing within it are architectural estimates.",
+    "The garden side uses the exact Qualla public-domain photograph. Hidden joinery, door placement and service-house elevations are estimated. The dark ceramic roof replaces the original thatch in the standing restored phase.",
+    "Ground comes from the unchanged public terrain grid. Timber column thresholds, individual steps and the central tree well are approximate. Ground surfacing below the timber deck is furnished by the viewer."
+  ],
+  "sourceLicense": "Original authored geometry using the photographer’s exact Qualla public-domain original, published architectural facts, OpenStreetMap and Terrarium elevations.",
+  "qaLodCameras": [
+    {
+      "name": "thap-khwan-skyline",
+      "position": [
+        31,
+        26,
+        38
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thap-khwan-district",
+      "position": [
+        31,
+        26,
+        38
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "thap-khwan-street",
+      "position": [
+        31,
+        26,
+        38
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "thap-khwan-closeup",
+      "position": [
+        31,
+        26,
+        38
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "two-southern-stairs-and-teak-panels",
+      "position": [
+        20,
+        9,
+        34
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        5
+      ]
+    },
+    {
+      "name": "steep-gables-and-open-undercroft",
+      "position": [
+        35,
+        8,
+        1
+      ],
+      "lookAt": [
+        5,
+        3.7,
+        0
+      ]
+    },
+    {
+      "name": "eight-roofs-and-central-deck",
+      "position": [
+        -18,
+        37,
+        22
+      ],
+      "lookAt": [
+        0,
+        3.15,
+        0
+      ]
+    },
+    {
+      "name": "north-rear-pavilions",
+      "position": [
+        -27,
+        13,
+        -24
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        -3.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6040,
+    "vertices": 18120,
+    "materials": 4,
+    "bytes": 799260,
+    "sha256": "sha256:78320e0bf1f3adbb9d4a1fdf5c23aee5bbc960471edf6370e0a82297a494fef0"
+  }
+}

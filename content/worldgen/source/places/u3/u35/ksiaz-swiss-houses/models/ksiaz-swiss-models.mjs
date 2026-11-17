@@ -13,18 +13,20 @@ export const ksiazSwissModels = [
     component: 'swiss-houses',
     number: '44',
     brief:
-      'Own five-vertex plaster pavilion with pink blind panels, a red hipped mansard roof, central curved dormer with an oval window, cream cornices and a brick chimney.',
+      'Cream plaster pavilion with pink blind panels, tiled mansard, oval dormer and paired side rooflights. A recessed door leads to a short stone landing.',
     primaryDescription:
       'Individual heritage house at Wałbrzyska 44, NID A/5052/1215/WŁ. Exterior identity follows Irena Goderska’s primary photograph dated 2012-07-28.',
     references: [
       'https://zabytek.pl/pl/obiekty/g-240579',
       'https://commons.wikimedia.org/wiki/File:PL,_%C5%9Awiebodzice_dom_szwajcarski_44_DSC_0015.JPG',
+      'https://www.labiryntarium.pl/7gmin/gminaswiebodzice/698-spacerkiemdoksiaza.html',
     ],
     cameras: [
       { name: 'oval-dormer-and-blind-panels', position: [16, 10, 16], lookAt: [0, 3.4, 0] },
       { name: 'side-portal-and-mansard-break', position: [16, 10, -16], lookAt: [0, 3.4, 0] },
       { name: 'roof-and-own-footprint', position: [2, 25, 3], lookAt: [0, 3, 0] },
       { name: 'rear-and-hipped-roof', position: [-16, 10, -16], lookAt: [0, 3.4, 0] },
+      { name: 'paired-rooflights-from-lion-gate', position: [-14, 5, 12], lookAt: [0, 3.4, 0] },
     ],
   },
   {
@@ -35,16 +37,17 @@ export const ksiazSwissModels = [
     component: 'swiss-houses',
     number: '46',
     brief:
-      'Own four-vertex plaster pavilion with pink blind panels, red hipped mansard roof, oval-window dormer, side eyebrow rooflight, curved entry cornice and brick chimney.',
+      'Cream plaster pavilion with pink blind panels, tiled mansard, road-facing oval dormer, eyebrow rooflight and a timber porch over the gate-side entrance.',
     primaryDescription:
-      'Individual heritage house at Wałbrzyska 46, NID A/5053/1214/WŁ. Exterior identity follows Irena Goderska’s primary photograph dated 2012-07-28. The adjacent timber porch and fences are separate features.',
+      'Individual heritage house at Wałbrzyska 46, NID A/5053/1214/WŁ. The 2012 and trail photographs show the oval dormer, eyebrow rooflight and timber porch. Parcel fences remain separate.',
     references: [
       'https://zabytek.pl/pl/obiekty/g-221860',
       'https://commons.wikimedia.org/wiki/File:PL,_%C5%9Awiebodzice_dom_szwajcarski_46_DSC_0017.JPG',
+      'https://www.labiryntarium.pl/7gmin/gminaswiebodzice/698-spacerkiemdoksiaza.html',
     ],
     cameras: [
-      { name: 'oval-dormer-and-blind-panels', position: [-16, 10, 16], lookAt: [0, 3.4, 0] },
-      { name: 'eyebrow-rooflight-and-portal', position: [16, 10, 16], lookAt: [0, 3.4, 0] },
+      { name: 'oval-dormer-and-blind-panels', position: [-16, 9, -14], lookAt: [0, 3.4, 0] },
+      { name: 'eyebrow-rooflight-and-portal', position: [-14, 7, 10], lookAt: [0, 3.4, 0] },
       { name: 'roof-and-own-footprint', position: [2, 25, 3], lookAt: [0, 3, 0] },
       { name: 'rear-and-hipped-roof', position: [16, 10, -16], lookAt: [0, 3.4, 0] },
     ],
@@ -56,6 +59,7 @@ export const ksiazSwissSurfaces = {
   rubble: { slot: 'foundation', graph: 'stone_drywall', roughness: 0.92, metallic: 0 },
   brick: { slot: 'trim', graph: 'brick', roughness: 0.88, metallic: 0 },
   timber: { slot: 'door', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
+  cutStone: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.88, metallic: 0 },
   glass: { slot: 'window', roughness: 0.35, metallic: 0.1 },
 };
 export const ksiazSwissPalette = {
@@ -189,7 +193,7 @@ function box(o, x, y, z, w, h, depth, col = 'trim', slot = 'plaster') {
   ])
     face(o, p, col, slot, n);
 }
-function polygon(o, loop, height, col, slot) {
+function polygon(o, loop, height, col, slot, normal = [0, 1, 0]) {
   const ix = earcut(loop.flat());
   for (let i = 0; i < ix.length; i += 3)
     face(
@@ -197,7 +201,7 @@ function polygon(o, loop, height, col, slot) {
       ix.slice(i, i + 3).map((k) => [loop[k][0], height, loop[k][1]]),
       col,
       slot,
-      [0, 1, 0],
+      normal,
     );
 }
 function winding(loop) {
@@ -413,7 +417,7 @@ function ovalDormer(o, d) {
   }
 }
 function eyebrow(o, d) {
-  const q = local(o, [0, -0.54], 0),
+  const q = local(o, [0, -0.43], 0),
     p = curve(0.62, 4.95, 0.35, d < 2 ? 6 : 10);
   face(
     q,
@@ -448,31 +452,81 @@ function eyebrow(o, d) {
       );
   }
 }
-function portal(o, d) {
-  if (d >= 1)
+function wallPanel(o, left, right, low, high, z, color, slot) {
+  face(
+    o,
+    [
+      [left, low, z],
+      [right, low, z],
+      [right, high, z],
+      [left, high, z],
+    ],
+    color,
+    slot,
+    [0, 0, 1],
+  );
+}
+function portal(o, d, length, bodyHeight, base, floor) {
+  const half = 0.55,
+    head = 2.47,
+    recess = -0.23;
+  for (const [left, right] of [
+    [-length / 2, -half],
+    [half, length / 2],
+  ]) {
+    wallPanel(o, left, right, base, 0.3, 0, 'stone', 'rubble');
+    wallPanel(o, left, right, 0.3, bodyHeight, 0, 'wall', 'plaster');
+  }
+  wallPanel(o, -half, half, base, floor, 0, 'stone', 'rubble');
+  wallPanel(o, -half, half, head, bodyHeight, 0, 'wall', 'plaster');
+  for (const sign of [-1, 1]) {
+    const x = sign * half;
     face(
       o,
       [
-        [-0.52, 0.12, 0.035],
-        [0.52, 0.12, 0.035],
-        [0.52, 2.46, 0.035],
-        [-0.52, 2.46, 0.035],
+        [x, floor, 0],
+        [x, floor, recess],
+        [x, head, recess],
+        [x, head, 0],
       ],
-      'door',
-      'timber',
-      [0, 0, 1],
+      'trim',
+      'plaster',
+      [-sign, 0, 0],
     );
+  }
+  face(
+    o,
+    [
+      [-half, head, recess],
+      [half, head, recess],
+      [half, head, 0],
+      [-half, head, 0],
+    ],
+    'trim',
+    'plaster',
+    [0, -1, 0],
+  );
+  wallPanel(o, -half - 0.01, half + 0.01, floor - 0.01, head + 0.02, recess, 'door', 'timber');
+  if (d >= 2) {
+    for (const side of [-1, 1]) {
+      const x = side * 0.275;
+      for (const y of [floor + 0.24, floor + 1.14])
+        box(o, x, y, recess + 0.02, 0.4, 0.72, 0.055, 'fascia', 'timber');
+      if (d === 3)
+        box(o, side * 0.065, floor + 0.95, recess + 0.04, 0.036, 0.063, 0.06, 'fascia', 'timber');
+    }
+  }
   const p = curve(1.24, 3.68, 0.48, d < 2 ? 6 : 10);
   face(
     o,
-    [[-1.24, 3.2, 0.07], [1.24, 3.2, 0.07], ...p.toReversed().map((v) => [...v, 0.07])],
+    [[-1.24, 3.2, 0.11], [1.24, 3.2, 0.11], ...p.toReversed().map((v) => [...v, 0.11])],
     'trim',
     'plaster',
     [0, 0, 1],
   );
   if (d >= 2) {
-    for (const x of [-0.67, 0.67]) box(o, x, 0.06, 0.085, 0.2, 2.64, 0.18);
-    box(o, 0, 2.56, 0.085, 1.54, 0.18, 0.18);
+    for (const x of [-0.64, 0.64]) box(o, x, floor, 0.065, 0.18, head - floor + 0.15, 0.13);
+    box(o, 0, head, 0.065, 1.5, 0.19, 0.13);
     for (let i = 1; i < p.length; i++) {
       const a = p[i - 1],
         b = p[i];
@@ -491,6 +545,88 @@ function portal(o, d) {
     }
   }
 }
+function stoneLanding(o, { width, depth, floor, toe }, base) {
+  const half = width / 2;
+  const at = (x, y, z) => [x * half, Array.isArray(y) ? y[(x + 1) / 2] : y, z];
+  const rows = [
+    [depth, toe],
+    [depth - 0.16, toe.map((y) => y + 0.045)],
+    [depth - 0.55, toe.map((y) => y + 0.045)],
+    [depth - 0.55, floor - 0.15],
+    [depth - 0.92, floor - 0.15],
+    [depth - 0.92, floor],
+    [-0.29, floor],
+  ];
+  for (let i = 1; i < rows.length; i++) {
+    const [z0, y0] = rows[i - 1],
+      [z1, y1] = rows[i];
+    face(
+      o,
+      [at(-1, y0, z0), at(1, y0, z0), at(1, y1, z1), at(-1, y1, z1)],
+      'stone',
+      'cutStone',
+      z0 === z1 ? [0, 0, 1] : [0, 1, 0],
+    );
+    if (z0 !== z1)
+      for (const sign of [-1, 1])
+        face(
+          o,
+          [at(sign, base, z0), at(sign, base, z1), at(sign, y1, z1), at(sign, y0, z0)],
+          'stone',
+          'cutStone',
+          [sign, 0, 0],
+        );
+  }
+}
+function porch(o, detail, base) {
+  const w = 1.34,
+    rise = 3.26,
+    eave = 2.91,
+    depth = 1.42;
+  face(
+    o,
+    [
+      [-w, eave, depth],
+      [w, eave, depth],
+      [w, rise, 0],
+      [-w, rise, 0],
+    ],
+    'roof',
+    'tile',
+    [0, 1, 0],
+  );
+  face(
+    o,
+    [
+      [-w, eave - 0.12, depth],
+      [w, eave - 0.12, depth],
+      [w, rise - 0.12, 0],
+      [-w, rise - 0.12, 0],
+    ],
+    'fascia',
+    'timber',
+    [0, -1, 0],
+  );
+  box(o, 0, eave - 0.22, depth - 0.065, 2 * w, 0.22, 0.13, 'fascia', 'timber');
+  for (const sign of [-1, 1]) {
+    const x = sign * 1.12;
+    box(o, x, base, depth - 0.18, 0.35, 0.24 - base, 0.36, 'stone', 'cutStone');
+    box(o, x, 0.12, depth - 0.18, 0.16, eave - 0.19, 0.17, 'door', 'timber');
+    face(
+      o,
+      [
+        [sign * w, eave, depth],
+        [sign * w, rise, 0],
+        [sign * w, rise - 0.12, 0],
+        [sign * w, eave - 0.12, depth],
+      ],
+      'fascia',
+      'timber',
+      [sign, 0, 0],
+    );
+    if (detail >= 2) box(o, x, 0.32, 0.5, 0.1, 2.32, 0.95, 'door', 'timber');
+  }
+}
 export function buildKsiazSwiss(o, key, level = 'closeup') {
   const f = frames.get(key),
     d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
@@ -498,9 +634,10 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
   if (d === undefined) throw Error(`Unknown runtime level ${level}`);
   const loop = f.geometry.outline.slice(0, -1),
     c = f.controls;
-  polygon(o, loop, 0, 'stone', 'rubble');
-  band(o, loop, 0, 0.3, 'stone', 'rubble');
-  band(o, loop, 0.3, c.bodyHeight - 0.3, 'wall', 'plaster');
+  const {
+    footingBottom,
+    entrances: [entrance],
+  } = f.siteFit;
   const decor = loop.filter((a, i) => {
     const b = loop[(i + loop.length - 1) % loop.length],
       p = loop[(i + 1) % loop.length],
@@ -510,7 +647,14 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
   });
   for (let i = 0; i < decor.length; i++) {
     const { q, length } = facade(o, decor, i);
-    if (i === c.entryWall) portal(q, d);
+    if (i === c.entryWall) {
+      portal(q, d, length, c.bodyHeight, footingBottom, entrance.floor);
+      stoneLanding(q, entrance, footingBottom);
+      if (key === 'ksiaz_swiss_house_ii') porch(q, d, footingBottom);
+    } else {
+      wallPanel(q, -length / 2, length / 2, footingBottom, 0.3, 0, 'stone', 'rubble');
+      wallPanel(q, -length / 2, length / 2, 0.3, c.bodyHeight, 0, 'wall', 'plaster');
+    }
     if (d >= 1) {
       if (i === c.entryWall) {
         window(q, -length * 0.33, d);
@@ -527,12 +671,15 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
       box(q, 0, 3.2, 0.035, length, 0.17, 0.18);
     }
   }
+  const crown = decor.map((p) => p.map((v) => v * 1.032));
+  band(o, crown, c.bodyHeight - 0.025, c.eaveHeight - c.bodyHeight + 0.025, 'trim', 'plaster');
+  polygon(o, crown, c.bodyHeight - 0.025, 'trim', 'plaster', [0, -1, 0]);
   const lower = decor.map((p) => p.map((v) => v * 1.065)),
     upper = decor.map((p) => p.map((v) => v * 0.62)),
     top = decor.map(([x, z]) => [Math.sign(x) * 0.45, Math.sign(z) * 0.15]);
   for (let i = 0; i < decor.length; i++) {
     const j = (i + 1) % decor.length,
-      { q, length } = facade(o, decor, i);
+      { length } = facade(o, decor, i);
     // The side cornice raises the actual eave; it must not poke through a straight roof.
     const steps = d < 2 ? 6 : 10,
       params =
@@ -551,8 +698,8 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
         lb = lerp(lower, b),
         ua = lerp(upper, a),
         ub = lerp(upper, b),
-        wa = lerp(decor, a),
-        wb = lerp(decor, b),
+        wa = lerp(crown, a),
+        wb = lerp(crown, b),
         ya = c.eaveHeight + rise(a),
         yb = c.eaveHeight + rise(b);
       face(
@@ -579,6 +726,21 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
         'plaster',
         [0, -1, 0],
       );
+      if (ya > c.eaveHeight + 0.001 || yb > c.eaveHeight + 0.001) {
+        const sign = winding(decor);
+        face(
+          o,
+          [
+            [wa[0], c.eaveHeight, wa[1]],
+            [wb[0], c.eaveHeight, wb[1]],
+            [wb[0], yb, wb[1]],
+            [wa[0], ya, wa[1]],
+          ],
+          'trim',
+          'plaster',
+          [sign * (wb[1] - wa[1]), 0, -sign * (wb[0] - wa[0])],
+        );
+      }
     }
     face(
       o,
@@ -592,14 +754,16 @@ export function buildKsiazSwiss(o, key, level = 'closeup') {
       'tile',
       [0, 1, 0],
     );
-    // Cream crown closes the whole eave gap above the photographed wall cornice.
-    box(q, 0, c.bodyHeight, 0, length + 0.08, c.eaveHeight - c.bodyHeight, 0.24);
   }
   polygon(o, top, c.ridgeHeight, 'roof', 'tile');
   if (d >= 2) band(o, upper, c.mansardBreakHeight - 0.1, 0.17, 'fascia', 'timber');
   const front = facade(o, decor, c.mainDormerWall).q;
   ovalDormer(front, d);
-  if (key === 'ksiaz_swiss_house_ii' && d >= 1) eyebrow(facade(o, decor, c.entryWall).q, d);
+  if (d >= 1)
+    for (const rooflight of c.sideRooflights) {
+      const { q } = facade(o, decor, rooflight.edge);
+      for (const x of rooflight.offsets) eyebrow(local(q, [x, 0], 0), d);
+    }
   box(o, 0.15, c.ridgeHeight - 0.1, -0.12, 0.68, 0.65, 0.62, 'brick', 'brick');
   if (d >= 2) box(o, 0.15, c.ridgeHeight + 0.55, -0.12, 0.84, 0.13, 0.78, 'brick', 'brick');
 }

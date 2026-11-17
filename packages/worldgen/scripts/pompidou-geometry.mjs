@@ -1,12 +1,40 @@
 /** 'centre_georges_pompidou': Pompidou exterior frame, gerberettes, escalator and service facade. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-export function buildPompidou(face, detail, r) {
+export function buildPompidou(face, detail, r, plaza) {
   const Y = r.floorY,
     L = r.length,
     half = L / 2,
     P = ([x, y, z]) => [x * r.xAxis[0] + z * r.zAxis[0], y, x * r.xAxis[1] + z * r.zAxis[1]],
     f = (role, ps, n) => face(role, ps.map(P), P(n));
+  const sections = plaza.rows.map(({ x, points }) => points.map(([z, y]) => [x, y, z]));
+  const seams = new Map(plaza.seamRefinements.map((seam) => [`${seam.row}:${seam.column}`, seam]));
+  const ground = (x, east) => {
+    const index = sections.findIndex((row) => row[0][0] >= x);
+    const a = sections[index - 1][east ? 1 : 4];
+    const b = sections[index][east ? 1 : 4];
+    return a[1] + ((b[1] - a[1]) * (x - a[0])) / (b[0] - a[0]);
+  };
+  for (let i = 1; i < sections.length; i++) {
+    const a = sections[i - 1];
+    const b = sections[i];
+    for (let j = 1; j < a.length; j++) {
+      if (j === 3 && a[0][0] > -r.coreLength / 2 && b[0][0] < r.coreLength / 2) continue;
+      const role = j >= 4 ? 'plaza' : 'floor';
+      const corners = [a[j - 1], a[j], b[j], b[j - 1]];
+      const seam = seams.get(`${i}:${j}`);
+      const ring = seam
+        ? [
+            corners[(seam.edge + 3) % 4],
+            corners[seam.edge],
+            ...seam.points,
+            corners[(seam.edge + 1) % 4],
+            corners[(seam.edge + 2) % 4],
+          ]
+        : corners;
+      for (let k = 1; k < ring.length - 1; k++) f(role, [ring[0], ring[k], ring[k + 1]], [0, 1, 0]);
+    }
+  }
   const rod = (
     role,
     a,
@@ -53,17 +81,28 @@ export function buildPompidou(face, detail, r) {
     }
   };
   prism(f, 'floor', r.floors[0], r.foundationY, Y);
-  box(f, 'glass', 0, Y + 0.05, 0, r.coreLength, 41.5, r.coreWidth);
+  const entranceWidth = 22;
+  const flank = (r.coreLength - entranceWidth) / 2;
+  box(f, 'glass', 0, Y + 4.8, 0, r.coreLength, 36.75, r.coreWidth);
+  box(f, 'glass', 0, Y + 0.04, -1.5, r.coreLength, 4.76, r.coreWidth - 3);
+  if (detail) {
+    for (const x of [-1, 1])
+      box(f, 'glass', (x * (entranceWidth + flank)) / 2, Y + 0.04, 21, flank, 4.76, 3);
+    for (const x of [-10.8, -7.2, -3.6, 0, 3.6, 7.2, 10.8])
+      box(f, 'white', x, Y, 21.5, 0.13, 4.8, 0.22);
+    box(f, 'white', 0, Y + 3.15, 21.5, entranceWidth, 0.13, 0.22);
+  }
   box(f, 'roof', 0, Y + 41.5, 0, r.coreLength, 0.5, r.coreWidth);
-  const stations = detail ? 14 : 7,
+  const stations = detail ? 14 : 6,
     step = L / (stations - 1),
-    sides = detail === 3 ? 10 : detail === 2 ? 8 : 6;
+    sides = detail === 3 ? 10 : detail === 2 ? 8 : 4;
   for (let i = 0; i < stations; i++) {
     const x = -half + i * step;
     for (const z of [-26, 26]) {
-      if (detail) rod('white', [x, r.foundationY, z], [x, Y + 43, z], 0.48, sides);
-      else box(f, 'white', x, Y, z, 0.95, 43, 0.95);
-      if (detail > 1) box(f, 'floor', x, r.foundationY, z, 1.7, Y - r.foundationY, 1.7);
+      const foot = ground(x, z < 0);
+      if (detail) rod('white', [x, foot, z], [x, Y + 43, z], 0.48, sides);
+      else box(f, 'white', x, foot, z, 0.95, Y + 43 - foot, 0.95);
+      if (detail > 1) box(f, 'floor', x, foot - 0.18, z, 1.7, 0.4, 1.7);
       for (const j of detail === 1 ? [1, 3, 6] : detail ? [1, 2, 3, 4, 5, 6] : [6]) {
         const y = Y + j * 6.9,
           sign = Math.sign(z);
@@ -97,7 +136,8 @@ export function buildPompidou(face, detail, r) {
     }
   }
   for (const z of [-25.9, 25.9]) {
-    for (let j = 1; j <= 6; j++) box(f, 'white', 0, Y + j * 6.9 - 0.18, z, L, 0.36, 0.38);
+    for (let j = detail ? 1 : 2; j <= 6; j += detail ? 1 : 2)
+      box(f, 'white', 0, Y + j * 6.9 - 0.18, z, L, 0.36, 0.38);
     if (detail)
       for (let i = 0; i < 13; i += detail < 3 ? 2 : 1) {
         const x = -half + (i * L) / 13,
@@ -124,9 +164,10 @@ export function buildPompidou(face, detail, r) {
       for (let j = 1; j <= 6; j++) box(f, 'white', 0, Y + j * 6.9, z, r.coreLength, 0.12, 0.12);
     }
     // End-wall glazing bars and roof-level spine.
+    const endBays = detail === 2 ? 10 : 14;
     for (const x of [-r.coreLength / 2 - 0.05, r.coreLength / 2 + 0.05])
-      for (let k = 0; k <= 14; k++)
-        box(f, 'white', x, Y + 0.05, -22.5 + (k * 45) / 14, 0.12, 41.5, 0.12);
+      for (let k = 0; k <= endBays; k++)
+        box(f, 'white', x, Y + 0.05, -22.5 + (k * 45) / endBays, 0.12, 41.5, 0.12);
     for (const z of [-16, 0, 16]) box(f, 'roof', 0, Y + 42, z, L - 5, 0.5, 1.1);
   }
   // Western caterpillar: six rising flights joined by short level landings.
@@ -183,11 +224,11 @@ export function buildPompidou(face, detail, r) {
     for (let i = 1; i < ring.length - 1; i++) f('glass', [ring[0], ring[i], ring[i + 1]], normal);
   }
   // Representative service banks retain their color and location at every LOD.
-  const pipeCount = detail > 1 ? 28 : detail ? 14 : 6;
+  const pipeCount = detail > 1 ? 28 : detail ? 14 : 5;
   for (let i = 0; i < pipeCount; i++) {
     const x = -half + 4 + (i * (L - 8)) / (pipeCount - 1),
       end = Y + 41 + (i % 3) * 0.4;
-    rod('blue', [x, Y + 1.2, -29], [x, end, -29], detail ? 0.55 : 0.8, sides);
+    rod('blue', [x, ground(x, true) - 0.7, -29], [x, end, -29], detail ? 0.55 : 0.8, sides);
     if (detail) {
       if (detail === 1) rod('blue', [x, end, -29], [x, Y + 41, -24], 0.55, sides);
       else {

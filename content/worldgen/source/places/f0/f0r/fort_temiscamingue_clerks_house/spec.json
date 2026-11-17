@@ -1,0 +1,456 @@
+{
+  "planId": "fort_temiscamingue_clerks_house",
+  "id": "fort_temiscamingue_clerks_house",
+  "assetId": "molen.worldgen.structure.fort_temiscamingue_clerks_house",
+  "title": "Fort Témiscamingue Clerk’s House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.46178725519863,
+    "latitude": 47.2886201795802
+  },
+  "size": [
+    8.130000114440918,
+    7.092000186443329,
+    11.869999885559082
+  ],
+  "actualBounds": {
+    "min": [
+      -4.650000095367432,
+      -0.6800000071525574,
+      -5.934999942779541
+    ],
+    "max": [
+      3.4800000190734863,
+      6.4120001792907715,
+      5.934999942779541
+    ]
+  },
+  "visualBrief": "The 1888 plan supplies the identity, and the Parks Canada field reports confirm the clerk’s residence. The distant Qualla photograph and Julian Ralph’s period description of HBC clerks’ lodgings guide a low pale log dwelling, with an estimated entrance and hearth.",
+  "nativeAxes": {
+    "x": "east-northeast",
+    "y": "up",
+    "z": "southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1888-01-01",
+    "validFrom": "1887-01-01",
+    "validUntil": "1889-12-31",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Temiscamingue_1876.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-t-miscamingue-wp",
+      "url": "https://qualla.com/fort-t-miscamingue/"
+    }
+  ],
+  "referenceInputHash": "sha256:bd90183e2f0b4df9c42acf12019108d636170a255213c88372b70951314d6972",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f0/f0r/fort_temiscamingue_clerks_house/models/fort-temiscamingue-clerks-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "fort-temiscamingue-outbuildings.mjs": "sha256:c62ac796f60b3052e585fe35e551be8fcbeab39405d730526c73e47c84546c8f",
+    "generate-fort-temiscamingue-outbuilding.mjs": "sha256:42188ef0b0ac086be10b709e3e4bb5fb25ebb532a6b9fcf3a516a0e828978a88"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f0/f0r/fort_temiscamingue_clerks_house/models/fort-temiscamingue-clerks-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.23,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "log": {
+        "slot": "wall",
+        "graph": "wood_log",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_log",
+    "wood_plain",
+    "shingle_cedar",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.78,
+    "cameraYaw": 3.93,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        2.5587,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 1888 plan supplies the identity, and the Parks Canada field reports confirm the clerk’s residence. The distant Qualla photograph and Julian Ralph’s period description of HBC clerks’ lodgings guide a low pale log dwelling, with an estimated entrance and hearth.",
+    "anchor": [
+      -79.46178725519863,
+      47.2886201795802
+    ],
+    "heading": 0.39,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.46183502627495,
+        47.288606860007626
+      ],
+      "modelHeight": 0,
+      "basis": "Original present-day terrain beside the estimated western threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [],
+    "source": "https://journals.lib.unb.ca/index.php/MCR/article/download/17992/21956?inline=1",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eae32227deea2f28eb77dffaa9c0eb17f462051d285b9d2cc04c1dcdf5166663",
+    "notes": "The excavation records identify the clerk’s house as building 9 and place the flagstaff between it and the factor’s house. The house is estimated 9 m east and 35 m north of that house in the administrative group."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The excavation records identify the clerk’s house as building 9 and place the flagstaff between it and the factor’s house. The house is estimated 9 m east and 35 m north of that house in the administrative group.",
+    "The 1888 plan supplies the identity, and the Parks Canada field reports confirm the clerk’s residence. The distant Qualla photograph and Julian Ralph’s period description of HBC clerks’ lodgings guide a low pale log dwelling, with an estimated entrance and hearth.",
+    "The original terrain comes from the modern source grid. The foundation and access are interpreted to fit that terrain. Details and proportions are approximate."
+  ],
+  "sourceLicense": "Original reconstruction from the public-domain Qualla photograph, primary historical records, and an unmodified modern digital elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "fort-temiscamingue-clerks-house-skyline",
+      "position": [
+        -17.775000000000002,
+        11.4875,
+        18.45
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-temiscamingue-clerks-house-district",
+      "position": [
+        -17.775000000000002,
+        11.4875,
+        18.45
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-temiscamingue-clerks-house-street",
+      "position": [
+        -17.775000000000002,
+        11.4875,
+        18.45
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-temiscamingue-clerks-house-closeup",
+      "position": [
+        -17.775000000000002,
+        11.4875,
+        18.45
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "shore-facing-entrance",
+      "position": [
+        -16.2,
+        8.65,
+        8.775
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ]
+    },
+    {
+      "name": "west-timber-detail",
+      "position": [
+        -7.875,
+        3.4003,
+        0.06
+      ],
+      "lookAt": [
+        -3.15,
+        2.7165,
+        0
+      ]
+    },
+    {
+      "name": "north-gable-and-roof",
+      "position": [
+        -9.225,
+        10,
+        -19.125
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ]
+    },
+    {
+      "name": "inland-grade-and-footings",
+      "position": [
+        16.3125,
+        10.05,
+        9.1125
+      ],
+      "lookAt": [
+        0,
+        2.5587,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 974,
+    "vertices": 2922,
+    "materials": 5,
+    "bytes": 283464,
+    "sha256": "sha256:e579c16937a3adc382be2a9c665cce4f914a196b1e23da59f4ad13d51e14d6d4"
+  }
+}

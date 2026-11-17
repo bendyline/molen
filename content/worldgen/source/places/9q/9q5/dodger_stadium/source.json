@@ -1,0 +1,55 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dodger_stadium",
+  "kind": "static-structure",
+  "title": "Dodger Stadium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dodger_stadium",
+        "output": "assets/places/9q/9q5/dodger_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8d4663f8afe891e1a231ab106a47aaebaf1f588c36252c85f6d5ab223aafa615"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dodger-stadium",
+        "path": "models/generate-dodger-stadium.mjs"
+      },
+      {
+        "id": "dodger-stadium-model",
+        "path": "models/dodger-stadium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "reference-rights/commons-qualla-dodger-stadium.json",
+      "terrain-review.height.png",
+      "terrain-sources/usgs-3dep.tiff",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

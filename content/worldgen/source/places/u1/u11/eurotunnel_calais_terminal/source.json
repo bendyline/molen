@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.eurotunnel_calais_terminal",
+  "kind": "static-structure",
+  "title": "Eurotunnel Calais Terminal",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.eurotunnel_calais_terminal",
+        "output": "assets/places/u1/u11/eurotunnel_calais_terminal/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9b42753f603c297f8b8bfb764051ada99e7873a5304fec1100e12b600a67d66b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-eurotunnel-calais-terminal",
+        "path": "models/generate-eurotunnel-calais-terminal.mjs"
+      },
+      {
+        "id": "eurotunnel-calais-terminal-model",
+        "path": "models/eurotunnel-calais-terminal-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/terminal-controls.json",
+      "reference-rights/commons-qualla-terminal-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16548-10979.png",
+      "terrain-sources/terrarium-15-16549-10979.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

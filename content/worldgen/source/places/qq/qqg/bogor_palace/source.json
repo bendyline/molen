@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bogor_palace",
+  "kind": "static-structure",
+  "title": "Bogor Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bogor_palace",
+        "output": "assets/places/qq/qqg/bogor_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:355c4ada3c3eccf613edf86141115ba6a0052ed9ba95743cf794f8b483e29d93"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bogor-palace",
+        "path": "models/generate-bogor-palace.mjs"
+      },
+      {
+        "id": "bogor-palace-model",
+        "path": "models/bogor-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-bogor-palace-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26104-16985.png",
+      "terrain-sources/terrarium-15-26104-16986.png",
+      "terrain-sources/terrarium-15-26105-16985.png",
+      "terrain-sources/terrarium-15-26105-16986.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

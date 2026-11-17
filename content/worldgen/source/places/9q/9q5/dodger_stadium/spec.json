@@ -1,0 +1,455 @@
+{
+  "planId": "dodger_stadium",
+  "id": "dodger_stadium",
+  "assetId": "molen.worldgen.structure.dodger_stadium",
+  "title": "Dodger Stadium",
+  "wikidataId": "Q247420",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.24,
+    "latitude": 34.0739
+  },
+  "size": [
+    270.33091735839844,
+    69.4000015258789,
+    259.3280944824219
+  ],
+  "actualBounds": {
+    "min": [
+      -135.67544555664062,
+      0,
+      -97.68075561523438
+    ],
+    "max": [
+      134.6554718017578,
+      69.4000015258789,
+      161.6473388671875
+    ]
+  },
+  "visualBrief": "Dodger Stadium in Chávez Ravine, with a terraced main stand, low outfield pavilions, twin hexagonal scoreboards, four-post light banks and a baseball diamond.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dodger_Stadium_view_from_west_2015-10-04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dodger_Stadium_stairs_2015-10-04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dodger_Stadium_upper_deck_entry_2015-10-04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dodger_Stadium_-_September_11,_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "dodger-stadium-wp",
+      "url": "https://qualla.com/dodger-stadium/"
+    }
+  ],
+  "referenceInputHash": "e0f59025d29f96f2678d33e7344c801253f5ebfe1a6ace62ddca42f3328b4599",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q5/dodger_stadium/models/dodger-stadium-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q5/dodger_stadium/models/dodger-stadium-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 8.3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.12
+      },
+      "color": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.44,
+        "metallic": 0
+      },
+      "field": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 3.9,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "color": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.44,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 1.22,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "color": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.44,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "color": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.44,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_standing_seam",
+    "metal_painted",
+    "glass_frit_triangular"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.25,
+    "focus": {
+      "center": [
+        1,
+        16,
+        21
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dug into the Elysian Park hillside, with approximate finished deck heights following the published elevations and original 3DEP context.",
+    "anchor": [
+      -118.24,
+      34.0739
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.24,
+        34.0739
+      ],
+      "modelHeight": 0,
+      "basis": "Original USGS sample at the playing field near the site anchor. Each stand rises from the same field datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1353249584",
+      "way/425651386",
+      "way/425651387",
+      "way/425651385",
+      "way/126712489",
+      "way/401848961",
+      "way/401848962"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-118.2450,34.0699,-118.2350,34.0790",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d4ad7951d7ef8d6a252e976fa4110b0accc48f053200c068f7a80109443c0782"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.glass_frit_triangular",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.05,
+        0.08660254
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Unevaluated club interiors, advertising and scoreboard programs are omitted. Roof, mid-century exterior, concourse and riser details are schematic.",
+    "The bowl section and playing-field elevation use approximate exterior registration to the original USGS 3DEP field."
+  ],
+  "sourceLicense": "Independent geographic reconstruction using exact author-CC0 Qualla photographs, ODbL footprints and original USGS 3DEP terrain.",
+  "qaLodCameras": [
+    {
+      "name": "dodger-stadium-skyline",
+      "position": [
+        217,
+        140,
+        224
+      ],
+      "lookAt": [
+        1,
+        16,
+        21
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "dodger-stadium-district",
+      "position": [
+        217,
+        140,
+        224
+      ],
+      "lookAt": [
+        1,
+        16,
+        21
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "dodger-stadium-street",
+      "position": [
+        217,
+        140,
+        224
+      ],
+      "lookAt": [
+        1,
+        16,
+        21
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "dodger-stadium-closeup",
+      "position": [
+        217,
+        140,
+        224
+      ],
+      "lookAt": [
+        1,
+        16,
+        21
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "from-home-plate-to-center-field",
+      "position": [
+        -46,
+        39,
+        106
+      ],
+      "lookAt": [
+        15,
+        11,
+        -29
+      ]
+    },
+    {
+      "name": "outfield-pavilions-and-scoreboards",
+      "position": [
+        117,
+        60,
+        -147
+      ],
+      "lookAt": [
+        20,
+        11,
+        -28
+      ]
+    },
+    {
+      "name": "grandstands-from-the-west-lot",
+      "position": [
+        -206,
+        36,
+        39
+      ],
+      "lookAt": [
+        -58,
+        30,
+        23
+      ]
+    },
+    {
+      "name": "open-bowl-from-right-field",
+      "position": [
+        153,
+        71,
+        -35
+      ],
+      "lookAt": [
+        -9,
+        13,
+        46
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36722,
+    "vertices": 110166,
+    "materials": 6,
+    "bytes": 4504588,
+    "sha256": "sha256:8d4663f8afe891e1a231ab106a47aaebaf1f588c36252c85f6d5ab223aafa615"
+  }
+}

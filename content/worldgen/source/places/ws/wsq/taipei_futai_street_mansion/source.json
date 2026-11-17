@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.taipei_futai_street_mansion",
+  "kind": "static-structure",
+  "title": "Taipei Futai Street Mansion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.taipei_futai_street_mansion",
+        "output": "assets/places/ws/wsq/taipei_futai_street_mansion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:286c2e1a919931facdef80f67c5274a8be152f5cb296244b4a35f62358718e3f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taipei-futai-street-mansion",
+        "path": "models/generate-taipei-futai-street-mansion.mjs"
+      },
+      {
+        "id": "taipei-futai-street-mansion-model",
+        "path": "models/taipei-futai-street-mansion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-27444-14027.png",
+      "terrain-sources/terrarium-15-27444-14028.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "reference-rights/taipei-municipal-facts.json",
+      "native-map/futai-street-mansion-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

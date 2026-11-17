@@ -1,0 +1,478 @@
+{
+  "planId": "pakistan_air_force_museum",
+  "id": "pakistan_air_force_museum",
+  "assetId": "molen.worldgen.structure.pakistan_air_force_museum",
+  "title": "Pakistan Air Force Museum",
+  "wikidataId": "Q7118096",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 67.09617,
+    "latitude": 24.87061
+  },
+  "size": [
+    602.9774169921875,
+    25.57010269165039,
+    410.6510772705078
+  ],
+  "actualBounds": {
+    "min": [
+      -300.0406799316406,
+      -8.352109909057617,
+      -230.71636962890625
+    ],
+    "max": [
+      302.9367370605469,
+      17.217992782592773,
+      179.93470764160156
+    ]
+  },
+  "visualBrief": "Pakistan Air Force Museum at Karachi in November 2016, with the glazed Archive Gallery, public entrance, Martyrs’ Monument and mapped visitor buildings.",
+  "nativeAxes": {
+    "x": "east along the archive gallery frontage",
+    "y": "up",
+    "z": "south along the archive gallery"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-11-08",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pakistan_Air_Force_Museum_Karachi.JPG",
+    "https://commons.wikimedia.org/wiki/File:PAF_Museum_Karachi1.JPG",
+    "https://commons.wikimedia.org/wiki/File:PAF_Museum_Karachi.jpg",
+    "https://commons.wikimedia.org/wiki/File:PAF_Museum_Hall.jpg",
+    "https://commons.wikimedia.org/wiki/File:PAF_Museum_Hall_Inside_View.jpg"
+  ],
+  "stories": [
+    {
+      "id": "pakistan-air-force-museum-wp",
+      "url": "https://qualla.com/pakistan-air-force-museum/"
+    }
+  ],
+  "referenceInputHash": "9ba73e6568335ce31171b4971b7b3d90376c3b44001dd2d67146479e2dde4533",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tkr/pakistan_air_force_museum/models/pakistan-air-force-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tk/tkr/pakistan_air_force_museum/models/pakistan-air-force-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.48,
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84,
+        "metallic": 0.08
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89,
+        "metallic": 0.06
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.27,
+        "metallic": 0.12,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.34
+        ],
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.06
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.34
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.06
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.34
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.06
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.34
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_standing_seam",
+    "plaster_lime",
+    "metal_painted",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.4,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      67.09617,
+      24.87061
+    ],
+    "heading": -0.21336153768375166,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        67.09486522207324,
+        24.87039202304016
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain sampled on the pedestrian approach to the archive gallery."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/446428300",
+      "way/446428301",
+      "way/446428302",
+      "way/446428305",
+      "way/446428307",
+      "way/446428308",
+      "way/446428310",
+      "way/446428311",
+      "way/446428312",
+      "way/446428313",
+      "way/446428317",
+      "way/446428318",
+      "way/446428320",
+      "way/446428321",
+      "way/446428322",
+      "way/446428337",
+      "way/846636395",
+      "way/846719963",
+      "way/846722713"
+    ],
+    "source": "https://www.openstreetmap.org/way/484255789",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:35ad473fae8db5e7583272a3c0808ef31d5868a3e8d8bac64659db683b4082be",
+    "notes": "The approximate landmark anchors are based on the public access, open plaza paths and dated photographs. The mapped archive building fixes the alignment and gallery shell. Public museum structures are the model scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the public museum’s November 2016 exterior. The Archive Gallery and visitor buildings follow mapped outlines. Roof sections, glazing, colors after accounting for nighttime illumination and the gallery vestibule depth are estimated.",
+    "The public entrance and memorial positions are approximate. The native mapped roads and plaza establish the local context and the cleared photographs establish form.",
+    "Original terrain remains unchanged. Foundations and visitor path grades are estimated. Exact memorial inscriptions, aircraft displays and material inside the main exhibit room are outside the modeled scope."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Used Qualla photographs are explicitly CC0 or author-released public domain. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "paf-museum-skyline",
+      "position": [
+        315,
+        211,
+        396
+      ],
+      "lookAt": [
+        -32,
+        4,
+        61
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "paf-museum-district",
+      "position": [
+        315,
+        211,
+        396
+      ],
+      "lookAt": [
+        -32,
+        4,
+        61
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "paf-museum-street",
+      "position": [
+        315,
+        211,
+        396
+      ],
+      "lookAt": [
+        -32,
+        4,
+        61
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "paf-museum-closeup",
+      "position": [
+        315,
+        211,
+        396
+      ],
+      "lookAt": [
+        -32,
+        4,
+        61
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "archive-glazed-gable-and-portico",
+      "position": [
+        -144,
+        8.4,
+        29
+      ],
+      "lookAt": [
+        -117,
+        5.9,
+        75
+      ]
+    },
+    {
+      "name": "public-gate-and-mounted-jet-sculptures",
+      "position": [
+        -28,
+        12,
+        -247
+      ],
+      "lookAt": [
+        11,
+        8.7,
+        -215
+      ]
+    },
+    {
+      "name": "martyrs-monument-and-archive",
+      "position": [
+        -98,
+        13,
+        0
+      ],
+      "lookAt": [
+        -73,
+        7.8,
+        49
+      ]
+    },
+    {
+      "name": "rotated-visitor-grounds",
+      "position": [
+        149,
+        101,
+        225
+      ],
+      "lookAt": [
+        -86,
+        4,
+        90
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5654,
+    "vertices": 16962,
+    "materials": 5,
+    "bytes": 831204,
+    "sha256": "sha256:57ad92134f86eae3baff7eabf41d9d0df1f7c6e34376f530c297e683113abb61"
+  }
+}

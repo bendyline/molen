@@ -1,10 +1,10 @@
 # Lubiechów Palm House residence
 
-![Shared Molen preview](shots/shared/angle-0.png)
+![Shared Molen preview](preview.png)
 
 Own jogged residential footprint and west annex, broken red roof, timbered east gable and north/south cross-gables, stone base and three chimneys.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [render and map review](QA-REVIEW.md).
 
 ## Sources and reconstruction
 
@@ -15,12 +15,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own map footprints; native Y0 is estimated local ground contact. Original exterior interpretation follows the individual NID 1994 cards and official ensemble plan. Heights, roof profiles, openings, adjoining component associations, present condition and real terrain fit remain pending. An independent Wikidata identity is not asserted.
+The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain. The west stair follows the elevation drawing and connects over the mapped low annex. Original exterior interpretation follows the individual NID cards and ensemble plan. Dimensions and present condition are estimates.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/generate-ksiaz-palm-services.mjs --ids=KSI_L04 (or --check).
 
-2245 triangles;273068 source bytes;6 merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs. Research scans and photographs are not redistributed or used as textures.
+2757 triangles;335008 source bytes;7 merged material groups. Six shared graphs for plaster, tile, rubble, sandstone, brick and timber use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:a529cc2b306ae9fd68b9942ba70a70a525437bad72eb5d5059aba4831c9f17bb
+Source hash: sha256:a3bba0f771b03c473c30a4ed84a4bc3b14006dcc35feba6db3fae0deb6e4df49

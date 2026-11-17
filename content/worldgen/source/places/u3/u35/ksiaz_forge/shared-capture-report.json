@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_forge",
-  "sourceHash": "sha256:995c57accb804a35a20e80da5940be526a0c4833615935952bd61306ce36ca7d",
-  "runtimeHash": "sha256:0d172609b7935a51041ea13e06f4748094e6e78d0ac3b1933861854e89afcbcf",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:007c64915f2559e425cd8e972accb9c6f45e00df98d3d90721baf48538585238",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:e36870b5facfeb6785d0f3711f9b84b9a8c726c98dea5c2a06dce1d80e814a49",
-  "placementHash": null,
+  "inputHash": "sha256:ae90b1aba5482cfc3f5e0b37e930714f3128037054ba74ac5e9d1146f8812c5f",
+  "sourceHash": "sha256:18e75918d7084a083569323e0d5fc877d4b72d5e97698a5b811d76d5600d9a9d",
+  "runtimeHash": "sha256:684f441ffdb496385bf8a454927f5eaaa8a628025505990d87da08c163203a09",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:b7c0e9b4bebecb27f4e23c4734d494c9a7a51f706a00cf90cadd3732588b6d5f",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:ca910668810d68a03dd0eaf145bca2971ab58f999a326d4dcc3f34a49303ee5b",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -30,6 +33,10 @@
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
@@ -38,239 +45,379 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:13b12525a10b4dd812e32ae4dc67bc7e7e542a74e41811a2c28b745a28a7fa00",
+      "hash": "sha256:a584658214b2ca974eee700744bdae7be4010c48c03658f63adb610013251244",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:486b6783a8a530b74411f423d9f7592e15c25b4c0a38e9a03f7873bbd3b9ed81",
+      "hash": "sha256:bcf69f101bb58ff456c27bab5a18f674c287a6f505eaf93e4034a0ad7bbe11a1",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:c87f4677c274d48536e7f828920fd4c23f05709ea8af335f72b80d024ff8469c",
+      "hash": "sha256:c057f811424d22985a1773baa9bf0e102e7aea7adf47dbaa5420556d8ab38a90",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:1ff742e7b509ecd01d701948902d4d44380657a8a4e4ede682def417c1e2fff5",
+      "hash": "sha256:1aaf373ef531a5e8358af4c9815735e21380d0a60df5f55c6911b5649a8c7ed9",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/arched-door-court.png",
-      "hash": "sha256:ddd717dcb1d1c0e12ea6855b1ef6bdac8150e1932a1dc7f7cdbc719c2f35ae93",
+      "hash": "sha256:08738dc0e00ae842a7809fe4e08356efd3d413ce80b986681931c61feb20b2c4",
       "camera": {
         "name": "arched-door-court",
         "position": [
@@ -286,58 +433,93 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/outer-stone-walls.png",
-      "hash": "sha256:97d6d6e0107645472aadfe775dd57dba38e2f23708e7e7c9055bd3b9d754685c",
+      "hash": "sha256:b3c427ea8593bf07f75d6034fdcbe7d4639f89df9721420b04498c37f5c32a10",
       "camera": {
         "name": "outer-stone-walls",
         "position": [
@@ -353,58 +535,93 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/roof-and-footprint.png",
-      "hash": "sha256:67e7a5b0263a59f22ec5e2cc2f3784ff2c5d0bb35d19b48dff55dd09203cae0c",
+      "hash": "sha256:b9e3410406e2e81fa3f6e21b79fcb3884975c6c44faf577448256195c27fa455",
       "camera": {
         "name": "roof-and-footprint",
         "position": [
@@ -420,58 +637,93 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
       }
     },
     {
       "path": "shots/shared/portals-and-chimney.png",
-      "hash": "sha256:3fb0d68bd38810a4fb1274eedcca880231a9f991f77a3390f0116c71225bf1a6",
+      "hash": "sha256:0a1264c78a0e6af588b8393562f2a4e023e26fff46fd69e15692f98dc360d2fd",
       "camera": {
         "name": "portals-and-chimney",
         "position": [
@@ -487,53 +739,181 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forge",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
         "position": [
+          -63.98171835881658,
           0,
-          0,
-          0
+          -66.86653073085472
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 554,
+        "meshes": 8,
+        "triangles": 612,
         "bounds": {
           "min": [
-            -10.286999702453613,
-            0,
-            -10.223999977111816
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
           ],
           "max": [
-            10.286999702453613,
+            13.469453516183421,
             7.820000171661377,
-            10.223999977111816
+            7.70970217930153
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "56d888e5-d164-484c-ba85-fd526cf8ed1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "c6c4adb8-c0af-4bf7-af64-cceadb35c45b",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "92900938-fc18-468d-b466-8bdf3a1475d1",
-          "worldgen:matgraph:molen.worldgen.material.slate": "140dc35c-0e74-4111-a3f4-052aa274b221",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5734d7da-bc52-4c27-b2f8-c850f8a5998b",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7dadea4f-d980-4909-8b8c-faf6c8a0ab71"
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forge"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 556
+        "draws": 9,
+        "renderedTriangles": 614
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:afb6d179b9bdaae312bde2928ab945b8202841a1f8ef1753fac077d7cb317288",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_forge",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forge",
+        "position": [
+          -63.98171835881658,
+          0,
+          -66.86653073085472
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 612,
+        "bounds": {
+          "min": [
+            -13.468557653250173,
+            -2.276578903198242,
+            -13.442588164936751
+          ],
+          "max": [
+            13.469453516183421,
+            7.820000171661377,
+            7.70970217930153
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -13.468557181292192,
+            -2.276578903198242,
+            -13.442588834892996
+          ],
+          "max": [
+            13.469454407039237,
+            7.820000171661377,
+            7.709698763931117
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "a658bf13-8b28-4ebc-9c43-2edccaf42162",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "32921383-1645-4689-90c5-2ae110c320cd",
+          "worldgen:matgraph:molen.worldgen.material.slate": "a4805d03-1873-4464-b46b-e8d61f1ae03f",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "970d1c36-d2ef-47e4-8c70-787ab3094277",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_forge"
+        ],
+        "selectionBounds": [
+          16.29252049699649,
+          50.8435135753158,
+          16.29434150300351,
+          50.844663418244856
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forge",
+            "coordinate": [
+              16.293358519680275,
+              50.844017694941044
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forge"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 614
       }
     }
   ],

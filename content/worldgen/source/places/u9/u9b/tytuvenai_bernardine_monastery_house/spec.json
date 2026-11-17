@@ -1,0 +1,461 @@
+{
+  "planId": "tytuvenai_bernardine_monastery_house",
+  "id": "tytuvenai_bernardine_monastery_house",
+  "assetId": "molen.worldgen.structure.tytuvenai_bernardine_monastery_house",
+  "title": "Tytuvėnai Bernardine Monastery House",
+  "wikidataId": "Q942809",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.200931354797337,
+    "latitude": 55.596593386940654
+  },
+  "size": [
+    43.80067253112793,
+    13.540848195552826,
+    32.08493995666504
+  ],
+  "actualBounds": {
+    "min": [
+      -21.927146911621094,
+      -0.895847737789154,
+      -17.853450775146484
+    ],
+    "max": [
+      21.873525619506836,
+      12.645000457763672,
+      14.231489181518555
+    ]
+  },
+  "visualBrief": "Three two-storey brick wings wrap around the smaller cloister court of Tytuvėnai’s Bernardine monastery. A stepped west gable and a low glazed link distinguish the house from the churchyard arcade.",
+  "nativeAxes": {
+    "x": "roughly east, toward the church apse",
+    "y": "up",
+    "z": "roughly south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "tytuvenai-monastery-wp",
+      "url": "https://qualla.com/tytuvenai-monastery/"
+    }
+  ],
+  "referenceInputHash": "sha256:6097e2728689dc8c1e5bb93882f97c0bf91b20b009e6738fecb379a91de042f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u9/u9b/tytuvenai_bernardine_monastery_house/models/tytuvenai-bernardine-monastery-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "tytuvenai-ensemble-geometry.mjs": "sha256:1232944a27b0bded06843cf2786f815449e7ee61f327be239c40ad48a8e1de12"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u9/u9b/tytuvenai_bernardine_monastery_house/models/tytuvenai-bernardine-monastery-house-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.62,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "plaster_lime",
+    "tile_ceramic",
+    "stone_granite",
+    "window_punched",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.51,
+    "cameraYaw": -0.68,
+    "focus": {
+      "center": [
+        0,
+        4,
+        0
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The monastery house consists of three two-storey brick wings of unequal mass, a rectangular cloister court and a low glazed link along the church. The brick wings have pitched clay-tile roofs.",
+    "anchor": [
+      23.200931354797337,
+      55.596593386940654
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.200931354797337,
+        55.596593386940654
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen elevation tile data sampled at the independent building anchor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/1874439"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1874439",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:92456f0691ff96e1ca0648cb7de5e8bdaae89399f4d554ae0dc9496d3851b3b6",
+    "notes": "The mapped feature is localized in the geographic reference frame. The shared relation is split at the courtyard and church junctions using the heritage inventory."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The official register gives three attached two-storey wings and court dimensions near 16.5 m by 10.8 m. The mapped outline constrains the exterior and the wing roofs are fitted to its courtyard junctions.",
+    "The current mortar color, levels and exact fenestration are estimated. The west stepped gable follows the register description.",
+    "The preserved terrain shows local grades at regional source resolution. Small threshold elevations are estimated."
+  ],
+  "sourceLicense": "Independent reconstruction from written Lithuanian heritage records, OpenStreetMap geometry and open terrain tiles.",
+  "qaLodCameras": [
+    {
+      "name": "tytuvenai-bernardine-monastery-house-skyline",
+      "position": [
+        -47,
+        37,
+        44
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tytuvenai-bernardine-monastery-house-district",
+      "position": [
+        -47,
+        37,
+        44
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tytuvenai-bernardine-monastery-house-street",
+      "position": [
+        -47,
+        37,
+        44
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tytuvenai-bernardine-monastery-house-closeup",
+      "position": [
+        -47,
+        37,
+        44
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "brick-wings-and-courtyard",
+      "position": [
+        31,
+        44,
+        33
+      ],
+      "lookAt": [
+        0,
+        3,
+        1
+      ]
+    },
+    {
+      "name": "stepped-west-gable-and-entrance",
+      "position": [
+        -35,
+        11,
+        18
+      ],
+      "lookAt": [
+        -15,
+        5,
+        4
+      ]
+    },
+    {
+      "name": "glazed-link-and-inner-court",
+      "position": [
+        -5,
+        21,
+        -26
+      ],
+      "lookAt": [
+        0,
+        3,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6591,
+    "vertices": 19773,
+    "materials": 6,
+    "bytes": 1084672,
+    "sha256": "sha256:33a5ab86ecac594b50ad17cdad9852b0c029f756b149df09a38c44dc4aeac4d1"
+  }
+}

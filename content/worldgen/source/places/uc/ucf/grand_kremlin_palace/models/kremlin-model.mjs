@@ -12,7 +12,7 @@ import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-tr
 const controlsBytes = readFileSync(new URL('../layout.json', import.meta.url));
 if (
   createHash('sha256').update(controlsBytes).digest('hex') !==
-  '2422e4ff66176afdf104bbede27f8261534dcaa17b6d8ec4190a5c83701b366c'
+  '1e0e6557ef015de6f328fa264219f041ac45e8e79c35baedea45596aec3b735c'
 )
   throw Error('Grand Kremlin Palace controls changed: update explicit geometry input pin');
 export const kremlinControls = JSON.parse(controlsBytes);
@@ -474,78 +474,6 @@ function visibleFaces(b, c) {
     }
   return faces;
 }
-function entries(o, c) {
-  for (const e of a.entries) {
-    const F = (u, y, d) => [
-        e.center[0] + e.U[0] * u + e.N[0] * d,
-        y,
-        e.center[1] + e.U[1] * u + e.N[1] * d,
-      ],
-      p = e.outerProfile.filter((_, i) => i % (c.fine ? 1 : c.far ? 8 : c.flat ? 4 : 2) === 0),
-      n = p.length - 1,
-      w = e.width / 2,
-      D = e.approachDistance,
-      steps = c.far || c.flat ? 1 : 3;
-    for (let j = 0; j < n; j++) {
-      const u = -w + (2 * w * j) / n,
-        U = -w + (2 * w * (j + 1)) / n;
-      for (let k = 0; k < steps; k++) {
-        const d = (k / steps) * D,
-          dd = ((k + 1) / steps) * D,
-          y = e.thresholdY + ((p[j] - e.thresholdY) * k) / steps,
-          Y = e.thresholdY + ((p[j + 1] - e.thresholdY) * k) / steps,
-          ny = e.thresholdY + ((p[j] - e.thresholdY) * (k + 1)) / steps,
-          nY = e.thresholdY + ((p[j + 1] - e.thresholdY) * (k + 1)) / steps;
-        Q(
-          o,
-          c,
-          [
-            F(u, y, d),
-            F(U, Y, d),
-            F(U, steps === 1 || k === steps - 1 ? p[j + 1] : Y, dd),
-            F(u, steps === 1 || k === steps - 1 ? p[j] : y, dd),
-          ],
-          'base',
-          C.base,
-          [0, 1, 0],
-        );
-        if (steps > 1 && k < steps - 1)
-          Q(o, c, [F(u, y, dd), F(U, Y, dd), F(U, nY, dd), F(u, ny, dd)], 'base', C.base, [
-            e.N[0],
-            0,
-            e.N[1],
-          ]);
-        if (j === 0 || j === n - 1) {
-          const v = j === 0 ? u : U,
-            h = j === 0 ? y : Y,
-            H = j === 0 ? ny : nY;
-          Q(
-            o,
-            c,
-            [
-              F(v, a.foundationY, d),
-              F(v, a.foundationY, dd),
-              F(v, steps === 1 || k === steps - 1 ? H : h, dd),
-              F(v, h, d),
-            ],
-            'base',
-            C.base,
-            [e.U[0] * (j === 0 ? -1 : 1), 0, e.U[1] * (j === 0 ? -1 : 1)],
-          );
-        }
-      }
-      Q(
-        o,
-        c,
-        [F(u, a.foundationY, D), F(U, a.foundationY, D), F(U, p[j + 1], D), F(u, p[j], D)],
-        'base',
-        C.base,
-        [e.N[0], 0, e.N[1]],
-      );
-    }
-  }
-}
-
 const tint = (b) =>
   b.kind === 'historic'
     ? C.historic
@@ -951,7 +879,6 @@ export function buildKremlinLevel(output, level = 'master') {
   roofs(o, c);
   crown(o, c);
   domes(o, c);
-  entries(o, c);
 }
 export const buildKremlinSkyline = (o) => buildKremlinLevel(o, 'skyline'),
   buildKremlinDistrict = (o) => buildKremlinLevel(o, 'district'),

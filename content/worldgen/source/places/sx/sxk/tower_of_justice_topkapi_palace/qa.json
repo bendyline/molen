@@ -22,6 +22,10 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
+    "reviewedOn": "2026-11-16",
+    "inputHash": "sha256:219a1a343cf2a993979c5af59c734dbd14a39782e5ba088ee584ef92aed3f290",
+    "notes": "Inspected eight current views of the original geometry with the current shared material graphs. The viewer releases its geometry on unload.",
+    "captureReportHash": "sha256:c98a6a4693b22d0fe16cc447ae1a4b7e0e8b377c31b5cd5e4dcabad1d1168d2d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,8 +36,66 @@
       "shots/shared/curved-pediments-closed-lead-pyramid-and-finial.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing shared256px graphs: stone_ashlar, stone_marble, metal_standing_seam, window_grid, metal_painted and metal_bronze_cast. Seven roles merge into six textured draws/one skyline draw. No new graph/private atlas/embedded images. Shared window glazing is opaque with approximate reflections. Native Tower/Council scene uses ten distinct graphs in total, each requested once; their common marble, lead, glazing and bronze are reused. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
-    "captureReportHash": "sha256:07a5c80149916d00435bcc7a5bbf974be08b52d5bca1cc8d4d327d1f49d39757"
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:b894a719b8849d0f36ce039184adf0745fc8e5b9cb9d8a7624dc65d413fb8048"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:0f3c21c49c2a847ce7cbdb41148e1913585d77603b0d8ffa0ad817d6a20e6630"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:58637eecb11b9e96a892e229bd53ae9eca3b7c8b79a8d001204353276153b9c4"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:362414c01c8505765dd0f2d0cfdc30e03ededcbdc3cfaa16c6552a46e2542616"
+      },
+      {
+        "path": "shots/shared/stone-shaft-balcony-and-steep-spire.png",
+        "hash": "sha256:ed365e61471b7526f72033eeebfae7b8d3ce5bd9f638163f74fcb4ff99542f0f"
+      },
+      {
+        "path": "shots/shared/arched-belvedere-paired-columns-and-corbels.png",
+        "hash": "sha256:a4d576ab45ed978b2c9482efa552899a78ad677bc390bbf4e952b7e7ad5c7dfb"
+      },
+      {
+        "path": "shots/shared/curved-pediments-closed-lead-pyramid-and-finial.png",
+        "hash": "sha256:6768de5113a4e94f76bbeccc9eb10751b22f6600d3485cb9f42e8aa620f20729"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:aa1b2bdb76ca5301e160e03a3af1d28cbdab34537c7de5d400c57c26a17c6ad1"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_ashlar": {
+        "path": "materials/stone_ashlar.matgraph.json",
+        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_bronze_cast": {
+        "path": "materials/metal_bronze_cast.matgraph.json",
+        "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_marble": {
+        "path": "materials/stone_marble.matgraph.json",
+        "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

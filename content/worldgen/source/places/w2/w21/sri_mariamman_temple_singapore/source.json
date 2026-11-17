@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sri_mariamman_temple_singapore",
+  "kind": "static-structure",
+  "title": "Sri Mariamman Temple, Singapore",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sri_mariamman_temple_singapore",
+        "output": "assets/places/w2/w21/sri_mariamman_temple_singapore/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3dc04c9eb66d939690bd6bf6fd93de04f016e51a880ad4507a066b19f94258ba"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sri-mariamman-temple",
+        "path": "models/generate-sri-mariamman-temple.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/sri-mariamman-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "reference-rights/fieldhouse-line-drawing-native.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25836-16267.png",
+      "preview.png",
+      "native-map/osm-temple-components.json",
+      "site-components.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

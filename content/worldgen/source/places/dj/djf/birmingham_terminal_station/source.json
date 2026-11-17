@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.birmingham_terminal_station",
+  "kind": "static-structure",
+  "title": "Birmingham Terminal Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.birmingham_terminal_station",
+        "output": "assets/places/dj/djf/birmingham_terminal_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f22c5c224c0ae692ff3e3b801aab5f31b60e872c112193a27a19e0174d7441e4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-birmingham-terminal-station",
+        "path": "models/generate-birmingham-terminal-station.mjs"
+      },
+      {
+        "id": "birmingham-terminal-station-model",
+        "path": "models/birmingham-terminal-station-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/birmingham-terminal-station-archival-controls.json",
+      "native-map/osm-fifth-avenue-tunnel.json",
+      "reference-rights/birmingham-terminal-qualla-commons.json",
+      "reference-originals/sanborn-birmingham-1911-sheet-21.jpg",
+      "reference-originals/american-architect-1909-07-14.pdf",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8483-13141.png",
+      "terrain-sources/terrarium-15-8483-13142.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

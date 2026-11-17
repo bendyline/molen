@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canada_aviation_and_space_museum",
+  "kind": "static-structure",
+  "title": "Canada Aviation and Space Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canada_aviation_and_space_museum",
+        "output": "assets/places/f2/f24/canada_aviation_and_space_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fce22bd84fe0de276ed32ebfb923012d8ebb85e6453807bc872d808d5c864aea"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canada-aviation-and-space-museum",
+        "path": "models/generate-canada-aviation-and-space-museum.mjs"
+      },
+      {
+        "id": "canada-aviation-and-space-museum-model",
+        "path": "models/canada-aviation-and-space-museum-model.mjs"
+      },
+      {
+        "id": "reserve-hangar",
+        "path": "models/reserve-hangar.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "reference-rights/commons-museum-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9498-11727.png",
+      "terrain-sources/terrarium-15-9498-11728.png",
+      "terrain-sources/terrarium-15-9499-11727.png",
+      "terrain-sources/terrarium-15-9499-11728.png",
+      "preview.png",
+      "reserve-hangar-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

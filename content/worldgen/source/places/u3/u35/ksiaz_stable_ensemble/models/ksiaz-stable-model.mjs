@@ -35,6 +35,7 @@ export const ksiazStableSurfaces = {
   rubble: { slot: 'foundation', graph: 'stone_drywall', roughness: 0.92, metallic: 0 },
   timber: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
   stone: { slot: 'trim', graph: 'stone_limestone', roughness: 0.87, metallic: 0 },
+  court: { slot: 'foundation', graph: 'gravel', roughness: 0.96, metallic: 0 },
   glass: { slot: 'window', roughness: 0.35, metallic: 0.1 },
 };
 export const ksiazStablePalette = {
@@ -46,6 +47,7 @@ export const ksiazStablePalette = {
   timber: '#6d5c4b',
   door: '#857c58',
   glass: '#536c7c',
+  sand: '#d9bc92',
 };
 const colors = Object.fromEntries(
   Object.entries(ksiazStablePalette).map(([k, h]) => [
@@ -62,6 +64,33 @@ const colors = Object.fromEntries(
 const dir = new URL('../', import.meta.url);
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', dir)));
 const means = JSON.parse(readFileSync(new URL('surface-means.json', dir)));
+const fit = frame.siteFit;
+const gateTower = { x: -57.575, width: 14.25, length: 12 };
+
+function fittedPlane(o, { originY, slopeX, slopeZ }) {
+  return {
+    addTriangle: (slot, ref, points, _normal, uv, color) => {
+      const p = points.map(([x, y, z]) => [
+        x,
+        Math.fround(y + originY + slopeX * x + slopeZ * z),
+        z,
+      ]);
+      o.addTriangle(slot, ref, p, normalFor(...p), uv, color);
+    },
+  };
+}
+
+function ridingCourt(o) {
+  const { x, z, nx, nz, heights } = fit.court;
+  const at = (i, j) => [
+    x[0] + ((x[1] - x[0]) * i) / (nx - 1),
+    heights[j * nx + i],
+    z[0] + ((z[1] - z[0]) * j) / (nz - 1),
+  ];
+  for (let j = 1; j < nz; j++)
+    for (let i = 1; i < nx; i++)
+      face(o, [at(i - 1, j - 1), at(i, j - 1), at(i, j), at(i - 1, j)], 'sand', 'court', [0, 1, 0]);
+}
 
 function face(o, p, col = 'wall', slot = 'plaster', target) {
   p = p.map((v) => v.map(Math.fround));
@@ -491,7 +520,30 @@ function bodyHeight(x, z) {
   if (x > 48 && z > frame.controls.stableIIIEndZ && z < frame.controls.stableIIBeginZ) return 8.5;
   return 6.65;
 }
-function stableWalls(o, loop) {
+function gateSections(loop) {
+  const {
+    gateCenter: [, center],
+    gateWidth,
+  } = frame.controls;
+  const half = gateWidth / 2;
+  const stations = [
+    ...Array.from({ length: 9 }, (_, i) => center - half * Math.cos((i * Math.PI) / 8)),
+    ...loop.filter(([x, z]) => x < -48 && Math.abs(z - center) < half).map(([, z]) => z),
+  ].sort((a, b) => a - b);
+  return stations.map((z) => {
+    const xs = [];
+    for (const [i, a] of loop.entries()) {
+      const b = loop[(i + 1) % loop.length];
+      if (a[0] >= -48 || b[0] >= -48 || a[1] === b[1]) continue;
+      if (z < Math.min(a[1], b[1]) || z > Math.max(a[1], b[1])) continue;
+      xs.push(a[0] + ((b[0] - a[0]) * (z - a[1])) / (b[1] - a[1]));
+    }
+    if (xs.length < 2) throw Error('Missing stable gate wall section');
+    return { z, west: Math.min(...xs), east: Math.max(...xs), soffit: gateHeight(z) };
+  });
+}
+function stableWalls(o, loop, foundation) {
+  const sections = gateSections(loop);
   const sign = Math.sign(
     loop.reduce((s, a, i) => {
       const b = loop[(i + 1) % loop.length];
@@ -509,10 +561,9 @@ function stableWalls(o, loop) {
         1,
         [
           -49,
-          g.gateCenter[1] - 6,
-          g.gateCenter[1] + 6,
-          g.gateCenter[1] - g.gateWidth / 2,
-          g.gateCenter[1] + g.gateWidth / 2,
+          ...(aa[0] < -48 && bb[0] < -48
+            ? [g.gateCenter[1] - 6, ...sections.map((s) => s.z), g.gateCenter[1] + 6]
+            : []),
           g.stableIIIEndZ,
           g.stableIIBeginZ,
           43,
@@ -534,32 +585,21 @@ function stableWalls(o, loop) {
         n = [sign * (b[1] - a[1]), 0, -sign * (b[0] - a[0])],
         gate = mid[0] < -48 && Math.abs(mid[1] - g.gateCenter[1]) < g.gateWidth / 2;
       if (gate) {
-        const count = 8,
-          p = Array.from({ length: count + 1 }, (_, k) => {
-            const t = k / count,
-              x = a[0] + (b[0] - a[0]) * t,
-              z = a[1] + (b[1] - a[1]) * t;
-            return [x, gateHeight(z), z];
-          });
-        p.push([b[0], h, b[1]], [a[0], h, a[1]]);
-        const len = Math.hypot(b[0] - a[0], b[1] - a[1]),
-          ix = earcut(
-            p.flatMap((v) => [
-              ((v[0] - a[0]) * (b[0] - a[0])) / len + ((v[2] - a[1]) * (b[1] - a[1])) / len,
-              v[1],
-            ]),
-          );
-        for (let k = 0; k < ix.length; k += 3)
-          face(
-            o,
-            ix.slice(k, k + 3).map((j) => p[j]),
-            'wall',
-            'plaster',
-            n,
-          );
+        face(
+          o,
+          [
+            [a[0], gateHeight(a[1]), a[1]],
+            [b[0], gateHeight(b[1]), b[1]],
+            [b[0], h, b[1]],
+            [a[0], h, a[1]],
+          ],
+          'wall',
+          'plaster',
+          n,
+        );
       } else
         for (const [low, hi, col, slot] of [
-          [0, 0.4, 'stone', 'rubble'],
+          [foundation, 0.4, 'stone', 'rubble'],
           [0.4, h, 'wall', 'plaster'],
         ])
           face(
@@ -577,38 +617,34 @@ function stableWalls(o, loop) {
     }
   }
   // The arch is a real passage: only its soffit spans the footprint thickness.
-  const g = frame.controls,
-    steps = 12;
-  for (let i = 0; i < steps; i++) {
-    const z0 = g.gateCenter[1] + (Math.cos((i / steps) * Math.PI) * g.gateWidth) / 2,
-      z1 = g.gateCenter[1] + (Math.cos(((i + 1) / steps) * Math.PI) * g.gateWidth) / 2,
-      y0 = gateHeight(z0),
-      y1 = gateHeight(z1);
+  for (let i = 1; i < sections.length; i++) {
+    const a = sections[i - 1],
+      b = sections[i];
     face(
       o,
       [
-        [-64.646, y0, z0],
-        [-50.3, y0, z0],
-        [-50.3, y1, z1],
-        [-64.646, y1, z1],
+        [a.west, a.soffit, a.z],
+        [a.east, a.soffit, a.z],
+        [b.east, b.soffit, b.z],
+        [b.west, b.soffit, b.z],
       ],
       'stone',
       'stone',
       [0, -1, 0],
     );
   }
-  for (const z of [g.gateCenter[1] - g.gateWidth / 2, g.gateCenter[1] + g.gateWidth / 2])
+  for (const { west, east, z, soffit } of [sections[0], sections.at(-1)])
     face(
       o,
       [
-        [-64.646, 0, z],
-        [-50.3, 0, z],
-        [-50.3, g.gateSpring, z],
-        [-64.646, g.gateSpring, z],
+        [west, foundation, z],
+        [east, foundation, z],
+        [east, soffit, z],
+        [west, soffit, z],
       ],
       'stone',
       'stone',
-      [0, 0, z < g.gateCenter[1] ? 1 : -1],
+      [0, 0, z < frame.controls.gateCenter[1] ? 1 : -1],
     );
 }
 function mansard(o, x, z, w, len, d) {
@@ -743,7 +779,7 @@ function mainFacades(o, d) {
   for (const x of [-15, -7.5, 0, 7.5, 15]) opening(fifth, x, 0.9, 1.2, 2, d);
   for (const [x, z, w, len, y, h] of [
     [-57.0, -56.1, 17.3, 16, 8.4, 4.7],
-    [-57.2, -10.4, 14.0, 11.8, 9.9, 2.1],
+    [gateTower.x, frame.controls.gateCenter[1], gateTower.width, gateTower.length, 9.9, 2.1],
   ]) {
     for (const [xx, zz, ang, l] of [
       [x + w / 2, z, Math.PI / 2, len],
@@ -757,7 +793,7 @@ function mainFacades(o, d) {
     }
   }
   for (const [xx, angle] of [
-    [-50.25, Math.PI / 2],
+    [-50.47, Math.PI / 2],
     [-64.68, -Math.PI / 2],
   ]) {
     const q = local(o, xx, frame.controls.gateCenter[1], angle);
@@ -832,7 +868,7 @@ function ridingHall(o, d) {
         return s + a[0] * b[1] - b[0] * a[1];
       }, 0),
     );
-  cap(o, p, 0, 'stone', 'rubble', [0, -1, 0]);
+  const foundation = fit.planes[1].foundation;
   for (let i = 0; i < p.length; i++) {
     const a = p[i],
       b = p[(i + 1) % p.length],
@@ -841,8 +877,8 @@ function ridingHall(o, d) {
     face(
       o,
       [
-        [a[0], 0, a[1]],
-        [b[0], 0, b[1]],
+        [a[0], foundation, a[1]],
+        [b[0], foundation, b[1]],
         [b[0], h, b[1]],
         [a[0], h, a[1]],
       ],
@@ -886,21 +922,55 @@ export function buildKsiazStable(o, key = 'ksiaz_stable_ensemble', level = 'clos
   if (key !== 'ksiaz_stable_ensemble') throw Error(`Unknown stable ensemble ${key}`);
   const d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
   if (d === undefined) throw Error(`Unknown runtime level ${level}`);
+  const base = o;
+  ridingCourt(base);
+  o = fittedPlane(base, fit.planes[0]);
   const loop = frame.geometry.outline.slice(0, -1);
-  cap(o, loop, 0, 'stone', 'rubble', [0, -1, 0]);
-  stableWalls(o, loop);
+  stableWalls(o, loop, fit.planes[0].foundation);
   // Four original roof ranges. Roofs are not a solid rectangle over the courtyard.
   const stableIV = local(o, 6.5, -56.65, Math.PI / 2);
   hip(stableIV, 0, 0, 14.8, 105.7, 6.65, 11.35);
-  hip(o, -57.2, 13.8, 15.3, 44, 6.65, 11.4);
-  hip(o, -57.2, -33.8, 15.3, 33.5, 6.65, 11.4);
+  for (const [z, length, ridge] of [
+    [13.8, 44, 11.4],
+    [-33.8, 33.5, 11.4],
+  ]) {
+    hip(o, -57.2, z, 15.3, length, 6.65, ridge);
+    const left = -57.2 - 15.3 / 2,
+      right = -57.2 + 15.3 / 2;
+    const near = z - length / 2,
+      far = z + length / 2;
+    cap(
+      o,
+      [
+        [left, near],
+        [right, near],
+        [right, far],
+        [left, far],
+      ],
+      6.65,
+      'timber',
+      'timber',
+      [0, -1, 0],
+    );
+  }
   const stableI = local(cornerRoof(o), 3, 53.35, Math.PI / 2);
   hip(stableI, 0, 0, 14.3, 107, 10.4, 15.8);
   hip(o, 56.6, 28.6, 16.2, 67.2, 10.4, 15.8);
   hip(o, 56.6, -42.2, 16.2, 45.6, 6.65, 11.35);
   hip(o, 56.6, frame.controls.adminCenter[1], 16.2, 18.0, 8.5, 12.6);
   dormantGable(o, 48.92, frame.controls.adminCenter[1], -Math.PI / 2, 17.8, 8.5, 12.5, 14.5, 0);
-  hip(o, -57.2, -10.4, 15.3, 12.5, 12.2, 17, 'slate', 'slate');
+  hip(o, -57.2, frame.controls.gateCenter[1], 15.3, 12.5, 12.2, 17, 'slate', 'slate');
+  box(
+    o,
+    gateTower.x,
+    8.6,
+    frame.controls.gateCenter[1],
+    gateTower.width,
+    3.6,
+    gateTower.length,
+    'wall',
+    'plaster',
+  );
   // The tower's rectangular upper storeys bridge the joined lower ranges.
   // Ground traces alone cannot supply these facade planes; omitting them leaves floating framing.
   box(o, -57.0, 6.65, -56.1, 17.3, 6.65, 16, 'wall', 'plaster');
@@ -922,7 +992,7 @@ export function buildKsiazStable(o, key = 'ksiaz_stable_ensemble', level = 'clos
   ring(o, barRing, 0, 6.7);
   cap(o, barRing, 6.75, 'slate', 'slate');
   mainFacades(o, d);
-  ridingHall(o, d);
+  ridingHall(fittedPlane(base, fit.planes[1]), d);
   for (const [x, z, h] of [
     [-56.9, -51.3, 18],
     [-8, 53.35, 15.6],

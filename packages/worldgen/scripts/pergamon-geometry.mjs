@@ -235,7 +235,56 @@ export function buildPergamon(face, detail, r) {
         );
     }
   }
-  // Distinct low entrance treads meet the existing rising courtyard grade.
-  for (let i = 0; i < 2; i++)
-    box(f, 'stone', 26.65, Y - 0.24, -23.7 + 0.25 + (1 - i) * 0.5, 7.2, 0.12 * (i + 1), 0.5);
+  // The photograph shows an uninterrupted approach to the vestibule doors.
+  const { centerX, width, frontZ, courtZ } = r.entranceApron;
+  const left = centerX - width / 2;
+  const right = centerX + width / 2;
+  const toe = 0.008;
+  f(
+    'stone',
+    [
+      [left, Y, frontZ],
+      [right, Y, frontZ],
+      [right, toe, courtZ],
+      [left, toe, courtZ],
+    ],
+    [0, 1, 0],
+  );
+  for (const [x, side] of [
+    [left, -1],
+    [right, 1],
+  ]) {
+    f(
+      'stone',
+      [
+        [x, Y, frontZ],
+        [x, toe, courtZ],
+        [x, -0.12, courtZ],
+        [x, -0.12, frontZ],
+      ],
+      [side, 0, 0],
+    );
+  }
+  f(
+    'stone',
+    [
+      [left, -0.12, courtZ],
+      [right, -0.12, courtZ],
+      [right, toe, courtZ],
+      [left, toe, courtZ],
+    ],
+    [0, 0, 1],
+  );
+
+  // A narrow masonry quay closes the elevation break along the mapped bank.
+  const { bank, thickness, bedY, copingY } = r.quay;
+  const quayStrip = (offset, depth) => ({
+    outline: [
+      ...bank.map(([x, z]) => [x, z + offset]),
+      ...bank.toReversed().map(([x, z]) => [x, z + offset - depth]),
+    ],
+    holes: [],
+  });
+  prism(f, 'plinth', quayStrip(0, thickness), bedY, copingY - 0.2);
+  prism(f, 'stone', quayStrip(0.07, thickness + 0.14), copingY - 0.2, copingY);
 }

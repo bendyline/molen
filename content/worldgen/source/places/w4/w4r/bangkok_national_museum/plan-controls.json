@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-14",
+  "model": "bangkok_national_museum",
+  "wikidataId": "Q1255815",
+  "title": "Bangkok National Museum",
+  "cell": "w4/w4r",
+  "representedDate": "2017-06-11",
+  "validFrom": "2017-01-01",
+  "validUntil": "2018-01-01",
+  "geometryBasis": "All 16 building envelopes and the two residential courtyard voids come from the native museum site relation and individual footprint records. The regional museum is reconstructed as a single dated compound with distinct ceremonial, residential and museum buildings.",
+  "sectionBasis": "The Fine Arts Department records the twelve-bay Siwamokkhaphiman Hall with stepped roof slopes and ties the separate audience hall to the three connected Phra Wiman residential buildings. The Princess Maha Chakri Sirindhorn Anthropology Centre records Buddhaisawan’s raised masonry, its end terraces and two stepped roof slopes. Front Palace portal dimensions, roof heights and floors are estimated from cleared originals and surrounding terrain.",
+  "terrainFrozenBeforeGeometry": {
+    "terrain-grid.json": "sha256:aad53e8868632118fe56ff7aa0c687c6f8f5e7a9366153984eb7092a0c5771d2",
+    "terrain-review.terrain.json": "sha256:cbc454b7639bffe91d1456047da070bd430b06eb635d78a9c64cbb93b40452e4",
+    "terrain-review.height.png": "sha256:ae38e41e6942fe1656a2fde1558dd032febab5b8399f82aea0a22b6c14de188e"
+  },
+  "requiredSourceDocuments": [
+    "imagery-evidence.json",
+    "research-preparation.json",
+    "construction-preparation.json",
+    "plan-controls.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "native-map/bangkok-national-museum-controls.json",
+    "reference-rights/qualla-siwamokkhaphiman.json",
+    "reference-rights/siwamokkhaphiman-portal.json",
+    "reference-rights/buddhaisawan-main-portal.json",
+    "reference-originals/siwamokkhaphiman-portal.jpg",
+    "reference-originals/buddhaisawan-main-portal.jpg"
+  ],
+  "limitations": [
+    "The native map defines each building footprint and the two Phra Wiman courtyard openings. Roof pitch, wall section, distribution of doors and windows, and heights of associated museum buildings are architectural estimates.",
+    "Three exact 2017 reference images support the entrances and hall finishes. Written Thai architectural records supply the building types, ceremonial roof forms and relationships elsewhere in the compound.",
+    "Gilt reliefs, roof finials and fretwork are simplified. The depicted carvings, murals, Buddhist images and portable collections are outside the modeled scope.",
+    "The original elevation samples include effects from trees, roofs and the nearby river. Finished paving, stairs and exact historical foundation heights are approximate."
+  ],
+  "section": {
+    "throneHall": {
+      "feature": "way/83608613",
+      "floor": 0.67,
+      "eaves": 7.8,
+      "rise": 8.0,
+      "bays": 12,
+      "roofSlopeSteps": 4
+    },
+    "chapel": {
+      "feature": "way/190739714",
+      "floor": 2.2,
+      "eaves": 8.7,
+      "rise": 6.5,
+      "bays": 8,
+      "roofSlopeSteps": 2
+    },
+    "redHouse": {
+      "feature": "way/364438981",
+      "floor": 0.28,
+      "eaves": 3.65,
+      "rise": 3.35,
+      "bays": 6
+    },
+    "phraWiman": {
+      "feature": "way/30746209",
+      "floor": 0.9,
+      "eaves": 8.1,
+      "residentialRidges": [
+        [
+          -151,
+          -108,
+          -18.8,
+          6.8
+        ],
+        [
+          -151,
+          -106,
+          3.3,
+          5.9
+        ],
+        [
+          -155,
+          -106,
+          26.05,
+          6.65
+        ]
+      ],
+      "audienceHall": [
+        -106.5,
+        -59.8,
+        -7.6,
+        12.3
+      ],
+      "courtFloor": [
+        5.35,
+        4.45
+      ]
+    }
+  },
+  "controls": [
+    {
+      "url": "https://finearts.go.th/storage/contents/file/qd9kBWpNLzuE6tEtZhfM58uc66BwVwjyB3p398WB.pdf",
+      "reason": "Written Thai description gives the twelve bays, four stepped pitches, late front porch, characteristic Front Palace finials and timber roof of Siwamokkhaphiman."
+    },
+    {
+      "url": "https://db.sac.or.th/thailand-cultural-encyclopedia/detail.php?id=6665",
+      "reason": "Written chapel description gives raised white masonry, terraces at both ends, a two-step roof and square side columns."
+    },
+    {
+      "url": "https://www.finearts.go.th/storage/contents/file/jkhLKF2pjMn6IXKgtdqEhP0PjZQCI32NRDb4TaOMD.pdf",
+      "reason": "Fine Arts Department’s text identifies Issarawinitchai as the audience hall and describes its forecourt and reconstruction."
+    }
+  ]
+}

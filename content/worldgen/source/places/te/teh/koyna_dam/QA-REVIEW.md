@@ -1,17 +1,24 @@
 # Koyna Dam
 
-Reviewed 2026-11-03. **43 current catalog views and five standard-water comparison views inspected.**
-
 The model reproduces the 807.72 m buttressed gravity dam, six radial gates below the crest deck, striped crest tower, mapped powerhouse and the retaining walls and apron of the stilling basin.
 
-The named attraction and straight reservoir edge establish a signed anchor at [73.75160514, 17.40217853] and heading −0.53618712 radians. Local +X runs southeast and +Z runs southwest down the Koyna valley. The fixed 664.45 m crest includes approximate extensions on both banks. The native downstream bridge and access roads stay in place.
+The viewer renders Shivsagar Reservoir at the representative 659.43 m full-pool stage and the downstream stilling basin at 581 m. Bounded grades expose the eastern retaining wall and buttresses. The six gate bays, striped crest tower and powerhouse remain visible, and the mapped downstream bridge keeps its own deck above the basin.
 
-Five shared graphs supply board-formed and plain concrete, painted steel, standing-seam roofing and glazing. All six GLBs have zero embedded images. Eviction releases the model geometry and restores the terrain.
+![Koyna Dam in the Earth viewer](site-preview.png)
 
-The 25 terrain views use nine standard Terrarium tiles and retained reservoir and stilling basin shorelines. Five comparison views use the production sampler’s representative stages of 642.45 m and 577.09 m. The design fixture uses the 659.43 m full pool and an illustrative 581 m basin level.
+The Earth fixture retains 33 native road records and two nearby building features. The ground opening follows the dam, buttresses, spillway apron and powerhouse. Failed loading preserves the native layers. Eviction restores the ground and releases the model geometry.
 
-The detailed master contains 10,622 triangles. Viewer tiers contain 888, 1138, 1694, 7430 triangles. Skyline plus district are 157,068 bytes and close-up is 579,988 bytes. Four focused checks verify exact source pins, signed placement, retained bridge, six gates with open headspaces and five intermediate piers, mapped powerhouse, and byte-for-byte reconstruction of the four viewer tiers. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 888 | 68,928 | 4 |
+| district | 1,138 | 88,140 | 4 |
+| street | 1,694 | 132,556 | 5 |
+| closeup | 7,430 | 579,988 | 5 |
 
-The sampled upstream level is approximately 17 m below full pool. Parts of the eastern buttresses and basin walls intersect coarse terrain, and the reservoir banks include spurious low samples. The model shows closed gates and approximate abutment and power station sections.
+Skyline and district total 157,068 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Five shared material graphs bind in the viewer. The review covers 72 renders and 345 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-koyna-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=koyna_dam`.
+The basin stage, bank grades and subsurface sections are representative exterior estimates. Some outer shoreline edges remain sharp in the coarse terrain. The model depicts closed gates.
+
+The host supplies the matching Protomaps feature IDs and terrain samples fine enough to resolve the graded banks.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

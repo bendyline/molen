@@ -1,16 +1,18 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.pergamon_museum",
-  "inputHash": "sha256:04e05a29e89444c003cbf10d63c3280dc435976c66c5e11b505b60bde06679d1",
-  "sourceHash": "sha256:e2e78a44f0b07a405e11e29d193866c508a8cf0e871c1af53578a02313e74db0",
-  "runtimeHash": "sha256:1e8fad5d14734f276b04502643719d6d7d2ce4c00c23b3654c3c65f3810f572a",
-  "reviewGroundY": 0.9,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:80f4ec658783b83175fdd7b3aaabce6233e68f2885c65717b6d59627c3f8119d",
+  "inputHash": "sha256:f3f5f9310e554679f3c7e44772c701ac6e560ee51fc720f3938e104c5a59dd59",
+  "sourceHash": "sha256:77df723a206d4e703c8df50bfba8c21d24423dd33be268d245e1964e85b05aab",
+  "runtimeHash": "sha256:9b7c5e3286f6de51511e17ebbea59fc77fcb9faa5d411cf0295d13aaa1b0db00",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "viewingDate": "2004-03-24",
+  "footprintEvidenceHash": "sha256:104116394a02b772c7048d85eb0fb7093eb3aafdf2289cfd93d852f96c8aa5e7",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:2f5d7c657c4cf5c7c40d922ee50d65e067fe4e65ad235a43e92a3885c8b3fba1",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_limestone": {
       "path": "materials/stone_limestone.matgraph.json",
@@ -26,21 +28,21 @@
     },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:cf903a52ab86c25cd2e29f98b016624b5f686ec3441043b56988631c9b845b01",
+      "hash": "sha256:edfa99844b291d6a11bbe71e25a91f481e2616e0525ce8109539aa90f1ce2755",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -48,11 +50,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -61,21 +63,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -83,20 +114,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:427ca3ade2dc82a5ed3e2eabb902a9a2849414f37d143a4b45632e3c36e21667",
+      "hash": "sha256:0043d88530dc0d87655607cbfc564384cd6d221cf261aa11f6d9eb59b8cdfc7a",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -104,11 +135,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -117,21 +148,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -139,20 +199,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:8946f288dd91669dbf5b7004ef631d7c1602cb4b544e6176b8d7fe74ebae8f12",
+      "hash": "sha256:b45555a744a29d74afb4d55318923c25fa41594e42b055ef45862f66e80b27de",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -160,11 +220,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -173,21 +233,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -195,20 +284,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:08d61df65f6b98b28542d039116a627516dd84ab2bafa07014713b556b07eb32",
+      "hash": "sha256:0bd1fea4370abd883a0582c8e0609c350500d3215472fbe37c9ff473f08d4ff0",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -216,11 +305,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -229,21 +318,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -251,12 +369,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/west-court-glazed-entrance-and-stepped-roof.png",
-      "hash": "sha256:d46ed9d3691882559afba6296554342656605cdae6ad5a8a308ecee480a8bc6a",
+      "hash": "sha256:d86ab6c8ac324a56468bbcf6da9d7b88acdb7dbd509714d29f38ae740faf6dc1",
       "camera": {
         "name": "west-court-glazed-entrance-and-stepped-roof",
         "position": [
@@ -273,8 +391,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -282,11 +400,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -295,21 +413,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -317,12 +464,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/north-wing-end-pilasters-and-canal-side.png",
-      "hash": "sha256:ce19f2929b18998fb10a7da163b2bc98e2ee5cbb940aecfb8f81300ca602c1fe",
+      "hash": "sha256:4fa107f97846a05cb53753c10593de5bc6ff872ff3faa0b608585a215ad57537",
       "camera": {
         "name": "north-wing-end-pilasters-and-canal-side",
         "position": [
@@ -339,8 +486,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -348,11 +495,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -361,21 +508,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -383,12 +559,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
       }
     },
     {
       "path": "shots/shared/east-hall-and-wing-roofs.png",
-      "hash": "sha256:669da28954e4f4ac2c5490a2691837676b8f68e9bea7a0aae50f66f30b2f3097",
+      "hash": "sha256:e4ba53f227c6aba70716b8157b08c88bf77a3969e03d976e4504d961d50ae743",
       "camera": {
         "name": "east-hall-and-wing-roofs",
         "position": [
@@ -405,8 +581,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.pergamon_museum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
         "position": [
           0,
           0,
@@ -414,11 +590,11 @@
         ],
         "heading": 0,
         "meshes": 5,
-        "triangles": 22157,
+        "triangles": 22181,
         "bounds": {
           "min": [
             -53.28091812133789,
-            -8.654420852661133,
+            -8.65999984741211,
             -74.9109115600586
           ],
           "max": [
@@ -427,21 +603,50 @@
             94.56985473632812
           ]
         },
-        "reviewGroundY": 0.9,
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "3e09490f-6d8b-479f-857f-5031973e65da",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e4d8662e-a745-4446-b160-79c988092c4f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "7ef6f317-4c2b-41d1-ba64-de791d088b02",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "0105e737-3916-4117-bd94-7b60edf0976c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
         },
         "loads": [
           "molen.worldgen.structure.pergamon_museum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -449,7 +654,92 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 6,
-        "renderedTriangles": 22159
+        "renderedTriangles": 22308
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:f28a2a671602a7e79622fa0a04addc52542b2735a5c45943a95f1dcc9b8a115b",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.pergamon_museum",
+        "mode": "geographic-flat-terrain",
+        "placementId": "pergamon.museum",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 22181,
+        "bounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -53.28091812133789,
+            -8.65999984741211,
+            -74.9109115600586
+          ],
+          "max": [
+            116.76114654541016,
+            30.899999618530273,
+            94.56985473632812
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "735b0ec0-8303-4fd5-837f-bdcfebab26b7",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fe39ca3e-2293-4b5e-b92c-a51e08eb7870",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "d2128dc6-1b0e-4da6-826b-344a5546a6a9",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "576c8802-0abe-4f1a-8dee-bb7474611157"
+        },
+        "loads": [
+          "molen.worldgen.structure.pergamon_museum"
+        ],
+        "selectionBounds": [
+          13.394578882196098,
+          52.519761761981094,
+          13.398358336936491,
+          52.52206145373485
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "pergamon.museum",
+            "coordinate": [
+              13.396249170588531,
+              52.52082233542836
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "pergamon.museum"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 22308
       }
     }
   ],
@@ -459,8 +749,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

@@ -254,6 +254,17 @@ export function buildTopkapiSofaMosque(face, detail, r) {
             0.06 + ((Y - S.lo) * (i + 1)) / N,
             depth,
           );
+        if (S.landingDepth)
+          fullBox(
+            G.emit,
+            'trim',
+            o.x,
+            S.lo - 0.06,
+            S.count * S.stepDepth + S.landingDepth / 2 - 0.012,
+            o.w + 0.53,
+            0.069,
+            S.landingDepth,
+          );
       }
       edge = b;
     }

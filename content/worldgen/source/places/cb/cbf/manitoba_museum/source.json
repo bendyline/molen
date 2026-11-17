@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.manitoba_museum",
+  "kind": "static-structure",
+  "title": "Manitoba Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.manitoba_museum",
+        "output": "assets/places/cb/cbf/manitoba_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:629c661c8a940949c50e3c972697a5e400c418f1c7250d98337ee0009ee33e13"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-manitoba-museum",
+        "path": "models/generate-manitoba-museum.mjs"
+      },
+      {
+        "id": "manitoba-museum-model",
+        "path": "models/manitoba-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-7542-11127.png",
+      "preview.png",
+      "native-map/campus-controls.json",
+      "reference-rights/commons-qualla-manitoba-original.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

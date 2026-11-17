@@ -205,8 +205,10 @@ import {
 import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
 import { createEarthRoadSigns } from './road-signs';
+import { createEarthSiteGrading } from './site-grades';
 import { createSnowPace } from './snow';
 import { EarthVehicles } from './vehicles';
+import { earthWaterMeshOptions } from './water-features';
 import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
 import {
   type CreateEarthWorldgenOptions,
@@ -1395,6 +1397,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         const audioTerrain = new EarthAudioTerrain();
+        const waterMesh = earthWaterMeshOptions(content?.waterFeatures, pkg);
         parts.push(() => audioTerrain.clear());
         const wildlifeWanted =
           ambientSettings !== undefined &&
@@ -1451,6 +1454,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                     renderBuildings: false,
                     materials: { water },
                     waterOffset: 0.65,
+                    ...waterMesh,
                     // Earth packages have a sea: harbors and coasts draw at one flat level.
                     ...(pkg.coordinateSpace.kind === 'geospatial' ||
                     pkg.surface?.seaLevel !== undefined
@@ -1563,10 +1567,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           options.style?.ground === undefined
             ? createRegionalGroundColor(worldgen?.environment)
             : undefined;
-        // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
         const groundGrading = composeEarthGroundGrading(
           roadGrading,
           content?.airports ? createAirportTerrainGrading(content.airports) : undefined,
+          createEarthSiteGrading(content?.siteGrades, pkg),
         );
         if (roadGrading !== undefined) {
           const grading = roadGrading;
@@ -1748,6 +1752,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             stream.object,
             (object) => renderer.prepareObject(object),
             pkg.surface?.seaLevel ?? 0,
+            waterMesh.waterFeatureStyle,
           );
           wildlife = created;
           created.setBudget(ambientBudget());

@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.beijing_dongyue_temple",
+  "kind": "static-structure",
+  "title": "Beijing Dongyue Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.beijing_dongyue_temple",
+        "output": "assets/places/wx/wx4/beijing_dongyue_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b644be2d252a8b36c3da926c9bb4359e75decd06243edc68178414e2c38aa232"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-beijing-dongyue-temple",
+        "path": "models/generate-beijing-dongyue-temple.mjs"
+      },
+      {
+        "id": "beijing-dongyue-temple-model",
+        "path": "models/beijing-dongyue-temple-model.mjs"
+      },
+      {
+        "id": "entrance-towers",
+        "path": "models/entrance-towers.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/dongyue-temple-controls.json",
+      "reference-rights/commons-editq-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26982-12414.png",
+      "preview.png",
+      "archway-controls.json",
+      "entrance-tower-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_the_inscriptions",
+  "kind": "static-structure",
+  "title": "Temple of the Inscriptions",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_the_inscriptions",
+        "output": "assets/places/9g/9gn/temple_of_the_inscriptions/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9be1657d8f8f11167e295044ada75a8c8a7b5ee0efebfe0169f01c2bc1571f35"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-temple-of-the-inscriptions",
+        "path": "models/generate-temple-of-the-inscriptions.mjs"
+      },
+      {
+        "id": "temple-of-the-inscriptions-model",
+        "path": "models/temple-of-the-inscriptions-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-palenque-temple-of-the-inscriptions.json",
+      "reference-rights/commons-tbachner-2007.json",
+      "reference-rights/commons-candiderm-2009.json",
+      "reference-originals/tbachner-2007-palenque.jpg",
+      "reference-originals/candiderm-2009-palenque.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8005-14767.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

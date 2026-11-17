@@ -23,6 +23,10 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
+    "reviewedOn": "2026-11-16",
+    "inputHash": "sha256:0a52b9af3b571a54e4fd83b157c6a072d5bd3e725554b55c9d5191a7ea98b044",
+    "notes": "Inspected eight current views of the original geometry with the current shared material graphs. The viewer releases its geometry on unload.",
+    "captureReportHash": "sha256:cad748ecf812742f507d6e553ea35d3da33893e5022c1a9dffeee51629fe8185",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -33,8 +37,70 @@
       "shots/shared/native-plan-and-lead-roofs.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Seven existing shared256px graphs: stone_sandstone_raw, stone_limestone_raw, brick, metal_standing_seam, window_grid, wood_plain and metal_bronze_cast. Eight surface roles merge into seven near draws/one skyline draw. No new graph/private atlas/embedded images. Each graph read once; vertex tints distinguish warm rear brick and dark lead while sharing the same texture library. Separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque glazing approximates reflections.",
-    "captureReportHash": "sha256:73dd04774bb3c099e5c0da613946afea3cf5302a9bcf1d5df05cf1e86a09659c"
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:2a9cdaa3bf02b07d5f1d94f816bf5734c1d8d3508dfe4bdd2c541abd694dd145"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:afd159d7fee28e975d0faaabd07a4d6f7e0542212d1414694636092551879fb2"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:ec9be53acc6c715771734b52801de9ec68fd492f253b40d3bd69c100ec1c2b2d"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:e7beba08de1126aba6a1c13a15837522d5030629da593c48a7518b9c152b4321"
+      },
+      {
+        "path": "shots/shared/twin-towers-recessed-arch-and-open-passage.png",
+        "hash": "sha256:c8fecddd4cf4ef5db7e8c8757d932c6841174c139710d4d0218abfe01148e2ef"
+      },
+      {
+        "path": "shots/shared/court-pointed-arcade-and-brick-rear.png",
+        "hash": "sha256:ee75db957dabcd3c76f3b3f410a7a66b0386096032e93438f900fd17ce36cf61"
+      },
+      {
+        "path": "shots/shared/native-plan-and-lead-roofs.png",
+        "hash": "sha256:91e1b3765d257340146e0d8f4a315add2667c932e13e6c58ecdb9d30ab3c48f6"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:b6def6b7787a4240ff2f5a07bc6937e39d8f725f6e3099ac82d0acbbc850da75"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_bronze_cast": {
+        "path": "materials/metal_bronze_cast.matgraph.json",
+        "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

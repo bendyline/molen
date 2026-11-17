@@ -1,0 +1,487 @@
+{
+  "planId": "yokohama_red_brick_warehouse",
+  "id": "yokohama_red_brick_warehouse",
+  "assetId": "molen.worldgen.structure.yokohama_red_brick_warehouse",
+  "title": "Yokohama Red Brick Warehouse",
+  "wikidataId": "Q5363823",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.64277777777778,
+    "latitude": 35.452222222222225
+  },
+  "size": [
+    149.95600128173828,
+    19.400000751018524,
+    87.53196716308594
+  ],
+  "actualBounds": {
+    "min": [
+      -57.763648986816406,
+      -0.949999988079071,
+      -51.91851806640625
+    ],
+    "max": [
+      92.19235229492188,
+      18.450000762939453,
+      35.61344909667969
+    ]
+  },
+  "visualBrief": "Shinko’s two red brick commercial warehouses, with the shorter post-earthquake hall, loading galleries, punched openings and repeated gables across the open event plaza.",
+  "nativeAxes": {
+    "x": "along the warehouse length toward the piers",
+    "y": "up",
+    "z": "across the event plaza toward Warehouse No. 1"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Akarenga_Soko.jpg"
+  ],
+  "stories": [
+    {
+      "id": "yokohama-red-brick-warehouse-wp",
+      "url": "https://qualla.com/yokohama-red-brick-warehouse/"
+    }
+  ],
+  "referenceInputHash": "4589792c5339bfa712386ae544b2d8b681193220957aedd8070d678f4fe0b426",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/yokohama_red_brick_warehouse/models/yokohama-red-brick-warehouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/yokohama_red_brick_warehouse/models/yokohama-red-brick-warehouse-model.mjs",
+    "level": "skyline",
+    "export": "warehouseSkyline",
+    "errorMeters": 1.18,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.16
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#f6f0e5",
+        "roughness": 0.62,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "warehouseDistrict",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#f6f0e5",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "warehouseStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#f6f0e5",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "warehouseCloseup",
+        "errorMeters": 0.087,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#f6f0e5",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_ashlar",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.68,
+    "cameraYaw": 0.91,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        23,
+        5.7,
+        -5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "GSI’s DEM5A supplies the pier and plaza grade. Both buildings have three storeys and nominal width of 22.6 m and height of 17.8 m. No. 1 measures 76 m long and No. 2 measures 149 m.",
+    "anchor": [
+      139.64277777777778,
+      35.452222222222225
+    ],
+    "heading": 0.2400305237436235,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.6431273244391,
+        35.45230578457544
+      ],
+      "modelHeight": 0,
+      "basis": "Original site terrain sampled in the open event plaza between the two warehouses."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -42.9494,
+          -51.50354
+        ],
+        [
+          91.77759,
+          -51.3636
+        ],
+        [
+          91.53451,
+          -28.74274
+        ],
+        [
+          -57.23032,
+          -28.74274
+        ],
+        [
+          -57.39176,
+          -38.19133
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            15.66922,
+            11.43589
+          ],
+          [
+            15.79443,
+            33.84892
+          ],
+          [
+            91.41508,
+            33.42424
+          ],
+          [
+            91.28987,
+            11.01121
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The two exact named warehouse exterior outlines leave the event plaza open."
+    },
+    "featureIds": [
+      "way/72998303",
+      "way/72998296"
+    ],
+    "source": "https://www.openstreetmap.org/relation/18237793",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9cb31abe7cb62d152871340a3d6b7da77b28681c428aab2c0ab4f5ea72a8332e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers both post-2002 warehouse exteriors. The Japanese national elevation data provide the first-order ground contact.",
+    "Window and pier rhythms, local roof partitions and secondary awning details are estimates from the accepted 2003 plaza view. Anonymous earlier photographs were excluded.",
+    "The city’s published overall dimensions and present-day mapped outlines establish both volumes. The railway remains, interiors and event installations are outside the exterior scope."
+  ],
+  "sourceLicense": "Original geometry based on Binh Giang’s public-domain photograph, Yokohama Port Bureau documentation, ODbL OpenStreetMap and GSI DEM5A terrain.",
+  "qaLodCameras": [
+    {
+      "name": "warehouses-skyline",
+      "position": [
+        143,
+        64,
+        119
+      ],
+      "lookAt": [
+        23,
+        5.7,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "warehouses-district",
+      "position": [
+        143,
+        64,
+        119
+      ],
+      "lookAt": [
+        23,
+        5.7,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "warehouses-street",
+      "position": [
+        143,
+        64,
+        119
+      ],
+      "lookAt": [
+        23,
+        5.7,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "warehouses-closeup",
+      "position": [
+        143,
+        64,
+        119
+      ],
+      "lookAt": [
+        23,
+        5.7,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "two-warehouses-across-the-plaza",
+      "position": [
+        143,
+        57,
+        89
+      ],
+      "lookAt": [
+        24,
+        6.1,
+        -7
+      ]
+    },
+    {
+      "name": "red-brick-storeys-and-pier-gables",
+      "position": [
+        123,
+        14,
+        -0.5
+      ],
+      "lookAt": [
+        42,
+        8.2,
+        -27
+      ]
+    },
+    {
+      "name": "short-warehouse-loading-gallery",
+      "position": [
+        123,
+        16,
+        67
+      ],
+      "lookAt": [
+        63,
+        6.6,
+        22
+      ]
+    },
+    {
+      "name": "long-warehouse-hipped-roof-and-gables",
+      "position": [
+        -36,
+        42,
+        28
+      ],
+      "lookAt": [
+        22,
+        10.4,
+        -43
+      ]
+    },
+    {
+      "name": "three-arched-window-bands",
+      "position": [
+        63,
+        7.2,
+        -3.5
+      ],
+      "lookAt": [
+        56,
+        6.8,
+        -28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16779,
+    "vertices": 50337,
+    "materials": 5,
+    "bytes": 2206608,
+    "sha256": "sha256:147bb91b7db217f08c113c8c673eb1a62d66e2d0d25a529f96c080d65c4b7a2c"
+  }
+}

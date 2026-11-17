@@ -1,0 +1,550 @@
+{
+  "planId": "temple_mount",
+  "id": "temple_mount",
+  "assetId": "molen.worldgen.structure.temple_mount",
+  "title": "Temple Mount / Haram al-Sharif",
+  "wikidataId": "Q193163",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.23565,
+    "latitude": 31.77794
+  },
+  "size": [
+    326.7894744873047,
+    47.27728080749512,
+    499.56443786621094
+  ],
+  "actualBounds": {
+    "min": [
+      -152.47299194335938,
+      -25.334911346435547,
+      -259.9423522949219
+    ],
+    "max": [
+      174.3164825439453,
+      21.94236946105957,
+      239.62208557128906
+    ]
+  },
+  "visualBrief": "The limestone Temple Mount / Haram al-Sharif enclosure, with its long retaining walls, Gate of Mercy, blocked southern gates, surviving Robinson’s Arch masonry and the stepped arcades of the Rock Square.",
+  "nativeAxes": {
+    "x": "east-northeast along the long southern retaining wall",
+    "y": "up",
+    "z": "south-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hulda_gates.jpg",
+    "https://commons.wikimedia.org/wiki/File:SWqanatirTempleMount.JPG",
+    "https://commons.wikimedia.org/wiki/File:Jerusalem_BW_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:RobinsonsArchMay2009.jpg",
+    "https://commons.wikimedia.org/wiki/File:NinthAvStonesWesternWall.JPG",
+    "https://commons.wikimedia.org/wiki/File:Jerusalem_Western_Wall_BW_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Jerusalem_Golden_Gate_BW_1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "temple-mount-wp",
+      "url": "https://qualla.com/temple-mount/"
+    }
+  ],
+  "referenceInputHash": "ec6246bf9b7c4c3ab8da81217173c4cfa87fabc8896c1ee7d35cb27aa331ba94",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv9/temple_mount/models/temple-mount-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sv/sv9/temple_mount/models/temple-mount-model.mjs",
+    "level": "skyline",
+    "export": "templeMountSkyline",
+    "errorMeters": 2.1,
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "oldStone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "dressed": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeMountDistrict",
+        "errorMeters": 0.72,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "oldStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeMountStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "oldStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeMountCloseup",
+        "errorMeters": 0.068,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "oldStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "anchor": [
+      35.23565,
+      31.77794
+    ],
+    "heading": 0.1643631477010664,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.23418000676856,
+        31.776560006342716
+      ],
+      "modelHeight": 0,
+      "basis": "Original public elevation at the west plaza, outside the named Western Wall face."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -138.1528,
+          89.24928
+        ],
+        [
+          -138.56879,
+          126.63197
+        ],
+        [
+          -137.66432,
+          148.65043
+        ],
+        [
+          -131.41011,
+          148.5932
+        ],
+        [
+          -129.1823,
+          148.57904
+        ],
+        [
+          -129.51128,
+          98.16387
+        ],
+        [
+          -129.50608,
+          95.29859
+        ],
+        [
+          -129.49026,
+          85.37127
+        ],
+        [
+          -127.3615,
+          85.31812
+        ],
+        [
+          -127.40707,
+          83.27944
+        ],
+        [
+          -129.22798,
+          83.32723
+        ],
+        [
+          -129.28015,
+          81.0392
+        ],
+        [
+          -127.50956,
+          81.00563
+        ],
+        [
+          -127.55854,
+          79.04537
+        ],
+        [
+          -129.35896,
+          79.08528
+        ],
+        [
+          -129.40247,
+          77.09207
+        ],
+        [
+          -127.43789,
+          77.04554
+        ],
+        [
+          -127.48892,
+          75.0398
+        ],
+        [
+          -129.15499,
+          75.07942
+        ],
+        [
+          -129.29374,
+          68.45525
+        ],
+        [
+          -128.4467,
+          68.43777
+        ],
+        [
+          -128.50116,
+          65.58516
+        ],
+        [
+          -129.79403,
+          65.63026
+        ],
+        [
+          -129.87018,
+          57.87679
+        ],
+        [
+          -138.56623,
+          58.08193
+        ],
+        [
+          -138.96922,
+          61.32131
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named OpenStreetMap way/817206833. Replace the mapped duplicate of the Western Wall within its own outline."
+    },
+    "featureIds": [
+      "relation/5862584",
+      "way/817206833",
+      "way/137725307",
+      "way/291836815",
+      "node/9351190161",
+      "node/9351190162",
+      "node/9351241949",
+      "node/9351437161",
+      "way/291836693",
+      "way/291836687",
+      "way/291836677",
+      "way/291836686",
+      "way/291836689",
+      "way/291836690",
+      "way/291836692",
+      "way/620130982",
+      "way/291836685",
+      "way/291836695",
+      "way/291836688",
+      "way/291836747",
+      "way/44172744",
+      "way/291836749",
+      "way/44172745",
+      "way/291836746",
+      "way/291836738",
+      "way/137725304",
+      "way/137729558"
+    ],
+    "source": "https://www.openstreetmap.org/relation/5862584",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b2549e1233e7efaa619e17f8fd550aa1d257a463b50cd440d7601a229f5db909",
+    "notes": "The four outer relation ways define the asymmetric enclosure; the inner garden is a mapped landscape exclusion. Named wall and gate geometry is retained where present. Building outlines identify the two independent Molen buildings and guide adjoining paving."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The adopted outline is the named current OpenStreetMap enclosure. Historical photographs from 2007–2009 establish the surviving walls, platforms and details. Later fixtures and exact restoration states are approximate.",
+    "Visible wall crests, thicknesses, gate reliefs, stair runs and paving planes are proportional estimates against the frozen elevation field and dated photographs.",
+    "The model covers the retaining enclosure, stone approaches and upper square. The Dome of the Rock and Al-Aqsa Mosque have existing independent placements."
+  ],
+  "sourceLicense": "Original geometry under the repository license, based on public-domain exterior photographs. Mapped OpenStreetMap outlines are ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "temple-mount-skyline",
+      "position": [
+        405,
+        178,
+        410
+      ],
+      "lookAt": [
+        0,
+        3,
+        36
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-mount-district",
+      "position": [
+        405,
+        178,
+        410
+      ],
+      "lookAt": [
+        0,
+        3,
+        36
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-mount-street",
+      "position": [
+        405,
+        178,
+        410
+      ],
+      "lookAt": [
+        0,
+        3,
+        36
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-mount-closeup",
+      "position": [
+        405,
+        178,
+        410
+      ],
+      "lookAt": [
+        0,
+        3,
+        36
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "stone-enclosure-from-the-southeast",
+      "position": [
+        405,
+        178,
+        410
+      ],
+      "lookAt": [
+        0,
+        3,
+        36
+      ]
+    },
+    {
+      "name": "southern-wall-and-hulda-gates",
+      "position": [
+        25,
+        1,
+        289
+      ],
+      "lookAt": [
+        22,
+        -2.9,
+        232
+      ]
+    },
+    {
+      "name": "west-plaza-and-robinsons-arch",
+      "position": [
+        -186,
+        9,
+        250
+      ],
+      "lookAt": [
+        -137,
+        3,
+        211
+      ]
+    },
+    {
+      "name": "gate-of-mercy-and-east-retaining-wall",
+      "position": [
+        224,
+        10,
+        -86
+      ],
+      "lookAt": [
+        161,
+        3,
+        -92
+      ]
+    },
+    {
+      "name": "rock-square-southwestern-arcade",
+      "position": [
+        -112,
+        16,
+        74
+      ],
+      "lookAt": [
+        -83,
+        12,
+        33
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22928,
+    "vertices": 68784,
+    "materials": 4,
+    "bytes": 3118228,
+    "sha256": "sha256:3ad02c951540d9a975fd43755893de0ac500cae79ae9b094eb682943bb64bce1"
+  }
+}

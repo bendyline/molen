@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.kihnu_lighthouse",
-  "inputHash": "sha256:1f4aa18aebee250a785373e43d540e4323c66540e206f78da575d5fff256c69b",
-  "sourceHash": "sha256:4ceae166fa2c056daed36a401c8f7df008c1a2f618c56a1fa6d5c1aa8bec3d5d",
-  "runtimeHash": "sha256:e2bd570bed150d4ffedcf01b0e024a0c18fc6ca4186e1548d2b5adb50bf2f627",
+  "inputHash": "sha256:befcc27b334e0ad6b3342378781f95c1ea5d396ff414199adbdc4379c4bc4411",
+  "sourceHash": "sha256:87c66a10b4fb7051840470dc7c566017b2803179be25bbeb3f8f728ab96e8196",
+  "runtimeHash": "sha256:1ac343caa5d3719878bfb23ab6cd9ab82d876c5ded29f3036abd780ff17dbbb1",
   "reviewGroundY": null,
-  "fixtureHash": "sha256:0aaf7ed65b2d9d5eea4a880f5bea89fb7ab48f2284b016b890cc9190b3361874",
-  "footprintEvidenceHash": "sha256:0823418a51869c436c48fa99f4929ffc80c604a92ec6de5f6365002f1f8d9e65",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:86442c98842489c7e1d49fa13838e92b8dda30ec28a93378c10d9df69d3c72c5",
   "footprintLabel": "Mapped oil-store outline; authority tower center is the origin",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": "sha256:a22da50bba40dcf3444f1e32fb4e964ef1862da765c49a18020b44aacf8c9309",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:b5c019ad3bad6bd9af153d3b53a3c69e6d2b38d428a764de278c6d9225abbe74",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -40,7 +41,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:bd776c70dc3918012c819e7b1d980973d209dd12f77b506197315c309b566cb4",
+      "hash": "sha256:e822d55f019e6ebcf5edaab116b13c5bd10ef1bd6355fe9f01404c379fb8dac7",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -50,49 +51,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -102,12 +125,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:693d0f02730b2691743e103443e5d1b57846aa065531acd7e95efa4031b1d412",
+      "hash": "sha256:b315d047afb38f8280b7cdb1f5224eec893528ac1a0899a783928f698bfc0bf4",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -117,49 +140,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -169,12 +214,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:f0bd12408603a38be925cf7b089b340ed13e5146c120711c5392845cbd6ae26e",
+      "hash": "sha256:e7c9b641d0ca922e59c44a728e3a18184b8ab861a95606a21f555860485af681",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -184,49 +229,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -236,12 +303,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:0f6b3c63bb4f69c9e7b0cf2adfa5774c1031ca64896101a044535649a83dbc6d",
+      "hash": "sha256:0ac6deff877f635312a1cc4519b45565dd20016076e687aa1e42cfd00e76aada",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -251,49 +318,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -303,12 +392,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     },
     {
       "path": "shots/shared/near-entry.png",
-      "hash": "sha256:996263e7212dcc9ead6fd216c7e470c9ac6d85fe81bcef17315e858e29145992",
+      "hash": "sha256:ee9a405ff6c6c57a31a6240ae5a8226c7287d22d49f5338002b7c91a614a6cdc",
       "camera": {
         "name": "near-entry",
         "position": [
@@ -327,49 +416,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -378,13 +489,13 @@
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 127643
+        "draws": 7,
+        "renderedTriangles": 105293
       }
     },
     {
       "path": "shots/shared/near-ports.png",
-      "hash": "sha256:19b700801392683d60965d9da57ee4faa9b721b6e1e59273ce73435b5b2f78e0",
+      "hash": "sha256:3280b6325d7cef3d241376156bfa70252da6962cca72c4fc1ae824b41255f4b4",
       "camera": {
         "name": "near-ports",
         "position": [
@@ -403,49 +514,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -454,13 +587,13 @@
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 127643
+        "draws": 6,
+        "renderedTriangles": 104145
       }
     },
     {
       "path": "shots/shared/near-gallery.png",
-      "hash": "sha256:2b5dfa16812cac0fd0dace5f9a22842a1854f415d035c401e15a6668668dae41",
+      "hash": "sha256:86047f0ad57fcd24ac05c643ea951184f0e0a1dec28b6d6c1fcda6ea079a91b1",
       "camera": {
         "name": "near-gallery",
         "position": [
@@ -479,49 +612,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -530,13 +685,13 @@
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 127643
+        "draws": 5,
+        "renderedTriangles": 105097
       }
     },
     {
       "path": "shots/shared/near-lantern.png",
-      "hash": "sha256:e077890d21444dc9792eb14c2adc6eaf8f533d13b97278b24ea2994e3a050e6e",
+      "hash": "sha256:6fb36b6f67deef57e85feda33f36690072334a58b3cf1bc43b32fa245debb0d7",
       "camera": {
         "name": "near-lantern",
         "position": [
@@ -555,49 +710,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -606,13 +783,13 @@
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 127643
+        "draws": 5,
+        "renderedTriangles": 105097
       }
     },
     {
       "path": "shots/shared/near-oil-store.png",
-      "hash": "sha256:87ff7365d2509ac23c27f93c721641bd901c09309457d1fcfb995e3ffd177ec2",
+      "hash": "sha256:2fc6e4508508758770bf73d1900043fbf2b8444e986f417f05315103df70b986",
       "camera": {
         "name": "near-oil-store",
         "position": [
@@ -631,49 +808,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -682,13 +881,13 @@
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 127643
+        "draws": 7,
+        "renderedTriangles": 104231
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:e0163584a8aa74bfad77bd92036cf814dc2bbd67cdcd80438e3330fd672728fc",
+      "hash": "sha256:5a78805e525c6d371c4b61e0c774533daa29ba2561db02442ff7b4f38959fac1",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -707,49 +906,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -759,12 +980,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:93fcf88cbc0ff2d783f1336d7a09d637e643797920a76c28401b97ed6560db74",
+      "hash": "sha256:c5de3e6bf417353643d15abb6dc2771bd9d86dce45e6752ccc8b32ee58b787fc",
       "camera": {
         "name": "placement",
         "placement": true
@@ -774,49 +995,71 @@
         "mode": "geographic-flat-terrain",
         "placementId": "kihnu.lighthouse",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -58.49999999906868
         ],
-        "heading": 3.141592653589793,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 126985,
+        "triangles": 106033,
         "bounds": {
           "min": [
-            -5.754192352294924,
-            0,
-            -3.5172917842865
+            -5.754192352294922,
+            -0.18000000715255737,
+            -3.5172920217737556
           ],
           "max": [
-            3.150000095367432,
+            3.1500015258789062,
+            28.323999404907227,
+            14.840431214310229
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -5.754192352294923,
+            -0.18000000715255737,
+            -3.517291784286499
+          ],
+          "max": [
+            3.1500000953674316,
             28.323999404907227,
             14.840433120727539
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "07bcf729-6ae6-4fdb-9c71-abb5c4642318",
-          "worldgen:matgraph:molen.worldgen.material.stone": "b58eb61a-f3d6-440f-8bbe-f0b7f365013f",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8f775a3a-ff45-4e95-9990-c833d906ca9d",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "c9461b49-3885-45ad-ad83-a3ff42c29ab4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "55c42b7c-5781-41a5-9e99-9a042867edba",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "032a54e1-d828-48ad-bd69-70ce8ff8684d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "149f8bde-6e3f-4f8f-9266-52271a6b9050",
+          "worldgen:matgraph:molen.worldgen.material.stone": "0715514a-5c1d-48fa-9807-6834a1d94eeb",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c45eed54-7d20-4bcf-a8c0-9cb70db0bd27",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "71897266-eb62-436e-b2f4-2c2db755b22c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8a00828b-fb91-45bc-8403-b66aa4bdceb0",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "be6426b2-d318-4d41-9c10-19af8e707cb7"
         },
         "loads": [
           "molen.worldgen.structure.kihnu_lighthouse"
         ],
         "selectionBounds": [
-          23.96891741187005,
-          58.095908137901986,
-          23.973268908129953,
-          58.09820782502958
+          23.970005285935024,
+          58.09643366541333,
+          23.972181034064977,
+          58.09758351056982
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "kihnu.lighthouse",
+            "coordinate": [
+              23.97109316,
+              58.097058
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "kihnu.lighthouse"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone": 1,
@@ -826,7 +1069,7 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 11,
-        "renderedTriangles": 127643
+        "renderedTriangles": 106691
       }
     }
   ],

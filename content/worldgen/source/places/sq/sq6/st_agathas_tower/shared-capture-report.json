@@ -1,15 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.st_agathas_tower",
-  "inputHash": "sha256:4415951297c322c1ad2918b927e7d8430c15a5e4565ffcfcf75642f452bbb5c3",
-  "sourceHash": "sha256:5673ea3d465be2b726cf1d46a4b6c1764034182db223e86afa3b95c088dd370e",
-  "runtimeHash": "sha256:b3ce827f2f8d1b9eb2e05c4b8cd618ef4f759381a1fab643d3fc777e282a05df",
+  "inputHash": "sha256:14cf093c47fa9b9f420740f32edc21cb4596c2d8dd9e4d4e53798c3de2463086",
+  "sourceHash": "sha256:ce554f1c6cd397e7a741a1c0b935326feaa91ad85c21a1490b030f65bb5d6d95",
+  "runtimeHash": "sha256:47ed5b9fc9997a8cc737454978d6ed52cd5c6131e46ac1b1efef5d223e200ddc",
   "reviewGroundY": null,
   "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:87f892e7d58622d295ebb8851a171a57e97e2ac0eb566127c202847d7d6317d9",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
-  "placementHash": "sha256:d0651fb780b4bf9e5241cebbbd0935e13a669f488103ba337cc42df6a7eec675",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:765bea81f75790a8f0d72021bee573f68a6a23f298113f331caac679b3a70478",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -31,7 +32,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:52b88239e7285116f4a1de8216a9b1e9c2dfd36fd725ed1a9c3ddce297a27180",
+      "hash": "sha256:df26739c6e6ea6b2e0ae8eb6980374d479f739819317e1cb6b1272443fb39d2c",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -41,17 +42,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -62,21 +75,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -90,12 +112,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:84bd2d6b94611a59b19c8c53599c7ef2a7791c7f58b6120c2147d75c87891c23",
+      "hash": "sha256:6f8ee57f10fdb29613cff01cb054271673ffa644c648b525661679b71bab4047",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -105,17 +127,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -126,21 +160,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -154,12 +197,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:be9a85f4dd396dadf0d6aa5dde2de64acbf29654bdaa40001bf37fcaf0f8a9cf",
+      "hash": "sha256:ecfb6fbbf30220d5166ee68cde5097b000627de48c06f877c468fd029e4c3ec3",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -169,17 +212,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -190,21 +245,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -218,12 +282,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:58ac3105cc5b47041d7b1838e6b32d700c84ef870545949d10c0895fcce183a1",
+      "hash": "sha256:842c444e90e1c66e5c5980a08217641558be0dedcac90be6074efbc54e17457b",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -233,17 +297,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -254,21 +330,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -282,12 +367,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/entrance-whole.png",
-      "hash": "sha256:c7fb5eb45363daadfdeb9f5163b1f6f2e63440b7fff6b8adfe9e8d583e12af84",
+      "hash": "sha256:f047e3c46a306395c7ee2606c9e2566400155ec3d7e3c9f24863af0cd4bbc58d",
       "camera": {
         "name": "entrance-whole",
         "position": [
@@ -306,17 +391,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -327,21 +424,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -355,12 +461,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/rear-windows.png",
-      "hash": "sha256:0f7429fc0c062b64ffc684a117619c414d4eff31e9c2a91263f0cc64e5d916a6",
+      "hash": "sha256:291911c0297fdd13691dd6fa76aee69ba0888cb6a38da1432fab98b818571f9a",
       "camera": {
         "name": "rear-windows",
         "position": [
@@ -379,17 +485,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -400,21 +518,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -428,12 +555,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/wood-bridge-entry.png",
-      "hash": "sha256:3af926fc8c42559b05b81f0d229cd3b49057fa87783cac967d9cabd0a2b728b3",
+      "hash": "sha256:e5f24770346dfd0b9c65482e647e7541cda76e0285afc4ca66148bd5a9b1ffbc",
       "camera": {
         "name": "wood-bridge-entry",
         "position": [
@@ -452,17 +579,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -473,21 +612,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -501,12 +649,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/fishtail-turrets.png",
-      "hash": "sha256:6b44f8244249f91808f9083f165a2a611aba6a7798eb046e2536d60295b3b532",
+      "hash": "sha256:0323887391398a00c89c5fad1fa7de8466b23c6f0961a5d42c3ace4ad60130e6",
       "camera": {
         "name": "fishtail-turrets",
         "position": [
@@ -525,17 +673,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -546,21 +706,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -574,12 +743,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/roof-cannons.png",
-      "hash": "sha256:ba60285fad2c175b8cee5ff82c856d8c7d2ad262d0a9572308cdd0fdda9c645c",
+      "hash": "sha256:983c655dffc5ad6403185f954bc1b3cc078e6b758ade7f432d4d9a089cc94ac9",
       "camera": {
         "name": "roof-cannons",
         "position": [
@@ -598,17 +767,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -619,21 +800,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -647,12 +837,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/roof-plan.png",
-      "hash": "sha256:26b04a215a4af527da65b6a05475ed7c417ed339f4b639e38f100c23edf93520",
+      "hash": "sha256:9a05ce900f82458b5c3eb7f3f684589f90a522939913a4283f0f13c6b556f14d",
       "camera": {
         "name": "roof-plan",
         "position": [
@@ -671,17 +861,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -692,21 +894,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -720,12 +931,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:56ee106cb9524d67a92328984098a25e75049ed7ae5fe40c1c88af599aa58041",
+      "hash": "sha256:7067f7b2ed6a2b9f82567cae354c2ed1118473f12117fa4512dc0685a663d231",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -744,17 +955,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -765,21 +988,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -793,12 +1025,12 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:f9b3608702bb23394d201a051a7490e80548e4eb55fd7e79714df69033f1c00f",
+      "hash": "sha256:4c815eb1e15ae0fb155b4a32c34178c3c1d1ed2c658385f27a6ee6cfe769dd15",
       "camera": {
         "name": "placement",
         "placement": true
@@ -808,17 +1040,29 @@
         "mode": "geographic-flat-terrain",
         "placementId": "st.agathas.tower",
         "position": [
+          -63.819823461119086,
           0,
-          0,
-          0
+          -58.71234383247793
         ],
-        "heading": 0.1778352841039636,
+        "heading": 0,
         "meshes": 5,
-        "triangles": 137914,
+        "triangles": 141338,
         "bounds": {
           "min": [
+            -10.161914067808539,
+            -0.6499999761581421,
+            -10.530798574909568
+          ],
+          "max": [
+            10.161911768373102,
+            14.220000267028809,
+            16.034627297893167
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
             -10.16191425368501,
-            0,
+            -0.6499999761581421,
             -10.53079809159507
           ],
           "max": [
@@ -829,21 +1073,30 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b97f7745-4cbc-4a9a-ba3a-89316c1ad6cc",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4352133b-6651-4298-a366-823c526d0457",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e16cecc4-36f0-4476-a711-9724bbb8c3da",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1e2f206a-8472-4f3e-84fe-e4436f7c4e4b"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "76f6de75-f281-4d67-b0de-1db76745e047",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a96cba4f-b374-40ad-944e-79b62a189253",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "05d66325-79b5-4eb7-a37f-4a8ff596651c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "76f444d9-58ee-4620-9a63-d10b72a6b9a7"
         },
         "loads": [
           "molen.worldgen.structure.st_agathas_tower"
         ],
         "selectionBounds": [
-          14.34143217128605,
-          35.97352764806138,
-          14.344273828713954,
-          35.975827335188676
+          14.342144585643027,
+          35.97405507594063,
+          14.343565414356975,
+          35.97520492019622
         ],
-        "terrainSamples": [],
+        "terrainSamples": [
+          {
+            "placementId": "st.agathas.tower",
+            "coordinate": [
+              14.342853,
+              35.9746775
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "st.agathas.tower"
         ],
@@ -857,7 +1110,7 @@
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
-        "renderedTriangles": 137916
+        "renderedTriangles": 141340
       }
     }
   ],

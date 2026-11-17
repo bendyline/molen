@@ -1,0 +1,462 @@
+{
+  "planId": "parliament_hill",
+  "id": "parliament_hill",
+  "assetId": "molen.worldgen.structure.parliament_hill",
+  "title": "Parliament Hill",
+  "wikidataId": "Q1589289",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.69944444444445,
+    "latitude": 45.42472222222222
+  },
+  "size": [
+    376.71653747558594,
+    96.59999704360962,
+    224.38947296142578
+  ],
+  "actualBounds": {
+    "min": [
+      -201.2552032470703,
+      -4.400000095367432,
+      -89.22212982177734
+    ],
+    "max": [
+      175.46133422851562,
+      92.19999694824219,
+      135.16734313964844
+    ]
+  },
+  "visualBrief": "Ottawa’s Parliament Hill precinct with the Centre Block, the 92.2 m Peace Tower, and the separate East and West blocks.",
+  "nativeAxes": {
+    "x": "east along the principal Centre Block facade",
+    "y": "up",
+    "z": "south toward the parliamentary lawn"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canadian_Parliament_Buildings_Ottawa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_Hill_Ottawa_Canada.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_Hill_(Ottawa,_ON,_12-17-24).jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_Hill_4_(Ottawa,_ON,_12-17-24).jpg"
+  ],
+  "stories": [
+    {
+      "id": "parliament-hill-wp",
+      "url": "https://qualla.com/parliament-hill/"
+    },
+    {
+      "id": "peace-tower-wp",
+      "url": "https://qualla.com/peace-tower/"
+    }
+  ],
+  "referenceInputHash": "fc67a66bf90e41e000bc6497d89bfc9b6d2361d642a0f12b127fab473f7f9f9e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f24/parliament_hill/models/parliament-hill-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f24/parliament_hill/models/parliament-hill-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.83,
+        "metallic": 0.22
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.08
+      },
+      "dial": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.74,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.83,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.83,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.83,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "metal_copper",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.27,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -12,
+        24,
+        37
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Official 144 by 75 m Centre Block, 92.2 m Peace Tower and 81 m Mackenzie Tower dimensions. Exact releases resolve the sandstone facades, copper of differing age and tone, narrow roof spires, and the pale clock face. The other wing heights are estimates.",
+    "anchor": [
+      -75.69944444444445,
+      45.42472222222222
+    ],
+    "heading": 0.5393621532787986,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.69954301454345,
+        45.42468510548413
+      ],
+      "modelHeight": 0,
+      "basis": "Original NRCan bare-earth lawn elevation in front of the Centre Block and Peace Tower entrance. Individual building floor heights are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/68588665",
+      "way/128127767",
+      "way/68588556",
+      "relation/2187815"
+    ],
+    "source": "https://www.openstreetmap.org/way/68588665",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:785330374638957490463336bc3d53ea40a203a185f5bbe68f6421e8f851eee9"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the permanent architecture of Centre, East and West blocks. Temporary scaffolding, temporary access, museum/interior contents, and garden monuments are outside scope.",
+    "Individual dormers, tracery, crenellations, side towers, courtyard facades, masonry pattern, the exact Library connector and rim transitions are approximate.",
+    "Library of Parliament is separately queued. The Peace Tower physical component links to both stories through this one model."
+  ],
+  "sourceLicense": "Original reconstruction from the CC0 Qualla photo, three verified public-domain exterior references, mapped footprints, official dimensions, and original NRCan elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "parliament-hill-skyline",
+      "position": [
+        113,
+        146,
+        380
+      ],
+      "lookAt": [
+        -12,
+        24,
+        37
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "parliament-hill-district",
+      "position": [
+        113,
+        146,
+        380
+      ],
+      "lookAt": [
+        -12,
+        24,
+        37
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "parliament-hill-street",
+      "position": [
+        113,
+        146,
+        380
+      ],
+      "lookAt": [
+        -12,
+        24,
+        37
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "parliament-hill-closeup",
+      "position": [
+        113,
+        146,
+        380
+      ],
+      "lookAt": [
+        -12,
+        24,
+        37
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "centre-block-and-peace-tower",
+      "position": [
+        32,
+        42,
+        131
+      ],
+      "lookAt": [
+        -8.7,
+        43,
+        -21
+      ]
+    },
+    {
+      "name": "peace-tower-clock-and-pinnacles",
+      "position": [
+        28,
+        78,
+        37
+      ],
+      "lookAt": [
+        -8.7,
+        65.6,
+        -15
+      ]
+    },
+    {
+      "name": "west-block-and-glazed-court",
+      "position": [
+        -85,
+        80,
+        178
+      ],
+      "lookAt": [
+        -155,
+        33,
+        85
+      ]
+    },
+    {
+      "name": "east-block-portal-and-courtyard",
+      "position": [
+        67,
+        57,
+        188
+      ],
+      "lookAt": [
+        132,
+        20,
+        79
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30197,
+    "vertices": 90591,
+    "materials": 6,
+    "bytes": 3777424,
+    "sha256": "sha256:f3d187c4285083475605712ee5cb951b50377db84d0acfe8afc396e88db99f76"
+  }
+}

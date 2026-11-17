@@ -1,0 +1,347 @@
+{
+  "id": "osun_grove_suspension_bridge",
+  "title": "Osun Grove suspension footbridge",
+  "referenceCoordinate": {
+    "longitude": 4.552750736474991,
+    "latitude": 7.7542822090875845
+  },
+  "module": "content/worldgen/source/places/s1/s17/osun_grove_suspension_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-osun-grove-suspension-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "cap": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "timber": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.94
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.88
+    },
+    "cable": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.82
+    }
+  },
+  "exportLabel": "Molen original Osun Grove timber suspension footbridge",
+  "expectedDraftMasterHash": "sha256:363fca6448ea944872493debb07d06fdf14d8eeb816b799bcf604658afef5c54",
+  "visualBrief": "Narrow timber suspension crossing with two rust-brown open steel portal towers on rectangular concrete piers, paired sagging cables and hangers, wire guard rails and trestle approaches on the banks of River Osun.",
+  "heightPolicy": "One absolute 315.098422 m model datum near the northwest approach. Both deck ends stay on their mapped approach centerlines. The inferred piers and trestles extend below the local retained or graded terrain.",
+  "nativeAxes": "+X follows the crossing from the Osun grove side on the northwest bank toward the southeast bank. +Z points southwest along the river.",
+  "sourceFacts": {
+    "groveCandidateId": "osun_osogbo_grove",
+    "bridgeFeatureId": 35184797333447,
+    "mappedLengthMeters": 31.639553958999997,
+    "terrainTiles": 2,
+    "protectedRiverIds": [
+      35184663285470,
+      35184917248612
+    ]
+  },
+  "limitations": [
+    "The signed alignment and 31.64 m crossing endpoints come from PMTiles. The deck width, pier stations, rail spacing, cable sag and individual timber dimensions are exterior photo estimates.",
+    "The grove forest and River Osun remain native map features. Only the suspension crossing is represented by this asset. The grove palaces, shrines, gates and monuments need their own source models and reviews.",
+    "The standard Terrarium surface is nearly flat through the mapped river. The reference presentation uses a tightly bounded visualization grade in the channel. Water width and piers are approximate."
+  ],
+  "references": [
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Osun_Osogbo_sacred_grove_03.jpg",
+      "observation": "Narrow timber deck, two open rusty portal towers, main cable droop and hangers, tall rectangular masonry footings and separate timber trestle approach.",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Osun_Osogbo_sacred_grove_03.jpg"
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:A_crowd_attending_the_Osun_Osogbo_Annual_festival.jpg",
+      "camera": [
+        4.55263,
+        7.754433
+      ],
+      "observation": "Geotag beside the mapped northwest end ties the pictured bridge to the right crossing.",
+      "url": "https://commons.wikimedia.org/wiki/File:A_crowd_attending_the_Osun_Osogbo_Annual_festival.jpg"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "full-crossing",
+      "position": [
+        0,
+        12,
+        38
+      ],
+      "lookAt": [
+        0,
+        0.8,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "grove-bank-and-steel-tower",
+      "position": [
+        -19,
+        2.9,
+        6
+      ],
+      "lookAt": [
+        -6,
+        1.35,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "deck-camber-and-hangers",
+      "position": [
+        -10,
+        2.75,
+        -0.12
+      ],
+      "lookAt": [
+        9,
+        1.8,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "downstream-piers-and-trestles",
+      "position": [
+        7,
+        3,
+        -28
+      ],
+      "lookAt": [
+        -1,
+        1.4,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "south-bank-approach",
+      "position": [
+        21,
+        2.9,
+        -6
+      ],
+      "lookAt": [
+        10,
+        1.4,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -0.75,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        1.76,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_suspension_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "cap": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.88
+      },
+      "cable": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.82
+      }
+    },
+    "errorMeters": 0.16,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "cable": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.08
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "cable": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.035
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "cable": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.82
+          }
+        },
+        "errorMeters": 0.016
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "reviewLod": "skyline",
+      "position": [
+        15,
+        35,
+        79
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ],
+      "fov": 46,
+      "name": "osun-bridge-skyline"
+    },
+    {
+      "reviewLod": "district",
+      "position": [
+        5,
+        21,
+        48
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ],
+      "fov": 46,
+      "name": "osun-bridge-district"
+    },
+    {
+      "reviewLod": "street",
+      "name": "osun-bridge-street",
+      "position": [
+        0,
+        12,
+        38
+      ],
+      "lookAt": [
+        0,
+        0.8,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "reviewLod": "closeup",
+      "name": "osun-bridge-closeup",
+      "position": [
+        -19,
+        2.9,
+        6
+      ],
+      "lookAt": [
+        -6,
+        1.35,
+        0
+      ],
+      "fov": 62
+    }
+  ]
+}

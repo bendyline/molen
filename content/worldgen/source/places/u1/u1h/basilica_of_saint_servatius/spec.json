@@ -1,0 +1,715 @@
+{
+  "planId": "basilica_of_saint_servatius",
+  "id": "basilica_of_saint_servatius",
+  "assetId": "molen.worldgen.structure.basilica_of_saint_servatius",
+  "title": "Basilica of Saint Servatius",
+  "wikidataId": "Q253935",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 5.687162,
+    "latitude": 50.848701
+  },
+  "size": [
+    91.57949829101562,
+    60.801000118255615,
+    110.57999992370605
+  ],
+  "actualBounds": {
+    "min": [
+      -42.599998474121094,
+      -2.8499999046325684,
+      -88.43000030517578
+    ],
+    "max": [
+      48.97949981689453,
+      57.95100021362305,
+      22.149999618530273
+    ]
+  },
+  "visualBrief": "Maastricht limestone and dark sandstone basilica with paired west spires, a glazed Gothic Bergportaal, steep slate roof, arcaded east apse and adjoining cloister.",
+  "nativeAxes": {
+    "x": "east along the main nave",
+    "y": "up",
+    "z": "south from cloister toward portal"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bas%C3%ADlica_de_San_Servacio_(Sint-Servaasbasiliek).jpg",
+    "https://commons.wikimedia.org/wiki/File:Dehio_47_Maestricht_S_Servaes.jpg"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-saint-servatius-wp",
+      "url": "https://qualla.com/basilica-of-saint-servatius/"
+    }
+  ],
+  "referenceInputHash": "b887259cd465d7e8b021d23c3eb04705752258416e235fbe7fd27ebfa38169f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1h/basilica_of_saint_servatius/models/saint-servatius-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1h/basilica_of_saint_servatius/models/saint-servatius-model.mjs",
+    "level": "skyline",
+    "export": "saintServatiusSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saintServatiusDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "saintServatiusStreet",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "saintServatiusCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "stone_sandstone",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.82,
+    "cameraYaw": 0.3,
+    "focus": {
+      "center": [
+        -1,
+        14,
+        -15
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Primary 1930s measured westwork heights and the exact 2023 south portal image control the west towers; other roof heights and site grades are approximate.",
+    "anchor": [
+      5.687162,
+      50.848701
+    ],
+    "heading": 0.2524048159487417,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        5.687162,
+        50.848701
+      ],
+      "modelHeight": 0,
+      "basis": "Original sampled terrain at basilica center below surveyed historic fabric. Approximate placement datum."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -42.22,
+          -21.1
+        ],
+        [
+          -27.9,
+          -21.1
+        ],
+        [
+          -27.9,
+          -18.6
+        ],
+        [
+          14.8,
+          -18.6
+        ],
+        [
+          14.8,
+          -34.15
+        ],
+        [
+          36.7,
+          -34.15
+        ],
+        [
+          36.7,
+          -12.52
+        ],
+        [
+          41.2,
+          -12.52
+        ],
+        [
+          41.2,
+          -8.85
+        ],
+        [
+          45.6,
+          -7.7
+        ],
+        [
+          48.7,
+          -3.1
+        ],
+        [
+          47.1,
+          1.3
+        ],
+        [
+          42.2,
+          3.58
+        ],
+        [
+          41.4,
+          7.1
+        ],
+        [
+          36.8,
+          7.1
+        ],
+        [
+          36.1,
+          19.4
+        ],
+        [
+          15.4,
+          19.4
+        ],
+        [
+          15.4,
+          15.27
+        ],
+        [
+          -10.42,
+          15.27
+        ],
+        [
+          -10.42,
+          21.2
+        ],
+        [
+          -28,
+          21.2
+        ],
+        [
+          -28,
+          13.45
+        ],
+        [
+          -42.22,
+          13.45
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -42.22,
+            -21.1
+          ],
+          [
+            -27.9,
+            -21.1
+          ],
+          [
+            -27.9,
+            -18.6
+          ],
+          [
+            14.8,
+            -18.6
+          ],
+          [
+            14.8,
+            -34.15
+          ],
+          [
+            36.7,
+            -34.15
+          ],
+          [
+            36.7,
+            -12.52
+          ],
+          [
+            41.2,
+            -12.52
+          ],
+          [
+            41.2,
+            -8.85
+          ],
+          [
+            45.6,
+            -7.7
+          ],
+          [
+            48.7,
+            -3.1
+          ],
+          [
+            47.1,
+            1.3
+          ],
+          [
+            42.2,
+            3.58
+          ],
+          [
+            41.4,
+            7.1
+          ],
+          [
+            36.8,
+            7.1
+          ],
+          [
+            36.1,
+            19.4
+          ],
+          [
+            15.4,
+            19.4
+          ],
+          [
+            15.4,
+            15.27
+          ],
+          [
+            -10.42,
+            15.27
+          ],
+          [
+            -10.42,
+            21.2
+          ],
+          [
+            -28,
+            21.2
+          ],
+          [
+            -28,
+            13.45
+          ],
+          [
+            -42.22,
+            13.45
+          ]
+        ],
+        [
+          [
+            -31.5,
+            -67.38
+          ],
+          [
+            -37.63,
+            -21.18
+          ],
+          [
+            -20.85,
+            -22.21
+          ],
+          [
+            -16.6,
+            -57.55
+          ]
+        ],
+        [
+          [
+            -37.63,
+            -21.18
+          ],
+          [
+            18.4,
+            -18.92
+          ],
+          [
+            9.16,
+            -22.38
+          ],
+          [
+            -20.85,
+            -22.21
+          ]
+        ],
+        [
+          [
+            18.4,
+            -18.92
+          ],
+          [
+            17.8,
+            -71.65
+          ],
+          [
+            14.2,
+            -55.6
+          ],
+          [
+            9.16,
+            -22.38
+          ]
+        ],
+        [
+          [
+            17.8,
+            -71.65
+          ],
+          [
+            -31.5,
+            -67.38
+          ],
+          [
+            -16.6,
+            -57.55
+          ],
+          [
+            14.2,
+            -55.6
+          ]
+        ],
+        [
+          [
+            15.9,
+            -87.4
+          ],
+          [
+            25.75,
+            -87.4
+          ],
+          [
+            25.75,
+            -71.3
+          ],
+          [
+            15.9,
+            -71.3
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "Masks the main church and attached mapped ranges while preserving the open cloister court and separate Sint-Janskerk."
+    },
+    "featureIds": [
+      "relation/10150897",
+      "way/734133382"
+    ],
+    "source": "https://www.openstreetmap.org/relation/10150897",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bec3de520641cdfcf2c5b0925d8911b7368e6d18d0ac900155863afaa0be4a1d",
+    "notes": "The outer ring is stitched from five original BAG-backed ways. The inner ring is the courtyard void of the northern cloister. Polygon assembly leaves neighboring Sint-Janskerk separate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Model represents standing exterior and open cloister courtyard. It excludes the adjacent Sint-Janskerk.",
+    "Westwork heights follow the recorded measurements and photo silhouette. The apse, small towers, cloister, details, facade finishes and vertical terrain contact are approximate.",
+    "Crypt, treasury interiors and relief carvings are outside the exterior scope."
+  ],
+  "sourceLicense": "Original geometry informed by cleared Qualla CC0 photography and public-domain plate 47. OpenStreetMap geometry ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "basilica-skyline",
+      "position": [
+        -111,
+        63,
+        101
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "basilica-district",
+      "position": [
+        -111,
+        63,
+        101
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "basilica-street",
+      "position": [
+        -111,
+        63,
+        101
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "basilica-closeup",
+      "position": [
+        -111,
+        63,
+        101
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southwest-towers-and-portal",
+      "position": [
+        -111,
+        63,
+        101
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -18
+      ]
+    },
+    {
+      "name": "bergportaal-and-southern-chapels",
+      "position": [
+        -8,
+        13,
+        58
+      ],
+      "lookAt": [
+        -19,
+        12,
+        18
+      ]
+    },
+    {
+      "name": "apse-and-two-choir-towers",
+      "position": [
+        77,
+        25,
+        42
+      ],
+      "lookAt": [
+        34,
+        13,
+        -3
+      ]
+    },
+    {
+      "name": "cloister-court-and-westwork",
+      "position": [
+        -21,
+        38,
+        -82
+      ],
+      "lookAt": [
+        -6,
+        7,
+        -40
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23600,
+    "vertices": 70800,
+    "materials": 5,
+    "bytes": 3137088,
+    "sha256": "sha256:a729d590178d96f4fe3ef3bc016d98bcdb3087a53e894e9535d75d1802595f9f"
+  }
+}

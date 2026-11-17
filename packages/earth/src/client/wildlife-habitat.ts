@@ -2,6 +2,7 @@
 import type { WildlifeHabitat } from '@bendyline/molen-ambient/kernel';
 import {
   type TerrainPyramidTileLayerContext,
+  type TerrainSemanticMeshOptions,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   terrainWaterSurfaceHeight,
@@ -241,6 +242,7 @@ export class WildlifeHabitatTiles {
   constructor(
     private readonly root: THREE.Object3D,
     private readonly seaLevel?: number,
+    private readonly waterFeatureStyle?: TerrainSemanticMeshOptions['waterFeatureStyle'],
   ) {}
 
   observer(channel: 'landcover' | 'features'): SemanticTileObserver {
@@ -288,8 +290,20 @@ export class WildlifeHabitatTiles {
       if ((feature.minHeight ?? 0) < 3) for (const p of feature.polygons) polygon('building', p);
     for (const feature of tile.water) {
       const kind = ['ocean', 'sea'].includes(feature.class ?? '') ? 'water' : 'freshwater';
-      for (const p of feature.polygons ?? [])
-        polygon(kind, p, terrainWaterSurfaceHeight(p, context, 0.65, this.seaLevel));
+      const style = this.waterFeatureStyle?.(feature);
+      for (const p of (style?.hidePolygons ? [] : feature.polygons) ?? [])
+        polygon(
+          kind,
+          p,
+          terrainWaterSurfaceHeight(
+            p,
+            context,
+            0.65,
+            this.seaLevel,
+            this.waterFeatureStyle?.(feature, { polygon: p, context })?.elevation,
+          ),
+        );
+      if (style?.hideLines) continue;
       for (const line of feature.lines ?? [])
         sources.push({
           kind,

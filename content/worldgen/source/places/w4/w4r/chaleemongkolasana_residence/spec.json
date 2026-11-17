@@ -1,0 +1,567 @@
+{
+  "planId": "chaleemongkolasana_residence",
+  "id": "chaleemongkolasana_residence",
+  "assetId": "molen.worldgen.structure.chaleemongkolasana_residence",
+  "title": "Chaleemongkolasana and Maleeratanabanlang Residences",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.04597285,
+    "latitude": 13.818890249999999
+  },
+  "size": [
+    26.399200439453125,
+    15.65999984741211,
+    84.55999755859375
+  ],
+  "actualBounds": {
+    "min": [
+      -16,
+      -1.25,
+      -82.55999755859375
+    ],
+    "max": [
+      10.399200439453125,
+      14.40999984741211,
+      2
+    ]
+  },
+  "visualBrief": "The turreted pale château and red timber royal residence, linked above the moat by a covered passage.",
+  "nativeAxes": {
+    "x": "west along the château frontage",
+    "y": "up",
+    "z": "north toward the grounds and the Yah Leh monument"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chali_Mongkhon_At.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sanam-chandra-palace-wp",
+      "url": "https://qualla.com/sanam-chandra-palace/"
+    }
+  ],
+  "referenceInputHash": "c3c038f4735eda3aa111a7e0c71049b449933528f8d7043728a7c0b8ce611083",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4r/chaleemongkolasana_residence/models/sanam-residences-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4r/chaleemongkolasana_residence/models/sanam-residences-model.mjs",
+    "level": "skyline",
+    "export": "sanamSkyline",
+    "errorMeters": 0.91,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "masonry": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#4d4c40",
+        "roughness": 0.74,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sanamDistrict",
+        "errorMeters": 0.37,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#4d4c40",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "sanamStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#4d4c40",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "sanamCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#4d4c40",
+            "roughness": 0.74,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.15,
+    "groundY": 0,
+    "cameraYaw": -0.62,
+    "focus": {
+      "center": [
+        0,
+        5.5,
+        -35
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground and roofs estimated from original terrain, the released photograph and the written architecture descriptions. The roofed crossing follows the physically attached second floors.",
+    "anchor": [
+      100.04597285,
+      13.818890249999999
+    ],
+    "heading": -3.097959800550719,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.04597196226939,
+        13.818909994036325
+      ],
+      "modelHeight": 0,
+      "basis": "Lawn approach in front of the château entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.57032,
+          0
+        ],
+        [
+          -9.57032,
+          0
+        ],
+        [
+          -9.56216,
+          -8.61284
+        ],
+        [
+          -2.70269,
+          -8.60306
+        ],
+        [
+          0.37018,
+          -8.6026
+        ],
+        [
+          9.5672,
+          -8.60219
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            9.57032,
+            0
+          ],
+          [
+            -9.57032,
+            0
+          ],
+          [
+            -9.56216,
+            -8.61284
+          ],
+          [
+            -2.70269,
+            -8.60306
+          ],
+          [
+            0.37018,
+            -8.6026
+          ],
+          [
+            9.5672,
+            -8.60219
+          ]
+        ],
+        [
+          [
+            -0.94294,
+            -66.2558
+          ],
+          [
+            -3.79193,
+            -66.17962
+          ],
+          [
+            -7.77827,
+            -66.0751
+          ],
+          [
+            -7.92087,
+            -71.7306
+          ],
+          [
+            -15.54651,
+            -71.53984
+          ],
+          [
+            -15.71203,
+            -77.90947
+          ],
+          [
+            -8.8551,
+            -78.08922
+          ],
+          [
+            -8.96448,
+            -82.02732
+          ],
+          [
+            0.28642,
+            -82.26969
+          ],
+          [
+            0.39543,
+            -78.07533
+          ],
+          [
+            7.63132,
+            -78.26082
+          ],
+          [
+            7.78349,
+            -72.0812
+          ],
+          [
+            0.67769,
+            -71.90117
+          ],
+          [
+            0.82271,
+            -66.30128
+          ]
+        ],
+        [
+          [
+            -0.94294,
+            -66.2558
+          ],
+          [
+            0.01129,
+            -24.17328
+          ],
+          [
+            0.37018,
+            -8.6026
+          ],
+          [
+            -2.70269,
+            -8.60306
+          ],
+          [
+            -3.79193,
+            -66.17962
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Mapped footprints of both historic residences and the attached roofed crossing."
+    },
+    "featureIds": [
+      "way/96940850",
+      "way/96940847",
+      "way/260617822"
+    ],
+    "source": "https://www.openstreetmap.org/way/96940850",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:982da61dcc727cf292d7610cce949bd0d3f1bb0b74ee0d921d06507750cc6232"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "North château modeling follows the exact Ananda public-domain original. Rear opening spacing, roof heights, turret cross sections and trim motifs are medium-fi estimates.",
+    "Maleeratanabanlang uses the named mapped perimeter and the published descriptions of two red teak storeys, rounded arches and timber corridor. Its facade rhythm, hip configuration, bridge glazing and supporting piers are estimated.",
+    "The 256 m public source terrain is unchanged. The grade around the moat and elevations of its banks are approximate. The main entrance and companion threshold are independently grounded, and a modest continuous bridge pitch keeps the covered upper-floor passage connected.",
+    "Covers the two connected residences and covered crossing. The dog monument, other halls, landscaping and the campus are separate site scopes."
+  ],
+  "sourceLicense": "Original authored geometry informed by a photographer-dedicated public-domain photograph, written architectural facts, OpenStreetMap and Terrarium terrain.",
+  "qaLodCameras": [
+    {
+      "name": "sanam-residences-skyline",
+      "position": [
+        -60,
+        47,
+        35
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        -35
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sanam-residences-district",
+      "position": [
+        -60,
+        47,
+        35
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        -35
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sanam-residences-street",
+      "position": [
+        -60,
+        47,
+        35
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        -35
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sanam-residences-closeup",
+      "position": [
+        -60,
+        47,
+        35
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        -35
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-turrets-and-half-timber-entrance",
+      "position": [
+        22,
+        11,
+        31
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -2.7
+      ]
+    },
+    {
+      "name": "bridge-over-the-moat",
+      "position": [
+        -41,
+        17,
+        -42
+      ],
+      "lookAt": [
+        -1,
+        5.8,
+        -34
+      ]
+    },
+    {
+      "name": "red-teak-residence",
+      "position": [
+        29,
+        16,
+        -98
+      ],
+      "lookAt": [
+        -4.3,
+        7.2,
+        -72
+      ]
+    },
+    {
+      "name": "connected-residences-above-the-moat",
+      "position": [
+        50,
+        51,
+        -54
+      ],
+      "lookAt": [
+        0,
+        5,
+        -39
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4195,
+    "vertices": 12585,
+    "materials": 5,
+    "bytes": 646976,
+    "sha256": "sha256:ba1a2716d8fccc973425783de1be5e3668c9d12f3c7ae4ae32903df1c0555cfa"
+  }
+}

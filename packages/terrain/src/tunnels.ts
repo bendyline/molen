@@ -1,7 +1,6 @@
 /** Mapped underground corridors, portal cuts and height-aware navigation queries. */
 import * as THREE from 'three';
 import { setTerrainGroundCutouts } from './ground-cutout';
-import type { Heightfield } from './heightfield';
 import { joinTerrainLines, sampleTerrainLine, terrainLinePath } from './line-path';
 import { TerrainSurfaceMeshBuilder } from './linear-features';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayerContext } from './pyramid-stream';
@@ -34,6 +33,7 @@ const tileSizes = new WeakMap<THREE.Object3D, number>();
 const objects = new Set<WeakRef<THREE.Object3D>>();
 /** Changes whenever a bore is registered, so each root's list of them is gathered again. */
 let objectsVersion = 0;
+const surfacePassageIds = new WeakMap<THREE.Object3D, ReadonlySet<number>>();
 const material = new THREE.MeshStandardMaterial({
   vertexColors: true,
   roughness: 0.95,
@@ -289,6 +289,20 @@ export function createTerrainTunnelObject(
   return group;
 }
 
+/** A resident model supplies the walls and roof. The road renderer supplies the surface. */
+export function setTerrainSurfacePassages(object: THREE.Object3D, ids: ReadonlySet<number>): void {
+  surfacePassageIds.set(object, ids);
+}
+
+function isBoredTunnel(
+  feature: TerrainTransportationFeature,
+  surfacePassages: ReadonlySet<number> | undefined,
+): boolean {
+  return (
+    feature.tunnel === true && (typeof feature.id !== 'number' || !surfacePassages?.has(feature.id))
+  );
+}
+
 /** Join clipped vector fragments before inferring a grade, so tile edges cannot become portals.
  * Only completed, unbranched routes are inferred. Bounded searches omit unresolved long routes. */
 export function withTerrainTunnels(
@@ -303,40 +317,41 @@ export function withTerrainTunnels(
     async createTile(tile, context) {
       if (context.address.level < minLevel || !tile.transportation.some((f) => f.tunnel))
         return renderer.createTile(tile, context);
-      const routes = await completeRoutes(tile, context, source);
-      const fields = new Map<string, Heightfield>();
-      fields.set(terrainPyramidTileKey(context.address), context.heightfield);
-      const addresses = new Map<string, TerrainPyramidTileAddress>();
-      for (const f of routes.transportation)
-        for (const line of f.lines)
-          for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
-            const address = {
-              level: context.address.level,
-              x: context.address.x + Math.floor(p[0]),
-              z: context.address.z + Math.floor(p[1]),
-            };
-            addresses.set(terrainPyramidTileKey(address), address);
-          }
-      await Promise.all(
-        [...addresses].map(async ([key, address]) => {
-          if (fields.has(key)) return;
-          const field = await heights.load(address, context.signal);
-          if (field) fields.set(key, field);
-        }),
-      );
-      context.signal.throwIfAborted();
-      const tunnels = createTerrainTunnelObject(routes, context, (x, z) => {
-        const address = {
-          level: context.address.level,
-          x: context.address.x + Math.floor(x / context.tileSize),
-          z: context.address.z + Math.floor(z / context.tileSize),
-        };
-        return fields
-          .get(terrainPyramidTileKey(address))
-          ?.sampleHeight(context.origin[0] + x, context.origin[1] + z);
-      });
+      const inner = await renderer.createTile(tile, context);
       try {
-        const inner = await renderer.createTile(tile, context);
+        const passages = inner && surfacePassageIds.get(inner);
+        if (!tile.transportation.some((f) => isBoredTunnel(f, passages))) return inner;
+        const routes = await completeRoutes(tile, context, source, passages);
+        const fields = new Map([[terrainPyramidTileKey(context.address), context.heightfield]]);
+        const addresses = new Map<string, TerrainPyramidTileAddress>();
+        for (const f of routes.transportation)
+          for (const line of f.lines)
+            for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
+              const address = {
+                level: context.address.level,
+                x: context.address.x + Math.floor(p[0]),
+                z: context.address.z + Math.floor(p[1]),
+              };
+              addresses.set(terrainPyramidTileKey(address), address);
+            }
+        await Promise.all(
+          [...addresses].map(async ([key, address]) => {
+            if (fields.has(key)) return;
+            const field = await heights.load(address, context.signal);
+            if (field) fields.set(key, field);
+          }),
+        );
+        context.signal.throwIfAborted();
+        const tunnels = createTerrainTunnelObject(routes, context, (x, z) => {
+          const address = {
+            level: context.address.level,
+            x: context.address.x + Math.floor(x / context.tileSize),
+            z: context.address.z + Math.floor(z / context.tileSize),
+          };
+          return fields
+            .get(terrainPyramidTileKey(address))
+            ?.sampleHeight(context.origin[0] + x, context.origin[1] + z);
+        });
         const group = new THREE.Group();
         if (inner) {
           group.add(inner);
@@ -345,9 +360,7 @@ export function withTerrainTunnels(
         group.add(tunnels);
         return group;
       } catch (error) {
-        tunnels.traverse((o) => {
-          if (o instanceof THREE.Mesh) o.geometry.dispose();
-        });
+        if (inner) renderer.disposeTile?.(inner);
         throw error;
       }
     },
@@ -408,6 +421,7 @@ async function completeRoutes(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
   source: TerrainSemanticTileSource,
+  surfacePassages?: ReadonlySet<number>,
 ): Promise<TerrainSemanticTile> {
   const loaded = new Map<
     string,
@@ -422,7 +436,7 @@ async function completeRoutes(
     loaded.set(terrainPyramidTileKey(current.address), current);
     const neighbors = new Map<string, TerrainPyramidTileAddress>();
     for (const feature of current.tile.transportation)
-      if (feature.tunnel)
+      if (isBoredTunnel(feature, surfacePassages))
         for (const line of feature.lines) {
           for (const p of line)
             for (const [dx, dz] of [
@@ -494,7 +508,7 @@ async function completeRoutes(
         p[0] + address.x - context.address.x,
         p[1] + address.z - context.address.z,
       ];
-      if (!f.tunnel) {
+      if (!isBoredTunnel(f, surfacePassages)) {
         for (const line of f.lines)
           for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
             const q = map(p);

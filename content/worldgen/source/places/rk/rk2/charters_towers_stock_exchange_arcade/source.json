@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.charters_towers_stock_exchange_arcade",
+  "kind": "static-structure",
+  "title": "Charters Towers Stock Exchange Arcade",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.charters_towers_stock_exchange_arcade",
+        "output": "assets/places/rk/rk2/charters_towers_stock_exchange_arcade/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bd6d10644165fb1509fce174351e76d97ea092623b867659959776d2b2c5504e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-stock-exchange-arcade",
+        "path": "models/generate-stock-exchange-arcade.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/stock-exchange-arcade-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29696-18249.png",
+      "terrain-sources/terrarium-15-29696-18250.png",
+      "preview.png",
+      "native-map/osm-way-1141755213.json",
+      "reference-rights/slq-1891-stock-exchange-native.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

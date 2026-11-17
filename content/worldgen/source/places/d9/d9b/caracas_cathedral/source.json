@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.caracas_cathedral",
+  "kind": "static-structure",
+  "title": "Caracas Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.caracas_cathedral",
+        "output": "assets/places/d9/d9b/caracas_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd5f72b208d3657da3649791ecd5ccdae90c14ea8586f115c203b28b5eb13f3e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-caracas-cathedral",
+        "path": "models/generate-caracas-cathedral.mjs"
+      },
+      {
+        "id": "caracas-cathedral-model",
+        "path": "models/caracas-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-lessmann-1870-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10293-15422.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

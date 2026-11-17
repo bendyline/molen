@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Individually mapped Hofburg wings around open courts, curved Neue Burg, Michaeler copper domes, Amalien clock turret, library dome, riding school and Stallburg courtyard, Augustinian spire, Albertina terrace and Palmenhaus.
+Individually mapped Hofburg wings around open courts, curved Neue Burg, Michaeler copper domes, Amalien clock turret, riding school and Stallburg courtyard, Augustinian spire, Albertina terrace and Palmenhaus.
 
 ## Evidence and reconstruction
 
@@ -24,7 +24,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-59,792 triangles; 124,344 vertices; 8 material groups; 5,198,592 bytes. Native bounds: -215.729, -10.000, -202.367 to 215.156, 66.700, 224.863. Source hash: `sha256:c42e9629f63ef486480159eb3d707a8fc2dd3abd53969939766c23503075a975`.
+55,792 triangles; 116,140 vertices; 8 material groups; 4,855,244 bytes. Native bounds: -215.729, -10.000, -202.367 to 215.156, 66.700, 224.863. Source hash: `sha256:4bcc77b97b5a6f5f618e315cb52c0b732ac66ebcf1525704e226f46f8c4d50ed`.
 
 {"up":"+Y","longitudinal":"+X approximately north","front":"+Z approximately east","origin":"Exact-Q46242 frame;Y0 reconstructed18.85m Wiener Null Michaeler working datum."}
 
@@ -42,6 +42,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=hofburg_
 - Seven common plaster,limestone,ceramic tile,copper,timber,granite and painted-metal graphs plus opaque PBR glazing. Carved limestone shares wall graph;small gold pieces share tinted painted metal,slate spire shares tinted ceramic pattern. Those are explicit medium-fi approximations,no embedded/copy textures.
 - Imperial figurative statues,fountains,heraldic reliefs,equestrian monuments,Palmenhaus centralcrosspavilion,balustrade balusters and fine capitals are simplified/omitted. No fully navigable interiors,underground rooms or neighbouring Michaelerkirche.
 - Public1mDGM under occupied roofs interpolates and does not survey floor levels. Native5m fixture smooths stairs; source/medium display resamples to4m and clamps only beyond bounded evidence. Physical laptop/phone measurements remain pending.
+- The placement clips generic buildings over the occupied palace wings. The independently placed Austrian National Library supplies the State Hall wing and roof pavilion on Josefsplatz.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

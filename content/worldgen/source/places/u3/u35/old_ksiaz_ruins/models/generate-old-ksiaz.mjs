@@ -55,6 +55,7 @@ for (const model of oldKsiazModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -162,12 +163,21 @@ for (const model of oldKsiazModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: 'preview-proposal',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: fit.contact.modelHeight,
+      groundContactReviewed: true,
+      groundContactBasis: frame.reconstruction.registration,
+      terrainReference: {
+        anchor: fit.contact.anchor,
+        modelHeight: fit.contact.modelHeight,
+        basis: frame.reconstruction.registration,
+      },
+      bounds: fit.bounds,
+      orientationPolicy: 'map-verified',
       replaceFootprint: false,
       featureIds: [`way/${model.way}`],
       source: frame.sourceUrl,
@@ -175,8 +185,7 @@ for (const model of oldKsiazModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own named ruin envelope and four separately mapped surviving wall traces. Envelope is not a solid building footprint. Heights, breaks, wall thickness, openings and photographic facade associations are proposed. Terrain/contact review is pending.',
+      notes: frame.reconstruction.registration,
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -191,9 +200,8 @@ for (const model of oldKsiazModels.filter(
     limitations: [
       'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own attributed site envelope and four wall traces. Surviving wall heights, openings and broken profiles are photographic interpretations; there is no roof.',
-      'Mapped independent Q9386558 identifies the ruin. Photographic wall association and actual terrain fit remain unreviewed.',
-      'References show 2014 surviving walls and a 2012 interior panorama; current restoration state is unconfirmed.',
-      'No unique textures, copied photos, reconstructed roofs or historic interior rooms. Open courtyards remain open. Terrain/facade fit, streaming and physical-device timing remain pending.',
+      'The surviving roofless exterior follows the linked photographs and panorama. Wall heights, stair profiles and opening dimensions are visualization estimates.',
+      'The site preserves the retained terrain and mapped trail. Surrounding woodland, underground rooms and earlier phases of the castle are outside this model.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -288,13 +296,14 @@ for (const model of oldKsiazModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). The [placement review](QA-REVIEW.md) records the hillside fit and open approaches.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own mapped ruin envelope and four surviving wall centerlines; the envelope is not filled. Y0 is estimated lowest wall contact. Wall heights, breaks, openings and photo-to-wall associations are interpretations. Mapped Q9386558 is independent of the parent castle. Real terrain fit and current condition remain pending.\n\n' +
+    frame.reconstruction.registration +
+    ' Wall dimensions and stair profiles are visualization estimates.\n\n' +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/generate-old-ksiaz.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +

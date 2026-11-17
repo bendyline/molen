@@ -1,0 +1,382 @@
+{
+  "planId": "western_springs_pumping_station_auckland",
+  "id": "western_springs_pumping_station_auckland",
+  "assetId": "molen.worldgen.structure.western_springs_pumping_station_auckland",
+  "title": "Western Springs Pumping Station",
+  "wikidataId": "Q134716544",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.7266109,
+    "latitude": -36.867607757142856
+  },
+  "size": [
+    26.329999923706055,
+    13.090000092983246,
+    18.519999980926514
+  ],
+  "actualBounds": {
+    "min": [
+      -14.989999771118164,
+      -0.9200000166893005,
+      -7.400000095367432
+    ],
+    "max": [
+      11.34000015258789,
+      12.170000076293945,
+      11.119999885559082
+    ]
+  },
+  "visualBrief": "The heritage records identify red brick, dressed basalt quoins and openings, round-arched multi-pane windows, cornices, entrance steps, hipped roofs, and broad arched boiler-house doorways.",
+  "nativeAxes": {
+    "x": "east along the principal building",
+    "y": "up",
+    "z": "south across the principal building"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Municipal_and_official_handbook_of_the_City_of_Auckland,_New_Zealand_(IA_municipalofficia00auck).pdf"
+  ],
+  "stories": [
+    {
+      "id": "museum-of-transport-and-technology-wp",
+      "url": "https://qualla.com/museum-of-transport-and-technology/"
+    }
+  ],
+  "referenceInputHash": "sha256:4c38fb8230d6516c1b6b6b4615e99341733fbb738a0c29f8c648a868803023da",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rck/western_springs_pumping_station_auckland/models/western-springs-pumping-station-auckland-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rck/western_springs_pumping_station_auckland/models/western-springs-pumping-station-auckland-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.29,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.95
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.79,
+        "metallic": 0.25
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.063,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.026,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.95
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_basalt",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.84,
+    "cameraYaw": 3.82,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -1,
+        4.6,
+        1.7
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The public approach is used as the ground datum. The stone base extends below the original surface and the entrance steps reach the modest common floor rise.",
+    "anchor": [
+      174.7266109,
+      -36.867607757142856
+    ],
+    "heading": 0.36818260758709576,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.72669074087048,
+        -36.867693464888255
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation at the south approach in the signed map frame."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/221116588"
+    ],
+    "source": "https://www.openstreetmap.org/way/221116588",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:86a0f99006fe2c3174e92ced67efc234a2a4460f9a74c8fa9d860daade4aa912",
+    "notes": "The current mapped footprint separates the two-storey engine house and attached single-storey boiler wing by the north-side step. The municipal handbook photograph supports the relative masses. Both are retained in the present-day heritage registration."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Wall and roof heights, window spacing and the connecting wall are approximate. The municipal illustration gives overall massing. The written heritage survey supplies opening and material details.",
+    "The current terrain remains unchanged. The DEM-derived approach and foundations give approximate vertical fit. The height of the now-demolished chimney is part of the historical record."
+  ],
+  "sourceLicense": "Original reconstruction based on the public-domain 1922 municipal handbook, the heritage records and attributed open map and elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "western-springs-pumping-station-auckland-skyline",
+      "position": [
+        -28,
+        15,
+        29
+      ],
+      "lookAt": [
+        -1,
+        4.6,
+        1.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "western-springs-pumping-station-auckland-district",
+      "position": [
+        -28,
+        15,
+        29
+      ],
+      "lookAt": [
+        -1,
+        4.6,
+        1.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "western-springs-pumping-station-auckland-street",
+      "position": [
+        -28,
+        15,
+        29
+      ],
+      "lookAt": [
+        -1,
+        4.6,
+        1.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "western-springs-pumping-station-auckland-closeup",
+      "position": [
+        -28,
+        15,
+        29
+      ],
+      "lookAt": [
+        -1,
+        4.6,
+        1.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "brick-engine-house",
+      "position": [
+        18,
+        10,
+        34
+      ],
+      "lookAt": [
+        4,
+        4.3,
+        3
+      ]
+    },
+    {
+      "name": "boiler-arches-and-basalt",
+      "position": [
+        -12,
+        4.8,
+        24
+      ],
+      "lookAt": [
+        -6,
+        2.8,
+        8
+      ]
+    },
+    {
+      "name": "lakeside-and-hipped-roofs",
+      "position": [
+        32,
+        20,
+        -29
+      ],
+      "lookAt": [
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "quoins-and-multipane-sash",
+      "position": [
+        20,
+        5.9,
+        -18
+      ],
+      "lookAt": [
+        9,
+        5.5,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4125,
+    "vertices": 12375,
+    "materials": 4,
+    "bytes": 655072,
+    "sha256": "sha256:9cf42481f0b5504ce8949801d77624e6982250f16a1210cea112a38db035fca2"
+  }
+}

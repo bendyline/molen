@@ -115,7 +115,7 @@
     "up": "+Y",
     "lateral": "+X along longest mapped edge in source vertex order",
     "longitudinal": "+Z perpendicular to mapped edge",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "origin": "Mapped envelope center; model elevation uses the retained approach control."
   },
   "controls": {
     "basisEdge": 0,
@@ -126,6 +126,345 @@
   "reconstruction": {
     "basis": "Own 17-vertex attributed map footprint and primary photographs of the timber gables, dormer and tiled roofs. Heights, roof subdivision and facade details are interpreted.",
     "scope": "Independent exterior component of ksiaz_castle_and_park_complex; castle and park ensemble remains incomplete.",
-    "registration": "Own map-derived axis and anchor; signed facade orientation and vertical terrain fit must be checked before activation."
+    "registration": "The porch and dormer face the side approached from Jeździecka, with the main timber gable turned toward the mapped footpath. The stone base and short entrance steps meet the retained Terrarium terrain."
+  },
+  "siteFit": {
+    "contact": {
+      "anchor": [
+        16.3035834861427,
+        50.84435331631166
+      ],
+      "modelHeight": -0.14,
+      "local": [
+        -7.836,
+        4.353294
+      ],
+      "meters": 388.531689
+    },
+    "datumMeters": 388.671689,
+    "footingBottom": -0.733508,
+    "entrances": [
+      {
+        "center": [
+          -6.516,
+          4.3525
+        ],
+        "angle": -1.570195,
+        "edge": 14,
+        "offset": 0,
+        "width": 1.27,
+        "apronWidth": 1.61,
+        "depth": 1.32,
+        "floor": 0,
+        "toe": [
+          -0.147914,
+          -0.132086
+        ],
+        "wallGround": -0.149305
+      }
+    ],
+    "bounds": [
+      16.303497,
+      50.844171,
+      16.303903,
+      50.844473
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.531489,
+          6.00904
+        ],
+        [
+          -6.485821,
+          2.652605
+        ],
+        [
+          -5.543766,
+          2.686603
+        ],
+        [
+          -5.621406,
+          -5.617078
+        ],
+        [
+          -4.002432,
+          -5.520919
+        ],
+        [
+          -3.996597,
+          -6.728109
+        ],
+        [
+          -0.905297,
+          -6.654279
+        ],
+        [
+          -0.939295,
+          -5.712224
+        ],
+        [
+          6.56898,
+          -5.705376
+        ],
+        [
+          6.585473,
+          -3.025861
+        ],
+        [
+          3.759308,
+          -3.127854
+        ],
+        [
+          3.798129,
+          1.023986
+        ],
+        [
+          5.005319,
+          1.029821
+        ],
+        [
+          5.066467,
+          6.653987
+        ],
+        [
+          -5.533108,
+          6.573309
+        ],
+        [
+          -5.589434,
+          6.043038
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.531489,
+            6.00904
+          ],
+          [
+            -6.485821,
+            2.652605
+          ],
+          [
+            -5.543766,
+            2.686603
+          ],
+          [
+            -5.621406,
+            -5.617078
+          ],
+          [
+            -4.002432,
+            -5.520919
+          ],
+          [
+            -3.996597,
+            -6.728109
+          ],
+          [
+            -0.905297,
+            -6.654279
+          ],
+          [
+            -0.939295,
+            -5.712224
+          ],
+          [
+            6.56898,
+            -5.705376
+          ],
+          [
+            6.585473,
+            -3.025861
+          ],
+          [
+            3.759308,
+            -3.127854
+          ],
+          [
+            3.798129,
+            1.023986
+          ],
+          [
+            5.005319,
+            1.029821
+          ],
+          [
+            5.066467,
+            6.653987
+          ],
+          [
+            -5.533108,
+            6.573309
+          ],
+          [
+            -5.589434,
+            6.043038
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only the exact Protomaps footprint for 262236292 in the retained 20261114 extract."
+    },
+    "evidence": {
+      "nativeId": 35184634325124,
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17867,
+          "y": 10992,
+          "hash": "sha256:cd4329f6b4f8a051742e5b4949294e4b14c496e512089d792b967ac9e6480054"
+        },
+        {
+          "z": 15,
+          "x": 17868,
+          "y": 10992,
+          "hash": "sha256:00c90c028b7b14a6e21d93aa4bef4cefeece3feecf6e8f82270b27b6db724dac"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8933,
+          "y": 5496,
+          "hash": "sha256:4531cdefd015e518d46413f22058749f419ef8f739c7ceb9c2c1cb8eee6c5557",
+          "container": "retained PMTiles"
+        },
+        {
+          "z": 14,
+          "x": 8934,
+          "y": 5496,
+          "hash": "sha256:83b3bfdc6ccbd2993db21449d8e264108810cdde677c9bedcc7db7818b78c056",
+          "container": "Terrarium original"
+        }
+      ],
+      "archiveHashes": {
+        "vector": "sha256:a7e7fa1da3498c7733551e4a5d84479ba66410f9849a807b335b87b407451010",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "perimeter": [
+        {
+          "p": [
+            -5.583,
+            6.652
+          ],
+          "height": 388.536394
+        },
+        {
+          "p": [
+            4.964,
+            6.652
+          ],
+          "height": 388.47539
+        },
+        {
+          "p": [
+            4.967,
+            1.087
+          ],
+          "height": 388.402208
+        },
+        {
+          "p": [
+            3.793,
+            1.087
+          ],
+          "height": 388.408831
+        },
+        {
+          "p": [
+            3.786,
+            -3.067
+          ],
+          "height": 388.347193
+        },
+        {
+          "p": [
+            6.517,
+            -3.064
+          ],
+          "height": 388.333463
+        },
+        {
+          "p": [
+            6.517,
+            -5.668
+          ],
+          "height": 388.288181
+        },
+        {
+          "p": [
+            5.173,
+            -5.669
+          ],
+          "height": 388.296321
+        },
+        {
+          "p": [
+            -0.945,
+            -5.678
+          ],
+          "height": 388.335958
+        },
+        {
+          "p": [
+            -0.936,
+            -6.646
+          ],
+          "height": 388.320109
+        },
+        {
+          "p": [
+            -3.951,
+            -6.652
+          ],
+          "height": 388.345301
+        },
+        {
+          "p": [
+            -3.953,
+            -5.551
+          ],
+          "height": 388.363395
+        },
+        {
+          "p": [
+            -5.559,
+            -5.547
+          ],
+          "height": 388.378639
+        },
+        {
+          "p": [
+            -5.562,
+            2.693
+          ],
+          "height": 388.497285
+        },
+        {
+          "p": [
+            -6.517,
+            2.689
+          ],
+          "height": 388.504835
+        },
+        {
+          "p": [
+            -6.515,
+            6.016
+          ],
+          "height": 388.537546
+        },
+        {
+          "p": [
+            -5.581,
+            6.012
+          ],
+          "height": 388.530083
+        }
+      ]
+    }
   }
 }

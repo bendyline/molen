@@ -1,0 +1,449 @@
+{
+  "planId": "tamozawa_imperial_villa",
+  "id": "tamozawa_imperial_villa",
+  "assetId": "molen.worldgen.structure.tamozawa_imperial_villa",
+  "title": "Tamozawa Imperial Villa",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.591389,
+    "latitude": 36.7525
+  },
+  "size": [
+    114.0020980834961,
+    13.849999606609344,
+    72.53960037231445
+  ],
+  "actualBounds": {
+    "min": [
+      -69.39089965820312,
+      -0.44999998807907104,
+      -27.495399475097656
+    ],
+    "max": [
+      44.61119842529297,
+      13.399999618530273,
+      45.0442008972168
+    ]
+  },
+  "visualBrief": "The restored Tamozawa Imperial Villa with its joined blue-gray copper roofs, dark wood verandas, small courtyards and the taller residence incorporated into the complex.",
+  "nativeAxes": {
+    "x": "east along the long roof ranges",
+    "y": "up",
+    "z": "south toward the villa garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tamozawa_Imperial_Villa_2018_(008).jpg",
+    "https://commons.wikimedia.org/wiki/File:Tamozawa_Imperial_Villa_2018_(004).jpg"
+  ],
+  "stories": [
+    {
+      "id": "tamozawa-imperial-villa-wp",
+      "url": "https://qualla.com/tamozawa-imperial-villa/"
+    }
+  ],
+  "referenceInputHash": "a62daf81ef4280364bd9baf152bff11691004f52f548f7d51ff12d52824d3791",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xne/tamozawa_imperial_villa/models/tamozawa-imperial-villa-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xne/tamozawa_imperial_villa/models/tamozawa-imperial-villa-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.85,
+    "surfaces": {
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.85,
+        "metallic": 0.16
+      },
+      "verge": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_vertical",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.88,
+        "surfaces": {
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "verge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "verge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "verge": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_copper",
+    "wood_plain",
+    "wood_vertical",
+    "stone_limestone_weathered",
+    "plaster_lime"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.72,
+    "groundY": 0.52,
+    "focus": {
+      "center": [
+        -10,
+        3.8,
+        9
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two exact 2018 photos support blue-gray copper roof planes, dark timber verandahs and stepped roof heights. The prefectural record confirms timber single-story wings, two- and three-story parts and copper shingle roofs.",
+    "anchor": [
+      139.591389,
+      36.7525
+    ],
+    "heading": 0.18686569050088828,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.5917591183016,
+        36.752720629777535
+      ],
+      "modelHeight": 0,
+      "basis": "Original GSI grade at the northeastern approach to the villa."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/9717595"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9717595",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e11afa3dc28bcbec32418a9cc7b022bac0b754f152a289ce010d4434f849eaa2"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The 16 mapped openings and perimeter place the overall extent. Roof-ridge layout, section dimensions and window spacing require interpretation from partial exterior views. The approximate garden-side position and height of the central pavilion are inferred from the photograph and the heritage description.",
+    "The original 5 m GSI grade, overhang footprint, and written internal floor area describe different quantities. Roof eaves are based on map extent and the building walls are recessed.",
+    "The detached demolished annex, interiors, park paths and garden planting are outside the planned model scope."
+  ],
+  "sourceLicense": "Original reconstruction using verified CC0 Qualla originals, native outline and courts, original Japanese GSI elevation, and the prefectural and villa operator’s written records.",
+  "qaLodCameras": [
+    {
+      "name": "tamozawa-imperial-villa-skyline",
+      "position": [
+        97,
+        46,
+        100
+      ],
+      "lookAt": [
+        -10,
+        3.8,
+        9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tamozawa-imperial-villa-district",
+      "position": [
+        97,
+        46,
+        100
+      ],
+      "lookAt": [
+        -10,
+        3.8,
+        9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tamozawa-imperial-villa-street",
+      "position": [
+        97,
+        46,
+        100
+      ],
+      "lookAt": [
+        -10,
+        3.8,
+        9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tamozawa-imperial-villa-closeup",
+      "position": [
+        97,
+        46,
+        100
+      ],
+      "lookAt": [
+        -10,
+        3.8,
+        9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "garden-and-central-residence",
+      "position": [
+        72,
+        27,
+        87
+      ],
+      "lookAt": [
+        -10,
+        3.8,
+        9
+      ]
+    },
+    {
+      "name": "timber-veranda-and-eaves",
+      "position": [
+        49,
+        7,
+        57
+      ],
+      "lookAt": [
+        29,
+        4,
+        33
+      ]
+    },
+    {
+      "name": "connected-courtyard-roofs",
+      "position": [
+        2,
+        68,
+        -15
+      ],
+      "lookAt": [
+        -5,
+        2.1,
+        10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25888,
+    "vertices": 77664,
+    "materials": 6,
+    "bytes": 3398192,
+    "sha256": "sha256:60a80f451c96c7da83791ff553f977f7727f582bbc1225667ed153457d17d3bb"
+  }
+}

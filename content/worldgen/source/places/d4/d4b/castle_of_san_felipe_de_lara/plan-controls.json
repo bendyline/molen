@@ -1,0 +1,89 @@
+{
+  "format": "molen/structure-plan-controls@1",
+  "date": "2026-11-15",
+  "model": "castle_of_san_felipe_de_lara",
+  "title": "Castle of San Felipe de Lara",
+  "cell": "d4/d4b",
+  "wikidataId": "Q672368",
+  "representedDate": "present",
+  "geometryBasis": "The native 29-corner fortress ring sets the shell, river-facing curve and divergent curtains. The separate bridge polygon and footway determine the landward crossing. The archaeological measurements and first-person exterior picture determine the main proportions and stone and timber details.",
+  "sectionBasis": "The upper approach registers against the original mapped landward bridge landing. Archaeology gives a 4 m high and approximately 20 m wide river bastion and different courtyard levels. The solid curtain bottoms follow the local relief with estimated defenses and support levels.",
+  "site": {
+    "waterControl": {
+      "reviewY": -6.45,
+      "sourceRelativeOpenWaterElevation": 3.4961,
+      "independentLakeElevationMeters": 2,
+      "independentSource": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023JG007515",
+      "basis": "Local source-relative shoreline preview uses the open-water return east of the bastion. The regional lake elevation is an independent near-sea-level reference. The DEM and lake use different or unsurveyed vertical references."
+    },
+    "bridge": {
+      "deckY": 0.17,
+      "floorY": 0.04,
+      "movableLeafLength": 2.35
+    },
+    "upperCourtY": -0.22,
+    "middleCourtY": -1.38,
+    "batteryDeckY": -3.3,
+    "batteryParapetY": -2.45,
+    "baseY": -6.8,
+    "towers": {
+      "north": {
+        "bounds": [
+          -23.42,
+          -16,
+          -16.88,
+          -5.14
+        ],
+        "topY": 2.78,
+        "roofY": 4.63
+      },
+      "south": {
+        "bounds": [
+          -23.38,
+          -15.88,
+          7.55,
+          16.04
+        ],
+        "topY": 2.61,
+        "roofY": 4.27
+      },
+      "riverLookout": {
+        "bounds": [
+          18.4,
+          24.15,
+          -11.1,
+          -4.7
+        ],
+        "topY": 3.61,
+        "roofY": 4.81
+      }
+    }
+  },
+  "terrainFrozenBeforeGeometry": {
+    "terrain-grid.json": "sha256:d316db5dba3337a1a24ff205dafbd467b1b55f91608e6df230e8a62406e7fe86",
+    "terrain-review.terrain.json": "sha256:345db8518b5f77a109037bb1cf247223c946e14e7d3ba46a269f0e690a128442",
+    "terrain-review.height.png": "sha256:e98d89b7930242657a0110038510c64de913878156cd681fc9888e4c0dd694d5"
+  },
+  "requiredSourceDocuments": [
+    "map-frame.json",
+    "plan-controls.json",
+    "research-preparation.json",
+    "construction-preparation.json",
+    "native-map/fort-bridge-and-waterfront.json",
+    "native-map/water-and-shore.json",
+    "imagery-evidence.json",
+    "reference-rights/commons-sjc196-riverside-photograph.json",
+    "native-water.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-shoreline-review.terrain.json",
+    "terrain-shoreline-review.height.png",
+    "terrain-shoreline-review-evidence.json"
+  ],
+  "limitations": [
+    "Represents the standing reconstruction with the mapped castle, approach bridge and waterfront stone edge. The river parapet height is documented. Internal subdivisions, other wall heights, turret roof pitches and precise arch and crenel positions are estimates.",
+    "The static drawbridge leaf, fittings and courtyard transitions represent visible architectural form. Rooms and moving machinery are outside exterior scope.",
+    "The original public DEM is preserved. The waterfront review uses a separate mapped water plane and a coastally adjusted derivative of the original terrain to approximate shoreline grade. Runtime retains the mapped terrain and water. Vertical registration remains approximate."
+  ]
+}

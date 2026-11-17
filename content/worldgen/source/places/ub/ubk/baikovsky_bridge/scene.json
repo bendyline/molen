@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Baikovsky Bridge preview",
+  "seed": "baikovsky_bridge",
+  "tickRate": 30,
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -26,
+      13,
+      43
+    ],
+    "lookAt": [
+      0,
+      -0.25,
+      9
+    ],
+    "fov": 61
+  },
+  "physics": {
+    "engine": "none"
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.baikovsky_bridge",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "review-floor",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -4.27,
+            0
+          ],
+          "scale": [
+            95,
+            0.14,
+            104
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#9c9280",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dfebf0",
+            "ground": "#83715e",
+            "intensity": 1.12
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              11
+            ],
+            "color": "#fff0d5",
+            "intensity": 2.13,
+            "castShadow": true
+          },
+          "background": "#b6cdd9",
+          "toneMapping": "agx",
+          "exposure": 1.01,
+          "shadows": "high"
+        }
+      }
+    }
+  ]
+}

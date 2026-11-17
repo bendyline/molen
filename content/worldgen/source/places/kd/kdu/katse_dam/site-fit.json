@@ -1,0 +1,177 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 2055.506213125,
+  "crestElevation": 2060,
+  "sites": [
+    {
+      "name": "Katse Dam reservoir rim raster lows",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        -510,
+        -680,
+        493,
+        28
+      ],
+      "elevation": 2049,
+      "blend": 40,
+      "basis": "Repair only invalid low samples near the mapped reservoir and crest.",
+      "repairBelow": 1850
+    },
+    {
+      "name": "Katse Dam eastern bank raster lows",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        155,
+        28,
+        405,
+        201
+      ],
+      "elevation": 2042,
+      "blend": 36,
+      "basis": "Repair isolated invalid terrain samples beneath the east abutment and approach.",
+      "repairBelow": 1850
+    },
+    {
+      "name": "Katse Dam gorge raster lows",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        -175,
+        28,
+        155,
+        350
+      ],
+      "elevation": 1895,
+      "blend": 36,
+      "basis": "Repair implausibly low samples in the plunge-pool gorge.",
+      "repairBelow": 1850
+    },
+    {
+      "name": "Katse Dam west crest road tie",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        -316,
+        119,
+        -283,
+        148
+      ],
+      "elevation": 2059.68,
+      "blend": 34,
+      "basis": "Match the rendered access road to the west end of the deck."
+    },
+    {
+      "name": "Katse Dam east crest road tie",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        289,
+        132,
+        329,
+        173
+      ],
+      "elevation": 2059.68,
+      "blend": 36,
+      "basis": "Match the rendered crest road and service junction to the east end of the deck."
+    },
+    {
+      "name": "Katse Dam central downstream concrete face",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        7,
+        52,
+        133,
+        110
+      ],
+      "elevation": 1944,
+      "blend": 39,
+      "basis": "The standard raster smears the concrete wall into the valley. Reveal the open downstream face inside the gorge and blend into the banks."
+    },
+    {
+      "name": "Katse Dam east inner gorge shoulder",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        137,
+        88,
+        197,
+        148
+      ],
+      "elevation": 1957,
+      "blend": 45,
+      "basis": "The photograph shows the concrete face above the inner gorge bank. Take the narrow artificial ridge out of the open view and tie into the outer hillside."
+    },
+    {
+      "name": "Katse Dam east abutment shoulder",
+      "anchor": [
+        28.50603056,
+        -29.33708333
+      ],
+      "heading": 0.40069262057,
+      "bounds": [
+        199,
+        92,
+        243,
+        159
+      ],
+      "elevation": 1993,
+      "blend": 46,
+      "basis": "Keep a rising bank toward the eastern abutment and retain the outer hillside and service road."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 22694473,
+      "name": "Katse Reservoir",
+      "elevation": 2053,
+      "basis": "Representative full supply stage below the crest road."
+    },
+    {
+      "id": 76661173,
+      "name": "Malibamatso at Katse Dam",
+      "split": {
+        "anchor": [
+          28.50748352372309,
+          -29.339320110514674
+        ],
+        "heading": 0.6898000165598435,
+        "negativeZ": 1901.4,
+        "positiveZ": 1899.8
+      },
+      "basis": "The two mapped water polygons flank the lower dam. Classify their stages in the lower dam frame."
+    },
+    {
+      "id": 35185780274422,
+      "name": "Katse low outlet conduit",
+      "hideLines": true,
+      "basis": "The mapped conduit runs below the concrete. Native water uses the mapped plunge pool."
+    }
+  ],
+  "waterStageNotes": "Representative water stages. The mapped Malibamatso polygons separate at the lower dam. Its signed frame determines the plunge pool and tailwater stages.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

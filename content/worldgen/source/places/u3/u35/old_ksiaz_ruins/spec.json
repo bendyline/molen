@@ -20,27 +20,27 @@
   },
   "size": [
     41.59712600708008,
-    10.399999618530273,
+    18.821606636047363,
     39.244773864746094
   ],
   "actualBounds": {
     "min": [
       -20.693700790405273,
-      0,
+      -9.52072811126709,
       -19.629423141479492
     ],
     "max": [
       20.903425216674805,
-      10.399999618530273,
+      9.300878524780273,
       19.6153507232666
     ]
   },
-  "visualBrief": "Roofless romantic ruin with its own mapped masonry traces, broken high facade, real pointed openings, lower rectangular windows, dressed-stone arched portal and low open courtyard walls.",
+  "visualBrief": "Roofless masonry ruins with Gothic window openings, a dressed-stone portal and stairs, and a trail breach through the hillside return wall.",
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X along longest mapped envelope edge",
-    "longitudinal": "+Z perpendicular to that edge",
-    "origin": "Own site envelope center; Y0 estimated lowest local retaining wall contact"
+    "longitudinal": "+Z perpendicular to the mapped envelope edge; facade order follows the attributed wall lines and hillside approaches.",
+    "origin": "Mapped ruin envelope center. Y0 is the dressed portal threshold, referenced to the trail-side landing."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -76,25 +76,26 @@
     "independentWikidataIdKnown": true,
     "roofAndDatumSurveyed": false,
     "parentSite": "ksiaz_castle_and_park_complex",
-    "primaryDescription": "Independent Stary Książ ruin, own way/239074431, Q9386558 and NID A/5214/621. Surviving appearance follows primary 2014 photographs and an interior panorama; wall associations and heights are proposed."
+    "primaryDescription": "Independent Stary Książ ruin, own way/239074431, Q9386558 and NID A/5214/621. The surviving masonry follows exterior photographs and a courtyard panorama."
   },
   "reconstruction": {
     "basis": "Own attributed envelope and four mapped castle-wall polylines, primary 2014 exterior/side photographs and an interior panorama.",
     "scope": "Roofless surviving masonry and open courtyards. No restored roofs, historical rooms, surrounding trees or cliff reconstruction.",
-    "registration": "Map axis/anchor only. Real terrain and photographic wall association require geographic review."
+    "registration": "The dressed portal faces the downslope approach, with the pointed gallery along the long wall tracing the ravine side. Individual footings follow the retained terrain. The fitted stairs and upper landing join both sides of the portal, and a gap retains the mapped trail through the return wall."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
     "https://www.ksiaz.walbrzych.pl/turystyka/zamek",
     "https://commons.wikimedia.org/wiki/File:Old_Ksi%C4%85%C5%BC_Castle_02.JPG",
     "https://commons.wikimedia.org/wiki/File:Stary_Ksi%C4%85%C5%BC_8.jpg",
+    "https://cit.walbrzych.pl/miejsce/stary-ksiaz/",
     "https://www.openstreetmap.org/way/239074431"
   ],
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.294967956854013,
       50.83783402844668
@@ -102,17 +103,34 @@
     "heading": -2.765752011307667,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
+    "groundModelY": -1.11729,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The dressed portal faces the downslope approach, with the pointed gallery along the long wall tracing the ravine side. Individual footings follow the retained terrain. The fitted stairs and upper landing join both sides of the portal, and a gap retains the mapped trail through the return wall.",
+    "terrainReference": {
+      "anchor": [
+        16.294986611705664,
+        50.83786405869191
+      ],
+      "modelHeight": -1.11729,
+      "basis": "The dressed portal faces the downslope approach, with the pointed gallery along the long wall tracing the ravine side. Individual footings follow the retained terrain. The fitted stairs and upper landing join both sides of the portal, and a gap retains the mapped trail through the return wall."
+    },
+    "bounds": [
+      16.294562,
+      50.83751,
+      16.295447,
+      50.838091
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "way/239074431"
     ],
     "source": "https://www.openstreetmap.org/way/239074431",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:915abd3e959a76927c7457ae840e2f23329d3274e91b9ea769f8471b994b942a",
+    "mapGeometryHash": "sha256:c124d906b9118cdbfa719e8fa20f1d496a2dbfacd7d3814c2f9f6440e621da24",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own named ruin envelope and four separately mapped surviving wall traces. Envelope is not a solid building footprint. Heights, breaks, wall thickness, openings and photographic facade associations are proposed. Terrain/contact review is pending."
+    "notes": "The dressed portal faces the downslope approach, with the pointed gallery along the long wall tracing the ravine side. Individual footings follow the retained terrain. The fitted stairs and upper landing join both sides of the portal, and a gap retains the mapped trail through the return wall."
   },
   "sharedSurfaces": [
     {
@@ -147,9 +165,8 @@
   "limitations": [
     "Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.",
     "Own attributed site envelope and four wall traces. Surviving wall heights, openings and broken profiles are photographic interpretations; there is no roof.",
-    "Mapped independent Q9386558 identifies the ruin. Photographic wall association and actual terrain fit remain unreviewed.",
-    "References show 2014 surviving walls and a 2012 interior panorama; current restoration state is unconfirmed.",
-    "No unique textures, copied photos, reconstructed roofs or historic interior rooms. Open courtyards remain open. Terrain/facade fit, streaming and physical-device timing remain pending."
+    "The surviving roofless exterior follows the linked photographs and panorama. Wall heights, stair profiles and opening dimensions are visualization estimates.",
+    "The site preserves the retained terrain and mapped trail. Surrounding woodland, underground rooms and earlier phases of the castle are outside this model."
   ],
   "qaCameras": [
     {
@@ -209,10 +226,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 2264,
-    "vertices": 6792,
+    "triangles": 2998,
+    "vertices": 8994,
     "materials": 3,
-    "bytes": 274080,
-    "sha256": "sha256:49ef03d30f3f36ea4460a0d4d00fc41c0263523c652d116eb03eeddbc848dcc2"
+    "bytes": 362180,
+    "sha256": "sha256:ad845625a37f67825116a16b0036f152d5ce1f820d346591b5bc3df26f07696d"
   }
 }

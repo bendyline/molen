@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.has_oda_kogusu_topkapi_palace",
-  "inputHash": "sha256:c6274d29f35ce7a38609be675d51585977101118f57b6f416fdc66989e48f243",
-  "placementHash": "sha256:8d5bc69df4b50e38719a1ee687af63cadbead861ed83c866985665325f606373",
+  "inputHash": "sha256:61c5baec745eed1cba54811fdfbacfcb79c8b996d1a899f18f02e06f75eeb5c2",
+  "placementHash": "sha256:e59080c6a52b5e7f758a1ca0c09d83c2e10c2063d0efac0b38d337bb2d692c77",
   "entry": {
     "id": "has.oda.kogusu.topkapi.palace",
     "title": "Has Oda Kogusu, Topkapi Palace",
@@ -12,8 +12,8 @@
       41.01332484364261
     ],
     "heading": 0,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 46,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q170495",
@@ -96,7 +96,7 @@
         ]
       ],
       "additionalOutlines": [],
-      "basis": "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain."
+      "basis": "Remove terrain only under the occupied floor. The photographed approaches meet the retained courtyard via a shallow landing."
     },
     "buildingCutout": {
       "outline": [
@@ -204,14 +204,6 @@
       "minimumCoverage": 0.995,
       "basis": "Only declared dormitory way103907804/native35184475996636. Preserve Agas Mosque, Sacred Relics chambers, independent porticos and all other palace members."
     },
-    "terrainReference": {
-      "anchor": [
-        28.984421888879837,
-        41.01330985922131
-      ],
-      "modelHeight": 0,
-      "basis": "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain."
-    },
     "bounds": [
       28.983873731260065,
       41.01307456432561,
@@ -219,9 +211,11 @@
       41.0135751229596
     ],
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/103907804",
-    "note": "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms. Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms. The retained standard field samples 45.98 m at the center of the photographed arcade. The bounded courtyard shoulder meets the shallow stone landing and preserves the adjoining court. Absolute grades are representative visualization controls."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The modeled steps and grades represent the façade and its immediate approach. The standard map and ordinary photographs supply the plan and slope controls.",
+  "sourceHash": "sha256:3c2746b9042124cb24f873af434287c0fedfc0420eaa8c607b8874e1fc7668c6",
+  "runtimeHash": "sha256:57cccb1d8363b1e5dd55ef83ea96eb4d7e5b1510cad5a0e8d236cd82e6b0dba0"
 }

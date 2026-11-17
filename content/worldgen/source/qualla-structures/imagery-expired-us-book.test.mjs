@@ -99,6 +99,25 @@ test('the combined native old-100-expired grant also binds an original US public
     f.close();
   }
 });
+test('the Auckland handbook authorization is tied to the municipal edition', () => {
+  const f = fixture();
+  try {
+    f.ref.archiveIdentifier = 'municipalofficia00auck';
+    f.ref.publicationPublisher = 'Auckland : Wilson & Horton';
+    f.ref.publicationTitle = 'Municipal and official handbook of the City of Auckland, New Zealand';
+    f.ref.originalReview.publicationYear = 1922;
+    const record = `{{Book\n|author = Auckland (N.Z.)\n|title = ${f.ref.publicationTitle}\n|publisher = ${f.ref.publicationPublisher}\n|publication date = 1922\n|source = {{Internet Archive link|municipalofficia00auck}}\n}}\n{{PD-US-expired}}`;
+    f.page.revisions[0].slots.main['*'] = record;
+    f.save();
+    assert(inspectExpiredUsBookReference(f.dir, f.ref).eligible);
+
+    f.page.revisions[0].slots.main['*'] = record.replace('Auckland (N.Z.)', 'A different author');
+    f.save();
+    assert.equal(inspectExpiredUsBookReference(f.dir, f.ref).eligible, false);
+  } finally {
+    f.close();
+  }
+});
 for (const [title, mutate] of Object.entries({
   'wrong original bytes': (f) => fs.appendFileSync(`${f.dir}/book.pdf`, 'x'),
   'stale snapshot hash': (f) => fs.appendFileSync(`${f.dir}/native.json`, ' '),

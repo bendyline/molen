@@ -1,0 +1,450 @@
+{
+  "planId": "cozia_monastery",
+  "id": "cozia_monastery",
+  "assetId": "molen.worldgen.structure.cozia_monastery",
+  "title": "Cozia Monastery",
+  "wikidataId": "Q3320280",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.31590945,
+    "latitude": 45.27172645
+  },
+  "size": [
+    76.8912582397461,
+    29.94999885559082,
+    69.0826530456543
+  ],
+  "actualBounds": {
+    "min": [
+      -21.19125747680664,
+      -12.899999618530273,
+      -32.38178253173828
+    ],
+    "max": [
+      55.70000076293945,
+      17.049999237060547,
+      36.700870513916016
+    ]
+  },
+  "visualBrief": "Cozia Monastery above the Olt, with a trilobed stone church, tall drum, pale monastic wings, gray-green roofs and riverbank buttresses as documented in 2009.",
+  "nativeAxes": {
+    "x": "west porch to eastern apse",
+    "y": "up",
+    "z": "toward south convent wing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-11-18",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cozia.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cozia_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:La_monastere_de_Cozia,_dep._de_Valtcha.jpg",
+    "https://commons.wikimedia.org/wiki/File:Le_monastere_Cozia,_vue_prise_de_l%27Olt.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cozia-monastery-wp",
+      "url": "https://qualla.com/cozia-monastery/"
+    }
+  ],
+  "referenceInputHash": "09f6b429a05143285c8ae55492f3d1a9d77e05f119264f780dce1914817948d4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u8/u81/cozia_monastery/models/cozia-monastery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u8/u81/cozia_monastery/models/cozia-monastery-model.mjs",
+    "level": "skyline",
+    "export": "coziaSkyline",
+    "errorMeters": 0.48,
+    "surfaces": {
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "coziaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "coziaStreet",
+        "errorMeters": 0.095,
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "coziaCloseup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "brick",
+    "plaster_lime",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      24.31590945,
+      45.27172645
+    ],
+    "heading": 0.5605536163211345,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.31578650181545,
+        45.271661530641786
+      ],
+      "modelHeight": 0,
+      "basis": "Original public elevation at the west approach, just outside the church porch. River-bank grade differs from the church court."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/210647258",
+      "way/210776187",
+      "way/783610164"
+    ],
+    "source": "https://www.openstreetmap.org/way/210647258",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:adb0241f43704ec9497a1d8324d711176a143fc3b54f1ea9c76a33a760193da2",
+    "notes": "The named church footprint and its adjacent irregular monastery range control the plan. A separate mapped corner tower supplies the circular footprint. Two exact November 2009 Qualla images fix the river side, and two pre-1905 album plates corroborate enduring wall and church forms."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Model covers the principal church and contiguous monastery ranges on the Olt riverbank as seen in November 2009. It includes the main retained court and river supports.",
+    "Native church, range and round tower map outlines fix the plan. The church booklet fixes the drum section and the surviving images fix the silhouette. Roof junctions, parapet details, window spacing and repeating ornament are estimates.",
+    "The unmodified public terrain shows a submerged or generalized riverbank surface below the visible monastery court. Model retaining walls support the occupied level above that surface. Foundation toe and absolute grade are approximate."
+  ],
+  "sourceLicense": "Original geometry under repository license. Public-domain photographs and album plates already on Qualla. Native OpenStreetMap data under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "olt-frontage-skyline",
+      "position": [
+        94,
+        41,
+        58
+      ],
+      "lookAt": [
+        14,
+        5.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "olt-frontage-district",
+      "position": [
+        94,
+        41,
+        58
+      ],
+      "lookAt": [
+        14,
+        5.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "olt-frontage-street",
+      "position": [
+        94,
+        41,
+        58
+      ],
+      "lookAt": [
+        14,
+        5.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "olt-frontage-closeup",
+      "position": [
+        94,
+        41,
+        58
+      ],
+      "lookAt": [
+        14,
+        5.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "olt-riverfront-and-buttresses",
+      "position": [
+        94,
+        5.6,
+        35
+      ],
+      "lookAt": [
+        27,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "church-porch-and-trilobed-sanctuary",
+      "position": [
+        -34,
+        12,
+        19
+      ],
+      "lookAt": [
+        1,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "domed-drum-and-monastery-court",
+      "position": [
+        -20,
+        29,
+        -13
+      ],
+      "lookAt": [
+        13,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17844,
+    "vertices": 53532,
+    "materials": 6,
+    "bytes": 2379364,
+    "sha256": "sha256:d3e9644dee3d3a382bf29c16539b0dad7d222fba0b558d6fb5f64d1ef57a1bac"
+  }
+}

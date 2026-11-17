@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Two-tier Roman aqueduct with25 upper and11 lower real open arches, tapered rusticated stone piers, broad projecting impost bands, pale voussoir rings, cornices, extended end walls and a continuous open dry water channel.
+The two-tier Les Ferreres Aqueduct, with 25 upper and 11 lower arches, rusticated piers, radial arch stones and the open channel. Both upper approaches and the mapped ravine paths meet the modeled terrain.
 
 Editable geometry lives in models/; model-brief.json records the material library, four authored runtime levels, reference pictures and reconstruction limits. The detailed master is reproducible from this editable recipe; inspection and readiness decisions are recorded separately. All GLBs are ignored generated outputs.
 

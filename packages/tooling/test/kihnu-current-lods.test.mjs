@@ -83,10 +83,12 @@ it('retains all 24 real recessed ports after reducing street and closeup meshes'
     }
   }
 });
-it('preserves the original master and the authority-centered, mapped oil-store frame', async () => {
+it('preserves the tower height and signed map frame while embedding the site foundations', async () => {
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json');
   expect(s.sourceFacts.heightMeters).toBe(28.3);
+  expect(s.actualBounds.max[1]).toBeCloseTo(28.3, 1);
+  expect(s.actualBounds.min[1]).toBeCloseTo(-0.18, 2);
   expect(s.nativeAxes.front).toBe('+Z');
   expect(f.heading).toBe(Math.PI);
   expect(f.anchor).toEqual([23.97109316, 58.097058]);
@@ -96,6 +98,7 @@ it('preserves the original master and the authority-centered, mapped oil-store f
   expect(center[0]).toBeCloseTo(2.655, 2);
   expect(center[1]).toBeCloseTo(-11.765, 2);
   expect(f.limits).toContain('not a surveyed entrance node');
+  expect(s.geographicProposal.buildingCutout.outlines).toEqual(f.viewerMap.buildingOutlines);
 });
 it('reproduces four independent levels within budgets and with six canonical material graphs', async () => {
   const a = await read(runtime + '/asset.json');

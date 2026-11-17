@@ -117,7 +117,7 @@
     "up": "+Y",
     "lateral": "+X along a mapped cross-range edge toward east",
     "longitudinal": "+Z approximately south; signed facade interpretation follows NID elevation captions",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "origin": "Mapped outline origin with elevation set by the sampled approach."
   },
   "controls": {
     "kind": "utility",
@@ -145,6 +145,217 @@
   "reconstruction": {
     "basis": "Own OSM footprint(s), official NID individual building survey card and 2025 designated ensemble plan.",
     "scope": "Long utility range and joined polygonal south end, preserving both mapped rings.",
-    "registration": "Cardinal facade interpretation proposed; actual terrain and slope contact, current restoration and real world placement remain pending."
+    "registration": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain."
+  },
+  "siteFit": {
+    "footingBottom": -0.557482,
+    "datumMeters": 394.674007,
+    "contact": {
+      "anchor": [
+        16.306375141441578,
+        50.829347180502005
+      ],
+      "modelHeight": 0.215,
+      "terrainMeters": 394.889007,
+      "local": [
+        4.746156,
+        -4.509693
+      ]
+    },
+    "entry": {
+      "center": [
+        3.317402,
+        -4.45
+      ],
+      "angle": 1.612551486648051,
+      "width": 0.98,
+      "sill": 0.35,
+      "head": 2.57,
+      "recess": 0.24
+    },
+    "apron": {
+      "outline": [
+        [
+          3.185092,
+          -3.783896
+        ],
+        [
+          3.129991,
+          -5.102746
+        ],
+        [
+          4.710257,
+          -5.368943
+        ],
+        [
+          4.782055,
+          -3.650442
+        ]
+      ],
+      "threshold": 0.31,
+      "depth": 1.43,
+      "nearWidth": 1.32,
+      "width": 1.72,
+      "toeHeights": [
+        0.202217,
+        0.24384
+      ],
+      "pathLift": 0
+    },
+    "bounds": [
+      16.30618510413855,
+      50.829101448735095,
+      16.306458261598912,
+      50.82949219237386
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.163268,
+          -19.451737
+        ],
+        [
+          2.680307,
+          -19.546529
+        ],
+        [
+          3.844883,
+          9.278947
+        ],
+        [
+          -3.939711,
+          9.001195
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.163268,
+            -19.451737
+          ],
+          [
+            2.680307,
+            -19.546529
+          ],
+          [
+            3.844883,
+            9.278947
+          ],
+          [
+            -3.939711,
+            9.001195
+          ]
+        ],
+        [
+          [
+            -3.939711,
+            9.001195
+          ],
+          [
+            4.403698,
+            9.367419
+          ],
+          [
+            4.647447,
+            12.652001
+          ],
+          [
+            5.206262,
+            12.740472
+          ],
+          [
+            5.400358,
+            17.544718
+          ],
+          [
+            4.625781,
+            17.613028
+          ],
+          [
+            2.85003,
+            20.386942
+          ],
+          [
+            -3.688138,
+            17.060532
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps masks for the mapped service building and its integral components."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          3.185092,
+          -3.783896
+        ],
+        [
+          3.129991,
+          -5.102746
+        ],
+        [
+          4.710257,
+          -5.368943
+        ],
+        [
+          4.782055,
+          -3.650442
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            3.185092,
+            -3.783896
+          ],
+          [
+            3.129991,
+            -5.102746
+          ],
+          [
+            4.710257,
+            -5.368943
+          ],
+          [
+            4.782055,
+            -3.650442
+          ]
+        ]
+      ],
+      "basis": "The sandstone landing fills its own cutout and meets the retained approach at the toe."
+    },
+    "evidence": {
+      "ownedIds": [
+        35184769039203,
+        35184769039207
+      ],
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "layer": "vector",
+          "z": 15,
+          "x": 17868,
+          "y": 10994,
+          "path": "vector-15-17868-10994.mvt",
+          "hash": "sha256:42ff28e2ba158af5ebd5f9e8f626ed983480930ff5ddff12e255aa53090b7923"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "layer": "elevation",
+          "z": 14,
+          "x": 8934,
+          "y": 5497,
+          "path": "elevation-14-8934-5497.png",
+          "hash": "sha256:46092751e024a0e8a4601b640ac529b29c441e2f4e30b725d804e932aae6a924"
+        }
+      ],
+      "perimeterElevationRange": [
+        394.466525,
+        395.537476
+      ]
+    }
   }
 }

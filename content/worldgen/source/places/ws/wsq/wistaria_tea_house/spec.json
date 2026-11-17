@@ -1,0 +1,496 @@
+{
+  "planId": "wistaria_tea_house",
+  "id": "wistaria_tea_house",
+  "assetId": "molen.worldgen.structure.wistaria_tea_house",
+  "title": "Wistaria Tea House",
+  "wikidataId": "Q8027740",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.5342481,
+    "latitude": 25.02462585
+  },
+  "size": [
+    49.910030364990234,
+    10.375000238418579,
+    19.431642532348633
+  ],
+  "actualBounds": {
+    "min": [
+      -24.802227020263672,
+      -2.200000047683716,
+      -9.527480125427246
+    ],
+    "max": [
+      25.107803344726562,
+      8.175000190734863,
+      9.904162406921387
+    ]
+  },
+  "visualBrief": "Wistaria Tea House’s dark-tiled timber wings, two-storey street wing, glazed display bay and low courtyard wall in Taipei.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-07-27",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Wistaria_House_in_Afternoon_20140727b.jpg"
+  ],
+  "stories": [
+    {
+      "id": "wistaria-tea-house-wp",
+      "url": "https://qualla.com/wistaria-tea-house/"
+    }
+  ],
+  "referenceInputHash": "d6830c8d2f5bda3e4d3d266176ea337085841da948acbc9581ebc4013c1a83a4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsq/wistaria_tea_house/models/wistaria-tea-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsq/wistaria_tea_house/models/wistaria-tea-house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.51,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.88,
+        "metallic": 0.02
+      },
+      "foot": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.1
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.88,
+            "metallic": 0.02
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.88,
+            "metallic": 0.02
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.88,
+            "metallic": 0.02
+          },
+          "foot": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "wood_weatherboard",
+    "tile_glazed",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.92,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      121.5342481,
+      25.02462585
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.5342481,
+        25.02462585
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM near the center of the tea house and courtyard."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          15.271641046342763,
+          -4.2913663700032645
+        ],
+        [
+          19.064333934705054,
+          -4.057595439373924
+        ],
+        [
+          18.91302969608139,
+          -1.5640388457306353
+        ],
+        [
+          22.897374618791343,
+          -1.3191359658918784
+        ],
+        [
+          22.57459224583218,
+          4.079859337397271
+        ],
+        [
+          22.514070551529468,
+          5.059470856356812
+        ],
+        [
+          17.289030879846056,
+          4.747776282448015
+        ],
+        [
+          17.39998732131228,
+          2.899872735041152
+        ],
+        [
+          10.399644596203311,
+          2.4768586702246504
+        ],
+        [
+          10.823296460622622,
+          -4.558533147865368
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Mapped two-storey street range at the named Wistaria Tea House."
+    },
+    "featureIds": [
+      "way/647833813",
+      "way/647833812",
+      "way/647833815",
+      "way/647833816",
+      "way/360117687"
+    ],
+    "source": "https://www.openstreetmap.org/way/360117687",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:84a4a60b8cabb8373bdb9ff700032cdde68dd02b6cfdfecbf0d59145525e5375",
+    "notes": "The exact 2014 photo fixes the street elevation and wall and gate. The map fixes the lower wings and taller eastern range. Rear roof planes and courtyard furniture are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the restored Wistaria Tea House in July 2014. The mapped lower timber wings, two-storey wing, street-side low range, wall and entrance gate are included.",
+    "The exact street photograph fixes the two-storey facade, timber siding, long display bay, roof tiles and street gate. Behind-the-gate openings, roof plane heights and courtyard foliage are approximate.",
+    "The original regional elevation model provides the surrounding grade. Individual thresholds and concrete courtyard levels remain estimates."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap data is ODbL. The exact 2014 Qualla street photograph is CC0 own work by 玄史生.",
+  "qaLodCameras": [
+    {
+      "name": "wistaria-skyline",
+      "position": [
+        42.53271876020106,
+        25,
+        51.15630786975973
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wistaria-district",
+      "position": [
+        42.53271876020106,
+        25,
+        51.15630786975973
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "wistaria-street",
+      "position": [
+        42.53271876020106,
+        25,
+        51.15630786975973
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "wistaria-closeup",
+      "position": [
+        42.53271876020106,
+        25,
+        51.15630786975973
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "street-corner-and-courtyard-gate",
+      "position": [
+        33.628100520095465,
+        8,
+        28.690605699607584
+      ],
+      "lookAt": [
+        11.98544445502198,
+        3.9,
+        0.5908648031342141
+      ]
+    },
+    {
+      "name": "low-timber-wings-and-tiled-roofs",
+      "position": [
+        -37.039585504145336,
+        19,
+        20.200720424804324
+      ],
+      "lookAt": [
+        -5.99272222751099,
+        3,
+        -0.29543240156710704
+      ]
+    },
+    {
+      "name": "west-courtyard-and-two-storey-addition",
+      "position": [
+        -1.5684378395144776,
+        17,
+        -29.112540300420008
+      ],
+      "lookAt": [
+        4.993935189592492,
+        3,
+        0.24619366797258924
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3761,
+    "vertices": 11283,
+    "materials": 6,
+    "bytes": 604396,
+    "sha256": "sha256:4754bf7ba177a9b7affc45558f99de5bc66db8b77a2bbfec3281e13e0657dd01"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.jeddah_tower",
+  "kind": "static-structure",
+  "title": "Jeddah Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.jeddah_tower",
+        "output": "assets/places/sg/sgg/jeddah_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c480a78db5696d9b00b93781deccae6ea53780b83bb150bdc9c8c52cf3e008ff"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-jeddah-tower",
+        "path": "models/generate-jeddah-tower.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/jeddah-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19941-14356.png",
+      "preview.png",
+      "native-map/osm-jeddah-tower.json",
+      "reference-rights/fahadharbi-qualla-hero.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

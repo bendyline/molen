@@ -1,12 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-  "sourceHash": "sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd",
-  "runtimeHash": "sha256:fd5072b59f59733e875a135054244d8eb7e0b0d79702624067be310a82aa6842",
-  "captureReportHash": "sha256:2d9dc2d45cd82969d7e34a95455a133af17e74cd360f51aa71c1ae1aa46b208c",
+  "sourceHash": "sha256:e2b729b2edcc769aa34c1899ee3f7b55fe4e7c78062060879935058eb6f896e5",
+  "runtimeHash": "sha256:5796c8bee8b86fcd587a4c04616a62753aada49e45016c7659d1ef64a91b2271",
+  "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+  "reviewedOn": "2026-11-15",
+  "captureReportHash": "sha256:45f19dc2f4d30e624db1b84a2156b5d94ad31fefc40ba646166625d17404942d",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "visualReview": {
     "status": "passed",
-    "notes": "Inspected all nine final portable views. Steep tiled roof, timber main gable, side dormer, entrance gable, shutters and two chimneys carry the house identity. Corrected an initial dormer window above the gable, seated the dormer into its slope, and removed tall roof notches caused by lower-wall recesses. Ground walls retain the own mapped ring; roof, heights and unseen facades remain interpretations.",
+    "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+    "notes": "The forester’s house has the steep red roof, framed gables, two chimneys, shutters and the two photographed eyebrow dormers. A recessed timber door joins two sandstone steps and the stone base.",
+    "captureReportHash": "sha256:45f19dc2f4d30e624db1b84a2156b5d94ad31fefc40ba646166625d17404942d",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -17,12 +22,51 @@
       "shots/entrance-gable-and-dormer.png",
       "shots/roof-and-own-footprint.png",
       "shots/rear-gable-and-service-porch.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:17745171687b84081e6a05086bbab18a71c593c45c4775ba5b3aa958caa5150a"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:569dd1a634a48003c264971116196c969e6467f7b189c0338adc60b8dbf30f4c"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:a06d0520e98335ae4ebd2aec3679fd5f1ab8ed189e142232440a88b2d063653a"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:f7f2dcdad24447ad06c1369b064e0c9426707374aa98f8b22c81d040d479dfed"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:0b1375b8f81b8b776cf1a76d7d17503aa5250bfdf650fa0ef00c5e3d4d82378a"
+      },
+      {
+        "path": "shots/main-gable-and-shutters.png",
+        "hash": "sha256:c2e043cac868807de4d7dd2d8e7d91263736c53cad2e7d95711ada84cd2cd708"
+      },
+      {
+        "path": "shots/entrance-gable-and-dormer.png",
+        "hash": "sha256:c66cd5175510e292bd9da2afe8045c12a4f9ff98e28234545fa05e9fed325b2d"
+      },
+      {
+        "path": "shots/roof-and-own-footprint.png",
+        "hash": "sha256:9f1cf6714ffef3d56244c806f54f4888312a25163875501a0fafc5939f8daa3c"
+      },
+      {
+        "path": "shots/rear-gable-and-service-porch.png",
+        "hash": "sha256:da8d2f1e279a83acdeda0d50e9645af4104fcc4935c7d6e7d626df641ddea093"
+      }
     ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7b4a8d84874465f5290947d16cff5e8a753ae1fd0b4010bad937baf40016cbdd",
-    "notes": "Inspected eight final shared-loader views. Four existing 256² graphs serve lime plaster, ceramic tile, rubble foundation and timber; muted glazing is flat. Five merged near groups, one far group, metric UVs and linear colors. Each shared graph is read once, with zero live geometry after eviction. No unique or copied images.",
+    "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+    "notes": "Inspected shared material bindings under neutral and geographic views.",
+    "captureReportHash": "sha256:76d9aa09dc033b8c93bb356bfdbf784e810d3a1400494b6553c6fa20f3866f25",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -31,13 +75,75 @@
       "shots/shared/main-gable-and-shutters.png",
       "shots/shared/entrance-gable-and-dormer.png",
       "shots/shared/roof-and-own-footprint.png",
-      "shots/shared/rear-gable-and-service-porch.png"
-    ]
+      "shots/shared/rear-gable-and-service-porch.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:b7e5f84d7401676f94a9d833bceffce18884ecfddb08664f2dc02ed14ad41db1"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:946e7c12bf4df8e6e1fca50155c125e1a5b5c598cfc7524f1103d69c0445d3f3"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:ef1604885817cd16a9dd3d2c7d3f4439223a8c659e215655c754046af0f84b91"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:176ec0f50cfe6bdc8f7987d5db4979a2f346e1269a8d492232ec4c76d3440400"
+      },
+      {
+        "path": "shots/shared/main-gable-and-shutters.png",
+        "hash": "sha256:eff2c047ec2a681c53219f1e38fd5813abd7f030c0f99446f81d3acd3924e061"
+      },
+      {
+        "path": "shots/shared/entrance-gable-and-dormer.png",
+        "hash": "sha256:2c5235551ca7194674e98078434d2d0023affc6e86d1e2683700b27f26ba19b1"
+      },
+      {
+        "path": "shots/shared/roof-and-own-footprint.png",
+        "hash": "sha256:b3fc8b5b980f1dd49a2be4dd491ca212b2e67cbe0719b70e8447b78114056004"
+      },
+      {
+        "path": "shots/shared/rear-gable-and-service-porch.png",
+        "hash": "sha256:df85a94d37f21541c782fe3985dd6f7a6780694c5f7eacf43196c1585fcc2100"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:860bf721a873c424093c6e9e3aee633d8925cdaaac9b9c2850e3b8bcf27f7774"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.stone_drywall": {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8ff3fad63914dfb7238dcf66a5ad5ab9a140fc029b8f77624dac57f406bf58d5",
-    "notes": "Inspected 21 Earth-rig views at three distances, noon/late afternoon, Economy/High, untextured silhouette, four architectural cameras and four forced runtime levels. Roof silhouette, gables, tone and Y0 contact remain coherent beside synthetic procedural neighbors. This is style context; real geographic fit remains unreviewed.",
+    "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+    "notes": "Inspected light and quality variants and all four levels. Native terrain and model geometry were rendered together.",
+    "captureReportHash": "sha256:b03e00ebbb23586c19ce46e48c842c8bfcd537579637ccbc2ca894850ff8a01f",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -60,279 +166,241 @@
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:e0fcdeafc6771ecfa51883f8dca6197f5f46453516e3f578bb37204e1aa35222"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:cabfc28a28e3a9f2c4d99ddfc536f58c3e724c4f84fbf29095aad19393a85dae"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:e675cea4f26950d7f0232c4c172bf4dc391f00d23cb63692c21e96832400c890"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:5f5443accb90b04b7447b113d0082ac0231002b7f46f49b3f39e5d4f2e5783ad"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:deff69af562c3d8746f8d597026cbf91724a141860e5f68f96592b1b0322f3c1"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:73ba68044718620e59d989d8a8e208df0a1443ead55c9a241f252739310fa7ee"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:aaecae4b973de202daa349322acf95d477b32459c53198d53aadf12bc15178e5"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:163855fa1f6663811b1dc4258f3d1f8fb3359c0de6713ef9cda3b5695d76f877"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:0496846942f52d1938caff7ace5d28856c9a709b5a202f4bb1d1d7939f7fe320"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:ef9a01f3e366a8e3599a5df4b7c8fb4ee44ba2a3c4b7e9c1e9bb218d75ce0d4d"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:3104a6fc6f98522ae361a16ea0c82fafc148aff1daaa8da04a5329636c42ef6e"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:adb8c78518348e56dee9fc806758d4e2c6ba7feef281e34b6a92892fc065fb9d"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:00ff07a546c7f432b438332a4e42593622ed9aede49410bdcfe412db4f0b2a6c"
+      },
+      {
+        "path": "medium-fi/main-gable-and-shutters.png",
+        "hash": "sha256:f43346238477618c5aa9e832b2888e5e2791d44bb7e00141c4d3f27d74e5287a"
+      },
+      {
+        "path": "medium-fi/entrance-gable-and-dormer.png",
+        "hash": "sha256:06860890059679597ce8104042fe3fea58a9df15f71889aa6beebab56099c292"
+      },
+      {
+        "path": "medium-fi/roof-and-own-footprint.png",
+        "hash": "sha256:0d0a4285179b61ca6959ca765956d31244694223a9f05c01fdf4ffa5095288f1"
+      },
+      {
+        "path": "medium-fi/rear-gable-and-service-porch.png",
+        "hash": "sha256:48bf82f620b69d522f996247480f9a1dc6506ca108509d1e142e0dc3f2e63bce"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:5b22b520de6a36b2a6fffdc095dc683eefc26218aac73bb0823d5bdb492f08e0"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:73ba68044718620e59d989d8a8e208df0a1443ead55c9a241f252739310fa7ee"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:47946f9903d468a28626f198439644f0e3cc5e1bd8fb8d081348611b39a48903"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:f7e9e6561b16aabdc04b3943b30c8cd591fcdcd4dc33f58da80a054e8e65cc5d"
+      }
     ]
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:d66d9dcbdc5920126930bef8d8b8bf347146d718d4971fa6f80002584ab002a3",
-    "mapGeometryHash": "sha256:9134999f7b5baddf03aee9153681a5b6caef5cb76160985c5b5a0d3d28f7eda0",
-    "coordinateRoundTripErrorMeters": 0.0005862773956243745,
-    "notes": "All 17 distinct mapped outline vertices reconstruct within 2mm. This proves coordinate arithmetic only. Photographic heights, signed facade facing, current appearance, vertical datum and real terrain fit remain pending. Inactive draft with no footprint replacement."
+    "status": "passed",
+    "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+    "placementHash": "sha256:58b2cc93fe4cec810de1b0a89d9fd66e112aa72a5e961d00d19b06c40e7b932b",
+    "mapFrameHash": "sha256:7d69148c10b47aadd214c4ede756597eee10f4a09329c25cae0bf4433df1d039",
+    "notes": "The porch faces the Jeździecka approach and the timber gable faces the mapped footpath. The original terrain supplies the datum. The pavement joins the original terrain within 8 mm at the sampled points across all four levels.",
+    "native": {
+      "fixtureHash": "sha256:470fda84535a0cca2c88c2469a2e44ff60b500eb99add99d35b87bf256fba8b4",
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "archiveHashes": {
+        "vector": "sha256:a7e7fa1da3498c7733551e4a5d84479ba66410f9849a807b335b87b407451010",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "availableOriginalBuildings": 3,
+      "retainedIndependentBuildings": 2,
+      "transportationRecords": 71,
+      "waterInputs": 0,
+      "owned": 35184634325124,
+      "contact": {
+        "anchor": [
+          16.3035834861427,
+          50.84435331631166
+        ],
+        "modelHeight": -0.14,
+        "local": [
+          -7.836,
+          4.353294
+        ],
+        "meters": 388.531689
+      },
+      "maxApronJoinErrorMeters": 0.007822,
+      "allLevelsLoad": true,
+      "failedLoadRestoresNativeBuilding": true,
+      "evictedGeometryDisposed": true,
+      "frames": [
+        {
+          "file": "production-skyline-forester-house.png",
+          "hash": "sha256:5b9bb59832997229da9911db4e301d1363b3e1bfed50432ac6f65f7c13abee09"
+        },
+        {
+          "file": "production-skyline-main-gable.png",
+          "hash": "sha256:45462d62cfd6481c55a8cebb0eb3e822cc3a1d5d1bf583b944ec4311d62c440f"
+        },
+        {
+          "file": "production-district-forester-house.png",
+          "hash": "sha256:9baf6e3f99391a6749aa204ca151d920a3125d032c27fed4d3f277b601b7e214"
+        },
+        {
+          "file": "production-district-main-gable.png",
+          "hash": "sha256:e4d9e9e0320902f74f40571a1ff180e61143802932566268d20bb4a93e33a38c"
+        },
+        {
+          "file": "production-street-forester-house.png",
+          "hash": "sha256:2861fdcbc97a20f7d0bab4801e7b6e16855970e59b843af72fa080c8ab717580"
+        },
+        {
+          "file": "production-street-main-gable.png",
+          "hash": "sha256:7697ff51b9e8ee803d2ddf923a1be4697614707cb5b5518b3f4d8f6cc138e0bc"
+        },
+        {
+          "file": "production-closeup-forester-house.png",
+          "hash": "sha256:7274d48c625626e298f64c41d4485380f999b99ad8378294ccdddc73a4b0f9a7"
+        },
+        {
+          "file": "production-closeup-main-gable.png",
+          "hash": "sha256:c42845bf048b23f308cd4077c712f26070fcfa5b0acfe840b41f2a520f4e5513"
+        },
+        {
+          "file": "production-closeup-door-porch-and-eyebrows.png",
+          "hash": "sha256:df174286a525529093da388f95cc7edead878b232685595ef2bf69bbad98f959"
+        },
+        {
+          "file": "production-closeup-steep-roof.png",
+          "hash": "sha256:0369b4d9e1bda1f34d45d928450597808da7e8b030b92e71e680cf1786b2e7ce"
+        },
+        {
+          "file": "production-closeup-rear-service-gable.png",
+          "hash": "sha256:9b7a4f7a428a8daa907bbf172f7d5435123aece0fe33d9f83f134a4398a7ab27"
+        },
+        {
+          "file": "production-failure-forester-house.png",
+          "hash": "sha256:3aae228e41f371a34923847284b9de5a97291ac1d2b9cf1d29b0eee0c5db28ee"
+        }
+      ]
+    }
   },
   "fidelityReview": {
-    "status": "pending",
     "target": "medium-fi",
-    "notes": "Source-specific exterior appearance reviewed against Gliwi’s 2016 photograph and the primary map-linked 2014 side photograph. Present state, unseen sides, exact proportions and real placement remain unreviewed. Full ksiaz_castle_and_park_complex ensemble is incomplete."
+    "status": "passed",
+    "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+    "notes": "The forester’s house has the steep red roof, framed gables, two chimneys, shutters and the two photographed eyebrow dormers. A recessed timber door joins two sandstone steps and the stone base. The house follows the 2014 and 2016 photographs. The garden wall, detached yard structures and later restoration details are outside the model. Measurements are visualization estimates. The wider estate review remains open."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "source",
-        "path": "content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/source.glb",
-        "hash": "sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd",
-        "bytes": 179376,
-        "triangles": 1468,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
+        "bytes": 196424,
+        "hash": "sha256:e2b729b2edcc769aa34c1899ee3f7b55fe4e7c78062060879935058eb6f896e5",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "runtime",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.glb",
-        "hash": "sha256:fd5072b59f59733e875a135054244d8eb7e0b0d79702624067be310a82aa6842",
-        "bytes": 178892,
-        "triangles": 1468,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
+        "bytes": 195872,
+        "hash": "sha256:5796c8bee8b86fcd587a4c04616a62753aada49e45016c7659d1ef64a91b2271",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.skyline.glb",
-        "hash": "sha256:c7d3f599ce7ddd5f39aa4541f4d5e087deed086b0cdf204bd9e61fd89f581d4e",
-        "bytes": 17968,
-        "triangles": 204,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.634239196777344,
-          6.860000133514404
-        ],
+        "bytes": 22092,
+        "hash": "sha256:f74d4d51ea2ca818688a6d73c46f282815d2d548c363d4cc40653dbcdbdb592f",
         "errors": 0,
         "warnings": 0,
-        "infos": 1
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.district.glb",
-        "hash": "sha256:b29998a55341bd6fd5ffad29394a87510981e3a25372d80401eadb615b108441",
-        "bytes": 29076,
-        "triangles": 286,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.634239196777344,
-          6.860000133514404
-        ],
+        "bytes": 42092,
+        "hash": "sha256:f3da914806a5de38b29b89d760933ec34c202dd487825f3a48b3de84c0bb1d18",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.street.glb",
-        "hash": "sha256:8c8616f068439782ec29d4edecd77bb0e4cc0615f424f119e964dc8a769599fa",
-        "bytes": 102716,
-        "triangles": 1148,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
+        "bytes": 118872,
+        "hash": "sha256:06c2979ab2f0ce156dfa58116833041d0de3ef96159a9cb8f6573a9d63e6bb10",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
         "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.closeup.glb",
-        "hash": "sha256:104fcd896f4bdb02ec8b2f0158c30dfb9ab12bea0104944b4ce876fa3e297f5c",
-        "bytes": 129992,
-        "triangles": 1468,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
+        "bytes": 144432,
+        "hash": "sha256:6d568ec981fa5fc3a2b752c807759e7b92f0916e42079a92d0ed0984a0a6bb42",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       }
     ],
-    "notes": "Six current files: zero errors/warnings and zero embedded images. Five near groups, one far group, Y0 contact. Three focused checks passed deterministic LODs, budgets, supported bindings, continuous roof coverage and dormer-window containment. Source scene validated and simulated for 30 ticks, hash 2ea40501a12b86ccf71fc91609afa6da87bb282268ba97264ddb5cd260725b61."
+    "initialBytes": 64184,
+    "roofProbe": true
   },
-  "runtimeLodReview": {
-    "status": "passed",
-    "levels": [
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.skyline.glb",
-        "hash": "sha256:c7d3f599ce7ddd5f39aa4541f4d5e087deed086b0cdf204bd9e61fd89f581d4e",
-        "bytes": 17968,
-        "triangles": 204,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.634239196777344,
-          6.860000133514404
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-        "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.district.glb",
-        "hash": "sha256:b29998a55341bd6fd5ffad29394a87510981e3a25372d80401eadb615b108441",
-        "bytes": 29076,
-        "triangles": 286,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.634239196777344,
-          6.860000133514404
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-        "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.street.glb",
-        "hash": "sha256:8c8616f068439782ec29d4edecd77bb0e4cc0615f424f119e964dc8a769599fa",
-        "bytes": 102716,
-        "triangles": 1148,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_forester_house/model.closeup.glb",
-        "hash": "sha256:104fcd896f4bdb02ec8b2f0158c30dfb9ab12bea0104944b4ce876fa3e297f5c",
-        "bytes": 129992,
-        "triangles": 1468,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -6.697000026702881,
-          0,
-          -6.840000152587891
-        ],
-        "max": [
-          6.699999809265137,
-          11.804239273071289,
-          6.860000133514404
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
-      }
-    ],
-    "initialDownloadBytes": 47044,
-    "notes": "204/286/1148/1468 triangles, within all medium-fi budgets; homogeneous attribute buffers avoid mixed-type GPU duplication. Initial skyline+district is 47044 bytes excluding shared graph transfers. Resident captures do not measure adaptive streaming, downloads or physical devices."
-  }
+  "limitations": [
+    "The house follows the 2014 and 2016 photographs. The garden wall, detached yard structures and later restoration details are outside the model. Measurements are visualization estimates. The wider estate review remains open."
+  ]
 }

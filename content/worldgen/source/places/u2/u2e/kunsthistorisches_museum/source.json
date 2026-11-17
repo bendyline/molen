@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kunsthistorisches_museum",
+  "kind": "static-structure",
+  "title": "Kunsthistorisches Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kunsthistorisches_museum",
+        "output": "assets/places/u2/u2e/kunsthistorisches_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f697e5f837b966c6d32bf1e6229b8d079388cb2dded2b545b6d58a8131cccd57"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kunsthistorisches-museum",
+        "path": "models/generate-kunsthistorisches-museum.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/kunsthistorisches-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17872-11362.png",
+      "terrain-sources/terrarium-15-17872-11363.png",
+      "terrain-sources/terrarium-15-17873-11362.png",
+      "terrain-sources/terrarium-15-17873-11363.png",
+      "preview.png",
+      "native-map/osm-kunsthistorisches-museum.json",
+      "reference-rights/9548707-museum-exterior.jpg",
+      "reference-rights/9548707-original-commons.json",
+      "reference-rights/21782423-museum-exterior.jpg",
+      "reference-rights/21782423-original-commons.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

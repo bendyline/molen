@@ -66,6 +66,8 @@ import { createEarthAirports, type EarthAirportIndex, type EarthAirports } from 
 import type { EarthFleetContent } from './fleet';
 import { withModelArchives } from './model-archives';
 import type { EarthRoadSignContent } from './road-signs';
+import { type EarthSiteGrades, readEarthSiteGrades } from './site-grades';
+import { type EarthWaterFeatures, readEarthWaterFeatures } from './water-features';
 
 /** Content-pack ids an Earth view looks for. */
 export const EARTH_PACK_IDS: {
@@ -190,6 +192,9 @@ export interface EarthWorldgenContent {
 export interface EarthContent {
   /** Optional surveyed runway catalog and detailed airport layouts from the Earth pack. */
   airports?: EarthAirports;
+  /** Stable rendered water levels and line controls for selected mapped water features. */
+  waterFeatures?: EarthWaterFeatures;
+  siteGrades?: EarthSiteGrades;
   /** Shared lettering faces loaded from the Earth pack, if available. */
   fonts?: FontLibrary;
   packs: PackSet;
@@ -703,15 +708,35 @@ export async function loadEarthContent(
           .then((index) => createEarthAirports(index, (path) => earthPack.readJson(path)))
       : Promise.resolve(undefined);
   const roadSignsRead = earthPack ? readRoadSigns(earthPack) : Promise.resolve(undefined);
-  const [typesResult, fontsResult, worldgenResult, fleetResult, airportsResult, roadSignsResult] =
-    await Promise.allSettled([
-      typesRead,
-      fontsRead,
-      worldgenRead,
-      fleetRead,
-      airportsRead,
-      roadSignsRead,
-    ]);
+  const waterPath = earthPack?.manifest.provides['water-features']?.[0];
+  const waterFeaturesRead =
+    earthPack && waterPath
+      ? earthPack.readJson(waterPath).then(readEarthWaterFeatures)
+      : Promise.resolve(undefined);
+  const gradePath = earthPack?.manifest.provides['site-grades']?.[0];
+  const siteGradesRead =
+    earthPack && gradePath
+      ? earthPack.readJson(gradePath).then(readEarthSiteGrades)
+      : Promise.resolve(undefined);
+  const [
+    typesResult,
+    fontsResult,
+    worldgenResult,
+    fleetResult,
+    airportsResult,
+    roadSignsResult,
+    waterFeaturesResult,
+    siteGradesResult,
+  ] = await Promise.allSettled([
+    typesRead,
+    fontsRead,
+    worldgenRead,
+    fleetRead,
+    airportsRead,
+    roadSignsRead,
+    waterFeaturesRead,
+    siteGradesRead,
+  ]);
   const settled = [
     typesResult,
     fontsResult,
@@ -719,6 +744,8 @@ export async function loadEarthContent(
     fleetResult,
     airportsResult,
     roadSignsResult,
+    waterFeaturesResult,
+    siteGradesResult,
   ];
   const failed = settled.find((result) => result.status === 'rejected');
   if (failed !== undefined) {
@@ -737,6 +764,8 @@ export async function loadEarthContent(
   const fleetCatalogs = value(fleetResult);
   const airports = value(airportsResult);
   const roadSigns = value(roadSignsResult);
+  const waterFeatures = value(waterFeaturesResult);
+  const siteGrades = value(siteGradesResult);
   const styleIndex =
     worldgen === undefined ? {} : stylePackAssetIndex(worldgen.pack, `pack:${worldgen.styleId}/`);
   const closePacks = packs.close.bind(packs);
@@ -760,6 +789,8 @@ export async function loadEarthContent(
   return {
     packs,
     ...(airports ? { airports } : {}),
+    ...(waterFeatures ? { waterFeatures } : {}),
+    ...(siteGrades ? { siteGrades } : {}),
     ...(fonts ? { fonts } : {}),
     ...(roadSigns ? { roadSigns } : {}),
     ...(types !== undefined ? { types } : {}),

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-native-fit@1",
-  "status": "unresolved",
-  "originMeters": 31.6,
-  "basis": "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+  "status": "reviewed-local-relief",
+  "originMeters": 29.52893786077919,
+  "basis": "The named Protomaps channel and its bends fix the signed model frame. The lower ravine is reconstructed from the visible pier bases, mapped paths and the standard terrain at the site perimeter. Footpaths and the drainage line retain the mapped plan within the fitted relief.",
   "terrainDatumMeters": 45.79846925781699,
   "terrainSources": {
     "vector": {
@@ -289,5 +289,22 @@
       125,
       56.95570680804846
     ]
+  ],
+  "baseline": {
+    "status": "raw-terrain-buried-the-lower-arcade",
+    "basis": "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+    "previousOriginMeters": 31.6
+  },
+  "ravineRecipe": "models/ravine.json",
+  "reference": {
+    "anchor": [
+      1.2444511055946337,
+      41.14492338813642
+    ],
+    "modelHeight": 25.2
+  },
+  "limitations": [
+    "The localized ravine depth, hillside grade, scrub and exposed drainage bed are photo-led approximations between the standard terrain samples. The path network carries modeled geometric grades. Seasonal flow is unverified.",
+    "The 242.225 m mapped channel includes its approaches. The tourism authority describes a 217 m surviving arcade and a maximum height of 26 m."
   ]
 }

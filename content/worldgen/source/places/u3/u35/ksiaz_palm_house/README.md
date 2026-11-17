@@ -1,10 +1,10 @@
 # Lubiechów Palm House
 
-![Shared Molen preview](shots/shared/angle-0.png)
+![Shared Molen preview](preview.png)
 
 Tall brick-and-glass Palm House with green barrel roof, roof lantern and glazed polygonal porch; connected low glasshouse ranges enclose two true open courtyards.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the terrain fit and viewer captures.
 
 ## Sources and reconstruction
 
@@ -14,12 +14,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own Palm House multipolygon retains both courtyards and mapped entrance. Central brick piers, barrel roof, lantern and porch interpreted from primary operator photos; surrounding single-storey glasshouses follow mapped outer/inner rings. Published15m central height is retained to the lantern apex. Roof partitions, pane counts, unseen elevations and real terrain fit remain pending.
+The single-storey glasshouses follow the mapped exterior and the two courtyard rings. Brick piers, the curved roof, lantern and porch follow the operator photographs. The lantern rises 15 m above the entrance datum. The fitted landing joins the mapped footway.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/generate-ksiaz-palm-house.mjs --ids=KSI_L01 (or --check).
 
-5919 triangles;713020 source bytes;4 merged material groups;no embedded images. Three existing shared brick, lime plaster and painted metal graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Two courtyards remain truly open; no embedded images. Runtime LODs are separate generated outputs.
+5808 triangles, 700192 source bytes and 5 merged material groups. Brick, plaster, painted metal and sandstone use shared material graphs with metric UVs. The glass is tinted and all four runtime detail levels are generated separately.
 
-Source hash: sha256:a247e90653e5fddc75a30c42e7cbe41effe296d187a4c9449a488b3d193334e1
+Source hash: sha256:689a6fa74e31f6f6d01917cfa8d0df56e4e2c3e51eca2e2522b3888f99239463

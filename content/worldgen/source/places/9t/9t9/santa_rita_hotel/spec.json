@@ -1,0 +1,418 @@
+{
+  "planId": "santa_rita_hotel",
+  "id": "santa_rita_hotel",
+  "assetId": "molen.worldgen.structure.santa_rita_hotel",
+  "title": "Santa Rita Hotel",
+  "wikidataId": "Q30634454",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -110.96966546,
+    "latitude": 32.22108767
+  },
+  "size": [
+    43.05000019073486,
+    24.37999987602234,
+    72.00000154972076
+  ],
+  "actualBounds": {
+    "min": [
+      -4.675000190734863,
+      -1.2999999523162842,
+      -0.6000000238418579
+    ],
+    "max": [
+      38.375,
+      23.079999923706055,
+      71.4000015258789
+    ]
+  },
+  "visualBrief": "The former Santa Rita Hotel in Tucson, with its Mission Revival entrance arcade, decorated parapets, and 1917 south wing.",
+  "nativeAxes": {
+    "x": "east along Broadway",
+    "y": "up",
+    "z": "south along Scott"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1937-01-01",
+    "validFrom": "1930-01-01",
+    "validUntil": "1946-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Santa_Rita_Hotel,_Tucson,_Arizona_(65324).jpg"
+  ],
+  "stories": [
+    {
+      "id": "santa-rita-hotel-wp",
+      "url": "https://qualla.com/santa-rita-hotel/"
+    }
+  ],
+  "referenceInputHash": "14512146145adc86096c117783b8bc029e9e689dc3402ed68ed994b5b1b47acb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9t/9t9/santa_rita_hotel/models/santa-rita-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9t/9t9/santa_rita_hotel/models/santa-rita-hotel-model.mjs",
+    "level": "skyline",
+    "export": "hotelSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "canvas": {
+        "slot": "trim",
+        "graph": "fabric_canvas",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hotelDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hotelStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "hotelCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "trim",
+            "graph": "fabric_canvas",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_ceramic",
+    "fabric_canvas",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -110.96966546,
+      32.22108767
+    ],
+    "heading": 0.03446342689163694,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -110.96966692524066,
+        32.220862916034164
+      ],
+      "modelHeight": 0,
+      "basis": "Today’s original terrain elevation sampled at the former hotel’s Scott Avenue entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "loc:00180_1919-0008/block-864/site",
+      "loc:00180_1919-0008/block-864/north",
+      "loc:00180_1919-0008/block-864/entry",
+      "loc:00180_1919-0008/block-864/porch",
+      "loc:00180_1919-0008/block-864/lobby",
+      "loc:00180_1919-0008/block-864/crossWing",
+      "loc:00180_1919-0008/block-864/connector",
+      "loc:00180_1919-0008/block-864/south"
+    ],
+    "source": "https://www.loc.gov/resource/g4334tm.g001801919/?sp=8",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4fcfc7662c32250ac4601d39db4c939e98f8374da1fa44cdbcb81aadd0ecb02f",
+    "notes": "The 1919 Sanborn map defines the southeast corner of Broadway and Scott, the original 124-foot Broadway frontage, the entrance porch, and the extent of the south addition. Modern street geometry is used only to register the historic map."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the original hotel after the 1917 addition, visually dated to approximately 1937. It is available through the historical viewing date. The original hotel was demolished in the 1970s.",
+    "Map registration uses modern street control and estimates of the historic curb-to-centerline distances. The original hotel terrain is represented by unmodified present-day public elevation data.",
+    "The north and west facades follow the archive postcard. Rear elevations, precise floor heights, concealed roofs and arcade ornament are reconstructed approximately. The project covers the exterior, including the porch voids."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Public-domain postcard 65324 from Tichnor Brothers and public-domain Sanborn fire insurance map from the Library of Congress. OpenStreetMap street control under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "tucson-skyline",
+      "position": [
+        -58,
+        22,
+        -28
+      ],
+      "lookAt": [
+        10,
+        9.1,
+        32
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tucson-district",
+      "position": [
+        -58,
+        22,
+        -28
+      ],
+      "lookAt": [
+        10,
+        9.1,
+        32
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tucson-street",
+      "position": [
+        -58,
+        22,
+        -28
+      ],
+      "lookAt": [
+        10,
+        9.1,
+        32
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tucson-closeup",
+      "position": [
+        -58,
+        22,
+        -28
+      ],
+      "lookAt": [
+        10,
+        9.1,
+        32
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-entrance-arcade",
+      "position": [
+        -21,
+        5.4,
+        18
+      ],
+      "lookAt": [
+        -1,
+        4.5,
+        28
+      ]
+    },
+    {
+      "name": "broadway-corner",
+      "position": [
+        -26,
+        9,
+        -22
+      ],
+      "lookAt": [
+        4,
+        8.2,
+        6
+      ]
+    },
+    {
+      "name": "south-addition-and-return",
+      "position": [
+        -35,
+        19,
+        88
+      ],
+      "lookAt": [
+        10,
+        11,
+        53
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13748,
+    "vertices": 41244,
+    "materials": 5,
+    "bytes": 1763048,
+    "sha256": "sha256:e968654bd2ed37fc393ae2eafebb824d7369b73b91d6188a0f94e0b2397ed75e"
+  }
+}

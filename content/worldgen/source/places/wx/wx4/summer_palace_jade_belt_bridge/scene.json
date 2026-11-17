@@ -1,0 +1,77 @@
+{
+  "format": "molen/scene@3",
+  "name": "Summer Palace · Jade Belt Bridge",
+  "seed": "summer_palace_jade_belt_bridge",
+  "tickRate": 30,
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      22.452317999999998,
+      20.9575,
+      53.05354799999999
+    ],
+    "lookAt": [
+      0,
+      6.4494,
+      0
+    ],
+    "fov": 48
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.summer_palace_jade_belt_bridge",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ]
+}

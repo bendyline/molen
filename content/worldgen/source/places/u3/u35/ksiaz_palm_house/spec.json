@@ -19,13 +19,13 @@
   },
   "size": [
     108.01000213623047,
-    15,
+    15.978591978549957,
     63.35313034057617
   ],
   "actualBounds": {
     "min": [
       -54.005001068115234,
-      0,
+      -0.9785919785499573,
       -31.57596778869629
     ],
     "max": [
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X along mapped north range",
     "longitudinal": "+Z toward mapped main entrance",
-    "origin": "Own connected glasshouse envelope center; Y0 interpreted local ground"
+    "origin": "Mapped geometry origin with vertical datum set by the entrance approach."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -47,10 +47,11 @@
       "brick": "#bd866c",
       "trim": "#eee4c9",
       "metal": "#85a87c",
-      "glass": "#627e87",
-      "roofGlass": "#829797",
+      "glass": "#58777a",
+      "roofGlass": "#78928f",
       "door": "#b57167",
-      "base": "#c7bea5"
+      "base": "#c7bea5",
+      "landing": "#a9a18c"
     },
     "colorEncoding": "sRGB decoded to linear COLOR_0",
     "materialBudget": 8
@@ -79,7 +80,8 @@
   "reconstruction": {
     "basis": "Own OSM relation outer ring and two courtyard holes, official 2025 scope plan, current operator page and exterior/interior gallery.",
     "scope": "Central Palm House and connected surrounding glasshouse ranges. Independent greenhouse group, boiler, administration, utility building, residence and landscape remain separate pending parts.",
-    "heightDatum": "Operator central hall is described as 15m; this model uses Y0 to lantern apex15m. Other roof/wall subdivisions and unseen elevations are estimates; shared terrain datum unmeasured."
+    "heightDatum": "The central lantern rises 15 m above the entrance datum. Terrarium samples locate the exterior plinth. Other roof and wall subdivisions follow the photographs.",
+    "registration": "The mapped main entrance faces the path through the garden. The two Protomaps courtyard holes stay open. Terrarium samples set the plinth and the entrance landing meets the footway."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -90,7 +92,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.308676300000002,
       50.82993275
@@ -98,17 +100,418 @@
     "heading": -0.03453941672098094,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
+    "groundModelY": -0.28,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The mapped main entrance faces the path through the garden. The two Protomaps courtyard holes stay open. Terrarium samples set the plinth and the entrance landing meets the footway.",
+    "terrainReference": {
+      "anchor": [
+        16.30866765975952,
+        50.82971865190928
+      ],
+      "modelHeight": -0.28,
+      "basis": "The mapped main entrance faces the path through the garden. The two Protomaps courtyard holes stay open. Terrarium samples set the plinth and the entrance landing meets the footway."
+    },
+    "bounds": [
+      16.3078636275789,
+      50.82961013202773,
+      16.3094889724211,
+      50.830255365742524
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -53.479321,
+          31.776712
+        ],
+        [
+          -53.971226,
+          -31.610938
+        ],
+        [
+          53.403732,
+          -31.546996
+        ],
+        [
+          53.317174,
+          31.483233
+        ],
+        [
+          12.371584,
+          31.577102
+        ],
+        [
+          12.40912,
+          10.818332
+        ],
+        [
+          8.444543,
+          10.766616
+        ],
+        [
+          8.484003,
+          17.369903
+        ],
+        [
+          3.011591,
+          17.370288
+        ],
+        [
+          3.115792,
+          20.385956
+        ],
+        [
+          1.289612,
+          22.147395
+        ],
+        [
+          -1.544089,
+          22.056605
+        ],
+        [
+          -3.312041,
+          20.041945
+        ],
+        [
+          -3.403217,
+          17.403236
+        ],
+        [
+          -8.875628,
+          17.40362
+        ],
+        [
+          -8.902063,
+          11.177292
+        ],
+        [
+          -12.48317,
+          11.30103
+        ],
+        [
+          -12.351764,
+          31.48785
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -53.971226,
+            -31.610938
+          ],
+          [
+            -25.0544,
+            -31.593718
+          ],
+          [
+            -25.0544,
+            -26.655914
+          ],
+          [
+            -46.633175,
+            -26.769474
+          ],
+          [
+            -46.299495,
+            4.732615
+          ],
+          [
+            -36.115102,
+            4.569416
+          ],
+          [
+            -36.076411,
+            0.22788
+          ],
+          [
+            -25.508547,
+            0.240136
+          ],
+          [
+            -25.352245,
+            4.763638
+          ],
+          [
+            -25.0544,
+            4.758485
+          ],
+          [
+            -25.0544,
+            31.577068
+          ],
+          [
+            -53.479321,
+            31.776712
+          ]
+        ],
+        [
+          [
+            -34.595782,
+            -16.995372
+          ],
+          [
+            -25.0544,
+            -16.973868
+          ],
+          [
+            -25.0544,
+            -11.241327
+          ],
+          [
+            -34.582372,
+            -11.146002
+          ]
+        ],
+        [
+          [
+            -25.0544,
+            -31.593718
+          ],
+          [
+            24.68095,
+            -31.5641
+          ],
+          [
+            24.68095,
+            -26.605872
+          ],
+          [
+            3.755917,
+            -26.623534
+          ],
+          [
+            3.711099,
+            -16.998066
+          ],
+          [
+            24.68095,
+            -16.936351
+          ],
+          [
+            24.68095,
+            -11.460323
+          ],
+          [
+            2.957567,
+            -11.499604
+          ],
+          [
+            3.134175,
+            4.53416
+          ],
+          [
+            22.593128,
+            5.182722
+          ],
+          [
+            24.68095,
+            5.176867
+          ],
+          [
+            24.68095,
+            31.548882
+          ],
+          [
+            12.371584,
+            31.577102
+          ],
+          [
+            12.40912,
+            10.818332
+          ],
+          [
+            8.444543,
+            10.766616
+          ],
+          [
+            8.484003,
+            17.369903
+          ],
+          [
+            3.011591,
+            17.370288
+          ],
+          [
+            3.115792,
+            20.385956
+          ],
+          [
+            1.289612,
+            22.147395
+          ],
+          [
+            -1.544089,
+            22.056605
+          ],
+          [
+            -3.312041,
+            20.041945
+          ],
+          [
+            -3.403217,
+            17.403236
+          ],
+          [
+            -8.875628,
+            17.40362
+          ],
+          [
+            -8.902063,
+            11.177292
+          ],
+          [
+            -12.48317,
+            11.30103
+          ],
+          [
+            -12.351764,
+            31.48785
+          ],
+          [
+            -25.0544,
+            31.577068
+          ],
+          [
+            -25.0544,
+            4.758485
+          ],
+          [
+            -3.475624,
+            4.385141
+          ],
+          [
+            -3.8342,
+            -11.453631
+          ],
+          [
+            -25.0544,
+            -11.241327
+          ],
+          [
+            -25.0544,
+            -16.973868
+          ],
+          [
+            -3.834585,
+            -16.926043
+          ],
+          [
+            -3.978246,
+            -26.544998
+          ],
+          [
+            -25.0544,
+            -26.655914
+          ]
+        ],
+        [
+          [
+            24.68095,
+            -31.5641
+          ],
+          [
+            53.403732,
+            -31.546996
+          ],
+          [
+            53.317174,
+            31.483233
+          ],
+          [
+            24.68095,
+            31.548882
+          ],
+          [
+            24.68095,
+            5.176867
+          ],
+          [
+            46.367567,
+            5.116057
+          ],
+          [
+            46.404334,
+            -26.587537
+          ],
+          [
+            24.68095,
+            -26.605872
+          ]
+        ],
+        [
+          [
+            24.68095,
+            -16.936351
+          ],
+          [
+            33.906858,
+            -16.909199
+          ],
+          [
+            34.095722,
+            -11.4433
+          ],
+          [
+            24.68095,
+            -11.460323
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact Protomaps relation split through both courtyard holes into occupied masks. The attached glasshouse mapped separately as way 263009992 is inside the occupied area."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -0.667,
+          21.929
+        ],
+        [
+          0.913,
+          21.929
+        ],
+        [
+          1.525871,
+          23.84
+        ],
+        [
+          -1.094129,
+          23.84
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            -1.197,
+            21.899
+          ],
+          [
+            1.443,
+            21.899
+          ],
+          [
+            1.525871,
+            23.84
+          ],
+          [
+            -1.094129,
+            23.84
+          ]
+        ]
+      ],
+      "basis": "The entrance landing supplies the ground under its own footprint. The painted footway joins at the outer edge."
+    },
     "replaceFootprint": false,
     "featureIds": [
-      "relation/3532583"
+      "relation/3532583",
+      "way/263009992"
     ],
     "source": "https://www.openstreetmap.org/relation/3532583",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:1e432fc1f9eeddf5e01993377ad0d182dc39f928e1391ab273f46ac24a31ff6e",
+    "mapGeometryHash": "sha256:6adc5b312cd1c396b1c710aab878fb02b5d0378a5ace097465b3b9b8b37612a3",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own connected Palm House multipolygon, two true courtyard holes and main entrance. Central facade direction is supported by mapped entrance and operator exterior photos. Other facade/roof subdivisions and shared terrain datum remain estimated; activation pending geographic review."
+    "notes": "The mapped main entrance faces the path through the garden. The two Protomaps courtyard holes stay open. Terrarium samples set the plinth and the entrance landing meets the footway."
   },
   "sharedSurfaces": [
     {
@@ -137,15 +540,22 @@
         2,
         2
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
   "limitations": [
-    "Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.",
-    "Own Palm House outer ring and both courtyard holes. Central barrel hall and porch follow operator photos; roof subdivisions, pane counts, unseen facades and common datum are original interpretations.",
-    "No independent Wikidata identifier asserted. Own named relation supplies identity; actual facade and terrain fit remain pending.",
-    "Primary operator gallery has no confirmed capture dates; complete current alteration state is unconfirmed.",
-    "Connected glasshouse exterior only. No unique textures, copied photos, interiors, flora/fauna or garden reconstruction. Separate greenhouses and service buildings remain pending. Terrain fit, streaming and physical-device timing remain pending."
+    "This model covers the connected glasshouse exteriors and their entrance, with the separate greenhouses, service buildings and gardens represented in the estate inventory.",
+    "The barrel hall and porch follow operator photos. The rear roof subdivisions, pane counts and entrance details are reconstructions.",
+    "The green-tinted glazing represents the glass from outside. Interior plants and rooms are outside this model."
   ],
   "qaCameras": [
     {
@@ -205,10 +615,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 5919,
-    "vertices": 17757,
-    "materials": 4,
-    "bytes": 713020,
-    "sha256": "sha256:a247e90653e5fddc75a30c42e7cbe41effe296d187a4c9449a488b3d193334e1"
+    "triangles": 5808,
+    "vertices": 17424,
+    "materials": 5,
+    "bytes": 700192,
+    "sha256": "sha256:689a6fa74e31f6f6d01917cfa8d0df56e4e2c3e51eca2e2522b3888f99239463"
   }
 }

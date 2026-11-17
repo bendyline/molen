@@ -1,0 +1,646 @@
+{
+  "planId": "castle_rushen",
+  "id": "castle_rushen",
+  "assetId": "molen.worldgen.structure.castle_rushen",
+  "title": "Castle Rushen",
+  "wikidataId": "Q2967821",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.6531,
+    "latitude": 54.07386
+  },
+  "size": [
+    73.03131103515625,
+    30.490000247955322,
+    83.34835815429688
+  ],
+  "actualBounds": {
+    "min": [
+      -22.275493621826172,
+      -4.650000095367432,
+      -38.827247619628906
+    ],
+    "max": [
+      50.75581741333008,
+      25.84000015258789,
+      44.52111053466797
+    ]
+  },
+  "visualBrief": "Castle Rushen’s limestone keep with four crenellated towers, the curtain and separate harbour gate buildings in Castletown.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2005-06-01",
+    "validFrom": "2005-01-01",
+    "validUntil": "2006-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Castle_Rushen.jpg"
+  ],
+  "stories": [
+    {
+      "id": "castle-rushen-wp",
+      "url": "https://qualla.com/castle-rushen/"
+    }
+  ],
+  "referenceInputHash": "510837892df94906257e59b750e899596389be83609e27912fc89d34d11ce107",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcs/castle_rushen/models/castle-rushen-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcs/castle_rushen/models/castle-rushen-model.mjs",
+    "level": "skyline",
+    "export": "castleSkyline",
+    "errorMeters": 0.67,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castleDistrict",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "castleStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "castleCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -4.6531,
+      54.07386
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.6531,
+        54.07386
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM at the west side of the castle court next to the keep."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.4427,
+          -28.9987
+        ],
+        [
+          11.4825,
+          -26.0042
+        ],
+        [
+          8.4388,
+          -25.4699
+        ],
+        [
+          9.1573,
+          -22.2082
+        ],
+        [
+          -4.4219,
+          -16.2749
+        ],
+        [
+          -11.1102,
+          -11.0429
+        ],
+        [
+          -19.6797,
+          11.7776
+        ],
+        [
+          -22.1355,
+          11.6997
+        ],
+        [
+          -22.1094,
+          14.5049
+        ],
+        [
+          -19.6078,
+          14.5272
+        ],
+        [
+          -7.6354,
+          34.5313
+        ],
+        [
+          -9.1899,
+          36.8356
+        ],
+        [
+          -6.3879,
+          38.7169
+        ],
+        [
+          -4.8399,
+          36.4126
+        ],
+        [
+          10.2023,
+          41.2105
+        ],
+        [
+          10.7444,
+          44.3831
+        ],
+        [
+          14.0756,
+          43.8154
+        ],
+        [
+          13.4224,
+          40.0305
+        ],
+        [
+          27.498,
+          29.0989
+        ],
+        [
+          31.2014,
+          32.394
+        ],
+        [
+          34.4867,
+          28.7984
+        ],
+        [
+          31.5671,
+          26.1156
+        ],
+        [
+          35.3881,
+          9.8852
+        ],
+        [
+          35.9694,
+          7.1244
+        ],
+        [
+          40.8028,
+          7.0799
+        ],
+        [
+          40.7505,
+          2.1262
+        ],
+        [
+          48.6668,
+          2.1819
+        ],
+        [
+          48.7778,
+          3.0835
+        ],
+        [
+          49.111,
+          3.8962
+        ],
+        [
+          49.3134,
+          4.5196
+        ],
+        [
+          49.8686,
+          4.9982
+        ],
+        [
+          50.4761,
+          5.1207
+        ],
+        [
+          51.1292,
+          4.9092
+        ],
+        [
+          51.4819,
+          4.5641
+        ],
+        [
+          51.7171,
+          3.9073
+        ],
+        [
+          51.5146,
+          3.1169
+        ],
+        [
+          51.1357,
+          2.7273
+        ],
+        [
+          50.463,
+          2.5158
+        ],
+        [
+          50.4238,
+          1.1132
+        ],
+        [
+          50.4107,
+          -0.5232
+        ],
+        [
+          50.6524,
+          -1.18
+        ],
+        [
+          50.2801,
+          -2.0371
+        ],
+        [
+          49.6923,
+          -2.3043
+        ],
+        [
+          49.1436,
+          -2.2264
+        ],
+        [
+          48.7125,
+          -1.9258
+        ],
+        [
+          48.4513,
+          -1.18
+        ],
+        [
+          41.7825,
+          -0.924
+        ],
+        [
+          40.3586,
+          -1.3247
+        ],
+        [
+          38.5494,
+          -7.7478
+        ],
+        [
+          37.8897,
+          -10.7312
+        ],
+        [
+          36.407,
+          -15.3287
+        ],
+        [
+          36.0021,
+          -16.5866
+        ],
+        [
+          34.6566,
+          -18.0449
+        ],
+        [
+          26.7338,
+          -20.3381
+        ],
+        [
+          22.3837,
+          -21.7407
+        ],
+        [
+          23.5659,
+          -25.4254
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped curtain footprint surrounds the castle mass and gate structures."
+    },
+    "featureIds": [
+      "way/38301009",
+      "relation/1435712",
+      "way/100464864",
+      "way/100464818",
+      "way/100464762",
+      "way/1039207459",
+      "way/38301006"
+    ],
+    "source": "https://www.openstreetmap.org/way/38301009",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d2be860ce03759b476126add1d13b8631596fbc81a71630c3cc31d73c4bd498d",
+    "notes": "The exact harbour photograph and published 24 m tallest tower height fix the main silhouette. The mapped walls, keep and keep court set geographic alignment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the limestone keep, enclosed court, curtain wall and gate buildings seen in 2005. The modern visitor layout and interiors are outside the scope.",
+    "The highest tower uses the published 24 m height. Relative tower tiers, crenel counts, lower gate details and wall heights away from the harbour photo are estimates."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap data under ODbL. The exact harbour photograph from Qualla was released to the public domain by Paul Dyer.",
+  "qaLodCameras": [
+    {
+      "name": "castletown-skyline",
+      "position": [
+        87,
+        35,
+        102
+      ],
+      "lookAt": [
+        13,
+        9,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "castletown-district",
+      "position": [
+        87,
+        35,
+        102
+      ],
+      "lookAt": [
+        13,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "castletown-street",
+      "position": [
+        87,
+        35,
+        102
+      ],
+      "lookAt": [
+        13,
+        9,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "castletown-closeup",
+      "position": [
+        87,
+        35,
+        102
+      ],
+      "lookAt": [
+        13,
+        9,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "harbour-gates-and-keep",
+      "position": [
+        74,
+        12,
+        -44
+      ],
+      "lookAt": [
+        13,
+        9,
+        3
+      ]
+    },
+    {
+      "name": "crenellated-limestone-towers",
+      "position": [
+        51,
+        26,
+        47
+      ],
+      "lookAt": [
+        8,
+        14,
+        9
+      ]
+    },
+    {
+      "name": "keep-court-and-outer-curtain",
+      "position": [
+        -39,
+        63,
+        -44
+      ],
+      "lookAt": [
+        10,
+        7,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10129,
+    "vertices": 30387,
+    "materials": 5,
+    "bytes": 1413536,
+    "sha256": "sha256:a89226043505255c636b017fc17cf6ce2b798d2add7aaa6dc232eaefb154ed88"
+  }
+}

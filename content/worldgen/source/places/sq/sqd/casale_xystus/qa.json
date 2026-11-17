@@ -32,8 +32,71 @@
       "shots/shared/low-masonry-and-ground-following-bases.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Seven roles use six existing256px graphs: plaster_lime, stone_limestone_raw (low masonry/column tint variants), metal_standing_seam, wood_plain, storefront and tile_mosaic. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline; six textured draws/one skyline. No embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU geometry bytes. All six graphs are already used by the completed main complex; the three-model scene still uses eight total graphs, each read once. Flat portable/shared/synthetic test grounds intersect some grade-specific bases and expose mask patches; native terrain captures supply the ground-fit evidence.",
-    "captureReportHash": "sha256:5c4416ce2298c2493cde11346eee9b15f376bcb1ed23b7fa816c943737e662b9"
+    "notes": "Seven roles use six existing256px graphs: plaster_lime, stone_limestone_raw (low masonry/column tint variants), metal_standing_seam, wood_plain, storefront and tile_mosaic. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline; six textured draws/one skyline. No embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU geometry bytes. All six graphs are already used by the completed main complex; the three-model scene still uses eight total graphs, each read once. Flat portable/shared/synthetic test grounds intersect some grade-specific bases and expose mask patches; native terrain captures supply the ground-fit evidence. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:1f3fd9bcf13ed7c5e27352b2607245e430e52e3d947805b92e58413a8257c00d",
+    "inputHash": "sha256:2185cbbf68c6c90934dba906aefbf9091cf5f309b63cdbd8d0be626e82f92362",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:5e8677ddfb81d4b8e5288598411af2f5204d9aa664342ba8ee83fcf4b54acc30"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:d997fec023b1a3a4335f3ed5870fb30aaf85dad9b5c659d5e8cf77b4e256cb60"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:1c0b29d1eea98b2d8c7349756cb4c20341e99b1555bb60226a94e34afbe9d003"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:e105030d9f2a78b25366e0bcafe3cb0e8da08dc97734c2b488da37eccb2a1af4"
+      },
+      {
+        "path": "shots/shared/open-oval-court-and-column-remains.png",
+        "hash": "sha256:4879d500305064045bae331557fb963bcd6ee31f4e9260a8b930780c20b6c127"
+      },
+      {
+        "path": "shots/shared/north-shelter-recessed-door-and-grey-roof.png",
+        "hash": "sha256:7beb8419c577c834605521138d7261b1be1e1833301731c6127f6fc3dc915092"
+      },
+      {
+        "path": "shots/shared/low-masonry-and-ground-following-bases.png",
+        "hash": "sha256:6e6b5af83ef0183c0a364e1c833c358b4b94996e0a06eb32e51e8661356ff1a6"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:afd3ec979cc9c557dacdfc339636cf327c0c4dab7d588d4ddb27718128b29e4e"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.tile_mosaic": {
+        "path": "materials/tile_mosaic.matgraph.json",
+        "hash": "sha256:4588b0d86337ef684fcff456751cf630a16907d5bcacb798aea7b516e3fd7ad0"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

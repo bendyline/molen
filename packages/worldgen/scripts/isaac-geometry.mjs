@@ -112,7 +112,7 @@ export function buildIsaac(face, detail, r) {
   if (detail > 1) {
     for (const p of r.lower) prism(f, 'wall', p, Y, Y + E.base + E.spring + E.rise);
     prism(f, 'wall', r.core, Y + E.base + E.spring + E.rise, Y + 38);
-    prism(f, 'stone', E.floor, Y, Y + E.base);
+    for (const entry of r.entries) prism(f, 'stone', entry.floor, Y, Y + entry.base);
   } else prism(f, 'wall', r.core, Y, Y + 38);
   // Corner pylons belong to the same mapped cathedral and carry open belfries.
   for (const c of r.corners) {
@@ -193,11 +193,45 @@ export function buildIsaac(face, detail, r) {
         i === 0 ? [0, -1, 0] : [n[0] * 0.1, 1, n[1] * 0.1],
       );
     if (detail) {
-      f(
-        'patina',
-        [at(-w / 2 + 2, 30.4, -0.06), at(w / 2 - 2, 30.4, -0.06), at(0, 40.7, -0.06)],
-        [n[0], 0, n[1]],
-      );
+      const reliefCount = detail === 1 ? 3 : p.frontColumns === 8 ? 13 : 9;
+      for (let i = 0; i < reliefCount; i++) {
+        const position = (2 * i) / (reliefCount - 1) - 1;
+        const u = position * w * 0.37;
+        const width = w / (Math.max(reliefCount, 9) * 1.65);
+        const height = 1.5 + (1 - Math.abs(position)) * 3.1 + (i % 2) * 0.35;
+        const base = 30.45 + (1 - Math.abs(position)) * 0.57;
+        const relief = [
+          [-width * 0.55, 0],
+          [width * 0.55, 0],
+          [width * 0.27, height * 0.74],
+          [width * 0.17, height],
+          [-width * 0.16, height],
+          [-width * 0.28, height * 0.74],
+        ];
+        const silhouette = relief.map(([x, y]) => at(u + x, base + y, -0.38));
+        f(
+          'patina',
+          detail === 1 ? [silhouette[0], silhouette[1], silhouette[3], silhouette[4]] : silhouette,
+          [n[0], 0, n[1]],
+        );
+        if (detail > 2) {
+          for (let j = 0; j < relief.length; j++) {
+            const k = (j + 1) % relief.length;
+            const [x, y] = relief[j];
+            const [nextX, nextY] = relief[k];
+            f(
+              'patina',
+              [
+                silhouette[j],
+                silhouette[k],
+                at(u + nextX, base + nextY, 0),
+                at(u + x, base + y, 0),
+              ],
+              [(nextY - y) * t[0], x - nextX, (nextY - y) * t[1]],
+            );
+          }
+        }
+      }
       if (detail > 1)
         for (const u of [-w * 0.4, 0, w * 0.4]) {
           const q = at(u, 0, 0);
@@ -342,48 +376,85 @@ export function buildIsaac(face, detail, r) {
       ]);
     prism(f, 'patina', { outline: ring(R + 1.1), holes: [ring(R + 0.9)] }, Y + 73.25, Y + 73.45);
   }
-  // One genuine doorway behind the southwest portico; other doors are flat proxies.
-  const at = (u, y, d) => [E.center[0] + u, Y + E.base + y, E.center[1] - d],
-    count = detail > 1 ? 12 : 4,
-    w = E.width,
-    h = E.spring + E.rise;
-  if (detail > 1) {
-    for (let i = 0; i < count; i++) {
-      const a = Math.PI - (i * Math.PI) / count,
-        b = Math.PI - ((i + 1) * Math.PI) / count,
-        u0 = (Math.cos(a) * w) / 2,
-        u1 = (Math.cos(b) * w) / 2,
-        y0 = E.spring + Math.sin(a) * E.rise,
-        y1 = E.spring + Math.sin(b) * E.rise;
-      f('stone', [at(u0, y0, 0), at(u1, y1, 0), at(u1, h, 0), at(u0, h, 0)], [0, 0, 1]);
+  // Three bronze entrances share one sill height. The nearest levels cut back to the door leaf.
+  for (const entry of r.entries) {
+    const { center, normal, tangent, width, base, depth, spring, rise } = entry;
+    const at = (u, y, d) => [
+      center[0] + u * tangent[0] - d * normal[0],
+      Y + base + y,
+      center[1] + u * tangent[1] - d * normal[1],
+    ];
+    const front = [normal[0], 0, normal[1]];
+    const rect = (role, left, right, bottom, top, d) =>
       f(
-        'stone',
-        [at(u0, y0, 0), at(u1, y1, 0), at(u1, y1, E.depth), at(u0, y0, E.depth)],
-        [0, -1, 0],
+        role,
+        [at(left, bottom, d), at(right, bottom, d), at(right, top, d), at(left, top, d)],
+        front,
       );
+    const cap = E.base + E.spring + E.rise - base;
+    const halfWidth = width / 2;
+    const count = detail > 1 ? 12 : 4;
+    const arch = Array.from({ length: count + 1 }, (_, i) => {
+      const angle = Math.PI - (i * Math.PI) / count;
+      return [Math.cos(angle) * halfWidth, spring + Math.sin(angle) * rise];
+    });
+    if (detail > 1) {
+      for (let i = 0; i < count; i++) {
+        const [u0, y0] = arch[i];
+        const [u1, y1] = arch[i + 1];
+        f('stone', [at(u0, y0, 0), at(u1, y1, 0), at(u1, cap, 0), at(u0, cap, 0)], front);
+        f(
+          'stone',
+          [at(u0, y0, 0), at(u1, y1, 0), at(u1, y1, depth), at(u0, y0, depth)],
+          [0, -1, 0],
+        );
+      }
+      for (const sign of [-1, 1]) {
+        const u = sign * halfWidth;
+        f(
+          'stone',
+          [at(u, 0, 0), at(u, 0, depth), at(u, spring, depth), at(u, spring, 0)],
+          [-sign * tangent[0], 0, -sign * tangent[1]],
+        );
+      }
     }
-    for (const u of [-w / 2, w / 2])
-      f(
-        'stone',
-        [at(u, 0, 0), at(u, 0, E.depth), at(u, E.spring, E.depth), at(u, E.spring, 0)],
-        [-Math.sign(u), 0, 0],
-      );
+    const panel = detail > 1 ? depth - 0.075 : -0.095;
+    f(
+      'dark',
+      [
+        at(-halfWidth, 0, panel),
+        at(halfWidth, 0, panel),
+        ...arch.toReversed().map(([u, y]) => at(u, y, panel)),
+      ],
+      front,
+    );
+    if (detail > 1) {
+      rect('patina', -0.095, 0.095, 0.12, spring, panel - 0.025);
+      for (const sign of [-1, 1]) {
+        const center = sign * halfWidth * 0.52;
+        for (let row = 0; row < 3; row++) {
+          const bottom = 0.55 + 2.4 * row;
+          rect(
+            'patina',
+            center - halfWidth * 0.36,
+            center + halfWidth * 0.36,
+            bottom,
+            bottom + 1.86,
+            panel - 0.04,
+          );
+          if (detail > 1)
+            rect(
+              'dark',
+              center - halfWidth * 0.25,
+              center + halfWidth * 0.25,
+              bottom + 0.18,
+              bottom + 1.68,
+              panel - 0.08,
+            );
+        }
+      }
+    }
   }
-  f(
-    'dark',
-    [
-      at(-w / 2, 0, detail > 1 ? E.depth - 0.025 : -0.05),
-      at(w / 2, 0, detail > 1 ? E.depth - 0.025 : -0.05),
-      at(w / 2, h, detail > 1 ? E.depth - 0.025 : -0.05),
-      at(-w / 2, h, detail > 1 ? E.depth - 0.025 : -0.05),
-    ],
-    [0, 0, 1],
-  );
-  f(
-    'stone',
-    [at(-w / 2, 0, 0), at(w / 2, 0, 0), at(w / 2, 0, E.depth), at(-w / 2, 0, E.depth)],
-    [0, 1, 0],
-  );
   // Fit the eight large arched windows to the measured outside pylon faces.
   for (const c of r.corners)
     for (const axis of [0, 1]) {

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.folsom_state_prison",
+  "kind": "static-structure",
+  "title": "Folsom State Prison Entrance",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.folsom_state_prison",
+        "output": "assets/places/9q/9qc/folsom_state_prison/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ba2b787b92f006aa329a6d496ef4d810b21fbb33a6bbd8d61fcf4781cc69172d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-folsom-state-prison",
+        "path": "models/generate-folsom-state-prison.mjs"
+      },
+      {
+        "id": "folsom-state-prison-model",
+        "path": "models/folsom-state-prison-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gate-controls.json",
+      "reference-rights/commons-folsom-state-prison-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-5355-12558.png",
+      "terrain-sources/terrarium-15-5355-12559.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

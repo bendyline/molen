@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.saint_isaacs_cathedral",
-  "inputHash": "sha256:b3b0cff1c0db073933d2011fba6b68668832441999b3aad44a7c3c98c3081736",
-  "sourceHash": "sha256:e5f896b8a812cfd5e752e59b37f7e230c4cd9ebde7763f35a05a5e4f440210fc",
-  "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+  "inputHash": "sha256:7303fe5877ae949a8cc2d84c6a27c8b73802712c64f1e784ed9eb67122c30122",
+  "sourceHash": "sha256:702ae9c7d159cf8961a75fcc7ca81cc575f9f41bedb24cb0cceb9485e59fae78",
+  "runtimeHash": "sha256:e6b337b0009f44ca394f6a5e738f87ba07147b791d322ffd83228da6c58f2e34",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
-  "footprintEvidenceHash": "sha256:eccce5fb33765a2f3bc83094cc99c896caece308f1248c34b5495975856abf2f",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:0cc94ba14cf38cd358e5dcfe077e2392e9568ce72ecaa4ea1b386697764e356e",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "reviewBoundedPlacement": true,
-  "placementHash": null,
+  "targetOnly": true,
+  "placementHash": "sha256:8da3be4c42e6b5753b735d7485989c7be591ed026bf139bf5ae0146491438d0d",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_granite": {
       "path": "materials/stone_granite.matgraph.json",
@@ -30,21 +31,21 @@
     },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:28741a3d5362b5984ff872bf9a01dac18b788a67a44b69f59fec6e11d37418dd",
+      "hash": "sha256:cb5e76a5ca5171f1859bddac5550f60cd8d434245cd9b72899545c8df316c8df",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -52,8 +53,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -67,20 +80,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -89,20 +119,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:a0238fd45e059883f600418ca219cd282523acfb4819dc4c275ffd989b76ea77",
+      "hash": "sha256:f6f169903f6cd54aea6f72937ae18095459251ccb2f78e4b8adbccb0a45c0ec0",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -110,8 +140,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -125,20 +167,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -147,20 +206,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:29d0d5e363a49d857b81286509feaf743e650c8de8971fbc3159e7d8f1b2036d",
+      "hash": "sha256:4ac01831f1ea486b724d580bb52067838d38f70a0d52768bad9936a3aa3721d8",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -168,8 +227,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -183,20 +254,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -205,20 +293,20 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:1bd9c7712dc363e347ecb08b5f2f46da44ba8c027006174bb3f46b2277a68397",
+      "hash": "sha256:8d969228a130af59e4b8746d20390147309d682f02217064eee6f621f00f98fd",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -226,8 +314,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -241,20 +341,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -263,12 +380,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/southwest-portico-five-domes-and-pylons.png",
-      "hash": "sha256:0a3d025feb24f89531b575d2a1126a0362fd659e60519eee806f672c9aa04b05",
+      "hash": "sha256:3006e1926a326ade7242380c7b1bc45a4764581da8acd7e3ff21946028e15e03",
       "camera": {
         "name": "southwest-portico-five-domes-and-pylons",
         "position": [
@@ -285,8 +402,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -294,8 +411,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -309,20 +438,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -331,12 +477,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
-      "hash": "sha256:bf65fe490f7ce2e3da63a1fb3ac0bb351d037c1d28fe3a91a9ce7688dfc1ea10",
+      "hash": "sha256:4f4cd15e46be11a392fc0588e699b1213ab65bed0a940565edf25194d38f2851",
       "camera": {
         "name": "drum-colonnade-ribbed-gilded-dome-and-lantern",
         "position": [
@@ -353,8 +499,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -362,8 +508,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -377,20 +535,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -399,12 +574,12 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
       }
     },
     {
       "path": "shots/shared/granite-columns-recess-and-working-threshold.png",
-      "hash": "sha256:beaa0be68d3e405d1fad41f120ce9b979576b1ce3d92c1cb3315c63fd0cd7d46",
+      "hash": "sha256:45125228a1a904cde5bd0c2e6fa4e4c89a36538bed111cb2bf1448144ac5332b",
       "camera": {
         "name": "granite-columns-recess-and-working-threshold",
         "position": [
@@ -421,8 +596,8 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
         "position": [
           0,
           0,
@@ -430,8 +605,20 @@
         ],
         "heading": 0,
         "meshes": 7,
-        "triangles": 23950,
+        "triangles": 24923,
         "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -52.746829986572266,
             -1.2000000476837158,
@@ -445,20 +632,37 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
         },
         "loads": [
           "molen.worldgen.structure.saint_isaacs_cathedral"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
-        "groundCutoutProbes": 0,
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.stone_limestone_raw": 1,
@@ -467,7 +671,288 @@
           "molen.worldgen.material.storefront": 1
         },
         "draws": 8,
-        "renderedTriangles": 23952
+        "renderedTriangles": 25011
+      }
+    },
+    {
+      "path": "shots/shared/south-recessed-bronze-doors-and-columns.png",
+      "hash": "sha256:a0fcf3fe138b5d2386abecf9b56413e8bfebb4bfefb4c53a6b2529083b9dc584",
+      "camera": {
+        "name": "south-recessed-bronze-doors-and-columns",
+        "position": [
+          26.881220568453056,
+          6.2,
+          38.326007397928535
+        ],
+        "lookAt": [
+          15.003333696685756,
+          6.5,
+          22.23514653029631
+        ],
+        "fov": 61
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 24923,
+        "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
+        },
+        "loads": [
+          "molen.worldgen.structure.saint_isaacs_cathedral"
+        ],
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 25011
+      }
+    },
+    {
+      "path": "shots/shared/north-recessed-bronze-doors-and-columns.png",
+      "hash": "sha256:3c2f36ab07f7af5b537ec47cccc7f7b6f7975c2532f1f11aa4c874617c4820ff",
+      "camera": {
+        "name": "north-recessed-bronze-doors-and-columns",
+        "position": [
+          -26.885480744351977,
+          6.2,
+          -34.5853209793747
+        ],
+        "lookAt": [
+          -15.007593872584673,
+          6.5,
+          -18.494460111742477
+        ],
+        "fov": 61
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 24923,
+        "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
+        },
+        "loads": [
+          "molen.worldgen.structure.saint_isaacs_cathedral"
+        ],
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 25011
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:209f516a60fc4fb5916d3ed4438dc19446f94ed091a67e0c9c3479c5ed858f3a",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.saint_isaacs_cathedral",
+        "mode": "geographic-flat-terrain",
+        "placementId": "saint.isaacs.cathedral",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 24923,
+        "bounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -52.746829986572266,
+            -1.2000000476837158,
+            -48.523712158203125
+          ],
+          "max": [
+            54.256370544433594,
+            101.5,
+            50.50895309448242
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "4e174a58-de09-49ac-80e4-ceb6f011c5f9",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "eb2489cb-78e1-4ccf-8d3a-8a8e00d9b2fa",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0ebb0789-34b0-4acf-a440-eace079531fc",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "8263b6ac-16c5-4a30-8d8a-3545fe2fcba0",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "913f72a2-0279-4323-9497-33b85e0b7813"
+        },
+        "loads": [
+          "molen.worldgen.structure.saint_isaacs_cathedral"
+        ],
+        "selectionBounds": [
+          30.30500871969519,
+          59.93350927020827,
+          30.30730383561791,
+          59.93465911407277
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "saint.isaacs.cathedral",
+            "coordinate": [
+              30.30529397724159,
+              59.93376137387606
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "saint.isaacs.cathedral"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.storefront": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 25011
       }
     }
   ],
@@ -477,8 +962,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

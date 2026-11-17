@@ -1,0 +1,360 @@
+{
+  "id": "summer_palace_heralding_spring",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_heralding_spring",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.27336651086807,
+    "latitude": 39.99540641902979
+  },
+  "title": "Summer Palace · Heralding Spring Pavilion",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "Open double-eaved pavilion with grey square roofs, red columns, painted brackets and a low stone platform.",
+  "nativeAxes": "+X and +Z are mapped local axes. Positive +Z follows the front of the main building or the shore-facing side of the site.",
+  "actualBounds": {
+    "min": [
+      -4.640619277954102,
+      -1.1979999542236328,
+      -4.263587951660156
+    ],
+    "max": [
+      4.8690595626831055,
+      8.4628267288208,
+      4.275027751922607
+    ]
+  },
+  "size": [
+    9.509678840637207,
+    9.660826683044434,
+    8.538615703582764
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://www.sohu.com/a/637200801_121124760"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.27336651086807,
+      39.99540641902979
+    ],
+    "heading": 0.05,
+    "bounds": [
+      116.27316782779495,
+      39.99525634558468,
+      116.27356787618737,
+      39.99555649249759
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 52,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.16919,
+          -3.64406
+        ],
+        [
+          4.318,
+          -3.90644
+        ],
+        [
+          4.39765,
+          3.6555
+        ],
+        [
+          -4.08955,
+          3.91787
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -4.16919,
+            -3.64406
+          ],
+          [
+            4.318,
+            -3.90644
+          ],
+          [
+            4.39765,
+            3.6555
+          ],
+          [
+            -4.08955,
+            3.91787
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Only occupied footprints of the documented buildings are replaced."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1a4720845f18b5dea7ed3e6d0cdb29c06697643321920c455c1d7f06fb4b18a3",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The court levels use standard Terrarium terrain. Roof color, construction and detailing follow photographs. Fine ornaments and interiors are approximated or omitted."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_heralding_spring/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:6aec8306e7c33be62c37f972ac4fcffb31a3b010676c7133e5308555246e686a"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_heralding_spring/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "inputHash": "sha256:b78b184fa0068e02715ce3a5d58223d2fc4792c28e4d85461c6721459ce41a68",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The court levels use standard Terrarium terrain. Roof color, construction and detailing follow photographs. Fine ornaments and interiors are approximated or omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        12.71422,
+        8.25,
+        15.825719999999999
+      ],
+      "lookAt": [
+        0.11422,
+        -0.15,
+        0.00572
+      ],
+      "fov": 48
+    },
+    {
+      "name": "detail",
+      "position": [
+        5.29422,
+        3.35,
+        7.28572
+      ],
+      "lookAt": [
+        0.11422,
+        1.85,
+        0.00572
+      ],
+      "fov": 62
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -12.905780000000002,
+        6.85,
+        8.40572
+      ],
+      "lookAt": [
+        0.11422,
+        -0.15,
+        0.00572
+      ],
+      "fov": 49
+    },
+    {
+      "name": "elevated",
+      "position": [
+        1.5142200000000001,
+        18.750000000000004,
+        -12.31428
+      ],
+      "lookAt": [
+        0.11422,
+        -0.15,
+        0.00572
+      ],
+      "fov": 48
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2546,
+    "vertices": 5110,
+    "materials": 5,
+    "bytes": 217892,
+    "sha256": "sha256:49011b3b2f22862594bcf21ab69e6b6681a7fef26d9b8c080c8a700fe1dad181"
+  }
+}

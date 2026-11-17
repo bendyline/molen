@@ -32,8 +32,63 @@
       "shots/shared/south-range-and-canted-roof.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256px shared graphs over eight roles: brick upper red brick and low range/base, stone_limestone_raw modeled trim, metal_painted roof/frames/mast/red ball, storefront opaque glass. Five textured draws and one skyline draw. No new graph, private atlas or embedded image. The graph supplies low-frequency brick/glass style, with geometry carrying the landmark silhouette. Linear tints, metric UVs and shared lifetime used; every graph reads once per native run and all model geometry disposes on unload.",
-    "captureReportHash": "sha256:06f4da96354d720123a5c2521f44ef77b7814b4d22b697105638817033ac67b2"
+    "notes": "Four existing256px shared graphs over eight roles: brick upper red brick and low range/base, stone_limestone_raw modeled trim, metal_painted roof/frames/mast/red ball, storefront opaque glass. Five textured draws and one skyline draw. No new graph, private atlas or embedded image. The graph supplies low-frequency brick/glass style, with geometry carrying the landmark silhouette. Linear tints, metric UVs and shared lifetime used; every graph reads once per native run and all model geometry disposes on unload. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:341f3224bb7c8586911b1f53b1f4ae2c773020a2d2ee7132f67f1f688b5ada5d",
+    "inputHash": "sha256:faf45fca0db0a32dff6f22659eb4d8db782618fb2ffb06dd7d3042fc5efa4933",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:b61e3325c99d07d416c2694d69f040e5285421d15e2dba1bc53c86e372e5ec08"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:491fbaee2db9d5b6a5b397ecde229e05acf5d122ea11cdb2cf2490926678f93c"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:21ae62d9b4a94478e8616b47ae58e309f29939aae0da89a14784e061c91b9b40"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:f39d964545ec2d1f8f279c992383388d9458e2cbabab900d39bb086f9040bfb1"
+      },
+      {
+        "path": "shots/shared/north-turrets-time-ball-and-window-rhythm.png",
+        "hash": "sha256:61a8965344a628da83572866617b08c98cbf2f2ff5f00ba69bf657ce5d4b15cc"
+      },
+      {
+        "path": "shots/shared/court-octagon-room-and-recessed-east-entry.png",
+        "hash": "sha256:334e767332736a75896b0f521858212e3b8797a653e6bf4aa8c4cf144350fa58"
+      },
+      {
+        "path": "shots/shared/south-range-and-canted-roof.png",
+        "hash": "sha256:a693ac4777e0adbd58d1aacb5f1ffb5a0c446b3a4fe9ae2b052ce0e222da2121"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:64c80163dd1588fdbf097f02aa523fa14324bb64720eb2ae6e6c4598985bec23"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

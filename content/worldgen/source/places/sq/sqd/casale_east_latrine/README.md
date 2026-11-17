@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Detached eastern latrine surviving octagonal masonry only, on its own exact mapped footprint beside the basilica. Low broad rubble walls, irregular broken caps, a reconstructed west-facing entrance gap toward the main villa and a genuinely open center retain original ground. No speculative intact ancient roof, invented conservation canopy, mosaic copy, furnishings, benches or underground plumbing. Main villa, Triclinium, Xystus, entrance and polygonal latrine remain independent.
+Surviving uncovered octagonal masonry beside the Villa Romana del Casale basilica. A broad low outer rim and smaller inner rim surround an open center, with an approximate opening toward the villa. Other villa buildings are separate landmarks.
 
 ## Evidence and reconstruction
 
@@ -10,12 +10,13 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 
 - [Reference](https://www.villaromanadelcasale.it/)
 - [Reference](https://www.sslanzilotti.com/armerina-villa-del-casale)
+- [Reference](https://www.smarteducationunescosicilia.it/en/piazza-armerina/the-main-nuclei-of-the-domus/)
 
-Detached eastern latrine surviving octagonal masonry only, on its own exact mapped footprint beside the basilica. Low broad rubble walls, irregular broken caps, a reconstructed west-facing entrance gap toward the main villa and a genuinely open center retain original ground. No speculative intact ancient roof, invented conservation canopy, mosaic copy, furnishings, benches or underground plumbing. Main villa, Triclinium, Xystus, entrance and polygonal latrine remain independent.
+Surviving uncovered octagonal masonry beside the Villa Romana del Casale basilica. A broad low outer rim and smaller inner rim surround an open center, with an approximate opening toward the villa. Other villa buildings are separate landmarks.
 
 ## Model and axes
 
-1,943 triangles; 5,829 vertices; 3 material groups; 235,692 bytes. Native bounds: -2.731, -1.324, -2.731 to 2.729, 1.230, 2.729. Source hash: `sha256:006c97eb877e4425c6e88a0fa8ea4b54f958a63f57830007e5711dbc598f3001`.
+3,102 triangles; 9,306 vertices; 3 material groups; 374,780 bytes. Native bounds: -2.730, -1.334, -2.731 to 2.729, 0.551, 2.729. Source hash: `sha256:b93d6a4d1a0335ba4cb72889d31f2babf03e9e3d7b80dd45d351ad10d3f8de9a`.
 
 {"x":"east","y":"up","z":"south"}
 
@@ -27,9 +28,9 @@ Run `node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=casa
 
 ## Pending work
 
-- Detached eastern latrine surviving octagonal masonry only, on its own exact mapped footprint beside the basilica. Low broad rubble walls, irregular broken caps, a reconstructed west-facing entrance gap toward the main villa and a genuinely open center retain original ground. No speculative intact ancient roof, invented conservation canopy, mosaic copy, furnishings, benches or underground plumbing. Main villa, Triclinium, Xystus, entrance and polygonal latrine remain independent.
-- Shared park Q505617 identifies the site; independent way304818578/native35184676907410 identifies this eastern latrine. Its eight mapped vertices set meter scale and offsets. Internal +X points east/slightly south away from the villa and +Z follows the western side south/slightly west. Native east/up/south axes are baked with heading 0. Only this one footprint is replaced; the southern polygonal latrine and every other building remain independent.
-- Medium-fi surviving masonry interpretation from existing ordinary aerial context and exact map outline. The tiny eastern polygon is partly obscured in the aerial; wall heights, hidden faces, west entrance position/width and fracture pattern are unmeasured approximations. Working wall tops vary 1.08–1.46m above local standard ground; inner face is a 0.79 radial inset. No qualified map height. Roof or conservation-canopy state is not resolved by this picture, so no roof is reconstructed. Exact archaeological paving, thresholds, preservation state and accessibility remain unverified.
-- Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening.
+- Surviving uncovered octagonal masonry beside the Villa Romana del Casale basilica. A broad low outer rim and smaller inner rim surround an open center, with an approximate opening toward the villa. Other villa buildings are separate landmarks.
+- The upper eastern octagon in the aerial lies between the basilica and the perimeter path. Standard PMTiles identifies its outline as the independent feature 35184676907410, mapped as OSM way/304818578. The site has Wikidata ID Q505617. The southern polygonal latrine retains its own identity. East, up and south are baked into the model at heading zero.
+- The overhead site photo shows an uncovered broad outer rim, a smaller concentric rim, and a gap on the side toward the villa. The mapped outline controls outer dimensions. The inner rim, gaps, edge breakup and heights are approximated from the picture. Outer courses rise about 0.49–0.73 m and inner courses 0.22–0.36 m above the sampled field. The center retains native ground.
+- The unchanged standard terrain provides the existing eastern datum at about 554.96 m. Each closed footing reaches at least 0.16 m below its sampled strip. Ground masks follow both occupied masonry rings and leave the center, the gap between rings, and the villa-facing entrance open.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

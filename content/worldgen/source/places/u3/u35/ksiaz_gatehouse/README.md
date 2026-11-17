@@ -4,7 +4,7 @@
 
 Cream gatehouse with twin octagonal upper towers,dark faceted domes,red central hip and tall arched library window.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.
 
 ## Sources and reconstruction
 
@@ -16,12 +16,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own map footprint;native Y0 is estimated local ground contact. Heights,roof profiles,openings and facade facing are interpretations. No independent Wikidata identity is assigned. Hotel Zamkowy membership is unconfirmed.
+The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.95 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. The formal library facade faces the outer approach.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=KSI_A01 (or --check).
 
-1700 triangles;207212 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
+1800 triangles;219228 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:69de6d213b9a3659d7c279e859e3cdcee0119d1f5bb07c882046c2a2617fdf96
+Source hash: sha256:7ca3751bf75445a42b5bd7cd4af40ec34056eafa291c463e99f82a78c0b215fd

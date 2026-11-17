@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chateau_montebello",
+  "kind": "static-structure",
+  "title": "Château Montebello",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chateau_montebello",
+        "output": "assets/places/f2/f24/chateau_montebello/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4d0828e08e1a2b881cd0b3eb5a81be7355e280689ea7406f634c533e3ecbd4a6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chateau-montebello",
+        "path": "models/generate-chateau-montebello.mjs"
+      },
+      {
+        "id": "chateau-montebello-model",
+        "path": "models/chateau-montebello-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-qualla-chateau-montebello.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9561-11703.png",
+      "terrain-sources/terrarium-15-9561-11704.png",
+      "terrain-sources/terrarium-15-9562-11703.png",
+      "terrain-sources/terrarium-15-9562-11704.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

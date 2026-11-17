@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hazratbal_shrine",
+  "kind": "static-structure",
+  "title": "Hazratbal Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hazratbal_shrine",
+        "output": "assets/places/tw/twj/hazratbal_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2a89dd20b68f36c4fff02c7a01f9b886bcda52cbc61f4b71a762fc718eb7895e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hazratbal-shrine",
+        "path": "models/generate-hazratbal-shrine.mjs"
+      },
+      {
+        "id": "hazratbal-shrine-model",
+        "path": "models/hazratbal-shrine-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/structure-controls.json",
+      "native-map/local-outline-controls.json",
+      "reference-rights/commons-qualla-original.json",
+      "reference-rights/commons-2023-creator-original.json",
+      "references/dargah-hazratbal-gowhar-nabi-wani-2023.png",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23196-13075.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -31,6 +31,7 @@ export const ksiazServiceSurfaces = {
   plaster: { slot: 'wall', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
   tile: { slot: 'roof', graph: 'tile_ceramic', roughness: 0.88, metallic: 0 },
   rubble: { slot: 'foundation', graph: 'stone_drywall', roughness: 0.92, metallic: 0 },
+  tread: { slot: 'trim', graph: 'stone_sandstone_raw', roughness: 0.88, metallic: 0 },
   timber: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
   glass: { slot: 'window', roughness: 0.35, metallic: 0.1 },
 };
@@ -218,7 +219,7 @@ function clip(poly, axis, bound, greater) {
   }
   return result;
 }
-function cap(o, poly, height, col, slot) {
+function cap(o, poly, height, col, slot, normal = [0, 1, 0]) {
   const ix = earcut(poly.flat());
   for (let i = 0; i < ix.length; i += 3)
     face(
@@ -226,7 +227,7 @@ function cap(o, poly, height, col, slot) {
       ix.slice(i, i + 3).map((k) => [poly[k][0], height(poly[k]), poly[k][1]]),
       col,
       slot,
-      [0, 1, 0],
+      normal,
     );
 }
 function roofHeight(x) {
@@ -270,10 +271,60 @@ function gable(o, width, bottom, top, d, windows = true) {
   }
 }
 /** Secondary gable faces +Z in its own frame; roof runs back into the main roof. */
-function projection(o, x, z, angle, width, depth, base, top, d, entry = false) {
+function projection(o, x, z, angle, width, depth, base, top, d, entry = false, fittedDoor) {
   const q = local(o, x, z, angle),
     half = width / 2;
-  if (entry) {
+  if (fittedDoor && d >= 1) {
+    const w = fittedDoor.width / 2;
+    for (const sign of [-1, 1])
+      panel(q, (sign * (half + w)) / 2, 0, 0, half - w, base, 'cream', 'plaster');
+    panel(q, 0, 2.55, 0, fittedDoor.width, base - 2.55, 'cream', 'plaster');
+    panel(q, 0, 0, 0, fittedDoor.width, 0.12, 'stone', 'rubble');
+    panel(q, 0, 0.12, -0.2, fittedDoor.width, 2.43, 'timber', 'timber');
+    for (const sign of [-1, 1]) {
+      const x = sign * w;
+      face(
+        q,
+        [
+          [x, 0.12, -0.2],
+          [x, 0.12, 0],
+          [x, 2.55, 0],
+          [x, 2.55, -0.2],
+        ],
+        'cream',
+        'plaster',
+        [-sign, 0, 0],
+      );
+    }
+    face(
+      q,
+      [
+        [-w, 2.55, -0.2],
+        [-w, 2.55, 0],
+        [w, 2.55, 0],
+        [w, 2.55, -0.2],
+      ],
+      'cream',
+      'plaster',
+      [0, -1, 0],
+    );
+    face(
+      q,
+      [
+        [-w, 0.12, -0.2],
+        [-w, 0.12, 0],
+        [w, 0.12, 0],
+        [w, 0.12, -0.2],
+      ],
+      'stone',
+      'tread',
+      [0, 1, 0],
+    );
+    if (d >= 2) {
+      for (const sign of [-1, 1]) box(q, sign * (w + 0.11), 0.12, 0.055, 0.22, 2.43, 0.16);
+      box(q, 0, 2.55, 0.055, fittedDoor.width + 0.44, 0.2, 0.16);
+    }
+  } else if (entry) {
     panel(q, 0, 0, 0, width, base, 'cream', 'plaster');
     if (d >= 1) window(q, 0, 0.18, 1.25, 2.35, d);
     if (d >= 2) for (const u of [-half + 0.15, half - 0.15]) box(q, u, 0, 0.06, 0.23, base, 0.18);
@@ -313,6 +364,74 @@ function projection(o, x, z, angle, width, depth, base, top, d, entry = false) {
       );
   }
 }
+function fittedSteps(o, entry) {
+  const q = local(o, ...entry.center, entry.angle);
+  const a = -entry.apronWidth / 2,
+    b = entry.apronWidth / 2;
+  const [left, right] = entry.toe;
+  const bottom = Math.min(left, right) - 0.15;
+  box(q, 0, bottom, 0.2, entry.apronWidth, 0.12 - bottom, 0.44, 'stone', 'tread');
+  box(q, 0, bottom, 0.64, entry.apronWidth, -0.01 - bottom, 0.44, 'stone', 'tread');
+  face(
+    q,
+    [
+      [a, left, 0.86],
+      [b, right, 0.86],
+      [b, right + 0.008, entry.depth],
+      [a, left + 0.008, entry.depth],
+    ],
+    'stone',
+    'tread',
+    [0, 1, 0],
+  );
+  for (const [x, toe, side] of [
+    [a, left, -1],
+    [b, right, 1],
+  ])
+    face(
+      q,
+      [
+        [x, bottom, 0.86],
+        [x, bottom, entry.depth],
+        [x, toe + 0.008, entry.depth],
+        [x, toe, 0.86],
+      ],
+      'stone',
+      'tread',
+      [side, 0, 0],
+    );
+}
+function eyebrow(o, x, z, width, rise, detail) {
+  const sides = detail === 1 ? 6 : 12;
+  const arc = Array.from({ length: sides + 1 }, (_, i) => {
+    const angle = (Math.PI * i) / sides;
+    return [z + (width * Math.cos(angle)) / 2, rise * Math.sin(angle)];
+  });
+  const front = roofHeight(x) + 0.045;
+  face(
+    o,
+    arc.map(([p, h]) => [x, front + h, p]),
+    'glass',
+    'glass',
+    [-1, 0, 0],
+  );
+  const at = ([p, h], t) => {
+    const u = x + t * 1.28;
+    return [u, roofHeight(u) + (h + 0.045) * (1 - t * t), p];
+  };
+  for (let i = 0; i < sides; i++)
+    for (const [a, b] of [
+      [0, 0.45],
+      [0.45, 1],
+    ])
+      face(
+        o,
+        [at(arc[i], a), at(arc[i + 1], a), at(arc[i + 1], b), at(arc[i], b)],
+        'roof',
+        'tile',
+        [0, 1, 0],
+      );
+}
 export function buildKsiazService(o, key, level = 'closeup') {
   if (key !== 'ksiaz_forester_house') throw Error(`Unknown service building ${key}`);
   const d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
@@ -323,27 +442,34 @@ export function buildKsiazService(o, key, level = 'closeup') {
       return sum + a[0] * b[1] - b[0] * a[1];
     }, 0),
     sign = Math.sign(area);
-  cap(o, loop, () => 0, 'stone', 'rubble');
+  const entrance = frame.siteFit?.entrances[0];
+  const footing = frame.siteFit?.footingBottom ?? 0;
+  cap(o, loop, () => footing, 'stone', 'rubble', frame.siteFit ? [0, -1, 0] : [0, 1, 0]);
   for (let i = 0; i < loop.length; i++) {
     const a = loop[i],
       b = loop[(i + 1) % loop.length],
       n = [sign * (b[1] - a[1]), 0, -sign * (b[0] - a[0])];
     for (const [low, high, col, slot] of [
-      [0, 0.35, 'stone', 'rubble'],
+      [footing, 0.35, 'stone', 'rubble'],
       [0.35, 3.2, 'wall', 'plaster'],
-    ])
-      face(
-        o,
-        [
-          [a[0], low, a[1]],
-          [b[0], low, b[1]],
-          [b[0], high, b[1]],
-          [a[0], high, a[1]],
-        ],
-        col,
-        slot,
-        n,
-      );
+    ]) {
+      const point = (t, y) => [a[0] + t * (b[0] - a[0]), y, a[1] + t * (b[1] - a[1])];
+      const wall = (start, end, floor, top) =>
+        face(
+          o,
+          [point(start, floor), point(end, floor), point(end, top), point(start, top)],
+          col,
+          slot,
+          n,
+        );
+      if (d && entrance?.edge === i) {
+        const half = entrance.width / (2 * Math.hypot(b[0] - a[0], b[1] - a[1]));
+        wall(0, 0.5 - half, low, high);
+        wall(0.5 + half, 1, low, high);
+        if (low < 0.12) wall(0.5 - half, 0.5 + half, low, 0.12);
+        if (high > 2.55) wall(0.5 - half, 0.5 + half, 2.55, high);
+      } else wall(0, 1, low, high);
+    }
     face(
       o,
       [
@@ -365,6 +491,10 @@ export function buildKsiazService(o, key, level = 'closeup') {
     [5.22, 6.86],
     [-5.82, 6.86],
   ];
+  if (entrance) {
+    cap(o, eaves, () => 3.45, 'timber', 'timber', [0, -1, 0]);
+    for (const x of [-5.76, 5.16]) box(o, x, 3.32, 0.56, 0.14, 0.15, 12.6, 'timber', 'timber');
+  }
   for (const [left, right] of [
     [-5.82, -0.3],
     [-0.3, 5.22],
@@ -382,10 +512,29 @@ export function buildKsiazService(o, key, level = 'closeup') {
     gable(q, 10.38, 3.89, 10.73, d);
     if (d >= 1) for (const x of [-3.05, 0, 3.05]) window(q, x, 1.02, 1.28, 1.55, d, angle === 0);
   }
-  projection(o, -6.517, 4.35, -Math.PI / 2, 3.18, 2.2, 3.22, 5.8, d, true);
+  projection(
+    o,
+    entrance?.center[0] ?? -6.517,
+    entrance?.center[1] ?? 4.35,
+    entrance?.angle ?? -Math.PI / 2,
+    3.18,
+    2.2,
+    3.22,
+    5.8,
+    d,
+    true,
+    entrance,
+  );
   projection(o, -4.85, -0.25, -Math.PI / 2, 2.75, 2.3, 6.05, 8.48, d);
   // Low rear service bay has its own short roof instead of a second tall main gable.
   projection(o, 6.52, -4.37, Math.PI / 2, 2.55, 2.4, 3.22, 4.8, d, true);
+  if (entrance) {
+    fittedSteps(o, entrance);
+    if (d >= 1) {
+      eyebrow(o, -4.42, 1.68, 1.52, 0.38, d);
+      eyebrow(o, -2.85, -3.7, 1.22, 0.29, d);
+    }
+  }
   face(
     o,
     [

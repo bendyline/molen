@@ -198,6 +198,33 @@ describe('automatic bridge structures', () => {
     disposeTerrainSurfaceObject(object);
     expect(dispose).toHaveBeenCalledOnce();
   });
+  it('keeps an approach support cap below the pavement on a steep cross slope', () => {
+    const tile = fixture(false);
+    tile.transportation[0] = {
+      class: 'primary',
+      width: 12,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+      bridgeConnections: [{ point: [0, 0.5], elevation: 14, radius: 40 }],
+    };
+    const heightfield = new Heightfield(new Float32Array([1, 1, 1, 0.5, 0.5, 0.5, 0, 0, 0]), 3, 3, {
+      origin: [0, 0],
+      worldSize: [200, 200],
+      height: { min: -80, max: 100 },
+    });
+    const object = createTerrainSurfaceObject(tile, { ...context(), heightfield });
+    const support = vertices(object, 'surfaces:approach-supports');
+    const heights = Array.from({ length: support.count }, (_, i) => i)
+      .filter((i) => support.getX(i) <= 0.001)
+      .map((i) => support.getY(i));
+    expect(Math.min(...heights)).toBeLessThan(10);
+    expect(Math.max(...heights)).toBeLessThanOrEqual(14.901);
+    disposeTerrainSurfaceObject(object);
+  });
   it('grades a connected ground approach without adding a bridge slab or a second surface lift', () => {
     const tile = fixture(false);
     tile.transportation[0] = {

@@ -1,0 +1,377 @@
+{
+  "planId": "sidi_okba_mosque",
+  "id": "sidi_okba_mosque",
+  "assetId": "molen.worldgen.structure.sidi_okba_mosque",
+  "title": "Sidi Okba Mosque",
+  "wikidataId": "Q48813977",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 5.8974972222,
+    "latitude": 34.7493916667
+  },
+  "size": [
+    24.059999465942383,
+    19.049999713897705,
+    25.979999542236328
+  ],
+  "actualBounds": {
+    "min": [
+      -12.029999732971191,
+      -2.4000000953674316,
+      -15.15999984741211
+    ],
+    "max": [
+      12.029999732971191,
+      16.649999618530273,
+      10.819999694824219
+    ]
+  },
+  "visualBrief": "Historic Sidi Okba mosque with its low plastered prayer hall, paired shallow domes, open entry arcade and square two-tier minaret.",
+  "nativeAxes": {
+    "x": "northeast along qibla wall",
+    "y": "up",
+    "z": "southeast toward qibla"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Mosqu%C3%A9e_Sidi-Okba_-_Mieusement_06.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mosqu%C3%A9e_Sidi-Okba_-_Mieusement_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Sidi_Uqba.JPG"
+  ],
+  "stories": [
+    {
+      "id": "sidi-okba-mosque-wp",
+      "url": "https://qualla.com/sidi-okba-mosque/"
+    }
+  ],
+  "referenceInputHash": "392e84f7e1b6b1c53814713ff677c34bc5f4804de8e10e5faa2acbb426d24c52",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snh/sidi_okba_mosque/models/sidi-okba-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snh/sidi_okba_mosque/models/sidi-okba-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.18,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.98
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.57,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -2.45,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -1,
+        5,
+        -0.8
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Archived views and written conservation descriptions support a low lime-rendered wall and flat roof, two shallow domes and a square two-tier tower with paired openings, relief and crenellations.",
+    "anchor": [
+      5.8974972222,
+      34.7493916667
+    ],
+    "heading": 0.5410520681182421,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        5.897339678020116,
+        34.74945012728421
+      ],
+      "modelHeight": 0,
+      "basis": "Original public ground at the modeled approach to the original roofed core."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/318858655",
+      "overture/building/662d4305-554d-4e7d-bc35-e504d85003a0"
+    ],
+    "source": "https://www.openstreetmap.org/way/318858655",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e88cf02bb29639f532e20975f7dbddd15fd41d4a3e3bb649937d95ed0b8f82f4"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The historic walls are reconstructed from the measured hall size. Their position within the Overture compound and vertical heights, roof detail, render tint and exact opening locations are approximate.",
+    "The model covers the surviving historic hall, minaret, exterior tomb dome and short court. The much larger modern complex and surrounding buildings are separate structures."
+  ],
+  "sourceLicense": "Original modeled historic exterior based on exact published public-domain Qualla originals, historical hall measurements, and modern site and elevation controls.",
+  "qaLodCameras": [
+    {
+      "name": "sidi-okba-mosque-skyline",
+      "position": [
+        -36,
+        23,
+        -41
+      ],
+      "lookAt": [
+        -1,
+        5,
+        -0.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sidi-okba-mosque-district",
+      "position": [
+        -36,
+        23,
+        -41
+      ],
+      "lookAt": [
+        -1,
+        5,
+        -0.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sidi-okba-mosque-street",
+      "position": [
+        -36,
+        23,
+        -41
+      ],
+      "lookAt": [
+        -1,
+        5,
+        -0.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sidi-okba-mosque-closeup",
+      "position": [
+        -36,
+        23,
+        -41
+      ],
+      "lookAt": [
+        -1,
+        5,
+        -0.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "historic-hall-and-court",
+      "position": [
+        -29,
+        23,
+        -37
+      ],
+      "lookAt": [
+        -1,
+        5,
+        -1
+      ]
+    },
+    {
+      "name": "tower-relief-and-domes",
+      "position": [
+        -25,
+        10,
+        31
+      ],
+      "lookAt": [
+        -5,
+        9,
+        7
+      ]
+    },
+    {
+      "name": "arched-entry-walk",
+      "position": [
+        -16,
+        4,
+        -28
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        -13.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3490,
+    "vertices": 10470,
+    "materials": 5,
+    "bytes": 533508,
+    "sha256": "sha256:711944797be1a40b7a1cea016aa3bb5023c3ea433fb545e97b82ba42a9d6e51d"
+  }
+}

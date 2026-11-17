@@ -70,7 +70,8 @@ function nearest(ts, o, d, frontOnly = false) {
 }
 
 const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+  layout = await read(source + '/layout.json'),
+  site = await read(source + '/models/site-fit.json');
 it('pins Beijing source, signed reference/map association, explicit estimated heights and actual courtyard floors', async () => {
   const m = await read(source + '/source.json'),
     a = await read(installed + '/asset.json'),
@@ -90,7 +91,9 @@ it('pins Beijing source, signed reference/map association, explicit estimated he
   expect(s.sourceFacts.authoredLevels.clockFinial).toBe(43.3);
   expect(s.sourceFacts.courtyardVoids).toBe(2);
   expect(s.sourceFacts.canopyRows).toBe(8);
-  expect(p.entry.groundCutout.outlines).toHaveLength(3);
+  expect(p.entry.terrainReference.anchor).toEqual(site.reference);
+  expect(p.entry.groundCutout.outlines).toEqual([p.entry.groundCutout.outline]);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
   expect(s.actualBounds.max[1]).toBeCloseTo(43.3, 3);
   expect(
     reviewedSourceMapFrame({
@@ -127,23 +130,30 @@ it('retains both full clock towers, all three central glazed bays, corner roofs,
       [49, -8],
     ])
       expect
-        .soft(nearest(ts, [x, 60, z], [0, -1, 0], true), f.name + ' no roof or floor in courtyard')
-        .toBe(Infinity);
-    expect.soft(top(-12, 0, 2), f.name + ' actual hall floor').toBeCloseTo(0.65, 2);
-    for (const z of [
-      54.8, 79.498249, 97.336095, 123.092857, 144.438308, 165.069428, 184.841586, 211.5,
+        .soft(top(x, z), f.name + ' courtyard remains open to its fitted ground')
+        .toBeCloseTo(0.6, 0);
+    expect.soft(Math.abs(top(-12, 0, 2) - 0.65), f.name + ' hall floor').toBeLessThan(0.1);
+    expect.soft(top(-12, -51.4, 4), f.name + ' forecourt meets entry').toBeCloseTo(0.6, 1);
+    for (const deck of site.decks) {
+      const [, foot] = deck.feet.find(([x]) => x === 60);
+      const y = top(60, deck.centre, 25);
+      expect.soft(y - foot, f.name + ' clear below every platform roof').toBeGreaterThan(4);
+      expect
+        .soft(y, f.name + ' roof follows sampled height envelope')
+        .toBeLessThan(deck.farY + 1.41);
+    }
+    for (const [x, z] of [
+      [80, 89],
+      [107, 137],
+      [-80, 172],
+      [180, 130],
     ])
-      expect.soft(top(60, z, 20), f.name + ' every open canopy row').toBeCloseTo(6.4, 1);
+      expect
+        .soft(nearest(ts, [x, 30, z], [0, -1, 0], true), f.name + ' real rail sky slot')
+        .toBe(Infinity);
     expect
-      .soft(nearest(ts, [80, 30, 89], [0, -1, 0], true), f.name + ' real rail sky slot')
-      .toBe(Infinity);
-    expect.soft(top(-12, 120, 12), f.name + ' closed elevated connector').toBeCloseTo(7.2, 2);
-    expect
-      .soft(
-        nearest(ts, [100, 0, 123], [0, -1, 0], true),
-        f.name + ' no invented canopy ground floor',
-      )
-      .toBe(Infinity);
+      .soft(top(-12, 120, 30), f.name + ' raised connector')
+      .toBeCloseTo(site.connectorFloor + 3.2, 2);
     if (f.name !== 'skyline') {
       const gs = await triangles(f.path, 'window');
       for (const x of [-29.5, -12, 5.5]) {
@@ -360,7 +370,7 @@ it('uses the production viewer to replace the whole passenger building and prese
     expect(
       landmark.position.y,
       'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(-12, -57), 2);
+    ).toBeCloseTo(field.sampleHeight(...local(site.reference)), 2);
     expect(seen.length).toBeGreaterThan(0);
     expect(seenContext.at(-1)).toEqual(originalContext);
     const remaining = new Set(seen.at(-1)),

@@ -6,12 +6,12 @@ Manantali’s central concrete dam with its eight gated spillways, ochre generat
 
 Rebuild: `node packages/worldgen/scripts/generate-manantali-dam.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=manantali_dam`. Detailed source and four browser tiers are separate ignored GLB outputs.
 
-The unmodified standard terrain uses a 204.43 m pond reference. The sampled reservoir windows range from 202.37 to 211.92 m and the downstream windows from 162.22 to 192.28 m. A damaged south-bank tile contains isolated anomalous elevations.
+A fixed 204.42666 m datum aligns the signed crest, eight spillway gates and five powerhouse outlets. The authored crest road runs between the two mapped service road turns. The native reservoir and tailwater use representative stages of 204.43 m and 162.22 m.
 
-The crest road and both rockfill flanks follow the native axis. Concrete and machinery dimensions use project references and estimated local proportions.
+Both road joins use the mapped plan and the representative terrain grade. The equipment and exterior details follow the retained ordinary images.
 
-The reference fixture shows a continuous reservoir and a 162.22 m tailrace. The sampled-water comparison shows the individual window stages and its boundaries are illustrative.
+The viewer depicts a steady reservoir and tailrace with the gates closed. The levels illustrate a representative operating state.
 
-Ground heights remain unchanged. Terrarium tile 14/7717/7586 contains a −1,680.49 m pixel amid neighboring 239–244 m elevations, leaving sharp defects in the nearby reservoir bank. Site acceptance remains pending.
+Bounded terrain repairs lift isolated invalid raster lows near the dam. Source terrain tiles are preserved. The downstream channel and neighboring terrain remain approximate.
 
 Original geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.

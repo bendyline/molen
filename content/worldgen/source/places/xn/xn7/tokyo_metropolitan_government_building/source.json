@@ -1,0 +1,66 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tokyo_metropolitan_government_building",
+  "kind": "static-structure",
+  "title": "Tokyo Metropolitan Government Main Building No. 1",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tokyo_metropolitan_government_building",
+        "output": "assets/places/xn/xn7/tokyo_metropolitan_government_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8941b033f875e3f2b09cd69fea438b9155fdf41283425d97051a2e0feaff3a57"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tokyo-metropolitan-government",
+        "path": "models/generate-tokyo-metropolitan-government.mjs"
+      },
+      {
+        "id": "tokyo-metropolitan-government-model",
+        "path": "models/tokyo-metropolitan-government-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29098-12902.png",
+      "terrain-sources/terrarium-15-29099-12902.png",
+      "preview.png",
+      "native-map/main-1-and-tower-parts.json",
+      "reference-rights/commons-around-shinjuku-11.json",
+      "reference-rights/commons-around-shinjuku-14.json",
+      "reference-rights/commons-shinjuku-central-park-southwest.json",
+      "reference-rights/commons-daderot-2018.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "terrain-gsi-grid.json",
+      "terrain-gsi-review.terrain.json",
+      "terrain-gsi-review.height.png",
+      "terrain-sources/gsi-dem5a-15-29098-12902.png",
+      "terrain-sources/gsi-dem5a-15-29099-12902.png",
+      "terrain-comparison.json",
+      "qa.json"
+    ]
+  }
+}

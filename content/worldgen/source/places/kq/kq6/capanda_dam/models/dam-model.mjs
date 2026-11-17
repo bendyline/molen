@@ -668,6 +668,23 @@ function powerhouse(o, c) {
       .map((i) => [apron[i][0], tailwater + 4.3, apron[i][1]]);
     tri(o, c, points, 'road', [0, 1, 0]);
   }
+  // The deck and river wall share a solid apron. The ground cut exposes its uphill edge.
+  for (let i = 0; i < apron.length; i++) {
+    const [x, z] = apron[i];
+    const [u, v] = apron[(i + 1) % apron.length];
+    quad(
+      o,
+      c,
+      [
+        [x, foundationY, z],
+        [u, foundationY, v],
+        [u, tailwater + 4.3, v],
+        [x, tailwater + 4.3, z],
+      ],
+      'wall',
+      [v - z, 0, x - u],
+    );
+  }
   for (let i = 1; i < tailrace.length; i++) {
     const [x, z] = tailrace[i - 1],
       [u, v] = tailrace[i],
@@ -711,16 +728,9 @@ function powerhouse(o, c) {
     );
   }
   if (!c.detail) return;
-  for (const [a, b] of [
-    [
-      [-193, 218],
-      [-96, 181],
-    ],
-    [
-      [-218, 177],
-      [-91, 118],
-    ],
-  ]) {
+  for (const edge of [0, 5, 6, 7, 8]) {
+    const a = ring[edge];
+    const b = ring[(edge + 1) % ring.length];
     const n = [b[1] - a[1], a[0] - b[0]],
       d = Math.hypot(...n),
       P = (t, h) => [
@@ -728,16 +738,104 @@ function powerhouse(o, c) {
         h,
         lerp(a[1], b[1], t) + (n[1] / d) * 0.27,
       ];
-    for (let i = 0; i < (c.near ? 13 : 6); i++) {
-      const N = c.near ? 13 : 6,
-        t = (i + 0.13) / N,
-        s = (i + 0.79) / N;
+    const count = Math.max(1, Math.floor(d / (c.near ? 9 : 18)));
+    for (let i = 0; i < count; i++) {
+      const t = (i + 0.18) / count;
+      const s = (i + 0.76) / count;
       quad(o, c, [P(t, roof - 6), P(s, roof - 6), P(s, roof - 3.1), P(t, roof - 3.1)], 'glass', [
         n[0],
         0,
         n[1],
       ]);
     }
+  }
+}
+
+function tailraceBank(o, c) {
+  // The narrow mapped spur separates the powerhouse outflow from the spillway channel.
+  // Stations follow both edges of the retained river polygon within its local map precision.
+  const stations = [
+    [-92.76, -66.65, 179.95, -65],
+    [-91.24, -72.57, 197.04, -72],
+    [-96.67, -83.2, 227.77, -77],
+    [-115.22, -102.5, 283.52, -79.4],
+    [-120.96, -113.68, 309.51, -80.4],
+    [-118.69, -118.64, 312.9, -80.75],
+  ];
+  for (let i = 1; i < stations.length; i++) {
+    const [left, right, z, y] = stations[i - 1];
+    const [nextLeft, nextRight, nextZ, nextY] = stations[i];
+    quad(
+      o,
+      c,
+      [
+        [left, y, z],
+        [right, y, z],
+        [nextRight, nextY, nextZ],
+        [nextLeft, nextY, nextZ],
+      ],
+      'dirt',
+      [0, 1, 0],
+    );
+    for (const [x, u, sign] of [
+      [left, nextLeft, -1],
+      [right, nextRight, 1],
+    ]) {
+      quad(
+        o,
+        c,
+        [
+          [x, y, z],
+          [u, nextY, nextZ],
+          [u, foundationY, nextZ],
+          [x, foundationY, z],
+        ],
+        'dirt',
+        [sign, 0, 0],
+      );
+    }
+  }
+  const [left, right, z, y] = stations.at(-1);
+  quad(
+    o,
+    c,
+    [
+      [left, y, z],
+      [right, y, z],
+      [right, foundationY, z],
+      [left, foundationY, z],
+    ],
+    'dirt',
+    [0, 0, 1],
+  );
+
+  // The uncut slope rises above the apron. Feather its exposed edge back to the native grade.
+  const apronBank = [
+    [-175.73386, 207.00213, -75.234],
+    [-164.3285, 236.73883, -75.202],
+    [-164.1652, 250.5541, -72.086],
+    [-164.00184, 264.36941, -69.592],
+    [-166.6413, 280.422, -67.579],
+    [-169.2808, 296.4746, -68.959],
+    [-171.9202, 312.5272, -72.751],
+    [-174.55969, 328.57982, -77.129],
+  ];
+  const deck = tailwater + 4.3;
+  for (let i = 1; i < apronBank.length; i++) {
+    const [x, z, y] = apronBank[i - 1];
+    const [u, v, h] = apronBank[i];
+    quad(
+      o,
+      c,
+      [
+        [x + 0.16, deck + 0.007, z],
+        [u + 0.16, deck + 0.007, v],
+        [u - 6, h - 0.12, v],
+        [x - 6, y - 0.12, z],
+      ],
+      'dirt',
+      [0, 1, 0],
+    );
   }
 }
 
@@ -818,6 +916,7 @@ export function buildDamLevel(o, level = 'master') {
   spillway(o, c);
   serviceCrossing(o, c);
   powerhouse(o, c);
+  tailraceBank(o, c);
   cranes(o, c);
   switchyard(o, c);
 }

@@ -87,8 +87,8 @@
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X across the mapped path",
-    "longitudinal": "+Z toward the park along the adjoining path; sculpture facing provisional",
-    "origin": "Mapped gate opening center; Y0 estimated local terrain contact"
+    "longitudinal": "+Z into the park. The paired lion shields turn inward and toward the town junction to the north, along −Z.",
+    "origin": "Mapped passage center. Y0 is the Terrarium elevation sampled at the gate node."
   },
   "controls": {
     "clearWidth": 4.8,
@@ -104,6 +104,83 @@
   "reconstruction": {
     "basis": "Own mapped Brama Lwów node and adjacent path controls; original medium-fi exterior from a 2012 photograph.",
     "scope": "One of three park gates in ksiaz_castle_and_park_complex; other site groups remain incomplete.",
-    "registration": "Path order establishes a native axis, not a verified signed facade or sculpture bearing. No surveyed terrain datum."
+    "registration": "The park-side photograph looks through the gate toward the mapped Wałbrzyska and Kasztanowa junction. The road-side photograph confirms the opposite approach and inward-facing lions. Foundations and wall plinths follow retained terrain, and the open leaves sit beside the path."
+  },
+  "siteFit": {
+    "contact": {
+      "anchor": [
+        16.3176525,
+        50.8512115
+      ],
+      "modelHeight": 0,
+      "local": [
+        0,
+        0
+      ],
+      "meters": 316.598945
+    },
+    "datumMeters": 316.598945,
+    "wings": [
+      {
+        "pierBase": -0.349226,
+        "grades": [
+          -0.099331,
+          -0.121584,
+          -0.143471,
+          -0.164788,
+          -0.185174,
+          -0.204333,
+          -0.222044,
+          -0.238192,
+          -0.252671
+        ]
+      },
+      {
+        "pierBase": -0.187726,
+        "grades": [
+          0.108326,
+          0.115239,
+          0.122465,
+          0.13034,
+          0.139699,
+          0.150864,
+          0.163497,
+          0.177782,
+          0.195641
+        ]
+      }
+    ],
+    "bounds": [
+      16.317475,
+      50.851121,
+      16.31783,
+      50.851302
+    ],
+    "evidence": {
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17869,
+          "y": 10991,
+          "hash": "sha256:a2562763c0431f115e98f457dbc1dab15ef790257cf8cb1fdddbbbffb6f42ae4"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8934,
+          "y": 5495,
+          "hash": "sha256:2492c8620458e9394b7609169fce34e67e91201b9ab6e47a3be96c53a3b58d7c",
+          "container": "Terrarium original"
+        }
+      ],
+      "archiveHashes": {
+        "vector": "sha256:ffa4bca84ec8677ed42d0605bbcd13e3b0ce7c904d27785b627b7b383addf0b4",
+        "elevation": "sha256:2492c8620458e9394b7609169fce34e67e91201b9ab6e47a3be96c53a3b58d7c"
+      },
+      "transportationId": 35184627448780,
+      "openingOffsetMeters": 0.071523
+    }
   }
 }

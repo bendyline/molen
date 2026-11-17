@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.valerian_palace",
+  "kind": "static-structure",
+  "title": "Valerian Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.valerian_palace",
+        "output": "assets/places/tj/tjk/valerian_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:491ce21f8369a3012465948e3efd47f44a21b8c438d7627b5a58e50f5084022e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-valerian-palace",
+        "path": "models/generate-valerian-palace.mjs"
+      },
+      {
+        "id": "valerian-palace-model",
+        "path": "models/valerian-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-valerian-palace-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21078-13542.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

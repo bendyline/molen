@@ -1,9 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.ksiaz_palm_residence",
-  "sourceHash": "sha256:a529cc2b306ae9fd68b9942ba70a70a525437bad72eb5d5059aba4831c9f17bb",
-  "runtimeHash": "sha256:9c7747eeae3e512ac5d49e851c59a1f3c7d952cb951fa9f49758f30df90fb45c",
-  "placementHash": "sha256:f96b253032fb9e3f646aaa16a5d34f13d588b040cea342908f65507b42020ea7",
+  "inputHash": "sha256:6fb801427262969ff6d15255ebef6461d6a2177d705820e3fa7fc58d76b62cd8",
+  "sourceHash": "sha256:a3bba0f771b03c473c30a4ed84a4bc3b14006dcc35feba6db3fae0deb6e4df49",
+  "runtimeHash": "sha256:46c064b073c3eedac40ed1317bf1ff493ad570ac1ec2b403ff25920590d57446",
+  "placementHash": "sha256:c732806804b87daf176a9ae38e4b470a16c67c27c327cbe0fb3f9fe0c4e9fb77",
   "entry": {
     "id": "ksiaz.palm-residence",
     "title": "Lubiechów Palm House residence",
@@ -16,11 +17,151 @@
     "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
-    "replaceFootprint": false,
+    "replaceFootprint": true,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/232185882",
-    "note": "Own mapped feature(s) way/232185882, way/396950363. Individual NID survey-card identity and cardinal elevations interpreted on the official ensemble plan. Roof/body dimensions, present facade state, exact component associations and terrain contact remain unreviewed. Exterior only; no parent QID reuse or broad name matching."
+    "note": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain. The west stair follows the elevation drawing and connects over the mapped low annex.",
+    "terrainReference": {
+      "anchor": [
+        16.306236146691223,
+        50.828861281337154
+      ],
+      "modelHeight": 0.208,
+      "basis": "The own mapped footprint and historic façade orientation set the placement. The fitted plinth and recessed entrance use retained PMTiles terrain. The west stair follows the elevation drawing and connects over the mapped low annex."
+    },
+    "bounds": [
+      16.305965342406484,
+      50.82884380021359,
+      16.30634269235188,
+      50.82903415924476
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.126962,
+          5.700609
+        ],
+        [
+          -5.334529,
+          -5.583088
+        ],
+        [
+          0.214655,
+          -5.669406
+        ],
+        [
+          0.050686,
+          -7.557624
+        ],
+        [
+          9.631494,
+          -7.636152
+        ],
+        [
+          9.852631,
+          5.75602
+        ],
+        [
+          -4.906703,
+          5.851008
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.126962,
+            5.700609
+          ],
+          [
+            -5.334529,
+            -5.583088
+          ],
+          [
+            0.214655,
+            -5.669406
+          ],
+          [
+            0.050686,
+            -7.557624
+          ],
+          [
+            9.631494,
+            -7.636152
+          ],
+          [
+            9.852631,
+            5.75602
+          ],
+          [
+            -4.906703,
+            5.851008
+          ]
+        ],
+        [
+          [
+            -10.120159,
+            5.682138
+          ],
+          [
+            -10.257867,
+            -5.230901
+          ],
+          [
+            -5.299599,
+            -5.397759
+          ],
+          [
+            -5.126962,
+            5.700609
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps masks for the mapped service building and its integral components."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          5.663112,
+          5.619069
+        ],
+        [
+          7.033012,
+          5.602475
+        ],
+        [
+          7.25165,
+          7.139939
+        ],
+        [
+          5.48178,
+          7.161378
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            5.663112,
+            5.619069
+          ],
+          [
+            7.033012,
+            5.602475
+          ],
+          [
+            7.25165,
+            7.139939
+          ],
+          [
+            5.48178,
+            7.161378
+          ]
+        ]
+      ],
+      "basis": "The sandstone landing fills its own cutout and meets the retained approach at the toe."
+    }
   },
-  "review": "Inactive source-specific draft. Flat-ground ensemble and exterior appearance review do not approve actual terrain, surveyed dimensions or complete Palm House/ksiaz_castle_and_park_complex scope."
+  "review": "Verified the mapped footprints and visible approaches against the retained Protomaps and Terrarium data at all four detail levels."
 }

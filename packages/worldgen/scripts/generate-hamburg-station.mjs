@@ -72,7 +72,7 @@ const spec = {
   actualBounds: bounds,
   nativeAxes: brief.nativeAxes,
   sourceFacts: brief.sourceFacts,
-  referencePages: brief.references.map((r) => r.url),
+  referencePages: [...brief.references.map((r) => r.url), placement.canopy.referencePage],
   geographicProposal: {
     status: 'preview-proposal',
     anchor: placement.anchor,
@@ -82,8 +82,7 @@ const spec = {
     elevationMeters: 0,
     groundContactReviewed: true,
     groundContactBasis:
-      'The connected passenger ensemble uses one standard host field datum outside its street facade. Exact threshold/platform grades remain approximate. ' +
-      brief.heightPolicy,
+      'The station uses one host terrain reference with fitted granite landings at both entrances and grade samples along its sidewalk edges. Original threshold and platform levels are approximate.',
     groundModelY: 0,
     replaceFootprint: true,
     buildingCutout: placement.buildingCutout,
@@ -105,7 +104,8 @@ const spec = {
     'Generated source; current visual and geographic acceptance is recorded separately in qa.json.',
   geometrySource:
     'Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.',
-  materialMethod: brief.materialMethod,
+  materialMethod:
+    'Shared sandstone, granite, slate, copper, painted steel and window graphs. The forecourt canopy uses untextured transparent panes and shared painted steel.',
   sharedSurfaces: materials.flatMap((m) => (m.sharedSurface ? [m.sharedSurface] : [])),
   runtimeLodOverlay: brief.runtimeLodOverlay,
   mediumFiContext: brief.mediumFiContext,
@@ -226,7 +226,8 @@ await emit(
   Buffer.from(
     '# Hamburg Hauptbahnhof\n\n![Molen preview](preview.png)\n\n' +
       brief.visualBrief +
-      '\n\nRebuild: `node packages/worldgen/scripts/generate-hamburg-station.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=hamburg_hauptbahnhof`. Detailed source and four browser tiers are separate ignored GLB outputs.\n\n' +
+      '\n\nThe Hachmannplatz canopy follows four layered map features and an ordinary station photo. Its glass vaults and painted steel roof leave the entrance plaza open. The entrance landings and frontage walks follow sampled terrain. [Placement controls](placement-draft.json)\n\n' +
+      'Rebuild with `node packages/worldgen/scripts/generate-hamburg-station.mjs`. Append `--check` to verify exact bytes. Select `--ids=hamburg_hauptbahnhof` when importing or placing the four streaming levels.\n\n' +
       brief.limitations.join('\n\n') +
       '\n\nOriginal geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.\n',
   ),

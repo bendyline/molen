@@ -3,6 +3,15 @@ import { expect, it } from 'vitest';
 import { buildKsiazPalm } from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
+const frame = JSON.parse(
+  readFileSync(
+    new URL(
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/map-frame.json',
+      import.meta.url,
+    ),
+  ),
+);
+
 it('keeps the Palm House source and all four levels deterministic, shared and within browser budgets', async () => {
   const id = 'molen.worldgen.structure.ksiaz_palm_house',
     levels = [];
@@ -21,9 +30,9 @@ it('keeps the Palm House source and all four levels deterministic, shared and wi
       types = new Map(),
       pos = [];
     expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 4);
+    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 5);
     if (name !== 'skyline')
-      expect(g.materials.filter((m) => m.extras?.molenSurface)).toHaveLength(3);
+      expect(g.materials.filter((m) => m.extras?.molenSurface)).toHaveLength(4);
     for (const m of g.meshes)
       for (const p of m.primitives) {
         pos.push(g.accessors[p.attributes.POSITION]);
@@ -34,7 +43,7 @@ it('keeps the Palm House source and all four levels deterministic, shared and wi
         }
       }
     for (const t of types.values()) expect(t.size).toBe(1);
-    expect(Math.min(...pos.map((a) => a.min[1]))).toBe(0);
+    expect(Math.min(...pos.map((a) => a.min[1]))).toBe(Math.fround(frame.siteFit.footingBottom));
     expect(Math.max(...pos.map((a) => a.max[1]))).toBe(15);
     levels.push(a);
   }
@@ -163,5 +172,6 @@ it('covers the own perimeter within 2mm and keeps courtyard walls facing their o
     ),
   );
   expect(spec.sitePart.identity).toEqual({ type: 'relation', id: 3532583 });
-  expect(spec.geographicProposal.featureIds).toEqual(['relation/3532583']);
+  // The relation and its mapped outer member both identify this same palm house.
+  expect(spec.geographicProposal.featureIds).toEqual(['relation/3532583', 'way/263009992']);
 });

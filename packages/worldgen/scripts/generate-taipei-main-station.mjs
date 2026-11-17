@@ -81,9 +81,7 @@ const spec = {
     orientationPolicy: 'approximate-visualization',
     elevationMeters: 0,
     groundContactReviewed: true,
-    groundContactBasis:
-      'The connected passenger ensemble uses one standard host field datum outside its street facade. Exact threshold/platform grades remain approximate. ' +
-      brief.heightPolicy,
+    groundContactBasis: brief.heightPolicy,
     groundModelY: 0,
     replaceFootprint: true,
     buildingCutout: placement.buildingCutout,
@@ -100,7 +98,7 @@ const spec = {
     notes: placement.note,
   },
   fidelityTarget: 'medium-fi',
-  fidelityStatus: 'pending',
+  fidelityStatus: 'review-in-qa.json',
   reviewStatus:
     'Generated source; current visual and geographic acceptance is recorded separately in qa.json.',
   geometrySource:
@@ -203,6 +201,7 @@ const source = {
         'terrain-grid.json',
         'review-scope.json',
         'reference-observations.json',
+        'models/site-fit.json',
         'terrain-review.height.png',
         'terrain-review.terrain.json',
         ...(oldManifest?.files.documents ?? []),

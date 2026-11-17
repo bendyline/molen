@@ -1,0 +1,49 @@
+{
+  "format": "molen/geographic-structure-controls@1",
+  "date": "2026-11-15",
+  "model": "london_stadium",
+  "title": "London Stadium",
+  "cell": "gc/gcp",
+  "geometryBasis": "The OSM stadium multipolygon contains 59 outer and 69 inner roof controls. The mapped turf controls pitch centre and bearing, and the mapped southeast entrance fixes the datum.",
+  "sectionBasis": "The independent original DEM places the field about 5.1 m below the southeast approach. The synthetic field surface sits 0.17 m above the sample mean to avoid cutting the preserved elevation. Rail, fascia, roof heights and sections are inferred from the mapped shape, released images and engineering text.",
+  "limitations": [
+    "The model depicts the current football layout. Seat counts, interface details, facade pattern and interior service areas are simplified.",
+    "The outer and inner roof outlines are mapped. Vertical roof section, cable positions and truss dimensions are original approximate geometry.",
+    "The panel artwork, stadium signage, crowd, temporary concert fixtures, and separate nearby buildings and bridges are outside the modeled scope."
+  ],
+  "dimensions": {
+    "fieldWidth": 68,
+    "fieldLength": 105,
+    "pitchY": -4.92,
+    "roofEaves": 40.75,
+    "compressionTrussTop": 49.2,
+    "innerRoofY": 32.75,
+    "lowerSeatTop": 9.4,
+    "upperSeatTop": 28.9,
+    "roofMaximumCantilever": 84,
+    "concourseY": 4.6
+  },
+  "terrainFrozenBeforeGeometry": {
+    "terrain-grid.json": "sha256:ed7b5d5aefb49783e28a5cfd0d8c745ca710115c7958e90bd4b3d82c7bb4069d",
+    "terrain-review.terrain.json": "sha256:02922321441c7cb5736554662181699b225ac3e4040593d982778b38ea276ccc",
+    "terrain-review.height.png": "sha256:a962b45be32f3cec5a7537b5e873b88f5a94893aa4a59010426a6c93dca8183c",
+    "terrain-sources/terrarium-15-16382-10891.png": "sha256:16c2f56c6a1307e8fcf116c55564d2917c02c4a999689cb235723c6c42a1f434"
+  },
+  "requiredSourceDocuments": [
+    "map-frame.json",
+    "native-map/footprint.json",
+    "reference-rights/commons-london-stadium-qualla-cc0.json",
+    "reference-rights/commons-london-stadium-exterior-cc0.json",
+    "reference-images/london-stadium-exterior-01.jpg",
+    "reference-images/london-stadium-exterior-02.jpg",
+    "plan-controls.json",
+    "research-preparation.json",
+    "construction-preparation.json",
+    "reference-images.json",
+    "imagery-evidence.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-sources/terrarium-15-16382-10891.png"
+  ]
+}

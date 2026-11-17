@@ -144,7 +144,7 @@ export function stationPoint(i, lateral, elevation) {
 }
 function embankment(o, tier) {
   const end = controls.embankmentStop;
-  const skip = [4, 2, 1, 1, 1][tier];
+  const skip = [9, 2, 1, 1, 1][tier];
   const ids = [...Array.from({ length: end }, (_, i) => i).filter((i) => i % skip === 0), end];
   const section = (i) => {
     const [, , h, , , down, dy, up, uy] = stations[i];
@@ -273,27 +273,82 @@ function block(o, m, f, a, b, y, h, z, w) {
   quad(o, m, at(b, z), at(b, z + w), top(b, z + w), top(b, z), along);
 }
 const chuteRows = [
-  [0, 365, 0],
-  [-22, 351, -0.9],
-  [-49, 335, -1.5],
-  [-86, 326, -2],
-  [-129, 323, -3.4],
-  [-175, 321, -4.9],
-  [-219, 319, -6.3],
-  [-257, 318, -8.2],
+  [0, 365, 0, 373.866, 371.402],
+  [-22, 351, -0.9, 370.887, 367.429],
+  [-49, 335, -1.5, 366.836, 367.589],
+  [-86, 326, -2, 364.255, 371.226],
+  [-129, 323, -3.4, 363.424, 375.079],
+  [-175, 321, -4.9, 361.402, 379.79],
+  [-219, 319, -6.3, 364.783, 380.626],
+  [-257, 318, -8.2, 370.009, 379.066],
 ];
 export function spillwayFrame() {
   return frame(spillway.a, spillway.b);
 }
+// Cross sections follow the mapped dry reach from the concrete chutes to the Limay.
+// Each row gives the floor edges and elevation, then the outer bank edges and heights.
+export const outfallRows = [
+  [-257, -9.57, 88.988, 318, -11.7, 99.518, 370.009, 379.066],
+  [-275, 18.01, 76.85, 317.8, 11.01, 83.85, 373.086, 374.646],
+  [-340, 20.85, 73.49, 317.4, 13.85, 80.49, 373.507, 373.149],
+  [-420, 18.63, 69.34, 316.9, 11.63, 76.34, 367.632, 369.895],
+  [-485, -20.63, 65.98, 316.4, -27.63, 72.98, 333.463, 369.673],
+  [-520, -45.71, 64.05, 315.8, -45.71, 71.05, 315.43, 369.061],
+  [-575, -31.67, 54.7, 315.65, -31.67, 61.7, 315.43, 369.408],
+  [-620, -20.18, 41.94, 315.5, -20.18, 48.94, 315.43, 359.715],
+  [-660, -9.97, 25.13, 315.4, -9.97, 32.13, 315.43, 344.416],
+  [-680, -4.86, 15.89, 315.43, -4.86, 22.89, 315.43, 339.165],
+];
+
+function outfall(o, tier) {
+  const { at } = spillwayFrame();
+  const rows =
+    tier === 0 ? outfallRows.filter((_, i) => [0, 2, 4, 5, 7, 9].includes(i)) : outfallRows;
+  const profile = ([z, a, b, y, left, right, lo, hi]) => [
+    at(left, lo + 0.16, z),
+    at(a, y, z),
+    at(b, y, z),
+    at(right, hi + 0.16, z),
+  ];
+  for (let i = 1; i < rows.length; i++) {
+    const a = profile(rows[i - 1]);
+    const b = profile(rows[i]);
+    for (let j = 1; j < a.length; j++)
+      quad(o, j === 2 && i === 1 ? 'apron' : 'rock', a[j - 1], a[j], b[j], b[j - 1], [0, 1, 0]);
+  }
+}
+
 function gates(o, tier) {
   const f = spillwayFrame(),
     pitch = f.length / spillway.bays;
   const at = f.at;
-  block(o, 'concrete', f, -3, f.length + 4, 382.8, 3.1, -6.7, 13.4);
+  block(o, 'concrete', f, -3, f.length, 382.8, 3.1, -6.7, 13.4);
   const path = tier === 0 ? chuteRows.filter((_, i) => [0, 2, 4, 7].includes(i)) : chuteRows;
+  const bankEdge = (side, shift) =>
+    side === -1 ? Math.min(-3.7, shift - 3.5) : f.length + Math.max(3.7, shift + 3.5);
+  // A low apron behind the gates closes the basin beneath the raised crest deck.
+  block(o, 'apron', f, -3.2, f.length + 3.4, 360, 5, 0, 11.2);
+  for (let j = 1; j < path.length; j++) {
+    const [z, y, s, left, right] = path[j - 1];
+    const [Z, Y, S, nextLeft, nextRight] = path[j];
+    for (const [side, edge, rim, nextRim] of [
+      [-1, 0, left, nextLeft],
+      [1, f.length, right, nextRight],
+    ]) {
+      quad(
+        o,
+        'rock',
+        at(edge + s + side * 1.37, y, z),
+        at(edge + S + side * 1.37, Y, Z),
+        at(bankEdge(side, S), nextRim + 0.16, Z),
+        at(bankEdge(side, s), rim + 0.16, z),
+        [0, 1, 0],
+      );
+    }
+  }
   for (let i = 0; i <= spillway.bays; i++) {
     const x = i * pitch;
-    block(o, 'concrete', f, x - 1.8, x + 1.8, 351, 35, -16, 32);
+    block(o, 'concrete', f, x - 1.8, x + 1.8, 351, 34.7, -16, 32);
     for (let j = 1; j < path.length; j++) {
       const [z, y, s] = path[j - 1],
         [Z, Y, S] = path[j],
@@ -302,10 +357,10 @@ function gates(o, tier) {
         quad(
           o,
           'apron',
-          at(x + 1.45 + s, y, z),
-          at(x + pitch - 1.45 + s, y, z),
-          at(x + pitch - 1.45 + S, Y, Z),
-          at(x + 1.45 + S, Y, Z),
+          at(x + 1.38 + s, y, z),
+          at(x + pitch - 1.38 + s, y, z),
+          at(x + pitch - 1.38 + S, Y, Z),
+          at(x + 1.38 + S, Y, Z),
           [0, 1, 0],
           0.95 + (i % 3) * 0.04,
         );
@@ -362,8 +417,12 @@ function gates(o, tier) {
   }
   for (const side of [-1, 1]) {
     const x = side < 0 ? -4.6 : f.length + 4.6;
-    block(o, 'concrete', f, x - 2, x + 2, 342, 43, -27, 41);
-    if (tier > 0) block(o, 'roof', f, x - 3.1, x + 3.1, 385.1, 5.8, -7.9, 8.1);
+    block(o, 'concrete', f, x - 2, x + 2, 342, 38, -27, 41);
+    if (tier > 0) {
+      block(o, 'concrete', f, x - 2, x + 2, 380, 4.7, -27, 20);
+      block(o, 'concrete', f, x - 2, x + 2, 380, 4.7, 7, 7);
+      block(o, 'roof', f, x - 3.1, x + 3.1, 384.7, 6.2, -18.1, 8.1);
+    }
   }
 }
 function powerhouse(o, tier) {
@@ -428,6 +487,8 @@ function powerhouse(o, tier) {
     at(0, 312.85, -52),
     [0, 1, 0],
   );
+  // The short mapped service approaches meet a concrete deck above the tailrace.
+  block(o, 'apron', f, -3, L + 4, 311.5, 7.53, -16.8, 14.7);
   for (const x of [0, L]) rod(o, 'concrete', at(x, 320, -1), at(x, 320, -52), 4.6, 7.2);
 }
 function intakeWorks(o, tier) {
@@ -480,6 +541,7 @@ export function buildDamLevel(o, name) {
   embankment(o, tier);
   crestRoad(o, tier);
   gates(o, tier);
+  outfall(o, tier);
   powerhouse(o, tier);
   intakeWorks(o, tier);
 }

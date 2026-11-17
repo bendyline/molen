@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_forester_house",
-  "sourceHash": "sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd",
-  "runtimeHash": "sha256:fd5072b59f59733e875a135054244d8eb7e0b0d79702624067be310a82aa6842",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:9134999f7b5baddf03aee9153681a5b6caef5cb76160985c5b5a0d3d28f7eda0",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:7b6d9fa63c98f6aa02372c8f7269242d3a684b25f97f09f5201c2e6ffb6fe5f0",
-  "placementHash": null,
+  "inputHash": "sha256:4c1ecaf3856e8cdc08454b8f997f2c5b68bfbf746d44630f21e207f2ba084785",
+  "sourceHash": "sha256:e2b729b2edcc769aa34c1899ee3f7b55fe4e7c78062060879935058eb6f896e5",
+  "runtimeHash": "sha256:5796c8bee8b86fcd587a4c04616a62753aada49e45016c7659d1ef64a91b2271",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:7d69148c10b47aadd214c4ede756597eee10f4a09329c25cae0bf4433df1d039",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:58b2cc93fe4cec810de1b0a89d9fd66e112aa72a5e961d00d19b06c40e7b932b",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -17,6 +20,10 @@
     "matgraph:molen.worldgen.material.tile_ceramic": {
       "path": "materials/tile_ceramic.matgraph.json",
       "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+    },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
     },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
@@ -30,223 +37,355 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:95d0391a088695ebf8614bc83d67f71a421cfcc8d4c03b016af0868b019f2bf0",
+      "hash": "sha256:b7e5f84d7401676f94a9d833bceffce18884ecfddb08664f2dc02ed14ad41db1",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:1a3998a299d04f0f4532aedcea892967254b61494f8b79e7d83da7395e177754",
+      "hash": "sha256:946e7c12bf4df8e6e1fca50155c125e1a5b5c598cfc7524f1103d69c0445d3f3",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:d45b409b1d3f2cb9e7e86e1b82725fa8fc92552387ec003fbb4fe02c4a15830a",
+      "hash": "sha256:ef1604885817cd16a9dd3d2c7d3f4439223a8c659e215655c754046af0f84b91",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:e44e28b978670b3d165a6cb91447b6a1a072f625f699f824af65d4145b95c49f",
+      "hash": "sha256:176ec0f50cfe6bdc8f7987d5db4979a2f346e1269a8d492232ec4c76d3440400",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/main-gable-and-shutters.png",
-      "hash": "sha256:ee5a73ed084af2bd0fdcc3d4cfb990949ed52a3ac3898a9ab6196a822ef03011",
+      "hash": "sha256:eff2c047ec2a681c53219f1e38fd5813abd7f030c0f99446f81d3acd3924e061",
       "camera": {
         "name": "main-gable-and-shutters",
         "position": [
@@ -262,54 +401,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/entrance-gable-and-dormer.png",
-      "hash": "sha256:165c0b4a3bee9af991e0e64525cd3727495c0fc4144348fde80c6ad58d64930e",
+      "hash": "sha256:2c5235551ca7194674e98078434d2d0023affc6e86d1e2683700b27f26ba19b1",
       "camera": {
         "name": "entrance-gable-and-dormer",
         "position": [
@@ -325,54 +497,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/roof-and-own-footprint.png",
-      "hash": "sha256:e80647163849ba878bf7e1721e2013133eb25eb7e015179266ed731a1133134e",
+      "hash": "sha256:b3fc8b5b980f1dd49a2be4dd491ca212b2e67cbe0719b70e8447b78114056004",
       "camera": {
         "name": "roof-and-own-footprint",
         "position": [
@@ -388,54 +593,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
       }
     },
     {
       "path": "shots/shared/rear-gable-and-service-porch.png",
-      "hash": "sha256:c2a662080df04b5afaa285a235373246f5575d75b1c109ae3a4fdecdcf50eea9",
+      "hash": "sha256:df85a94d37f21541c782fe3985dd6f7a6780694c5f7eacf43196c1585fcc2100",
       "camera": {
         "name": "rear-gable-and-service-porch",
         "position": [
@@ -451,49 +689,169 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_forester_house",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
         "position": [
+          -64.12098725233227,
           0,
-          0,
-          0
+          -63.873185521923006
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 1468,
+        "meshes": 6,
+        "triangles": 1606,
         "bounds": {
           "min": [
-            -6.697000026702881,
-            0,
-            -6.840000152587891
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
           ],
           "max": [
-            6.699999809265137,
+            8.741614981554449,
             11.804239273071289,
-            6.860000133514404
+            8.3793550664559
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "7da356dc-4eea-442d-b58a-f990ad60951c",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "58e3bbea-cd4c-45b8-bf44-f6a2fd201541",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "181492d4-1dd3-4002-95c4-3117c360fc62",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "77c76fe4-a0f2-4e9c-a8d3-fbf3f57163a7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_forester_house"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_drywall": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1470
+        "draws": 7,
+        "renderedTriangles": 1608
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:860bf721a873c424093c6e9e3aee633d8925cdaaac9b9c2850e3b8bcf27f7774",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_forester_house",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.forester-house",
+        "position": [
+          -64.12098725233227,
+          0,
+          -63.873185521923006
+        ],
+        "heading": 0,
+        "meshes": 6,
+        "triangles": 1606,
+        "bounds": {
+          "min": [
+            -8.999916390515864,
+            -0.7335079908370972,
+            -8.142178899608552
+          ],
+          "max": [
+            8.741614981554449,
+            11.804239273071289,
+            8.3793550664559
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -8.999917935935738,
+            -0.7335079908370972,
+            -8.14218070364605
+          ],
+          "max": [
+            8.741615092314248,
+            11.804239273071289,
+            8.379354497406203
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "092141de-1f02-4d4c-9158-0051b6c6a452",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "edd7e3ff-f9fb-4333-abb0-f92a434d64f4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1c8ed7fb-6ba0-4ab4-90aa-43cca754ad61",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9b0ae264-5936-44ad-9506-2896e6f4eef7",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "150a75b9-cd0b-42cb-b1e8-dc2d76aa6855"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_forester_house"
+        ],
+        "selectionBounds": [
+          16.302789491914883,
+          50.84374707490618,
+          16.304610508085112,
+          50.844896918497945
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.forester-house",
+            "coordinate": [
+              16.3035834861427,
+              50.84435331631166
+            ],
+            "height": -0.14
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.forester-house"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 1608
       }
     }
   ],

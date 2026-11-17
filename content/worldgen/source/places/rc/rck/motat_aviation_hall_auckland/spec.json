@@ -1,0 +1,446 @@
+{
+  "planId": "motat_aviation_hall_auckland",
+  "id": "motat_aviation_hall_auckland",
+  "assetId": "molen.worldgen.structure.motat_aviation_hall_auckland",
+  "title": "MOTAT Aviation Hall",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.71489902500002,
+    "latitude": -36.8600024
+  },
+  "size": [
+    118.69939804077148,
+    16.520000219345093,
+    54.87470054626465
+  ],
+  "actualBounds": {
+    "min": [
+      -30.279399871826172,
+      -3.799999952316284,
+      -27.42889976501465
+    ],
+    "max": [
+      88.41999816894531,
+      12.720000267028809,
+      27.44580078125
+    ]
+  },
+  "visualBrief": "The north gallery is a glazed heat chimney under a deep, asymmetric aircraft-wing roof. The architect confirms a 42 m unsupported timber span, and the structural supplier documents a 28 m by 9 m hangar opening. The public entrance was upgraded in 2022. The exact photos establish the folded elevations, ventilation bands and glazed door treatment.",
+  "nativeAxes": {
+    "x": "along the mapped building axis",
+    "y": "up",
+    "z": "across the mapped building axis"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:MOTAT_Aviation_Hall,_Auckland,_New_Zealand.jpg",
+    "https://commons.wikimedia.org/wiki/File:MOTAT_2.JPG"
+  ],
+  "stories": [
+    {
+      "id": "museum-of-transport-and-technology-wp",
+      "url": "https://qualla.com/museum-of-transport-and-technology/"
+    }
+  ],
+  "referenceInputHash": "sha256:c2fa285bbd6c6e0b5b9538ddfa9bf138daf0a2383ae870ed19b81aec059b11c4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rck/motat_aviation_hall_auckland/models/motat-aviation-hall-auckland-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rck/motat_aviation_hall_auckland/models/motat-aviation-hall-auckland-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "cladding": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.68,
+        "metallic": 0.32
+      },
+      "roofing": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.61,
+        "metallic": 0.38
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#edf7ff",
+        "roughness": 0.27,
+        "metallic": 0.12,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.74
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.38
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#edf7ff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.74
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.38
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#edf7ff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.74
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "roofing": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.61,
+            "metallic": 0.38
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#edf7ff",
+            "roughness": 0.27,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.74
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.9,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        26,
+        4,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The hall floor is held approximately level beneath the north gallery. The separate entrance-wing floor follows the higher east pedestrian approach. Each foundation extends into the original field and steps at the join.",
+    "anchor": [
+      174.71489902500002,
+      -36.8600024
+    ],
+    "heading": 0.34650520285541564,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.71585124665754,
+        -36.85978461165308
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation sampled outside the east public entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/193342553"
+    ],
+    "source": "https://www.openstreetmap.org/way/193342553",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd5de3c1ae8d0469f60cbb3532f217979b2bcb35916e03babaee6fee16ef6a42",
+    "notes": "The OpenStreetMap roof outline identifies the aviation hall and its east addition. The exact public-domain-dedicated Qualla photographs show the east public entrance and the glazed north wall. Studio Pacific confirms the folded roof, north heat chimney and 42 m unsupported timber span."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped roof envelope controls the exterior footprint. Curvature, folded profile, side doors and plant are based on the limited views and architectural records. The floor at the two linked volumes is an estimate.",
+    "Original DEM elevations provide the context. Local ground contact and the unpictured service façades are approximate."
+  ],
+  "sourceLicense": "Original exterior geometry based on two verified CC0 Qualla photographs, open geographic data and the architect’s description.",
+  "qaLodCameras": [
+    {
+      "name": "motat-aviation-hall-auckland-skyline",
+      "position": [
+        146,
+        52,
+        -104
+      ],
+      "lookAt": [
+        26,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "motat-aviation-hall-auckland-district",
+      "position": [
+        146,
+        52,
+        -104
+      ],
+      "lookAt": [
+        26,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "motat-aviation-hall-auckland-street",
+      "position": [
+        146,
+        52,
+        -104
+      ],
+      "lookAt": [
+        26,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "motat-aviation-hall-auckland-closeup",
+      "position": [
+        146,
+        52,
+        -104
+      ],
+      "lookAt": [
+        26,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-gallery-and-roof",
+      "position": [
+        -68,
+        14,
+        -87
+      ],
+      "lookAt": [
+        3,
+        4,
+        -21
+      ]
+    },
+    {
+      "name": "east-entrance-and-fold",
+      "position": [
+        132,
+        11,
+        -10
+      ],
+      "lookAt": [
+        84,
+        5,
+        4
+      ]
+    },
+    {
+      "name": "service-wall-and-connection",
+      "position": [
+        -70,
+        23,
+        73
+      ],
+      "lookAt": [
+        14,
+        3,
+        2
+      ]
+    },
+    {
+      "name": "gallery-panels-and-porch",
+      "position": [
+        39,
+        6,
+        -58
+      ],
+      "lookAt": [
+        11,
+        5,
+        -26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1906,
+    "vertices": 5718,
+    "materials": 5,
+    "bytes": 316652,
+    "sha256": "sha256:9727f6c88dd38a8e10cd9a46c467b3c98aa3138974d99aa3bcd807887005ee22"
+  }
+}

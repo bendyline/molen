@@ -1,0 +1,429 @@
+{
+  "id": "stockholm_telephone_tower",
+  "planId": "stockholm_telephone_tower",
+  "assetId": "molen.worldgen.structure.stockholm_telephone_tower",
+  "title": "Stockholm Telephone Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1895-06-01",
+    "validFrom": "1891-01-01",
+    "validUntil": "1898-01-01"
+  },
+  "wikidataId": "Q10692276",
+  "referenceCoordinate": {
+    "longitude": 18.06692604703087,
+    "latitude": 59.33229699659357
+  },
+  "visualBrief": "The Brunkeberg exchange has three gabled bays at each street front and a standing-seam roof. The 1890s telephone tower has an open iron lattice, horizontal insulator rows, rosette railings and four corner crowns with tall spindles.",
+  "nativeAxes": "+X follows Malmskillnadsgatan south, +Z faces that street and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -9.79092788696289,
+      -2.0999999046325684,
+      -18.233123779296875
+    ],
+    "max": [
+      9.79092788696289,
+      55.099998474121094,
+      18.049999237060547
+    ]
+  },
+  "size": [
+    19.58185577392578,
+    57.19999837875366,
+    36.28312301635742
+  ],
+  "geometrySource": "Original deterministic geometry from the 1884 Åskslaget 14 lot plan, illustrated period elevations, archival photographs and the nearby mapped street frame.",
+  "materialMethod": "Shared brick, sandstone, painted iron and standing-seam roofing use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Telefontornet_1890.jpg",
+    "https://www.flickr.com/photos/tekniskamuseet/albums/72157629589461917/",
+    "https://www.flickr.com/photos/tekniskamuseet/albums/72157629589461917/",
+    "https://stockholmskallan.stockholm.se/post/35841",
+    "https://stockholmskallan.stockholm.se/post/35719"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      18.06692604703087,
+      59.33229699659357
+    ],
+    "heading": -1.456710547633614,
+    "bounds": [
+      18.066390559230957,
+      59.33214239615701,
+      18.067514026487146,
+      59.332454664143434
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 28.74951,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The relative ground plane uses standard Terrarium elevations at the historical parcel and a shallow footing.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          54.73474,
+          -17.91207
+        ],
+        [
+          53.77804,
+          15.85616
+        ],
+        [
+          -18.34964,
+          13.87657
+        ],
+        [
+          -17.89887,
+          -4.77358
+        ],
+        [
+          12.77387,
+          -3.5584
+        ],
+        [
+          13.38382,
+          -19.58432
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Hide the two containing modern Gallerian building pieces when the historical exchange is active.",
+      "outlines": [
+        [
+          [
+            54.73474,
+            -17.91207
+          ],
+          [
+            53.77804,
+            15.85616
+          ],
+          [
+            -18.34964,
+            13.87657
+          ],
+          [
+            -17.89887,
+            -4.77358
+          ],
+          [
+            12.77387,
+            -3.5584
+          ],
+          [
+            13.38382,
+            -19.58432
+          ]
+        ],
+        [
+          [
+            99.74538,
+            -53.53065
+          ],
+          [
+            98.76189,
+            -16.85292
+          ],
+          [
+            54.73474,
+            -17.91207
+          ],
+          [
+            13.38382,
+            -19.58432
+          ],
+          [
+            12.77387,
+            -3.5584
+          ],
+          [
+            -17.89887,
+            -4.77358
+          ],
+          [
+            -15.76482,
+            -58.18176
+          ]
+        ]
+      ]
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:11d94bf1cc29381f48841cb4b272711d23f15e7a277b3847b7d1cd0c073854d2",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q10692276",
+    "notes": "The reconstruction represents the original exchange and decorated telephone tower during the 1890s before the 1898 extension. The cadastral plan supplies widths and depth, and Stockholm’s 1887 engineering article gives the main lattice dimensions. Color, ridge-street elevation, light-well details and decorative ironwork are reconstructed from period images. Insulators and short wire leads convey the rooftop network without extending cables across the modern city. The viewer uses its historical-date opt-in. Present-day buildings and terrain in the surrounding blocks use modern map data."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u6s/stockholm_telephone_tower/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:0ad993bca9a39aa11da138a92ab2d0b891b531cfc093e4bd7f190081ff018def"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u6/u6s/stockholm_telephone_tower/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:c861ff13d8330d6ddfb118c5ab00e6705940467677445857ae361e43e9909ecd",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.86
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.86
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The reconstruction represents the original exchange and decorated telephone tower during the 1890s before the 1898 extension.",
+    "The cadastral plan supplies widths and depth, and Stockholm’s 1887 engineering article gives the main lattice dimensions. Color, ridge-street elevation, light-well details and decorative ironwork are reconstructed from period images.",
+    "Insulators and short wire leads convey the rooftop network without extending cables across the modern city. The viewer uses its historical-date opt-in. Present-day buildings and terrain in the surrounding blocks use modern map data."
+  ],
+  "qaCameras": [
+    {
+      "name": "exchange-and-telephone-tower",
+      "position": [
+        -50,
+        53,
+        91
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "malmskillnadsgatan-elevation",
+      "position": [
+        22,
+        8.4,
+        35
+      ],
+      "lookAt": [
+        0,
+        17,
+        2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "decorated-iron-crown",
+      "position": [
+        28,
+        52,
+        33
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "eastern-gables-and-lattice",
+      "position": [
+        -42,
+        39,
+        -40
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "insulators-and-cross-bracing",
+      "position": [
+        -17,
+        44,
+        20
+      ],
+      "lookAt": [
+        -2,
+        38,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "stockholm-ridge-profile",
+      "position": [
+        64,
+        75,
+        -92
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 54
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37847,
+    "vertices": 85321,
+    "materials": 5,
+    "bytes": 3529048,
+    "sha256": "sha256:e5f8dafbffd4dbe79afd5567163c454672936a3cc96f166fe60ddc40c1f966c6"
+  }
+}

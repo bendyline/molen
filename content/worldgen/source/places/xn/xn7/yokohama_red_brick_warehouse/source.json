@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.yokohama_red_brick_warehouse",
+  "kind": "static-structure",
+  "title": "Yokohama Red Brick Warehouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.yokohama_red_brick_warehouse",
+        "output": "assets/places/xn/xn7/yokohama_red_brick_warehouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:147bb91b7db217f08c113c8c673eb1a62d66e2d0d25a529f96c080d65c4b7a2c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-yokohama-red-brick-warehouse",
+        "path": "models/generate-yokohama-red-brick-warehouse.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/yokohama-red-brick-warehouse-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-dem5a-15-29094-12928.txt",
+      "terrain-sources/gsi-dem5a-15-29094-12929.txt",
+      "preview.png",
+      "reference-rights/commons-binh-giang-native-record.json",
+      "native-map/yokohama-red-brick-warehouse.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

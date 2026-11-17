@@ -1,17 +1,24 @@
 # Tekezé Dam
 
-Reviewed 2026-11-03. **43 current catalog views and five standard-water comparison views inspected.**
-
 The model reproduces the 420 m double-curvature arch, four recessed midlevel outlet mouths, four raised gate headworks, the separate power intake crane and the south thrust block.
 
-The retained river mouth sets the anchor at [38.74320567, 13.34681021] and heading −2.24668629 radians. Local +X runs southwest across the crest and +Z runs northwest downstream. The retained reservoir shoulders bound the crest, and the 1145 m grade uses fixed absolute elevation.
+The signed placement fixes the 420 m arch at its 1145 m crest and the reservoir at 1140 m. The model trims mapped reservoir overlap along its upstream concrete face. The Earth fixture checks that native water no longer passes through the entire length of the sampled crest while preserving the downstream road, tunnel and building features.
 
-Three shared graphs supply board-formed concrete, plain concrete and painted steel. All six GLBs have zero embedded images. Eviction releases model geometry and restores terrain.
+![Tekezé Dam in the Earth viewer](site-preview.png)
 
-The 25 design-terrain views use nine standard Terrarium tiles and an illustrative tailwater corridor traced from native river lines. The design fixture clips the reservoir at the upstream concrete face and uses 1140 m maximum retention. Five comparison views use representative sampled stages of 1012.03 m upstream and 997.28 m downstream.
+The Earth fixture retains all three mapped service road records. The ground opening follows the upper central arch. Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-The detailed master contains 1,348 triangles. The four viewer tiers contain 660, 926, 1286, 1336 triangles. Skyline plus district are 129,236 bytes and close-up is 105,836 bytes. Four focused checks verify exact source pins, signed placement, preserved crest curvature and grade, four recessed outlets, the intake deck, thrust block and byte-for-byte viewer tiers. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 660 | 54,248 | 4 |
+| district | 926 | 74,988 | 4 |
+| street | 1,286 | 101,928 | 4 |
+| closeup | 1,336 | 105,836 | 4 |
 
-The sampled upstream stage is about 128 m below maximum retention. The comparison exposes the upstream face and produces steep banks at the native polygon edges. The width of the tailwater corridor and the dimensions of the tie, gate works and intake are approximations. The model depicts dry closed gates. Underground generation and operating flow are outside the exterior asset.
+Skyline and district total 129,236 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Three shared material graphs bind in the viewer. The review covers 64 renders and 100 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-tekeze-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=tekeze_dam`.
+The retained PMTiles around the toe have a short river centerline and no continuous tailwater polygon. The terrain review fixture uses an illustrative downstream corridor. Outer reservoir banks remain angular in the coarse raster, which also obscures part of the south thrust block.
+
+The model shows static closed gates. Underground generation and operating discharge are outside the modeled exterior.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

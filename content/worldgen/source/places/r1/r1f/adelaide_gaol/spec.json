@@ -1,0 +1,530 @@
+{
+  "planId": "adelaide_gaol",
+  "id": "adelaide_gaol",
+  "assetId": "molen.worldgen.structure.adelaide_gaol",
+  "title": "Adelaide Gaol",
+  "wikidataId": "Q4681717",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 138.585,
+    "latitude": -34.9176
+  },
+  "size": [
+    149.71712493896484,
+    12.704203844070435,
+    132.1471710205078
+  ],
+  "actualBounds": {
+    "min": [
+      -90.69279479980469,
+      -2.1299288272857666,
+      -60.152931213378906
+    ],
+    "max": [
+      59.024330139160156,
+      10.574275016784668,
+      71.9942398071289
+    ]
+  },
+  "visualBrief": "Adelaide Gaol with its Georgian administration range, original limestone walls and octagonal towers, radial prison yards and 1879 T-shaped cell range.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Adelaide_Gaol_main_door.JPG"
+  ],
+  "stories": [
+    {
+      "id": "adelaide-gaol-wp",
+      "url": "https://qualla.com/adelaide-gaol/"
+    }
+  ],
+  "referenceInputHash": "76fe1a329f49ee4c8dde4fffc8dfbfd9636a2c70c48f528b2d7088ac17677cfa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_gaol/models/adelaide-gaol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r1/r1f/adelaide_gaol/models/adelaide-gaol-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "quarry": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.06
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.07
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "quarry": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.07
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "quarry": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.07
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "quarry": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.07
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone_raw",
+    "stone_sandstone_raw",
+    "slate",
+    "metal_painted",
+    "metal_corrugated",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.35,
+    "focus": {
+      "center": [
+        -10,
+        1,
+        10
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The City of Adelaide heritage record supplies the 18-foot exterior wall, 10-foot interior walls, octagonal towers and two-storey T-shaped 1879 addition. Surviving site relief is from the original Terrarium field.",
+    "anchor": [
+      138.585,
+      -34.9176
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        138.5843218648368,
+        -34.91806532518864
+      ],
+      "modelHeight": 0,
+      "basis": "Original mapped frontage grade before the southwest entry approach."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1257720059",
+      "way/232525378",
+      "way/232525380",
+      "way/232525382",
+      "way/232525384",
+      "way/232525385",
+      "way/232525386",
+      "way/232525387",
+      "way/232525388",
+      "way/232525389",
+      "way/232525390",
+      "way/232525391",
+      "way/232525392",
+      "way/232525393",
+      "way/232525394",
+      "way/232525395",
+      "way/232525396",
+      "way/232525397",
+      "way/232525398"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=138.5800,-34.9220,138.5903,-34.9134",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:01566e2189f16fbfcfb17bbd602eb53bb8cbb19e53b42934ac6a77d8bfc4450a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Most individual roof profiles, finished grade contacts and opening schedules are exterior estimates. The public-domain photograph fixes the central sandstone arch and white studded doors.",
+    "The original terrain preserves the mapped context and samples the approach at composite raster resolution.",
+    "The administration frontage is assigned to the south edge of the mapped 232525390 roof. The precise doorway position, the height along the southeast curtain, and the modern watch tower section are inferred."
+  ],
+  "sourceLicense": "Independent geographic reconstruction based on a public-domain Qualla entrance photograph, mapped site controls and the unchanged Terrarium elevation field.",
+  "qaLodCameras": [
+    {
+      "name": "adelaide-gaol-skyline",
+      "position": [
+        133,
+        77,
+        177
+      ],
+      "lookAt": [
+        -10,
+        1,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "adelaide-gaol-district",
+      "position": [
+        133,
+        77,
+        177
+      ],
+      "lookAt": [
+        -10,
+        1,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "adelaide-gaol-street",
+      "position": [
+        133,
+        77,
+        177
+      ],
+      "lookAt": [
+        -10,
+        1,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "adelaide-gaol-closeup",
+      "position": [
+        133,
+        77,
+        177
+      ],
+      "lookAt": [
+        -10,
+        1,
+        10
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "georgian-gate-and-studded-double-doors",
+      "position": [
+        -13.879115977714042,
+        5.35,
+        57.540179942260714
+      ],
+      "lookAt": [
+        -10.390209324834474,
+        3,
+        25.026220934359323
+      ]
+    },
+    {
+      "name": "eastern-masonry-towers-and-walls",
+      "position": [
+        136,
+        25,
+        48
+      ],
+      "lookAt": [
+        32,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "radial-yards-and-west-cell-block",
+      "position": [
+        -112,
+        69,
+        91
+      ],
+      "lookAt": [
+        -29,
+        2,
+        15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13480,
+    "vertices": 40440,
+    "materials": 8,
+    "bytes": 1912500,
+    "sha256": "sha256:b17cff96e49a5ff48a75351dc6267162cc7d2363f6acee3b76814295e7bfaeb6"
+  }
+}

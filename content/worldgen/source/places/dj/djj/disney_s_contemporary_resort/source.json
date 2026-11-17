@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.disney_s_contemporary_resort",
+  "kind": "static-structure",
+  "title": "Disney's Contemporary Resort and Bay Lake Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.disney_s_contemporary_resort",
+        "output": "assets/places/dj/djj/disney_s_contemporary_resort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3949c0a7be8a0a8310fcdc14468deaa807e905f2098068c830b94ae03ad2f29c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-disney-contemporary-resort",
+        "path": "models/generate-disney-contemporary-resort.mjs"
+      },
+      {
+        "id": "disney-contemporary-resort-model",
+        "path": "models/disney-contemporary-resort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8958-13684.png",
+      "terrain-sources/terrarium-15-8959-13684.png",
+      "preview.png",
+      "osm-resort-controls.json",
+      "reference-rights/commons-contemporary-resort-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

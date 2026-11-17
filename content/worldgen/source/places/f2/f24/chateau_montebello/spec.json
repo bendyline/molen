@@ -1,0 +1,478 @@
+{
+  "planId": "chateau_montebello",
+  "id": "chateau_montebello",
+  "assetId": "molen.worldgen.structure.chateau_montebello",
+  "title": "Château Montebello",
+  "wikidataId": "Q2967950",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.94936568,
+    "latitude": 45.645391896
+  },
+  "size": [
+    139.07085418701172,
+    22.03119707107544,
+    117.9017448425293
+  ],
+  "actualBounds": {
+    "min": [
+      -75.4202880859375,
+      -4.260996341705322,
+      -50.70388412475586
+    ],
+    "max": [
+      63.65056610107422,
+      17.770200729370117,
+      67.19786071777344
+    ]
+  },
+  "visualBrief": "Château Montebello’s cedar-log hotel with its hexagonal rotunda, guest wing turrets, riverside dining room and stone lower level.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Montebello1930-1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ch-teau-montebello-wp",
+      "url": "https://qualla.com/ch-teau-montebello/"
+    }
+  ],
+  "referenceInputHash": "3a88d1fdbf8609fef1173a54c02e382d9a29c4fe5950bac5d85304dac816b9f7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f24/chateau_montebello/models/chateau-montebello-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f24/chateau_montebello/models/chateau-montebello-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "log": {
+        "slot": "wall",
+        "graph": "wood_log",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.57,
+        "metallic": 0.04
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "log": {
+            "slot": "wall",
+            "graph": "wood_log",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "wood_log",
+    "wood_plain",
+    "shingle_asphalt",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.66,
+    "focus": {
+      "center": [
+        -4,
+        7.6,
+        9
+      ]
+    },
+    "groundY": -2.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The July 1930 riverside postcard sets the timber profile and stone foundation visible at the dining wing and Wing C. The building owner and heritage register identify the radial plan and the material.",
+    "anchor": [
+      -74.94936568,
+      45.645391896
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.94973139221322,
+        45.64585639474237
+      ],
+      "modelHeight": 0,
+      "basis": "Terrain near the principal Fairmont Le Château Montebello building."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "osm/way/191326546",
+      "osm/node/470160494"
+    ],
+    "source": "https://www.openstreetmap.org/way/191326546",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a909fb597c4658a71c6eb3f17b408b897a82e2625d56d262f9ced68cf83d42cc"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The full hotel is mapped. The postcard gives a clear riverside view of the dining room and Wing C. Rear details, roof heights, cupolas and opening spacing are approximate.",
+    "The independently mapped convention center, sports facilities, stables, marina and manor are outside this asset."
+  ],
+  "sourceLicense": "Modeled from the public-domain 1930 Qualla postcard, the mapped CanVec outline, architectural histories and original Terrarium elevations.",
+  "qaLodCameras": [
+    {
+      "name": "chateau-montebello-skyline",
+      "position": [
+        112,
+        99,
+        137
+      ],
+      "lookAt": [
+        -4,
+        7.6,
+        9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chateau-montebello-district",
+      "position": [
+        112,
+        99,
+        137
+      ],
+      "lookAt": [
+        -4,
+        7.6,
+        9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "chateau-montebello-street",
+      "position": [
+        112,
+        99,
+        137
+      ],
+      "lookAt": [
+        -4,
+        7.6,
+        9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "chateau-montebello-closeup",
+      "position": [
+        112,
+        99,
+        137
+      ],
+      "lookAt": [
+        -4,
+        7.6,
+        9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "riverside-dining-room-and-guest-wing",
+      "position": [
+        -9,
+        5.7,
+        115
+      ],
+      "lookAt": [
+        -8,
+        6.4,
+        32
+      ]
+    },
+    {
+      "name": "cedar-log-end-towers",
+      "position": [
+        -92,
+        6.8,
+        19
+      ],
+      "lookAt": [
+        -63,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "hexagonal-hall-and-radial-wings",
+      "position": [
+        -13,
+        107,
+        -92
+      ],
+      "lookAt": [
+        -5,
+        7,
+        17
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37314,
+    "vertices": 111942,
+    "materials": 7,
+    "bytes": 4861720,
+    "sha256": "sha256:4d0828e08e1a2b881cd0b3eb5a81be7355e280689ea7406f634c533e3ecbd4a6"
+  }
+}

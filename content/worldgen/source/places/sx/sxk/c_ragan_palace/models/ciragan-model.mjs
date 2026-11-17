@@ -12,7 +12,7 @@ import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-tr
 const controlsBytes = readFileSync(new URL('../layout.json', import.meta.url));
 if (
   createHash('sha256').update(controlsBytes).digest('hex') !==
-  '0d0a45d8aed62e33610b92385d0b8391f5c6fabd54c636925391b93f48103e9c'
+  '81b357dd3c1b73b6d94163538bd30386c6d4ef676b614b547d1da57a73e745c7'
 )
   throw Error('Çırağan Palace controls changed: update explicit geometry input pin');
 export const ciraganControls = JSON.parse(controlsBytes);
@@ -488,7 +488,7 @@ function entries(o, c) {
           ? 1
           : Math.max(
               3,
-              Math.ceil(Math.max(...e.outerProfile.map((y) => Math.abs(y - e.thresholdY))) / 0.27),
+              Math.ceil(Math.max(...e.outerProfile.map((y) => Math.abs(y - e.thresholdY))) / 0.18),
             );
     for (let j = 0; j < n; j++) {
       const u = -w + (2 * w * j) / n,
@@ -667,6 +667,7 @@ function roofs(o, c) {
 function foundation(o, c) {
   for (const rs of a.foundationPolygons) prism(o, c, rs, a.foundationY, a.floorY, 'base', C.base);
   for (const rs of a.landingPolygons) prism(o, c, rs, a.foundationY, 2.4, 'stone', C.stone);
+  prism(o, c, [a.quay.outline], a.quay.bottom, a.quay.top, 'base', C.base);
 }
 function featureAt(v, d) {
   if (v.N[0] * d.N[0] + v.N[1] * d.N[1] < 0.98) return null;
@@ -822,7 +823,7 @@ function stairRails(o, c) {
   for (const e of a.entries) {
     const steps = Math.max(
         3,
-        Math.ceil(Math.max(...e.outerProfile.map((y) => Math.abs(y - e.thresholdY))) / 0.27),
+        Math.ceil(Math.max(...e.outerProfile.map((y) => Math.abs(y - e.thresholdY))) / 0.18),
       ),
       count = c.fine ? 24 : c.detail ? 16 : 9;
     for (const sign of [-1, 1]) {

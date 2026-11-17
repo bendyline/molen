@@ -123,7 +123,8 @@ for (const model of ksiazPalmServiceModels.filter(
       lookAt: model.cameras[0].lookAt,
       fov: 43,
     },
-    qaCameras = model.cameras;
+    qaCameras = model.cameras,
+    fit = frame.siteFit;
   const spec = {
     planId: model.id,
     id: model.id,
@@ -163,13 +164,23 @@ for (const model of ksiazPalmServiceModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: 'preview-proposal',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
-      replaceFootprint: false,
+      groundModelY: fit.contact.modelHeight,
+      groundContactReviewed: true,
+      groundContactBasis: frame.reconstruction.registration,
+      terrainReference: {
+        anchor: fit.contact.anchor,
+        modelHeight: fit.contact.modelHeight,
+        basis: frame.reconstruction.registration,
+      },
+      bounds: fit.bounds,
+      buildingCutout: fit.buildingCutout,
+      groundCutout: fit.groundCutout,
+      replaceFootprint: true,
       featureIds: frame.elements.map((e) => `${e.type}/${e.id}`),
       source: frame.sourceUrl,
       mapGeometrySource: 'map-frame.json',
@@ -177,7 +188,7 @@ for (const model of ksiazPalmServiceModels.filter(
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
       notes:
-        'Own mapped ring(s) and signed cross-range axes. Cardinal elevations and ensemble associations follow the individual NID survey cards; heights, current facades and ground datum are interpretations. Inactive until actual component/terrain fit is reviewed. No parent QID is reused.',
+        'Own mapped rings and apron, aligned to retained Protomaps and terrain samples. Cardinal elevations follow the individual NID cards. Heights and current facades remain interpretations.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -192,9 +203,9 @@ for (const model of ksiazPalmServiceModels.filter(
     limitations: [
       'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own attributed mapped footprints. Heights, roof subdivisions, openings and detail are original interpretations of the 1994 NID cards. Boiler/control boundaries and adjoining annex associations remain proposed.',
-      'No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions; actual geographic fit remains unreviewed.',
+      'No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions.',
       'References show the 1994 survey state and incorporate earlier plan inventories; current restoration state is unconfirmed.',
-      'No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
+      'No unique textures, copied photos or interior. Physical-device timing remains unmeasured.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -282,16 +293,17 @@ for (const model of ksiazPalmServiceModels.filter(
   const readme =
     '# ' +
     model.title +
-    '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
+    '\n\n![Shared Molen preview](preview.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [render and map review](QA-REVIEW.md).\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own map footprints; native Y0 is estimated local ground contact. Original exterior interpretation follows the individual NID 1994 cards and official ensemble plan. Heights, roof profiles, openings, adjoining component associations, present condition and real terrain fit remain pending. An independent Wikidata identity is not asserted.\n\n' +
+    frame.reconstruction.registration +
+    ' Original exterior interpretation follows the individual NID cards and ensemble plan. Dimensions and present condition are estimates.\n\n' +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/generate-ksiaz-palm-services.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +
@@ -300,7 +312,7 @@ for (const model of ksiazPalmServiceModels.filter(
     bytes.length +
     ' source bytes;' +
     mesh.groups.length +
-    ' merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs. Research scans and photographs are not redistributed or used as textures.\n\n' +
+    ' merged material groups. Six shared graphs for plaster, tile, rubble, sandstone, brick and timber use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.\n\n' +
     'Source hash: ' +
     hash(bytes) +
     '\n';

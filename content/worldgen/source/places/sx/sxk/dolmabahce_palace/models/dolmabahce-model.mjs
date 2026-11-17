@@ -12,7 +12,7 @@ import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-tr
 const controlsBytes = readFileSync(new URL('../layout.json', import.meta.url));
 if (
   createHash('sha256').update(controlsBytes).digest('hex') !==
-  '292ff702fe6ede112788d22450786239912a7cd4c364859eee8fb98c30aa586a'
+  'f8759743c0fc00a8da5bc884376cc5c039ad062164f2eb38f2891dcb6b1c6b17'
 )
   throw Error('Dolmabahçe Palace controls changed: update explicit geometry input pin');
 export const dolmabahceControls = JSON.parse(controlsBytes);
@@ -690,38 +690,21 @@ function entries(o, c) {
   for (const e of a.entries) {
     const { F } = face(e.A, e.B),
       f = (u, y, d = 0) => F(u + e.L / 2, y, d),
-      w = e.approachWidth / 2,
-      D = e.approachDistance,
-      inner = Math.min(a.floorY, e.thresholdY),
-      n = c.far ? 1 : c.detail ? 5 : 2;
-    for (let j = 0; j < n; j++) {
-      const d0 = (D * 0.35 * j) / n,
-        d1 = (D * 0.35 * (j + 1)) / n,
-        hi = e.thresholdY - ((e.thresholdY - inner) * j) / n,
-        ps = [f(-w, 0, d0), f(w, 0, d0), f(w, 0, d1), f(-w, 0, d1)].map((p) => [p[0], p[2]]);
-      prism(o, c, [ps], a.foundationY, hi, 'base', C.base);
+      halfWidth = e.approachWidth / 2,
+      steps = c.far ? 1 : e.steps,
+      tread = (e.approachDistance - e.topLandingDepth - e.footLandingDepth) / steps;
+    for (let step = 0; step <= steps; step++) {
+      const front = step === 0 ? 0 : e.topLandingDepth + (step - 1) * tread,
+        back = step === steps ? e.approachDistance : e.topLandingDepth + step * tread,
+        top = e.thresholdY - ((e.thresholdY - e.footY) * step) / steps,
+        corners = [
+          f(-halfWidth, 0, front),
+          f(halfWidth, 0, front),
+          f(halfWidth, 0, back),
+          f(-halfWidth, 0, back),
+        ].map(([x, , z]) => [x, z]);
+      prism(o, c, [corners], a.foundationY, top, 'base', C.base);
     }
-    Q(
-      o,
-      c,
-      [f(-w, inner, D * 0.35), f(w, inner, D * 0.35), f(w, e.outerY[1], D), f(-w, e.outerY[0], D)],
-      'base',
-      C.base,
-      [0, 1, 0],
-    );
-    for (const sign of [-1, 1])
-      Q(
-        o,
-        c,
-        [
-          f(sign * w, a.foundationY, D * 0.35),
-          f(sign * w, a.foundationY, D),
-          f(sign * w, e.outerY[sign > 0 ? 1 : 0], D),
-          f(sign * w, inner, D * 0.35),
-        ],
-        'base',
-        C.base,
-      );
   }
 }
 export function buildDolmabahceLevel(output, level = 'master') {

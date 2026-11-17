@@ -100,14 +100,16 @@ export function inspectImageryPolicy({
   allowUnhashed = false,
   rightsRoot = modelRightsRoot,
 }) {
-  const published = [];
-  for (const story of stories ?? []) {
+  function publishedFrom(story, requireMatchingId = false) {
     const file = inside(qualla, story.sourcePath);
-    if (!file || !story.sourcePath.startsWith('_c/art/')) continue;
+    if (!file || !story.sourcePath.startsWith('_c/art/')) return [];
     const article = read(file);
-    for (const image of [article?.media?.hero, ...(article?.media?.images ?? [])].filter(Boolean))
-      published.push({ image, storyId: story.id, articlePath: story.sourcePath });
+    if (requireMatchingId && article?.id !== story.id) return [];
+    return [article?.media?.hero, ...(article?.media?.images ?? [])]
+      .filter(Boolean)
+      .map((image) => ({ image, storyId: story.id, articlePath: story.sourcePath }));
   }
+  const published = (stories ?? []).flatMap((story) => publishedFrom(story));
   const metadataCache = new Map();
   const mediaHashes = new Map();
   const mediaHash = (relative) => {
@@ -159,7 +161,17 @@ export function inspectImageryPolicy({
       !artistMatches(original.artist, reference.artist)
     )
       blockers.push('original-source-metadata-disagrees');
-    const cleared = published.filter(
+    // A related Qualla story may publish an exact view of this structure. Bind
+    // its own article and media without adding it to the model's story links.
+    const related = reference.publishedStory;
+    const relatedMedia =
+      typeof related?.id === 'string' &&
+      /^[a-z0-9-]+$/.test(related.id) &&
+      typeof related.sourcePath === 'string' &&
+      related.sourcePath.endsWith(`/${related.id}.json`)
+        ? publishedFrom(related, true)
+        : [];
+    const cleared = (related ? relatedMedia : published).filter(
       ({ image }) =>
         family(image) === family(reference) &&
         image.license === reference.license &&

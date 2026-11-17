@@ -1,0 +1,434 @@
+{
+  "planId": "eiffel_tower_paris_tennessee",
+  "id": "eiffel_tower_paris_tennessee",
+  "assetId": "molen.worldgen.structure.eiffel_tower_paris_tennessee",
+  "title": "Eiffel Tower (Paris, Tennessee)",
+  "wikidataId": "Q5348879",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -88.3015207,
+    "latitude": 36.28695675
+  },
+  "size": [
+    14.536345481872559,
+    19.32800042629242,
+    14.571721076965332
+  ],
+  "actualBounds": {
+    "min": [
+      -7.268172740936279,
+      -0.36000001430511475,
+      -7.285860538482666
+    ],
+    "max": [
+      7.268172740936279,
+      18.968000411987305,
+      7.285860538482666
+    ]
+  },
+  "visualBrief": "Paris, Tennessee’s sixty-foot Eiffel Tower replica, with four flared open lattice legs, two decks and a domed platform over a circular brick base.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2021-12-26",
+    "validFrom": "2021-01-01",
+    "validUntil": "2022-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Paris,_TN_Eiffel_Tower,_December_2021.jpg"
+  ],
+  "stories": [
+    {
+      "id": "eiffel-tower-paris-tennessee-wp",
+      "url": "https://qualla.com/eiffel-tower-paris-tennessee/"
+    }
+  ],
+  "referenceInputHash": "45206cf1edb21b58f9230b823ecc03c1645e555f84d15136a45a26ec0bc87ecb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dn3/eiffel_tower_paris_tennessee/models/eiffel-tower-paris-tennessee-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dn3/eiffel_tower_paris_tennessee/models/eiffel-tower-paris-tennessee-model.mjs",
+    "level": "skyline",
+    "export": "towerSkyline",
+    "errorMeters": 0.63,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.1
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "paver": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paver": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "towerStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paver": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "towerCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paver": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "brick_flemish",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.96,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -88.3015207,
+      36.28695675
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -88.3015207,
+        36.28695675
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the center of the mapped circular base."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          5.661996205267564,
+          -4.580797046284201
+        ],
+        [
+          3.8763587331690688,
+          -6.183797713456821
+        ],
+        [
+          1.660014735162899,
+          -7.118881435974183
+        ],
+        [
+          -0.7357903148797524,
+          -7.285860672533484
+        ],
+        [
+          -3.059810945637988,
+          -6.673603473134335
+        ],
+        [
+          -5.060801680690321,
+          -5.326637634614402
+        ],
+        [
+          -6.514436204991148,
+          -3.4119423927420125
+        ],
+        [
+          -7.268172626604725,
+          -1.118760882495301
+        ],
+        [
+          -7.23228041568737,
+          1.2857401190546018
+        ],
+        [
+          -6.415732626881142,
+          3.5566577308824803
+        ],
+        [
+          -4.908259786204281,
+          5.43795712512662
+        ],
+        [
+          -2.871376840234594,
+          6.729263218390444
+        ],
+        [
+          -0.5294101052928278,
+          7.285860672533484
+        ],
+        [
+          1.8663949460249714,
+          7.040957793090214
+        ],
+        [
+          4.055819786480698,
+          6.039082376107325
+        ],
+        [
+          5.796591995570073,
+          4.380421962887623
+        ],
+        [
+          6.909250521256614,
+          2.2542196884092403
+        ],
+        [
+          7.268172625329578,
+          -0.11688546551241336
+        ],
+        [
+          6.837466099421904,
+          -2.487990619434067
+        ]
+      ],
+      "minimumCoverage": 0.86,
+      "basis": "Named surveyed circular platform footprint."
+    },
+    "featureIds": [
+      "way/1080841041"
+    ],
+    "source": "https://www.openstreetmap.org/way/1080841041",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9cc15bd03b820337ff63c14dd73fbc8f4080169f3066c501b08678e3f27e4989",
+    "notes": "The first-party city listing gives 60 feet. The intermediate deck heights, lower arch and lattice spacing are estimated from the photograph."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "December 2021 exterior geometry. Seasonal light ornaments, small signs and nearby playground fixtures are outside scope.",
+    "The 60-foot height follows the City of Paris park listing. Intermediate deck heights, axis rotation and lattice dimensions are estimates drawn from the cleared photograph and platform outline."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The OpenStreetMap outline is ODbL. The Qualla photograph is CC0 own work by TheCatalyst31.",
+  "qaLodCameras": [
+    {
+      "name": "eiffel-tower-skyline",
+      "position": [
+        -37,
+        17,
+        31
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "eiffel-tower-district",
+      "position": [
+        -37,
+        17,
+        31
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "eiffel-tower-street",
+      "position": [
+        -37,
+        17,
+        31
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "eiffel-tower-closeup",
+      "position": [
+        -37,
+        17,
+        31
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "flared-lattice-legs-and-brick-base",
+      "position": [
+        -23,
+        5,
+        17
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "decks-and-domed-observation-cap",
+      "position": [
+        22,
+        16,
+        16
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "park-tower-full-height",
+      "position": [
+        5,
+        3,
+        29
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13153,
+    "vertices": 39459,
+    "materials": 3,
+    "bytes": 1739420,
+    "sha256": "sha256:6c6cb7aad37fde54990c4293be2b14bc09cf132a07b338baa5b8d14c4a9e3073"
+  }
+}

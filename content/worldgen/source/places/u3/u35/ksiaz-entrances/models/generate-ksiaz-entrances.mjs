@@ -56,6 +56,7 @@ for (const model of ksiazEntranceModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -113,13 +114,20 @@ for (const model of ksiazEntranceModels.filter(
       Math.max(...Array.from(mesh.positions).filter((_, k) => k % 3 === i)),
     ),
     size = max.map((v, i) => v - min[i]);
-  const refs = [
-    'https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf',
-    'https://www.ksiazhotel.pl/hotel',
-    'https://ksiazhotel.pl/pokoj-2os-komfort-oficyna',
-    'https://commons.wikimedia.org/wiki/File:Ksiaz_w_jesiennej_scenerii.jpg',
-    frame.sourceUrl,
-  ];
+  const hotel = model.id === 'KSI_A04';
+  const refs = hotel
+    ? [
+        frame.siteFit.evidence.historicIdentity,
+        ...frame.siteFit.evidence.aerialSources,
+        frame.sourceUrl,
+      ]
+    : [
+        'https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf',
+        'https://www.ksiazhotel.pl/hotel',
+        'https://ksiazhotel.pl/pokoj-2os-komfort-oficyna',
+        'https://commons.wikimedia.org/wiki/File:Ksiaz_w_jesiennej_scenerii.jpg',
+        frame.sourceUrl,
+      ];
   const front =
       model.id === 'KSI_A01' || model.id === 'KSI_A04'
         ? [55, 14, 0]
@@ -158,14 +166,14 @@ for (const model of ksiazEntranceModels.filter(
       model.id === 'KSI_A01'
         ? 'Cream gatehouse with twin octagonal upper towers,dark faceted domes,red central hip and tall arched library window.'
         : model.id === 'KSI_A04'
-          ? 'Detached pale hotel with red pitched roof,shallow front pediment and merged dormers.'
+          ? 'Detached cream hotel with a red hip roof, a joined cross gable, two low dormers and a recessed forecourt entrance.'
           : 'Pale yellow elongated side wing:lower central range with repeated dormers and raised two-floor end pavilions beneath red tile roofs.',
     nativeAxes: frame.nativeAxes,
     appearance: {
       standard: 'docs-src/guide/medium-fi.md',
       paletteSrgb: ksiazEntrancePalette,
       colorEncoding: 'sRGB decoded to linear COLOR_0',
-      materialBudget: 5,
+      materialBudget: hotel ? 6 : 5,
     },
     mediumFiContext: { neighborStyle: 'molen.worldgen.catalog.german_fachwerk' },
     sourceFacts: {
@@ -174,8 +182,9 @@ for (const model of ksiazEntranceModels.filter(
       independentWikidataIdKnown: false,
       roofAndDatumSurveyed: false,
       parentSite: 'ksiaz_castle_and_park_complex',
-      primaryDescription:
-        'The hotel operator identifies three palace annexes;official heritage designation includes entrance buildings. This fourth nearby mapped Hotel Zamkowy is separately identified,with its role in the designated ensemble unconfirmed.',
+      primaryDescription: hotel
+        ? 'The National Heritage Institute records the former tax office at Piastów Śląskich 5 under PL.1.9.ZIPOZ.NID_N_02_BK.92980. A labeled aerial identifies the same detached building as Hotel Zamkowy.'
+        : 'The hotel operator identifies three palace annexes;official heritage designation includes entrance buildings. This fourth nearby mapped Hotel Zamkowy is separately identified,with its role in the designated ensemble unconfirmed.',
     },
     reconstruction: frame.reconstruction,
     referencePages: refs,
@@ -183,12 +192,27 @@ for (const model of ksiazEntranceModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: fit ? 'preview-proposal' : 'research-only',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: fit?.contact.modelHeight ?? 0,
+      ...(fit
+        ? {
+            groundContactReviewed: true,
+            groundContactBasis: frame.reconstruction.registration,
+            terrainReference: {
+              anchor: fit.contact.anchor,
+              modelHeight: fit.contact.modelHeight,
+              basis: frame.reconstruction.registration,
+            },
+            buildingCutout: fit.buildingCutout,
+            ...(fit.groundCutout ? { groundCutout: fit.groundCutout } : {}),
+            bounds: fit.bounds,
+            orientationPolicy: 'map-verified',
+          }
+        : {}),
       replaceFootprint: false,
       featureIds: [`way/${model.way}`],
       source: frame.sourceUrl,
@@ -196,8 +220,9 @@ for (const model of ksiazEntranceModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own mapped ring and approach-facing axes;roof/body heights and local ground datum estimated. Inactive until terrain/facade fit reviewed. No independent Wikidata identity claimed.',
+      notes: fit
+        ? frame.reconstruction.registration
+        : 'Own mapped ring and approach-facing axes;roof/body heights and local ground datum estimated. Inactive until terrain/facade fit reviewed. No independent Wikidata identity claimed.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -213,10 +238,14 @@ for (const model of ksiazEntranceModels.filter(
       'One component only;ksiaz_castle_and_park_complex full site remains incomplete.',
       'Footprint is attributed map geometry;heights,openings,dormers and roof profiles are photographic interpretations.',
       'No independent Wikidata identity.',
-      ...(model.id === 'KSI_A04'
-        ? ['Hotel Zamkowy inclusion in the official heritage entrance group remains unconfirmed.']
+      ...(hotel
+        ? [
+            'The aerials establish the roof and main façade. Precise door details and the sandstone approach are reconstructed.',
+          ]
         : []),
-      'No interiors,signage,statue likenesses or unique textures. Geographic/terrain fit and physical-device timing pending.',
+      fit
+        ? 'Exterior floor and plinth elevations follow the retained terrain samples. Roof profiles, facade details and opposite elevations are reconstructions. No interiors, custom textures or measured device timings.'
+        : 'No interiors,signage,statue likenesses or unique textures. Geographic/terrain fit and physical-device timing pending.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -305,13 +334,17 @@ for (const model of ksiazEntranceModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    (fit
+      ? 'Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.\n\n'
+      : 'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n') +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own map footprint;native Y0 is estimated local ground contact. Heights,roof profiles,openings and facade facing are interpretations. No independent Wikidata identity is assigned. Hotel Zamkowy membership is unconfirmed.\n\n' +
+    (fit
+      ? `${frame.reconstruction.registration}\n\n`
+      : 'Own map footprint;native Y0 is estimated local ground contact. Heights,roof profiles,openings and facade facing are interpretations. No independent Wikidata identity is assigned. Hotel Zamkowy membership is unconfirmed.\n\n') +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +

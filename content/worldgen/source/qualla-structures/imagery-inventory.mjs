@@ -6,6 +6,10 @@ import { inspectArchivedAuthorReference } from './imagery-archived-author.mjs';
 import { inspectCarterExcavationReference } from './imagery-carter-excavation.mjs';
 import { inspectChileIlustradoReference } from './imagery-chile-ilustrado.mjs';
 import { inspectDanishFortDrawingReference } from './imagery-danish-fort-drawings.mjs';
+import {
+  inspectDhakaEmbassyReference,
+  inspectNewZealandEmbassyReference,
+} from './imagery-embassy-flickr.mjs';
 import { inspectExcavationPlanReference } from './imagery-excavation-plan.mjs';
 import { inspectExpiredUsBookReference } from './imagery-expired-us-book.mjs';
 import { inspectFlickrOriginalReference } from './imagery-flickr-original.mjs';
@@ -13,7 +17,6 @@ import { inspectGettyReference } from './imagery-getty.mjs';
 import { inspectCarpenterReference } from './imagery-loc-carpenter.mjs';
 import { inspectMoranCartagenaReference } from './imagery-moran-cartagena.mjs';
 import { inspectNdlTannaReference } from './imagery-ndl-tanna.mjs';
-import { inspectNewZealandEmbassyReference } from './imagery-new-zealand-embassy.mjs';
 import { inspectNpsAgencyReference } from './imagery-nps-agency.mjs';
 import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
@@ -48,6 +51,188 @@ function localBytes(dir, relative) {
   if (path.isAbsolute(actual) || actual === '..' || actual.startsWith(`..${path.sep}`)) return null;
   return fs.readFileSync(file);
 }
+
+/** University of Victoria's scan of the September 1912 Grant Street school illustration. */
+function inspectVictoriaDailyTimesPage(dir, reference) {
+  const identifier = 'victoriadailytimes19120916';
+  const expected = '8733ebe1b5e80ace8967f91f5d8c35afd2a30de7425b23d5c483ca3a315ffba7';
+  const leaf = localBytes(dir, reference.path);
+  const bytes = localBytes(dir, reference.rightsEvidence?.path);
+  const record = snapshotJson(bytes);
+  const page = Object.values(record?.query?.pages ?? {})[0];
+  const wiki = page?.revisions?.[0]?.slots?.main?.content ?? '';
+  const eligible =
+    !!leaf &&
+    digest(leaf) === expected &&
+    plainHash(reference.sha256) === expected &&
+    !!bytes &&
+    digest(bytes) === plainHash(reference.rightsEvidence?.sha256) &&
+    record?.archive?.identifier === identifier &&
+    record.archive.title === 'Victoria Daily Times (1912-09-16)' &&
+    record.archive.publisher === 'University of Victoria' &&
+    page?.title === 'File:Victoria Daily Times (1912-09-16) (IA victoriadailytimes19120916).pdf' &&
+    page.imageinfo?.[0]?.sha1 === '895c884ac183c7181e8cd02996055c4f447af0c0' &&
+    page.imageinfo?.[0]?.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    wiki.includes('{{PD-Canada}}') &&
+    wiki.includes(`{{Internet Archive link|${identifier}}}`) &&
+    reference.sourceUrl === `https://archive.org/details/${identifier}/page/n11/mode/1up` &&
+    reference.downloadUrl === `https://archive.org/download/${identifier}/page/n11.jpg` &&
+    reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    reference.originalReview?.status === 'inspected' &&
+    reference.originalReview?.rendition === 'original-print-scan' &&
+    reference.originalReview?.publicationDate === '1912-09-16' &&
+    reference.originalReview?.printedPage === 12;
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-victoria-daily-times-page-unverified'],
+  };
+}
+
+/** The two leaves of Schultz's signed plate published in London on 24 November 1915. */
+function inspectKhartoumCathedralPlate(dir, reference) {
+  const identifier = 'buildingnewseng109londuoft';
+  const leaf = reference.originalReview?.leaf;
+  const expected = new Map([
+    [601, '0e6da0704670d5662708522a75ed922591507671e747881ab171e702f0c28efc'],
+    [602, 'e85570ea456d761cd466f1a4b27a018ba0922a547ef652de1f3bb1370da1160a'],
+  ]).get(leaf);
+  const archive = `https://archive.org/details/${identifier}/page/n${leaf}/mode/2up`;
+  const original = `https://archive.org/download/${identifier}/page/n${leaf}.jpg`;
+  const catalog = `https://archive.org/metadata/${identifier}`;
+  const image = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const metadata = snapshotJson(record)?.metadata;
+  const review = reference.originalReview;
+  const blockers = [];
+  if (
+    !expected ||
+    !image ||
+    image.subarray(0, 3).toString('hex') !== 'ffd8ff' ||
+    plainHash(reference.sha256) !== expected ||
+    digest(image) !== expected
+  )
+    blockers.push('supplemental-image-bytes-unbound');
+  if (
+    !record ||
+    digest(record) !== plainHash(reference.rightsEvidence?.sha256) ||
+    reference.rightsEvidence?.sourceUrl !== catalog ||
+    metadata?.identifier !== identifier ||
+    metadata.title !== 'Building News and Engineering Journal' ||
+    metadata.volume !== '109' ||
+    metadata.publisher !== 'London' ||
+    metadata.contributor !== 'Gerstein - University of Toronto' ||
+    reference.sourceUrl !== archive ||
+    reference.downloadUrl !== original ||
+    reference.artist !== 'Robert Weir Schultz' ||
+    reference.license !== 'Public domain' ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    review?.status !== 'inspected' ||
+    review?.rendition !== 'original-print-scan' ||
+    review.publicationDate !== '1915-11-24' ||
+    review.issue !== 3177
+  )
+    blockers.push('supplemental-khartoum-cathedral-plate-provenance-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible: !blockers.length,
+    blockers,
+  };
+}
+
+/** Exact original plate as published in the 1859 New York edition. */
+function inspectComayaguaHarpersPlate(dir, reference) {
+  const blockers = [];
+  const source = 'https://archive.org/details/harpersnew19harper/page/603/mode/1up';
+  const download = 'https://archive.org/download/harpersnew19harper/page/603/mode/1up';
+  const catalog = 'https://colenda.library.upenn.edu/catalog/81431-p3736mc0v';
+  const plateHash = 'ed44cc50617b8260568581cc6c274802e4dfe495aee2ac9959b9d5e73f1c19f3';
+  const image = localBytes(dir, reference.path);
+  const record = localBytes(dir, reference.rightsEvidence?.path);
+  const description = plainText(record?.toString()).toLowerCase();
+  const review = reference.originalReview;
+  if (
+    image?.subarray(0, 3).toString('hex') !== 'ffd8ff' ||
+    plainHash(reference.sha256) !== plateHash ||
+    digest(image) !== plateHash
+  ) {
+    blockers.push('supplemental-image-bytes-unbound');
+  }
+  if (
+    !record ||
+    digest(record) !== plainHash(reference.rightsEvidence?.sha256) ||
+    reference.rightsEvidence?.sourceUrl !== catalog ||
+    !description.includes(
+      "a visit to the guajiquero indians (f. 9-18), as published in harper's",
+    ) ||
+    !description.includes('vol. 19, no. 113 (october 1859), p. 602-619') ||
+    !description.includes('http://rightsstatements.org/vocab/noc-us/1.0/') ||
+    reference.sourceUrl !== source ||
+    reference.downloadUrl !== download ||
+    reference.license !== 'Public domain' ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    review?.status !== 'inspected' ||
+    review?.rendition !== 'original-print-scan' ||
+    review?.printedPage !== 603 ||
+    review?.publicationYear !== 1859 ||
+    review?.caption !== 'Cathedral of Comayagua.'
+  ) {
+    blockers.push('supplemental-comayagua-plate-provenance-unverified');
+  }
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible: !blockers.length,
+    blockers,
+  };
+}
+
+const birminghamTerminalArchives = {
+  'reference-originals/sanborn-birmingham-1911-sheet-21.jpg': {
+    url: 'https://www.loc.gov/resource/g3974bm.g3974bm_g00015191101/?sp=37',
+    sha256: '7860d53ad43fa377f013ec461a636271826b2b75a677fd5443bcb1b382a36cda',
+    year: 1911,
+    credit: 'Sanborn Map Company',
+  },
+  'reference-originals/american-architect-1909-07-14.pdf': {
+    url: 'https://www.usmodernist.org/AMAR/AMAR-1909-07-14.pdf',
+    sha256: '50fd5bc665604a5b3c09bad1ce171e148e5c044b96a804a5f92042cc8885c5d8',
+    year: 1909,
+    credit: 'P. Thornton Marye',
+  },
+};
+
+/** Bind the two inspected, pre-1923 US publications of the terminal plans and dimensions. */
+function inspectBirminghamTerminalArchive(dir, reference) {
+  const expected = Object.hasOwn(birminghamTerminalArchives, reference.path)
+    ? birminghamTerminalArchives[reference.path]
+    : null;
+  const bytes = localBytes(dir, reference.path);
+  const review = reference.originalReview;
+  const eligible = Boolean(
+    path.basename(dir) === 'birmingham_terminal_station' &&
+      expected &&
+      bytes &&
+      reference.license === 'Public domain' &&
+      reference.sourceUrl === expected.url &&
+      plainHash(reference.sha256) === expected.sha256 &&
+      digest(bytes) === expected.sha256 &&
+      reference.artist === expected.credit &&
+      review?.status === 'inspected' &&
+      review.rendition === 'original-archive-publication' &&
+      review.publicationYear === expected.year,
+  );
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible,
+    blockers: eligible ? [] : ['supplemental-birmingham-terminal-publication-unverified'],
+  };
+}
+
 function field(html, name) {
   return (
     html.match(new RegExp(`<label[^>]*>${name}:</label>\\s*<div[^>]*>([\\s\\S]*?)</div>`))?.[1] ??
@@ -56,6 +241,82 @@ function field(html, name) {
     .replace(/<[^>]*>/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Original Republic-era edition published before 1930, with NLC credit and native PD-China rights. */
+export function inspectNlcRepublicEraReference(dir, reference) {
+  const blockers = [];
+  const pdf = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  if (!pdf || digest(pdf) !== plainHash(reference.sha256))
+    blockers.push('supplemental-image-bytes-unbound');
+  if (!snapshot || digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256))
+    blockers.push('supplemental-rights-snapshot-unbound');
+  const pages = Object.values(snapshotJson(snapshot)?.query?.pages ?? {});
+  const page = pages.length === 1 ? pages[0] : null;
+  const info = page?.imageinfo?.[0];
+  const nativeUrl = info?.url?.split('?')[0];
+  const metadata = info?.extmetadata;
+  const wiki = page?.revisions?.[0]?.slots?.main?.['*'] ?? '';
+  const catalog = /^File:NLC(\d+)-(\w+)-(\d+) .+\.pdf$/u.exec(page?.title ?? '');
+  const fields = new Map(
+    Array.from(wiki.matchAll(/^\s*\|([^=\n]+)=([^\n]+)$/gm), ([, key, value]) => [
+      key.trim(),
+      value.trim(),
+    ]),
+  );
+  const year = Number(fields.get('出版時間')?.match(/\[(\d{4})\]/)?.[1]);
+  const review = reference.originalReview;
+  if (
+    reference.origin !== 'commons-nlc-republic-era-original-book' ||
+    reference.license !== 'Public domain' ||
+    page?.ns !== 6 ||
+    !catalog ||
+    !wiki.includes('{{Republic Era Book in the National Library of China\n') ||
+    fields.get('dbid') !== catalog[1] ||
+    fields.get('bookid') !== catalog[2] ||
+    fields.get('volumeid') !== catalog[3] ||
+    reference.archiveIdentifier !== catalog.slice(1).join(':') ||
+    !reference.publicationTitle?.trim() ||
+    fields.get('title') !== reference.publicationTitle ||
+    !reference.publicationPublisher?.trim() ||
+    fields.get('出版者') !== reference.publicationPublisher ||
+    !reference.artist?.trim() ||
+    fields.get('責任者') !== reference.artist ||
+    reference.sourceUrl !== info?.descriptionurl ||
+    reference.downloadUrl !== nativeUrl ||
+    !nativeUrl?.startsWith('https://upload.wikimedia.org/wikipedia/commons/') ||
+    plainText(metadata?.Credit?.value) !== 'National Library of China' ||
+    metadata?.Copyrighted?.value !== 'False' ||
+    metadata?.LicenseShortName?.value !== 'Public domain' ||
+    metadata?.UsageTerms?.value !== 'Public domain' ||
+    !metadata?.Categories?.value?.split('|').includes('PD-scan (PD-China)') ||
+    !Number.isInteger(year) ||
+    year < 1912 ||
+    year > 1929 ||
+    year !== review?.publicationYear ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    review?.status !== 'inspected' ||
+    review?.rendition !== 'native-original-pdf' ||
+    !Array.isArray(review.pagesInspected) ||
+    review.platePage === review.publicationPage ||
+    ![review.platePage, review.publicationPage].every(
+      (p) =>
+        Number.isInteger(p) && p >= 1 && p <= info?.pagecount && review.pagesInspected.includes(p),
+    ) ||
+    !review.notes?.trim() ||
+    !pdf ||
+    pdf.subarray(0, 5).toString() !== '%PDF-' ||
+    pdf.length !== info?.size ||
+    createHash('sha1').update(pdf).digest('hex') !== info?.sha1
+  )
+    blockers.push('supplemental-nlc-original-book-grant-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    eligible: !blockers.length,
+    blockers,
+  };
 }
 
 /** Original nineteenth-century library book, with named deceased creator and native PDF hash. */
@@ -662,7 +923,46 @@ export function inspectGutenbergReference(dir, reference) {
     content = book?.toString('utf8') ?? '',
     creator = plainText(html.match(/<a\b[^>]*itemprop="creator"[^>]*>([\s\S]*?)<\/a>/)?.[1]),
     death = Number(creator.match(/\b\d{4}-(\d{4})\b/)?.[1]),
-    relative = reference.downloadUrl?.split(`/${id}-h/`)[1];
+    relative = reference.downloadUrl?.split(`/${id}-h/`)[1],
+    title = plainText(html.match(/<td\b[^>]*itemprop="headline"[^>]*>([\s\S]*?)<\/td>/)?.[1]),
+    publicationYear = review?.publicationYear;
+  const linkedOriginal =
+    /^images\/[a-z0-9_-]+_lg\.jpg$/.test(relative ?? '') &&
+    content.includes(`href="${relative}"`) &&
+    content.includes(`PROJECT GUTENBERG EBOOK ${id}`);
+  // Bind these separately captioned plates to the dated London edition.
+  const anemasPlateHashes = {
+    'images/fig_fp138-large.jpg':
+      'e63635f2e45bf543438a297fa9d1010013c86ba7a6aefb53c2303dec3f8eb3f9',
+    'images/fig_fp144-large.jpg':
+      'd8eb67571dcadcf4422ae6da64fe69ab9a54bac8082b52898b7ba2568f96cd6c',
+  };
+  const anemasOriginal =
+    id === '61475' &&
+    publicationYear === 1899 &&
+    creator === 'Van Millingen, Alexander, 1840-1915' &&
+    anemasPlateHashes[relative] === plainHash(reference.sha256) &&
+    content.includes('JOHN MURRAY, ALBEMARLE STREET</div>') &&
+    content.includes('<div>1899</div>') &&
+    content.includes(`href='${relative}'`) &&
+    content.includes('PROJECT GUTENBERG EBOOK 61475');
+  // Some original editions bind the only scan directly to the book illustration
+  // rather than linking to a larger image. Match the edition and its exact image.
+  const embeddedCanadianOriginal =
+    /^images\/[a-z0-9_-]+\.jpg$/.test(relative ?? '') &&
+    Number.isInteger(publicationYear) &&
+    publicationYear >= 1800 &&
+    publicationYear <= 1922 &&
+    html.includes(`about="[ebook:${id}]"`) &&
+    title &&
+    content.includes(`*** START OF THIS PROJECT GUTENBERG EBOOK ${title.toUpperCase()} ***`) &&
+    content.includes(`Copyright, Canada, ${publicationYear}, by`) &&
+    typeof review?.primaryCaption === 'string' &&
+    review.primaryCaption.startsWith('[Illustration: ') &&
+    [...content.matchAll(/<img\b[^>]+>/g)].some(
+      ([tag]) =>
+        tag.includes(`src="${relative}"`) && tag.includes(`alt="${review.primaryCaption}"`),
+    );
   if (!image || digest(image) !== plainHash(reference.sha256))
     blockers.push('supplemental-image-bytes-unbound');
   if (
@@ -690,10 +990,8 @@ export function inspectGutenbergReference(dir, reference) {
     !review.creatorNameParts.every(
       (p) => p && creator.includes(p) && reference.artist?.includes(p),
     ) ||
-    !/^images\/[a-z0-9_-]+_lg\.jpg$/.test(relative ?? '') ||
+    (!linkedOriginal && !embeddedCanadianOriginal && !anemasOriginal) ||
     reference.downloadUrl !== reference.sourceUrl.replace(/[^/]+$/, relative ?? '') ||
-    !content.includes(`href="${relative}"`) ||
-    !content.includes(`PROJECT GUTENBERG EBOOK ${id}`) ||
     review.status !== 'inspected' ||
     review.rendition !== 'published-book-illustration' ||
     review.illustrationIsOriginalBookContent !== true ||
@@ -866,7 +1164,7 @@ export function inspectDvidsReference(dir, reference) {
     army = reference.origin === 'dvids-usarmy-public-domain',
     captionCredit = navy
       ? caption.match(
-          /\(U\.S\. Navy photo by ((?:Seaman|Petty Officer (?:1st|2nd|3rd) Class|Mass Communication Specialist (?:1st|2nd|3rd) Class) [A-Za-z'. -]+)\/Released\)$/,
+          /\(U\.S\. Navy photo by ((?:Seaman|Petty Officer (?:1st|2nd|3rd) Class|Mass Communication Specialist (?:1st|2nd|3rd) Class) [A-Za-z'. -]+)(?:\/Released)?\)$/,
         )?.[1]
       : caption.match(/\(U\.S\. Coast Guard photo by (Chief Petty Officer [A-Za-z'. -]+)\)$/)?.[1],
     portfolioCredit = caption.match(
@@ -1145,10 +1443,15 @@ export function inspectCommonsSelfReference(dir, reference) {
     dedication.revision === first?.revid &&
     first?.parentid === 0 &&
     page.imageinfo.length === 1 &&
+    !json?.continue?.iicontinue &&
     Number.isFinite(Date.parse(first.timestamp)) &&
     Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
-    !plainText(value('Artist')) &&
-    !plainText(value('Credit')) &&
+    ((!plainText(value('Artist')) && !plainText(value('Credit'))) ||
+      (/^Own work\s*$/im.test(body) &&
+        plainText(value('Artist')) ===
+          `No machine-readable author provided. ${dedication.username} assumed (based on copyright claims).` &&
+        plainText(value('Credit')) ===
+          'No machine-readable source provided. Own work assumed (based on copyright claims).')) &&
     /\{\{\s*PD-self\s*(?:\||\}\})/i.test(body);
   // Early untemplated uploads can sign a personal photograph with a real name.
   // The original signature must resolve exactly to the uploading account; a
@@ -1482,12 +1785,33 @@ export function inspectCommonsSelfReference(dir, reference) {
         value('Permission') === 'Released into the public domain (by the author).' &&
         reference.artist === dedication.username &&
         dedication.realName === dedication.username));
+  const migratedAirknightPavilion =
+    reference.origin === 'commons-author-public-domain' &&
+    reference.license === 'Public domain' &&
+    dedication?.kind === 'airknight-naulakha-original-upload' &&
+    title === 'File:Naulakha 3.jpg' &&
+    reference.artist === 'Airknight at English Wikipedia' &&
+    compactBody.includes('{{PD-user-w|en|wikipedia|Airknight}}') &&
+    body.includes('Picture by Kaiser Tufail, 25 Sep 2006') &&
+    body.includes('|Permission=Released into the public domain (by the author).') &&
+    body.includes(
+      '2006-09-26 10:03 [[:en:User:Airknight|Airknight]] 1024&times;768&times;8 (153114 bytes)',
+    ) &&
+    body.includes('Image%3ANaulakha_3.jpg') &&
+    first?.parentid === 0 &&
+    first.user === 'File Upload Bot (Magnus Manske)' &&
+    info?.user === first.user &&
+    info.sha1 === '34aec304d4f524b6e9d8446b926255f4fe31b131' &&
+    info.size === 153114 &&
+    String(value('Artist')).includes('href="https://en.wikipedia.org/wiki/User:Airknight"') &&
+    value('Copyrighted') === 'False';
   const migratedCreatorRelease =
     migratedNamedRelease ||
     migratedOriginalUploadRelease ||
     migratedNamedPhotographerRelease ||
     migratedSelfPhotographedRelease ||
-    migratedGermanPhotographerRelease;
+    migratedGermanPhotographerRelease ||
+    migratedAirknightPavilion;
   // A direct upload can name the creator's other-wiki account in its grant.
   // Require that same creator to have authored the first Commons revision at
   // the sole native upload, rather than trusting a later transfer template.
@@ -1524,19 +1848,58 @@ export function inspectCommonsSelfReference(dir, reference) {
       body.includes(`|Author=[[User:${reference.artist}|${reference.artist}]]`) &&
       /\|\s*permission\s*=\s*\{\{\s*cc0\s*\}\}/i.test(body) &&
       /\{\{\s*cc0\s*\}\}/i.test(body));
+  const originalUploaderCc0 =
+    reference.origin === 'commons-self-public-domain' &&
+    reference.license === 'CC0' &&
+    dedication?.kind === 'contemporaneous-cc0-uploader-release' &&
+    /^[A-Za-z0-9_.-]+$/.test(dedication.username ?? '') &&
+    dedication.username === reference.artist &&
+    dedication.username === first?.user &&
+    dedication.username === info?.user &&
+    dedication.revision === first?.revid &&
+    first?.parentid === 0 &&
+    page.imageinfo.length === 1 &&
+    !json?.continue?.iicontinue &&
+    Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+    info.size === image?.length &&
+    /^\|\s*source\s*=\s*\{\{\s*own\s*\}\}\s*$/im.test(body) &&
+    body.split('\n').includes(`|Author=[[User:${dedication.username}|${dedication.username}]]`) &&
+    /^\{\{\s*cc-zero\s*\}\}\s*$/im.test(body) &&
+    plainText(value('Credit')) === 'Own work';
   const release =
     originalNamedPhotographerRelease ||
     migratedCreatorRelease ||
     contemporaneousNamedUploaderRelease ||
+    originalUploaderCc0 ||
     (reference.license === 'Public domain'
       ? /\{\{\s*PD-self\s*(?:\||\}\})/i.test(body) || selfCc0
       : /^CC0(?: 1\.0)?$/.test(reference.license ?? '') && selfCc0);
+  const ukrainianOriginal = json?.originalUkrainianRevision;
+  const ukrainianAuthor = ukrainianOriginal?.slots?.main?.['*']
+    ?.match(/^\|Автор=([^\r\n]+)$/m)?.[1]
+    ?.trim();
   const ownPhotograph =
     /Own work|Self-photographed/i.test(plainText(value('Credit'))) ||
     (plainText(value('Credit')) === 'taken by author' &&
       /\|\s*source\s*=\s*taken by author\s*(?:\n|\|)/i.test(body)) ||
     (plainText(value('Credit')) === 'I took it' &&
-      /\|\s*source\s*=\s*I took it\s*(?:\n|\|)/i.test(body));
+      /\|\s*source\s*=\s*I took it\s*(?:\n|\|)/i.test(body)) ||
+    (reference.license === 'Public domain' &&
+      plainText(value('Credit')) === "uploader's creation" &&
+      /^[A-Za-z0-9_-]+$/.test(info?.user ?? '') &&
+      info.user === reference.artist &&
+      /\|\s*source\s*=\s*uploader's creation\s*(?:\n|\|)/i.test(body) &&
+      body.includes(`[[User:${info.user}|${info.user}]]`) &&
+      /\{\{\s*PD-self\s*\}\}/i.test(body)) ||
+    (plainText(value('Credit')) === 'власна' &&
+      /\|\s*Source\s*=\s*власна\s*(?:\n|\|)/u.test(body) &&
+      body.includes('https://uk.wikipedia.org/wiki/') &&
+      ukrainianOriginal?.parentid === 0 &&
+      ukrainianOriginal.user === info?.user &&
+      ukrainianAuthor === reference.artist &&
+      ukrainianAuthor?.toLowerCase() === info?.user?.toLowerCase() &&
+      Math.abs(Date.parse(ukrainianOriginal.timestamp) - Date.parse(info?.timestamp)) < 300000 &&
+      /\{\{\s*PD-self\s*\}\}/i.test(ukrainianOriginal.slots.main['*']));
   let sameDownload = false;
   try {
     const a = new URL(reference.downloadUrl),
@@ -2409,6 +2772,61 @@ export function inspectMuseoEgizioArchiveReference(dir, reference) {
   };
 }
 
+function inspectHistoryTrustGlassNegative(dir, reference) {
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const record = snapshotJson(snapshot);
+  const page = Object.values(record?.query?.pages ?? {}).find(
+    (item) => item.title === `File:${reference.filename}`,
+  );
+  const info = page?.imageinfo?.[0];
+  const first = page?.revisions?.[0];
+  const body = first?.slots?.main?.content ?? '';
+  const metadata = (key) => info?.extmetadata?.[key]?.value;
+  const accession = reference.accession ?? '';
+  const blockers = [];
+  if (
+    !image ||
+    digest(image) !== plainHash(reference.sha256) ||
+    image.length !== info?.size ||
+    createHash('sha1').update(image).digest('hex') !== info?.sha1 ||
+    !snapshot ||
+    digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256)
+  )
+    blockers.push('supplemental-history-trust-original-unbound');
+  if (
+    !/^GN\d{5}$/.test(accession) ||
+    !reference.filename?.endsWith(`(${accession}).jpg`) ||
+    first?.parentid !== 0 ||
+    first.user !== 'Htsa' ||
+    info?.user !== 'Htsa' ||
+    page.imageinfo.length !== 1 ||
+    record?.continue?.iicontinue ||
+    !(Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000) ||
+    !body.includes(`|accession number   = ${accession}\n`) ||
+    !/\|institution\s*=\s*The History Trust of South Australia\s*\n/.test(body) ||
+    !/\|medium\s*=\s*Glass Negatives\s*\n/.test(body) ||
+    !/\|permission\s*=\s*\{\{cc-zero\}\}/.test(body) ||
+    !/data\.history\.sa\.gov\.au\//.test(body) ||
+    reference.sourceUrl !== info.descriptionurl ||
+    reference.downloadUrl !== info.url ||
+    !info.url.startsWith('https://upload.wikimedia.org/') ||
+    reference.artist !== 'South Australian government photographer' ||
+    plainText(metadata('Artist')) !== reference.artist ||
+    reference.license !== 'CC0' ||
+    metadata('LicenseShortName') !== 'CC0' ||
+    metadata('AttributionRequired') !== 'false' ||
+    plainText(metadata('Restrictions'))
+  )
+    blockers.push('supplemental-history-trust-item-cc0-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 export function inspectImageryInventory({
   dir,
   qualla,
@@ -2459,14 +2877,27 @@ export function inspectImageryInventory({
     .filter(
       (r) =>
         ![
+          'birmingham-terminal-original-archive',
+          'archive-comayagua-harpers-1859',
+          'archive-khartoum-cathedral-building-news-1915',
+          'archive-victoria-daily-times-1912',
           'loc-carpenter-expired-original',
           'silesian-library-public-domain-periodical',
           'expired-danish-svedstrup-fort-drawings',
           'amon-carter-moran1870-public-domain',
           'ndl-tanna1936-public-domain-plates',
           'commons-mccord-public-domain',
+          'rijksmuseum-public-domain',
           'banq-public-domain-atlas',
+          'te-papa-expired-postcard',
+          'commons-museu-paulista-expired-postcard',
+          'usgs-national-map-pr-naip',
+          'commons-nara-bureau-of-public-roads',
+          'commons-presidencia-sv-cc0',
           'commons-vrt-cc0',
+          'commons-history-trust-glass-negative-cc0',
+          'commons-nlc-republic-era-original-book',
+          'commons-dhaka-embassy-government-photo',
         ].includes(r.origin),
     )
     .map((r) =>
@@ -2588,11 +3019,41 @@ export function inspectImageryInventory({
     );
   additionalProof.push(
     ...additional
+      .filter((r) => r.origin === 'commons-history-trust-glass-negative-cc0')
+      .map((r) => inspectHistoryTrustGlassNegative(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'commons-dhaka-embassy-government-photo')
+      .map((r) => inspectDhakaEmbassyReference(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'archive-comayagua-harpers-1859')
+      .map((r) => inspectComayaguaHarpersPlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'archive-khartoum-cathedral-building-news-1915')
+      .map((r) => inspectKhartoumCathedralPlate(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'archive-victoria-daily-times-1912')
+      .map((r) => inspectVictoriaDailyTimesPage(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'birmingham-terminal-original-archive')
+      .map((r) => inspectBirminghamTerminalArchive(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'commons-nlc-republic-era-original-book')
+      .map((r) => inspectNlcRepublicEraReference(dir, r)),
+    ...additional
       .filter((r) => r.origin === 'commons-vrt-cc0')
       .map((r) => inspectCommonsVrtCc0Reference(dir, r)),
     ...additional
       .filter((r) =>
-        ['commons-mccord-public-domain', 'banq-public-domain-atlas'].includes(r.origin),
+        [
+          'commons-mccord-public-domain',
+          'rijksmuseum-public-domain',
+          'banq-public-domain-atlas',
+          'te-papa-expired-postcard',
+          'commons-museu-paulista-expired-postcard',
+          'usgs-national-map-pr-naip',
+          'commons-nara-bureau-of-public-roads',
+          'commons-presidencia-sv-cc0',
+        ].includes(r.origin),
       )
       .map((r) => inspectPublicArchiveReference(dir, r)),
     ...additional

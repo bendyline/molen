@@ -29,8 +29,41 @@ const rand = (n) => {
   return x - Math.floor(x);
 };
 let serial = 1;
+const deliveryProfiles = {
+  street: {
+    pathScale: 0.075,
+    pathLimit: 8,
+    loopMin: 5,
+    sides: 3,
+    outerBands: 10,
+    innerBands: 2,
+    innerLegs: 3,
+    wallSegments: 2,
+    baseSides: 8,
+    tileScale: 7.5,
+    spireBands: 4,
+    wallMotifs: 3,
+    simpleWall: true,
+  },
+  closeup: {
+    pathScale: 0.23,
+    pathLimit: 20,
+    loopMin: 8,
+    sides: 4,
+    outerBands: 24,
+    innerBands: 8,
+    innerLegs: 6,
+    wallSegments: 7,
+    baseSides: 16,
+    tileScale: 3,
+    spireBands: 7,
+    wallMotifs: 6,
+  },
+};
+let delivery;
 const lerp = (a, b, t) => a.map((n, i) => n + (b[i] - n) * t);
 function tube(out, points, r = 0.047, color = stucco, mosaic = true, sides = 8) {
+  sides = delivery?.sides ?? sides;
   for (let j = 1; j < points.length; j++) {
     const a = points[j - 1],
       b = points[j],
@@ -47,8 +80,8 @@ function tube(out, points, r = 0.047, color = stucco, mosaic = true, sides = 8) 
       });
     const aa = ring(a, 0),
       bb = ring(b, 1);
-    loft(out, 'concrete', [aa, bb], color);
-    if (mosaic && a[1] < 19) {
+    loft(out, 'concrete', [aa, bb], color, { cap: !delivery });
+    if (!delivery && mosaic && a[1] < 19) {
       for (let s = 0; s < sides; s++)
         if (rand(k * 3 + s * 71) > (a[1] < 5 ? 0.23 : 0.63)) {
           const sn = (s + 1) % sides,
@@ -72,6 +105,16 @@ function tube(out, points, r = 0.047, color = stucco, mosaic = true, sides = 8) 
   }
 }
 function path(out, fn, n, r = 0.05, col = stucco, mosaic = true) {
+  if (delivery) {
+    const start = fn(0),
+      end = fn(1);
+    const closed = Math.hypot(...end.map((v, i) => v - start[i])) < 1e-5;
+    n = Math.min(
+      n,
+      delivery.pathLimit,
+      Math.max(closed ? delivery.loopMin : 1, Math.ceil(n * delivery.pathScale)),
+    );
+  }
   tube(
     out,
     Array.from({ length: n + 1 }, (_, i) => fn(i / n)),
@@ -103,6 +146,7 @@ function vertical(out, x, z, y0, y1, r = 0.055) {
   );
 }
 function mosaicFace(out, pts, seed, scale = 0.13) {
+  if (delivery) scale *= delivery.tileScale;
   const a = pts[0],
     b = pts[1],
     d = pts[3],
@@ -138,7 +182,9 @@ function mosaicFace(out, pts, seed, scale = 0.13) {
     }
 }
 function mosaicCylinder(out, x, z, r, y0, y1, seed, scale = 0.12) {
-  const count = Math.max(16, Math.ceil((tau * r) / scale));
+  const count = delivery
+    ? Math.max(delivery.sides, Math.ceil((tau * r) / (scale * delivery.tileScale)))
+    : Math.max(16, Math.ceil((tau * r) / scale));
   for (let i = 0; i < count; i++) {
     const a = (-i * tau) / count,
       b = (-(i + 1) * tau) / count;
@@ -156,6 +202,7 @@ function mosaicCylinder(out, x, z, r, y0, y1, seed, scale = 0.12) {
   }
 }
 function base(out, x, z, r, h, kind) {
+  const sides = delivery?.baseSides ?? 64;
   const profiles =
     kind === 'west'
       ? [
@@ -186,15 +233,15 @@ function base(out, x, z, r, h, kind) {
   loft(
     out,
     'concrete',
-    profiles.map(([y, rr]) => radialRing(y, rr, rr, 64, [x, z])),
+    profiles.map(([y, rr]) => radialRing(y, rr, rr, sides, [x, z])),
     stucco,
   );
   for (let j = 1; j < profiles.length; j++) {
     const [ya, ra] = profiles[j - 1],
       [yb, rb] = profiles[j];
-    for (let i = 0; i < 64; i++) {
-      const a = (-i * tau) / 64,
-        b = (-(i + 1) * tau) / 64;
+    for (let i = 0; i < sides; i++) {
+      const a = (-i * tau) / sides,
+        b = (-(i + 1) * tau) / sides;
       mosaicFace(
         out,
         [
@@ -209,7 +256,7 @@ function base(out, x, z, r, h, kind) {
     }
   }
   // LACMA close views show raised shells and bottle ends embedded between the flat ceramic shards.
-  for (let row = 0; row < Math.floor(h / 0.16); row++) {
+  for (let row = 0; !delivery && row < Math.floor(h / 0.16); row++) {
     const y = 0.14 + row * 0.16;
     const index = profiles.findIndex(([yy]) => yy > y);
     if (index < 1) continue;
@@ -265,6 +312,10 @@ function lattice(
   out,
   { x, z, y0, height, radius, legs, bands, phase = 0, thin = 0.044, inner = false },
 ) {
+  if (delivery) {
+    bands = Math.min(bands, inner ? delivery.innerBands : delivery.outerBands);
+    if (inner) legs = Math.min(legs, delivery.innerLegs);
+  }
   const rr = (t) => radius * Math.pow(1 - t, 1.03) + 0.018;
   for (let j = 0; j < legs; j++) {
     const a = (j * tau) / legs + phase;
@@ -466,7 +517,7 @@ function spire(out, x, z, y, h, kind = 0) {
   loft(
     o,
     'concrete',
-    profiles.map(([yy, r]) => radialRing(yy, r, r, 24)),
+    profiles.map(([yy, r]) => radialRing(yy, r, r, delivery?.baseSides ?? 24)),
     stucco,
   );
   for (let i = 0; i < profiles.length - 1; i++) {
@@ -486,8 +537,9 @@ function spire(out, x, z, y, h, kind = 0) {
       0.042,
     );
   }
-  for (let k = 0; k < 10; k++)
-    ring(o, 0, baseY + ((h - baseY) * k) / 10, 0, 0.31 * (1 - k / 10) + 0.045, 0.034);
+  const bands = delivery?.spireBands ?? 10;
+  for (let k = 0; k < bands; k++)
+    ring(o, 0, baseY + ((h - baseY) * k) / bands, 0, 0.31 * (1 - k / bands) + 0.045, 0.034);
   heart(o, 0, h + 0.32, 0, 0.45, 0.55, 0, 0.036);
 }
 function gazebo(out) {
@@ -495,8 +547,9 @@ function gazebo(out) {
     r = 2.8956,
     o = transform(out, 0, [x, 0, z]);
   // Bussard's 1959 section measures 19 ft diameter and 40 ft overall, overriding a conflicting popular 30 ft caption.
-  annulus(o, 'concrete', r - 0.33, r, 0, 0.54, stucco, 72);
-  annulus(o, 'concrete', r - 0.54, r - 0.04, 0.5, 0.66, cream, 72);
+  const baseSides = delivery ? delivery.baseSides * 2 : 72;
+  annulus(o, 'concrete', r - 0.33, r, 0, 0.54, stucco, baseSides);
+  annulus(o, 'concrete', r - 0.54, r - 0.04, 0.5, 0.66, cream, baseSides);
   mosaicCylinder(o, 0, 0, r, 0.03, 0.53, 144, 0.105);
   for (let i = 0; i < 18; i++) {
     const a = (i * tau) / 18;
@@ -571,7 +624,7 @@ function gazebo(out) {
   vertical(o, 0, 0, 0.1, 2.82, 0.13);
 }
 function wallPanel(out, width, h, seed, north = false) {
-  const n = 20,
+  const n = delivery?.wallSegments ?? 20,
     thick = 0.15;
   for (let i = 0; i < n; i++) {
     const xa = -width / 2 + (width * i) / n,
@@ -612,7 +665,8 @@ function wallPanel(out, width, h, seed, north = false) {
       cream,
     );
   }
-  box(out, 'concrete', [-width / 2, 0, -thick], [width / 2, 0.3, thick], stucco);
+  if (!delivery?.simpleWall)
+    box(out, 'concrete', [-width / 2, 0, -thick], [width / 2, 0.3, thick], stucco);
   for (const side of [-1, 1]) {
     const o = transform(out, side < 0 ? Math.PI : 0);
     if (side > 0 && !north) {
@@ -628,10 +682,11 @@ function wallPanel(out, width, h, seed, north = false) {
         0.13,
       );
     } else {
-      for (let i = 0; i < 9; i++) {
-        const xa = -width * 0.46 + (width * 0.92 * i) / 9,
-          xb = xa + (width * 0.92) / 9,
-          yt = h - 0.31 + 0.25 * Math.sin(((i + 0.5) * Math.PI) / 9);
+      const motifs = delivery?.wallMotifs ?? 9;
+      for (let i = 0; i < motifs; i++) {
+        const xa = -width * 0.46 + (width * 0.92 * i) / motifs,
+          xb = xa + (width * 0.92) / motifs,
+          yt = h - 0.31 + 0.25 * Math.sin(((i + 0.5) * Math.PI) / motifs);
         mosaicFace(
           o,
           [
@@ -645,14 +700,16 @@ function wallPanel(out, width, h, seed, north = false) {
         );
       }
     }
-    path(
-      o,
-      (t) => [-width / 2 + width * t, h + 0.2 * Math.sin(t * Math.PI), 0.17],
-      24,
-      0.031,
-      cream,
-    );
+    if (!delivery?.simpleWall)
+      path(
+        o,
+        (t) => [-width / 2 + width * t, h + 0.2 * Math.sin(t * Math.PI), 0.17],
+        24,
+        0.031,
+        cream,
+      );
   }
+  if (delivery?.simpleWall) return;
   for (const x of [-width / 2, width / 2]) {
     box(out, 'concrete', [x - 0.074, 0, -0.2], [x + 0.074, h + 0.25, 0.2], stucco);
     mosaicFace(
@@ -931,6 +988,15 @@ function build(out) {
   spire(out, b[0], b[1], 0, 5.5, 0);
   spire(out, -17.9, -10.8, 0, 4.1, 1);
 }
+export function buildWattsDelivery(out, level) {
+  delivery = deliveryProfiles[level];
+  try {
+    build(out);
+  } finally {
+    delivery = undefined;
+  }
+}
+
 export const wattsTowers = {
   id: 'watts_towers',
   planId: 'watts_towers',

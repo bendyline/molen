@@ -1,16 +1,20 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.hermannsdenkmal",
-  "inputHash": "sha256:484a02dbf9a741db4cf3287b5a1743765f9b6acf579c1e85ef716dbf7d0f3c2b",
-  "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
+  "inputHash": "sha256:2dc143a546186357fe1e0ace7c4c2f6e607bd4471fb46ef324e58ab3198d03fb",
+  "sourceHash": "sha256:264f7e08afb2495462a08c8d7bb6f2f2a0a13839fc52ebd50867554b39815323",
+  "runtimeHash": "sha256:5f69663b0adbe6beacf395268079d8612ba5f9904461fd65fd70b84ea8f2e634",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:bca73ee4bcceb3a9592a09d17b24cc5d2a3c283f368df8f1f9c018dde155be81",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
-  "placementHash": "sha256:b09f2969f80d2512578ad8cb47002c1791f72f6b0209b3e36759edcedb62f2ee",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:247ff248196bd79a97f9083b715f0786cc85094028b7b3761383ab76cef55c8a",
   "materialGraphs": {
-    "matgraph:molen.worldgen.material.stone_limestone": {
-      "path": "materials/stone_limestone.matgraph.json",
-      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -20,7 +24,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:81657c0e52375f0ceacaebfb5d2e1aea7f975a68f019ef5c1963b7fcf83ec26a",
+      "hash": "sha256:bedc378ac934efa4f39599c75f9ad5930321b2ee74ace6b91fee031c747fa13b",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -30,54 +34,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:a48c460496c423f1429c207f400025876c2062098b0c98e19041178736341eb7",
+      "hash": "sha256:12d73476d5c85515a3229186763242887f49a0622d353005de5a6a9c526a785a",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -87,54 +115,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:9add61e6f088af4d810caa27bc0ff8a22331e4d372e86a7fb8d8931692245e83",
+      "hash": "sha256:23df1947c2cbfaec1bb81814ff329a4d58cd101f4a94159a7e3e299651a3f1b7",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -144,54 +196,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:1acc445e6fd4e36c1d3e7a791b8feb4f9dac9f811e99eb61f9ccf130d2b71c77",
+      "hash": "sha256:ff48b06d31eee02d24acf4b4f63419a3d7ed036c89fc0e67f3a4cea7b48763f2",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -201,54 +277,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/sandstone-arcade.png",
-      "hash": "sha256:91ea4ac188810b9f0e2e62eb837b6339a9f48cee8abf4c2569deb05e25b0d143",
+      "hash": "sha256:9a09d5550157704229c229cc72725b21e026a462d26c282efdf5556b4265d8ac",
       "camera": {
         "name": "sandstone-arcade",
         "position": [
@@ -267,54 +367,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/statue-front.png",
-      "hash": "sha256:024a76c7e85ebf1dd3c7d83d91dfe5de21ca8d05b6b743d548f9ffd93fca08fe",
+      "hash": "sha256:4778bd04d695dcb2df8453c54c830038ee148588e96f977b6bd1d9bca864f2c3",
       "camera": {
         "name": "statue-front",
         "position": [
@@ -333,54 +457,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/helmet-sword.png",
-      "hash": "sha256:47a9c30ec347a94a62912017315249a0860a1d056762e7eee25c2fc6ed005ebe",
+      "hash": "sha256:019666c66093a59e28193e884726f2fd9462f18e7d0dc12331e3864474d1f0b2",
       "camera": {
         "name": "helmet-sword",
         "position": [
@@ -399,54 +547,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 3,
-        "renderedTriangles": 46318
+        "draws": 2,
+        "renderedTriangles": 18182
       }
     },
     {
       "path": "shots/shared/cape-shield.png",
-      "hash": "sha256:46e196c002668084aaac3e8e15b78d3aefbc10e4792b62ee279a8f4a82c13bcf",
+      "hash": "sha256:d2969cd54f1ad73a35315532a8f3943f71a21024684afc73496fe92a674cd29e",
       "camera": {
         "name": "cape-shield",
         "position": [
@@ -465,54 +637,78 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:5fc93ab829d9e329c75d896c6353f0a26e6ddd67d4db4950004b931bf509e8a6",
+      "hash": "sha256:ae72690f4de9404f0a0b3cf54626985be78990c7946fa572e5a658609b3e7fd5",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -531,54 +727,168 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 3,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
+      }
+    },
+    {
+      "path": "shots/shared/curved-east-stairs.png",
+      "hash": "sha256:67f152c80dcfc61153bbce827d1e1b4345d79d290eee9e8366d2b2b004d9e1e0",
+      "camera": {
+        "name": "curved-east-stairs",
+        "position": [
+          -12,
+          6,
+          -20
+        ],
+        "lookAt": [
+          0,
+          2,
+          -9
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.hermannsdenkmal",
+        "mode": "geographic-flat-terrain",
+        "placementId": "hermannsdenkmal",
+        "position": [
+          -63.982832425273955,
+          0,
+          -64.05568233691156
+        ],
+        "heading": 0,
+        "meshes": 2,
+        "triangles": 49504,
+        "bounds": {
+          "min": [
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
+          ],
+          "max": [
+            11.819695956073701,
+            53.459999084472656,
+            10.249996984377503
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
+        },
+        "loads": [
+          "molen.worldgen.structure.hermannsdenkmal"
+        ],
+        "selectionBounds": [
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "hermannsdenkmal"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 3,
+        "renderedTriangles": 49506
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:24d0789cd212f6900ff65a433552d0f1d1dedcde9077fd1284739a093b8d5446",
+      "hash": "sha256:33bcd8cc2a9434f70792c6b3e025d8bb03e43a7a84026cf740fdfe86b0204b6f",
       "camera": {
         "name": "placement",
         "placement": true
@@ -588,49 +898,73 @@
         "mode": "geographic-flat-terrain",
         "placementId": "hermannsdenkmal",
         "position": [
+          -63.982832425273955,
           0,
-          0,
-          0
+          -64.05568233691156
         ],
-        "heading": -1.5707963267948966,
+        "heading": 0,
         "meshes": 2,
-        "triangles": 46316,
+        "triangles": 49504,
         "bounds": {
           "min": [
-            -10.250000000000002,
-            0,
-            -10.250000000000002
+            -10.249998562969267,
+            -1.127369999885559,
+            -10.249999200925231
           ],
           "max": [
-            10.250000000000002,
+            11.819695956073701,
             53.459999084472656,
-            10.250000000000002
+            10.249996984377503
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -10.25,
+            -1.127369999885559,
+            -10.25
+          ],
+          "max": [
+            11.819696426391602,
+            53.459999084472656,
+            10.25
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "09efb220-0d0e-4eb6-bdba-fb22c0fa1b63",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bbf108a5-2f95-40af-bccd-ee4f05d75c28"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "4307e685-dfcf-4e9b-9183-05b75d87030c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "b72f5cca-d111-4586-9f4f-abd86214323b"
         },
         "loads": [
           "molen.worldgen.structure.hermannsdenkmal"
         ],
         "selectionBounds": [
-          8.83762077093348,
-          51.91050464171534,
-          8.841348729066521,
-          51.91280432884279
+          8.838553010466738,
+          51.911080074747254,
+          8.84041698953326,
+          51.91222991829813
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "hermannsdenkmal",
+            "coordinate": [
+              8.83948475,
+              51.9116545
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "hermannsdenkmal"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 4,
-        "renderedTriangles": 46318
+        "renderedTriangles": 49506
       }
     }
   ],

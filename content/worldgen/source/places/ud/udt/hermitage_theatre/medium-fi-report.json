@@ -8,25 +8,27 @@
   },
   "sourceHash": "sha256:0d6039500d95722cbc966ac4ad1f45739469fe6905cc4090f6ff41ebc593b599",
   "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
-  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
+  "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -86,7 +88,7 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:562ef997991bb056e8fae758e0d96b7eca396485fa9fe242be1659f0c3e812ad",
+      "hash": "sha256:b05b6c7b3a003c759f7fd3bc77ff1734a34150a22c51bb8c3676aa3905c4e633",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -121,8 +123,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -138,7 +148,7 @@
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:f97e8d12ac08af1b1bb307075346aa006781c3496c73595f04f7301461b17bdb",
+      "hash": "sha256:f22a3f4a86ea4722f22fb139b1ccde8c30e11fd9c3dce07df517d15f5abde34b",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -173,8 +183,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -190,7 +208,7 @@
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:4fe41bc56a2587027dd12eaf24a0bf503e15770ad5f7f0735d97f3e77b4ccc65",
+      "hash": "sha256:7855d4691ff044e2dec5200ac3c8cf7f8e02c9cfd864a88df930d6f9738206e7",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -225,8 +243,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -242,7 +268,7 @@
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:4aebd956a4ae3ec1e1b400cea0926610d9df7d2f002b4c3c609222e6a1f3110f",
+      "hash": "sha256:0d8d1681e91fff5cfcbbdc4fd0a978cd27d54734007dc56f1ba10cb3d825639c",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -277,8 +303,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -294,7 +328,7 @@
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:26c4f4603031be84ba1f1f6ec80b218d5edf9b7bad26443db62a150a906ecfd3",
+      "hash": "sha256:f413ef5cc3af02824039492c7d11cff1622ca4e14197bb497e233d05fbf89d72",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -329,8 +363,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -346,7 +388,7 @@
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:61798e56fd854bed77501ea9e49c01028f25ae980fb3d262dd5af58cfb448bfe",
+      "hash": "sha256:3b9d44045b92bea7ed76001a4870343a7e1ae6672e678fcf81409700a4f67807",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -381,8 +423,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -398,7 +448,7 @@
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:4d7e2c4fbdeee584467248eac2e1f0d79ba0536c7e3083c458a07252aefdba18",
+      "hash": "sha256:65e7fad00a0a9a63c3a8f97c390edbf2a3b35f13788fa731682f0f619dc44eb6",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -433,8 +483,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -450,7 +508,7 @@
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:80c0b8b59fd51bccec8a37e63b28f050238b910f973d134a388eb295a94e9e57",
+      "hash": "sha256:8732e7579147a6c77575524b0546d244733689ead458f23404283322734d7da7",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -485,8 +543,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -502,7 +568,7 @@
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:dcf1b1796633c2080f7877faea4fedda81d0aa84c8a642e881f55cba0827fcf7",
+      "hash": "sha256:a1f0ece76ba60ad134ebc0fee8705b57e14f8e1df4a2522b51337d2c2a111f3a",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -537,8 +603,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -554,7 +628,7 @@
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:87da45f1d7fa98183e348484067b42e874107874a5a612c39a6164f57741411e",
+      "hash": "sha256:e51b2e7acf72dde79e507c54e2ff70bafbfdeb4cc0d75bdb5ccf86e13ccb7203",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -589,8 +663,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -606,7 +688,7 @@
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:734a03cafb308a84f09f6da2b185d719af58ee9e4a3e64b57a0af38e1e4469ed",
+      "hash": "sha256:be74dc97e83b824ac7de4c7b7f4dac7887e5acd706f777438cb1ee88c8784a70",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -641,8 +723,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -658,7 +748,7 @@
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:712cd226e914dd583844e2e9e5d72f91532b3ce37bb9c4f07a867b5346165585",
+      "hash": "sha256:065a6470ba8eb266a17e86a7ecc0a858c86582d2d79b0130b9534708f5953224",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -693,8 +783,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -710,7 +808,7 @@
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:5706a344e7a8fd122a96c0028213677e1d0268c621d57b7de8fe8d5f998c06a7",
+      "hash": "sha256:25bba79455481fa58d38fba5282c0c7f158d27fb8f5ecec78cab65faafb4eea4",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -745,8 +843,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -762,7 +868,7 @@
     },
     {
       "path": "medium-fi/river-front-ten-engaged-columns-and-transoms.png",
-      "hash": "sha256:d9da788e3fcfb8b9b2e08f41891762c651042a2e541443873abb2238dcd48953",
+      "hash": "sha256:dd798565742b752c32971c796c31ee5c46b78112accfd39224dc742c3b83dbeb",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -797,8 +903,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -814,7 +928,7 @@
     },
     {
       "path": "medium-fi/rounded-canal-corner-and-abstract-niches.png",
-      "hash": "sha256:937de61e21b123fc128c6dd9a517e6aac5e5e936ad7f9d9b35f3ca6ff90bbc35",
+      "hash": "sha256:2b1d9703e59e5870a58fef7f615cece63521defdb713043c16c404e8628180eb",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -849,8 +963,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -866,7 +988,7 @@
     },
     {
       "path": "medium-fi/small-court-open-and-green-roofscape.png",
-      "hash": "sha256:6bb40dc633f8e66bca82274ec6d5026bf0b1355be0ca22f9e018ec7086624771",
+      "hash": "sha256:e49f4c68ff7c01385f390dabe745eaf1e66756a684252f8f54b315718fd8206c",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -901,8 +1023,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -918,7 +1048,7 @@
     },
     {
       "path": "medium-fi/hermitage-theatre-skyline.png",
-      "hash": "sha256:6a9980d19a6681164d392adf56ba9b72e4e4384b0c10e950ee784f46f27c7cc5",
+      "hash": "sha256:5406acb464c60d5095b248ee44a2d68bf629cfb3a39333f4fbd8da25eab864f5",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -953,8 +1083,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -970,7 +1108,7 @@
     },
     {
       "path": "medium-fi/hermitage-theatre-district.png",
-      "hash": "sha256:3775a04431712731c1efcfed05709ad8159d4890ba03e55c2a312f49e0e412a7",
+      "hash": "sha256:b86f5215a2116f8798347ce88edcca4a08b717ff4d04dd0ca28776b393e3592d",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1005,8 +1143,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1022,7 +1168,7 @@
     },
     {
       "path": "medium-fi/hermitage-theatre-street.png",
-      "hash": "sha256:65772eb4b8dbea30f83e0af4744e4a0e6ffb91a7c407fe9fbf5db2d7de3eff84",
+      "hash": "sha256:a2eed0c4a8f8058fc4de0e3383ff9f68681b041513645092ba7f4c41202c8eec",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1057,8 +1203,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1074,7 +1228,7 @@
     },
     {
       "path": "medium-fi/hermitage-theatre-closeup.png",
-      "hash": "sha256:f5f56f7a149dba80691d7e0ec1048b78fa08de1ecb51e375cfd5e5ec611e0ac1",
+      "hash": "sha256:3bf6ffaf8f2c6d3343bf18280e0008deb33764a06ac9800784d0677925dbcad9",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1109,8 +1263,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1126,7 +1288,7 @@
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:4d75f6c1d97eb8f7cce22c05a18637b43923b640cff33d523a9dc45f746d09d5",
+      "hash": "sha256:6057beb541429aab093fce8ee38b0485657454cc536d2cb3d69423f2f244dc67",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1161,8 +1323,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1178,7 +1348,7 @@
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:61798e56fd854bed77501ea9e49c01028f25ae980fb3d262dd5af58cfb448bfe",
+      "hash": "sha256:3b9d44045b92bea7ed76001a4870343a7e1ae6672e678fcf81409700a4f67807",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1213,8 +1383,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1230,7 +1408,7 @@
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:87050e510731925c263f473d2d956188c8b4a2cb8aab6c01d7252ba5f3dfd389",
+      "hash": "sha256:502223d3929224481126c6ffa1eb2e3325164cd2de43b628d7acbfca7880571c",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1265,8 +1443,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,
@@ -1282,7 +1468,7 @@
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:ff784928b33298f81164d320a74d1449aac99474def88177c7a485f912a6ef28",
+      "hash": "sha256:835320a9a5c96ccb8b784fb1222924fdf59ead18c05bd6556d9a7507a31d0fa8",
       "state": {
         "assetId": "molen.worldgen.structure.hermitage_theatre",
         "runtimeHash": "sha256:d74b27c28925248345ded1c0d1ebd95efa3b110d4f7052a3069841c893cc9f68",
@@ -1317,8 +1503,16 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 3.5,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
-        "reflections": "sky-pmrem",
+        "reflections": "none",
         "groundOpening": {
           "points": 34,
           "outlines": 2,

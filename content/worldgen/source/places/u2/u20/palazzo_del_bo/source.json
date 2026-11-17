@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palazzo_del_bo",
+  "kind": "static-structure",
+  "title": "Palazzo del Bo",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palazzo_del_bo",
+        "output": "assets/places/u2/u20/palazzo_del_bo/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:de37f3b33d28524c189338eea204d56eb9a83ad94cbeb8e7f23207c35e53c47e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palazzo-del-bo",
+        "path": "models/generate-palazzo-del-bo.mjs"
+      },
+      {
+        "id": "palazzo-del-bo-model",
+        "path": "models/palazzo-del-bo-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17464-11734.png",
+      "terrain-sources/terrarium-15-17464-11735.png",
+      "terrain-sources/terrarium-15-17465-11734.png",
+      "terrain-sources/terrarium-15-17465-11735.png",
+      "preview.png",
+      "native-map/palazzo-del-bo-controls.json",
+      "native-map/torre-del-bo.json",
+      "reference-rights/commons-theatre-kalibos.json",
+      "reference-rights/commons-old-court-houda-khartoum.json",
+      "reference-originals/old-court-native.jpg",
+      "theatre-and-court-controls.json",
+      "models/anatomical-theatre.mjs",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

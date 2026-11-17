@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palm_tree_mosque",
+  "kind": "static-structure",
+  "title": "Palm Tree Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palm_tree_mosque",
+        "output": "assets/places/k3/k3v/palm_tree_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:291560a740f4cfa274c77352ea41975323f680eb3ffb5fe0945d2dee54bd026b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palm-tree-mosque",
+        "path": "models/generate-palm-tree-mosque.mjs"
+      },
+      {
+        "id": "palm-tree-mosque-model",
+        "path": "models/palm-tree-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-palm-tree-mosque-elliott.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18060-19669.png",
+      "terrain-sources/terrarium-15-18060-19670.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

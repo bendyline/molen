@@ -10,7 +10,7 @@
     "longitude": 15.466341039,
     "latitude": -9.795258874
   },
-  "visualBrief": "Capanda Dam with both concrete wings, four deep spillway chutes, yellow crest machinery, switchyard, downstream generator hall and walled tailrace.",
+  "visualBrief": "Capanda Dam with angled concrete wings, four spillway chutes, yellow crest gantries, a switchyard, a downstream powerhouse and a fitted tailrace bank.",
   "size": [
     1245.2665405273438,
     125.39999961853027,
@@ -55,11 +55,11 @@
       -9.795258874
     ],
     "heading": -1.118970338564,
-    "elevationMode": "terrain-contact",
+    "elevationMode": "sea-level",
     "orientationPolicy": "approximate-visualization",
-    "elevationMeters": 0,
+    "elevationMeters": 956,
     "groundContactReviewed": true,
-    "groundContactBasis": "The connected dam uses one standard reservoir reference datum. Exact water/crest/floor levels remain approximate. The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending.",
+    "groundContactBasis": "The dam uses a fixed absolute elevation. The retained shoreline gives a representative 956 m reservoir stage. The crest is modeled at 961 m, and the downstream reach uses a representative 875 m stage. The fixed model datum and water stages share the same reference.",
     "groundModelY": 0,
     "replaceFootprint": true,
     "buildingCutout": {
@@ -485,14 +485,6 @@
       "preservePaving": true,
       "basis": "Occupied concrete wings, chute, turbine hall, tailrace apron and supported switchyard. Keep the original terrain heights."
     },
-    "terrainReference": {
-      "anchor": [
-        15.462947809146828,
-        -9.790590988983547
-      ],
-      "modelHeight": 2.334894156250016,
-      "basis": "The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending."
-    },
     "replaceRoads": {
       "length": 102.0312804712679,
       "width": 9,
@@ -551,7 +543,7 @@
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://www.openstreetmap.org/way/202428441",
     "wikidataId": "Q2885177",
-    "notes": "Capanda Dam with both concrete wings, four deep spillway chutes, yellow crest machinery, switchyard, downstream generator hall and walled tailrace. The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending."
+    "notes": "Capanda Dam with angled concrete wings, four spillway chutes, yellow crest gantries, a switchyard, a downstream powerhouse and a fitted tailrace bank. The retained shoreline gives a representative 956 m reservoir stage. The crest is modeled at 961 m, and the downstream reach uses a representative 875 m stage. The fixed model datum and water stages share the same reference."
   },
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
@@ -857,8 +849,8 @@
     }
   ],
   "limitations": [
-    "The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending.",
-    "The standard raw elevation field samples well below the modeled reservoir surface. The authored terrain review places the water at its estimated shoreline level. The normal runtime water mesh currently uses the lower DEM-derived datum.",
+    "The retained shoreline gives a representative 956 m reservoir stage. The crest is modeled at 961 m, and the downstream reach uses a representative 875 m stage. The fixed model datum and water stages share the same reference.",
+    "The retained terrain has coarse banks. The modeled apron and narrow tailrace spur fit the mapped plan. Reference photographs guide the exterior equipment and fenestration.",
     "Gate machinery, individual switchyard equipment, concrete elevations and tailrace water level are visual approximations.",
     "The model replaces only its powerhouse and the owned crest bridge. Separate mapped service roads and buildings are retained."
   ],
@@ -938,10 +930,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 4789,
-    "vertices": 14367,
+    "triangles": 4859,
+    "vertices": 14577,
     "materials": 6,
-    "bytes": 578520,
-    "sha256": "sha256:52e1b57f7da7214169fb17c6bd2304d6313e6128c9e1bb1d7cafbee93fd1ba16"
+    "bytes": 586920,
+    "sha256": "sha256:751783eee011958683aa7f98f7f8e13589f65f74dea487c43793fa34a3b46a07"
   }
 }

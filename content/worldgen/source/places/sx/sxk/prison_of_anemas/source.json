@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.prison_of_anemas",
+  "kind": "static-structure",
+  "title": "Prison of Anemas",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.prison_of_anemas",
+        "output": "assets/places/sx/sxk/prison_of_anemas/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a83ca744844b41d8e9e17f14853c76cf1dafe353c7b9f5429f82045c9e38f746"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-prison-of-anemas",
+        "path": "models/generate-prison-of-anemas.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/prison-of-anemas-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19018-12280.png",
+      "terrain-sources/terrarium-15-19018-12281.png",
+      "preview.png",
+      "native-map/anemas-fortification-segment.json",
+      "reference-rights/commons-edson-qualla-plan-native.json",
+      "reference-rights/millingen-1899-edition.html",
+      "reference-rights/millingen-gutenberg-catalog.html",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "reference-originals/millingen-exterior-138.jpg",
+      "reference-originals/millingen-exterior-144.jpg",
+      "qa.json"
+    ]
+  }
+}
