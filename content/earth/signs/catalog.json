@@ -19,8 +19,45 @@
       "exitLabel": "EXIT",
       "inferStopSigns": true,
       "font": "sign.us",
-      "notes": "Green highway guides and rectangular posted limits. Local junctions may infer stop controls. Overpass approximates Highway Gothic.",
-      "sources": ["https://mutcd.fhwa.dot.gov/pdfs/11th_Edition/mutcd11thedition.pdf"]
+      "streetNames": {
+        "panelColor": "#236346",
+        "inkColor": "#eeeadd",
+        "directions": {
+          "North": "N",
+          "South": "S",
+          "East": "E",
+          "West": "W",
+          "Northeast": "NE",
+          "Northwest": "NW",
+          "Southeast": "SE",
+          "Southwest": "SW"
+        },
+        "types": {
+          "Alley": "Aly",
+          "Avenue": "Ave",
+          "Boulevard": "Blvd",
+          "Circle": "Cir",
+          "Court": "Ct",
+          "Drive": "Dr",
+          "Expressway": "Expy",
+          "Highway": "Hwy",
+          "Lane": "Ln",
+          "Parkway": "Pkwy",
+          "Place": "Pl",
+          "Plaza": "Plz",
+          "Road": "Rd",
+          "Square": "Sq",
+          "Street": "St",
+          "Terrace": "Ter",
+          "Trail": "Trl"
+        },
+        "words": { "Saint": "St", "Mount": "Mt", "Fort": "Ft", "Junior": "Jr" }
+      },
+      "notes": "Green highway guides and rectangular posted limits. Local junctions may infer stop controls. Overpass approximates Highway Gothic. Street names are white on green, the national default; cities that post blue, brown or white blades are not distinguished. Abbreviations follow USPS Publication 28.",
+      "sources": [
+        "https://mutcd.fhwa.dot.gov/pdfs/11th_Edition/mutcd11thedition.pdf",
+        "https://pe.usps.com/text/pub28/28apc_002.htm"
+      ]
     },
     {
       "id": "gb",

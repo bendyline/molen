@@ -133,8 +133,7 @@ export const TERRAIN_ROAD_SIGN_PATTERNS: readonly TerrainRoadSignPattern[] = [
     title: 'Corner street name blades',
     family: 'junction',
     cues: ['name', 'junction topology'],
-    placement:
-      'Two double-sided blades on one corner post, each parallel to the street it names.',
+    placement: 'Two double-sided blades on one corner post, each parallel to the street it names.',
     fallback:
       'Requires two differently named streets forming a corner. Signalized junctions carry their names on the masts instead.',
   },

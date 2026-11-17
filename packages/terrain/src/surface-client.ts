@@ -58,11 +58,7 @@ import {
   type SurfaceSign,
   streetNamePanelWidth,
 } from './surface-sign-mesh';
-import {
-  crossStreetName,
-  planSurfaceSigns,
-  STREET_NAME_SIGNS_PER_TILE,
-} from './surface-signage';
+import { crossStreetName, planSurfaceSigns, STREET_NAME_SIGNS_PER_TILE } from './surface-signage';
 import {
   appendTerrainSignalLenses,
   type TerrainSignalHead,
@@ -90,6 +86,8 @@ export interface TerrainSurfaceStats {
   streetFurniture: number;
   trafficSignals: number;
   roadSigns: number;
+  /** Of `roadSigns`: corner blade posts and mast-arm name panels. */
+  streetNameSigns: number;
   parkingBays: number;
   parkedCars: number;
   /** Railway track fragments, level crossings, turnouts and signals (see surface-rail). */
@@ -338,6 +336,7 @@ export function createTerrainSurfaceObject(
     streetFurniture: 0,
     trafficSignals: 0,
     roadSigns: 0,
+    streetNameSigns: 0,
     parkingBays: 0,
     parkedCars: 0,
     railTracks: 0,
@@ -788,20 +787,21 @@ export function createTerrainSurfaceObject(
     ).some((p) => pointInPolygon([x / context.tileSize, z / context.tileSize], p));
   const inTile = (x: number, z: number): boolean =>
     x >= 0 && z >= 0 && x < context.tileSize && z < context.tileSize;
-  const signs =
-    detailed && style.roadSigns !== false && (style.roadSigns || style.id === 'modern')
-      ? planSurfaceSigns(
-          tile,
-          context,
-          network,
-          controls,
-          blocked,
-          maxFixtures,
-          bridgeProfiles,
-          signProfile,
-          options.routeShields,
-        )
-      : [];
+  const signsShown =
+    detailed && style.roadSigns !== false && (style.roadSigns || style.id === 'modern');
+  const signs: SurfaceSign[] = signsShown
+    ? planSurfaceSigns(
+        tile,
+        context,
+        network,
+        controls,
+        blocked,
+        maxFixtures,
+        bridgeProfiles,
+        signProfile,
+        options.routeShields,
+      )
+    : [];
   group.userData.roadSigns = signs;
   const signFaces = new TerrainSurfaceMeshBuilder(context);
   // Street names are small lettering: their own mesh, with a shorter draw distance.
@@ -815,10 +815,11 @@ export function createTerrainSurfaceObject(
       options.signFont,
       options.routeShields,
     );
-  fixtureCount += signs.length;
+  // Blade posts have their own cap (STREET_NAME_SIGNS_PER_TILE): names never crowd out signals.
+  const bladePosts = signs.filter((sign) => sign.kind === 'street-name').length;
+  fixtureCount += signs.length - bladePosts;
   stats.roadSigns = signs.length;
-  stats.streetNameSigns = signs.filter((sign) => sign.kind === 'street-name').length;
-  let mastNames = 0;
+  stats.streetNameSigns = bladePosts;
   // Mapped residential land, for clutter that belongs to homes (not shops on a residential road).
   const homes = tile.landcover
     .filter((feature) => feature.class === 'residential')
@@ -1677,10 +1678,11 @@ export function createTerrainSurfaceObject(
             (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2)),
         );
         // The cross street's name hangs beside the heads, between them and the pole when it
-        // fits there, else past the last head on a longer arm.
+        // fits there, else past the last head on a longer arm. One per mast, so the signal
+        // budget bounds these too.
         let armReach = reach;
         const named =
-          signProfile.streetNames && mastNames < STREET_NAME_SIGNS_PER_TILE
+          signsShown && signProfile.streetNames
             ? crossStreetName(node, approach, signProfile.streetNames, side)
             : undefined;
         if (named) {
@@ -1712,7 +1714,6 @@ export function createTerrainSurfaceObject(
           signs.push(sign);
           stats.roadSigns++;
           stats.streetNameSigns++;
-          mastNames++;
         }
         fixtures.push(
           {
@@ -2115,6 +2116,8 @@ export function createTerrainSurfaceObject(
   }
   const signMesh = weldTerrainSurfaceMesh(signFaces.mesh('surface:road-signs', undefined, false));
   if (signMesh) group.add(signMesh);
+  const nameMesh = weldTerrainSurfaceMesh(nameFaces.mesh('surface:street-names', undefined, false));
+  if (nameMesh) group.add(nameMesh);
   const fixtureMesh = createTerrainBoxInstances(fixtures, 'surface:street-fixtures');
   if (fixtureMesh) group.add(fixtureMesh);
   if (renderVehicles && vehicles.length)
@@ -2126,7 +2129,8 @@ export function createTerrainSurfaceObject(
     remaining <= 0 ||
     fixtureCount >= maxFixtures ||
     streetLights.length >= maxStreetlights ||
-    signs.length >= 48;
+    signs.length - stats.streetNameSigns >= 48 ||
+    bladePosts >= STREET_NAME_SIGNS_PER_TILE;
   return group;
 }
 
@@ -2185,6 +2189,8 @@ export interface TerrainSurfaceRenderer {
  * draws for tiles kilometers away, where a sign, a signal lens or a lane line is under a pixel.
  */
 const FIXTURE_DISTANCE = 900;
+/** Street-name lettering: past this its capitals are a pixel or two tall even on a mast panel. */
+const STREET_NAME_DISTANCE = 400;
 const MARKING_DISTANCE = 1500;
 const PARKED_CAR_DISTANCE = 1500;
 /** Rails in 3D and catenary wires: centimeters across, so they hand over to the track shading
@@ -2208,13 +2214,15 @@ export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
         ? MARKING_DISTANCE
         : child.name === 'surface:parked-cars'
           ? PARKED_CAR_DISTANCE
-          : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
-            ? FIXTURE_DISTANCE
-            : child.name === TERRAIN_RAIL_MESHES.rails
-              ? RAIL_DISTANCE
-              : child.name === TERRAIN_RAIL_MESHES.wires
-                ? WIRE_DISTANCE
-                : undefined;
+          : child.name === 'surface:street-names'
+            ? STREET_NAME_DISTANCE
+            : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
+              ? FIXTURE_DISTANCE
+              : child.name === TERRAIN_RAIL_MESHES.rails
+                ? RAIL_DISTANCE
+                : child.name === TERRAIN_RAIL_MESHES.wires
+                  ? WIRE_DISTANCE
+                  : undefined;
     if (distance !== undefined) child.userData.detailDistance = distance;
   }
 }
@@ -2464,6 +2472,7 @@ export function createTerrainSurfaceRenderer(
         streetFurniture: 0,
         trafficSignals: 0,
         roadSigns: 0,
+        streetNameSigns: 0,
         parkingBays: 0,
         parkedCars: 0,
         railTracks: 0,
@@ -2491,6 +2500,7 @@ export function createTerrainSurfaceRenderer(
           'streetFurniture',
           'trafficSignals',
           'roadSigns',
+          'streetNameSigns',
           'parkingBays',
           'parkedCars',
           'railTracks',

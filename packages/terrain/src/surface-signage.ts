@@ -29,7 +29,10 @@ export function postedSpeed(value: string | undefined): [string, string] | undef
   return [String(Number(match[1])), match[2]?.toLowerCase() === 'mph' ? 'MPH' : 'KM/H'];
 }
 
-/** Street-name signs a detail tile may carry, apart from the 48 other boards: blade posts, then mast panels. */
+/**
+ * Corner blade posts a detail tile may carry, outside the 48 boards and the shared fixture budget
+ * (a host that allows no fixtures still gets none). Mast panels come one per signal mast instead.
+ */
 export const STREET_NAME_SIGNS_PER_TILE = 64;
 
 /**
@@ -475,7 +478,7 @@ export function planSurfaceSigns(
   let posts = 0;
   if (names)
     for (const node of network.junctions) {
-      if (posts >= STREET_NAME_SIGNS_PER_TILE || result.length >= maximum) break;
+      if (posts >= Math.min(STREET_NAME_SIGNS_PER_TILE, maximum)) break;
       if (!inside(node.x, node.z) || controls.get(node)?.signal) continue;
       // A post stands on the ground; skip junctions on or under a structure.
       if (node.arms.some((arm) => arm.road.feature.bridge || arm.road.feature.tunnel)) continue;
@@ -489,7 +492,9 @@ export function planSurfaceSigns(
         surfaceHash(context.origin[0] + node.x, context.origin[1] + node.z) * corners.length,
       );
       for (let k = 0; k < corners.length; k++) {
-        const { corner, first, second } = corners[(start + k) % corners.length] as (typeof corners)[number];
+        const { corner, first, second } = corners[
+          (start + k) % corners.length
+        ] as (typeof corners)[number];
         // A step in from the lamp's corner: on the sidewalk, near the curb ramp.
         const x = corner.x - Math.cos(corner.direction) * 1.1,
           z = corner.z - Math.sin(corner.direction) * 1.1;

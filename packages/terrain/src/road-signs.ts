@@ -23,7 +23,11 @@ export function createTerrainRoadSignObject(
   group.name = `road-sign:${sign.pattern}`;
   group.userData.roadSigns = [sign];
   for (const mesh of [
-    faces.mesh('surface:road-signs', undefined, false),
+    faces.mesh(
+      sign.kind === 'street-name' ? 'surface:street-names' : 'surface:road-signs',
+      undefined,
+      false,
+    ),
     createTerrainBoxInstances(fixtures, 'surface:street-fixtures'),
   ])
     if (mesh) group.add(mesh);

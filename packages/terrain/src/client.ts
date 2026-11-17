@@ -355,8 +355,10 @@ export {
 } from './road-sign-patterns';
 export {
   DEFAULT_ROAD_SIGN_PROFILE,
+  streetSignName,
   type TerrainRoadSignCatalog,
   type TerrainRoadSignProfile,
+  type TerrainStreetNameStyle,
   terrainRoadSignCatalogSchema,
   terrainRoadSignProfileSchema,
   terrainRoadSignProfilesSchema,

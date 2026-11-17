@@ -68,7 +68,7 @@ export const STREET_NAME_BLADE: Readonly<StreetNamePanel> = {
   maxWidth: 1.5,
 };
 
-/** Blade centers above the post's footing; the post stops just above the upper blade. */
+/** Blade centers above the post's footing; the post stops under the lower blade. */
 const BLADE_HEIGHTS = [2.9, 3.14] as const;
 
 /**
@@ -90,10 +90,7 @@ export function streetNamePanelWidth(legend: string, panel: Readonly<StreetNameP
               : /\d/.test(c)
                 ? 0.6
                 : 0.56;
-  return Math.min(
-    panel.maxWidth,
-    Math.max(panel.minWidth, advance * panel.em + panel.padding * 2),
-  );
+  return Math.min(panel.maxWidth, Math.max(panel.minWidth, advance * panel.em + panel.padding * 2));
 }
 
 /** The library font a sign letters with: the requested role or face, else the highway role. */
@@ -104,9 +101,7 @@ function signFontId(
 ): string {
   const requested = font ?? appearance.font;
   const resolved = requested ? (fonts.roles?.[requested] ?? requested) : undefined;
-  return resolved && fonts.fonts[resolved]
-    ? resolved
-    : (fonts.roles?.highway ?? fonts.defaultFont);
+  return resolved && fonts.fonts[resolved] ? resolved : (fonts.roles?.highway ?? fonts.defaultFont);
 }
 
 /** Lettering as 2D triangles centered on the origin, Y up. */
@@ -166,7 +161,13 @@ function appendStreetNameSign(
       half = 0.015,
       border = Math.min(0.03, height * 0.08);
     // `mirror` draws the far face: u and depth negate, so it reads (and winds) from behind.
-    const quad = (w: number, h: number, depth: number, color: THREE.Color, mirror: number): void => {
+    const quad = (
+      w: number,
+      h: number,
+      depth: number,
+      color: THREE.Color,
+      mirror: number,
+    ): void => {
       const corners: [number, number][] = [
         [-w / 2, -h / 2],
         [w / 2, -h / 2],
@@ -253,20 +254,32 @@ function appendStreetNameSign(
     sign.dx * Math.cos(turn) - sign.dz * Math.sin(turn),
     sign.dx * Math.sin(turn) + sign.dz * Math.cos(turn),
   ];
-  const top = ground + BLADE_HEIGHTS[1] + STREET_NAME_BLADE.height / 2 + 0.08;
+  // The blades sit on the post, not around it: a post through them would hide the middle
+  // letter. A saddle under the lower blade, and a bracket in the gap between the two.
+  const half = STREET_NAME_BLADE.height / 2;
+  const post = ground + BLADE_HEIGHTS[0] - half;
+  const yaw = Math.atan2(sign.dx, sign.dz);
   fixtures.push(
+    { x, z, y: (ground + post) / 2, yaw, size: [0.075, post - ground, 0.075], color: '#9ca5a4' },
+    { x, z, y: post - 0.02, yaw, size: [0.1, 0.05, 0.1], color: '#9ca5a4' },
     {
       x,
       z,
-      y: (ground + top) / 2,
-      yaw: Math.atan2(sign.dx, sign.dz),
-      size: [0.075, top - ground, 0.075],
+      y: ground + (BLADE_HEIGHTS[0] + BLADE_HEIGHTS[1]) / 2,
+      yaw,
+      size: [0.07, BLADE_HEIGHTS[1] - BLADE_HEIGHTS[0] - half * 2 + 0.04, 0.07],
       color: '#9ca5a4',
     },
-    { x, z, y: top + 0.03, yaw: 0, size: [0.1, 0.06, 0.1], color: '#9ca5a4' },
   );
   panel(sign.lines[0] ?? '', sign.dx, sign.dz, ground + BLADE_HEIGHTS[0], STREET_NAME_BLADE, true);
-  panel(sign.lines[1] ?? '', upper[0], upper[1], ground + BLADE_HEIGHTS[1], STREET_NAME_BLADE, true);
+  panel(
+    sign.lines[1] ?? '',
+    upper[0],
+    upper[1],
+    ground + BLADE_HEIGHTS[1],
+    STREET_NAME_BLADE,
+    true,
+  );
 }
 
 export function appendSurfaceSign(

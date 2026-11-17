@@ -162,8 +162,7 @@ export function streetSignName(style: Readonly<TerrainStreetNameStyle>, name: st
   const leading = end > 1 && own(directions, words[0] as string) !== undefined;
   return words
     .map((word, i) => {
-      if ((i === 0 && leading) || (i === last && trailing))
-        return own(directions, word) as string;
+      if ((i === 0 && leading) || (i === last && trailing)) return own(directions, word) as string;
       if (i === typeAt && typed) return own(types, word) as string;
       return (i < last && own(others, word)) || word;
     })
