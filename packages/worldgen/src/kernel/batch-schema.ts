@@ -18,12 +18,13 @@ import {
 } from './identity-schema';
 import { type StyleRule, styleRuleSchema } from './rules';
 import { DOTTED_ID_RE } from './schema-common';
-import type {
-  BuildingRequest,
-  HeightSampler,
-  ModelPlacementRequest,
-  ScatterRequest,
-  Vec3,
+import {
+  BUILDING_CROWNS,
+  type BuildingRequest,
+  type HeightSampler,
+  type ModelPlacementRequest,
+  type ScatterRequest,
+  type Vec3,
 } from './types';
 
 export interface WorldgenBatchGround {
@@ -128,6 +129,25 @@ const buildingRequest = z.strictObject({
     .array(z.int().min(0))
     .describe('Outline edge indices on the cut boundary.')
     .optional(),
+  partyEdges: z
+    .array(z.int().min(0))
+    .describe(
+      'Outline edge indices shared with a neighbouring building: walls with no openings or trim.',
+    )
+    .optional(),
+  fallbackLevelsMax: z
+    .int()
+    .min(1)
+    .max(200)
+    .describe(
+      'Most storeys the style may guess when neither height nor levels is supplied; ignored otherwise.',
+    )
+    .optional(),
+  crown: z
+    .array(z.enum(BUILDING_CROWNS))
+    .max(3)
+    .describe('Towers and domes the building carries, in its style materials.')
+    .optional(),
   style: z
     .string()
     .regex(DOTTED_ID_RE)
@@ -147,6 +167,19 @@ const scatterRequest = z.strictObject({
         .min(0)
         .max(4294967295)
         .describe('Owner seed for acceptance and appearance on the shared placement grid.')
+        .optional(),
+      appearance: z
+        .string()
+        .min(1)
+        .describe(
+          "The ground's appearance class here, the key a crowns rule looks its brush up by (default: label).",
+        )
+        .optional(),
+      ground: z
+        .boolean()
+        .describe(
+          'False for a polygon only scatter sees (an inferred yard): crowns rules look through it to the polygon beneath.',
+        )
         .optional(),
     }),
   ),

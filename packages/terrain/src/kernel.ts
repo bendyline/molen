@@ -21,8 +21,11 @@ export {
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
 export {
   sampleTerrainBuildingCoverage,
+  TERRAIN_URBAN_GROUND_CLASSES,
+  TERRAIN_URBAN_GROUND_COVERAGE,
   type TerrainBuildingCoverage,
   terrainBuildingCoverage,
+  terrainUrbanGroundPaved,
 } from './building-coverage';
 export type {
   TerrainDescriptor,
@@ -60,8 +63,18 @@ export {
   TERRAIN_GRADE_SEPARATION,
   type TerrainGradeFamily,
 } from './grade-separation';
+export {
+  TERRAIN_GROUND_CROWN_FULL,
+  TERRAIN_GROUND_CROWNS,
+  TERRAIN_GROUND_LATTICE_SIZE,
+  type TerrainGroundCrown,
+  terrainGroundCell,
+  terrainGroundCrown,
+  terrainGroundLattice,
+} from './ground-crowns';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
 export { gradeHighwayBridges } from './highway-grading';
+export { landcoverAppearance } from './landcover-appearance';
 export {
   joinTerrainLines,
   lineSegmentIndex,

@@ -28,6 +28,157 @@ export interface FacadeDetailBudget {
   remaining: number;
 }
 
+/**
+ * A step in front of a doorway under a small canopy on two posts: what makes a door in a flat
+ * wall an entrance. About sixty vertices, so a style gives it to a share of its buildings.
+ */
+export function buildPorch(
+  edge: FacadeDetailEdge,
+  input: FacadeInput,
+  porch: { depth: number; canopy: 'none' | 'flat' | 'pitched' },
+  doorStart: number,
+  doorEnd: number,
+  floor: number,
+  doorTop: number,
+  out: MeshBufferBuilder,
+): void {
+  const side = 0.38;
+  const s0 = Math.max(0.05, doorStart - side);
+  const s1 = Math.min(edge.length - 0.05, doorEnd + side);
+  const depth = Math.min(porch.depth, Math.max(0.4, (s1 - s0) * 0.8));
+  if (s1 - s0 < 0.9) return;
+  const point = (s: number, y: number, d: number): Vec3 => [
+    edge.a[0] + edge.dir[0] * s + edge.normal[0] * d,
+    y,
+    edge.a[1] + edge.dir[1] * s + edge.normal[2] * d,
+  ];
+  const face = (
+    p: [Vec3, Vec3, Vec3, Vec3],
+    normal: Vec3,
+    width: number,
+    height: number,
+    surface: FacadeInput['trim'],
+  ): void =>
+    out.addQuad(
+      surface.slot,
+      surface.ref,
+      p,
+      normal,
+      [
+        [0, 0],
+        [width, 0],
+        [width, height],
+        [0, height],
+      ],
+      surface.color,
+    );
+  // The step: a cast slab that runs into the ground, so it meets a lawn that falls away.
+  const stone = { ...input.trim, color: [0.62, 0.61, 0.58] as RGB };
+  const top = floor + 0.02;
+  const sunk = floor - 0.6;
+  face(
+    [point(s0, top, 0), point(s1, top, 0), point(s1, top, depth), point(s0, top, depth)],
+    [0, 1, 0],
+    s1 - s0,
+    depth,
+    stone,
+  );
+  face(
+    [point(s0, sunk, depth), point(s1, sunk, depth), point(s1, top, depth), point(s0, top, depth)],
+    edge.normal,
+    s1 - s0,
+    top - sunk,
+    stone,
+  );
+  for (const [s, sign] of [
+    [s0, -1],
+    [s1, 1],
+  ] as const)
+    face(
+      [point(s, sunk, 0), point(s, sunk, depth), point(s, top, depth), point(s, top, 0)],
+      [edge.dir[0] * sign, 0, edge.dir[1] * sign],
+      depth,
+      top - sunk,
+      stone,
+    );
+  if (porch.canopy === 'none') return;
+  const roof = porch.canopy === 'pitched' ? (input.roof ?? input.trim) : input.trim;
+  const high = Math.min(edge.top - 0.1, doorTop + 0.42);
+  const drop = porch.canopy === 'pitched' ? Math.min(0.34, depth * 0.3) : 0;
+  if (high - floor < 2.2) return;
+  const reach = depth + 0.12;
+  const normal = normalize3([(edge.normal[0] * drop) / reach, 1, (edge.normal[2] * drop) / reach]);
+  face(
+    [
+      point(s0, high, 0),
+      point(s1, high, 0),
+      point(s1, high - drop, reach),
+      point(s0, high - drop, reach),
+    ],
+    normal,
+    s1 - s0,
+    dmath.hypot(reach, drop),
+    roof,
+  );
+  face(
+    [
+      point(s0, high - 0.09, 0),
+      point(s1, high - 0.09, 0),
+      point(s1, high - drop - 0.09, reach),
+      point(s0, high - drop - 0.09, reach),
+    ],
+    [-normal[0], -normal[1], -normal[2]],
+    s1 - s0,
+    reach,
+    input.trim,
+  );
+  face(
+    [
+      point(s0, high - drop - 0.13, reach),
+      point(s1, high - drop - 0.13, reach),
+      point(s1, high - drop, reach),
+      point(s0, high - drop, reach),
+    ],
+    edge.normal,
+    s1 - s0,
+    0.13,
+    input.trim,
+  );
+  // Two posts, drawn as their street and outer faces: the others face the door.
+  const post = 0.1;
+  for (const [s, sign] of [
+    [s0, -1],
+    [s1 - post, 1],
+  ] as const) {
+    const y1 = high - drop - 0.11;
+    face(
+      [
+        point(s, top, depth - 0.04),
+        point(s + post, top, depth - 0.04),
+        point(s + post, y1, depth - 0.04),
+        point(s, y1, depth - 0.04),
+      ],
+      edge.normal,
+      post,
+      y1 - top,
+      input.trim,
+    );
+    const outer = sign < 0 ? s : s + post;
+    face(
+      [
+        point(outer, top, depth - 0.04 - post),
+        point(outer, top, depth - 0.04),
+        point(outer, y1, depth - 0.04),
+        point(outer, y1, depth - 0.04 - post),
+      ],
+      [edge.dir[0] * sign, 0, edge.dir[1] * sign],
+      post,
+      y1 - top,
+      input.trim,
+    );
+  }
+}
+
 export function buildFacadeDetails(
   edge: FacadeDetailEdge,
   input: FacadeInput,
@@ -233,7 +384,9 @@ export function buildFacadeDetails(
   // Painted the dark tone of the trim, like the fallback entrance door, so they read on pale siding.
   const painted = {
     ...trim,
-    color: [trim.color[0] * 0.42, trim.color[1] * 0.42, trim.color[2] * 0.42] as RGB,
+    color: (input.paint
+      ? [input.paint[0], input.paint[1], input.paint[2]]
+      : [trim.color[0] * 0.42, trim.color[1] * 0.42, trim.color[2] * 0.42]) as RGB,
   };
   // Hung on the wall against the window's 10 cm trim, about 5 cm thick: set off by a gap and
   // standing proud of the siding, they read as boards floating beside the window.

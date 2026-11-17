@@ -637,3 +637,129 @@ it('varies crown width independently without reshuffling placements, height, or 
       }
   }
 });
+
+it('stands a fitted plant on each painted crown, kept whole and outside the layer cap', () => {
+  // A crown in the middle of every 8 m cell, 1 to 2.5 m across the row, painted from brush 0.4
+  // in even columns and 0.8 in odd ones.
+  const crowns = {
+    cells: ([minX, minZ, maxX, maxZ]: [number, number, number, number]) =>
+      [Math.floor(minX / 8), Math.floor(minZ / 8), Math.floor(maxX / 8), Math.floor(maxZ / 8)] as [
+        number,
+        number,
+        number,
+        number,
+      ],
+    crown: (i: number, j: number) => ({
+      x: i * 8 + 4,
+      z: j * 8 + 4,
+      radius: 1 + ((i + j) % 4) * 0.5,
+      brush: i % 2 === 0 ? 0.4 : 0.8,
+    }),
+    // Paved over north of z = 64 (built-up ground).
+    open: (_x: number, z: number) => (z < 64 ? 1 : 0),
+  };
+  const crowned: ScatterDoc = {
+    ...doc,
+    defaults: { ...doc.defaults, lod: { ...doc.defaults.lod, coverGrowth: 3 } },
+    rules: [
+      {
+        id: 'crowns',
+        classes: ['forest', 'heath'],
+        layer: 'understory',
+        densityPerHectare: 1,
+        minSpacing: 1,
+        crowns: { forest: 0.6, heath: 1 },
+        lod: { keepByTier: [1, 0] },
+        populations: [
+          {
+            model: 'builtin:shrub',
+            weight: 1,
+            width: 2,
+            scale: { min: 1, max: 1 },
+            yaw: 'random',
+            align: 'up',
+          },
+        ],
+      },
+      {
+        id: 'brush',
+        classes: ['forest'],
+        layer: 'understory',
+        densityPerHectare: 400,
+        minSpacing: 0.5,
+        populations: [
+          {
+            model: 'builtin:bush',
+            weight: 1,
+            scale: { min: 1, max: 1 },
+            yaw: 'random',
+            align: 'up',
+          },
+        ],
+      },
+    ],
+  };
+  const run = (
+    overrides: Partial<ScatterRequest> = {},
+    options: { tier?: number; cap?: number; withCrowns?: boolean } = {},
+  ) =>
+    samplePlacements({
+      request: request([0, 0, 128, 128], overrides),
+      doc: crowned,
+      pack: identity,
+      ground: FLAT_GROUND,
+      budget: {
+        ...budget,
+        maxUnderstoryInstances: options.cap ?? 100_000,
+        maxUnderstoryModels: 4,
+      },
+      tier: options.tier ?? 0,
+      ...(options.withCrowns === false ? {} : { crowns }),
+    });
+  const plants = (sets: PlacementSet[], model = 'builtin:shrub') => {
+    const rows: number[][] = [];
+    for (const set of sets.filter((entry) => entry.modelRef === model))
+      for (let i = 0; i < set.count; i++)
+        rows.push(Array.from(set.data.slice(i * PLACEMENT_STRIDE, (i + 1) * PLACEMENT_STRIDE)));
+    return rows;
+  };
+  const full = plants(run());
+  // Forest (brush 0.6) shows only the even columns' crowns, and none on the paved half.
+  expect(full.length).toBe(8 * 8);
+  for (const [x = 0, , z = 0, , sx = 0, sy = 0, sz = 0] of full) {
+    const i = (x - 4) / 8,
+      j = (z - 4) / 8;
+    expect(Number.isInteger(i) && Number.isInteger(j)).toBe(true);
+    expect(i % 2).toBe(0);
+    expect(z).toBeLessThan(64);
+    // Fitted across to the crown (width 2 at scale 1), and taller by its square root even
+    // though the layer is far over its cap and the doc would widen thinned crowns.
+    const across = 1 + ((i + j) % 4) * 0.5;
+    expect(sx).toBeCloseTo(across, 5);
+    expect(sz).toBeCloseTo(across, 5);
+    expect(sy).toBeCloseTo(Math.sqrt(across), 5);
+  }
+  // The appearance class, not the label, chooses the brush: heath paints every crown.
+  const heath = plants(
+    run({
+      polygons: [{ label: 'forest heathland', appearance: 'heath', ring: rect(0, 0, 128, 128) }],
+    }),
+  );
+  expect(heath.length).toBe(16 * 8);
+  // A polygon only scatter sees (an inferred yard) does not hide the ground's crowns beneath it,
+  // while a mapped one of the same label does.
+  const yard = { label: 'yard', ring: rect(0, 0, 128, 40) };
+  const base = { label: 'forest', ring: rect(0, 0, 128, 128) };
+  expect(plants(run({ polygons: [base, { ...yard, ground: false }] }))).toEqual(full);
+  expect(plants(run({ polygons: [base, yard] })).length).toBeLessThan(full.length);
+  // Kept whole: neither the host's keep nor a tight understory cap drops one, and the cap
+  // still thins the rest of the layer.
+  const capped = run({ keep: 0.3 }, { cap: 10 });
+  expect(plants(capped)).toEqual(full);
+  expect(plants(capped, 'builtin:bush').length).toBe(10);
+  expect(plants(run({ keep: 0.3 }, { cap: 0 }))).toEqual([]);
+  // Off at coarser tiers, and nothing without the host's crowns.
+  expect(plants(run({}, { tier: 1 }))).toEqual([]);
+  expect(plants(run({}, { withCrowns: false }))).toEqual([]);
+  expect(plants(run({}, { withCrowns: false }), 'builtin:bush').length).toBeGreaterThan(0);
+});

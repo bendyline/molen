@@ -434,6 +434,101 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
       },
       "description": "Weighted resizable plans for vacant lots; supplied outlines remain authoritative."
     },
+    "lots": {
+      "type": "object",
+      "properties": {
+        "compact": {
+          "type": "boolean",
+          "description": "Detached lots fill most of their frontage, close to the street."
+        },
+        "rows": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share of invented blocks built as rows: fronts wall to wall along the street, in place of houses in yards."
+        },
+        "units": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false,
+          "description": "Buildings to each 16 m of a row frontage: 3 is a 5.3 m front, 1 a 16 m one."
+        },
+        "setback": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "description": "Minimum distance a row front stands behind the street footway, meters."
+            },
+            "max": {
+              "type": "number",
+              "description": "Maximum distance a row front stands behind the street footway, meters (>= min)."
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "depth": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "description": "Minimum depth of a row building, meters."
+            },
+            "max": {
+              "type": "number",
+              "description": "Maximum depth of a row building, meters (>= min)."
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "levels": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "description": "Minimum storeys of a row building."
+            },
+            "max": {
+              "type": "number",
+              "description": "Maximum storeys of a row building (>= min)."
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "gap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share of row frontages left open: a yard, a lane, a vacant plot."
+        }
+      },
+      "additionalProperties": false,
+      "description": "How the style lays out lots it invents along a street where no building is mapped. Supplied outlines remain authoritative."
+    },
     "format": {
       "type": "string",
       "const": "molen/archstyle@1",
@@ -1138,8 +1233,19 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
         "fallback": {
           "default": "flat",
           "type": "string",
-          "const": "flat",
-          "description": "Always constructible fallback."
+          "enum": [
+            "flat",
+            "hipped"
+          ],
+          "description": "Roof for a footprint the chosen pitched form cannot cover (irregular, too wide, around a courtyard): flat, or slopes rising from every wall to a level deck."
+        },
+        "partyRidge": {
+          "type": "string",
+          "enum": [
+            "between",
+            "along"
+          ],
+          "description": "Ridge of a building that shares walls with neighbours: from party wall to party wall, eaves to the street (between), or along the party walls, a gable to the street (along). Such roofs are gabled."
         },
         "features": {
           "type": "object",
@@ -1344,6 +1450,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
               "type": "boolean",
               "description": "Paired louvered shutters beside punched windows."
             },
+            "paint": {
+              "minItems": 1,
+              "maxItems": 12,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "description": "Colors a building paints its shutters and door leaf, one drawn per building; without it they take the trim darkened."
+            },
             "cornerBoards": {
               "type": "boolean",
               "description": "Trim boards up each outside wall corner, as on lap-sided houses."
@@ -1431,6 +1547,37 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                 }
               },
               "additionalProperties": false
+            },
+            "porch": {
+              "type": "object",
+              "properties": {
+                "probability": {
+                  "default": 1,
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Share of buildings whose entrance gets the porch."
+                },
+                "depth": {
+                  "default": 1.1,
+                  "type": "number",
+                  "minimum": 0.4,
+                  "maximum": 2.5,
+                  "description": "Projection of the step and its canopy, meters."
+                },
+                "canopy": {
+                  "default": "pitched",
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "flat",
+                    "pitched"
+                  ],
+                  "description": "Roof over the entrance step, on two posts."
+                }
+              },
+              "additionalProperties": false,
+              "description": "A step in front of the entrance, under a small canopy."
             }
           },
           "additionalProperties": false,
@@ -1647,6 +1794,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [
@@ -1735,6 +1892,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [
@@ -1823,6 +1990,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [
@@ -1912,6 +2089,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [
@@ -2000,6 +2187,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [
@@ -2088,6 +2285,16 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "type": "string",
                     "minLength": 1,
                     "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  },
+                  "uvScale": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "description": "Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size."
                   }
                 },
                 "required": [

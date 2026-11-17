@@ -87,6 +87,8 @@ export {
   mappedPropRequests,
   overridePropRequests,
 } from './kernel/mapped-props';
+export type { PartyWalls } from './kernel/party-walls';
+export { associatePartyWalls, isAttached } from './kernel/party-walls';
 export {
   createPlacesContent,
   type PlacesContent,
@@ -133,8 +135,10 @@ export type {
   TileGeometry,
 } from './kernel/semantic-adapter';
 export {
+  ATTACHED_LABEL,
   landcoverAreaOf,
   OPEN_GROUND_LABEL,
+  SHOP_SHELL_CLASS,
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';
@@ -196,6 +200,7 @@ export type {
   WorldgenWorkerResult,
 } from './kernel/worker-protocol';
 export { createWorldgenWorkerHandler } from './kernel/worker-protocol';
+export { worshipCrowns } from './kernel/worship';
 
 import { registerBusinessCatalogSchema } from './kernel/business-catalog-schema';
 import { registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';

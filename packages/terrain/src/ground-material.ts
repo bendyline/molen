@@ -14,6 +14,13 @@ import {
 import type { SnowCoverData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { MeshStandardNodeMaterial, Node } from 'three/webgpu';
+import {
+  TERRAIN_GROUND_CROWN_FULL,
+  TERRAIN_GROUND_CROWN_OFFSETS,
+  TERRAIN_GROUND_CROWNS,
+  TERRAIN_GROUND_LATTICE_SIZE,
+  terrainGroundLattice,
+} from './ground-crowns';
 import { TERRAIN_TRACK_GLSL, terrainTrackNode } from './rail-material';
 
 export interface TerrainGroundMaterialOptions {
@@ -118,29 +125,49 @@ const SOIL: [number, number, number] = [0.2, 0.15, 0.09];
 /** Relief amplitude in meters per noise layer (clumps, tufts, close grain). */
 const RELIEF: [number, number, number] = [0.08, 0.04, 0.016];
 /**
- * Ground detail (the `landcoverDetail` attribute): shrub crowns covering this share of the
- * ground at full brush, and lighter bare-soil patches in 32 m cells. Half-meter orthophotos of
- * Yuma's open desert show separate round creosote and mesquite crowns, 2 to 5 m across, over
- * about 4% of vacant ground; single shrubs that small cannot be placed by the thousand, so the
- * ground carries them. Crowns fade in past the near range, where placed shrubs stand instead.
+ * Ground detail (the `landcoverDetail` attribute): shrub crowns (see `TERRAIN_GROUND_CROWNS`)
+ * and lighter bare-soil patches in 32 m cells. Single shrubs that small cannot be drawn by the
+ * thousand to the horizon, so the ground carries them; near the camera scatter's `crowns` rules
+ * stand a shrub on each crown, and the painted one gives way to it inside `BRUSH_NEAR`.
  */
-const BRUSH_SHARE = 0.1;
-/** One candidate crown per cell, its radius drawn from this range and kept inside the cell. */
-const BRUSH_CELL = 8;
-const BRUSH_RADIUS: [number, number] = [1, 2.6];
-/** Ground covered when every cell holds a crown: the mean crown area over the cell area. */
-const BRUSH_FULL =
-  (Math.PI * (BRUSH_RADIUS[1] ** 3 - BRUSH_RADIUS[0] ** 3)) /
-  (3 * (BRUSH_RADIUS[1] - BRUSH_RADIUS[0]) * BRUSH_CELL ** 2);
+const BRUSH_SHARE = TERRAIN_GROUND_CROWNS.share;
+const BRUSH_CELL = TERRAIN_GROUND_CROWNS.cell;
+const BRUSH_RADIUS = TERRAIN_GROUND_CROWNS.radius;
+const BRUSH_FULL = TERRAIN_GROUND_CROWN_FULL;
+const BRUSH_AT = TERRAIN_GROUND_CROWN_OFFSETS;
 /** Meters per pixel over which crowns resolve; coarser, the ground takes their mean color. */
 const BRUSH_RESOLVE: [number, number] = [0.5, 1.5];
 const BRUSH_NEAR: [number, number] = [25, 60];
-/** Linear crown colors, sunlit center and shaded rim: the olive brown of desert shrubs. */
-const BRUSH_LIT: [number, number, number] = [0.088, 0.07, 0.026];
-const BRUSH_RIM: [number, number, number] = [0.029, 0.024, 0.009];
-/** A crown's area-weighted color: the rim blend, smoothstep(0.2, 1, r), averages 0.608. */
-const rimMean = (i: 0 | 1 | 2): number => BRUSH_LIT[i] + (BRUSH_RIM[i] - BRUSH_LIT[i]) * 0.608;
-const BRUSH_MEAN: [number, number, number] = [rimMean(0), rimMean(1), rimMean(2)];
+/**
+ * Linear sunlit crown colors, each crown drawn between them: the grey-green of creosote and the
+ * warmer olive of mesquite and bursage. Their mean keeps the olive brown matched to Yuma frames.
+ */
+const BRUSH_GREEN: [number, number, number] = [0.062, 0.066, 0.025];
+const BRUSH_OLIVE: [number, number, number] = [0.082, 0.058, 0.019];
+/** Share of the sunlit color left at a crown's shaded rim; the dome's own shading adds to it. */
+const BRUSH_RIM = 0.5;
+/**
+ * Leafy lobes that break a crown's outline (noise cell in meters, and the share of the radius
+ * they move it by), and the leaf clumps that mottle its top (cell, and the brightness swing).
+ * Both fade out with the footprint, before their cells shimmer.
+ */
+const BRUSH_LOBE: [number, number] = [1, 0.5];
+const BRUSH_CLUMP: [number, number] = [0.5, 0.55];
+const BRUSH_DETAIL_FADE: [number, number] = [0.12, 0.35];
+/**
+ * Height of a crown's dome over its radius, for the bump the light models: a painted crown is
+ * lit on the sun's side and shaded away from it, which is what reads as a shrub from the air
+ * rather than a stain. It flattens out as the crown shrinks toward a few pixels.
+ */
+const BRUSH_DOME = 0.45;
+const BRUSH_DOME_FADE: [number, number] = [0.2, 0.6];
+/**
+ * A crown's area-weighted color: the rim blend, smoothstep(0.2, 1, r), averages 0.608 over a
+ * disc, and the two tones average to their midpoint.
+ */
+const brushMean = (i: 0 | 1 | 2): number =>
+  ((BRUSH_GREEN[i] + BRUSH_OLIVE[i]) / 2) * (1 + (BRUSH_RIM - 1) * 0.608);
+const BRUSH_MEAN: [number, number, number] = [brushMean(0), brushMean(1), brushMean(2)];
 const BARE_CELL = 32;
 /** Linear lift of a worn, bare-soil patch over its ground. */
 const BARE: [number, number, number] = [1.3, 1.24, 1.14];
@@ -194,31 +221,26 @@ const SNOW_ROAD: [number, number] = [0.4, 0.85];
 const SNOW_WALK: [number, number] = [0.75, 0.95];
 const SNOW_LOOSE = 0.95;
 const glslVec3 = (v: readonly number[]): string => `vec3(${v.map((x) => x.toFixed(3)).join(', ')})`;
+const glslVec2 = (v: readonly number[]): string => `vec2(${v.map((x) => x.toFixed(1)).join(', ')})`;
 /**
  * Texels across the shared lattice texture, and the largest cell read from it. A cell of 4 m or
  * finer repeats in 512 cells, a span that still divides the 4096 m period. One filtered fetch at
  * a smoothstep-remapped coordinate is exactly value noise, where hashing its four corners cost
  * about sixty instructions: most of the ground's per-pixel cost on an Apple M2.
  */
-const NOISE_SIZE = 512;
+const NOISE_SIZE = TERRAIN_GROUND_LATTICE_SIZE;
 const NOISE_MAX_CELL = 4;
 
 let noiseLattice: THREE.DataTexture | undefined;
 
-/** Random values at integer lattice points, wrapping and linearly filtered (shared, never disposed). */
+/**
+ * Random values at integer lattice points, wrapping and linearly filtered (shared, never
+ * disposed). The bytes are `terrainGroundLattice()`, which scatter reads the crowns from.
+ */
 function groundNoiseLattice(): THREE.DataTexture {
   if (noiseLattice === undefined) {
-    const data = new Uint8Array(NOISE_SIZE * NOISE_SIZE);
-    let state = 0x9e3779b9;
-    for (let i = 0; i < data.length; i++) {
-      // xorshift32: uncorrelated neighbours, the same lattice on every run.
-      state ^= state << 13;
-      state ^= state >>> 17;
-      state ^= state << 5;
-      data[i] = (state >>> 0) & 255;
-    }
     noiseLattice = new THREE.DataTexture(
-      data,
+      terrainGroundLattice(),
       NOISE_SIZE,
       NOISE_SIZE,
       THREE.RedFormat,
@@ -329,11 +351,13 @@ const GLSL = /* glsl */ `
 
   // Bare patches and shrub crowns (see BRUSH_SHARE). Where crowns fall below a pixel the ground
   // settles to their mean color at their share, so scrubland keeps its tone from the air.
-  vec3 terrainGroundDetail(vec3 base, vec2 detail, float distance) {
+  // The height out is the crown's dome in meters, for the relief the light models.
+  vec3 terrainGroundDetail(vec3 base, vec2 detail, float distance, out float height) {
     vec2 p = vTerrainGround;
     // Derivatives stay outside the branches: they are undefined in divergent control flow.
     float footprint = max(max(length(dFdx(p)), length(dFdy(p))), 0.0001);
     vec3 color = base;
+    height = 0.0;
     if (detail.y > 0.0) {
       float edge = 0.7 - 0.14 * detail.y;
       float patchShare = smoothstep(edge - 0.05, edge + 0.05,
@@ -347,18 +371,34 @@ const GLSL = /* glsl */ `
       float resolved = 1.0 - smoothstep(${BRUSH_RESOLVE[0].toFixed(2)}, ${BRUSH_RESOLVE[1].toFixed(2)}, footprint);
       if (resolved > 0.0) {
         // One candidate crown per cell, present with probability share / BRUSH_FULL; its
-        // radius and offset keep it inside the cell, so no neighbor is read.
+        // radius and offset keep it inside the cell, so no neighbor is read. These are the
+        // crowns terrainGroundCrown() places shrubs on: keep the two in step.
         vec2 cell = floor(p / ${BRUSH_CELL.toFixed(1)});
         float radius = mix(${BRUSH_RADIUS[0].toFixed(2)}, ${BRUSH_RADIUS[1].toFixed(2)},
-          terrainGroundCell(cell + vec2(57.0, 331.0)));
-        vec2 jitter = vec2(terrainGroundCell(cell), terrainGroundCell(cell + vec2(211.0, 97.0))) - 0.5;
+          terrainGroundCell(cell + ${glslVec2(BRUSH_AT.radius)}));
+        vec2 jitter = vec2(terrainGroundCell(cell), terrainGroundCell(cell + ${glslVec2(BRUSH_AT.jitterZ)})) - 0.5;
         vec2 center = (cell + 0.5) * ${BRUSH_CELL.toFixed(1)} + jitter * (${BRUSH_CELL.toFixed(1)} - 2.0 * radius);
+        // Leafy lobes move the outline and leaf clumps mottle the top while they resolve.
+        float leafy = 1.0 - smoothstep(${BRUSH_DETAIL_FADE[0].toFixed(2)}, ${BRUSH_DETAIL_FADE[1].toFixed(2)}, footprint);
+        float outline = radius;
+        float clumps = 1.0;
+        if (leafy > 0.0) {
+          outline *= 1.0 + (terrainGroundNoise(p + vec2(43.0, 19.0), ${BRUSH_LOBE[0].toFixed(1)}) - 0.5) *
+            ${BRUSH_LOBE[1].toFixed(2)} * leafy;
+          clumps += (terrainGroundNoise(p + vec2(7.0, 83.0), ${BRUSH_CLUMP[0].toFixed(1)}) - 0.5) *
+            ${BRUSH_CLUMP[1].toFixed(2)} * leafy;
+        }
         float d = length(p - center);
+        float r = d / outline;
         float soft = max(footprint, 0.15);
-        float crown = step(terrainGroundCell(cell + vec2(389.0, 23.0)), min(share / ${BRUSH_FULL.toFixed(4)}, 1.0)) *
-          (1.0 - smoothstep(radius - soft, radius + soft, d));
-        vec3 shaded = mix(${glslVec3(BRUSH_LIT)}, ${glslVec3(BRUSH_RIM)}, smoothstep(0.2, 1.0, d / radius));
+        float crown = step(terrainGroundCell(cell + ${glslVec2(BRUSH_AT.shown)}), min(share / ${BRUSH_FULL.toFixed(4)}, 1.0)) *
+          (1.0 - smoothstep(outline - soft, outline + soft, d));
+        vec3 lit = mix(${glslVec3(BRUSH_GREEN)}, ${glslVec3(BRUSH_OLIVE)}, terrainGroundCell(cell + vec2(131.0, 17.0)));
+        vec3 shaded = lit * mix(1.0, ${BRUSH_RIM.toFixed(2)}, smoothstep(0.2, 1.0, r)) * clumps;
         far = mix(far, mix(color, shaded, crown), resolved);
+        float dome = max(1.0 - r * r, 0.0);
+        height = dome * dome * radius * ${BRUSH_DOME.toFixed(2)} * crown *
+          (1.0 - smoothstep(${BRUSH_DOME_FADE[0].toFixed(2)}, ${BRUSH_DOME_FADE[1].toFixed(2)}, footprint));
       }
       color = far;
     }
@@ -615,6 +655,7 @@ export function createTerrainGroundMaterial(
         '#include <color_fragment>',
         `#include <color_fragment>
        float terrainGroundDistance = length(vViewPosition);
+       float terrainGroundCrownHeight = 0.0;
        ${
          options.agriculture
            ? `
@@ -628,11 +669,13 @@ export function createTerrainGroundMaterial(
        float strip = (fract(phase / 8.0) < 0.5 ? 0.97 : 1.03);
        strip = mix(1.0, strip, 1.0 - smoothstep(0.18, 0.65, fwidth(phase / 8.0)));
        diffuseColor.rgb = mix(diffuseColor.rgb, fieldColor * strip, vAgricultureRows.z);
-       diffuseColor.rgb = terrainGroundDetail(diffuseColor.rgb, vLandcoverDetail, terrainGroundDistance);`
+       diffuseColor.rgb = terrainGroundDetail(diffuseColor.rgb, vLandcoverDetail, terrainGroundDistance,
+         terrainGroundCrownHeight);`
            : ''
 }
        float terrainGroundRelief = 0.0;
        diffuseColor.rgb *= terrainGroundFactor(diffuseColor.rgb, terrainGroundDistance, terrainGroundRelief);
+       terrainGroundRelief += terrainGroundCrownHeight;
        // Outside the branch: derivatives are undefined in divergent control flow.
        float terrainSnowFootprint =
          max(max(length(dFdx(vTerrainGround)), length(dFdy(vTerrainGround))), 0.0001);
@@ -655,7 +698,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@36:${options.agriculture === true}`;
+    `terrain-ground@37:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -807,6 +850,8 @@ async function createTerrainGroundNodeMaterial(
   const underfoot = smoothstep(0.004, 0.016, footprint);
   const tuft = fade(TUFT).mul(underfoot) as unknown as F;
   const speckle = fade(BLADE * 2).mul(underfoot) as unknown as F;
+  // A painted shrub crown's dome, meters (landcover only): added to the relief below.
+  let crownHeight = float(0) as unknown as F;
   if (options.agriculture) {
     const blend = varying(attribute('landcoverBlend', 'vec4')) as unknown as Node<'vec4'>;
     // Up close, half-meter tufts and then blade-scale specks break the contour, so one class
@@ -866,9 +911,13 @@ async function createTerrainGroundNodeMaterial(
     // Bare patches and shrub crowns, as terrainGroundDetail in the GLSL path.
     const detail = varying(attribute('landcoverDetail', 'vec2')) as unknown as Node<'vec2'>;
     const resolved = smoothstep(BRUSH_RESOLVE[0], BRUSH_RESOLVE[1], footprint).oneMinus();
+    const leafy = smoothstep(BRUSH_DETAIL_FADE[0], BRUSH_DETAIL_FADE[1], footprint).oneMinus();
+    const domed = smoothstep(BRUSH_DOME_FADE[0], BRUSH_DOME_FADE[1], footprint).oneMinus();
     const groundBase = base;
-    const detailed = Fn(() => {
+    // The detailed color, and in w the crown's dome height for the relief.
+    const detailedHeight = Fn(() => {
       const color = groundBase.toVar();
+      const height = float(0).toVar();
       If(detail.y.greaterThan(0), () => {
         const edge = detail.y.mul(-0.14).add(0.7);
         const patchShare = smoothstep(
@@ -889,30 +938,58 @@ async function createTerrainGroundNodeMaterial(
           const radius = mix(
             BRUSH_RADIUS[0],
             BRUSH_RADIUS[1],
-            cell(at.add(vec2(57, 331)) as unknown as V2),
+            cell(at.add(vec2(...BRUSH_AT.radius)) as unknown as V2),
           ).toVar();
-          const jitter = vec2(cell(at), cell(at.add(vec2(211, 97)) as unknown as V2)).sub(0.5);
+          const jitter = vec2(
+            cell(at),
+            cell(at.add(vec2(...BRUSH_AT.jitterZ)) as unknown as V2),
+          ).sub(0.5);
           const center = at
             .add(0.5)
             .mul(BRUSH_CELL)
             .add(jitter.mul(radius.mul(-2).add(BRUSH_CELL)));
+          const outline = radius.toVar();
+          const clumps = float(1).toVar();
+          If(leafy.greaterThan(0), () => {
+            outline.mulAssign(
+              noise(p.add(vec2(43, 19)) as unknown as V2, BRUSH_LOBE[0])
+                .sub(0.5)
+                .mul(BRUSH_LOBE[1])
+                .mul(leafy)
+                .add(1),
+            );
+            clumps.addAssign(
+              noise(p.add(vec2(7, 83)) as unknown as V2, BRUSH_CLUMP[0])
+                .sub(0.5)
+                .mul(BRUSH_CLUMP[1])
+                .mul(leafy),
+            );
+          });
           const d = p.sub(center).length().toVar();
+          const r = d.div(outline).toVar();
           const soft = max(footprint, 0.15);
           const crown = step(
-            cell(at.add(vec2(389, 23)) as unknown as V2),
+            cell(at.add(vec2(...BRUSH_AT.shown)) as unknown as V2),
             min(share.div(BRUSH_FULL), 1),
-          ).mul(smoothstep(radius.sub(soft), radius.add(soft), d).oneMinus());
-          const shaded = mix(
-            vec3(...BRUSH_LIT),
-            vec3(...BRUSH_RIM),
-            smoothstep(0.2, 1, d.div(radius)),
+          )
+            .mul(smoothstep(outline.sub(soft), outline.add(soft), d).oneMinus())
+            .toVar();
+          const lit = mix(
+            vec3(...BRUSH_GREEN),
+            vec3(...BRUSH_OLIVE),
+            cell(at.add(vec2(131, 17)) as unknown as V2),
           );
+          const shaded = lit.mul(mix(1, BRUSH_RIM, smoothstep(0.2, 1, r))).mul(clumps);
           far.assign(mix(far, mix(color, shaded, crown), resolved));
+          const dome = max(r.mul(r).oneMinus(), 0);
+          height.assign(dome.mul(dome).mul(radius).mul(BRUSH_DOME).mul(crown).mul(domed));
         });
         color.assign(far);
       });
-      return color;
-    })().toVar() as unknown as V3;
+      return vec4(color, height);
+    })().toVar() as unknown as Node<'vec4'>;
+    const detailed = detailedHeight.xyz as unknown as V3;
+    crownHeight = detailedHeight.w as unknown as F;
     factor = factor.mul(detailed.div(max(base, vec3(0.001)))) as unknown as V3;
     base = detailed;
   }
@@ -1073,6 +1150,7 @@ async function createTerrainGroundNodeMaterial(
     )
     .mul(amount)
     .mul(green.mul(0.6).add(0.4))
+    .add(crownHeight)
     .mul(snowCover.mul(-SNOW_SMOOTH).add(1))
     .add(snowSurface.x.mul(snowCover))
     .toVar() as unknown as F;

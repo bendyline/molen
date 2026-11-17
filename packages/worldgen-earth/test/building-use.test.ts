@@ -12,7 +12,11 @@ import type {
 import { FLAT_GROUND, generateWorldgenBatch } from '@bendyline/molen-worldgen/kernel';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildingPieces } from '../src/kernel/building-parts';
-import { applyBuildingUse, associateBuildingUses } from '../src/kernel/building-use';
+import {
+  applyBuildingUse,
+  associateBuildingUses,
+  useOwnsExterior,
+} from '../src/kernel/building-use';
 import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
 import { loadDefaultPack } from './helpers/pack';
 
@@ -126,6 +130,46 @@ describe('building use', () => {
     expect(classify(block(8), [], 'residential')).toBeUndefined();
     // Levels stand in for a missing height.
     expect(classify([building('a', 20, { levels: 30 })], [], 'commercial')).toBe('skyscraper');
+  });
+
+  it('tells a hotel from a town block that has a hotel in it', () => {
+    const evidence = (pois: TerrainPoiFeature[]) => {
+      const tile: TerrainSemanticTile = {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: [building('block', 22)],
+        pois,
+      };
+      const pieces = buildingPieces(tile.buildings);
+      return associateBuildingUses(tile, pieces, SIZE, () => undefined).get(
+        pieces[0] as (typeof pieces)[number],
+      );
+    };
+    // A hotel with its own restaurant and cafe is a hotel.
+    const hotel = evidence([poi('hotel'), poi('restaurant'), poi('cafe')]);
+    expect(hotel?.use).toBe('hotel');
+    expect(hotel?.shared).toBeUndefined();
+    expect(hotel && useOwnsExterior(hotel, { area: 1936 })).toBe(true);
+    // Over a street of shops, or beside a museum under one outline, it is one occupant.
+    const street = evidence([
+      poi('hotel'),
+      poi('clothes'),
+      poi('shoes'),
+      poi('restaurant'),
+      poi('cafe'),
+    ]);
+    expect(street?.shared).toBe(true);
+    expect(street && useOwnsExterior(street, { area: 1936 })).toBe(false);
+    expect(evidence([poi('hotel'), poi('museum')])?.shared).toBe(true);
+    // The footprint mapped as the hotel itself is the hotel, whatever trades inside it.
+    const itself = evidence([
+      poi('hotel', 'block'),
+      poi('clothes'),
+      poi('shoes'),
+      poi('restaurant'),
+      poi('cafe'),
+    ]);
+    expect(itself?.source).toBe('identity');
+    expect(itself?.shared).toBeUndefined();
   });
 
   it('leaves the great majority of ordinary buildings to the style rules', () => {

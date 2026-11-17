@@ -39,10 +39,16 @@ observations. Actual local land cover controls whether a plant can be placed.
 Architectural envelopes derive from [Natural Earth 1:50m country outlines](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/),
 which are [public domain](https://www.naturalearthdata.com/about/terms-of-use/). Exterior rings are
 simplified at 0.02 degrees and coordinates rounded to 0.001 degrees. The shipped atlas groups 241
-country/territory features into 53 broad envelopes, retaining the Pacific Northwest and US
-Southwest subregions. Exact containment wins; an optional nearest-outline fallback fills
-otherwise unclassified coastal gaps within 2.5 km in local world coordinates. These envelopes
-are visual priors, not building-style surveys or a political boundary service.
+country/territory features into 51 broad envelopes, with ten subregions above them where a
+building tradition changes inside one country or runs across several: the Pacific Northwest, the
+US Southwest, the North American Northeast, the Cyclades, Mediterranean France, the English
+limestone belt (Bath and the Cotswolds), central Italy, the Rif, and the western and central
+Sahel. Each is a rectangle masked by its parent envelope's land. Exact containment wins; a
+nearest-outline fallback fills otherwise unclassified coastal gaps within 15 km in local world
+coordinates. Simplified outlines cut estuaries, lagoons and inshore islands off (central Lisbon,
+Venice, Mumbai's Fort, Cartagena, Cádiz, Miami Beach), and a building stands on land, so the
+nearest outline is its region. These envelopes are visual priors, not building-style surveys or
+a political boundary service.
 
 Ecological lookup uses a separate grid, so a national border does not move a forest. Each plant
 candidate and each building centroid resolves its own profile. Ground meshes sample regional
@@ -185,6 +191,31 @@ Limits: hedge runs are placed like any other plant, at a random bearing, and do 
 line or a fence. Blossom on shrubs and beds does not follow the month. Planting follows mapped
 land use, so a yard mapped as nothing in particular gets verge grass, not a garden.
 
+### Shrubs on painted crowns
+
+Dry ground paints its own shrubs. A scatter document's `surface.detail` gives each land class a
+brush level, and the terrain ground material paints round shrub crowns at that level: one
+candidate per 8 m cell, 2 to 5 m across, covering a tenth of the ground at full brush. Desert and
+scrubland keep their speckle to the horizon without a model per shrub. Each crown is shaded as a
+low dome, lit on the sun's side, with a leafy outline that resolves as the camera nears.
+
+A rule with `crowns` stands a plant on each of those crowns. The plant sits at the crown's
+center and is fitted to its width by the population's `width` (the model's crown width in meters
+at scale 1); a wider crown also stands taller. Within about 25 to 60 m of the camera the painted
+crown gives way to the plant, so the crown seen from the air is the shrub walked up to. The
+regional catalog gives every habitat with ground detail a `ground_crowns` rule: creosote-like
+resin bush, dryland shrubs and thorn thickets in deserts, and the habitat's own brush elsewhere.
+
+Crowns are kept whole, because a crown left without its plant would vanish as it was reached.
+`keepByTier` only switches the rule off (the catalog runs it on the finest tiles alone), a host's
+quality keep does not thin it, and its plants sit outside their layer's instance cap, bounded by
+the rule's own cap. A tile of open desert at Yuma, about a kilometer across, carries about 3,000.
+The crown pattern is a host input (`ScatterSampleInput.crowns`): Earth tiles supply it, and
+without it a `crowns` rule places nothing. Limits: the brush is matched by land class and
+building coverage, so where two mapped land classes overlap and the ground and scatter pick
+different ones, a crown at that edge can have no plant. Economy, which skips the finest
+vegetation tier, shows the painted crowns only.
+
 The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
 is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
 ecology pack and no GLB downloads. Reproduce comparison captures with
@@ -255,22 +286,59 @@ tree line at sea level comes from the ecological atlas's tundra, not from this. 
 own `altitude` limits still apply; pass `treeline` to the worldgen kernel's scatter sampler to
 use the mechanism elsewhere.
 
-The ordinary architectural catalog supplies 294 recipes across 14 construction families and seven
-uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm
-buildings. Mapped use wins over neighborhood inference. Taller measured residential buildings
-select compatible apartment recipes; source footprint, height, and levels still control the
-generated geometry. Named precedents from the 120-entry structure library remain available
-explicitly. Without evidence of age, the ordinary catalog does not randomly assign an iconic
-historic building type to an untyped home.
-Each family/use has three weighted recipes: base, compact facade, and open facade. Stable building
+The ordinary architectural catalog supplies 608 recipes across 32 construction families and nine
+uses: detached homes, attached homes, apartments, commercial, towers, civic, industrial, farm
+buildings, and places of worship. Mapped use wins over neighborhood inference. Taller measured
+residential buildings select compatible apartment recipes; source footprint, height, and levels
+still control the generated geometry. Named precedents from the 120-entry structure library
+remain available explicitly. Without evidence of age, the ordinary catalog does not randomly
+assign an iconic historic building type to an untyped home.
+
+A family is what an ordinary building in its regions is made of and roofed with: several wall
+materials and roof coverings, each with its own palette and texture scale (brick colors stay on
+brick), a roof pitch, the share of flat roofs, the colors shutters and doors are painted, and
+which way a house in a row turns its ridge. Britain's is brick, render and sandstone under slate
+with eaves to the street; the Low Countries' dark brick under pantiles with gables to it;
+the Mediterranean's warm render and limestone under terracotta; the Cyclades' limewash under
+flat roofs; the Maghreb's and South Asia's render under roof terraces; sub-Saharan Africa's and
+the Pacific's under corrugated sheet. Where a town's larger buildings are built like its houses,
+its flats, shops and civic buildings take the family's walls and keep a pitched roof through the
+height those roofs were built to. They are also drawn as masonry blocks: storeys of 3.15–3.5 m
+over a 3.7–4.3 m ground floor (so a mapped 21 m is five floors, not seven), windows taller than
+wide over a low sill, a plinth, a string course to each floor and a cornice under a flat roof.
+Elsewhere a block is rendered concrete under a flat roof, and one of its three facades is an
+older building: brick in North America, Australia, the Pacific and South Africa, the family's
+own wall materials in the rest, with the same tall windows, plinth and cornice. A town whose
+blocks were all built in one decade reads as an office park.
+
+A block of flats with no mapped height is guessed a storey taller than the family's row houses:
+two to three floors in the Cyclades and the Sahel, three to five around the Mediterranean, four
+to five in the North American Northeast. The upper figure is also the most the Earth binding
+lets any unmeasured building of the region be guessed at; see
+[how tall an unmeasured building is](worldgen.md#how-tall-an-unmeasured-building-is).
+
+A building is its region's before it is anything else. The basemap does not keep a building's
+type, and most towns have no land-use polygon, so each profile ends in rules for footprints
+that are neither typed nor on labelled land: small ones are the family's houses, ones that share
+their walls its row houses, large or tall ones its flats or commercial blocks. A footprint over
+35 m takes the glass-and-panel tower recipe only with a floor plate of 250 m² (50 m where towns
+are built in masonry): a slender shaft is a bell tower or a minaret. See
+[rows, shops and places of worship](worldgen.md#rows-shops-and-places-of-worship) for how
+party walls, businesses and religion are read from the map.
+Homes, attached homes, apartments, commercial buildings and towers each have three weighted
+recipes per family: base, compact facade, and open facade. Civic, industrial and farm buildings
+and places of worship, which stand alone in a street, have one. Stable building
 identity selects their window/bay rhythm, roof weighting, eaves, parapets and supported facade
 details. The facade names do not resize the mapped building. Explicit original recipe IDs remain
 available, and identity-free selection keeps the base recipe.
 
-For inferred vacant lots, regional `lotPlans` weights select cottages, L-shaped ranches,
-courtyards, compact homes, attached-garage plans or commercial shopfronts. The US Southwest has
+For inferred vacant lots, the family's `lots` pattern first decides whether a block is rows at
+the street or houses in yards (rows in most of the world, by a share and a rhythm per family;
+yards in North America, Australia and the Pacific). In a block of yards, regional `lotPlans`
+weights select cottages, L-shaped ranches, courtyards, compact homes, attached-garage plans or
+commercial shopfronts. The US Southwest has
 its own stucco-and-ceramic-tile family; Washington uses the North American siding-and-shingle
-family. Each inferred lot reserves a path or driveway to its frontage street. Mapped land use
+family, with a share of shingled and brick houses. Each inferred lot reserves a path or driveway to its frontage street. Mapped land use
 selects residential versus commercial pools; see [building infill](worldgen.md#inferred-buildings-where-outlines-are-missing).
 
 Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred

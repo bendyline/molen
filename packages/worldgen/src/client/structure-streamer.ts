@@ -32,7 +32,9 @@ export function structureStreamingBudget(mobile: boolean): StructureStreamingBud
     maxTextureBytes: mobile ? 16_000_000 : 48_000_000,
     maxInitialBytes: mobile ? 3_000_000 : 6_000_000,
     maxTriangles: mobile ? 350_000 : 1_000_000,
-    maxDrawCalls: mobile ? 100 : 200,
+    // Seattle's 14 detailed landmarks draw about 90 calls at district level (counted twice, for
+    // the shadow pass); 200 kept the nearest ones on their skylines during a flight downtown.
+    maxDrawCalls: mobile ? 100 : 400,
     concurrency: mobile ? 2 : 4,
     frameBudgetMs: mobile ? 2 : 4,
     keepAliveMs: 5000,
@@ -444,6 +446,39 @@ export class StructureLodStreamer implements StructureModelSource {
     return this.library.instantiate(ready.model, options);
   }
 
+  private overBudget(): boolean {
+    const totals = this.stats();
+    return (
+      this.measured.cpuBytes > this.budget.maxCpuBytes ||
+      this.measured.gpuBytes > this.budget.maxGpuBytes ||
+      totals.triangles * 2 > this.budget.maxTriangles ||
+      totals.drawCalls * 2 > this.budget.maxDrawCalls
+    );
+  }
+
+  /** Swap every instance of `slot` to the resident `ready` level and release superseded ones. */
+  private show(slot: Slot, ready: Ready, objects = new Map<Instance, THREE.Object3D>()): void {
+    for (const instance of slot.instances) {
+      const object = objects.get(instance) ?? this.child(ready, instance.options);
+      const previous = instance.child;
+      instance.root.add(object);
+      instance.root.remove(previous);
+      instance.child = object;
+      // A level of detail is not the size of the one before it: the render group it stands in
+      // must not be culled by bounds that leave some of it out.
+      markRenderBoundsChanged(instance.root);
+      instance.root.userData.landmarkLod = this.level(slot, ready.level).name;
+      if (previous !== object) disposeInstance(previous);
+    }
+    slot.current = ready.level;
+    for (const [level, value] of slot.ready)
+      if (level !== 0 && level !== slot.current) {
+        slot.ready.delete(level);
+        this.library.release(value.key);
+      }
+    this.remeasure();
+  }
+
   instantiate(handle: StructureModel, options: StructureInstanceOptions = {}): THREE.Object3D {
     const slot = this.slots.get(handle.ref);
     if (this.disposed || slot?.handle !== handle || !slot.refs)
@@ -456,13 +491,18 @@ export class StructureLodStreamer implements StructureModelSource {
     root.userData.landmarkLod = this.level(slot, slot.current).name;
     slot.instances.add(instance);
     this.remeasure();
-    const totals = this.stats();
-    if (
-      this.measured.cpuBytes > this.budget.maxCpuBytes ||
-      this.measured.gpuBytes > this.budget.maxGpuBytes ||
-      totals.triangles * 2 > this.budget.maxTriangles ||
-      totals.drawCalls * 2 > this.budget.maxDrawCalls
-    ) {
+    // Another tile placing a landmark that is already detailed elsewhere (a parent and its
+    // children during a level change, or a flight across a dense city) can overrun the shared
+    // budget. Its footprint is replaced either way, so falling back to the resident skyline
+    // beats leaving an empty lot; update() then spends the detail budget nearest-first again.
+    const skyline = slot.ready.get(0);
+    if (this.overBudget() && slot.current !== 0 && skyline) {
+      slot.job?.controller.abort();
+      slot.publication?.abort();
+      slot.desired = 0;
+      this.show(slot, skyline);
+    }
+    if (this.overBudget()) {
       slot.instances.delete(instance);
       disposeInstance(instance.child);
       this.remeasure();
@@ -530,24 +570,9 @@ export class StructureLodStreamer implements StructureModelSource {
       ]);
       if (overlap.cpuBytes > this.budget.maxCpuBytes || overlap.gpuBytes > this.budget.maxGpuBytes)
         return;
-      for (const { instance, object } of prepared) {
-        if (!slot.instances.has(instance)) continue;
-        const previous = instance.child;
-        instance.root.add(object);
-        instance.root.remove(previous);
-        instance.child = object;
-        // A level of detail is not the size of the one before it: the render group it stands in
-        // must not be culled by bounds that leave some of it out.
-        markRenderBoundsChanged(instance.root);
-        instance.root.userData.landmarkLod = this.level(slot, ready.level).name;
-        disposeInstance(previous);
-      }
-      slot.current = ready.level;
-      for (const [level, value] of slot.ready)
-        if (level !== 0 && level !== slot.current) {
-          slot.ready.delete(level);
-          this.library.release(value.key);
-        }
+      // Instances placed while this level was being prepared get it too, unprepared: left on
+      // the level released below, they would draw from a disposed model.
+      this.show(slot, ready, new Map(prepared.map(({ instance, object }) => [instance, object])));
       this.upgrades++;
     } finally {
       if (slot.publication === controller) delete slot.publication;

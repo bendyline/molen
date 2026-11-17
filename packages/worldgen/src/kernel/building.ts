@@ -7,6 +7,7 @@ import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { ArchStyleDoc } from './archstyle-types';
 import { buildBuildingAccess } from './building-access';
 import { buildYardFence } from './building-yard';
+import { buildCrowns } from './crowns';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -27,6 +28,7 @@ import { type BuildingRecipe, resolveBuildingRecipe, visibleProps } from './reci
 import type { Wing } from './rectangles';
 import { buildRoofDormers } from './roof-details';
 import {
+  buildDeckRoof,
   buildFlatRoof,
   buildSkillionRoof,
   buildWingRoof,
@@ -111,22 +113,30 @@ export interface BuildingResult {
 }
 
 const SKIRT_SPACING = 8;
+/** Tallest roof over a plot in a row whose ridge was turned across its depth, meters. */
+const MAX_ROW_ROOF_HEIGHT = 5.2;
+/** Shorter party walls than this in total do not make a building part of a row, meters. */
+const MIN_PARTY_LENGTH = 3;
 /** Structural depth of a car park deck, between one ceiling and the deck above it. */
 const DECK_DEPTH = 0.3;
 /** Far more than any lift bank serves; a rough footprint can resolve to absurd heights. */
 const MAX_STOREYS = 120;
 
-/** Map seam edges of the request outline onto the cleaned (possibly snapped) build outline. */
-function seamEdgesFor(
+/**
+ * Map edges of the request outline (seams, party walls) onto the cleaned, possibly snapped build
+ * outline.
+ */
+function outlineEdgesFor(
+  edges: readonly number[] | undefined,
   request: BuildingRequest,
   outline: readonly Vec2[],
 ): ReadonlySet<number> | undefined {
-  if (request.seamEdges === undefined || request.seamEdges.length === 0) return undefined;
+  if (edges === undefined || edges.length === 0) return undefined;
   const seams = new Set<number>();
   for (let index = 0; index < outline.length; index++) {
     const a = outline[index] as Vec2;
     const b = outline[(index + 1) % outline.length] as Vec2;
-    for (const edge of request.seamEdges) {
+    for (const edge of edges) {
       const sa = request.outline[edge];
       const sb = request.outline[(edge + 1) % request.outline.length];
       if (sa === undefined || sb === undefined) continue;
@@ -137,6 +147,30 @@ function seamEdgesFor(
     }
   }
   return seams.size > 0 ? seams : undefined;
+}
+
+/**
+ * The footprint axis a building's party walls run along, or undefined when it shares too little
+ * wall to belong to a row.
+ */
+function partyWallAxis(
+  analysis: FootprintAnalysis,
+  outline: readonly Vec2[],
+  party: ReadonlySet<number>,
+): 'u' | 'v' | undefined {
+  let alongU = 0;
+  let alongV = 0;
+  for (const edge of party) {
+    const a = outline[edge];
+    const b = outline[(edge + 1) % outline.length];
+    if (a === undefined || b === undefined) continue;
+    const dx = b[0] - a[0];
+    const dz = b[1] - a[1];
+    alongU += Math.abs(analysis.frame.c * dx + analysis.frame.s * dz);
+    alongV += Math.abs(-analysis.frame.s * dx + analysis.frame.c * dz);
+  }
+  if (alongU + alongV < MIN_PARTY_LENGTH) return undefined;
+  return alongU >= alongV ? 'u' : 'v';
 }
 
 function wingRoofKind(recipe: BuildingRecipe): WingRoofKind | undefined {
@@ -327,20 +361,36 @@ export function generateBuilding(
     trim: { slot: 'trim', ref: recipe.parts.trim.ref, color: recipe.parts.trim.color },
     wall: wallSurface,
   };
-  const seams = seamEdgesFor(input.request, outline);
-  const kind = wingRoofKind(recipe);
+  const seams = outlineEdgesFor(input.request.seamEdges, input.request, outline);
+  // Party walls: built like any wall, but nothing opens in them or is hung on them.
+  const party = outlineEdgesFor(input.request.partyEdges, input.request, outline);
+  const closed: ReadonlySet<number> | undefined =
+    party === undefined ? seams : new Set([...(seams ?? []), ...party]);
+  const partyAxis = party !== undefined ? partyWallAxis(analysis, outline, party) : undefined;
+  let kind = wingRoofKind(recipe);
+  // Between party walls a roof is gabled: a hip would slope down onto the neighbours.
+  if (partyAxis !== undefined && kind === 'hip' && recipe.roof.partyRidge !== undefined)
+    kind = 'gable';
   const keepRoofShape = recipe.lodKeep.includes('roof-shape');
   const wings = analysis.wings.filter(
     (wing) => (wing.u1 - wing.u0) * (wing.v1 - wing.v0) >= recipe.minWingArea,
   );
   const usableWings = wings.length > 0 ? wings : analysis.wings.slice(0, 1);
+  const hipped = recipe.roof.fallback === 'hipped';
   const pitched =
     kind !== undefined &&
     keepRoofShape &&
     input.request.clipped !== true &&
     analysis.rectilinear &&
     usableWings.length > 0 &&
+    !recipe.roof.wide &&
+    // Wings ignore a courtyard; slopes up to a deck run round it.
+    !(hipped && holes.length > 0) &&
     (recipe.roof.perWing || analysis.kind === 'box' || recipe.roof.complexFootprint === 'wings');
+  // Slopes up to a deck where no ridge fits: tried first, and a plan too thin for it falls
+  // through to the skillion or flat roof it would have had.
+  const decked =
+    !pitched && kind !== undefined && keepRoofShape && input.request.clipped !== true && hipped;
   const skillion =
     !pitched &&
     kind !== undefined &&
@@ -371,7 +421,28 @@ export function generateBuilding(
   const ridges: RidgeLine[] = [];
   let dormerBudget = 16;
   let topAt: number | ((p: Vec2) => number) = eave;
-  if (skillion) {
+  let deck: number | undefined;
+  if (decked) {
+    // A mansard keeps its steep lower slope and low height; any other form rises at its pitch.
+    const mansard = kind === 'mansard';
+    deck = buildDeckRoof(
+      outline,
+      holes,
+      {
+        eave,
+        rise: mansard ? Math.max(recipe.roof.lowerRise, 1) : recipe.roof.rise,
+        maxHeight: mansard ? 2.4 : 4.6,
+        overhang: Math.min(recipe.roof.overhang, 0.45),
+        span: Math.min(analysis.width, analysis.depth),
+        tier: geometryTier,
+      },
+      surfaces,
+      out,
+    );
+  }
+  if (deck !== undefined) {
+    record.roof = 'deck';
+  } else if (skillion) {
     const plane = buildSkillionRoof(
       outline,
       holes,
@@ -385,10 +456,25 @@ export function generateBuilding(
     topAt = plane;
   } else if (pitched && kind !== undefined) {
     for (const wing of usableWings) {
-      const oriented: Wing =
+      let oriented: Wing =
         recipe.roof.ridge === 'short-axis'
           ? { ...wing, longAxis: wing.longAxis === 'u' ? 'v' : 'u' }
           : wing;
+      // In a row the ridge follows the row, not the plot: from party wall to party wall with the
+      // eaves to the street, or along the party walls with a gable to it.
+      const inRow =
+        partyAxis !== undefined && recipe.roof.partyRidge !== undefined && analysis.kind === 'box';
+      if (inRow) {
+        const across = partyAxis === 'u' ? 'v' : 'u';
+        oriented = { ...wing, longAxis: recipe.roof.partyRidge === 'along' ? partyAxis : across };
+      }
+      // A ridge across a deep plot spans its depth: hold the roof to a storey and a half.
+      const span =
+        (oriented.longAxis === 'u' ? oriented.v1 - oriented.v0 : oriented.u1 - oriented.u0) / 2;
+      const rise =
+        inRow && span > 0
+          ? Math.min(recipe.roof.rise, MAX_ROW_ROOF_HEIGHT / span)
+          : recipe.roof.rise;
       let shedDirection = recipe.roof.shedDirection;
       if (kind === 'shed' && recipe.roof.shedDownhill) {
         const along = oriented.longAxis === 'u';
@@ -411,7 +497,7 @@ export function generateBuilding(
           wing: oriented,
           frame: analysis.frame,
           eave,
-          rise: recipe.roof.rise,
+          rise,
           lowerRise: recipe.roof.lowerRise,
           overhang: recipe.roof.overhang,
           tier: geometryTier,
@@ -431,7 +517,7 @@ export function generateBuilding(
             wing: oriented,
             frame: analysis.frame,
             eave,
-            rise: recipe.roof.rise,
+            rise,
             lowerRise: recipe.roof.lowerRise,
             overhang: recipe.roof.overhang,
             tier: geometryTier,
@@ -456,7 +542,7 @@ export function generateBuilding(
         if (!(hip && a1 - a0 <= 2 * hd * 1.15)) {
           const r0 = hip ? a0 + hd : a0;
           const r1 = hip ? a1 - hd : a1;
-          const yR = eave + hd * recipe.roof.rise;
+          const yR = eave + hd * rise;
           const pa = toWorld(analysis.frame, along ? [r0, bc] : [bc, r0]);
           const pb = toWorld(analysis.frame, along ? [r1, bc] : [bc, r1]);
           const dir = directionToWorld(analysis.frame, along ? [1, 0] : [0, 1]);
@@ -521,6 +607,22 @@ export function generateBuilding(
     wallUv.floorHeight = recipe.floorHeight;
   }
 
+  if (input.request.crown !== undefined && input.request.crown.length > 0)
+    buildCrowns(
+      input.request.crown,
+      {
+        analysis,
+        outline,
+        base: wallBase,
+        eave,
+        roofTop: Math.max(eave, out.maxYSince(roofMark)),
+        wall: wallSurface,
+        roof: surfaces.roof,
+        window: { slot: 'window', ref: recipe.parts.window.ref, color: recipe.parts.window.color },
+        salt: aspectSeed(recipe.seed, 'crown'),
+      },
+      out,
+    );
   const interiorStoreys: InteriorStorey[] = [];
   const stacked =
     input.interiors !== undefined &&
@@ -599,7 +701,7 @@ export function generateBuilding(
           wallBase,
           interiorStoreys[0]?.ceiling ?? wallBase,
           input.ground,
-          seams,
+          closed,
           interiorStoreys,
         ))
       : undefined;
@@ -691,6 +793,8 @@ export function generateBuilding(
             }
           : {}),
         ...(seams !== undefined ? { seamEdges: seams } : {}),
+        ...(party !== undefined ? { blindEdges: party } : {}),
+        ...(recipe.facade.paint !== undefined ? { paint: recipe.facade.paint } : {}),
       },
       out,
     );
@@ -703,14 +807,17 @@ export function generateBuilding(
           outline,
           wallBase,
           topFn,
-          seams,
+          closed,
           input.simplified === true,
           out,
           site !== undefined,
           signs,
         )
       : [];
-  const visible = input.simplified === true ? [] : visibleProps(recipe, input.tier);
+  // A deck is too small and too high for what stands on a flat roof or lines its edge.
+  const visible = (input.simplified === true ? [] : visibleProps(recipe, input.tier)).filter(
+    (prop) => deck === undefined || (prop.anchor !== 'roof-flat' && prop.anchor !== 'roof-edge'),
+  );
   if (visible.length > 0) {
     placeProps(
       visible,
@@ -730,7 +837,7 @@ export function generateBuilding(
           outline,
           site?.openings,
           recipe.facade.details?.entrance?.width,
-          seams,
+          closed,
           wallBase + recipe.groundFloorHeight,
         ),
       },

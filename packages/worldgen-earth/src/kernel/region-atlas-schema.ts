@@ -71,9 +71,9 @@ const regionAtlasSchema = z.strictObject({
   fallbackDistanceMeters: z
     .number()
     .min(0)
-    .max(5000)
+    .max(50_000)
     .describe(
-      'Optional nearest-outline fallback in local world meters, used only when no region contains the point. Compensates for coarse coastlines; default 0.',
+      'Optional nearest-outline fallback in local world meters, used only when no region contains the point. Compensates for coarse coastlines, which leave estuary, lagoon and inshore island cities outside every outline; default 0.',
     )
     .optional(),
   regions: z

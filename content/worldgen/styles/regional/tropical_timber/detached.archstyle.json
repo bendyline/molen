@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.tropical_timber.detached",
-  "title": "Tropical timber and metal roofs: detached",
+  "title": "Island timber and metal roofs: detached",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -112,7 +112,8 @@
         }
       }
     ],
-    "fallback": "flat"
+    "fallback": "hipped",
+    "partyRidge": "between"
   },
   "facade": {
     "bays": {
@@ -154,6 +155,14 @@
         "height": 2.15,
         "style": "single"
       },
+      "shutters": true,
+      "paint": [
+        "#e9e6dc",
+        "#3f6f8f",
+        "#3f6a55",
+        "#7a3a33",
+        "#c9a23f"
+      ],
       "cornerBoards": true,
       "awnings": {
         "depth": 0.75
@@ -168,8 +177,22 @@
     "wall": {
       "choices": [
         {
-          "ref": "matgraph:molen.worldgen.material.siding_lap",
-          "weight": 1
+          "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+          "weight": 6,
+          "palette": "wall_wood_painted_lap",
+          "uvScale": [
+            2,
+            1.6
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.stucco",
+          "weight": 2,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -185,8 +208,13 @@
     "roof": {
       "choices": [
         {
-          "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
-          "weight": 1
+          "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+          "weight": 1,
+          "palette": "roof_metal_corrugated",
+          "uvScale": [
+            1.2,
+            2
+          ]
         }
       ],
       "palette": "regional_roof",
@@ -203,19 +231,15 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.membrane",
-          "weight": 2
-        },
-        {
-          "ref": "matgraph:molen.worldgen.material.gravel",
           "weight": 1
         }
       ],
-      "palette": "flatRoof",
+      "palette": "regional_flat_roof",
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        4,
-        4
+        6,
+        6
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -390,39 +414,22 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
+    "rooftop": {
       "entries": [
         {
-          "color": "#c3d8b4",
+          "color": "#3a3b3e",
           "weight": 1
         },
         {
-          "color": "#b4c4be",
+          "color": "#ecece6",
           "weight": 1
         },
         {
-          "color": "#dec8a4",
+          "color": "#4f6f96",
           "weight": 1
         },
         {
-          "color": "#c5ced4",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
-    "regional_roof": {
-      "entries": [
-        {
-          "color": "#839697",
-          "weight": 1
-        },
-        {
-          "color": "#a78a7c",
+          "color": "#cfc6ae",
           "weight": 1
         }
       ],
@@ -440,6 +447,228 @@
         },
         {
           "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_wood_painted_lap": {
+      "entries": [
+        {
+          "color": "#c3d8b4",
+          "weight": 1
+        },
+        {
+          "color": "#b4c4be",
+          "weight": 1
+        },
+        {
+          "color": "#dec8a4",
+          "weight": 1
+        },
+        {
+          "color": "#c5ced4",
+          "weight": 1
+        },
+        {
+          "color": "#e0b8a4",
+          "weight": 1
+        },
+        {
+          "color": "#a9c8d6",
+          "weight": 1
+        },
+        {
+          "color": "#e6d79a",
+          "weight": 1
+        },
+        {
+          "color": "#d6a9a4",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stucco": {
+      "entries": [
+        {
+          "color": "#e6e0cf",
+          "weight": 1
+        },
+        {
+          "color": "#d6c9a6",
+          "weight": 1
+        },
+        {
+          "color": "#c9d6cf",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#c3d8b4",
+          "weight": 9.4
+        },
+        {
+          "color": "#b4c4be",
+          "weight": 9.4
+        },
+        {
+          "color": "#dec8a4",
+          "weight": 9.4
+        },
+        {
+          "color": "#c5ced4",
+          "weight": 9.4
+        },
+        {
+          "color": "#e0b8a4",
+          "weight": 9.4
+        },
+        {
+          "color": "#a9c8d6",
+          "weight": 9.4
+        },
+        {
+          "color": "#e6d79a",
+          "weight": 9.4
+        },
+        {
+          "color": "#d6a9a4",
+          "weight": 9.4
+        },
+        {
+          "color": "#e6e0cf",
+          "weight": 8.3
+        },
+        {
+          "color": "#d6c9a6",
+          "weight": 8.3
+        },
+        {
+          "color": "#c9d6cf",
+          "weight": 8.3
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "roof_metal_corrugated": {
+      "entries": [
+        {
+          "color": "#7b8387",
+          "weight": 1
+        },
+        {
+          "color": "#868c8c",
+          "weight": 1
+        },
+        {
+          "color": "#8e4f44",
+          "weight": 1
+        },
+        {
+          "color": "#8a5a48",
+          "weight": 1
+        },
+        {
+          "color": "#5f7a66",
+          "weight": 1
+        },
+        {
+          "color": "#5f7791",
+          "weight": 1
+        },
+        {
+          "color": "#70777b",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.03,
+        "lightness": 0.045
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#7b8387",
+          "weight": 14.3
+        },
+        {
+          "color": "#868c8c",
+          "weight": 14.3
+        },
+        {
+          "color": "#8e4f44",
+          "weight": 14.3
+        },
+        {
+          "color": "#8a5a48",
+          "weight": 14.3
+        },
+        {
+          "color": "#5f7a66",
+          "weight": 14.3
+        },
+        {
+          "color": "#5f7791",
+          "weight": 14.3
+        },
+        {
+          "color": "#70777b",
+          "weight": 14.3
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_flat_roof": {
+      "entries": [
+        {
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
+        },
+        {
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
+          "weight": 1
+        },
+        {
+          "color": "#b5ab98",
           "weight": 1
         }
       ],
@@ -471,6 +700,29 @@
         "max": 1.15
       },
       "yaw": "align-wall",
+      "lodTier": 0
+    },
+    {
+      "id": "rooftop",
+      "model": "builtin:rooftop.tank",
+      "anchor": "roof-flat",
+      "probability": 0.7,
+      "count": {
+        "min": 1,
+        "max": 3
+      },
+      "perAreaM2": 90,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 2.4,
+      "margin": 0.9,
+      "scale": {
+        "min": 0.85,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "tintPalette": "rooftop",
       "lodTier": 0
     },
     {

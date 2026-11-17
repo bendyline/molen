@@ -68,7 +68,13 @@ conservative tenancy heuristics, not surveyed lease boundaries.
 A single business directly identified by its footprint can color the whole shell. Containment-only
 matches and shared tenants color only their own fascia,
 canopy and entry accents. Existing residential/civic/tall-building styles and floor counts survive
-when a shop is a ground-floor tenant. Measured footprints/heights remain authoritative. Frontage is estimated
+when a shop is a ground-floor tenant. Whether a low building with a business becomes a store
+shell at all depends on its region: North American and Southwest profiles build shops as shells
+wherever they stand, and elsewhere a shop in a row or under flats keeps its region's building
+and gains a frontage, unless it is purpose-built (free-standing on retail land, a catalog chain's
+own building, or 600 m² and more). See
+[rows, shops and places of worship](worldgen.md#rows-shops-and-places-of-worship).
+Measured footprints/heights remain authoritative. Frontage is estimated
 from the POI and nearby access lines; exact entrance location, sign location and tenant width are
 generally absent from the archive.
 

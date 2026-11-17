@@ -69,6 +69,12 @@ export interface RecipeRoof {
   shedDirection: 1 | -1;
   shedDownhill: boolean;
   dormers?: { perRidgeMeters: number; style: 'gable' | 'shed' };
+  /** What covers a footprint the pitched form cannot: a flat roof, or slopes up to a deck. */
+  fallback: 'flat' | 'hipped';
+  /** The footprint is wider than a ridge spans (`massing.wings.maxWingSpan`). */
+  wide: boolean;
+  /** Ridge direction for a building with party walls; see the archstyle's `roof.partyRidge`. */
+  partyRidge?: 'between' | 'along';
 }
 
 export interface RecipeProp {
@@ -118,6 +124,8 @@ export interface BuildingRecipe {
     windows: FacadeWindows | undefined;
     bands: FacadeBands | undefined;
     details?: ArchFacadeDetails;
+    /** This building's pick from the style's `details.paint`, for shutters and the door leaf. */
+    paint?: RGB;
   };
   lodKeep: ArchLodFeature[];
   /** Beyond the last declared tier: render as a tinted box. */
@@ -225,7 +233,8 @@ function resolvePart(
     spec.tint === 'multiply' && palette !== undefined
       ? samplePalette(palette, aspectSeed(seed, `palette:${paletteKey}`))
       : [1, 1, 1];
-  const scaleU = spec.uvScale?.[0] ?? 4;
+  const uvScale = choice?.uvScale ?? spec.uvScale;
+  const scaleU = uvScale?.[0] ?? 4;
   let offsetU = 0;
   if (spec.uvOffset === 'meters') offsetU = unit01(materialSeed, 1) * scaleU;
   else if (spec.uvOffset === 'cell') offsetU = Math.floor(unit01(materialSeed, 1) * 4);
@@ -257,7 +266,7 @@ function resolvePart(
     color: finalColor,
     tint: spec.tint,
     uv: spec.uv,
-    uvScale: spec.uvScale !== undefined ? [spec.uvScale[0], spec.uvScale[1]] : undefined,
+    uvScale: uvScale !== undefined ? [uvScale[0], uvScale[1]] : undefined,
     offsetU,
     offsetV: 0,
     mirror: spec.uvMirror && unit01(materialSeed, 2) < 0.5,
@@ -320,6 +329,10 @@ export function resolveBuildingRecipe(
     } else {
       const levels = rule?.levels ?? { min: 1, max: 1 };
       floors = Math.max(1, Math.round(sampleRange(levels, unit01(massingSeed, 2))));
+      // A guess stays within what the caller says its surroundings justify. A hall's fallback
+      // (`height`, above) is one tall room and is not storeys to count.
+      if (request.fallbackLevelsMax !== undefined)
+        floors = Math.max(1, Math.min(floors, Math.round(request.fallbackLevelsMax)));
       totalHeight = groundFloorHeight + (floors - 1) * floorHeight;
     }
   }
@@ -341,10 +354,13 @@ export function resolveBuildingRecipe(
     ...metrics,
     levels: floors,
   };
+  // A style with the hipped fallback keeps its pitched choice on a plan too wide for a ridge: the
+  // building takes slopes up to a deck instead of going flat.
+  const hippedFallback = style.roof.fallback === 'hipped';
   const eligible = style.roof.choices.filter(
     (choice) =>
       choice.weight > 0 &&
-      (choice.type === 'flat' || pitchedAllowed) &&
+      (choice.type === 'flat' || pitchedAllowed || hippedFallback) &&
       matchesWhen(choice.when, roofMetrics),
   );
   const choice =
@@ -385,6 +401,9 @@ export function resolveBuildingRecipe(
     ...(parapet !== undefined ? { parapet } : {}),
     shedDirection: unit01(roofSeed, 5) < 0.5 ? 1 : -1,
     shedDownhill: choice?.shedDirection === 'downhill',
+    fallback: style.roof.fallback,
+    wide: !pitchedAllowed,
+    ...(style.roof.partyRidge !== undefined ? { partyRidge: style.roof.partyRidge } : {}),
   };
   const dormers = style.roof.features?.dormers;
   if (
@@ -414,6 +433,19 @@ export function resolveBuildingRecipe(
   const bands: FacadeBands | undefined =
     baseHeight > 0 || bandSpec.floorLines || corniceHeight > 0
       ? { baseHeight, floorLines: bandSpec.floorLines, corniceHeight }
+      : undefined;
+
+  const paints = style.facade.details?.paint;
+  const paint =
+    paints !== undefined && paints.length > 0
+      ? parseColor(
+          paints[
+            Math.min(
+              paints.length - 1,
+              Math.floor(unit01(aspectSeed(seed, 'paint'), 0) * paints.length),
+            )
+          ] as string,
+        )
       : undefined;
 
   const flatRoof = type === 'flat' ? style.materials.flatRoof : undefined;
@@ -496,7 +528,12 @@ export function resolveBuildingRecipe(
     bayWidth,
     cornerMargin: style.facade.bays.cornerMargin,
     parts,
-    facade: { windows, bands, ...(style.facade.details ? { details: style.facade.details } : {}) },
+    facade: {
+      windows,
+      bands,
+      ...(style.facade.details ? { details: style.facade.details } : {}),
+      ...(paint !== undefined ? { paint } : {}),
+    },
     lodKeep: [...lodKeep],
     box,
     props,

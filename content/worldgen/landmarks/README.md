@@ -19,6 +19,9 @@ The [catalog](catalog.json) maps stable model IDs to individual `molen/landmark@
   [bench](bench.landmark.json),
   [bike rack](bike_rack.landmark.json), [charger](charger.landmark.json),
   [fast charger](charger.fast.landmark.json).
+- Roof furniture, placed by regional building styles on flat roofs (`builtin:rooftop.tank`,
+  `builtin:rooftop.solar`): a [water tank](rooftop.tank.landmark.json) on its stand, white so a
+  style's palette can tint it, and a [solar water heater](rooftop.solar.landmark.json).
 
 Sign recipes include the mark, text, colors, facade appearance and requested storefront widths.
 The shared generator adapts these to the building footprint. Box recipes contain ordered

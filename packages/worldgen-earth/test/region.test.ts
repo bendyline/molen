@@ -35,7 +35,7 @@ describe('region atlas', () => {
     expect(validateByKind('region-atlas' as never, REGION_ATLAS_EXAMPLE).ok).toBe(true);
     const styleIds = new Set(Object.keys(pack.archstyles));
     const scatterIds = new Set(Object.keys(pack.scatters));
-    expect(atlas.regions).toHaveLength(53);
+    expect(atlas.regions).toHaveLength(61);
     for (const region of atlas.regions) {
       for (const rule of region.bindings.buildings) {
         expect(styleIds.has(rule.style), rule.style).toBe(true);
@@ -148,7 +148,28 @@ describe('region atlas', () => {
   it.each([
     [151.2, -33.87, 'library.australia'],
     [174.76, -36.85, 'library.new_zealand'],
-    [-73.99, 40.73, 'library.north_america'],
+    [-73.99, 40.73, 'us.northeast'],
+    [-87.63, 41.88, 'library.north_america'],
+    // Traditions that change inside one country: the Cyclades, and France south of the slate.
+    [25.33, 37.45, 'gr.aegean'],
+    [23.73, 37.98, 'library.greece'],
+    [5.37, 43.3, 'fr.midi'],
+    [2.35, 48.86, 'library.france'],
+    // Stone belts, hill towns and earth towns inside a country's wider tradition.
+    [-2.36, 51.38, 'gb.limestone'],
+    [-0.12, 51.5, 'library.britain'],
+    [11.33, 43.32, 'it.central'],
+    [12.5, 41.9, 'library.italy'],
+    [-5.26, 35.17, 'ma.rif'],
+    [-4.55, 13.9, 'sahel.west'],
+    [15.05, 12.11, 'sahel.central'],
+    [3.38, 6.52, 'library.west_africa'],
+    // Cities the simplified outlines leave in the water: an estuary, a lagoon, an island, a spit.
+    [-9.13, 38.712, 'library.iberia'],
+    [12.338, 45.434, 'library.italy'],
+    [72.835, 18.932, 'library.south_asia'],
+    [-75.551, 10.424, 'library.colombia'],
+    [-80.13, 25.79, 'library.north_america'],
     [-43.2, -22.9, 'library.brazil'],
     [-7.98, 31.63, 'library.maghreb'],
     [18.42, -33.92, 'library.south_africa'],

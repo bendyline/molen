@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.atlantic.detached.compact",
-  "title": "Atlantic brick and render: detached: compact facade",
+  "title": "Atlantic brick and slate: detached: compact facade",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -70,31 +70,31 @@
     "perWing": true,
     "ridge": "long-axis",
     "overhang": {
-      "min": 0.12,
-      "max": 0.28
+      "min": 0.096,
+      "max": 0.24
     },
     "complexFootprint": "wings",
     "choices": [
       {
         "type": "gable",
-        "weight": 5,
+        "weight": 4.167,
         "pitchDeg": {
           "min": 34,
           "max": 44
         },
         "when": {
-          "levelsMax": 3
+          "levelsMax": 4
         }
       },
       {
         "type": "hip",
-        "weight": 1,
+        "weight": 0.833,
         "pitchDeg": {
           "min": 34,
           "max": 44
         },
         "when": {
-          "levelsMax": 3
+          "levelsMax": 4
         }
       },
       {
@@ -108,11 +108,12 @@
           "thickness": 0.25
         },
         "when": {
-          "levelsMin": 4
+          "levelsMin": 5
         }
       }
     ],
-    "fallback": "flat"
+    "fallback": "hipped",
+    "partyRidge": "between"
   },
   "facade": {
     "bays": {
@@ -153,6 +154,19 @@
         "width": 1.05,
         "height": 2.15,
         "style": "single"
+      },
+      "paint": [
+        "#2e3338",
+        "#27394a",
+        "#5e2a27",
+        "#2f4a3a",
+        "#1f2a44",
+        "#e9e6dc"
+      ],
+      "porch": {
+        "probability": 0.3,
+        "depth": 0.765,
+        "canopy": "flat"
       }
     }
   },
@@ -161,7 +175,30 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.brick",
-          "weight": 1
+          "weight": 6,
+          "palette": "wall_brick",
+          "uvScale": [
+            1.92,
+            0.9
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.stucco",
+          "weight": 3,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+          "weight": 1.5,
+          "palette": "wall_stone_sandstone",
+          "uvScale": [
+            1.8,
+            1.5
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -177,8 +214,22 @@
     "roof": {
       "choices": [
         {
-          "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
-          "weight": 1
+          "ref": "matgraph:molen.worldgen.material.slate",
+          "weight": 5,
+          "palette": "roof_slate",
+          "uvScale": [
+            1.5,
+            1.6
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+          "weight": 2,
+          "palette": "roof_tile_ceramic",
+          "uvScale": [
+            2.4,
+            2.4
+          ]
         }
       ],
       "palette": "regional_roof",
@@ -195,19 +246,15 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.membrane",
-          "weight": 2
-        },
-        {
-          "ref": "matgraph:molen.worldgen.material.gravel",
           "weight": 1
         }
       ],
-      "palette": "flatRoof",
+      "palette": "regional_flat_roof",
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        4,
-        4
+        6,
+        6
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -382,44 +429,6 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
-      "entries": [
-        {
-          "color": "#c4b295",
-          "weight": 1
-        },
-        {
-          "color": "#d6c8b5",
-          "weight": 1
-        },
-        {
-          "color": "#bf9b83",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
-    "regional_roof": {
-      "entries": [
-        {
-          "color": "#88736b",
-          "weight": 1
-        },
-        {
-          "color": "#6b7176",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
     "regional_trim": {
       "entries": [
         {
@@ -436,6 +445,262 @@
         "saturation": 0.015,
         "lightness": 0.025
       }
+    },
+    "wall_brick": {
+      "entries": [
+        {
+          "color": "#b98a6a",
+          "weight": 1
+        },
+        {
+          "color": "#c4a57e",
+          "weight": 1
+        },
+        {
+          "color": "#9c5f4e",
+          "weight": 1
+        },
+        {
+          "color": "#b07a5f",
+          "weight": 1
+        },
+        {
+          "color": "#a86a52",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stucco": {
+      "entries": [
+        {
+          "color": "#d9d2bf",
+          "weight": 1
+        },
+        {
+          "color": "#cfcabd",
+          "weight": 1
+        },
+        {
+          "color": "#e6dcc0",
+          "weight": 1
+        },
+        {
+          "color": "#e3dfd2",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stone_sandstone": {
+      "entries": [
+        {
+          "color": "#b9ad95",
+          "weight": 1
+        },
+        {
+          "color": "#d2c4a4",
+          "weight": 1
+        },
+        {
+          "color": "#c9bc9f",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#b98a6a",
+          "weight": 11.4
+        },
+        {
+          "color": "#c4a57e",
+          "weight": 11.4
+        },
+        {
+          "color": "#9c5f4e",
+          "weight": 11.4
+        },
+        {
+          "color": "#b07a5f",
+          "weight": 11.4
+        },
+        {
+          "color": "#e3dfd2",
+          "weight": 7.1
+        },
+        {
+          "color": "#d9d2bf",
+          "weight": 7.1
+        },
+        {
+          "color": "#cfcabd",
+          "weight": 7.1
+        },
+        {
+          "color": "#e6dcc0",
+          "weight": 7.1
+        },
+        {
+          "color": "#c9bc9f",
+          "weight": 4.8
+        },
+        {
+          "color": "#b9ad95",
+          "weight": 4.8
+        },
+        {
+          "color": "#d2c4a4",
+          "weight": 4.8
+        },
+        {
+          "color": "#a86a52",
+          "weight": 11.4
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "roof_slate": {
+      "entries": [
+        {
+          "color": "#6b6f72",
+          "weight": 1
+        },
+        {
+          "color": "#565b60",
+          "weight": 1
+        },
+        {
+          "color": "#5d6a75",
+          "weight": 1
+        },
+        {
+          "color": "#6a6068",
+          "weight": 1
+        },
+        {
+          "color": "#5f6468",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.03,
+        "lightness": 0.045
+      }
+    },
+    "roof_tile_ceramic": {
+      "entries": [
+        {
+          "color": "#8f5142",
+          "weight": 1
+        },
+        {
+          "color": "#6b5a52",
+          "weight": 1
+        },
+        {
+          "color": "#7d5347",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.03,
+        "lightness": 0.045
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#6b6f72",
+          "weight": 14.3
+        },
+        {
+          "color": "#565b60",
+          "weight": 14.3
+        },
+        {
+          "color": "#5d6a75",
+          "weight": 14.3
+        },
+        {
+          "color": "#6a6068",
+          "weight": 14.3
+        },
+        {
+          "color": "#7d5347",
+          "weight": 9.5
+        },
+        {
+          "color": "#8f5142",
+          "weight": 9.5
+        },
+        {
+          "color": "#6b5a52",
+          "weight": 9.5
+        },
+        {
+          "color": "#5f6468",
+          "weight": 14.3
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_flat_roof": {
+      "entries": [
+        {
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
+        },
+        {
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
+          "weight": 1
+        },
+        {
+          "color": "#b5ab98",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
     }
   },
   "props": [
@@ -443,7 +708,7 @@
       "id": "chimney",
       "model": "molen.worldgen.prop.chimney.brick",
       "anchor": "roof-ridge",
-      "probability": 0.35,
+      "probability": 0.85,
       "count": {
         "min": 1,
         "max": 1
@@ -509,19 +774,15 @@
   },
   "lotPlans": [
     {
-      "shape": "cottage",
+      "shape": "compact",
       "weight": 5
     },
     {
-      "shape": "ranch",
+      "shape": "cottage",
       "weight": 3
     },
     {
       "shape": "courtyard",
-      "weight": 1
-    },
-    {
-      "shape": "compact",
       "weight": 2
     }
   ],
@@ -542,5 +803,25 @@
       "kind": "rail",
       "weight": 2
     }
-  ]
+  ],
+  "lots": {
+    "rows": 0.65,
+    "units": {
+      "min": 2,
+      "max": 3
+    },
+    "setback": {
+      "min": 1,
+      "max": 3.5
+    },
+    "depth": {
+      "min": 8,
+      "max": 10
+    },
+    "levels": {
+      "min": 2,
+      "max": 2
+    },
+    "gap": 0.08
+  }
 }

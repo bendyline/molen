@@ -98,6 +98,10 @@ Ordered by what a walker would notice first.
    describes the placement.
 2. **Porches, stoops and steps.** A detailed house still has a door flush in a flat wall. A
    portico is about 56 vertices a house; the detail budget is the constraint (see cost rules).
+   *Done 2026-11-16 for a share of each family's houses (`facade.details.porch`: a step, two
+   posts and a canopy, 44 vertices; 60% of North American houses). On the Wallingford tile it
+   costs one detailed building in 82. See the
+   [building diversity review](BUILDING-DIVERSITY-REVIEW.md).*
 3. **Doors face the longest wall, not the street,** and mapped houses get no front path, driveway
    or garage door. Inferred lots already have all three; mapped houses need the nearest road.
 4. **Hedges and fences do not follow lot lines.** Hedge runs are scattered at random bearings.

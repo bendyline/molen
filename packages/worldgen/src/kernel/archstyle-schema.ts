@@ -151,7 +151,18 @@ const roof = z.strictObject({
     .array(roofChoice)
     .min(1)
     .describe('Weighted roof forms; eligible ones are drawn by weight.'),
-  fallback: z.literal('flat').describe('Always constructible fallback.').default('flat'),
+  fallback: z
+    .enum(['flat', 'hipped'])
+    .describe(
+      'Roof for a footprint the chosen pitched form cannot cover (irregular, too wide, around a courtyard): flat, or slopes rising from every wall to a level deck.',
+    )
+    .default('flat'),
+  partyRidge: z
+    .enum(['between', 'along'])
+    .describe(
+      'Ridge of a building that shares walls with neighbours: from party wall to party wall, eaves to the street (between), or along the party walls, a gable to the street (along). Such roofs are gabled.',
+    )
+    .optional(),
   features: z
     .strictObject({
       dormers: z
@@ -180,6 +191,14 @@ const facade = z.strictObject({
         )
         .optional(),
       shutters: z.boolean().describe('Paired louvered shutters beside punched windows.').optional(),
+      paint: z
+        .array(z.string().regex(/^#[0-9a-fA-F]{6}$/, 'must be #rrggbb'))
+        .min(1)
+        .max(12)
+        .describe(
+          'Colors a building paints its shutters and door leaf, one drawn per building; without it they take the trim darkened.',
+        )
+        .optional(),
       cornerBoards: z
         .boolean()
         .describe('Trim boards up each outside wall corner, as on lap-sided houses.')
@@ -232,6 +251,24 @@ const facade = z.strictObject({
             .default(1.4),
           columns: z.boolean().describe('Support the canopy with slender posts.').default(true),
         })
+        .optional(),
+      porch: z
+        .strictObject({
+          probability: unit
+            .describe('Share of buildings whose entrance gets the porch.')
+            .default(1),
+          depth: z
+            .number()
+            .min(0.4)
+            .max(2.5)
+            .describe('Projection of the step and its canopy, meters.')
+            .default(1.1),
+          canopy: z
+            .enum(['none', 'flat', 'pitched'])
+            .describe('Roof over the entrance step, on two posts.')
+            .default('pitched'),
+        })
+        .describe('A step in front of the entrance, under a small canopy.')
         .optional(),
     })
     .describe(
@@ -287,6 +324,13 @@ const materialSpec = z.strictObject({
           .min(1)
           .describe(
             'Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored.',
+          )
+          .optional(),
+        uvScale: z
+          .array(z.number().positive())
+          .length(2)
+          .describe(
+            'Meters per texture repeat [u, v] for this choice instead of the part scale, so each material keeps its own course and board size.',
           )
           .optional(),
       }),
@@ -417,6 +461,32 @@ const archStyleSchema = z.strictObject({
     .max(32)
     .describe('Weighted resizable plans for vacant lots; supplied outlines remain authoritative.')
     .optional(),
+  lots: z
+    .strictObject({
+      compact: z
+        .boolean()
+        .describe('Detached lots fill most of their frontage, close to the street.')
+        .optional(),
+      rows: unit
+        .describe(
+          'Share of invented blocks built as rows: fronts wall to wall along the street, in place of houses in yards.',
+        )
+        .optional(),
+      units: z
+        .strictObject({ min: z.int().min(1).max(4), max: z.int().min(1).max(4) })
+        .describe('Buildings to each 16 m of a row frontage: 3 is a 5.3 m front, 1 a 16 m one.')
+        .optional(),
+      setback: range('distance a row front stands behind the street footway, meters').optional(),
+      depth: range('depth of a row building, meters').optional(),
+      levels: range('storeys of a row building').optional(),
+      gap: unit
+        .describe('Share of row frontages left open: a yard, a lane, a vacant plot.')
+        .optional(),
+    })
+    .describe(
+      'How the style lays out lots it invents along a street where no building is mapped. Supplied outlines remain authoritative.',
+    )
+    .optional(),
   format: z.literal('molen/archstyle@1').describe("Format envelope; always 'molen/archstyle@1'."),
   id: z
     .string()
@@ -478,6 +548,8 @@ export function validateArchStyle(data: unknown): ValidationIssue[] {
   const doc = data as ArchStyleDoc;
   const issues: ValidationIssue[] = [];
   const paletteNames = Object.keys(doc.palettes ?? {});
+  for (const key of ['units', 'setback', 'depth', 'levels'] as const)
+    rangeIssues(doc.lots?.[key], `/lots/${key}`, issues);
   rangeIssues(doc.massing.floorHeight, '/massing/floorHeight', issues);
   rangeIssues(doc.massing.groundFloorHeight, '/massing/groundFloorHeight', issues);
   rangeIssues(doc.massing.foundation.height, '/massing/foundation/height', issues);

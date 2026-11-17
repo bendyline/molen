@@ -73,3 +73,33 @@ export function sampleTerrainBuildingCoverage(
     (at(x0, y1) * (1 - fx) + at(x1, y1) * fx) * fy
   );
 }
+
+/**
+ * Land-cover appearances whose ground paves over as building coverage rises (the default of
+ * `TerrainUrbanGround.classes`): unmapped ground and broad urban uses.
+ */
+export const TERRAIN_URBAN_GROUND_CLASSES: readonly string[] = [
+  'open_ground',
+  'urban_area',
+  'residential',
+  'commercial',
+  'retail',
+  'industrial',
+  'civic',
+  'school',
+  'hospital',
+  'university',
+];
+
+/** Building coverage at which urban ground starts to pave over, and is paved (the defaults). */
+export const TERRAIN_URBAN_GROUND_COVERAGE = { from: 0.15, full: 0.45 } as const;
+
+/** Paved share of urban ground at this building coverage: a smoothstep from `from` to `full`. */
+export function terrainUrbanGroundPaved(
+  coverage: number,
+  from: number = TERRAIN_URBAN_GROUND_COVERAGE.from,
+  full: number = TERRAIN_URBAN_GROUND_COVERAGE.full,
+): number {
+  const t = Math.max(0, Math.min(1, (coverage - from) / (Math.max(from + 0.01, full) - from)));
+  return t * t * (3 - 2 * t);
+}

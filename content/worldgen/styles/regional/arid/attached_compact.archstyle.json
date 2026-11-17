@@ -19,6 +19,15 @@
     },
     "heightFallback": [
       {
+        "when": {
+          "areaMax": 55
+        },
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      },
+      {
         "levels": {
           "min": 2,
           "max": 3
@@ -107,6 +116,18 @@
         "width": 1.05,
         "height": 2.15,
         "style": "single"
+      },
+      "paint": [
+        "#3f6f7a",
+        "#4a5f8a",
+        "#5e3a2e",
+        "#3f5a48",
+        "#7a5a3a"
+      ],
+      "balconies": {
+        "depth": 0.51,
+        "railing": "open",
+        "every": 3
       }
     }
   },
@@ -115,7 +136,21 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "weight": 6,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.earth_adobe",
+          "weight": 2,
+          "palette": "wall_earth_adobe",
+          "uvScale": [
+            1.35,
+            0.75
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -139,29 +174,8 @@
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        2,
-        2
-      ],
-      "uvOffset": "meters",
-      "uvMirror": false
-    },
-    "flatRoof": {
-      "choices": [
-        {
-          "ref": "matgraph:molen.worldgen.material.membrane",
-          "weight": 2
-        },
-        {
-          "ref": "matgraph:molen.worldgen.material.gravel",
-          "weight": 1
-        }
-      ],
-      "palette": "flatRoof",
-      "tint": "multiply",
-      "uv": "meters",
-      "uvScale": [
-        4,
-        4
+        6,
+        6
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -336,39 +350,22 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
+    "rooftop": {
       "entries": [
         {
-          "color": "#d0b797",
+          "color": "#3a3b3e",
           "weight": 1
         },
         {
-          "color": "#eadfc9",
+          "color": "#ecece6",
           "weight": 1
         },
         {
-          "color": "#c6ad91",
+          "color": "#4f6f96",
           "weight": 1
         },
         {
-          "color": "#dac6a6",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
-    "regional_roof": {
-      "entries": [
-        {
-          "color": "#a99e88",
-          "weight": 1
-        },
-        {
-          "color": "#c8b89d",
+          "color": "#cfc6ae",
           "weight": 1
         }
       ],
@@ -386,6 +383,158 @@
         },
         {
           "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stucco": {
+      "entries": [
+        {
+          "color": "#e9dfc8",
+          "weight": 1
+        },
+        {
+          "color": "#e6d2b0",
+          "weight": 1
+        },
+        {
+          "color": "#dcc39f",
+          "weight": 1
+        },
+        {
+          "color": "#e3c1a4",
+          "weight": 1
+        },
+        {
+          "color": "#d9ab8f",
+          "weight": 1
+        },
+        {
+          "color": "#f0ece2",
+          "weight": 1
+        },
+        {
+          "color": "#d6c0a0",
+          "weight": 1
+        },
+        {
+          "color": "#cfe0e6",
+          "weight": 1
+        },
+        {
+          "color": "#efe9da",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_earth_adobe": {
+      "entries": [
+        {
+          "color": "#bb9a7c",
+          "weight": 1
+        },
+        {
+          "color": "#d2b48f",
+          "weight": 1
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#e9dfc8",
+          "weight": 8.3
+        },
+        {
+          "color": "#e6d2b0",
+          "weight": 8.3
+        },
+        {
+          "color": "#dcc39f",
+          "weight": 8.3
+        },
+        {
+          "color": "#e3c1a4",
+          "weight": 8.3
+        },
+        {
+          "color": "#d9ab8f",
+          "weight": 8.3
+        },
+        {
+          "color": "#f0ece2",
+          "weight": 8.3
+        },
+        {
+          "color": "#d6c0a0",
+          "weight": 8.3
+        },
+        {
+          "color": "#cfe0e6",
+          "weight": 8.3
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 8.3
+        },
+        {
+          "color": "#bb9a7c",
+          "weight": 8.3
+        },
+        {
+          "color": "#d2b48f",
+          "weight": 8.3
+        },
+        {
+          "color": "#efe9da",
+          "weight": 8.3
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#d6ccb6",
+          "weight": 1
+        },
+        {
+          "color": "#c8bda5",
+          "weight": 1
+        },
+        {
+          "color": "#ece6d8",
+          "weight": 1
+        },
+        {
+          "color": "#b9ad95",
+          "weight": 1
+        },
+        {
+          "color": "#e4dccb",
           "weight": 1
         }
       ],
@@ -417,6 +566,29 @@
         "max": 1.15
       },
       "yaw": "align-wall",
+      "lodTier": 0
+    },
+    {
+      "id": "rooftop",
+      "model": "builtin:rooftop.tank",
+      "anchor": "roof-flat",
+      "probability": 0.7,
+      "count": {
+        "min": 1,
+        "max": 3
+      },
+      "perAreaM2": 90,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 2.4,
+      "margin": 0.9,
+      "scale": {
+        "min": 0.85,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "tintPalette": "rooftop",
       "lodTier": 0
     },
     {

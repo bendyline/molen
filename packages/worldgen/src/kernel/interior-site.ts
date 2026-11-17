@@ -17,6 +17,7 @@ export function createInteriorSite(
   floor: number,
   ceiling: number,
   ground: HeightSampler,
+  /** Edges that take no opening: cut seams and party walls. */
   seams?: ReadonlySet<number>,
   storeys?: InteriorStorey[],
 ): InteriorSite | undefined {
@@ -92,7 +93,7 @@ export function createInteriorSite(
   }
   if (residential)
     for (let edge = 0; edge < outline.length; edge++) {
-      if (edge === best.edge || openings.length >= 9) continue;
+      if (edge === best.edge || seams?.has(edge) || openings.length >= 9) continue;
       const a = outline[edge] as Vec2,
         b = outline[(edge + 1) % outline.length] as Vec2;
       const length = Math.hypot(b[0] - a[0], b[1] - a[1]);

@@ -427,6 +427,8 @@ const plants = [
 const basePlants = [...plants];
 plants.splice(0, plants.length, ...basePlants.flatMap(plantVariants));
 const refs = new Set(plants.map((entry) => entry.id));
+/** Crown width at scale 1, by plant id: a `crowns` rule fits each plant to its crown with it. */
+const plantWidths = new Map(plants.map((entry) => [entry.id, entry.width]));
 const population = (name, weight = 1) => {
   const model = `molen.ecology.plant.${name}`;
   if (!refs.has(model)) throw new Error(`Unknown plant ${name}`);
@@ -546,6 +548,8 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
       ...extras.filter((entry) => !present.has(entry)).map((entry) => [entry, weight]),
     ];
   };
+  // The habitat's own shrubs, before the garden's forest forms join them: what its crowns are.
+  const wildShrubs = brush.shrubs;
   brush.shrubs = joined(brush.shrubs, garden.forestShrubs);
   brush.herbs = joined(brush.herbs, garden.forestHerbs);
   const rules = [];
@@ -838,6 +842,31 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
       clustering: { scale: 70, threshold: 0.5, contrast: 2.4, seedOffset: 43 },
     },
   );
+  // A shrub on each crown the ground paints where its detail has brush: the dark crown seen from
+  // the air is the creosote or thicket walked up to, each fitted to its crown's width. Finest
+  // batches only (the painted crown carries on beyond them); the density is unused.
+  // Creosote, bursage and mesquite tangles in deserts; elsewhere the habitat's own brush.
+  // Kept lean, as the catalog's download budget is nearly spent: the ground paints crowns on all
+  // but cultivated fields, and a fitted plant needs no width range, yaw or alignment (defaults).
+  const detail = surfacePalette.detail;
+  const crownShrubs =
+    surface === desert ? [['resin_bush', 3], ['dry_scrub', 2], 'thorn_thicket'] : wildShrubs;
+  if (detail !== undefined)
+    add('ground_crowns', Object.keys(detail), crownShrubs, 1, 'understory', {
+      crowns: Object.fromEntries(Object.entries(detail).map(([label, [brush]]) => [label, brush])),
+      notClasses: ['agricultural_field'],
+      minSpacing: undefined,
+      slopeMax: undefined,
+      avoid: { roads: 1, buildings: 1.5, water: 0.6 },
+      clustering: undefined,
+      lod: { keepByTier: [1, 0] },
+      populations: populations(crownShrubs).map(
+        ({ widthScale: _width, yaw: _yaw, align: _align, ...entry }) => ({
+          ...entry,
+          width: plantWidths.get(entry.model),
+        }),
+      ),
+    });
   scatters.push({
     format: 'molen/scatter@1',
     id,

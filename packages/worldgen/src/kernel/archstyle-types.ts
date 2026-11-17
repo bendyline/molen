@@ -99,7 +99,10 @@ export interface ArchRoof {
   overhang: NumberRange;
   complexFootprint: 'flat' | 'wings';
   choices: ArchRoofChoice[];
-  fallback: 'flat';
+  /** Roof for footprints the chosen pitched form cannot cover: flat, or slopes up to a deck. */
+  fallback: 'flat' | 'hipped';
+  /** Ridge of a building with party walls: across the row (`between`) or gable to the street. */
+  partyRidge?: 'between' | 'along';
   features?: ArchRoofFeatures;
 }
 
@@ -108,12 +111,16 @@ export interface ArchFacadeDetails {
   /** Visual ground entrance when no structural interior opening already supplies one. */
   entrance?: { width: number; height: number; style: 'single' | 'double' | 'service' };
   shutters?: boolean;
+  /** Colors shutters and the door leaf are painted, one per building; default the trim darkened. */
+  paint?: string[];
   /** Trim boards up each outside wall corner. */
   cornerBoards?: boolean;
   balconies?: { depth: number; railing: 'open' | 'solid'; every: number };
   framing?: { style: 'timber' | 'pilasters'; width: number };
   awnings?: { depth: number };
   veranda?: { depth: number; columns: boolean };
+  /** A step in front of the entrance under a small canopy, on a seeded share of buildings. */
+  porch?: { probability: number; depth: number; canopy: 'none' | 'flat' | 'pitched' };
 }
 
 export interface ArchFacade {
@@ -139,6 +146,8 @@ export interface ArchMaterialChoice {
   weight: number;
   /** Key of `palettes` that tints this choice instead of the part palette. */
   palette?: string;
+  /** Meters per texture repeat [u, v] for this choice instead of the part scale. */
+  uvScale?: [number, number];
 }
 
 export interface ArchMaterialSpec {
@@ -188,11 +197,34 @@ export interface ArchLodTier {
   keep: ArchLodFeature[];
 }
 
+/**
+ * The street pattern of lots a style invents where no building is mapped. Without it a lot is a
+ * house in a yard. A world binding reads it; the generator itself never invents a lot.
+ */
+export interface ArchLots {
+  /** Detached lots fill most of their frontage, close to the street. */
+  compact?: boolean;
+  /** Share of invented blocks built as rows, fronts wall to wall at the street (0..1). */
+  rows?: number;
+  /** Buildings to each 16 m of a row frontage. */
+  units?: { min: number; max: number };
+  /** How far a row front stands behind the street's footway, meters. */
+  setback?: NumberRange;
+  /** Depth of a row building, meters. */
+  depth?: NumberRange;
+  /** Storeys of a row building. */
+  levels?: NumberRange;
+  /** Share of row frontages left open (0..1). */
+  gap?: number;
+}
+
 export interface ArchStyleDoc {
   /** Weighted boundary treatments for inferred residential lots; `none` leaves a yard open. */
   lotFences?: Array<{ kind: 'none' | 'timber' | 'masonry' | 'rail'; weight: number }>;
   /** Weighted resizable plans for vacant lots; never alters a supplied mapped outline. */
   lotPlans?: LotPlanChoice[];
+  /** How invented lots are laid out along a street; see {@link ArchLots}. */
+  lots?: ArchLots;
   format: 'molen/archstyle@1';
   id: string;
   title: string;

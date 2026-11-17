@@ -116,6 +116,65 @@ describe('bounded landmark LOD streaming', () => {
     streamer.dispose();
   });
 
+  it('falls back to the skyline instead of dropping a placement over the draw-call budget', async () => {
+    let now = 0;
+    const doc = manifest();
+    for (const [index, level] of doc.runtimeLods.levels.entries())
+      if (index > 0) level.drawCalls = 5;
+    const streamer = new StructureLodStreamer(
+      async () => doc,
+      async (_ref, level) => model(level.name),
+      {
+        clock: () => now,
+        budget: { maxDrawCalls: 16 },
+      },
+    );
+    const handle = await streamer.acquire('tower', { position: [0, 0, 0] });
+    const first = streamer.instantiate(handle, { position: [0, 0, 0] });
+    now = 2000;
+    for (let i = 0; i < 6; i++) {
+      streamer.update(view);
+      await flush();
+      now += 100;
+    }
+    expect(first.userData.landmarkLod).toBe('closeup');
+    // A second tile places the same landmark (a parent and child during a level change): five
+    // more detailed draws would overrun the budget, so both drop to the resident skyline.
+    const second = streamer.instantiate(handle, { position: [0, 0, 0] });
+    expect(second.userData.landmarkLod).toBe('skyline');
+    expect(first.userData.landmarkLod).toBe('skyline');
+    expect(second.children).toHaveLength(1);
+    expect(streamer.stats().drawCalls * 2).toBeLessThanOrEqual(16);
+    streamer.dispose();
+  });
+
+  it('gives instances placed during a publication the published level', async () => {
+    let now = 0;
+    const preparation = deferred<void>();
+    const streamer = new StructureLodStreamer(
+      async () => manifest(),
+      async (_ref, level) => model(level.name),
+      { clock: () => now, prepareObject: () => preparation.promise },
+    );
+    const handle = await streamer.acquire('tower');
+    const first = streamer.instantiate(handle, { position: [0, 0, 0] });
+    now = 2000;
+    streamer.update(view);
+    await flush();
+    streamer.update(view);
+    await flush();
+    // The closeup is being prepared for `first`; another tile places the landmark meanwhile.
+    const second = streamer.instantiate(handle, { position: [0, 0, 0] });
+    expect(second.userData.landmarkLod).toBe('skyline');
+    preparation.resolve();
+    await flush();
+    expect(first.userData.landmarkLod).toBe('closeup');
+    expect(second.userData.landmarkLod).toBe('closeup');
+    expect(second.getObjectByName('closeup')).toBeDefined();
+    expect(second.getObjectByName('skyline')).toBeUndefined();
+    streamer.dispose();
+  });
+
   it('reserves initial bytes, limits concurrency, and starts nearest queued landmarks first', async () => {
     const pending = deferred<THREE.Object3D>();
     const load = vi.fn(async () => pending.promise);

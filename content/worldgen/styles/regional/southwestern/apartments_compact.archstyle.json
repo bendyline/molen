@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.southwestern.apartments.compact",
-  "title": "US Southwest stucco and tile: apartments: compact facade",
+  "title": "US Southwest stucco and tile: apartments: older masonry block",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -13,8 +13,8 @@
   },
   "massing": {
     "floorHeight": {
-      "min": 2.85,
-      "max": 3.1
+      "min": 3.3,
+      "max": 3.8
     },
     "heightFallback": [
       {
@@ -23,7 +23,7 @@
         },
         "levels": {
           "min": 2,
-          "max": 3
+          "max": 4
         }
       },
       {
@@ -51,7 +51,11 @@
       }
     },
     "setbacks": [],
-    "respectMinHeight": true
+    "respectMinHeight": true,
+    "groundFloorHeight": {
+      "min": 4,
+      "max": 4.8
+    }
   },
   "roof": {
     "perWing": true,
@@ -87,30 +91,30 @@
     "windows": {
       "style": "punched",
       "width": {
-        "min": 1.063,
-        "max": 1.233
+        "min": 1.1875,
+        "max": 1.3875
       },
       "height": {
-        "min": 1.391,
-        "max": 1.659
+        "min": 1.7,
+        "max": 2
       },
       "sill": {
-        "min": 0.8,
-        "max": 0.95
+        "min": 0.6,
+        "max": 0.8
       },
-      "probabilityPerBay": 0.845,
+      "probabilityPerBay": 0.94,
       "groundFloor": "same"
     },
     "bands": {
       "base": {
         "height": {
-          "min": 0.32,
-          "max": 0.32
+          "min": 0.7,
+          "max": 1
         }
       },
       "floorLines": true,
       "cornice": {
-        "height": 0.16
+        "height": 0.55
       }
     },
     "details": {
@@ -126,7 +130,12 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "weight": 1,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -292,39 +301,15 @@
         "lightness": 0.025
       }
     },
-    "regional_wall": {
+    "regional_trim": {
       "entries": [
         {
-          "color": "#b8bfc4",
-          "weight": 4
-        },
-        {
-          "color": "#ddd6c6",
-          "weight": 3
-        },
-        {
-          "color": "#9eacb8",
-          "weight": 3
-        },
-        {
-          "color": "#e3e0d8",
-          "weight": 3
-        },
-        {
-          "color": "#8f9397",
-          "weight": 2
-        },
-        {
-          "color": "#a9b3a7",
+          "color": "#dcd8cc",
           "weight": 1
         },
         {
-          "color": "#ae8b78",
+          "color": "#8c918c",
           "weight": 1
-        },
-        {
-          "color": "#d2cec5",
-          "weight": 5
         }
       ],
       "jitter": {
@@ -336,24 +321,28 @@
     "regional_roof": {
       "entries": [
         {
-          "color": "#b7b7b0",
+          "color": "#dadbd7",
           "weight": 4
         },
         {
-          "color": "#b8a992",
+          "color": "#c0c1bd",
           "weight": 3
         },
         {
-          "color": "#d2cbbd",
-          "weight": 3
-        },
-        {
-          "color": "#a57860",
+          "color": "#9b9d9d",
           "weight": 2
         },
         {
-          "color": "#c8c3b7",
-          "weight": 5
+          "color": "#74777b",
+          "weight": 1
+        },
+        {
+          "color": "#b5ab98",
+          "weight": 1
+        },
+        {
+          "color": "#ecece8",
+          "weight": 7
         }
       ],
       "jitter": {
@@ -362,15 +351,48 @@
         "lightness": 0.025
       }
     },
-    "regional_trim": {
+    "wall_stucco": {
       "entries": [
         {
-          "color": "#dcd8cc",
+          "color": "#e3cfaf",
           "weight": 1
         },
         {
-          "color": "#8c918c",
+          "color": "#d4b99b",
           "weight": 1
+        },
+        {
+          "color": "#e8dcca",
+          "weight": 1
+        },
+        {
+          "color": "#d7b5a1",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#e3cfaf",
+          "weight": 25
+        },
+        {
+          "color": "#d4b99b",
+          "weight": 25
+        },
+        {
+          "color": "#e8dcca",
+          "weight": 25
+        },
+        {
+          "color": "#d7b5a1",
+          "weight": 25
         }
       ],
       "jitter": {

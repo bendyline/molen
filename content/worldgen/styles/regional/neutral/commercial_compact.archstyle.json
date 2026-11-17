@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.neutral.commercial.compact",
-  "title": "Neutral render: commercial: compact facade",
+  "title": "Neutral render: commercial: older masonry block",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -15,8 +15,8 @@
   },
   "massing": {
     "floorHeight": {
-      "min": 2.85,
-      "max": 3.1
+      "min": 3.3,
+      "max": 3.8
     },
     "heightFallback": [
       {
@@ -86,7 +86,11 @@
         "inset": 3
       }
     ],
-    "respectMinHeight": true
+    "respectMinHeight": true,
+    "groundFloorHeight": {
+      "min": 4,
+      "max": 4.8
+    }
   },
   "roof": {
     "perWing": false,
@@ -122,30 +126,30 @@
     "windows": {
       "style": "punched",
       "width": {
-        "min": 1.105,
-        "max": 1.275
+        "min": 1.2349999999999999,
+        "max": 1.4349999999999998
       },
       "height": {
-        "min": 1.391,
-        "max": 1.659
+        "min": 1.7,
+        "max": 2
       },
       "sill": {
-        "min": 0.8,
-        "max": 0.95
+        "min": 0.6,
+        "max": 0.8
       },
-      "probabilityPerBay": 0.845,
+      "probabilityPerBay": 0.94,
       "groundFloor": "storefront"
     },
     "bands": {
       "base": {
         "height": {
-          "min": 0.4,
-          "max": 0.7
+          "min": 0.7,
+          "max": 1
         }
       },
       "floorLines": true,
       "cornice": {
-        "height": 0.3
+        "height": 0.55
       }
     },
     "details": {
@@ -160,8 +164,13 @@
     "wall": {
       "choices": [
         {
-          "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "ref": "matgraph:molen.worldgen.material.brick",
+          "weight": 1,
+          "palette": "wall_brick",
+          "uvScale": [
+            1.92,
+            0.9
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -396,39 +405,15 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
+    "regional_trim": {
       "entries": [
         {
-          "color": "#b8bfc4",
-          "weight": 4
-        },
-        {
-          "color": "#ddd6c6",
-          "weight": 3
-        },
-        {
-          "color": "#9eacb8",
-          "weight": 3
-        },
-        {
-          "color": "#e3e0d8",
-          "weight": 3
-        },
-        {
-          "color": "#8f9397",
-          "weight": 2
-        },
-        {
-          "color": "#a9b3a7",
+          "color": "#dcd8cc",
           "weight": 1
         },
         {
-          "color": "#ae8b78",
+          "color": "#8c918c",
           "weight": 1
-        },
-        {
-          "color": "#d2cec5",
-          "weight": 5
         }
       ],
       "jitter": {
@@ -470,15 +455,72 @@
         "lightness": 0.025
       }
     },
-    "regional_trim": {
+    "wall_brick": {
       "entries": [
         {
-          "color": "#dcd8cc",
+          "color": "#9c5b46",
           "weight": 1
         },
         {
-          "color": "#8c918c",
+          "color": "#8a4f3e",
           "weight": 1
+        },
+        {
+          "color": "#a96b52",
+          "weight": 1
+        },
+        {
+          "color": "#7c4a3d",
+          "weight": 1
+        },
+        {
+          "color": "#b58f6e",
+          "weight": 1
+        },
+        {
+          "color": "#c4a680",
+          "weight": 1
+        },
+        {
+          "color": "#8f6a58",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#9c5b46",
+          "weight": 14.3
+        },
+        {
+          "color": "#8a4f3e",
+          "weight": 14.3
+        },
+        {
+          "color": "#a96b52",
+          "weight": 14.3
+        },
+        {
+          "color": "#7c4a3d",
+          "weight": 14.3
+        },
+        {
+          "color": "#b58f6e",
+          "weight": 14.3
+        },
+        {
+          "color": "#c4a680",
+          "weight": 14.3
+        },
+        {
+          "color": "#8f6a58",
+          "weight": 14.3
         }
       ],
       "jitter": {

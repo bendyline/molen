@@ -232,6 +232,11 @@ function reviewScene(assetId, title, box, camera) {
  * @param {{fact: string, source: string}[]} model.dimensions sourced controls the recipe follows
  * @param {string[]} model.limitations what is estimated or omitted
  * @param {{position: number[], lookAt: number[]}} [model.camera] review-scene camera
+ * @param {string[]} [model.modules] other recipe files in the bundle's models/ (e.g. a model
+ *   module the generator and a runtime overlay both import)
+ * @param {{module: string, export: string, errorMeters: number}} [model.runtimeLodOverlay]
+ *   a hand-authored skyline level: `export` of models/`module` builds it (≤ 1,000 triangles,
+ *   one palette material, quads/triangles/convex polygons only); see source-runtime-lods.mjs
  */
 export async function emitPlaceMaster(model) {
   const generatorPath = fileURLToPath(model.generator);
@@ -307,6 +312,16 @@ export async function emitPlaceMaster(model) {
         repeatMeters: MATERIAL_REPEAT_METERS[surface.graph],
       })),
     limitations,
+    ...(model.runtimeLodOverlay
+      ? {
+          runtimeLodOverlay: {
+            level: 'skyline',
+            module: `${sourcePath}/models/${model.runtimeLodOverlay.module}`,
+            export: model.runtimeLodOverlay.export,
+            errorMeters: model.runtimeLodOverlay.errorMeters,
+          },
+        }
+      : {}),
     importOptions: { optimize: false },
     mesh: {
       triangles: mesh.triangleCount,
@@ -335,7 +350,10 @@ export async function emitPlaceMaster(model) {
           sha256: hash(glb),
         },
       ],
-      generators: [{ id: path.basename(generatorName, '.mjs'), path: `models/${generatorName}` }],
+      generators: [generatorName, ...(model.modules ?? [])].map((name) => ({
+        id: path.basename(name, '.mjs'),
+        path: `models/${name}`,
+      })),
       scripts: [],
       textures: [],
       sounds: [],

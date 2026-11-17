@@ -147,7 +147,8 @@ where real buildings have it. Avoid both grey-on-grey and candy color.
 | Painted wall, siding, render | 60–90% | 15–60% | sage `#a3b78f`, slate blue `#8199b2`, cream `#efe3c4`, butter `#e6cf86` |
 | Urban wall: concrete, panel, limestone | 55–90% | 0–25% | light concrete `#d2cec5`, limestone `#ddd6c6`, cool grey `#b8bfc4`, graphite `#8f9397` |
 | Masonry, brick, timber walls | 45–65% | 25–45% | brick `#a8634b`, sandstone `#c9ab84`, cedar `#a77a54` |
-| Pitched roof (shingle, tile, slate) | 35–50% | 6–40% | charcoal `#575c62`, brown `#725c49`, moss `#5a6d55`, terracotta `#a5644b` |
+| Pitched roof (shingle, slate, dark tile) | 35–50% | 6–40% | charcoal `#575c62`, brown `#725c49`, moss `#5a6d55`, engobe `#625e5c` |
+| Clay tile roof in sun | 48–63% | 35–55% | terracotta `#c06c48`, pale weathered tile `#d1946f`, northern clay `#a25c48` |
 | Flat roof (membrane, gravel) | 45–90% | 0–12% | white membrane `#e6e6e2`, pale grey `#d3d4d0`, gravel `#b0a693`, dark membrane `#74777b`; mostly pale, a few dark |
 | Trim and frames | 85–95% or 22–30% | 0–30% | white `#f4f1ea`, dark frame `#3b3e42` |
 | Untextured window glass | 35–45% | 20–30% | blue-grey pane `#4d6178` |
@@ -189,6 +190,12 @@ Palette rules:
   lightness points below their walls, so a neighborhood seen from above reads as roofs. Large
   flat roofs are light membranes and gravel, as they are in reality. A pitched style declares
   `materials.flatRoof` so its flat fallback is membrane, not shingle tinted charcoal.
+- **Clay tile is the one light pitched roof.** The tile texture and the roof's own shading draw
+  a tinted roof at about six tenths of its palette, so a terracotta inside the pitched band
+  (`#a8654a`) reaches the screen as dark red-brown at 28–35% lightness. Sunlit tile in
+  photographs of Nafplio and Lisbon measures 43–55% at a hue of 15–23°. Clay tile therefore has
+  its own band, above the other pitched roofs and still below the pale walls it sits on, and a
+  wider per-building jitter (±0.045 lightness), since a tiled town is mottled and never one tone.
 - **Reserve saturated accents.** Strong saturation belongs to identity: a store's sign band, a
   landmark's signature color, a bus livery, a fire station. Use one accent per object.
 - **Real landmarks use their real colors.** The Tacoma Narrows towers are green and the Golden
@@ -451,8 +458,14 @@ A style cannot do all of it. A generated street is also held to these:
 - **Tops are finished.** A tower ends in a parapet and a plant enclosure or crown and steps back
   where its style declares setbacks. A skyline shows more than one facade rhythm and more than
   one glass tint. A straight extrusion with a bare top is a stand-in.
+- **A building is its region's.** Before a footprint is a shop, a hotel or an unknown, it is
+  built of what its town is built of: terracotta over warm render on the Mediterranean, slate
+  over brick in Britain, a roof terrace in the Maghreb and South Asia. A use changes a building's
+  frontage and its inside; it replaces the building only when the building was made for it.
 - **A row is houses.** A long, narrow residential footprint is divided at its party walls, each
-  unit with its own roof, color and chimney, not roofed as one shed.
+  unit with its own roof, color and chimney, not roofed as one shed. Houses that share a wall
+  have no windows in it, and turn their ridges the way their region's rows do: eaves to the
+  street, or a gable to it.
 - **Mapped appearance wins.** Where the map records a roof shape, a wall or roof color or a
   material, use it, clamped to the palette bands.
 - **A building has a plot.** A house sits in a yard with an edge (fence, wall or hedge, by
@@ -460,7 +473,11 @@ A style cannot do all of it. A generated street is also held to these:
   yard and loading doors. Seeded buildings take their density from their mapped neighbors.
 - **Kinds are told apart.** A place of worship, a school, a fuel station, a greenhouse, a
   stadium and a building site each read as what they are from the air. A windowless box is a
-  shed or a failure.
+  shed or a failure. A place of worship carries its tradition's crown (a dome, a spire, a
+  belfry, a minaret, a stepped tower) in its region's own walls and roof.
+- **A pitched town stays pitched.** Where roofs are tile or slate, an irregular plan, a
+  courtyard block and a broad hall are roofed too (`roof.fallback: 'hipped'`), not left as flat
+  patches among their neighbours.
 
 The [worldgen guide](worldgen.md) and the
 [structure library](structure-library.md) cover the archstyle format and the 120 shipped styles.
@@ -657,6 +674,9 @@ A rain or snow frame is recognizable with its particles turned off.
 - **Houses carry their own details.** North American homes have dark shutters, the odd dormer
   and a chimney, and lap-sided homes case their outside corners with trim boards
   (`cornerBoards`), all in the shared trim and roof materials, so they cost vertices but no draws.
+  A share of a family's houses has a porch (a step, two posts and a canopy); shutters and doors
+  are painted from the family's `paint` colors; chimneys stand only where winters have them, and
+  roof terraces carry water tanks or solar heaters as instanced props.
   The High tier's finest tiles budget 900,000 building vertices so a dense suburban block stays
   fully detailed near the camera instead of dropping to simplified stand-ins. On WebGL, which
   pays full price for every building and plant draw, the Earth view and the explorer ask for a

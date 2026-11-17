@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.east_asian.commercial.compact",
-  "title": "East Asian compact masonry: commercial: compact facade",
+  "title": "Japanese compact masonry: commercial: older masonry block",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -15,8 +15,8 @@
   },
   "massing": {
     "floorHeight": {
-      "min": 2.85,
-      "max": 3.1
+      "min": 3.3,
+      "max": 3.8
     },
     "heightFallback": [
       {
@@ -86,7 +86,11 @@
         "inset": 3
       }
     ],
-    "respectMinHeight": true
+    "respectMinHeight": true,
+    "groundFloorHeight": {
+      "min": 4,
+      "max": 4.8
+    }
   },
   "roof": {
     "perWing": false,
@@ -122,30 +126,30 @@
     "windows": {
       "style": "punched",
       "width": {
-        "min": 1.275,
-        "max": 1.445
+        "min": 1.4249999999999998,
+        "max": 1.6249999999999998
       },
       "height": {
-        "min": 1.391,
-        "max": 1.659
+        "min": 1.7,
+        "max": 2
       },
       "sill": {
-        "min": 0.8,
-        "max": 0.95
+        "min": 0.6,
+        "max": 0.8
       },
-      "probabilityPerBay": 0.845,
+      "probabilityPerBay": 0.94,
       "groundFloor": "storefront"
     },
     "bands": {
       "base": {
         "height": {
-          "min": 0.4,
-          "max": 0.7
+          "min": 0.7,
+          "max": 1
         }
       },
       "floorLines": true,
       "cornice": {
-        "height": 0.3
+        "height": 0.55
       }
     },
     "details": {
@@ -161,7 +165,12 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "weight": 1,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -396,39 +405,15 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
+    "regional_trim": {
       "entries": [
         {
-          "color": "#b8bfc4",
-          "weight": 4
-        },
-        {
-          "color": "#ddd6c6",
-          "weight": 3
-        },
-        {
-          "color": "#9eacb8",
-          "weight": 3
-        },
-        {
-          "color": "#e3e0d8",
-          "weight": 3
-        },
-        {
-          "color": "#8f9397",
-          "weight": 2
-        },
-        {
-          "color": "#a9b3a7",
+          "color": "#dcd8cc",
           "weight": 1
         },
         {
-          "color": "#ae8b78",
+          "color": "#8c918c",
           "weight": 1
-        },
-        {
-          "color": "#d2cec5",
-          "weight": 5
         }
       ],
       "jitter": {
@@ -470,15 +455,48 @@
         "lightness": 0.025
       }
     },
-    "regional_trim": {
+    "wall_stucco": {
       "entries": [
         {
-          "color": "#dcd8cc",
+          "color": "#dfcfac",
           "weight": 1
         },
         {
-          "color": "#8c918c",
+          "color": "#abc5d2",
           "weight": 1
+        },
+        {
+          "color": "#b7b7af",
+          "weight": 1
+        },
+        {
+          "color": "#e7e3d9",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#dfcfac",
+          "weight": 25
+        },
+        {
+          "color": "#abc5d2",
+          "weight": 25
+        },
+        {
+          "color": "#b7b7af",
+          "weight": 25
+        },
+        {
+          "color": "#e7e3d9",
+          "weight": 25
         }
       ],
       "jitter": {

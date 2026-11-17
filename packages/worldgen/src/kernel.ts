@@ -120,7 +120,7 @@ export {
   whenIssues,
   whenSchema,
 } from './kernel/rules';
-export type { ScatterBudget, ScatterSampleInput } from './kernel/scatter';
+export type { ScatterBudget, ScatterGroundCrowns, ScatterSampleInput } from './kernel/scatter';
 export { samplePlacements, samplePlacementsSteps } from './kernel/scatter';
 export { scatterSchema, validateScatter } from './kernel/scatter-schema';
 export type {
@@ -156,6 +156,7 @@ export type {
 export type {
   BuildingAppearance,
   BuildingApproach,
+  BuildingCrown,
   BuildingRecord,
   BuildingRequest,
   BuildingYard,
@@ -179,7 +180,12 @@ export type {
   WorldgenStats,
   YardFenceKind,
 } from './kernel/types';
-export { emptyWorldgenStats, FLAT_GROUND, PLACEMENT_STRIDE } from './kernel/types';
+export {
+  BUILDING_CROWNS,
+  emptyWorldgenStats,
+  FLAT_GROUND,
+  PLACEMENT_STRIDE,
+} from './kernel/types';
 
 import { registerWorldgenComponents } from './kernel/components';
 import { registerWorldgenSchemas } from './kernel/schema';

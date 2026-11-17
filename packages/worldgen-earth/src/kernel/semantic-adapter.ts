@@ -5,6 +5,7 @@
  */
 
 import {
+  landcoverAppearance,
   polygonArea,
   roadWidth,
   type TerrainBuildingFeature,
@@ -43,7 +44,13 @@ import {
   type BuildingUseEvidence,
 } from './building-use';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
-import { withDistrictLevels } from './district-heights';
+import {
+  DEFAULT_GUESS_STOREYS,
+  guessCeiling,
+  shaftLevels,
+  withDistrictLevels,
+} from './district-heights';
+import { batchGroundCrowns } from './ground-crowns';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { landSiteProps, prepareLandSites } from './land-sites';
@@ -55,6 +62,7 @@ import {
 } from './map-override-tags';
 import { mappedPropExclusions, mappedPropRequests, overridePropRequests } from './mapped-props';
 import { applyParkingStructure, associateParkingStructures } from './parking-structures';
+import { associatePartyWalls, isAttached, type PartyWalls } from './party-walls';
 import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
@@ -66,6 +74,7 @@ import {
   buildingClipBuffer,
   PROTOMAPS_TILE_BUFFER,
 } from './tile-edges';
+import { worshipCrowns } from './worship';
 
 export interface TileGeometry {
   level: number;
@@ -159,6 +168,19 @@ function hostBuildingChoices(
   };
 }
 
+/**
+ * Label added (last) to a mapped building that shares a good part of its outline with its
+ * neighbours: a house in a row, a block in an old town. Style rules name it like any class.
+ */
+export const ATTACHED_LABEL = 'attached';
+
+/**
+ * Class a regional profile gives a style rule to when its shops are built as single-storey store
+ * shells wherever they stand (a North American arterial). Regions without one keep a shop's
+ * building, a house in a row or a block of flats, and give it a frontage.
+ */
+export const SHOP_SHELL_CLASS = 'shop_shell';
+
 /** Scatter label for ground that no mapped landcover or land-use polygon covers. */
 export const OPEN_GROUND_LABEL = 'open_ground';
 
@@ -195,10 +217,13 @@ export function scatterRequestFromTile(
   for (const feature of tile.landcover) {
     if (isLandcoverDesignation(feature)) continue;
     const label = landcoverLabel(feature);
+    // The class the ground material paints this polygon as, for `crowns` rules.
+    const appearance = landcoverAppearance(feature);
     for (const polygon of feature.polygons) {
       const { outline, holes } = toMeters(polygon, size);
       polygons.push({
         label,
+        ...(appearance !== label ? { appearance } : {}),
         ring: outline,
         ...(holes.length > 0 ? { holes } : {}),
         ...(feature.density !== undefined ? { density: feature.density } : {}),
@@ -263,6 +288,38 @@ export function scatterRequestFromTile(
   };
 }
 
+/**
+ * The most storeys the region at a point guesses for one of its own blocks of flats: its towns'
+ * ordinary upper bound, read off the style its rules give such a block. A pack with no word on
+ * it leaves the default.
+ */
+function regionalGuessStoreys(options: SemanticAdapterOptions, x: number, z: number): number {
+  const request: BuildingRequest = {
+    identity: 'f:regional-storeys',
+    labels: ['apartments'],
+    context: 'residential',
+    outline: [
+      [-15, 0],
+      [15, 0],
+      [15, 27],
+      [-15, 27],
+    ],
+  };
+  const rules = [
+    ...(options.environment?.at(x, z).buildings ?? []),
+    ...(options.atlas ? regionStyleRules(options.atlas, options.regions?.resolve(x, z)) : []),
+  ];
+  if (rules.length === 0) return DEFAULT_GUESS_STOREYS;
+  const selected = selectStyle(
+    rules,
+    buildingMetrics(request, analyzeFootprint(request.outline)),
+    options.pack.root.defaults.style,
+    request.identity,
+  );
+  const guess = options.pack.archstyles[selected.style]?.massing.heightFallback.at(-1)?.levels?.max;
+  return guess !== undefined && guess >= 1 ? Math.round(guess) : DEFAULT_GUESS_STOREYS;
+}
+
 /** Turn a semantic tile into a batch input (without ground; the caller supplies the sampler). */
 export function semanticTileToBatch(
   tile: TerrainSemanticTile,
@@ -286,7 +343,7 @@ export function semanticTileToBatch(
         const request: BuildingRequest = {
           identity: `f:${identity}`,
           labels: [use],
-          context: use === 'house' ? 'residential' : 'commercial',
+          context: use === 'commercial' ? 'commercial' : 'residential',
           outline: [
             [-7, 0],
             [7, 0],
@@ -311,7 +368,15 @@ export function semanticTileToBatch(
     );
     tile = { ...tile, buildings: [...tile.buildings, ...inferred] };
   }
-  tile = withDistrictLevels(tile, [geom.originX, geom.originZ], geom.size);
+  // How tall an unmeasured building may be guessed here: what the region's own flats are
+  // guessed at, or what the place's measured buildings reach where the map has enough of them.
+  const regionalStoreys = regionalGuessStoreys(
+    options,
+    geom.originX + geom.size / 2,
+    geom.originZ + geom.size / 2,
+  );
+  const storeyCeiling = guessCeiling(tile, geom.size, regionalStoreys);
+  tile = withDistrictLevels(tile, [geom.originX, geom.originZ], geom.size, regionalStoreys);
   const infillById = new Map(inferred.map((feature) => [feature.id, feature.infill]));
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;
@@ -355,6 +420,10 @@ export function semanticTileToBatch(
           contextLabelForPolygon(piece.polygon, ringCentroid(piece.polygon.outer), tile.landcover),
         )
       : new Map();
+    // Rows and blocks: read wherever footprints are their own (generalized ones are merged).
+    const partyWalls: ReadonlyMap<BuildingPiece, PartyWalls> = tile.buildingsGeneralized
+      ? new Map()
+      : associatePartyWalls(mapped, size);
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
       const host = isMapOverrideFeature(feature);
@@ -385,6 +454,7 @@ export function semanticTileToBatch(
               ...(infill.yard ? { yard: infill.yard } : {}),
               groundOutline: infill.groundOutline,
               ...(infill.style ? { style: infill.style } : {}),
+              ...(infill.partyEdges ? { partyEdges: infill.partyEdges } : {}),
             }
           : {}),
         ...(piece.groundPolygon !== undefined
@@ -404,20 +474,58 @@ export function semanticTileToBatch(
           : {}),
         ...(host ? hostBuildingChoices(feature, options.pack.archstyles) : {}),
       };
+      // Neither the map nor a host says how tall: the style's guess stays within its town.
+      if (
+        !host &&
+        infill === undefined &&
+        feature.height === undefined &&
+        feature.levels === undefined
+      )
+        request.fallbackLevelsMax = storeyCeiling;
       // Before any rule is consulted: the declared use is the same answer at every level.
       if (host && feature.subclass !== undefined)
         applyDeclaredBuildingUse(request, feature.subclass, options.pack.archstyles);
+      // A cut piece's edges are not the source's; it has seams and a flat roof instead.
+      const walls = decision.mode === 'clipped' ? undefined : partyWalls.get(piece);
+      const areaM2 = polygonArea(polygon) * size * size;
+      // A mapped height on a sliver of ground is a tower: tiers of openings, not floors of flats.
+      if (
+        !host &&
+        feature.height !== undefined &&
+        feature.levels === undefined &&
+        feature.class !== 'building_part' &&
+        piece.remainder === undefined &&
+        piece.groundPolygon === undefined &&
+        (feature.minHeight ?? 0) === 0
+      ) {
+        const tiers = shaftLevels(feature.height, areaM2);
+        if (tiers !== undefined) request.levels = tiers;
+      }
+      const attached = isAttached(walls, areaM2);
+      if (walls !== undefined) {
+        request.partyEdges = walls.edges;
+        if (attached) request.labels = [...request.labels, ATTACHED_LABEL];
+      }
+      const use = buildingUses.get(piece);
+      const parkingStructure = parkingStructures.get(piece);
+      // Named before the rules run, so a region's own place of worship can be chosen.
+      const worship = use?.use === 'place_of_worship' && parkingStructure === undefined;
+      if (worship)
+        request.labels = [
+          'place_of_worship',
+          ...request.labels.filter((label) => label !== 'place_of_worship'),
+        ];
+      const world: Vec2 = [
+        geom.originX + centroidUv[0] * size,
+        geom.originZ + centroidUv[1] * size,
+      ];
+      const regional = options.environment?.at(world[0], world[1]);
       if (
         request.style === undefined &&
         ((straddles && atlas !== undefined && options.regions !== undefined) ||
           options.environment !== undefined)
       ) {
-        const world: Vec2 = [
-          geom.originX + centroidUv[0] * size,
-          geom.originZ + centroidUv[1] * size,
-        ];
         const region = options.regions?.resolve(world[0], world[1]);
-        const regional = options.environment?.at(world[0], world[1]);
         const rules = [
           ...(regional?.buildings ?? []),
           ...(atlas !== undefined ? regionStyleRules(atlas, region) : []),
@@ -442,22 +550,48 @@ export function semanticTileToBatch(
           size,
           options.pack.archstyles,
           options.places?.signs,
+          // A region that builds its shops as store shells says so with a rule for the class;
+          // there every low building with a business is a store, in a row or not.
+          regional?.buildings?.some((rule) => rule.when?.class?.includes(SHOP_SHELL_CLASS))
+            ? undefined
+            : {
+                attached,
+                retailLand: context === 'commercial' || context === 'retail',
+                areaM2,
+              },
         );
-      const parkingStructure = parkingStructures.get(piece);
-      const use = buildingUses.get(piece);
       if (parkingStructure !== undefined)
         applyParkingStructure(request, parkingStructure, size, options.pack.archstyles);
-      else if (use !== undefined) applyBuildingUse(request, use, options.pack.archstyles);
+      else if (use !== undefined) {
+        applyBuildingUse(request, use, options.pack.archstyles, {
+          area: areaM2,
+          attached,
+          ...(feature.height !== undefined ? { height: feature.height } : {}),
+        });
+        if (worship) {
+          const crowns = worshipCrowns(
+            use.detail,
+            options.regions?.resolve(world[0], world[1])?.id,
+            areaM2,
+          );
+          if (crowns.length > 0) request.crown = crowns;
+        }
+      }
       buildings.push(request);
     }
   }
   const scatterId =
     (atlas !== undefined ? regionScatterId(atlas, centreRegion) : undefined) ??
     options.pack.root.defaults.scatter;
-  const scatterEnvironment = withAgricultureRules(
+  const composedEnvironment = withAgricultureRules(
     options.environment?.scatter(tileBounds),
     agriculture.rules,
   );
+  // Regional vegetation stands its shrubs on the crowns the ground paints (`crowns` rules).
+  const scatterEnvironment =
+    composedEnvironment === undefined
+      ? undefined
+      : { ...composedEnvironment, crowns: batchGroundCrowns(tile, geom) };
   const ecologicalRegions = options.environment?.ecology?.intersecting(tileBounds);
   const profileAtCenter = options.environment?.at(
     geom.originX + size / 2,

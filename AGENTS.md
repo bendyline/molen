@@ -26,7 +26,13 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
    and the whole-scene review of the World Explorer against that guide, with its backlog, is in
    [examples/world-explorer/VISUAL-REVIEW.md](examples/world-explorer/VISUAL-REVIEW.md); the
    review from eye height (houses, doors, yards, planting, animals) is in
-   [examples/world-explorer/GROUND-LEVEL-REVIEW.md](examples/world-explorer/GROUND-LEVEL-REVIEW.md).
+   [examples/world-explorer/GROUND-LEVEL-REVIEW.md](examples/world-explorer/GROUND-LEVEL-REVIEW.md),
+   and the review of generated buildings in towns around the world (regional families, roofs,
+   rows, places of worship) is in
+   [examples/world-explorer/BUILDING-DIVERSITY-REVIEW.md](examples/world-explorer/BUILDING-DIVERSITY-REVIEW.md),
+   followed by a survey of 31 towns, villages and wild places against photographs of them
+   (invented streets, how tall an unmeasured building is drawn, mid-rise blocks) in
+   [examples/world-explorer/WORLD-SURVEY-REVIEW.md](examples/world-explorer/WORLD-SURVEY-REVIEW.md).
    Vehicles, people, animals and other moving models also follow
    [content/entities/MODEL-QUALITY.md](content/entities/MODEL-QUALITY.md) (proportion archetypes,
    family review, the `model-sheet.mjs` review tool).

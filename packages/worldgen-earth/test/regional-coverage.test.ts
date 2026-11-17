@@ -305,7 +305,9 @@ describe('shipped global ecological coverage', () => {
           for (const variant of population.variants ?? [])
             expect(library.plants[variant.model], variant.model).toBeDefined();
         }
-    expect(atlasBytes.length + catalogBytes.length).toBeLessThan(2_500_000);
+    // 2.48 MB before the `ground_crowns` rules (shrubs on the ground's painted crowns, one rule
+    // in each of the 17 habitats with ground detail), 2.50 MB with them; they add 2 KB gzipped.
+    expect(atlasBytes.length + catalogBytes.length).toBeLessThan(2_550_000);
     // 119 KB before the garden and street-level forms (83 of them, and eleven planting rules a
     // habitat); 207 KB with them. Habitats repeat their region's lists further apart than gzip
     // looks back, so the next large addition should share lists between habitats, not grow this.

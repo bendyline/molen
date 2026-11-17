@@ -79,6 +79,14 @@ const population = z.strictObject({
     })
     .describe('Independent X/Z scale multiplier for crown width/bushiness; omitted means 1.')
     .optional(),
+  width: z
+    .number()
+    .positive()
+    .max(50)
+    .describe(
+      "Crown width in meters of the model at scale 1. A crowns rule fits the plant to its painted crown's width with it; scale then varies its height alone.",
+    )
+    .optional(),
   yaw: z
     .enum(['random', 'none', 'rows'])
     .describe('Random, fixed, or aligned with cultivation rows.')
@@ -190,6 +198,12 @@ const rule = z.strictObject({
     .describe('Overrides of the default clearances, meters.')
     .optional(),
   populations: z.array(population).min(1).describe('Weighted species.'),
+  crowns: z
+    .record(z.string().min(1), unit)
+    .describe(
+      "Stand one plant on each shrub crown the ground paints (see surface.detail), at its center and fitted to its width, in place of densityPerHectare. Maps a ground appearance class to the brush (0..1) the ground paints it with, normally that class's surface.detail brush. Up close the painted crown gives way to the plant. Crowns are kept whole: keepByTier only switches the rule off, and they stand outside their layer's instance cap (the rule's own cap bounds them). Needs a host that supplies the ground's crowns; populations should give their width.",
+    )
+    .optional(),
   lod: z
     .strictObject({
       keepByTier: z.array(unit).min(1).max(8).optional(),
@@ -279,7 +293,7 @@ export function validateScatter(data: unknown): ValidationIssue[] {
         message: 'population weights must sum to more than 0',
       });
     }
-    if (rule.densityPerHectare === 0 || total <= 0) {
+    if ((rule.densityPerHectare === 0 && rule.crowns === undefined) || total <= 0) {
       issues.push({
         path,
         code: 'rule_without_effect',
@@ -305,6 +319,15 @@ export function validateScatter(data: unknown): ValidationIssue[] {
           path: `${entryPath}/scale`,
           code: 'range_order',
           message: 'scale min exceeds max',
+        });
+      }
+      if (rule.crowns !== undefined && entry.width === undefined) {
+        issues.push({
+          path: `${entryPath}/width`,
+          code: 'crown_width_missing',
+          message: 'a crowns rule fits each plant to its crown by the population width',
+          hint: "give the model's crown width in meters at scale 1",
+          severity: 'notice',
         });
       }
       if (entry.widthScale !== undefined && entry.widthScale.min > entry.widthScale.max) {
