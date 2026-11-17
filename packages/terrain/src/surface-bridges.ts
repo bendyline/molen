@@ -253,27 +253,31 @@ export function appendBridgeApproachSupport(
    * of a ramp's vertices).
    */
   const guarded: { start: number; end: number; clear: boolean }[][] = [[], []];
-  const point = (distance: number, offset: number, top: boolean): [number, number, number] => {
+  const support = (
+    distance: number,
+    offset: number,
+  ): [[number, number, number], [number, number, number]] => {
     const p = sampleTerrainLine(road.path, distance, offset);
     const ground = builder.context.heightfield.sampleHeight(
       builder.context.origin[0] + p.x,
       builder.context.origin[1] + p.z,
     );
-    return [p.x, top ? Math.max(ground - 0.05, heightAt(p.x, p.z) - 0.08) : ground - 0.15, p.z];
+    const soffit = heightAt(p.x, p.z) - 0.08;
+    // Collapse the uphill wall so an end cap cannot rise through the carriageway.
+    return [
+      [p.x, Math.min(ground - 0.15, soffit), p.z],
+      [p.x, soffit, p.z],
+    ];
   };
   for (let i = 1; i < road.path.distances.length; i++) {
     const start = road.path.distances[i - 1] as number,
       end = road.path.distances[i] as number;
     for (let d = start; d < end; d += sampleSpacing) {
       const next = Math.min(end, d + sampleSpacing);
-      const a = point(d, -halfWidth, false),
-        b = point(next, -halfWidth, false),
-        c = point(next, halfWidth, false),
-        e = point(d, halfWidth, false),
-        A = point(d, -halfWidth, true),
-        B = point(next, -halfWidth, true),
-        C = point(next, halfWidth, true),
-        E = point(d, halfWidth, true);
+      const [a, A] = support(d, -halfWidth),
+        [b, B] = support(next, -halfWidth),
+        [c, C] = support(next, halfWidth),
+        [e, E] = support(d, halfWidth);
       if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) continue;
       // Pavement supplies the top. Do not duplicate internal end faces at every sample:
       // opposite coplanar normals made the retaining walls stripe at their seams.

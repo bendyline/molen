@@ -1,0 +1,151 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 1165.3184254999999,
+  "crestElevation": 1180,
+  "sites": [
+    {
+      "name": "Vanderkloof Dam reservoir raster lows",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        -660,
+        -560,
+        545,
+        10
+      ],
+      "blend": 44,
+      "elevation": 1163,
+      "repairBelow": 1050,
+      "basis": "Repair implausible elevation samples on the retained field beside the upstream shore."
+    },
+    {
+      "name": "Vanderkloof Dam south bank raster lows",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        190,
+        8,
+        360,
+        147
+      ],
+      "blend": 36,
+      "elevation": 1134,
+      "repairBelow": 1050,
+      "basis": "Repair isolated invalid elevations around the southern chute foot and neighboring slope."
+    },
+    {
+      "name": "Vanderkloof Dam north crest approach",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        -328,
+        171,
+        -263,
+        217
+      ],
+      "blend": 38,
+      "elevation": 1179.68,
+      "basis": "Match the rendered service road and ground to the north end of the 1180 m crest."
+    },
+    {
+      "name": "Vanderkloof Dam south crest approach",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        276,
+        157,
+        345,
+        208
+      ],
+      "blend": 36,
+      "elevation": 1179.68,
+      "basis": "Match the rendered service road and ground to the south end of the 1180 m crest."
+    },
+    {
+      "name": "Vanderkloof Dam radial chute apron",
+      "anchor": [
+        24.729817682852794,
+        -29.99371814122141
+      ],
+      "heading": -2.1297551119050473,
+      "bounds": [
+        -57,
+        -16,
+        52,
+        20
+      ],
+      "blend": 34,
+      "elevation": 1101,
+      "basis": "Fit the narrow excavated apron beneath the four radial chutes at their outlets. Blend into the retained gorge shoulder."
+    },
+    {
+      "name": "Vanderkloof Dam south outlet shore",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        53,
+        49,
+        89,
+        97
+      ],
+      "blend": 24,
+      "elevation": 1107,
+      "basis": "Fit the low terrace in front of the two south outlet recesses and leave the outer bank in place."
+    },
+    {
+      "name": "Vanderkloof Dam inner gorge shoulder",
+      "anchor": [
+        24.7317,
+        -29.9922
+      ],
+      "heading": -1.5707963267948966,
+      "bounds": [
+        75,
+        109,
+        118,
+        151
+      ],
+      "blend": 36,
+      "elevation": 1120,
+      "basis": "Blend the narrow bank between the outlet terrace and lower chute apron. Retain the outer slopes and access roads."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 28779293,
+      "name": "Vanderkloof Reservoir",
+      "elevation": 1170.5,
+      "basis": "Representative stage below the crest and at the documented overflow sill."
+    },
+    {
+      "id": 67943263,
+      "name": "Orange River below Vanderkloof Dam",
+      "elevation": 1106,
+      "basis": "Representative downstream level shown in the retained dam photos and consistent with the standard raster."
+    },
+    {
+      "id": 35184831771186,
+      "name": "Vanderkloof Orange River duplicate centerline",
+      "hideLines": true,
+      "basis": "The retained river polygon depicts the channel below the dam."
+    }
+  ],
+  "waterStageNotes": "The retained reservoir and downstream Orange River polygons use representative stages of 1170.5 m and 1106 m.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

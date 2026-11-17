@@ -1,0 +1,95 @@
+{
+  "fidelityTarget": "medium-fi",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/watts-towers-fit-model.mjs",
+    "export": "buildWattsFittedMaster"
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 0.5,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "appearance": {
+    "identity": "Three open tapered towers, looping braces and a domed gazebo rise over Rodia's narrow mosaic sculpture court.",
+    "master": "Preserves the three principal lattices, mosaic-covered bases, gazebo and fountain, ship, house remnants and smaller sculpture. Fits the assembly and court to sampled viewer terrain.",
+    "browser": "All four levels preserve the open tower cages, west loops, gazebo and masts. The street and close-up recipes keep continuous supports, curved wall panels and the colorful mosaic accents."
+  },
+  "geographic": {
+    "anchor": [-118.24104123365372, 33.938721678265445],
+    "heading": -0.015039326521494084,
+    "source": "https://gis.parks.ca.gov/server/rest/services/EnterpriseGIS/CSPBoundaries_Portal/FeatureServer/0",
+    "bounds": [-118.24131, 33.93854, -118.24078, 33.93891],
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [-118.24104123365372, 33.938721678265445],
+      "modelHeight": 0.304769,
+      "basis": "The sampled datum meets the normalized model 0.305 m above its lowest foundation point."
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two fitted court planes follow the sampled viewer terrain. A shallow concrete edge reaches below grade around the perimeter.",
+    "notes": "The state park parcel supplies the court outline and street-facing axis. PMTiles locate the park and adjacent East 107th Street. Preserve the host map buildings, streets and ground."
+  },
+  "limitations": [
+    "Mosaic variation and small ornament use shared surfaces and authored color geometry. Individual shards, shell patterns and framing bends are interpreted from photographs.",
+    "Internal sculpture positions are proportional. The modern security fence, amphitheater and arts center are outside the sculpture asset."
+  ],
+  "referencePages": [
+    "https://www.parks.ca.gov/?page_id=613",
+    "https://www.sfgate.com/la/article/smallest-california-state-park-built-by-one-man-19787197.php",
+    "https://www.pond5.com/stock-footage/item/89819639-watts-towers-aerial-4k"
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "state-park-boundary.json",
+    "pmtiles-map.json",
+    "fit-controls.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/watts-towers-fit-model.mjs",
+    "export": "buildWattsSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWattsDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "plaster": { "graph": "plaster_lime", "slot": "wall", "roughness": 0.93 },
+          "concrete": { "graph": "concrete_plain", "slot": "foundation", "roughness": 0.93 }
+        }
+      },
+      "street": {
+        "export": "buildWattsStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "plaster": { "graph": "plaster_lime", "slot": "wall", "roughness": 0.93 },
+          "concrete": { "graph": "concrete_plain", "slot": "foundation", "roughness": 0.91 },
+          "glass": { "localRef": "palette:#ffffff", "slot": "wall", "roughness": 0.34 },
+          "shadow": { "localRef": "palette:#ffffff", "slot": "trim", "roughness": 1 }
+        }
+      },
+      "closeup": {
+        "export": "buildWattsCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": { "graph": "plaster_lime", "slot": "wall", "roughness": 0.93 },
+          "concrete": { "graph": "concrete_plain", "slot": "foundation", "roughness": 0.91 },
+          "glass": { "localRef": "palette:#ffffff", "slot": "wall", "roughness": 0.34 },
+          "shadow": { "localRef": "palette:#ffffff", "slot": "trim", "roughness": 1 }
+        }
+      }
+    }
+  }
+}

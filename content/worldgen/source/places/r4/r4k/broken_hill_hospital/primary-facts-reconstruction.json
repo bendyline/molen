@@ -1,0 +1,35 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "broken-hill-hospital-native-multipolygon-2000",
+  "structureId": "QS-6a59e855fd61",
+  "model": "broken_hill_hospital",
+  "imageryUsed": false,
+  "quallaFirst": {
+    "families": 3,
+    "inventoryHash": "sha256:f0967f494e61bd385632db0c75b1aa323518ec6b0fd1151be9420cf06ed77250",
+    "questionableImageryAdopted": false
+  },
+  "primarySources": {
+    "path": "reference-rights/hospital-construction-facts.json",
+    "sha256": "sha256:db1f06c7ea24699adb06a462c8ed1a1c41cec6667d2479253e70788866a73c17",
+    "use": "factual-text-only"
+  },
+  "candidateExclusion": {
+    "path": "reference-rights/story-image-exclusions.json",
+    "sha256": "sha256:cd83b460b2566bce34a7f6464a60887db3f287f2dc78e700f3841a5e1e3a08f1"
+  },
+  "nativeIdentity": {
+    "path": "native-map/hospital-multipolygon.json",
+    "sha256": "sha256:e3675380854230b4cda4a6e51214be512a05af8cee29f69ad3aa42af53e2c97a",
+    "relation": 15256286
+  },
+  "estimates": [
+    "Ward eaves, roof pitches, levels, courtyard treatment, windows, materials palette and entrance canopies are estimated from the mapped shape and documented materials. The six courtyard rings and the street alignment come from the native map.",
+    "Awning locations are inferred within the mapped Thomas Street projection and the rear car-park side. Site structures outside the current main building outline are outside this model’s scope.",
+    "The original elevation field remains unchanged. Foundation steps and local thresholds are approximated from the coarse grade at the physical wing and entrance positions."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "notes": "The published Qualla candidate shows the demolished predecessor and has an unidentified creator. The standing hospital uses no reference imagery. Native vector mapping and the city, operator, builder and planning records establish the present outline, principal materials and entrance arrangement."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.quan_am_temple",
+  "kind": "static-structure",
+  "title": "Quán Âm Pagoda",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.quan_am_temple",
+        "output": "assets/places/w3/w3g/quan_am_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7fe90ec4f30ad2e67ddead84797a713eedb880c76009b8715e0da38f6d51094c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-quan-am-temple",
+        "path": "models/generate-quan-am-temple.mjs"
+      },
+      {
+        "id": "quan-am-temple-model",
+        "path": "models/quan-am-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/temple-controls.json",
+      "reference-rights/commons-quan-am-temple-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26092-15399.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

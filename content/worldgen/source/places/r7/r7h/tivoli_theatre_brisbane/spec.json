@@ -1,0 +1,447 @@
+{
+  "planId": "tivoli_theatre_brisbane",
+  "id": "tivoli_theatre_brisbane",
+  "assetId": "molen.worldgen.structure.tivoli_theatre_brisbane",
+  "title": "Tivoli Theatre, Brisbane",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.024213488,
+    "latitude": -27.468227023
+  },
+  "size": [
+    28.600000381469727,
+    31.939948081970215,
+    53.30999946594238
+  ],
+  "actualBounds": {
+    "min": [
+      -14.300000190734863,
+      -6.300000190734863,
+      -25.1299991607666
+    ],
+    "max": [
+      14.300000190734863,
+      25.63994789123535,
+      28.18000030517578
+    ]
+  },
+  "visualBrief": "The original Albert Street Tivoli Theatre in Brisbane, with its dramatic sheet-metal cornice, balcony terrace and gabled rooftop vaudeville theatre.",
+  "nativeAxes": {
+    "x": "southeast toward Adelaide Street",
+    "y": "up",
+    "z": "southwest toward the Albert Street frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1918",
+    "validFrom": "1915-05-15",
+    "validUntil": "1927-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tivoli_Theatre_Brisbane.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tivoli-theatre-brisbane-wp",
+      "url": "https://qualla.com/tivoli-theatre-brisbane/"
+    }
+  ],
+  "referenceInputHash": "3de89e4bf3a8cea836da15401848d4e0659aac53481c86304e060ed2f156bad5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/tivoli_theatre_brisbane/models/tivoli-theatre-brisbane-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/tivoli_theatre_brisbane/models/tivoli-theatre-brisbane-model.mjs",
+    "level": "skyline",
+    "export": "tivoliSkyline",
+    "errorMeters": 0.57,
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.81,
+        "metallic": 0.17
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.12
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.59,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tivoliDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81,
+            "metallic": 0.17
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "tivoliStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81,
+            "metallic": 0.17
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "tivoliCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.81,
+            "metallic": 0.17
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.59,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "brick_flemish",
+    "metal_corrugated",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      153.024213488,
+      -27.468227023
+    ],
+    "heading": -0.7484222118628023,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.0240412495232,
+        -27.468391585396525
+      ],
+      "modelHeight": 0,
+      "basis": "Present ground at the reconstructed Albert Street public entrance. Historic grade is approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "historical/tivoli-theatre-albert-street",
+      "way/24211955",
+      "way/146577878",
+      "way/10836280"
+    ],
+    "source": "https://www.flickr.com/photos/queenslandstatearchives/52657778498",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5802f78c46672d9e7addd86de369ae60b88b25ff9cce05681834e2f331c93850",
+    "notes": "Reconstructed 28.4 m by 50 m envelope northeast of the former Albert Street carriageway between Ann and Adelaide streets. The bearing follows the Albert Street continuation across modern King George Square. The story pin projected onto this line establishes the station of the entrance. Setback and depth are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The former footprint is reconstructed from the original Albert Street alignment, the story pin, the 1918 photograph and known theatre capacity. The exact lot line, hidden rear and side arrangements, depth and height are estimates.",
+    "The cleared 1918 photograph is monochrome. Exterior colors are period-material estimates. The original site has been regraded as King George Square, so historical threshold and sidewalk levels are approximate.",
+    "Historical placement covers the documented pre-1927 exterior. The current Fortitude Valley theatre and the surrounding square are outside this model."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. Public-domain 1918 State Library of Queensland photograph. OpenStreetMap street controls under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "albert-street-skyline",
+      "position": [
+        46,
+        22,
+        94
+      ],
+      "lookAt": [
+        0,
+        11,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "albert-street-district",
+      "position": [
+        46,
+        22,
+        94
+      ],
+      "lookAt": [
+        0,
+        11,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "albert-street-street",
+      "position": [
+        46,
+        22,
+        94
+      ],
+      "lookAt": [
+        0,
+        11,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "albert-street-closeup",
+      "position": [
+        46,
+        22,
+        94
+      ],
+      "lookAt": [
+        0,
+        11,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "albert-street-front",
+      "position": [
+        18,
+        5.55,
+        55
+      ],
+      "lookAt": [
+        -0.5,
+        11,
+        24.8
+      ]
+    },
+    {
+      "name": "foyer-and-terrace",
+      "position": [
+        -16,
+        13.1,
+        47
+      ],
+      "lookAt": [
+        0,
+        11.7,
+        25
+      ]
+    },
+    {
+      "name": "roof-and-shutters",
+      "position": [
+        33,
+        27,
+        58
+      ],
+      "lookAt": [
+        0,
+        19.9,
+        13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8254,
+    "vertices": 24762,
+    "materials": 6,
+    "bytes": 1176372,
+    "sha256": "sha256:fa464a5cd0b8d14ce4a8c998cf4cac4c4a21d2ae646f374aea23dcede1476112"
+  }
+}

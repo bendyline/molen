@@ -1,0 +1,458 @@
+{
+  "id": "baikovsky_bridge",
+  "planId": "baikovsky_bridge",
+  "assetId": "molen.worldgen.structure.baikovsky_bridge",
+  "title": "Baikovsky Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q28819020",
+  "referenceCoordinate": {
+    "longitude": 39.70708038555662,
+    "latitude": 47.221388888
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1876-06-01",
+    "validFrom": "1876-01-01",
+    "validUntil": "1877-01-01"
+  },
+  "nativeAxes": "+X follows the historic avenue northwest. +Z runs toward the west-southwest culvert outlet. +Y is up from the sampled road datum.",
+  "size": [
+    24,
+    8.556033611297607,
+    58.07839775085449
+  ],
+  "actualBounds": {
+    "min": [
+      -12,
+      -4.150000095367432,
+      -29.039142608642578
+    ],
+    "max": [
+      12,
+      4.406033515930176,
+      29.039255142211914
+    ]
+  },
+  "visualBrief": "A broad, shallow roadway crossing above a single brick barrel, with two sidewalks, iron railings, oil lanterns and curved return walls.",
+  "referencePages": [
+    "https://www.rostovbereg.ru/publ/rostov_so_vsekh_storon/privet_iz_veka_19_go_21_mu_veku_foto_ot_ja_a_rebajna/1-1-0-697",
+    "https://en.wikipedia.org/wiki/Baikovsky_Bridge",
+    "https://tourism.rostov-gorod.ru/article/284/6599/",
+    "https://www.rostovbereg.ru/publ/rostov_so_vsekh_storon/kratkij_kurs_istorii_mostov_rostova_i_nakhichevani_3/1-1-0-477",
+    "https://build.protomaps.com/20261111.pmtiles"
+  ],
+  "geometrySource": "The historic photograph and recorded widths define the deck and arch. The plaque relief informs the portal trim. PMTiles and standard terrain align the reconstructed avenue and grade.",
+  "materialMethod": "Metric UVs use shared brick, weathered limestone, granite, gravel and painted iron. Lamp panes use a small color material. No images are embedded.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ubk/baikovsky_bridge/models/bridge-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ubk/baikovsky_bridge/models/bridge-model.mjs",
+    "inputHash": "sha256:b2459ee01319b459fecee202fa51d12b0f9c64daaea5e3910be1c01c61e9e1f9",
+    "export": "buildSkyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick"
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered"
+      },
+      "pavers": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "roadway": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "lamp": {
+        "slot": "trim",
+        "localRef": "palette:#e0bc82",
+        "name": "Amber lamp panes"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#e0bc82",
+            "name": "Amber lamp panes"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#e0bc82",
+            "name": "Amber lamp panes"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#e0bc82",
+            "name": "Amber lamp panes"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      39.70708038555662,
+      47.221388888
+    ],
+    "heading": 1.870120785750588,
+    "bounds": [
+      39.70665052461096,
+      47.22119783207553,
+      39.70751024650229,
+      47.22157994323596
+    ],
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "notes": "Mid-1870s reconstruction placed on the PMTiles avenue. Local cutouts reveal its two mouths while the historic model is resident.",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        39.70708038555662,
+        47.221388888
+      ],
+      "modelHeight": 0,
+      "basis": "The center of the mapped avenue defines the shared local grade datum."
+    },
+    "groundContactReviewed": true,
+    "groundContactBasis": "Three-metre bilinear fixture from the standard Terrarium terrain tiles. The model uses the anchor grade and per-section approach samples.",
+    "replaceFootprint": false,
+    "minLevel": 15,
+    "groundCutout": {
+      "outline": [
+        [
+          -6.8,
+          -29
+        ],
+        [
+          6.8,
+          -29
+        ],
+        [
+          4.75,
+          -21.336
+        ],
+        [
+          4.75,
+          21.336
+        ],
+        [
+          6.8,
+          29
+        ],
+        [
+          -6.8,
+          29
+        ],
+        [
+          -4.75,
+          21.336
+        ],
+        [
+          -4.75,
+          -21.336
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": -4.17,
+      "pavingOutlines": [
+        [
+          [
+            -11.98,
+            -21.316
+          ],
+          [
+            11.98,
+            -21.316
+          ],
+          [
+            11.98,
+            21.316
+          ],
+          [
+            -11.98,
+            21.316
+          ]
+        ]
+      ],
+      "basis": "Open the barrel and apron areas. Mask present-day paving only under the historical road surface and sidewalks."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.8,
+          -29
+        ],
+        [
+          6.8,
+          -29
+        ],
+        [
+          4.89,
+          -18.45
+        ],
+        [
+          -4.89,
+          -18.45
+        ]
+      ],
+      "basis": "Trim the intersecting mapped volume only inside the reconstructed east culvert mouth and its approach. This mask is dated to the historic placement."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:20fd1bfb2dc835b90902a8ca3e227b19675d99325e1fb44ce26c830cb739ebf3",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors; Protomaps basemap"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and location evidence is recorded in qa.json after review.",
+  "limitations": [
+    "The date slot represents the mid-1870s photograph. The exact exposure date and original culvert portal positions, masonry section and grade are approximate.",
+    "Surroundings use the host basemap. The analysis fits present terrain, with localized dated cutouts to show the lost ravine crossing."
+  ],
+  "mediumFiContext": {
+    "surface": "urban",
+    "groundY": -4.18,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        -0.65,
+        0
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "west-portal",
+      "position": [
+        -6,
+        -1.65,
+        28.5
+      ],
+      "lookAt": [
+        0,
+        -2.15,
+        20.8
+      ],
+      "fov": 67
+    },
+    {
+      "name": "barrel-interior",
+      "position": [
+        0.7,
+        -2.7,
+        17.5
+      ],
+      "lookAt": [
+        -0.27,
+        -2.27,
+        2.4
+      ],
+      "fov": 64
+    },
+    {
+      "name": "avenue-and-lanterns",
+      "position": [
+        -18,
+        5.2,
+        10
+      ],
+      "lookAt": [
+        3,
+        0.25,
+        17
+      ],
+      "fov": 64
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "baikovsky-bridge-skyline",
+      "position": [
+        -26,
+        13,
+        43
+      ],
+      "lookAt": [
+        0,
+        -0.25,
+        9
+      ],
+      "fov": 61,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "baikovsky-bridge-district",
+      "position": [
+        -26,
+        13,
+        43
+      ],
+      "lookAt": [
+        0,
+        -0.25,
+        9
+      ],
+      "fov": 61,
+      "reviewLod": "district"
+    },
+    {
+      "name": "baikovsky-bridge-street",
+      "position": [
+        -26,
+        13,
+        43
+      ],
+      "lookAt": [
+        0,
+        -0.25,
+        9
+      ],
+      "fov": 61,
+      "reviewLod": "street"
+    },
+    {
+      "name": "baikovsky-bridge-closeup",
+      "position": [
+        -26,
+        13,
+        43
+      ],
+      "lookAt": [
+        0,
+        -0.25,
+        9
+      ],
+      "fov": 61,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5522,
+    "vertices": 13598,
+    "materials": 6,
+    "bytes": 559472,
+    "sha256": "sha256:d10a178e4c5f70643db462992b572af4c9496c74499ce756b3cc89d7cb50d3f0"
+  }
+}

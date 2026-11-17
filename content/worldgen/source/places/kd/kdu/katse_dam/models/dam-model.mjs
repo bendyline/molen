@@ -7,7 +7,8 @@ export const controls = {
   heading: 0.40069262057,
   datum: 2055.506213125,
   crest: [
-    [-297.5796, 144.34564],
+    [-297.5796, 135.46604],
+    [-289.93434, 137.51197],
     [-284.23391, 136.80336],
     [-276.8008, 132.60256],
     [-259.47801, 115.06526],
@@ -34,7 +35,7 @@ export const controls = {
     [292.28519, 121.80721],
     [298.91946, 130.83653],
     [302.32814, 136.80336],
-    [309.93212, 150.11399],
+    [304.08975, 150.11399],
   ],
   crestElevation: 2060,
   foundationElevation: 1875,
@@ -205,10 +206,14 @@ function box(out, a, b, lo, hi, z, w, m) {
     [1, 0, 0],
   );
 }
+// Pin the approach bends and sample the original arch stations independently of the west turnout.
+const approachBends = new Set([crest[1][0], crest[2][0], crest.at(-2)[0]]);
 function stations(a, b, detail) {
   return [
     a,
-    ...crest.filter((p, i) => i % detail.stride === 0 && p[0] > a && p[0] < b).map((p) => p[0]),
+    ...crest
+      .filter(([x], i) => x > a && x < b && (approachBends.has(x) || (i - 1) % detail.stride === 0))
+      .map(([x]) => x),
     b,
   ];
 }

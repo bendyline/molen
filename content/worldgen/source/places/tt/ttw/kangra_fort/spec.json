@@ -1,0 +1,357 @@
+{
+  "planId": "kangra_fort",
+  "id": "kangra_fort",
+  "assetId": "molen.worldgen.structure.kangra_fort",
+  "title": "Kangra Fort",
+  "wikidataId": "Q6362859",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 76.25423,
+    "latitude": 32.08694
+  },
+  "size": [
+    216.3597869873047,
+    64.77738761901855,
+    239.61231231689453
+  ],
+  "actualBounds": {
+    "min": [
+      -141.9075927734375,
+      -27.928247451782227,
+      -113.60716247558594
+    ],
+    "max": [
+      74.45219421386719,
+      36.84914016723633,
+      126.0051498413086
+    ]
+  },
+  "visualBrief": "Kangra Fort is a ruined hill fortress with gray stone ramparts, round bastions, successive gates and temple remains above the river confluence.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:00512_Gates_and_Walls_of_Kangra_Fort,_Himachal_Pradesh_004.jpg",
+    "https://commons.wikimedia.org/wiki/File:00512_Gates_and_Walls_of_Kangra_Fort,_Himachal_Pradesh_037.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kangra-fort-wp",
+      "url": "https://qualla.com/kangra-fort/"
+    }
+  ],
+  "referenceInputHash": "dabed691184a81a136d0b6dc408cc25fce4c48b079d959a151c472cf34c869a6",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttw/kangra_fort/models/kangra-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttw/kangra_fort/models/kangra-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.97
+      },
+      "fine": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.96
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.96
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97
+          },
+          "fine": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.96
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_sandstone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.55,
+    "groundY": -40,
+    "focus": {
+      "center": [
+        -17,
+        13,
+        -4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "A steep-sided ridge carries the fort above the two rivers. Use the frozen relief at wall toes and the approximate northeastern approach datum. Gates and wall heights follow the selected modern photographs with bounded estimates.",
+    "anchor": [
+      76.25423,
+      32.08694
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        76.254777997123,
+        32.08733099802372
+      ],
+      "modelHeight": 0,
+      "basis": "Reference camera position near accessible northeast gate corridor, used as the approximate external approach datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/43753708",
+      "way/664202876"
+    ],
+    "source": "https://www.openstreetmap.org/way/43753708",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:76f37fd97414f96bf7303b7d9571c04c2bca1dd736b9a3449256bdbba9347969"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The surviving western mapped masonry and northeast approach are represented. The outer mapped precinct line includes open slopes and access space.",
+    "Exact rampart height, parapet gaps, gate locations and temple foundations are estimates. Relative terrain is from an independent composite elevation field with coarse native cells.",
+    "Small reliefs and carvings are modeled in simplified original geometry. Former buildings destroyed in 1905, current vegetation and the separate ticket office and museum are outside scope."
+  ],
+  "sourceLicense": "Original architectural geometry from the native map and public terrain, two exact CC0 gate photos, and public archaeological descriptions.",
+  "qaLodCameras": [
+    {
+      "name": "kangra-fort-skyline",
+      "position": [
+        238,
+        154,
+        -182
+      ],
+      "lookAt": [
+        -17,
+        13,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kangra-fort-district",
+      "position": [
+        238,
+        154,
+        -182
+      ],
+      "lookAt": [
+        -17,
+        13,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kangra-fort-street",
+      "position": [
+        238,
+        154,
+        -182
+      ],
+      "lookAt": [
+        -17,
+        13,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kangra-fort-closeup",
+      "position": [
+        238,
+        154,
+        -182
+      ],
+      "lookAt": [
+        -17,
+        13,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "ramparts-on-the-ridge",
+      "position": [
+        -43,
+        112,
+        206
+      ],
+      "lookAt": [
+        -58,
+        12,
+        18
+      ]
+    },
+    {
+      "name": "carved-pointed-gate",
+      "position": [
+        52,
+        11,
+        -20
+      ],
+      "lookAt": [
+        47,
+        5,
+        -47
+      ]
+    },
+    {
+      "name": "upper-court-and-ramparts",
+      "position": [
+        -117,
+        69,
+        -125
+      ],
+      "lookAt": [
+        -34,
+        23,
+        -32
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6806,
+    "vertices": 20418,
+    "materials": 4,
+    "bytes": 887052,
+    "sha256": "sha256:e769069f280ca0b241681bf6c0282540170e65ee1ffee63b979815a6020dc805"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.umananda_temple",
+  "kind": "static-structure",
+  "title": "Umananda Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.umananda_temple",
+        "output": "assets/places/wh/wh9/umananda_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9874b4a92dd49250d8e795f5a1d7f19457e2d9b7471ef4d93c1a5df6b3e8a01a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-umananda-temple",
+        "path": "models/generate-umananda-temple.mjs"
+      },
+      {
+        "id": "umananda-temple-model",
+        "path": "models/umananda-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-n26-e091.tif",
+      "preview.png",
+      "native-map/island-shrine-controls.json",
+      "reference-rights/commons-qualla-umananda-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

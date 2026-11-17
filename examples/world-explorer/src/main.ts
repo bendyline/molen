@@ -28,6 +28,7 @@ import {
   createEarthFleet,
   createEarthFog,
   createEarthRoadSigns,
+  createEarthSiteGrading,
   createEarthSky,
   createEarthTilePreloader,
   createEarthWorldgen,
@@ -59,6 +60,7 @@ import {
   earthStreamDistance,
   earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWaterMeshOptions,
   earthWorldgenCacheBytes,
   observeSemanticTiles,
   regionalEarthAttribution,
@@ -1133,6 +1135,7 @@ async function main(): Promise<void> {
       content.airports,
     );
   };
+  const waterMesh = earthWaterMeshOptions(content.waterFeatures, loaded.descriptor);
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
@@ -1173,6 +1176,7 @@ async function main(): Promise<void> {
               renderBuildings: false,
               materials: { water: waterMaterial },
               waterOffset: 0.65,
+              ...waterMesh,
               // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
               // sits at its lower-quartile depth and shallower seabed shows through as ground, as
               // mountEarthView avoids the same way.
@@ -1392,10 +1396,10 @@ async function main(): Promise<void> {
     reach <= viewDistance * 0.6 ? Math.max(8, Math.round(tiles * 0.92)) : tiles;
   let tierSelectedTiles = pyramidBudget.maxSelectedTiles;
   const regionalGroundColor = createRegionalGroundColor(worldgen?.environment);
-  // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
   const groundGrading = composeEarthGroundGrading(
     roadGrading,
     content.airports ? createAirportTerrainGrading(content.airports) : undefined,
+    createEarthSiteGrading(content.siteGrades, loaded.descriptor),
   );
   const pyramidEarth: TerrainPackagePyramidStream | undefined = adaptive
     ? await createTerrainPackagePyramidStream(loaded.descriptor, {
@@ -1914,6 +1918,7 @@ async function main(): Promise<void> {
       stream.object,
       (object) => viewer.renderer.prepareObject(object),
       loaded.descriptor.surface?.seaLevel ?? 0,
+      waterMesh.waterFeatureStyle,
     );
     wildlife.setBudget(
       earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))

@@ -74,9 +74,9 @@
     }
   },
   "exportLabel": "Molen original whole Stratford regional interchange and public footbridge source",
-  "expectedDraftMasterHash": "sha256:ec627f43fe3ebeaa5e4890cff17836e4c7886638d6c1b263b94f8992fa22a549",
-  "visualBrief": "Complete aboveground Stratford regional interchange exterior:whole sweeping Meridian Square ticket hall/main roof andwest platform extension;both long mainline island canopies;curved northwestern Overground-platform canopy andservice shelters;four southern Jubilee/DLR platform-canopy outlines;east glazed entry/lift andMeridian facade canopy;complete mapped rust-framed glazed public footbridge across therails,including approximate southlanding/stairs. Stratford International,Westfield mall,adjacent office/retail towers,busstation,independentstreets andnonstationbuildings remain separate. Underground interiors,trains,people,lettering,roundels andadvertising are omitted.",
-  "heightPolicy": "Current PMTiles mainparent height11m retained asmainroof crown;canopy531andfour southerncanopies native5m retained asrooftops. The mainroof fillsmapedge service/notch gaps withanordinary-picture convex roof-envelope interpretation;actual occupiedfloorremains theinset mainhall only. Layer-1 doesnot establish surveyed platformgrade. Eaves5.4m,glasswall6m,platform .3m,mainfloor .65m,mainfootbridgefloor7.8m/side11m andauxiliaryserviceheights areexplicit photo/map approximations. Footbridgefollows current mappedpath35184502965940;its fullphysical crossingisclaimed,not thewhole adjoiningmall. One unchanged standardglobal field sampleoutsideMeridianSquare at[85,60],5.109632m,definesY=0. Mainfloor+.65m;footings-8m. No perpart runtimehostoffsets orflattening.",
+  "expectedDraftMasterHash": "sha256:eb10848ca3ebd1668eeb4d6a2a62f688ea0458f9d69501642f8738db5036f744",
+  "visualBrief": "The Stratford regional interchange with its curved glazed Meridian Square hall, open canopy rows and platform slabs, eastern lift, rust-framed public footbridge and five flights of the mapped Meridian Steps.",
+  "heightPolicy": "The Meridian Square entrance, above-ground platform shapes and footbridge follow the signed PMTiles frame and ordinary photographs. The concrete apron fits the sampled plaza, platform slabs and canopies follow raised platform grades, and the public footbridge reaches the mapped Meridian Steps.",
   "nativeAxes": "+X NE alongmainline towardIlford; -X SW towardcentralLondon; +Z SE towardMeridianSquare/busstation/Jubilee-DLR branches; -Z NW towardWestfield andOverground; +Yup.",
   "sourceFacts": {
     "nativePartFacts": [
@@ -275,14 +275,14 @@
       60
     ],
     "terrainTiles": 4,
-    "occupiedMasks": 1
+    "occupiedMasks": 1,
+    "stepFlights": 5,
+    "meridianSteps": 40
   },
   "materialMethod": "Six existing shared256px graphs:stone_limestone,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane. Atmost6mergedsemantic groups,metricUVs,linearcolors;zero embedded/privateimages. Onlyactualglassfacades/footbridgesides usewindow_grid;opaqueroofs,posts,railsteel,concrete retainsemantics.",
   "limitations": [
-    "Complete aboveground Stratford regional interchange exterior:whole sweeping Meridian Square ticket hall/main roof andwest platform extension;both long mainline island canopies;curved northwestern Overground-platform canopy andservice shelters;four southern Jubilee/DLR platform-canopy outlines;east glazed entry/lift andMeridian facade canopy;complete mapped rust-framed glazed public footbridge across therails,including approximate southlanding/stairs. Stratford International,Westfield mall,adjacent office/retail towers,busstation,independentstreets andnonstationbuildings remain separate. Underground interiors,trains,people,lettering,roundels andadvertising are omitted.",
-    "Current PMTiles mainparent height11m retained asmainroof crown;canopy531andfour southerncanopies native5m retained asrooftops. The mainroof fillsmapedge service/notch gaps withanordinary-picture convex roof-envelope interpretation;actual occupiedfloorremains theinset mainhall only. Layer-1 doesnot establish surveyed platformgrade. Eaves5.4m,glasswall6m,platform .3m,mainfloor .65m,mainfootbridgefloor7.8m/side11m andauxiliaryserviceheights areexplicit photo/map approximations. Footbridgefollows current mappedpath35184502965940;its fullphysical crossingisclaimed,not thewhole adjoiningmall. One unchanged standardglobal field sampleoutsideMeridianSquare at[85,60],5.109632m,definesY=0. Mainfloor+.65m;footings-8m. No perpart runtimehostoffsets orflattening.",
-    "Three ordinary exterior photographs/currentstandardPMTiles. Whole aboveground scopeisretained,including open-top footbridge;hiddeninteriors,roofsectionprofiles,framecounts,stairgradients andplatformgrades areexplicit medium-fi estimates. No surveyedthreshold/accessible routeclaim. StratfordInternational,Westfield,independenttowers/busstation excluded. Physical laptop/phone/dense-city timings andnumericalLODerrors remain unmeasured.",
-    "Six existing shared256px graphs:stone_limestone,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane. Atmost6mergedsemantic groups,metricUVs,linearcolors;zero embedded/privateimages. Onlyactualglassfacades/footbridgesides usewindow_grid;opaqueroofs,posts,railsteel,concrete retainsemantics. Fourwhole-structuretiers preservemaincurvedroof,allcanopyfamilies,wholefootbridgeandactualinsetfloor;nearlevelsaddstructuralribs,supports,slopedglazing/recessedentry,mappedbridgebays/columns,stairsandrailbeds. Masterseparatelyrefinesroofpatches,glazing,ribs,framesandsleepers."
+    "Platform grades, canopy supports and steps are visual reconstructions from standard terrain, mapped rail alignments and ordinary photographs. They have no surveyed rail clearances or accessibility data.",
+    "The Westfield-side footbridge end is modeled to its mapped endpoint. The shopping centre, bus station, Stratford International and underground railway interiors use their own scene data."
   ],
   "references": [
     {
@@ -378,13 +378,9 @@
     }
   ],
   "mediumFiContext": {
-    "groundY": 0,
-    "scale": 1.4,
-    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-    "terrain": {
-      "descriptor": "terrain-review.terrain.json",
-      "heightmap": "terrain-review.height.png"
-    }
+    "scale": 1,
+    "groundY": -2.1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
   },
   "runtimeLodOverlay": {
     "level": "skyline",

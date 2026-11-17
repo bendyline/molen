@@ -318,9 +318,16 @@
     ],
     "includeConnectedApproaches": true
   },
-  "heightPolicy": "Fixed29m visualization datum. Approximate32m end decks and32.6m crown, with local canal review water 28.310m. The unmodified global city field contains strong building/surface returns. The standard native renderer derives incompatible connected canal/Neva levels: this is not a surveyed elevation or a certified native shoreline fit. Keep native water acceptance pending if the rendered mismatch remains.",
+  "heightPolicy": "The 14.55 m model origin meets embankment paving at 17.55 m and reaches 18.15 m at the crown. The shared Neva and Winter Canal plane is 14.29 m. The 17.50 m embankment ground follows the nearby standard terrain control and blends into the original field.",
   "limitations": [
-    "Fixed29m visualization datum. Approximate32m end decks and32.6m crown, with local canal review water 28.310m. The unmodified global city field contains strong building/surface returns. The standard native renderer derives incompatible connected canal/Neva levels: this is not a surveyed elevation or a certified native shoreline fit. Keep native water acceptance pending if the rendered mismatch remains.",
-    "Ordinary photos and current PMTiles guide this original medium-fi exterior. Granite courses and arch ring joints, vault profile, low crown, broad walks/short steps, rounded corners and concealed foundations are approximate. No copied photo pixels, downloaded meshes, readable signs, boats, buses or furnished interiors. Neighboring museum connection, buildings, quay walls and roads remain native. Native water and bank fit require current visual acceptance; do not count this preview ready from geometry tests alone. Physical laptop/phone measurements remain pending."
-  ]
+    "The joined water stage and waterfront grade are visualization elevations derived from the retained terrain. Stone courses, vault profile, rounded corners, step counts and concealed foundations are approximate.",
+    "The separate enclosed museum crossing and neighboring buildings and quays are outside the bridge model. The viewer supplies their mapped context."
+  ],
+  "elevationFit": {
+    "referenceElevationMeters": 14.55,
+    "embankmentMeters": 17.5,
+    "waterStageMeters": 14.29,
+    "gradeSource": "content/earth/terrain/site-grades.json",
+    "waterSource": "content/earth/hydrology/water-features.json"
+  }
 }

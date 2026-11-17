@@ -4,21 +4,33 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { inspectNewZealandEmbassyReference } from './imagery-new-zealand-embassy.mjs';
+import {
+  inspectDhakaEmbassyReference,
+  inspectNewZealandEmbassyReference,
+} from './imagery-embassy-flickr.mjs';
 
 const hash = (s, a = 'sha256') => createHash(a).update(s).digest('hex');
-function fixture(t) {
+function fixture(t, dhaka = false) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-dos-photo-'));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-  const id = '50967988731',
-    account = 'us_embassy_newzealand',
-    title = `File:Christchurch Earthquake 10th Anniversary, 22nd February 2021 (${id}).jpg`,
+  const id = dhaka ? '51687083522' : '50967988731',
+    account = dhaka ? 'usembassydhaka' : 'us_embassy_newzealand',
+    nsid = dhaka ? '89616529@N03' : '46907600@N02',
+    agency = dhaka ? 'U.S. Embassy Dhaka' : 'US Embassy',
+    country = dhaka ? 'Bangladesh' : 'New Zealand',
+    artist = `${agency} from ${country}`,
+    title = dhaka
+      ? `File:Ambassador Earl Miller visited Temple, Mosque, and Church (${id}).jpg`
+      : `File:Christchurch Earthquake 10th Anniversary, 22nd February 2021 (${id}).jpg`,
+    transfer = dhaka
+      ? `{{FlickreviewR|status=passed|author=${agency}|sourceurl=https://flickr.com/photos/${nsid}/${id}|archive=|reviewdate=2022-01-08 07:31:46|reviewlicense=Public Domain Mark|reviewer=FlickreviewR 2}}`
+      : '{{Flickrreview|Reviewer|2023-04-01}}',
     url = 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Photo.jpg',
     image = Buffer.from('specific original pixels'),
     person = {
-      name: 'US Embassy',
+      name: agency,
       url: `https://www.flickr.com/photos/${account}`,
-      image: 'https://farm66.staticflickr.com/65535/buddyicons/46907600@N02.jpg?123#46907600@N02',
+      image: `https://farm66.staticflickr.com/65535/buddyicons/${nsid}.jpg?123#${nsid}`,
     },
     photo = {
       '@type': 'ImageObject',
@@ -35,7 +47,7 @@ function fixture(t) {
           revid: 123,
           slots: {
             main: {
-              '*': `{{PD-USGov-DOS}}\n{{Flickrreview|Reviewer|2023-04-01}}\n[https://www.flickr.com/photos/${account}/${id}/ Photo]\n[https://www.flickr.com/people/46907600@N02 US Embassy] from New Zealand`,
+              '*': `{{PD-USGov-DOS}}\n${transfer}\n[https://www.flickr.com/photos/${account}/${id}/ Photo]\n[https://www.flickr.com/people/${nsid} ${agency}] from ${country}`,
             },
           },
         },
@@ -48,7 +60,7 @@ function fixture(t) {
           size: image.length,
           sha1: hash(image, 'sha1'),
           extmetadata: {
-            Artist: { value: 'US Embassy from New Zealand' },
+            Artist: { value: artist },
             LicenseShortName: { value: 'Public domain' },
             AttributionRequired: { value: 'false' },
           },
@@ -62,10 +74,12 @@ function fixture(t) {
       query: { pages: { 1: page } },
     },
     reference = {
-      origin: 'commons-new-zealand-embassy-government-photo',
+      origin: dhaka
+        ? 'commons-dhaka-embassy-government-photo'
+        : 'commons-new-zealand-embassy-government-photo',
       path: 'image.jpg',
       sha256: hash(image),
-      artist: 'US Embassy from New Zealand',
+      artist,
       license: 'Public domain',
       sourceUrl: `https://commons.wikimedia.org/wiki/${title.replaceAll(' ', '_')}`,
       downloadUrl: url,
@@ -83,7 +97,8 @@ function fixture(t) {
       b = `<script type="application/ld+json">${JSON.stringify(p)}</script>`;
     fs.writeFileSync(path.join(dir, 'native.json'), a);
     fs.writeFileSync(path.join(dir, 'primary.html'), b);
-    return inspectNewZealandEmbassyReference(dir, {
+    const inspect = dhaka ? inspectDhakaEmbassyReference : inspectNewZealandEmbassyReference;
+    return inspect(dir, {
       ...reference,
       catalogEvidence: { path: 'native.json', sha256: hash(a) },
       rightsEvidence: {
@@ -98,6 +113,17 @@ function fixture(t) {
 }
 test('specific agency original requires both explicit DOS grant and same-agency primary release', (t) => {
   assert.equal(fixture(t).check().eligible, true);
+});
+test('Dhaka embassy requires the DOS grant and the exact independently reviewed transfer', (t) => {
+  const { check } = fixture(t, true);
+  assert.equal(check().eligible, true);
+  for (const omitted of ['{{PD-USGov-DOS}}', 'status=passed', '/51687083522|archive=']) {
+    const proof = check((page) => {
+      const wiki = page.revisions[0].slots.main;
+      wiki['*'] = wiki['*'].replace(omitted, '');
+    });
+    assert.equal(proof.eligible, false, omitted);
+  }
 });
 for (const [name, mutate] of [
   [

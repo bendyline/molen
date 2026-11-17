@@ -44,12 +44,16 @@
     "glass": {
       "slot": "window",
       "graph": "window_grid"
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw"
     }
   },
   "exportLabel": "Molen original Mratinje Dam, double-curvature arch and approach works",
-  "expectedDraftMasterHash": "sha256:3471ce7f8d127b7154f509f865cf921c71e84e352e582da191ac6912a3507c89",
-  "visualBrief": "Mratinje Dam’s 220 m double-curvature arch, three crest spillways, five recessed outlet mouths, crown road, blue rails, red-roof service buildings, inspection gallery and two approach portals.",
-  "heightPolicy": "The signed vertical origin is 651 m. The crest is fixed at 678 m and the foundation at 458 m. The design fixture uses 675.25 m normal reservoir level and an illustrative 530 m downstream surface.",
+  "expectedDraftMasterHash": "sha256:6567d58e3875c81f4eede5bec70a23bc01f12e5f61355ffd23ad67cbc9def387",
+  "visualBrief": "Mratinje Dam's 220 m double-curvature arch, three crest spillways, five recessed hydraulic outlets, crown road, stepped gallery, two tunnel portals, photographed retaining grid and mapped service house on the fitted Piva gorge.",
+  "heightPolicy": "The signed sea-level origin is 651 m, with the roadway at 678 m and foundation at 458 m. The fitted gorge uses the original standard terrain at its rim. Piva Lake renders at 651.65 m and the downstream reach at 534.18 m. The west road bench aligns the M-3 approach through the first cut in the limestone and transitions into the retained road at the retained PMTiles centerline. Only the mapped crest and connected grade inside the approach are replaced.",
   "nativeAxes": "+X runs northwest along the crest chord and +Z runs downstream into the Piva gorge.",
   "sourceFacts": {
     "mappedIdentity": "Q1546929",
@@ -65,14 +69,36 @@
     "spillwayGates": 3,
     "midlevelOutlets": 3,
     "foundationOutlets": 2,
-    "terrainTiles": 7
+    "terrainTiles": 7,
+    "serviceHouseFeatureId": 35185399465233,
+    "westApproachJoin": [
+      -167.79923,
+      -119.33262,
+      673.7745,
+      6
+    ],
+    "northPortalMouths": [
+      [
+        140.3135,
+        46.76662
+      ],
+      [
+        143.36362,
+        36.95439
+      ]
+    ],
+    "representativeStages": [
+      651.65,
+      534.18
+    ],
+    "westRoadFeature": 35184436309890
   },
-  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "materialMethod": "Shared board-formed and plain concrete, raw limestone, painted steel, standing seam roofing and glazing. Geometry uses metric UVs and has no embedded images.",
   "limitations": [
-    "The signed vertical origin is 651 m. The crest is fixed at 678 m and the foundation at 458 m. The design fixture uses 675.25 m normal reservoir level and an illustrative 530 m downstream surface.",
-    "The open crest road follows its 246.83 m native map line. The arch extends beyond that road segment into its modeled abutments. Section widths, the inspection gallery and portal surrounds are exterior approximations.",
-    "The standard Terrarium field places portions of the gorge above the crest and masks much of the native rock fit. The representative stage is 651.65 m upstream and 534.18 m downstream. Full site review is pending.",
-    "The recessed gates depict a static dry configuration. Buried waterways, power station interiors and actual flows are outside the exterior model."
+    "The modeled gorge profiles follow the mapped shorelines and ordinary photographs, with approximate cliff angles, abutment contact and tunnel recesses.",
+    "The two water surfaces use representative stages sampled from the retained Terrarium field. The gates depict a static dry configuration, with the lowest two outlet mouths below the representative tailwater stage.",
+    "The service-house roof, lattice spacing and gallery details are visual reconstructions. Underground machinery, tunnel interiors and operating flows are outside the asset scope.",
+    "The mapped path and sampled rock set the bounded west approach. The road heights and cliff bench are visualization estimates. The roadway beyond the join remains in the surrounding native terrain."
   ],
   "references": [
     {
@@ -181,7 +207,7 @@
       "heightmap": "terrain-review.height.png"
     },
     "water": {
-      "path": "native-water.json"
+      "path": "runtime-water.json"
     }
   },
   "runtimeLodOverlay": {
@@ -224,6 +250,10 @@
       "glass": {
         "slot": "window",
         "graph": "window_grid"
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw"
       }
     },
     "errorMeters": 4,
@@ -266,6 +296,10 @@
           "glass": {
             "slot": "window",
             "graph": "window_grid"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
           }
         },
         "errorMeters": 1.6
@@ -308,6 +342,10 @@
           "glass": {
             "slot": "window",
             "graph": "window_grid"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
           }
         },
         "errorMeters": 0.6
@@ -350,6 +388,10 @@
           "glass": {
             "slot": "window",
             "graph": "window_grid"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
           }
         },
         "errorMeters": 0.2

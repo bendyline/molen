@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.st_agathas_tower",
-  "inputHash": "sha256:4415951297c322c1ad2918b927e7d8430c15a5e4565ffcfcf75642f452bbb5c3",
-  "placementHash": "sha256:d0651fb780b4bf9e5241cebbbd0935e13a669f488103ba337cc42df6a7eec675",
+  "inputHash": "sha256:14cf093c47fa9b9f420740f32edc21cb4596c2d8dd9e4d4e53798c3de2463086",
+  "placementHash": "sha256:765bea81f75790a8f0d72021bee573f68a6a23f298113f331caac679b3a70478",
   "entry": {
     "id": "st.agathas.tower",
     "title": "St. Agatha’s Tower",
@@ -20,10 +20,49 @@
       "maxDistance": 80
     },
     "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.342853,
+        35.9746775
+      ],
+      "modelHeight": 0,
+      "basis": "The native sample at the model footprint center locates the tower and entry stair."
+    },
+    "bounds": [
+      14.34261,
+      35.97447,
+      14.3431,
+      35.97479
+    ],
+    "replaceRoads": {
+      "length": 2.6,
+      "width": 8.7,
+      "outline": [
+        [
+          1,
+          7.35
+        ],
+        [
+          3.6,
+          7.35
+        ],
+        [
+          3.6,
+          16.05
+        ],
+        [
+          1,
+          16.05
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184758581593
+      ]
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/91447984",
-    "note": "Mapped Red Tower way91447984 carries ref:nicpmi00033, matching the national inventory for Saint Agatha’s Tower and the custodian name/website. Entrance node3898282959 is on the southeast-facing wall and establishes signed native+Z. +X follows the mapped entrance facade toward east-northeast. The projected outline preserves the four slightly unequal corner turrets; scarped foundation and roof elevations are reconstructed from custodian photographs, not claimed surveyed. Terrain contact is at the tower foundation. Stair flight follows the photographed entrance axis and reconstructed rise; hillside retaining walls, the separate star-shaped entrenchment and terrain steps remain map/terrain features. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Mapped Red Tower way 91447984 and entrance node 3898282959 fix orientation. The modeled stone flight meets the sampled site path and uses a short timber bridge consistent with the custodian’s photograph. PMTiles bridge 35184758581593 represents this approach and is replaced when the model is present. The modeled bridge span uses visual proportions and the surrounding mapped paths remain visible. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

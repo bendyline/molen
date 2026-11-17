@@ -1,0 +1,511 @@
+{
+  "planId": "eurotunnel_calais_terminal",
+  "id": "eurotunnel_calais_terminal",
+  "assetId": "molen.worldgen.structure.eurotunnel_calais_terminal",
+  "title": "Eurotunnel Calais Terminal",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.81227515,
+    "latitude": 50.9353068
+  },
+  "size": [
+    72.99331665039062,
+    12.013649463653564,
+    117.0635757446289
+  ],
+  "actualBounds": {
+    "min": [
+      -35.9991455078125,
+      -0.8394007682800293,
+      -58.53178787231445
+    ],
+    "max": [
+      36.994171142578125,
+      11.174248695373535,
+      58.53178787231445
+    ]
+  },
+  "visualBrief": "The Eurotunnel passenger terminal at Coquelles, with its triangular plan, silver-panel walls, banded glazing, white columns and projecting red-orange roof canopy.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-07-19",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Eurotunnel_Shuttle_terminal_building,_with_the_Cit%C3%A9_Europe_shopping_center_in_the_background,_Coquelles,_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "eurotunnel-calais-terminal-wp",
+      "url": "https://qualla.com/eurotunnel-calais-terminal/"
+    }
+  ],
+  "referenceInputHash": "a8be89763eb7081bd9f3c57f0719b67fa2ca345e21e28a6b71cd516c52ae982e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u11/eurotunnel_calais_terminal/models/eurotunnel-calais-terminal-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u11/eurotunnel_calais_terminal/models/eurotunnel-calais-terminal-model.mjs",
+    "level": "skyline",
+    "export": "terminalSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "silver": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.21
+      },
+      "frames": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.59,
+        "metallic": 0.25
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.74,
+        "metallic": 0.25
+      },
+      "canopy": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.17
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.28,
+        "metallic": 0.27
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "terminalDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.21
+          },
+          "frames": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.27
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "terminalStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.21
+          },
+          "frames": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.27
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "terminalCloseup",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.21
+          },
+          "frames": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.27
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.68,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      1.81227515,
+      50.9353068
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.81227515,
+        50.9353068
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled original elevation within the mapped terminal outline."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -32.98255600468233,
+          21.907675787856366
+        ],
+        [
+          -35.999146259286185,
+          47.06588070768661
+        ],
+        [
+          -32.28102338734383,
+          52.18657728390424
+        ],
+        [
+          -32.70194295775004,
+          58.531788258920166
+        ],
+        [
+          -24.67640981527481,
+          51.60771593134237
+        ],
+        [
+          -24.543118617978468,
+          55.34805082220279
+        ],
+        [
+          -2.150197472177641,
+          37.81523102223385
+        ],
+        [
+          26.549501903585593,
+          14.83888812292907
+        ],
+        [
+          35.999146259286185,
+          7.269162749114845
+        ],
+        [
+          18.180217778610913,
+          -15.117186850000591
+        ],
+        [
+          -4.977373920095584,
+          -44.227233692506275
+        ],
+        [
+          -6.703144158786,
+          -46.397963763031356
+        ],
+        [
+          -9.326876147662848,
+          -44.728171400602236
+        ],
+        [
+          -11.564765197005855,
+          -46.86550562429003
+        ],
+        [
+          -18.039911255152557,
+          -48.045492226250666
+        ],
+        [
+          -18.446800173203595,
+          -58.531788258920166
+        ],
+        [
+          -27.728076700735468,
+          -51.67450762659887
+        ],
+        [
+          -29.285479111257164,
+          -28.742692522549806
+        ],
+        [
+          -29.713414007840974,
+          -16.653395822707687
+        ],
+        [
+          -31.51635283442258,
+          21.028251810595116
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named mapped Eurotunnel passenger terminal footprint."
+    },
+    "featureIds": [
+      "way/106762285"
+    ],
+    "source": "https://www.openstreetmap.org/way/106762285",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cf738e53d0ff1db97aa233bc00f763c8d2bb3d981af07f314abf03b2011dd3ff",
+    "notes": "Scope covers the passenger building seen in the photograph. The rail loading platforms and broader site infrastructure are outside this asset."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers the Charles Dickens passenger building photographed in July 2024. Adjacent Cité Europe, artwork, advertising and the shuttle tracks are outside its scope.",
+    "The mapped frontage line controls the long orange-red canopy. Setback, height, vestibule stations, and the elevations outside the published photograph are visual estimates.",
+    "The original terrain is retained. The paved passenger approach, facade floor and individual column contacts have approximate elevations."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The map outline is ODbL. The selected reference photo is CC0 by DimiTalen.",
+  "qaLodCameras": [
+    {
+      "name": "terminal-skyline",
+      "position": [
+        94.58198451837706,
+        31,
+        65.45793720893612
+      ],
+      "lookAt": [
+        -11.1,
+        4.5,
+        5.9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "terminal-district",
+      "position": [
+        94.58198451837706,
+        31,
+        65.45793720893612
+      ],
+      "lookAt": [
+        -11.1,
+        4.5,
+        5.9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "terminal-street",
+      "position": [
+        94.58198451837706,
+        31,
+        65.45793720893612
+      ],
+      "lookAt": [
+        -11.1,
+        4.5,
+        5.9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "terminal-closeup",
+      "position": [
+        94.58198451837706,
+        31,
+        65.45793720893612
+      ],
+      "lookAt": [
+        -11.1,
+        4.5,
+        5.9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "passenger-frontage-and-orange-canopy",
+      "position": [
+        46.14382444007217,
+        5.3,
+        28.58322164083295
+      ],
+      "lookAt": [
+        -3.860011243667193,
+        5.7,
+        36.36887619993034
+      ]
+    },
+    {
+      "name": "glazed-vestibules-and-column-line",
+      "position": [
+        22.374212847678386,
+        3.5,
+        37.24379695352084
+      ],
+      "lookAt": [
+        0.6692564836089163,
+        5.45,
+        27.600282592363897
+      ]
+    },
+    {
+      "name": "triangular-terminal-and-rear-wings",
+      "position": [
+        -86,
+        37,
+        -81
+      ],
+      "lookAt": [
+        -11.1,
+        4.5,
+        5.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2146,
+    "vertices": 6438,
+    "materials": 6,
+    "bytes": 346468,
+    "sha256": "sha256:9b42753f603c297f8b8bfb764051ada99e7873a5304fec1100e12b600a67d66b"
+  }
+}

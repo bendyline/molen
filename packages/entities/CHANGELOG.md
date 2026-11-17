@@ -1,3 +1,16 @@
+## @bendyline/molen-entities [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.16...@bendyline/molen-entities@0.0.17) (2026-11-16)
+
+### Bug Fixes
+
+* More perf fixes ([cc0817a](https://github.com/bendyline/molen/commit/cc0817a6bb59f545c4f61351e84a97e704b19f89))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.12
+* **@bendyline/molen-schema:** upgraded to 0.0.12
+* **@bendyline/molen-pack:** upgraded to 0.0.13
+
 ## @bendyline/molen-entities [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.15...@bendyline/molen-entities@0.0.16) (2026-11-14)
 
 ### Bug Fixes

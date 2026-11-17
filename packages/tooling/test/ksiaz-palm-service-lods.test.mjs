@@ -60,10 +60,10 @@ for (const model of ksiazPalmServiceModels) {
         types = new Map(),
         pos = [];
       expect(g.images ?? []).toHaveLength(0);
-      expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 6);
+      expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 7);
       if (name !== 'skyline') {
         const shared = g.materials.filter((m) => m.extras?.molenSurface);
-        expect(shared).toHaveLength(5);
+        expect(shared).toHaveLength(6);
         for (const material of shared)
           expect(['wall', 'roof', 'trim', 'foundation', 'window', 'door']).toContain(
             material.extras.molenSurface.slot,
@@ -79,7 +79,9 @@ for (const model of ksiazPalmServiceModels) {
           }
         }
       for (const t of types.values()) expect(t.size).toBe(1);
-      expect(Math.min(...pos.map((p) => p.min[1]))).toBe(0);
+      expect(Math.min(...pos.map((p) => p.min[1]))).toBe(
+        Math.fround(frame(model).siteFit.footingBottom),
+      );
       expect(Math.max(...pos.map((p) => p.max[1]))).toBeLessThan(17);
     }
     expect(levels[0].bytes.length + levels[1].bytes.length).toBeLessThan(3_000_000);
@@ -88,7 +90,28 @@ for (const model of ksiazPalmServiceModels) {
     const f = frame(model);
     for (const level of ['skyline', 'district', 'street', 'closeup']) {
       const tri = geometry(model.key, level),
-        roofs = tri.filter((t) => ['tile', 'plaster'].includes(t.slot) && t.n[1] > 0.01);
+        roofs = tri.filter((t) => ['tile', 'plaster'].includes(t.slot) && t.n[1] > 0.01),
+        doors = [f.siteFit.entry, f.siteFit.westAccess?.upper].filter(Boolean);
+      for (const door of doors) {
+        const [x, z] = door.center,
+          nx = Math.sin(door.angle),
+          nz = Math.cos(door.angle);
+        const hits = tri
+          .flatMap(({ p }) => {
+            const points = p.map(([px, y, pz]) => [
+              (px - x) * nz - (pz - z) * nx,
+              y,
+              (px - x) * nx + (pz - z) * nz,
+            ]);
+            const weights = bary(door.width * 0.12, door.sill + 0.5, points);
+            return weights ? [weights.reduce((s, w, i) => s + w * points[i][2], 0)] : [];
+          })
+          .filter((depth) => depth > -0.4 && depth < 0.8);
+        expect(Math.max(...hits), `${model.id}/${level} recessed entrance`).toBeCloseTo(
+          -door.recess,
+          3,
+        );
+      }
       for (const ring of rings(f)) {
         const xs = ring.map((p) => p[0]),
           zs = ring.map((p) => p[1]);
@@ -121,6 +144,12 @@ for (const model of ksiazPalmServiceModels) {
                     (p) => Math.abs((p[0] - a[0]) * norm[0] + (p[2] - a[1]) * norm[1]) < 0.002,
                   ),
                 );
+              const recess = doors.some(
+                (door) =>
+                  y > door.sill &&
+                  y < door.head &&
+                  Math.hypot(v[0] - door.center[0], v[1] - door.center[1]) < door.width / 2,
+              );
               expect(
                 candidates.some((t) =>
                   bary(
@@ -130,7 +159,7 @@ for (const model of ksiazPalmServiceModels) {
                   ),
                 ),
                 `${model.id}/${level} wall ${i}`,
-              ).toBe(true);
+              ).toBe(!recess);
             }
         }
       }

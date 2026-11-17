@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rotorua_museum",
+  "kind": "static-structure",
+  "title": "Rotorua Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rotorua_museum",
+        "output": "assets/places/rc/rcj/rotorua_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:196034ef18d543451366219e555e9f35c0d8b313616d7255a589f25436a21641"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-rotorua-museum",
+        "path": "models/generate-rotorua-museum.mjs"
+      },
+      {
+        "id": "rotorua-museum-model",
+        "path": "models/rotorua-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "osm-building-outline.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-32427-20143.png",
+      "terrain-sources/terrarium-15-32427-20144.png",
+      "preview.png",
+      "reference-rights/commons-qualla-roof-original.json",
+      "reference-rights/commons-szilas-museum-2.json",
+      "reference-rights/commons-szilas-museum-3.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

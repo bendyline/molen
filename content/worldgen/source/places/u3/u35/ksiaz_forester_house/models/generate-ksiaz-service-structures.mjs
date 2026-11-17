@@ -56,6 +56,7 @@ for (const model of ksiazServiceModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -163,12 +164,26 @@ for (const model of ksiazServiceModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: fit ? 'preview-proposal' : 'research-only',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: fit?.contact.modelHeight ?? 0,
+      ...(fit
+        ? {
+            groundContactReviewed: true,
+            groundContactBasis: frame.reconstruction.registration,
+            terrainReference: {
+              anchor: fit.contact.anchor,
+              modelHeight: fit.contact.modelHeight,
+              basis: frame.reconstruction.registration,
+            },
+            buildingCutout: fit.buildingCutout,
+            bounds: fit.bounds,
+            orientationPolicy: 'map-verified',
+          }
+        : {}),
       replaceFootprint: false,
       featureIds: [`way/${model.way}`],
       source: frame.sourceUrl,
@@ -176,8 +191,9 @@ for (const model of ksiazServiceModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped.',
+      notes: fit
+        ? frame.reconstruction.registration
+        : 'Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -192,9 +208,13 @@ for (const model of ksiazServiceModels.filter(
     limitations: [
       'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.',
-      'No independent Wikidata identifier is asserted; main facade facing remains provisional.',
+      fit
+        ? 'The source uses its own OSM feature. Doorway and roof details are approximate.'
+        : 'No independent Wikidata identifier is asserted; main facade facing remains provisional.',
       'References show 2014/2016 appearance; current restoration state is unconfirmed.',
-      'No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
+      fit
+        ? 'The steps and base use the retained map and elevation samples. The exterior is a reconstruction with shared materials.'
+        : 'No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -292,7 +312,9 @@ for (const model of ksiazServiceModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    (fit
+      ? 'Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.\n\n'
+      : 'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n') +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +

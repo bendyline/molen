@@ -21,6 +21,7 @@ const linear = (hex) =>
   palette = {
     concrete: linear('dedbd1'),
     floor: linear('c8c2b5'),
+    pavers: linear('d1c8b3'),
     planting: linear('8ba86a'),
     glass: linear('5d7184'),
     metal: linear('b8bec1'),
@@ -28,7 +29,7 @@ const linear = (hex) =>
   };
 
 function build(out, detail) {
-  const emit = (role, points, target) => {
+  const emit = (role, points, target, authoredTint) => {
     let ps = points.map((p) => p.map(Math.fround));
     const first = ps
       .slice(2)
@@ -36,7 +37,7 @@ function build(out, detail) {
       .find((n) => Math.hypot(...n) > 0.5);
     if (!first) return;
     if (first.reduce((n, v, k) => n + v * target[k], 0) < 0) ps = ps.toReversed();
-    const tint = palette[role],
+    const tint = authoredTint ?? palette[role],
       color = detail === 0 ? tint.map((v, k) => v * (means[role]?.[k] ?? 1)) : tint;
     if (
       detail &&

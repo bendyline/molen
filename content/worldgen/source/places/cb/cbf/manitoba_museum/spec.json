@@ -1,0 +1,577 @@
+{
+  "planId": "manitoba_museum",
+  "id": "manitoba_museum",
+  "assetId": "molen.worldgen.structure.manitoba_museum",
+  "title": "Manitoba Museum",
+  "wikidataId": "Q2264019",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -97.13634545,
+    "latitude": 49.90011055
+  },
+  "size": [
+    164.51964569091797,
+    30.07387712597847,
+    112.08339309692383
+  ],
+  "actualBounds": {
+    "min": [
+      -82.2723159790039,
+      -0.4238775074481964,
+      -56.5508918762207
+    ],
+    "max": [
+      82.24732971191406,
+      29.649999618530273,
+      55.532501220703125
+    ]
+  },
+  "visualBrief": "Winnipeg’s Manitoba Museum with broad concrete galleries, the tall street entrance grid, and the low copper planetarium dome.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2012-10-06",
+    "validFrom": "2012-01-01",
+    "validUntil": "2013-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Manitoba_Museum_and_Planetarium,_Winnipeg,_Manitoba.JPG"
+  ],
+  "stories": [
+    {
+      "id": "manitoba-museum-wp",
+      "url": "https://qualla.com/manitoba-museum/"
+    }
+  ],
+  "referenceInputHash": "d91784c723ecbce25e871be01be519714979577ec91cc130b5b649940712a3f1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/cb/cbf/manitoba_museum/models/manitoba-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/cb/cbf/manitoba_museum/models/manitoba-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.91,
+        "metallic": 0.04
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58,
+        "metallic": 0.05
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.09
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.91,
+            "metallic": 0.04
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.09
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.91,
+            "metallic": 0.04
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.09
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.91,
+            "metallic": 0.04
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.05
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.09
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_panel",
+    "concrete_plain",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.91,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -97.13634545,
+      49.90011055
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -97.13634545,
+        49.90011055
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM sampled at the approximate center of the museum complex."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -14.623898269766112,
+          -33.201038129112376
+        ],
+        [
+          -17.162196865157544,
+          -28.28071663629132
+        ],
+        [
+          -30.850366414611464,
+          -35.02667777810041
+        ],
+        [
+          -36.077540642018086,
+          -37.59815801541863
+        ],
+        [
+          -37.35386027583435,
+          -35.02667777810041
+        ],
+        [
+          -42.29422110325351,
+          -24.87434021775853
+        ],
+        [
+          -23.5222840263867,
+          -15.60142663467791
+        ],
+        [
+          -37.73388803163291,
+          13.16352978629073
+        ],
+        [
+          -45.628426886259454,
+          29.160140613552574
+        ],
+        [
+          7.396200569906613,
+          55.47606823692462
+        ],
+        [
+          12.32222072712261,
+          45.44618211630438
+        ],
+        [
+          14.179337497543825,
+          41.66131942939727
+        ],
+        [
+          15.226206410147363,
+          39.535117155709855
+        ],
+        [
+          25.910005586173334,
+          44.73373737560243
+        ],
+        [
+          31.452674554992715,
+          32.93387135125027
+        ],
+        [
+          52.182113091664974,
+          43.16413255526709
+        ],
+        [
+          52.691206877254096,
+          42.13999323986536
+        ],
+        [
+          54.89967006306753,
+          41.46094434600069
+        ],
+        [
+          55.76728060067891,
+          41.895090360422095
+        ],
+        [
+          61.245416554093524,
+          31.0303080585873
+        ],
+        [
+          67.51228935951158,
+          34.11385795400187
+        ],
+        [
+          73.37762340433582,
+          21.902109813647144
+        ],
+        [
+          79.32183113374903,
+          24.885472166967947
+        ],
+        [
+          78.31798423175498,
+          25.67584055134484
+        ],
+        [
+          78.6693306471472,
+          26.143382412603522
+        ],
+        [
+          79.77356223954445,
+          25.163770894039466
+        ],
+        [
+          80.86345316275748,
+          23.90586064761292
+        ],
+        [
+          81.63784934455776,
+          22.503235063836875
+        ],
+        [
+          82.11109145616742,
+          20.9781580403392
+        ],
+        [
+          82.24732782156904,
+          19.03006695083856
+        ],
+        [
+          81.96768475515472,
+          17.33801069078158
+        ],
+        [
+          81.32235460416396,
+          15.746141972818378
+        ],
+        [
+          80.10339765116036,
+          14.076349611180232
+        ],
+        [
+          78.13155552115175,
+          12.573536485310415
+        ],
+        [
+          51.493760930064724,
+          -0.5732953775616778
+        ],
+        [
+          51.99568438106174,
+          -1.5751707945445654
+        ],
+        [
+          48.8694183134543,
+          -3.1559075640893255
+        ],
+        [
+          48.38900586725254,
+          -2.1206362994781887
+        ],
+        [
+          38.214300476815694,
+          -7.207937028858542
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "Mapped principal gallery footprint; museum wings and planetarium separately mapped."
+    },
+    "featureIds": [
+      "way/102910658",
+      "way/102910654",
+      "way/102910651",
+      "way/28990204"
+    ],
+    "source": "https://www.openstreetmap.org/relation/19755567",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6b0f23b6a39bdad199a301bf54158084242f306ae7007988efd974f860026f7e",
+    "notes": "The 2012 original fixes the Main Street gallery and dome view. Current mapped outlines stand in for the unverified 2012 boundaries of the rear and separately roofed halls."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The October 2012 model includes the museum gallery blocks, main street entrance and round planetarium. The separately mapped Centennial Concert Hall and interiors are outside its scope.",
+    "The cleared photo constrains the dome and dark window grid. Current mapping stands in for the 2012 rear footprints. Exact glazing, rear roof structures and facade details are estimates.",
+    "Original terrain establishes general downtown grade. Small changes at stairs and plazas are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Mapped building outlines are ODbL. The Qualla photo is CC0 own work by Ccyyrree (ElatedCoder).",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        -156,
+        61,
+        -95
+      ],
+      "lookAt": [
+        -15,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        -156,
+        61,
+        -95
+      ],
+      "lookAt": [
+        -15,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        -156,
+        61,
+        -95
+      ],
+      "lookAt": [
+        -15,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        -156,
+        61,
+        -95
+      ],
+      "lookAt": [
+        -15,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-street-dome-and-grid",
+      "position": [
+        -120,
+        14,
+        -20
+      ],
+      "lookAt": [
+        -63,
+        12,
+        -20
+      ]
+    },
+    {
+      "name": "copper-planetarium-and-plaza",
+      "position": [
+        -101,
+        10,
+        16
+      ],
+      "lookAt": [
+        -70,
+        6,
+        1
+      ]
+    },
+    {
+      "name": "mapped-wings-and-festival-hall",
+      "position": [
+        118,
+        80,
+        91
+      ],
+      "lookAt": [
+        -12,
+        8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1659,
+    "vertices": 4977,
+    "materials": 5,
+    "bytes": 333468,
+    "sha256": "sha256:629c661c8a940949c50e3c972697a5e400c418f1c7250d98337ee0009ee33e13"
+  }
+}

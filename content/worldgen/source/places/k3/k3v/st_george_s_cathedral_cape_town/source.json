@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.st_george_s_cathedral_cape_town",
+  "kind": "static-structure",
+  "title": "St. George's Cathedral, Cape Town",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.st_george_s_cathedral_cape_town",
+        "output": "assets/places/k3/k3v/st_george_s_cathedral_cape_town/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9abe64f84870021421a316b4069a616476f5f182b9d2c382e1864c84d6e52967"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-st-georges-cathedral-cape-town",
+        "path": "models/generate-st-georges-cathedral-cape-town.mjs"
+      },
+      {
+        "id": "st-georges-cathedral-cape-town-model",
+        "path": "models/st-georges-cathedral-cape-town-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "reference-rights/commons-qualla-cathedral-exterior.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18060-19669.png",
+      "terrain-sources/terrarium-15-18060-19670.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

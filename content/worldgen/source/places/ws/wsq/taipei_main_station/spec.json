@@ -10,22 +10,22 @@
     "longitude": 121.517113786,
     "latitude": 25.047715127
   },
-  "visualBrief": "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors.",
+  "visualBrief": "The main headhouse includes the four colonnaded façades, the overhanging soffit and curved red hipped roof, the pale collar and six glazed gables. Underground rooms, MRT and mall entrances, bus shelters and external rail and roads remain separate.",
   "size": [
-    162.13999938964844,
+    163.87000274658203,
     57.83865737915039,
-    132.63999938964844
+    142.6500015258789
   ],
   "actualBounds": {
     "min": [
-      -81.0199966430664,
+      -81.31999969482422,
       -9,
-      -66.31999969482422
+      -67.6500015258789
     ],
     "max": [
-      81.12000274658203,
+      82.55000305175781,
       48.83865737915039,
-      66.31999969482422
+      75
     ]
   },
   "nativeAxes": "+X ESE along the long terminal facade;-X WNW;+Z SSW toward Zhongxiao West Road and the southern forecourt;-Z NNE toward Beiping Road and independent QSquare;+Y up.",
@@ -93,7 +93,46 @@
       -60
     ],
     "terrainTiles": 2,
-    "occupiedMasks": 1
+    "occupiedMasks": 1,
+    "terrainMeters": 5.8,
+    "approachCount": 4,
+    "rawOutdoorControls": [
+      {
+        "point": [
+          -90,
+          -60
+        ],
+        "fieldMeters": 5.704483
+      },
+      {
+        "point": [
+          -60,
+          -80
+        ],
+        "fieldMeters": 5.923095
+      },
+      {
+        "point": [
+          0,
+          90
+        ],
+        "fieldMeters": 27.724827
+      },
+      {
+        "point": [
+          0,
+          -70
+        ],
+        "fieldMeters": 22.190356
+      },
+      {
+        "point": [
+          0,
+          0
+        ],
+        "fieldMeters": 38.82093
+      }
+    ]
   },
   "referencePages": [
     "https://commons.wikimedia.org/wiki/File:TaipeiMainStation.jpg",
@@ -111,7 +150,7 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMeters": 0,
     "groundContactReviewed": true,
-    "groundContactBasis": "The connected passenger ensemble uses one standard host field datum outside its street facade. Exact threshold/platform grades remain approximate. Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty.",
+    "groundContactBasis": "The main headhouse occupies its exact mapped footprint and orientation. A bounded 5.80 m visualization grade uses two unobstructed outdoor samples and corrects elevated urban returns around the station. Four two-step approaches lead from the rendered sidewalks to the recessed entrance bays.",
     "groundModelY": 0,
     "replaceFootprint": true,
     "buildingCutout": {
@@ -257,18 +296,165 @@
             -78.7863,
             63.40726
           ]
+        ],
+        [
+          [
+            -6.950000000000003,
+            -63.635
+          ],
+          [
+            7.049999999999997,
+            -63.635
+          ],
+          [
+            7.329999999999998,
+            -67.65
+          ],
+          [
+            -7.230000000000004,
+            -67.65
+          ]
+        ],
+        [
+          [
+            78.435,
+            -7
+          ],
+          [
+            78.435,
+            7
+          ],
+          [
+            82.55,
+            7.28
+          ],
+          [
+            82.55,
+            -7.28
+          ]
+        ],
+        [
+          [
+            7.049999999999997,
+            63.635
+          ],
+          [
+            -6.950000000000003,
+            63.635
+          ],
+          [
+            -7.230000000000004,
+            75
+          ],
+          [
+            7.329999999999998,
+            75
+          ]
+        ],
+        [
+          [
+            -78.33500000000001,
+            7
+          ],
+          [
+            -78.33500000000001,
+            -7
+          ],
+          [
+            -81.32000000000001,
+            -7.28
+          ],
+          [
+            -81.32000000000001,
+            7.28
+          ]
         ]
       ],
       "minHeight": -9,
-      "basis": "Only the actual closed main headhouse ground floor. Central glazed-roof hall remains a closed occupied floor. No blanket cutout across adjacent MRT/mall entrances, forecourt shelters, roads, plazas or independent surrounding buildings."
+      "basis": "The closed station footprint and four fitted stair landings. Paving is replaced only directly beneath the modeled approaches.",
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            -6.950000000000003,
+            -63.635
+          ],
+          [
+            7.049999999999997,
+            -63.635
+          ],
+          [
+            7.329999999999998,
+            -67.65
+          ],
+          [
+            -7.230000000000004,
+            -67.65
+          ]
+        ],
+        [
+          [
+            78.435,
+            -7
+          ],
+          [
+            78.435,
+            7
+          ],
+          [
+            82.55,
+            7.28
+          ],
+          [
+            82.55,
+            -7.28
+          ]
+        ],
+        [
+          [
+            7.049999999999997,
+            63.635
+          ],
+          [
+            -6.950000000000003,
+            63.635
+          ],
+          [
+            -7.230000000000004,
+            75
+          ],
+          [
+            7.329999999999998,
+            75
+          ]
+        ],
+        [
+          [
+            -78.33500000000001,
+            7
+          ],
+          [
+            -78.33500000000001,
+            -7
+          ],
+          [
+            -81.32000000000001,
+            -7.28
+          ],
+          [
+            -81.32000000000001,
+            7.28
+          ]
+        ]
+      ]
     },
     "terrainReference": {
       "anchor": [
-        121.51634720534831,
-        25.048394716407117
+        121.51634720534827,
+        25.048394714523624
       ],
       "modelHeight": 0,
-      "basis": "Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty."
+      "basis": "The photographed approaches have ordinary curb and step heights. Standard Terrarium gives 5.704 m and 5.923 m at the west and northwest outdoor controls, with an elevated 27.725 m return on the south plaza. The bounded 5.80 m visualization grade covers the headhouse and its immediate street approaches and blends back to the host field."
     },
     "bounds": [
       121.51616842443511,
@@ -277,15 +463,15 @@
       25.048464165204578
     ],
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:00e384180db2e70d1c2499525e761b5baa77bc02198b5fc0e34a0994bf0f8386",
+    "mapGeometryHash": "sha256:9e30570d7e9aee9f7ca2388067cafdaa8421b6e313bd336cad1b1c11e62df70a",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://build.protomaps.com/20261031.pmtiles",
     "wikidataId": "Q700588",
-    "notes": "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors. Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty."
+    "notes": "The main headhouse occupies its exact mapped footprint and orientation. A bounded 5.80 m visualization grade uses two unobstructed outdoor samples and corrects elevated urban returns around the station. Four two-step approaches lead from the rendered sidewalks to the recessed entrance bays."
   },
   "fidelityTarget": "medium-fi",
-  "fidelityStatus": "pending",
+  "fidelityStatus": "review-in-qa.json",
   "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
   "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
   "materialMethod": "Seven existing shared 256px graphs: stone_ashlar, concrete_plain, stone_limestone, tile_flat, metal_standing_seam, metal_painted and window_grid. Seven merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Beige facade masonry, pale collar/coping, muted red tile slopes, service-box metal, painted structural frames and actual glazing retain semantic slots.",
@@ -555,13 +741,9 @@
     }
   },
   "mediumFiContext": {
-    "groundY": 0,
+    "groundY": 0.18,
     "scale": 1.7,
-    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-    "terrain": {
-      "descriptor": "terrain-review.terrain.json",
-      "heightmap": "terrain-review.height.png"
-    }
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
   },
   "qaLodCameras": [
     {
@@ -622,10 +804,9 @@
     }
   ],
   "limitations": [
-    "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors.",
-    "Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty.",
-    "Two ordinary whole-roof and current southern-front photographs, retained exact-Q footprint and current standard PMTiles. Native height 30m, roof-height tag 18m and seven above-ground levels remain source facts; visible eaves, curved hip, collar, central gables and communication-frame levels are explicit picture-based estimates. Hidden elevations, facade bay inventory, current rooftop services, threshold steps and native terrain contact remain unverified. Independent underground rail/MRT/mall parts, entrances, forecourt shelters, elevated roads and surrounding buildings remain separate. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
-    "Seven existing shared 256px graphs: stone_ashlar, concrete_plain, stone_limestone, tile_flat, metal_standing_seam, metal_painted and window_grid. Seven merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Beige facade masonry, pale collar/coping, muted red tile slopes, service-box metal, painted structural frames and actual glazing retain semantic slots. All four tiers preserve the whole headhouse, all four colonnade facades and visible horizontal bands, complete curved four-sided red hip, pale solid collar and six complete central glazed gables. Near tiers add recessed windows, actual lattice members, piers/base blocks, steps, coping, roof framing/seams, rooftop boxes and simplified communication frames. Rooftop equipment uses the dated overview as an explicit visual interpretation."
+    "The local visualization grade removes high urban returns in the global Terrarium data. The exterior threshold, bed heights and roof proportions are photographic and terrain-based estimates, with a smooth transition to the host field.",
+    "The modeled headhouse uses the mapped 30 m height and 18 m roof-height tags as coarse controls. The visible eaves, roof levels and communications frames are reconstructed from photos.",
+    "The independent MRT entrances, bus shelters and surrounding buildings retain their map-derived geometry. Exact lettering, rooftop equipment and navigable interiors are outside this exterior model."
   ],
   "qaCameras": [
     {
@@ -703,10 +884,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 49937,
-    "vertices": 149811,
+    "triangles": 50009,
+    "vertices": 150027,
     "materials": 7,
-    "bytes": 5996764,
-    "sha256": "sha256:bd17fb03388f9a2000490b4f2f19141d57a83839862245945272d56c251f298f"
+    "bytes": 6005388,
+    "sha256": "sha256:17d3aa68494ddb64f4c4bbde5e6438db1d825541fb08a42313533eff631f524e"
   }
 }

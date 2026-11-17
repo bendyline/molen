@@ -1,12 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-  "sourceHash": "sha256:5c11c192891b6cbffb272b2de252cb335d9e03fb5e44a9dc03a91622c06e52fa",
-  "runtimeHash": "sha256:d4408a4f7ab1b11e3604551b90d704c7525579453f194abe94b746bdf5a40e7b",
-  "captureReportHash": "sha256:ee664ea934d1cc01b33b2dd5aba9b9d634f823e15b44b858cb91e1d8954242ac",
+  "sourceHash": "sha256:be3dfcd73817613c00259185819ad05c22ddd882fdf85acd8e87ad328cb1a1a4",
+  "runtimeHash": "sha256:e83d1f929653c4ebc38b693b88f0faeb3ba11c7b26ab5a3a703310e8473d01cd",
+  "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+  "reviewedOn": "2026-11-15",
+  "captureReportHash": "sha256:5034e7ac370da1d870f0e971afdf44c7e9fdb378ae033b3254d8a505d4617f5a",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "visualReview": {
     "status": "passed",
-    "notes": "Inspected nine final portable captures and the combined flat-ground Palm House review. Source-specific silhouette and mapped component rings retained, exterior walls and roofs closed. Administration west roof recess and utility cross-gable orientation were corrected. Survey-card proportions and unseen details remain interpretations.",
+    "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+    "notes": "The east pediment, oculus, supported balcony and recessed glazed door follow the survey photographs. The tapered sandstone landing meets the yard.",
+    "captureReportHash": "sha256:5034e7ac370da1d870f0e971afdf44c7e9fdb378ae033b3254d8a505d4617f5a",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -17,12 +22,51 @@
       "shots/north-roof-and-cross-gable.png",
       "shots/own-footprint-and-roof.png",
       "shots/west-service-side.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:619acf040dfe50d5fb37ebca2fed76de3b5824c6e6d28d208d74f330e3bd5919"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:13b66138b0986a9d9c4b9c4ef4b8bbc15296312bd148b2a92b53bad9fe6dfe81"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:6845bebaf58cdc8897503851d16562c143cc71e01be2bc6fedb59fa08ae55147"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:e70f9d32d8c2f21b1bb394fe7c86cdfcf5589d80bbaa5c272d6324372c3e4b82"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:341de21a85f65c4b225cc37e780341dc961b40051d56bfcfdc02f5e243228c0d"
+      },
+      {
+        "path": "shots/east-primary-facade.png",
+        "hash": "sha256:619acf040dfe50d5fb37ebca2fed76de3b5824c6e6d28d208d74f330e3bd5919"
+      },
+      {
+        "path": "shots/north-roof-and-cross-gable.png",
+        "hash": "sha256:b365076ae778e9d47d4d8ff15a3df153ea275f2dd61592099f385aa8df5002d3"
+      },
+      {
+        "path": "shots/own-footprint-and-roof.png",
+        "hash": "sha256:f8fdd14e5b27a53d2b25cfd9c1503e0973a60465c08b8336b9de7d0a28471622"
+      },
+      {
+        "path": "shots/west-service-side.png",
+        "hash": "sha256:be34ccf0e940e120f4512076001892608b53ad47c269ae72729bfafc153b06be"
+      }
     ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cb90d5e8d847d807197fa94a169ebf0ea71b2ec1c0d08e58424170877bbf300b",
-    "notes": "Inspected all eight shared-loader views. Five existing256² plaster, ceramic tile, rubble, timber and brick graphs bind through supported shared-material slots. Six merged near groups/one far group, metric UVs and linear palette tints with baked far means. Muted opaque glazing. No new/embedded images or scan/photo textures. Each graph reads once and unload leaves zero live model geometries.",
+    "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+    "notes": "Reviewed six existing surfaces in the shared loader. Each graph loads once across the joint scene and the model has no embedded images.",
+    "captureReportHash": "sha256:b1aae1f58b39a28441a7e65cf7d42b5d65cf78a914af58739745eef10a703769",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -31,13 +75,79 @@
       "shots/shared/east-primary-facade.png",
       "shots/shared/north-roof-and-cross-gable.png",
       "shots/shared/own-footprint-and-roof.png",
-      "shots/shared/west-service-side.png"
-    ]
+      "shots/shared/west-service-side.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:04d364b981478e093e8318b10866dd55612cb4f1de284548a2fc78268024df4c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:c22dc0e464cb92c57812946c7f8cba86656cf315a026ab22f4872c7ee7517cf8"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:dfb36f743f3f5e484bedf1dc1be27373016e8793e512b1987bb502f11fe4a730"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:9f40e51f92cc9fc4ec4e89190801f660d9e8b5869eb7e8f4bf98f6fa943bbc2e"
+      },
+      {
+        "path": "shots/shared/east-primary-facade.png",
+        "hash": "sha256:cb8c986da6765ec89bbc9d5c648d4c23b11964a371aa4ecc57f9f239da60311d"
+      },
+      {
+        "path": "shots/shared/north-roof-and-cross-gable.png",
+        "hash": "sha256:70acebd30fdd7f14c2fadf3eaffab9df3f53e77d73ef4321c6d47cbefc81752e"
+      },
+      {
+        "path": "shots/shared/own-footprint-and-roof.png",
+        "hash": "sha256:0131a8214b8405779d12955b7c9f6623992c0a08189f04c589e8c85a84b2280b"
+      },
+      {
+        "path": "shots/shared/west-service-side.png",
+        "hash": "sha256:6fd6ead6b35ea702452d4ab5b856bed746930f38204cf370f470177ba1668013"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:a2716158817d70e31d7f1667b5cbcb0a59ddc1e933fb13992767b8e9f87a544a"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.stone_drywall": {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:33c8b1f3e3dd4a0cc0f95330c4951d14290a96016db902e105f51c47f60dc018",
-    "notes": "Inspected all21 final Earth-rig views: three distances, noon/late afternoon, Economy/High, silhouette, four architecture views and forced four-level transitions. Roof ranges, major gables and chimneys remain stable; detailed windows/trim drop out at skyline. Synthetic ground only, with no actual terrain, adaptive streaming, collision or physical-device timing approval.",
+    "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+    "notes": "Reviewed the silhouette, four detail levels, daylight and quality variants, opening and roof profiles, plus the native approach views.",
+    "captureReportHash": "sha256:68d316347803fb33e046644e76eb11d87fa58b015070a85952cde33e8dc83ffa",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -60,280 +170,294 @@
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:fa49ac25b71fd19ad9bc56412ead11a81bdd4cd636355f9422f88424ba91f10d"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:a74245ccceee537b782556d65846e23a2e6637feb5a8b3a8276f79ea31b8a5aa"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:83d269a3859d0e743a6f75a447573447fb886a7e5bd8a00ce935a54a8accd457"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:4446222870eef6a59ddddabce9d7b229f0a469799c700a4ddc0f104d542bad75"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:3a74c254821aa65be5819b422ae798eb261f36f6e8516fad6e6b676c8058dfdf"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:b3b8b0f28c33b39f3c8fb98336253b957272002ab0af6d7189f96a800540dc94"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:670d8d43033f15c7be9fa69ff4c855f608f6aede723d3fb2a94bc7d93056821c"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:9ec54f16ca3303eb0ce88421e1b9e23687b74da94b67c291ad4de5e79ce0dd03"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:d1ab8737b2b6e3187ffd38b1db7c7b754590b4866027ad3487a86127a2de59e9"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:791b788befeb85a57db50794088640cb90228f9636176dc8776035d51728e3ce"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:af542fedba09ff2253507f85fad6cbcfc4766a92f72b09fdca92e430f66a9540"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:cfeee6a334a9a6f2629ef57d1f15d6c67213d0c001bb98b533d267712e95cdf6"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:37a8f3dcb0dfff6b7aab54ec51b226e6e6702077ed6db5d170addc437223e8bf"
+      },
+      {
+        "path": "medium-fi/east-primary-facade.png",
+        "hash": "sha256:d03472b7271500d627d490906aa32be86508f16c4518a315242af48a7b4f4e2d"
+      },
+      {
+        "path": "medium-fi/north-roof-and-cross-gable.png",
+        "hash": "sha256:2dcea460d9de9bfca5b245addb2b6f8c077ee13b28e9b27948d4f9fe12dd945c"
+      },
+      {
+        "path": "medium-fi/own-footprint-and-roof.png",
+        "hash": "sha256:37cde638037feadc408198feb76b8f403af40f25a74fcdb411d2a10a8f3c1519"
+      },
+      {
+        "path": "medium-fi/west-service-side.png",
+        "hash": "sha256:f6f81b02e34adc907133b3bf71c605f820e7e85ccf66fed91a184abaa8a6a67c"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:7e1f17f7e4cbe5f16ab314cb9ab1d94ae5c8970f9a71e1da346799ba05e55c81"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:b3b8b0f28c33b39f3c8fb98336253b957272002ab0af6d7189f96a800540dc94"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:6e061dc42d1a6e93508c59253d82ac5ff4d656b1878033cd846220fbf1e83fda"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:afe189a374a94ddd27d4521f339265b13b7adb2851e7ee282b2e8b99ca8d7fa8"
+      }
     ]
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:736c5e9b29f36a46bf4f17dae136c36b9b70d171d4d464fde3dc797f0ccdd402",
-    "mapGeometryHash": "sha256:38689461bfb1b1c5861b2156618d074deeb410c152476bad94b21e7ca057a020",
-    "coordinateRoundTripErrorMeters": 0.0006533883684146968,
-    "mapCoordinateSamples": 12,
-    "notes": "Own mapped rings reconstruct within2mm and NID cardinal captions support proposed facing. Combined relative-anchor view was inspected on flat ground. Arithmetic and synthetic composition do not approve current footprint associations, sloping ground, vertical datum or real geographic fit. Inactive draft; footprint replacement disabled."
+    "status": "passed",
+    "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+    "placementHash": "sha256:656ac3d406cf8035aabd3089ace3d1e56f69d2f00357ddfe36c7b63cb9c85123",
+    "mapFrameHash": "sha256:91942de99480aace19fb2e238a6d1d8d3256609fc9ea605848cd8eb77e1df517",
+    "notes": "The placement occupies its own mapped footprint. The foundation follows the terrain and the landing meets the sampled approach within 9 mm in all four detail levels.",
+    "native": {
+      "fixtureHash": "sha256:3edca5d4da6fd234ffaeef3705a5e8963f96320455e6ceaae9d6a012563fe636",
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "layer": "vector",
+          "z": 15,
+          "x": 17868,
+          "y": 10994,
+          "path": "vector-15-17868-10994.mvt",
+          "hash": "sha256:42ff28e2ba158af5ebd5f9e8f626ed983480930ff5ddff12e255aa53090b7923"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "layer": "elevation",
+          "z": 14,
+          "x": 8934,
+          "y": 5497,
+          "path": "elevation-14-8934-5497.png",
+          "hash": "sha256:46092751e024a0e8a4601b640ac529b29c441e2f4e30b725d804e932aae6a924"
+        }
+      ],
+      "transportationRecords": 25,
+      "independentBuildings": 13,
+      "waterInputs": 1,
+      "ownedIds": [
+        35184635098835
+      ],
+      "contact": {
+        "anchor": [
+          16.306475285351524,
+          50.829668567715274
+        ],
+        "modelHeight": 0.205,
+        "terrainMeters": 395.475491,
+        "local": [
+          9.221681,
+          -2.933981
+        ]
+      },
+      "maxJoinErrorMeters": 0.008026,
+      "checks": 100,
+      "allLevelsLoad": true,
+      "fallbackRestored": true,
+      "evictedGeometryDisposed": true,
+      "frames": [
+        {
+          "file": "trial-skyline-east-overview.png",
+          "hash": "sha256:76ca0847772c911d84a87cc39e4ac6c25af103744ad7e9bd4b961dcb94ddc8f6"
+        },
+        {
+          "file": "trial-skyline-west-overview.png",
+          "hash": "sha256:430d9da2f931166f509ff3abc70825d2c197caee7a9d7ad41eaea3490e4500cb"
+        },
+        {
+          "file": "trial-district-east-overview.png",
+          "hash": "sha256:e4d4a9fa6238816acbf12a12b93c8411b5f891bca5f8ee07bead7280bcab5392"
+        },
+        {
+          "file": "trial-district-west-overview.png",
+          "hash": "sha256:ac8e9bc90dae72905cec97f8e3a1dd5d7c78d10cf4c97a33a69dc7ec21761821"
+        },
+        {
+          "file": "trial-street-east-overview.png",
+          "hash": "sha256:cb328ef90c7037df43973e4d4e878255c3c17ca5f8f58fabf2c07aa7f58ffb9b"
+        },
+        {
+          "file": "trial-street-west-overview.png",
+          "hash": "sha256:68517bd3146152128883e19f5e6b4a08f13dbda626d3baed23ec232a83e48912"
+        },
+        {
+          "file": "trial-closeup-east-overview.png",
+          "hash": "sha256:66cea69da253e6c738aea5fec3859e844a4da05a9d64081fdc4236822634c0f6"
+        },
+        {
+          "file": "trial-closeup-west-overview.png",
+          "hash": "sha256:4d4690721a2912ed32b9a6e0e845bab8a7568da8a017e3f6d25fe543b39c0904"
+        },
+        {
+          "file": "trial-closeup-administration.png",
+          "hash": "sha256:ea6496901f838e7fda4e48b745a67bb10c53fc14a7c876df193212c8c6abc960"
+        },
+        {
+          "file": "trial-closeup-administration-approach.png",
+          "hash": "sha256:d4e9169b538ca71c81fab38355a4cabee0f072d01f04b0206e78354030f581ff"
+        },
+        {
+          "file": "trial-closeup-utility.png",
+          "hash": "sha256:ef9fb3a51e12050d87ff36e9e2ed3e6818511b27dfaee42df634f7219589f121"
+        },
+        {
+          "file": "trial-closeup-utility-approach.png",
+          "hash": "sha256:d39cc5a564355d9a99e707f7ea1a03a500edef8a813cc3718e6e8cfb27c89c44"
+        },
+        {
+          "file": "trial-closeup-residence.png",
+          "hash": "sha256:bedab349bb99fd98fa81f35839f994e2720b119304e041b585017e05e964c206"
+        },
+        {
+          "file": "trial-closeup-residence-approach.png",
+          "hash": "sha256:74a3861a3ba9686e8866fcd224fba8b90ee9c9328877eb36e1117657a625a35d"
+        },
+        {
+          "file": "trial-closeup-residence-stair.png",
+          "hash": "sha256:393df9686cc7d609ded9844894f767c2161b3d0cef298b3ac67affb030a90a1e"
+        },
+        {
+          "file": "trial-closeup-boiler-range.png",
+          "hash": "sha256:eb51cd4101c965ed000d40f066bc623e70709effa5f143fc37dfa92d349e1e69"
+        },
+        {
+          "file": "trial-closeup-boiler-range-approach.png",
+          "hash": "sha256:f664df22bd024c5341551958096d79157f2a65925a96f9513999ca5137128b26"
+        },
+        {
+          "file": "trial-closeup-without-ksiaz_palm_administration-east-overview.png",
+          "hash": "sha256:5b59e97ce07c79298c74a8e0840ea2eb99f9e841fe1828fc771392840710987f"
+        },
+        {
+          "file": "trial-closeup-without-ksiaz_palm_utility-east-overview.png",
+          "hash": "sha256:c5481c934d7bdda033257821a7ab44ff0773870e5c13d49212205071a32bda6d"
+        },
+        {
+          "file": "trial-closeup-without-ksiaz_palm_residence-east-overview.png",
+          "hash": "sha256:66cea69da253e6c738aea5fec3859e844a4da05a9d64081fdc4236822634c0f6"
+        },
+        {
+          "file": "trial-closeup-without-ksiaz_palm_boiler_range-east-overview.png",
+          "hash": "sha256:5dd08b55b57a7ee16a11e2e1df1c17a24c9441aa98505e348f0dcbca6fda8939"
+        }
+      ]
+    }
   },
   "fidelityReview": {
-    "status": "pending",
     "target": "medium-fi",
-    "notes": "Original exterior interpretation of the individual NID1994 record/card and official2025 ensemble plan. Survey cards contain older inventory/alteration drawings. Exact heights, openings, upper roof boundaries, annex/boiler associations, present restoration and terrain remain unconfirmed. Interiors and landscape are outside scope. ksiaz_castle_and_park_complex remains incomplete."
+    "status": "passed",
+    "inputHash": "sha256:f5da84919c683408850fae49a1a3598bdde1e8e8d935f1b6c4a5556b78f59fb9",
+    "notes": "The east pediment, oculus, supported balcony and recessed glazed door follow the survey photographs. The tapered sandstone landing meets the yard. Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "source",
-        "path": "content/worldgen/source/places/u3/u35/ksiaz_palm_administration/models/source.glb",
-        "hash": "sha256:5c11c192891b6cbffb272b2de252cb335d9e03fb5e44a9dc03a91622c06e52fa",
-        "bytes": 314112,
-        "triangles": 2587,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.918978691101074,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.868338584899902
-        ],
+        "bytes": 313048,
+        "hash": "sha256:be3dfcd73817613c00259185819ad05c22ddd882fdf85acd8e87ad328cb1a1a4",
         "errors": 0,
         "warnings": 0,
-        "infos": 6
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "runtime",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.glb",
-        "hash": "sha256:d4408a4f7ab1b11e3604551b90d704c7525579453f194abe94b746bdf5a40e7b",
-        "bytes": 313548,
-        "triangles": 2587,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.918978691101074,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.868338584899902
-        ],
+        "bytes": 312416,
+        "hash": "sha256:e83d1f929653c4ebc38b693b88f0faeb3ba11c7b26ab5a3a703310e8473d01cd",
         "errors": 0,
         "warnings": 0,
-        "infos": 6
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.skyline.glb",
-        "hash": "sha256:9149c949234b9b926dec44ab0fbeb5fccf4abc9be9fcdf4859855dcbee957300",
-        "bytes": 21972,
-        "triangles": 241,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -7.789999961853027,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.699999809265137,
-          8.732000350952148
-        ],
+        "bytes": 23676,
+        "hash": "sha256:666c85fdd59c6510eb05847b2acf174009c291c6de35df50edefc9cdefd19d0d",
         "errors": 0,
         "warnings": 0,
-        "infos": 1
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.district.glb",
-        "hash": "sha256:961d8ee24378d4df85d3560d88094271775d9e69a4e400acc42ab318046e142e",
-        "bytes": 41180,
-        "triangles": 409,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.816980361938477,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.699999809265137,
-          8.766340255737305
-        ],
+        "bytes": 46644,
+        "hash": "sha256:3ff7a913b0700ebc2fca0ccded4d4a7a00efb967849e2a5c44040d8abfb826d8",
         "errors": 0,
         "warnings": 0,
-        "infos": 6
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.street.glb",
-        "hash": "sha256:0c753e2ad52fa29d663de1ae544b8b09d450d2c3ece8c907fa21726f15cffbfd",
-        "bytes": 167088,
-        "triangles": 1887,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.913311004638672,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.862701416015625
-        ],
+        "bytes": 169148,
+        "hash": "sha256:133b7432b13007440634bc20e9862cb330ec5acf2e74f3e4734052ba2c7beb2e",
         "errors": 0,
         "warnings": 0,
-        "infos": 6
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
         "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.closeup.glb",
-        "hash": "sha256:3914c60ad5124b53e1dc4ae037c74a942286b03881a5363ecf76c648455d26d1",
-        "bytes": 226732,
-        "triangles": 2587,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.918978691101074,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.868338584899902
-        ],
+        "bytes": 227088,
+        "hash": "sha256:0a757fb162ccfc11b5ff7d0b13c657ce1233800856a0687afead47037c8b439c",
         "errors": 0,
         "warnings": 0,
-        "infos": 6
+        "embeddedImages": 0
       }
     ],
-    "notes": "Six GLBs: zero errors/warnings and no embedded images. Nine focused batch tests pass byte-deterministic LODs, budgets, homogeneous GPU attributes, supported texture slots, roof coverage and closed ground walls for every mapped ring and LOD, administration oculus visibility and outward utility cross-gable visibility. Source scene validates and runs30ticks; hash sha256:f759206dc45a20f11f9a9eb4344d2a8d12a067d08e88714f12db008a4a18d1c6. No walk/collision approval."
+    "initialBytes": 70320
   },
-  "runtimeLodReview": {
-    "status": "passed",
-    "levels": [
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.skyline.glb",
-        "hash": "sha256:9149c949234b9b926dec44ab0fbeb5fccf4abc9be9fcdf4859855dcbee957300",
-        "bytes": 21972,
-        "triangles": 241,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -7.789999961853027,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.699999809265137,
-          8.732000350952148
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-        "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.district.glb",
-        "hash": "sha256:961d8ee24378d4df85d3560d88094271775d9e69a4e400acc42ab318046e142e",
-        "bytes": 41180,
-        "triangles": 409,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.816980361938477,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.699999809265137,
-          8.766340255737305
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-        "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.street.glb",
-        "hash": "sha256:0c753e2ad52fa29d663de1ae544b8b09d450d2c3ece8c907fa21726f15cffbfd",
-        "bytes": 167088,
-        "triangles": 1887,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.913311004638672,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.862701416015625
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_palm_administration",
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_palm_administration/model.closeup.glb",
-        "hash": "sha256:3914c60ad5124b53e1dc4ae037c74a942286b03881a5363ecf76c648455d26d1",
-        "bytes": 226732,
-        "triangles": 2587,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -7.918978691101074,
-          0,
-          -8.850000381469727
-        ],
-        "max": [
-          9.175000190734863,
-          9.859999656677246,
-          8.868338584899902
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
-      }
-    ],
-    "initialDownloadBytes": 63152,
-    "notes": "Four separate source-derived levels meet1000/4000/16000/64000triangle caps. Initial two levels exclude shared graph transfers. Physical laptop/phone measurements and adaptive streaming remain pending."
-  }
+  "limitations": [
+    "Façade details and dimensions are interpretations of the historic exterior, with current restoration and interiors outside the review."
+  ]
 }

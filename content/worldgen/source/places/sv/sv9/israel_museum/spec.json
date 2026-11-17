@@ -1,0 +1,793 @@
+{
+  "planId": "israel_museum",
+  "id": "israel_museum",
+  "assetId": "molen.worldgen.structure.israel_museum",
+  "title": "Israel Museum",
+  "wikidataId": "Q46815",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.204166666666666,
+    "latitude": 31.7725
+  },
+  "size": [
+    178.15653610229492,
+    27.717150688171387,
+    373.0731964111328
+  ],
+  "actualBounds": {
+    "min": [
+      -45.136531829833984,
+      -6.387150764465332,
+      -204.9825439453125
+    ],
+    "max": [
+      133.02000427246094,
+      21.329999923706055,
+      168.0906524658203
+    ]
+  },
+  "visualBrief": "The Israel Museum’s terraced Jerusalem stone galleries, glazed circulation pavilions, and the white Shrine of the Book above its square pool and black basalt wall.",
+  "nativeAxes": {
+    "x": "transverse to the gallery wings",
+    "y": "up",
+    "z": "toward entry from the north"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.flickr.com/photos/101561334@N08/43221646101/"
+  ],
+  "stories": [
+    {
+      "id": "israel-museum-wp",
+      "url": "https://qualla.com/israel-museum/"
+    }
+  ],
+  "referenceInputHash": "baaa0d91028fc52a117d53ac8044613cae346e1f9abf58adae04c71eb8549672",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv9/israel_museum/models/israel-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sv/sv9/israel_museum/models/israel-museum-model.mjs",
+    "level": "skyline",
+    "export": "israelMuseumSkyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#e3e9eb",
+        "roughness": 0.42,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.76,
+        "metallic": 0
+      },
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#deedee",
+        "roughness": 0.25,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "israelMuseumDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e3e9eb",
+            "roughness": 0.42,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#deedee",
+            "roughness": 0.25,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "israelMuseumStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e3e9eb",
+            "roughness": 0.42,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#deedee",
+            "roughness": 0.25,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "israelMuseumCloseup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e3e9eb",
+            "roughness": 0.42,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#deedee",
+            "roughness": 0.25,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "concrete_boardformed",
+    "tile_ceramic",
+    "stone_basalt"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.85,
+    "cameraYaw": 0.61,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        26,
+        9,
+        -19
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 512 m original elevation field preserves the hillside and fixes the arrival court. The documented 11.2 m architectural module drives gallery grouping. Three mapped roof parts provide heights of 10, 9 and 10 metres.",
+    "anchor": [
+      35.204166666666666,
+      31.7725
+    ],
+    "heading": 3.134960703903927,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.2037615018135,
+        31.77383589385964
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the public pedestrian entry control by the northern arrival area."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.21618,
+          94.39554
+        ],
+        [
+          9.21618,
+          71.56341
+        ],
+        [
+          3.53959,
+          71.83484
+        ],
+        [
+          3.21071,
+          50.78604
+        ],
+        [
+          26.83408,
+          49.54955
+        ],
+        [
+          26.35862,
+          10.67908
+        ],
+        [
+          26.05598,
+          -2.13207
+        ],
+        [
+          20.63935,
+          -2.61936
+        ],
+        [
+          20.69025,
+          -13.49585
+        ],
+        [
+          6.92911,
+          -13.57157
+        ],
+        [
+          7.47439,
+          -22.68132
+        ],
+        [
+          32.76415,
+          -22.38149
+        ],
+        [
+          30.7358,
+          -48.52869
+        ],
+        [
+          6.95525,
+          -48.15947
+        ],
+        [
+          7.03254,
+          -43.64031
+        ],
+        [
+          -9.29115,
+          -43.38733
+        ],
+        [
+          -9.81709,
+          -77.02534
+        ],
+        [
+          8.78711,
+          -77.32683
+        ],
+        [
+          8.70598,
+          -82.42484
+        ],
+        [
+          42.90525,
+          -82.96335
+        ],
+        [
+          42.64169,
+          -99.87141
+        ],
+        [
+          67.30227,
+          -100.2576
+        ],
+        [
+          66.20613,
+          -169.92673
+        ],
+        [
+          85.29297,
+          -170.23143
+        ],
+        [
+          84.75019,
+          -204.98254
+        ],
+        [
+          63.09887,
+          -204.63857
+        ],
+        [
+          63.35564,
+          -188.75463
+        ],
+        [
+          45.35697,
+          -188.47942
+        ],
+        [
+          45.24406,
+          -195.51421
+        ],
+        [
+          9.20893,
+          -194.95239
+        ],
+        [
+          9.42727,
+          -180.58218
+        ],
+        [
+          -32.19107,
+          -179.9388
+        ],
+        [
+          -32.0113,
+          -168.52949
+        ],
+        [
+          -45.13653,
+          -168.33113
+        ],
+        [
+          -42.183,
+          21.57565
+        ],
+        [
+          1.74533,
+          21.05054
+        ],
+        [
+          1.7026,
+          43.14822
+        ],
+        [
+          -20.20423,
+          43.49389
+        ],
+        [
+          -20.55495,
+          49.11797
+        ],
+        [
+          -36.86446,
+          50.08332
+        ],
+        [
+          -36.18774,
+          80.77029
+        ],
+        [
+          -24.88448,
+          81.26307
+        ],
+        [
+          -24.88951,
+          89.06677
+        ],
+        [
+          -8.42719,
+          89.73684
+        ],
+        [
+          -7.47194,
+          95.35227
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -12.60168,
+            168.09065
+          ],
+          [
+            -12.60165,
+            156.68015
+          ],
+          [
+            -16.53871,
+            156.67286
+          ],
+          [
+            -16.54771,
+            131.05774
+          ],
+          [
+            8.28573,
+            131.0489
+          ],
+          [
+            8.29014,
+            141.70238
+          ],
+          [
+            14.71612,
+            141.69316
+          ],
+          [
+            14.70912,
+            132.07499
+          ],
+          [
+            35.69066,
+            132.05829
+          ],
+          [
+            35.69744,
+            157.33946
+          ],
+          [
+            15.75689,
+            157.34925
+          ],
+          [
+            15.76181,
+            168.08065
+          ]
+        ],
+        [
+          [
+            123.24703,
+            114.26724
+          ],
+          [
+            119.55105,
+            114.93742
+          ],
+          [
+            117.57198,
+            114.77243
+          ],
+          [
+            114.05222,
+            113.47104
+          ],
+          [
+            111.54986,
+            111.46158
+          ],
+          [
+            109.52254,
+            108.30235
+          ],
+          [
+            108.7453,
+            105.26841
+          ],
+          [
+            109.00441,
+            101.52628
+          ],
+          [
+            109.98132,
+            98.99279
+          ],
+          [
+            113.47645,
+            95.15127
+          ],
+          [
+            116.91137,
+            93.64791
+          ],
+          [
+            118.90626,
+            93.34524
+          ],
+          [
+            122.62862,
+            93.79924
+          ],
+          [
+            126.13293,
+            95.62394
+          ],
+          [
+            128.64038,
+            98.40149
+          ],
+          [
+            130.0547,
+            101.88762
+          ],
+          [
+            130.28684,
+            104.06799
+          ],
+          [
+            129.65836,
+            107.76805
+          ],
+          [
+            128.63132,
+            109.87884
+          ],
+          [
+            126.11347,
+            112.66746
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.99,
+      "basis": "The native main galleries, named Weisbord Pavilion and Shrine roof footprints."
+    },
+    "featureIds": [
+      "way/44307909",
+      "way/136009895",
+      "way/136009906",
+      "way/136009915",
+      "way/158934535",
+      "way/158934529",
+      "way/704246007",
+      "way/704246008",
+      "way/704246009",
+      "node/5866120339"
+    ],
+    "source": "https://www.openstreetmap.org/way/44307909",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:97e9aa9f2ba8779e69922e1471a00c831febb3c65da3831b20efd69d46d66a25"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The native contours and three mapped pavilion heights fix the campus layout. Gallery-by-gallery roof schedules, sections, surface transitions and smaller terraces are estimated from the recorded modular design.",
+    "The model includes the standing gallery and visitor buildings and the Shrine of the Book above ground. The Jerusalem maquette, artworks, interiors and museum annexes are outside the scope.",
+    "The Shrine’s exterior profile uses the photographer’s verified CC0 original. The wall dimensions recorded by Kiesler include the portion beside the sunken court. Its above-terrace height, wall orientation and any local terrain contact are estimates."
+  ],
+  "sourceLicense": "Original geometry based on written architecture and a verified CC0 Shrine photograph, ODbL OpenStreetMap and openly attributed Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        339,
+        181,
+        304
+      ],
+      "lookAt": [
+        26,
+        9,
+        -19
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        339,
+        181,
+        304
+      ],
+      "lookAt": [
+        26,
+        9,
+        -19
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        339,
+        181,
+        304
+      ],
+      "lookAt": [
+        26,
+        9,
+        -19
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        339,
+        181,
+        304
+      ],
+      "lookAt": [
+        26,
+        9,
+        -19
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "campus-across-the-original-hillside",
+      "position": [
+        256,
+        134,
+        247
+      ],
+      "lookAt": [
+        32,
+        5,
+        -36
+      ]
+    },
+    {
+      "name": "shrine-dome-pool-and-black-wall",
+      "position": [
+        151,
+        14,
+        149
+      ],
+      "lookAt": [
+        114,
+        7.3,
+        103
+      ]
+    },
+    {
+      "name": "shrine-parabolic-tile-and-oculus",
+      "position": [
+        152,
+        28,
+        117
+      ],
+      "lookAt": [
+        118,
+        7.8,
+        104
+      ]
+    },
+    {
+      "name": "north-visitor-pavilion-louvers",
+      "position": [
+        57,
+        15,
+        198
+      ],
+      "lookAt": [
+        4,
+        3,
+        148
+      ]
+    },
+    {
+      "name": "gallery-stone-modules-and-clerestories",
+      "position": [
+        -86,
+        27,
+        47
+      ],
+      "lookAt": [
+        -10,
+        6,
+        -23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14489,
+    "vertices": 43467,
+    "materials": 6,
+    "bytes": 1911084,
+    "sha256": "sha256:b370de971efdbeb7b4460f99a6495b601321fd974d5756b16090bbeb670e082f"
+  }
+}

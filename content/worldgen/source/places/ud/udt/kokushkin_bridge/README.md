@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Complete shallow green panel-girder crossing with eight alternating circle/lozenge fascia panels, cast brackets, Empire wreath/rosette railings with small rings and swags, raised walks, granite abutments/flared end cheeks and the photographed navigation plaque/diamond. Preserve correct bridge proportions while native noisy-bank placement remains disabled.
+Shallow green panel girder with eight alternating circles and lozenges, cast brackets, wreath railings, raised walks, granite abutments and the photographed navigation plaque and diamond. The short tapered landings follow the PMTiles carriageway and quay walks. The deck meets the native lanes at 20.504 m and the Griboyedov Canal uses a 16.924 m visualization stage.
 
 Editable geometry lives in models/; model-brief.json records the material library, four authored runtime levels, reference pictures and reconstruction limits. The detailed master is reproducible from this editable recipe; inspection and readiness decisions are recorded separately. All GLBs are ignored generated outputs.
 

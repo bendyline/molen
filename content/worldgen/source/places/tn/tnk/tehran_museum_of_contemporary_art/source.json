@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tehran_museum_of_contemporary_art",
+  "kind": "static-structure",
+  "title": "Tehran Museum of Contemporary Art",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tehran_museum_of_contemporary_art",
+        "output": "assets/places/tn/tnk/tehran_museum_of_contemporary_art/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:46b257c417dee6d0118990ce77cc3159486ad7e4e5339f09e084a934fa2024eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tehran-contemporary-art",
+        "path": "models/generate-tehran-contemporary-art.mjs"
+      },
+      {
+        "id": "tehran-contemporary-art-model",
+        "path": "models/tehran-contemporary-art-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21061-12899.png",
+      "terrain-sources/terrarium-15-21061-12900.png",
+      "preview.png",
+      "native-map/osm-tehran-contemporary-art.json",
+      "reference-rights/tehran-museum-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

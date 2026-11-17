@@ -1,3 +1,14 @@
+## @bendyline/molen-materials [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.12...@bendyline/molen-materials@0.0.13) (2026-11-16)
+
+### Bug Fixes
+
+* Signs v2 ([daebde0](https://github.com/bendyline/molen/commit/daebde017cc412486fc508570e0ca693f44ae995))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.12
+
 ## @bendyline/molen-materials [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.11...@bendyline/molen-materials@0.0.12) (2026-11-14)
 
 

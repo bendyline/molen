@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tai_tam_intermediate_reservoir_valve_house",
+  "kind": "static-structure",
+  "title": "Tai Tam Intermediate Reservoir Valve House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tai_tam_intermediate_reservoir_valve_house",
+        "output": "assets/places/we/wec/tai_tam_intermediate_reservoir_valve_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:764ac7c64c0165c9a31e95499303459f6b0aa38e338d93e4f031e7d199c013b2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tai-tam-intermediate-reservoir-valve-house",
+        "path": "models/generate-tai-tam-intermediate-reservoir-valve-house.mjs"
+      },
+      {
+        "id": "tai-tam-intermediate-reservoir-valve-house-model",
+        "path": "models/tai-tam-intermediate-reservoir-valve-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gish-geometry.json",
+      "reference-rights/engineering-facts.json",
+      "reference-rights/story-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/landsd-5m-site.asc",
+      "terrain-sources/landsd-5m-source.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

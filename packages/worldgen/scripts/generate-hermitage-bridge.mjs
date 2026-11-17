@@ -204,6 +204,7 @@ const source = {
         'review-scope.json',
         'reference-observations.json',
         'terrain-review.height.png',
+        'terrain-graded.height.png',
         'terrain-review.terrain.json',
         'native-datum-probes.json',
         'runtime-water.json',

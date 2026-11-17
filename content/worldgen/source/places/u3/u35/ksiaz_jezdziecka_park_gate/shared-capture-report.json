@@ -1,15 +1,18 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-  "sourceHash": "sha256:fb8da12f948fdc96e916023d5941c43adc571f1825e5ae6b10b8131cc79ac7fa",
-  "runtimeHash": "sha256:e1d94f2d543a395551d2ff39447b7bf5bbc95b2534270bab6b33cc65cfce0b10",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:5227facb2a29b0e074bd7139761290a757e075335b75bcd3aae46145ac728a16",
+  "inputHash": "sha256:30efdca40667c00b9e0dc1342fa5a7edba03de877e0c83d1ec6bab37d153d971",
+  "sourceHash": "sha256:d1a1bb0377bde0a385bbb0a95d6e7900de95e2ee2a17674fe2c9229f11138a7c",
+  "runtimeHash": "sha256:19890e600696b9e6c4d99383767ab91adea1fc6c466eec471d3081d9c6efc3e4",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:fcfdb02de3eeb93ec435e2ed36f8e2bc71d58d9ae02a4dc32245aa1db8b4bac3",
   "footprintLabel": "Attributed adjoining path through gate; gate dimensions are photographic estimates",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:6e42e2cc978084592d3d329ef1c3072162172e733f75e327808da0ed2e5f1205",
-  "placementHash": null,
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:e195b10e9fc294740c32d749f2542c31c43ceae6e2f20425d6e1122ba736151d",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_sandstone": {
       "path": "materials/stone_sandstone.matgraph.json",
@@ -18,212 +21,364 @@
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:d9c2e159edf6da6ae66ca5e3181d03d0e17d508452aace7b65d5eb303f8ca2b4",
+      "hash": "sha256:0fcd0f7365757a819e852dd749a42849212fa129354a84eb71f7aab6b86b7b5c",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:a4816157d8b19c077b7eda58f6718bf6f7bc5a3d1120aa292e43222eb2f68dbc",
+      "hash": "sha256:3c81160406cfcc4572ea66e5e41063e056e9dadd47345ba9dd9949e27ba3a5e3",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:0d28797d68bcd12607dadc5ff42828bf421fe4c683b50b5b0f213b7e59f5b391",
+      "hash": "sha256:ddd68bbf8ca08073841050b2d4e98296d2e2c320eddd14ef9f163a2658ebc7a7",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:483e7470c1b83153bdf35bbd7e7f4db6b091e92dde117da7d66b308263678e38",
+      "hash": "sha256:32ea247968b241a8c335e709edca258ea906a8181c0e337f2564cf07c157e17d",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/approach-and-clear-opening.png",
-      "hash": "sha256:3c67bb4f6959ddf135a37f9f86b5a651c1eb1405fff7f3a744d5a93d18f6243f",
+      "hash": "sha256:9d8b76c9cf21b1830ebc61ea531a83074031576de38ea42533165b265b7c5d09",
       "camera": {
         "name": "approach-and-clear-opening",
         "position": [
@@ -239,50 +394,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/reverse-and-open-leaves.png",
-      "hash": "sha256:c5dfd7928f76c9a33f136349b71915d5ac0ddf794183083720c7b8cae69163b5",
+      "hash": "sha256:aba8b31d4e1f6ad88b6628c0a12f4af53c168953364196e3ed2a883d49564567",
       "camera": {
         "name": "reverse-and-open-leaves",
         "position": [
@@ -298,50 +490,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/wing-wall-plan.png",
-      "hash": "sha256:ae35b4df4ed906bad7cb2ad57a91c0a803b29879c43bfd6e52adccc194927d2f",
+      "hash": "sha256:57f27bc1a5e8d7b0c65275b5985d2cd8d328e99fa5b154eae23a0ae6ac32a5f1",
       "camera": {
         "name": "wing-wall-plan",
         "position": [
@@ -357,50 +586,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
       }
     },
     {
       "path": "shots/shared/pillar-urn-and-ironwork.png",
-      "hash": "sha256:875c26abb9f766034dba8c61da4c7a47eb9d9c55faacb06481660fd8e2f7e3b0",
+      "hash": "sha256:ccd3c346cc8a75c09e5bf62a1a218272c8b3cf78826f091d845737cb1175767c",
       "camera": {
         "name": "pillar-urn-and-ironwork",
         "position": [
@@ -416,45 +682,169 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
         "position": [
+          -63.97188247926533,
           0,
-          0,
-          0
+          -64.04455357370898
         ],
         "heading": 0,
-        "meshes": 2,
-        "triangles": 4820,
+        "meshes": 3,
+        "triangles": 11208,
         "bounds": {
           "min": [
-            -8.819401741027832,
-            0,
-            -2.2019999027252197
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
           ],
           "max": [
-            8.819401741027832,
-            5.889999866485596,
-            0.9800000190734863
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8e335581-3771-4b06-a9f2-e1cb106654a1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "7c1c5a9f-7f55-4261-8c49-d57f91143d5e"
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.metal_painted": 1
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 3,
-        "renderedTriangles": 4822
+        "draws": 4,
+        "renderedTriangles": 11210
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:8469fa018ae105465e3b14e1e81e8358c04e5346e5dc3d1635f4aa2a847471e2",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_jezdziecka_park_gate",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.jezdziecka-park-gate",
+        "position": [
+          -63.97188247926533,
+          0,
+          -64.04455357370898
+        ],
+        "heading": 0,
+        "meshes": 3,
+        "triangles": 11208,
+        "bounds": {
+          "min": [
+            -7.62320770509541,
+            -0.5679711699485779,
+            -5.156930740457028
+          ],
+          "max": [
+            5.74773727171123,
+            5.840000152587891,
+            7.201029006857425
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.623207358267635,
+            -0.5679711699485779,
+            -5.156929808582447
+          ],
+          "max": [
+            5.747739108812334,
+            5.840000152587891,
+            7.201030055707092
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_jezdziecka_park_gate"
+        ],
+        "selectionBounds": [
+          16.298732535656942,
+          50.84150707491265,
+          16.300553464343057,
+          50.842656918466446
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.jezdziecka-park-gate",
+            "coordinate": [
+              16.2996426,
+              50.8420816
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.jezdziecka-park-gate"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 5,
+        "renderedTriangles": 11210
       }
     }
   ],

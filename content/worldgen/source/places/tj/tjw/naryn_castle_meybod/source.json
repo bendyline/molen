@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.naryn_castle_meybod",
+  "kind": "static-structure",
+  "title": "Naryn Castle, Meybod",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.naryn_castle_meybod",
+        "output": "assets/places/tj/tjw/naryn_castle_meybod/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9c05135e61af3f58925b8a4b255e38de408b17243cfeb0b13f2e34230181c158"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-naryn-castle-meybod",
+        "path": "models/generate-naryn-castle-meybod.mjs"
+      },
+      {
+        "id": "naryn-castle-meybod-model",
+        "path": "models/naryn-castle-meybod-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/upper-castle-controls.json",
+      "reference-rights/commons-qualla-naryn-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21300-13282.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

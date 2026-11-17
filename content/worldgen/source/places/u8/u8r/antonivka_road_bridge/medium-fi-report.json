@@ -4,11 +4,11 @@
   "assetId": "molen.worldgen.structure.antonivka_road_bridge",
   "renderedAsset": {
     "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-    "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea"
+    "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63"
   },
-  "sourceHash": "sha256:191a2d7fda73fa3a4ed1eb37aaf04fc4da7728430d8be12a2aedd57282f30c63",
-  "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-  "fixtureHash": "sha256:208c9a48d4335d6bd35f5fbfee105fdd6e4addd9eda40d4df71d1d116da2a0ae",
+  "sourceHash": "sha256:e13d128cbfe5864aa059e5f886749526bb0c109c05a0e54398d5296e0ab4ceda",
+  "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+  "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
   "rig": {
     "palette": {
       "dayZenith": "#2a6cc4",
@@ -17,14 +17,15 @@
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
       "ground": "#9a8f70",
-      "sun": "#fff1d8",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 4.4,
-      "dayAmbient": 2,
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
       "nightAmbient": 0.05,
-      "skyLightSaturation": 0.18
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
     "toneMapping": "aces",
     "exposure": 1.05
@@ -46,36 +47,36 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
-      "bytes": 343952,
-      "gzipBytes": 56129,
-      "triangles": 3964,
-      "cpuBytes": 341232,
-      "gpuBytes": 341232,
+      "hash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
+      "bytes": 340784,
+      "gzipBytes": 55929,
+      "triangles": 3940,
+      "cpuBytes": 338064,
+      "gpuBytes": 338064,
       "errorMeters": 4,
       "drawCalls": 2
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:09a0da2a131dcadfe5bb9ce17798e8664ee1785f5f3fa78d66d3f0039451175e",
-      "bytes": 1266004,
-      "gzipBytes": 256726,
-      "triangles": 14428,
-      "cpuBytes": 1263264,
-      "gpuBytes": 1263264,
+      "hash": "sha256:3f94ab5c387c492dcf9a71ccf7340d820980588fcd66a93c06d32931b4219056",
+      "bytes": 1254952,
+      "gzipBytes": 254813,
+      "triangles": 14332,
+      "cpuBytes": 1252212,
+      "gpuBytes": 1252212,
       "errorMeters": 2,
       "drawCalls": 2
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
-      "bytes": 2792844,
-      "gzipBytes": 561807,
-      "triangles": 32428,
-      "cpuBytes": 2790096,
-      "gpuBytes": 2790096,
+      "hash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
+      "bytes": 2763432,
+      "gzipBytes": 553801,
+      "triangles": 32188,
+      "cpuBytes": 2760684,
+      "gpuBytes": 2760684,
       "errorMeters": 1,
       "drawCalls": 2
     }
@@ -87,17 +88,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:a00c42f9371846ac2a7a8a5df6a9cf5faf158c7bdf3ad96e0b3719f2e2e6f9a9",
+      "hash": "sha256:e55c452541b8cbb544bf2b594216421d91be880851ed6cb1213a156aa83e1bc0",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -119,23 +120,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:c951de4d7ac6ba68afe9f943e1c1c78ed42686fa663f1d2490fef627f36c37d4",
+      "hash": "sha256:69d6fe5804592617b5d1adfd07db1cdb83a7cb15e716b2d4f605793b5e6640ed",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -157,23 +166,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:217fbc3c6eb1c6a420f09231533d08c68f36a92fa72c1a3c2d56b95ad47b8bbd",
+      "hash": "sha256:2a0fb56aec00248a78c33ca3cedfb07ea5d9ec57a5bb68f9ce46910a62090096",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -195,23 +212,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:cd79574af41ac5ed905360b3ca02710bac37ec34b762bb7a38199cef92269dba",
+      "hash": "sha256:481ad058753ca6471089f143bbb4ae43a6f1f3e4f38f904dc0dab456137bed96",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -233,23 +258,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:8f2a59dc7a926d8c4f8a0ebe41fd509c7438378af7b960b4492ddc574c26b65b",
+      "hash": "sha256:a0369378a7f9a4dca3de2fe390a028609a4debadc8dbd150d188e9d795a46572",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -271,23 +304,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:417eaeb82dbc201ce64273c623dfdfd6f3410416b30bdc326c8507a1e13012af",
+      "hash": "sha256:91036b3d1d4f05e4e3ae87070021ad26a02eacd0b981ac625ae2d948cd05700c",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -309,23 +350,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:741d04f0e05a6697bb60fb712e3cf0e838aef9b29ff0a67c8306a7271b0a1340",
+      "hash": "sha256:f2ca3188c120139cb21c17559570a3b0860a62caeaa4bd1a89e2870e5e07084a",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -347,23 +396,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b0a46ce77ebe1da884cfa34f3b58137a0f08a414d9691f89e5ebac8d20b70d29",
+      "hash": "sha256:2f01e94f0974ac12f65bb1f73262e062154f4ec7f348803d342a3486a86c9a84",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -385,16 +442,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:199a6d1f69ea27bb155e9f86b1e2a6e5e5834215f4f7c1778ceff068d608df3c",
+      "hash": "sha256:43d83df18fd05381965d051e3fbe5954977a1d3f69f57f9616cac4e3b54b46b4",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "skyline",
@@ -423,16 +488,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:fee711b349bb3af6e44df6e7726daedc9a8f9aa4f5ede2e3d2cb6dcd62c3a2d1",
+      "hash": "sha256:d8ed4b27c02abd4ead38e37715749a48d00e37649e73e2a418f571bf48f91c7d",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "skyline",
@@ -461,16 +534,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:4ede6c02a6c78775b2bb9485dbc97f46a5b2e125d00ad2db124fb0dc4e080a51",
+      "hash": "sha256:4a180fe39124e40d0b9ed65ee4893af9a75dc18248b510592d8f8e4a77d7e4e6",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "skyline",
@@ -499,16 +580,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:f747872b73e2bbdd172494164d5d901bcae5c479e872e384226574fd932798f1",
+      "hash": "sha256:f5013950d048e4ff802c25ba8c62c81f03bb9d43d32efe8338dc45ab6e5e85a6",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "skyline",
@@ -537,16 +626,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:a9b8166676fd52d7d8ec9ab9cfb504b35c479eb81417ac2925428580179a0f29",
+      "hash": "sha256:b2867fd96e6ace8041c428fdd936dbdba03bfbeb64547062b4359cafdcd65036",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "skyline",
@@ -575,23 +672,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/major-breach.png",
-      "hash": "sha256:818c6625e7bb493083694b8207fd6d3196f34ea976a827d83c52611d23a76e79",
+      "hash": "sha256:f13ad7eaf883e077200398f78455b44c10f075275094a2f6cc0b35d79c3d9660",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -613,23 +718,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/minor-breach.png",
-      "hash": "sha256:44fa0df1eaaa2c5f83934ca8eb39c08d03a793797af23b6425720c0d7e0ddf52",
+      "hash": "sha256:1febf84375c5212580f547d18ecdf77511687658750132a2b49007397cbb4c4a",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -651,23 +764,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/portal-piers.png",
-      "hash": "sha256:fabf60265f8d40b6ed3ddb6299f1208b7098d48458d358bb3566fff0dc37a96d",
+      "hash": "sha256:c888108d9a0deeb1c0f3586d49f0c472e7a51f079bdadf1a9c5d3f0671a2b5f9",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 3,
-        "triangles": 32430,
+        "triangles": 32190,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -689,23 +810,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/road-and-lamps.png",
-      "hash": "sha256:35dd2b17f92558a677e628c7c5ca5778e58e83579bd2c2876276c9a379bd1dfd",
+      "hash": "sha256:78df0c5a442033a1d51daca03bcec4d9a20733df8c35626fe5fb0dbb0131f671",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -727,23 +856,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/fracture-end.png",
-      "hash": "sha256:f38eabaefa72e00961bf9a3e838799ec766abac9b1f796e5d5f6c6315e1022d4",
+      "hash": "sha256:7307afcb492609ccca7712c90aa5911a61b45ddc97760f641168114dd8d7d984",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -765,23 +902,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/girders-and-footways.png",
-      "hash": "sha256:cad69f1b9a62c84c164efaf444c3e98d28526bbba7263787bd817b6c67e7ebaf",
+      "hash": "sha256:38ffa358c32bc5f459cde134c6e77754005f220535aaa2a8499a0241733d7ffe",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 3,
-        "triangles": 32430,
+        "triangles": 32190,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -803,23 +948,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/surviving-deck-plan.png",
-      "hash": "sha256:5c7d9ec688aba0dd364c9db73205d8252e56a86c769bf5d4091561e97f418a41",
+      "hash": "sha256:27079abf4c923499de89a66af51b1bd1ee1b14f1fb4a995b0b6e25919180c047",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -841,16 +994,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-antonivka-skyline.png",
-      "hash": "sha256:b1f022bb47db7e4b104ca50859e7f6504873af8279ccf62898ee2faf4fe5f184",
+      "hash": "sha256:209c316e1a6a5f21ae07c0441c1b9ae25f702b62c56b3e0227de516850e8f355",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "street",
@@ -879,23 +1040,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-antonivka-district.png",
-      "hash": "sha256:ded0289b59c18cc34399b48dbe98c6ac921660e45c83dd67428bbc567d1ae04f",
+      "hash": "sha256:0c468442d1743932383793199e0d5522abcf02120581bc8ef833da47574a0a5c",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -917,23 +1086,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-antonivka-street.png",
-      "hash": "sha256:94c1f24f30c818f54803c733a314be20cd4e27bfd6dfb6964b6c61db33a0c78e",
+      "hash": "sha256:9aa3932d37357ef9c72ff283be1c6848b18ee01e14df7de2e375bfeee4dc130e",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:09a0da2a131dcadfe5bb9ce17798e8664ee1785f5f3fa78d66d3f0039451175e",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:3f94ab5c387c492dcf9a71ccf7340d820980588fcd66a93c06d32931b4219056",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 20126,
+        "triangles": 20030,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -955,23 +1132,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-antonivka-closeup.png",
-      "hash": "sha256:9838078580a49c0e93a1c3cf2f3625d4585ce6b5d68bc8683197599fdaade049",
+      "hash": "sha256:034cd149e786ab309410faa5b359d12e360a58d507bef1c1ce0c2a8c3fb159d6",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -993,16 +1178,24 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:4632087e4a77dcd6ef8c6bf7a1c9dbd7f48afa811a7ee9aa7b95b0df3c2a2952",
+      "hash": "sha256:d5ec91527fc368f9d9cdf6004a856b54c2e027f94015be7e455d92aad5e55a76",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
         "lodHash": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
         "level": "skyline",
         "distance": "block",
@@ -1031,23 +1224,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:417eaeb82dbc201ce64273c623dfdfd6f3410416b30bdc326c8507a1e13012af",
+      "hash": "sha256:91036b3d1d4f05e4e3ae87070021ad26a02eacd0b981ac625ae2d948cd05700c",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:f864b6a22523d99f19ef9c47aa62ae228ea75867b757b8ee0fd11c7b38336ea6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9662,
+        "triangles": 9638,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1069,23 +1270,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:38e1b00a06725e67a910dcff2398244602c61bbaed7671fa21a0cae3e7f41f03",
+      "hash": "sha256:c537684a955b6bb92e657f682f6d5b145fe3ca21e7f561a69018855eb4ab58de",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:09a0da2a131dcadfe5bb9ce17798e8664ee1785f5f3fa78d66d3f0039451175e",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:3f94ab5c387c492dcf9a71ccf7340d820980588fcd66a93c06d32931b4219056",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 20126,
+        "triangles": 20030,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1107,23 +1316,31 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:52cdef8a5e551a08d7a77945cca6e3cee5787f03edc68a7280ccd4579ef2f0ae",
+      "hash": "sha256:5b81c305f342d29970a50ff01b91795a8276652aedff89294d97b972f8f496ee",
       "state": {
         "assetId": "molen.worldgen.structure.antonivka_road_bridge",
-        "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
-        "lodHash": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3",
+        "runtimeHash": "sha256:7ce48081b827c614cf021192f2168a4d6cf4b9c07ae4fd4f9596a7e409533c63",
+        "lodHash": "sha256:0acebaf1d2bc5b49692a32a093688c41b1e1b81d884083b8b790440feba1df8c",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 38126,
+        "triangles": 37886,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1145,6 +1362,14 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "reviewCenter": [
+          0,
+          0,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }

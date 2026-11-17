@@ -1,0 +1,576 @@
+{
+  "planId": "australian_museum",
+  "id": "australian_museum",
+  "assetId": "molen.worldgen.structure.australian_museum",
+  "title": "Australian Museum, Sydney",
+  "wikidataId": "Q769416",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 151.213264,
+    "latitude": -33.874351
+  },
+  "size": [
+    111.50554656982422,
+    31.129976749420166,
+    71.70119857788086
+  ],
+  "actualBounds": {
+    "min": [
+      -58.01054763793945,
+      -7.650000095367432,
+      -38.986000061035156
+    ],
+    "max": [
+      53.494998931884766,
+      23.479976654052734,
+      32.7151985168457
+    ]
+  },
+  "visualBrief": "The Australian Museum on College and William Streets, with the Barnet sandstone front, Lewis and Vernon wings, Parkes Farmer and research blocks, and Crystal Hall’s diamond glazing.",
+  "nativeAxes": {
+    "x": "east-southeast along William Street",
+    "y": "up",
+    "z": "south-southwest along College Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Australian_Museum_-_15.jpg",
+    "https://commons.wikimedia.org/wiki/File:SLNSW_479514_11_Australian_Museum_SH_564.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Australian_museum.JPG",
+    "https://commons.wikimedia.org/wiki/File:Australian_Museum_-_46.jpg"
+  ],
+  "stories": [
+    {
+      "id": "australian-museum-wp",
+      "url": "https://qualla.com/australian-museum/"
+    }
+  ],
+  "referenceInputHash": "2479afcbb3c5fb7be432fcc77139ede061cfce55ea01d73674f91e9df699795e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r3/r3g/australian_museum/models/australian-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r3/r3g/australian_museum/models/australian-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.93,
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.12
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.78,
+        "metallic": 0.19
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffefe",
+        "roughness": 0.37,
+        "metallic": 0.11,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.72
+        ],
+        "doubleSided": true
+      },
+      "shadow": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.37,
+            "metallic": 0.11,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.72
+            ],
+            "doubleSided": true
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.37,
+            "metallic": 0.11,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.72
+            ],
+            "doubleSided": true
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.19
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.37,
+            "metallic": 0.11,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.72
+            ],
+            "doubleSided": true
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "concrete_plain",
+    "metal_painted",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "geographic-preview",
+    "anchor": [
+      151.213264,
+      -33.874351
+    ],
+    "heading": -0.18124118833518332,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        151.21266819374455,
+        -33.87415989003708
+      ],
+      "modelHeight": 0,
+      "basis": "Original source grade sampled just west of the main College Street sandstone facade near the historic steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -54.6281,
+          -29.2151
+        ],
+        [
+          -44.2937,
+          -29.3774
+        ],
+        [
+          -44.2705,
+          -27.6614
+        ],
+        [
+          -10.1385,
+          -28.2009
+        ],
+        [
+          -10.233,
+          -34.4081
+        ],
+        [
+          -10.3028,
+          -38.4809
+        ],
+        [
+          10.665,
+          -38.8149
+        ],
+        [
+          10.8273,
+          -28.5459
+        ],
+        [
+          52.5841,
+          -29.2151
+        ],
+        [
+          52.5944,
+          -28.5946
+        ],
+        [
+          53.5209,
+          29.5312
+        ],
+        [
+          25.6867,
+          29.9804
+        ],
+        [
+          -36.2633,
+          30.9549
+        ],
+        [
+          -36.2396,
+          32.2634
+        ],
+        [
+          -53.7505,
+          32.5411
+        ],
+        [
+          -53.9767,
+          18.3341
+        ],
+        [
+          -51.4095,
+          18.2937
+        ],
+        [
+          -51.5456,
+          9.7061
+        ],
+        [
+          -57.2051,
+          9.7926
+        ],
+        [
+          -57.4916,
+          -8.7945
+        ],
+        [
+          -52.4976,
+          -8.8722
+        ],
+        [
+          -52.6887,
+          -21.1957
+        ],
+        [
+          -54.4975,
+          -21.1698
+        ]
+      ],
+      "basis": "Exclude generic overlaps on the mapped Australian Museum building while preserving adjoining properties."
+    },
+    "featureIds": [
+      "way/16748926",
+      "node/9979030911"
+    ],
+    "source": "https://www.openstreetmap.org/way/16748926",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1aa2c97abdfb164232c6a14d593b2fbcf8c4e6caa187494e1eb8aef1a3a21207",
+    "notes": "The 23-vertex original exterior outline measures about 111 by 71 metres including the William Street Crystal Hall projection and the College Street stair and portico. The official documented wings and map controls will guide segmentation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing post-2020 exterior at College and William Streets. The map determines the building perimeter. Cornice, gable, internal wing divisions, roof appurtenances, old window and relief details, and exact site grade have reconstructed dimensions.",
+    "The nearly 20 by 8 m Crystal Hall and 4.5 m Museum Walk follow the design and published perimeter. The translucent diamond colors and steel framing are geometric approximations to the cleared architectural image. The known decorative artwork on other modern walls is outside the geometric reconstruction.",
+    "The frozen 256 m original site elevation field is used for terrain review. Modern foundations and lower wings follow its falling grade east and north with estimated footing depths. The model includes the mapped linked museum block. Adjacent Sydney Grammar School and detached structures are outside the exterior scope."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The 1872 New South Wales photograph is public domain. The named modern photographers released their original photographs under CC0. OpenStreetMap geometry is ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        -138,
+        87,
+        -102
+      ],
+      "lookAt": [
+        -5,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        -138,
+        87,
+        -102
+      ],
+      "lookAt": [
+        -5,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        -138,
+        87,
+        -102
+      ],
+      "lookAt": [
+        -5,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        -138,
+        87,
+        -102
+      ],
+      "lookAt": [
+        -5,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "college-street-giant-order-and-stairs",
+      "position": [
+        -95,
+        10,
+        -22
+      ],
+      "lookAt": [
+        -53,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "william-street-crystal-hall-and-museum-walk",
+      "position": [
+        -24,
+        10,
+        -66
+      ],
+      "lookAt": [
+        -1,
+        5.5,
+        -34
+      ]
+    },
+    {
+      "name": "eastern-wings-and-atrium-roof",
+      "position": [
+        92,
+        75,
+        -37
+      ],
+      "lookAt": [
+        9,
+        9,
+        -3
+      ]
+    },
+    {
+      "name": "vernon-wing-and-southern-return",
+      "position": [
+        -90,
+        31,
+        75
+      ],
+      "lookAt": [
+        -14,
+        8,
+        25
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16443,
+    "vertices": 49329,
+    "materials": 6,
+    "bytes": 2101528,
+    "sha256": "sha256:d6a944b5bc9cf432cdbc1be63a8362c16ced127e2de18a42c674127e488fe809"
+  }
+}

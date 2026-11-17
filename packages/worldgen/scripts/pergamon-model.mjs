@@ -128,6 +128,7 @@ export const pergamonStudy = {
   importReason: r.scope,
   previewGround: scope.previewGround,
   mediumFiContext: scope.mediumFiContext,
+  appearance: scope.appearance,
   geographic: () => scope.geographic,
   geographicNote: r.terrainBasis,
   limitations: [r.scope, r.identityBasis, r.heightBasis, r.terrainBasis],

@@ -137,7 +137,7 @@ const scene = {
     {
       id: 'ground',
       components: {
-        transform: { pos: [0, -0.15, 0], scale: [1100, 0.2, 1100], rot: [0, 0, 0, 1] },
+        transform: { pos: [0, -8.15, 0], scale: [1100, 0.2, 1100], rot: [0, 0, 0, 1] },
         renderable: {
           kind: 'primitive',
           ref: 'box',
@@ -175,7 +175,7 @@ const source = {
   kind: 'static-structure',
   title: brief.title,
   files: {
-    definitions: ['spec.json', 'scene.json', 'model-brief.json'],
+    definitions: ['spec.json', 'scene.json', 'model-brief.json', 'models/site-fit.json'],
     models: [
       {
         path: 'models/source.glb',

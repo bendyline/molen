@@ -1,0 +1,774 @@
+{
+  "id": "red_gate_building",
+  "planId": "red_gate_building",
+  "collectionId": "seven_sisters",
+  "assetId": "molen.worldgen.structure.red_gate_building",
+  "title": "Red Gate Building",
+  "category": "tower",
+  "quality": "detailed",
+  "wikidataId": "Q1992056",
+  "referenceCoordinate": {
+    "longitude": 37.64953442,
+    "latitude": 55.7693928
+  },
+  "nativeAxes": "+Y up. +Z faces southwest toward Sadovaya-Spasskaya and Red Gate Square. +X follows the main elevation toward Kalanchevskaya.",
+  "visualBrief": "A limestone high-rise with a brown granite Garden Ring portico, paired long residential wings around an open rear court, four corner loggias, tiered stone pinnacles, and a bronze star spire. The east wing carries the northern Metro door bank.",
+  "size": [
+    95.43540573120117,
+    154.10906982421875,
+    116.53961944580078
+  ],
+  "actualBounds": {
+    "min": [
+      -48.360633850097656,
+      -16,
+      -99.37487030029297
+    ],
+    "max": [
+      47.074771881103516,
+      138.10906982421875,
+      17.164749145507812
+    ]
+  },
+  "referencePages": [
+    "https://www.mos.ru/upload/documents/files/9006/GIKESadovaya-Spasskaya21.pdf",
+    "https://commons.wikimedia.org/wiki/File:Moscow_Red_Gate_Building_asv2019-06.jpg",
+    "https://commons.wikimedia.org/wiki/File:Red-Gate-Building_Moscow.jpg",
+    "https://commons.wikimedia.org/wiki/File:Red_Gates_Administrative_Building_rear_view_(10006284625).jpg",
+    "https://commons.wikimedia.org/wiki/File:Krasniye_Vorota_north_entrance.JPG",
+    "https://www.openstreetmap.org/way/32545680"
+  ],
+  "geometrySource": "Original deterministic geometry on the mapped parent and 27 parts. Photos govern the facade, height schedule and ornament.",
+  "materialMethod": "Metric shared limestone, granite, painted metal, copper and wood with locally colored inset glass. No embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/uc/ucf/red_gate_building/models/red-gate-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/red_gate_building/models/red-gate-model.mjs",
+    "inputHash": "sha256:70d8ca6563b912ba2823d766ba135412a5cfb1ce253179bed08c90da4e811640",
+    "export": "buildSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "pale": {
+        "slot": "wall",
+        "graph": "stone_limestone"
+      },
+      "rusticated": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_copper"
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "Blue gray window glass"
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Blue gray window glass"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Blue gray window glass"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "rusticated": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Blue gray window glass"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.64925196766853,
+      55.76947397471619
+    ],
+    "heading": -0.4089078290225062,
+    "bounds": [
+      37.648416329246054,
+      55.76913796414732,
+      37.65044942193529,
+      55.77049346171737
+    ],
+    "source": "https://www.openstreetmap.org/way/32545680",
+    "notes": "The mapped wings establish the Garden Ring front and the long court behind it. The east wing Metro entrances follow two PMTiles points along Kalanchevskaya.",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Terrarium at the Garden Ring pavement beyond the central portico.",
+    "terrainReference": {
+      "anchor": [
+        37.64914529539463,
+        55.76933549975756
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Terrarium at the Garden Ring pavement beyond the central portico."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.239,
+          -98.742
+        ],
+        [
+          -15.213,
+          -81.364
+        ],
+        [
+          -33.342,
+          -81.379
+        ],
+        [
+          -33.378,
+          -73.858
+        ],
+        [
+          -30.291,
+          -73.915
+        ],
+        [
+          -30.239,
+          -6.208
+        ],
+        [
+          -19.785,
+          -6.162
+        ],
+        [
+          -19.791,
+          -12.933
+        ],
+        [
+          -12.866,
+          -13.005
+        ],
+        [
+          -11.664,
+          -15.722
+        ],
+        [
+          -9.799,
+          -18.178
+        ],
+        [
+          -7.513,
+          -20.083
+        ],
+        [
+          -3.989,
+          -21.244
+        ],
+        [
+          -3.948,
+          -27.486
+        ],
+        [
+          5.314,
+          -27.655
+        ],
+        [
+          5.427,
+          -21.481
+        ],
+        [
+          8.674,
+          -20.325
+        ],
+        [
+          11.35,
+          -18.373
+        ],
+        [
+          13.082,
+          -15.645
+        ],
+        [
+          14.063,
+          -12.958
+        ],
+        [
+          20.083,
+          -13.005
+        ],
+        [
+          19.981,
+          -5.638
+        ],
+        [
+          30.81,
+          -5.571
+        ],
+        [
+          30.917,
+          -72.065
+        ],
+        [
+          33.63,
+          -72.143
+        ],
+        [
+          33.661,
+          -80.942
+        ],
+        [
+          17.494,
+          -81.076
+        ],
+        [
+          17.489,
+          -98.83
+        ],
+        [
+          29.972,
+          -98.747
+        ],
+        [
+          46.334,
+          -60.99
+        ],
+        [
+          46.38,
+          16.421
+        ],
+        [
+          32.685,
+          16.498
+        ],
+        [
+          32.541,
+          8.14
+        ],
+        [
+          19.97,
+          8.278
+        ],
+        [
+          19.965,
+          12.491
+        ],
+        [
+          -19.755,
+          12.496
+        ],
+        [
+          -19.662,
+          8.063
+        ],
+        [
+          -32.453,
+          8.114
+        ],
+        [
+          -32.464,
+          16.539
+        ],
+        [
+          -47.505,
+          16.467
+        ],
+        [
+          -47.659,
+          -98.789
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.239,
+            -98.742
+          ],
+          [
+            -15.213,
+            -81.364
+          ],
+          [
+            -33.342,
+            -81.379
+          ],
+          [
+            -33.378,
+            -73.858
+          ],
+          [
+            -30.291,
+            -73.915
+          ],
+          [
+            -30.239,
+            -6.208
+          ],
+          [
+            -19.785,
+            -6.162
+          ],
+          [
+            -19.791,
+            -12.933
+          ],
+          [
+            -12.866,
+            -13.005
+          ],
+          [
+            -11.664,
+            -15.722
+          ],
+          [
+            -9.799,
+            -18.178
+          ],
+          [
+            -7.513,
+            -20.083
+          ],
+          [
+            -3.989,
+            -21.244
+          ],
+          [
+            -3.948,
+            -27.486
+          ],
+          [
+            5.314,
+            -27.655
+          ],
+          [
+            5.427,
+            -21.481
+          ],
+          [
+            8.674,
+            -20.325
+          ],
+          [
+            11.35,
+            -18.373
+          ],
+          [
+            13.082,
+            -15.645
+          ],
+          [
+            14.063,
+            -12.958
+          ],
+          [
+            20.083,
+            -13.005
+          ],
+          [
+            19.981,
+            -5.638
+          ],
+          [
+            30.81,
+            -5.571
+          ],
+          [
+            30.917,
+            -72.065
+          ],
+          [
+            33.63,
+            -72.143
+          ],
+          [
+            33.661,
+            -80.942
+          ],
+          [
+            17.494,
+            -81.076
+          ],
+          [
+            17.489,
+            -98.83
+          ],
+          [
+            29.972,
+            -98.747
+          ],
+          [
+            46.334,
+            -60.99
+          ],
+          [
+            46.38,
+            16.421
+          ],
+          [
+            32.685,
+            16.498
+          ],
+          [
+            32.541,
+            8.14
+          ],
+          [
+            19.97,
+            8.278
+          ],
+          [
+            19.965,
+            12.491
+          ],
+          [
+            -19.755,
+            12.496
+          ],
+          [
+            -19.662,
+            8.063
+          ],
+          [
+            -32.453,
+            8.114
+          ],
+          [
+            -32.464,
+            16.539
+          ],
+          [
+            -47.505,
+            16.467
+          ],
+          [
+            -47.659,
+            -98.789
+          ]
+        ],
+        [
+          [
+            46.298,
+            -80.927
+          ],
+          [
+            17.494,
+            -81.076
+          ],
+          [
+            17.489,
+            -98.83
+          ],
+          [
+            46.447,
+            -98.747
+          ]
+        ],
+        [
+          [
+            23.51,
+            -98.876
+          ],
+          [
+            42.764,
+            -98.799
+          ],
+          [
+            42.769,
+            -81.045
+          ],
+          [
+            23.736,
+            -81.035
+          ],
+          [
+            23.607,
+            -85.555
+          ],
+          [
+            17.52,
+            -85.663
+          ],
+          [
+            17.51,
+            -93.713
+          ],
+          [
+            23.53,
+            -93.759
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Mapped U-shaped parent and the two eastern rear parts that extend outside it. The independent Metro pavilion and neighboring buildings retain their own geometry."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:30180f026440f819934224e132c50ba6ac118f7c7e8f3946cb559dd6f4108c70",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic evidence is tracked in qa.json.",
+  "limitations": [
+    "Window profiles, the stone crest, and bronze star are photo-proportioned exterior reconstructions.",
+    "Standard viewer terrain controls the sidewalk and retaining base. The Metro model covers the exterior door bank."
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        60,
+        -18
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "rear-courtyard",
+      "position": [
+        7,
+        37,
+        -128
+      ],
+      "lookAt": [
+        0,
+        62,
+        -7
+      ],
+      "fov": 60
+    },
+    {
+      "name": "entrance-and-masonry",
+      "position": [
+        -13,
+        8,
+        45
+      ],
+      "lookAt": [
+        0,
+        9.7,
+        14
+      ],
+      "fov": 51
+    },
+    {
+      "name": "spire-and-limestone-crown",
+      "position": [
+        38,
+        112,
+        49
+      ],
+      "lookAt": [
+        0,
+        107,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "metro-doors",
+      "position": [
+        67,
+        2,
+        -47
+      ],
+      "lookAt": [
+        43,
+        -2.4,
+        -60
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "red-gate-building-skyline",
+      "position": [
+        71,
+        59,
+        180
+      ],
+      "lookAt": [
+        0,
+        66,
+        -20
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "red-gate-building-district",
+      "position": [
+        71,
+        59,
+        180
+      ],
+      "lookAt": [
+        0,
+        66,
+        -20
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "red-gate-building-street",
+      "position": [
+        71,
+        59,
+        180
+      ],
+      "lookAt": [
+        0,
+        66,
+        -20
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "red-gate-building-closeup",
+      "position": [
+        71,
+        59,
+        180
+      ],
+      "lookAt": [
+        0,
+        66,
+        -20
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 46124,
+    "vertices": 129006,
+    "materials": 6,
+    "bytes": 5201428,
+    "sha256": "sha256:342efba891e9056aa98706608be7f5beab7227793666d63e29b0c91b60cea9e2"
+  }
+}

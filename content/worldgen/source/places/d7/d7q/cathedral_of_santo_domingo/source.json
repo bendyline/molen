@@ -1,0 +1,69 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cathedral_of_santo_domingo",
+  "kind": "static-structure",
+  "title": "Cathedral of Santo Domingo",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cathedral_of_santo_domingo",
+        "output": "assets/places/d7/d7q/cathedral_of_santo_domingo/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c409dd3e33efbcc776a83089411eecf4dc4da8bf73e7f2b85f70a7c25a884a30"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cathedral-of-santo-domingo",
+        "path": "models/generate-cathedral-of-santo-domingo.mjs"
+      },
+      {
+        "id": "cathedral-of-santo-domingo-model",
+        "path": "models/cathedral-of-santo-domingo-model.mjs"
+      },
+      {
+        "id": "north-portal",
+        "path": "models/north-portal.mjs"
+      },
+      {
+        "id": "west-front",
+        "path": "models/west-front.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/cathedral-of-santo-domingo-controls.json",
+      "reference-rights/commons-munseys-cathedral-1899.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10022-14672.png",
+      "terrain-sources/terrarium-15-10023-14672.png",
+      "preview.png",
+      "north-portal-controls.json",
+      "reference-rights/munseys-magazine-1899-page-891.jpg",
+      "reference-rights/commons-pan-american-union-march-1915.json",
+      "reference-originals/pan-american-union-march-1915.pdf",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

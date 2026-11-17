@@ -1,10 +1,13 @@
 /** Original full Stratford regional interchange exterior, current physical PMTiles fit. */
+import { readFileSync } from 'node:fs';
 import {
   beam,
   beamPath,
+  loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
+const site = JSON.parse(readFileSync(new URL('./site-fit.json', import.meta.url)));
 const lin = (h) =>
   h.match(/\w\w/g).map((v) => {
     const s = parseInt(v, 16) / 255;
@@ -95898,6 +95901,16 @@ function ringEdges(poly, fn) {
   }
 }
 
+function platformHeight(f, x) {
+  const heights = site.platforms[f.name].along;
+  for (let i = 1; i < heights.length; i++) {
+    const [a, lo] = heights[i - 1];
+    const [b, hi] = heights[i];
+    if (x <= b) return lo + ((hi - lo) * Math.max(0, x - a)) / (b - a);
+  }
+  return heights.at(-1)[1];
+}
+
 function roofHeight(f, [x, z]) {
   if (f.main) {
     const t = Math.max(0, Math.min(1, (z - 10) / 44));
@@ -95916,11 +95929,14 @@ function roofHeight(f, [x, z]) {
     lo = a[1] + (b[1] - a[1]) * t,
     hi = a[2] + (b[2] - a[2]) * t,
     u = Math.max(0, Math.min(1, (z - lo) / (hi - lo || 1)));
-  return f.eave + (f.crown - f.eave) * (1 - Math.abs(u - 0.5) * 2);
+  return f.eave + (f.crown - f.eave) * (1 - Math.abs(u - 0.5) * 2) + platformHeight(f, x) - 0.3;
 }
 function roofFamily(o, c, f, level) {
   const surf = f.main ? 'warm' : 'roof';
-  for (const p of f.patches[level]) panel(o, c, p, (q) => roofHeight(f, q), surf);
+  for (const p of f.patches[level]) {
+    panel(o, c, p, (q) => roofHeight(f, q), surf);
+    if (!f.main && c.fine) panel(o, c, p, (q) => roofHeight(f, q) - 0.22, surf, [0, -1, 0]);
+  }
   for (const p of f.polys)
     ringEdges(p, (e) => {
       const a = e.a,
@@ -95954,11 +95970,13 @@ function roofFamily(o, c, f, level) {
     });
     beamPath(adapter(o, c), 'metal', pts, c.master ? 0.12 : 0.16, 0.15, C.metal);
     if (c.fine) {
-      const z = (z0 + z1) / 2;
+      const z = f.main ? (z0 + z1) / 2 : platformSupport(f, x, z0, z1);
+      if (z === undefined) continue;
+      const foot = f.main ? -8 : platformHeight(f, x) - 0.08;
       beam(
         adapter(o, c),
         'metal',
-        [x, -8, z],
+        [x, foot, z],
         [x, roofHeight(f, [x, z]) - 0.24, z],
         0.17,
         0.19,
@@ -95969,7 +95987,7 @@ function roofFamily(o, c, f, level) {
           beam(
             adapter(o, c),
             'metal',
-            [x, 3.3, z],
+            [x, roofHeight(f, [x, z]) - 1.25, z],
             [x, roofHeight(f, [x, z + d * (z1 - z0) * 0.35]) - 0.22, z + d * (z1 - z0) * 0.35],
             0.11,
             0.13,
@@ -96125,78 +96143,113 @@ function bridge(o, c) {
           );
       }
     }
-    if (c.fine && j % 2 === 0) {
-      const x = (a[0] + b[0]) / 2,
-        z = (a[1] + b[1]) / 2;
-      for (const d of [-3, 3])
-        beam(
-          adapter(o, c),
+  }
+  for (const [x, y, z] of site.bridgePiers) {
+    const ring = (h) => [
+      [x - 0.39, h, z - 0.35],
+      [x - 0.39, h, z + 0.35],
+      [x + 0.39, h, z + 0.35],
+      [x + 0.39, h, z - 0.35],
+    ];
+    loft(adapter(o, c), 'stone', [ring(y), ring(lo - 0.5)], C.stone, { cap: false });
+  }
+  meridianSteps(o, c);
+}
+
+function meridianSteps(o, c) {
+  if (c.fine)
+    for (const [x, y, z, top] of site.stepPiers) {
+      beam(adapter(o, c), 'stone', [x, y, z], [x, top, z], 0.68, 0.77, C.stone);
+    }
+  for (const { from: a, to: b, y0, y1, steps } of site.stairs) {
+    const n = steps === 0 ? 1 : c.near ? steps : c.fine ? Math.ceil(steps / 2) : 1;
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    const nx = (b[1] - a[1]) / length;
+    const nz = (a[0] - b[0]) / length;
+    const point = (t, offset) => [
+      a[0] + (b[0] - a[0]) * t + nx * offset,
+      a[1] + (b[1] - a[1]) * t + nz * offset,
+    ];
+    for (let j = 0; j < n; j++) {
+      const t = j / n;
+      const next = (j + 1) / n;
+      const y = y0 + (y1 - y0) * next;
+      const ring = [point(t, 4), point(next, 4), point(next, -4), point(t, -4)];
+      if (c.detail) slab(o, c, ring, y - 0.42, y, 'stone');
+      else
+        Q(
+          o,
+          c,
+          ring.map(([x, z]) => [x, y, z]),
           'stone',
-          [x + N[0] * d, -8, z + N[1] * d],
-          [x + N[0] * d, lo - 0.5, z + N[1] * d],
-          0.65,
-          0.7,
           C.stone,
+          [0, 1, 0],
         );
     }
-  }
-  // Approximate southlanding and stairs between the mapped bridge end and station forecourt.
-  const a = ps.at(-1),
-    b = [87, 36],
-    L = Math.hypot(b[0] - a[0], b[1] - a[1]),
-    U = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
-    N = [U[1], -U[0]],
-    n = c.master ? 42 : c.near ? 30 : c.fine ? 15 : 3;
-  for (let k = 0; k < n; k++) {
-    const u = (L * k) / n,
-      v = (L * (k + 1)) / n,
-      y = lo - ((lo - 0.65) * k) / n;
-    const r = [
-      [a[0] + U[0] * u + N[0] * 4, a[1] + U[1] * u + N[1] * 4],
-      [a[0] + U[0] * v + N[0] * 4, a[1] + U[1] * v + N[1] * 4],
-      [a[0] + U[0] * v - N[0] * 4, a[1] + U[1] * v - N[1] * 4],
-      [a[0] + U[0] * u - N[0] * 4, a[1] + U[1] * u - N[1] * 4],
-    ];
-    slab(o, c, r, y - 0.4, y, 'stone');
-  }
-  if (c.fine)
-    for (const d of [-4, 4])
-      beam(
-        adapter(o, c),
-        'rust',
-        [a[0] + N[0] * d, lo + 1, a[1] + N[1] * d],
-        [b[0] + N[0] * d, 1.65, b[1] + N[1] * d],
-        0.13,
-        0.16,
-        C.rust,
-      );
-}
-function platformsAndRails(o, c) {
-  if (!c.detail) return;
-  for (const f of controls.roofFamilies.filter((f) => !f.main))
-    for (const p of f.polys) {
-      panel(o, c, p, 0.3, 'stone');
-      if (c.near)
-        ringEdges(p, (e) => {
-          if (e.L > 8)
-            beam(
-              adapter(o, c),
-              'stone',
-              e.p([0, 0.32, 0]),
-              e.p([e.L, 0.32, 0]),
-              0.18,
-              0.18,
-              C.stone,
-            );
-        });
+    if (!c.fine) continue;
+    for (const side of [-3.9, 3.9]) {
+      const [x, z] = point(0, side);
+      const [u, v] = point(1, side);
+      for (const [dy, width] of [
+        [1.05, 0.12],
+        [-0.36, 0.36],
+      ]) {
+        beam(adapter(o, c), 'rust', [x, y0 + dy, z], [u, y1 + dy, v], width, 0.17, C.rust);
+      }
+      if (c.near) {
+        for (const t of [0.08, 0.5, 0.92]) {
+          const [x, z] = point(t, side);
+          const y = y0 + (y1 - y0) * t;
+          beam(adapter(o, c), 'rust', [x, y - 0.15, z], [x, y + 1.05, z], 0.08, 0.08, C.rust);
+        }
+      }
     }
-  if (c.fine) {
-    for (const z of [-44, -36, -6, 5]) {
-      for (const d of [-0.7, 0.7])
-        beam(adapter(o, c), 'rail', [-180, 0.13, z + d], [155, 0.13, z + d], 0.075, 0.11, C.rail);
-      if (c.near)
-        for (let x = -177; x < 155; x += c.master ? 0.8 : 2.4)
-          box(o, c, x - 0.11, x + 0.11, -0.03, 0.05, z - 1.1, z + 1.1, 'base');
+  }
+}
+
+function platformSupport(f, x, z0, z1) {
+  const contains = (ring, z) => {
+    let hits = 0;
+    for (let i = 1; i < ring.length; i++) {
+      const [a, u] = ring[i - 1];
+      const [b, v] = ring[i];
+      if (a > x !== b > x && u + ((v - u) * (x - a)) / (b - a) > z) hits++;
+    }
+    return hits % 2 === 1;
+  };
+  return [0.5, 0.28, 0.72]
+    .map((t) => z0 + (z1 - z0) * t)
+    .find((z) =>
+      site.platforms[f.name].slab.some(
+        ([outer, ...holes]) => contains(outer, z) && !holes.some((hole) => contains(hole, z)),
+      ),
+    );
+}
+
+function platforms(o, c) {
+  if (!c.detail) return;
+  for (const f of controls.roofFamilies.filter((f) => !f.main)) {
+    const { slab, street, near } = site.platforms[f.name];
+    for (const p of c.near ? near : c.fine ? street : slab)
+      panel(o, c, p, ([x]) => platformHeight(f, x), 'base');
+    if (!c.near) continue;
+    for (const p of slab) {
+      ringEdges(p, (e) => {
+        const p = [e.a[0], platformHeight(f, e.a[0]), e.a[1]];
+        const q = [e.b[0], platformHeight(f, e.b[0]), e.b[1]];
+        Q(o, c, [p, q, [q[0], q[1] - 0.55, q[2]], [p[0], p[1] - 0.55, p[2]]], 'base', C.base, e.N);
+      });
+    }
+  }
+}
+
+function meridianApron(o, c) {
+  const grade = site.grade;
+  for (let i = 1; i < grade.length; i++) {
+    const a = grade[i - 1];
+    const b = grade[i];
+    for (let j = 1; j < a.length; j++) {
+      Q(o, c, [a[j - 1], a[j], b[j], b[j - 1]], 'base', C.stone, [0, 1, 0]);
     }
   }
 }
@@ -96205,8 +96258,9 @@ export function buildStationLevel(o, level = 'master') {
   if (!c) throw Error('Unknown station tier ' + level);
   for (const f of controls.roofFamilies) roofFamily(o, c, f, level);
   mainHall(o, c);
+  meridianApron(o, c);
   bridge(o, c);
-  platformsAndRails(o, c);
+  platforms(o, c);
   for (const id of [511, 525, 526, 850, 851, 852, 853, 866])
     for (const p of controls.groups[id]) {
       const hi = [525, 526].includes(id) ? 5 : 3.8;

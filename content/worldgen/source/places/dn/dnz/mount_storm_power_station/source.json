@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mount_storm_power_station",
+  "kind": "static-structure",
+  "title": "Mount Storm Power Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mount_storm_power_station",
+        "output": "assets/places/dn/dnz/mount_storm_power_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3d7786caf766a842ad51cedf63dee416b9e90d574d81f5ada8e4c1136df73dcc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mount-storm-power-station",
+        "path": "models/generate-mount-storm-power-station.mjs"
+      },
+      {
+        "id": "mount-storm-power-station-model",
+        "path": "models/mount-storm-power-station-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mount-storm-controls.json",
+      "reference-rights/commons-raeky-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9168-12499.png",
+      "terrain-sources/terrarium-15-9168-12500.png",
+      "terrain-sources/terrarium-15-9169-12499.png",
+      "terrain-sources/terrarium-15-9169-12500.png",
+      "preview.png",
+      "reference-originals/usda-naip-2007-map.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

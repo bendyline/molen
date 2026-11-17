@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kykkos_monastery",
+  "kind": "static-structure",
+  "title": "Kykkos Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kykkos_monastery",
+        "output": "assets/places/sw/swp/kykkos_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a61afaa2223bfe548635cd24415eae9ecc3067c2706abc7ca1f4ff6db81df1d2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kykkos-monastery",
+        "path": "models/generate-kykkos-monastery.mjs"
+      },
+      {
+        "id": "kykkos-monastery-model",
+        "path": "models/kykkos-monastery-model.mjs"
+      },
+      {
+        "id": "kykkos-courtyard",
+        "path": "models/kykkos-courtyard.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kykkos-controls.json",
+      "reference-rights/commons-olavfin-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-n34-e032.tif",
+      "preview.png",
+      "courtyard-controls.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

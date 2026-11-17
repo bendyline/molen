@@ -56,6 +56,7 @@ for (const model of ksiazSwissModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -163,12 +164,22 @@ for (const model of ksiazSwissModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: 'preview-proposal',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
-      groundModelY: 0,
+      groundModelY: fit.contact.modelHeight,
+      groundContactReviewed: true,
+      groundContactBasis: frame.reconstruction.registration,
+      terrainReference: {
+        anchor: fit.contact.anchor,
+        modelHeight: fit.contact.modelHeight,
+        basis: frame.reconstruction.registration,
+      },
+      bounds: fit.bounds,
+      buildingCutout: fit.buildingCutout,
+      orientationPolicy: 'map-verified',
       replaceFootprint: false,
       featureIds: [`way/${model.way}`],
       source: frame.sourceUrl,
@@ -176,8 +187,7 @@ for (const model of ksiazSwissModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped.',
+      notes: frame.reconstruction.registration,
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -192,9 +202,9 @@ for (const model of ksiazSwissModels.filter(
     limitations: [
       'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.',
-      'No independent Wikidata identifier is asserted; main facade facing remains provisional.',
-      'References show 2012 appearance; current restoration state is unconfirmed.',
-      'No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending.',
+      'Listed independently by address, mapped footprint and heritage identifier.',
+      'Exterior finish and roof details follow the linked photographs. Interiors, neighboring buildings and parcel fences are outside this model.',
+      'Stair dimensions and the sheltered landing are photographic estimates fitted to the retained terrain.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -285,13 +295,14 @@ for (const model of ksiazSwissModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). The [placement review](QA-REVIEW.md) shows the approach and fitted exterior.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    'Own map footprint; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. An independent Wikidata identity is not asserted. Facade azimuth and actual geographic fit remain pending.\n\n' +
+    frame.reconstruction.registration +
+    ' Heights and unseen details are photographic estimates.\n\n' +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/generate-ksiaz-swiss-houses.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +
@@ -300,7 +311,7 @@ for (const model of ksiazSwissModels.filter(
     bytes.length +
     ' source bytes;' +
     mesh.groups.length +
-    ' merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.\n\n' +
+    ' merged material groups with shared plaster, tile, rubble, sandstone, brick and timber. Flat muted glazing adds one material. Four runtime levels are generated from the same recipe.\n\n' +
     'Source hash: ' +
     hash(bytes) +
     '\n';

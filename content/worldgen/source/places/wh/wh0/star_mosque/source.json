@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.star_mosque",
+  "kind": "static-structure",
+  "title": "Star Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.star_mosque",
+        "output": "assets/places/wh/wh0/star_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0dd1ebafd64321d6b8cea2f060200cc21b45afc987e2000e0fb3fa2dbe52e2eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-star-mosque",
+        "path": "models/generate-star-mosque.mjs"
+      },
+      {
+        "id": "star-mosque-model",
+        "path": "models/star-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-dhaka-embassy-verandah.json",
+      "reference-rights/flickr-dhaka-embassy-verandah.html",
+      "reference-images/star-mosque-embassy-verandah-2021.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-24612-14160.png",
+      "terrain-sources/terrarium-15-24612-14161.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

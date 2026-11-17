@@ -3,6 +3,15 @@ import { expect, it } from 'vitest';
 import { buildKsiazStable } from '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
+const frame = JSON.parse(
+  readFileSync(
+    new URL(
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/map-frame.json',
+      import.meta.url,
+    ),
+  ),
+);
+
 it('keeps the stable ensemble deterministic and within browser budgets using shared materials', async () => {
   const id = 'molen.worldgen.structure.ksiaz_stable_ensemble',
     levels = [];
@@ -21,9 +30,9 @@ it('keeps the stable ensemble deterministic and within browser budgets using sha
       types = new Map(),
       pos = [];
     expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 7);
+    expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 8);
     if (name !== 'skyline')
-      expect(g.materials.filter((m) => m.extras?.molenSurface)).toHaveLength(6);
+      expect(g.materials.filter((m) => m.extras?.molenSurface)).toHaveLength(7);
     for (const m of g.meshes)
       for (const p of m.primitives) {
         pos.push(g.accessors[p.attributes.POSITION]);
@@ -34,7 +43,7 @@ it('keeps the stable ensemble deterministic and within browser budgets using sha
         }
       }
     for (const t of types.values()) expect(t.size).toBe(1);
-    expect(Math.min(...pos.map((a) => a.min[1]))).toBe(0);
+    expect(Math.min(...pos.map((a) => a.min[1]))).toBeLessThan(-3);
     expect(Math.max(...pos.map((a) => a.max[1]))).toBeLessThan(22);
     levels.push(a);
   }
@@ -62,7 +71,7 @@ it('retains a true open quadrangle, secondary entry and arched gate passage at e
           );
           return w ? [w.reduce((s, v, i) => s + v * t[i][1], 0)] : [];
         })
-        .filter((y) => y > 0.02);
+        .filter((y) => y > 1);
     for (const [x, z] of [
       [0, 0],
       [10, 10],
@@ -85,22 +94,16 @@ it('retains a true open quadrangle, secondary entry and arched gate passage at e
           return w ? [w.reduce((s, v, i) => s + v * t[i][0], 0)] : [];
         })
         .filter((x) => x > -65 && x < -50);
-    for (const z of [-12, -10.4, -8.8]) expect(gate(2, z), `${level} gate ${z}`).toHaveLength(0);
-    expect(gate(5.4, -10.4)).toHaveLength(0);
-    expect(gate(8, -10.4).length).toBeGreaterThan(0);
+    const z = frame.siteFit.gate.center[1];
+    for (const offset of [-2, 0, 2])
+      expect(gate(2, z + offset), `${level} gate ${offset}`).toHaveLength(0);
+    expect(gate(5.4, z)).toHaveLength(0);
+    expect(gate(8, z).length).toBeGreaterThan(0);
     expect(gate(2, -16).length).toBeGreaterThan(0);
   }
 });
 
 it('covers every mapped stable perimeter with a roof, including porch and turret projections', () => {
-  const frame = JSON.parse(
-    readFileSync(
-      new URL(
-        '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/map-frame.json',
-        import.meta.url,
-      ),
-    ),
-  );
   for (const level of ['skyline', 'district', 'street', 'closeup']) {
     const roofs = [];
     buildKsiazStable(

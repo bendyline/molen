@@ -19,13 +19,13 @@
   },
   "size": [
     20.573999404907227,
-    7.820000171661377,
+    10.09657907485962,
     20.447999954223633
   ],
   "actualBounds": {
     "min": [
       -10.286999702453613,
-      0,
+      -2.276578903198242,
       -10.223999977111816
     ],
     "max": [
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X along longest mapped edge in source vertex order",
     "longitudinal": "+Z perpendicular to mapped edge",
-    "origin": "Own mapped envelope center; Y0 estimated local terrain contact"
+    "origin": "Mapped envelope center; model elevation uses the retained approach control."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -53,7 +53,8 @@
       "slate": "#798184",
       "timber": "#af946b",
       "metal": "#738276",
-      "glass": "#536c7c"
+      "glass": "#536c7c",
+      "weatheredTimber": "#685444"
     },
     "colorEncoding": "sRGB decoded to linear COLOR_0",
     "materialBudget": 8
@@ -83,7 +84,7 @@
   "reconstruction": {
     "basis": "Own attributed map footprint and linked primary photographs; source interpretation rather than surveyed dimensions.",
     "scope": "Independent exterior component of ksiaz_castle_and_park_complex; full castle and park remains incomplete.",
-    "registration": "Own map-derived axis and anchor; photograph-facing and vertical terrain fit must be checked before activation."
+    "registration": "The two photographed arches face the inner yard on the signed L-shaped footprint. A mapped path reaches the forge at its southern end. The Terrarium approach samples set separate portal thresholds on the sloping yard."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -94,7 +95,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.29343073991423,
       50.84406274984602
@@ -103,16 +104,123 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two photographed arches face the inner yard on the signed L-shaped footprint. A mapped path reaches the forge at its southern end. The Terrarium approach samples set separate portal thresholds on the sloping yard.",
+    "terrainReference": {
+      "anchor": [
+        16.293358519680275,
+        50.844017694941044
+      ],
+      "modelHeight": 0,
+      "basis": "The two photographed arches face the inner yard on the signed L-shaped footprint. A mapped path reaches the forge at its southern end. The Terrarium approach samples set separate portal thresholds on the sloping yard."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.230511,
+          10.120376
+        ],
+        [
+          -10.234881,
+          -10.056357
+        ],
+        [
+          10.114481,
+          -10.136517
+        ],
+        [
+          10.165053,
+          -4.393391
+        ],
+        [
+          5.015607,
+          -4.397561
+        ],
+        [
+          5.049299,
+          -3.38283
+        ],
+        [
+          0.990375,
+          -3.248061
+        ],
+        [
+          0.956683,
+          -4.262793
+        ],
+        [
+          -4.192763,
+          -4.266962
+        ],
+        [
+          -4.066334,
+          10.090853
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -10.230511,
+            10.120376
+          ],
+          [
+            -10.234881,
+            -10.056357
+          ],
+          [
+            10.114481,
+            -10.136517
+          ],
+          [
+            10.165053,
+            -4.393391
+          ],
+          [
+            5.015607,
+            -4.397561
+          ],
+          [
+            5.049299,
+            -3.38283
+          ],
+          [
+            0.990375,
+            -3.248061
+          ],
+          [
+            0.956683,
+            -4.262793
+          ],
+          [
+            -4.192763,
+            -4.266962
+          ],
+          [
+            -4.066334,
+            10.090853
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only the exact Protomaps footprint for 281941091 in the retained 20261114 extract."
+    },
+    "bounds": [
+      16.293161,
+      50.843915,
+      16.293701,
+      50.844262
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "way/281941091"
     ],
     "source": "https://www.openstreetmap.org/way/281941091",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:007c64915f2559e425cd8e972accb9c6f45e00df98d3d90721baf48538585238",
+    "mapGeometryHash": "sha256:b7c0e9b4bebecb27f4e23c4734d494c9a7a51f706a00cf90cadd3732588b6d5f",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+    "notes": "The two photographed arches face the inner yard on the signed L-shaped footprint. A mapped path reaches the forge at its southern end. The Terrarium approach samples set separate portal thresholds on the sloping yard."
   },
   "sharedSurfaces": [
     {
@@ -152,12 +260,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
-      "slot": "wall",
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
-        1.8,
-        1.5
+        1.2,
+        1.2
       ]
     },
     {
@@ -168,6 +276,15 @@
         2,
         2
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
@@ -176,7 +293,7 @@
     "Footprint is attributed map geometry. Heights, openings, roof profiles and details are photographic interpretations.",
     "No independent Wikidata identifier known.",
     "Forge appearance follows a 2014 photograph; present appearance and unseen elevations are not confirmed.",
-    "No unique textures, copied photographs, signage or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+    "The portal levels and stone approaches use the retained map and elevation samples. The exterior is a reconstruction with shared materials."
   ],
   "qaCameras": [
     {
@@ -236,10 +353,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 554,
-    "vertices": 1662,
-    "materials": 7,
-    "bytes": 70568,
-    "sha256": "sha256:995c57accb804a35a20e80da5940be526a0c4833615935952bd61306ce36ca7d"
+    "triangles": 612,
+    "vertices": 1836,
+    "materials": 8,
+    "bytes": 78016,
+    "sha256": "sha256:18e75918d7084a083569323e0d5fc877d4b72d5e97698a5b811d76d5600d9a9d"
   }
 }

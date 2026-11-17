@@ -84,14 +84,16 @@ it('pins the exact signed barrier plan and single standard terrain datum', async
   expect(frame.mappedIdentity.featureIds).toEqual(['way/174344884']);
   expect(p.entry.heading).toBe(-1.242090458781);
   expect(p.entry.anchor).toEqual([25.505942247, -30.624113651]);
+  expect(p.entry.datum).toBe('sea-level');
+  expect(p.entry.elevation).toBeCloseTo(1260.965851, 5);
   expect(spec.sourceFacts.terrainDatum).toBeCloseTo(1260.965851, 5);
   expect(spec.sourceFacts.retainedHeight).toBe(88);
   expect(spec.sourceFacts.retainedLength).toBe(914);
   expect(spec.sourceFacts.selectedCrestLength).toBeCloseTo(851.685, 3);
   expect(p.entry.groundCutout.outlines[0]).toEqual(frame.geometry.outline);
-  expect(p.entry.groundCutout.outlines).toHaveLength(6);
-  expect(p.entry.groundCutout.outlines[5]).toEqual(frame.geometry.nearTailwater.outline);
-  expect(Math.max(...p.entry.groundCutout.outlines[5].map((point) => point[1]))).toBe(235);
+  expect(p.entry.groundCutout.outlines).toHaveLength(5);
+  expect(p.entry.groundCutout.preservePaving).toBe(true);
+  expect(p.entry.groundCutout.outlines).not.toContainEqual(frame.geometry.nearTailwater.outline);
   expect(p.entry.replaceFootprint).toBe(false);
   expect(p.entry.buildingCutout).toBeUndefined();
   expect(
@@ -140,7 +142,7 @@ it('preserves fifteen through-bays, the complete crest deck and paired outlet op
   }
 }, 30000);
 
-it('replaces only the modeled crest bridge and leaves the downstream bridge and every other native road', async () => {
+it('replaces the crest bridge and fits its two approaches while retaining independent roads', async () => {
   const { records } = await read(source + '/native-roads.json'),
     placed = (await read(source + '/placement-report.json')).entry;
   const tile = createEmptyTerrainSemanticTile(),
@@ -148,7 +150,7 @@ it('replaces only the modeled crest bridge and leaves the downstream bridge and 
   const c = Math.cos(placed.heading),
     s = Math.sin(placed.heading);
   tile.transportation = records.map((r) => ({
-    id: String(r.index),
+    id: r.id,
     class: r.properties.kind,
     subclass: r.properties.kind_detail,
     bridge: r.properties.is_bridge === true,
@@ -165,9 +167,31 @@ it('replaces only the modeled crest bridge and leaves the downstream bridge and 
     1,
     () => 1260.965851,
   );
-  expect(result.transportation.map((r) => r.id)).not.toContain('21');
-  expect(result.transportation.map((r) => r.id)).toContain('31');
-  expect(result.transportation).toEqual(original.transportation.filter((r) => r.id !== '21'));
+  const bridgeId = records[21].id;
+  const approachId = records[19].id;
+  const independentRoads = (roads) =>
+    roads
+      .filter((r) => r.id !== bridgeId && r.id !== approachId)
+      .map(({ bridgeApproachProfile, bridgeConnections, ...road }) => road);
+  expect(result.transportation.map((r) => r.id)).not.toContain(bridgeId);
+  expect(result.transportation).toContainEqual(original.transportation[31]);
+  expect(independentRoads(result.transportation)).toEqual(
+    independentRoads(original.transportation),
+  );
+  expect(result.transportation).toContainEqual(original.transportation[11]);
+  const approaches = result.transportation.filter((r) => r.id === approachId);
+  expect(approaches).toHaveLength(3);
+  const nodes = approaches.flatMap((road) => road.lines.flatMap((line) => [line[0], line.at(-1)]));
+  for (const [x, z] of placed.replaceRoads.deckEndpoints) {
+    const u = (x * c + z * s + 1500) / 3000;
+    const v = (-x * s + z * c + 1500) / 3000;
+    expect(nodes.some(([a, b]) => Math.hypot(a - u, b - v) < 0.0001)).toBe(true);
+  }
+  expect(
+    approaches.some((road) =>
+      road.bridgeConnections?.some((join) => Math.abs(join.elevation - 1270.965851) < 0.001),
+    ),
+  ).toBe(true);
   expect(tile).toEqual(original);
 });
 

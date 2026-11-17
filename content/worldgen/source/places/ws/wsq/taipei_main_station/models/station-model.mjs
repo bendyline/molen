@@ -198,7 +198,7 @@ export const controls = {
       ],
     ],
   ],
-  datum: 5.704483,
+  datum: 5.8,
   floor: 0.65,
   sourceHeights: {
     mappedEnvelope: 30,
@@ -364,6 +364,31 @@ function wall(o, c, p, L, lo, hi, holes = [], surface = 'stone') {
         C[h.kind],
         N,
       );
+    if (h.kind === 'doorGlass') {
+      const [left, right] = [r[0][0], r[1][0]],
+        bottom = r[0][1],
+        top = bottom + 2.74;
+      const mid = (left + right) / 2,
+        half = Math.min(1.18, (right - left) * 0.38);
+      const member = (x0, y0, x1, y1, standOff = 0.035) => {
+        const d = -depth + standOff;
+        Q(
+          o,
+          c,
+          [p([x0, y0, d]), p([x1, y0, d]), p([x1, y1, d]), p([x0, y1, d])],
+          'metal',
+          C.metal,
+          N,
+        );
+      };
+      member(mid - half, top - 0.12, mid + half, top);
+      for (const u of [mid - half, mid, mid + half])
+        member(u - 0.047, bottom, u + 0.047, top - 0.12);
+      if (c.near) {
+        for (const u of [mid - 0.16, mid + 0.16])
+          member(u - 0.022, bottom + 0.86, u + 0.022, bottom + 1.17, 0.067);
+      }
+    }
     if (c.master)
       beamPath(
         adapter(o, c),
@@ -377,7 +402,6 @@ function wall(o, c, p, L, lo, hi, holes = [], surface = 'stone') {
     if (c.near) {
       const xs = r.map((p) => p[0]),
         ys = r.map((p) => p[1]),
-        u = (Math.min(...xs) + Math.max(...xs)) / 2,
         lo = Math.min(...ys),
         hi = Math.max(...ys);
       if (hi - lo > 5)
@@ -388,16 +412,6 @@ function wall(o, c, p, L, lo, hi, holes = [], surface = 'stone') {
           p([Math.max(...xs), lo + (hi - lo) * 0.5, -depth + 0.04]),
           0.065,
           0.075,
-          C[frameSurface],
-        );
-      if (h.kind === 'doorGlass')
-        beam(
-          adapter(o, c),
-          frameSurface,
-          p([u, lo, -depth + 0.04]),
-          p([u, hi, -depth + 0.04]),
-          0.08,
-          0.09,
           C[frameSurface],
         );
     }
@@ -611,7 +625,48 @@ const xmin = -78.7,
   xmax = 78.8,
   zmin = -64,
   zmax = 64;
-function face(o, c, a, b) {
+// Across-edge stations and tread heights measured at the rendered sidewalk joins.
+export const stationApproaches = [
+  { name: 'north', depth: 3.65, toe: [0.388, 0.438, 0.388, 0.436, 0.388] },
+  { name: 'east', depth: 3.75, toe: [0.436, 0.436, 0.436, 0.436, 0.436] },
+  { name: 'south', depth: 11, toe: [0.434, 0.438, 0.434, 0.434, 0.438] },
+  { name: 'west', depth: 2.62, toe: [0.434, 0.434, 0.434, 0.434, 0.434] },
+];
+export const approachOffsets = [-7, -3, 0, 3, 7];
+const entranceSill = 0.662;
+function entranceSteps(o, c, p, mid, approach) {
+  const row = (distance, heights, width = 1) =>
+    approachOffsets.map((x, i) => p([mid + x * width, heights[i], distance]));
+  const threshold = approachOffsets.map(() => entranceSill),
+    firstStep = approach.toe.map((y) => (y + entranceSill) / 2);
+  const bands = [
+    [row(-0.365, threshold), row(0.38, threshold)],
+    [row(0.38, firstStep), row(0.87, firstStep)],
+    [row(0.87, approach.toe), row(approach.depth, approach.toe, 1.04)],
+  ];
+  const outward = sub(p([0, 0, 1]), p([0, 0, 0]));
+  const cheek = sub(p([1, 0, 0]), p([0, 0, 0]));
+  for (const [j, [inside, outside]] of bands.entries()) {
+    const next = bands[j + 1]?.[0] ?? outside.map(([x, , z]) => [x, -0.18, z]);
+    for (let i = 0; i < inside.length - 1; i++) {
+      Q(o, c, [inside[i], inside[i + 1], outside[i + 1], outside[i]], 'base', C.base, [0, 1, 0]);
+      Q(o, c, [outside[i], outside[i + 1], next[i + 1], next[i]], 'trim', C.base, outward);
+    }
+    for (const i of [0, inside.length - 1]) {
+      const a = inside[i],
+        b = outside[i];
+      Q(
+        o,
+        c,
+        [a, b, [b[0], -0.18, b[2]], [a[0], -0.18, a[2]]],
+        'base',
+        C.base,
+        i ? cheek : cheek.map((v) => -v),
+      );
+    }
+  }
+}
+function face(o, c, a, b, approach) {
   const dx = b[0] - a[0],
     dz = b[1] - a[1],
     L = Math.hypot(dx, dz),
@@ -623,10 +678,11 @@ function face(o, c, a, b) {
     holes = [];
   if (c.detail)
     for (let j = 0; j < n; j++) {
-      const u = (j + 0.5) * pitch;
+      const u = (j + 0.5) * pitch,
+        door = Math.abs(u - L / 2) < pitch;
       holes.push({
-        kind: Math.abs(u - L / 2) < pitch ? 'doorGlass' : 'glass',
-        ring: rect(u, controls.floor + 0.3, pitch * 0.73, 10.4),
+        kind: door ? 'doorGlass' : 'glass',
+        ring: rect(u, door ? entranceSill : controls.floor + 0.3, pitch * 0.73, 10.4),
         depth: 0.35,
       });
       for (const y of [12.6, 17.2])
@@ -658,7 +714,8 @@ function face(o, c, a, b) {
     );
     if (c.detail) {
       const q = (du, d) => p([u + du, 0, d]),
-        r = [q(-0.85, 0.85), q(0.85, 0.85), q(0.85, -0.9), q(-0.85, -0.9)];
+        toe = Math.abs(u - L / 2) < 8.25 ? 0.18 : 0.85,
+        r = [q(-0.85, toe), q(0.85, toe), q(0.85, -0.9), q(-0.85, -0.9)];
       slab(
         o,
         c,
@@ -708,27 +765,7 @@ function face(o, c, a, b) {
           beam(adapter(o, c), 'stone', p([lo, y, -0.03]), p([hi, y, -0.03]), 0.12, 0.16, C.stone);
       }
     }
-  if (c.detail) {
-    const m = p([L / 2, 0, 0]);
-    for (let j = 0; j < 4; j++) {
-      const A = p([L / 2 - 8, 0.1 + j * 0.14, 1.0 + (3 - j) * 0.33]),
-        B = p([L / 2 + 8, 0.1 + (j + 1) * 0.14, 1.0 + (4 - j) * 0.33]);
-      const r = [
-        p([L / 2 - 8, 0, 1.0 + (3 - j) * 0.33]),
-        p([L / 2 + 8, 0, 1.0 + (3 - j) * 0.33]),
-        p([L / 2 + 8, 0, 1.0 + (4 - j) * 0.33]),
-        p([L / 2 - 8, 0, 1.0 + (4 - j) * 0.33]),
-      ];
-      slab(
-        o,
-        c,
-        r.map((q) => [q[0], q[2]]),
-        0.1 + j * 0.14,
-        0.1 + (j + 1) * 0.14,
-        'base',
-      );
-    }
-  }
+  entranceSteps(o, c, p, L / 2, approach);
 }
 function ring(t, y) {
   return [
@@ -754,15 +791,24 @@ function hip(o, c) {
         [0, 1, 0],
       );
   const outer = rings[0],
-    inner = rings.at(-1);
+    inner = rings.at(-1),
+    soffitOuter = outer.map(([x, , z]) => [x, 21.55, z]),
+    soffitInner = [
+      [xmin + 0.05, 21.55, zmin + 0.05],
+      [xmax - 0.05, 21.55, zmin + 0.05],
+      [xmax - 0.05, 21.55, zmax - 0.05],
+      [xmin + 0.05, 21.55, zmax - 0.05],
+    ];
   for (let i = 0; i < 4; i++) {
     const j = (i + 1) % 4;
+    Q(o, c, [soffitOuter[i], soffitOuter[j], outer[j], outer[i]], 'trim', C.trim);
     Q(
       o,
       c,
-      [[outer[i][0], 21.55, outer[i][2]], [outer[j][0], 21.55, outer[j][2]], outer[j], outer[i]],
+      [soffitOuter[i], soffitOuter[j], soffitInner[j], soffitInner[i]],
       'trim',
       C.trim,
+      [0, -1, 0],
     );
     if (c.detail) {
       beam(adapter(o, c), 'trim', outer[i], outer[j], 0.45, 0.5, C.trim);
@@ -917,7 +963,7 @@ export function buildStationLevel(o, level = 'master') {
     [xmax, zmax],
     [xmin, zmax],
   ];
-  for (let i = 0; i < 4; i++) face(o, c, R[i], R[(i + 1) % 4]);
+  for (let i = 0; i < 4; i++) face(o, c, R[i], R[(i + 1) % 4], stationApproaches[i]);
   panel(o, c, controls.groups.main[0], 21.5, 'canopy');
   hip(o, c);
 }

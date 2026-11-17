@@ -1,0 +1,484 @@
+{
+  "planId": "national_rail_museum_new_delhi",
+  "id": "national_rail_museum_new_delhi",
+  "assetId": "molen.worldgen.structure.national_rail_museum_new_delhi",
+  "title": "National Rail Museum, New Delhi",
+  "wikidataId": "Q1138924",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.181428,
+    "latitude": 28.584833
+  },
+  "size": [
+    339.2832794189453,
+    13.960224151611328,
+    387.7906188964844
+  ],
+  "actualBounds": {
+    "min": [
+      -187.8567657470703,
+      -4.970224380493164,
+      -183.90809631347656
+    ],
+    "max": [
+      151.426513671875,
+      8.989999771118164,
+      203.8825225830078
+    ]
+  },
+  "visualBrief": "National Rail Museum, New Delhi, with its octagonal Indoor Gallery, fixed rail yard, round turntable, curved steel display canopies and Rail Cafeteria.",
+  "nativeAxes": {
+    "x": "along the sidings",
+    "y": "up",
+    "z": "across the rail yard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-10-07",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:BB%26CI_EMU_Coach_no.35B,_at_NRM.jpg",
+    "https://commons.wikimedia.org/wiki/File:BB%26CI_Locomotive_no._M2_162_at_NRM.jpg",
+    "https://commons.wikimedia.org/wiki/File:Southern_Mahratta_Railway_Locomotive_no._37302_at_NRM.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bhavnagar_State_Railway_coach_at_NRM.jpg",
+    "https://commons.wikimedia.org/wiki/File:Restoration_works_at_NRM.jpg"
+  ],
+  "stories": [
+    {
+      "id": "national-rail-museum-new-delhi-wp",
+      "url": "https://qualla.com/national-rail-museum-new-delhi/"
+    }
+  ],
+  "referenceInputHash": "09805be5df500baa8111653358c891666403c1ed3b299ef0c85a11d89afc6c1d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttn/national_rail_museum_new_delhi/models/national-rail-museum-new-delhi-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttn/national_rail_museum_new_delhi/models/national-rail-museum-new-delhi-model.mjs",
+    "level": "skyline",
+    "export": "railMuseumSkyline",
+    "errorMeters": 0.68,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.77,
+        "metallic": 0.16
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.1
+      },
+      "ballast": {
+        "slot": "trim",
+        "graph": "gravel",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.69,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "railMuseumDistrict",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.1
+          },
+          "ballast": {
+            "slot": "trim",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "railMuseumStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.1
+          },
+          "ballast": {
+            "slot": "trim",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "railMuseumCloseup",
+        "errorMeters": 0.049,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.1
+          },
+          "ballast": {
+            "slot": "trim",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.69,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "concrete_plain",
+    "metal_corrugated",
+    "metal_painted",
+    "gravel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -5.12,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      77.181428,
+      28.584833
+    ],
+    "heading": 0.40340768105787134,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.181428,
+        28.584833
+      ],
+      "modelHeight": 0,
+      "basis": "Unaltered terrain sampled at the Qualla story pin inside the outdoor museum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/253307746",
+      "way/648000204",
+      "way/1292797651",
+      "way/1292797652",
+      "way/1292797655",
+      "way/1292797656",
+      "way/77340563",
+      "way/77349456",
+      "way/77349461",
+      "way/77349470",
+      "way/77349474",
+      "way/77349476",
+      "way/77349494",
+      "way/77349499",
+      "way/77349509",
+      "way/77349511",
+      "way/77349534",
+      "way/852003510",
+      "way/852003511",
+      "way/852003512",
+      "way/852003514",
+      "node/10311467090"
+    ],
+    "source": "https://www.openstreetmap.org/way/44351917",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e6b3b4db3cc1173a1349762fc580b11ff86296223a13d85a70d009d993a1278",
+    "notes": "Roof and canopy sections are approximate. The railway network controls the relation between track, outdoor canopies and gallery."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The Indoor Gallery, Rail Cafeteria and fixed yard buildings follow the mapped footprints. Their external finishes, roof sections and door positions are approximate.",
+    "Open-sided steel canopies follow the October 2023 Qualla originals. Individual canopy dimensions, their exact extents along the chosen four sidings, and the turntable bridge are estimates.",
+    "The original elevation field controls the terrain and track grade. India’s common 1.676 m broad gauge and a two-foot visitor-track gauge are approximations for the museum alignments. The track bend radii and turnout hardware are generalized.",
+    "The structures represent the preserved railway yard in 2023. Rolling stock, station exhibits, gardens and interiors are outside this model."
+  ],
+  "sourceLicense": "Original geometry under repository license. Five exact October 2023 Qualla photographs by Historical Trains carry CC0 dedications. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "rail-yard-skyline",
+      "position": [
+        266,
+        213,
+        -172
+      ],
+      "lookAt": [
+        -9,
+        2,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "rail-yard-district",
+      "position": [
+        266,
+        213,
+        -172
+      ],
+      "lookAt": [
+        -9,
+        2,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "rail-yard-street",
+      "position": [
+        266,
+        213,
+        -172
+      ],
+      "lookAt": [
+        -9,
+        2,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "rail-yard-closeup",
+      "position": [
+        266,
+        213,
+        -172
+      ],
+      "lookAt": [
+        -9,
+        2,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "octagonal-indoor-gallery",
+      "position": [
+        -65,
+        13,
+        -103
+      ],
+      "lookAt": [
+        -113,
+        4,
+        -154
+      ]
+    },
+    {
+      "name": "preserved-sidings-and-display-sheds",
+      "position": [
+        -36,
+        7,
+        -28
+      ],
+      "lookAt": [
+        -10,
+        1.75,
+        10
+      ]
+    },
+    {
+      "name": "turntable-bridge-and-track-fan",
+      "position": [
+        112,
+        10,
+        124
+      ],
+      "lookAt": [
+        83,
+        -2,
+        106
+      ]
+    },
+    {
+      "name": "rail-cafeteria",
+      "position": [
+        -10,
+        7,
+        -45
+      ],
+      "lookAt": [
+        -39,
+        0.8,
+        -60
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31720,
+    "vertices": 95160,
+    "materials": 6,
+    "bytes": 4042212,
+    "sha256": "sha256:cbdc0704f3f538e82691a151ff86229e9e87f2c219699749796e801aac91f640"
+  }
+}

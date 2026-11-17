@@ -1,3 +1,17 @@
+## @bendyline/molen-client [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.15...@bendyline/molen-client@0.0.16) (2026-11-16)
+
+### Bug Fixes
+
+* Lint updates ([94abdf4](https://github.com/bendyline/molen/commit/94abdf4e950e9239028fabe7a16c01a0fb1639f7))
+* Molen updates ([d723204](https://github.com/bendyline/molen/commit/d72320486838c48e867d2fd9a650498e6235b39b))
+* More perf fixes ([cc0817a](https://github.com/bendyline/molen/commit/cc0817a6bb59f545c4f61351e84a97e704b19f89))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.13
+* **@bendyline/molen-schema:** upgraded to 0.0.12
+
 ## @bendyline/molen-client [0.0.15](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.14...@bendyline/molen-client@0.0.15) (2026-11-14)
 
 ### Bug Fixes

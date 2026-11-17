@@ -3,10 +3,10 @@
   "title": "Ruhnu Lighthouse",
   "asset": "molen.worldgen.structure.ruhnu_lighthouse",
   "anchor": [
-    23.26012233,
-    57.80135766
+    23.26012545,
+    57.8013371
   ],
-  "heading": 0,
+  "heading": 0.037225470525,
   "datum": "terrain",
   "elevation": 0,
   "orientation": "fixed",
@@ -15,8 +15,80 @@
     "maxDistance": 80
   },
   "replaceFootprint": true,
+  "buildingCutout": {
+    "outline": [
+      [
+        2.61219,
+        1.21815
+      ],
+      [
+        1.94662,
+        1.98942
+      ],
+      [
+        1.28697,
+        2.6017
+      ],
+      [
+        0.32118,
+        2.88416
+      ],
+      [
+        -1.57487,
+        2.49512
+      ],
+      [
+        -2.18715,
+        1.83547
+      ],
+      [
+        -2.91698,
+        0.05696
+      ],
+      [
+        -2.37487,
+        -1.67418
+      ],
+      [
+        -0.9025,
+        -2.73383
+      ],
+      [
+        0.05737,
+        -2.85729
+      ],
+      [
+        1.78259,
+        -2.15619
+      ],
+      [
+        2.39487,
+        -1.49654
+      ],
+      [
+        2.83631,
+        -0.52483
+      ]
+    ],
+    "minimumCoverage": 0.8,
+    "basis": "Tower shaft footprint from the current PMTiles building layer. The independent keeper buildings retain their map geometry."
+  },
+  "terrainReference": {
+    "anchor": [
+      23.26012545,
+      57.8013371
+    ],
+    "modelHeight": 0,
+    "basis": "Model Y=0 is the host sample at the mapped shaft center."
+  },
+  "bounds": [
+    23.25986,
+    57.80118,
+    23.2604,
+    57.80149
+  ],
   "minLevel": 13,
   "status": "preview",
-  "source": "https://nma.transpordiamet.ee/aton/2538/",
-  "note": "Authority coordinate anchors the central tube. Mapped approach1297215907 ends directly south of the tower, resolving native+Z door to south. Four legs are placed symmetrically around this doorway as in the restored entry photograph. OSMcircle1297215911 is only5.7m wide and does not bound the external supporting legs, so it is not used to stretch the tower. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+  "source": "https://www.openstreetmap.org/way/1297215911",
+  "note": "The center of mapped way 1297215911 locates the shaft about 2.3 m south of the navigation marker. The final mapped track point toward the entrance sets the signed front axis. The four supports extend beyond the mapped shaft disk; photographs control the legs and brace spacing. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
 }

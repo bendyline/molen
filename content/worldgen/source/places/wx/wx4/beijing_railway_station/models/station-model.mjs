@@ -1,10 +1,12 @@
 /** Original Beijing station exterior, true courts and open platform-roof wings. */
+import { readFileSync } from 'node:fs';
 import {
   beam,
   beamPath,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
+const site = JSON.parse(readFileSync(new URL('./site-fit.json', import.meta.url)));
 const lin = (h) =>
   h.match(/\w\w/g).map((v) => {
     const s = parseInt(v, 16) / 255;
@@ -38,8 +40,8 @@ export const stationSurfaces = {
 };
 const cfg = {
   skyline: { round: 4 },
-  district: { round: 6, detail: true },
-  street: { round: 8, detail: true, recess: true, fine: true },
+  district: { round: 5, detail: true },
+  street: { round: 6, detail: true, recess: true, fine: true },
   closeup: { round: 16, detail: true, recess: true, fine: true, near: true },
   master: { round: 40, detail: true, recess: true, fine: true, near: true, master: true },
 };
@@ -4390,20 +4392,39 @@ function simplify(r, t = 0.3) {
   }
   return r;
 }
-function panel(o, c, poly, y, s, N = [0, 1, 0]) {
-  const rs = poly.map((r) => (c === cfg.skyline ? simplify(r) : openRing(r))),
+function clipAtX(ring, x, keepGreater) {
+  const points = [];
+  const inside = (p) => (keepGreater ? p[0] >= x : p[0] <= x);
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i];
+    const b = ring[(i + 1) % ring.length];
+    if (inside(a)) points.push(a);
+    if (inside(a) !== inside(b)) {
+      points.push([x, a[1] + ((b[1] - a[1]) * (x - a[0])) / (b[0] - a[0])]);
+    }
+  }
+  return points;
+}
+
+function panel(o, c, poly, y, s, N = [0, 1, 0], bands) {
+  const rs = poly.map((r) =>
+      c === cfg.skyline || (c === cfg.district && r.length > 8) ? simplify(r) : openRing(r),
+    ),
     a = rs.flat(),
     holes = rs.slice(1).map((_, i) => rs.slice(0, i + 1).reduce((n, r) => n + r.length, 0)),
     ix = earcut(a.flat(), holes);
-  for (let i = 0; i < ix.length; i += 3)
-    T(
-      o,
-      c,
-      ix.slice(i, i + 3).map((j) => [a[j][0], typeof y === 'function' ? y(a[j]) : y, a[j][1]]),
-      s,
-      C[s],
-      N,
-    );
+  for (let i = 0; i < ix.length; i += 3) {
+    const tri = ix.slice(i, i + 3).map((j) => a[j]);
+    const rings = bands
+      ? bands.map(([min, max]) => clipAtX(clipAtX(tri, min, true), max, false))
+      : [tri];
+    for (const ring of rings) {
+      const points = ring.map(([x, z]) => [x, typeof y === 'function' ? y([x, z]) : y, z]);
+      for (let j = 1; j < points.length - 1; j++) {
+        T(o, c, [points[0], points[j], points[j + 1]], s, C[s], N);
+      }
+    }
+  }
 }
 function solid(o, c, poly, lo, hi, s) {
   panel(o, c, poly, hi, s);
@@ -4770,15 +4791,85 @@ function insideRoof(x, z, r) {
   }
   return inside;
 }
+function profileHeight(points, x) {
+  for (let i = 1; i < points.length; i++) {
+    const [x0, y0] = points[i - 1];
+    const [x1, y1] = points[i];
+    if (x <= x1) return y0 + ((y1 - y0) * Math.max(0, x - x0)) / (x1 - x0);
+  }
+  return points.at(-1)[1];
+}
+
+function forecourt(o, c) {
+  const { x, z } = site.tiers[c === cfg.skyline ? 0 : c === cfg.district ? 1 : 2];
+  const paving = lin('b6b9b4');
+  for (let i = 1; i < x.length; i++) {
+    for (let j = 1; j < z.length; j++) {
+      const a = site.grade[x[i - 1]];
+      const b = site.grade[x[i]];
+      Q(o, c, [a[z[j - 1]], a[z[j]], b[z[j]], b[z[j - 1]]], 'base', paving, [0, 1, 0]);
+    }
+  }
+}
+
+function platform(o, c, centre, sections) {
+  if (!c.fine) return;
+  const color = lin('a6a59e');
+  const step = c.near ? 1 : 2;
+  for (let i = 0; i < sections.length - 1; i += step) {
+    const a = sections[i];
+    const end = Math.min(sections.length - 1, i + step);
+    const b = sections[end];
+    if (!a || !b || sections.slice(i, end + 1).some((p) => !p)) continue;
+    const top = [
+      [a.x, a.y, centre - a.width],
+      [a.x, a.y, centre + a.width],
+      [b.x, b.y, centre + b.width],
+      [b.x, b.y, centre - b.width],
+    ];
+    Q(o, c, top, 'base', color, [0, 1, 0]);
+    if (!c.near) continue;
+    for (const [first, last, sign] of [
+      [0, 3, -1],
+      [1, 2, 1],
+    ]) {
+      const p = top[first];
+      const q = top[last];
+      Q(o, c, [p, q, [q[0], q[1] - 0.7, q[2]], [p[0], p[1] - 0.7, p[2]]], 'base', color, [
+        0,
+        0,
+        sign,
+      ]);
+    }
+  }
+}
+
 function canopy(o, c, level) {
   const panels = controls.panels[level];
   for (let i = 0; i < controls.canopies.length; i++) {
-    const q = controls.canopies[i],
-      H = (z) => 6.4 + 1.4 * Math.pow(Math.min(1, Math.abs((z - q.z) / q.half)), 1.7);
+    const q = controls.canopies[i];
+    const deck = site.decks[i];
+    const profile = c.near
+      ? deck.roofY
+      : deck.roofY.flatMap(([x], i, full) =>
+          i % 3 === 0 || i === full.length - 1
+            ? [[x, Math.max(...full.slice(Math.max(0, i - 3), i + 4).map((p) => p[1]))]]
+            : [],
+        );
+    const baseY = (x) => (c.fine ? profileHeight(profile, x) : deck.farY);
+    const H = ([x, z]) => baseY(x) + 1.4 * Math.pow(Math.min(1, Math.abs((z - q.z) / q.half)), 1.7);
+    const bridgeOpening = c.fine && q.z < 200;
+    const seams = c.fine ? profile.map(([x]) => x) : [-310, 340];
+    const breaks = bridgeOpening ? [...seams, -25.28, 2.94].sort((a, b) => a - b) : seams;
+    const bands = breaks
+      .slice(1)
+      .map((bound, j) => [breaks[j], bound])
+      .filter(([a, b]) => !bridgeOpening || b <= -25.28 || a >= 2.94);
     for (const poly of panels[i]) {
-      panel(o, c, poly, ([x, z]) => H(z), 'canopy');
-      panel(o, c, poly, ([x, z]) => H(z) - 0.2, 'canopy', [0, -1, 0]);
+      panel(o, c, poly, H, 'canopy', [0, 1, 0], c.fine ? bands : undefined);
+      panel(o, c, poly, (p) => H(p) - 0.2, 'canopy', [0, -1, 0], c.fine ? bands : undefined);
     }
+    platform(o, c, q.z, deck.rows);
     if (c.detail)
       for (const poly of q.polygons) {
         const a = poly[0],
@@ -4787,14 +4878,23 @@ function canopy(o, c, level) {
           x1 = Math.max(...xs),
           spacing = c.master ? 22 : c.near ? 34 : c.fine ? 90 : 180;
         for (let x = x0 + 9; x < x1 - 3; x += spacing) {
-          if (!insideRoof(x, q.z, a)) continue;
-          roundColumn(o, c, [x, q.z], FOOT, 5.7, c.near ? 0.32 : 0.4, 'metal');
+          if (!insideRoof(x, q.z, a) || (bridgeOpening && x > -25.28 && x < 2.94)) continue;
+          const underside = baseY(x);
+          roundColumn(
+            o,
+            c,
+            [x, q.z],
+            profileHeight(deck.feet, x),
+            underside - 0.64,
+            c.near ? 0.32 : 0.4,
+            'metal',
+          );
           for (const s of [-1, 1])
             beam(
               adapter(o, c),
               'metal',
-              [x, 4.5, q.z],
-              [x, H(q.z + s * q.half) - 0.25, q.z + s * q.half * 0.9],
+              [x, underside - 1.9, q.z],
+              [x, H([x, q.z + s * q.half]) - 0.25, q.z + s * q.half * 0.9],
               c.near ? 0.18 : 0.35,
               c.near ? 0.25 : 0.4,
               C.metal,
@@ -4803,18 +4903,18 @@ function canopy(o, c, level) {
             beam(
               adapter(o, c),
               'metal',
-              [x, 5.9, q.z - q.half],
-              [x, 5.9, q.z + q.half],
+              [x, underside - 0.5, q.z - q.half],
+              [x, underside - 0.5, q.z + q.half],
               0.12,
               0.15,
               C.gold,
             );
         }
-        if (c.near)
+        if (c.near && !bridgeOpening)
           beamPath(
             adapter(o, c),
             'metal',
-            openRing(a).map(([x, z]) => [x, H(z) - 0.12, z]),
+            openRing(a).map(([x, z]) => [x, H([x, z]) - 0.12, z]),
             0.1,
             0.18,
             C.gold,
@@ -4824,39 +4924,68 @@ function canopy(o, c, level) {
   }
 }
 function connector(o, c) {
+  const floor = site.connectorFloor;
+  const roof = floor + 3.2;
   for (const poly of controls.connector) {
-    solid(o, c, poly, 3.7, 4, 'base');
+    solid(o, c, poly, floor - 0.3, floor, 'base');
     ringEdges(poly, (e) => {
       const holes = [];
       if (c.detail && e.L > 5) {
         const n = Math.max(1, Math.floor(e.L / (c.near ? 6 : 20)));
         for (let j = 0; j < n; j++)
           holes.push({
-            ring: rect(((j + 0.5) * e.L) / n, 4.5, Math.min(4.4, e.L / n - 0.6), 2.2),
+            ring: rect(((j + 0.5) * e.L) / n, floor + 0.5, Math.min(4.4, e.L / n - 0.6), 2.2),
             kind: 'glass',
           });
       }
-      wall(o, c, e.p, e.L, 4, 7.2, holes, 'canopy');
+      wall(o, c, e.p, e.L, floor, roof, holes, 'canopy');
     });
-    panel(o, c, poly, 7.2, 'canopy');
+    panel(o, c, poly, roof, 'canopy');
   }
   if (c.fine)
-    for (const q of controls.canopies) {
+    for (const [i, q] of controls.canopies.entries()) {
       const z = q.z;
       if (z < 60 || z > 200) continue;
-      const n = c.near ? 18 : 6;
+      const ground = profileHeight(site.connectorFoot, z);
+      const rise = floor - ground;
+      const n = c.near ? Math.ceil(rise / 0.2) : 6;
       for (let j = 0; j < n; j++) {
         const x = -25 - (19 * (j + 1)) / n,
-          y = 4 - (7 * (j + 1)) / n;
-        box(o, c, x, x + 19 / n, -10, y, z - 1.5, z + 1.5, 'stone');
+          y = floor - (rise * (j + 1)) / n;
+        box(o, c, x, x + 19 / n, y - 0.62, y, z - 1.5, z + 1.5, 'stone');
+      }
+      for (const side of [-1, 1]) {
+        const offset = z + side * 1.08;
+        beam(
+          adapter(o, c),
+          'metal',
+          [-25, floor - 0.44, offset],
+          [-44, ground - 0.3, offset],
+          0.3,
+          0.42,
+          C.metal,
+        );
+        for (const t of [0.31, 0.72]) {
+          const x = -44 + 19 * t;
+          const base = profileHeight(site.decks[i].feet, x);
+          beam(
+            adapter(o, c),
+            'metal',
+            [x, base, offset],
+            [x, ground + rise * t - 0.44, offset],
+            0.3,
+            0.3,
+            C.metal,
+          );
+        }
       }
       if (c.near)
         for (const s of [-1, 1])
           beam(
             adapter(o, c),
             'metal',
-            [-25, 5.1, z + s * 1.6],
-            [-44, -1.9, z + s * 1.6],
+            [-25, floor + 1.1, z + s * 1.6],
+            [-44, ground + 1.1, z + s * 1.6],
             0.08,
             0.1,
             C.metal,
@@ -4866,9 +4995,9 @@ function connector(o, c) {
 export function buildStationLevel(o, level = 'master', mark = () => {}) {
   const c = cfg[level];
   if (!c) throw Error('Unknown Beijing station tier ' + level);
-  for (const poly of controls.occupied) {
-    if (c === cfg.skyline) panel(o, c, poly, FLOOR, 'base');
-    else solid(o, c, poly, FOOT, FLOOR, 'base');
+  forecourt(o, c);
+  if (c !== cfg.skyline) {
+    for (const poly of controls.occupied) solid(o, c, poly, FOOT, FLOOR, 'base');
   }
   for (const zone of controls.zones)
     for (const poly of zone.polygons) facade(o, c, poly, zone.height, zone.name === 'centre');

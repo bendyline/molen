@@ -1,17 +1,24 @@
 # El Chocón Dam
 
-**Preview.** Reviewed 43 catalog renders, five high-water comparison renders and five raw-terrain views.
+El Chocón’s curved rockfill crest, four radial gates and six-unit powerhouse follow the retained Limay site. The sloped dry outfall runs from the chutes to the mapped river. The reservoir intake retains its separate footbridge.
 
-The 2103.66 m mapped crest road runs along the curved rockfill embankment, above the four radial gates and dry dividing chutes at the southeast end. The left-bank powerhouse has six façade divisions, three roof portals, flanking tailrace walls and a concrete forebay. The reservoir intake has six panels and a connecting footbridge.
+The 386 m crest road meets the rendered approaches within 5 cm at both sampled centerlines. The east approach clears the fitted concrete supports. The two parts of the mapped water relation use representative stages of 370.65 m upstream and 315.43 m downstream. The access deck stays below the powerhouse windows.
 
-The signed PMTiles frame follows the crest bends, spillway entrance and powerhouse footprint. The production road filter replaces the covered crest and intake lines to within 7 cm. Nearby road lines remain identical.
+![El Chocón Dam in the Earth viewer](site-preview.png)
 
-Eight reusable graphs supply basalt, rammed earth, board-formed and plain concrete, concrete panels, painted steel, roofing and window grids. All six GLBs have zero embedded images. Viewer eviction restores native ground.
+The viewer retains 73 transportation records in the local fixture. The five covered fragments are replaced by the authored crest and intake paths. A failed download restores the mapped powerhouse and all transportation records. Unload restores ground and land cover and releases the model geometry.
 
-Twelve Terrarium tiles supply the slopes. Standard samples yield 370.65 m upstream and 315.43 m downstream. The lower upstream stage lies between the documented extraordinary minimum of 367 m and the normal minimum of 372 m. The comparison uses the 380.31 m normal maximum. The review compares both original terrain and a fixture with 23 isolated sub-280 m samples repaired.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 964 | 88,444 | 8 |
+| district | 3,220 | 272,388 | 8 |
+| street | 7,924 | 650,192 | 8 |
+| closeup | 12,244 | 985,004 | 8 |
 
-Skyline plus district total 349,872 bytes. The four browser tiers have 982, 3066, 7770, 12090 triangles and rebuild byte for byte. Six GLBs pass Khronos validation. Four focused checks cover source bytes, geographic fit, gates, terrain samples and GPU streams. The scene validates and simulates 30 ticks.
+The first two detail levels total 360,832 bytes. Six GLBs, four focused geometry checks and 190 placement probes passed. 72 current renders were inspected.
 
-Road and spillway proportions follow the mapped paths and visible forms. Slope cross-sections, west deck tie and buried foundations are approximate. The forebay water fixture includes a short extension between the mapped hall and native tailwater. Coarse terrain creates abrupt shore edges in the review, and the unmodified terrain shows gaps beside the spillway where isolated elevation outliers remain. The spillway gates and water are static.
+The water stages and spillway cross-sections are representative estimates. The outfall banks are faceted to follow the available terrain. A steep shore remains visible beyond the fitted works.
 
-Rebuild with `node packages/worldgen/scripts/generate-el-chocon-dam.mjs`. Append `--check` to check exact source bytes. Select import, LOD generation and readiness with `--ids=el_chocon_dam`.
+The model shows the gates closed and the spillway dry. Plant interiors and operating flow are outside this exterior scope.
+
+[Mapped site frame](map-frame.json) · [QA evidence](qa.json) · [Water feature settings](../../../../../../earth/hydrology/water-features.json)

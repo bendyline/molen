@@ -5,12 +5,12 @@
     "map": "pmtiles-map.json",
     "mapHash": "sha256:a8d319eeef1cda5fc0ae18bc63852150af63a6ade90e8e98808c8ddda90723e3",
     "frame": "map-frame.json",
-    "frameHash": "sha256:46ac98a85fc7f186019b55dab8c4b6e56e8fbf6b96b4e14ffc622dee0fd9cab4",
+    "frameHash": "sha256:032cb19b275aec6c81a2a1a88306fb8ea8e8adc01848fcfa90bd562f1817fe1e",
     "license": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors;Protomaps basemap",
     "method": "Union only native polygon water by source lake/river/canal class in centimeter-snapped east/south coordinates;then rotate into signed model frame. Upstream lake pieces use model datum Y=0,downstream river/pockets use explicitly estimated Y=-57. Retains native shore/island holes;no full rectangular inferred water plane."
   },
-  "limitations": "Static illustrative levels derived from the ordinary-picture layout and coarse standard terrain. Main reservoir sample1260.965851m;estimated tailwater1203.965851m. Native water pockets and operational levels are unverified;no hydrologic simulation or surveyed shoreline contact.",
+  "limitations": "The fixture uses static representative levels and the mapped water polygons. The Earth site review also applies the bounded approach and riverbank grades.",
   "layers": [
     {
       "name": "Mapped Orange River and tailrace",
@@ -3566,5 +3566,6 @@
         ]
       ]
     }
-  ]
+  ],
+  "clipTerrain": true
 }

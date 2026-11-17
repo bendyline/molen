@@ -1,0 +1,344 @@
+{
+  "planId": "saint_patrick_s_cathedral_karachi",
+  "id": "saint_patrick_s_cathedral_karachi",
+  "assetId": "molen.worldgen.structure.saint_patrick_s_cathedral_karachi",
+  "title": "Saint Patrick's Cathedral, Karachi",
+  "wikidataId": "Q1335910",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 67.035014,
+    "latitude": 24.861888
+  },
+  "size": [
+    25.797600746154785,
+    36.880001068115234,
+    51.82379913330078
+  ],
+  "actualBounds": {
+    "min": [
+      -11.765000343322754,
+      -2.5,
+      -24.743799209594727
+    ],
+    "max": [
+      14.032600402832031,
+      34.380001068115234,
+      27.079999923706055
+    ]
+  },
+  "visualBrief": "Sandstone Gothic Revival cathedral with paired needle spires, a tall three-lancet arrival, red roofs, projecting transepts and side buttresses.",
+  "nativeAxes": {
+    "x": "southeast across the nave",
+    "y": "up",
+    "z": "southwest toward the front doors"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Karachi_St._Patricks_Cathedral.jpg"
+  ],
+  "stories": [
+    {
+      "id": "saint-patrick-s-cathedral-karachi-wp",
+      "url": "https://qualla.com/saint-patrick-s-cathedral-karachi/"
+    }
+  ],
+  "referenceInputHash": "8f854bcf95774aec328b84389214195c57524f7e20304f5e26a65989edca69ed",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tkr/saint_patrick_s_cathedral_karachi/models/saint-patrick-s-cathedral-karachi-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tk/tkr/saint_patrick_s_cathedral_karachi/models/saint-patrick-s-cathedral-karachi-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.7,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0.7,
+        12.7,
+        1.5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The exact Qualla original sets the facade and steeple proportions. The Pakistani embassy documents the 52 by 22 metre overall envelope. Native mapping controls horizontal geometry and the original public DEM controls the forecourt review.",
+    "anchor": [
+      67.035014,
+      24.861888
+    ],
+    "heading": -1.1432303874502263,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        67.03476406716644,
+        24.861776896723242
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain on the cathedral approach between its southwestern entrance and the separate monument."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/681523986"
+    ],
+    "source": "https://www.openstreetmap.org/way/681523986",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0b310edb1522a9ae0869f3406b364ab5b7f0980fe4b7b10d5bd412057bec28af"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Tower heights, spire dimensions, chancel fenestration and roof join positions are estimates. Native mapping controls the lower body, while the central front and paired spires are proportioned from the cleared original.",
+    "The model covers the cathedral. The independently mapped Christ the King Monument, schools and trees of the precinct are outside this model."
+  ],
+  "sourceLicense": "Original model based on native mapped geometry, the exact public-domain Qualla façade photograph, published heritage facts and terrain.",
+  "qaLodCameras": [
+    {
+      "name": "saint-patrick-s-cathedral-karachi-skyline",
+      "position": [
+        58,
+        32,
+        86
+      ],
+      "lookAt": [
+        0.7,
+        12.7,
+        1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "saint-patrick-s-cathedral-karachi-district",
+      "position": [
+        58,
+        32,
+        86
+      ],
+      "lookAt": [
+        0.7,
+        12.7,
+        1.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "saint-patrick-s-cathedral-karachi-street",
+      "position": [
+        58,
+        32,
+        86
+      ],
+      "lookAt": [
+        0.7,
+        12.7,
+        1.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "saint-patrick-s-cathedral-karachi-closeup",
+      "position": [
+        58,
+        32,
+        86
+      ],
+      "lookAt": [
+        0.7,
+        12.7,
+        1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cathedral-and-forecourt",
+      "position": [
+        39,
+        28,
+        78
+      ],
+      "lookAt": [
+        0.5,
+        12,
+        4
+      ]
+    },
+    {
+      "name": "twin-spires-and-lancet-front",
+      "position": [
+        -9,
+        12,
+        59
+      ],
+      "lookAt": [
+        0.65,
+        16.1,
+        24.3
+      ]
+    },
+    {
+      "name": "chancel-and-side-transept",
+      "position": [
+        44,
+        22,
+        -45
+      ],
+      "lookAt": [
+        0.8,
+        10.8,
+        -7.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2473,
+    "vertices": 7419,
+    "materials": 4,
+    "bytes": 374796,
+    "sha256": "sha256:e116d85dd5c9bbcb09b73daafee1bad97efeb38785622f37f39f116a86d4e297"
+  }
+}

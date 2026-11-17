@@ -1,0 +1,65 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bangkok_national_museum",
+  "kind": "static-structure",
+  "title": "Bangkok National Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bangkok_national_museum",
+        "output": "assets/places/w4/w4r/bangkok_national_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:797296eacd98521527c27bcbdde8ec2b56c670810e780d63f2308f4cab724c55"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bangkok-national-museum",
+        "path": "models/generate-bangkok-national-museum.mjs"
+      },
+      {
+        "id": "bangkok-national-museum-model",
+        "path": "models/bangkok-national-museum-model.mjs"
+      },
+      {
+        "id": "front-palace-roofs",
+        "path": "models/front-palace-roofs.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/bangkok-national-museum-controls.json",
+      "reference-rights/qualla-siwamokkhaphiman.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25530-15119.png",
+      "terrain-sources/terrarium-15-25531-15119.png",
+      "preview.png",
+      "reference-rights/siwamokkhaphiman-portal.json",
+      "reference-rights/buddhaisawan-main-portal.json",
+      "reference-originals/siwamokkhaphiman-portal.jpg",
+      "reference-originals/buddhaisawan-main-portal.jpg",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

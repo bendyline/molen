@@ -194,6 +194,7 @@ export {
   type TerrainSemanticTileRenderer,
   type TerrainSemanticTileSource,
   type TerrainUrbanGround,
+  type TerrainWaterFeatureStyle,
   type TerrainWaterMaterial,
   type TerrainWaterMaterialOptions,
   terrainWaterSurfaceHeight,
@@ -273,6 +274,7 @@ export {
 export {
   createTerrainTunnelObject,
   sampleTerrainTunnel,
+  setTerrainSurfacePassages,
   type TerrainTunnelClearance,
   withTerrainTunnels,
 } from './tunnels';

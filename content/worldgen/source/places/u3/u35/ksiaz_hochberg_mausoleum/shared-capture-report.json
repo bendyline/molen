@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-  "sourceHash": "sha256:b96a38d38923c538ac87b07dbb8d3041e19235f8df7c9de8b23ea84b2a06161e",
-  "runtimeHash": "sha256:4226259d31eb76679224bb71f96323507c61e1acdba5415abfb0491f8d3f9c73",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:1cbd8ea3c893b30241358daf51257534bde27d24604a12acdb3ed210cc2d7458",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:7a6f72394f82566ef049751094fe231311896f28f2808826bdceb6932c54cec3",
-  "placementHash": null,
+  "inputHash": "sha256:2b16100cd258be7375677c54191c36e9144460d8edcb06a73ea3a65250365381",
+  "sourceHash": "sha256:7b727560161fe173d658095c340e761b6aea752458f19ab57de4b195c209a516",
+  "runtimeHash": "sha256:ad55a1dd9d3cc2f37adc23c742de2db33dcc26e434483165d5ce0785c426cc59",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:09bfda1011cf56441f34d6ce909cf3730c190007c2bc8f0509bea162bc989f3d",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:7012e18c6a536293d7914936bf4d774e39c8c77270ba36db216a30aac1fbccd9",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -30,6 +33,10 @@
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
@@ -38,247 +45,407 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:46b14e16d2371c6590014fe4085b9e55518b0322e226a258443dfba45aafd187",
+      "hash": "sha256:539d483163b2cb9facf665481307f4d0c0d000eb52287f6820a435ea1d5a7f87",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:0a7952429aa92437183200ab519a9e735a4ce4b7f09d21dfbf3be7b89032daab",
+      "hash": "sha256:4527f0de398eb4645fe446c4afaef21838ef294f9428124ec28cd9c9fe62d867",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:3dcdf989bdfd3dd0cdfcabff8882605c48ff07d5c6d25be6c407b832c1710d0d",
+      "hash": "sha256:06a3a1e9b0a4120485c7819fb4942c844148803d800b98a98a43357f79df1b64",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:98a9ee5bc4168f9a4cdb0883bb4a11aaf6a6ba70e45544857972c58e715cb83c",
+      "hash": "sha256:70e785998ccc3e1ce86a0fe0aaf87a9f45a324e2bf5adb9749e1b30491c2e0a0",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/southeast-oculus.png",
-      "hash": "sha256:ed40948d461837ab488d198a63eec172332a2d475fc57d6418b93490a129cf40",
+      "hash": "sha256:acd0f360d0341642161d38e3a7c568216d927a349104edcc464162cdccff9279",
       "camera": {
         "name": "southeast-oculus",
         "position": [
@@ -294,60 +461,100 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/entry-and-recessed-bay.png",
-      "hash": "sha256:db5eb4cf134671fac95aa6bd33a26af95aee845ec769add9f1d1594935a3e8bb",
+      "hash": "sha256:65a5a436ab0aac2e78266b327fc63d3fdf85ca2b48c469c6e9f80a9a4c1165ce",
       "camera": {
         "name": "entry-and-recessed-bay",
         "position": [
@@ -363,60 +570,100 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/roof-and-footprint.png",
-      "hash": "sha256:6874be8880a743c12d872656feed0fc007dc08a1c25f63e3c429c56a92c25840",
+      "hash": "sha256:57facf8ac37ced259beba0987aad8961b9ecbe761ae447a1c0637579c5768173",
       "camera": {
         "name": "roof-and-footprint",
         "position": [
@@ -432,60 +679,100 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
       }
     },
     {
       "path": "shots/shared/window-and-cornice.png",
-      "hash": "sha256:b1e3427915d128dc79737c05768f04f537f103bb49b322e82784205cf7637337",
+      "hash": "sha256:9761069b81833e7da63d70246f0bc6390d23bc2babf3a741bb4b1bb392f2da72",
       "camera": {
         "name": "window-and-cornice",
         "position": [
@@ -501,55 +788,195 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
         "position": [
+          -64.00178810302168,
           0,
-          0,
-          0
+          -64.00460330490023
         ],
         "heading": 0,
-        "meshes": 7,
-        "triangles": 1343,
+        "meshes": 8,
+        "triangles": 2337,
         "bounds": {
           "min": [
-            -7.1350250244140625,
-            0,
-            -7.121699810028076
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
           ],
           "max": [
-            7.1350250244140625,
+            7.149670637212694,
             10.600000381469727,
-            7.1529998779296875
+            7.645878872834146
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8cd460e0-9d96-4178-b7e8-fadf94be24d8",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "09acf9eb-e02e-4262-bbc4-957b08cfd5c8",
-          "worldgen:matgraph:molen.worldgen.material.slate": "a6195cd6-e807-4292-840e-d230376f0f89",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "bfd4f170-bf59-4b33-ab64-0e626b6af80e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "8dcb1db7-7fea-4bdf-b10e-fcde896c9b3f",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e6d174d9-f366-4d62-899c-7c94436f1eaf"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
         },
         "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
           "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1345
+        "draws": 9,
+        "renderedTriangles": 2339
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:352170b4b60a4283a946a8a46e68a03d8dcbd247f28bc81c0e11dcb64be24717",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.hochberg-mausoleum",
+        "position": [
+          -64.00178810302168,
+          0,
+          -64.00460330490023
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 2337,
+        "bounds": {
+          "min": [
+            -7.25519844237715,
+            -1.6536790132522583,
+            -7.262885012663901
+          ],
+          "max": [
+            7.149670637212694,
+            10.600000381469727,
+            7.645878872834146
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -7.255197718714678,
+            -1.6536790132522583,
+            -7.262884118698903
+          ],
+          "max": [
+            7.14967043544012,
+            10.600000381469727,
+            7.645882405266334
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d2780eef-7297-46a7-b1e5-80510c234c73",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "2de7abc3-dd97-4576-8f10-824b720cbfe4",
+          "worldgen:matgraph:molen.worldgen.material.slate": "e8908ebc-b5b8-4ffe-8a17-40c947bb58de",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "0f373d6d-c38d-425a-97f9-79657618e4cc",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d451ccc1-b8a5-4d3f-9ea0-2692b4e23a6f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "d32ab525-e57a-4701-b1ef-1b869a943431",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "61aec249-d5d9-4560-9895-0c647d953c10"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_hochberg_alley_gate",
+          "molen.worldgen.structure.ksiaz_hochberg_mausoleum"
+        ],
+        "selectionBounds": [
+          16.29899058394132,
+          50.83903207489609,
+          16.300811416058686,
+          50.84018191845875
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.hochberg-alley-gate",
+            "coordinate": [
+              16.2990095,
+              50.8392053
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.hochberg-mausoleum",
+            "coordinate": [
+              16.29987343879107,
+              50.83966606596829
+            ],
+            "height": -0.48
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.hochberg-mausoleum"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 2339
       }
     }
   ],

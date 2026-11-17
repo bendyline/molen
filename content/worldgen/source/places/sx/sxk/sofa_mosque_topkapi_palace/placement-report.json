@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.sofa_mosque_topkapi_palace",
-  "inputHash": "sha256:e50330246f65f842e3511879256eb3a29ec12c5eee4049dad0cf55840ae9be7b",
-  "placementHash": "sha256:8587a613c86e2c2bee6168a3a017935060f57784363780a2e07aa067194d882c",
+  "inputHash": "sha256:8e2e28fe854edb5796dcc03834373a38f2bc9ada6e97d458b17d06f0893f771e",
+  "placementHash": "sha256:a1f921183612217592c8b6e787c999a8c0588f82271c6edeab33f149a348a111",
   "entry": {
     "id": "sofa.mosque.topkapi.palace",
     "title": "Sofa Mosque, Topkapi Palace",
@@ -12,8 +12,8 @@
       41.01338454849554
     ],
     "heading": 0,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 35.16,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q127418589",
@@ -39,7 +39,7 @@
           -5.791260359059596
         ]
       ],
-      "basis": "Only occupied hall floor; original stair/garden ground retained."
+      "basis": "Remove terrain only under the occupied floor. The photographed approaches meet the retained courtyard via a shallow landing."
     },
     "buildingCutout": {
       "outline": [
@@ -83,14 +83,6 @@
       "minimumCoverage": 0.995,
       "basis": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint."
     },
-    "terrainReference": {
-      "anchor": [
-        28.985556450092155,
-        41.01333165328151
-      ],
-      "modelHeight": 0,
-      "basis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified."
-    },
     "bounds": [
       28.985508102254325,
       41.013320135952725,
@@ -98,9 +90,11 @@
       41.01344896103835
     ],
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/261824325",
-    "note": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint. Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[0,7] is outside all573 native building records. Upper floor0.12m above highest boundary, protective basement down to lowest boundary; only occupied hall ground is cut and sealed by floor. Original stair/garden ground remains. No bespoke terrain or precinct flattening; exact historical thresholds/accessibility unverified. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Independent Q127418589, OSM way261824325 v24/native35184633913157, corroborated by the Sofa Mosque Commons category. Exact four-corner parent retained. Internal+X southeast follows the long hall toward its entrance; internal+Z southwest faces the photographed four-window garden wall. Minaret is at the far entrance corner, inside the parent footprint. The retained standard field samples 35.14 m beside the photographed entrance. The bounded forecourt meets the two entrance treads and blends into the garden slope. Absolute grades are representative visualization controls."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The modeled steps and grades represent the façade and its immediate approach. The standard map and ordinary photographs supply the plan and slope controls.",
+  "sourceHash": "sha256:aa2e6ac96577dfb2919e4240000275074b9cc9372504bddc20c50bea7bef318f",
+  "runtimeHash": "sha256:a1b1f816711b30bfc7076ab47121b6d7a640c1f9d65deea3b09ea3b495ef5b9d"
 }

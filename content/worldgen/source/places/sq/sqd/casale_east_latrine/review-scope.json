@@ -31,23 +31,23 @@
       "metallic": 0
     }
   },
-  "previewGround": true,
+  "previewGround": false,
   "camera": {
     "position": [
-      11.34340954743087,
-      12,
-      17.214152893455257
+      7,
+      6,
+      9
     ],
     "lookAt": [
       0,
-      0.06614167250434089,
+      -0.3,
       0
     ],
-    "fov": 52
+    "fov": 45
   },
   "qaCameras": [
     {
-      "name": "octagonal-open-center-and-west-entry",
+      "name": "two-open-masonry-rings",
       "position": [
         -9.95037948768756,
         7,
@@ -75,7 +75,7 @@
       "fov": 48
     },
     {
-      "name": "west-gap-and-closed-wall-bases",
+      "name": "villa-facing-opening-and-wall-bases",
       "position": [
         -8.059801407414371,
         3.2,
@@ -152,9 +152,17 @@
     }
   ],
   "mediumFiContext": {
-    "scale": 1,
+    "scale": 0.28,
     "groundY": -0.6338583274956591,
-    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "focus": {
+      "center": [
+        0,
+        -0.45,
+        0
+      ],
+      "radius": 7
+    }
   },
   "runtimeLodOverlay": {
     "level": "skyline",
@@ -237,7 +245,7 @@
     }
   },
   "geographic": {
-    "status": "draft-proposal",
+    "status": "preview-proposal",
     "anchor": [
       14.335354417562485,
       37.364871610631006
@@ -246,8 +254,8 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
-    "groundContactReviewed": false,
-    "groundContactBasis": "Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The unchanged standard terrain provides the existing eastern datum at about 554.96 m. Each closed footing reaches at least 0.16 m below its sampled strip. Ground masks follow both occupied masonry rings and leave the center, the gap between rings, and the villa-facing entrance open.",
     "replaceFootprint": false,
     "mapIdentity": {
       "maxDistance": 3
@@ -264,7 +272,7 @@
         37.36486803517259
       ],
       "modelHeight": 0,
-      "basis": "Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening."
+      "basis": "The unchanged standard terrain provides the existing eastern datum at about 554.96 m. Each closed footing reaches at least 0.16 m below its sampled strip. Ground masks follow both occupied masonry rings and leave the center, the gap between rings, and the villa-facing entrance open."
     },
     "buildingCutout": {
       "outline": [
@@ -338,7 +346,7 @@
         ]
       ],
       "minimumCoverage": 0.995,
-      "basis": "Shared park Q505617 identifies the site; independent way304818578/native35184676907410 identifies this eastern latrine. Its eight mapped vertices set meter scale and offsets. Internal +X points east/slightly south away from the villa and +Z follows the western side south/slightly west. Native east/up/south axes are baked with heading 0. Only this one footprint is replaced; the southern polygonal latrine and every other building remain independent."
+      "basis": "The upper eastern octagon in the aerial lies between the basilica and the perimeter path. Standard PMTiles identifies its outline as the independent feature 35184676907410, mapped as OSM way/304818578. The site has Wikidata ID Q505617. The southern polygonal latrine retains its own identity. East, up and south are baked into the model at heading zero."
     },
     "groundCutout": {
       "outline": [
@@ -347,16 +355,16 @@
           1.0678908517709824
         ],
         [
-          -1.3052114169995968,
-          2.4917461254816824
+          -2.322487739149754,
+          1.4744781813934889
         ],
         [
-          -1.0311170194296817,
-          1.968479439130529
+          -1.7650906817538132,
+          1.1206034178590514
         ],
         [
-          -2.1559719497166334,
-          0.8436337728990762
+          -2.0740995971957488,
+          0.8115970473459466
         ]
       ],
       "outlines": [
@@ -366,16 +374,34 @@
             1.0678908517709824
           ],
           [
+            -2.322487739149754,
+            1.4744781813934889
+          ],
+          [
+            -1.7650906817538132,
+            1.1206034178590514
+          ],
+          [
+            -2.0740995971957488,
+            0.8115970473459466
+          ]
+        ],
+        [
+          [
+            -1.7118020952126696,
+            2.085158795859176
+          ],
+          [
             -1.3052114169995968,
             2.4917461254816824
           ],
           [
-            -1.0311170194296817,
-            1.968479439130529
+            -0.9919606769196937,
+            1.8937270553660785
           ],
           [
-            -2.1559719497166334,
-            0.8436337728990762
+            -1.300969592361629,
+            1.584720684852974
           ]
         ],
         [
@@ -388,12 +414,12 @@
             2.729055363077932
           ],
           [
-            0.6561653760007238,
-            2.155953736831566
+            0.6312477034943672,
+            2.0740820759392284
           ],
           [
-            -1.0311170194296817,
-            1.968479439130529
+            -0.9919606769196937,
+            1.8937270553660785
           ]
         ],
         [
@@ -406,12 +432,12 @@
             1.3052000450727512
           ],
           [
-            1.9684961280021716,
-            1.0311080356074735
+            1.8937431104831015,
+            0.991952034255291
           ],
           [
-            0.6561653760007238,
-            2.155953736831566
+            0.6312477034943672,
+            2.0740820759392284
           ]
         ],
         [
@@ -421,15 +447,15 @@
           ],
           [
             2.7290784173628415,
-            -0.8305824715889824
+            -0.8305824715889821
           ],
           [
-            2.1559719497166445,
-            -0.6561601525552961
+            2.0740995971957594,
+            -0.6312426784076265
           ],
           [
-            1.9684961280021716,
-            1.0311080356074735
+            1.8937431104831015,
+            0.991952034255291
           ]
         ],
         [
@@ -442,12 +468,12 @@
             -2.491746275766473
           ],
           [
-            1.0311170194297152,
-            -1.9684795578555134
+            0.991960676919726,
+            -1.8937271695825193
           ],
           [
-            2.1559719497166445,
-            -0.6561601525552961
+            2.0740995971957594,
+            -0.6312426784076266
           ]
         ],
         [
@@ -460,12 +486,12 @@
             -2.7290553630779177
           ],
           [
-            -0.8436411977151859,
-            -2.155953736831555
+            -0.811604190207014,
+            -2.0740820759392173
           ],
           [
-            1.0311170194297152,
-            -1.9684795578555134
+            0.991960676919726,
+            -1.8937271695825193
           ]
         ],
         [
@@ -478,53 +504,201 @@
             -1.3052007363827578
           ],
           [
-            -1.9684961280021496,
-            -1.0311085817423788
+            -1.8937431104830804,
+            -0.9919525596508961
           ],
           [
-            -0.8436411977151859,
-            -2.155953736831555
+            -0.8116041902070142,
+            -2.074082075939218
           ]
         ],
         [
           [
             -2.491767250635632,
             -1.3052007363827578
-          ],
-          [
-            -2.555695330067904,
-            -0.66592535107421
-          ],
-          [
-            -2.0189993107536446,
-            -0.526081027348626
-          ],
-          [
-            -1.9684961280021496,
-            -1.0311085817423788
-          ]
-        ],
-        [
-          [
-            -2.6651503379305552,
-            0.42861546646243465
           ],
           [
             -2.7290784173628273,
             1.0678908517709824
           ],
           [
-            -2.1559719497166334,
-            0.8436337728990762
+            -2.0740995971957488,
+            0.8115970473459466
           ],
           [
-            -2.1054687669651386,
-            0.33860621850532346
+            -1.8937431104830804,
+            -0.9919525596508961
+          ]
+        ],
+        [
+          [
+            -1.6647378345913244,
+            0.6514134195802994
+          ],
+          [
+            -1.4442182854291177,
+            0.8719311525924522
+          ],
+          [
+            -1.23113689905433,
+            0.7432855727017628
+          ],
+          [
+            -1.4191207770286702,
+            0.5553032429209109
+          ]
+        ],
+        [
+          [
+            -1.0166985135319608,
+            1.2994474035316732
+          ],
+          [
+            -0.7961789643697541,
+            1.5199651365438263
+          ],
+          [
+            -0.6787099368397904,
+            1.2957079852504747
+          ],
+          [
+            -0.8666938148141307,
+            1.107725655469623
+          ]
+        ],
+        [
+          [
+            -0.7961789643697541,
+            1.5199651365438263
+          ],
+          [
+            0.5066593409625842,
+            1.6647237714775385
+          ],
+          [
+            0.43190632344351443,
+            1.4191087888005247
+          ],
+          [
+            -0.6787099368397904,
+            1.2957079852504747
+          ]
+        ],
+        [
+          [
+            0.5066593409625842,
+            1.6647237714775385
+          ],
+          [
+            1.5199780228877526,
+            0.7961720274943783
+          ],
+          [
+            1.295718970330543,
+            0.6787040234378308
+          ],
+          [
+            0.43190632344351443,
+            1.4191087888005247
+          ]
+        ],
+        [
+          [
+            1.5199780228877526,
+            0.7961720274943783
+          ],
+          [
+            1.664737834591333,
+            -0.5066553076692791
+          ],
+          [
+            1.4191207770286776,
+            -0.43190288522627085
+          ],
+          [
+            1.295718970330543,
+            0.6787040234378308
+          ]
+        ],
+        [
+          [
+            1.664737834591333,
+            -0.5066553076692792
+          ],
+          [
+            0.79617896436978,
+            -1.5199652282175484
+          ],
+          [
+            0.6787099368398126,
+            -1.2957080633985658
+          ],
+          [
+            1.4191207770286776,
+            -0.43190288522627096
+          ]
+        ],
+        [
+          [
+            0.79617896436978,
+            -1.5199652282175484
+          ],
+          [
+            -0.6514191526661561,
+            -1.6647237714775298
+          ],
+          [
+            -0.5553081301416412,
+            -1.4191087888005174
+          ],
+          [
+            0.6787099368398126,
+            -1.2957080633985658
+          ]
+        ],
+        [
+          [
+            -0.6514191526661561,
+            -1.6647237714775298
+          ],
+          [
+            -1.5199780228877353,
+            -0.7961724491934823
+          ],
+          [
+            -1.2957189703305287,
+            -0.6787043829190341
+          ],
+          [
+            -0.5553081301416413,
+            -1.4191087888005174
+          ]
+        ],
+        [
+          [
+            -1.5199780228877353,
+            -0.7961724491934823
+          ],
+          [
+            -1.6647378345913244,
+            0.6514134195802994
+          ],
+          [
+            -1.4191207770286702,
+            0.5553032429209109
+          ],
+          [
+            -1.2957189703305287,
+            -0.6787043829190341
           ]
         ]
       ],
-      "basis": "Nine occupied masonry strips only; open center and west entrance retain native terrain."
+      "basis": "The unchanged standard terrain provides the existing eastern datum at about 554.96 m. Each closed footing reaches at least 0.16 m below its sampled strip. Ground masks follow both occupied masonry rings and leave the center, the gap between rings, and the villa-facing entrance open."
     },
-    "notes": "Shared park Q505617 identifies the site; independent way304818578/native35184676907410 identifies this eastern latrine. Its eight mapped vertices set meter scale and offsets. Internal +X points east/slightly south away from the villa and +Z follows the western side south/slightly west. Native east/up/south axes are baked with heading 0. Only this one footprint is replaced; the southern polygonal latrine and every other building remain independent. Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening."
+    "notes": "The upper eastern octagon in the aerial lies between the basilica and the perimeter path. Standard PMTiles identifies its outline as the independent feature 35184676907410, mapped as OSM way/304818578. The site has Wikidata ID Q505617. The southern polygonal latrine retains its own identity. East, up and south are baked into the model at heading zero. The unchanged standard terrain provides the existing eastern datum at about 554.96 m. Each closed footing reaches at least 0.16 m below its sampled strip. Ground masks follow both occupied masonry rings and leave the center, the gap between rings, and the villa-facing entrance open."
+  },
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
   }
 }

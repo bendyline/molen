@@ -64,8 +64,8 @@
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X along longest mapped side in source vertex order",
-    "longitudinal": "+Z perpendicular to mapped side; photograph-facing provisional",
-    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+    "longitudinal": "+Z perpendicular to the mapped side, signed using the dormer and rooflights visible from beside Lion Gate.",
+    "origin": "Own mapped envelope center. Y0 is offset from the sampled terrain at the entrance landing."
   },
   "controls": {
     "basisEdge": 2,
@@ -76,11 +76,167 @@
     "mainDormerWall": 2,
     "entryWall": 3,
     "dimensionsStatus": "Own map outline; roof/height/dormer dimensions and unseen elevations are 2012 photographic interpretations, not a survey.",
-    "facadeStatus": "Facade assignments are photographic proposals on the own map-derived frame; signed geographic orientation remains unreviewed."
+    "facadeStatus": "From beside the gate, the oval dormer is on the right and the paired eyebrows are on the left. These are the +Z and −X faces in the model frame.",
+    "sideRooflights": [
+      {
+        "edge": 1,
+        "offsets": [
+          -1.22,
+          1.22
+        ]
+      }
+    ]
   },
   "reconstruction": {
     "basis": "Own attributed OSM ring, individual official NID address/heritage record and Irena Goderska’s primary 2012 photograph.",
     "scope": "One of two Swiss houses in ksiaz_castle_and_park_complex; nearby annexes/fences are separate features and are not merged into the main house.",
-    "registration": "Map-derived axis/anchor. Signed facade orientation and actual terrain fit remain unreviewed."
+    "registration": "The oval dormer and two smaller lights face the sides visible from Lion Gate. The opposite side portal has a recessed door and a short landing that follows the sampled terrain."
+  },
+  "siteFit": {
+    "contact": {
+      "anchor": [
+        16.31728414910321,
+        50.85143341153755
+      ],
+      "local": [
+        4.863968,
+        -0.009163
+      ],
+      "modelHeight": -0.14,
+      "meters": 315.102105
+    },
+    "datumMeters": 315.242105,
+    "footingBottom": -0.374915,
+    "entrances": [
+      {
+        "center": [
+          3.554,
+          0
+        ],
+        "angle": 1.577791,
+        "edge": 3,
+        "width": 1.62,
+        "depth": 1.31,
+        "floor": 0.22,
+        "toe": [
+          -0.127072,
+          -0.152982
+        ]
+      }
+    ],
+    "bounds": [
+      16.317195,
+      50.851308,
+      16.317409,
+      50.851482
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          3.524485,
+          -3.567477
+        ],
+        [
+          3.580804,
+          3.657238
+        ],
+        [
+          -3.596148,
+          3.531203
+        ],
+        [
+          -3.517876,
+          -3.463395
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            3.524485,
+            -3.567477
+          ],
+          [
+            3.580804,
+            3.657238
+          ],
+          [
+            -3.596148,
+            3.531203
+          ],
+          [
+            -3.517876,
+            -3.463395
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps feature for https://www.openstreetmap.org/way/255269521."
+    },
+    "evidence": {
+      "nativeId": 35184627358353,
+      "vectorSource": "https://build.protomaps.com/20261114.pmtiles",
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17869,
+          "y": 10991,
+          "hash": "sha256:a2562763c0431f115e98f457dbc1dab15ef790257cf8cb1fdddbbbffb6f42ae4"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8934,
+          "y": 5495,
+          "hash": "sha256:2492c8620458e9394b7609169fce34e67e91201b9ab6e47a3be96c53a3b58d7c",
+          "container": "Terrarium original"
+        }
+      ],
+      "archiveHashes": {
+        "vector": "sha256:ffa4bca84ec8677ed42d0605bbcd13e3b0ce7c904d27785b627b7b383addf0b4",
+        "elevation": "sha256:2492c8620458e9394b7609169fce34e67e91201b9ab6e47a3be96c53a3b58d7c"
+      },
+      "perimeter": [
+        {
+          "p": [
+            3.529,
+            -3.574
+          ],
+          "height": 315.10719
+        },
+        {
+          "p": [
+            -3.508,
+            -3.506
+          ],
+          "height": 315.448459
+        },
+        {
+          "p": [
+            -3.579,
+            3.574
+          ],
+          "height": 315.556565
+        },
+        {
+          "p": [
+            3.579,
+            3.574
+          ],
+          "height": 315.217036
+        },
+        {
+          "p": [
+            3.531,
+            -1.692
+          ],
+          "height": 315.137975
+        }
+      ],
+      "lionGateInNativeFrame": [
+        -25.592264,
+        18.774528
+      ]
+    }
   }
 }

@@ -78,10 +78,10 @@ const spec = {
     anchor: placement.anchor,
     heading: placement.heading,
     elevationMode: 'sea-level',
-    elevationMeters: 11,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis:
-      'The original exterior has an explicit Y=0 contact plane above the closed buried foundation. This reviews the source plane only; the provisional 11m coastal datum and native site fit remain pending. ' +
+      'The original exterior has an explicit Y=0 contact plane above its closed buried foundation. ' +
       brief.heightPolicy,
     groundModelY: 0,
     replaceFootprint: true,

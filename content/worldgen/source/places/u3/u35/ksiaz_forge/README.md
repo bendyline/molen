@@ -4,7 +4,7 @@
 
 L-shaped service building with rubble stone walls, brick upper band, two arched timber double doors, shallow roof and a tall masonry chimney.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.
 
 ## Sources and reconstruction
 
@@ -20,6 +20,6 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/generate-ksiaz-park-structures.mjs --ids=KSI_P02 (or --check).
 
-554 triangles;70568 source bytes;7 merged material groups;no embedded images. Shared plaster, tile, sandstone, rubble, brick, timber and metal use metric UVs and linear palette tints as appropriate to each building. Runtime LODs are separate generated outputs.
+612 triangles;78016 source bytes;8 merged material groups;no embedded images. Shared plaster, tile, sandstone, rubble, brick, timber and metal use metric UVs and linear palette tints as appropriate to each building. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:995c57accb804a35a20e80da5940be526a0c4833615935952bd61306ce36ca7d
+Source hash: sha256:18e75918d7084a083569323e0d5fc877d4b72d5e97698a5b811d76d5600d9a9d

@@ -1,0 +1,481 @@
+{
+  "planId": "museum_of_old_and_new_art",
+  "id": "museum_of_old_and_new_art",
+  "assetId": "molen.worldgen.structure.museum_of_old_and_new_art",
+  "title": "Museum of Old and New Art",
+  "wikidataId": "Q2353030",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 147.261,
+    "latitude": -42.8128
+  },
+  "size": [
+    296.3611145019531,
+    25.589999198913574,
+    87.69820022583008
+  ],
+  "actualBounds": {
+    "min": [
+      -144.63479614257812,
+      -4.199999809265137,
+      -44.71889877319336
+    ],
+    "max": [
+      151.726318359375,
+      21.389999389648438,
+      42.97930145263672
+    ]
+  },
+  "visualBrief": "The standing Museum of Old and New Art under the Berriedale clifftop, with rusted steel walls, concrete grille bays, green roof, the white Courtyard House entrance and the ferry stair.",
+  "nativeAxes": {
+    "x": "east lengthwise along the museum building",
+    "y": "up",
+    "z": "south toward the facade and the Derwent River"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:MONA_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:MONA_20171120-067.jpg",
+    "https://commons.wikimedia.org/wiki/File:MONA_pier_20171120-068.jpg"
+  ],
+  "stories": [
+    {
+      "id": "museum-of-old-and-new-art-wp",
+      "url": "https://qualla.com/museum-of-old-and-new-art/"
+    }
+  ],
+  "referenceInputHash": "3650305386053d0a90d49b19f9ef6cc5a0f338a6845685fc315474190783d91f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r2/r22/museum_of_old_and_new_art/models/museum-of-old-and-new-art-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r2/r22/museum_of_old_and_new_art/models/museum-of-old-and-new-art-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.55,
+    "surfaces": {
+      "rust": {
+        "slot": "wall",
+        "graph": "metal_standing_seam",
+        "roughness": 0.91,
+        "metallic": 0.15
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.38,
+        "surfaces": {
+          "rust": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "rust": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "rust": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_standing_seam",
+    "concrete_plain",
+    "stone_sandstone_raw",
+    "plaster_lime",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.09,
+    "groundY": -2.8429,
+    "far": 3000,
+    "focus": {
+      "center": [
+        0,
+        7,
+        -4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The riverfront photos show repeated grille fields framed by tapering rusty steel, a mostly concealed rear, glass and white plaster buildings above the terrace, and a stair down to the shore. The 17 m museum section is used only as scale evidence.",
+    "anchor": [
+      147.261,
+      -42.8128
+    ],
+    "heading": 0.0974715637951582,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        147.26234208559848,
+        -42.81262249819907
+      ],
+      "modelHeight": 0,
+      "basis": "Original Tasmanian ground elevation at the low eastern approach above the ferry landing."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/148015865",
+      "way/393280232",
+      "way/661373571",
+      "way/148015864",
+      "way/393280240",
+      "way/148015924"
+    ],
+    "source": "https://www.openstreetmap.org/way/148015865",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:13df0751b94ef17c41f2167c4ad9caecdc05de54ba8a00f18a4bdb1f7c72f333"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The shell positions and cuts are approximate within the independently mapped volume. The front bay proportions are derived from the river views. Exact roof levels, grille details, the nearby lower quay structures and Pharos and Round House finishes are estimates.",
+    "The terrain is the original rotated Tasmanian elevation field, including the riverbed. Cut edges, waterline and terrace contact are approximate and we apply no changes to the terrain.",
+    "The modeled scope covers the above-grade architecture and waterfront approach. Underground interiors, held art, exterior installations, winery, lodges and other detached estate structures are outside scope."
+  ],
+  "sourceLicense": "Original standing-exterior reconstruction from the exact CC0 riverfront Qualla photographs, mapped built outlines, official terrain elevations and architect and heritage written sources.",
+  "qaLodCameras": [
+    {
+      "name": "museum-of-old-and-new-art-skyline",
+      "position": [
+        81,
+        35,
+        239
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-of-old-and-new-art-district",
+      "position": [
+        81,
+        35,
+        239
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-of-old-and-new-art-street",
+      "position": [
+        81,
+        35,
+        239
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-of-old-and-new-art-closeup",
+      "position": [
+        81,
+        35,
+        239
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "derwent-steel-facade",
+      "position": [
+        57,
+        22,
+        170
+      ],
+      "lookAt": [
+        0,
+        7,
+        -4
+      ]
+    },
+    {
+      "name": "courtyard-house-and-ferry-stair",
+      "position": [
+        159,
+        28,
+        54
+      ],
+      "lookAt": [
+        83,
+        8,
+        -10
+      ]
+    },
+    {
+      "name": "round-house-and-pharos",
+      "position": [
+        -139,
+        27,
+        111
+      ],
+      "lookAt": [
+        -94,
+        7,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3770,
+    "vertices": 11310,
+    "materials": 7,
+    "bytes": 606940,
+    "sha256": "sha256:b41af91c1a02e0f51f12de4ce1f11cfbe40bc30c3d12e13f3bbe34a3368205dd"
+  }
+}

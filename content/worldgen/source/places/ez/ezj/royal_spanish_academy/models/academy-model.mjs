@@ -150,6 +150,20 @@ const rect = (u, y, w, h, kind = 'glass') => ({
   h,
   kind,
 });
+function shallowArch(u, y, w, h) {
+  const opening = rect(u, y, w, h);
+  const spring = y + h - 0.48;
+  opening.ring = [
+    [u - w / 2, y],
+    [u + w / 2, y],
+    ...[1, 0.67, 0.33, 0, -0.33, -0.67, -1].map((t) => [
+      u + (w * t) / 2,
+      spring + 0.48 * (1 - t * t),
+    ]),
+  ];
+  opening.arched = true;
+  return opening;
+}
 const face = (axis, side) =>
   axis === 'z'
     ? ([u, y, v]) => [side > 0 ? u : -u, y, side + Math.sign(side) * v]
@@ -189,9 +203,13 @@ function wall(o, c, p, L, y0, y1, holes, s) {
       );
     return;
   }
-  const flat = [...outer, ...holes.flatMap((h) => h.ring)],
-    starts = holes.map((_, i) => 4 + i * 4),
-    ids = earcut(flat.flat(), starts);
+  const flat = [...outer],
+    starts = [];
+  for (const hole of holes) {
+    starts.push(flat.length);
+    flat.push(...hole.ring);
+  }
+  const ids = earcut(flat.flat(), starts);
   for (let i = 0; i < ids.length; i += 3)
     T(
       o,
@@ -204,21 +222,22 @@ function wall(o, c, p, L, y0, y1, holes, s) {
   for (const h of holes) {
     const R = h.ring,
       depth = c.fine ? 0.35 : 0.14;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < R.length; i++) {
       const a = R[i],
-        b = R[(i + 1) % 4];
+        b = R[(i + 1) % R.length];
       Q(o, c, [p([...a, 0]), p([...b, 0]), p([...b, -depth]), p([...a, -depth])], 'stone', C.stone);
     }
-    Q(
-      o,
-      c,
-      R.map(([u, y]) => p([u, y, -depth])),
-      h.kind,
-      C[h.kind],
-      N,
-    );
+    for (let i = 1; i < R.length - 1; i++)
+      T(
+        o,
+        c,
+        [R[0], R[i], R[i + 1]].map(([u, y]) => p([u, y, -depth])),
+        h.kind,
+        C[h.kind],
+        N,
+      );
     const w = 0.14;
-    if (c.fine) {
+    if (c.fine && !h.arched) {
       for (const [a, b] of [
         [
           [-h.w / 2, -0.16],
@@ -239,9 +258,9 @@ function wall(o, c, p, L, y0, y1, holes, s) {
       ])
         localBox(o, c, p, h.u + a[0], h.u + b[0], h.y + a[1], h.y + b[1], -0.02, 0.14, 'stone');
     } else
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < R.length; i++) {
         const a = R[i],
-          b = R[(i + 1) % 4],
+          b = R[(i + 1) % R.length],
           d = [b[0] - a[0], b[1] - a[1]],
           D = Math.hypot(...d),
           v = [(d[1] / D) * w, (-d[0] / D) * w];
@@ -427,15 +446,53 @@ function figure(o, c, x, y, z, dark = false) {
     beam(adapter(o, c), s, [x + 0.2, y + 1.25, z], [x + 0.45, y + 0.9, z + 0.13], 0.15, 0.18, C[s]);
   }
 }
-function portico(o, c) {
+function portico(output, c) {
+  // The portico faces Ruiz de Alarcón. Keep the north and south façades in their signed frame.
+  const west = ([x, y, z]) => [x, y - 1.05, -z];
+  const o = {
+    addTriangle: (role, ref, points, [nx, ny, nz], uv, color) =>
+      output.addTriangle(
+        role,
+        ref,
+        points.map(west).toReversed(),
+        [nx, ny, -nz],
+        uv.toReversed(),
+        color,
+      ),
+  };
   // Entire projection is occupied by a closed landing and descending integral steps.
   box(o, c, -7.4, 7.4, -8, 2.2, 22.05, 26.5, 'base');
-  const stairs = c === cfg.skyline ? 3 : c === cfg.district ? 6 : 12;
+  const stairs = c === cfg.skyline ? 3 : c === cfg.district ? 6 : 23;
   for (let i = 0; i < stairs; i++) {
-    const front = 26.5 + ((i + 1) / stairs) * 3.1,
-      back = 26.5 + (i / stairs) * 3.1,
-      top = 2.2 - ((i + 1) / stairs) * 1.9;
-    box(o, c, -7.4, 7.4, -8, top, back, front, 'stone');
+    const front = 26.5 + ((i + 1) / stairs) * 5.7,
+      back = 26.5 + (i / stairs) * 5.7,
+      top = 2.2 - ((i + 1) / stairs) * 4.72;
+    box(o, c, -7.4, 7.4, -8, top, back, front, 'base');
+  }
+  if (c.fine) {
+    const rail = adapter(o, c);
+    const stairY = (z) => 2.2 - ((z - 26.5) / 5.7) * 4.72;
+    for (const x of [-2.5, 2.5]) {
+      beam(
+        rail,
+        'metal',
+        [x, stairY(26.9) + 0.86, 26.9],
+        [x, stairY(31.85) + 0.86, 31.85],
+        0.045,
+        0.05,
+        C.metal,
+      );
+      for (const z of [27, 28.55, 30.1, 31.65])
+        beam(
+          rail,
+          'metal',
+          [x, stairY(z) - 0.17, z],
+          [x, stairY(z) + 0.84, z],
+          0.04,
+          0.04,
+          C.metal,
+        );
+    }
   }
   for (const x of [-5.7, -1.9, 1.9, 5.7]) {
     box(o, c, x - 0.72, x + 0.72, 2.2, 2.55, 24.55, 25.99, 'stone');
@@ -470,6 +527,42 @@ function portico(o, c) {
     box(o, c, -0.65, 0.65, 17.5, 17.85, 24.65, 25.95, 'metal');
     figure(o, c, 0, 17.85, 25.3, true);
   }
+}
+function rearWing(o, c) {
+  const detail = c === cfg.district ? { ...c, windows: false } : c;
+  const faces = [
+    [face('z', 29.44), 14.7, [-4.7, 0, 4.7]],
+    [([u, y, v]) => [-7.35 - v, y, 25.75 + u], 7.38, [0]],
+    [([u, y, v]) => [7.35 + v, y, 25.75 - u], 7.38, [0]],
+  ];
+  box(o, c, -7.35, 7.35, -8, 3.5, 22.06, 29.44, 'base');
+  for (const [plane, length, bays] of faces) {
+    const upper = bays.map((u) => (c.fine ? shallowArch : rect)(u, 10.5, 2.5, 5.15));
+    const lower = bays.map((u) => rect(u, 4.2, 1.55, 3.82));
+    wall(o, detail, plane, length, 3.5, 17.25, [...lower, ...upper], 'brick');
+    for (const u of bays) {
+      if (c.fine) {
+        localBox(o, c, plane, u - 1.43, u + 1.43, 8.52, 10.5, 0.02, 0.16, 'stone');
+        for (const offset of [-0.81, 0, 0.81])
+          localBox(
+            o,
+            c,
+            plane,
+            u + offset - 0.2,
+            u + offset + 0.2,
+            9.14,
+            9.65,
+            0.16,
+            0.3,
+            'stone',
+            C.relief,
+          );
+      }
+    }
+  }
+  box(o, c, -7.35, 7.35, 17.25, 18.25, 22.06, 29.44, 'stone');
+  box(o, c, -7.58, 7.58, 18.25, 18.62, 21.98, 29.64, 'stone');
+  box(o, c, -7.53, 7.53, 18.62, 18.76, 21.98, 29.64, 'roof');
 }
 function ornament(o, c) {
   if (!c.fine) return;
@@ -515,13 +608,14 @@ export function buildAcademyLevel(o, level = 'master') {
   const c = cfg[level];
   if (!c) throw Error('Unknown academy tier ' + level);
   // Closed main body; window backs and roof complete all four exterior elevations.
-  box(o, c, -14.2, 14.2, -8, 2, -22.1, 22.1, 'base');
+  box(o, c, -14.2, 14.2, -8, 1.15, -22.1, 22.1, 'base');
+  if (c.windows) box(o, c, 14.19, 15.24, 0.65, 1.15, -1.34, 1.34, 'base');
   box(o, c, -14.2, 14.2, 19, 20, -22.1, 22.1, 'stone');
   for (const [p, L, bays, isNorth, isFront] of [
     [face('x', 14.2), 44.2, 11, true, false],
     [face('x', -14.2), 44.2, 11, false, false],
-    [face('z', 22.1), 28.4, 7, false, true],
-    [face('z', -22.1), 28.4, 7, false, false],
+    [face('z', 22.1), 28.4, 7, false, false],
+    [face('z', -22.1), 28.4, 7, false, true],
   ]) {
     const holes = [],
       attic = [];
@@ -530,13 +624,13 @@ export function buildAcademyLevel(o, level = 'master') {
         central = i === (bays - 1) / 2;
       attic.push(rect(u, 15.5, 1.0, 3.0));
       if (isFront && Math.abs(u) < 7) {
-        holes.push(rect(u, 2.2, central ? 2.4 : 1.6, 6.2, 'wood'));
+        holes.push(rect(u, 1.15, central ? 2.4 : 1.6, 6.2, 'wood'));
         continue;
       }
       holes.push(
         rect(
           u,
-          isNorth && central ? 2 : 3.0,
+          isNorth && central ? 1.15 : 3.0,
           isNorth && central ? 2.0 : 1.65,
           isNorth && central ? 5.2 : 4.1,
           isNorth && central ? 'wood' : 'glass',
@@ -557,7 +651,7 @@ export function buildAcademyLevel(o, level = 'master') {
         } else localBox(o, c, p, u - 1.4, u + 1.4, 8.55, 9.0, 0.8, 1, 'stone');
       }
     }
-    wall(o, c, p, L, 2, 14.5, holes, 'brick');
+    wall(o, c, p, L, 1.15, 14.5, holes, 'brick');
     wall(o, c, p, L, 14.5, 19, attic, 'stone');
   }
   for (const [y, h, w] of c === cfg.skyline
@@ -585,6 +679,7 @@ export function buildAcademyLevel(o, level = 'master') {
       }
   }
   roof(o, c);
+  rearWing(o, c);
   portico(o, c);
   ornament(o, c);
 }

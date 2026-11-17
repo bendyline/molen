@@ -256,6 +256,39 @@ export function buildTopkapiHasoda(face, detail, r) {
     emit = G.emit,
     step = G.L / r.arcadeBays,
     n = [4, 6, 10, 14][detail];
+  if (r.courtLanding) {
+    const { edge, groundY, lowerDepth, upperDepth } = r.courtLanding;
+    const levels = [
+      [-0.05, upperDepth, y, groundY + 0.012],
+      [upperDepth, upperDepth + lowerDepth, groundY + 0.012, groundY - 0.1],
+    ];
+    for (let i = 1; i < edge.length; i++) {
+      const [a, b] = edge[i - 1];
+      const [c, d] = edge[i];
+      for (const [near, far, h, bottom] of levels) {
+        f(
+          'floor',
+          [
+            [a, h, b + near],
+            [c, h, d + near],
+            [c, h, d + far],
+            [a, h, b + far],
+          ],
+          [0, 1, 0],
+        );
+        f(
+          'floor',
+          [
+            [a, h, b + far],
+            [c, h, d + far],
+            [c, bottom, d + far],
+            [a, bottom, b + far],
+          ],
+          [0, 0, 1],
+        );
+      }
+    }
+  }
   for (let i = 0; i <= r.arcadeBays; i++) {
     const [x, z] = G.point(i * step),
       profile = detail

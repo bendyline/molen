@@ -1,0 +1,342 @@
+{
+  "id": "odinstarnet",
+  "planId": "odinstarnet",
+  "assetId": "molen.worldgen.structure.odinstarnet",
+  "title": "Odinstårnet",
+  "category": "tower",
+  "quality": "detailed",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1938-06-01",
+    "validFrom": "1935-05-29",
+    "validUntil": "1944-12-14"
+  },
+  "wikidataId": "Q1421460",
+  "referenceCoordinate": {
+    "longitude": 10.331531167030334,
+    "latitude": 55.393951782571094
+  },
+  "visualBrief": "The two square steel frames step inward at the star-shaped restaurant. Open X bracing surrounds the lift, and the upper deck carries the conch-stair pavilion and its thin mast. Reinforced-concrete footings and an open roadside dining terrace anchor the tower.",
+  "nativeAxes": "+X follows Middelfartvej east. +Z faces south toward Middelfartvej and +Y is up.",
+  "actualBounds": {
+    "min": [
+      -37,
+      -1.2999999523162842,
+      -12.5
+    ],
+    "max": [
+      12.5,
+      177,
+      63
+    ]
+  },
+  "size": [
+    49.5,
+    178.29999995231628,
+    75.5
+  ],
+  "geometrySource": "Original deterministic geometry from historic Odense photographs, published deck dimensions, the mapped memorial and the nearby street frame.",
+  "materialMethod": "Shared painted steel, concrete, lime plaster and standing-seam metal use metric UVs and vertex colors.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object244241",
+    "https://www.odinstaarn.dk/historie/",
+    "https://www.odinstaarn.dk/historie/",
+    "https://www.odinstaarn.dk/historie/",
+    "https://hojby-fynlokalarkiv.dk/wp-content/uploads/2018/10/Odinst%C3%A5rnet.pdf",
+    "https://tidensgang.dk/"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      10.331531167030334,
+      55.393951782571094
+    ],
+    "heading": 0.11710874458560877,
+    "bounds": [
+      10.330822413805013,
+      55.39330889563821,
+      10.331953461976862,
+      55.39413231383794
+    ],
+    "minLevel": 11,
+    "elevationMode": "sea-level",
+    "elevationMeters": 32.52089,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The podium and four foundations intersect the standard Terrarium surface at the mapped Bolbro Bakke site.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a1b1f7acc747642907cafdae829a9f300eddd5f2df7f5c722e1d943a6ef472f3",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q1421460",
+    "notes": "The model follows the published 177 m height and the two public decks at 70 and 140 m above the original ground. The exact section sizes, paint color, glazing, furnishings and terrace detail are inferred from period photos. The full-sized tower is centered at the mapped memorial on Bolbro Bakke. Its signed facing follows the period view from the south and the nearby Middelfartvej alignment. Foundation corners and the dining terrace are approximate. The viewer shows the reconstruction for an explicit date during the tower’s lifetime. Native terrain, current streets and surrounding buildings provide the site context."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1z/odinstarnet/models/tower-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:0ca29839a02964e5abe840532477ba99de237486789d667b5bca3289a12aa19d"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u1/u1z/odinstarnet/models/tower-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:15eb7a9019327448738167177ffd1aa9542a4dcb9a817c48959de4d44a6f1868",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.22
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "The model follows the published 177 m height and the two public decks at 70 and 140 m above the original ground. The exact section sizes, paint color, glazing, furnishings and terrace detail are inferred from period photos.",
+    "The full-sized tower is centered at the mapped memorial on Bolbro Bakke. Its signed facing follows the period view from the south and the nearby Middelfartvej alignment. Foundation corners and the dining terrace are approximate.",
+    "The viewer shows the reconstruction for an explicit date during the tower’s lifetime. Native terrain, current streets and surrounding buildings provide the site context."
+  ],
+  "qaCameras": [
+    {
+      "name": "bolbro-1938",
+      "position": [
+        -178,
+        111,
+        243
+      ],
+      "lookAt": [
+        -8,
+        84,
+        10
+      ],
+      "fov": 43
+    },
+    {
+      "name": "south-footings-and-dining-terrace",
+      "position": [
+        -62,
+        15,
+        83
+      ],
+      "lookAt": [
+        -12,
+        14,
+        12
+      ],
+      "fov": 56
+    },
+    {
+      "name": "first-deck-and-star-restaurant",
+      "position": [
+        37,
+        83,
+        51
+      ],
+      "lookAt": [
+        0,
+        73,
+        0
+      ],
+      "fov": 41
+    },
+    {
+      "name": "upper-deck-and-conch-stair",
+      "position": [
+        -29,
+        151,
+        40
+      ],
+      "lookAt": [
+        0,
+        150,
+        0
+      ],
+      "fov": 45
+    },
+    {
+      "name": "east-elevation-and-elevator",
+      "position": [
+        121,
+        69,
+        -77
+      ],
+      "lookAt": [
+        0,
+        74,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "lattice-and-restaurant-roof",
+      "position": [
+        -52,
+        108,
+        -50
+      ],
+      "lookAt": [
+        0,
+        93,
+        0
+      ],
+      "fov": 59
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 50186,
+    "vertices": 93838,
+    "materials": 5,
+    "bytes": 3983640,
+    "sha256": "sha256:ecf1af99ea75978a82b667a2159a25a321b341dc7f9b2548cabe1c1d255fb284"
+  }
+}

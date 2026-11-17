@@ -89,6 +89,34 @@ function slab(o, slot, a, b, z0, z1, offset, depth, color) {
     color,
   );
 }
+
+function landing(o, approach) {
+  const { side, endX, endCenter } = approach;
+  const deckX = side * C.halfLength;
+  const y = kokushkinDeckY(deckX);
+  const section = (x, lo, hi, top, depth) => [
+    [x, top, lo],
+    [x, top, hi],
+    [x, top - depth, hi],
+    [x, top - depth, lo],
+  ];
+  const taper = (slot, inner, outer, color) =>
+    loft(o, slot, side < 0 ? [outer, inner] : [inner, outer], color);
+  const low = endCenter - C.approachRoadHalfWidth;
+  const high = endCenter + C.approachRoadHalfWidth;
+  taper('road', section(deckX, -4.7, 4.7, y, 0.4), section(endX, low, high, y, 0.4), road);
+  for (const sign of [-1, 1]) {
+    const inner = [sign * 4.7, sign * C.halfWidth].sort((a, b) => a - b);
+    const edge = sign < 0 ? low : high;
+    const outer = [edge, edge + sign * C.approachWalkWidth].sort((a, b) => a - b);
+    taper(
+      'stone',
+      section(deckX, inner[0], inner[1], y + 0.17, 0.58),
+      section(endX, outer[0], outer[1], y + C.approachWalkRise, 0.52),
+      paving,
+    );
+  }
+}
 function ring(o, x, y, z, r, width, n, color = paint) {
   beamPath(
     o,
@@ -442,6 +470,7 @@ export function buildKokushkinLevel(target, level = 'master') {
     slab(o, 'metal', ...C.spanEnds, z - 0.05, z + 0.05, -0.27, 0.55, paint);
   }
   for (const i of [0, 1]) abutment(o, cfg, i);
+  for (const approach of C.approaches) landing(o, approach);
   if (cfg.small)
     for (let x = -9; x <= 9; x += 3)
       slab(o, 'road', x, x + 1.0, -0.045, 0.045, 0.006, 0.006, white);

@@ -1,0 +1,179 @@
+{
+  "format": "molen/scene@3",
+  "name": "Museum of Transport and Technology independent building ensemble",
+  "seed": "museum_of_transport_and_technology",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "sir_keith_park_station_auckland",
+      "components": {
+        "transform": {
+          "pos": [
+            -583.4727793876484,
+            -11.4929,
+            -466.4659701136638
+          ],
+          "rot": [
+            0,
+            0.2301163337808378,
+            0,
+            0.9731631276036233
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.sir_keith_park_station_auckland",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "motat_aviation_hall_auckland",
+      "components": {
+        "transform": {
+          "pos": [
+            -578.9951462635618,
+            -8.1375,
+            -411.6049906247054
+          ],
+          "rot": [
+            0,
+            0.17238716291010467,
+            0,
+            0.9850292716786669
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.motat_aviation_hall_auckland",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "western_springs_pumping_station_auckland",
+      "components": {
+        "transform": {
+          "pos": [
+            464.0974327213343,
+            -1.487400000000001,
+            435.0206593914311
+          ],
+          "rot": [
+            0,
+            0.18305326726386184,
+            0,
+            0.9831029963050795
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.western_springs_pumping_station_auckland",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "te_puawananga_auckland",
+      "components": {
+        "transform": {
+          "pos": [
+            556.0075193957575,
+            -0.6898999999999997,
+            398.56993610274026
+          ],
+          "rot": [
+            0,
+            -0.13780926476024463,
+            0,
+            0.9904587858897718
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.te_puawananga_auckland",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      1000,
+      1110,
+      1450
+    ],
+    "lookAt": [
+      0,
+      -2,
+      0
+    ],
+    "fov": 43
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

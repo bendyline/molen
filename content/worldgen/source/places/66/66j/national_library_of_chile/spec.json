@@ -1,0 +1,677 @@
+{
+  "planId": "national_library_of_chile",
+  "id": "national_library_of_chile",
+  "assetId": "molen.worldgen.structure.national_library_of_chile",
+  "title": "National Library of Chile",
+  "wikidataId": "Q2901485",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.645679,
+    "latitude": -33.44207
+  },
+  "size": [
+    68.86084365844727,
+    32.98177528381348,
+    98.24320602416992
+  ],
+  "actualBounds": {
+    "min": [
+      -41.0698127746582,
+      -3.1817760467529297,
+      -51.58920669555664
+    ],
+    "max": [
+      27.791030883789062,
+      29.799999237060547,
+      46.65399932861328
+    ]
+  },
+  "visualBrief": "The standing National Library of Chile at Santiago’s Alameda, with its columned entrance, broad central cupola, symmetrical corner mansards and long library wings.",
+  "nativeAxes": {
+    "x": "east along Alameda facade",
+    "y": "up",
+    "z": "south toward Alameda"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chile_-_34674_-_Biblioteca_Nacional_de_Chile.jpg"
+  ],
+  "stories": [
+    {
+      "id": "national-library-of-chile-wp",
+      "url": "https://qualla.com/national-library-of-chile/"
+    }
+  ],
+  "referenceInputHash": "d6abe0ed9ec123a71fbda7f570b068ffdaf83a14e04171853646aa624c4886c9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/66/66j/national_library_of_chile/models/national-library-of-chile-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/66/66j/national_library_of_chile/models/national-library-of-chile-model.mjs",
+    "level": "skyline",
+    "export": "librarySkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_tadelakt",
+        "roughness": 0.85
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.76,
+        "metallic": 0.1
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.54
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "libraryDistrict",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "libraryStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "libraryCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.85
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "plaster_tadelakt",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1,
+    "cameraYaw": -0.5,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -5,
+        13,
+        11
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The restored public entrance meets the original approach terrain. The two main floors, rusticated base and attic are estimated from the mapped 68 m Alameda face and the verified views. The existing city elevation is preserved, and perimeter foundations follow it locally.",
+    "anchor": [
+      -70.645679,
+      -33.44207
+    ],
+    "heading": 0.24558910843992476,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.64562835617723,
+        -33.44248541349147
+      ],
+      "modelHeight": 0,
+      "basis": "Alameda pedestrian approach just in front of the centre of the main entrance. Sample the original ground clear of the roof."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -24.06736,
+          -51.3409
+        ],
+        [
+          0.32618,
+          -48.48596
+        ],
+        [
+          24.49806,
+          -45.66363
+        ],
+        [
+          24.34088,
+          -44.34882
+        ],
+        [
+          25.00226,
+          -44.27486
+        ],
+        [
+          24.87848,
+          -43.16973
+        ],
+        [
+          25.42633,
+          -43.10127
+        ],
+        [
+          23.96645,
+          -30.59078
+        ],
+        [
+          23.4985,
+          -26.6225
+        ],
+        [
+          23.44701,
+          -26.18783
+        ],
+        [
+          23.00999,
+          -26.23999
+        ],
+        [
+          22.9287,
+          -25.57179
+        ],
+        [
+          19.19921,
+          -26.0131
+        ],
+        [
+          18.83424,
+          -22.91416
+        ],
+        [
+          22.12672,
+          -22.52501
+        ],
+        [
+          18.01087,
+          12.73143
+        ],
+        [
+          16.40067,
+          12.54589
+        ],
+        [
+          16.39879,
+          15.83912
+        ],
+        [
+          17.20502,
+          16.6724
+        ],
+        [
+          17.74985,
+          17.78444
+        ],
+        [
+          18.08286,
+          19.1303
+        ],
+        [
+          18.1717,
+          20.38054
+        ],
+        [
+          18.23693,
+          22.22162
+        ],
+        [
+          27.46953,
+          22.21754
+        ],
+        [
+          27.46994,
+          23.85876
+        ],
+        [
+          27.46574,
+          31.93702
+        ],
+        [
+          27.47192,
+          41.46391
+        ],
+        [
+          4.01737,
+          41.4724
+        ],
+        [
+          4.01538,
+          42.09162
+        ],
+        [
+          2.3772,
+          42.09416
+        ],
+        [
+          -6.6914,
+          42.09343
+        ],
+        [
+          -15.76,
+          42.09271
+        ],
+        [
+          -17.46397,
+          42.09023
+        ],
+        [
+          -17.46198,
+          41.47101
+        ],
+        [
+          -40.74983,
+          41.46391
+        ],
+        [
+          -40.74971,
+          31.95008
+        ],
+        [
+          -40.74321,
+          22.2198
+        ],
+        [
+          -31.54936,
+          22.21749
+        ],
+        [
+          -31.51103,
+          20.57451
+        ],
+        [
+          -31.34206,
+          19.02166
+        ],
+        [
+          -31.04253,
+          17.78844
+        ],
+        [
+          -30.51689,
+          16.76108
+        ],
+        [
+          -29.8354,
+          15.87607
+        ],
+        [
+          -29.8301,
+          7.14394
+        ],
+        [
+          -31.30244,
+          6.98147
+        ],
+        [
+          -27.18388,
+          -28.28577
+        ],
+        [
+          -23.76886,
+          -27.88885
+        ],
+        [
+          -23.4039,
+          -30.98779
+        ],
+        [
+          -27.27395,
+          -31.44138
+        ],
+        [
+          -27.19536,
+          -32.09878
+        ],
+        [
+          -27.56931,
+          -32.13513
+        ],
+        [
+          -25.59811,
+          -49.01617
+        ],
+        [
+          -24.9935,
+          -48.94496
+        ],
+        [
+          -24.8616,
+          -50.08248
+        ],
+        [
+          -24.22095,
+          -50.00224
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The named Biblioteca Nacional relation 6123552 and its outer ring. The adjoining Archivo Nacional is a separate building record."
+    },
+    "featureIds": [
+      "relation/6123552",
+      "way/409129257",
+      "way/409129260",
+      "way/409129262",
+      "way/705009899",
+      "way/187712689"
+    ],
+    "source": "https://www.openstreetmap.org/relation/6123552",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ef3a2270100c36698fbe11855ebc507d0dd89dec0bf82012c05786982c6979df"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_tadelakt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing library includes the main Alameda pavilion and as-built wings with the mapped light wells. The adjoining separately mapped Archivo Nacional and its original, partially unbuilt proposals remain outside the library geometry.",
+    "The contemporary footprint sets the horizontal envelope. Original archive views and published architectural descriptions control the entrance bay, roofs and major facades. Exact facade and roof heights, window frames, roof colors and minor ornament are estimates.",
+    "Alameda entrance grade follows the frozen open elevation field. The source also preserves the slope toward Cerro Santa Lucía and urban height artifacts. Rear and courtyard grades are approximate."
+  ],
+  "sourceLicense": "Original geometry from public-domain archival and plan evidence, ODbL OpenStreetMap plans and the original openly attributed Terrarium elevation. No embedded reference images.",
+  "qaLodCameras": [
+    {
+      "name": "biblioteca-skyline",
+      "position": [
+        -88,
+        40,
+        116
+      ],
+      "lookAt": [
+        -8,
+        11.5,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "biblioteca-district",
+      "position": [
+        -88,
+        40,
+        116
+      ],
+      "lookAt": [
+        -8,
+        11.5,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "biblioteca-street",
+      "position": [
+        -88,
+        40,
+        116
+      ],
+      "lookAt": [
+        -8,
+        11.5,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "biblioteca-closeup",
+      "position": [
+        -88,
+        40,
+        116
+      ],
+      "lookAt": [
+        -8,
+        11.5,
+        10
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "alameda-entrance-and-cupola",
+      "position": [
+        -5,
+        18.4,
+        111
+      ],
+      "lookAt": [
+        -6,
+        13.78,
+        31
+      ]
+    },
+    {
+      "name": "portico-arches-and-corner-mansard",
+      "position": [
+        -46,
+        9.2,
+        72
+      ],
+      "lookAt": [
+        -16,
+        13.6,
+        40
+      ]
+    },
+    {
+      "name": "western-library-facade",
+      "position": [
+        -94,
+        31,
+        17
+      ],
+      "lookAt": [
+        -17,
+        14,
+        -7
+      ]
+    },
+    {
+      "name": "rear-wing-and-light-wells",
+      "position": [
+        71,
+        70,
+        -98
+      ],
+      "lookAt": [
+        -3,
+        13,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17006,
+    "vertices": 51018,
+    "materials": 6,
+    "bytes": 2328248,
+    "sha256": "sha256:68eb19afe092c280f30de3701658ae0031510de5423e1c7cb2c4ed3ff24659a3"
+  }
+}

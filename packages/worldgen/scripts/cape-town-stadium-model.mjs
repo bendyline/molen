@@ -1,9 +1,28 @@
 /** Cape Town's glass cable-wheel, silver veil, three-tier bowl and raised entry podium. */
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { readFileSync } from 'node:fs';
+import { beam } from './authored-structure-mesh.mjs';
 import { capePlan } from './cape-town-plan.mjs';
 import { transformed } from './lighthouse-models.mjs';
 import { chair, face } from './stadium-models.mjs';
 import { box, tube, tubePath } from './structure-mesh.mjs';
+
+const { podiumHeight, flights } = JSON.parse(
+  readFileSync(
+    new URL(
+      '../../../content/worldgen/source/places/k3/k3v/cape_town_stadium/site-grades.json',
+      import.meta.url,
+    ),
+  ),
+);
+const podiumBase = -10.5;
+
+function stairHeight({ id }, t) {
+  const profile = flights[id].profile;
+  const at = t * (profile.length - 1);
+  const index = Math.floor(at);
+  const a = profile[index];
+  return a + ((profile[index + 1] ?? a) - a) * (at - index);
+}
 
 const TAU = Math.PI * 2,
   white = [0.88, 0.91, 0.9],
@@ -13,25 +32,6 @@ const TAU = Math.PI * 2,
   glass = [0.13, 0.19, 0.2];
 const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t),
   rad = (a, r, y) => [r * Math.sin(a), y, r * Math.cos(a)];
-function triangle(out, slot, ps, color, expected) {
-  let n = normalFor(...ps);
-  if (n.reduce((v, k, i) => v + k * expected[i], 0) < 0) {
-    ps = [...ps].reverse();
-    n = normalFor(...ps);
-  }
-  out.addTriangle(
-    slot,
-    'palette:#ffffff',
-    ps,
-    n,
-    [
-      [0, 0],
-      [1, 0],
-      [0, 1],
-    ],
-    color,
-  );
-}
 function ray(poly, a) {
   const dx = Math.sin(a),
     dz = Math.cos(a);
@@ -424,22 +424,28 @@ function podium(out) {
       S = ray(capePlan.podium, b),
       r = outer(a) - 19,
       s = outer(b) - 19;
-    const p = rad(a, R, 8.5),
-      q = rad(b, S, 8.5);
-    face(out, 'concrete', [rad(a, r, 8.5), rad(b, s, 8.5), q, p], concrete, [0, 1, 0]);
-    face(out, 'concrete', [[p[0], 0, p[2]], [q[0], 0, q[2]], q, p], concrete, [
+    const p = rad(a, R, podiumHeight),
+      q = rad(b, S, podiumHeight);
+    face(
+      out,
+      'concrete',
+      [rad(a, r, podiumHeight), rad(b, s, podiumHeight), q, p],
+      concrete,
+      [0, 1, 0],
+    );
+    face(out, 'concrete', [[p[0], podiumBase, p[2]], [q[0], podiumBase, q[2]], q, p], concrete, [
       Math.sin(a),
       0,
       Math.cos(a),
     ]);
     if (i % 8 === 0) {
-      const o = transformed(out, a, rad(a, R + 0.02, 0));
+      const o = transformed(out, a, rad(a, R + 0.02, podiumHeight - 8.5));
       box(o, 'glass', [-1.3, 0.7, 0], [1.3, 3.4, 0.02], dark);
     }
   }
   for (const st of capePlan.steps) {
-    const p = [st.top[0], 8.5, st.top[1]],
-      q = [st.bottom[0], 0, st.bottom[1]],
+    const p = [st.top[0], podiumHeight, st.top[1]],
+      q = [st.bottom[0], flights[st.id].toe, st.bottom[1]],
       dx = q[0] - p[0],
       dz = q[2] - p[2],
       L = Math.hypot(dx, dz),
@@ -454,28 +460,27 @@ function podium(out) {
     for (let j = 0; j < 50; j++) {
       const t = j / 50,
         u = (j + 1) / 50,
-        y = 8.5 * (1 - t),
-        v = 8.5 * (1 - u),
-        ps = [point(t, -W, y), point(t, W, y), point(u, W, y), point(u, -W, y)];
+        y = stairHeight(st, t),
+        v = stairHeight(st, u),
+        treadEnd = j === 49 ? v : y,
+        ps = [point(t, -W, y), point(t, W, y), point(u, W, treadEnd), point(u, -W, treadEnd)];
       face(out, 'concrete', ps, concrete, [0, 1, 0]);
-      face(out, 'concrete', [ps[3], ps[2], point(u, W, v), point(u, -W, v)], concrete, [dx, 0, dz]);
+      if (treadEnd - v > 0.001)
+        face(out, 'concrete', [ps[3], ps[2], point(u, W, v), point(u, -W, v)], concrete, [
+          dx,
+          0,
+          dz,
+        ]);
+      stairSides(out, point, W, ux, uz, t, u, y, v);
     }
     for (const side of [-W, 0, W])
       rail(
         out,
-        Array.from({ length: 26 }, (_, j) => point(j / 25, side, 8.5 * (1 - j / 25))),
-      );
-    for (const side of [-W, W])
-      triangle(
-        out,
-        'concrete',
-        [point(0, side, 8.5), point(1, side, 0), point(0, side, 0)],
-        concrete,
-        [ux * side, 0, uz * side],
+        Array.from({ length: 26 }, (_, j) => point(j / 25, side, stairHeight(st, j / 25))),
       );
   }
   // Seven levels of concourses, visible through the silver fabric, with cantilevered escape stairs.
-  for (const y of [4, 8.5, 12, 17, 21, 25, 29])
+  for (const y of [4, podiumHeight, 12, 17, 21, 25, 29])
     for (let i = 0; i < 144; i++) {
       const a = (i * TAU) / 144,
         b = ((i + 1) * TAU) / 144,
@@ -493,7 +498,7 @@ function podium(out) {
   for (let i = 0; i < 24; i++) {
     const a = ((i + 0.5) * TAU) / 24,
       R = outer(a) - 17,
-      o = transformed(out, a, rad(a, R, 8.5));
+      o = transformed(out, a, rad(a, R, podiumHeight));
     for (let j = 0; j < 5; j++) {
       const y = j * 3.8,
         sg = j % 2 ? 1 : -1;
@@ -520,12 +525,242 @@ function podium(out) {
     }
   }
 }
+
+function stairSides(out, point, width, sideX, sideZ, a, b, high, low) {
+  for (const sign of [-1, 1]) {
+    const w = sign * width;
+    face(
+      out,
+      'concrete',
+      [point(a, w, high - 1.25), point(b, w, low - 1.25), point(b, w, low), point(a, w, high)],
+      concrete,
+      [sign * sideX, 0, sign * sideZ],
+    );
+  }
+}
 export function buildCapeTown(out) {
   bowl(out);
   podium(out);
   roof(out);
   envelope(out);
 }
+
+// These tiers share the master's mapped plan and section controls. Generic mesh
+// decimation tends to cap the stadium's opening and flatten the roof's saddle.
+function buildCapeTownRuntime(out, tier) {
+  const sectors = [32, 48, 72, 144][tier];
+  const bands = [2, 4, 6, 12][tier];
+  const rows = [1, 2, 5, 12][tier];
+  const top = [0, 1, 0];
+  const bottom = [0, -1, 0];
+  for (let i = 0; i < sectors; i++) {
+    const a = (i * TAU) / sectors;
+    const b = ((i + 1) * TAU) / sectors;
+    const front = [Math.sin((a + b) / 2), 0, Math.cos((a + b) / 2)];
+    const back = front.map((n) => -n);
+    const r = 16 / (outer(a) - inner(a));
+    const s = 16 / (outer(b) - inner(b));
+    const seamA = roofPoint(a, r);
+    const seamB = roofPoint(b, s);
+    const rimA = roofPoint(a, 1);
+    const panels = [1, 2, 3, 6][tier];
+    for (let panel = 0; panel < panels; panel++) {
+      const v = panel / panels;
+      const w = (panel + 1) / panels;
+      const color = panel % 2 === 0 ? white : [0.82, 0.85, 0.84];
+      face(
+        out,
+        'membrane',
+        [
+          roofPoint(a, r + (1 - r) * v),
+          roofPoint(b, s + (1 - s) * v),
+          roofPoint(b, s + (1 - s) * w),
+          roofPoint(a, r + (1 - r) * w),
+        ],
+        color,
+        top,
+      );
+    }
+    face(out, 'acrylic', [roofPoint(a, 0), roofPoint(b, 0), seamB, seamA], white, top);
+    if (tier > 0) {
+      face(
+        out,
+        'membrane',
+        [soffit(a, r), soffit(b, s), soffit(b, 1), soffit(a, 1)],
+        silver,
+        bottom,
+      );
+      face(out, 'metal', [seamA, seamB, soffit(b, s), soffit(a, r)], white, back);
+    }
+
+    for (let j = 0; j < bands; j++) {
+      const lo = j / bands;
+      const hi = (j + 1) / bands;
+      face(
+        out,
+        'veil',
+        [veilPoint(a, lo), veilPoint(b, lo), veilPoint(b, hi), veilPoint(a, hi)],
+        silver,
+        front,
+      );
+      if (tier > 0) {
+        const lip = (angle, t) => {
+          const p = veilPoint(angle, t);
+          return [p[0] + 0.24 * Math.sin(angle), p[1], p[2] + 0.24 * Math.cos(angle)];
+        };
+        const lower = hi - 0.005;
+        face(out, 'metal', [lip(a, lower), lip(b, lower), lip(b, hi), lip(a, hi)], white, front);
+      }
+    }
+
+    const p = rad(a, ray(capePlan.podium, a), podiumHeight);
+    const q = rad(b, ray(capePlan.podium, b), podiumHeight);
+    face(
+      out,
+      'concrete',
+      [rad(a, outer(a) - 19, podiumHeight), rad(b, outer(b) - 19, podiumHeight), q, p],
+      concrete,
+      top,
+    );
+    face(
+      out,
+      'concrete',
+      [[p[0], podiumBase, p[2]], [q[0], podiumBase, q[2]], q, p],
+      concrete,
+      front,
+    );
+
+    for (const [stand, rowCount] of [30, 25, 20].entries()) {
+      const sideSuites = stand === 2 && Math.abs(Math.cos((a + b) / 2)) < 0.49;
+      const rowEnd = sideSuites ? 4 : rowCount;
+      for (let j = 0; j < rows; j++) {
+        const lo = (rowEnd * j) / rows;
+        const hi = (rowEnd * (j + 1)) / rows;
+        const A = seat(a, stand, lo);
+        const B = seat(b, stand, lo);
+        const C = seat(b, stand, hi);
+        const D = seat(a, stand, hi);
+        const color = j % 2 === 0 ? [0.72, 0.73, 0.69] : [0.62, 0.64, 0.61];
+        if (tier < 2) face(out, 'concrete', [A, B, C, D], color, top);
+        else {
+          const [lowC, lowD] = [
+            [C[0], B[1], C[2]],
+            [D[0], A[1], D[2]],
+          ];
+          face(out, 'concrete', [A, B, lowC, lowD], color, top);
+          face(out, 'concrete', [lowD, lowC, C, D], concrete, back);
+        }
+      }
+      const A = seat(a, stand, 0);
+      const B = seat(b, stand, 0);
+      face(
+        out,
+        'concrete',
+        [[A[0], Math.max(0, A[1] - 2.7), A[2]], [B[0], Math.max(0, B[1] - 2.7), B[2]], B, A],
+        concrete,
+        back,
+      );
+    }
+    const [A, B] = [seat(a, 0, 0), seat(b, 0, 0)];
+    const fieldCorner = (angle) => rounded(angle, 38, 62, 0, 0.026);
+    const walk = (p) => [p[0], 0.026, p[2]];
+    face(out, 'concrete', [fieldCorner(a), fieldCorner(b), walk(B), walk(A)], concrete, top);
+    const pylonLevels = tier === 3 ? 2 : 1;
+    if (tier >= 2 && i % pylonLevels === 0) {
+      const pillar = rad(a, outer(a) - 20, 0);
+      beam(out, 'concrete', pillar, rad(a, outer(a) - 2.6, crown(a) - 0.8), 0.8, 3, concrete);
+      beam(out, 'metal', roofPoint(a, 0), rimA, 0.2, 0.27, white);
+      if (tier === 3) {
+        beam(out, 'metal', seamA, soffit(a, 0.15), 0.15, 0.16, white);
+        beam(out, 'metal', soffit(a, r), soffit(b, s), 0.15, 0.2, white);
+      }
+    }
+  }
+  const pitchStripes = tier === 0 ? 1 : 12;
+  for (let i = 0; i < pitchStripes; i++) {
+    const lo = -62 + (124 * i) / pitchStripes;
+    const hi = -62 + (124 * (i + 1)) / pitchStripes;
+    face(
+      out,
+      'turf',
+      [
+        [-38, 0.026, lo],
+        [38, 0.026, lo],
+        [38, 0.026, hi],
+        [-38, 0.026, hi],
+      ],
+      i % 2 === 0 ? [0.34, 0.44, 0.16] : [0.28, 0.39, 0.13],
+      top,
+    );
+  }
+  if (tier > 0) {
+    for (const x of [-34, 34])
+      box(out, 'metal', [x - 0.08, 0.029, -58], [x + 0.08, 0.038, 58], white);
+    for (const z of [-58, -50, -28, 0, 28, 50, 58])
+      box(out, 'metal', [-34, 0.029, z - 0.08], [34, 0.038, z + 0.08], white);
+    for (const sign of [-1, 1]) {
+      for (const y of [31, 34.6, 38.2]) {
+        const level = transformed(out, (sign * Math.PI) / 2, [sign * 96, 0, 0]);
+        box(level, 'concrete', [-58, y - 0.3, -8], [58, y, 7], concrete);
+        box(level, 'glass', [-58, y, -1], [58, y + 3.2, -0.96], glass);
+      }
+      const board = transformed(out, sign > 0 ? 0 : Math.PI, [0, 30.5, sign * 115]);
+      box(board, 'glass', [-9, 0, -0.48], [9, 6, 0.25], dark);
+    }
+  }
+  for (const st of capePlan.steps) {
+    const dx = st.bottom[0] - st.top[0];
+    const dz = st.bottom[1] - st.top[1];
+    const length = Math.hypot(dx, dz);
+    const side = [dz / length, -dx / length];
+    const near = Math.min(
+      ...capePlan.steps
+        .filter((s) => s !== st)
+        .map((s) => Math.hypot(s.top[0] - st.top[0], s.top[1] - st.top[1])),
+    );
+    const width = Math.min(13, Math.max(4, near)) * 0.48;
+    const point = (t, w, y) => [
+      st.top[0] + dx * t + side[0] * w,
+      y,
+      st.top[1] + dz * t + side[1] * w,
+    ];
+    const steps = [1, 8, 24, 48][tier];
+    for (let j = 0; j < steps; j++) {
+      const a = j / steps;
+      const b = (j + 1) / steps;
+      const y = stairHeight(st, a);
+      const lower = stairHeight(st, b);
+      const h = tier < 2 || j === steps - 1 ? lower : y;
+      face(
+        out,
+        'concrete',
+        [point(a, -width, y), point(a, width, y), point(b, width, h), point(b, -width, h)],
+        concrete,
+        top,
+      );
+      if (h - lower > 0.001)
+        face(
+          out,
+          'concrete',
+          [
+            point(b, -width, lower),
+            point(b, width, lower),
+            point(b, width, h),
+            point(b, -width, h),
+          ],
+          concrete,
+          [dx, 0, dz],
+        );
+      if (tier > 0) stairSides(out, point, width, side[0], side[1], a, b, y, lower);
+    }
+  }
+}
+
+export const buildCapeTownSkyline = (out) => buildCapeTownRuntime(out, 0);
+export const buildCapeTownDistrict = (out) => buildCapeTownRuntime(out, 1);
+export const buildCapeTownStreet = (out) => buildCapeTownRuntime(out, 2);
+export const buildCapeTownCloseup = (out) => buildCapeTownRuntime(out, 3);
+
 export const capeTownStudy = {
   id: 'cape_town_stadium',
   key: 'cape_town_stadium',
@@ -539,7 +774,7 @@ export const capeTownStudy = {
     up: '+Y',
     front: '+Z',
     origin:
-      'Mapped pitch center; +Z north-northwest, +X west-southwest. Field and outer street contactY0; raised podiumY8.5 reconstructed from sections.',
+      'Mapped pitch center at model Y0. +Z points north-northwest and +X west-southwest. The podium and stair grades follow standard terrain at their mapped locations.',
   },
   previewCamera: { position: [245, 182, 230], lookAt: [0, 23, 0] },
   visualBrief:
@@ -548,7 +783,7 @@ export const capeTownStudy = {
     published:
       'gmp and the operator describe290x265m dimensions,50m maximum height, a16m clear inner glass strip,9000 laminated16mm panels and a three-tier bowl. The operator lists360 floodlights,100x68m rugby field with8m in-goals, and hospitality suites added in2020/21. Structural engineering evidence records72 radial concrete frames and3x0.8m pylons. Architect sections resolve higher long sides and lower ends.',
     reconstructed:
-      'Mapped roof/pitch and21 stair centerlines fix site placement. The mapped roof is283x261m versus rounded published290x265m, and its actual footprint is retained. Podium edge is interpolated from mapped stair tops and roof perimeter; its8.5m rise, detailed truss camber, balcony subdivisions and individual seating distribution are section/photo reconstructions. The translucent fabric uses local PBR alpha while opaque architectural surfaces reuse canonical graphs.',
+      'The mapped roof is 283 by 261 m. The plan and 21 stair centerlines follow the mapped outlines. Standard viewer terrain sets the individual stair toes and a 9.9 m reconstructed podium above the pitch. Truss camber, balcony subdivisions and seating distribution follow reference photos and sections. Translucent fabric uses local PBR alpha, and opaque architectural surfaces use shared material graphs.',
   },
   referencePages: [
     'https://www.gmp.de/en/projects/501/cape-town-stadium',
@@ -570,7 +805,7 @@ export const capeTownStudy = {
     groundModelY: 0,
     groundContactReviewed: true,
     groundContactBasis:
-      'Street and pitchY0 define contact. Inclined concrete pylon sections extend0.64m below theirY0 centerline into the ground and capped foundations; this is intentional embedded support geometry, not an elevated field.',
+      'Pitch center defines model Y0. The inclined pylon sections extend into their foundations and each outside stair ties to the sampled street elevation.',
     source: 'https://www.openstreetmap.org/way/44948355',
     featureIds: [
       'relation/8706182',

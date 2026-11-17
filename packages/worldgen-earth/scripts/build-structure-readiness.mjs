@@ -23,6 +23,7 @@ import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
 import { nativePointSourcePath, reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
+import { subterraneanIdentityResolved } from './reviewed-subterranean-placement.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
@@ -211,7 +212,17 @@ async function modelReadiness(candidate, geo) {
   if (
     rejected &&
     !(rejected.reasonCode === 'category' && category) &&
-    !historicalIdentityResolved(rejected, placement, geographicReviewed)
+    !historicalIdentityResolved(rejected, placement, geographicReviewed) &&
+    !subterraneanIdentityResolved({
+      recommendation: rejected,
+      placement,
+      placementHash,
+      geographicReviewed,
+      sharedReviewed,
+      runtimeHash: sidecar?.hash,
+      inspectedFrames: sharedFrames,
+      capture: sharedCapture,
+    })
   )
     blockers.push(`identity:${rejected.reasonCode}`);
   if (!source) blockers.push('source-model-missing');

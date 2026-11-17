@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.red_house_hong_kong",
+  "kind": "static-structure",
+  "title": "Red House, Tuen Mun",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.red_house_hong_kong",
+        "output": "assets/places/we/wec/red_house_hong_kong/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:aca0925559f127596f9f5fea8ba34771f19449762b5dee03ac23ffa50338bd91"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-red-house-hong-kong",
+        "path": "models/generate-red-house-hong-kong.mjs"
+      },
+      {
+        "id": "red-house-hong-kong-model",
+        "path": "models/red-house-hong-kong-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/hung-lau-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26756-14293.png",
+      "terrain-sources/terrarium-15-26757-14293.png",
+      "preview.png",
+      "architectural-controls.json",
+      "primary-facts-reconstruction.json",
+      "primary-sources/imagery-inventory-review.json",
+      "primary-sources/heritage-appraisal-annex-b.pdf",
+      "primary-sources/heritage-appraisal-annex-b.txt",
+      "primary-sources/aab-2017-hung-lau-paper.pdf",
+      "primary-sources/aab-2017-hung-lau-paper.txt",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

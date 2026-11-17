@@ -1,0 +1,380 @@
+{
+  "planId": "national_museum_of_ecuador",
+  "id": "national_museum_of_ecuador",
+  "assetId": "molen.worldgen.structure.national_museum_of_ecuador",
+  "title": "National Museum of Ecuador",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -78.4954194875,
+    "latitude": -0.21008609375
+  },
+  "size": [
+    122.31709671020508,
+    28.076038360595703,
+    175.57310485839844
+  ],
+  "actualBounds": {
+    "min": [
+      -57.619998931884766,
+      -14.876038551330566,
+      -82.24210357666016
+    ],
+    "max": [
+      64.69709777832031,
+      13.199999809265137,
+      93.33100128173828
+    ]
+  },
+  "visualBrief": "The National Museum of Ecuador occupies the Edificio de los Espejos in Quito. Its low oval of smoked mirrored glass wraps the Casa de la Cultura’s museum and theatres beneath a pale roof.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Museo_Nacional_del_Ecuador_(MUNA),_ingreso.jpg"
+  ],
+  "stories": [
+    {
+      "id": "national-museum-of-ecuador-wp",
+      "url": "https://qualla.com/national-museum-of-ecuador/"
+    }
+  ],
+  "referenceInputHash": "38a08cf29e822a328465c5c75e2336c58db6af023c8697ea63f86d4dc9bd79dd",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6r/6rb/national_museum_of_ecuador/models/national-museum-of-ecuador-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6r/6rb/national_museum_of_ecuador/models/national-museum-of-ecuador-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.86
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#e4f6ff",
+        "roughness": 0.23,
+        "metallic": 0.26
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e4f6ff",
+            "roughness": 0.23,
+            "metallic": 0.26
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e4f6ff",
+            "roughness": 0.23,
+            "metallic": 0.26
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e4f6ff",
+            "roughness": 0.23,
+            "metallic": 0.26
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.78,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        4,
+        2
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The entrance on the Avenida Patria side sits just above the original approach elevation. The lower concrete base follows the falling ground toward the park. Horizontal occupied floors and the roof retain a level datum.",
+    "anchor": [
+      -78.4954194875,
+      -0.21008609375
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -78.49514167122352,
+        -0.20946502655632412
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified source terrain near the inferred Avenida Patria museum approach."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/31281127",
+      "node/5626555721"
+    ],
+    "source": "https://www.openstreetmap.org/way/31281127",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b9d528bbafd803766076514749523614cb90fe1e2c760dc00420de8fa6bfd61a",
+    "notes": "Thirty-two distinct mapped vertices define the outer envelope. Entrance position is estimated along the Avenida Patria frontage from the museum POI and official address."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped envelope and approximate 10 m height control the low oval form. Curtain wall rhythm, roof curvature and service elevations are approximations based on the documented forms.",
+    "The museum entrance and lower service plinth are approximate placements. The sloping original DEM supplies terrain context and is preserved without flattening."
+  ],
+  "sourceLicense": "Original exterior geometry informed by one exact CC0 Qualla photograph, open geographic data and institutional architecture records.",
+  "qaLodCameras": [
+    {
+      "name": "national-museum-of-ecuador-skyline",
+      "position": [
+        160,
+        76,
+        -160
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "national-museum-of-ecuador-district",
+      "position": [
+        160,
+        76,
+        -160
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "national-museum-of-ecuador-street",
+      "position": [
+        160,
+        76,
+        -160
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "national-museum-of-ecuador-closeup",
+      "position": [
+        160,
+        76,
+        -160
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "avenida-patria-entrance",
+      "position": [
+        42,
+        5,
+        -86
+      ],
+      "lookAt": [
+        27,
+        2.4,
+        -65
+      ]
+    },
+    {
+      "name": "north-curtain-wall",
+      "position": [
+        85,
+        15,
+        -133
+      ],
+      "lookAt": [
+        6,
+        4,
+        -38
+      ]
+    },
+    {
+      "name": "park-side-and-plinth",
+      "position": [
+        117,
+        20,
+        145
+      ],
+      "lookAt": [
+        12,
+        1,
+        30
+      ]
+    },
+    {
+      "name": "agora-roof",
+      "position": [
+        -42,
+        132,
+        88
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4738,
+    "vertices": 14214,
+    "materials": 4,
+    "bytes": 621700,
+    "sha256": "sha256:34c7c062244a3d11d93f4c11f43ecc58b5a4dbd4645b192468d01f0cfac97a7b"
+  }
+}

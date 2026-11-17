@@ -34,8 +34,79 @@
       "shots/shared/stepped-baths-and-pale-ruin-infill.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Nine roles use seven existing 256px shared graphs: plaster_lime, stone_limestone_raw (including cream columns), metal_standing_seam (grey/copper tint variants), metal_painted, storefront, wood_plain and tile_mosaic. Metric UVs use canonical graph repeat sizes; generic tile is a tonal proxy, not literal villa mosaic art. No embedded image, private atlas or new graph. Seven textured draws/one skyline draw; separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each used graph reads once per native run; unload disposes geometry.",
-    "captureReportHash": "sha256:7dc9e871dc6d56026e4707e0ea090c76b8458f967e95a8f22362dcf9c8daeece"
+    "notes": "Nine roles use seven existing 256px shared graphs: plaster_lime, stone_limestone_raw (including cream columns), metal_standing_seam (grey/copper tint variants), metal_painted, storefront, wood_plain and tile_mosaic. Metric UVs use canonical graph repeat sizes; generic tile is a tonal proxy, not literal villa mosaic art. No embedded image, private atlas or new graph. Seven textured draws/one skyline draw; separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each used graph reads once per native run; unload disposes geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:2503db5cabc9410baa2810f73646eeee988c9c352ccac6fd3365a8e75fdc33cc",
+    "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:ba61a79f3d3ba76af485539c794fca8dbd7756e1b7deeb63ac18473ade857e14"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:b9518c9b49e88df2d3f03b4cb14e1308f5f1b1b86d8f0342ff29874f33901173"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:671d0d1115aada85e85abdabd6ee81d4d373ff936bc3f4f11ec41b311dddce3e"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:77357561b0299fd6ffb50fe3ba7c347e0cc46374ecc2f62d709d52d2ae595700"
+      },
+      {
+        "path": "shots/shared/open-peristyle-columns-and-timber-shelter.png",
+        "hash": "sha256:1a9c026d4529b533271c4340f9b5f68f3a89f8438b8bd81673643e879b32de9a"
+      },
+      {
+        "path": "shots/shared/conservation-roofs-basilica-and-hunt-range.png",
+        "hash": "sha256:168dab3e4cabc74511c0fad8376d777300b4a36564ed13fd5272dca78afa214e"
+      },
+      {
+        "path": "shots/shared/red-octagonal-frigidarium-skylight.png",
+        "hash": "sha256:e1740774d023fbe3a0b86bb4d8741828cc0215d6954bc99c606dda6a07d49df9"
+      },
+      {
+        "path": "shots/shared/stepped-baths-and-pale-ruin-infill.png",
+        "hash": "sha256:b3f1a06ab15abc89480955e781f8b8c1ad23d3dab5cec36012419228577e5ac9"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:a00d5bf39e8524e6a22c03390aff0667eb64a1854a9a3f15852ae5a52a4e6e9a"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.tile_mosaic": {
+        "path": "materials/tile_mosaic.matgraph.json",
+        "hash": "sha256:4588b0d86337ef684fcff456751cf630a16907d5bcacb798aea7b516e3fd7ad0"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.monastery_of_the_holy_spirit_vilnius",
+  "kind": "static-structure",
+  "title": "Orthodox Church of the Holy Spirit, Vilnius",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.monastery_of_the_holy_spirit_vilnius",
+        "output": "assets/places/u9/u99/monastery_of_the_holy_spirit_vilnius/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3e6318a4814c7585f3bee4673edafe42ed2a0524e450d0911583c2cd88f4af0a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-holy-spirit-monastery-vilnius",
+        "path": "models/generate-holy-spirit-monastery-vilnius.mjs"
+      },
+      {
+        "id": "holy-spirit-monastery-vilnius-model",
+        "path": "models/holy-spirit-monastery-vilnius-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/church-controls.json",
+      "reference-rights/commons-holy-spirit-monastery-vilnius-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18685-10415.png",
+      "terrain-sources/terrarium-15-18686-10415.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { bureauOfPublicRoadsMatches } from './imagery-public-archives.mjs';
 
 export const modelRightsRoot = fileURLToPath(new URL('../../../../', import.meta.url));
 const text = (s) =>
@@ -46,6 +47,82 @@ export function nativeNamedUploaderRelease(page, username, binding) {
     !text(info?.extmetadata?.Restrictions?.value)
   );
 }
+
+/** Bind a transferred English Wikipedia photograph to its original upload log. */
+function nativeTransferredUploaderRelease(page, username, binding, original) {
+  const revision = page?.revisions?.[0];
+  const info = page?.imageinfo?.[0];
+  const wiki = revision?.slots?.main?.['*'] ?? '';
+  const account = `[[:en:User:${username}|${username}]]`;
+  const originalLog = wiki.split('{{Original upload log}}')[1] ?? '';
+  const originalUpload = originalLog
+    .split('\n')
+    .find((row) =>
+      row.includes(`${info?.width}×${info?.height} (${info?.size} bytes) || ${account}`),
+    );
+  return (
+    binding?.kind === 'english-wikipedia-original-upload-log' &&
+    /^[A-Za-z0-9_-]+$/.test(username ?? '') &&
+    binding.revision === revision?.revid &&
+    wiki.includes('|Source={{own work by original uploader}}') &&
+    wiki.includes(`|Author=${account}`) &&
+    wiki.includes(`{{PD-user-w|en|wikipedia|${username}}}`) &&
+    originalLog.includes(`{{original description|en.wikipedia|${page.title.slice(5)}}}`) &&
+    originalUpload?.includes('I (~~~) created this work entirely by myself.') &&
+    !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+    info.size === original.length &&
+    text(info.extmetadata?.Artist?.value) === username &&
+    info.extmetadata?.Copyrighted?.value === 'False' &&
+    info.extmetadata?.AttributionRequired?.value === 'false' &&
+    !text(info.extmetadata?.Restrictions?.value)
+  );
+}
+
+function nativeTransferredNamedPhotograph(page, username, binding, original) {
+  const revision = page?.revisions?.[0];
+  const info = page?.imageinfo?.[0];
+  const wiki = revision?.slots?.main?.['*'] ?? '';
+  const log = wiki.split('{{Original upload log}}')[1] ?? '';
+  const account = `[[:en:User:${username}|${username}]]`;
+  const photo = `Photo by [[User:${username}]],`;
+  const uploader = 'File Upload Bot (Magnus Manske)';
+  const upload = log
+    .split('\n')
+    .find((row) =>
+      row.includes(
+        `${account} ${info?.width}&times;${info?.height}&times; (${info?.size} bytes) ''<nowiki>${photo}`,
+      ),
+    );
+  const uploadDate = upload?.match(/^\* (\d{4}-\d{2}-\d{2}) \d{2}:\d{2} /)?.[1];
+  const meta = info?.extmetadata;
+  return (
+    binding?.kind === 'english-wikipedia-named-photograph-transfer' &&
+    /^[A-Za-z0-9_-]+(?: [A-Za-z0-9_-]+)*$/.test(username) &&
+    revision?.revid === binding.revision &&
+    revision.parentid === 0 &&
+    revision.user === uploader &&
+    page.imageinfo.length === 1 &&
+    info.user === uploader &&
+    Math.abs(Date.parse(revision.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+    !!uploadDate &&
+    Date.parse(uploadDate) < Date.parse(info.timestamp) &&
+    wiki.includes(`|Date={{Original upload date|${uploadDate}}}`) &&
+    wiki.includes(`|Author=Original uploader was {{user at project|${username}|wikipedia|en}}`) &&
+    wiki.includes('|Permission=Released into the public domain (by the author).') &&
+    wiki.includes(`{{PD-user-w|en|wikipedia|${username}}}`) &&
+    log.includes(`{{original description|en.wikipedia|${page.title.slice(5)}}}`) &&
+    info.size === original.length &&
+    text(meta?.Artist?.value) === `${username} at English Wikipedia` &&
+    String(meta?.Artist?.value).includes(
+      `href="https://en.wikipedia.org/wiki/User:${username.replaceAll(' ', '_')}"`,
+    ) &&
+    text(meta?.Credit?.value) === 'Self-photographed' &&
+    meta?.Copyrighted?.value === 'False' &&
+    meta?.AttributionRequired?.value === 'false' &&
+    !text(meta?.Restrictions?.value)
+  );
+}
+
 /** Dated book photograph with the same named, long-deceased photographer in both records. */
 export function nativeExpiredNamedBookPhoto(page, publication, proof, artist) {
   const wiki = page?.revisions?.[0]?.slots?.main?.['*'] ?? '',
@@ -119,9 +196,12 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-state-department-staff-photo',
       'commons-native-nps-photo',
       'commons-native-usaf-reference-series-photo',
+      'commons-native-nara-bureau-of-public-roads',
       'commons-native-expired-publication',
       'commons-native-expired-library-photo',
+      'commons-native-lac-expired-photo',
       'commons-native-expired-periodical-photo',
+      'commons-native-expired-us-periodical-photo',
       'commons-native-expired-us-book-photo',
       'commons-native-expired-named-book-photo',
       'commons-native-expired-historical-print',
@@ -188,7 +268,14 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
   )
     return failed;
   let basis, creatorAttribution;
-  if (proof.kind === 'commons-native-nasa-esrs-photo') {
+  if (proof.kind === 'commons-native-nara-bureau-of-public-roads') {
+    if (
+      reference.originalReview?.rendition !== 'exact-published-native-original' ||
+      !bureauOfPublicRoadsMatches(reference, original, page)
+    )
+      return failed;
+    basis = 'Bureau of Public Roads federal archive original with the native PD-USGov-DOC release.';
+  } else if (proof.kind === 'commons-native-nasa-esrs-photo') {
     const field = (name) =>
       wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\r\\n]*)`, 'i'))?.[1]?.trim();
     const id = `${proof.mission}-${proof.roll}-${proof.frame}`;
@@ -218,11 +305,48 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
   } else if (proof.kind === 'commons-native-self-released-photo') {
     const author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1],
       sourceField = wiki.match(/\|\s*source\s*=([^\r\n]*)/i)?.[1];
+    const nativeLink = `[[User:${photographer}|${photographer}]]`;
+    const binding = proof.nativeCreatorRelease;
+    const history = record.creatorHistory?.[title.slice(5)]?.history;
+    const historicPage = Object.values(history?.query?.pages ?? {}).find(
+      (item) => item.title === title,
+    );
+    const firstRelease = historicPage?.revisions?.[0];
+    const firstWikitext = firstRelease?.slots?.main?.['*'] ?? '';
+    const [corrected, initial] = historicPage?.imageinfo ?? [];
+    const perspectiveCorrection =
+      binding?.kind === 'perspective-corrected-original' &&
+      historicPage?.imageinfo?.length === 2 &&
+      !history?.continue?.iicontinue &&
+      firstRelease?.parentid === 0 &&
+      firstRelease.user === photographer &&
+      firstRelease.revid === binding.revision &&
+      initial?.user === photographer &&
+      Number.isFinite(Date.parse(initial.timestamp)) &&
+      Math.abs(Date.parse(firstRelease.timestamp) - Date.parse(initial.timestamp)) < 300000 &&
+      firstWikitext.includes(nativeLink) &&
+      /\|\s*source\s*=\s*Own work by uploader\s*(?:\n|\|)/i.test(firstWikitext) &&
+      /\{\{\s*PD-self\s*\}\}/i.test(firstWikitext) &&
+      corrected?.user === info.user &&
+      corrected.user !== initial.user &&
+      corrected.sha1 === info.sha1 &&
+      corrected.timestamp === info.timestamp &&
+      corrected.size === original.length &&
+      corrected.width <= initial.width &&
+      corrected.height <= initial.height &&
+      corrected.comment === 'Tilt and perspective corrected' &&
+      info.extmetadata?.Copyrighted?.value === 'False' &&
+      info.extmetadata?.AttributionRequired?.value === 'false' &&
+      !text(info.extmetadata?.Restrictions?.value);
     const ordinarySelf = !(
       !photographer ||
       /\b(?:unknown|anonymous|unidentified|unrecorded)\b/i.test(photographer) ||
       photographer !== reference.artist ||
-      text(author) !== photographer ||
+      (text(author) !== photographer &&
+        !(
+          author?.trim() === nativeLink &&
+          (info.user === photographer || perspectiveCorrection)
+        )) ||
       text(info.extmetadata?.Artist?.value) !== photographer ||
       !/^\s*\{\{\s*own(?: photo)?\s*\}\}\s*$/i.test(sourceField ?? '') ||
       !/\{\{\s*PD-self\s*\}\}/i.test(wiki) ||
@@ -248,11 +372,19 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       /\.jpe?g$/i.test(nativeUrl.pathname) &&
       !record.continue?.iicontinue &&
       nativeNamedUploaderRelease(page, photographer, proof.nativeCreatorRelease);
+    const transferredSelf =
+      photographer === reference.artist &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      nativeTransferredUploaderRelease(page, photographer, binding, original);
+    const transferredNamedPhotograph =
+      reference.artist === `${photographer} at English Wikipedia` &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      !record.continue?.iicontinue &&
+      nativeTransferredNamedPhotograph(page, photographer, binding, original);
     // Early Japanese uploads say "the uploader themself" in both fields.
     // Bind that first-person claim to the original uploading account and time;
     // a later PD-self tag or a translated artist label alone is insufficient.
-    const binding = proof.nativeCreatorRelease,
-      first = page?.revisions?.[0],
+    const first = page?.revisions?.[0],
       japaneseUploaderSelf =
         binding?.kind === 'contemporaneous-japanese-uploader-self-release' &&
         /^[A-Za-z0-9_-]+$/.test(binding.username ?? '') &&
@@ -328,11 +460,46 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       !ordinarySelf &&
       !selfPhotographed &&
       !namedSelf &&
+      !transferredSelf &&
+      !transferredNamedPhotograph &&
       !japaneseUploaderSelf &&
       !japaneseSignedPhotograph
     )
       return failed;
-    basis = `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
+    basis = transferredNamedPhotograph
+      ? `Original upload log and public-domain release by ${photographer}, preserved in the first Commons transfer.`
+      : `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
+  } else if (proof.kind === 'commons-native-lac-expired-photo') {
+    const archive = record.archive;
+    if (
+      title !== 'File:Fort Temiscamingue 1876.jpg' ||
+      reference.artist !== 'George McLaughlin' ||
+      proof.photoYear !== 1876 ||
+      proof.archiveItem !== 3257337 ||
+      archive?.mikanId !== proof.archiveItem ||
+      archive.url !==
+        'https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?idnumber=3257337&app=fonandcol' ||
+      archive.accession !== '1966-094 NPC' ||
+      archive.reproduction !== 'PA-028724' ||
+      archive.photographer !== reference.artist ||
+      archive.date !== proof.photoYear ||
+      archive.restriction !== 'Nil' ||
+      archive.copyright !== 'Expired' ||
+      page.revisions[0].revid !== reference.nativeRevision ||
+      info.size !== original.length ||
+      !wiki.includes('|Source={{LAC|Acc. No. 1966-094|3257337}}') ||
+      !wiki.includes('|Author=George McLaughlin\n') ||
+      !wiki.includes('|Date=1876\n') ||
+      !wiki.includes('{{PD-Canada}}{{PD-1923}}') ||
+      /\{\{\s*(?:cc[- ]by|gfdl)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      reference.originalReview?.rendition !== 'exact-published-native-original'
+    )
+      return failed;
+    basis =
+      'Exact Qualla original of the 1876 photograph, with both native public-domain tags and the Library and Archives Canada expiry record for MIKAN 3257337.';
   } else if (proof.kind === 'commons-native-expired-library-photo') {
     // Recover a missing local category only from the exact native library photo.
     // A PD-old label alone is insufficient: bind its named creator's lifespan,
@@ -447,6 +614,40 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     )
       return failed;
     basis = `Exact native photograph in ${proof.publicationTitle}, issue ${proof.issueNumber}, ${proof.publicationYear}; named photographic credit, BNE publication record and explicit PD-AR-Photo/PD-US-expired grants`;
+  } else if (proof.kind === 'commons-native-expired-us-periodical-photo') {
+    const publication = record.publicationEvidence;
+    const field = (name) =>
+      wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\n]+)`, 'i'))?.[1]?.trim();
+    const scanName = publication?.scan?.path;
+    if (
+      title !== 'File:Santo Domingo Cathedral (1899).jpg' ||
+      proof.publicationTitle !== "Munsey's Magazine" ||
+      proof.publicationYear !== 1899 ||
+      publication?.catalog !== 'https://books.google.com/books?id=NOAAAAAAYAAJ' ||
+      publication?.leaf !== 'https://books.google.com/books?id=NOAAAAAAYAAJ&pg=PA891' ||
+      publication?.publisher !== 'Frank A. Munsey & Company, New York' ||
+      !text(publication?.caption).includes('THE CATHEDRAL AND COLUMBUS PARK') ||
+      field('source') !== "''Munsey's Magazine'' (vol. XX)" ||
+      field('date') !== '1899-02' ||
+      field('author') !== '{{Anonymous}}' ||
+      reference.artist !== 'AnonymousUnknown author' ||
+      !/\{\{\s*PD-US-expired\s*\}\}/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      info.size !== original.length ||
+      !/^[a-z0-9-]+\.jpg$/.test(scanName ?? '')
+    )
+      return failed;
+    const scan = path.join(path.dirname(file), scanName);
+    if (
+      !fs.existsSync(scan) ||
+      !fs.lstatSync(scan).isFile() ||
+      createHash('sha256').update(fs.readFileSync(scan)).digest('hex') !== publication.scan.sha256
+    )
+      return failed;
+    basis =
+      'Exact native Qualla photograph matched to the printed illustration on page 891 of the 1899 New York edition of Munsey’s Magazine and the native PD-US-expired record.';
   } else if (proof.kind === 'commons-native-expired-named-book-photo') {
     if (
       !/\.jpe?g$/i.test(nativeUrl.pathname) ||
@@ -498,11 +699,13 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       dateField = field('date'),
       authorField = field('author'),
       originalDrawing = proof.recordClass === 'pedrero-1892-original-drawing',
-      year = originalDrawing ? proof.creationYear : proof.publicationYear;
+      lessmannPhoto = proof.recordClass === 'lessmann-caracas-circa-1870-photo',
+      garreaudAlbumPlate = proof.recordClass === 'garreaud-1900-republica-peruana-plate-21',
+      year = originalDrawing || lessmannPhoto ? proof.creationYear : proof.publicationYear;
     if (
       !Number.isInteger(year) ||
       year < 1800 ||
-      year > (originalDrawing ? 1892 : 1875) ||
+      year > (garreaudAlbumPlate ? 1900 : originalDrawing ? 1892 : 1875) ||
       !proof.sourceCitation?.trim() ||
       sourceField !== proof.sourceCitation ||
       /unknown|anonymous|unidentified|unrecorded|assumed|probably/i.test(
@@ -532,6 +735,54 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         text(info.extmetadata?.Restrictions?.value)
       )
         return failed;
+    } else if (lessmannPhoto) {
+      if (
+        title !==
+          'File:Lessman, Federico Carlos - Plaza Major mit Kathedrale (Zeno Fotografie).jpg' ||
+        page.revisions[0].revid !== 1262799309 ||
+        info.sha1 !== 'bcc874c038a6d6ff764bc393dc2b02176077bef8' ||
+        year !== 1870 ||
+        proof.creatorDied !== 1886 ||
+        proof.creatorRecord !== 'https://elarchivo.org/federico-lessmann/' ||
+        reference.artist !== 'Lessman, Federico Carlos' ||
+        authorField !== reference.artist ||
+        dateField !== '{{circa|1870}}' ||
+        sourceField !== '[http://www.zeno.org/Fotografien.images/I/PHO02798.jpg Image]<br>' ||
+        !wiki.includes('{{Zeno.org|20001882589}}') ||
+        !wiki.includes('Instituto autónomo Biblioteca Nacional Caracas') ||
+        !wiki.includes('{{PD-Art-Zeno}}') ||
+        !wiki.includes('{{PD-old-70-1923}}') ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact circa-1870 photograph by Federico Lessmann (1826–1886), bound to Zeno item 20001882589, the Caracas national library collection and the native PD-Art-Zeno and PD-old-70-1923 notices.';
+    } else if (garreaudAlbumPlate) {
+      if (
+        title !== 'File:N° 21 Lima. Yglesia de Sto Domingo.png' ||
+        page.revisions[0].revid !== 1222300596 ||
+        info.sha1 !== '74d300274af19205b3062afa1430e04cd2f98c1e' ||
+        info.size !== original.length ||
+        reference.artist !== 'Fernando Garreaud' ||
+        authorField !== reference.artist ||
+        dateField !== '1898–1900' ||
+        year !== 1900 ||
+        proof.creatorDied !== 1929 ||
+        sourceField !== '[[:Category:República Peruana|República Peruana]]' ||
+        proof.edition !== 'https://memoriaperu.bnp.gob.pe/micrositio/album-republica-peruana' ||
+        proof.authority !== 'https://memoriaperu.bnp.gob.pe/micrositio/fernando-garreaud' ||
+        !wiki.includes('{{PD-Peru-photo}}') ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact plate 21 of the República Peruana album published in 1900, photographer Fernando Garreaud (1870–1929); verified native PD-Peru-photo record and National Library of Peru edition and creator records.';
     } else if (proof.recordClass === 'coste-keisaria-1867-engraving') {
       // Qualla retained the PD label but omitted the native expiry category.
       // Bind the actual named engraving and its 1867 publication; never infer
@@ -553,6 +804,144 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         text(info.extmetadata?.Restrictions?.value)
       )
         return failed;
+    } else if (proof.recordClass === 'terragno-1875-theatre-photo') {
+      if (
+        title !== 'File:O Teatro São Pedro - 1875 - Luigi Terragno.jpg' ||
+        page.revisions[0].revid !== 1270638996 ||
+        info.sha1 !== '84cfc412af0fd31d3ccbce2dc67ce5a39e9ef5d4' ||
+        info.size !== original.length ||
+        reference.artist !== 'Luigi Terragno' ||
+        authorField !== '{{Creator:Luigi Terragno}}' ||
+        dateField !== '1875' ||
+        year !== 1875 ||
+        proof.creatorDied !== 1891 ||
+        proof.authority !== 'https://brasilianafotografica.bn.gov.br/?tag=luis-terragno' ||
+        proof.photographCitation !==
+          'https://vitruvius.com.br/revistas/read/arquitextos/17.204/6559/en' ||
+        !/\{\{\s*PD-old-auto-1923\s*\|\s*deathyear=1891\s*\}\}/.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native copy of the published 1875 Porto Alegre theatre photograph by Luigi Terragno, with named creator, original bytes and PD-old-auto-1923 bound.';
+    } else if (proof.recordClass === 'sl-nsw-1872-pickering-public-buildings') {
+      // The original government album identifies its photographer, publication,
+      // and the specimen held by the State Library of New South Wales.
+      if (
+        title !== 'File:SLNSW 479514 11 Australian Museum SH 564.jpg' ||
+        page.revisions[0].revid !== 1081628741 ||
+        info.sha1 !== '27c36d0efa840d2de0cd55ccb098853961a8a3ed' ||
+        info.size !== original.length ||
+        reference.artist !== 'Pickering, Charles Percy' ||
+        authorField !== 'Pickering, Charles Percy (New South Wales. Government Printing Office)' ||
+        dateField !== '1872' ||
+        year !== 1872 ||
+        proof.archiveItem !== '479514' ||
+        !sourceField.includes('itemID=479514 (item)') ||
+        !sourceField.includes('itemID=442753 (album)') ||
+        !wiki.includes('{{SLNSW-image|1=479514}}') ||
+        !wiki.includes('Thomas Richards, Government Printer - 1872') ||
+        !wiki.includes('|Album_Copying_Conditions=Out of copyright  - Created before 1955') ||
+        !wiki.includes('{{PD-Australia}}') ||
+        !wiki.includes('{{PD-1996|country=Australia}}') ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native Australian Museum photograph by Charles Percy Pickering, published by the NSW Government Printer in 1872; State Library of NSW item 479514 and historical public-domain tags verified.';
+    } else if (proof.recordClass === 'clarke-1830-sans-souci-engraving') {
+      if (
+        title !== 'File:Le Palais Sans-Souci à Milot en Haïti, 1830.png' ||
+        page.revisions[0].revid !== 1009242269 ||
+        info.sha1 !== '197a3e902fdd72eddbf957cc7ee67819bec3456c' ||
+        info.size !== original.length ||
+        !sourceField.includes('H. Colburn and R. Bentley, 1830, Volume II.') ||
+        year !== 1830 ||
+        authorField !== 'J. Clarke, graveur, Colburn & Bentley (Londres)' ||
+        !/\{\{\s*PD-old-70-1923\s*\}\}/i.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native J. Clarke engraving from Charles Mackenzie’s 1830 Notes on Haiti, Volume II. Original publication imprint, native bytes and explicit expiry bound.';
+    } else if (proof.recordClass === 'kuestner-1836-sans-souci-lithograph') {
+      if (
+        title !==
+          'File:Sans souci Haiti illustration Naturhistorische Reise nach der westindischen Insel Hayti Brasiliensium Ritter1826.jpg' ||
+        page.revisions[0].revid !== 689667852 ||
+        info.sha1 !== 'd22051d09a88d735219abbb811b697c81693d133' ||
+        info.size !== original.length ||
+        reference.artist !== 'Gottfried Küstner / Carl Ritter' ||
+        authorField !==
+          '{{technique|lithography}} {{Creator:Gottfried Küstner}} {{after}} {{technique|drawing}} {{Creator:Carl Ritter}}' ||
+        !sourceField.startsWith('[http://botanicus.org/page/1475767 Botanicus.com]') ||
+        dateField !== '1836' ||
+        year !== 1836 ||
+        proof.creatorDied !== 1864 ||
+        !/\{\{\s*PD-old-100-1923\s*\}\}/i.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native copy of Gottfried Küstner’s published 1836 lithograph of Sans-Souci after Carl Ritter, with its named creators, Botanicus printing citation, original bytes and explicit expiry bound.';
+    } else if (proof.recordClass === 'bourne-lahore-fort-photo') {
+      if (
+        title !== 'File:Hazuri Bagh Pavillion and Lahore Fort in 1863.jpg' ||
+        page.revisions[0].revid !== 1294962574 ||
+        info.sha1 !== '1f724820bc3f8cb7f48a48fd019522461640699f' ||
+        info.size !== original.length ||
+        year !== 1863 ||
+        proof.creatorDied !== 1912 ||
+        reference.artist !== 'Samuel Bourne' ||
+        authorField !== '{{Creator:Samuel Bourne}}' ||
+        dateField !== '1863' ||
+        sourceField !==
+          'http://www.bl.uk/onlinegallery/onlineex/apac/photocoll/f/019pho000000394u00004000.html' ||
+        proof.authority !== 'https://searcharchives.bl.uk/catalog/040-003081187' ||
+        !wiki.includes('{{PD-old-70-expired}}') ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native scan of Samuel Bourne’s Lahore Fort photograph, dated circa 1863–1864 by the British Library (Photo 394(4)), with named photographer, original scan bytes and explicit PD-old-70-expired release.';
+    } else if (proof.recordClass === 'hartmann-dongola-engraving') {
+      if (
+        title !== 'File:Dongola Mosque.png' ||
+        page.revisions[0].revid !== 1196520823 ||
+        info.sha1 !== '6021dd4a5c27deb4d52feab504109ab673a4b5c5' ||
+        info.size !== original.length ||
+        reference.artist !== 'Robert Hartmann' ||
+        authorField !== reference.artist ||
+        dateField !== '1868' ||
+        year !== 1868 ||
+        proof.creatorDied !== 1893 ||
+        proof.authority !== 'https://www.deutsche-biographie.de/sfz120277.html' ||
+        sourceField !==
+          '"Erinnerungen an Nubien" in "Westermann\'s illustrierte deutsche Monatshefte"' ||
+        !/\{\{\s*PD-old-70-expired\s*\}\}/.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact native print of the Dongola mosque published in Westermann’s Monatshefte in 1868. Robert Hartmann, 1832–1893. Original bytes and declared public domain verified.';
     } else if (proof.recordClass === 'brazilian-periodical') {
       if (
         proof.publicationTitle !== 'A Vida Fluminense' ||
@@ -611,7 +1000,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       )
         return failed;
     } else return failed;
-    basis = originalDrawing
+    basis ??= originalDrawing
       ? 'Exact native original drawing dated 1892-09-24; Mariano Pedrero (1865-1927), collection of Marceliano Pedrero, explicit PD-Scan/PD-old-auto-expired release and original bytes bound'
       : `Exact native historical print, ${year}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : proof.recordClass === 'bnf-arnaud-1843-map' ? 'PD-France and PD-US-expired original Arnaud map' : proof.recordClass === 'coste-keisaria-1867-engraving' ? 'PD-Art/PD-old-auto-expired, Pascal Coste (1787-1879)' : 'PD-old-70-1923 map'} grant`;
   } else if (proof.kind === 'commons-native-usaf-reference-series-photo') {

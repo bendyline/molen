@@ -28,16 +28,18 @@ export const ksiazPalmSurfaces = {
   brick: { slot: 'wall', graph: 'brick', roughness: 0.88, metallic: 0 },
   plaster: { slot: 'trim', graph: 'plaster_lime', roughness: 0.88, metallic: 0 },
   metal: { slot: 'trim', graph: 'metal_painted', roughness: 0.6, metallic: 0.25 },
+  paving: { slot: 'foundation', graph: 'stone_sandstone_raw', roughness: 0.94, metallic: 0 },
   glass: { slot: 'window', roughness: 0.58, metallic: 0.04 },
 };
 export const ksiazPalmPalette = {
   brick: '#bd866c',
   trim: '#eee4c9',
   metal: '#85a87c',
-  glass: '#627e87',
-  roofGlass: '#829797',
+  glass: '#58777a',
+  roofGlass: '#78928f',
   door: '#b57167',
   base: '#c7bea5',
+  landing: '#a9a18c',
 };
 const colors = Object.fromEntries(
   Object.entries(ksiazPalmPalette).map(([k, h]) => [
@@ -54,7 +56,14 @@ const colors = Object.fromEntries(
 const dir = new URL('../', import.meta.url),
   frame = JSON.parse(readFileSync(new URL('map-frame.json', dir))),
   means = JSON.parse(readFileSync(new URL('surface-means.json', dir))),
-  h = frame.controls.mainHall;
+  h = frame.controls.mainHall,
+  { outline, holes } = frame.geometry,
+  fit = frame.siteFit,
+  porchOutline = frame.controls.porch.outlineIndices.map((i) => outline[i]),
+  greenhouseOutline = [
+    ...outline.slice(frame.controls.porch.outlineIndices.at(-1)),
+    porchOutline.at(-1),
+  ];
 function face(o, p, col = 'glass', slot = 'glass', target) {
   p = p.map((v) => v.map(Math.fround));
   for (let i = 1; i < p.length - 1; i++) {
@@ -135,25 +144,6 @@ function box(o, x, y, z, w, height, depth, col = 'trim', slot = 'plaster') {
     ],
   ])
     face(o, p, col, slot, n);
-}
-function cap(o, outline, holes, y, col = 'base', slot = 'plaster', target = [0, 1, 0]) {
-  const rings = [outline, ...holes].map((r) => r.slice(0, -1)),
-    all = rings.flat(),
-    indices = [];
-  let offset = rings[0].length;
-  for (const r of rings.slice(1)) {
-    indices.push(offset);
-    offset += r.length;
-  }
-  const ix = earcut(all.flat(), indices);
-  for (let i = 0; i < ix.length; i += 3)
-    face(
-      o,
-      ix.slice(i, i + 3).map((k) => [all[k][0], y, all[k][1]]),
-      col,
-      slot,
-      target,
-    );
 }
 function perimeter(o, loop, top, base = 0, col = 'glass', slot = 'glass', inward = false) {
   let area = 0;
@@ -517,14 +507,53 @@ function mainHall(o, d) {
   }
 }
 function porch(o, d) {
-  const p = frame.controls.porch.outlineIndices.map((i) => frame.geometry.outline[i]),
-    loop = [...p, p[0]],
-    c = [-0.15, 19.4];
-  perimeter(o, loop, 0.6, 0, 'brick', 'brick');
-  perimeter(o, loop, 3.8, 0.6);
+  const p = porchOutline,
+    c = [-0.15, 19.4],
+    { x, z, leafWidth, sill, head } = fit.apron;
+  const left = x - leafWidth / 2,
+    right = x + leafWidth / 2;
+  const jambs = [left, right];
+  const frontEdge = (a, b) => Math.min(a[1], b[1]) > 21.8;
+  const glazedEntry = (u, v) => v > 21.8 && u > left + 0.001 && u < right - 0.001;
+  const at = (a, b, t, y) => [a[0] + (b[0] - a[0]) * t, y, a[1] + (b[1] - a[1]) * t];
   for (let i = 0; i < p.length; i++) {
     const a = p[i],
-      b = p[(i + 1) % p.length];
+      b = p[(i + 1) % p.length],
+      cuts = [0, 1],
+      outward = [b[1] - a[1], 0, a[0] - b[0]];
+    if (frontEdge(a, b))
+      cuts.push(...jambs.map((u) => (u - a[0]) / (b[0] - a[0])).filter((t) => t > 0 && t < 1));
+    cuts.sort((a, b) => a - b);
+    for (let j = 1; j < cuts.length; j++) {
+      const start = cuts[j - 1],
+        end = cuts[j];
+      const [u, , v] = at(a, b, (start + end) / 2, 0);
+      const door = glazedEntry(u, v);
+      face(
+        o,
+        [
+          at(a, b, start, fit.footingBottom),
+          at(a, b, end, fit.footingBottom),
+          at(a, b, end, door ? sill : 0.6),
+          at(a, b, start, door ? sill : 0.6),
+        ],
+        'brick',
+        'brick',
+        outward,
+      );
+      face(
+        o,
+        [
+          at(a, b, start, door ? head : 0.6),
+          at(a, b, end, door ? head : 0.6),
+          at(a, b, end, 3.8),
+          at(a, b, start, 3.8),
+        ],
+        'glass',
+        'glass',
+        outward,
+      );
+    }
     face(
       o,
       [
@@ -536,22 +565,14 @@ function porch(o, d) {
       'glass',
       [0, 1, 0],
     );
-    box(o, a[0], 0, a[1], 0.28, 3.8, 0.28, 'brick', 'brick');
+    if (!glazedEntry(...a)) box(o, a[0], 0, a[1], 0.28, 3.8, 0.28, 'brick', 'brick');
     if (d >= 1) {
       const len = Math.hypot(b[0] - a[0], b[1] - a[1]),
         n = Math.ceil(len / (d === 1 ? 1.8 : 0.9));
-      for (let j = 1; j < n; j++)
-        box(
-          o,
-          a[0] + ((b[0] - a[0]) * j) / n,
-          0.6,
-          a[1] + ((b[1] - a[1]) * j) / n,
-          0.09,
-          2.8,
-          0.09,
-          'metal',
-          'metal',
-        );
+      for (let j = 1; j < n; j++) {
+        const [u, y, v] = at(a, b, j / n, 0.6);
+        if (!glazedEntry(u, v)) box(o, u, y, v, 0.09, 2.8, 0.09, 'metal', 'metal');
+      }
       face(
         o,
         [
@@ -566,17 +587,101 @@ function porch(o, d) {
       );
     }
   }
-  const door = frame.controls.mainEntrance;
-  box(o, door[0], 0.15, door[1] + 0.06, 1.32, 2.8, 0.1, 'door', 'metal');
+  const inner = z - fit.apron.recess;
+  face(
+    o,
+    [
+      [left, sill, inner],
+      [right, sill, inner],
+      [right, head, inner],
+      [left, head, inner],
+    ],
+    'door',
+    'metal',
+    [0, 0, 1],
+  );
+  for (const [u, side] of [
+    [left, 1],
+    [right, -1],
+  ]) {
+    const i = p.findIndex((a, i) => {
+      const b = p[(i + 1) % p.length];
+      return frontEdge(a, b) && u >= Math.min(a[0], b[0]) && u <= Math.max(a[0], b[0]);
+    });
+    const a = p[i],
+      b = p[i + 1];
+    const [, , v] = at(a, b, (u - a[0]) / (b[0] - a[0]), 0);
+    face(
+      o,
+      [
+        [u, sill, inner],
+        [u, sill, v],
+        [u, head, v],
+        [u, head, inner],
+      ],
+      'base',
+      'plaster',
+      [side, 0, 0],
+    );
+  }
+  face(
+    o,
+    [
+      [left, head, inner],
+      [right, head, inner],
+      [right, head, z + 0.003],
+      [left, head, z + 0.003],
+    ],
+    'metal',
+    'metal',
+    [0, -1, 0],
+  );
+  face(
+    o,
+    [
+      [left, sill, inner],
+      [right, sill, inner],
+      [right, sill, z - 0.16],
+      [left, sill, z - 0.16],
+    ],
+    'landing',
+    'paving',
+    [0, 1, 0],
+  );
+  if (d >= 1) box(o, x, sill, inner + 0.016, 0.035, head - sill, 0.025, 'metal', 'metal');
   if (d >= 2)
-    for (const x of [door[0] - 0.38, door[0] + 0.38])
-      box(o, x, 0.65, door[1] + 0.125, 0.48, 1.82, 0.025, 'door', 'metal');
+    for (const u of [x - 0.086, x + 0.086])
+      box(o, u, 1.08, inner + 0.042, 0.052, 0.24, 0.06, 'trim', 'plaster');
+}
+function entranceLanding(o) {
+  const [a, b, c, d] = fit.groundCutout.outline;
+  const {
+    sill,
+    toeHeights: [left, right],
+  } = fit.apron;
+  const roof = [
+    [a[0], sill, a[1]],
+    [b[0], sill, b[1]],
+    [c[0], right, c[1]],
+    [d[0], left, d[1]],
+  ];
+  face(o, roof, 'landing', 'paving', [0, 1, 0]);
+  for (const [i, u] of roof.entries()) {
+    const v = roof[(i + 1) % roof.length];
+    face(
+      o,
+      [[u[0], fit.footingBottom, u[2]], [v[0], fit.footingBottom, v[2]], v, u],
+      'base',
+      'plaster',
+      [v[2] - u[2], 0, u[0] - v[0]],
+    );
+  }
 }
 function greenhouseFrames(o, d) {
   if (d === 0) return;
   const pitch = d === 1 ? 6 : 2.4;
   for (const [ring, inside] of [
-    [frame.geometry.outline, false],
+    [greenhouseOutline, false],
     ...frame.geometry.holes.map((p) => [p, true]),
   ]) {
     let area = 0;
@@ -672,16 +777,15 @@ export function buildKsiazPalm(o, key = 'ksiaz_palm_house', level = 'closeup') {
   if (key !== 'ksiaz_palm_house') throw Error(`Unknown Palm House ${key}`);
   const d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
   if (d === undefined) throw Error(`Unknown level ${level}`);
-  const { outline, holes } = frame.geometry;
-  cap(o, outline, holes, 0, 'base', 'plaster', [0, -1, 0]);
-  perimeter(o, outline, 0.6, 0, 'base', 'plaster');
+  perimeter(o, greenhouseOutline, 0.6, fit.footingBottom, 'base', 'plaster');
   // Hole rings face inward into the courtyard, regardless of their map winding.
-  for (const r of holes) perimeter(o, r, 0.6, 0, 'base', 'plaster', true);
-  perimeter(o, outline, d === 0 ? 2.9 : 2.35, 0.6);
+  for (const r of holes) perimeter(o, r, 0.6, fit.footingBottom, 'base', 'plaster', true);
+  perimeter(o, greenhouseOutline, d === 0 ? 2.9 : 2.35, 0.6);
   for (const r of holes) perimeter(o, r, d === 0 ? 2.9 : 2.35, 0.6, 'glass', 'glass', true);
   clippedRoof(o, d);
   mainHall(o, d);
   porch(o, d);
+  entranceLanding(o);
   greenhouseFrames(o, d);
 }
 export function buildKsiazPalmSkyline(o, key) {

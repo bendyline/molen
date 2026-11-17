@@ -1,19 +1,26 @@
-# Çırağan Palace — historic principal exterior
+# Çırağan Palace
 
-**Native terrain fit pending; not counted ready.** Reviewed2026-11-02.
+The principal historic exterior retains the three projecting waterfront pavilions and two inset bays, the rusticated basement, two arched window stories, shallow closed hipped roofs, and both southwest stair flights. The granite-facing strip runs only along the mapped historic court frontage.
 
-Native terrain fit remains pending. The unchanged coarse global field has strong coastal urban-surface bias: center11.48m andouter waterfront3–7m. At the provisional11m model datum it exposes an oversized western waterfront plinth andover-tall western landing/stair retaining faces. The supported stair edges meet the sampled field,but that is insufficient to approve the pictured historic grade. Do not invent a broad terrace orlower the complete palace into the inland field. Preserve these exact geometry/field/review inputs for common site handling without bespoke per-building survey research. This model is not counted ready.
+Both stair flights meet the 3.5 m court within 9 mm at the sampled points. The granite facing ties to the quay within 26 mm at the sampled points. Local grades blend into the retained hillside and expose the existing Bosphorus water at the historic shore. No native sea or road geometry is removed.
 
-All10 final portable views inspected. Complete historic principal Çırağan Palace: three projecting waterfront pavilion groups andtwo inset bays,two tall arched window stories above the low rusticated basement,paired slender columns/pilasters,original curved window heads,deep cornices/paneled attic,three closed shallow green-gray hipped roof groups,and the southwestern closed entrance/raised landing/two genuinely divided exterior stair flights with open balustrades. No invented roof court. Original geometric trim replaces figurative carving,heraldry and inscriptions. Source turntables deliberately expose buried foundations. Independent modern hotel,estate buildings,gardens,pool,quay,gates andhelipad are outside this principal-palace source.
+![Palace from the Bosphorus in Molen](site-preview.png)
 
-Q273225/way498861861; both native clips1/6 are unioned. Anchor[29.015310008,41.043465586],heading0.40690002573:+X ENE along the long palace toward the Bosphorus bridge;+Z SSE toward the waterfront/garden promenade andstrait;-Z inland. Production replaces2 owned components at98% whole-component coverage andretains all14 independent components,including modern hotel7. No mapped height tags orinner hole. Two unchanged standard global Terrarium tiles;provisional11m reference andY=0 source contact plane. Only the principal occupied footprint,landing andbounded divided stair flights cut the terrain;the surrounding estate remains native.
+The local fixture keeps the three nearby building records, all 61 transportation records, and both mapped water inputs. The separate production replacement test retains all 14 independent native components. Loading failure keeps the mapped palace footprint.
 
-Source: **218,207 triangles /26,188,740 bytes**. Browser tiers: **177 / 1,070 / 7,023 / 60,543 triangles**. Initial skyline+district: **117,156 bytes**;close-up: **6,199,364 bytes**. Five shared256px graphs,six groups,no embedded/private images andseparate GPU streams.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 193 | 18,140 | 1 |
+| district | 1,082 | 100,448 | 6 |
+| street | 7,115 | 638,908 | 6 |
+| closeup | 60,635 | 6,209,584 | 6 |
 
-Four focused tests pass;six GLBs validate with no errors orwarnings. All46 final frames were actually inspected;their exact input/source/runtime hashes remain in qa.json. Current map replacement preserves the independent modern hotel andall14 context components. This is original deterministic geometry from checked-in controls,not a generic substitute ordownloaded mesh.
+The first two levels total 118,588 bytes. Six GLBs validated with zero errors or warnings. Four focused tests and 324 placement probes passed. 71 renders were inspected.
 
-All10 final shared-material/flat-map views inspected. Five existing shared256px limestone,granite,painted-metal,wood andwindow-grid graphs in six groups;metric UVs,linear colors,zero private/embedded images. The complete principal footprint matches the signed standard map. Geometry disposes andground restores on unload. Flat fixtures expose buried foundations anddo not prove actual coastal grades.
+The 3.5 m court level, offshore bed correction and stair risers are visual estimates from the ordinary exterior photos and standard map and terrain inputs. The site grade blends into the raw hill behind the palace.
 
-All26 final terrain/context,lighting,silhouette,detail andtier frames inspected. Complete plan,three waterfront projections,two inset bays,closed roofs,entrance anddivided stairs persist across the four browser tiers. Skyline/district simplify windows andstairs;street keeps recesses/pilasters;close-up adds paired columns,curved heads,paneled attic,roof seams andbalustrades. The western exposed base remains visibly oversized. Context is synthetic. Concealed rear/window inventories,original ornament,roof/stair dimensions andhistoric grades are medium-fi approximations. Exact thresholds/interiors are outside scope;numeric LOD errors andphysical timings remain unmeasured.
+This is the principal historic exterior with its closed roofs, southwest entrance and both stair flights. A short granite-faced seawall follows the mapped line along the historic court. The independent hotel, pool, gardens, gate and remaining quay retain their map geometry.
 
-Two ordinary exterior/aerial pictures guide appearance andscope;photos remain local andarenot textures. Rear/window inventories,original simplified trim,roof/stair sections andgrades are approximate. No copied sculpture,emblems,lettering orinteriors. Physical-device performance,numerical LOD error andcategory activation remain separate work.
+Unseen facade details and decorative trim are original medium-fi interpretations. Ornament, letters and interiors are outside the modeled scope.
+
+[Site controls](site-fit.json) · [QA evidence](qa.json) · [Waterfront photograph](https://www.kempinski.com/en/ciragan-palace/overview)

@@ -1,11 +1,41 @@
 /** Close the gap between mapped water and the coarse, rendered elevation triangles. */
 import * as THREE from 'three';
+import { ringSignedArea } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { renderedGroundSampler } from './rendered-ground';
-import type { TerrainSemanticPolygon } from './semantic-types';
+import type { TerrainSemanticPoint, TerrainSemanticPolygon } from './semantic-types';
+
+type Water = { polygon: TerrainSemanticPolygon; height: number; fixedStage?: boolean };
+
+const edgeKey = (a: readonly [number, number], b: readonly [number, number]): string =>
+  `${a[0]},${a[1]}|${b[0]},${b[1]}`;
+
+/** Interior joins between co-level map polygons, such as a canal meeting a river. */
+function coLevelEdges(waters: readonly Water[]): Map<number, Set<string>> {
+  const counts = new Map<number, number>();
+  for (const { height } of waters) counts.set(height, (counts.get(height) ?? 0) + 1);
+  const levels = new Map<number, Set<string>>();
+  for (const { polygon, height } of waters) {
+    if ((counts.get(height) ?? 0) < 2) continue;
+    let edges = levels.get(height);
+    if (!edges) {
+      edges = new Set();
+      levels.set(height, edges);
+    }
+    for (const [ringIndex, ring] of [polygon.outer, ...(polygon.holes ?? [])].entries()) {
+      const waterOnLeft = ringSignedArea(ring) > 0 === (ringIndex === 0);
+      for (let i = 0; i < ring.length; i++) {
+        const a = ring[i] as TerrainSemanticPoint;
+        const b = ring[(i + 1) % ring.length] as TerrainSemanticPoint;
+        edges.add(waterOnLeft ? edgeKey(a, b) : edgeKey(b, a));
+      }
+    }
+  }
+  return levels;
+}
 
 export function buildTerrainWaterBanks(
-  waters: readonly { polygon: TerrainSemanticPolygon; height: number }[],
+  waters: readonly Water[],
   context: TerrainPyramidTileLayerContext,
   groundOffset: number,
 ): THREE.BufferGeometry | undefined {
@@ -44,12 +74,18 @@ export function buildTerrainWaterBanks(
   };
   const edge = (value: number): number =>
     Math.abs(value) < 1e-7 ? 0 : Math.abs(value - size) < 1e-7 ? 1 : -1;
-  for (const { polygon, height } of waters) {
+  const joined = coLevelEdges(waters);
+  for (const { polygon, height, fixedStage } of waters) {
     const bottom = height - 0.05;
-    for (const ring of [polygon.outer, ...(polygon.holes ?? [])]) {
+    const sameStage = joined.get(height);
+    for (const [ringIndex, ring] of [polygon.outer, ...(polygon.holes ?? [])].entries()) {
+      const waterOnLeft = sameStage && ringSignedArea(ring) > 0 === (ringIndex === 0);
       for (let i = 0; i < ring.length; i++) {
         const a = ring[i] as readonly [number, number];
         const b = ring[(i + 1) % ring.length] as readonly [number, number];
+        // Matching direction alone can come from duplicate geometry. The reversed edge,
+        // oriented with water on its left, proves that both sides are wet at this elevation.
+        if (sameStage?.has(waterOnLeft ? edgeKey(b, a) : edgeKey(a, b))) continue;
         const ax = a[0] * size,
           az = a[1] * size,
           bx = b[0] * size,
@@ -86,15 +122,19 @@ export function buildTerrainWaterBanks(
           const qx = ax + (bx - ax) * t,
             qz = az + (bz - az) * t;
           const qy = sample(ox + qx, oz + qz) + groundOffset;
-          if (py > height || qy > height) {
+          if (fixedStage || py > height || qy > height) {
             const pTop = Math.max(py, height),
               qTop = Math.max(qy, height);
+            // Fixed inland stages can be higher than the DEM on the dry side of the shore.
+            // Extend the bank to the original ground so the flat water has a closed edge.
+            const pBottom = fixedStage ? Math.min(bottom, py - groundOffset - 0.05) : bottom;
+            const qBottom = fixedStage ? Math.min(bottom, qy - groundOffset - 0.05) : bottom;
             push(px, pTop, pz);
-            push(px, bottom, pz);
+            push(px, pBottom, pz);
             push(qx, qTop, qz);
             push(qx, qTop, qz);
-            push(px, bottom, pz);
-            push(qx, bottom, qz);
+            push(px, pBottom, pz);
+            push(qx, qBottom, qz);
           }
           pt = t;
           px = qx;

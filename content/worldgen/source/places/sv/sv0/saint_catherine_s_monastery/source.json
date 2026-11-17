@@ -1,0 +1,65 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saint_catherine_s_monastery",
+  "kind": "static-structure",
+  "title": "Saint Catherine’s Monastery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saint_catherine_s_monastery",
+        "output": "assets/places/sv/sv0/saint_catherine_s_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8711d4c8eb5caea5ff7d0178afb7d48e14765697b4428e018efd613283d348ee"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-saint-catherines-monastery",
+        "path": "models/generate-saint-catherines-monastery.mjs"
+      },
+      {
+        "id": "saint-catherines-monastery-model",
+        "path": "models/saint-catherines-monastery-model.mjs"
+      },
+      {
+        "id": "fortification",
+        "path": "models/fortification.mjs"
+      },
+      {
+        "id": "monastery-towers",
+        "path": "models/monastery-towers.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/monastery-controls.json",
+      "reference-rights/commons-monastery-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19476-13669.png",
+      "terrain-sources/terrarium-15-19476-13670.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

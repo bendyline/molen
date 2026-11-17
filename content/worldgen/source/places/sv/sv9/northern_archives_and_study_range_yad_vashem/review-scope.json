@@ -1,0 +1,428 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "An individually modeled Yad Vashem northern campus range with five joined limestone and glass volumes on the wooded hillside.",
+  "appearance": {
+    "identity": "Bent pale stone range with two ribbon-glazed western seminar floors, a stepped school facade and the eastern library with alternating deep windows.",
+    "master": "Follows the exact PMTiles outline and preserves visible volume breaks, glazed stair towers, recessed openings and roofing.",
+    "browser": "Four authored detail levels preserve the stepped massing and characteristic glazed bays."
+  },
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.9
+    },
+    "base": {
+      "graph": "stone_limestone_raw",
+      "slot": "foundation",
+      "roughness": 0.96
+    },
+    "gravel": {
+      "graph": "gravel",
+      "slot": "roof",
+      "roughness": 0.95
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.33
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.64
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      93,
+      92,
+      -169
+    ],
+    "lookAt": [
+      4,
+      12,
+      -1
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "north-approach",
+      "position": [
+        -6,
+        30,
+        -108
+      ],
+      "lookAt": [
+        5,
+        12,
+        -4
+      ],
+      "fov": 59
+    },
+    {
+      "name": "library-reveals",
+      "position": [
+        94,
+        14.8,
+        -37
+      ],
+      "lookAt": [
+        77,
+        13.4,
+        -17.5
+      ],
+      "fov": 56
+    },
+    {
+      "name": "school-piers",
+      "position": [
+        26,
+        17,
+        -54
+      ],
+      "lookAt": [
+        11,
+        14,
+        -13
+      ],
+      "fov": 51
+    },
+    {
+      "name": "seminars-overhang",
+      "position": [
+        -53,
+        20,
+        -32
+      ],
+      "lookAt": [
+        -65,
+        13,
+        -0.5
+      ],
+      "fov": 55
+    },
+    {
+      "name": "south-courtyard",
+      "position": [
+        63,
+        40,
+        86
+      ],
+      "lookAt": [
+        20,
+        12,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "layout.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-grid.json"
+  ],
+  "mediumFiContext": {
+    "scale": 0.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      35.17606917449405,
+      31.775232874355368
+    ],
+    "heading": 0,
+    "orientationPolicy": "reviewed-source-frame",
+    "source": "https://www.openstreetmap.org/way/245189834",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The model extends below the retained standard Terrarium field. The central terrain sample locates the authored elevation datum. Floor and roof heights are approximate. Neighboring ground and paving remain host geometry.",
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17509702651117,
+      31.774972362922973,
+      35.177189258039554,
+      31.775439486870717
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -88.61914,
+          5.27967
+        ],
+        [
+          -83.28865,
+          26.34766
+        ],
+        [
+          -57.39768,
+          19.74804
+        ],
+        [
+          -57.05924,
+          23.30168
+        ],
+        [
+          -57.14385,
+          23.30168
+        ],
+        [
+          -56.89002,
+          25.0785
+        ],
+        [
+          -52.06719,
+          21.77869
+        ],
+        [
+          -46.48286,
+          19.24038
+        ],
+        [
+          -29.22222,
+          15.17908
+        ],
+        [
+          -7.64642,
+          4.26435
+        ],
+        [
+          -7.90025,
+          6.54883
+        ],
+        [
+          7.8374,
+          6.295
+        ],
+        [
+          7.8374,
+          1.21838
+        ],
+        [
+          10.62956,
+          1.21838
+        ],
+        [
+          10.62956,
+          3.50286
+        ],
+        [
+          34.99753,
+          1.47221
+        ],
+        [
+          50.989,
+          0.96455
+        ],
+        [
+          95.66361,
+          1.72604
+        ],
+        [
+          95.66361,
+          -4.87356
+        ],
+        [
+          103.02477,
+          -4.87356
+        ],
+        [
+          102.26327,
+          -17.81891
+        ],
+        [
+          52.76584,
+          -18.58041
+        ],
+        [
+          52.76584,
+          -20.35722
+        ],
+        [
+          31.19003,
+          -19.08807
+        ],
+        [
+          32.20536,
+          -16.54976
+        ],
+        [
+          1.99924,
+          -14.26529
+        ],
+        [
+          1.49157,
+          -15.78827
+        ],
+        [
+          -9.16941,
+          -14.77295
+        ],
+        [
+          -9.16941,
+          -7.91953
+        ],
+        [
+          -10.94625,
+          -7.41187
+        ],
+        [
+          -12.97691,
+          -13.5038
+        ],
+        [
+          -18.81507,
+          -12.74231
+        ],
+        [
+          -18.05357,
+          -5.88888
+        ],
+        [
+          -30.99905,
+          -4.11207
+        ],
+        [
+          -38.10638,
+          -7.91953
+        ]
+      ],
+      "minimumCoverage": 0.97,
+      "basis": "PMTiles building 35184617278666 resolves to OSM way 245189834. The bent western block, stepped central range and long eastern roof align with the aerial picture. Separate building 35184617278654 remains independent."
+    },
+    "terrainReference": {
+      "anchor": [
+        35.17606917449405,
+        31.775232874355368
+      ],
+      "modelHeight": 11.68073,
+      "basis": "The model extends below the retained standard Terrarium field. The central terrain sample locates the authored elevation datum. Floor and roof heights are approximate. Neighboring ground and paving remain host geometry."
+    },
+    "notes": "PMTiles building 35184617278666 resolves to OSM way 245189834. The bent western block, stepped central range and long eastern roof align with the aerial picture. Separate building 35184617278654 remains independent. The model extends below the retained standard Terrarium field. The central terrain sample locates the authored elevation datum. Floor and roof heights are approximate. Neighboring ground and paving remain host geometry."
+  },
+  "limitations": [
+    "Facade placement and visible height are inferred from the order of volumes in the exterior photographs and overhead view. Roof equipment, rear bays, and facade counts are approximate.",
+    "The separate study wing, detached retaining walls, bridge connections between buildings, and interior rooms remain outside this asset."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-northern-range-model.mjs",
+    "export": "buildYadNorthernRangeSkyline",
+    "errorMeters": 1.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadNorthernRangeDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "base": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "gravel": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.95
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadNorthernRangeStreet",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "base": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "gravel": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.95
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadNorthernRangeCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "base": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "gravel": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.95
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          }
+        }
+      }
+    }
+  }
+}

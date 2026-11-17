@@ -4,7 +4,9 @@
 
 Complete principal historic Umeå station exterior:both low gabled wings,the full taller central body with three southwest front gables and an original clock face,the negative-X/northwest rounded two-story bay andcurved green roof,closed pale-green copper roof slopes andgable returns,tall brick chimneys/caps,round/segmental-arched ground andupper glazing,closed central/rear doors,original geometric masonry bands/dentils/finials,timber mullions andsmall wall lamps. Hidden northeast/side window inventory is an original medium-fi approximation. Modern platforms/canopies/passages/tracks,streetscape andgreen sculpture remain native;no navigable interior orcopied lettering/ornament.
 
-Rebuild: `node packages/worldgen/scripts/generate-umea-central-station.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=umea_central_station`. Detailed source and four browser tiers are separate ignored GLB outputs.
+The station apron follows sampled sidewalk and platform-side grades. Its level strip exposes the brick base and window sills. [Placement review](QA-REVIEW.md)
+
+Rebuild with `node packages/worldgen/scripts/generate-umea-central-station.mjs`. Append `--check` for exact source bytes. Select the station for import, LOD and placement with `--ids=umea_central_station`. The source master and four browser tiers are generated GLBs.
 
 Complete principal historic Umeå station exterior:both low gabled wings,the full taller central body with three southwest front gables and an original clock face,the negative-X/northwest rounded two-story bay andcurved green roof,closed pale-green copper roof slopes andgable returns,tall brick chimneys/caps,round/segmental-arched ground andupper glazing,closed central/rear doors,original geometric masonry bands/dentils/finials,timber mullions andsmall wall lamps. Hidden northeast/side window inventory is an original medium-fi approximation. Modern platforms/canopies/passages/tracks,streetscape andgreen sculpture remain native;no navigable interior orcopied lettering/ornament.
 

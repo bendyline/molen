@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_north_officina",
-  "sourceHash": "sha256:3ab5df30de3718dd8552a6ef0fdb55bbee4c3713deb28897d8f4cdd71bf4d01f",
-  "runtimeHash": "sha256:f5e967fe97b50f0ae4754d63ae6386472d5a103c461cde689a61fd5f88ac1eb1",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:b1b8db13f958036b0cd2f3562e97cbe4e0d3abaf6813b228df4065c4e816eb38",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:923dd4f43e447315423f49b4614e37f937847e23dc98573f499fe1e683e9cbaf",
-  "placementHash": null,
+  "inputHash": "sha256:c33221c3b4b69bd6e2f18b7a67862efedf4e614a5daa4613a858ff2d90e09bc2",
+  "sourceHash": "sha256:1cdd52ba73c860c6c64f2a5bfd6bf85196b23fd36b256a38cc76022f390a6208",
+  "runtimeHash": "sha256:a276a762a744501e2d8ba0574bb567a4dc3398042bcd40563130043783a48aad",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:7335f02cc14e79a99ff4d5a6acac78c834cdaa15f1340f060c8dd52e26961c69",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:4b45e66c8314d49b89c28f1bf0c88098294d9fbffdc3d86a4abbe26cea27a5ad",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -22,6 +25,10 @@
       "path": "materials/tile_ceramic.matgraph.json",
       "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
@@ -30,227 +37,431 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:98d916d8a3edc1393907588fb3932137e8da50ba10e6f5b50e797ef14df32a3f",
+      "hash": "sha256:b2e0cb7cabc0ddd2015f3cbaef5aa359964550759a669b307a22658703a91419",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:798bfa3cf4ca40321aba518a4b9457b6ad8e78e8a38124106a00d5db3c0086cd",
+      "hash": "sha256:eb6149522fdad609e55f4d79869437a9c4c6eaec91ec4413cfe35b4e0e665bc8",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:37383e622385bcc713d976d70a49cf5a13c5043cb3d4615e8af1e3f7274babb9",
+      "hash": "sha256:489d4637ea37f185cd2dc06a5ae57fede6cca098e1252eecedc2cd498002ee5a",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:8bcd00b28101586373534b9cd083fa7677cd6b23966aaaae5b7045f7f2358ae6",
+      "hash": "sha256:65b9155e5ec0af6ccd5c63b44b8abad986a6906f5db33a9530664f1902a89c8e",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/principal-facade.png",
-      "hash": "sha256:63f35ea8f6f581d882348cae40dc01ccab28df1bb8365d4b19eb680a56651b9f",
+      "hash": "sha256:4adc987d1c4f92417372df9284fb9f6f24d74b42dce68d351c29a730202269d7",
       "camera": {
         "name": "principal-facade",
         "position": [
@@ -266,55 +477,106 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/opposite-facade.png",
-      "hash": "sha256:720092967e3d83992203da68a4e06bc43c2d261297e2f52cf52f125afe8da9ac",
+      "hash": "sha256:6aa437809c5ccdb359fd6706dd583b5287cb8596fca6f6118512d382d9ac3eca",
       "camera": {
         "name": "opposite-facade",
         "position": [
@@ -330,55 +592,106 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/roof-and-footprint.png",
-      "hash": "sha256:3ee86ef586991b49c078e5d745f025b0ee67f127348d16555bc4eaee2beaf56c",
+      "hash": "sha256:804029e515810d1add4781fb2ccedfb05eb31a6e59484f0ea958c358f8460d64",
       "camera": {
         "name": "roof-and-footprint",
         "position": [
@@ -394,55 +707,106 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 2319
+        "draws": 7,
+        "renderedTriangles": 2784
       }
     },
     {
       "path": "shots/shared/facade-and-roof-junction.png",
-      "hash": "sha256:ddd15dae68e1ebdeb28e48e6a8f7abe1b60ea29bed83c6d7a6c4a165b374f9a6",
+      "hash": "sha256:5e2eead120eed00ef4ab3441ddbeb0d0bb3e52bb130fe5715d4841ac8babc08e",
       "camera": {
         "name": "facade-and-roof-junction",
         "position": [
@@ -458,50 +822,207 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_north_officina",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
         "position": [
+          -64.2495753057301,
           0,
-          0,
-          0
+          -64.18297297134995
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 2317,
+        "meshes": 6,
+        "triangles": 2782,
         "bounds": {
           "min": [
-            -23.87299919128418,
-            0,
-            -8.324000358581543
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
           ],
           "max": [
-            24.187746047973633,
+            23.425755809992552,
             15.399999618530273,
-            6.896656036376953
+            18.9226559959352
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
         },
         "loads": [
-          "molen.worldgen.structure.ksiaz_north_officina"
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 6,
-        "renderedTriangles": 2319
+        "renderedTriangles": 2748
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:5127cddc410befff6d06fec72c59c1dbeaed6ee4a437e6f248899ae5f1eac07e",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_north_officina",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.north-officina",
+        "position": [
+          -64.2495753057301,
+          0,
+          -64.18297297134995
+        ],
+        "heading": 0,
+        "meshes": 6,
+        "triangles": 2782,
+        "bounds": {
+          "min": [
+            -23.825380969792604,
+            -3.308896064758301,
+            -19.333485666662455
+          ],
+          "max": [
+            23.425755809992552,
+            15.399999618530273,
+            18.9226559959352
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -23.82537943164296,
+            -3.308896064758301,
+            -19.333486682533795
+          ],
+          "max": [
+            23.42575497782415,
+            15.399999618530273,
+            18.922652742201823
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "addb5eca-54d4-40e9-b7b4-3016bb45b312",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "05e7a35e-860c-4bdd-bdeb-cb01f316f5e0",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "dfbaed3b-9f38-4b58-8284-99adf0b5bea4",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e1bb6dfb-ae16-4275-9cdf-0f6baf7d238e",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7ebcc454-f3a2-4811-8377-e47cbecd0301"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_gatehouse",
+          "molen.worldgen.structure.ksiaz_north_officina",
+          "molen.worldgen.structure.ksiaz_south_officina"
+        ],
+        "selectionBounds": [
+          16.29256801813852,
+          50.84240607521968,
+          16.294388981861474,
+          50.843555918742844
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.gatehouse",
+            "coordinate": [
+              16.29415425775387,
+              50.843123601918855
+            ],
+            "height": 0
+          },
+          {
+            "placementId": "ksiaz.north-officina",
+            "coordinate": [
+              16.293756263201857,
+              50.843014975993206
+            ],
+            "height": -0.34
+          },
+          {
+            "placementId": "ksiaz.south-officina",
+            "coordinate": [
+              16.293863742533553,
+              50.842923775815144
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.north-officina"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 2784
       }
     }
   ],

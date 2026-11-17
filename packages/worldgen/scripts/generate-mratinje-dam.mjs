@@ -173,7 +173,7 @@ const source = {
   kind: 'static-structure',
   title: brief.title,
   files: {
-    definitions: ['spec.json', 'scene.json', 'model-brief.json'],
+    definitions: ['spec.json', 'scene.json', 'model-brief.json', 'models/gorge-fit.json'],
     models: [
       {
         path: 'models/source.glb',
@@ -183,7 +183,10 @@ const source = {
         sha256: sourceHash,
       },
     ],
-    generators: [{ id: 'mratinje_dam', path: 'models/dam-model.mjs' }],
+    generators: [
+      { id: 'mratinje_dam', path: 'models/dam-model.mjs' },
+      { id: 'mratinje-gorge-fit', path: 'models/gorge-fit.mjs' },
+    ],
     scripts: [],
     textures: [],
     sounds: [],

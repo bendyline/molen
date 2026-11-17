@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.yah_leh_monument",
+  "kind": "static-structure",
+  "title": "Yah Leh Monument",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.yah_leh_monument",
+        "output": "assets/places/w4/w4r/yah_leh_monument/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a1e40e3f64e0abd7bfbdbba537738b3226bb4c410db796c434ef8973400870b3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-yah-leh-monument",
+        "path": "models/generate-yah-leh-monument.mjs"
+      },
+      {
+        "id": "yah-leh-monument-model",
+        "path": "models/yah-leh-monument-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25490-15113.png",
+      "preview.png",
+      "native-map/yah-leh-monument.json",
+      "reference-rights/yah-leh-monument-facts.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

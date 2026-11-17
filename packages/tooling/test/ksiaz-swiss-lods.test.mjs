@@ -9,6 +9,14 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 for (const model of ksiazSwissModels) {
   it(`${model.id} preserves deterministic shared-material LODs within browser budgets`, async () => {
     const id = `molen.worldgen.structure.${model.key}`,
+      frame = JSON.parse(
+        readFileSync(
+          new URL(
+            `../../../content/worldgen/source/places/u3/u35/${model.key}/map-frame.json`,
+            import.meta.url,
+          ),
+        ),
+      ),
       levels = [];
     for (const [name, cap] of Object.entries({
       skyline: 1000,
@@ -25,10 +33,13 @@ for (const model of ksiazSwissModels) {
         types = new Map(),
         positions = [];
       expect(g.images ?? []).toHaveLength(0);
-      expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 6);
+      expect(g.materials).toHaveLength(name === 'skyline' ? 1 : 7);
       if (name !== 'skyline') {
         const shared = g.materials.filter((m) => m.extras?.molenSurface);
-        expect(shared).toHaveLength(5);
+        expect(shared).toHaveLength(6);
+        expect(shared.map((m) => m.extras.molenSurface.ref)).toContain(
+          'matgraph:molen.worldgen.material.stone_sandstone_raw',
+        );
         for (const m of shared)
           expect(['wall', 'roof', 'foundation', 'trim', 'door']).toContain(
             m.extras.molenSurface.slot,
@@ -44,7 +55,10 @@ for (const model of ksiazSwissModels) {
           }
         }
       for (const t of types.values()) expect(t.size).toBe(1);
-      expect(Math.min(...positions.map((a) => a.min[1]))).toBe(0);
+      expect(Math.min(...positions.map((a) => a.min[1]))).toBeCloseTo(
+        frame.siteFit.footingBottom,
+        5,
+      );
       expect(Math.max(...positions.map((a) => a.max[1]))).toBeLessThan(8);
       levels.push(a);
     }

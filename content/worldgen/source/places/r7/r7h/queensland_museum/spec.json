@@ -1,0 +1,596 @@
+{
+  "planId": "queensland_museum",
+  "id": "queensland_museum",
+  "assetId": "molen.worldgen.structure.queensland_museum",
+  "title": "Queensland Museum Kurilpa",
+  "wikidataId": "Q1537684",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.018057,
+    "latitude": -27.472748
+  },
+  "size": [
+    51.86079978942871,
+    34.335543155670166,
+    262.7545852661133
+  ],
+  "actualBounds": {
+    "min": [
+      -33.97126007080078,
+      -2.895542621612549,
+      -74.84964752197266
+    ],
+    "max": [
+      17.88953971862793,
+      31.440000534057617,
+      187.90493774414062
+    ]
+  },
+  "visualBrief": "Robin Gibson’s stepped concrete museum and open Grey Street garden, with its glazed Melbourne Street entrance and attached covered overpass.",
+  "nativeAxes": {
+    "x": "toward Queensland Art Gallery, northeast",
+    "y": "up",
+    "z": "toward Melbourne Street, southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Queensland_Museum_and_Walkway.jpg"
+  ],
+  "stories": [
+    {
+      "id": "queensland-museum-wp",
+      "url": "https://qualla.com/queensland-museum/"
+    }
+  ],
+  "referenceInputHash": "5465673a1b1e7ce8a89dd7d3b587d9a0a3d3515b0d3e9ad2bee353da442da2dd",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/queensland_museum/models/queensland-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/queensland_museum/models/queensland-museum-model.mjs",
+    "level": "skyline",
+    "export": "queenslandMuseumSkyline",
+    "errorMeters": 2.64,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "asphalt": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.23,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "queenslandMuseumDistrict",
+        "errorMeters": 0.94,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "asphalt": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.23,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "queenslandMuseumStreet",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "asphalt": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.23,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "queenslandMuseumCloseup",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "asphalt": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.23,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_boardformed",
+    "metal_painted",
+    "membrane"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.95,
+    "cameraYaw": -0.9,
+    "focus": {
+      "center": [
+        0,
+        2,
+        52
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 36-point museum outline and eight overpass controls set the location and scale. The Arts Queensland conservation report defines the stepped gallery and collections volumes, the west garden opening and the later glazed entry.",
+    "anchor": [
+      153.018057,
+      -27.472748
+    ],
+    "heading": 0.5477021131478172,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.01848949130073,
+        -27.473463357354273
+      ],
+      "modelHeight": 0,
+      "basis": "Adjacent ground on the Melbourne Street approach, apart from the elevated overpass and building."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          17.88919,
+          -27.48924
+        ],
+        [
+          17.88919,
+          67.34554
+        ],
+        [
+          15.89981,
+          67.34477
+        ],
+        [
+          11.50157,
+          67.34817
+        ],
+        [
+          7.11756,
+          67.34721
+        ],
+        [
+          7.56369,
+          85.22237
+        ],
+        [
+          2.01815,
+          82.27018
+        ],
+        [
+          -0.60517,
+          83.25186
+        ],
+        [
+          -0.57307,
+          80.88526
+        ],
+        [
+          -5.7202,
+          78.22823
+        ],
+        [
+          -9.23787,
+          76.40861
+        ],
+        [
+          -9.5169,
+          61.4649
+        ],
+        [
+          -33.9649,
+          61.46984
+        ],
+        [
+          -33.97126,
+          -3.65227
+        ],
+        [
+          -32.92879,
+          -29.73392
+        ],
+        [
+          -6.26006,
+          -29.87082
+        ],
+        [
+          -6.26048,
+          -55.32378
+        ],
+        [
+          -9.02927,
+          -55.31749
+        ],
+        [
+          -8.79711,
+          -37.96401
+        ],
+        [
+          -22.48298,
+          -38.09693
+        ],
+        [
+          -22.63715,
+          -55.35067
+        ],
+        [
+          -22.05904,
+          -55.35012
+        ],
+        [
+          -22.00586,
+          -58.22544
+        ],
+        [
+          -22.51493,
+          -58.09261
+        ],
+        [
+          -22.26383,
+          -74.30377
+        ],
+        [
+          -8.46098,
+          -74.64715
+        ],
+        [
+          -8.55634,
+          -73.67521
+        ],
+        [
+          -6.27554,
+          -73.64013
+        ],
+        [
+          -6.29875,
+          -74.64527
+        ],
+        [
+          16.02655,
+          -74.84965
+        ],
+        [
+          16.02613,
+          -68.76056
+        ],
+        [
+          16.0315,
+          -62.68097
+        ],
+        [
+          17.88755,
+          -62.67026
+        ],
+        [
+          17.88567,
+          -49.1627
+        ],
+        [
+          17.88954,
+          -38.16821
+        ],
+        [
+          17.88757,
+          -29.87642
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Whole-building replacement is bounded by the native Queensland Museum relation/18157403."
+    },
+    "featureIds": [
+      "relation/18157403",
+      "node/13417295264",
+      "way/144850183",
+      "way/27369178"
+    ],
+    "source": "https://www.openstreetmap.org/relation/18157403",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d097c4ab29308e7dd275b30a05f8ce03d6a7bb2441c93732378c6ff5a2b6fd6d",
+    "notes": "The closed native perimeter controls the exterior. The entrance and connection to the Melbourne Street Overpass have separate mapped anchors. The Grey Street garden and stepped floor sections are documented in the Conservation Management Plan."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The standing museum perimeter, main entrance point and bridge alignment are mapped. Upper setbacks, roof screens, planters, joints and service openings are proportioned from exterior and written evidence.",
+    "The conservation report establishes the full-height indoor-outdoor Museum Garden at Grey Street. Its bay divisions, planting and opening extents are estimates.",
+    "The glazed Melbourne Street entrance uses the surviving building form and an exact public-domain 2005 photograph. Reworked threshold, fascia details and the walk deck section are approximate.",
+    "The original Queensland Government elevation field is unmodified. The placement uses the Melbourne Street sidewalk datum and retains approximate contact across its different pedestrian levels."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Qualla photograph is public domain. Native footprint is OpenStreetMap ODbL 1.0; original elevation from Queensland Government QldDEM.",
+  "qaLodCameras": [
+    {
+      "name": "museum-skyline",
+      "position": [
+        -154,
+        84,
+        224
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museum-district",
+      "position": [
+        -154,
+        84,
+        224
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museum-street",
+      "position": [
+        -154,
+        84,
+        224
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museum-closeup",
+      "position": [
+        -154,
+        84,
+        224
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-museum-and-overpass",
+      "position": [
+        -154,
+        84,
+        224
+      ],
+      "lookAt": [
+        0,
+        10,
+        43
+      ]
+    },
+    {
+      "name": "melbourne-street-glazed-pavilion",
+      "position": [
+        -31,
+        6,
+        113
+      ],
+      "lookAt": [
+        -2,
+        6,
+        65
+      ]
+    },
+    {
+      "name": "grey-street-garden-and-suspended-volume",
+      "position": [
+        -82,
+        16,
+        19
+      ],
+      "lookAt": [
+        -18,
+        10,
+        20
+      ]
+    },
+    {
+      "name": "stepped-collection-roof-and-whale-mall",
+      "position": [
+        89,
+        61,
+        -85
+      ],
+      "lookAt": [
+        -1,
+        11,
+        11
+      ]
+    },
+    {
+      "name": "overpass-deck-and-pavilion-connection",
+      "position": [
+        46,
+        21,
+        144
+      ],
+      "lookAt": [
+        8,
+        7,
+        91
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3752,
+    "vertices": 11256,
+    "materials": 5,
+    "bytes": 608000,
+    "sha256": "sha256:a15215c2923ba99989f1f9c43926dc6f126ec7ebaeb982a1fb0e5ad8f0971792"
+  }
+}

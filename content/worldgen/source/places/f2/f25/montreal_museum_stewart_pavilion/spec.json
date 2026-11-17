@@ -1,0 +1,408 @@
+{
+  "planId": "montreal_museum_stewart_pavilion",
+  "id": "montreal_museum_stewart_pavilion",
+  "assetId": "molen.worldgen.structure.montreal_museum_stewart_pavilion",
+  "title": "Liliane and David M. Stewart Pavilion",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.58086285000888,
+    "latitude": 45.49899589976368
+  },
+  "size": [
+    42.47995567321777,
+    18.737026691436768,
+    71.00850486755371
+  ],
+  "actualBounds": {
+    "min": [
+      -11.881879806518555,
+      -4.7570271492004395,
+      -15.413583755493164
+    ],
+    "max": [
+      30.59807586669922,
+      13.979999542236328,
+      55.59492111206055
+    ]
+  },
+  "visualBrief": "Fred Lebensold’s 1976 Stewart Pavilion, a connected Brutalist addition with horizontal concrete slabs and recessed gallery glazing.",
+  "nativeAxes": "+X northeast along Sherbrooke Street, +Z southeast across Sherbrooke Street, +Y vertical.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "montreal-museum-of-fine-arts-wp",
+      "url": "https://qualla.com/montreal-museum-of-fine-arts/"
+    }
+  ],
+  "referenceInputHash": "sha256:a8b3dabf66f314d4d4aaf197c5e8a16662a78207a29c14dc3917c032f7b8a596",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/montreal_museum_stewart_pavilion/models/montreal-museum-stewart-pavilion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/montreal_museum_stewart_pavilion/models/montreal-museum-stewart-pavilion-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "poured": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "lintel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.04
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.63,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "poured": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lintel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.63,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "poured": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lintel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.63,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "poured": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lintel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.63,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_painted",
+    "concrete_panel",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.8,
+    "focus": {
+      "center": [
+        5,
+        5,
+        17
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Use the museum and architectural text for low horizontal bands, projections and recesses of the 1976 concrete addition. Two public gallery levels are recorded. Link the mass to the precise party line along the Hornstein boundary.",
+    "anchor": [
+      -73.58086285000888,
+      45.49899589976368
+    ],
+    "heading": 0.9810748942177272,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.58086285000888,
+        45.49899589976368
+      ],
+      "modelHeight": 0,
+      "basis": "Facade-side ground sampled from the original campus Terrarium tiles in the pavilion’s signed frame."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/107102804"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-73.5827,45.4975,-73.5772,45.5001",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ee67ffc99f2209420793f3ce49b071cb50c27a4906f93d00a36a45820ab52cf5",
+    "notes": "Independent exterior within the five-pavilion campus. Original ground and positioning approximations documented separately."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Mapped footprint and street axes set position and extent. Unmeasured façade and roof heights, grade transitions and tertiary architectural details are estimates.",
+    "Native geometry and documented architectural facts guide the exterior. Secondary elevations and finish details are estimated from the written record.",
+    "The underlying campus elevation samples and raw source tiles stay unchanged. The individual base is an approximate fit to the local grade."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "montreal-museum-stewart-pavilion-skyline",
+      "position": [
+        -48,
+        27,
+        -54
+      ],
+      "lookAt": [
+        5,
+        5,
+        17
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "montreal-museum-stewart-pavilion-district",
+      "position": [
+        -48,
+        27,
+        -54
+      ],
+      "lookAt": [
+        5,
+        5,
+        17
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "montreal-museum-stewart-pavilion-street",
+      "position": [
+        -48,
+        27,
+        -54
+      ],
+      "lookAt": [
+        5,
+        5,
+        17
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "montreal-museum-stewart-pavilion-closeup",
+      "position": [
+        -48,
+        27,
+        -54
+      ],
+      "lookAt": [
+        5,
+        5,
+        17
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "avenue-du-musee-concrete-terraces",
+      "position": [
+        50,
+        11,
+        -32
+      ],
+      "lookAt": [
+        10,
+        6,
+        3
+      ]
+    },
+    {
+      "name": "roof-and-hornstein-party-wall",
+      "position": [
+        -32,
+        30,
+        71
+      ],
+      "lookAt": [
+        8,
+        5,
+        21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 670,
+    "vertices": 2010,
+    "materials": 5,
+    "bytes": 207556,
+    "sha256": "sha256:a776830948becb33848df6939a24847d8cf1a7071d25f545b9f5f99bf6472ebe"
+  }
+}

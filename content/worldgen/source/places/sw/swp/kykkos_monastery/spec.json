@@ -1,0 +1,478 @@
+{
+  "planId": "kykkos_monastery",
+  "id": "kykkos_monastery",
+  "assetId": "molen.worldgen.structure.kykkos_monastery",
+  "title": "Kykkos Monastery",
+  "wikidataId": "Q225373",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.7412319,
+    "latitude": 34.9838802
+  },
+  "size": [
+    148.47508239746094,
+    39.87975025177002,
+    99.19038581848145
+  ],
+  "actualBounds": {
+    "min": [
+      -84.20213317871094,
+      -6.559750556945801,
+      -30.506723403930664
+    ],
+    "max": [
+      64.27294921875,
+      33.31999969482422,
+      68.68366241455078
+    ]
+  },
+  "visualBrief": "Kykkos Monastery in the Troodos mountains, with arcaded rubble-stone courts, clay-tile roofs, a domed basilica and the 1882 mountainside campanile.",
+  "nativeAxes": {
+    "x": "east along the courtyard axis",
+    "y": "up",
+    "z": "across the compound"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-04-01",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kykkos_kloster.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kykkos_klosterg%C3%A5rden.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kykkos_kors.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kykkos-monastery-wp",
+      "url": "https://qualla.com/kykkos-monastery/"
+    }
+  ],
+  "referenceInputHash": "8b0fa7c05d9f2841a0d19eac2192c26f3b0628664e3bb3638a236fe492ef6358",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/kykkos_monastery/models/kykkos-monastery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sw/swp/kykkos_monastery/models/kykkos-monastery-model.mjs",
+    "level": "skyline",
+    "export": "kykkosSkyline",
+    "errorMeters": 0.68,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "pave": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kykkosDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pave": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "kykkosStreet",
+        "errorMeters": 0.118,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pave": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "kykkosCloseup",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pave": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "stone_limestone_raw",
+    "tile_ceramic",
+    "wood_plain",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      32.7412319,
+      34.9838802
+    ],
+    "heading": -0.4238365782892511,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.7412319,
+        34.9838802
+      ],
+      "modelHeight": 0,
+      "basis": "Original public mountaintop terrain at the named monastery point. The original field controls nearby exterior levels."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/26596326",
+      "way/26605822",
+      "way/26596424",
+      "way/26596433",
+      "way/457762035"
+    ],
+    "source": "https://www.openstreetmap.org/relation/16199202",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:77c5844dd11628e86443927341c1c1f81cbf2ac492188d7860e5934020709dff",
+    "notes": "The named Kykkos site node and mapped main relation identify the compound. The native outer and courtyard rings establish the main plan. Separate ways mark the church, tower and end range. Three exact Qualla originals show stone arches, terracotta roofs and the towers."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Building envelopes follow the native mapped monastery, church, paved court, independent belfry and octagonal museum end. The lower well court is an estimate within the mapped envelope.",
+    "Staff and visitor rooms, roof heights and pitches, belfry and dome sections, approximate courtyard levels and patterns of exterior openings are inferred from public-domain reference photographs, the visitor guide and the original elevation samples.",
+    "Only the architecture is modeled. Wall painting, mosaic designs, objects in the museum and church interiors are absent.",
+    "The original Copernicus field is unmodified. Its roughly 30 m horizontal sampling cannot resolve steps, finished paving, adjacent terrain cuts and small retaining walls."
+  ],
+  "sourceLicense": "Original geometry under repository license. Three verified public-domain photographs by Olavfin informed the architecture. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "monastery-hillside-skyline",
+      "position": [
+        92,
+        66,
+        144
+      ],
+      "lookAt": [
+        -12,
+        12,
+        19
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "monastery-hillside-district",
+      "position": [
+        92,
+        66,
+        144
+      ],
+      "lookAt": [
+        -12,
+        12,
+        19
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "monastery-hillside-street",
+      "position": [
+        92,
+        66,
+        144
+      ],
+      "lookAt": [
+        -12,
+        12,
+        19
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "monastery-hillside-closeup",
+      "position": [
+        92,
+        66,
+        144
+      ],
+      "lookAt": [
+        -12,
+        12,
+        19
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-courtyard-arcades",
+      "position": [
+        36,
+        5.2,
+        33.4
+      ],
+      "lookAt": [
+        12,
+        5.6,
+        35.3
+      ]
+    },
+    {
+      "name": "well-and-stone-galleries",
+      "position": [
+        -10.6,
+        7.1,
+        24.23
+      ],
+      "lookAt": [
+        -1.05,
+        7.6,
+        15.6
+      ]
+    },
+    {
+      "name": "basilica-and-campanile",
+      "position": [
+        1,
+        22,
+        -64
+      ],
+      "lookAt": [
+        -32,
+        16,
+        -4
+      ]
+    },
+    {
+      "name": "1882-belfry",
+      "position": [
+        -37,
+        34,
+        -11
+      ],
+      "lookAt": [
+        -62,
+        28.4,
+        -6.8
+      ]
+    },
+    {
+      "name": "museum-end-and-hillside-wings",
+      "position": [
+        -97,
+        28,
+        91
+      ],
+      "lookAt": [
+        -53,
+        15,
+        43
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26123,
+    "vertices": 78369,
+    "materials": 6,
+    "bytes": 3396628,
+    "sha256": "sha256:a61afaa2223bfe548635cd24415eae9ecc3067c2706abc7ca1f4ff6db81df1d2"
+  }
+}

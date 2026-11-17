@@ -1,4 +1,4 @@
-/** Bind a complete original US book to its explicit native expired-copyright release.
+/** Bind a complete original US publication to its explicit native public-domain release.
  * This is supplemental evidence after the Qualla search, never inherited clearance
  * for a separate photograph or a modern edition. Retain the exact original PDF.
  */
@@ -36,7 +36,27 @@ export function inspectExpiredUsBookReference(dir, reference) {
   const info = page?.imageinfo?.[0],
     text = page?.revisions?.[0]?.slots?.main?.['*'] ?? '';
   const yearText = text.match(/\|publication date\s*=\s*([^\n]+)/)?.[1]?.trim();
-  const year = Number(yearText?.match(/^\[?(\d{4})\??\]?$/)?.[1]);
+  const governmentBulletin =
+    reference.publicationPublisher === 'Superintendent of Government Documents' &&
+    /^sim_bulletin-of-the-pan-american-union_\d{4}-\d{2}_\d+_\d+$/.test(
+      reference.archiveIdentifier ?? '',
+    ) &&
+    /^\d{4}-(?:0[1-9]|1[0-2])$/.test(yearText ?? '') &&
+    text.includes(`|title = Bulletin of the Pan American Union ${yearText}:`);
+  const aucklandMunicipalHandbook =
+    reference.archiveIdentifier === 'municipalofficia00auck' &&
+    reference.publicationPublisher === 'Auckland : Wilson & Horton' &&
+    yearText === '1922' &&
+    text.includes('|author = Auckland (N.Z.)\n') &&
+    text.includes(
+      '|title = Municipal and official handbook of the City of Auckland, New Zealand\n',
+    );
+  const year = Number(
+    governmentBulletin ? yearText.slice(0, 4) : yearText?.match(/^\[?(\d{4})\??\]?$/)?.[1],
+  );
+  const publicDomain =
+    /\{\{PD-(?:US-expired|old-100-expired)\s*\}\}/.test(text) ||
+    (governmentBulletin && /\{\{PD-USGov\s*\}\}/.test(text));
   const review = reference.originalReview,
     nativeUrl = info?.url?.split('?')[0];
   if (!image || hash(image) !== reference.sha256?.replace(/^sha256:/, ''))
@@ -49,14 +69,15 @@ export function inspectExpiredUsBookReference(dir, reference) {
     page?.ns !== 6 ||
     !page?.title?.endsWith('.pdf') ||
     !text.includes('{{Book\n') ||
-    !/\{\{PD-(?:US-expired|old-100-expired)\s*\}\}/.test(text) ||
+    !publicDomain ||
     !text.includes(`{{Internet Archive link|${reference.archiveIdentifier}}}`) ||
-    !/^[a-z0-9]+$/.test(reference.archiveIdentifier ?? '') ||
+    (!governmentBulletin && !/^[a-z0-9]+$/.test(reference.archiveIdentifier ?? '')) ||
     !text.includes(`|title = ${reference.publicationTitle}\n`) ||
     !text.includes(`|publisher = ${reference.publicationPublisher}\n`) ||
-    !/Yellowstone National Park|United States|New York|Boston|Chicago|Philadelphia|Washington|Montana|Wyoming/i.test(
-      reference.publicationPublisher ?? '',
-    ) ||
+    (!aucklandMunicipalHandbook &&
+      !/Yellowstone National Park|United States|New York|Boston|Chicago|Philadelphia|Washington|Montana|Wyoming|Superintendent of Government Documents/i.test(
+        reference.publicationPublisher ?? '',
+      )) ||
     reference.sourceUrl !== info?.descriptionurl ||
     reference.downloadUrl !== nativeUrl ||
     !nativeUrl?.startsWith('https://upload.wikimedia.org/wikipedia/commons/') ||

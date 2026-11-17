@@ -1,0 +1,430 @@
+{
+  "planId": "canada_aviation_and_space_museum",
+  "id": "canada_aviation_and_space_museum",
+  "assetId": "molen.worldgen.structure.canada_aviation_and_space_museum",
+  "title": "Canada Aviation and Space Museum",
+  "wikidataId": "Q1031932",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.64337,
+    "latitude": 45.45852
+  },
+  "size": [
+    274.0875015258789,
+    24.13724136352539,
+    304.2734146118164
+  ],
+  "actualBounds": {
+    "min": [
+      -118.95189666748047,
+      -3.3278961181640625,
+      -196.88601684570312
+    ],
+    "max": [
+      155.13560485839844,
+      20.809345245361328,
+      107.38739776611328
+    ]
+  },
+  "visualBrief": "Canada Aviation and Space Museum at Rockcliffe Airport in April 2024, with its delta exhibition hangar, low visitor and theater addition and separate curved-roof aircraft reserve hangar.",
+  "nativeAxes": {
+    "x": "along the runway-facing long wall toward the northeastern tip",
+    "y": "up",
+    "z": "toward the southeast runway apron"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-04-08",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canada-aviation-museum.jpg",
+    "https://commons.wikimedia.org/wiki/File:CanadaAviationMuseum05June2005.jpg",
+    "https://commons.wikimedia.org/wiki/File:BeaverTails_Food_Truck_%E2%80%93_Canada_Aviation_and_Space_Museum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "canada-aviation-and-space-museum-wp",
+      "url": "https://qualla.com/canada-aviation-and-space-museum/"
+    }
+  ],
+  "referenceInputHash": "9df4cbf6aa0289e32aed45f5d26ddc01741b21b19adad663bcb18e5844857bbd",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f24/canada_aviation_and_space_museum/models/canada-aviation-and-space-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f24/canada_aviation_and_space_museum/models/canada-aviation-and-space-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.49,
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87,
+        "metallic": 0.13
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.88,
+        "metallic": 0.09
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.06
+      },
+      "glass": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.14
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.88,
+            "metallic": 0.09
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.88,
+            "metallic": 0.09
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.034,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.88,
+            "metallic": 0.09
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_standing_seam",
+    "metal_corrugated",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.43,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -75.64337,
+      45.45852
+    ],
+    "heading": 1.068502011002774,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.64471472861484,
+        45.45881644287948
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM sampled on the unenclosed ground outside the public approach near the southwest end of the main museum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/68586489",
+      "way/15519914",
+      "way/482706853",
+      "way/1284933642"
+    ],
+    "source": "https://www.openstreetmap.org/way/68586489",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0052629ab85b5dc823e5bd2098abbf9caf996dcb8153b42556be0242c7df9579",
+    "notes": "The longest airport-facing edge sets the signed local axis. Native mapping gives the current display building, lobby extension outline, attached lower hangar, reserve hangar and auditorium part; roof breaks and apron grades require secondary controls."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "OpenStreetMap sets four current envelopes including the auditorium part. The delta deck and clerestory profiles of the main hangar are estimated from the older cleared Qualla airfield photographs.",
+    "The 2024 cleared photo shows partial exterior finishes. Entrance canopy, window spacing, visitor and service roof transitions and the location of reserve glazing and sliding doors are estimates based on native plans and written project descriptions.",
+    "The authoring model represents April 2024. Aircraft, parking and airfield vehicles, signs, interior exhibitions and neighboring airfield buildings are outside its scope.",
+    "The frozen airport terrain establishes local contact; foundations bridge the small grade differences. Floor elevations and access apron grades are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Used Qualla photos are creator-released Public domain or CC0. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "ottawa-museum-skyline",
+      "position": [
+        218,
+        150,
+        247
+      ],
+      "lookAt": [
+        10,
+        5,
+        -39
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ottawa-museum-district",
+      "position": [
+        218,
+        150,
+        247
+      ],
+      "lookAt": [
+        10,
+        5,
+        -39
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ottawa-museum-street",
+      "position": [
+        218,
+        150,
+        247
+      ],
+      "lookAt": [
+        10,
+        5,
+        -39
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ottawa-museum-closeup",
+      "position": [
+        218,
+        150,
+        247
+      ],
+      "lookAt": [
+        10,
+        5,
+        -39
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "airside-delta-clerestory",
+      "position": [
+        80,
+        24,
+        42
+      ],
+      "lookAt": [
+        28,
+        8,
+        -17
+      ]
+    },
+    {
+      "name": "lobby-and-auditorium",
+      "position": [
+        -97,
+        10,
+        -155
+      ],
+      "lookAt": [
+        -46,
+        3.6,
+        -104
+      ]
+    },
+    {
+      "name": "reserve-hangar-aircraft-doors",
+      "position": [
+        -26,
+        20,
+        175
+      ],
+      "lookAt": [
+        -53,
+        8,
+        82
+      ]
+    },
+    {
+      "name": "reserve-hangar-raked-curtain-wall",
+      "position": [
+        33,
+        13,
+        27
+      ],
+      "lookAt": [
+        -56,
+        8,
+        52
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1806,
+    "vertices": 5418,
+    "materials": 5,
+    "bytes": 334160,
+    "sha256": "sha256:fce22bd84fe0de276ed32ebfb923012d8ebb85e6453807bc872d808d5c864aea"
+  }
+}

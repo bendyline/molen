@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.aluvihare_rock_temple",
+  "kind": "static-structure",
+  "title": "Aluvihare Rock Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.aluvihare_rock_temple",
+        "output": "assets/places/tc/tc3/aluvihare_rock_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c282b38b7cc8c346a60ae8e6b5c9fbcfd4d096320fa53f6faa406ed1c9196f33"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-aluvihare-rock-temple",
+        "path": "models/generate-aluvihare-rock-temple.mjs"
+      },
+      {
+        "id": "aluvihare-rock-temple-model",
+        "path": "models/aluvihare-rock-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-aluvihare-temple-cleft.json",
+      "reference-rights/commons-henry-william-cave-1896.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23722-15699.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

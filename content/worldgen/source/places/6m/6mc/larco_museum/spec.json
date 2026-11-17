@@ -1,0 +1,445 @@
+{
+  "planId": "larco_museum",
+  "id": "larco_museum",
+  "assetId": "molen.worldgen.structure.larco_museum",
+  "title": "Larco Museum",
+  "wikidataId": "Q1954240",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.070911,
+    "latitude": -12.072782
+  },
+  "size": [
+    48.31356239318848,
+    11.139999687671661,
+    48.8029899597168
+  ],
+  "actualBounds": {
+    "min": [
+      -26.146530151367188,
+      -0.8199999928474426,
+      -21.012989044189453
+    ],
+    "max": [
+      22.16703224182129,
+      10.319999694824219,
+      27.790000915527344
+    ]
+  },
+  "visualBrief": "The white viceregal mansion of Lima’s Museo Larco, its raised garden approach, split curved portal and warm terracotta coping.",
+  "nativeAxes": {
+    "x": "west along the garden frontage",
+    "y": "up",
+    "z": "north toward the garden approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "standing",
+    "representedDate": "Standing 18th-century casona, as the courtyard facade was recorded in the cleared photograph uploaded in 2010 and is documented by the museum today."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fachada_Museo_Larco_en_baja.JPG"
+  ],
+  "stories": [
+    {
+      "id": "larco-museum-wp",
+      "url": "https://qualla.com/larco-museum/"
+    }
+  ],
+  "referenceInputHash": "bd8f51ff8b39cd63311ad904fcce4685ba4de4b5cbc89ed887665f268aad38e7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6m/6mc/larco_museum/models/larco-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6m/6mc/larco_museum/models/larco-museum-model.mjs",
+    "level": "skyline",
+    "export": "larcoSkyline",
+    "errorMeters": 0.46,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "clay": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "cement": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.14
+      },
+      "accent": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "larcoDistrict",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "cement": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "larcoStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "cement": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "larcoCloseup",
+        "errorMeters": 0.051,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "cement": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.14
+          },
+          "accent": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_ceramic",
+    "concrete_plain",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "reviewed-source-map-frame",
+    "status": "active-geographic-preview",
+    "anchor": [
+      -77.070911,
+      -12.072782
+    ],
+    "heading": 2.892210253068858,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.07115849884579,
+        -12.072766500075831
+      ],
+      "modelHeight": 0,
+      "basis": "Independent native terrain sampled near the side approach below the raised museum entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/387071625",
+      "node/14125914361",
+      "way/1552642518",
+      "way/387071626"
+    ],
+    "source": "https://www.openstreetmap.org/way/387071625",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c389b0a338948522d7754f441cbb236276bc9b0868ea1ccece2ae67ed5aa5ca1",
+    "notes": "Native outline applies to the principal house. The approach, terrace edges, small modeled landscape, and vertical dimensions are reconstructions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The roof and blind rear elevations are estimated below the parapets. The sole cleared photo documents the fronts closest to the landscaped garden, with portions hidden by vegetation.",
+    "The wall height, projected door relief, ramp grade and small planting layouts are approximate. The reconstruction covers the main house and immediate approach."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. Cherimoya.lima’s native courtyard photograph is CC0. OpenStreetMap footprint and approach are ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "casona-skyline",
+      "position": [
+        35,
+        15,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4.1,
+        8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "casona-district",
+      "position": [
+        35,
+        15,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4.1,
+        8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "casona-street",
+      "position": [
+        35,
+        15,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4.1,
+        8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "casona-closeup",
+      "position": [
+        35,
+        15,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4.1,
+        8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "raised-garden-entry",
+      "position": [
+        0,
+        5.8,
+        35
+      ],
+      "lookAt": [
+        -3.71015,
+        5.22,
+        18.86512
+      ]
+    },
+    {
+      "name": "ramp-and-garden-terrace",
+      "position": [
+        -25,
+        5.9,
+        46
+      ],
+      "lookAt": [
+        2,
+        3.3,
+        20
+      ]
+    },
+    {
+      "name": "roofline-and-rear-rooms",
+      "position": [
+        37,
+        24,
+        -46
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5198,
+    "vertices": 15594,
+    "materials": 6,
+    "bytes": 757700,
+    "sha256": "sha256:160ded0f9769ff5b534d7f1de49b6d01f686e2f57a3dcc739d7d1b2b5fc5c4a3"
+  }
+}

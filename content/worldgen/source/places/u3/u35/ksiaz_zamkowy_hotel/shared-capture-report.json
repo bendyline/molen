@@ -1,14 +1,17 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-  "sourceHash": "sha256:3bed108692457c378a70257d188bd683440d26e319a0ed597ac48368bb141004",
-  "runtimeHash": "sha256:c4fc3d9edf3b8a69183ff94462ebebd2e37e6cdf263232674e649aabe0f4c0eb",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:1781525f8523da2844752d262aabd43563a265a9aeea30b35166c956c2bcf861",
+  "inputHash": "sha256:af35353af72c80fa95266c589a97c6b66d9afbfb819dd589b9df9fcc677120d2",
+  "sourceHash": "sha256:6c9b9fb2cbfac489ed72d32a47d07a22bbd02f339ff25d53161789e44dbed6f6",
+  "runtimeHash": "sha256:25be9078bed2532acee25d2650fa022b87f6c9cff9d5ce7d6df0db3226fd5c70",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:20059549eaba30f17468d1dcb0cebdf8d1dd7edbc9dbdd91b3ee18216c3e6062",
   "reflectionMode": "none",
   "clippingMode": "legacy",
-  "specHash": "sha256:80098ad4ff6d8b8fd79c57e66af02a152765b66ed75784137e9d15cb2df9c1c7",
-  "placementHash": null,
+  "reviewBoundedPlacement": true,
+  "targetOnly": true,
+  "placementHash": "sha256:615765c3e46213508a2b2601c7c0285571c6d6bb01cd5830d416a9ece5c1110c",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -22,6 +25,10 @@
       "path": "materials/tile_ceramic.matgraph.json",
       "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+      "path": "materials/stone_sandstone_raw.matgraph.json",
+      "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
@@ -30,227 +37,355 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:dfd1e337413b92fe371210797a3d6abd368da069dd6b93b8cde60da8e8652275",
+      "hash": "sha256:3e8f4aee330fdaba20a77e7485b2c9c15f121987585b5c303a4571551427e96b",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:636ba2683600f87a42f58ac7347eedcde64a1f366dab140b46cf2d3e81286a59",
+      "hash": "sha256:42ef351ca419aefdce55b7ccf0be2c798eeb1c15f6230c36bf3ee9901103ae44",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:5874db5c4a48ca13d0b5f5ab0c89f4c759fb83379ab25395c4e84f3733be74a0",
+      "hash": "sha256:c4fa62abc205ea2b0c2a90edc4fcda05c7030ce695fb4c6dec91402cd16856cd",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:f4b6ad076c906ce0b00cb1a35714107df1944767c1615441916fd23522626a52",
+      "hash": "sha256:772be1b7d57086796777be431007d8dc7d6637a3eff4ea3ac9c9dc0d95205ccb",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/principal-facade.png",
-      "hash": "sha256:60bbf83b86732086c4b3a2e56192ce490669ad4084dc66c6c442e30fbecfd8a9",
+      "hash": "sha256:662e694ea5b09b64cf49661ab7ba694d8c384be56698a5de9c95b21c5e68a990",
       "camera": {
         "name": "principal-facade",
         "position": [
@@ -266,55 +401,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/opposite-facade.png",
-      "hash": "sha256:5aa1e2cf16eb2fdac02fc709307a350853a38629a601bcf4a5a95460cd612c7e",
+      "hash": "sha256:f65f1a716e7b8706012c66b77a3b92cc5c300a6eb07fd33755a7a98cff4d1d17",
       "camera": {
         "name": "opposite-facade",
         "position": [
@@ -330,55 +497,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/roof-and-footprint.png",
-      "hash": "sha256:06f899e46400f372c737efb6bb51b7503194f212353133b14b4dbf224c64b8c8",
+      "hash": "sha256:07ce4b741f1e1676796d42b9d209bd88a1130a7dec1f0f642657997e12d0a4f5",
       "camera": {
         "name": "roof-and-footprint",
         "position": [
@@ -394,55 +593,87 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
       }
     },
     {
       "path": "shots/shared/facade-and-roof-junction.png",
-      "hash": "sha256:3f58099714b36403812fd901741dd7403652671baa9c9df55b2ae7619591e373",
+      "hash": "sha256:4cb5aa49e46ef2c7d677e740dd642ad8749d638446227e6b20d6d199fb29358c",
       "camera": {
         "name": "facade-and-roof-junction",
         "position": [
@@ -458,50 +689,169 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 5,
-        "triangles": 1327,
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
         "bounds": {
           "min": [
-            -6.987207412719727,
-            0,
-            -11.515392303466797
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
           ],
           "max": [
-            6.997469902038574,
-            15.699999809265137,
-            11.520894050598145
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2810a0da-e345-423e-9fde-e35197787a7d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "1b7e07d7-8896-423b-a19d-d8d694452bdf",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e55a8f1e-24e3-40fd-96c0-9769f4f6b2fe",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "07f9ca9f-37d0-4351-b043-014db35accd7"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
         },
         "loads": [
           "molen.worldgen.structure.ksiaz_zamkowy_hotel"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 6,
-        "renderedTriangles": 1329
+        "draws": 7,
+        "renderedTriangles": 1440
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:cfaae99627f13c952dd6510c8a6b9fd5e434ab3b31926c7f14daf24d2c014365",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
+        "mode": "geographic-flat-terrain",
+        "placementId": "ksiaz.zamkowy-hotel",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.6179489906819999,
+        "meshes": 6,
+        "triangles": 1430,
+        "bounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -12.028379465838762,
+            -3.0255770683288574,
+            -13.1867912809564
+          ],
+          "max": [
+            12.03108271217014,
+            15.260000228881836,
+            13.181264017397897
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "2be0d7d8-9acd-4d40-b12e-38d27abcf79f",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "c54a12df-a3f9-425f-8183-aedd2f078caf",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "57856a0b-0ce4-4c7f-a327-8edfec1ad566",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "9ea30d4f-3895-41f9-b814-02dc9c6c7e7d",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "7d5507e9-d11e-47ae-9ea3-3b04eea1b5fe"
+        },
+        "loads": [
+          "molen.worldgen.structure.ksiaz_zamkowy_hotel"
+        ],
+        "selectionBounds": [
+          16.2925693778717,
+          50.84270756306114,
+          16.294390352866802,
+          50.8438574062721
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "ksiaz.zamkowy-hotel",
+            "coordinate": [
+              16.29354320732098,
+              50.84331071927903
+            ],
+            "height": -0.34
+          }
+        ],
+        "visibleStructures": [
+          "ksiaz.zamkowy-hotel"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 1440
       }
     }
   ],
@@ -511,8 +861,11 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

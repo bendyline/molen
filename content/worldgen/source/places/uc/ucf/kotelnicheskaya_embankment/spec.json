@@ -1,0 +1,1452 @@
+{
+  "id": "kotelnicheskaya_embankment",
+  "planId": "kotelnicheskaya_embankment",
+  "collectionId": "seven_sisters",
+  "assetId": "molen.worldgen.structure.kotelnicheskaya_embankment",
+  "title": "Kotelnicheskaya Embankment Building",
+  "category": "tower",
+  "quality": "detailed",
+  "wikidataId": "Q2022067",
+  "referenceCoordinate": {
+    "longitude": 37.64288,
+    "latitude": 55.7471
+  },
+  "nativeAxes": "+Y up. +Z faces northwest through the two river-facing tower arms toward the confluence. +X follows the downstream riverfront range.",
+  "visualBrief": "A 176 m hexagonal tower at the Moscow river confluence, with three radial wings, pale finial crowns, dark granite, a green copper spire and gold star. The lower residential ranges follow the Moskva and Yauza riverbanks.",
+  "size": [
+    328.6068572998047,
+    190,
+    192.78791427612305
+  ],
+  "actualBounds": {
+    "min": [
+      -175.33306884765625,
+      -14,
+      -135.26673889160156
+    ],
+    "max": [
+      153.27378845214844,
+      176,
+      57.521175384521484
+    ]
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kotelnicheskaya_embankment_building_(14966074929).jpg",
+    "https://commons.wikimedia.org/wiki/File:Kotelnicheskaya_Embankment_Building_(19779911559).jpg",
+    "https://www.openstreetmap.org/way/136389429"
+  ],
+  "geometrySource": "Original deterministic geometry derived from the mapped footprints. Photographs set the tower setbacks, crown, spire, arcades, projecting balconies and face details.",
+  "materialMethod": "Metric shared limestone, granite, painted metal and copper with locally colored inset glass. No embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/uc/ucf/kotelnicheskaya_embankment/models/kotelnicheskaya-model.mjs",
+    "export": "buildMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/kotelnicheskaya_embankment/models/kotelnicheskaya-model.mjs",
+    "inputHash": "sha256:b6aed84d65205ea7c480bc53c1f77baa1446def5b0cc46fe44c545377764d7fd",
+    "export": "buildSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted"
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper"
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "name": "Inset gray-blue window glass"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset gray-blue window glass"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset gray-blue window glass"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper"
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "name": "Inset gray-blue window glass"
+          }
+        }
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.64282405376434,
+      55.74708062485536
+    ],
+    "heading": -2.1357619384859916,
+    "bounds": [
+      37.64154177573458,
+      55.74527669955417,
+      37.64528381750761,
+      55.7482519423022
+    ],
+    "source": "https://www.openstreetmap.org/way/136389429",
+    "notes": "The octagonal lantern fixes the anchor. The front steps face the confluence between the radial wings. The two long residential ranges follow their mapped riverbanks and preserve the rear courts.",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Terrarium at the center of the tower forecourt on the confluence side.",
+    "terrainReference": {
+      "anchor": [
+        37.64255445178417,
+        55.747176813960785
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Terrarium at the center of the tower forecourt on the confluence side."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -38.368,
+          20.143
+        ],
+        [
+          -40.888,
+          16.168
+        ],
+        [
+          -38.475,
+          14.639
+        ],
+        [
+          -40.184,
+          11.942
+        ],
+        [
+          -27.939,
+          4.578
+        ],
+        [
+          -26.372,
+          7.365
+        ],
+        [
+          -17.339,
+          1.838
+        ],
+        [
+          -8.638,
+          -13.626
+        ],
+        [
+          -9.252,
+          -23.385
+        ],
+        [
+          -13.029,
+          -23.378
+        ],
+        [
+          -13.597,
+          -37.145
+        ],
+        [
+          -10.658,
+          -37.217
+        ],
+        [
+          -10.627,
+          -40.62
+        ],
+        [
+          5.242,
+          -41.327
+        ],
+        [
+          5.366,
+          -38.62
+        ],
+        [
+          8.82,
+          -38.82
+        ],
+        [
+          9.247,
+          -24.963
+        ],
+        [
+          6.308,
+          -24.891
+        ],
+        [
+          6.483,
+          -14.257
+        ],
+        [
+          15.67,
+          1.806
+        ],
+        [
+          25.729,
+          6.374
+        ],
+        [
+          26.466,
+          4.713
+        ],
+        [
+          38.92,
+          10.548
+        ],
+        [
+          37.109,
+          14.282
+        ],
+        [
+          38.77,
+          15.02
+        ],
+        [
+          32.392,
+          28.813
+        ],
+        [
+          28.425,
+          26.95
+        ],
+        [
+          27.248,
+          29.487
+        ],
+        [
+          14.742,
+          23.884
+        ],
+        [
+          16.903,
+          19.132
+        ],
+        [
+          9.291,
+          15.6
+        ],
+        [
+          -9.076,
+          15.503
+        ],
+        [
+          -18.108,
+          21.029
+        ],
+        [
+          -16.398,
+          23.726
+        ],
+        [
+          -28.27,
+          31.052
+        ],
+        [
+          -30.017,
+          27.981
+        ],
+        [
+          -32.714,
+          29.691
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -38.368,
+            20.143
+          ],
+          [
+            -40.888,
+            16.168
+          ],
+          [
+            -38.475,
+            14.639
+          ],
+          [
+            -40.184,
+            11.942
+          ],
+          [
+            -27.939,
+            4.578
+          ],
+          [
+            -26.372,
+            7.365
+          ],
+          [
+            -17.339,
+            1.838
+          ],
+          [
+            -8.638,
+            -13.626
+          ],
+          [
+            -9.252,
+            -23.385
+          ],
+          [
+            -13.029,
+            -23.378
+          ],
+          [
+            -13.597,
+            -37.145
+          ],
+          [
+            -10.658,
+            -37.217
+          ],
+          [
+            -10.627,
+            -40.62
+          ],
+          [
+            5.242,
+            -41.327
+          ],
+          [
+            5.366,
+            -38.62
+          ],
+          [
+            8.82,
+            -38.82
+          ],
+          [
+            9.247,
+            -24.963
+          ],
+          [
+            6.308,
+            -24.891
+          ],
+          [
+            6.483,
+            -14.257
+          ],
+          [
+            15.67,
+            1.806
+          ],
+          [
+            25.729,
+            6.374
+          ],
+          [
+            26.466,
+            4.713
+          ],
+          [
+            38.92,
+            10.548
+          ],
+          [
+            37.109,
+            14.282
+          ],
+          [
+            38.77,
+            15.02
+          ],
+          [
+            32.392,
+            28.813
+          ],
+          [
+            28.425,
+            26.95
+          ],
+          [
+            27.248,
+            29.487
+          ],
+          [
+            14.742,
+            23.884
+          ],
+          [
+            16.903,
+            19.132
+          ],
+          [
+            9.291,
+            15.6
+          ],
+          [
+            -9.076,
+            15.503
+          ],
+          [
+            -18.108,
+            21.029
+          ],
+          [
+            -16.398,
+            23.726
+          ],
+          [
+            -28.27,
+            31.052
+          ],
+          [
+            -30.017,
+            27.981
+          ],
+          [
+            -32.714,
+            29.691
+          ]
+        ],
+        [
+          [
+            76.174,
+            44.835
+          ],
+          [
+            84.028,
+            27.718
+          ],
+          [
+            81.581,
+            26.683
+          ],
+          [
+            105.129,
+            -24.059
+          ],
+          [
+            107.576,
+            -23.024
+          ],
+          [
+            111.057,
+            -30.403
+          ],
+          [
+            109.717,
+            -30.947
+          ],
+          [
+            114.814,
+            -41.739
+          ],
+          [
+            116.012,
+            -41.106
+          ],
+          [
+            119.544,
+            -48.717
+          ],
+          [
+            116.543,
+            -49.998
+          ],
+          [
+            138.124,
+            -96.31
+          ],
+          [
+            138.093,
+            -96.359
+          ],
+          [
+            140.531,
+            -101.617
+          ],
+          [
+            143.39,
+            -100.245
+          ],
+          [
+            151.438,
+            -117.683
+          ],
+          [
+            148.579,
+            -119.055
+          ],
+          [
+            152.849,
+            -128.327
+          ],
+          [
+            141.593,
+            -133.529
+          ],
+          [
+            137.323,
+            -124.256
+          ],
+          [
+            115.133,
+            -134.465
+          ],
+          [
+            108.172,
+            -119.706
+          ],
+          [
+            131.56,
+            -108.863
+          ],
+          [
+            120.226,
+            -84.368
+          ],
+          [
+            120.265,
+            -84.306
+          ],
+          [
+            68.018,
+            28.515
+          ],
+          [
+            38.77,
+            15.02
+          ],
+          [
+            34.009,
+            25.4
+          ]
+        ],
+        [
+          [
+            -32.714,
+            29.691
+          ],
+          [
+            -53.167,
+            43.253
+          ],
+          [
+            -51.008,
+            46.66
+          ],
+          [
+            -66.3,
+            56.751
+          ],
+          [
+            -79.016,
+            46.108
+          ],
+          [
+            -77.052,
+            43.868
+          ],
+          [
+            -117.297,
+            9.885
+          ],
+          [
+            -118.305,
+            11.121
+          ],
+          [
+            -122.926,
+            7.285
+          ],
+          [
+            -121.918,
+            6.049
+          ],
+          [
+            -133.54,
+            -3.497
+          ],
+          [
+            -134.548,
+            -2.261
+          ],
+          [
+            -137.933,
+            -5.09
+          ],
+          [
+            -139.078,
+            -5.955
+          ],
+          [
+            -138.071,
+            -7.191
+          ],
+          [
+            -174.713,
+            -37.687
+          ],
+          [
+            -172.191,
+            -50.031
+          ],
+          [
+            -152.7,
+            -80.493
+          ],
+          [
+            -151.322,
+            -79.575
+          ],
+          [
+            -145.623,
+            -88.162
+          ],
+          [
+            -141.085,
+            -88.85
+          ],
+          [
+            -105.075,
+            -65.315
+          ],
+          [
+            -112.325,
+            -54.153
+          ],
+          [
+            -119.123,
+            -58.599
+          ],
+          [
+            -122.703,
+            -52.947
+          ],
+          [
+            -132.488,
+            -59.28
+          ],
+          [
+            -128.818,
+            -64.79
+          ],
+          [
+            -136.671,
+            -69.959
+          ],
+          [
+            -141.065,
+            -63.394
+          ],
+          [
+            -142.443,
+            -64.311
+          ],
+          [
+            -152.848,
+            -47.767
+          ],
+          [
+            -151.238,
+            -46.797
+          ],
+          [
+            -155.93,
+            -39.446
+          ],
+          [
+            -154.463,
+            -38.386
+          ],
+          [
+            -153.597,
+            -39.532
+          ],
+          [
+            -147.973,
+            -34.74
+          ],
+          [
+            -148.928,
+            -33.736
+          ],
+          [
+            -142.158,
+            -28.079
+          ],
+          [
+            -141.151,
+            -29.314
+          ],
+          [
+            -135.527,
+            -24.523
+          ],
+          [
+            -136.482,
+            -23.519
+          ],
+          [
+            -129.211,
+            -17.384
+          ],
+          [
+            -128.203,
+            -18.619
+          ],
+          [
+            -123.583,
+            -14.783
+          ],
+          [
+            -124.448,
+            -13.637
+          ],
+          [
+            -113.238,
+            -4.427
+          ],
+          [
+            -112.424,
+            -5.341
+          ],
+          [
+            -106.658,
+            -0.639
+          ],
+          [
+            -107.666,
+            0.596
+          ],
+          [
+            -100.664,
+            6.306
+          ],
+          [
+            -99.656,
+            5.07
+          ],
+          [
+            -92.153,
+            11.257
+          ],
+          [
+            -93.16,
+            12.493
+          ],
+          [
+            -86.069,
+            18.344
+          ],
+          [
+            -85.009,
+            16.877
+          ],
+          [
+            -77.326,
+            23.348
+          ],
+          [
+            -78.475,
+            24.674
+          ],
+          [
+            -71.293,
+            30.667
+          ],
+          [
+            -72.973,
+            32.726
+          ],
+          [
+            -67.041,
+            38.318
+          ],
+          [
+            -38.368,
+            20.143
+          ]
+        ],
+        [
+          [
+            6.308,
+            -24.891
+          ],
+          [
+            6.483,
+            -14.257
+          ],
+          [
+            -8.638,
+            -13.626
+          ],
+          [
+            -9.252,
+            -23.385
+          ],
+          [
+            -13.029,
+            -23.378
+          ],
+          [
+            -13.597,
+            -37.145
+          ],
+          [
+            -10.658,
+            -37.217
+          ],
+          [
+            -10.627,
+            -40.62
+          ],
+          [
+            5.242,
+            -41.327
+          ],
+          [
+            5.366,
+            -38.62
+          ],
+          [
+            8.82,
+            -38.82
+          ],
+          [
+            9.247,
+            -24.963
+          ]
+        ],
+        [
+          [
+            94.659,
+            -28.963
+          ],
+          [
+            106.627,
+            -54.656
+          ],
+          [
+            119.544,
+            -48.717
+          ],
+          [
+            116.012,
+            -41.106
+          ],
+          [
+            114.814,
+            -41.739
+          ],
+          [
+            109.717,
+            -30.947
+          ],
+          [
+            111.057,
+            -30.403
+          ],
+          [
+            107.576,
+            -23.024
+          ]
+        ],
+        [
+          [
+            16.903,
+            19.132
+          ],
+          [
+            9.291,
+            15.6
+          ],
+          [
+            15.67,
+            1.806
+          ],
+          [
+            25.729,
+            6.374
+          ],
+          [
+            26.466,
+            4.713
+          ],
+          [
+            38.92,
+            10.548
+          ],
+          [
+            37.109,
+            14.282
+          ],
+          [
+            38.77,
+            15.02
+          ],
+          [
+            32.392,
+            28.813
+          ],
+          [
+            28.425,
+            26.95
+          ],
+          [
+            27.248,
+            29.487
+          ],
+          [
+            14.742,
+            23.884
+          ]
+        ],
+        [
+          [
+            -26.372,
+            7.365
+          ],
+          [
+            -17.339,
+            1.838
+          ],
+          [
+            -9.076,
+            15.503
+          ],
+          [
+            -18.108,
+            21.029
+          ],
+          [
+            -16.398,
+            23.726
+          ],
+          [
+            -28.27,
+            31.052
+          ],
+          [
+            -30.017,
+            27.981
+          ],
+          [
+            -32.714,
+            29.691
+          ],
+          [
+            -40.888,
+            16.168
+          ],
+          [
+            -38.475,
+            14.639
+          ],
+          [
+            -40.184,
+            11.942
+          ],
+          [
+            -27.939,
+            4.578
+          ]
+        ],
+        [
+          [
+            116.543,
+            -49.998
+          ],
+          [
+            138.124,
+            -96.31
+          ],
+          [
+            138.093,
+            -96.359
+          ],
+          [
+            140.531,
+            -101.617
+          ],
+          [
+            130.383,
+            -106.326
+          ],
+          [
+            106.627,
+            -54.656
+          ]
+        ],
+        [
+          [
+            81.581,
+            26.683
+          ],
+          [
+            71.111,
+            21.779
+          ],
+          [
+            94.659,
+            -28.963
+          ],
+          [
+            105.129,
+            -24.059
+          ]
+        ],
+        [
+          [
+            148.579,
+            -119.055
+          ],
+          [
+            137.323,
+            -124.256
+          ],
+          [
+            141.593,
+            -133.529
+          ],
+          [
+            152.849,
+            -128.327
+          ]
+        ],
+        [
+          [
+            131.56,
+            -108.863
+          ],
+          [
+            138.521,
+            -123.622
+          ],
+          [
+            115.133,
+            -134.465
+          ],
+          [
+            108.172,
+            -119.706
+          ]
+        ],
+        [
+          [
+            5.242,
+            -41.327
+          ],
+          [
+            5.796,
+            -26.954
+          ],
+          [
+            -10.162,
+            -26.389
+          ],
+          [
+            -10.627,
+            -40.62
+          ]
+        ],
+        [
+          [
+            76.174,
+            44.835
+          ],
+          [
+            63.257,
+            38.896
+          ],
+          [
+            71.111,
+            21.779
+          ],
+          [
+            84.028,
+            27.718
+          ]
+        ],
+        [
+          [
+            32.392,
+            28.813
+          ],
+          [
+            19.938,
+            22.978
+          ],
+          [
+            26.317,
+            9.185
+          ],
+          [
+            38.77,
+            15.02
+          ]
+        ],
+        [
+          [
+            -32.714,
+            29.691
+          ],
+          [
+            -40.888,
+            16.168
+          ],
+          [
+            -28.785,
+            8.894
+          ],
+          [
+            -20.611,
+            22.417
+          ]
+        ],
+        [
+          [
+            9.291,
+            15.6
+          ],
+          [
+            -9.076,
+            15.503
+          ],
+          [
+            -17.339,
+            1.838
+          ],
+          [
+            -8.638,
+            -13.626
+          ],
+          [
+            6.483,
+            -14.257
+          ],
+          [
+            15.67,
+            1.806
+          ]
+        ],
+        [
+          [
+            143.39,
+            -100.245
+          ],
+          [
+            151.438,
+            -117.683
+          ],
+          [
+            138.521,
+            -123.622
+          ],
+          [
+            130.383,
+            -106.326
+          ],
+          [
+            132.366,
+            -105.395
+          ],
+          [
+            132.362,
+            -105.401
+          ]
+        ],
+        [
+          [
+            2.255,
+            -6.802
+          ],
+          [
+            6.463,
+            -3.301
+          ],
+          [
+            6.802,
+            2.255
+          ],
+          [
+            3.301,
+            6.463
+          ],
+          [
+            -2.255,
+            6.802
+          ],
+          [
+            -6.463,
+            3.301
+          ],
+          [
+            -6.802,
+            -2.255
+          ],
+          [
+            -3.301,
+            -6.463
+          ]
+        ],
+        [
+          [
+            63.257,
+            38.896
+          ],
+          [
+            34.009,
+            25.4
+          ],
+          [
+            38.77,
+            15.02
+          ],
+          [
+            68.018,
+            28.515
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Matched tower and residential-range polygons retain independent courtyard buildings, streets and water."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b4d7489969e6105f1b39c2b26f0547c758aefb5a8a8bcdf8d34e725d02e79d97",
+    "mapGeometryLicense": "ODbL-1.0",
+    "mapGeometryAttribution": "© OpenStreetMap contributors"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic evidence is tracked in qa.json.",
+  "limitations": [
+    "The crown figures, finials, spire, window profiles and exterior balconies are photo-proportioned.",
+    "The entry approach follows standard viewer terrain. The exterior uses approximate street-level service doors and courtyard fenestration."
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8,
+        61,
+        -10
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "courts-and-residential-ranges",
+      "position": [
+        25,
+        116,
+        -253
+      ],
+      "lookAt": [
+        -6,
+        54,
+        -12
+      ],
+      "fov": 62
+    },
+    {
+      "name": "confluence-entrance-and-masonry",
+      "position": [
+        -4,
+        6,
+        49
+      ],
+      "lookAt": [
+        0,
+        15,
+        14
+      ],
+      "fov": 58
+    },
+    {
+      "name": "copper-spire-and-finials",
+      "position": [
+        40,
+        135,
+        86
+      ],
+      "lookAt": [
+        0,
+        140,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "kotelnicheskaya-embankment-skyline",
+      "position": [
+        49,
+        79,
+        322
+      ],
+      "lookAt": [
+        -8,
+        68,
+        -16
+      ],
+      "fov": 52,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kotelnicheskaya-embankment-district",
+      "position": [
+        49,
+        79,
+        322
+      ],
+      "lookAt": [
+        -8,
+        68,
+        -16
+      ],
+      "fov": 52,
+      "reviewLod": "district"
+    },
+    {
+      "name": "kotelnicheskaya-embankment-street",
+      "position": [
+        49,
+        79,
+        322
+      ],
+      "lookAt": [
+        -8,
+        68,
+        -16
+      ],
+      "fov": 52,
+      "reviewLod": "street"
+    },
+    {
+      "name": "kotelnicheskaya-embankment-closeup",
+      "position": [
+        49,
+        79,
+        322
+      ],
+      "lookAt": [
+        -8,
+        68,
+        -16
+      ],
+      "fov": 52,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 109656,
+    "vertices": 288828,
+    "materials": 5,
+    "bytes": 11716968,
+    "sha256": "sha256:464b355e1f1fc2a05951e75d7fc510ce95bd453fe4fd8baff1a7796acc87e3b2"
+  }
+}

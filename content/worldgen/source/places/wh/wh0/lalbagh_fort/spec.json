@@ -1,0 +1,587 @@
+{
+  "planId": "lalbagh_fort",
+  "id": "lalbagh_fort",
+  "assetId": "molen.worldgen.structure.lalbagh_fort",
+  "title": "Lalbagh Fort",
+  "wikidataId": "Q1801226",
+  "category": "fortification",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 90.388058,
+    "latitude": 23.719033
+  },
+  "size": [
+    334.37579345703125,
+    24.644084692001343,
+    211.9310760498047
+  ],
+  "actualBounds": {
+    "min": [
+      -143.50088500976562,
+      -2.480600118637085,
+      -86.13932800292969
+    ],
+    "max": [
+      190.87490844726562,
+      22.163484573364258,
+      125.791748046875
+    ]
+  },
+  "visualBrief": "Lalbagh Fort’s standing Mughal garden axis and southern fortified precinct, with Bibi Pari’s domed tomb, the three-domed mosque, the Bengal-roofed audience hall and hammam, and the southeast gateway.",
+  "nativeAxes": {
+    "x": "along the garden toward Dewan-i-Aam",
+    "y": "up",
+    "z": "south toward the bastioned river wall"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lalbagh_Fort_from_an_adjacent_hill.jpg",
+    "https://www.dvidshub.net/image/9853437/commander-us-pacific-fleet-tours-historic-lalbagh-fort-dhaka-while-visiting-bangladesh"
+  ],
+  "stories": [
+    {
+      "id": "lalbagh-fort-wp",
+      "url": "https://qualla.com/lalbagh-fort/"
+    }
+  ],
+  "referenceInputHash": "f378c4578a2acf7fc352b6cae442fed0eadccb536c29832b36771f17eb84bc6c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wh/wh0/lalbagh_fort/models/lalbagh-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wh/wh0/lalbagh_fort/models/lalbagh-fort-model.mjs",
+    "level": "skyline",
+    "export": "lalbaghFortSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "masonry": {
+        "slot": "door",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.77,
+        "metallic": 0.27
+      },
+      "shade": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lalbaghFortDistrict",
+        "errorMeters": 0.76,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "door",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.27
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "lalbaghFortStreet",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "door",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.27
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "lalbaghFortCloseup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "door",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.27
+          },
+          "shade": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "brick",
+    "stone_limestone_raw",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "cameraYaw": 0.35,
+    "focus": {
+      "center": [
+        4,
+        4,
+        38
+      ]
+    },
+    "groundY": -3.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native OSM controls identify the three buildings, garden plots, river-side walls, reservoir and southeast gate. Ground contact uses the unmodified full site elevation field. The UNESCO tentative listing and Archnet set the principal forms and dimensions.",
+    "anchor": [
+      90.388058,
+      23.719033
+    ],
+    "heading": 0.027947377993797602,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        90.38800277819885,
+        23.71859124226055
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified terrain at the central southward garden cross-path."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -57.12296,
+          12.65761
+        ],
+        [
+          -35.21261,
+          12.65761
+        ],
+        [
+          -35.21073,
+          33.01481
+        ],
+        [
+          -57.12109,
+          33.01481
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -57.12296,
+            12.65761
+          ],
+          [
+            -35.21261,
+            12.65761
+          ],
+          [
+            -35.21073,
+            33.01481
+          ],
+          [
+            -57.12109,
+            33.01481
+          ]
+        ],
+        [
+          [
+            -116.93041,
+            17.40022
+          ],
+          [
+            -108.85651,
+            17.43661
+          ],
+          [
+            -108.95978,
+            35.71952
+          ],
+          [
+            -117.03337,
+            35.67201
+          ]
+        ],
+        [
+          [
+            53.37951,
+            3.0847
+          ],
+          [
+            59.69033,
+            3.09407
+          ],
+          [
+            59.66747,
+            13.39451
+          ],
+          [
+            65.3766,
+            13.40933
+          ],
+          [
+            65.39168,
+            4.84594
+          ],
+          [
+            76.14773,
+            4.85708
+          ],
+          [
+            76.09813,
+            33.62075
+          ],
+          [
+            65.25039,
+            33.60705
+          ],
+          [
+            65.26314,
+            27.31539
+          ],
+          [
+            53.33489,
+            27.29376
+          ]
+        ],
+        [
+          [
+            -104.35984,
+            89.63643
+          ],
+          [
+            20.65778,
+            88.20901
+          ],
+          [
+            20.72816,
+            94.07981
+          ],
+          [
+            -33.27482,
+            94.6972
+          ],
+          [
+            -33.23267,
+            98.29541
+          ],
+          [
+            -42.78907,
+            98.40689
+          ],
+          [
+            -42.83122,
+            94.80869
+          ],
+          [
+            -104.28946,
+            95.50722
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.83,
+      "basis": "Separate mapped footprints of the three principal buildings and the inner masonry band."
+    },
+    "featureIds": [
+      "way/624024881",
+      "way/624160147",
+      "way/624024884",
+      "way/624024857",
+      "way/624024874",
+      "way/624024864",
+      "way/624024882",
+      "node/8075331633",
+      "node/4838316922",
+      "node/13954132428"
+    ],
+    "source": "https://www.openstreetmap.org/relation/8665449",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a99e415a1b72a755893ce34f4d2771bda99a0f0c355167c4b8da89aea6e22250",
+    "notes": "Native standing building outlines, wall trace and gate points spatially separate the three monuments, gardens and fortification features."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2026 images support the tomb and hall. Mosque details, the gate and wall sections use the mapped geometry and written heritage descriptions, with estimated details where dimensions or active surfaces are missing.",
+    "The model includes the four principal surviving structures and southern fortified walls. Garden beds follow the current mapped outlines. Elevations, less-visible masonry, parapet intervals and active water levels are approximations."
+  ],
+  "sourceLicense": "Original mesh informed by a CC0 Qualla photo and an official U.S. Navy public-domain reference. OpenStreetMap geometry is ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "fort-skyline",
+      "position": [
+        213,
+        116,
+        256
+      ],
+      "lookAt": [
+        24,
+        6,
+        45
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-district",
+      "position": [
+        213,
+        116,
+        256
+      ],
+      "lookAt": [
+        24,
+        6,
+        45
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-street",
+      "position": [
+        213,
+        116,
+        256
+      ],
+      "lookAt": [
+        24,
+        6,
+        45
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-closeup",
+      "position": [
+        213,
+        116,
+        256
+      ],
+      "lookAt": [
+        24,
+        6,
+        45
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "fort-precinct-and-southern-ramparts",
+      "position": [
+        213,
+        116,
+        256
+      ],
+      "lookAt": [
+        24,
+        6,
+        45
+      ]
+    },
+    {
+      "name": "pari-bibi-tomb-and-turrets",
+      "position": [
+        -19,
+        9,
+        60
+      ],
+      "lookAt": [
+        -46,
+        5,
+        22.7
+      ]
+    },
+    {
+      "name": "east-audience-hall-and-hammam",
+      "position": [
+        97,
+        11,
+        -15
+      ],
+      "lookAt": [
+        65,
+        3.9,
+        18
+      ]
+    },
+    {
+      "name": "three-domed-mosque-from-garden",
+      "position": [
+        -83,
+        11,
+        12
+      ],
+      "lookAt": [
+        -113,
+        7,
+        26
+      ]
+    },
+    {
+      "name": "southeast-gate-arch-and-bastions",
+      "position": [
+        154,
+        13,
+        164
+      ],
+      "lookAt": [
+        135,
+        13,
+        119
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23060,
+    "vertices": 69180,
+    "materials": 5,
+    "bytes": 2968312,
+    "sha256": "sha256:844e29ab62e77b1b703142bbf2259f648ac02ca2189e6ad9f98dec2a1db996e2"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 644.781044625,
+  "crestElevation": 834,
+  "sites": [
+    {
+      "name": "Baihetan Dam tailrace at the auxiliary weir",
+      "anchor": [
+        102.9030588,
+        27.2231173
+      ],
+      "heading": 3.109648611653,
+      "bounds": [
+        -23,
+        91,
+        32,
+        201
+      ],
+      "elevation": 633.8,
+      "blend": 18,
+      "basis": "Keep the central mapped river channel below its representative tailwater stage."
+    },
+    {
+      "name": "Baihetan Dam Jinsha tailrace bend",
+      "anchor": [
+        102.9030588,
+        27.2231173
+      ],
+      "heading": 3.109648611653,
+      "bounds": [
+        16,
+        203,
+        49,
+        349
+      ],
+      "elevation": 633.8,
+      "blend": 22,
+      "basis": "Keep the mapped channel center below the tailwater through the bend."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 68549173,
+      "name": "Baihetan Reservoir",
+      "elevation": 825,
+      "basis": "Representative normal pool below the 834 m crest."
+    },
+    {
+      "id": 90793933,
+      "name": "Jinsha River below Baihetan",
+      "elevation": 638.62,
+      "basis": "Representative tailwater level from the retained local terrain."
+    },
+    {
+      "id": 35185284304340,
+      "name": "Baihetan spill tunnels",
+      "hideLines": true,
+      "basis": "Buried waterway. The mapped surface water polygons remain visible."
+    },
+    {
+      "id": 35185323229340,
+      "name": "Baihetan diversion tunnels",
+      "hideLines": true,
+      "basis": "Buried waterway. The mapped surface water polygons remain visible."
+    },
+    {
+      "id": 35185323229348,
+      "name": "Baihetan duplicate buried river line",
+      "hideLines": true,
+      "basis": "Buried waterway. The mapped surface water polygons remain visible."
+    },
+    {
+      "id": 35185635395450,
+      "name": "Baihetan left bank tailrace tunnels",
+      "hideLines": true,
+      "basis": "Buried waterway. The mapped surface water polygons remain visible."
+    }
+  ],
+  "waterStageNotes": "Representative reservoir and downstream Jinsha tailwater stages.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

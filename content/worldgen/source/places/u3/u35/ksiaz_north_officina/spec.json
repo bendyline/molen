@@ -19,19 +19,19 @@
   },
   "size": [
     48.06074523925781,
-    15.399999618530273,
-    15.220656394958496
+    18.708895683288574,
+    16.26613187789917
   ],
   "actualBounds": {
     "min": [
       -23.87299919128418,
-      0,
+      -3.308896064758301,
       -8.324000358581543
     ],
     "max": [
       24.187746047973633,
       15.399999618530273,
-      6.896656036376953
+      7.942131519317627
     ]
   },
   "visualBrief": "Pale yellow elongated side wing:lower central range with repeated dormers and raised two-floor end pavilions beneath red tile roofs.",
@@ -39,7 +39,7 @@
     "up": "+Y",
     "lateral": "+X toward castle approach entrance,approximately east-north-east",
     "longitudinal": "+Z approximately south-south-east",
-    "origin": "Mapped building envelope center;Y0 estimated local ground contact"
+    "origin": "Mapped building envelope center. The reference approach sets the model elevation."
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -90,7 +90,7 @@
   "reconstruction": {
     "basis": "Own attributed map footprint;two levels for gatehouse/side wings;mansard tags for side wings. Photographs guide visible composition,not exact dimensions.",
     "scope": "One independent entrance component of ksiaz_castle_and_park_complex. This does not complete the entire castle/park ensemble.",
-    "registration": "Shared signed axis from mapped castle approach. Own center/footprint preserved. Vertical datum and actual terrain fit remain pending."
+    "registration": "The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.52 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. Three stone treads and a shallow apron join the recessed courtyard-side doorway to the original ground."
   },
   "referencePages": [
     "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
@@ -103,7 +103,7 @@
   "fidelityStatus": "pending",
   "reviewStatus": "source-geometry;captures pending",
   "geographicProposal": {
-    "status": "research-only",
+    "status": "preview-proposal",
     "anchor": [
       16.293482050527953,
       50.842979356849234
@@ -111,17 +111,100 @@
     "heading": 0.6179489906819999,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "groundModelY": 0,
+    "groundModelY": -0.34,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.52 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. Three stone treads and a shallow apron join the recessed courtyard-side doorway to the original ground.",
+    "terrainReference": {
+      "anchor": [
+        16.293756263201857,
+        50.843014975993206
+      ],
+      "modelHeight": -0.34,
+      "basis": "The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.52 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. Three stone treads and a shallow apron join the recessed courtyard-side doorway to the original ground."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.864825,
+          -7.558201
+        ],
+        [
+          -22.902079,
+          -8.261772
+        ],
+        [
+          -22.044835,
+          -7.189792
+        ],
+        [
+          23.873203,
+          -6.703657
+        ],
+        [
+          24.056725,
+          6.380599
+        ],
+        [
+          -22.933293,
+          6.751708
+        ],
+        [
+          -23.007581,
+          -6.486221
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -23.864825,
+            -7.558201
+          ],
+          [
+            -22.902079,
+            -8.261772
+          ],
+          [
+            -22.044835,
+            -7.189792
+          ],
+          [
+            23.873203,
+            -6.703657
+          ],
+          [
+            24.056725,
+            6.380599
+          ],
+          [
+            -22.933293,
+            6.751708
+          ],
+          [
+            -23.007581,
+            -6.486221
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only the retained Protomaps footprint for OSM way 236837153 (native feature 35184608925985)."
+    },
+    "bounds": [
+      16.293093,
+      50.84276,
+      16.293864,
+      50.843202
+    ],
+    "orientationPolicy": "map-verified",
     "replaceFootprint": false,
     "featureIds": [
       "way/236837153"
     ],
     "source": "https://www.openstreetmap.org/way/236837153",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:b1b8db13f958036b0cd2f3562e97cbe4e0d3abaf6813b228df4065c4e816eb38",
+    "mapGeometryHash": "sha256:7335f02cc14e79a99ff4d5a6acac78c834cdaa15f1340f060c8dd52e26961c69",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Own mapped ring and approach-facing axes;roof/body heights and local ground datum estimated. Inactive until terrain/facade fit reviewed. No independent Wikidata identity claimed."
+    "notes": "The signed mapped ring and facing match the aerial and courtyard photographs. The standard retained Protomaps and Terrarium PMTiles locate the building and set an uncovered 398.52 m terrain contact. An inset sandstone footing follows the perimeter at the visualization datum. Three stone treads and a shallow apron join the recessed courtyard-side doorway to the original ground."
   },
   "sharedSurfaces": [
     {
@@ -159,6 +242,15 @@
         2.4,
         2.4
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
@@ -166,7 +258,7 @@
     "One component only;ksiaz_castle_and_park_complex full site remains incomplete.",
     "Footprint is attributed map geometry;heights,openings,dormers and roof profiles are photographic interpretations.",
     "No independent Wikidata identity.",
-    "No interiors,signage,statue likenesses or unique textures. Geographic/terrain fit and physical-device timing pending."
+    "Exterior floor and plinth elevations follow the retained terrain samples. Roof profiles, facade details and opposite elevations are reconstructions. No interiors, custom textures or measured device timings."
   ],
   "qaCameras": [
     {
@@ -226,10 +318,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 2317,
-    "vertices": 6951,
-    "materials": 5,
-    "bytes": 281256,
-    "sha256": "sha256:3ab5df30de3718dd8552a6ef0fdb55bbee4c3713deb28897d8f4cdd71bf4d01f"
+    "triangles": 2782,
+    "vertices": 8346,
+    "materials": 6,
+    "bytes": 337548,
+    "sha256": "sha256:1cdd52ba73c860c6c64f2a5bfd6bf85196b23fd36b256a38cc76022f390a6208"
   }
 }

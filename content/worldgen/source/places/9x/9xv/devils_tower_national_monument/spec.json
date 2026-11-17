@@ -1,0 +1,740 @@
+{
+  "planId": "devils_tower_national_monument",
+  "id": "devils_tower_national_monument",
+  "assetId": "molen.worldgen.structure.devils_tower_national_monument",
+  "title": "Devils Tower National Monument",
+  "wikidataId": "Q306201",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -104.715096,
+    "latitude": 44.5905149
+  },
+  "size": [
+    551.0538101196289,
+    264.4268879890442,
+    294.18402099609375
+  ],
+  "actualBounds": {
+    "min": [
+      -437.8486633300781,
+      -4.8845295906066895,
+      -156.715576171875
+    ],
+    "max": [
+      113.20514678955078,
+      259.5423583984375,
+      137.46844482421875
+    ]
+  },
+  "visualBrief": "Devils Tower / Bear Lodge above its open talus, with a flat-crested fluted phonolite shaft and the historic log visitor center near the west approach.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Concrete_pathway_at_Devil%27s_Tower_National_Monument._(dc481a56-b049-492e-acfc-83ef5f7c0233).jpg",
+    "https://commons.wikimedia.org/wiki/File:Building_Exhibits_at_Devils_Tower_National_Monument._(ed3d963b-9e22-4d24-93c9-cf6d13bbbac7).JPG",
+    "https://www.nps.gov/deto/planyourvisit/visitorcenters.htm"
+  ],
+  "stories": [
+    {
+      "id": "devils-tower-national-monument-wk",
+      "url": "https://qualla.com/devils-tower-national-monument/"
+    }
+  ],
+  "referenceInputHash": "9ecc3b04efb2f949766e95dd97aa8fb39ff614fe9d9150556f74d83fa57d3aa7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9x/9xv/devils_tower_national_monument/models/devils-tower-national-monument-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9x/9xv/devils_tower_national_monument/models/devils-tower-national-monument-model.mjs",
+    "level": "skyline",
+    "export": "devilsTowerSkyline",
+    "errorMeters": 5.8,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_log",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "shingle": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "devilsTowerDistrict",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "devilsTowerStreet",
+        "errorMeters": 0.96,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "devilsTowerCloseup",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "wood_log",
+    "shingle_cedar",
+    "stone_basalt_raw",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "cameraYaw": -1.19,
+    "focus": {
+      "center": [
+        -21,
+        83,
+        -5
+      ]
+    },
+    "far": 5300,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The USGS elevation raster provides eleven measured rock contours and fine summit/apron relief. The named OpenStreetMap rock perimeter bounds the model terrain. The visitor-center footprint and same-side paved approach set its north–south ridge and east frontage.",
+    "anchor": [
+      -104.715096,
+      44.5905149
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -104.72033089688364,
+        44.59017354175351
+      ],
+      "modelHeight": 0,
+      "basis": "Unmasked original elevation by the mapped visitor center approach, west of the bare-rock opening."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          66.924221,
+          -128.251185
+        ],
+        [
+          47.826798,
+          -140.763496
+        ],
+        [
+          27.540245,
+          -150.548479
+        ],
+        [
+          -10.432632,
+          -156.715579
+        ],
+        [
+          -34.889066,
+          -148.310958
+        ],
+        [
+          -43.403235,
+          -141.965747
+        ],
+        [
+          -57.387401,
+          -126.748372
+        ],
+        [
+          -72.314943,
+          -106.6886
+        ],
+        [
+          -86.980876,
+          -81.118513
+        ],
+        [
+          -92.958235,
+          -68.439223
+        ],
+        [
+          -104.159837,
+          -58.498392
+        ],
+        [
+          -108.408994,
+          -46.353436
+        ],
+        [
+          -110.216471,
+          -34.720549
+        ],
+        [
+          -110.493935,
+          -21.429002
+        ],
+        [
+          -109.368225,
+          -14.649645
+        ],
+        [
+          -115.58341,
+          -9.361969
+        ],
+        [
+          -122.599275,
+          1.692056
+        ],
+        [
+          -128.980938,
+          7.436142
+        ],
+        [
+          -129.194982,
+          15.30643
+        ],
+        [
+          -131.953763,
+          29.132311
+        ],
+        [
+          -127.149678,
+          48.846993
+        ],
+        [
+          -113.561889,
+          68.784313
+        ],
+        [
+          -97.936725,
+          80.049846
+        ],
+        [
+          -93.465597,
+          88.665974
+        ],
+        [
+          -82.945763,
+          104.829564
+        ],
+        [
+          -77.94349,
+          107.690475
+        ],
+        [
+          -72.735102,
+          123.642558
+        ],
+        [
+          -60.938935,
+          134.596396
+        ],
+        [
+          -49.769043,
+          137.468439
+        ],
+        [
+          -35.420211,
+          129.486832
+        ],
+        [
+          -22.553827,
+          127.894963
+        ],
+        [
+          -0.443942,
+          114.069082
+        ],
+        [
+          12.105341,
+          118.96714
+        ],
+        [
+          22.09403,
+          111.631185
+        ],
+        [
+          32.304691,
+          112.477213
+        ],
+        [
+          44.211843,
+          108.759143
+        ],
+        [
+          55.373808,
+          118.85582
+        ],
+        [
+          68.343249,
+          117.475459
+        ],
+        [
+          84.396501,
+          104.929752
+        ],
+        [
+          93.965031,
+          88.343148
+        ],
+        [
+          97.794029,
+          77.077615
+        ],
+        [
+          101.583389,
+          62.628346
+        ],
+        [
+          109.273095,
+          44.227234
+        ],
+        [
+          106.934473,
+          33.384715
+        ],
+        [
+          101.80536,
+          21.028252
+        ],
+        [
+          99.197202,
+          8.204246
+        ],
+        [
+          109.193819,
+          0.701313
+        ],
+        [
+          113.20515,
+          -12.289672
+        ],
+        [
+          111.18363,
+          -31.12493
+        ],
+        [
+          107.418052,
+          -55.481634
+        ],
+        [
+          100.346694,
+          -73.025586
+        ],
+        [
+          90.151889,
+          -88.877481
+        ],
+        [
+          80.876677,
+          -100.677347
+        ]
+      ],
+      "basis": "The OSM bare-rock boundary limits replacement to the measured monolith and reconstructed talus. The surrounding USGS field and visitor center ground stay visible."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -435.911177,
+          24.056142
+        ],
+        [
+          -429.15692,
+          22.820496
+        ],
+        [
+          -427.761675,
+          30.479277
+        ],
+        [
+          -426.096893,
+          30.178714
+        ],
+        [
+          -425.33585,
+          34.019236
+        ],
+        [
+          -424.170503,
+          40.742934
+        ],
+        [
+          -435.292829,
+          42.768948
+        ],
+        [
+          -437.480828,
+          30.768707
+        ],
+        [
+          -434.77754,
+          30.278901
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Restricted to the mapped Visitor Center footprint from OpenStreetMap way/71356677."
+    },
+    "featureIds": [
+      "way/1210470181",
+      "way/71356677",
+      "way/1210471791"
+    ],
+    "source": "https://www.openstreetmap.org/way/1210470181",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1bacb3b259dce9986e95647171dae225bf4a6c6f6f6afff394476851410d2bbe",
+    "notes": "The map controls the bare rock perimeter, Visitor Center footprint and paved approach. Georeferenced USGS heights establish the rock contours and terrain. The Visitor Center east approach fixes the main entrance direction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "USGS 3DEP determines the plan contour, summit relief and height. Individual column facets, ledge breaks, weathered colors and loose rocks are photographic or geological estimates.",
+    "The bare-rock perimeter bounds the terrain opening. The model reproduces the original elevation apron inside that perimeter and retains the original unmasked terrain field for comparison.",
+    "The original mapped Visitor Center footprint and east approach are retained. Chimneys, log diameters, foundation contact and unseen elevations are estimated."
+  ],
+  "sourceLicense": "Original geometry under the repository license. USGS elevation samples and referenced National Park Service photographs are public domain. Native mapped boundaries are OpenStreetMap ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "devils-tower-skyline",
+      "position": [
+        -520,
+        181,
+        363
+      ],
+      "lookAt": [
+        -97,
+        113,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "devils-tower-district",
+      "position": [
+        -520,
+        181,
+        363
+      ],
+      "lookAt": [
+        -97,
+        113,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "devils-tower-street",
+      "position": [
+        -520,
+        181,
+        363
+      ],
+      "lookAt": [
+        -97,
+        113,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "devils-tower-closeup",
+      "position": [
+        -520,
+        181,
+        363
+      ],
+      "lookAt": [
+        -97,
+        113,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-monument-and-visitor-site",
+      "position": [
+        -520,
+        181,
+        363
+      ],
+      "lookAt": [
+        -97,
+        113,
+        2
+      ]
+    },
+    {
+      "name": "fluted-cliff-and-talus",
+      "position": [
+        -282,
+        142,
+        200
+      ],
+      "lookAt": [
+        -4,
+        147,
+        -6
+      ]
+    },
+    {
+      "name": "summit-and-north-columns",
+      "position": [
+        134,
+        330,
+        -218
+      ],
+      "lookAt": [
+        -4,
+        222,
+        -8
+      ]
+    },
+    {
+      "name": "visitor-center-east-front",
+      "position": [
+        -406,
+        2.1,
+        33
+      ],
+      "lookAt": [
+        -430,
+        1.5,
+        32
+      ]
+    },
+    {
+      "name": "visitor-center-gable-and-cedar-roof",
+      "position": [
+        -414,
+        10,
+        55
+      ],
+      "lookAt": [
+        -430,
+        1.5,
+        32
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24237,
+    "vertices": 72711,
+    "materials": 6,
+    "bytes": 3262628,
+    "sha256": "sha256:20fe9e123ea7717a11bdef9d2f93d509b945cf8f9084c88c32d6284b7c4f5747"
+  }
+}

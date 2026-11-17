@@ -2,13 +2,13 @@
 
 ![Molen preview](preview.png)
 
-Complete principal Catherine Palace exterior: long blue/white/gold baroque body, returned north and south wings, three raised hall roofs and five projecting crowns, recessed multi-story windows, paired white pilasters, original simplified gilded trim, roof balustrades, supported main forecourt entry and five-domed palace chapel. Detached curved low forecourt ranges, Lyceum/connecting arch, Cameron gallery, garden pavilions and park stay native context. No interiors or copied statues,heraldry or inscriptions.
+Complete principal palace with both returned wings, the blue and white facades, and five gold onion domes. A shaped pale masonry pavilion supports the chapel drums. The garden floor, modeled main stair and apron connect to the graded forecourt.
 
 Rebuild: `node packages/worldgen/scripts/generate-catherine-palace.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=catherine_palace`. Detailed source and four browser tiers are separate ignored GLB outputs.
 
 Complete principal Catherine Palace exterior: long blue/white/gold baroque body, returned north and south wings, three raised hall roofs and five projecting crowns, recessed multi-story windows, paired white pilasters, original simplified gilded trim, roof balustrades, supported main forecourt entry and five-domed palace chapel. Detached curved low forecourt ranges, Lyceum/connecting arch, Cameron gallery, garden pavilions and park stay native context. No interiors or copied statues,heraldry or inscriptions.
 
-Approximate84m standard global Terrarium reference, palace exterior floor84.5m. Main eave is16.1m above that floor; main roof rises about20-21m, chapel finial35m. Picture-guided facade proportions are reconciled with native3D part heights. Interior building-biased DEM returns are masked only within occupied palace bounds; surrounding garden/forecourt terrain stays unchanged. Original bounded entrance transition matches sampled coarse field.
+Two retained standard Terrarium tiles and the signed PMTiles footprint place the principal palace at model origin 84 m. The bounded 83.42 m court and garden grade follows uncovered main-apron samples and exposes the ground-floor windows. The narrow apron and its outer edge meet that surface, and the neighboring park and forecourt retain native map features.
 
 Original medium-fi interpretation of individual roof transitions, facade/window inventories, gilded ornament and concealed joints. No copied artwork, statues or interior rooms; detached courtyard ranges and independent buildings are outside this principal-palace scope. Exact historic grades, survey accuracy, numerical LOD error and physical-device timings remain unmeasured.
 

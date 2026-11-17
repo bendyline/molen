@@ -1,0 +1,463 @@
+{
+  "planId": "tytuvenai_holy_stairs_chapel",
+  "id": "tytuvenai_holy_stairs_chapel",
+  "assetId": "molen.worldgen.structure.tytuvenai_holy_stairs_chapel",
+  "title": "Tytuvėnai Holy Stairs Chapel",
+  "wikidataId": "Q61386757",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.200113906821137,
+    "latitude": 55.59694310136379
+  },
+  "size": [
+    9.46399974822998,
+    12.581948399543762,
+    18.6850004196167
+  ],
+  "actualBounds": {
+    "min": [
+      -4.73199987411499,
+      -0.5419484376907349,
+      -9.430000305175781
+    ],
+    "max": [
+      4.73199987411499,
+      12.039999961853027,
+      9.255000114440918
+    ]
+  },
+  "visualBrief": "Baroque Holy Stairs Chapel in the Tytuvėnai courtyard, with a white masonry body, tall hipped-roof sanctuary bay and low tiled extension.",
+  "nativeAxes": {
+    "x": "roughly east, toward the church apse",
+    "y": "up",
+    "z": "roughly south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tytuv%C4%97naivienuolynas6.JPG"
+  ],
+  "stories": [
+    {
+      "id": "tytuvenai-monastery-wp",
+      "url": "https://qualla.com/tytuvenai-monastery/"
+    }
+  ],
+  "referenceInputHash": "18a1b6669058fb7d6e18e69aed1d9140a87c091b44e1935ce61dd0c5236d4895",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u9/u9b/tytuvenai_holy_stairs_chapel/models/tytuvenai-holy-stairs-chapel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "tytuvenai-ensemble-geometry.mjs": "sha256:1232944a27b0bded06843cf2786f815449e7ee61f327be239c40ad48a8e1de12"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u9/u9b/tytuvenai_holy_stairs_chapel/models/tytuvenai-holy-stairs-chapel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.11
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.62,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.11
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.11
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.11
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_granite",
+    "tile_ceramic",
+    "metal_painted",
+    "window_punched",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.42,
+    "cameraYaw": -0.84,
+    "focus": {
+      "center": [
+        0,
+        4.2,
+        -1.2
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The rectangular chapel has a low tile-gabled body, a taller square bay with a steep hipped cap, white plaster, pale pilasters and low splayed buttresses.",
+    "anchor": [
+      23.200113906821137,
+      55.59694310136379
+    ],
+    "heading": 0.03855,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.200113906821137,
+        55.59694310136379
+      ],
+      "modelHeight": 0,
+      "basis": "Original Mapzen elevation tile data sampled at the independent building anchor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/217164754"
+    ],
+    "source": "https://www.openstreetmap.org/way/217164754",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ba7fb490d2ed55074b1064c98ea533a04522e665d100920aadd506aa739ec24d",
+    "notes": "The mapped feature is localized in the geographic reference frame. The heritage register corroborates the specific building."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The register gives 17.75 m by 7.45 m. The main shell uses the independently mapped, slightly larger outline.",
+    "Tower and window heights, roof finish tone and fine stonework are estimated from the cleared photograph. The interior staircase is outside this exterior scope.",
+    "The preserved terrain shows local grades at regional source resolution. Small threshold elevations are estimated."
+  ],
+  "sourceLicense": "Independent reconstruction from public-domain photographer originals, heritage register facts, OpenStreetMap geometry and open terrain tiles.",
+  "qaLodCameras": [
+    {
+      "name": "tytuvenai-holy-stairs-chapel-skyline",
+      "position": [
+        -20,
+        16,
+        22
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        -1.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tytuvenai-holy-stairs-chapel-district",
+      "position": [
+        -20,
+        16,
+        22
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        -1.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tytuvenai-holy-stairs-chapel-street",
+      "position": [
+        -20,
+        16,
+        22
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        -1.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tytuvenai-holy-stairs-chapel-closeup",
+      "position": [
+        -20,
+        16,
+        22
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        -1.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "tall-sanctuary-and-low-body",
+      "position": [
+        -15,
+        8,
+        19
+      ],
+      "lookAt": [
+        0,
+        4.55,
+        -2.2
+      ]
+    },
+    {
+      "name": "buttresses-and-historical-roof-profile",
+      "position": [
+        -11,
+        11,
+        -18
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        -4.4
+      ]
+    },
+    {
+      "name": "shallow-arches-and-pilasters",
+      "position": [
+        14,
+        7,
+        8
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        2.2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 662,
+    "vertices": 1986,
+    "materials": 6,
+    "bytes": 352388,
+    "sha256": "sha256:7c2ef69651067082d8849323859de7737de1858379fc441092c7c70d451a0764"
+  }
+}

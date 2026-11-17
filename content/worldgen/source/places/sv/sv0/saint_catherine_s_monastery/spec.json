@@ -1,0 +1,482 @@
+{
+  "planId": "saint_catherine_s_monastery",
+  "id": "saint_catherine_s_monastery",
+  "assetId": "molen.worldgen.structure.saint_catherine_s_monastery",
+  "title": "Saint Catherine’s Monastery",
+  "wikidataId": "Q185362",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 33.976,
+    "latitude": 28.556
+  },
+  "size": [
+    88.95433044433594,
+    34.98268127441406,
+    88.88778305053711
+  ],
+  "actualBounds": {
+    "min": [
+      -36.15530014038086,
+      -19.412681579589844,
+      -40.87042999267578
+    ],
+    "max": [
+      52.79903030395508,
+      15.569999694824219,
+      48.01735305786133
+    ]
+  },
+  "visualBrief": "Saint Catherine’s Monastery in April 2011, with the granite fortification, the Transfiguration Basilica, its open bell tower, the whitewashed Fatimid minaret and the monastery’s terraced ranges.",
+  "nativeAxes": {
+    "x": "across the enclosure toward the southeast",
+    "y": "up",
+    "z": "along the western perimeter toward the southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-04-02",
+    "validFrom": "2011-01-01",
+    "validUntil": "2012-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:St_CatherinesPanorama.JPG"
+  ],
+  "stories": [
+    {
+      "id": "saint-catherine-s-monastery-wp",
+      "url": "https://qualla.com/saint-catherine-s-monastery/"
+    }
+  ],
+  "referenceInputHash": "f6cc7d31a67f0799fda1c9281f79cbaa35794619e89e0b8dc07b3b4d6136d9f2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv0/saint_catherine_s_monastery/models/saint-catherines-monastery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sv/sv0/saint_catherine_s_monastery/models/saint-catherines-monastery-model.mjs",
+    "level": "skyline",
+    "export": "monasterySkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.94,
+        "metallic": 0.025
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "monasteryDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.025
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "monasteryStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.025
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "monasteryCloseup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0.025
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stone_limestone_raw",
+    "plaster_lime",
+    "tile_ceramic",
+    "metal_standing_seam",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -17.2,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      33.976,
+      28.556
+    ],
+    "heading": -0.5226545954882527,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        33.97550999997303,
+        28.55589999958526
+      ],
+      "modelHeight": 0,
+      "basis": "Original exposed slope near the west visitor approach, outside the curtain wall."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/115392340",
+      "way/115392350",
+      "way/152477503",
+      "way/115392344",
+      "way/115392351",
+      "way/115392338",
+      "way/115392346",
+      "way/152477504",
+      "way/907680228",
+      "way/907680231",
+      "way/907680237",
+      "way/115531165",
+      "way/907680229",
+      "way/907680230"
+    ],
+    "source": "https://www.openstreetmap.org/way/115392340",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c5e17ef3deea3d09e5891a2643273ed62211952151061da972de9ff714a9b911",
+    "notes": "The native map separates the basilica, campanile, mosque, Kléber Tower and other named ranges from three partially mapped fortification lines. The remaining wall joins, roof breaks and interior grades are inferred from architectural evidence and cleared Qualla views."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The natural field is retained as sampled. Its grid does not represent masonry courtyard terraces, survey elevations or the paths below the wall.",
+    "Native geometry controls the building footprints and most of the outer wall. Wall thickness follows the UNESCO nomination. Local crown profile, buttress projections, narrow entrance and lower retaining wall geometry are estimates matched to the panorama.",
+    "Basilica, cloister ranges, minaret and bell tower use estimated ridge heights and simplified openings. A courtyard gallery is reconstructed from the visible elevations and surrounding native boundaries.",
+    "The model represents the exterior in April 2011. Small inscriptions, interior chapels, the orchard, and later visitor paths are outside the modeled scope."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The exact Qualla panorama is creator-released CC0. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "sinai-monastery-skyline",
+      "position": [
+        -61,
+        62,
+        -131
+      ],
+      "lookAt": [
+        6,
+        -1,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sinai-monastery-district",
+      "position": [
+        -61,
+        62,
+        -131
+      ],
+      "lookAt": [
+        6,
+        -1,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sinai-monastery-street",
+      "position": [
+        -61,
+        62,
+        -131
+      ],
+      "lookAt": [
+        6,
+        -1,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sinai-monastery-closeup",
+      "position": [
+        -61,
+        62,
+        -131
+      ],
+      "lookAt": [
+        6,
+        -1,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-fortification-and-gate",
+      "position": [
+        5,
+        4,
+        -77
+      ],
+      "lookAt": [
+        6,
+        -7.5,
+        -26
+      ]
+    },
+    {
+      "name": "basilica-campanile-and-fatimid-minaret",
+      "position": [
+        -27,
+        8,
+        -22
+      ],
+      "lookAt": [
+        5,
+        -1.9,
+        0
+      ]
+    },
+    {
+      "name": "upper-terrace-and-arcades",
+      "position": [
+        -10,
+        19,
+        -3
+      ],
+      "lookAt": [
+        2,
+        5.3,
+        36
+      ]
+    },
+    {
+      "name": "eastern-walls-and-terraced-ranges",
+      "position": [
+        81,
+        33,
+        41
+      ],
+      "lookAt": [
+        3,
+        1,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9136,
+    "vertices": 27408,
+    "materials": 6,
+    "bytes": 1421300,
+    "sha256": "sha256:8711d4c8eb5caea5ff7d0178afb7d48e14765697b4428e018efd613283d348ee"
+  }
+}

@@ -91,7 +91,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   };
   if (active && !hasAuthoredGroundContact(spec))
     throw new Error(
-      `${spec.id}: geographic placement needs a Y=0 base or a reviewed Y=0 contact plane with its source basis`,
+      `${spec.id}: geographic placement needs an origin-aligned base or a reviewed contact plane with its source basis`,
     );
   createStructureIndex({ ...catalog, entries: [entry] });
   const existing = catalog.entries.find((item) => item.asset === spec.assetId);

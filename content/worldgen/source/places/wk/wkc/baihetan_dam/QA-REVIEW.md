@@ -1,17 +1,24 @@
 # Baihetan Dam
 
-Reviewed 2026-11-03. **46 current catalog views and six standard-water comparison views inspected.**
-
 The model reproduces the 709 m asymmetric double-curvature arch, six surface spillway bays, seven deep outlets with chutes, crest galleries, red gantries, finned intake, concrete abutment ties and the auxiliary weir.
 
-The reservoir shoreline and buried Jinsha crossing set the anchor [102.9030588, 27.2231173] and heading 3.109648611653 radians. Local +X faces west across the crest and +Z follows the river downstream. The 834 m crest uses a fixed absolute elevation. The narrow ground opening covers the occupied deck and intake. Nearby roads, tunnel paths and canyon slopes remain native.
+The signed placement fixes the 709 m arch crest at 834 m. The Earth viewer renders the 825 m reservoir and 638.62 m tailwater. The building cutout suppresses only the mapped duplicate dam volume, exposing the six upper and seven deep outlets. All five neighboring building features and 84 road records remain available. Buried waterway lines are hidden.
 
-Five shared graphs supply board-formed and plain concrete, gravel, painted steel and glazing. All six GLBs have zero embedded images. Eviction releases the model geometry and restores the terrain.
+![Baihetan Dam in the Earth viewer](site-preview.png)
 
-The 26 terrain views use nine standard Terrarium tiles and separate reservoir, plunge pool and tailwater stages. Six installed-model views compare the production sampler. The checked tiles give 676.79 m upstream and 637.62–641.76 m downstream. The design fixture uses the operator’s 825 m normal pool and an illustrative 643 m plunge pool.
+The Earth fixture retains all three mapped service road records. The ground opening follows the upper central arch. Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-The detailed master contains 3,214 triangles. Viewer tiers contain 758, 1434, 2654, 2774 triangles. Skyline plus district are 175,132 bytes and close-up is 208,964 bytes. Four focused checks verify exact source pins, absolute elevation and bounded ground openings, six upper and seven deep recessed bays, the 834 m crest, and the auxiliary weir, and byte-for-byte LOD reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 758 | 63,028 | 5 |
+| district | 1,434 | 112,104 | 6 |
+| street | 2,654 | 199,604 | 6 |
+| closeup | 2,774 | 208,964 | 6 |
 
-The sampled reservoir is about 148 m below the normal pool. It exposes the upper part of the upstream wall and produces steep shoreline curtains on the standard terrain. Parts of the crest abutments lie within coarse native rock. The weir crest and plunge stage are approximate. Buried caverns, tunnels and operating discharge are outside the exterior asset. Physical-device timing remains unmeasured.
+Skyline and district total 175,132 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Five shared material graphs bind in the viewer. The review covers 71 renders and 135 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-baihetan-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=baihetan_dam`.
+The reservoir and tailwater stages are representative. The plunge pool level is shown in the local lighting fixture. The native fixture preserves the mapped tailwater and the modeled auxiliary weir. The coarse Terrarium slopes leave angular shoreline sections and obscure parts of the outer abutments.
+
+The host supplies the corresponding Protomaps features and terrain samples fine enough to resolve the local tailrace grades. The asset shows static exterior structures.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

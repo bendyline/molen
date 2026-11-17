@@ -11,44 +11,44 @@
       "closeup": "model.closeup.glb"
     }
   },
-  "hash": "sha256:9f28e16cfd45d178777c63609b92f02060b2241d6aa98a86447d5286242417ee",
-  "sourceHash": "sha256:6d65ea80052effb8f78716a0dbf0ef00ad869fddc49e302ab6666740141e82e7",
+  "hash": "sha256:db96e8702531f0f11214c4e08b5a6c7d4e5e78d7672fb2b2bd25d8a7821decab",
+  "sourceHash": "sha256:7560415b8e92faa5d5923ea2de987d15111807aacfa8d22fda1102d95952c0a7",
   "bounds": {
     "aabb": {
       "min": [
         -3.8116,
-        0,
+        -0.3749,
         -3.8063
       ],
       "max": [
-        3.8116,
+        4.8696,
         7.2,
         3.8063
       ]
     },
     "sphere": {
       "center": [
-        0,
-        3.6,
+        0.529,
+        3.4125,
         0
       ],
-      "radius": 6.2083
+      "radius": 6.6328
     }
   },
   "stats": {
-    "triangles": 933,
-    "vertices": 2799,
+    "triangles": 1114,
+    "vertices": 3342,
     "meshes": 1,
-    "primitives": 6,
-    "materials": 6,
+    "primitives": 7,
+    "materials": 7,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 115064
+    "sizeBytes": 137208
   },
   "nodes": [
     {
       "name": "worldgen",
-      "triangles": 933
+      "triangles": 1114
     }
   ],
   "nodesTruncated": false,
@@ -72,6 +72,14 @@
     },
     {
       "name": "brick",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "stone_sandstone_raw",
       "slots": [
         "baseColor"
       ],
@@ -109,10 +117,10 @@
         "node": "worldgen",
         "points": [
           -3.8116,
-          0,
+          -0.3749,
           -3.8063,
           -3.8116,
-          0,
+          -0.3749,
           3.8063,
           -3.8116,
           7.2,
@@ -120,16 +128,16 @@
           -3.8116,
           7.2,
           3.8063,
-          3.8116,
-          0,
+          4.8696,
+          -0.3749,
           -3.8063,
-          3.8116,
-          0,
+          4.8696,
+          -0.3749,
           3.8063,
-          3.8116,
+          4.8696,
           7.2,
           -3.8063,
-          3.8116,
+          4.8696,
           7.2,
           3.8063
         ]
@@ -139,57 +147,57 @@
   "extensionsUsed": [],
   "runtimeLods": {
     "recipe": 1,
-    "masterHash": "sha256:9f28e16cfd45d178777c63609b92f02060b2241d6aa98a86447d5286242417ee",
+    "masterHash": "sha256:db96e8702531f0f11214c4e08b5a6c7d4e5e78d7672fb2b2bd25d8a7821decab",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:997996acace598fff28c4df367c271c3bed469d8a3e71c2a8eb29edfc8c2e31a",
-        "bytes": 17772,
-        "gzipBytes": 4719,
-        "triangles": 189,
-        "cpuBytes": 16364,
-        "gpuBytes": 16364,
+        "hash": "sha256:06313122967018f1eafbf831b4e5d701a11518dd97916e7da56b156eb6b8599d",
+        "bytes": 18936,
+        "gzipBytes": 5068,
+        "triangles": 206,
+        "cpuBytes": 17508,
+        "gpuBytes": 17508,
         "errorMeters": 1,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:f406c73f03baa7344444f3faeff60509c6c5b958f0e6c1a7b6c2b57d5c1c93d0",
-        "bytes": 27332,
-        "gzipBytes": 7937,
-        "triangles": 249,
-        "cpuBytes": 20036,
-        "gpuBytes": 20036,
+        "hash": "sha256:7b412727a7b362fe476b00a1a8fb8e0e4af26c3fb16688b68c612d2a6c84ca71",
+        "bytes": 32828,
+        "gzipBytes": 9642,
+        "triangles": 298,
+        "cpuBytes": 24324,
+        "gpuBytes": 24324,
         "errorMeters": 1.5,
-        "drawCalls": 6
+        "drawCalls": 7
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:65e98575522cceea1e983f9959a37f297f2f7746e49b096588308821a4a0879c",
-        "bytes": 73288,
-        "gzipBytes": 20024,
-        "triangles": 813,
-        "cpuBytes": 65972,
-        "gpuBytes": 65972,
+        "hash": "sha256:e39a716da010e85ed977a3bad83d80857cd5b0de615550c916a30f3e9cd8bb05",
+        "bytes": 86528,
+        "gzipBytes": 23926,
+        "triangles": 974,
+        "cpuBytes": 77988,
+        "gpuBytes": 77988,
         "errorMeters": 0.5,
-        "drawCalls": 6
+        "drawCalls": 7
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:f6518c8095faacbf158b96383340d307c83557d78387b98a2821a85e53012248",
-        "bytes": 83512,
-        "gzipBytes": 22321,
-        "triangles": 933,
-        "cpuBytes": 76196,
-        "gpuBytes": 76196,
+        "hash": "sha256:c4fe58200c7d6a34a671df76b6eaa4378b7d3d213432d197007f4421b222da04",
+        "bytes": 98456,
+        "gzipBytes": 26510,
+        "triangles": 1114,
+        "cpuBytes": 89916,
+        "gpuBytes": 89916,
         "errorMeters": 0.15,
-        "drawCalls": 6
+        "drawCalls": 7
       }
     ],
-    "recipeHash": "sha256:a965dd62a5494e404578340ca44d5a79f8648555172f4d788599910f8acf79c1"
+    "recipeHash": "sha256:a7bb3c740aaa3022ee8c153691503861263fb8ed5f0901e6ef1d42e2802d251b"
   }
 }

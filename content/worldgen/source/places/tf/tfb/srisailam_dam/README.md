@@ -10,7 +10,7 @@ The signed vertical origin is 250.053237 m. The crest is fixed at 275.54 m, sill
 
 The crest and powerhouse plan follow the retained PMTiles map. The apron section, wing outlets, gate machinery and powerhouse elevation are exterior approximations based on the reference photos and standard terrain.
 
-Standard terrain contains spurious deep negative elevations near the crossing and provides stages of 252.82 m upstream and 179.68 m downstream. Native bank, base and water fit remain pending.
+Bounded Earth terrain repairs address implausible elevations near the dam and powerhouse. The retained standard terrain still has coarse outer banks.
 
 The model depicts the dry closed-gate configuration. Left-bank generating chambers and internal conduits are underground and outside the exterior model.
 

@@ -9,6 +9,7 @@ import {
   type WildlifeWorld,
   wildlifeCandidates,
 } from '@bendyline/molen-ambient/kernel';
+import type { TerrainSemanticMeshOptions } from '@bendyline/molen-terrain/client';
 import type { RegionalEnvironment } from '@bendyline/molen-worldgen-earth/kernel';
 import type * as THREE from 'three';
 import type { EarthAmbientBudget } from './ambient';
@@ -60,8 +61,9 @@ export class EarthWildlife {
     parent: THREE.Object3D,
     prepare?: (object: THREE.Object3D) => unknown,
     seaLevel?: number,
+    waterFeatureStyle?: TerrainSemanticMeshOptions['waterFeatureStyle'],
   ) {
-    this.habitat = new WildlifeHabitatTiles(parent, seaLevel);
+    this.habitat = new WildlifeHabitatTiles(parent, seaLevel, waterFeatureStyle);
     this.landcover = this.habitat.observer('landcover');
     this.features = this.habitat.observer('features');
     this.renderer = new WildlifeRenderer(prepare);

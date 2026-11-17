@@ -6,6 +6,9 @@ import { cronkhitePhotoUrl, inspectCronkhiteNpsReference } from './imagery-nps-c
 
 const digest = (b) => createHash('sha256').update(b).digest('hex');
 const plain = (h) => String(h ?? '').replace(/^sha256:/, '');
+const visitorCenterPage = 'https://www.nps.gov/deto/planyourvisit/visitorcenters.htm';
+const visitorCenterPhoto = 'https://home.nps.gov/deto/planyourvisit/images/VC-exterior-present.jpg';
+const npsDisclaimer = 'https://www.nps.gov/aboutus/disclaimer.htm';
 const originals = {
   'Battery_Commander_Station_Nov2025_LElze.jpg': [
     'NPS',
@@ -40,20 +43,45 @@ export function inspectNpsAgencyReference(dir, r) {
       ptext = policy
         .toString()
         .replace(/<[^>]*>/g, ' ')
-        .replace(/\s+/g, ' '),
-      source = 'https://www.nps.gov/goga/learn/nature/hawk-hill-visitor-improvement-project.htm',
-      file = r.downloadUrl?.split('/').at(-1),
-      original = originals[file];
-    const figure = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/g)]
-        .map((m) => m[0])
-        .find((s) => s.includes(`/images/${file}?`)),
-      credit = figure?.match(/<p class="figcredit">([^<]*)<\/p>/)?.[1];
+        .replace(/\s+/g, ' ');
     if (
       digest(image) !== plain(r.sha256) ||
       digest(page) !== plain(r.rightsEvidence?.sha256) ||
       digest(policy) !== plain(r.policyEvidence?.sha256)
     )
       blockers.push('supplemental-nps-original-bytes-unbound');
+    if (r.downloadUrl === visitorCenterPhoto) {
+      const figure = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/g)].find(([value]) =>
+        value.includes('/deto/planyourvisit/images/VC-exterior-present.jpg?'),
+      )?.[0];
+      if (
+        r.origin !== 'nps-agency-photo-public-domain' ||
+        r.license !== 'Public domain' ||
+        r.sourceUrl !== visitorCenterPage ||
+        r.rightsEvidence?.sourceUrl !== visitorCenterPage ||
+        r.policyEvidence?.sourceUrl !== npsDisclaimer ||
+        !html.includes(`<meta property="og:url" content="${visitorCenterPage}"`) ||
+        !figure?.includes('<p class="figcredit">NPS / Joe Bruce</p>') ||
+        /©|copyright/i.test(figure) ||
+        r.artist !== 'NPS / Joe Bruce' ||
+        !image.includes(Buffer.from('<rdf:li>Joe Bruce NPS</rdf:li>')) ||
+        !ptext.includes(
+          'material created by the National Park Service and presented on this website, unless otherwise indicated, is generally considered in the public domain.',
+        ) ||
+        r.originalReview?.status !== 'inspected' ||
+        r.originalReview?.rendition !== 'agency-published-image'
+      )
+        blockers.push('supplemental-nps-visitor-center-staff-credit-unverified');
+      return { path: r.path, sourceUrl: r.sourceUrl, blockers, eligible: blockers.length === 0 };
+    }
+    const source =
+        'https://www.nps.gov/goga/learn/nature/hawk-hill-visitor-improvement-project.htm',
+      file = r.downloadUrl?.split('/').at(-1),
+      original = originals[file];
+    const figure = [...html.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/g)]
+        .map((m) => m[0])
+        .find((s) => s.includes(`/images/${file}?`)),
+      credit = figure?.match(/<p class="figcredit">([^<]*)<\/p>/)?.[1];
     if (
       !original ||
       r.origin !== 'nps-agency-photo-public-domain' ||

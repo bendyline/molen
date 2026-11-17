@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tokyo_stock_exchange",
+  "kind": "static-structure",
+  "title": "Tokyo Stock Exchange",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tokyo_stock_exchange",
+        "output": "assets/places/xn/xn7/tokyo_stock_exchange/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:359e1a372bcef1c4afc46c01b3c54b205ec9a3d94a48effe87db1982cc3716b9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tokyo-stock-exchange",
+        "path": "models/generate-tokyo-stock-exchange.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/tokyo-stock-exchange-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29106-12902.png",
+      "terrain-sources/terrarium-15-29106-12903.png",
+      "terrain-sources/terrarium-15-29107-12902.png",
+      "terrain-sources/terrarium-15-29107-12903.png",
+      "preview.png",
+      "native-map/osm-tokyo-stock-exchange.json",
+      "native-map/plateau-exchange-geometry.json",
+      "reference-rights/executor-outside-exchange.jpg",
+      "reference-rights/executor-original-commons.json",
+      "reference-rights/syced-outside-exchange.jpg",
+      "reference-rights/syced-original-commons.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

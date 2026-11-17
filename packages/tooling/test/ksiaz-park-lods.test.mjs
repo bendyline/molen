@@ -8,6 +8,14 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 
 it.each(ksiazParkModels)('keeps $key deterministic and within browser budgets', async ({ key }) => {
   const id = `molen.worldgen.structure.${key}`,
+    frame = JSON.parse(
+      readFileSync(
+        new URL(
+          `../../../content/worldgen/source/places/u3/u35/${key}/map-frame.json`,
+          import.meta.url,
+        ),
+      ),
+    ),
     levels = [];
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -36,7 +44,7 @@ it.each(ksiazParkModels)('keeps $key deterministic and within browser budgets', 
         }
       }
     for (const group of types.values()) expect(group.size).toBe(1);
-    expect(Math.min(...positions.map((p) => p.min[1]))).toBe(0);
+    expect(Math.min(...positions.map((p) => p.min[1]))).toBeCloseTo(frame.siteFit.footingBottom, 5);
     expect(Math.max(...positions.map((p) => p.max[1]))).toBeLessThan(11);
     levels.push(a);
   }
@@ -104,6 +112,7 @@ it('leaves real arched wall openings in front of the forge recessed doors', () =
       s = t.map((a, i) => cross(a, t[(i + 1) % 3]));
     return s.every((v) => v > 1e-4) || s.every((v) => v < -1e-4);
   };
-  for (const [x] of frame.controls.portals)
-    for (const y of [0.5, 1.5, 2.3]) expect(wall.some((t) => inside(x, y, t))).toBe(false);
+  for (const [i, [x]] of frame.controls.portals.entries())
+    for (const y of [0.5, 1.5, 2.3])
+      expect(wall.some((t) => inside(x, frame.siteFit.entrances[i].floor + y, t))).toBe(false);
 });

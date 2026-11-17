@@ -4,7 +4,7 @@
 
 Own jogged footprint with a steep red tiled roof, cream timber-framed main gable, side dormer, small entrance gable, shutters and two masonry chimneys.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.
 
 ## Sources and reconstruction
 
@@ -21,6 +21,6 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 Run node content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/generate-ksiaz-service-structures.mjs --ids=KSI_S01 (or --check).
 
-1468 triangles;179376 source bytes;5 merged material groups;no embedded images. Four existing shared plaster, tile, rubble and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
+1606 triangles;196424 source bytes;6 merged material groups;no embedded images. Four existing shared plaster, tile, rubble and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd
+Source hash: sha256:e2b729b2edcc769aa34c1899ee3f7b55fe4e7c78062060879935058eb6f896e5

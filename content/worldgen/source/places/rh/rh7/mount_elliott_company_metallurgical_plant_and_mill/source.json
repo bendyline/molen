@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mount_elliott_company_metallurgical_plant_and_mill",
+  "kind": "static-structure",
+  "title": "Mount Elliott Company Metallurgical Plant and Mill",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mount_elliott_company_metallurgical_plant_and_mill",
+        "output": "assets/places/rh/rh7/mount_elliott_company_metallurgical_plant_and_mill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bdb800dceafc10d117781dbe12a92feafcfd0663f7dfd2bab424fb64d82a3c38"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mount-elliott-mill",
+        "path": "models/generate-mount-elliott-mill.mjs"
+      },
+      {
+        "id": "mount-elliott-mill-model",
+        "path": "models/mount-elliott-mill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29172-18312.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "reference-rights/qhr-602256-structure-facts.json",
+      "native-map/queensland-heritage-602256.geojson",
+      "native-map/mount-isa-railway.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

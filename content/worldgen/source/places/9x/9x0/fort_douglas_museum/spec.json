@@ -1,0 +1,447 @@
+{
+  "planId": "fort_douglas_museum",
+  "id": "fort_douglas_museum",
+  "assetId": "molen.worldgen.structure.fort_douglas_museum",
+  "title": "Fort Douglas Museum",
+  "wikidataId": null,
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -111.83369184,
+    "latitude": 40.7638832
+  },
+  "size": [
+    31.944000244140625,
+    12.542900562286377,
+    30.680999755859375
+  ],
+  "actualBounds": {
+    "min": [
+      -12.562000274658203,
+      -3.4000000953674316,
+      -22.086999893188477
+    ],
+    "max": [
+      19.381999969482422,
+      9.142900466918945,
+      8.593999862670898
+    ]
+  },
+  "visualBrief": "Fort Douglas Military Museum’s main 1870s barrack on Potter Street, with red sandstone, dark gable roofs and a white timber veranda in May 2022.",
+  "nativeAxes": {
+    "x": "along Potter Street",
+    "y": "up",
+    "z": "from Potter Street toward the rear"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2022-05-15",
+    "validFrom": "2022-01-01",
+    "validUntil": "2023-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Douglas_Military_Museum_-_Salt_Lake_City,_Utah_-_15_May_2022.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-douglas-wp",
+      "url": "https://qualla.com/fort-douglas/"
+    }
+  ],
+  "referenceInputHash": "33fc415d0c8f04780d77632dae08602fa3ae53c2995928c39bfa17c3e36e720b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9x/9x0/fort_douglas_museum/models/fort-douglas-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9x/9x0/fort_douglas_museum/models/fort-douglas-museum-model.mjs",
+    "level": "skyline",
+    "export": "barrackSkyline",
+    "errorMeters": 0.46,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "barrackDistrict",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "barrackStreet",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "barrackCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "wood_plain",
+    "shingle_asphalt",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -111.83369184,
+      40.7638832
+    ],
+    "heading": 0.5796269561454868,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -111.83382908347188,
+        40.764041989360834
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain beside the street-facing porch. Raised porch and staircase are modeled relative to it."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/238500757",
+      "way/10129746",
+      "way/238500756"
+    ],
+    "source": "https://www.openstreetmap.org/way/238500757",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c58228c345ce4979797942dfa27491732aed8a8ba1356d26ce72b8699fa17db8",
+    "notes": "The mapped eight-point gallery outline is aligned to its Potter Street frontage. The Qualla photograph identifies the near building by its museum sign and white veranda. The separate Kauffman barrack is preserved as a neighboring control point."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the Ezekiel R. Dumke Jr. main museum gallery at 1990 East Potter Street. The adjacent Kauffman barrack and the remainder of the fort are separate buildings.",
+    "Map geometry controls the exterior plan. Roof pitch, rear openings, porch floor height, sign lettering and weathered sandstone tones are estimated from the documented building and the street photograph.",
+    "Original public terrain was preserved. Step height and the masonry meeting the ground are approximate."
+  ],
+  "sourceLicense": "Original geometry under repository license. Exact Qualla photograph released under CC0 by its author. Native OpenStreetMap data under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "potter-street-skyline",
+      "position": [
+        36,
+        21,
+        -50
+      ],
+      "lookAt": [
+        2,
+        3.1,
+        -8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "potter-street-district",
+      "position": [
+        36,
+        21,
+        -50
+      ],
+      "lookAt": [
+        2,
+        3.1,
+        -8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "potter-street-street",
+      "position": [
+        36,
+        21,
+        -50
+      ],
+      "lookAt": [
+        2,
+        3.1,
+        -8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "potter-street-closeup",
+      "position": [
+        36,
+        21,
+        -50
+      ],
+      "lookAt": [
+        2,
+        3.1,
+        -8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "potter-street-porch-and-sign",
+      "position": [
+        -19,
+        4.7,
+        -43
+      ],
+      "lookAt": [
+        1.5,
+        3.2,
+        -17.5
+      ]
+    },
+    {
+      "name": "sandstone-gable-and-cross-bracing",
+      "position": [
+        32,
+        10.7,
+        -31
+      ],
+      "lookAt": [
+        8,
+        4.3,
+        -12
+      ]
+    },
+    {
+      "name": "rear-wings-and-open-court",
+      "position": [
+        25,
+        14,
+        29
+      ],
+      "lookAt": [
+        3,
+        3.1,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6540,
+    "vertices": 19620,
+    "materials": 6,
+    "bytes": 1009936,
+    "sha256": "sha256:5dd52d3ec42c0370980fdcd92713b72a3811be8dc2429fbe92ea145e3aa53f0c"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sao_pedro_theatre",
+  "kind": "static-structure",
+  "title": "Theatro São Pedro, Porto Alegre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sao_pedro_theatre",
+        "output": "assets/places/6f/6fe/sao_pedro_theatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d25c829b556bd977c63eb297227dcd4bb786cdfa1adc63bf3f4a67b1f867579d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sao-pedro-theatre",
+        "path": "models/generate-sao-pedro-theatre.mjs"
+      },
+      {
+        "id": "hacienda-lealtad-model",
+        "path": "models/sao-pedro-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-theatro-sao-pedro.json",
+      "reference-rights/terragno-theatre-1875.jpg",
+      "reference-rights/terragno-theatre-1875-native.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-11720-19251.png",
+      "terrain-sources/terrarium-15-11720-19252.png",
+      "terrain-sources/terrarium-15-11721-19251.png",
+      "terrain-sources/terrarium-15-11721-19252.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

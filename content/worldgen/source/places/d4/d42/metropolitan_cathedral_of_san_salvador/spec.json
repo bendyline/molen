@@ -1,0 +1,919 @@
+{
+  "planId": "metropolitan_cathedral_of_san_salvador",
+  "id": "metropolitan_cathedral_of_san_salvador",
+  "assetId": "molen.worldgen.structure.metropolitan_cathedral_of_san_salvador",
+  "title": "Metropolitan Cathedral of San Salvador",
+  "wikidataId": "Q2942929",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -89.19107778,
+    "latitude": 13.69859167
+  },
+  "size": [
+    63.85905838012695,
+    52.59999990463257,
+    80.56078338623047
+  ],
+  "actualBounds": {
+    "min": [
+      -31.21780014038086,
+      -2.5999999046325684,
+      -32.161434173583984
+    ],
+    "max": [
+      32.641258239746094,
+      50,
+      48.399349212646484
+    ]
+  },
+  "visualBrief": "The cathedral above Plaza Gerardo Barrios with a deeply recessed portal, two open belfries, and a large ribbed crossing dome.",
+  "nativeAxes": {
+    "x": "across the front toward the east",
+    "y": "up",
+    "z": "out toward Plaza Gerardo Barrios"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canonizaci%C3%B3n_Monse%C3%B1or_Romero-San_Salvador_(1)_(31436690438).jpg",
+    "https://commons.wikimedia.org/wiki/File:Canonizaci%C3%B3n_Monse%C3%B1or_Romero-San_Salvador_(5)_(43495384800).jpg"
+  ],
+  "stories": [
+    {
+      "id": "metropolitan-cathedral-of-san-salvador-wp",
+      "url": "https://qualla.com/metropolitan-cathedral-of-san-salvador/"
+    }
+  ],
+  "referenceInputHash": "6c10d7a1573ad6db1200077464ce115f5100751a752804856054607808cb3d07",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d4/d42/metropolitan_cathedral_of_san_salvador/models/san-salvador-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d4/d42/metropolitan_cathedral_of_san_salvador/models/san-salvador-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "sanSalvadorSkyline",
+    "errorMeters": 2.23,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_tadelakt",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.93
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.84
+      },
+      "dome": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sanSalvadorDistrict",
+        "errorMeters": 0.86,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      },
+      "street": {
+        "export": "sanSalvadorStreet",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      },
+      "closeup": {
+        "export": "sanSalvadorCloseup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_tadelakt",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.93
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "plaster_tadelakt",
+    "stone_sandstone",
+    "metal_corrugated",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.62,
+    "cameraYaw": 0.09,
+    "focus": {
+      "center": [
+        0.69072,
+        12,
+        7
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Municipal heritage record gives 50 m tower and 45 m dome heights. The two Presidency originals show the principal arch, belfry rhythm, dome profile and nave windows. The University of El Salvador architectural study records the sheet-metal nave roof, concrete transept roofs, plain post-2011 finish, round side windows and paired drum openings.",
+    "anchor": [
+      -89.19107778,
+      13.69859167
+    ],
+    "heading": -0.11725341503931615,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -89.19111836709278,
+        13.69820387089883
+      ],
+      "modelHeight": 0,
+      "basis": "Estimated site approach just outside the center of the mapped square-facing threshold."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          18.45793,
+          -31.79167
+        ],
+        [
+          19.18669,
+          -31.79906
+        ],
+        [
+          19.20723,
+          -30.79267
+        ],
+        [
+          18.34827,
+          -30.78116
+        ],
+        [
+          18.4334,
+          -24.60384
+        ],
+        [
+          19.29236,
+          -24.61535
+        ],
+        [
+          19.28719,
+          -23.54989
+        ],
+        [
+          18.38265,
+          -23.55543
+        ],
+        [
+          18.38769,
+          -18.24297
+        ],
+        [
+          19.35667,
+          -18.24502
+        ],
+        [
+          19.35442,
+          -17.24716
+        ],
+        [
+          18.38544,
+          -17.24511
+        ],
+        [
+          18.37908,
+          -12.12186
+        ],
+        [
+          19.34806,
+          -12.12391
+        ],
+        [
+          19.35655,
+          -11.12732
+        ],
+        [
+          18.38627,
+          -11.13632
+        ],
+        [
+          18.38668,
+          -8.26687
+        ],
+        [
+          18.38121,
+          -6.00202
+        ],
+        [
+          19.35019,
+          -6.00407
+        ],
+        [
+          19.34664,
+          -5.01726
+        ],
+        [
+          18.37766,
+          -5.01521
+        ],
+        [
+          18.3814,
+          0.65608
+        ],
+        [
+          31.52691,
+          0.66567
+        ],
+        [
+          32.61535,
+          0.66076
+        ],
+        [
+          32.6131,
+          1.65862
+        ],
+        [
+          31.5328,
+          1.64016
+        ],
+        [
+          31.52645,
+          7.1333
+        ],
+        [
+          32.63637,
+          7.12585
+        ],
+        [
+          32.64126,
+          7.62968
+        ],
+        [
+          32.63412,
+          8.12372
+        ],
+        [
+          31.5229,
+          8.1201
+        ],
+        [
+          31.52046,
+          13.64641
+        ],
+        [
+          32.61019,
+          13.65255
+        ],
+        [
+          32.61868,
+          14.64915
+        ],
+        [
+          14.93554,
+          14.66967
+        ],
+        [
+          14.93628,
+          17.8193
+        ],
+        [
+          14.93213,
+          20.4651
+        ],
+        [
+          15.65146,
+          20.47004
+        ],
+        [
+          15.6479,
+          21.45685
+        ],
+        [
+          14.92988,
+          21.46297
+        ],
+        [
+          14.93101,
+          26.74225
+        ],
+        [
+          15.65034,
+          26.74719
+        ],
+        [
+          15.64809,
+          27.74506
+        ],
+        [
+          14.92876,
+          27.74012
+        ],
+        [
+          14.92305,
+          33.05384
+        ],
+        [
+          15.65312,
+          33.05751
+        ],
+        [
+          15.64957,
+          34.04432
+        ],
+        [
+          14.93154,
+          34.05044
+        ],
+        [
+          14.92683,
+          39.83482
+        ],
+        [
+          16.71311,
+          39.83737
+        ],
+        [
+          16.70965,
+          43.78334
+        ],
+        [
+          16.70618,
+          47.7293
+        ],
+        [
+          12.6545,
+          47.72458
+        ],
+        [
+          8.60282,
+          47.71986
+        ],
+        [
+          8.60691,
+          42.85468
+        ],
+        [
+          0.69005,
+          42.8569
+        ],
+        [
+          -7.21738,
+          42.84679
+        ],
+        [
+          -7.22016,
+          47.72302
+        ],
+        [
+          -11.27054,
+          47.72935
+        ],
+        [
+          -15.33297,
+          47.72589
+        ],
+        [
+          -15.3282,
+          43.79098
+        ],
+        [
+          -15.32473,
+          39.84502
+        ],
+        [
+          -13.54919,
+          39.84884
+        ],
+        [
+          -13.54839,
+          34.03129
+        ],
+        [
+          -14.27846,
+          34.02762
+        ],
+        [
+          -14.27621,
+          33.02976
+        ],
+        [
+          -13.54614,
+          33.03343
+        ],
+        [
+          -13.55117,
+          27.72098
+        ],
+        [
+          -14.28124,
+          27.7173
+        ],
+        [
+          -14.27769,
+          26.7305
+        ],
+        [
+          -13.54892,
+          26.72311
+        ],
+        [
+          -13.55005,
+          21.44382
+        ],
+        [
+          -14.28012,
+          21.44015
+        ],
+        [
+          -14.27788,
+          20.44229
+        ],
+        [
+          -13.5478,
+          20.44596
+        ],
+        [
+          -13.54072,
+          17.73256
+        ],
+        [
+          -13.54569,
+          14.63947
+        ],
+        [
+          -25.98522,
+          14.61398
+        ],
+        [
+          -30.13487,
+          14.60958
+        ],
+        [
+          -31.20183,
+          14.61197
+        ],
+        [
+          -31.19827,
+          13.62516
+        ],
+        [
+          -30.13132,
+          13.62278
+        ],
+        [
+          -30.13018,
+          8.08541
+        ],
+        [
+          -31.17565,
+          8.08527
+        ],
+        [
+          -31.17925,
+          7.59249
+        ],
+        [
+          -31.1721,
+          7.09846
+        ],
+        [
+          -30.12663,
+          7.09861
+        ],
+        [
+          -30.11768,
+          1.62758
+        ],
+        [
+          -31.20741,
+          1.62143
+        ],
+        [
+          -31.20516,
+          0.62357
+        ],
+        [
+          -17.16586,
+          0.63997
+        ],
+        [
+          -17.167,
+          -5.00922
+        ],
+        [
+          -17.97356,
+          -5.01509
+        ],
+        [
+          -17.98075,
+          -6.00063
+        ],
+        [
+          -17.16475,
+          -6.00708
+        ],
+        [
+          -17.15839,
+          -11.13033
+        ],
+        [
+          -17.97569,
+          -11.13493
+        ],
+        [
+          -17.97214,
+          -12.12174
+        ],
+        [
+          -17.16688,
+          -12.12692
+        ],
+        [
+          -17.16052,
+          -17.25017
+        ],
+        [
+          -17.97783,
+          -17.25478
+        ],
+        [
+          -17.97427,
+          -18.24158
+        ],
+        [
+          -17.15827,
+          -18.24803
+        ],
+        [
+          -17.16201,
+          -23.54943
+        ],
+        [
+          -18.04506,
+          -23.5575
+        ],
+        [
+          -18.04151,
+          -24.54431
+        ],
+        [
+          -17.15976,
+          -24.5473
+        ],
+        [
+          -17.15343,
+          -30.78023
+        ],
+        [
+          -18.13445,
+          -30.78797
+        ],
+        [
+          -18.13351,
+          -31.79688
+        ],
+        [
+          -17.131,
+          -31.79167
+        ],
+        [
+          -13.7329,
+          -31.78843
+        ],
+        [
+          -8.01569,
+          -31.78934
+        ],
+        [
+          -4.29145,
+          -31.79088
+        ],
+        [
+          0.24879,
+          -31.79887
+        ],
+        [
+          4.32195,
+          -31.79668
+        ],
+        [
+          8.26362,
+          -31.80142
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Native cathedral polygon includes front tower feet, buttresses and transverse wings."
+    },
+    "featureIds": [
+      "relation/7966675",
+      "way/557828627"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7966675",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e96a2fee75e66e991d649c8e086cb53971b107c3cd4849be69ab1d5837f52ea",
+    "notes": "The 117 mapped vertices establish the tower corners, nave buttresses, transept ends and rear. Architectural elevations and roof sections will be estimated separately using the owner and municipal records."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_tadelakt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Dome section, side openings, bell openings and secondary roof pitches beyond the two main viewpoints will be estimated from the named exterior sources and mapped perimeter.",
+    "The photographed nighttime illumination and event projections are temporary. Permanent exterior finishes are interpreted separately."
+  ],
+  "sourceLicense": "Original model with OpenStreetMap ODbL 1.0 data and verified CC0 reference photographs by the Presidency of El Salvador.",
+  "qaLodCameras": [
+    {
+      "name": "cathedral-skyline",
+      "position": [
+        78,
+        53,
+        125
+      ],
+      "lookAt": [
+        0,
+        22,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "cathedral-district",
+      "position": [
+        78,
+        53,
+        125
+      ],
+      "lookAt": [
+        0,
+        22,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cathedral-street",
+      "position": [
+        78,
+        53,
+        125
+      ],
+      "lookAt": [
+        0,
+        22,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "cathedral-closeup",
+      "position": [
+        78,
+        53,
+        125
+      ],
+      "lookAt": [
+        0,
+        22,
+        10
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "portal-and-twin-belfries-from-plaza",
+      "position": [
+        0.6,
+        5.5,
+        97
+      ],
+      "lookAt": [
+        0.69072,
+        22.8,
+        43.1
+      ]
+    },
+    {
+      "name": "recessed-portal-rose-window-and-doors",
+      "position": [
+        -12,
+        4.35,
+        67
+      ],
+      "lookAt": [
+        0.69072,
+        13.4,
+        41.2
+      ]
+    },
+    {
+      "name": "paired-open-bell-arcades",
+      "position": [
+        40,
+        42,
+        78
+      ],
+      "lookAt": [
+        1,
+        39,
+        39.4
+      ]
+    },
+    {
+      "name": "crossing-dome-and-transept-roofs",
+      "position": [
+        -67,
+        60,
+        -47
+      ],
+      "lookAt": [
+        0.69072,
+        24,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22806,
+    "vertices": 68418,
+    "materials": 6,
+    "bytes": 2917236,
+    "sha256": "sha256:a8cd8f6cabc5cc0dab3560b69b98cd6193de91a78e055d8d020093af901aa7fa"
+  }
+}

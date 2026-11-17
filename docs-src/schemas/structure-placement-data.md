@@ -473,6 +473,16 @@ Geographic placement data with authoring explanations omitted.
           "replaceFootprint": {
             "type": "boolean"
           },
+          "surfacePassageIds": {
+            "minItems": 1,
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
           "buildingCutout": {
             "type": "object",
             "properties": {

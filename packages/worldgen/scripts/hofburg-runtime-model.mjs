@@ -523,7 +523,7 @@ const wings = [
   [93659168, 23, 8, 'stallburg', 'plaster', 'tile'],
   [293340845, 24, 7, 'redouten', 'plaster', 'tile'],
   [293340835, 24, 7, 'festsaal', 'plaster', 'tile'],
-  [293340836, 26, 5, 'library', 'limestone', 'copper'],
+  // The State Hall wing (293340836) is supplied by austrian_national_library.
   [293340834, 24, 7, 'augustiner', 'plaster', 'tile'],
   [293340833, 24, 7, 'monastery', 'plaster', 'tile'],
   [1212887960, 24, 7, 'monastery', 'plaster', 'tile'],
@@ -858,7 +858,7 @@ export function buildHofburgRuntime(out, detail) {
   dome(o, 1022701010, 40, 9, 3);
   dome(o, 1022701011, 33.5, 5, 1.2);
   dome(o, 1022701012, 33.5, 5, 1.2);
-  dome(o, 1022701013, 35.5, 7, 0.7);
+  // The State Hall model also owns the roof pavilion (1022701013).
   amalienClock(o);
   neuePavilions(o);
   const canopy = rings(227023529, o);

@@ -21,6 +21,7 @@ import {
   ksiazGateModels,
   ksiazGatePalette,
   ksiazGateSurfaces,
+  ksiazLionGatePalette,
 } from './ksiaz-gate-models.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../../../../../../..'),
@@ -56,6 +57,7 @@ for (const model of ksiazGateModels.filter(
     dir = resolve(root, sourcePath),
     frameBytes = await readFile(resolve(dir, 'map-frame.json')),
     frame = JSON.parse(frameBytes),
+    fit = frame.siteFit,
     assetId = `molen.worldgen.structure.${model.key}`,
     used = new Map(),
     builder = new MeshBufferBuilder();
@@ -144,9 +146,9 @@ for (const model of ksiazGateModels.filter(
     nativeAxes: frame.nativeAxes,
     appearance: {
       standard: 'docs-src/guide/medium-fi.md',
-      paletteSrgb: ksiazGatePalette,
+      paletteSrgb: model.id === 'KSI_G03' ? ksiazLionGatePalette : ksiazGatePalette,
       colorEncoding: 'sRGB decoded to linear COLOR_0',
-      materialBudget: model.id === 'KSI_G03' ? 3 : 2,
+      materialBudget: model.id === 'KSI_G03' ? 4 : 3,
     },
     mediumFiContext: { neighborStyle: 'molen.worldgen.catalog.german_fachwerk' },
     sourceFacts: {
@@ -165,12 +167,25 @@ for (const model of ksiazGateModels.filter(
     fidelityStatus: 'pending',
     reviewStatus: 'source-geometry;captures pending',
     geographicProposal: {
-      status: 'research-only',
+      status: fit ? 'preview-proposal' : 'research-only',
       anchor: frame.anchor,
       heading: frame.heading,
       ground: 'terrain',
       elevationMode: 'terrain-contact',
       groundModelY: 0,
+      ...(fit
+        ? {
+            groundContactReviewed: true,
+            groundContactBasis: frame.reconstruction.registration,
+            terrainReference: {
+              anchor: fit.contact.anchor,
+              modelHeight: fit.contact.modelHeight,
+              basis: frame.reconstruction.registration,
+            },
+            bounds: fit.bounds,
+            orientationPolicy: 'map-verified',
+          }
+        : {}),
       replaceFootprint: false,
       featureIds: [`node/${model.node}`],
       source: frame.sourceUrl,
@@ -178,8 +193,9 @@ for (const model of ksiazGateModels.filter(
       mapGeometryHash: hashEvidenceText(frameBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
-      notes:
-        'Own mapped gate point and adjoining path axis; no mapped footprint or surveyed dimensions. Signed facing and terrain fit remain unreviewed. Inactive draft.',
+      notes: fit
+        ? frame.reconstruction.registration
+        : 'Own mapped gate point and adjoining path axis; no mapped footprint or surveyed dimensions. Signed facing and terrain fit remain unreviewed. Inactive draft.',
     },
     sharedSurfaces: [...used]
       .filter(([, s]) => s.graph)
@@ -194,13 +210,18 @@ for (const model of ksiazGateModels.filter(
     limitations: [
       'One of three park gates; the full ksiaz_castle_and_park_complex complex remains incomplete.',
       'Map data locates the opening and adjoining path only. Widths, heights and wing-wall curves are photographic estimates.',
-      model.referenceYear
-        ? `Exterior follows the ${model.referenceYear} primary photograph. Current restoration state is unconfirmed; present-day activation requires review.`
-        : 'Exterior follows the source-linked 2014 photograph. Current restoration state is unconfirmed; present-day activation requires review.',
+      fit
+        ? (model.fitAppearance ??
+          'Exterior and ornaments follow the linked 2014 photograph. Leaves are shown open. Their position in use varies.')
+        : model.referenceYear
+          ? `Exterior follows the ${model.referenceYear} primary photograph. Current restoration state is unconfirmed; present-day activation requires review.`
+          : 'Exterior follows the source-linked 2014 photograph. Current restoration state is unconfirmed; present-day activation requires review.',
       model.ornamentNote ??
         'Urns, scrolls, putti and hybrid sculptures are simplified original medium-fi forms, without facial likenesses, lettering or sculpted microdetail.',
       'No independent Wikidata identifier, unique textures or redistributed reference photos.',
-      'Signed facade facing, local datum, terrain fit, adaptive streaming and physical-device timing remain pending.',
+      fit
+        ? 'Original terrain supplies the local grade. Widths and details remain photographic estimates. Physical-device timing remains pending.'
+        : 'Signed facade facing, local datum, terrain fit, adaptive streaming and physical-device timing remain pending.',
     ],
     qaCameras,
     importOptions: { optimize: false },
@@ -291,15 +312,19 @@ for (const model of ksiazGateModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    (fit
+      ? 'Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the open approach and foundations.\n\n'
+      : 'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n') +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +
     spec.sourceLicense +
     '\n\n' +
-    (model.id === 'KSI_G03'
-      ? 'Own mapped gate point/path axis; native Y0 is estimated local ground contact. Widths, heights, lion facing and wall curves are photographic interpretations. No independent Wikidata identity is claimed. Exact dimensions, signed facing and terrain fit remain pending.\n\n'
-      : 'Own mapped gate point/path axis; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. Neither gate claims an independent Wikidata identifier. Exact dimensions, facade sign and geographic fit remain pending.\n\n') +
+    (fit
+      ? frame.reconstruction.registration + '\n\n'
+      : model.id === 'KSI_G03'
+        ? 'Own mapped gate point/path axis; native Y0 is estimated local ground contact. Widths, heights, lion facing and wall curves are photographic interpretations. No independent Wikidata identity is claimed. Exact dimensions, signed facing and terrain fit remain pending.\n\n'
+        : 'Own mapped gate point/path axis; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. Neither gate claims an independent Wikidata identifier. Exact dimensions, facade sign and geographic fit remain pending.\n\n') +
     '## Build\n\nRun node content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/generate-ksiaz-park-gates.mjs --ids=' +
     model.id +
     ' (or --check).\n\n' +
@@ -308,8 +333,8 @@ for (const model of ksiazGateModels.filter(
     bytes.length +
     ' source bytes;' +
     mesh.groups.length +
-    (model.id === 'KSI_G03'
-      ? ' merged material groups;no embedded images. Shared coursed sandstone, raw sandstone carvings and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.\n\n'
+    (fit || model.id === 'KSI_G03'
+      ? ` merged material groups;no embedded images. Shared coursed sandstone, raw sandstone carvings${model.id === 'KSI_G03' ? ', lime plaster' : ''} and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.\n\n`
       : ' merged material groups;no embedded images. Shared sandstone and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.\n\n') +
     'Source hash: ' +
     hash(bytes) +

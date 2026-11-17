@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.parramatta_female_factory_and_institutions_precinct",
+  "kind": "static-structure",
+  "title": "Parramatta Female Factory and Institutions Precinct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.parramatta_female_factory_and_institutions_precinct",
+        "output": "assets/places/r3/r3g/parramatta_female_factory_and_institutions_precinct/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:92818b7f74f9d550ae6777f866c46f95b5aa8345cbbfe47f2b7d2640c5e67c04"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-parramatta-precinct",
+        "path": "models/generate-parramatta-precinct.mjs"
+      },
+      {
+        "id": "parramatta-precinct-model",
+        "path": "models/parramatta-precinct-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-30128-19656.png",
+      "preview.png",
+      "native-map/parramatta-precinct.json",
+      "reference-rights/commons-augustus-earle-parramatta.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

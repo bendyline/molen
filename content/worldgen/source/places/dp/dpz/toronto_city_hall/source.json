@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.toronto_city_hall",
+  "kind": "static-structure",
+  "title": "Toronto City Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.toronto_city_hall",
+        "output": "assets/places/dp/dpz/toronto_city_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:78c4d79f638ce232bc8eddd97d65afc6708b383b7cdb1d5512f0742282d8d20f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-toronto-city-hall",
+        "path": "models/generate-toronto-city-hall.mjs"
+      },
+      {
+        "id": "toronto-city-hall-model",
+        "path": "models/toronto-city-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/civic-complex-controls.json",
+      "reference-rights/commons-toronto-city-hall-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9158-11958.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

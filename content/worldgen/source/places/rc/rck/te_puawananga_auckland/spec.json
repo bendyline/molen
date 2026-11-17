@@ -1,0 +1,407 @@
+{
+  "planId": "te_puawananga_auckland",
+  "id": "te_puawananga_auckland",
+  "assetId": "molen.worldgen.structure.te_puawananga_auckland",
+  "title": "Te Puawānanga Science and Technology Centre",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.72764286923078,
+    "latitude": -36.86728033076923
+  },
+  "size": [
+    48.32029342651367,
+    11.925055503845215,
+    49.45334434509277
+  ],
+  "actualBounds": {
+    "min": [
+      -27.17619514465332,
+      -3,
+      -21.994495391845703
+    ],
+    "max": [
+      21.14409828186035,
+      8.925055503845215,
+      27.45884895324707
+    ]
+  },
+  "visualBrief": "C3 Construction repaired and over-roofed the historic warehouse in 2023. MOTAT opened the reworked exhibition hall in 2024. The height profile follows current numerical measurements, with estimated exterior openings.",
+  "nativeAxes": {
+    "x": "east along the principal building",
+    "y": "up",
+    "z": "south across the principal building"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "museum-of-transport-and-technology-wp",
+      "url": "https://qualla.com/museum-of-transport-and-technology/"
+    }
+  ],
+  "referenceInputHash": "sha256:34cbecd0067609cca7cfd0188242dce86bc29f603f36fcbd95ae9b563577d8b4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rck/te_puawananga_auckland/models/te-puawananga-auckland-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rck/te_puawananga_auckland/models/te-puawananga-auckland-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.56,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.24
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.7,
+        "metallic": 0.26
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#deedf2",
+        "roughness": 0.31,
+        "metallic": 0.18
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.26
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#deedf2",
+            "roughness": 0.31,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.26
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#deedf2",
+            "roughness": 0.31,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.26
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#deedf2",
+            "roughness": 0.31,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.91,
+    "cameraYaw": 0.72,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -2,
+        4,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "A native ground sample near the south approach establishes the model datum. The floor and plinth use a small positive threshold above the independent unchanged field.",
+    "anchor": [
+      174.72764286923078,
+      -36.86728033076923
+    ],
+    "heading": -0.2764984671753718,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.72755965059451,
+        -36.86751494993307
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified elevation at the south approach in the signed map frame."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/221116589"
+    ],
+    "source": "https://www.openstreetmap.org/way/221116589",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a721306ba1171b06ccd949e1a7d17a4c1bc0b3fe770cc16c86fe2a6af4d89196",
+    "notes": "The museum identifies Te Puawānanga with Building 5 of the Great North Road campus. The named current polygon supplies the roof envelope, loading holds and main alignment."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped footprint and sampled 2024 bare-ground and roof elevations constrain the overall profile. The location of the entrance, spacing of wall openings, southern threshold details and finish distribution are approximate.",
+    "The model uses the original Terrarium review terrain. The independent LINZ numbers constrain the roof skin and grade rise."
+  ],
+  "sourceLicense": "Original geometry with numerical Auckland LiDAR measurements, attributed OpenStreetMap alignment, original terrain, and primary written records.",
+  "qaLodCameras": [
+    {
+      "name": "te-puawananga-auckland-skyline",
+      "position": [
+        56,
+        26,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "te-puawananga-auckland-district",
+      "position": [
+        56,
+        26,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "te-puawananga-auckland-street",
+      "position": [
+        56,
+        26,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "te-puawananga-auckland-closeup",
+      "position": [
+        56,
+        26,
+        72
+      ],
+      "lookAt": [
+        -2,
+        4,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entry-and-display",
+      "position": [
+        -10,
+        6.5,
+        53
+      ],
+      "lookAt": [
+        -5,
+        3.4,
+        23
+      ]
+    },
+    {
+      "name": "measured-roof-and-east-bay",
+      "position": [
+        53,
+        28,
+        -31
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "warehouse-north-and-west",
+      "position": [
+        -55,
+        13,
+        -43
+      ],
+      "lookAt": [
+        -1,
+        4,
+        -1
+      ]
+    },
+    {
+      "name": "entrance-sign-and-door",
+      "position": [
+        -5,
+        4.3,
+        38
+      ],
+      "lookAt": [
+        -5,
+        3.25,
+        25
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 741,
+    "vertices": 2223,
+    "materials": 5,
+    "bytes": 176848,
+    "sha256": "sha256:f83d8f5da9a98ab5951d09044a4695b3a06d6f94589a71eb555af19dfddff3ae"
+  }
+}

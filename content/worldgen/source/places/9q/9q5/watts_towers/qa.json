@@ -1,34 +1,33 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.watts_towers",
-  "inputHash": "sha256:7caf935ccacb92648caa2ba480876a33e24e0e80ddff288a373b18d82cba4a2c",
-  "captureReportHash": "sha256:dd2e5fce3588f0d9e0753a9b7e9bec2e72307d67bc80d86868cd32e1e78fb782",
+  "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+  "sourceHash": "sha256:8e9de67dcc51fd32f35ac2f1f5decbf13e38dea4c1d56cac701c946da1c2b5a2",
+  "runtimeHash": "sha256:aa35af051a866bcbd0428d7cc5d8851f76915ed25c28de2aa5433ad7927f0111",
+  "reviewedOn": "2026-11-15",
+  "notes": "The three open towers, West Tower loops, glazed court walls, gazebo, ship and house remnants retain their positions within the street-facing sculpture court. Authored street and close-up meshes preserve continuous supports and rings.",
+  "captureReportHash": "sha256:9ea6f52612464c81809a91a805a2ee8118b64334c367a3f6188b35e5ee78b702",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "visualReview": {
     "status": "passed",
-    "scope": "Complete detailed world-viewer exterior reconstruction",
+    "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+    "notes": "Inspected the original tower framing, wall mosaics, compound outline and sculpture.",
+    "captureReportHash": "sha256:9ea6f52612464c81809a91a805a2ee8118b64334c367a3f6188b35e5ee78b702",
     "inspectedFrames": [
-      "preview.png",
-      "shots/turntable/angle_0.png",
-      "shots/turntable/angle_1.png",
-      "shots/turntable/angle_2.png",
-      "shots/turntable/angle_3.png",
-      "shots/street-ensemble.png",
-      "shots/north-ensemble.png",
-      "shots/west-loops.png",
-      "shots/center-east-hearts.png",
-      "shots/tower-bases-mosaic.png",
-      "shots/gazebo-and-fountain.png",
-      "shots/gazebo-spire.png",
-      "shots/ship-and-masts.png",
-      "shots/street-wall-and-canopy.png",
-      "shots/aerial-site.png",
-      "shots/far-silhouette.png"
+      "preview.png"
     ],
-    "notes": "All 16 current portable frames inspected, followed by all 16 shared frames. The three main spires remain genuinely open and distinct, with nested frames, outer loops and the connecting heart ladder. Gazebo entrance/fountain, Ship, surviving house fragments, canopy, chimney, smaller spires and scalloped perimeter render connected. Concave court triangulation was corrected; full-resolution mosaic bases and gazebo details were inspected after that correction."
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:3af31ab15a00039f90b5f25c7e898620c754bba7f9495d69b2d1fa8476e72225"
+      }
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ae35368fc69217459b86741b91743db2386e36e9f7faf389cd6e41940b65a46c",
+    "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+    "notes": "Inspected shared metric plaster and concrete, with colored vertex geometry for the ceramic and glass pieces.",
+    "captureReportHash": "sha256:4a2f57a0e572ea60fb5a6831c19765c0675aaba9c10156370b6473c434686b1b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -47,17 +46,506 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 16 freshly rendered shared-surface frames with reflections and adaptive clipping, including full-resolution tower bases and north-up placement. Distinct spires, loops, hearts, open Gazebo, Ship and surviving house remnants remain coherent with visible mosaic pieces. The source explicitly binds the official State Parks parcel and E 107th Street axis. The placement fixture has a generic OSM caption, but its magenta outline is the retained State Parks parcel from map-frame.json; the source provenance is authoritative. Internal centers remain proportional plan registration, not a measured component survey."
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:a741e0e2c204065352ac9adee2938ad8c4239881edbed8a54c30f986a311724b"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:f747cb860dfd8196793abc7b2ab654ccaeaf626282d7255f42c050e3a80b65b8"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:f25c31df38019b3bd26c17a8d642dd673db1951d738607949f62a1db24b40b8d"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:823f1bd7b468e113f442b0b4d8d80f92c2c0331c3f3013a9249fafcdffa8d15c"
+      },
+      {
+        "path": "shots/shared/street-ensemble.png",
+        "hash": "sha256:acd507d1d4581633b740070e03161c062432324fef49626dfa514d3a1b35a715"
+      },
+      {
+        "path": "shots/shared/north-ensemble.png",
+        "hash": "sha256:0e9decd0c6b44b6d7dd15ad3912c494527bc99796cdc31debf1a9d95810caf6f"
+      },
+      {
+        "path": "shots/shared/west-loops.png",
+        "hash": "sha256:2046a347bf9e70c172b2f567962a0de67fd4483aba0f89ce2d76f5a6ebd93744"
+      },
+      {
+        "path": "shots/shared/center-east-hearts.png",
+        "hash": "sha256:bca210e20fd0acd2e2ba66819fd39e24f51b47ee04f49ceddf364ffc34274cac"
+      },
+      {
+        "path": "shots/shared/tower-bases-mosaic.png",
+        "hash": "sha256:fd556693607b69c3439c3a0337ab86a96a955305ba8ecaedd67e4c3e5eadd168"
+      },
+      {
+        "path": "shots/shared/gazebo-and-fountain.png",
+        "hash": "sha256:e807b028171eb5b7c77ecb57fc731504ddbc7d088de8df142d9a7402f603c963"
+      },
+      {
+        "path": "shots/shared/gazebo-spire.png",
+        "hash": "sha256:e470d446ed08736937c51d755b3ba81fb0ef135ab9e3e6868cd51c7347d8b5f4"
+      },
+      {
+        "path": "shots/shared/ship-and-masts.png",
+        "hash": "sha256:8f663cfaf1f152e0476bd2e05e3b39107e1ebfead3c5b6a1101233eacb2161b7"
+      },
+      {
+        "path": "shots/shared/street-wall-and-canopy.png",
+        "hash": "sha256:4dfeb7a24374143d1ae8ab42c41a711422d2f6e036bf06e58f97f3d19326562f"
+      },
+      {
+        "path": "shots/shared/aerial-site.png",
+        "hash": "sha256:0966b5fde14acbc1df710718d82abab91a377d736c556f0c4664c0bdbe9acbe8"
+      },
+      {
+        "path": "shots/shared/far-silhouette.png",
+        "hash": "sha256:c3f4c86f02a59a1e4d193d6b6f516ee2aa79664f74b68b1b906ff2715fbf18e2"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:75b2d8c8046d740c1a8b107575038fd709470c7ba9142d9af85e2330ddfa3591"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+    "notes": "Inspected all four authored levels and the required context, transition and lighting frames.",
+    "captureReportHash": "sha256:ea558725b13560c1ae5ea57753feed9a31ea28b77d12950c0f076623b3d8ffe3",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/street-ensemble.png",
+      "medium-fi/north-ensemble.png",
+      "medium-fi/west-loops.png",
+      "medium-fi/center-east-hearts.png",
+      "medium-fi/tower-bases-mosaic.png",
+      "medium-fi/gazebo-and-fountain.png",
+      "medium-fi/gazebo-spire.png",
+      "medium-fi/ship-and-masts.png",
+      "medium-fi/street-wall-and-canopy.png",
+      "medium-fi/aerial-site.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:f78dbf5987a84e73c72fef651e6b833a4e150f0a3a2337abf2a0819327c38ada"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:2dd3c09cd30250dc3e67077fc96a7f10fa40942be775657b6736bb7851a1a8bb"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:86fba3c8aba015ffd7dfeebf1d9b52d33fdb736e85b87e82d1ec12654808a200"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:4edfd69dcc33926e67f394cb80faf914868c6b95c165b860c5f50c5475d0ff8f"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:d9bf24385ace39752a7b1018b1693fb301d4e30debe174e8bd22ac458453c96b"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:066f361aa4fe65e1f4400715fe9094a10246bd231ac462f20949a132587f704f"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:7de84ad21c8b0bca1a61e831af2c51b5d4d8a59e2c8d2060719467c402f2dd4f"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:a32e0896b0519aa48821d974aefd583005865b9dc701b927f27d54550eff8331"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:94124f9a7567465ee270ce1243840ab48f135cfcd44dcb6f5a464f5ddf2429af"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:35e7c01a92c22e90f96ffcb11dfcc77353fe44749f22f117bae4ffef2bc30b52"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:444d82396884b7f9a80d2fc2ca80b56fd5abe7b0e27f3a37819803483d48ae73"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:d56571d8cfc7bcec2f6c92e67460a7926b5ccac30dc34dfbd8eafbb919b0f80d"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:4a0b1c8f488b110987a0def5587136066a55867061d1cc10c1c4c0b67e4ef9fb"
+      },
+      {
+        "path": "medium-fi/street-ensemble.png",
+        "hash": "sha256:61ad2aa1dfd90bb79429b47404c17d2eab248d498e5e99ffce299249b08be3d0"
+      },
+      {
+        "path": "medium-fi/north-ensemble.png",
+        "hash": "sha256:566902201aec366d064ad3424aad087adbc202b640204a7a8c0f0f2a01a9f081"
+      },
+      {
+        "path": "medium-fi/west-loops.png",
+        "hash": "sha256:c1ce0823c966b0b766a511bd5021b4d075102e8121b9dddbb93a52004fadc671"
+      },
+      {
+        "path": "medium-fi/center-east-hearts.png",
+        "hash": "sha256:d445fd3504efb292c55ebb216d137470233c1d90cfd250218e51f4861d5b058f"
+      },
+      {
+        "path": "medium-fi/tower-bases-mosaic.png",
+        "hash": "sha256:c42c2f7f321a29440abb982481a2013343b68d6e32d2c3a31e63b6bbeaf77371"
+      },
+      {
+        "path": "medium-fi/gazebo-and-fountain.png",
+        "hash": "sha256:ca486a3094de9d7a6b3e37c5b22d2a4a2210061c2a7d7f36237aa39d5c5fa311"
+      },
+      {
+        "path": "medium-fi/gazebo-spire.png",
+        "hash": "sha256:1821005039d85ffd84424e6f3224bfdc795e2ed4041e2b2323de8a5a19310f34"
+      },
+      {
+        "path": "medium-fi/ship-and-masts.png",
+        "hash": "sha256:a854664a482e018cab28d0ba6c5f8c585ee705956486011a2647ca54e1d7a255"
+      },
+      {
+        "path": "medium-fi/street-wall-and-canopy.png",
+        "hash": "sha256:6c5bedd9cfe0e1d61e067508918568ae3cf791b7c4df2b66c60c5a37fd3e26f1"
+      },
+      {
+        "path": "medium-fi/aerial-site.png",
+        "hash": "sha256:ecea24f18dcb111fe1416ae90a51ab3c305f4c7055643a2129ecc6aefa9949b2"
+      },
+      {
+        "path": "medium-fi/far-silhouette.png",
+        "hash": "sha256:142394fb8f6b5db0b93514d9f3fa0caa71bd2a1672a90711adeb7bea5815d02f"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:237491b79fe503aa76871a0d68610f51acef925d02cb88f42ec33b7918327161"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:066f361aa4fe65e1f4400715fe9094a10246bd231ac462f20949a132587f704f"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:1ac93a221e08fb6931ba94fe38fce0dac3bd26adc9512374d4d7234fadf34959"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:79819cdcc49979c1c47647684e6f14fcd299721639c855a7302df38d88c0a3b4"
+      }
+    ]
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+    "notes": "The three open towers, West Tower loops, glazed court walls, gazebo, ship and house remnants retain their positions within the street-facing sculpture court. Authored street and close-up meshes preserve continuous supports and rings. Sculpture positions and individual mosaic and wire details are approximate. The modern fence, amphitheater and arts center are outside this model. The narrowest rods fade at skyline distance."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:c0d85d971a5aa131b0bfea41b24ee86619a28ac81b019db01d4d0eadee101510",
-    "notes": "The California State Parks official Watts Towers of Simon Rodia SHP parcel, GISID GIS0000202 / unit 518, supplies the actual ensemble outline and E 107th Street axis. The full-resolution orthographic overlay agrees with its four-vertex concave boundary. The pink overlay is State Parks data despite the fixture's generic OSM caption. Individual component centers are explicitly proportional registration of the admitted 1959 city-hearing Exhibit B, cross-checked with the operator aerial; this approval covers world-viewer ensemble placement and directed arrangement, not surveyed individual foundations. Native ground contact is normalized by less than one centimetre to accommodate irregular bottom sleeves. The burned house volume is absent. Source identity and signed axes explicitly recorded in map-frame.json on 2026-10-02; inspected the current north-up shared placement frame. Anchor and heading are unchanged.",
-    "sourceMapFrameHash": "sha256:792d7b179926e76114cf7d18f337c1a581a3814bbe24e7858b84feb527c9bd81"
+    "inputHash": "sha256:c01dd8396eb140511dff352a9ed19d837798364cf51f03395a2b508a39744892",
+    "placementHash": "sha256:296fac9d32c7d56e65f0e10df957efa70bf5dacdec42a04c1ff6673c35db9ad4",
+    "mapFrameHash": "sha256:792d7b179926e76114cf7d18f337c1a581a3814bbe24e7858b84feb527c9bd81",
+    "notes": "The retained state park parcel and East 107th Street establish the signed axis. The fitted concrete court uses the standard Terrarium terrain datum. Tests retain neighboring buildings, roads and park landcover.",
+    "native": {
+      "levels": [
+        "skyline",
+        "district",
+        "street",
+        "closeup"
+      ],
+      "retainedNeighborBuildings": 49,
+      "retainedTransportationRecords": 13,
+      "courtProbesPerLevel": 12,
+      "foundationProbesPerLevel": 12,
+      "foundationContactsByLevel": {
+        "skyline": 11,
+        "district": 11,
+        "street": 12,
+        "closeup": 12
+      },
+      "failedLoadRetainsNativeMap": true,
+      "groundAndGeometryRestoredOnUnload": true,
+      "fixtureHash": "sha256:337ca9c9d25278ce543ee4e7e9aacccd02471763b55c330101cf068ed127bd88",
+      "terrainGridHash": "sha256:19eba53a4a06327e8c5a2af9ab2a0d525ee9fca64c22acb16291dd607a12b591",
+      "pmtilesMapHash": "sha256:6c7dd1935e95c5107d71a593d362d060659a9b48a8ee1f7421c6395bd0c7e571",
+      "frames": [
+        {
+          "level": "skyline",
+          "frame": "watts_towers-skyline-court-context.png",
+          "hash": "sha256:71dd4ee6cd4917ac6c336da2c14a42aa4381da8ef9fa593d2928c8c1b7ba5478"
+        },
+        {
+          "level": "skyline",
+          "frame": "watts_towers-skyline-street-lattice.png",
+          "hash": "sha256:cfcadebac8efccbb70ab9649c1600eab16713e56709eecea31949b1fb8660936"
+        },
+        {
+          "level": "skyline",
+          "frame": "watts_towers-skyline-north-mosaic.png",
+          "hash": "sha256:79140277be52f18aa52242d1870d5d53041dba46733aa52b4dde36655d1f93cc"
+        },
+        {
+          "level": "skyline",
+          "frame": "watts_towers-skyline-skyline-context.png",
+          "hash": "sha256:1ce1e23b356621e1f52d0335f71744f7e178c25d10087155d6b4bbfa2f6e632a"
+        },
+        {
+          "level": "skyline",
+          "frame": "watts_towers-skyline-gazebo-court.png",
+          "hash": "sha256:f4cca0b273b7133e890eab6b043b4ec2d48174f0f0a9e4816dddf2116d85e8df"
+        },
+        {
+          "level": "district",
+          "frame": "watts_towers-district-court-context.png",
+          "hash": "sha256:fb5d8ca099b8033fc5f447c4d8256402d233cb25b8658a083af2fbb37ac54213"
+        },
+        {
+          "level": "district",
+          "frame": "watts_towers-district-street-lattice.png",
+          "hash": "sha256:cf8d9a4eefe133d13d8117bc7c41cdb4b29d135326ecfd18b35b7a9efa8f77bb"
+        },
+        {
+          "level": "district",
+          "frame": "watts_towers-district-north-mosaic.png",
+          "hash": "sha256:2573d8ad20575b759421b64d80e335e69f20e22664bec9408b0c9c8212388221"
+        },
+        {
+          "level": "district",
+          "frame": "watts_towers-district-skyline-context.png",
+          "hash": "sha256:8cd2239ee577cab88fad66bfb791bf221507cbed42c0a8235ecf37b9a75a5860"
+        },
+        {
+          "level": "district",
+          "frame": "watts_towers-district-gazebo-court.png",
+          "hash": "sha256:7271c8d16df74242776f4b82c3dda012cbaefa51181753f188fa64d12eefb720"
+        },
+        {
+          "level": "street",
+          "frame": "watts_towers-street-court-context.png",
+          "hash": "sha256:545106eda48004a553a45722fc7152b3a84572878b4ac65beda6c61528da4988"
+        },
+        {
+          "level": "street",
+          "frame": "watts_towers-street-street-lattice.png",
+          "hash": "sha256:e7f9c731e454b65c8b7bcec9a339cfb2cfe1e4b8af29d3bff301ceddca263397"
+        },
+        {
+          "level": "street",
+          "frame": "watts_towers-street-north-mosaic.png",
+          "hash": "sha256:444acbc43f9ed05723b0f1f13f9c6a0a341e7ddd86878a981f81cbdf7daab741"
+        },
+        {
+          "level": "street",
+          "frame": "watts_towers-street-skyline-context.png",
+          "hash": "sha256:bf7c859d1ce0414f853e9fd60a89c5f0f58c5bcafbe63fe6c5b7d5d070431830"
+        },
+        {
+          "level": "street",
+          "frame": "watts_towers-street-gazebo-court.png",
+          "hash": "sha256:bf9558a3c4bee9d4c4eaeb2bb5716479f90f7ac339288f72292492d9c4207d21"
+        },
+        {
+          "level": "closeup",
+          "frame": "watts_towers-closeup-court-context.png",
+          "hash": "sha256:616410ba702a613bc9b547c949863bd405122e5b40cbb7210c3d40264929a6c7"
+        },
+        {
+          "level": "closeup",
+          "frame": "watts_towers-closeup-street-lattice.png",
+          "hash": "sha256:2ede29a70697e41eb586d5ec7cc7040888b9c1101456540233c5f0b489ffb526"
+        },
+        {
+          "level": "closeup",
+          "frame": "watts_towers-closeup-north-mosaic.png",
+          "hash": "sha256:f0ded30222e1563237767f9b6fce9f50295bbd19fe7072c24cda6003dd4f893c"
+        },
+        {
+          "level": "closeup",
+          "frame": "watts_towers-closeup-skyline-context.png",
+          "hash": "sha256:4567f3a4821791ec16d98dfdc547d093a65a5bd2871a2d98a9baa503459760b1"
+        },
+        {
+          "level": "closeup",
+          "frame": "watts_towers-closeup-gazebo-court.png",
+          "hash": "sha256:4708b8462c745d69513eae04183bef8a33e1c63392a429fbb4f83b8368783afa"
+        },
+        {
+          "level": "failure",
+          "frame": "watts_towers-failure-street-lattice.png",
+          "hash": "sha256:5453ff1ad92244e828c86037b1ed023b96544a9e84befb6778fc92ec8d0c08ef"
+        }
+      ]
+    }
   },
-  "fidelityReview": {
-    "target": "maximum",
-    "status": "passed",
-    "notes": "Passed for the detailed exterior reconstruction used by the world viewer: the separately authored West, Center and East spires retain the documented heights/base diameters, distinct outer/inner leg counts, West exterior loops and heart ladder. Bussard's dimensioned Gazebo drawing governs its 19 ft diameter and 40 ft height. NPS/LACMA photographs inform stepped mosaic bases, scalloped street panels, open Gazebo/fountain, Ship ornaments and surviving house elements. Conflicting Center/East published heights and the proportional internal site arrangement remain explicitly documented; small individual mosaic shards, tube irregularity and secondary sculpture ornament are original reconstruction, not a conservation facsimile. No current missing large exterior component is concealed by that qualification."
+  "validation": {
+    "glbs": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/9q/9q5/watts_towers/models/source.glb",
+        "hash": "sha256:8e9de67dcc51fd32f35ac2f1f5decbf13e38dea4c1d56cac701c946da1c2b5a2",
+        "bytes": 84623828,
+        "triangles": 1079676,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -22.204702377319336,
+          0,
+          -16.334524154663086
+        ],
+        "max": [
+          19.94586944580078,
+          30.604644775390625,
+          5.223540782928467
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/9q/9q5/watts_towers/model.glb",
+        "hash": "sha256:aa35af051a866bcbd0428d7cc5d8851f76915ed25c28de2aa5433ad7927f0111",
+        "bytes": 84623384,
+        "triangles": 1079676,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -22.204702377319336,
+          0,
+          -16.334524154663086
+        ],
+        "max": [
+          19.94586944580078,
+          30.604644775390625,
+          5.223540782928467
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/9q/9q5/watts_towers/model.skyline.glb",
+        "hash": "sha256:1312023849777c005df0368d92305be2256fee3d3a87053019e569e8988510cb",
+        "bytes": 65888,
+        "triangles": 826,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -22,
+          0,
+          -16.124300003051758
+        ],
+        "max": [
+          19.794130325317383,
+          30.608196258544922,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/9q/9q5/watts_towers/model.district.glb",
+        "hash": "sha256:f222a4d19e890fa3dc1c0e2e2c9ebba56c959f67cd57002e5e2950512ee0bfc8",
+        "bytes": 259072,
+        "triangles": 3310,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -22,
+          0,
+          -16.124300003051758
+        ],
+        "max": [
+          19.794130325317383,
+          30.608196258544922,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/9q/9q5/watts_towers/model.street.glb",
+        "hash": "sha256:fc0eb68131556ce37114c8d6893524bc947a8a9320fb7ca35ace77b9a4f83a76",
+        "bytes": 1228100,
+        "triangles": 15936,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -22.158784866333008,
+          0,
+          -16.254241943359375
+        ],
+        "max": [
+          19.85765838623047,
+          30.60379981994629,
+          5.1620001792907715
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/9q/9q5/watts_towers/model.closeup.glb",
+        "hash": "sha256:b36386c8a9bc197dccad57eca809301cac9d696825b995e0642c50c2f2d90cd0",
+        "bytes": 5135632,
+        "triangles": 62750,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -22.202377319335938,
+          0,
+          -16.334524154663086
+        ],
+        "max": [
+          19.94586944580078,
+          30.60402488708496,
+          5.220457553863525
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "initialBytes": 324960,
+    "inspectedViews": 81
   }
 }

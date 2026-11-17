@@ -92,6 +92,13 @@ describe('reviewed source-local geographic frame', () => {
       };
     const data = make();
     expect(reviewedSourceMapFrame(data)).toEqual(JSON.parse(data.frameBytes));
+    const reviewedMonument = make({
+      ...node,
+      tags: { name: node.tags.name, historic: 'monument' },
+    });
+    expect(reviewedSourceMapFrame(reviewedMonument)).toEqual(
+      JSON.parse(reviewedMonument.frameBytes),
+    );
     expect(reviewedSourceMapFrame({ ...data, nativeNodeBytes: undefined })).toBeUndefined();
     expect(reviewedSourceMapFrame({ ...data, nativeNodeBytes: Buffer.from('{}') })).toBeUndefined();
     expect(reviewedSourceMapFrame({ ...data, geographicReviewed: false })).toBeUndefined();

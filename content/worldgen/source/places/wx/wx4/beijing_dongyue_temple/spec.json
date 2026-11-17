@@ -1,0 +1,492 @@
+{
+  "planId": "beijing_dongyue_temple",
+  "id": "beijing_dongyue_temple",
+  "assetId": "molen.worldgen.structure.beijing_dongyue_temple",
+  "title": "Beijing Dongyue Temple",
+  "wikidataId": "Q814721",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 116.43777777778,
+    "latitude": 39.923611111111
+  },
+  "size": [
+    107.5149154663086,
+    21.43415117263794,
+    263.47217559814453
+  ],
+  "actualBounds": {
+    "min": [
+      -49.427852630615234,
+      -3.895508289337158,
+      -105.5011978149414
+    ],
+    "max": [
+      58.08706283569336,
+      17.53864288330078,
+      157.97097778320312
+    ]
+  },
+  "visualBrief": "Dongyue Temple in Beijing in 2023, with linked central halls, green tiled courtyard galleries, the distinct bell and drum towers, and the glazed paifang across Chaoyangmenwai Avenue.",
+  "nativeAxes": {
+    "x": "across the main courtyard",
+    "y": "up",
+    "z": "toward the south gate"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-09-30",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_0.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_4.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beijing_Dongyue_Temple_6.jpg"
+  ],
+  "stories": [
+    {
+      "id": "beijing-dongyue-temple-wp",
+      "url": "https://qualla.com/beijing-dongyue-temple/"
+    }
+  ],
+  "referenceInputHash": "767ba51e1f23928b26ef48e54e99314e6b1a6ba1eec6b6b9700b8d887be2d08c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/beijing_dongyue_temple/models/beijing-dongyue-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wx/wx4/beijing_dongyue_temple/models/beijing-dongyue-temple-model.mjs",
+    "level": "skyline",
+    "export": "templeSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.06
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "tile_ceramic",
+    "wood_plain",
+    "stone_ashlar",
+    "plaster_lime",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.6,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      116.43777777778,
+      39.923611111111
+    ],
+    "heading": -0.024675426547678646,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        116.43777113062093,
+        39.923404562438044
+      ],
+      "modelHeight": 0,
+      "basis": "Original source terrain in the open courtyard south of the central halls."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/469512039",
+      "way/469512042",
+      "way/469512043",
+      "way/469512044",
+      "way/469512045",
+      "way/469512046",
+      "way/469512047",
+      "way/469512048",
+      "way/469512049",
+      "way/469512050",
+      "way/469512051",
+      "way/469512052",
+      "way/469512053",
+      "way/683334200",
+      "way/683334201",
+      "way/683334202"
+    ],
+    "source": "https://www.openstreetmap.org/way/263608113",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a41c1dcd3e03e23e1cde0f8bef037ef215a4699f29c08a226fa6cb4910d599c7",
+    "notes": "The mapped polygon controls the footprint of each block. Specific names for unlabelled structures, individual roof steps and the masonry stele locations require documented estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native OpenStreetMap controls establish sixteen compound building envelopes. Main roof breaks, axial openings, woodwork, minor roof finishes, steps and floor and ridge elevations are inferred from the cleared photographs and written descriptions.",
+    "The seven-roof Ming paifang is placed approximately at the mouth of Shenlu Street, across Chaoyangmenwai Avenue. Authorities give its overall width and approximate height. Its depth and small moulding profiles are estimated.",
+    "Representative stele positions and exterior paving are simplified. Interior exhibits, carved inscriptions, statues, foliage and minor fixtures are outside the modeled scope.",
+    "Foundations follow the frozen original source field with local averaging per building. Terrain samples do not resolve individual courtyard steps or foundation heights."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Used photographs are the six exact Qualla originals released CC0 by EditQ. Native OpenStreetMap geometry under ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "temple-skyline",
+      "position": [
+        109,
+        119,
+        238
+      ],
+      "lookAt": [
+        -2,
+        3,
+        27
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple-district",
+      "position": [
+        109,
+        119,
+        238
+      ],
+      "lookAt": [
+        -2,
+        3,
+        27
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple-street",
+      "position": [
+        109,
+        119,
+        238
+      ],
+      "lookAt": [
+        -2,
+        3,
+        27
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple-closeup",
+      "position": [
+        109,
+        119,
+        238
+      ],
+      "lookAt": [
+        -2,
+        3,
+        27
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-gate-and-southern-range",
+      "position": [
+        20,
+        15,
+        120
+      ],
+      "lookAt": [
+        -5,
+        5,
+        73
+      ]
+    },
+    {
+      "name": "daizong-courtyard-and-stele",
+      "position": [
+        0,
+        7.5,
+        48
+      ],
+      "lookAt": [
+        -4,
+        5.9,
+        4
+      ]
+    },
+    {
+      "name": "bell-and-drum-towers",
+      "position": [
+        -7,
+        9.3,
+        64
+      ],
+      "lookAt": [
+        -4.3,
+        5,
+        39
+      ]
+    },
+    {
+      "name": "north-halls-and-galleries",
+      "position": [
+        66,
+        35,
+        -117
+      ],
+      "lookAt": [
+        -3,
+        4,
+        -64
+      ]
+    },
+    {
+      "name": "glazed-ming-paifang",
+      "position": [
+        7,
+        12,
+        191
+      ],
+      "lookAt": [
+        -6,
+        5.25,
+        156
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29802,
+    "vertices": 89406,
+    "materials": 6,
+    "bytes": 3737180,
+    "sha256": "sha256:b644be2d252a8b36c3da926c9bb4359e75decd06243edc68178414e2c38aa232"
+  }
+}

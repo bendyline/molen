@@ -14,6 +14,12 @@ const white = [0.88, 0.88, 0.83],
   red = [0.68, 0.035, 0.035],
   black = [0.035, 0.042, 0.04];
 const P = (r, y, a) => [r * Math.sin(a), y, r * Math.cos(a)];
+// The oil store stands slightly higher than the tower on the standard terrain.
+export const kihnuSiteBase = {
+  towerToe: -0.18,
+  storeCenter: [2.655, 0.14, -11.765],
+  storeToe: -0.22,
+};
 const shaftProfile = [
   [0.22, 3.02],
   [0.38, 2.93],
@@ -136,7 +142,13 @@ export function buildKihnuDetail(out, resolution = 1) {
         [0.22, 0.24, 0.21],
       );
     tube(out, 'metal', [0.31, 1.13, z - 0.08], [0.31, 1.26, z - 0.08], 0.021, black, 8);
-    box(out, 'granite', [-0.68, 0, z - 0.3], [0.68, 0.15, z + 0.83], [0.45, 0.44, 0.4]);
+    box(
+      out,
+      'granite',
+      [-0.68, kihnuSiteBase.towerToe, z - 0.3],
+      [0.68, 0.15, z + 0.83],
+      [0.45, 0.44, 0.4],
+    );
     box(out, 'granite', [-0.62, 0.15, z - 0.3], [0.62, 0.3, z + 0.42], [0.52, 0.51, 0.47]);
     // Cast-iron panel seams and the red splayed base lines, visible in the municipal aerial.
     for (const y of [4.1, 8.59, 13.09, 17.59, 20.88])
@@ -166,7 +178,7 @@ export function buildKihnuDetail(out, resolution = 1) {
       out,
       'concrete',
       [
-        [0, 3.15],
+        [kihnuSiteBase.towerToe, 3.15],
         [0.14, 3.15],
         [0.22, 3.03],
       ],
@@ -463,10 +475,10 @@ export function buildKihnuDetail(out, resolution = 1) {
   }
   function oilHouse(out) {
     // Mapped oil-store way232111866, transformed from east/south into north-facing tower axes.
-    const o = transformed(out, 0.191, [2.655, 0, -11.765]),
+    const o = transformed(out, 0.191, kihnuSiteBase.storeCenter),
       half = 2.43,
       z = 2.41;
-    box(o, 'rubble', [-half, 0, -z], [half, 0.24, z], [0.43, 0.4, 0.32]);
+    box(o, 'rubble', [-half, kihnuSiteBase.storeToe, -z], [half, 0.24, z], [0.43, 0.4, 0.32]);
     for (const a of [0, Math.PI / 2, Math.PI, Math.PI * 1.5]) {
       const f = transformed(o, a);
       const hole =

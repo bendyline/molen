@@ -1,0 +1,665 @@
+{
+  "planId": "villa_d_este",
+  "id": "villa_d_este",
+  "assetId": "molen.worldgen.structure.villa_d_este",
+  "title": "Villa d’Este",
+  "wikidataId": "Q746063",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 12.796111111111,
+    "latitude": 41.9625
+  },
+  "size": [
+    198.2933578491211,
+    73.46906852722168,
+    254.51910400390625
+  ],
+  "actualBounds": {
+    "min": [
+      -115.97335815429688,
+      -54.32504653930664,
+      -91.2786865234375
+    ],
+    "max": [
+      82.31999969482422,
+      19.14402198791504,
+      163.24041748046875
+    ]
+  },
+  "visualBrief": "Tivoli’s Villa d’Este palace, with its two courts, pale three-storey garden front, double Renaissance loggia, stepped garden, and stone fountains.",
+  "nativeAxes": {
+    "x": "parallel to the garden facade",
+    "y": "up",
+    "z": "downhill toward the garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:000910_tivoli_v_d_este_41_facciata.jpg",
+    "https://commons.wikimedia.org/wiki/File:000910_tivoli_v_d_este_47_facciata.jpg",
+    "https://commons.wikimedia.org/wiki/File:Villa_Deste_entrance_2011_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Detail_from_the_Villa_d%27Este,_2015-05-19-5.jpg",
+    "https://commons.wikimedia.org/wiki/File:Detail_from_the_Villa_d%27Este,_2015-05-19-8.jpg"
+  ],
+  "stories": [
+    {
+      "id": "villa-d-este-wp",
+      "url": "https://qualla.com/villa-d-este/"
+    }
+  ],
+  "referenceInputHash": "9641203873beff6ccb2cc5cb89ec17986bf46d6834295a9d8ae09d8feab2130b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sr/sr3/villa_d_este/models/villa-d-este-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sr/sr3/villa_d_este/models/villa-d-este-model.mjs",
+    "level": "skyline",
+    "export": "villaSkyline",
+    "errorMeters": 1.88,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "grotto": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#f3f2ed",
+        "roughness": 0.64,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "villaDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "grotto": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#f3f2ed",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "villaStreet",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "grotto": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#f3f2ed",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "villaCloseup",
+        "errorMeters": 0.115,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "grotto": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#f3f2ed",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "stone_marble",
+    "tile_ceramic",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "cameraYaw": 0.52,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        -10,
+        -15.3,
+        42.6
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original 512 m hill field, Piazza Trento threshold and front loggia aligned with the Fountain of the Dragons. The garden façade’s three floor bands and two projecting levels follow the photographs and UNESCO’s written inventory.",
+    "anchor": [
+      12.796111111111,
+      41.9625
+    ],
+    "heading": -2.595554208792652,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        12.796818996745456,
+        41.96241600038074
+      ],
+      "modelHeight": 0,
+      "basis": "Street-grade sampling on Piazza Trento just east of the southeast visitor entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.27303,
+          -78.49051
+        ],
+        [
+          -6.37461,
+          -85.84685
+        ],
+        [
+          -2.85682,
+          -85.89759
+        ],
+        [
+          -2.92099,
+          -90.57387
+        ],
+        [
+          39.94368,
+          -91.1387
+        ],
+        [
+          39.77685,
+          -88.07474
+        ],
+        [
+          48.72853,
+          -87.51988
+        ],
+        [
+          54.72674,
+          -87.15753
+        ],
+        [
+          52.72462,
+          -54.45421
+        ],
+        [
+          48.45,
+          -54.72009
+        ],
+        [
+          47.63923,
+          -41.43116
+        ],
+        [
+          46.39073,
+          -41.51248
+        ],
+        [
+          45.85136,
+          -29.244
+        ],
+        [
+          38.62335,
+          -29.55906
+        ],
+        [
+          38.65956,
+          -30.38375
+        ],
+        [
+          27.29842,
+          -30.87872
+        ],
+        [
+          26.89127,
+          -21.47379
+        ],
+        [
+          29.20953,
+          -21.36767
+        ],
+        [
+          29.1346,
+          -19.60258
+        ],
+        [
+          59.57413,
+          -18.27385
+        ],
+        [
+          59.1828,
+          -9.34128
+        ],
+        [
+          65.33268,
+          -9.06913
+        ],
+        [
+          63.6642,
+          7.67155
+        ],
+        [
+          48.72222,
+          7.12388
+        ],
+        [
+          49.37248,
+          -4.53011
+        ],
+        [
+          -50.3059,
+          -4.53011
+        ],
+        [
+          -48.18297,
+          -16.48761
+        ],
+        [
+          -43.9431,
+          -42.03451
+        ],
+        [
+          -41.38494,
+          -41.71748
+        ],
+        [
+          -38.81392,
+          -41.40566
+        ],
+        [
+          -38.04405,
+          -45.65328
+        ],
+        [
+          -7.21256,
+          -44.6986
+        ],
+        [
+          -7.32196,
+          -41.23501
+        ],
+        [
+          15.04595,
+          -40.53858
+        ],
+        [
+          15.54723,
+          -56.77711
+        ],
+        [
+          8.19327,
+          -57.01239
+        ],
+        [
+          8.30708,
+          -60.64264
+        ],
+        [
+          9.40441,
+          -79.13721
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The mapped palace footprint around both courts, with the neighbouring church retained."
+    },
+    "featureIds": [
+      "way/37183943",
+      "way/41250784",
+      "way/41251003",
+      "way/977031435",
+      "way/41271399",
+      "way/561337080",
+      "way/58360190",
+      "way/561341073",
+      "way/561347911",
+      "way/561341074",
+      "way/561337082",
+      "way/41250035",
+      "way/41250262",
+      "way/41251469",
+      "way/41259996",
+      "way/41260227",
+      "way/561341072"
+    ],
+    "source": "https://www.openstreetmap.org/relation/270239",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5023dc2b7c7123fa5a50893928895438cee96acdf8d0ef102652ebca05f74a85"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers the standing palace, two open courtyards, entry, garden loggia, retaining terraces and principal exterior fountain structures. The neighbouring church, interior rooms and plantings are outside the architectural scope.",
+    "The original terrain is unchanged. Individual fountain floor levels, wing roof heights, parapets, staircase widths and unmeasured features are estimates based on the standing mapped outline, site descriptions and five verified Qualla originals.",
+    "The garden structures capture major architectural forms. Small carving, detailed statuary, planted beds, and active fountain hydraulics are simplified."
+  ],
+  "sourceLicense": "Original geometry based on five verified public-domain and CC0 images, UNESCO and Villae written descriptions, ODbL OpenStreetMap and attributed Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "villa-d-este-skyline",
+      "position": [
+        179,
+        94,
+        181
+      ],
+      "lookAt": [
+        -10,
+        -15.3,
+        42.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "villa-d-este-district",
+      "position": [
+        179,
+        94,
+        181
+      ],
+      "lookAt": [
+        -10,
+        -15.3,
+        42.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "villa-d-este-street",
+      "position": [
+        179,
+        94,
+        181
+      ],
+      "lookAt": [
+        -10,
+        -15.3,
+        42.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "villa-d-este-closeup",
+      "position": [
+        179,
+        94,
+        181
+      ],
+      "lookAt": [
+        -10,
+        -15.3,
+        42.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "palace-and-hillside-garden",
+      "position": [
+        166,
+        98,
+        199
+      ],
+      "lookAt": [
+        -13,
+        -15,
+        48
+      ]
+    },
+    {
+      "name": "two-storey-loggia-and-bicchierone",
+      "position": [
+        -8,
+        1.8,
+        30
+      ],
+      "lookAt": [
+        -9,
+        -2.2,
+        -3.4
+      ]
+    },
+    {
+      "name": "roof-and-two-open-courts",
+      "position": [
+        -84,
+        87,
+        -64
+      ],
+      "lookAt": [
+        8,
+        4,
+        -43
+      ]
+    },
+    {
+      "name": "organ-neptune-and-lower-terraces",
+      "position": [
+        -25,
+        4,
+        169
+      ],
+      "lookAt": [
+        -76,
+        -23.6,
+        117
+      ]
+    },
+    {
+      "name": "piazza-trento-entrance",
+      "position": [
+        -64,
+        10,
+        -31
+      ],
+      "lookAt": [
+        -44,
+        5,
+        -40
+      ]
+    },
+    {
+      "name": "dragon-fountain-and-hundred-fountains",
+      "position": [
+        11,
+        -8,
+        66
+      ],
+      "lookAt": [
+        -17,
+        -22.6,
+        39
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22655,
+    "vertices": 67965,
+    "materials": 6,
+    "bytes": 3027324,
+    "sha256": "sha256:92ee297c003a1b52e1235c2fb63003d6e2414a359a9cde9a8e7e9a8a09eb9d14"
+  }
+}

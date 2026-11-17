@@ -2,26 +2,25 @@
 
 ![Shared Molen preview](shots/shared/angle-0.png)
 
-Detached pale hotel with red pitched roof,shallow front pediment and merged dormers.
+Detached cream hotel with a red hip roof, a joined cross gable, two low dormers and a recessed forecourt entrance.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the ground fit.
 
 ## Sources and reconstruction
 
-- [Reference](https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf)
-- [Reference](https://www.ksiazhotel.pl/hotel)
-- [Reference](https://ksiazhotel.pl/pokoj-2os-komfort-oficyna)
-- [Reference](https://commons.wikimedia.org/wiki/File:Ksiaz_w_jesiennej_scenerii.jpg)
+- [Reference](https://zabytek.pl/en/obiekty/g-278127)
+- [Reference](https://i.szalas.hu/hotels/1554425/500x500/40603663.jpg)
+- [Reference](https://www.zamek-ksiaz-hotel-przy-oslej-bramie.pl/img/_img81.jpg)
 - [Reference](https://www.openstreetmap.org/way/236837151)
 
 Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own map footprint;native Y0 is estimated local ground contact. Heights,roof profiles,openings and facade facing are interpretations. No independent Wikidata identity is assigned. Hotel Zamkowy membership is unconfirmed.
+The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=KSI_A04 (or --check).
 
-1327 triangles;162456 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
+1430 triangles;175304 source bytes;6 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:3bed108692457c378a70257d188bd683440d26e319a0ed597ac48368bb141004
+Source hash: sha256:6c9b9fb2cbfac489ed72d32a47d07a22bbd02f339ff25d53161789e44dbed6f6

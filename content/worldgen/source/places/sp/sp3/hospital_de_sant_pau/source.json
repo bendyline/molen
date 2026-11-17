@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hospital_de_sant_pau",
+  "kind": "static-structure",
+  "title": "Hospital de Sant Pau Pavilions",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hospital_de_sant_pau",
+        "output": "assets/places/sp/sp3/hospital_de_sant_pau/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1f2517f10a83fe822623d1cbaa676d19a6128a208b7fa66e7d25541f80b0c3f4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hospital-de-sant-pau",
+        "path": "models/generate-hospital-de-sant-pau.mjs"
+      },
+      {
+        "id": "hospital-de-sant-pau-model",
+        "path": "models/hospital-de-sant-pau-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/pavilion-controls.json",
+      "reference-rights/commons-hospital-de-sant-pau-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16581-12235.png",
+      "terrain-sources/terrarium-15-16582-12235.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

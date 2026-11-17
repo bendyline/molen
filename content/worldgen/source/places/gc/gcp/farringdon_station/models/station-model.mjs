@@ -4,6 +4,7 @@ import {
   beamPath,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
+import contact from './site-fit.json' with { type: 'json' };
 
 const lin = (h) =>
   h.match(/\w\w/g).map((v) => {
@@ -24672,19 +24673,11 @@ function ringEdges(poly, fn) {
         const p = e.p;
         e = { ...e, N: e.N.map((v) => -v), p: ([u, y, d]) => p([u, y, -d]) };
       }
-      fn(e, k);
+      fn(e, k, j);
     }
   }
 }
 
-const gradeFor = (p) => {
-  const q = p[0][0];
-  return controls.eastHost.some((a) => Math.abs(a[0][0][0] - q[0]) < 1e-5)
-    ? controls.eastGrade
-    : controls.bloom.some((a) => Math.abs(a[0][0][0] - q[0]) < 1e-5)
-      ? controls.bloomGrade
-      : 0;
-};
 function fascia(o, c, e, y, h = 0.2, d = 0.14, s = 'stone') {
   Q(
     o,
@@ -24724,7 +24717,7 @@ function gridShell(
     }
     const n = Math.max(
         1,
-        Math.round(e.L / (pitch * (c === cfg.district ? 2 : c === cfg.street ? 2 : 1))),
+        Math.round(e.L / (pitch * (c === cfg.district ? 3 : c === cfg.street ? 2 : 1))),
       ),
       w = e.L / n,
       h = (hi - lo) / rows,
@@ -24743,7 +24736,7 @@ function gridShell(
           depth: 0.22,
         });
       }
-    wall(o, c, e.p, e.L, lo, hi, holes, s);
+    wall(o, c === cfg.street ? { ...c, recess: false } : c, e.p, e.L, lo, hi, holes, s);
     for (let k = 0; k <= rows; k++)
       fascia(o, c, e, lo + k * h, 0.16, 0.1, s === 'wall' ? 'red' : 'stone');
     if (c.fine)
@@ -24822,27 +24815,201 @@ function flatFrame(o, c, e, r) {
     );
   }
 }
+function surfaceAt(samples, u) {
+  for (let j = 1; j < samples.length; j++) {
+    const [a, lo] = samples[j - 1],
+      [b, hi] = samples[j];
+    if (u <= b) return lo + (hi - lo) * Math.max(0, (u - a) / (b - a));
+  }
+  return samples.at(-1)[1];
+}
+
+function recessedEntrance(o, c, e, doors, surface, ceiling, arched) {
+  const { width, height, depth, y, rim, apron, u } = doors;
+  const left = u - width / 2,
+    right = u + width / 2;
+  const at = ([x, h, d]) => e.p([left + x, h, d]);
+  const roof = arched ? 0.42 : 0;
+  const opening = arched
+    ? arch(width / 2, y + 0.025, width - 0.18, height - roof, roof, c.round)
+    : rect(width / 2, y + 0.025, width - 0.18, height);
+  const aperture = c.detail
+    ? [{ ring: opening, kind: c.recess ? 'opening' : 'doorGlass', depth }]
+    : [];
+  wall(o, c, at, width, y, ceiling, aperture, surface);
+  const floor = [left, u, right];
+  for (let k = 0; k < 2; k++) {
+    const a = floor[k],
+      b = floor[k + 1];
+    Q(
+      o,
+      c,
+      [e.p([a, y, 0]), e.p([b, y, 0]), e.p([b, rim[k + 1], apron]), e.p([a, rim[k], apron])],
+      'base',
+      C.base,
+      [0, 1, 0],
+    );
+  }
+  if (!c.detail) return;
+  Q(
+    o,
+    c,
+    [
+      e.p([left, y + 0.005, -depth]),
+      e.p([right, y + 0.005, -depth]),
+      e.p([right, y + 0.005, 0]),
+      e.p([left, y + 0.005, 0]),
+    ],
+    'base',
+    C.base,
+    [0, 1, 0],
+  );
+  const inside = ([x, h, d]) => at([x, h, d - depth + 0.035]);
+  wall(
+    o,
+    c,
+    inside,
+    width,
+    y,
+    y + height + 0.12,
+    [
+      {
+        ring: rect(width / 2, y + 0.06, width - 0.35, height - 0.18),
+        kind: 'doorGlass',
+        depth: 0.045,
+      },
+    ],
+    'metal',
+  );
+  if (c.fine) {
+    const leaves = Math.max(2, Math.round(width / 1.5));
+    for (let j = 1; j < leaves; j++) {
+      const x = (j * width) / leaves;
+      beam(
+        adapter(o, c),
+        'metal',
+        inside([x, y + 0.05, 0.065]),
+        inside([x, y + height - 0.06, 0.065]),
+        0.065,
+        0.11,
+        C.metal,
+      );
+    }
+  }
+}
+
+function fittedStreetBase(o, c, fit, surface, pitch, arched = false) {
+  const p = fit.polys[0];
+  const floor = [];
+  ringEdges(p, (e, k, j) => {
+    if (k) return;
+    const profile = fit.edges[j];
+    const { door } = profile;
+    const samples = c.fine
+      ? profile.samples
+      : profile.samples.filter(
+          ([u], i) =>
+            i === 0 ||
+            i === profile.samples.length - 1 ||
+            (door && Math.abs(Math.abs(u - door.u) - door.width / 2) < 0.0001),
+        );
+    const lower = samples[0][0],
+      upper = samples.at(-1)[0];
+    const cuts = door
+      ? [lower, door.u - door.width / 2, door.u + door.width / 2, upper]
+      : [lower, upper];
+    for (let i = samples.length - 1; i > 0; i--) {
+      const [u, y] = samples[i];
+      floor.push(e.p([u, y, 0]));
+    }
+    for (let i = 1; i < samples.length; i++) {
+      const [a, ya] = samples[i - 1],
+        [b, yb] = samples[i];
+      Q(
+        o,
+        c,
+        [e.p([a, -8, 0]), e.p([b, -8, 0]), e.p([b, yb, 0]), e.p([a, ya, 0])],
+        'base',
+        C.base,
+        e.N,
+      );
+    }
+    for (let j = 1; j < cuts.length; j++) {
+      const start = cuts[j - 1],
+        end = cuts[j];
+      if (door && j === 2) {
+        recessedEntrance(o, c, e, door, surface, fit.baseTop, arched);
+        continue;
+      }
+      const spacing = c === cfg.district ? pitch * 2.8 : c === cfg.street ? pitch * 1.4 : pitch;
+      const count = c.detail ? Math.max(1, Math.round((end - start) / spacing)) : 1;
+      for (let i = 0; i < count; i++) {
+        const a = start + ((end - start) * i) / count,
+          b = start + ((end - start) * (i + 1)) / count;
+        const local = [
+          [a, surfaceAt(samples, a)],
+          ...samples.filter(([u]) => u > a && u < b),
+          [b, surfaceAt(samples, b)],
+        ];
+        const sill = Math.max(...local.map(([, y]) => y));
+        const panelHeight = fit.baseTop - sill;
+        for (let j = 1; j < local.length; j++) {
+          const [u, y] = local[j - 1],
+            [v, z] = local[j];
+          Q(
+            o,
+            c,
+            [e.p([u, y, 0]), e.p([v, z, 0]), e.p([v, sill, 0]), e.p([u, sill, 0])],
+            surface,
+            C[surface],
+            e.N,
+          );
+        }
+        const L = b - a,
+          at = ([u, h, d]) => e.p([a + u, h, d]);
+        const hole = arched
+          ? arch(L / 2, sill + 0.28, L * 0.72, panelHeight - 0.88, 0.3, c.round)
+          : rect(L / 2, sill + 0.3, L * 0.73, panelHeight - 0.62);
+        const glazing =
+          c.detail && L > 0.75 && panelHeight > 1.03
+            ? [{ ring: hole, kind: arched ? 'doorGlass' : 'glass', depth: 0.21 }]
+            : [];
+        wall(o, c, at, L, sill, fit.baseTop, glazing, surface);
+        if (arched && c.fine && glazing.length) flatFrame(o, c, { ...e, p: at }, hole);
+      }
+    }
+  });
+  const ix = earcut(floor.flatMap(([x, , z]) => [x, z]));
+  for (let i = 0; i < ix.length; i += 3) {
+    const points = ix.slice(i, i + 3).map((j) => floor[j]);
+    T(o, c, points, 'base', C.base, [0, 1, 0]);
+    T(
+      o,
+      c,
+      points.map(([x, , z]) => [x, -8, z]),
+      'base',
+      C.base,
+      [0, -1, 0],
+    );
+  }
+}
+
 function heritage(o, c) {
-  for (const p of controls.heritage) {
-    solid(o, c, p, -8, 0.65, 'base');
+  const fit = contact.frontages.heritage;
+  fittedStreetBase(o, c, fit, 'stone', 4.1, true);
+  for (const p of fit.polys) {
     panel(o, c, p, 8, 'membrane');
     ringEdges(p, (e) => {
       const front = e.N[0] < -0.65,
         holes = [],
-        n = Math.max(1, Math.round(e.L / (front ? 4.2 : 5))),
+        n = Math.max(1, Math.round(e.L / (c === cfg.district ? 8.5 : front ? 4.2 : 5))),
         w = e.L / n;
       if (c.detail)
         for (let j = 0; j < n; j++) {
-          const u = (j + 0.5) * w,
-            door = front && j === Math.floor(n / 2);
-          holes.push({
-            ring: arch(u, 0.65, w * 0.75, 2.55, 0.55, c.round),
-            kind: door ? 'opening' : 'doorGlass',
-            depth: 0.3,
-          });
+          const u = (j + 0.5) * w;
           holes.push({ ring: rect(u, 4.8, w * 0.7, 1.5), kind: 'glass', depth: 0.19 });
         }
-      wall(o, c, e.p, e.L, 0.65, 7.7, holes, 'stone');
+      wall(o, c, e.p, e.L, fit.baseTop, 7.7, holes, 'stone');
       for (const [y, h, d] of [
         [3.9, 0.26, 0.2],
         [6.7, 0.25, 0.2],
@@ -25007,23 +25174,23 @@ function roofs(o, c, level) {
 }
 function hosts(o, c) {
   const bg = controls.bloomGrade,
-    eg = controls.eastGrade;
-  for (const p of controls.modernHall) {
-    solid(o, c, p, -8, 0.65, 'base');
-    gridShell(o, c, p, 0.65, 14, 'stone', 5, 2, true, true);
+    eg = controls.eastGrade,
+    { modern, west, bloom, east } = contact.frontages;
+  fittedStreetBase(o, c, modern, 'stone', 5.5);
+  for (const p of modern.polys) gridShell(o, c, p, modern.baseTop, 14, 'stone', 5.2, 2);
+  fittedStreetBase(o, c, west, 'stone', 5.5);
+  for (const p of west.polys) {
+    gridShell(o, c, p, west.baseTop, 6.8, 'stone', 7.2, 1);
+    if (c.detail) ringEdges(p, (e) => fascia(o, c, e, 6.68, 0.22, 0.21, 'metal'));
   }
-  for (const p of controls.bloom) {
-    solid(o, c, p, bg - 8, bg + 0.65, 'base');
-    gridShell(o, c, p, bg + 0.65, bg + 16, 'wall', 3.6, 4, false, true);
-  }
+  if (c.fine) for (const p of contact.westLifts) glazed(o, c, p, -3.2, 6.45);
+  fittedStreetBase(o, c, bloom, 'red', 4.45);
+  for (const p of bloom.polys) gridShell(o, c, p, bloom.baseTop, bg + 16, 'wall', 3.6, 3);
   for (const p of controls.bloomUpper) gridShell(o, c, p, bg + 16, bg + 28, 'stone', 3.6, 3);
   for (const p of controls.bloomCrown) glazed(o, c, p, bg + 28, bg + 34);
-  for (const p of controls.eastHost) {
-    solid(o, c, p, eg - 8, eg + 0.65, 'base');
-    gridShell(o, c, p, eg + 0.65, eg + 5, 'stone', 4, 1, false, true);
-    gridShell(o, c, p, eg + 5, eg + 19.5, 'stone', 3.1, 5, true);
-  }
-  for (const p of controls.eastCrown) glazed(o, c, p, eg + 19.5, eg + 23);
+  fittedStreetBase(o, c, east, 'metal', 4.6);
+  for (const p of east.polys) gridShell(o, c, p, east.baseTop, eg + 19.5, 'stone', 3.1, 5, true);
+  for (const p of contact.eastCrown) glazed(o, c, p, eg + 19.5, eg + 23);
   if (c.detail) {
     for (const p of controls.bloomUpper)
       ringEdges(p, (e) => {

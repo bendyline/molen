@@ -33,7 +33,61 @@
       "shots/shared/placement.png"
     ],
     "notes": "Four existing256px graphs across seven roles/five textured draws: wood_weatherboard on the wagon, wood_plain on cabin/sleepers, metal_painted as a restrained weathered-steel/roof substitute, storefront on three opaque inset panes. No new graph, private atlas or embedded image. Skyline uses one mean-color draw. Each requested graph reads once; all model geometries release on unload.",
-    "captureReportHash": "sha256:a901b9b80c7c693563d17e4472e0b35cba0277a9dbda1fd5d828fea69420814e"
+    "captureReportHash": "sha256:3836286832bdd25d38352dbe263271a5e1b9988ea07c7b8193920bc1a2df73ca",
+    "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:7b38bf10c4db2feed7ef83930196fd0c143b12ea06fafe80311116804ceadb95"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:fda7e02b3a72b5369d2a33bcd92ada5c9110cafb86b9c6703473deeae9bb4df3"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:0c7858ef7ef75664e83bdc3a8725924a518b7c512a5b68a69dfdb4ec1286ddd3"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:6bac20f48d7787aed46637005d963f6074b2184c2a188aff8bf91cc8bc06a2c5"
+      },
+      {
+        "path": "shots/shared/wagon-door-vents-and-wheels.png",
+        "hash": "sha256:b009a59c4d8df770a03ddd4b8f031f298382bcf34c455b41ad78c159aada7a4f"
+      },
+      {
+        "path": "shots/shared/raised-brake-cabin-steps-and-buffers.png",
+        "hash": "sha256:c3e496cbfba3ff04fd2b49bf1646b1a84ae2a89e0a6d036d7cc55caced92c14a"
+      },
+      {
+        "path": "shots/shared/truncated-track-and-open-cantilever.png",
+        "hash": "sha256:fc63737c0edf57b62d2370777ff12b086ec8105b6d19e5b56c2a8fabdd27a77a"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:05e7c9b6c03f7c7c8799ca9bbb26915436ff1d8611ddde7b11436c41167e9e73"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.wood_weatherboard": {
+        "path": "materials/wood_weatherboard.matgraph.json",
+        "hash": "sha256:9875c4073e6f0b665589b38c84502136d60896b581944bb85a3263e3b1c96430"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    },
+    "refreshedOn": "2026-11-15"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -822,5 +876,6 @@
     "Use original Protomaps20261020/Mapzen201x201/6m hill. Uncovered higher-land control internal[44.45803999180143,4.323950953865781] has datum797.6488511081272m; rail head is0.35m above original sampled grade at the mapped land end (modelY0.020151626910410392). Keep original ground under the elevated wagon/track and let the reconstructed truss root enter the retained bank; no ground/building cutout and no owned building. No raised terrain, invented pier or precinct flattening. Standard hill does not supply the exact excavated bank/cliff or track bed; inspect exposed truss, land attachment and approach before activation. Use the existing replaceRoads outline over the two authored disused rail ways, including their shared connected approach. After successful model loading only, suppress the covered bridge/rail visual; failed loading keeps it. Preserve original input data and every unrelated road/path. No terrain cutout or height modification. Corrected native whole/side/cabin/under-truss views inspected during this authoring pass. Approximate exterior fit accepted: the truncated western end stays elevated, open trusses enter the retained bank toward higher land, and the far rail end meets native grade at the working0.35m lift. Existing replaceRoads removes the duplicate procedural bridge/connected rail approach only after load. Original terrain, unrelated roads/paths and buildings remain intact. The coarse hill partly buries the deeper landward truss; exact historical cliff, bank excavation, pedestrian clearance and track-bed engineering are unverified.",
     "Completed as a medium-fi mapped exterior visualization. Point and rail segments supply no vertical dimensions. Body8.6x2.68m, working1.435m gauge,0.43m wheel radius, barrel crest3.96m/brake cabin4.67m above rail and0.65..7.2m tapered truss depth are picture-led estimates. Exact wagon class, sections, panel/step/gusset inventory, original rust, hidden underside/cabin and foundation are unverified. Fine rivets/inscriptions omitted; no invented writing. Coarse original hill partly buries landward members. Every other campus building remains independent; four earlier fit drafts and North reference gap remain pending.",
     "Approximate native exterior fit accepted. Shared campus Q156591 plus independent named node5477091205/native17597663135621; disused rail ways1435803658/1435803659 fix the east-northeast axis and endpoints. Wagon occupies the western truncated end; brake cabin faces higher land. Photo GPS elsewhere on campus is not used. One actual level15 POI case; no matching13/14 point. Existing replaceRoads removes only the two authored bridge/connected-rail records after successful loading. All801 other transportation records and all153 resident/257 wider buildings remain unchanged; failure retains original rails/bridge. Original201x201/6m hill/roads input and zero-water-area input retained, no terrain cutout or modification. Far rail head sits0.35m above sampled land-end grade; the deeper truss enters the retained bank. All LOD/failure/unload/ground-water restoration and material-sharing checks pass. Exact cliff/bank excavation, track-bed engineering, path clearance and accessibility remain unverified."
-  ]
+  ],
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc"
 }

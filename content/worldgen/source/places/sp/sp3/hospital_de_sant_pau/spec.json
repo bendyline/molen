@@ -1,0 +1,1013 @@
+{
+  "planId": "hospital_de_sant_pau",
+  "id": "hospital_de_sant_pau",
+  "assetId": "molen.worldgen.structure.hospital_de_sant_pau",
+  "title": "Hospital de Sant Pau Pavilions",
+  "wikidataId": "Q507282",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 2.174174,
+    "latitude": 41.412612
+  },
+  "size": [
+    91.5999984741211,
+    22.170000791549683,
+    48.67634963989258
+  ],
+  "actualBounds": {
+    "min": [
+      -64.95999908447266,
+      -2.799999952316284,
+      -30.506349563598633
+    ],
+    "max": [
+      26.639999389648438,
+      19.3700008392334,
+      18.170000076293945
+    ]
+  },
+  "visualBrief": "Two pavilions at Barcelona’s Hospital de Sant Pau with red-brick façades, carved limestone, multicolored tiles and green glazing. The Operations Pavilion has a sculpted gable and arcaded entrance. The Carme Pavilion has a domed rotunda and an open-sided tiled water tower.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-08-05",
+    "validFrom": "2015-11-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pavell%C3%B3_d%27Operacions,_Hospital_de_Sant_Pau,_Barcelona,_Spain.jpg",
+    "https://commons.wikimedia.org/wiki/File:Pavell%C3%B3_de_Nostra_Senyora_del_Carme,_Hospital_de_la_Santa_Creu_i_Sant_Pau,_Barcelona,_2015.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hospital-de-sant-pau-wp",
+      "url": "https://qualla.com/hospital-de-sant-pau/"
+    }
+  ],
+  "referenceInputHash": "f3e8a1aee10b7c6e54bc878952939461b2e8eb6acc0a577ffbf88b8bdd196ec8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sp/sp3/hospital_de_sant_pau/models/hospital-de-sant-pau-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sp/sp3/hospital_de_sant_pau/models/hospital-de-sant-pau-model.mjs",
+    "level": "skyline",
+    "export": "pavilionSkyline",
+    "errorMeters": 0.62,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "ceramic": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.71,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pavilionDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "ceramic": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "pavilionStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "ceramic": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "pavilionCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "ceramic": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "tile_ceramic",
+    "tile_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      2.174174,
+      41.412612
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        2.174174,
+        41.412612
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM at the opening between the two pavilions in the historic precinct."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          7.5722,
+          -24.3122
+        ],
+        [
+          7.5471,
+          -27.1508
+        ],
+        [
+          7.7725,
+          -27.7519
+        ],
+        [
+          8.2567,
+          -28.6759
+        ],
+        [
+          8.8578,
+          -29.4663
+        ],
+        [
+          9.6677,
+          -30.1787
+        ],
+        [
+          10.7112,
+          -30.624
+        ],
+        [
+          11.7965,
+          -30.9468
+        ],
+        [
+          12.6815,
+          -30.88
+        ],
+        [
+          13.4579,
+          -30.7576
+        ],
+        [
+          14.3429,
+          -30.3568
+        ],
+        [
+          15.2445,
+          -29.8893
+        ],
+        [
+          16.3549,
+          -28.6648
+        ],
+        [
+          16.6053,
+          -28.2418
+        ],
+        [
+          16.9142,
+          -27.3512
+        ],
+        [
+          16.9059,
+          -24.3122
+        ],
+        [
+          19.3604,
+          -24.2899
+        ],
+        [
+          21.3724,
+          -22.2082
+        ],
+        [
+          21.2972,
+          -15.5736
+        ],
+        [
+          26.4566,
+          -15.5291
+        ],
+        [
+          26.4399,
+          -9.3286
+        ],
+        [
+          19.4522,
+          -9.3954
+        ],
+        [
+          19.4856,
+          -4.2524
+        ],
+        [
+          14.7102,
+          -4.3637
+        ],
+        [
+          14.7018,
+          -2.6939
+        ],
+        [
+          13.4329,
+          -1.1466
+        ],
+        [
+          10.8448,
+          -1.2023
+        ],
+        [
+          9.4589,
+          -2.8053
+        ],
+        [
+          9.484,
+          -4.4862
+        ],
+        [
+          5.0091,
+          -4.5864
+        ],
+        [
+          5.0759,
+          -9.1282
+        ],
+        [
+          -2.0037,
+          -9.284
+        ],
+        [
+          -1.845,
+          -15.8296
+        ],
+        [
+          2.7968,
+          -15.6738
+        ],
+        [
+          3.0389,
+          -22.0747
+        ],
+        [
+          5.126,
+          -24.2343
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            7.5722,
+            -24.3122
+          ],
+          [
+            7.5471,
+            -27.1508
+          ],
+          [
+            7.7725,
+            -27.7519
+          ],
+          [
+            8.2567,
+            -28.6759
+          ],
+          [
+            8.8578,
+            -29.4663
+          ],
+          [
+            9.6677,
+            -30.1787
+          ],
+          [
+            10.7112,
+            -30.624
+          ],
+          [
+            11.7965,
+            -30.9468
+          ],
+          [
+            12.6815,
+            -30.88
+          ],
+          [
+            13.4579,
+            -30.7576
+          ],
+          [
+            14.3429,
+            -30.3568
+          ],
+          [
+            15.2445,
+            -29.8893
+          ],
+          [
+            16.3549,
+            -28.6648
+          ],
+          [
+            16.6053,
+            -28.2418
+          ],
+          [
+            16.9142,
+            -27.3512
+          ],
+          [
+            16.9059,
+            -24.3122
+          ],
+          [
+            19.3604,
+            -24.2899
+          ],
+          [
+            21.3724,
+            -22.2082
+          ],
+          [
+            21.2972,
+            -15.5736
+          ],
+          [
+            26.4566,
+            -15.5291
+          ],
+          [
+            26.4399,
+            -9.3286
+          ],
+          [
+            19.4522,
+            -9.3954
+          ],
+          [
+            19.4856,
+            -4.2524
+          ],
+          [
+            14.7102,
+            -4.3637
+          ],
+          [
+            14.7018,
+            -2.6939
+          ],
+          [
+            13.4329,
+            -1.1466
+          ],
+          [
+            10.8448,
+            -1.2023
+          ],
+          [
+            9.4589,
+            -2.8053
+          ],
+          [
+            9.484,
+            -4.4862
+          ],
+          [
+            5.0091,
+            -4.5864
+          ],
+          [
+            5.0759,
+            -9.1282
+          ],
+          [
+            -2.0037,
+            -9.284
+          ],
+          [
+            -1.845,
+            -15.8296
+          ],
+          [
+            2.7968,
+            -15.6738
+          ],
+          [
+            3.0389,
+            -22.0747
+          ],
+          [
+            5.126,
+            -24.2343
+          ]
+        ],
+        [
+          [
+            -64.7599,
+            0.9351
+          ],
+          [
+            -64.8184,
+            14.2266
+          ],
+          [
+            -53.7481,
+            14.3268
+          ],
+          [
+            -53.7314,
+            12.0114
+          ],
+          [
+            -51.0349,
+            12.0336
+          ],
+          [
+            -51.0432,
+            12.6014
+          ],
+          [
+            -38.7541,
+            12.6014
+          ],
+          [
+            -25.9641,
+            12.6014
+          ],
+          [
+            -25.9474,
+            14.7944
+          ],
+          [
+            -25.9056,
+            15.1172
+          ],
+          [
+            -25.7971,
+            15.4511
+          ],
+          [
+            -25.6301,
+            15.7517
+          ],
+          [
+            -25.3964,
+            16.0634
+          ],
+          [
+            -25.0541,
+            16.3417
+          ],
+          [
+            -24.7452,
+            16.5087
+          ],
+          [
+            -24.3778,
+            16.6311
+          ],
+          [
+            -23.902,
+            16.6757
+          ],
+          [
+            -18.8177,
+            16.5421
+          ],
+          [
+            -18.417,
+            17.043
+          ],
+          [
+            -17.6823,
+            17.6775
+          ],
+          [
+            -17.0645,
+            18.0115
+          ],
+          [
+            -16.2714,
+            18.2787
+          ],
+          [
+            -15.4449,
+            18.39
+          ],
+          [
+            -14.4848,
+            18.3009
+          ],
+          [
+            -13.7418,
+            18.0672
+          ],
+          [
+            -13.0154,
+            17.6887
+          ],
+          [
+            -12.3475,
+            17.1543
+          ],
+          [
+            -11.8466,
+            16.5532
+          ],
+          [
+            -11.521,
+            15.9966
+          ],
+          [
+            -11.2706,
+            15.351
+          ],
+          [
+            -11.1036,
+            14.4715
+          ],
+          [
+            -11.1203,
+            13.6032
+          ],
+          [
+            -11.329,
+            12.7238
+          ],
+          [
+            -11.7882,
+            11.7887
+          ],
+          [
+            -12.2056,
+            11.2544
+          ],
+          [
+            -12.8234,
+            10.7089
+          ],
+          [
+            -12.79,
+            1.9926
+          ],
+          [
+            -13.9338,
+            0.8794
+          ],
+          [
+            -13.4245,
+            0.8572
+          ],
+          [
+            -13.2241,
+            0.7904
+          ],
+          [
+            -12.9653,
+            0.6234
+          ],
+          [
+            -12.7984,
+            0.4564
+          ],
+          [
+            -12.6898,
+            0.2783
+          ],
+          [
+            -12.5563,
+            -0.1447
+          ],
+          [
+            -12.5563,
+            -0.4008
+          ],
+          [
+            -12.6397,
+            -0.7458
+          ],
+          [
+            -12.7733,
+            -0.9573
+          ],
+          [
+            -12.982,
+            -1.1911
+          ],
+          [
+            -13.1574,
+            -1.3136
+          ],
+          [
+            -13.4412,
+            -1.4138
+          ],
+          [
+            -13.7,
+            -1.4583
+          ],
+          [
+            -13.9839,
+            -1.4249
+          ],
+          [
+            -14.3095,
+            -1.2913
+          ],
+          [
+            -14.5516,
+            -1.0909
+          ],
+          [
+            -14.7018,
+            -0.9128
+          ],
+          [
+            -14.8187,
+            -0.6679
+          ],
+          [
+            -14.8688,
+            -0.423
+          ],
+          [
+            -14.8772,
+            -0.2004
+          ],
+          [
+            -14.8354,
+            0.0557
+          ],
+          [
+            -15.8873,
+            -0.9573
+          ],
+          [
+            -23.5263,
+            -1.013
+          ],
+          [
+            -23.9521,
+            -0.9796
+          ],
+          [
+            -24.3611,
+            -0.8906
+          ],
+          [
+            -24.7786,
+            -0.7236
+          ],
+          [
+            -25.4799,
+            -0.3006
+          ],
+          [
+            -26.0309,
+            0.2783
+          ],
+          [
+            -27.0661,
+            2.7162
+          ],
+          [
+            -51.0516,
+            2.6383
+          ],
+          [
+            -51.0516,
+            3.1949
+          ],
+          [
+            -53.6981,
+            3.1837
+          ],
+          [
+            -53.6897,
+            0.9462
+          ],
+          [
+            -57.0041,
+            0.9351
+          ],
+          [
+            -56.9623,
+            -0.2783
+          ],
+          [
+            -61.4121,
+            -0.3117
+          ],
+          [
+            -61.4455,
+            0.9685
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Separate mapped outlines for the Operations and Carme pavilions, leaving the remaining precinct intact."
+    },
+    "featureIds": [
+      "way/288931980",
+      "relation/7422829"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7422814",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f1e3c405ce585015a2f725f5c28c7c40efe097328042d97da34910955c35fbab",
+    "notes": "The map defines the ground plans and pavilion spacing. Photos control their most visible elevations. Heights, hidden roof subdivisions, omitted structures and local grade are documented in the model plan."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The model includes the restored Operations and Carme pavilions. The administrative building, other wards, landscaping and the underground galleries are outside its scope.",
+    "The exact photographs govern the principal elevations, roof finishes and ornament. Heights, backs of the buildings, roof subdivisions, figural sculptures and inscriptions are simplified or estimated.",
+    "The original public DEM establishes relative ground level. Foundation depths compensate for the approximated grades without modifying the elevation source."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap footprints under ODbL. Both Qualla source photographs were dedicated to CC0 by their photographers.",
+  "qaLodCameras": [
+    {
+      "name": "sant-pau-skyline",
+      "position": [
+        37,
+        50,
+        103
+      ],
+      "lookAt": [
+        -17,
+        7,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sant-pau-district",
+      "position": [
+        37,
+        50,
+        103
+      ],
+      "lookAt": [
+        -17,
+        7,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sant-pau-street",
+      "position": [
+        37,
+        50,
+        103
+      ],
+      "lookAt": [
+        -17,
+        7,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sant-pau-closeup",
+      "position": [
+        37,
+        50,
+        103
+      ],
+      "lookAt": [
+        -17,
+        7,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "operations-ceramic-gable-and-arcade",
+      "position": [
+        26,
+        10,
+        25
+      ],
+      "lookAt": [
+        12,
+        8,
+        -5
+      ]
+    },
+    {
+      "name": "carme-rotunda-portal-and-water-tower",
+      "position": [
+        13,
+        10,
+        9
+      ],
+      "lookAt": [
+        -19,
+        8.4,
+        8
+      ]
+    },
+    {
+      "name": "operating-room-apse-and-ward-roofs",
+      "position": [
+        -31,
+        32,
+        -57
+      ],
+      "lookAt": [
+        -13,
+        7,
+        -11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8392,
+    "vertices": 25176,
+    "materials": 5,
+    "bytes": 1137564,
+    "sha256": "sha256:1f2517f10a83fe822623d1cbaa676d19a6128a208b7fa66e7d25541f80b0c3f4"
+  }
+}

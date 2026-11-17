@@ -1,0 +1,295 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.92
+    },
+    "plinth": {
+      "graph": "stone_limestone_raw",
+      "slot": "foundation",
+      "roughness": 0.96
+    },
+    "roof": {
+      "graph": "gravel",
+      "slot": "roof",
+      "roughness": 0.96
+    },
+    "windows": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.36
+    },
+    "trim": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.62
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      57,
+      37,
+      -53
+    ],
+    "lookAt": [
+      0,
+      7.4,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "archive-approach-north",
+      "position": [
+        33,
+        18,
+        -31
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        -3
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-reading-bay",
+      "position": [
+        -35,
+        12,
+        -22
+      ],
+      "lookAt": [
+        -18,
+        9,
+        -7
+      ],
+      "fov": 53
+    },
+    {
+      "name": "plaza-elevation",
+      "position": [
+        33,
+        20,
+        45
+      ],
+      "lookAt": [
+        0,
+        8,
+        1
+      ],
+      "fov": 48
+    },
+    {
+      "name": "roof-and-west-entrance",
+      "position": [
+        -45,
+        36,
+        30
+      ],
+      "lookAt": [
+        -8,
+        10,
+        -1
+      ],
+      "fov": 45
+    }
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "layout.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "brief": "Detached pale limestone administration and research building at Yad Vashem. Raised western hall with four grouped lights, central stair bulkhead and regular eastern punched-window rows.",
+  "appearance": {
+    "identity": "Low east-west limestone wing with a raised west roof, four large windows and an asymmetrical rooftop stair block.",
+    "master": "Recessed windows, deep piers, terrace portal, coping and roof service fittings modeled over the exact PMTiles footprint.",
+    "browser": "Four levels keep the asymmetric west roof, glazing group and roof access block."
+  },
+  "limitations": [
+    "Roof heights, sill dimensions and smaller courtyard openings are estimated from the aerial photos. The central roof stair and the four-light western window group are specific to the pictured building.",
+    "The asset covers the exterior, with nearby terrain, paths and main campus volumes supplied by the host."
+  ],
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "mediumFiContext": {
+    "scale": 0.54,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      35.17685405910015,
+      31.77501557103909
+    ],
+    "heading": 0,
+    "source": "https://www.openstreetmap.org/way/245189822",
+    "elevationMode": "terrain-contact",
+    "orientationPolicy": "reviewed-source-frame",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The standard Terrarium field supplies ground contact. The exact footprint is maintained while the limestone base extends below the sampled ground. The shared entrance road and separated archives range remain native.",
+    "terrainReference": {
+      "anchor": [
+        35.17685405910015,
+        31.77501557103909
+      ],
+      "modelHeight": 2.65484,
+      "basis": "The standard Terrarium field supplies ground contact. The exact footprint is maintained while the limestone base extends below the sampled ground. The shared entrance road and separated archives range remain native."
+    },
+    "replaceFootprint": true,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17653705432312,
+      31.77491675635784,
+      35.17717106387718,
+      31.775114385720343
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.60434,
+          -8.50335
+        ],
+        [
+          27.47742,
+          -8.50335
+        ],
+        [
+          27.73125,
+          8.50335
+        ],
+        [
+          -27.60434,
+          8.50335
+        ]
+      ],
+      "minimumCoverage": 0.97,
+      "basis": "The two retained PMTiles fragments of OSM way 245189822 define the detached east-west footprint around native feature 35184617278654. The photographed visitor map labels this rectangle Administration and Research. North and south aerial views corroborate its raised western roof, central access bulkhead and distance from the adjoining school and library."
+    },
+    "notes": "The two retained PMTiles fragments of OSM way 245189822 define the detached east-west footprint around native feature 35184617278654. The photographed visitor map labels this rectangle Administration and Research. North and south aerial views corroborate its raised western roof, central access bulkhead and distance from the adjoining school and library. The standard Terrarium field supplies ground contact. The exact footprint is maintained while the limestone base extends below the sampled ground. The shared entrance road and separated archives range remain native."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-administration-model.mjs",
+    "export": "buildYadAdministrationSkyline",
+    "errorMeters": 0.85,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadAdministrationDistrict",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plinth": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "roof": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.96
+          },
+          "windows": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.36
+          },
+          "trim": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadAdministrationStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plinth": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "roof": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.96
+          },
+          "windows": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.36
+          },
+          "trim": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadAdministrationCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plinth": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "roof": {
+            "graph": "gravel",
+            "slot": "roof",
+            "roughness": 0.96
+          },
+          "windows": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.36
+          },
+          "trim": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ksiaz_south_officina",
-  "sourceHash": "sha256:b54d87c6d727d00adde604e91a86e7c101448c166ef89a3edeaa7727a2de2f4b",
-  "runtimeHash": "sha256:b31fcbabc171132a531ac01145b7cd087b69615af0b88d41f44391e8e9e0f9be",
-  "captureReportHash": "sha256:1af0708bb46c81f00ec0252b1608b057c95e60728cd363a8e38b041be7582e67",
+  "sourceHash": "sha256:2d936a891b49e59d642d0ac7815411adb277efd89d38d9fd0aa2b643667c673c",
+  "runtimeHash": "sha256:969ea05bcce7fd3ecb15eee88adf401140447cfec2b02ab8ba44a9ee4585bdf3",
+  "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+  "reviewedOn": "2026-11-15",
+  "captureReportHash": "sha256:32244c8ec198ba59e2376b957128f6baf5482e40c6a018157233089ac2de4a2d",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "visualReview": {
     "status": "passed",
-    "notes": "Inspected nine portable geometry views. Own footprint and joined roofs retained; window overlaps corrected; grounded exterior only. Architectural heights and opening placement are estimates.",
+    "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+    "notes": "The wing has raised end pavilions, rounded dormer caps and closed roof returns. The courtyard entrance has a 24 cm recess and three solid sandstone treads.",
+    "captureReportHash": "sha256:32244c8ec198ba59e2376b957128f6baf5482e40c6a018157233089ac2de4a2d",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -17,12 +22,51 @@
       "shots/opposite-facade.png",
       "shots/roof-and-footprint.png",
       "shots/facade-and-roof-junction.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:a2048e1a37f5f8d834b9d965bdee7b71b7c2e91375a95db45456055474161f81"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:255f303295c6f3329c604efd7d2427d2f7129de84c2445bde37a022971c7f2d7"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:7ba024fc3722389db770045faa1651718ec23e371ff683bb4acfb8056612b2c7"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:23e8426a3ff5a03caa310b5f6413dab36fbe0848fc8853bb445ea9414008954c"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:d32c3eeef6afebc03b37dc32a22b4f9a3862bbb4129d0aeab0399e6c223784b7"
+      },
+      {
+        "path": "shots/principal-facade.png",
+        "hash": "sha256:055f0f7ee15f0947fa7a2e6b91aaa038263c4e2c4ddcb2fda697065a5bc664af"
+      },
+      {
+        "path": "shots/opposite-facade.png",
+        "hash": "sha256:0ec6a5bbd8e9ed7c30051a1077f10467d80d1dac57c8c98371118cbaa0def2ee"
+      },
+      {
+        "path": "shots/roof-and-footprint.png",
+        "hash": "sha256:3112af70dfa09b04f33044cb4eeb308ab6aa5e18bd9a605a69274aad1b1c330d"
+      },
+      {
+        "path": "shots/facade-and-roof-junction.png",
+        "hash": "sha256:848fca85d0168974f183ede54cda75687fbc8312406d3d0ee005e98517cdff1c"
+      }
     ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a655c4ae26ffb00af84d6af6a4087746aa2743e53244ed84de0cdeff4a13084b",
-    "notes": "Inspected eight shared-loader views. Existing 256² plaster, tile and sandstone graphs, plus gatehouse bronze or timber doors, use metric repeats and linear tints; flat blue-grey glass. No embedded or unique images. Each graph read once and unload leaves zero model geometry. Gatehouse lower round-bay panes follow actual mapped walls; upper panes follow octagonal faces.",
+    "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+    "notes": "Inspected existing shared plaster, roof tile, sandstone and the applicable metal or timber trim.",
+    "captureReportHash": "sha256:0e924420bc84acc2f64b826075e248b38fb33b536258e1b2e1577735a6166d4f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -31,13 +75,75 @@
       "shots/shared/principal-facade.png",
       "shots/shared/opposite-facade.png",
       "shots/shared/roof-and-footprint.png",
-      "shots/shared/facade-and-roof-junction.png"
-    ]
+      "shots/shared/facade-and-roof-junction.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:1e36224fb24184bb5cfc4fe737c22a4406043f216ad8cde0ab5ccdd193c67c3c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:08840868404ae5eb6390ae92880f49d0d73f84a28da5c10b3372aa01b7293a0d"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:974ebbd661bb49cc681a8ae7d585844653dc828d3f9ae5557f87009ba78fd68c"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:7ddb74e74cd57b3d396adb080eac9b2a516ecb8388e957cdf671f0ba6db19dd4"
+      },
+      {
+        "path": "shots/shared/principal-facade.png",
+        "hash": "sha256:a8b3e945e4ff982f9cba7b6b8c7df840d91a797f9fd0fd00f84bbcc99b81867d"
+      },
+      {
+        "path": "shots/shared/opposite-facade.png",
+        "hash": "sha256:368996b95eff9683334c7edb877c8aa65c4e1cd112dcfcb4cf2dbfc03180e36a"
+      },
+      {
+        "path": "shots/shared/roof-and-footprint.png",
+        "hash": "sha256:483aa175cb039534531d4dfe93ed65383a307584e04e6afb2c3829982e996b49"
+      },
+      {
+        "path": "shots/shared/facade-and-roof-junction.png",
+        "hash": "sha256:633e4713716a21f1c7a716bfa729d480e1e5f006dc71af5206879d5829a648be"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:033f39457a89363340ec6182d77c74c0cdcabcce1330e8528ebdda851d16230b"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:065e20823a5c68112ce2708bed8500a3c9393859861f480400206f2bb9fbf52a",
-    "notes": "Inspected 21 Earth-rig views: three distances, noon/late lighting, Economy/High, flat silhouette, four architectural views and four runtime levels. Identity mass and ground contact retained while near adornment drops out. Synthetic neighbors are style context only; physical-device timing and geographic fit remain pending.",
+    "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+    "notes": "Inspected all four detail levels under both light and quality modes. The native fixture supplies terrain and context.",
+    "captureReportHash": "sha256:eecd1513cbc2dcf8b0625a3d6ed9eb673ade5a82e9d48714ecfcc1fd040f4a7b",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -60,279 +166,244 @@
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:9a9eac6f353ad52807117135b75ca2943138b3ff9a48d414a4d0c1da0b03cfd2"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:4c8b21330c498dc055e803fe30187a70b3398e44e27bdd26e932708ef0338664"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:df31f93bb2a04d5472600ab667848cda5fb07693808dfa342dc3b3c90843493d"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:2b87f7bc6ec2042e08e2f5b5f39940f488486ca19b601dc8f5f3d78860451e2d"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:c23ece52324514db246d6c1fc93d09c6b0635616b806873c32564a53e88bdba8"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:59dde21e4d4ab1e9f0519d5c17dce048bd0f522335a89f0090061361908ec86b"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:b0150671698f304f22d33f9ea3bb37ab25045c63323dd10dc00a1ebcd4e6dee8"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:d175d7f8828dc974c04e72c37623bfbed240367bdb305c0a43ed58426fa0692d"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:e3807f890de8d6d4aaa700fa47d83febb5dd91ba19e537e3e3325c30f61696a6"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:7caa060c483f05864ca63ad991f2437d50db67d8579de1ed89a1effc471e6528"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:1d63fbfcaf41d7959d0daac7f5a61107de70bbdf3b1f9c485945e6f8942591f4"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:cb8994c9df84bd025cc6838ade32b21e2feecbbfef55da2b3a49c007e98ce986"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:f01de12b0a5e6d60c07712c4c983dc9f3f7c235a7ce07046f184a39b0c5ba21b"
+      },
+      {
+        "path": "medium-fi/principal-facade.png",
+        "hash": "sha256:2804273c6d03b0a8e41fa601b3991a502ae80816524322bb56850bd1d6225190"
+      },
+      {
+        "path": "medium-fi/opposite-facade.png",
+        "hash": "sha256:fab33a4f3764a4d2709e19ffc2c1b9e4142830cbe8dcda6686fb95b201f08132"
+      },
+      {
+        "path": "medium-fi/roof-and-footprint.png",
+        "hash": "sha256:c61202abd86649f89153f09b143ee40ae29b8d1e72306202e027dc02f15c8491"
+      },
+      {
+        "path": "medium-fi/facade-and-roof-junction.png",
+        "hash": "sha256:d6efda53970e55898fdf55168d764fd0a080f03790aeefb5770a09fd54ff7011"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:511087f6e05651c49542690a3d6e137ce164fe38582fb8d03de054178f5f172f"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:59dde21e4d4ab1e9f0519d5c17dce048bd0f522335a89f0090061361908ec86b"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:54ea67a492bced104c3922107d11348314508524c33e82835f34f42b385635a5"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:abb0f19d921903553c90580702398262e818287c69672c1b33e3f8f101ea081a"
+      }
     ]
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:013eec12634d8954cc744d2ce6cd2f7d3bf3c7ae5a93ff7030446bd4a8be0b79",
-    "notes": "Own OSM ring round-trip error below 2mm and heading 0.6179489906819999 align independently addressable components. This verifies coordinate reconstruction only, not source accuracy or surveyed ground levels. Inactive draft; no footprint replacement or independent QID claimed.",
-    "mapGeometryHash": "sha256:ffb0ea9bc09331d106e23c86650ca4324752389af96141a2e16a78118ae1e00f",
-    "coordinateRoundTripErrorMeters": 0.0007411998203685904
+    "status": "passed",
+    "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+    "placementHash": "sha256:82b29b267179eac4b1181df3ce1e7921f367b53a3cc33a8ae00b949bf795c45b",
+    "mapFrameHash": "sha256:430cc8c48b2c263ecb8cc39a9b049c693ac220772d4a7b0749ef53b546fcd9be",
+    "notes": "The exact mapped wing faces the shared courtyard. Its original terrain sets the entrance datum. The apron meets the ground within 7 mm at three sampled points across all detail levels.",
+    "native": {
+      "fixtureHash": "sha256:1ca3be870def601e2633c1ef595ac08de8f84bdbfa52224f57f91998f4e67ad9",
+      "mapArchiveHashes": {
+        "world": "sha256:43887b01b77e34aadba1cc14ebdbf85ee3fcad0735a40750f8558cba772049a6",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "controls": {
+        "anchor": [
+          16.293863742533553,
+          50.842923775815144
+        ],
+        "modelHeight": -0.34,
+        "meters": 398.978926,
+        "local": [
+          17.999635,
+          -10.831568
+        ]
+      },
+      "ownedNativeBuildings": [
+        35184608925986
+      ],
+      "independentBuildingsInCluster": 14,
+      "transportationRecords": 240,
+      "waterInputs": 4,
+      "maxApronContactErrorMeters": 0.006383,
+      "allLevelLoads": true,
+      "fallbackRestoresOwned": true,
+      "geometryDisposedOnUnload": true,
+      "frames": [
+        {
+          "file": "production-skyline-castle-forecourt.png",
+          "hash": "sha256:12718bc4cdee2cd7cd94c1002fa028869a993661d33a8aebadb851802bf66b1e"
+        },
+        {
+          "file": "production-skyline-gatehouse-outer-facade.png",
+          "hash": "sha256:8a8822320f8d2e2098539ed92ac92ee8b783a1522651dfccdc97f40cb5f4a64c"
+        },
+        {
+          "file": "production-district-castle-forecourt.png",
+          "hash": "sha256:b141449ae3bca974f53b330023f65bf2a0c24a014e3f27fa43f11679b65e4aab"
+        },
+        {
+          "file": "production-district-gatehouse-outer-facade.png",
+          "hash": "sha256:9df85926682f469e46a11a78f1e96a989dafb6cca25da3b7a090cb52e0ce0cbf"
+        },
+        {
+          "file": "production-street-castle-forecourt.png",
+          "hash": "sha256:813269f223c99790836001fd32be36704e7779d52394a87a13cf1d19823f5b91"
+        },
+        {
+          "file": "production-street-gatehouse-outer-facade.png",
+          "hash": "sha256:c8915b800724bd5b3875f37fc458d8bcd7e866a3596118a292c1fe9584c24185"
+        },
+        {
+          "file": "production-closeup-castle-forecourt.png",
+          "hash": "sha256:26f1a46b625d75a4120abbdc42ef705d871238573b6a9f12ea85d6e5b3584bef"
+        },
+        {
+          "file": "production-closeup-gatehouse-outer-facade.png",
+          "hash": "sha256:493a5a50ce7a597b2634f149a44101577e013b431dc2d5c84e5949b5a7501860"
+        },
+        {
+          "file": "production-closeup-side-wings-court.png",
+          "hash": "sha256:31c39be2697526757b84694fa80310cb17a619334646cd5673dd427053ccc6a0"
+        },
+        {
+          "file": "production-closeup-court-behind-gatehouse.png",
+          "hash": "sha256:7a4335050e10448b408cc1b8874a832f82858b4e3bee68d9e8fe564785de07e5"
+        },
+        {
+          "file": "production-closeup-ksiaz_north_officina-door.png",
+          "hash": "sha256:3c19d3810bd8236a11635ee23ae7b1de0f8692b6971a2f487e30d5d9688ef138"
+        },
+        {
+          "file": "production-closeup-ksiaz_south_officina-door.png",
+          "hash": "sha256:7964d9e86dca86a55019e1b955a1f0f57a4ce40c1826ea3172740d8f2fbf4df5"
+        },
+        {
+          "file": "production-closeup-without-ksiaz_north_officina-castle-forecourt.png",
+          "hash": "sha256:3ce0282306f75bcc2a9bd1528fa7c3e0a9a3e63d8bd062a47b8cb0424f70406d"
+        }
+      ]
+    }
   },
   "fidelityReview": {
-    "status": "pending",
     "target": "medium-fi",
-    "notes": "Approximate exterior appearance reviewed for this component. Actual facade azimuth, vertical terrain fit and the parent whole-site scope remain pending."
+    "status": "passed",
+    "inputHash": "sha256:758c9e14f7c72ede12693b3a782ee96e09ad3a6887b05d9776c01dfe9a723863",
+    "notes": "The wing has raised end pavilions, rounded dormer caps and closed roof returns. The courtyard entrance has a 24 cm recess and three solid sandstone treads. Roof heights, profiles, facade ornament, and stair dimensions are reconstruction estimates based on ordinary photographs and the retained map. The review covers the building exterior. The wider park and Palm House remain separate."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "source",
-        "path": "content/worldgen/source/places/u3/u35/ksiaz_south_officina/models/source.glb",
-        "hash": "sha256:b54d87c6d727d00adde604e91a86e7c101448c166ef89a3edeaa7727a2de2f4b",
-        "bytes": 300816,
-        "triangles": 2480,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
+        "bytes": 354952,
+        "hash": "sha256:2d936a891b49e59d642d0ac7815411adb277efd89d38d9fd0aa2b643667c673c",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "runtime",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.glb",
-        "hash": "sha256:b31fcbabc171132a531ac01145b7cd087b69615af0b88d41f44391e8e9e0f9be",
-        "bytes": 300332,
-        "triangles": 2480,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
+        "bytes": 354396,
+        "hash": "sha256:969ea05bcce7fd3ecb15eee88adf401140447cfec2b02ab8ba44a9ee4585bdf3",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.skyline.glb",
-        "hash": "sha256:0a5ede0f7d676ac77a78efd30b99469a01da11f4e038b75aa934ecdd597dbd8f",
-        "bytes": 16636,
-        "triangles": 156,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -24.017000198364258,
-          0,
-          -9.383000373840332
-        ],
-        "max": [
-          23.947999954223633,
-          13.800000190734863,
-          9.755999565124512
-        ],
+        "bytes": 21548,
+        "hash": "sha256:c9e78a3e0e8da192fc8003bd2281b72593b7f91b5c91d7c5e891f1f1c8c7167a",
         "errors": 0,
         "warnings": 0,
-        "infos": 1
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.district.glb",
-        "hash": "sha256:076654790ff03eadf31aefaeb15ce015fd062c67c48d5cbe495a395078477e05",
-        "bytes": 33672,
-        "triangles": 326,
-        "materials": 4,
-        "sharedGraphs": 3,
-        "images": 0,
-        "min": [
-          -24.083148956298828,
-          0,
-          -9.471794128417969
-        ],
-        "max": [
-          23.967161178588867,
-          13.800000190734863,
-          9.790251731872559
-        ],
+        "bytes": 46720,
+        "hash": "sha256:b2cdd115411608367ef9e0217922ffdcdfa9229f1136d36e8bfe30f3fa135312",
         "errors": 0,
         "warnings": 0,
-        "infos": 4
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.street.glb",
-        "hash": "sha256:12989d270df3ee3d1569ce6a7a0b443cc22e1a0a970017a735609a2424b98734",
-        "bytes": 172860,
-        "triangles": 1890,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
+        "bytes": 207352,
+        "hash": "sha256:ffac4a9766f696938d3d5a0022b49f7631449c6e8baaca1d196b3ee7356d7f33",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       },
       {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
         "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.closeup.glb",
-        "hash": "sha256:0089fe7143787cf6be1b3c0d113c954cbced645f4dacfdab695d8208c1cad155",
-        "bytes": 226368,
-        "triangles": 2480,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
+        "bytes": 260860,
+        "hash": "sha256:c3fb1fd12501fbfdc8c76577fecad4e5f7019ecb0ce189c430efbc730d55447e",
         "errors": 0,
         "warnings": 0,
-        "infos": 5
+        "embeddedImages": 0
       }
     ],
-    "notes": "Six files have zero errors/warnings, zero images, ground at Y0, and five or fewer merged groups. Expected unused-UV informational notices only. Targeted determinism, polygon, download, homogeneous-buffer and window-facing checks passed."
+    "initialBytes": 68268
   },
-  "runtimeLodReview": {
-    "status": "passed",
-    "levels": [
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.skyline.glb",
-        "hash": "sha256:0a5ede0f7d676ac77a78efd30b99469a01da11f4e038b75aa934ecdd597dbd8f",
-        "bytes": 16636,
-        "triangles": 156,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -24.017000198364258,
-          0,
-          -9.383000373840332
-        ],
-        "max": [
-          23.947999954223633,
-          13.800000190734863,
-          9.755999565124512
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
-        "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.district.glb",
-        "hash": "sha256:076654790ff03eadf31aefaeb15ce015fd062c67c48d5cbe495a395078477e05",
-        "bytes": 33672,
-        "triangles": 326,
-        "materials": 4,
-        "sharedGraphs": 3,
-        "images": 0,
-        "min": [
-          -24.083148956298828,
-          0,
-          -9.471794128417969
-        ],
-        "max": [
-          23.967161178588867,
-          13.800000190734863,
-          9.790251731872559
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 4
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
-        "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.street.glb",
-        "hash": "sha256:12989d270df3ee3d1569ce6a7a0b443cc22e1a0a970017a735609a2424b98734",
-        "bytes": 172860,
-        "triangles": 1890,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
-      },
-      {
-        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.closeup.glb",
-        "hash": "sha256:0089fe7143787cf6be1b3c0d113c954cbced645f4dacfdab695d8208c1cad155",
-        "bytes": 226368,
-        "triangles": 2480,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -24.205591201782227,
-          0,
-          -9.572674751281738
-        ],
-        "max": [
-          24.126502990722656,
-          15.399999618530273,
-          9.934672355651855
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
-      }
-    ],
-    "initialDownloadBytes": 50308,
-    "notes": "Skyline/district/street/closeup all meet medium-fi caps. Initial bytes exclude shared graph transfers. Resident still-frame appearance reviewed; motion, adaptive streaming and hardware timing pending."
-  }
+  "limitations": [
+    "Roof heights, profiles, facade ornament, and stair dimensions are reconstruction estimates based on ordinary photographs and the retained map. The review covers the building exterior. The wider park and Palm House remain separate."
+  ]
 }

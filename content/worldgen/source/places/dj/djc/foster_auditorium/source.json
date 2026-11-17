@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.foster_auditorium",
+  "kind": "static-structure",
+  "title": "Foster Auditorium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.foster_auditorium",
+        "output": "assets/places/dj/djc/foster_auditorium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b8431426cb09eecad9490ff442a5ffd121aa2147dc037f4f296d38280db7532e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-foster-auditorium",
+        "path": "models/generate-foster-auditorium.mjs"
+      },
+      {
+        "id": "foster-auditorium-model",
+        "path": "models/foster-auditorium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/auditorium-controls.json",
+      "reference-rights/commons-qualla-foster-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8415-13176.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

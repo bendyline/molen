@@ -43,7 +43,8 @@ function reviewedNamedNativeNode(frame, spec, sourceManifest, nativeNodeBytes, f
       ) &&
       !!node &&
       node.tags?.wikidata === undefined &&
-      ['tower', 'monitoring_station'].includes(node.tags?.man_made) &&
+      (['tower', 'monitoring_station'].includes(node.tags?.man_made) ||
+        node.tags?.historic === 'monument') &&
       typeof node.tags.name === 'string' &&
       node.tags.name.trim().length > 0 &&
       node.tags.name === identity.name &&

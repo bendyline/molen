@@ -5,21 +5,20 @@
   "inputHash": "sha256:d2c247910181a011ebbd52ec458b05db25bcd70fb0080765e2e2c844318053a1",
   "sourceHash": "sha256:9cfe2825273ae10d5a4a442a8864cfcb3de8bb763170924bd4157daf57b72446",
   "runtimeHash": "sha256:815672351de5dddc35ac69ea8777412aee4f04590c077590c3c569f747c608d6",
-  "captureReportHash": "sha256:8399f0e5fed29b544a7a087b6853f883c9c32788b6a4e8bc5feffdcd1aa0c15b",
+  "captureReportHash": "sha256:de97c6df1c65517798da2f967b0964ab7b8e2d8224f037684846422fa62bcaaa",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
-      "preview.png",
-      "shots/turntable/angle_0.png",
-      "shots/turntable/angle_1.png",
-      "shots/turntable/angle_2.png",
-      "shots/turntable/angle_3.png",
-      "shots/continuous-lozenge-shell-and-open-base.png",
-      "shots/two-tier-bowl-and-deep-diagonal-roof.png",
-      "shots/rounded-panel-shoulder-and-compression-rim.png"
+      "preview.png"
     ],
     "notes": "Inspected48 final current views: source turntable/details, shared-surface placement, noon/late economy/high, four LODs, original native terrain/context and failed load. Own rounded basket shell/large diagonal lozenge membrane panels/real triangular base openings/recessed concrete-glazed galleries, diagonal hollow-box canopy frame/closed skins/open central aperture/inner rim, two orange-red/yellow seating tiers/closed hospitality fascia/pale aisles/neutral football field/goals/supported end displays. Replaced intersecting overlay skins with one partitioned membrane/frame skin and moved the upper service gallery behind the seating during this author/build/inspect pass. Corner rounding/frame repetition are deliberately finite polygonal approximations; roof shoulder retains visible facets.",
-    "captureReportHash": "sha256:8399f0e5fed29b544a7a087b6853f883c9c32788b6a4e8bc5feffdcd1aa0c15b"
+    "captureReportHash": "sha256:de97c6df1c65517798da2f967b0964ab7b8e2d8224f037684846422fa62bcaaa",
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:d8fca79590b1132e99183413713cf9becbd1b72e9d9cc5942be7e0d105201af8"
+      }
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
@@ -34,7 +33,63 @@
       "shots/shared/placement.png"
     ],
     "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas and window_grid. No embedded images, private texture atlas or copied photographic pixels. Runtime reads each required graph once; five near draws/one skyline draw. Separate position/normal GPU streams and equal CPU/GPU byte accounting. Neutral daylight/shared reflected sky/shadows checked; glazing and roof optics remain approximate.",
-    "captureReportHash": "sha256:a7947d1b4cb2bf10b5a1c331b22980f66e2d6b56d94df0035ba0e25b7e8cb619"
+    "captureReportHash": "sha256:518bdfe098e6b114e649968b6f0da91222c39bacdf64e730614de09f8a0acf2f",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:320946f41cfd169b08df0e4acde5e6d723cd4e7ff92c832cbef28a9fadf41b2a"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:ec32b98f269ac3eccfeb3479426c0780292cdafa8bfc29dde2f2689b763bf9f6"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:6467e0e87cc4df7d0afbb75dc7c234cddafb3a3b759a32c1c3500f8d4157b456"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:22ed645163a3a679cce1fd57630b3a26dfe76085d5de2322b92b0c9c51726fd3"
+      },
+      {
+        "path": "shots/shared/continuous-lozenge-shell-and-open-base.png",
+        "hash": "sha256:95a2f5d4176bccf8b9d395a1be58ff6db483a961b86211dfa94b1318bbca35dc"
+      },
+      {
+        "path": "shots/shared/two-tier-bowl-and-deep-diagonal-roof.png",
+        "hash": "sha256:5623b78ffe50d9dc988f01f768d452d2f7db50b6a452c2f5ed52de3c4c76a041"
+      },
+      {
+        "path": "shots/shared/rounded-panel-shoulder-and-compression-rim.png",
+        "hash": "sha256:5a1856aea63437821f0a01f5493b225f11ffbdf9fdf8b71b16b647345aea0c21"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:f746c9b8cf665377d3aa641435bcb92f1d6f8d70042e78b1b29723feb3bd67f1"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -65,7 +120,105 @@
       "medium-fi/transition-closeup.png"
     ],
     "notes": "Four authored levels preserve the mapped body/open field, lozenge shell silhouette, two tiers and base portals. Far levels merge rows/diagonal members and simplify hidden backs/services. Skyline/district/street/closeup536/2918/12334/48686triangles; initial skyline plus district344624bytes, below3MB phone/6MB laptop asset targets. These are asset budgets/automated renders; physical laptop/phone/tablet and dense-city timings remain pending.",
-    "captureReportHash": "sha256:d329daed33fc1dee55ad092a5ee67a6380e0ca893370659f8e4919ca43d7a3bb"
+    "captureReportHash": "sha256:1b0d840386cc3f728e738cd9fdf23c861d09175e176222d0a867ce7c7ef62703",
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:96ec027ac1f62c81114f68a6f5494a99449ba1358bae605fa1be97046170a05f"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:fdb81ecbf67826b8aa6b65b9384f121882d630efdd6ccb08a578b6cd240e61c6"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:cd1dba15ba0d990a4447c1bd64919633425efb90cb06ee6f5979194866f9f32b"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:90322dc13938c947ffd2bc46761c5233f8ac5a04aff7e66837966fda307592ef"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:d323bcee90aa18d0bcb80b53662f519e5b7debd6536aea827e5e106b941831dc"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:f1af6e7085ff3fe298184f4a28a51ebe977ca0ecf5e9aaec7de171382d864f71"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:237e99a88f04e32ed4a5ddd0e666f8ea72202774dbef386e77e339ce0ad62f4e"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:7b8f9af15fd4a4de90f59a6a6ce532e0de7e2382e6586b1089f83991cc8a548d"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:6165f6a70b1ae1a52cb42f8bc60213c98e5d29b8a1950fd00e5c76499260ba16"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:eeaf28b2c7db20a3515fc3299d8dde2590366c7e09ff5d94fd17155115242c44"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:65b4881a470e2a7f2a6a3cdfd86b1578899d70a8c71cd2036b6c7df5cd87dc1b"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:5bb85bf293ec699cb7163767b4eaf4e592f5b4463c2130875e66b668a1280b25"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:6e1949c321685ac7cdeb62f0fd76208aa6baa1762a7e860dd4d64a088650f982"
+      },
+      {
+        "path": "medium-fi/continuous-lozenge-shell-and-open-base.png",
+        "hash": "sha256:d1dc906e084fed7e4409dc367c72f1e06ae67df907e2cb227729bd0492032b9b"
+      },
+      {
+        "path": "medium-fi/two-tier-bowl-and-deep-diagonal-roof.png",
+        "hash": "sha256:965951909dc3358db28033a61f2471bcd6ac98c57b06655155ab7da239172b65"
+      },
+      {
+        "path": "medium-fi/rounded-panel-shoulder-and-compression-rim.png",
+        "hash": "sha256:752e0b023ee9c3892d91549509a8a8b15530988cf617175746eafeb7282d83b3"
+      },
+      {
+        "path": "medium-fi/amazonia-skyline.png",
+        "hash": "sha256:16359195d940effe2ee7e697ce43f9340c897f06e59f7c76f95f90e7f30abc83"
+      },
+      {
+        "path": "medium-fi/amazonia-district.png",
+        "hash": "sha256:1fce09b0ef29d4f42405ff10c472ff04deffde90a6b259786370c4056228108a"
+      },
+      {
+        "path": "medium-fi/amazonia-street.png",
+        "hash": "sha256:4a0f220b449fe5dcc05c67640f270efc5206ba690c8b085e2e47bbc26ba62a44"
+      },
+      {
+        "path": "medium-fi/amazonia-closeup.png",
+        "hash": "sha256:1d1f26aafb20859144600d8623f6b6d75aa29569a6aa370420c7d0234155ccd4"
+      },
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:ea413d8c37905b9099d796d64ca3e5c94bf62a8ccc443d0e9390ec5c04c6ecca"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:f1af6e7085ff3fe298184f4a28a51ebe977ca0ecf5e9aaec7de171382d864f71"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:d1a483598a4b43dd3887ff4bdbc3a48eb7f372b1c837b014f424c02015b63b71"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:80349396c29b753d8bd95a183afd3fe659b52567baa3586994abe4a13fea6b8f"
+      }
+    ]
   },
   "geographicReview": {
     "status": "passed",
@@ -635,5 +788,12 @@
     "appearance": "The rounded diagonal membrane shell, open pitch, two seating tiers and triangular base openings remain distinct. The lowest detail levels simplify the basket frame and seating.",
     "sourceImageryUsedInThisReview": false,
     "sourceImageryBasis": "Inherited catalog authoring provenance remains documented in reference-metadata.json. This technical review did not certify the historical authoring references under the Qualla public-domain policy."
+  },
+  "evidenceRefresh": {
+    "reviewedOn": "2026-11-14",
+    "sourceHash": "sha256:9cfe2825273ae10d5a4a442a8864cfcb3de8bb763170924bd4157daf57b72446",
+    "runtimeHash": "sha256:815672351de5dddc35ac69ea8777412aee4f04590c077590c3c569f747c608d6",
+    "placementHash": "sha256:bccc16052b90d565521ed6172878756f1bc5d30d430b75626aceae25651c9f3e",
+    "notes": "Inspected the recorded summary and current World Viewer captures. The existing geographic review still binds the same source and placement."
   }
 }

@@ -10,7 +10,7 @@
   ],
   "heading": 0.6179489906819999,
   "sourceUrl": "https://www.openstreetmap.org/way/236837151",
-  "identityStatus": "Attributed OSM way and official site/hotel references;no independent Wikidata identifier claimed.",
+  "identityStatus": "Hotel Zamkowy at Piastów Śląskich 5 occupies the former tax office listed by the National Heritage Institute. The labeled aerial distinguishes it from the adjacent wing hotels.",
   "elements": [
     {
       "type": "way",
@@ -65,7 +65,7 @@
     "up": "+Y",
     "lateral": "+X toward castle approach entrance,approximately east-north-east",
     "longitudinal": "+Z approximately south-south-east",
-    "origin": "Mapped building envelope center;Y0 estimated local ground contact"
+    "origin": "Mapped building envelope center. The terrain reference is the toe of the forecourt entrance apron."
   },
   "controls": {
     "coreLocalCenter": [
@@ -73,15 +73,170 @@
       -40.93437908426165
     ],
     "bodyHeight": 9.4,
-    "roofRise": 5.8,
-    "detailSource": "Primary operator aerial and hotel photographs;building/roof levels in OSM. Heights,openings and roof profiles estimated.",
+    "roofRise": 4.65,
+    "detailSource": "Two aerial views show a red hip roof, a shallow cross gable over the principal façade, paired chimneys and cream masonry with a floor band.",
     "roofAxisOffset": 0.13,
     "roofAxisBasis": "Near-parallel long map sides are about7.45degrees from the castle frame. Native+X faces the outer approach;native+Z follows the gatehouse frontage. Own mapped ring retained;photographs resolve outward direction.",
-    "pedimentFacing": "+X;appearance interpretation from NE aerial"
+    "pedimentFacing": "+X toward the outer approach"
   },
   "reconstruction": {
-    "basis": "Own attributed map footprint;two levels for gatehouse/side wings;mansard tags for side wings. Photographs guide visible composition,not exact dimensions.",
-    "scope": "One independent entrance component of ksiaz_castle_and_park_complex. This does not complete the entire castle/park ensemble.",
-    "registration": "Shared signed axis from mapped castle approach. Own center/footprint preserved. Vertical datum and actual terrain fit remain pending."
+    "basis": "Attributed OpenStreetMap outline, labeled aerial and operator aerial. The National Heritage Institute record confirms the former tax office at number 5.",
+    "scope": "Detached historic building identified by its own address and footprint within the Książ estate inventory. The broader estate remains in progress.",
+    "registration": "The east-facing gable follows the photographed orientation. The sandstone plinth meets the retained PMTiles terrain and a reconstructed recessed entrance and landing join the forecourt grade."
+  },
+  "siteFit": {
+    "footingBottom": -3.025577,
+    "datumMeters": 396.395765,
+    "contact": {
+      "anchor": [
+        16.29354320732098,
+        50.84331071927903
+      ],
+      "modelHeight": -0.34,
+      "meters": 396.055765,
+      "local": [
+        8.199851,
+        0.018091
+      ]
+    },
+    "apron": {
+      "center": [
+        6.689959,
+        0
+      ],
+      "angle": 1.558815,
+      "width": 2.33,
+      "depth": 1.51,
+      "toeHeights": [
+        -0.217241,
+        -0.462954
+      ]
+    },
+    "bounds": [
+      16.293252188489078,
+      50.84313501749811,
+      16.29370754224942,
+      50.84342995845332
+    ],
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.486782,
+          -11.275578
+        ],
+        [
+          6.90482,
+          -11.240633
+        ],
+        [
+          6.540476,
+          11.400863
+        ],
+        [
+          -6.741892,
+          11.212245
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Exact retained Protomaps outline for the former tax office at Piastów Śląskich 5."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          6.676001,
+          1.164916
+        ],
+        [
+          6.703917,
+          -1.164916
+        ],
+        [
+          8.213809,
+          -1.146825
+        ],
+        [
+          8.185893,
+          1.183008
+        ]
+      ],
+      "preservePaving": true,
+      "pavingOutlines": [
+        [
+          [
+            6.4,
+            -10.9
+          ],
+          [
+            13,
+            -10.9
+          ],
+          [
+            13,
+            10.9
+          ],
+          [
+            6.4,
+            10.9
+          ]
+        ]
+      ],
+      "basis": "The model supplies the ground below the entrance steps. Clear inferred parking pavement between the principal façade and the outer approach while keeping the mapped service roads."
+    },
+    "evidence": {
+      "mapFeatureId": 35184608925983,
+      "ownedIds": [
+        35184608925983
+      ],
+      "vectorSource": "https://build.protomaps.com/20261008.pmtiles",
+      "archiveHashes": {
+        "world": "sha256:43887b01b77e34aadba1cc14ebdbf85ee3fcad0735a40750f8558cba772049a6",
+        "elevation": "sha256:865445e7f5044f8d601a0ed5cc7ace0cb951d0ad976482bd705f38e00624a5ed"
+      },
+      "vectorTiles": [
+        {
+          "z": 15,
+          "x": 17866,
+          "y": 10992,
+          "hash": "sha256:c2b7f3d4f965d7ed09e49d8b5f3c6a3b66c2d755e79be3d3e19001eeaadfc2ce"
+        },
+        {
+          "z": 15,
+          "x": 17867,
+          "y": 10992,
+          "hash": "sha256:cd4329f6b4f8a051742e5b4949294e4b14c496e512089d792b967ac9e6480054"
+        },
+        {
+          "z": 15,
+          "x": 17866,
+          "y": 10993,
+          "hash": "sha256:24d38525952453184aafee0a688e126e291e49a5c7aa016ffbee0f5eef168ba8"
+        },
+        {
+          "z": 15,
+          "x": 17867,
+          "y": 10993,
+          "hash": "sha256:2eb1de9210cbfb1fb84903dd607ed6516e275a5929d629c25241cb0390b1dd8b"
+        }
+      ],
+      "elevationTiles": [
+        {
+          "z": 14,
+          "x": 8933,
+          "y": 5496,
+          "hash": "sha256:4531cdefd015e518d46413f22058749f419ef8f739c7ceb9c2c1cb8eee6c5557"
+        }
+      ],
+      "perimeterElevationMeters": [
+        394.623786,
+        393.750188,
+        396.890914,
+        397.137977
+      ],
+      "historicIdentity": "https://zabytek.pl/en/obiekty/g-278127",
+      "aerialSources": [
+        "https://i.szalas.hu/hotels/1554425/500x500/40603663.jpg",
+        "https://www.zamek-ksiaz-hotel-przy-oslej-bramie.pl/img/_img81.jpg"
+      ]
+    }
   }
 }

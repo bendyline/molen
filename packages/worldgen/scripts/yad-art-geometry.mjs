@@ -1,14 +1,17 @@
 /** 'museum_of_holocaust_art_yad_vashem': mapped narrow Art Museum gallery and deep courtyard portal. */
 import { box, prism } from './khmer-structure-geometry.mjs';
+import { addSquareOfHopeLandscape } from './yad-court-landscape.mjs';
 
 export function buildYadArt(face, detail, r) {
   const Y = r.floorY,
     E = r.entryX,
     F = r.frontZ;
   const P = ([x, y, z]) => [x * r.xAxis[0] + z * r.zAxis[0], y, x * r.xAxis[1] + z * r.zAxis[1]];
-  const f = (role, ps, n) => face(role, ps.map(P), P(n));
+  const f = (role, ps, n, tint) => face(role, ps.map(P), P(n), tint);
   const poly = (outline) => ({ outline, holes: [] });
   prism(f, 'floor', poly(r.outer), r.foundationY, Y, true);
+  prism(f, 'pavers', poly(r.court.outline), r.court.baseY, r.court.floorY);
+  addSquareOfHopeLandscape(f, detail, r.court);
   // The notch is cut out of the real wall mass, not drawn as a dark rectangle.
   for (const p of r.body) prism(f, 'concrete', p, Y, Y + 6.8, true);
   box(f, 'concrete', E, Y + 4.2, (r.entryBackZ + F) / 2, 3.8, 2.6, F - r.entryBackZ);

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kauri_museum",
+  "kind": "static-structure",
+  "title": "Kauri Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kauri_museum",
+        "output": "assets/places/rc/rce/kauri_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:66bac705d640f7ad23c41e388c914b372cc205f22db81a7d76e501d481cc1cc2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kauri-museum",
+        "path": "models/generate-kauri-museum.mjs"
+      },
+      {
+        "id": "kauri-museum-model",
+        "path": "models/kauri-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-matakohe-entrance-2016.json",
+      "reference-images/matakohe-kauri-museum-entrance-2016.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-32238-19914.png",
+      "terrain-sources/terrarium-15-32238-19915.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

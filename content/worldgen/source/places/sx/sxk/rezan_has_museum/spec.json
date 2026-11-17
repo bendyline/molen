@@ -1,0 +1,503 @@
+{
+  "planId": "rezan_has_museum",
+  "id": "rezan_has_museum",
+  "assetId": "molen.worldgen.structure.rezan_has_museum",
+  "title": "Rezan Has Museum",
+  "wikidataId": "Q7319839",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.95979211,
+    "latitude": 41.02392955
+  },
+  "size": [
+    38.200504302978516,
+    16.787656247615814,
+    39.87556838989258
+  ],
+  "actualBounds": {
+    "min": [
+      -17.987926483154297,
+      -0.9576563239097595,
+      -20.73362922668457
+    ],
+    "max": [
+      20.21257781982422,
+      15.829999923706055,
+      19.141939163208008
+    ]
+  },
+  "visualBrief": "The Rezan Has Museum’s wing of the former Cibali Tobacco Factory, with arched brick industrial bays, tiled roofs and the contemporary museum entrance beside the Golden Horn.",
+  "nativeAxes": {
+    "x": "northwest along the museum wing",
+    "y": "up",
+    "z": "street and Golden Horn side"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Rezan_Has_M%C3%BCzesi_%C4%B0%C3%A7inden_Foto%C4%9Fraf.jpg"
+  ],
+  "stories": [
+    {
+      "id": "rezan-has-museum-wp",
+      "url": "https://qualla.com/rezan-has-museum/"
+    }
+  ],
+  "referenceInputHash": "71c93510aab98a353e4fc09c0ce82943a98084657a10d67190d9a183cdaae40c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxk/rezan_has_museum/models/rezan-has-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxk/rezan_has_museum/models/rezan-has-museum-model.mjs",
+    "level": "skyline",
+    "export": "rezanSkyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.93
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "rezanDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          }
+        }
+      },
+      "street": {
+        "export": "rezanStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          }
+        }
+      },
+      "closeup": {
+        "export": "rezanCloseup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone_raw",
+    "stone_sandstone",
+    "tile_ceramic",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.72,
+    "cameraYaw": 0.52,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        6.9,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The frozen original elevation controls the street entrance and foundation. The university documents retained red brick and tall arched windows. The lower museum masonry photo corroborates mixed brick and rubble fabric. Three visible factory storeys, roof shape and door positions are estimated exterior sections.",
+    "anchor": [
+      28.95979211,
+      41.02392955
+    ],
+    "heading": 2.240526962175973,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.95993505318405,
+        41.024069196551736
+      ],
+      "modelHeight": 0,
+      "basis": "Freeze original street-side elevation at the frontage opposite the operator-identified tram stop, just outside the traced C Block wall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          19.87129,
+          -20.3886
+        ],
+        [
+          19.87268,
+          -9.12885
+        ],
+        [
+          12.91657,
+          -9.13069
+        ],
+        [
+          12.91525,
+          7.38667
+        ],
+        [
+          19.6431,
+          7.38986
+        ],
+        [
+          19.63709,
+          16.81194
+        ],
+        [
+          -10.16686,
+          16.81194
+        ],
+        [
+          -10.16308,
+          8.79141
+        ],
+        [
+          -14.46534,
+          8.79132
+        ],
+        [
+          -14.4599,
+          3.99651
+        ],
+        [
+          -17.64871,
+          3.98895
+        ],
+        [
+          -17.63833,
+          -7.465
+        ],
+        [
+          -10.15597,
+          -7.46427
+        ],
+        [
+          -10.15571,
+          -20.39382
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "The 14-point native C Block wing opposite Cibali T5 station."
+    },
+    "featureIds": [
+      "way/525964000",
+      "way/525964001",
+      "node/8267229334"
+    ],
+    "source": "https://www.openstreetmap.org/way/525964000",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b72b94824a32838f1e029555cd44751027288b68f7df42fabb74999866d1dd29"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the street-visible C Block host wing of the former Cibali Tobacco Factory. The separate university wings and the enclosed subsurface cistern remain beyond its exterior scope.",
+    "The unnamed footprint is attributed to C Block by the university building directory, museum’s tram-side entrance description and the Qualla location inside the native polygon. The OSM museum point farther northwest serves as an identity reference. The exact doorway position is estimated.",
+    "The restored masonry and arched industrial openings follow the university’s account. Storey heights and counts, the exact bay rhythm, roof hips, connector glazing, lintels and color differences are reconstructions.",
+    "The unchanged Terrarium field sets the street-side approach and local slope. The stair, masonry base and side contacts are approximate."
+  ],
+  "sourceLicense": "Original geometry based on cleared CC0 Qualla museum imagery, factual institutional sources, ODbL OpenStreetMap geography and openly attributed Terrarium elevation.",
+  "qaLodCameras": [
+    {
+      "name": "cibali-skyline",
+      "position": [
+        47,
+        29,
+        63
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        -0.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "cibali-district",
+      "position": [
+        47,
+        29,
+        63
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        -0.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cibali-street",
+      "position": [
+        47,
+        29,
+        63
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        -0.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "cibali-closeup",
+      "position": [
+        47,
+        29,
+        63
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        -0.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "cibali-street-front-and-museum-door",
+      "position": [
+        11,
+        10,
+        51
+      ],
+      "lookAt": [
+        3.6,
+        6.5,
+        15.5
+      ]
+    },
+    {
+      "name": "historic-brick-windows-and-stair",
+      "position": [
+        -20,
+        7.2,
+        37
+      ],
+      "lookAt": [
+        5,
+        5.3,
+        16.1
+      ]
+    },
+    {
+      "name": "factory-roof-and-southwest-massing",
+      "position": [
+        44,
+        29,
+        -55
+      ],
+      "lookAt": [
+        0,
+        8.4,
+        -4
+      ]
+    },
+    {
+      "name": "cibali-wing-and-street-grade",
+      "position": [
+        -68,
+        26,
+        -14
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16074,
+    "vertices": 48222,
+    "materials": 6,
+    "bytes": 2145660,
+    "sha256": "sha256:928885df3b0d870ae238d30ddfcc39ad0d89f2a8a541956eed8d37db7bc4ce09"
+  }
+}

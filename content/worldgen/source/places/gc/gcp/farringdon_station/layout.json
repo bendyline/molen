@@ -1,14 +1,18 @@
 {
   "id": "farringdon_station",
   "title": "Farringdon station",
-  "scope": "Complete Farringdon aboveground interchange exterior:both whole mapped main arched platform-canopy sections andwestern glazed long roof,heritage Cowcross headhouse/annexes andprojecting glass/metal canopy,modern west mainline ticket hall/lifts,Bloom western Elizabeth-line entrance host andthe separate Kaleidoscope eastern entrance host nearLindseyStreet/LongLane. Preserve theindependent cityblocks,SmithfieldMarket halls,Barbican station,roads/alleys andintervening ground. No underground platform/tunnel interior,trains,people,signs,roundels,logos or obsoleteconstruction pit.",
+  "scope": "Farringdon’s two glazed canopy families, Cowcross heritage entrance and modern mainline hall, low western ticket hall and Bloom offices, and the complete Kaleidoscope eastern host including its Long Lane corner wing.",
   "axis": "+X NNW alongmainline canopies awayfromCowcrossStreet; -X SSE towardCowcross/Bloom westernentry; +Z ENE towardTurnmillStreet/remoteKaleidoscope easternentry; -Z WSW towardFarringdonRoad; +Yup.",
   "foundationY": -8,
-  "heightPolicy": "Maplayer2 doesnot establish surveyed raillevels. Main barrel8m eaves/12m crown,west14m eaves/20m crown,heritage8m andsecondary5m canopies areexplicit picture/map interpretations. WesternBloom height34m isphoto-estimated because nativeheightisabsent;native easternhost23m isretained. Host associations arephysicalpicture/map fits,not separately Wikidata-tagged identities. Exact undergroundstation interiors andheritage lettering areomitted. Maincanopy8/12m,westgabledroof14/20m,heritage8m,modernhall14m,Bloomestimate34m,easternnative23m. One unchanged standard global field sample directly outside the heritage Cowcross entry[40,-128],10.0307664m,defines commonY=0. The previous lower courtyard reference is superseded. Bloom/Kaleidoscope fixed source offsets preserve their original approximate absolute entry grades;no per-part runtime offsets or altered field.",
-  "limitations": "Four ordinary exterior pictures andcurrentPMTiles. The2012 aerial establishesmaincanopy family,not currentBloomconstructionstatus;obsoletepit omitted. Bloom andeastentrance host associations,hidden/rearfacades,floor inventories,canopy profiles andframe counts are explicit medium-fi interpretations. No copied facadeetching/signs. Exact rail-platform grades,thresholds,stairs andnavigable undergroundinteriors areunverified. Physical laptop/phone timing andnumericalLODerrors remainunmeasured.",
+  "heightPolicy": "One native terrain datum anchors the signed complete above-ground ensemble. Facade plinths follow locally sampled host grade. Portals are level across their opening and their granite approach strips taper to native paving. The continuous upper facades, paired canopy roofs and platform corridor use their original heights.",
+  "limitations": [
+    "The short thresholds, aprons and lobby recesses approximate current street grades using the standard host terrain and PMTiles pavement. Canopy profiles and underground rail levels are visual estimates.",
+    "The western low ticket hall roof and Bloom height are inferred from current street and aerial photographs. The model shows the above-ground building envelopes and recessed doors. Platform interiors, escalators, train service and street furnishings use the host scene."
+  ],
   "nativeMap": {
     "ownedParts": [
       1237,
+      1466,
       1582,
       1765,
       1766,
@@ -17,12 +21,16 @@
       1822,
       1824,
       1825,
+      1867,
+      1868,
+      1869,
       1870,
       1871,
       1872,
       1959,
       1961,
-      1962
+      1962,
+      1966
     ],
     "preservedNeighbors": [
       0,
@@ -1490,7 +1498,6 @@
       1463,
       1464,
       1465,
-      1466,
       1467,
       1468,
       1469,
@@ -1883,9 +1890,6 @@
       1864,
       1865,
       1866,
-      1867,
-      1868,
-      1869,
       1873,
       1874,
       1875,
@@ -1976,7 +1980,6 @@
       1963,
       1964,
       1965,
-      1966,
       1967,
       1968,
       1969,
@@ -2896,6 +2899,10 @@
   "groundCutout": {
     "outline": [
       [
+        -173.68815,
+        163.948886
+      ],
+      [
         -165.549222,
         163.688493
       ],
@@ -2916,12 +2923,20 @@
         190.606106
       ],
       [
-        -165.549222,
-        163.688493
+        -173.356184,
+        190.619113
+      ],
+      [
+        -173.68815,
+        163.948886
       ]
     ],
     "outlines": [
       [
+        [
+          -173.68815,
+          163.948886
+        ],
         [
           -165.549222,
           163.688493
@@ -2943,8 +2958,12 @@
           190.606106
         ],
         [
-          -165.549222,
-          163.688493
+          -173.356184,
+          190.619113
+        ],
+        [
+          -173.68815,
+          163.948886
         ]
       ],
       [
@@ -2963,6 +2982,34 @@
         [
           24.545199,
           -147.783312
+        ],
+        [
+          25.045016,
+          -121.033682
+        ],
+        [
+          26.750611,
+          -103.784551
+        ],
+        [
+          19.682792,
+          -100.140062
+        ],
+        [
+          18.067698,
+          -113.235808
+        ],
+        [
+          12.915665,
+          -113.206671
+        ],
+        [
+          12.87041,
+          -115.283366
+        ],
+        [
+          -26.507626,
+          -114.59174
         ],
         [
           -27.363564,
@@ -3066,13 +3113,240 @@
           39.999288,
           -151.776717
         ]
+      ],
+      [
+        [
+          42.7797876,
+          -128.9877559
+        ],
+        [
+          42.8560357,
+          -125.4885865
+        ],
+        [
+          40.0167097,
+          -125.4267167
+        ],
+        [
+          39.9404616,
+          -128.925886
+        ],
+        [
+          42.7797876,
+          -128.9877559
+        ]
+      ],
+      [
+        [
+          40.1868186,
+          -160.8616107
+        ],
+        [
+          40.0958948,
+          -155.2623489
+        ],
+        [
+          37.7562033,
+          -155.3003421
+        ],
+        [
+          37.8471271,
+          -160.8996039
+        ],
+        [
+          40.1868186,
+          -160.8616107
+        ]
+      ],
+      [
+        [
+          24.8785977,
+          -127.7990725
+        ],
+        [
+          24.721671,
+          -136.1976066
+        ],
+        [
+          27.311219,
+          -136.2459923
+        ],
+        [
+          27.4681457,
+          -127.8474582
+        ],
+        [
+          24.8785977,
+          -127.7990725
+        ]
+      ],
+      [
+        [
+          26.0115642,
+          -172.3064777
+        ],
+        [
+          26.2874759,
+          -176.7980111
+        ],
+        [
+          28.2238259,
+          -176.6790625
+        ],
+        [
+          27.9479142,
+          -172.187529
+        ],
+        [
+          26.0115642,
+          -172.3064777
+        ]
+      ],
+      [
+        [
+          -173.5899622,
+          168.6234574
+        ],
+        [
+          -173.5003503,
+          175.8228997
+        ],
+        [
+          -176.8400916,
+          175.8644697
+        ],
+        [
+          -176.9297035,
+          168.6650273
+        ],
+        [
+          -173.5899622,
+          168.6234574
+        ]
       ]
     ],
     "minHeight": -8,
-    "basis": "Only closed heritage/modern-ticket-hall floors andthe complete two entrance-host footprints. No platform/canopyparent,openrailcorridor,intervening cityblock,road orSmithfieldMarket ground blanket."
+    "preservePaving": true,
+    "pavingOutlines": [
+      [
+        [
+          42.7797876,
+          -128.9877559
+        ],
+        [
+          42.8560357,
+          -125.4885865
+        ],
+        [
+          40.0167097,
+          -125.4267167
+        ],
+        [
+          39.9404616,
+          -128.925886
+        ],
+        [
+          42.7797876,
+          -128.9877559
+        ]
+      ],
+      [
+        [
+          40.1868186,
+          -160.8616107
+        ],
+        [
+          40.0958948,
+          -155.2623489
+        ],
+        [
+          37.7562033,
+          -155.3003421
+        ],
+        [
+          37.8471271,
+          -160.8996039
+        ],
+        [
+          40.1868186,
+          -160.8616107
+        ]
+      ],
+      [
+        [
+          24.8785977,
+          -127.7990725
+        ],
+        [
+          24.721671,
+          -136.1976066
+        ],
+        [
+          27.311219,
+          -136.2459923
+        ],
+        [
+          27.4681457,
+          -127.8474582
+        ],
+        [
+          24.8785977,
+          -127.7990725
+        ]
+      ],
+      [
+        [
+          26.0115642,
+          -172.3064777
+        ],
+        [
+          26.2874759,
+          -176.7980111
+        ],
+        [
+          28.2238259,
+          -176.6790625
+        ],
+        [
+          27.9479142,
+          -172.187529
+        ],
+        [
+          26.0115642,
+          -172.3064777
+        ]
+      ],
+      [
+        [
+          -173.5899622,
+          168.6234574
+        ],
+        [
+          -173.5003503,
+          175.8228997
+        ],
+        [
+          -176.8400916,
+          175.8644697
+        ],
+        [
+          -176.9297035,
+          168.6650273
+        ],
+        [
+          -173.5899622,
+          168.6234574
+        ]
+      ]
+    ],
+    "basis": "One native terrain datum anchors the signed complete above-ground ensemble. Facade plinths follow locally sampled host grade. Portals are level across their opening and their granite approach strips taper to native paving. The continuous upper facades, paired canopy roofs and platform corridor use their original heights."
   },
   "foundationPolygons": [
     [
+      [
+        -173.68815,
+        163.948886
+      ],
       [
         -165.549222,
         163.688493
@@ -3094,8 +3368,12 @@
         190.606106
       ],
       [
-        -165.549222,
-        163.688493
+        -173.356184,
+        190.619113
+      ],
+      [
+        -173.68815,
+        163.948886
       ]
     ],
     [
@@ -3114,6 +3392,34 @@
       [
         24.545199,
         -147.783312
+      ],
+      [
+        25.045016,
+        -121.033682
+      ],
+      [
+        26.750611,
+        -103.784551
+      ],
+      [
+        19.682792,
+        -100.140062
+      ],
+      [
+        18.067698,
+        -113.235808
+      ],
+      [
+        12.915665,
+        -113.206671
+      ],
+      [
+        12.87041,
+        -115.283366
+      ],
+      [
+        -26.507626,
+        -114.59174
       ],
       [
         -27.363564,
@@ -3231,6 +3537,14 @@
         }
       },
       {
+        "index": 1466,
+        "id": 35184514410228,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building"
+        }
+      },
+      {
         "index": 1582,
         "id": 35184542224083,
         "properties": {
@@ -3309,6 +3623,33 @@
         }
       },
       {
+        "index": 1867,
+        "id": 35184940218242,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 1868,
+        "id": 35184940218243,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 1869,
+        "id": 35184940218256,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
         "index": 1870,
         "id": 35184940218358,
         "properties": {
@@ -3359,6 +3700,15 @@
           "kind": "building",
           "height": 23
         }
+      },
+      {
+        "index": 1966,
+        "id": 35185299446285,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 23
+        }
       }
     ],
     "ownedNativeParts": 15,
@@ -3383,7 +3733,69 @@
       -128
     ],
     "terrainTiles": 4,
-    "occupiedMasks": 3
+    "occupiedMasks": 3,
+    "entranceThresholds": [
+      {
+        "name": "heritage",
+        "heading": 2.012658284323024,
+        "point": [
+          42.77792115802589,
+          -127.23729978832515
+        ],
+        "thresholdY": 0.865257,
+        "centerNativeApproachY": 0.473705,
+        "depth": 1.35,
+        "width": 3.5
+      },
+      {
+        "name": "modern",
+        "heading": 2.012658284323024,
+        "point": [
+          40.10136198076076,
+          -158.0626292622699
+        ],
+        "thresholdY": -1.675363,
+        "centerNativeApproachY": -2.017411,
+        "depth": 1.5,
+        "width": 5.6
+      },
+      {
+        "name": "west",
+        "heading": 2.012658284323024,
+        "point": [
+          24.840127344045452,
+          -131.99908681412487
+        ],
+        "thresholdY": -1.63847,
+        "centerNativeApproachY": -1.69847,
+        "depth": 2.2,
+        "width": 8.4
+      },
+      {
+        "name": "bloom",
+        "heading": 2.012658284323024,
+        "point": [
+          26.189444833329727,
+          -174.5497918278404
+        ],
+        "thresholdY": -3.09477,
+        "centerNativeApproachY": -3.15477,
+        "depth": 1.2,
+        "width": 4.5
+      },
+      {
+        "name": "east",
+        "heading": 2.012658284323024,
+        "point": [
+          -173.58515316164366,
+          172.22367636782613
+        ],
+        "thresholdY": 7.159475,
+        "centerNativeApproachY": 7.099475,
+        "depth": 2,
+        "width": 7.2
+      }
+    ]
   },
   "terrainReferenceLocal": [
     40,

@@ -1,0 +1,437 @@
+{
+  "planId": "national_taichung_theater",
+  "id": "national_taichung_theater",
+  "assetId": "molen.worldgen.structure.national_taichung_theater",
+  "title": "National Taichung Theater",
+  "wikidataId": "Q555338",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.64051725,
+    "latitude": 24.16292585
+  },
+  "size": [
+    125.5635986328125,
+    43.600000858306885,
+    141.43582153320312
+  ],
+  "actualBounds": {
+    "min": [
+      -62.78179931640625,
+      -5.900000095367432,
+      -70.71791076660156
+    ],
+    "max": [
+      62.78179931640625,
+      37.70000076293945,
+      70.71791076660156
+    ]
+  },
+  "visualBrief": "Toyo Ito’s National Taichung Theater with curving concrete walls, hourglass glazing, a recessed plaza entrance and roof gardens.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-03-09",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:National_Taichung_Theater_(2024-03-09).jpg"
+  ],
+  "stories": [
+    {
+      "id": "national-taichung-theater-wp",
+      "url": "https://qualla.com/national-taichung-theater/"
+    }
+  ],
+  "referenceInputHash": "f9d594a99267922be9ea963adcc2237a5abc0283c30cd25d8e58d450a3bfff44",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsm/national_taichung_theater/models/national-taichung-theater-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsm/national_taichung_theater/models/national-taichung-theater-model.mjs",
+    "level": "skyline",
+    "export": "theaterSkyline",
+    "errorMeters": 0.81,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "shell": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.58,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.39,
+        "metallic": 0.17
+      },
+      "planting": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "theaterDistrict",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.17
+          },
+          "planting": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "theaterStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.17
+          },
+          "planting": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "theaterCloseup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.17
+          },
+          "planting": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      120.64051725,
+      24.16292585
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.64051725,
+        24.16292585
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground model at the center of the theater footprint."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -62.78317917229948,
+          32.61104482813206
+        ],
+        [
+          1.9653069920126132,
+          -70.71570652625135
+        ],
+        [
+          62.78317917085614,
+          -32.61104482773657
+        ],
+        [
+          -1.9653069920126132,
+          70.71570652664684
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "The named National Taichung Theater mapped building perimeter."
+    },
+    "featureIds": [
+      "way/222636759"
+    ],
+    "source": "https://www.openstreetmap.org/way/222636759",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:488f3215275c375913455c9da4aca69598cf935027b71013fd5173111847a7eb",
+    "notes": "The southeast edge faces the main plaza and the photographer’s mapped viewpoint. The roof garden, side apertures and exact façade surface curvature remain approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the March 2024 exterior, including the plaza elevation, entrance shell and rooftop garden volume. Interior theater spaces and the plaza’s temporary installations are outside scope.",
+    "The exact image establishes the glazing patterns, colors and white folds of the main frontage. Rear and side apertures, roof gardens, and shell depth are approximate.",
+    "The mapped building defines the footprint. The public elevation model is retained and local grade remains approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap map data is ODbL. The exact Qualla photo is CC0 own work credited to Theserious.",
+  "qaLodCameras": [
+    {
+      "name": "taichung-theater-skyline",
+      "position": [
+        195.3789355250316,
+        62,
+        -18.001987476540947
+      ],
+      "lookAt": [
+        0,
+        13.7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "taichung-theater-district",
+      "position": [
+        195.3789355250316,
+        62,
+        -18.001987476540947
+      ],
+      "lookAt": [
+        0,
+        13.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "taichung-theater-street",
+      "position": [
+        195.3789355250316,
+        62,
+        -18.001987476540947
+      ],
+      "lookAt": [
+        0,
+        13.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "taichung-theater-closeup",
+      "position": [
+        195.3789355250316,
+        62,
+        -18.001987476540947
+      ],
+      "lookAt": [
+        0,
+        13.7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-curved-concrete-and-glass",
+      "position": [
+        137.04702490893328,
+        12,
+        9.171311989580445
+      ],
+      "lookAt": [
+        25.421214992035722,
+        15.9,
+        15.92990358817963
+      ]
+    },
+    {
+      "name": "white-catenoid-at-the-east-entrance",
+      "position": [
+        86.6005190292909,
+        14,
+        1.161939696122836
+      ],
+      "lookAt": [
+        43.04586624635107,
+        15.6,
+        -8.429317831310783
+      ]
+    },
+    {
+      "name": "roof-garden-and-clerestory-form",
+      "position": [
+        27.98735792466341,
+        80,
+        87.16483119008939
+      ],
+      "lookAt": [
+        7.208230143497762,
+        25,
+        -0.20351461463550358
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5630,
+    "vertices": 16890,
+    "materials": 5,
+    "bytes": 744160,
+    "sha256": "sha256:4f4c7abc484f23f1361a3d673619e9f63a0f7433c54cc53196af2ef00ee7f074"
+  }
+}

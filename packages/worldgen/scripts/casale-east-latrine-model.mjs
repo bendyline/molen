@@ -122,6 +122,7 @@ export const casaleEastLatrineStudy = {
   sourceNotice: r.scope,
   importReason: r.scope,
   previewGround: scope.previewGround,
+  previewTerrain: scope.previewTerrain,
   mediumFiContext: scope.mediumFiContext,
   geographic: () => scope.geographic,
   geographicNote: r.terrainBasis,

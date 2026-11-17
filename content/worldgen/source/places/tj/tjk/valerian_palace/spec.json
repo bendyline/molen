@@ -1,0 +1,323 @@
+{
+  "planId": "valerian_palace",
+  "id": "valerian_palace",
+  "assetId": "molen.worldgen.structure.valerian_palace",
+  "title": "Valerian Palace",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.5772211,
+    "latitude": 29.7800119
+  },
+  "size": [
+    37.29428291320801,
+    4.986759781837463,
+    32.78346920013428
+  ],
+  "actualBounds": {
+    "min": [
+      -20.81928253173828,
+      -1.7495614290237427,
+      -15.305399894714355
+    ],
+    "max": [
+      16.475000381469727,
+      3.2371983528137207,
+      17.478069305419922
+    ]
+  },
+  "visualBrief": "Valerian Palace in Bishapur, with an exposed wall of squared stone, an open excavated passage, fallen blocks and low stone foundations.",
+  "nativeAxes": {
+    "x": "northeast along the block wall",
+    "y": "up",
+    "z": "southeast toward the exposed side"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Valerian_Palace_in_Bishapur_(Kazerun)_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Valerian_Palace_in_Bishapur_(Kazerun)_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "valerian-palace-wp",
+      "url": "https://qualla.com/valerian-palace/"
+    }
+  ],
+  "referenceInputHash": "6a4810206be50c5d57eb80c1660ac8dc1ad1de27af2717e8702ea0af4a209293",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tj/tjk/valerian_palace/models/valerian-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tj/tjk/valerian_palace/models/valerian-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.75,
+    "groundY": -0.2,
+    "focus": {
+      "center": [
+        -3,
+        0.35,
+        1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The two exact CC0 2025 exterior originals resolve the long roughly seven-course squared stone wall, open trench and overgrown foundations. Course heights and exposed floor elevations are interpreted from those views and the original ground field.",
+    "anchor": [
+      51.5772211,
+      29.7800119
+    ],
+    "heading": 0.6270693744537051,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.5772211,
+        29.7800119
+      ],
+      "modelHeight": 0,
+      "basis": "Original source elevation at the center of the surviving mapped ruins. Below-grade trench details are estimated."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1346191142"
+    ],
+    "source": "https://www.openstreetmap.org/way/1346191142",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7f570993a6315281eb66499f63860ed3ea17fa0d6b2494a92eb016360d9e44ce"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped envelope describes the site extent. The precise placement of individual surviving walls, sandstone tones, course heights and trench grade are estimates from two close views.",
+    "The geometry depicts the exposed ruin as photographed in 2025. The neighboring Anahita Temple, Mosaic Porch, monumental reliefs and the proposed historical palace volume are outside the modeled extent.",
+    "The original elevation field is a composite DEM, which cannot resolve the excavated trench. Some low foundation courses may be obscured when it is viewed with the original field."
+  ],
+  "sourceLicense": "Original reconstruction from exact public-domain Qualla photographs, mapped site extent, published field archaeology and original terrain.",
+  "qaLodCameras": [
+    {
+      "name": "valerian-palace-skyline",
+      "position": [
+        -51,
+        29,
+        53
+      ],
+      "lookAt": [
+        -3,
+        0.35,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "valerian-palace-district",
+      "position": [
+        -51,
+        29,
+        53
+      ],
+      "lookAt": [
+        -3,
+        0.35,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "valerian-palace-street",
+      "position": [
+        -51,
+        29,
+        53
+      ],
+      "lookAt": [
+        -3,
+        0.35,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "valerian-palace-closeup",
+      "position": [
+        -51,
+        29,
+        53
+      ],
+      "lookAt": [
+        -3,
+        0.35,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "exposed-ruin-and-rubble",
+      "position": [
+        -38,
+        19,
+        39
+      ],
+      "lookAt": [
+        -3,
+        0.35,
+        1
+      ]
+    },
+    {
+      "name": "staggered-stone-face",
+      "position": [
+        -18,
+        4,
+        7
+      ],
+      "lookAt": [
+        -2,
+        1.6,
+        -5
+      ]
+    },
+    {
+      "name": "low-foundations-and-open-passage",
+      "position": [
+        25,
+        15,
+        28
+      ],
+      "lookAt": [
+        -2,
+        0.8,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8100,
+    "vertices": 24300,
+    "materials": 2,
+    "bytes": 1212536,
+    "sha256": "sha256:491ce21f8369a3012465948e3efd47f44a21b8c438d7627b5a58e50f5084022e"
+  }
+}

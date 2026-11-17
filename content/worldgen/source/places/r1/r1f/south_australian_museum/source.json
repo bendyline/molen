@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.south_australian_museum",
+  "kind": "static-structure",
+  "title": "South Australian Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.south_australian_museum",
+        "output": "assets/places/r1/r1f/south_australian_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:48ff05365751927cd05bebfd212a67a4113378ad1ef443e6a9d566142df5b0e9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-south-australian-museum",
+        "path": "models/generate-south-australian-museum.mjs"
+      },
+      {
+        "id": "south-australian-museum-model",
+        "path": "models/south-australian-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/museum-public-building.json",
+      "reference-rights/history-trust-gn04985.json",
+      "reference-images/history-trust-gn04985.jpg",
+      "reference-rights/commons-courtyard-2014.json",
+      "reference-rights/history-trust-gn05524.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-28999-19779.png",
+      "terrain-sources/terrarium-15-29000-19779.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

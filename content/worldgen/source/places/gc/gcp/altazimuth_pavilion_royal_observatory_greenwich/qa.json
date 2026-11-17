@@ -32,8 +32,63 @@
       "shots/shared/ribbed-dome-portholes-and-comet-vane.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing 256 px graphs: brick walls/base, stone_limestone_raw tinted terracotta for molded-clay portal ornament and pale details, metal_painted dome/roofs/frames/finial and storefront opaque glass. Raw stone is an explicit shared substitute for terracotta. Five textured draws and one skyline draw. No new graph, private atlas or embedded image. Tangent-projected facades, linear tints and separate POSITION/NORMAL streams retained. Each graph reads once in native textured runs; unload disposes all model geometry.",
-    "captureReportHash": "sha256:fbf6e58ba0c147f4478dce8e27182d0b04abec906735d75f00c517752d3cb677"
+    "notes": "Four existing 256 px graphs: brick walls/base, stone_limestone_raw tinted terracotta for molded-clay portal ornament and pale details, metal_painted dome/roofs/frames/finial and storefront opaque glass. Raw stone is an explicit shared substitute for terracotta. Five textured draws and one skyline draw. No new graph, private atlas or embedded image. Tangent-projected facades, linear tints and separate POSITION/NORMAL streams retained. Each graph reads once in native textured runs; unload disposes all model geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:c8dc5ee9b06485534c853da3901e994c9b269414f49b5f0dfec2a7f8908558a1",
+    "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "reviewedOn": "2026-11-14",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:add462314d8d590c0fb2ebe04864a18534e3e2f7fefc54a939e0ba1c0f0d7677"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:6f72e300fd590a891722778f84483cda2b70130d10c5c356f4d663323af0749e"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:181cc74ffa6b3aace6e71a6333727cc39caab38ae8918e3e9c8a5e470f0b44f6"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:ea2a82d4a3e5947907bf97448d74ae5dc8918f07c43f8d02ef0997ae25540886"
+      },
+      {
+        "path": "shots/shared/north-shaped-gable-and-recessed-portal.png",
+        "hash": "sha256:8e80f05c27ca636ea22713150ac2f663dfe8451fca7e2c257731cfb1dd93c77e"
+      },
+      {
+        "path": "shots/shared/south-curved-gable-and-entry-soffit.png",
+        "hash": "sha256:fbcdb5f8211215c20488388e7123f0164b79b5411226706c78800fd0323d08d8"
+      },
+      {
+        "path": "shots/shared/ribbed-dome-portholes-and-comet-vane.png",
+        "hash": "sha256:cb7d0c8a026ff96aa350e66f2f84cdfdc865930d79bccc04d257a8ea23034c9a"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:03ab4949f33049e3ac30070b061468530298f4fc9f766fd8a09fb066095729b9"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

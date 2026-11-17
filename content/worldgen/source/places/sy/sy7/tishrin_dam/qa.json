@@ -1,15 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.tishrin_dam",
-  "reviewedOn": "2026-11-03",
-  "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
+  "reviewedOn": "2026-11-16",
+  "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
   "sourceHash": "sha256:6b5ad3a98f770cfc05e58d3d611e401078f9e537a2fc904bdf0c86dbfd8ae456",
   "runtimeHash": "sha256:01ad713097636a09ea9d9e6bc1b2ecb1cd668afa58ad90f448e90f49835512b7",
-  "captureReportHash": "sha256:cca45e404cac157e37a617812627b93f2c8476657c175d1ee68677a0a5cee761",
-  "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces. Tishrin remains a catalog preview pending downstream waterline verification. The default sampler varies by nearly 10 m between the downstream windows. Local embankment and shoreline contacts are approximate, and the apron electrical equipment and outlet recess dimensions follow visible exterior cues. Physical-device timing remains unmeasured.",
+  "captureReportHash": "sha256:22a9511ee28b0eb178169dcab69e1962fae289625646c3af1cc9d471111ae7d3",
+  "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces. The dam follows the signed PMTiles outline and native approaches. The Earth viewer now gives the reservoir and the downstream Euphrates representative stages of 326.55 m and 316.64 m. The lower stage meets the outlet apron below the six blue powerhouse roofs. The paired stages represent exterior visualization estimates. The model datum follows the host reservoir elevation sample. Ground and water contact depend on the host supplying the retained Protomaps IDs and comparable terrain. The apron equipment, outlet recesses and embankment details follow visual estimates.",
   "visualReview": {
     "status": "passed",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
+    "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
+    "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces.",
+    "captureReportHash": "sha256:22a9511ee28b0eb178169dcab69e1962fae289625646c3af1cc9d471111ae7d3",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -73,42 +75,13 @@
         "path": "shots/eastern-embankment.png",
         "hash": "sha256:97d985907bbbebe22d26eb58fe9e3fe090b4b013bc8398e7a27b860d1f592875"
       }
-    ],
-    "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces."
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:0151b79d59d969b9cb6b42275ae383dba9f4fef1cdaa1c81d5d1aae6e8ec4c76",
-    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
-    "placementHash": "sha256:d89cb8b2e0443c04a1acb3a701bb0b2bc5cb4d70c8ac6f04aa392ac230a4bf2b",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.concrete_boardformed": {
-        "path": "materials/concrete_boardformed.matgraph.json",
-        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
-      },
-      "matgraph:molen.worldgen.material.metal_standing_seam": {
-        "path": "materials/metal_standing_seam.matgraph.json",
-        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      },
-      "matgraph:molen.worldgen.material.gravel": {
-        "path": "materials/gravel.matgraph.json",
-        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
-      },
-      "matgraph:molen.worldgen.material.window_grid": {
-        "path": "materials/window_grid.matgraph.json",
-        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      }
-    },
+    "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
+    "notes": "Six existing graphs supply concrete, gravel, painted steel, standing-seam metal and glazing. The skyline uses one draw and the nearer tiers use six or fewer. All six GLBs have zero embedded images. The shared-surface viewer releases geometry and restores ground on eviction.",
+    "captureReportHash": "sha256:39432f54701c6d65b20b49321e0e0b0cbf5cba17e63af6f15f32ef7f4cf5b94f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -173,26 +146,229 @@
         "hash": "sha256:51141aecbfc3a25828ab2e6dc4f8ac1bd3b37231746bdbb815db0fa9540daf12"
       }
     ],
-    "notes": "Six existing graphs supply concrete, gravel, painted steel, standing-seam metal and glazing. The skyline uses one draw and the nearer tiers use six or fewer. All six GLBs have zero embedded images. The shared-surface viewer releases geometry and restores ground on eviction."
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "placementHash": "sha256:d89cb8b2e0443c04a1acb3a701bb0b2bc5cb4d70c8ac6f04aa392ac230a4bf2b",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_boardformed": {
+        "path": "materials/concrete_boardformed.matgraph.json",
+        "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.gravel": {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "geographicReview": {
-    "status": "pending-runtime-tailwater-datum",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
+    "status": "passed",
+    "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
     "placementHash": "sha256:d89cb8b2e0443c04a1acb3a701bb0b2bc5cb4d70c8ac6f04aa392ac230a4bf2b",
-    "scope": "The signed position [38.184086288, 36.380875047], heading −0.015370903072 radians, uses the 70-point outline of relation/11009910. Local +X points east along the dam and +Z points toward the downstream Euphrates. The model uses the native crest and approach traces and preserves the separate roads and buildings.",
-    "notes": "Tishrin remains a catalog preview pending downstream waterline verification. The default sampler varies by nearly 10 m between the downstream windows. Local embankment and shoreline contacts are approximate, and the apron electrical equipment and outlet recess dimensions follow visible exterior cues. Physical-device timing remains unmeasured."
-  },
-  "fidelityReview": {
-    "target": "medium-fi",
-    "status": "pending-runtime-tailwater-datum",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
-    "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces. Tishrin remains a catalog preview pending downstream waterline verification. The default sampler varies by nearly 10 m between the downstream windows. Local embankment and shoreline contacts are approximate, and the apron electrical equipment and outlet recess dimensions follow visible exterior cues. Physical-device timing remains unmeasured."
+    "mapFrameHash": "sha256:f35d0de26827e76d2f47b06771b7ba9fc836e4ca72319cd089b58643faedcfd7",
+    "notes": "The dam follows the signed PMTiles outline and native approaches. The Earth viewer now gives the reservoir and the downstream Euphrates representative stages of 326.55 m and 316.64 m. The lower stage meets the outlet apron below the six blue powerhouse roofs.",
+    "native": {
+      "fixtureHash": "sha256:32eaa9e85440841dcb85c83033280b32c68fca6850487b7821431531316f5ee0",
+      "waterSettingsHash": "sha256:a6df0735fbfd03c2a1bd601f163a1e51a65b44ca2913fa04535501de3dfb5274",
+      "waterStagesMeters": {
+        "upstream": 326.550781,
+        "downstream": 316.64306728125
+      },
+      "probeCount": 180,
+      "checkedWaterSamples": 115,
+      "terrainSamplesAltered": 0,
+      "independentRoadRecordsRetained": 121,
+      "nativeBuildingsRetained": 1,
+      "failedLoadKeepsNativeLayers": true,
+      "groundAndLandcoverRestoredOnUnload": true,
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-tishrin-euphrates-overview.png",
+          "hash": "sha256:2a68897cb914815eddf01d2c87276d67dfd7184c102782004bb59917c84ad878"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-reservoir-crest-road.png",
+          "hash": "sha256:0fcf83f8d3aa9c99da5ed2d299443901c351e890aff1610429059b5c0d509c67"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-blue-powerhouse-roofs.png",
+          "hash": "sha256:2dd6d04e05e5c932d79089392bde081b73717f317c116073dcb44bb6053461f2"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-powerhouse-gallery.png",
+          "hash": "sha256:cd5b9f02caf7faa3ea82a7d2ffcbffba63355dda5f2165ec27d0486abcca5d93"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-outlet-apron-and-pylons.png",
+          "hash": "sha256:848c43f77aa5220c59ec2e52ddfdca2edd20f94d12d528d92fd84bec2382673c"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-western-wing-and-bank.png",
+          "hash": "sha256:4dbce4c5eebc54ea93966c0825df98f812d98b861d57eeffcf833844286f1a48"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-crest-and-curb.png",
+          "hash": "sha256:4be14db2af9b4afd7ace238da2bd27b5dac147893e715ecbdcc23a819686583e"
+        },
+        {
+          "level": "skyline",
+          "file": "tishrin_dam-skyline-eastern-embankment.png",
+          "hash": "sha256:ffbe1c4903d129a5437eaefc3d00dfc2c361653fc06436756aea1dec59bcaa68"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-tishrin-euphrates-overview.png",
+          "hash": "sha256:bd397f698df9a304fb65dacd935daf7b9a3952c6805b0b75f677c92464770af1"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-reservoir-crest-road.png",
+          "hash": "sha256:af6312e6904d9c1a4726aab668baad3d420e642a59f9a7b73410f3c6e58f4bfc"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-blue-powerhouse-roofs.png",
+          "hash": "sha256:9eff696c919fd3d8f93686de65546c767441175732502ca0bd97ccd2e8ee5d78"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-powerhouse-gallery.png",
+          "hash": "sha256:751106c3fbd23e5da8c1907840dce76a023d84aac0334ca87e023e0b10021c0c"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-outlet-apron-and-pylons.png",
+          "hash": "sha256:2a4877be2205d4e8ba0621ca410940c0c767780c1f2074d2d116afc7a14d9269"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-western-wing-and-bank.png",
+          "hash": "sha256:da3aa7cc6f6c1d0781460c80dc4b717953634603a4cad81df2a2bcbe94df6c80"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-crest-and-curb.png",
+          "hash": "sha256:fa44064edf2fbbf19e2da8657d02ea91921bd2883f502846309cf864f04d4ded"
+        },
+        {
+          "level": "district",
+          "file": "tishrin_dam-district-eastern-embankment.png",
+          "hash": "sha256:102f55c5fa50c49690bbef4fc51489b3161f604ac70625de8c53e55fb5538abf"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-tishrin-euphrates-overview.png",
+          "hash": "sha256:79f5679fae778aaef3b3dc4dcef6db6934fabca4f9a216d0f3075f6295f3311e"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-reservoir-crest-road.png",
+          "hash": "sha256:cf11b7dc3a6535990e8b58f39262e5b65106cc047bd55c22c927b51cd7722a53"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-blue-powerhouse-roofs.png",
+          "hash": "sha256:9d7dfbb48fec937aedba8d9bb4671d01bb3e6b423d62fbf957be7ff2c2b8716b"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-powerhouse-gallery.png",
+          "hash": "sha256:d3c5900653bdf86bc5d3f6f295714a7ba27d7503195f31f60be5b63a553afb2e"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-outlet-apron-and-pylons.png",
+          "hash": "sha256:c1bba8a3aa8d334574df8965c0c20688d5242c558be24d98c7f0d532d8b623df"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-western-wing-and-bank.png",
+          "hash": "sha256:813862fba1f47703446a725e6e0b9dbe5176814075388d37291b26befa3a04bd"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-crest-and-curb.png",
+          "hash": "sha256:fa44064edf2fbbf19e2da8657d02ea91921bd2883f502846309cf864f04d4ded"
+        },
+        {
+          "level": "street",
+          "file": "tishrin_dam-street-eastern-embankment.png",
+          "hash": "sha256:255127ff8cbb04f84356f53f1302f2fd244ae4cabf2254b4d4d2319aec14308c"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-tishrin-euphrates-overview.png",
+          "hash": "sha256:6a6bb25cb4006be406e1ff5474ac2a8373b9783ca4f8d5905844773e60ac4c3d"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-reservoir-crest-road.png",
+          "hash": "sha256:c2c33ff60f557671ad06f8e60489aec829efcc3b0a3f146be4db96cf59c783b7"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-blue-powerhouse-roofs.png",
+          "hash": "sha256:1bfda12d29c96dcce8277ac98e9840bc60f26050afeefedc0c24ab8983b24609"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-powerhouse-gallery.png",
+          "hash": "sha256:84c3c0c656c50407b6d11b90f2c14f060e03b0c345ddf3b14bc12d2a7bfad91d"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-outlet-apron-and-pylons.png",
+          "hash": "sha256:9911bdc21bb4b8af5439dfafcf2fe7362d384e27e5408f7ecf7e3463f12f0fde"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-western-wing-and-bank.png",
+          "hash": "sha256:afc446c3c5fd9889a2fad636c2c182887e881cd5fc53576d5a36c131e5aecc9a"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-crest-and-curb.png",
+          "hash": "sha256:8d116662fe777fccd860499a028d5034d6ad3a1ca7bbd48393f72b017d4ca1fe"
+        },
+        {
+          "level": "closeup",
+          "file": "tishrin_dam-closeup-eastern-embankment.png",
+          "hash": "sha256:1ccaaf651bc0e572a8a8dc5b1670c3869b02737130f57b898f4babe1903af645"
+        },
+        {
+          "level": "failure",
+          "file": "tishrin_dam-failure-tishrin-euphrates-overview.png",
+          "hash": "sha256:ad0ae9b6f3e117f2e59dd9505162c55e1c9ec4a4999073212a1201e4a0a404cc"
+        }
+      ]
+    }
   },
   "mediumFiReview": {
-    "status": "pending-runtime-tailwater-datum",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
+    "status": "passed",
+    "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
+    "notes": "Inspected four detail levels in daylight and late light in the 28 standard-terrain views. The Earth placement check independently verifies the two Euphrates stages, the outlet apron and the native approach roads.",
     "captureReportHash": "sha256:2f63c545df1992cc08005a04cc7ebed193ae36f897b5820a16dae815566b29a3",
-    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -337,225 +513,87 @@
         "hash": "sha256:12e1bd8deb5c979e23536c505e22b69f40f7764bd8b15431c4778bfeb7ce91fd"
       }
     ],
-    "notes": "The 28 site views use nine standard Terrarium tiles sampled at 16 m and two PMTiles water surfaces, with unchanged height samples. The retained PMTiles feature 11423860 spans both sides of the dam. Its two components are separated in the fixture. The reservoir review elevation is 326.55 m and the production sampler returned 327.20 m. The tailwater review elevation is 316.64 m. The production sampler returned 314.82 m immediately below the powerhouse and 304.96–311.01 m across the other downstream windows. Those diagnostic windows are independent of live tile boundaries."
+    "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf"
   },
-  "siteIntegrationReview": {
-    "status": "pending-runtime-tailwater-datum",
-    "inputHash": "sha256:0073345406b2a0236e36c4fd00f25a086c983b3a1caf7489d68d74ed784f9633",
-    "terrainFixture": {
-      "descriptor": {
-        "path": "terrain-review.terrain.json",
-        "hash": "sha256:c1531dff4196558895efc94a3ad796f0f24df86b0102d9380e99cdf10d19adbd"
-      },
-      "heightmap": {
-        "path": "terrain-review.height.png",
-        "hash": "sha256:fee4707518cb9b62b7d62f3d207d60a922f23b3cebbb03a7e50aad9ce7661297"
-      }
-    },
-    "waterFixture": {
-      "path": "native-water.json",
-      "hash": "sha256:b9c5e2124b635508c350b47c3172747444ea855344bd6ea600ac282fd9d47521"
-    },
-    "gridHash": "sha256:a738acf5d7ddaef78c58e8c6bd9daac3ac4a68a20d643cb54eb283e7c9de1e2a",
-    "source": "Ordinary dam photos, 49 standard PMTiles and nine standard Terrarium tiles.",
-    "notes": "The 28 site views use nine standard Terrarium tiles sampled at 16 m and two PMTiles water surfaces, with unchanged height samples. The retained PMTiles feature 11423860 spans both sides of the dam. Its two components are separated in the fixture. The reservoir review elevation is 326.55 m and the production sampler returned 327.20 m. The tailwater review elevation is 316.64 m. The production sampler returned 314.82 m immediately below the powerhouse and 304.96–311.01 m across the other downstream windows. Those diagnostic windows are independent of live tile boundaries. Tishrin remains a catalog preview pending downstream waterline verification. The default sampler varies by nearly 10 m between the downstream windows. Local embankment and shoreline contacts are approximate, and the apron electrical equipment and outlet recess dimensions follow visible exterior cues. Physical-device timing remains unmeasured."
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:160be95f82613fb5ec574907f884dd89b4739fbe16ecfa21ee48bb42030de10f",
+    "notes": "The authored exterior includes the long curved embankment, gray reservoir face, divided crest road with painted curbs, six pale blue vaulted roof bays, concrete galleries, control tower, electrical apron and six recessed outlet faces. The dam follows the signed PMTiles outline and native approaches. The Earth viewer now gives the reservoir and the downstream Euphrates representative stages of 326.55 m and 316.64 m. The lower stage meets the outlet apron below the six blue powerhouse roofs. The paired stages represent exterior visualization estimates. The model datum follows the host reservoir elevation sample. Ground and water contact depend on the host supplying the retained Protomaps IDs and comparable terrain. The apron equipment, outlet recesses and embankment details follow visual estimates."
   },
   "geometryValidation": {
-    "validator": "Khronos glTF Validator",
-    "results": [
+    "glbs": [
       {
         "name": "source",
         "path": "content/worldgen/source/places/sy/sy7/tishrin_dam/models/source.glb",
         "hash": "sha256:6b5ad3a98f770cfc05e58d3d611e401078f9e537a2fc904bdf0c86dbfd8ae456",
-        "bytes": 2346744,
         "triangles": 19524,
-        "materials": 6,
+        "bytes": 2346744,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -855.271484375,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.860107421875,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/sy/sy7/tishrin_dam/model.glb",
         "hash": "sha256:01ad713097636a09ea9d9e6bc1b2ecb1cd668afa58ad90f448e90f49835512b7",
-        "bytes": 2346160,
         "triangles": 19524,
-        "materials": 6,
+        "bytes": 2346160,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -855.271484375,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.860107421875,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/sy/sy7/tishrin_dam/model.skyline.glb",
         "hash": "sha256:2f08172e7571a12226de7f85b662d5f2a73bc9e60bbe603c549784f8b30e5692",
-        "bytes": 69828,
         "triangles": 804,
-        "materials": 1,
+        "bytes": 69828,
+        "drawCalls": 1,
         "images": 0,
-        "min": [
-          -855.2509765625,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.8060302734375,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/sy/sy7/tishrin_dam/model.district.glb",
         "hash": "sha256:7990b0643ade1198151c6bd183990b4f7be4c5855ffcd610579a9935d3e75124",
-        "bytes": 355568,
         "triangles": 3910,
-        "materials": 6,
+        "bytes": 355568,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -855.271484375,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.860107421875,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/sy/sy7/tishrin_dam/model.street.glb",
         "hash": "sha256:823949f0b639afe0525271891b07c26cdc14d8379834fbe6216ae9889ff01c8a",
-        "bytes": 539336,
         "triangles": 5832,
-        "materials": 6,
+        "bytes": 539336,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -855.271484375,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.860107421875,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/sy/sy7/tishrin_dam/model.closeup.glb",
         "hash": "sha256:bb21054ea3e5198dc052e1a43e4334999891009a80d9cbd523793a2446366bf8",
-        "bytes": 1226904,
         "triangles": 13260,
-        "materials": 6,
+        "bytes": 1226904,
+        "drawCalls": 6,
         "images": 0,
-        "min": [
-          -855.271484375,
-          -21.907712936401367,
-          -199
-        ],
-        "max": [
-          860.860107421875,
-          32.400001525878906,
-          182.7323455810547
-        ],
-        "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "errors": 0
       }
     ],
-    "tests": {
-      "command": "node .artifacts/tishrin-dam-review/check.mjs",
-      "passed": 4,
-      "failed": 0,
-      "checks": [
-        "Signed mapped arc, foundation masks and exact source/runtime pins",
-        "Native crest and approach roads and separate water components are retained",
-        "Six roof bays and recessed outlet faces, supported apron and aligned crest in six GLBs",
-        "Exact isolated four-tier rebuild and shared material/GPU budget"
-      ]
-    }
+    "initialBytes": 425396
   },
-  "runtimeLodReview": {
-    "status": "passed",
-    "recipeHash": "sha256:75ab5a29ebe014f4ca497ef0bf85221011f743adf919a62b890c2ce604fdf975",
-    "levels": [
-      {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "hash": "sha256:2f08172e7571a12226de7f85b662d5f2a73bc9e60bbe603c549784f8b30e5692",
-        "bytes": 69828,
-        "gzipBytes": 21372,
-        "triangles": 804,
-        "cpuBytes": 68400,
-        "gpuBytes": 68400,
-        "errorMeters": 4,
-        "drawCalls": 1
-      },
-      {
-        "name": "district",
-        "file": "model.district.glb",
-        "hash": "sha256:7990b0643ade1198151c6bd183990b4f7be4c5855ffcd610579a9935d3e75124",
-        "bytes": 355568,
-        "gzipBytes": 88727,
-        "triangles": 3910,
-        "cpuBytes": 348108,
-        "gpuBytes": 348108,
-        "errorMeters": 1.6,
-        "drawCalls": 6
-      },
-      {
-        "name": "street",
-        "file": "model.street.glb",
-        "hash": "sha256:823949f0b639afe0525271891b07c26cdc14d8379834fbe6216ae9889ff01c8a",
-        "bytes": 539336,
-        "gzipBytes": 133566,
-        "triangles": 5832,
-        "cpuBytes": 531864,
-        "gpuBytes": 531864,
-        "errorMeters": 0.6,
-        "drawCalls": 6
-      },
-      {
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "hash": "sha256:bb21054ea3e5198dc052e1a43e4334999891009a80d9cbd523793a2446366bf8",
-        "bytes": 1226904,
-        "gzipBytes": 306336,
-        "triangles": 13260,
-        "cpuBytes": 1219428,
-        "gpuBytes": 1219428,
-        "errorMeters": 0.2,
-        "drawCalls": 6
-      }
-    ],
-    "initialBytes": 425396,
-    "notes": "The detailed master contains 19,524 triangles. Viewer tiers contain 804, 3910, 5832, 13260 triangles. Skyline plus district are 425,396 bytes and close-up is 1,226,904 bytes. Four focused checks verify exact source pins, selective replacement, six roof bays and outlet recesses, the supported apron and the crest deck, and byte-for-byte LOD reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks."
-  }
+  "limitations": [
+    "The paired stages represent exterior visualization estimates. The model datum follows the host reservoir elevation sample. Ground and water contact depend on the host supplying the retained Protomaps IDs and comparable terrain.",
+    "The apron equipment, outlet recesses and embankment details follow visual estimates."
+  ]
 }

@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ksiaz_palm_west_greenhouses",
+  "kind": "static-structure",
+  "title": "Lubiechów Palm House west greenhouses",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ksiaz_palm_west_greenhouses",
+        "output": "assets/places/u3/u35/ksiaz_palm_west_greenhouses/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7f5624bf19e9d2da546474d7139c9575335b9ad73d6b1b16db899108014d2073"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-west-greenhouses",
+        "path": "models/generate-west-greenhouses.mjs"
+      },
+      {
+        "id": "west-greenhouses",
+        "path": "models/west-greenhouses.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "surface-means.json",
+      "preview.png",
+      "import-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "shared-capture-report.json",
+      "QA-REVIEW.md",
+      "site-preview.png",
+      "qa.json"
+    ]
+  }
+}

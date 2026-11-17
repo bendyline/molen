@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.aga_khan_palace",
+  "kind": "static-structure",
+  "title": "Aga Khan Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.aga_khan_palace",
+        "output": "assets/places/te/tek/aga_khan_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:87f120c7cb9adeee0911935e2e5db5f275b1103b9df656258f25c6d7799bb65b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-aga-khan-palace",
+        "path": "models/generate-aga-khan-palace.mjs"
+      },
+      {
+        "id": "piratini-palace-model",
+        "path": "models/aga-khan-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23110-14664.png",
+      "terrain-sources/terrarium-15-23110-14665.png",
+      "preview.png",
+      "primary-facts-reconstruction.json",
+      "reference-rights/pune-architecture-facts.json",
+      "native-map/aga-khan-palace.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

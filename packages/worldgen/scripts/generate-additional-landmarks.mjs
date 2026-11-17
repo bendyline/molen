@@ -347,12 +347,14 @@ import { westMebonStudy } from './west-mebon-model.mjs';
 import { winterStudy } from './winter-palace-model.mjs';
 import { wurzburgResidenceStudy } from './wurzburg-residence-model.mjs';
 import { xianStudy } from './xian-model.mjs';
+import { yadAdministrationStudy } from './yad-administration-model.mjs';
 import { yadArtStudy } from './yad-art-model.mjs';
 import { yadCattlecarStudy } from './yad-cattlecar-model.mjs';
 import { yadChildrenStudy } from './yad-children-model.mjs';
 import { yadExhibitionsStudy } from './yad-exhibitions-model.mjs';
 import { yadHeroismStudy } from './yad-heroism-model.mjs';
 import { yadHistoryStudy } from './yad-history-model.mjs';
+import { yadNorthernRangeStudy } from './yad-northern-range-model.mjs';
 import { yadRemembranceStudy } from './yad-remembrance-model.mjs';
 import { yadVisitorsStudy } from './yad-visitors-model.mjs';
 import { yazdEastStudy } from './yazd-east-model.mjs';
@@ -703,11 +705,13 @@ const additions = [
   borgheseGalleryStudy,
   santaCroceStudy,
   wurzburgResidenceStudy,
+  yadAdministrationStudy,
   yadArtStudy,
   yadCattlecarStudy,
   yadChildrenStudy,
   yadExhibitionsStudy,
   yadHeroismStudy,
+  yadNorthernRangeStudy,
   yadHistoryStudy,
   yadRemembranceStudy,
   yadVisitorsStudy,

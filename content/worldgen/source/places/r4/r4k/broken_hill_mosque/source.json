@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.broken_hill_mosque",
+  "kind": "static-structure",
+  "title": "Broken Hill Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.broken_hill_mosque",
+        "output": "assets/places/r4/r4k/broken_hill_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:079b6adb3bc0a25e4bc1522a7aa5768dfbee94d77157155eed587510a2857bc3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-broken-hill-mosque",
+        "path": "models/generate-broken-hill-mosque.mjs"
+      },
+      {
+        "id": "broken-hill-mosque-model",
+        "path": "models/broken-hill-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-qualla-broken-hill-mosque.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29261-19454.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

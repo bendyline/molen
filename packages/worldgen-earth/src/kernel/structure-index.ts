@@ -83,6 +83,8 @@ export interface StructurePlacement {
     minimumCoverage?: number;
     basis?: string;
   };
+  /** Exact map transportation IDs that run at grade through an authored structure. */
+  surfacePassageIds?: number[];
   /** Replace only native water in these model-local X/Z polygons while the model is resident. */
   waterCutout?: { outlines: [number, number][][]; basis?: string };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
@@ -438,6 +440,16 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         (entry.datum !== 'sea-level' && !entry.terrainReference))
     )
       throw new Error(`invalid structure extent or vertical reference ${entry.id}`);
+    if (
+      entry.surfacePassageIds &&
+      (!entry.bounds ||
+        !Array.isArray(entry.surfacePassageIds) ||
+        entry.surfacePassageIds.length < 1 ||
+        entry.surfacePassageIds.length > 32 ||
+        entry.surfacePassageIds.some((id) => !Number.isSafeInteger(id) || id < 1) ||
+        new Set(entry.surfacePassageIds).size !== entry.surfacePassageIds.length)
+    )
+      throw new Error(`invalid surface passage IDs ${entry.id}`);
     if (entry.replaceRoads && !entry.bounds)
       throw new Error(`road replacement requires an extent ${entry.id}`);
     const roads = entry.replaceRoads;

@@ -1,0 +1,99 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 642.0446583749999,
+  "crestElevation": 664.45,
+  "sites": [
+    {
+      "name": "Koyna Dam reservoir raster lows",
+      "anchor": [
+        73.75160513853048,
+        17.402178525332058
+      ],
+      "heading": -0.5361871156773563,
+      "bounds": [
+        -518,
+        -405,
+        460,
+        22
+      ],
+      "elevation": 647,
+      "blend": 40,
+      "basis": "Repair implausibly low samples beneath the mapped reservoir and beside the upstream bank.",
+      "repairBelow": 530
+    },
+    {
+      "name": "Koyna Dam eastern stilling basin bank",
+      "anchor": [
+        73.75160513853048,
+        17.402178525332058
+      ],
+      "heading": -0.5361871156773563,
+      "bounds": [
+        59,
+        64,
+        84,
+        250
+      ],
+      "elevation": 591.6,
+      "blend": 32,
+      "basis": "Fit the narrow bench immediately outside the retaining wall while retaining the outer hillside."
+    },
+    {
+      "name": "Koyna Dam inner east buttress terrace",
+      "anchor": [
+        73.75160513853048,
+        17.402178525332058
+      ],
+      "heading": -0.5361871156773563,
+      "bounds": [
+        65,
+        36,
+        165,
+        72
+      ],
+      "elevation": 594,
+      "blend": 32,
+      "basis": "Expose the regular buttress toes above a representative concrete service terrace."
+    },
+    {
+      "name": "Koyna Dam outer east buttress terrace",
+      "anchor": [
+        73.75160513853048,
+        17.402178525332058
+      ],
+      "heading": -0.5361871156773563,
+      "bounds": [
+        168,
+        40,
+        229,
+        69
+      ],
+      "elevation": 607,
+      "blend": 31,
+      "basis": "Blend the outer buttress bank into the rising eastern hillside."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 79336373,
+      "name": "Shivsagar Reservoir at Koyna Dam",
+      "elevation": 659.43,
+      "basis": "Representative full-pool visualization stage below the 664.45 m crest."
+    },
+    {
+      "id": 2879944142,
+      "name": "Koyna stilling basin",
+      "elevation": 581,
+      "basis": "Representative level over the retained basin polygon and below the concrete wall tops."
+    },
+    {
+      "id": 35184485668750,
+      "name": "Koyna duplicate river centerline",
+      "hideLines": true,
+      "basis": "The retained line crosses the dam and ends in the basin. The two mapped polygons depict its water."
+    }
+  ],
+  "waterStageNotes": "Representative full-pool and stilling-basin stages for the two retained Koyna water polygons.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

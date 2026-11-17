@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
-  "sourceHash": "sha256:4a1212d45834f872b1b7ee3a263289663bd81d668f37024a1685c2c0d68b2688",
-  "runtimeHash": "sha256:f3a24fb07c0007735efdb33a79aaf4329ec0a3ebb743ef0cab4cd1b57b543b73",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+    "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce"
+  },
+  "sourceHash": "sha256:dbb74f03bb33f11809ef6ffea3c84fe19a5d36ef7b8e3278ba532834fb8296f7",
+  "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+  "fixtureHash": "sha256:32ff3d20ca2a621f1091852afd95dea2840eb12a24484c8ed56090adfe317dcf",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5312,
   "runtimeLods": [
@@ -86,18 +93,21 @@
   },
   "fixtureEntities": [],
   "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
-  "status": "captures-pending-inspection",
+  "status": "passed",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:1d265ba22ef56afe2b660913a7c2c4f193f9e087c2314d26241a00f21ddaacce",
+      "hash": "sha256:92f2a4610fd33f41d32cbed1b5dfcd54451350103310a6384113ad1909739b61",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -123,19 +133,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:54e32cbc7790342b67d363724a8b730b93932b6be072f82bbcabe038a2432225",
+      "hash": "sha256:b81cb997b092ac87969923e657b18994f254f4cff6cab43bd1ff42edcc8e2964",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -161,19 +194,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:9e2dfe83a09c46b3474d64c1d730008c3e6c6fbc3b47151d86a3ae2ba2669f5a",
+      "hash": "sha256:a75aee5ee1911e41a37484a2154e3486d8ba511d2c1cb94682b80e8afdeff8e4",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -199,19 +255,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:6b81ee1c4b793f66ca7f1b2b1708a15754f7f9dbd707f683ed2b96184325a1db",
+      "hash": "sha256:e472e059d370cc87d9b03a201b2430251a740f192fc2a1df2e481f4cafced7a1",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -237,19 +316,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:cf8fa71b27a5bf98e4b4f129373e746a15840a908f6fffacfca0bf096efc8da7",
+      "hash": "sha256:3dfea27f35eadf163519527a27f65c107f56f1730ad759e03c557f62b506aa7c",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -275,19 +377,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:d34aee449528348f3c70f6005b00ba97f3a9e47175b6e6c9e079f88b0e9d9b18",
+      "hash": "sha256:25ffe6825c6e9855638ed9fb1b8978ef8aba054cf430336febcaabe9037bc82f",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -313,19 +438,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:73a91e8133ea4d334b18fb89f077bce46e60e2f57e62863e01a7f79f472369c7",
+      "hash": "sha256:d62c0adff52292e3d5645f88c59e59cf15165c22d94bafa2b3db89119d52f241",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -351,19 +499,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:30433948e3ce1bf78f400f917fa48c1ba96cd149b0bf1c1353f4457da58d3426",
+      "hash": "sha256:840c239e788924b5fe782ed0db6677ccf250a031dddd00fe7d98d7552e99ba2f",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -389,19 +560,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:11012d3e2d710c04b5cb6108d04abe46ef28a368cf3b9fe81a772eb938607abb",
+      "hash": "sha256:3fc2ae15466a20609be5ac243822aa1dd507c45aa56b1303debbaa584cfa0380",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -427,19 +621,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:04e18420efa9a30e7af9af5f6bf0e703242151d6da67956f1af73895b5b0b44c",
+      "hash": "sha256:9cb3a663a472cfdce1731a12d05163eec807850f6ec69e0891673abd2a6030cf",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -465,19 +682,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:9d08091649f132245ea9bc14a4c867cd88bd517fad4674b81c2007cdcb8398c0",
+      "hash": "sha256:e6d5795f5d9c8f38f055a7a0a8841718ade0dd11dac0ab825fcb038b6118e79e",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -503,19 +743,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:f78c8ab2426c97341125acc10c42cdb03ab13dc8ed180bc20118b02e16a2e5d7",
+      "hash": "sha256:2b6a91b6ba0874bc4b324e753497e346661759da7e04e503190ac4ef112707d4",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -541,19 +804,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:5f0541e44c6e1b311559300fe237f7f6357955c00ca90dcd3dd1b635dbc3fa88",
+      "hash": "sha256:615c4f8637ae8d3238cd72926c696a2873ccba753705cfc3887ada8259c2878a",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 53324,
+        "triangles": 48349,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -579,19 +865,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-three-colonnades.png",
-      "hash": "sha256:9c11dd08bbd6a44e8c1f713b88f42359208552606e40818b9ec7608a509ce103",
+      "hash": "sha256:5675f8944fad7746998fb779773369e647f1ea9ab459ad02654787146d9df82d",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -617,19 +926,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-concrete-lifts.png",
-      "hash": "sha256:2f3ccf2d2bdaba641305d34ac6fc1e6dc763a91cd41215444a062c763d952108",
+      "hash": "sha256:736a49a7f46cbe1c68eef68bfe028b969489ad2e5327e764540dc1ae41fb0487",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -655,19 +987,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-ramp-bank.png",
-      "hash": "sha256:de3e1eda608391ebe0b23da3c0cce5d5402d874c24ae2329b8154cce87e7391c",
+      "hash": "sha256:39f7be4d8cb9d5d7b2e84055393ab4a117031f7d85272f40d8df9e4984de52f6",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -693,19 +1048,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-compression-ring.png",
-      "hash": "sha256:1800042153c4531732017d1ac6f6d8b170a49e70e6b0c69d35f18fd8b2d08d68",
+      "hash": "sha256:76793ff83bef360eb4266d50050885b7025c3ae4c5b13c7af33780f37b31b963",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -731,19 +1109,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-scalloped-membrane.png",
-      "hash": "sha256:2e22efc1e5ae3a2f0042d231505ce21a532a90b710955ca7239ac594ed9a53e2",
+      "hash": "sha256:21c8c3b11481c8e91e8724ad37248fb6fee3c55f6c707ea178fc3c321e3fe7fd",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -769,19 +1170,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-radial-truss.png",
-      "hash": "sha256:a5d021b29e557ad955f6aa888e934d778d8180ef0cf41e2453fde92ca43c89c0",
+      "hash": "sha256:c0a1db10e5748d60fc6c145bd52a62bfe7abec60eb9abd4b8863c2db9c2e96c3",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 121212,
+        "triangles": 116237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -807,19 +1231,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-clear-oculus.png",
-      "hash": "sha256:b6c54869494f4b3ba222ec99251b0f633cd12efa64986692dad649a65b627c7d",
+      "hash": "sha256:3a90b022c33ee68f9252ce9be6e49376b677fe0be968956c2c31a9c7ba73ef6e",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 121212,
+        "triangles": 116237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -845,19 +1292,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-catwalk-lights.png",
-      "hash": "sha256:76312e8ec946c1b2bac15e3ad120b37a6561a061ead616175eabe997bf7d6d91",
+      "hash": "sha256:f94e11e4ec5919016fc93e1c24a18f7736dbecf8b9f1815bd0e9781bd7d86224",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -883,19 +1353,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-three-red-tiers.png",
-      "hash": "sha256:85cbb6cd819fe32b74ff32ba365f0170649b4e9cfe4540e24c42c5f3f24be829",
+      "hash": "sha256:a6edbb6ca713841e2786a4a19d68cdaf5ca9432b9d8ba9d9947900d6b6fe2374",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -921,19 +1414,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-hospitality.png",
-      "hash": "sha256:26d805479618534c005f620b72143abf3fa0c115c0e1e85d0b7d55e7a95bc075",
+      "hash": "sha256:03c029051b4885a5553174f5db242e99549d90f79b1b8fe8100be5e62d99c15a",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -959,19 +1475,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/near-screen.png",
-      "hash": "sha256:9e4fbaf97b91e36805bc40f6f7b2b4406dffaa43c2ba755593eb43e86312a670",
+      "hash": "sha256:5258f254319f0f6538eec5e3518d53797a61d97813e2f324dcfcbc2db005d2af",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -997,19 +1536,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/far-roof-and-bowl.png",
-      "hash": "sha256:763d3c78d9b2717d11231bba909350d74297c782178daf6275f9897ee0654797",
+      "hash": "sha256:5f3622c17a2e9ce2bd244a684f26d7e4032db02eee8bae9a31549d4a3bcd14da",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1035,19 +1597,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/whole-brasilia-skyline.png",
-      "hash": "sha256:5431870a2fe3c74d0b8f687e598cf299107efc558e765943e36aed30492a35e9",
+      "hash": "sha256:8e8209dc98873274cb4ae09c2f2441adb386af00e40b3c5e54a9d0427870e5fd",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1073,19 +1658,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/whole-brasilia-district.png",
-      "hash": "sha256:9a31d3e496d79fca52a608b9487821e3ad4cce2451d163f5f2f70c96b0cade7f",
+      "hash": "sha256:8c05ea6b3a52f3a75ca1f402ff3600164b020820123834a6b43a82a8b954a8b4",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1111,19 +1719,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/whole-brasilia-street.png",
-      "hash": "sha256:54dc4aa603fbf2f60609fcb25f93ca238dfd050bdad623de2b9183e7a3cd07a7",
+      "hash": "sha256:e0814e065e563b6f2776d60803fa85ca9b4963f5c07093b334dc6413bdf9b94c",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:f94cb88f89b6063f00460138993d41fdd7a51b562300f8f4f5d6695cb1f50348",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 72580,
+        "triangles": 67605,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1149,19 +1780,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/whole-brasilia-closeup.png",
-      "hash": "sha256:901682bae0075f28b1aa088322d9ed61fbe9a84d6524c88dc1225a0531e7dba3",
+      "hash": "sha256:0f38d345c41b87c6ad7d124ffe81a3d398b2480f0def1d186c3bd4bfa68de47b",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1187,19 +1841,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:33b0bf6f8707a5cc1e08f07b92ed4ed6b1c212240463a4b53dbce7bb8d4498fd",
+      "hash": "sha256:0f8c2ad9a0c12deeeb02e78ec8376fc385d467d2c7fbf04ccfb093a7349217bc",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 58636,
+        "triangles": 53661,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1225,19 +1902,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:d34aee449528348f3c70f6005b00ba97f3a9e47175b6e6c9e079f88b0e9d9b18",
+      "hash": "sha256:25ffe6825c6e9855638ed9fb1b8978ef8aba054cf430336febcaabe9037bc82f",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 60212,
+        "triangles": 55237,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1263,19 +1963,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:5dda5466065514654214594548e9749c6d220407332cf23fba34ecb07441a7c8",
+      "hash": "sha256:0fa09b831bde484bc9b8649fc05a910ee901ccc812ffeb547f4296ff02fadb22",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:f94cb88f89b6063f00460138993d41fdd7a51b562300f8f4f5d6695cb1f50348",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 72580,
+        "triangles": 67605,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1301,19 +2024,42 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:8e338ea237ee567c0baad0b3e668bf20399a0a85c67a9573ebd3c0172b9785eb",
+      "hash": "sha256:92eb89c9cb70184208be13e28c5c469e5ec3c69de1f3298f4a9996d63d3b20ef",
       "state": {
+        "assetId": "molen.worldgen.structure.estadio_nacional_de_brasilia",
+        "runtimeHash": "sha256:2f14824021684fa2140f2304e47f98dbc1a1d5cbc11981e6c9c9e164b44f81ce",
+        "lodHash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 121214,
+        "triangles": 116239,
         "groundY": -28,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6v/6vj/estadio_nacional_de_brasilia/terrain-cutout.terrain.json",
@@ -1339,7 +2085,27 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 6,
-        "reflections": "sky-pmrem"
+        "reviewCenter": [
+          0,
+          18.85,
+          0
+        ],
+        "cameraFar": 3600,
+        "cameraNear": 0.5,
+        "waterFixture": null,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 96,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     }
   ],

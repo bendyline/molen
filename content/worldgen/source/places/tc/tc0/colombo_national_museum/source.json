@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.colombo_national_museum",
+  "kind": "static-structure",
+  "title": "Colombo National Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.colombo_national_museum",
+        "output": "assets/places/tc/tc0/colombo_national_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d329c941bfff91748174c2b53b3516d992983ef9a6e28c0792bde126b8a0baad"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-colombo-national-museum",
+        "path": "models/generate-colombo-national-museum.mjs"
+      },
+      {
+        "id": "colombo-national-museum-model",
+        "path": "models/colombo-national-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/footprint.json",
+      "reference-rights/commons-colombo-museum-popular-science-1907.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23652-15753.png",
+      "terrain-sources/terrarium-15-23653-15753.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

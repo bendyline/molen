@@ -1,4 +1,5 @@
 /** Original Hamburg station: complete bent barrel shed, Wandelhalle and clock towers. */
+import { readFileSync } from 'node:fs';
 import {
   beam,
   beamPath,
@@ -19,6 +20,8 @@ const C = {
   glass: lin('7c8c94'),
   clock: lin('e4e2d6'),
   dark: lin('3d4447'),
+  canopyFrame: lin('536e65'),
+  canopyPane: lin('c3dadd'),
 };
 export const stationSurfaces = {
   far: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.9 },
@@ -28,7 +31,17 @@ export const stationSurfaces = {
   copper: { slot: 'roof', graph: 'metal_copper', roughness: 0.7, metallic: 0.25 },
   metal: { slot: 'door', graph: 'metal_painted', roughness: 0.76, metallic: 0.12 },
   glass: { slot: 'window', graph: 'window_grid', roughness: 0.4 },
+  canopyGlass: {
+    slot: 'window',
+    localRef: 'palette:#c3dadd',
+    name: 'Clear canopy glazing',
+    alphaMode: 'BLEND',
+    baseColorFactor: [0.84, 0.92, 0.94, 0.35],
+    doubleSided: true,
+    roughness: 0.27,
+  },
 };
+const placement = JSON.parse(readFileSync(new URL('../placement-draft.json', import.meta.url)));
 const cfg = {
   skyline: { round: 4, n: 6, L: 1 },
   district: { round: 6, n: 10, L: 3, detail: true },
@@ -3365,7 +3378,7 @@ function T(o, c, p, s, col, N) {
   }
   n = n.map((v) => v / d);
   o.addTriangle(
-    c === cfg.skyline ? 'far' : s,
+    c === cfg.skyline && s !== 'canopyGlass' ? 'far' : s,
     'palette:#ffffff',
     p,
     n,
@@ -3893,6 +3906,7 @@ const mainP = (u, t, y) => {
   },
   mainH = (t) => 11 + 15 * Math.pow(Math.max(0, 1 - Math.pow(Math.abs(t * 2 - 1), 1.75)), 0.65);
 function largeShed(o, c) {
+  const overhead = 6.85;
   for (let i = 0; i < c.L; i++)
     for (let j = 0; j < c.n; j++) {
       const a = i / c.L,
@@ -3937,8 +3951,8 @@ function largeShed(o, c) {
         o,
         c,
         [
-          mainP(u, t, 5.2),
-          mainP(u, v, 5.2),
+          mainP(u, t, overhead),
+          mainP(u, v, overhead),
           mainP(u, v, mainH(v) - 0.45),
           mainP(u, t, mainH(t) - 0.45),
         ],
@@ -3961,18 +3975,24 @@ function largeShed(o, c) {
           N,
         );
     }
-    const A = mainP(u, 0, 0),
-      B = mainP(u, 1, 0),
-      L = Math.hypot(B[0] - A[0], B[2] - A[2]),
-      p = ([q, y, d]) => [lerp(A[0], B[0], q / L) + N[0] * d, y, lerp(A[2], B[2], q / L)];
-    glazing(o, c, { p, L, N }, FLOOR, 5.2, c.detail ? 6 : 100);
+    // Carry the end glazing above the rail opening. The mapped track bed is still the floor.
+    if (c.detail)
+      beam(
+        adapter(o, c),
+        'metal',
+        mainP(u, 0, overhead),
+        mainP(u, 1, overhead),
+        0.32,
+        0.45,
+        C.metal,
+      );
     if (c.fine) {
       for (let j = 1; j < c.n; j++) {
         const t = j / c.n;
         beam(
           adapter(o, c),
           'metal',
-          mainP(u, t, 5.2),
+          mainP(u, t, overhead),
           mainP(u, t, mainH(t) - 0.5),
           0.12,
           0.18,
@@ -4129,7 +4149,8 @@ function crossHall(o, c) {
 function portals(o, c) {
   for (const t of controls.portals) {
     const p = ([u, y, d]) => [t.cx - t.width / 2 + u, y, t.z + t.sign * d],
-      N = [0, 0, t.sign];
+      N = [0, 0, t.sign],
+      start = t.sign < 0 ? 1.42 : FLOOR;
     wall(
       o,
       c,
@@ -4140,7 +4161,7 @@ function portals(o, c) {
       c.detail
         ? [
             {
-              ring: arch(t.width / 2, FLOOR, t.width * 0.72, 3.1, 3.2, c.round),
+              ring: arch(t.width / 2, start, t.width * 0.72, 3.1 + FLOOR - start, 3.2, c.round),
               kind: 'glass',
               depth: 0.7,
             },
@@ -4189,6 +4210,193 @@ function portals(o, c) {
         c.n,
       );
       for (const y of [6.8, 7.6]) band(o, c, { p, L: t.width, N }, y, 0.2, 'stone', 0.08);
+    }
+  }
+}
+
+function fittedWalks(o, c) {
+  for (const { inside, edge } of placement.aprons) {
+    for (let i = 1; i < edge.length; i++) {
+      Q(o, c, [inside[i - 1], inside[i], edge[i], edge[i - 1]], 'base', C.base, [0, 1, 0]);
+      if (c.detail) {
+        const a = edge[i - 1],
+          b = edge[i];
+        Q(o, c, [a, b, [b[0], b[1] - 0.25, b[2]], [a[0], a[1] - 0.25, a[2]]], 'base', C.base);
+      }
+    }
+  }
+}
+
+function entranceCanopy(o, c) {
+  const {
+    ends: [outer, inner],
+    posts,
+    bayEdges,
+    roofBaseMeters: base,
+    riseMeters: rise,
+  } = placement.canopy;
+  const point = (u, t, y) => [
+    lerp(lerp(outer[0][0], outer[1][0], t), lerp(inner[0][0], inner[1][0], t), u),
+    y,
+    lerp(lerp(outer[0][1], outer[1][1], t), lerp(inner[0][1], inner[1][1], t), u),
+  ];
+  const segments = c.near ? 12 : c.fine ? 9 : c.detail ? 8 : 4;
+  const steel = C.canopyFrame;
+  for (let bay = 1; bay < bayEdges.length; bay++) {
+    const a = bayEdges[bay - 1],
+      b = bayEdges[bay],
+      t = (k) => lerp(a, b, k / segments);
+    const height = (k) => base + (bay === 1 ? 0.59 : rise) * Math.sin((Math.PI * k) / segments);
+    for (let k = 0; k < segments; k++) {
+      Q(
+        o,
+        c,
+        [
+          point(0, t(k), height(k)),
+          point(1, t(k), height(k)),
+          point(1, t(k + 1), height(k + 1)),
+          point(0, t(k + 1), height(k + 1)),
+        ],
+        'canopyGlass',
+        C.canopyPane,
+        [0, 1, 0],
+      );
+      if (c.detail)
+        for (const u of [0, 1]) {
+          const panel = [
+            point(u, t(k), base),
+            point(u, t(k + 1), base),
+            point(u, t(k + 1), height(k + 1)),
+            point(u, t(k), height(k)),
+          ];
+          Q(o, c, panel, 'canopyGlass', C.canopyPane, [0, 0, u === 0 ? -1 : 1]);
+        }
+      if (c.fine && k > 0) {
+        const girt = t(k),
+          y = height(k) + 0.036;
+        Q(
+          o,
+          c,
+          [
+            point(0, girt - 0.0012, y),
+            point(1, girt - 0.0012, y),
+            point(1, girt + 0.0012, y),
+            point(0, girt + 0.0012, y),
+          ],
+          'metal',
+          steel,
+          [0, 1, 0],
+        );
+      }
+    }
+    if (c.detail) {
+      const ribs = c.near ? 13 : c.fine ? 9 : 5;
+      for (let row = 0; row <= ribs; row++) {
+        const u = row / ribs;
+        if (c.near) {
+          beamPath(
+            adapter(o, c),
+            'metal',
+            Array.from({ length: segments + 1 }, (_, k) => point(u, t(k), height(k))),
+            0.095,
+            0.12,
+            steel,
+          );
+          continue;
+        }
+        for (let k = 0; k < segments; k++) {
+          const a = height(k) + 0.038,
+            b = height(k + 1) + 0.038,
+            w = 0.0022;
+          Q(
+            o,
+            c,
+            [
+              point(u - w, t(k), a),
+              point(u + w, t(k), a),
+              point(u + w, t(k + 1), b),
+              point(u - w, t(k + 1), b),
+            ],
+            'metal',
+            steel,
+            [0, 1, 0],
+          );
+        }
+      }
+    }
+  }
+  for (const t of bayEdges) {
+    if (c.detail) {
+      beam(
+        adapter(o, c),
+        'metal',
+        point(0, t, base + 0.03),
+        point(1, t, base + 0.03),
+        0.18,
+        0.24,
+        steel,
+      );
+      beam(
+        adapter(o, c),
+        'metal',
+        point(0, t, base - 0.62),
+        point(1, t, base - 0.62),
+        0.17,
+        0.18,
+        steel,
+      );
+      if (c.fine) {
+        const braces = c.near ? 12 : 6;
+        for (let i = 0; i < braces; i++) {
+          const a = i / braces,
+            b = (i + 1) / braces;
+          beam(
+            adapter(o, c),
+            'metal',
+            point(a, t, base - (i % 2 ? 0.05 : 0.58)),
+            point(b, t, base - (i % 2 ? 0.58 : 0.05)),
+            0.075,
+            0.095,
+            steel,
+          );
+        }
+      }
+    }
+    const support = posts.filter((p) => p.edge === t);
+    for (const [
+      i,
+      {
+        foot: [x, y, z],
+      },
+    ] of support.entries()) {
+      if (c.detail)
+        box(o, c, x - 0.12, x + 0.12, y, base - 0.52, z - 0.12, z + 0.12, 'metal', steel);
+      else if (i === 0 || i === support.length - 1) {
+        Q(
+          o,
+          c,
+          [
+            [x - 0.14, y, z],
+            [x + 0.14, y, z],
+            [x + 0.14, base, z],
+            [x - 0.14, base, z],
+          ],
+          'metal',
+          steel,
+        );
+        Q(
+          o,
+          c,
+          [
+            [x, y, z - 0.14],
+            [x, y, z + 0.14],
+            [x, base, z + 0.14],
+            [x, base, z - 0.14],
+          ],
+          'metal',
+          steel,
+        );
+      }
     }
   }
 }
@@ -4399,6 +4607,8 @@ export function buildStationLevel(o, level = 'master', mark = () => {}) {
     if (c.detail) solid(o, c, p, FOOT, FLOOR, 'base');
     else panel(o, c, p, FLOOR, 'base');
   }
+  fittedWalks(o, c);
+  entranceCanopy(o, c);
   mark('actual-side-and-transverse-closed-floors');
   sideRanges(o, c);
   crossHall(o, c);

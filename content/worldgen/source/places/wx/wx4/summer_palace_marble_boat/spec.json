@@ -1,0 +1,353 @@
+{
+  "id": "summer_palace_marble_boat",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_marble_boat",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.2636810541153,
+    "latitude": 39.99673588079534
+  },
+  "title": "Summer Palace · Marble Boat",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "Marble Boat. The model follows the distinctive architecture and mapped location of this Summer Palace site.",
+  "nativeAxes": "+X and +Z are mapped local axes. Positive +Z follows the front of the main building or the shore-facing side of the site.",
+  "actualBounds": {
+    "min": [
+      -18.25,
+      -1.2000000476837158,
+      -4.704999923706055
+    ],
+    "max": [
+      22.100000381469727,
+      14.140000343322754,
+      4.704999923706055
+    ]
+  },
+  "size": [
+    40.35000038146973,
+    15.34000039100647,
+    9.40999984741211
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tower_of_Buddhist_Incense.jpg",
+    "https://commons.wikimedia.org/wiki/File:Summer_Palace_Kunming_Lake.jpg",
+    "https://commons.wikimedia.org/wiki/File:Long_Corridor%2C_Summer_Palace.jpg",
+    "https://commons.wikimedia.org/wiki/File:Summer_Palace_-_Marble_Boat.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.2636810541153,
+      39.99673588079534
+    ],
+    "heading": 1.76,
+    "bounds": [
+      116.26344942905985,
+      39.9964639207456,
+      116.26391267917074,
+      39.997007840845086
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 50,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -16.5,
+          -6.2
+        ],
+        [
+          15.25,
+          -4.02
+        ],
+        [
+          16.52,
+          -2.1
+        ],
+        [
+          15.45,
+          5.86
+        ],
+        [
+          -16.1,
+          2.71
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": -1.48,
+      "basis": "Clear the mapped boat-shaped shoreline peninsula and coarse bank inside the reconstructed stone hull."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6b12d41749176723700231dcbafb765f8e0a02462896680204d7a5069c347333",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "Hull and bow proportions follow the lake photograph. The axis follows the mapped shoreline slot and the stone landing. The shoreline mesh is lowered only within that slot while the boat is present."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_marble_boat/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:9a38277a78a16eb499c1a7ba552d38ac4dc128db49d563ecc1323167a588417e"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_marble_boat/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "inputHash": "sha256:c02612d846d1393c6387f53f788f29b9cc2c23aa00feba891b65add9396b60fb",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "Hull and bow proportions follow the lake photograph. The axis follows the mapped shoreline slot and the stone landing. The shoreline mesh is lowered only within that slot while the boat is present."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        -34,
+        16,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "detail",
+      "position": [
+        -13,
+        7,
+        -19
+      ],
+      "lookAt": [
+        1,
+        6,
+        0
+      ],
+      "fov": 68
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -30,
+        18,
+        32
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "elevated",
+      "position": [
+        18,
+        43,
+        -21
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5536,
+    "vertices": 11328,
+    "materials": 6,
+    "bytes": 478064,
+    "sha256": "sha256:29582aea74c4c518cfa0ba44c19228f28f9dcd9ca4df7be3fc78d64dfb3d407e"
+  }
+}

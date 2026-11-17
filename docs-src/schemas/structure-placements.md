@@ -487,6 +487,16 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "replaceFootprint": {
             "type": "boolean"
           },
+          "surfacePassageIds": {
+            "minItems": 1,
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
           "buildingCutout": {
             "type": "object",
             "properties": {

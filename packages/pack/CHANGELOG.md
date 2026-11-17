@@ -1,3 +1,15 @@
+## @bendyline/molen-pack [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.12...@bendyline/molen-pack@0.0.13) (2026-11-16)
+
+### Bug Fixes
+
+* Lint updates ([94abdf4](https://github.com/bendyline/molen/commit/94abdf4e950e9239028fabe7a16c01a0fb1639f7))
+* More perf fixes ([cc0817a](https://github.com/bendyline/molen/commit/cc0817a6bb59f545c4f61351e84a97e704b19f89))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.12
+
 ## @bendyline/molen-pack [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.11...@bendyline/molen-pack@0.0.12) (2026-11-14)
 
 

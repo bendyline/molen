@@ -4,7 +4,7 @@
 
 Chamfered sandstone pillars and urns, curved iron opening and low curved wing walls ending in simplified sphinx-like sculptures.
 
-Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independently placed component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). See the [placement review](QA-REVIEW.md) for the open approach and foundations.
 
 ## Sources and reconstruction
 
@@ -15,12 +15,12 @@ Independent component of [Książ Castle and park complex](../ksiaz_castle_and_p
 
 Original authored geometry under repository license. Mapped point/path controls © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.
 
-Own mapped gate point/path axis; native Y0 is estimated local ground contact. Heights, roof profiles, openings and unseen elevations are interpretations. Neither gate claims an independent Wikidata identifier. Exact dimensions, facade sign and geographic fit remain pending.
+The fork beyond the opening fixes the photographed Hochberg Alley facing. The iron leaves are shown open with the paved route retained. Foundations and wings follow the local slope.
 
 ## Build
 
 Run node content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/generate-ksiaz-park-gates.mjs --ids=KSI_G02 (or --check).
 
-4308 triangles;518944 source bytes;2 merged material groups;no embedded images. Shared sandstone and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
+5340 triangles;643276 source bytes;3 merged material groups;no embedded images. Shared coursed sandstone, raw sandstone carvings and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 
-Source hash: sha256:258fee358efca9e1269825c62c3d59f8fb721fab21d9a8230d07848aa58d6b93
+Source hash: sha256:b8e55579e43936ed9962e6250f9e6413bb475e02442924190f842259b4766b47

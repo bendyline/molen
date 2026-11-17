@@ -13,13 +13,13 @@
   "actualBounds": {
     "min": [
       -8.725799560546875,
-      0,
+      -0.6499999761581421,
       -9.449399948120117
     ],
     "max": [
       9.270999908447266,
       14.220000267028809,
-      16.4853458404541
+      16.484403610229492
     ]
   },
   "nativeAxes": {
@@ -41,7 +41,49 @@
     "limitations": "Terrain contact is at the tower foundation. Stair flight follows the photographed entrance axis and reconstructed rise; hillside retaining walls, the separate star-shaped entrenchment and terrain steps remain map/terrain features.",
     "status": "preview-proposal",
     "elevationMode": "terrain-contact",
-    "notes": "Mapped Red Tower way91447984 carries ref:nicpmi00033, matching the national inventory for Saint Agatha’s Tower and the custodian name/website. Entrance node3898282959 is on the southeast-facing wall and establishes signed native+Z. +X follows the mapped entrance facade toward east-northeast. The projected outline preserves the four slightly unequal corner turrets; scarped foundation and roof elevations are reconstructed from custodian photographs, not claimed surveyed. Terrain contact is at the tower foundation. Stair flight follows the photographed entrance axis and reconstructed rise; hillside retaining walls, the separate star-shaped entrenchment and terrain steps remain map/terrain features.",
+    "notes": "Mapped Red Tower way 91447984 and entrance node 3898282959 fix orientation. The modeled stone flight meets the sampled site path and uses a short timber bridge consistent with the custodian’s photograph. PMTiles bridge 35184758581593 represents this approach and is replaced when the model is present. The modeled bridge span uses visual proportions and the surrounding mapped paths remain visible.",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The tower center at Y=0 uses the standard Terrarium field. The base extends 0.65 m below that datum and the stair toe fits the draped path.",
+    "bounds": [
+      14.34261,
+      35.97447,
+      14.3431,
+      35.97479
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.342853,
+        35.9746775
+      ],
+      "modelHeight": 0,
+      "basis": "The native sample at the model footprint center locates the tower and entry stair."
+    },
+    "replaceRoads": {
+      "length": 2.6,
+      "width": 8.7,
+      "outline": [
+        [
+          1,
+          7.35
+        ],
+        [
+          3.6,
+          7.35
+        ],
+        [
+          3.6,
+          16.05
+        ],
+        [
+          1,
+          16.05
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184758581593
+      ]
+    },
     "attribution": "© OpenStreetMap contributors; ODbL1.0"
   },
   "sourceFacts": {
@@ -109,10 +151,9 @@
   "limitations": [
     "Main elevation levels, stone step count and small fittings are proportional reconstructions from custodian photographs. The two-foot parapet, approximately3 m turret rise and mapped outline constrain scale; no unpublished surveyed heights are claimed.",
     "The red lime-plaster weathering is an original continuous tint pattern. Inscription plaques preserve location and line structure; historic lettering and heraldic detail are not invented. Cannon forms represent the two restored roof pieces; casting inscriptions and daily flags are omitted.",
-    "The surrounding eighteenth-century dry-stone entrenchment, modern adjacent mast, interiors and movable visitor displays are outside this tower exterior asset. Sloping site terrain and the base of the entrance stair depend on the host’s terrain resolution.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "The surrounding eighteenth-century dry-stone entrenchment, modern adjacent mast, interiors and movable visitor displays are outside this tower exterior asset. Sloping site terrain and the base of the entrance stair depend on the host’s terrain resolution."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -208,5 +249,86 @@
         0
       ]
     }
-  ]
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Red plaster tower on a splayed base, four turret crowns with fishtail merlons, recessed elevated entry and independent timber bridge at the stone stairs.",
+    "master": "Original detailed facade, roof fittings and stair geometry with a recessed foundation extension and fitted lowest risers.",
+    "exclusions": "The surrounding entrenchment, adjoining mast, interiors and movable exhibits remain separate. The fitted grades describe the ordinary host terrain.",
+    "browser": "Authored skyline and district tiers preserve the four turret silhouettes and the separate timber bridge over its open gap. Street and close-up keep the original rail, tread and roof details."
+  },
+  "mediumFiContext": {
+    "scale": 0.3,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "mesh": {
+    "triangles": 141338,
+    "vertices": 421122,
+    "groups": 5,
+    "bytes": 16859776,
+    "sha256": "sha256:ce554f1c6cd397e7a741a1c0b935326feaa91ad85c21a1490b030f65bb5d6d95",
+    "min": [
+      -8.725799560546875,
+      -0.6499999761581421,
+      -9.449399948120117
+    ],
+    "max": [
+      9.270999908447266,
+      14.220000267028809,
+      16.484403610229492
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/agatha-tower-model.mjs",
+    "export": "buildAgathaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAgathaDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "limestone_raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    },
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "triangles": 64000,
+        "errorMeters": 0.04
+      }
+    }
+  }
 }

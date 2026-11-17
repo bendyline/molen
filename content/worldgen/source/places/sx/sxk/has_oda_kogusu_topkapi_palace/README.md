@@ -15,7 +15,7 @@ Specific Has Oda Kogusu/Dormitory of the Privy Chamber on OSM way103907804: irre
 
 ## Model and axes
 
-16,273 triangles; 42,973 vertices; 8 material groups; 1,747,156 bytes. Native bounds: -24.896, -2.326, -27.261 to 25.055, 11.271, 27.261. Source hash: `sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8`.
+16,297 triangles; 43,045 vertices; 8 material groups; 1,750,036 bytes. Native bounds: -24.896, -2.950, -27.261 to 26.275, 11.271, 27.261. Source hash: `sha256:3c2746b9042124cb24f873af434287c0fedfc0420eaa8c607b8874e1fc7668c6`.
 
 {"x":"east","y":"up","z":"south"}
 
@@ -30,6 +30,6 @@ Run `node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=has_
 - Specific Has Oda Kogusu/Dormitory of the Privy Chamber on OSM way103907804: irregular elongated footprint, pale stone rear range and short angled southern connector, open courtyard colonnade with slender grey shafts/pale capitals/pointed arches, two window rows, low lead main roof and repeated shallow polygonal portico crowns. Preserve the independent Agas Mosque and large domed Sacred Relics chambers. No copied inscriptions, visitors, garden props or furnished museum interior.
 - Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms.
 - Picture-led eaves5.8m, spring3.25m and shallow portico crowns above the authored occupied floor; nine representative open bays along the mapped straight courtyard leg. Hidden rear windows, the main hipped roof, window/door inventory and exact crown profiles are approximations. No measured architectural heights; native height5 is a coarse map hint.
-- Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain.
+- The retained standard field samples 45.98 m at the center of the photographed arcade. The bounded courtyard shoulder meets the shallow stone landing and preserves the adjoining court. Absolute grades are representative visualization controls.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

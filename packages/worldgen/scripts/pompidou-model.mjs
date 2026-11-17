@@ -11,6 +11,7 @@ const source = new URL(
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
+  plaza = read('plaza-fit.json'),
   scope = read('review-scope.json'),
   means = read('surface-means.json');
 const linear = (hex) =>
@@ -27,6 +28,7 @@ const linear = (hex) =>
     glass: linear('738a99'),
     roof: linear('b9bdb6'),
     floor: linear('c7c6bd'),
+    plaza: linear('c3c0b8'),
   };
 
 function build(out, detail) {
@@ -95,7 +97,7 @@ function build(out, detail) {
       );
     }
   };
-  buildPompidou(emit, detail, r);
+  buildPompidou(emit, detail, r, plaza);
 }
 export const buildPompidouSkyline = (o) => build(o, 0),
   buildPompidouDistrict = (o) => build(o, 1),

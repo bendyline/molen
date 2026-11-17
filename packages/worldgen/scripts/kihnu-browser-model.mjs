@@ -1,7 +1,7 @@
-/** Browser derivatives of Kihnu; the original detailed master is unchanged. */
+/** Kihnu browser variants share the detailed model's site foundations. */
 
 import { beam, normalFor } from './authored-structure-mesh.mjs';
-import { buildKihnuDetail } from './lighthouse-baltic-iron-models.mjs';
+import { buildKihnuDetail, kihnuSiteBase } from './lighthouse-baltic-iron-models.mjs';
 import { ring } from './lighthouse-expansion-models.mjs';
 import { lathe, transformed } from './lighthouse-models.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
@@ -102,8 +102,8 @@ function ports(out, district) {
   }
 }
 function oilStore(out, district) {
-  const o = transformed(out, 0.191, [2.655, 0, -11.765]);
-  box(o, 'rubble', [-2.43, 0, -2.41], [2.43, 2.85, 2.41], [0.49, 0.45, 0.36]);
+  const o = transformed(out, 0.191, kihnuSiteBase.storeCenter);
+  box(o, 'rubble', [-2.43, kihnuSiteBase.storeToe, -2.41], [2.43, 2.85, 2.41], [0.49, 0.45, 0.36]);
   for (const a of [0, Math.PI]) {
     const f = transformed(o, a),
       p = [
@@ -240,7 +240,7 @@ function build(out, district) {
     out,
     'concrete',
     [
-      [0, 3.15],
+      [kihnuSiteBase.towerToe, 3.15],
       [0.14, 3.15],
       [0.22, 3.03],
     ],
@@ -249,8 +249,21 @@ function build(out, district) {
   );
   lathe(out, 'metal', kihnuProfile, white, n);
   ports(out, district);
-  box(out, 'metal', [-0.47, 0.3, 2.77], [0.47, 2.21, 2.78], [0.16, 0.18, 0.16]);
-  box(out, 'granite', [-0.68, 0, 2.21], [0.68, 0.15, 3.34], [0.45, 0.44, 0.4]);
+  const jamb = [0.3, 0.38, 0.74, 1.22, 2.21];
+  for (let i = 1; i < jamb.length; i++) {
+    const y0 = jamb[i - 1];
+    const y1 = jamb[i];
+    const z0 = kihnuRadius(y0) + 0.018;
+    const z1 = kihnuRadius(y1) + 0.018;
+    const face = [
+      [-0.47, y0, z0],
+      [0.47, y0, z0],
+      [0.47, y1, z1],
+      [-0.47, y1, z1],
+    ];
+    quad(out, 'metal', face, normalFor(...face.slice(0, 3)), [0.16, 0.18, 0.16]);
+  }
+  box(out, 'granite', [-0.68, kihnuSiteBase.towerToe, 2.21], [0.68, 0.15, 3.34], [0.45, 0.44, 0.4]);
   box(out, 'granite', [-0.62, 0.15, 2.21], [0.62, 0.3, 2.93], [0.52, 0.51, 0.47]);
   ring(out, 'metal', 21.84, 1.35, 2.5, 0.12, white, 8);
   ring(out, 'metal', 21.96, 1.32, 2.52, 0.055, black, 8);

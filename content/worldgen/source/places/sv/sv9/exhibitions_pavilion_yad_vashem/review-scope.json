@@ -9,7 +9,8 @@
     "pmtiles-fit.json",
     "surface-means.json",
     "terrain-review.terrain.json",
-    "terrain-review.height.png"
+    "terrain-review.height.png",
+    "court-fit.json"
   ],
   "surfaceOverrides": {
     "concrete": {
@@ -47,6 +48,21 @@
       "slot": "trim",
       "roughness": 0.85,
       "metallic": 0
+    },
+    "pavers": {
+      "graph": "stone_limestone",
+      "slot": "foundation",
+      "roughness": 0.94
+    },
+    "bark": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.96
+    },
+    "leaves": {
+      "localRef": "palette:#ffffff",
+      "slot": "trim",
+      "roughness": 1
     }
   },
   "previewGround": false,
@@ -57,12 +73,12 @@
   "camera": {
     "position": [
       11.281977898055253,
-      43.4800885896521,
+      42.06,
       -72.36516409646146
     ],
     "lookAt": [
       0,
-      4.480088589652096,
+      3.0600000000000005,
       0
     ],
     "fov": 50
@@ -72,12 +88,12 @@
       "name": "courtyard-portal-and-stair-window",
       "position": [
         2.778121021321291,
-        5.680088589652096,
+        4.26,
         -12.501281677927778
       ],
       "lookAt": [
         11.518743399897318,
-        3.980088589652096,
+        2.56,
         14.398560708880662
       ],
       "fov": 55
@@ -86,12 +102,12 @@
       "name": "crescent-stair-and-planted-roof",
       "position": [
         -42.78889697599378,
-        21.480088589652095,
+        20.06,
         -19.107859523708854
       ],
       "lookAt": [
         -7.182330973163323,
-        5.480088589652096,
+        4.0600000000000005,
         3.5233679614736255
       ],
       "fov": 52
@@ -100,12 +116,12 @@
       "name": "upper-notch-and-recessed-portal",
       "position": [
         12.535180440481795,
-        13.480088589652096,
+        12.06,
         -1.6938864556287774
       ],
       "lookAt": [
         16.905491629769813,
-        5.880088589652097,
+        4.460000000000001,
         11.756034737775444
       ],
       "fov": 54
@@ -115,61 +131,61 @@
     {
       "position": [
         11.281977898055253,
-        43.4800885896521,
+        42.06,
         -72.36516409646146
       ],
       "lookAt": [
         0,
-        4.480088589652096,
+        3.0600000000000005,
         0
       ],
       "fov": 50,
-      "name": "yad-exhibitions-skyline",
+      "name": "pavilion-skyline",
       "reviewLod": "skyline"
     },
     {
       "position": [
         11.281977898055253,
-        43.4800885896521,
+        42.06,
         -72.36516409646146
       ],
       "lookAt": [
         0,
-        4.480088589652096,
+        3.0600000000000005,
         0
       ],
       "fov": 50,
-      "name": "yad-exhibitions-district",
+      "name": "pavilion-district",
       "reviewLod": "district"
     },
     {
+      "name": "pavilion-street",
       "position": [
-        11.281977898055253,
-        43.4800885896521,
-        -72.36516409646146
+        2.778121021321291,
+        4.26,
+        -12.501281677927778
       ],
       "lookAt": [
-        0,
-        4.480088589652096,
-        0
+        11.518743399897318,
+        2.56,
+        14.398560708880662
       ],
-      "fov": 50,
-      "name": "yad-exhibitions-street",
+      "fov": 61,
       "reviewLod": "street"
     },
     {
+      "name": "pavilion-closeup",
       "position": [
-        11.281977898055253,
-        43.4800885896521,
-        -72.36516409646146
+        2.778121021321291,
+        4.26,
+        -12.501281677927778
       ],
       "lookAt": [
-        0,
-        4.480088589652096,
-        0
+        11.518743399897318,
+        2.56,
+        14.398560708880662
       ],
-      "fov": 50,
-      "name": "yad-exhibitions-closeup",
+      "fov": 61,
       "reviewLod": "closeup"
     }
   ],
@@ -223,6 +239,21 @@
             "slot": "trim",
             "roughness": 0.85,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       },
@@ -265,6 +296,21 @@
             "slot": "trim",
             "roughness": 0.85,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       },
@@ -307,13 +353,28 @@
             "slot": "trim",
             "roughness": 0.85,
             "metallic": 0
+          },
+          "pavers": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.94
+          },
+          "bark": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.96
+          },
+          "leaves": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 1
           }
         }
       }
     }
   },
   "geographic": {
-    "status": "draft-proposal",
+    "status": "preview-proposal",
     "anchor": [
       35.17427980899811,
       31.773376468387273
@@ -322,25 +383,25 @@
     "orientationPolicy": "approximate-visualization",
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
-    "groundContactReviewed": false,
-    "groundContactBasis": "Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct.",
-    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines.",
+    "replaceFootprint": true,
     "mapIdentity": {
       "maxDistance": 8
     },
     "bounds": [
-      35.17406571830739,
-      31.77311997395625,
-      35.174563637123214,
-      31.773570635873845
+      35.17407100172034,
+      31.773124465532668,
+      35.17455835371026,
+      31.773692545816242
     ],
     "terrainReference": {
       "anchor": [
-        35.17454400673217,
-        31.773326555815782
+        35.17453546860756,
+        31.77332299508358
       ],
-      "modelHeight": 0,
-      "basis": "Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct."
+      "modelHeight": -1.85914,
+      "basis": "Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines."
     },
     "buildingCutout": {
       "outline": [
@@ -427,252 +488,126 @@
     "groundCutout": {
       "outline": [
         [
-          -17.260643330576787,
-          -14.045587431262508
+          -1.99981,
+          -32.68558
         ],
         [
-          -11.455765670556508,
-          -16.533416361899032
+          18.79933,
+          9.71315
         ],
         [
-          -11.011433601459405,
-          -15.622040819055469
+          22.18725,
+          8.05117
         ],
         [
-          -10.286367245565758,
-          -14.074912019242658
+          23.8603,
+          12.35334
         ],
         [
-          -9.584881941167986,
-          -12.516215286728212
+          -6.09199,
+          25.55283
         ],
         [
-          -8.906977688266085,
-          -10.945950621512129
+          -7.47003,
+          22.59986
         ],
         [
-          -8.25265448686006,
-          -9.364118023594411
+          -9.64565,
+          17.93774
         ],
         [
-          -7.62191233694991,
-          -7.770717492975059
+          -4.06133,
+          12.86101
         ],
         [
-          -7.0147512385356325,
-          -6.165749029654071
+          -17.26064,
+          -14.04559
         ],
         [
-          -6.4311711916172305,
-          -4.549212633631449
+          -11.49354,
+          -16.51723
         ],
         [
-          -5.871172196194701,
-          -2.921108304907189
+          -11.58624,
+          -16.70452
         ],
         [
-          -5.334754252268047,
-          -1.281436043481297
+          -9.60369,
+          -25.13984
         ],
         [
-          -4.821917359837267,
-          0.3698041506462295
-        ],
-        [
-          -4.33266151890236,
-          2.032612277475395
-        ],
-        [
-          -3.8669867294633278,
-          3.706988337006192
-        ],
-        [
-          -3.4248929915201693,
-          5.392932329238624
-        ],
-        [
-          -3.0063803050728852,
-          7.090444254172695
-        ],
-        [
-          -2.6114486701214754,
-          8.799524111808397
-        ],
-        [
-          -2.2400980866659395,
-          10.520171902145737
-        ],
-        [
-          -1.8993908699448463,
-          12.255852118165937
-        ],
-        [
-          -2.3141950112702885,
-          14.362156373013775
-        ],
-        [
-          -3.452678477365615,
-          16.82346912813852
-        ],
-        [
-          -4.578840519404297,
-          19.278737479166157
-        ],
-        [
-          -4.956680388559823,
-          21.366908521722706
-        ],
-        [
-          22.18725302749521,
-          8.051166640173124
-        ],
-        [
-          23.86030107462085,
-          12.353340238256695
-        ],
-        [
-          -6.091991763732949,
-          25.55282945295267
-        ],
-        [
-          -7.470027005567104,
-          22.59985712566895
-        ],
-        [
-          -9.64565362591054,
-          17.93773745750653
-        ],
-        [
-          -4.061327842488597,
-          12.861012586465964
+          -3.35895,
+          -31.82326
         ]
       ],
       "outlines": [
         [
           [
-            -17.260643330576787,
-            -14.045587431262508
+            -1.99981,
+            -32.68558
           ],
           [
-            -11.455765670556508,
-            -16.533416361899032
+            18.79933,
+            9.71315
           ],
           [
-            -11.011433601459405,
-            -15.622040819055469
+            22.18725,
+            8.05117
           ],
           [
-            -10.286367245565758,
-            -14.074912019242658
+            23.8603,
+            12.35334
           ],
           [
-            -9.584881941167986,
-            -12.516215286728212
+            -6.09199,
+            25.55283
           ],
           [
-            -8.906977688266085,
-            -10.945950621512129
+            -7.47003,
+            22.59986
           ],
           [
-            -8.25265448686006,
-            -9.364118023594411
+            -9.64565,
+            17.93774
           ],
           [
-            -7.62191233694991,
-            -7.770717492975059
+            -4.06133,
+            12.86101
           ],
           [
-            -7.0147512385356325,
-            -6.165749029654071
+            -17.26064,
+            -14.04559
           ],
           [
-            -6.4311711916172305,
-            -4.549212633631449
+            -11.49354,
+            -16.51723
           ],
           [
-            -5.871172196194701,
-            -2.921108304907189
+            -11.58624,
+            -16.70452
           ],
           [
-            -5.334754252268047,
-            -1.281436043481297
+            -9.60369,
+            -25.13984
           ],
           [
-            -4.821917359837267,
-            0.3698041506462295
-          ],
-          [
-            -4.33266151890236,
-            2.032612277475395
-          ],
-          [
-            -3.8669867294633278,
-            3.706988337006192
-          ],
-          [
-            -3.4248929915201693,
-            5.392932329238624
-          ],
-          [
-            -3.0063803050728852,
-            7.090444254172695
-          ],
-          [
-            -2.6114486701214754,
-            8.799524111808397
-          ],
-          [
-            -2.2400980866659395,
-            10.520171902145737
-          ],
-          [
-            -1.8993908699448463,
-            12.255852118165937
-          ],
-          [
-            -2.3141950112702885,
-            14.362156373013775
-          ],
-          [
-            -3.452678477365615,
-            16.82346912813852
-          ],
-          [
-            -4.578840519404297,
-            19.278737479166157
-          ],
-          [
-            -4.956680388559823,
-            21.366908521722706
-          ],
-          [
-            22.18725302749521,
-            8.051166640173124
-          ],
-          [
-            23.86030107462085,
-            12.353340238256695
-          ],
-          [
-            -6.091991763732949,
-            25.55282945295267
-          ],
-          [
-            -7.470027005567104,
-            22.59985712566895
-          ],
-          [
-            -9.64565362591054,
-            17.93773745750653
-          ],
-          [
-            -4.061327842488597,
-            12.861012586465964
+            -3.35895,
+            -31.82326
           ]
         ]
       ],
-      "basis": "Occupied Pavilion end and stair wing only; leave the open courtyard and original approaches uncut."
+      "preservePaving": true,
+      "basis": "Locally expose the two occupied floors and their precisely bounded half of the photographed court. Adjacent pavement and raw terrain imagery remain host context."
     },
-    "notes": "Shared campus Q156591 plus distinct way245190611/native35184617279443. The official Pavilion page places it between Art Museum and Book of Names. The existing PMTiles outline and ordinary campus aerial fix this independent range beside the Art Museum. The large mapped polygon includes the open Square of Hope area: do not fill it with a solid box or roof. Its courtyard/end-wall and curved-stair assignment is a picture-led reconstruction. Internal+X follows the mapped southeast axis; +Z faces southwest toward the curved planted wing. The end-wall portal faces-X into the courtyard. Heading0 bakes the signed axes into model east/south. No invented member Wikidata item; portal/notch/window positions are approximate. Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct."
+    "notes": "Shared campus Q156591 plus distinct way245190611/native35184617279443. The official Pavilion page places it between Art Museum and Book of Names. The existing PMTiles outline and ordinary campus aerial fix this independent range beside the Art Museum. The large mapped polygon includes the open Square of Hope area: do not fill it with a solid box or roof. Its courtyard/end-wall and curved-stair assignment is a picture-led reconstruction. Internal+X follows the mapped southeast axis; +Z faces southwest toward the curved planted wing. The end-wall portal faces-X into the courtyard. Heading0 bakes the signed axes into model east/south. No invented member Wikidata item; portal/notch/window positions are approximate. Standard PMTiles and Terrarium supply the retained approach and the shared terrain datum. An open limestone court occupies the photographed inner square. Its two pavement sections meet on the same plane. The mapped road, upper plaza, stair approaches and the original heightfield are retained beyond the two cutout outlines."
+  },
+  "limitations": [
+    "The court and visual threshold elevations are fitted to the standard terrain and photographs. Exact threshold levels, planting and transitions beyond the local square remain approximate.",
+    "The detached terrace architecture and interiors remain outside this model."
+  ],
+  "appearance": {
+    "identity": "Rectangular recessed pavilion portico, stair openings and curved planted wing beside the Square of Hope.",
+    "master": "Paving follows the fitted open court with a level threshold at the modeled entrance.",
+    "browser": "The courtyard floor and threshold survive all four levels."
   }
 }

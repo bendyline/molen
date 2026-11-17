@@ -77,9 +77,9 @@ const spec = {
     status: 'preview-proposal',
     anchor: placement.anchor,
     heading: placement.heading,
-    elevationMode: 'terrain-contact',
+    elevationMode: placement.datum === 'sea-level' ? 'sea-level' : 'terrain-contact',
     orientationPolicy: 'approximate-visualization',
-    elevationMeters: 0,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis:
       'The connected dam uses one standard reservoir reference datum. Exact water/crest/floor levels remain approximate. ' +

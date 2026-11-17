@@ -1,0 +1,378 @@
+{
+  "planId": "heiligengeistfeld_flak_tower",
+  "id": "heiligengeistfeld_flak_tower",
+  "assetId": "molen.worldgen.structure.heiligengeistfeld_flak_tower",
+  "title": "Heiligengeistfeld Flak Tower",
+  "wikidataId": "Q81332733",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 9.970025,
+    "latitude": 53.5564266
+  },
+  "size": [
+    85.05440139770508,
+    41.65900111198425,
+    85.08469772338867
+  ],
+  "actualBounds": {
+    "min": [
+      -42.411800384521484,
+      -1.5499999523162842,
+      -42.575199127197266
+    ],
+    "max": [
+      42.642601013183594,
+      40.10900115966797,
+      42.509498596191406
+    ]
+  },
+  "visualBrief": "Hamburg’s former Flakturm IV on Feldstraße in its 2006 media-bunker appearance, with four large concrete bastions, projecting gun emplacements and rows of postwar window cuts.",
+  "nativeAxes": {
+    "x": "along the north side",
+    "y": "up",
+    "z": "across the bunker toward the south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-02-03",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Flakbunker-Heiligengeistfeld-Hamburg.jpg"
+  ],
+  "stories": [
+    {
+      "id": "flak-tower-wp",
+      "url": "https://qualla.com/flak-tower/"
+    }
+  ],
+  "referenceInputHash": "4c56611cfd04bc4778c4f74413a3a95db9b920b2bab911b9bd03edb82d2de6cf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1x/heiligengeistfeld_flak_tower/models/heiligengeistfeld-flak-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1x/heiligengeistfeld_flak_tower/models/heiligengeistfeld-flak-tower-model.mjs",
+    "level": "skyline",
+    "export": "bunkerSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bunkerDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bunkerStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "bunkerCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      9.970025,
+      53.5564266
+    ],
+    "heading": -0.509004849713247,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        9.96987049391075,
+        53.55679672282381
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain close to the northwest entrance forecourt."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/264581795",
+      "way/264581795#2006-canopy-interpretation"
+    ],
+    "source": "https://www.openstreetmap.org/way/264581795",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b4f204ed5cf6e0c9915ac16eef7b0b8725792737e6b8bdb911ce9bec6c854738",
+    "notes": "The numbered bunker is identified by OSM way 264581795, matched to the city’s heritage record and the exact public-domain Qualla photo. The measured eave outline gives the geometry of the corner gun platforms."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The Hamburg bunker is a dated view of the site as the media bunker in 2006. The story’s Berlin pin stays at Friedrichshain, and the linked model has its own Hamburg placement.",
+    "The present-day outline bounds the surviving concrete canopy and corner projections. Floor elevations, turret dimensions, roof utilities and some rear openings are approximate.",
+    "The pre-conversion concrete exterior is the scope. The old control tower, wartime equipment, interiors and modern rooftop hotel and garden fall outside this date."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap outline under ODbL 1.0. San Andreas independently released the exact 2006 Qualla reference to the public domain.",
+  "qaLodCameras": [
+    {
+      "name": "feldstrasse-skyline",
+      "position": [
+        -109,
+        53,
+        -115
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "feldstrasse-district",
+      "position": [
+        -109,
+        53,
+        -115
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "feldstrasse-street",
+      "position": [
+        -109,
+        53,
+        -115
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "feldstrasse-closeup",
+      "position": [
+        -109,
+        53,
+        -115
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "feldstrasse-bastions",
+      "position": [
+        -67,
+        13,
+        -62
+      ],
+      "lookAt": [
+        -6,
+        18,
+        -12
+      ]
+    },
+    {
+      "name": "concrete-canopy-and-turrets",
+      "position": [
+        -71,
+        63,
+        84
+      ],
+      "lookAt": [
+        -4,
+        28,
+        2
+      ]
+    },
+    {
+      "name": "bunker-wall-window-cuts",
+      "position": [
+        -53,
+        21,
+        6
+      ],
+      "lookAt": [
+        -35,
+        20,
+        -18
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6200,
+    "vertices": 18600,
+    "materials": 4,
+    "bytes": 838112,
+    "sha256": "sha256:e38d7745fddd41b712d6632e628368de3c4b9ac6862d1d4f8bd12d5e8fc9e045"
+  }
+}

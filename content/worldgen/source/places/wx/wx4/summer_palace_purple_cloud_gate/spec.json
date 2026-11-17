@@ -1,0 +1,412 @@
+{
+  "id": "summer_palace_purple_cloud_gate",
+  "planId": "summer_palace",
+  "collectionId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_purple_cloud_gate",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.27480685710907,
+    "latitude": 39.99819476577724
+  },
+  "title": "Summer Palace · Purple Cloud Gate Tower",
+  "category": "palace",
+  "quality": "detailed",
+  "visualBrief": "A stone gateway between the East Palace gardens and the rear hill walk, with a single stone vault, carved crest panels, and a dark double-eaved lookout pavilion over painted timber joinery.",
+  "nativeAxes": "+Z follows the pedestrian passage toward the south entrance.",
+  "actualBounds": {
+    "min": [
+      -5.431980133056641,
+      -2.246000051498413,
+      -3.931536912918091
+    ],
+    "max": [
+      5.445819854736328,
+      11.916827201843262,
+      3.931536912918091
+    ]
+  },
+  "size": [
+    10.877799987792969,
+    14.162827253341675,
+    7.863073825836182
+  ],
+  "geometrySource": "Original deterministic exterior geometry from photographs, mapped PMTiles features and standard Terrarium samples.",
+  "materialMethod": "Shared stone, timber, tile, plaster, glass and paint graphs with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_stack",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Summer_Palace,_Beijing,_Purple_Cloud_Gate_Tower_(13987408892).jpg",
+    "https://commons.wikimedia.org/wiki/File:颐和园赤城霞起.jpg",
+    "https://summerpalace.net.cn/longevity/detailshanmi/401.html"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.27480685710907,
+      39.99819476577724
+    ],
+    "heading": 0.060532635076889406,
+    "bounds": [
+      116.2745933164461,
+      39.998043534607454,
+      116.27502040761678,
+      39.998347927646044
+    ],
+    "minLevel": 13,
+    "elevationMode": "sea-level",
+    "elevationMeters": 59,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local absolute datum and below-grade plinth or footings are set relative to standard site terrain.",
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.27198,
+          -3.75681
+        ],
+        [
+          5.28582,
+          -4.03355
+        ],
+        [
+          5.27198,
+          3.75681
+        ],
+        [
+          -5.04367,
+          3.81907
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.27198,
+            -3.75681
+          ],
+          [
+            5.28582,
+            -4.03355
+          ],
+          [
+            5.27198,
+            3.75681
+          ],
+          [
+            -5.04367,
+            3.81907
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Only occupied footprints of the documented buildings are replaced."
+    },
+    "mapIdentity": {
+      "wikidata": "Q4132",
+      "maxDistance": 8
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:95025096798024ff4b4b8524d7a5ca4e7a288059db8cd760fd031f451a8bda71",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261111.pmtiles",
+    "wikidataId": "Q4132",
+    "notes": "The south-facing gate and northern passage use the named PMTiles building and through-path. The low defensive tower, stone cornice and reliefs follow photographs. The plaque inscriptions and the upper pavilion interior are omitted."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_purple_cloud_gate/models/member-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:f39896514b450da7e38932e55500f9b139d576348b174b68a6aa161bea019ca1"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_purple_cloud_gate/models/member-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "enamel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_stack"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.5,
+        "metallic": 0.6
+      }
+    },
+    "inputHash": "sha256:68c7d9c25b1d7a2f06b07414342225ada58202ca16e03b7f00525f6153d27ef9",
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "enamel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.6
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
+  "limitations": [
+    "The south-facing gate and northern passage use the named PMTiles building and through-path. The low defensive tower, stone cornice and reliefs follow photographs. The plaque inscriptions and the upper pavilion interior are omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "site",
+      "position": [
+        12,
+        8,
+        21
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "detail",
+      "position": [
+        3,
+        2.5,
+        12
+      ],
+      "lookAt": [
+        0,
+        4,
+        1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -9,
+        6,
+        -17
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "elevated",
+      "position": [
+        12,
+        34,
+        15
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 47
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4708,
+    "vertices": 9432,
+    "materials": 7,
+    "bytes": 400348,
+    "sha256": "sha256:ddc729581493f74c904c66f165bc1d42b23411951a22b6fae012e167e3942da6"
+  }
+}

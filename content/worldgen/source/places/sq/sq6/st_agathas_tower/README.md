@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/agatha-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-137,914 triangles; 410,850 vertices; 5 material groups; 16,448,876 source bytes. Source hash: `sha256:5673ea3d465be2b726cf1d46a4b6c1764034182db223e86afa3b95c088dd370e`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+141,338 triangles; 421,122 vertices; 5 material groups; 16,859,776 source bytes. Source hash: `sha256:ce554f1c6cd397e7a741a1c0b935326feaa91ad85c21a1490b030f65bb5d6d95`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs st_agathas_tower`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
@@ -25,6 +25,5 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs st_
 - Main elevation levels, stone step count and small fittings are proportional reconstructions from custodian photographs. The two-foot parapet, approximately3 m turret rise and mapped outline constrain scale; no unpublished surveyed heights are claimed.
 - The red lime-plaster weathering is an original continuous tint pattern. Inscription plaques preserve location and line structure; historic lettering and heraldic detail are not invented. Cannon forms represent the two restored roof pieces; casting inscriptions and daily flags are omitted.
 - The surrounding eighteenth-century dry-stone entrenchment, modern adjacent mast, interiors and movable visitor displays are outside this tower exterior asset. Sloping site terrain and the base of the entrance stair depend on the host’s terrain resolution.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.
