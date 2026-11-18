@@ -55,8 +55,10 @@ describe('triangle index', () => {
       const seen: number[] = [];
       forEachIndexedTriangle(built, box[0], box[1], box[2], box[3], (t) => seen.push(t));
       expect(new Set(seen).size, `box ${box.join(',')}`).toBe(seen.length);
-      const expected = bruteForce(grid, box);
-      for (const t of expected) expect(seen, `box ${box.join(',')} triangle ${t}`).toContain(t);
+      // A set lookup: toContain on the array scanned all 20,000 triangles for each of 20,000.
+      const reported = new Set(seen);
+      const missing = [...bruteForce(grid, box)].filter((t) => !reported.has(t));
+      expect(missing, `box ${box.join(',')}`).toEqual([]);
     }
     // Spanning triangles are listed in every cell they cross but reported once per query.
     const long = new THREE.BufferGeometry();
