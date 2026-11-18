@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const daiichiCases = {
   'daiichi-primary-whole-turbine-ventilation-stack-indexed120m-operator2019-nativequad2021':
     'daiichi_turbine_ventilation_exhaust_stack',
@@ -143,7 +143,7 @@ export function inspectDaiichiPrimaryFacts({ dir, proof, controls: P, frame: f }
       r.id !== id ||
       (!hall4 && r.names.common.en !== (hall3 ? 'Third turbine hall' : 'Second turbine hall')) ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === way) ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       geo.length !== expectedCorners ||
       f.heading !== 0 ||
       j.fullSnapshotSha256 !==
@@ -308,7 +308,7 @@ function inspectAncillaryStack({ dir, proof, P, f }) {
         '[743332918,743332931,743332934,743623813]' ||
       j.identityInferred !== true ||
       j.positionOrIdentitySurveyed !== false ||
-      proof.nativeIdentity.featureId !== 'way/' + expectedWay ||
+      proof.nativeIdentity.featureId !== `way/${expectedWay}` ||
       proof.nativeIdentity.identityInferred !== true
     )
       return fail('daiichi-stack56-original-north-tower-inventory-unbound');
@@ -396,7 +396,7 @@ function inspectAncillaryStack({ dir, proof, P, f }) {
         : 'Whole120m northern5/6stack; originalfour-corner mappedtower context and indexedprimary physicalheight/steeltype/no3-4stylefootboards bound. Systemrole andlegcornerrole inferred.111mframeheight10m/top3m/bore1m/details2m estimates are not measured5/6dimensions. Originalindexedrecords are honestly labelled, not originalPDFbytes.2021continuity/finish/grade approximate; allappearanceimageryunused.',
     };
   } catch (error) {
-    return fail('daiichi-stack56-source-error: ' + error.message);
+    return fail(`daiichi-stack56-source-error: ${error.message}`);
   }
 }
 
@@ -541,7 +541,7 @@ function inspectSharedStack34({ dir, proof, P, f }) {
         'Whole120m shared3/4stack with original111/94.2/76.4/54.8/30m support and44.4/86.16m platform levels. Widths/bore/piers are explicit3m comparison estimates, not exact3/4measurements. Geographic midpoint50m nominal allowance is an author visualization estimate, not verified native/surveyed accuracy. Finish,2021continuity and grade remain approximate; all appearance imagery unused.',
     };
   } catch (error) {
-    return fail('daiichi-stack34-source-error: ' + error.message);
+    return fail(`daiichi-stack34-source-error: ${error.message}`);
   }
 }
 
@@ -593,7 +593,7 @@ function inspectWestTurbineWings({ dir, proof, P, f }) {
         'sha256:21bbe1ec8f0fd58410912455a1e4cf7033364eb67ed50872d59454690ce20606' ||
       native.units.length !== 2 ||
       JSON.stringify(proof.nativeIdentity.featureIds) !==
-        JSON.stringify(ids.map((id) => 'overture/' + id))
+        JSON.stringify(ids.map((id) => `overture/${id}`))
     )
       return fail('daiichi-west-wings-native-inventory-unbound');
     const points = native.units.flatMap((u) => u.geometry.coordinates[0]);
@@ -672,7 +672,7 @@ function inspectWestTurbineWings({ dir, proof, P, f }) {
         'Two whole low western turbine service bands complete an approximate engineering width context. Original native mainhall west edges and operator major67.6m EW/127.15/105.15m NS dimensions are bound; added low-wing plan8m/height6m/details2m/2021continuity/grade remain explicit estimates. No original ground-corner or measured low-roof claim; existing accepted mainhalls remain separate.',
     };
   } catch (error) {
-    return fail('daiichi-west-wings-source-error: ' + error.message);
+    return fail(`daiichi-west-wings-source-error: ${error.message}`);
   }
 }
 
@@ -749,7 +749,7 @@ function inspectReactor5({ dir, proof, P, f }) {
       r.names?.common?.en !== 'Unit 5' ||
       geo.length !== 4 ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w103924989@16') ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       j.fullSnapshotSha256 !==
         'sha256:a9e6721733b44d1cee9822f5ed632918b01aae9c8d7787b13ffd1e7bd72d9aeb' ||
       !f.geometryLabel.includes('NOTa native') ||
@@ -872,7 +872,7 @@ function inspectReactor6({ dir, proof, P, f }) {
       r.id !== id ||
       r.names?.common?.en !== 'Unit 6' ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w103924993@16') ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       geo.length !== 8 ||
       j.fullSnapshotSha256 !==
         'sha256:a9e6721733b44d1cee9822f5ed632918b01aae9c8d7787b13ffd1e7bd72d9aeb' ||
@@ -1016,12 +1016,12 @@ function inspectNorthernTurbine({ dir, proof, P, f }) {
     if (
       r.id !== expected.id ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === expected.way) ||
-      proof.nativeIdentity.featureId !== 'overture/' + expected.id ||
+      proof.nativeIdentity.featureId !== `overture/${expected.id}` ||
       geo.length !== expected.corners ||
       j.fullSnapshotSha256 !==
         'sha256:a9e6721733b44d1cee9822f5ed632918b01aae9c8d7787b13ffd1e7bd72d9aeb' ||
       rr?.id !== expected.reactor ||
-      rr.names?.common?.en !== 'Unit ' + unit ||
+      rr.names?.common?.en !== `Unit ${unit}` ||
       !rr.sources.some((s) => s.record_id === expected.reactorWay) ||
       !rg ||
       geo.filter((p) => rg.some((v) => p[0] === v[0] && p[1] === v[1])).length < 2 ||
@@ -1083,7 +1083,7 @@ function inspectReactor({ dir, proof, P, f }) {
           ? 'https://www.da.nra.go.jp/data/NRA039003856-002-002.pdf'
           : 'https://www.tepco.co.jp/press/release/2017/pdf1/170626j0202.pdf';
       for (const ext of ['pdf', 'txt']) {
-        const s = sources[key + '-' + ext];
+        const s = sources[`${key}-${ext}`];
         if (
           typeof s?.path !== 'string' ||
           path.isAbsolute(s.path) ||
@@ -1103,7 +1103,7 @@ function inspectReactor({ dir, proof, P, f }) {
     )
       return fail('daiichi-reactor-original-report-unbound');
     const text = (k) =>
-        fs.readFileSync(path.join(dir, sources[k + '-txt'].path), 'utf8').replace(/\s+/g, ''),
+        fs.readFileSync(path.join(dir, sources[`${k}-txt`].path), 'utf8').replace(/\s+/g, ''),
       regulator = text('regulator'),
       operator = text('operator');
     if (
@@ -1147,7 +1147,7 @@ function inspectReactor({ dir, proof, P, f }) {
       r.id !== id ||
       r.names.common.en !== 'Fukushima-Daiichi Nuclear Power Station 2 containment building' ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w743332917@1') ||
-      source.featureId !== 'overture/' + id ||
+      source.featureId !== `overture/${id}` ||
       geo.length !== 14 ||
       f.heading !== 0 ||
       j.fullSnapshotSha256 !==
@@ -1216,7 +1216,7 @@ function inspectCover3({ dir, proof, P, f }) {
     for (const key of ['structure-pdf', 'structure-text', 'operation-pdf', 'operation-text']) {
       const id = key.startsWith('structure') ? 'NRA022011428-002-013' : 'NRA039003611-002-002';
       if (
-        sources[key]?.url !== 'https://www.da.nra.go.jp/data/' + id + '.pdf' ||
+        sources[key]?.url !== `https://www.da.nra.go.jp/data/${id}.pdf` ||
         sources[key].use !== 'factual-text-and-numerical-data-only'
       )
         return fail('daiichi-cover-original-public-archive-unbound');
@@ -1281,7 +1281,7 @@ function inspectCover3({ dir, proof, P, f }) {
       !r.names.primary.includes('3 containment building') ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w743332913@1') ||
       geo.length !== 13 ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       j.fullSnapshotSha256 !==
         'sha256:21bbe1ec8f0fd58410912455a1e4cf7033364eb67ed50872d59454690ce20606' ||
       JSON.stringify(j.registrationContextIndices) !== JSON.stringify(indices) ||
@@ -1348,7 +1348,7 @@ function inspectCover3({ dir, proof, P, f }) {
         'Original archived operator written whole57x22.8m/53.5m steel-truss dome cover,47.6m eaves/36m workfloor and numeric bearing levels bound. Native Unit3 envelope registers cover approximately, not exact cover corners. Circular roof interpolation/bearing-side assignment/fine finish/2019continuity estimated. Underlying damaged reactor and whole plant remain unfinished.',
     };
   } catch (error) {
-    return fail('daiichi-cover-source-error: ' + error.message);
+    return fail(`daiichi-cover-source-error: ${error.message}`);
   }
 }
 
@@ -1436,7 +1436,7 @@ function inspectCover4({ dir, proof, P, f }) {
       r.names !== null ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w915666707@1') ||
       geo.length !== 14 ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       j.fullSnapshotSha256 !==
         'sha256:21bbe1ec8f0fd58410912455a1e4cf7033364eb67ed50872d59454690ce20606' ||
       JSON.stringify(j.registrationContextIndices) !== JSON.stringify(indices) ||
@@ -1508,7 +1508,7 @@ function inspectCover4({ dir, proof, P, f }) {
         'Original written69NSx31EWx53m steel ground frame/55NSx31EWx23m working enclosure bound; operating floor30m inferred. Native Unit4 identity and southern part registration inferred from source sequence, not exact cover ground corners. Enclosure longitudinal placement7m/sections-finish2m estimated; underlying reactor and whole parent remain unfinished.',
     };
   } catch (error) {
-    return fail('daiichi-cover4-source-error: ' + error.message);
+    return fail(`daiichi-cover4-source-error: ${error.message}`);
   }
 }
 
@@ -1647,7 +1647,7 @@ function inspectRemainingReactor3({ dir, proof, P, f }) {
       !r.names.primary.includes('3 containment building') ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w743332913@1') ||
       geo.length !== 13 ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       j.fullSnapshotSha256 !==
         'sha256:21bbe1ec8f0fd58410912455a1e4cf7033364eb67ed50872d59454690ce20606' ||
       JSON.stringify(j.upperContextIndices) !== JSON.stringify(indices) ||
@@ -1723,7 +1723,7 @@ function inspectRemainingReactor3({ dir, proof, P, f }) {
         'Whole remaining concrete reactor body with written47m lower/35.2m upper widths and original postdamage floor/condition text bound. Horizontal dimensions honestly labelled indexed primary-text cache, not originalPDFbytes. Open4Fframe/NWdeckloss/residualwalls10m uncertainty; no original intact roof, internal containment or separate-cover duplicate. Native registration/2019continuity estimated.',
     };
   } catch (error) {
-    return fail('daiichi-remaining3-source-error: ' + error.message);
+    return fail(`daiichi-remaining3-source-error: ${error.message}`);
   }
 }
 
@@ -1844,7 +1844,7 @@ function inspectRemainingReactor4({ dir, proof, P, f }) {
       r.names !== null ||
       !r.sources.some((s) => s.dataset === 'OpenStreetMap' && s.record_id === 'w915666707@1') ||
       geo.length !== 14 ||
-      proof.nativeIdentity.featureId !== 'overture/' + id ||
+      proof.nativeIdentity.featureId !== `overture/${id}` ||
       j.fullSnapshotSha256 !==
         'sha256:21bbe1ec8f0fd58410912455a1e4cf7033364eb67ed50872d59454690ce20606' ||
       JSON.stringify(j.bodyUpperWidthContextIndices) !== '[2,11]' ||
@@ -1931,6 +1931,6 @@ function inspectRemainingReactor4({ dir, proof, P, f }) {
         'Whole remainingUnit4reactorbody with original operatorfloor/damagefacts bound. Foundation49x57.4m isnot abovegroundplan; selected49x47m lower/49x38m upper areexplicit8m estimates fromunit-specificnumeric/nativecontext. 3Fbay/4Fframe/wallfragments10muncertainty. No Daini/Unit3dimension substitution,intactroof,internalcontainment or separate-cover duplicate. Nativeidentity/registration/2021continuity estimated.',
     };
   } catch (error) {
-    return fail('daiichi-remaining4-source-error: ' + error.message);
+    return fail(`daiichi-remaining4-source-error: ${error.message}`);
   }
 }

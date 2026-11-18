@@ -25,6 +25,21 @@ export interface StructureStreamingBudget {
   upgradeDelayMs: number;
 }
 
+/**
+ * Whether landmarks get the phone budget: a touch-first device (a coarse primary pointer, the test
+ * the host binding's memory budget uses) or one reporting 4 GiB or less. A laptop with a touch screen still
+ * has a fine primary pointer. Counting any touch point as a phone held such a desktop to the phone
+ * draw-call budget, which kept a city's landmarks on their skylines.
+ */
+export function structureStreamingMobile(): boolean {
+  const memory =
+    typeof navigator === 'undefined'
+      ? undefined
+      : (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+  const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  return coarse || (memory ?? 8) <= 4;
+}
+
 export function structureStreamingBudget(mobile: boolean): StructureStreamingBudget {
   return {
     maxCpuBytes: mobile ? 64_000_000 : 192_000_000,
@@ -32,7 +47,9 @@ export function structureStreamingBudget(mobile: boolean): StructureStreamingBud
     maxTextureBytes: mobile ? 16_000_000 : 48_000_000,
     maxInitialBytes: mobile ? 3_000_000 : 6_000_000,
     maxTriangles: mobile ? 350_000 : 1_000_000,
-    maxDrawCalls: mobile ? 100 : 200,
+    // Seattle's 14 detailed landmarks draw about 90 calls at district level (counted twice, for
+    // the shadow pass); 200 kept the nearest ones on their skylines during a flight downtown.
+    maxDrawCalls: mobile ? 100 : 400,
     concurrency: mobile ? 2 : 4,
     frameBudgetMs: mobile ? 2 : 4,
     keepAliveMs: 5000,
@@ -116,6 +133,26 @@ interface Job {
 }
 const aborted = () => new DOMException('Landmark request cancelled', 'AbortError');
 
+/**
+ * Instances of `slot` the renderer draws: none of their ancestors is hidden. The terrain's warm
+ * cache keeps regions that left the view resident but hidden, each with its landmark instances,
+ * and a flight leaves one such region behind for every level it passes. Charging those to the draw and
+ * triangle budgets as if drawn held the landmarks around them on their skylines.
+ */
+function drawnInstances(slot: Slot): number {
+  let count = 0;
+  for (const instance of slot.instances) {
+    let drawn = true;
+    for (let object: THREE.Object3D | null = instance.root; object; object = object.parent)
+      if (!object.visible) {
+        drawn = false;
+        break;
+      }
+    if (drawn) count++;
+  }
+  return count;
+}
+
 function disposeInstance(root: THREE.Object3D): void {
   root.traverse((object) => {
     const mesh = object as THREE.InstancedMesh;
@@ -185,14 +222,8 @@ export class StructureLodStreamer implements StructureModelSource {
     load: (ref: string, level: AssetRuntimeLod, signal: AbortSignal) => Promise<THREE.Object3D>,
     private readonly options: StructureStreamingOptions = {},
   ) {
-    const nav =
-      typeof navigator === 'undefined'
-        ? undefined
-        : (navigator as Navigator & { deviceMemory?: number });
     this.budget = {
-      ...structureStreamingBudget(
-        options.mobile ?? ((nav?.maxTouchPoints ?? 0) > 0 || (nav?.deviceMemory ?? 8) <= 4),
-      ),
+      ...structureStreamingBudget(options.mobile ?? structureStreamingMobile()),
       ...options.budget,
     };
     for (const [key, value] of Object.entries(this.budget))
@@ -444,6 +475,39 @@ export class StructureLodStreamer implements StructureModelSource {
     return this.library.instantiate(ready.model, options);
   }
 
+  private overBudget(): boolean {
+    const totals = this.stats();
+    return (
+      this.measured.cpuBytes > this.budget.maxCpuBytes ||
+      this.measured.gpuBytes > this.budget.maxGpuBytes ||
+      totals.triangles * 2 > this.budget.maxTriangles ||
+      totals.drawCalls * 2 > this.budget.maxDrawCalls
+    );
+  }
+
+  /** Swap every instance of `slot` to the resident `ready` level and release superseded ones. */
+  private show(slot: Slot, ready: Ready, objects = new Map<Instance, THREE.Object3D>()): void {
+    for (const instance of slot.instances) {
+      const object = objects.get(instance) ?? this.child(ready, instance.options);
+      const previous = instance.child;
+      instance.root.add(object);
+      instance.root.remove(previous);
+      instance.child = object;
+      // A level of detail is not the size of the one before it: the render group it stands in
+      // must not be culled by bounds that leave some of it out.
+      markRenderBoundsChanged(instance.root);
+      instance.root.userData.landmarkLod = this.level(slot, ready.level).name;
+      if (previous !== object) disposeInstance(previous);
+    }
+    slot.current = ready.level;
+    for (const [level, value] of slot.ready)
+      if (level !== 0 && level !== slot.current) {
+        slot.ready.delete(level);
+        this.library.release(value.key);
+      }
+    this.remeasure();
+  }
+
   instantiate(handle: StructureModel, options: StructureInstanceOptions = {}): THREE.Object3D {
     const slot = this.slots.get(handle.ref);
     if (this.disposed || slot?.handle !== handle || !slot.refs)
@@ -456,18 +520,22 @@ export class StructureLodStreamer implements StructureModelSource {
     root.userData.landmarkLod = this.level(slot, slot.current).name;
     slot.instances.add(instance);
     this.remeasure();
-    const totals = this.stats();
-    if (
-      this.measured.cpuBytes > this.budget.maxCpuBytes ||
-      this.measured.gpuBytes > this.budget.maxGpuBytes ||
-      totals.triangles * 2 > this.budget.maxTriangles ||
-      totals.drawCalls * 2 > this.budget.maxDrawCalls
-    ) {
-      slot.instances.delete(instance);
-      disposeInstance(instance.child);
-      this.remeasure();
-      throw new Error('Landmark placement geometry exceeds budget');
+    // Another region placing a landmark that is already detailed elsewhere (a parent and its
+    // children during a level change, or a flight across a dense city) can overrun the shared
+    // budget. Its footprint is replaced either way, so falling back to the resident skyline
+    // beats leaving an empty lot; update() then spends the detail budget nearest-first again.
+    const skyline = slot.ready.get(0);
+    if (this.overBudget() && slot.current !== 0 && skyline) {
+      slot.job?.controller.abort();
+      slot.publication?.abort();
+      slot.desired = 0;
+      this.show(slot, skyline);
     }
+    // A placement is never refused, even while other landmarks' detail still fills the budget:
+    // a region does not place again, so a refusal left the landmark missing (its footprint
+    // replaced) for as long as that region stayed, as each refinement on a flight towards it did.
+    // update() reserves every placed skyline first, so its next pass moves the farthest detailed
+    // landmarks down to make room.
     root.userData.disposeTerrainSurfaces = (): void => {
       if (!slot.instances.delete(instance)) return;
       disposeInstance(instance.child);
@@ -513,12 +581,13 @@ export class StructureLodStreamer implements StructureModelSource {
         return;
       const totals = this.stats();
       const old = this.level(slot, slot.current),
-        next = this.level(slot, ready.level);
+        next = this.level(slot, ready.level),
+        drawn = drawnInstances(slot);
       if (
         ready.level > slot.current &&
-        ((totals.triangles + (next.triangles - old.triangles) * slot.instances.size) * 2 >
+        ((totals.triangles + (next.triangles - old.triangles) * drawn) * 2 >
           this.budget.maxTriangles ||
-          (totals.drawCalls + (next.drawCalls - old.drawCalls) * slot.instances.size) * 2 >
+          (totals.drawCalls + (next.drawCalls - old.drawCalls) * drawn) * 2 >
             this.budget.maxDrawCalls)
       )
         return;
@@ -530,24 +599,9 @@ export class StructureLodStreamer implements StructureModelSource {
       ]);
       if (overlap.cpuBytes > this.budget.maxCpuBytes || overlap.gpuBytes > this.budget.maxGpuBytes)
         return;
-      for (const { instance, object } of prepared) {
-        if (!slot.instances.has(instance)) continue;
-        const previous = instance.child;
-        instance.root.add(object);
-        instance.root.remove(previous);
-        instance.child = object;
-        // A level of detail is not the size of the one before it: the render group it stands in
-        // must not be culled by bounds that leave some of it out.
-        markRenderBoundsChanged(instance.root);
-        instance.root.userData.landmarkLod = this.level(slot, ready.level).name;
-        disposeInstance(previous);
-      }
-      slot.current = ready.level;
-      for (const [level, value] of slot.ready)
-        if (level !== 0 && level !== slot.current) {
-          slot.ready.delete(level);
-          this.library.release(value.key);
-        }
+      // Instances placed while this level was being prepared get it too, unprepared: left on
+      // the level released below, they would draw from a disposed model.
+      this.show(slot, ready, new Map(prepared.map(({ instance, object }) => [instance, object])));
       this.upgrades++;
     } finally {
       if (slot.publication === controller) delete slot.publication;
@@ -575,11 +629,14 @@ export class StructureLodStreamer implements StructureModelSource {
     // Reserve a skyline for every resident placement before spending detail budget.
     // Otherwise early upgrades consume the capacity needed by later skyline instances,
     // and rejected publications download the same unreachable level every retry.
+    // A placement only hidden in the warm cache still reserves one, ready for its return.
     let triangles = 0,
       calls = 0;
+    const counts = new Map<Slot, number>();
     for (const slot of this.slots.values())
       if (slot.refs && slot.manifest && slot.handle) {
-        const count = Math.max(1, slot.instances.size);
+        const count = Math.max(1, drawnInstances(slot));
+        counts.set(slot, count);
         triangles += this.level(slot, 0).triangles * 2 * count;
         calls += this.level(slot, 0).drawCalls * 2 * count;
       }
@@ -591,7 +648,7 @@ export class StructureLodStreamer implements StructureModelSource {
     for (const slot of [...this.slots.values()]
       .filter((slot) => slot.refs && slot.manifest && slot.handle)
       .sort((a, b) => this.distance(a) - this.distance(b))) {
-      const count = Math.max(1, slot.instances.size);
+      const count = counts.get(slot) ?? 1;
       triangles -= this.level(slot, 0).triangles * 2 * count;
       calls -= this.level(slot, 0).drawCalls * 2 * count;
       const scale = Math.max(
@@ -683,12 +740,14 @@ export class StructureLodStreamer implements StructureModelSource {
     const levels: Record<string, number> = {};
     let triangles = 0,
       drawCalls = 0;
+    // What is drawn: instances hidden in the warm cache cost nothing until they are shown.
     for (const slot of this.slots.values())
       if (slot.ready.has(slot.current)) {
-        const level = this.level(slot, slot.current);
-        levels[level.name] = (levels[level.name] ?? 0) + slot.instances.size;
-        triangles += level.triangles * slot.instances.size;
-        drawCalls += level.drawCalls * slot.instances.size;
+        const level = this.level(slot, slot.current),
+          drawn = drawnInstances(slot);
+        levels[level.name] = (levels[level.name] ?? 0) + drawn;
+        triangles += level.triangles * drawn;
+        drawCalls += level.drawCalls * drawn;
       }
     return {
       assets: this.slots.size,

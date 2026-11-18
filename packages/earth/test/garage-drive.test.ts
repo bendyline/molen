@@ -338,8 +338,8 @@ describe('driving a mapped parking garage', () => {
     const live = near?.([door[0], 1, door[1]]) ?? [];
     expect(live.length).toBeGreaterThan(0);
     expect(live.length).toBeLessThanOrEqual(48);
-    // A driver on the ground is not told about the cars on the deck over its head.
-    expect(live.every((car) => Math.abs(car.position[1]) < 7)).toBe(true);
+    // A driver on the ground is told only about cars within the live band (7 m) of its height.
+    expect(live.every((car) => Math.abs(car.position[1] - 1) <= 7)).toBe(true);
     vehicles.sync(0, [door[0], 1, door[1]]);
     const counted = [...vehicles.world.query(Transform)].length;
     expect(counted).toBeGreaterThan(live.length);

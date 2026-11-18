@@ -34,6 +34,20 @@ const LIT = new THREE.MeshBasicMaterial({ toneMapped: false });
 const COLORS = [new THREE.Color('#ff3425'), new THREE.Color('#ffbd18'), new THREE.Color('#21f581')];
 const OFF = COLORS.map((color) => color.clone().multiplyScalar(0.035));
 const STATES = new WeakMap<THREE.Object3D, TerrainTrafficSignalColor[]>();
+/** Radius of the night glow round a lit lens: a soft disc, brightest at the lens. */
+const GLOW_RADIUS = 0.5;
+const GLOW = (() => {
+  const geometry = new THREE.CircleGeometry(GLOW_RADIUS, 24);
+  const position = geometry.getAttribute('position');
+  const shade = new Float32Array(position.count * 3);
+  // Center vertex full, rim black: additive blending fades the disc out to nothing.
+  for (let i = 0; i < position.count; i++) {
+    const v = Math.max(0, 1 - Math.hypot(position.getX(i), position.getY(i)) / GLOW_RADIUS);
+    shade.set([v, v, v], i * 3);
+  }
+  geometry.setAttribute('color', new THREE.BufferAttribute(shade, 3));
+  return geometry;
+})();
 
 function lensMatrix(head: TerrainSignalHead, lens: number, front: number): THREE.Matrix4 {
   return new THREE.Matrix4().compose(
@@ -47,7 +61,10 @@ function lensMatrix(head: TerrainSignalHead, lens: number, front: number): THREE
   );
 }
 
-/** Two shared draws per tile: all unlit lenses, then one illuminated lens per head. */
+/**
+ * Two shared draws per tile: all unlit lenses, then one illuminated lens per head. A third, the
+ * lit lenses' glow (`surface:night-signal-glow`), shows after dark through the night factor.
+ */
 export function appendTerrainSignalLenses(
   object: THREE.Group,
   heads: readonly TerrainSignalHead[],
@@ -64,9 +81,29 @@ export function appendTerrainSignalLenses(
       dark.setMatrixAt(i * 3 + lens, lensMatrix(head, lens, 0.205));
       dark.setColorAt(i * 3 + lens, OFF[lens] as THREE.Color);
     }
+  // Its own material per tile: the night factor sets its opacity, as for the lamps.
+  const glow = new InstanceBatch(
+    GLOW,
+    new THREE.MeshBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      toneMapped: false,
+      opacity: 0,
+    }),
+    heads.length,
+  );
+  glow.name = 'surface:night-signal-glow';
+  glow.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  glow.material.visible = false;
+  glow.userData.terrainOwnedMaterial = true;
+  glow.userData.walkIgnore = true;
+  glow.userData.shadowCaster = false;
   dark.userData.terrainOwnedInstances = true;
   lit.userData.terrainOwnedInstances = true;
-  object.add(dark, lit);
+  glow.userData.terrainOwnedInstances = true;
+  object.add(dark, lit, glow);
   updateTerrainSurfaceSignals(object, 0);
   dark.computeBoundingSphere();
 }
@@ -81,6 +118,9 @@ export function updateTerrainSurfaceSignals(
   const heads = object.userData.trafficSignalHeads as TerrainSignalHead[] | undefined;
   if (!heads?.length) return;
   const lit = object.getObjectByName('surface:signal-lit') as THREE.InstancedMesh;
+  const glow = object.getObjectByName('surface:night-signal-glow') as
+    | THREE.InstancedMesh
+    | undefined;
   const previous = STATES.get(object) ?? [];
   let changed = false;
   for (const [i, head] of heads.entries()) {
@@ -97,6 +137,9 @@ export function updateTerrainSurfaceSignals(
     const lens = color === 'red' ? 0 : color === 'amber' ? 1 : 2;
     lit.setMatrixAt(i, lensMatrix(head, lens, 0.212));
     lit.setColorAt(i, COLORS[lens] as THREE.Color);
+    // Just in front of the lit lens, in its colour.
+    glow?.setMatrixAt(i, lensMatrix(head, lens, 0.22));
+    glow?.setColorAt(i, COLORS[lens] as THREE.Color);
     changed = true;
   }
   STATES.set(object, previous);
@@ -105,5 +148,10 @@ export function updateTerrainSurfaceSignals(
     if (lit.instanceColor) lit.instanceColor.needsUpdate = true;
     // A colour change moves the active lens; refresh its bounds at the same low frequency.
     lit.computeBoundingSphere();
+    if (glow) {
+      glow.instanceMatrix.needsUpdate = true;
+      if (glow.instanceColor) glow.instanceColor.needsUpdate = true;
+      glow.computeBoundingSphere();
+    }
   }
 }

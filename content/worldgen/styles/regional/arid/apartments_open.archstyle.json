@@ -13,8 +13,8 @@
   },
   "massing": {
     "floorHeight": {
-      "min": 2.85,
-      "max": 3.1
+      "min": 3.15,
+      "max": 3.5
     },
     "heightFallback": [
       {
@@ -29,7 +29,7 @@
       {
         "levels": {
           "min": 3,
-          "max": 5
+          "max": 4
         }
       }
     ],
@@ -51,14 +51,18 @@
       }
     },
     "setbacks": [],
-    "respectMinHeight": true
+    "respectMinHeight": true,
+    "groundFloorHeight": {
+      "min": 3.7,
+      "max": 4.3
+    }
   },
   "roof": {
     "perWing": true,
     "ridge": "long-axis",
     "overhang": {
-      "min": 0,
-      "max": 0.138
+      "min": 0.057,
+      "max": 0.23
     },
     "complexFootprint": "wings",
     "choices": [
@@ -91,12 +95,12 @@
         "max": 1.475
       },
       "height": {
-        "min": 1.222,
-        "max": 1.457
+        "min": 1.504,
+        "max": 1.786
       },
       "sill": {
-        "min": 0.8,
-        "max": 0.95
+        "min": 0.6,
+        "max": 0.8
       },
       "probabilityPerBay": 0.722,
       "groundFloor": "same"
@@ -104,13 +108,13 @@
     "bands": {
       "base": {
         "height": {
-          "min": 0.32,
-          "max": 0.32
+          "min": 0.6,
+          "max": 0.95
         }
       },
       "floorLines": true,
       "cornice": {
-        "height": 0.16
+        "height": 0.42
       }
     },
     "details": {
@@ -119,6 +123,13 @@
         "height": 2.5,
         "style": "double"
       },
+      "paint": [
+        "#3f6f7a",
+        "#4a5f8a",
+        "#5e3a2e",
+        "#3f5a48",
+        "#7a5a3a"
+      ],
       "balconies": {
         "depth": 0.672,
         "railing": "open",
@@ -131,7 +142,21 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "weight": 6,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.earth_adobe",
+          "weight": 2,
+          "palette": "wall_earth_adobe",
+          "uvScale": [
+            1.35,
+            0.75
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -297,72 +322,23 @@
         "lightness": 0.025
       }
     },
-    "regional_wall": {
+    "rooftop": {
       "entries": [
         {
-          "color": "#ddd6c6",
-          "weight": 3
-        },
-        {
-          "color": "#9eacb8",
-          "weight": 3
-        },
-        {
-          "color": "#e3e0d8",
-          "weight": 3
-        },
-        {
-          "color": "#8f9397",
-          "weight": 2
-        },
-        {
-          "color": "#a9b3a7",
+          "color": "#3a3b3e",
           "weight": 1
         },
         {
-          "color": "#ae8b78",
+          "color": "#ecece6",
           "weight": 1
         },
         {
-          "color": "#d2cec5",
-          "weight": 5
-        },
-        {
-          "color": "#b8bfc4",
-          "weight": 4
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
-    "regional_roof": {
-      "entries": [
-        {
-          "color": "#c0c1bd",
-          "weight": 3
-        },
-        {
-          "color": "#9b9d9d",
-          "weight": 2
-        },
-        {
-          "color": "#74777b",
+          "color": "#4f6f96",
           "weight": 1
         },
         {
-          "color": "#b5ab98",
+          "color": "#cfc6ae",
           "weight": 1
-        },
-        {
-          "color": "#ecece8",
-          "weight": 7
-        },
-        {
-          "color": "#dadbd7",
-          "weight": 4
         }
       ],
       "jitter": {
@@ -387,9 +363,185 @@
         "saturation": 0.015,
         "lightness": 0.025
       }
+    },
+    "wall_stucco": {
+      "entries": [
+        {
+          "color": "#e6d2b0",
+          "weight": 1
+        },
+        {
+          "color": "#dcc39f",
+          "weight": 1
+        },
+        {
+          "color": "#e3c1a4",
+          "weight": 1
+        },
+        {
+          "color": "#d9ab8f",
+          "weight": 1
+        },
+        {
+          "color": "#f0ece2",
+          "weight": 1
+        },
+        {
+          "color": "#d6c0a0",
+          "weight": 1
+        },
+        {
+          "color": "#cfe0e6",
+          "weight": 1
+        },
+        {
+          "color": "#efe9da",
+          "weight": 1
+        },
+        {
+          "color": "#e9dfc8",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_earth_adobe": {
+      "entries": [
+        {
+          "color": "#d2b48f",
+          "weight": 1
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 1
+        },
+        {
+          "color": "#bb9a7c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#e6d2b0",
+          "weight": 8.3
+        },
+        {
+          "color": "#dcc39f",
+          "weight": 8.3
+        },
+        {
+          "color": "#e3c1a4",
+          "weight": 8.3
+        },
+        {
+          "color": "#d9ab8f",
+          "weight": 8.3
+        },
+        {
+          "color": "#f0ece2",
+          "weight": 8.3
+        },
+        {
+          "color": "#d6c0a0",
+          "weight": 8.3
+        },
+        {
+          "color": "#cfe0e6",
+          "weight": 8.3
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 8.3
+        },
+        {
+          "color": "#bb9a7c",
+          "weight": 8.3
+        },
+        {
+          "color": "#d2b48f",
+          "weight": 8.3
+        },
+        {
+          "color": "#efe9da",
+          "weight": 8.3
+        },
+        {
+          "color": "#e9dfc8",
+          "weight": 8.3
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#c8bda5",
+          "weight": 1
+        },
+        {
+          "color": "#ece6d8",
+          "weight": 1
+        },
+        {
+          "color": "#b9ad95",
+          "weight": 1
+        },
+        {
+          "color": "#e4dccb",
+          "weight": 1
+        },
+        {
+          "color": "#d6ccb6",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
     }
   },
-  "props": [],
+  "props": [
+    {
+      "id": "rooftop",
+      "model": "builtin:rooftop.tank",
+      "anchor": "roof-flat",
+      "probability": 0.7,
+      "count": {
+        "min": 1,
+        "max": 3
+      },
+      "perAreaM2": 90,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 2.4,
+      "margin": 0.9,
+      "scale": {
+        "min": 0.85,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "tintPalette": "rooftop",
+      "lodTier": 0
+    }
+  ],
   "lod": {
     "tiers": [
       {

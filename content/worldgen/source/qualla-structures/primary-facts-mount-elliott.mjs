@@ -9,7 +9,7 @@ const registerUrl =
 const factsPath = 'reference-rights/qhr-602256-structure-facts.json';
 const boundaryPath = 'native-map/queensland-heritage-602256.geojson';
 const railwayPath = 'native-map/mount-isa-railway.json';
-const digest = (value) => 'sha256:' + createHash('sha256').update(value).digest('hex');
+const digest = (value) => `sha256:${createHash('sha256').update(value).digest('hex')}`;
 
 function pinned(dir, pin, expectedPath) {
   if (pin?.path !== expectedPath) throw Error('Unexpected evidence path');

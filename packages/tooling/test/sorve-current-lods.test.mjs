@@ -57,7 +57,7 @@ it('keeps the53m tapered silhouette, paint split, galleries and real recessed op
       [46.9, 3.53],
     ]) {
       const at = ps.filter((p) => Math.abs(p[1] - y) < 0.0001);
-      expect(at.length, name + ' profile ' + y).toBeGreaterThan(8);
+      expect(at.length, `${name} profile ${y}`).toBeGreaterThan(8);
       expect(Math.max(...at.map((p) => Math.hypot(p[0], p[2])))).toBeCloseTo(r, 2);
     }
     if (name === 'skyline') continue;
@@ -70,7 +70,7 @@ it('keeps the53m tapered silhouette, paint split, galleries and real recessed op
       const ds = ts
         .map((p) => hit([0, y, sign * 6], [0, 0, -sign], p))
         .filter((t) => t !== null && t > 0 && t < 4);
-      expect(ds.length, name + ' aperture ' + y).toBeGreaterThan(0);
+      expect(ds.length, `${name} aperture ${y}`).toBeGreaterThan(0);
       const profile = [
           [0, 4.12],
           [0.5, 4.08],
@@ -83,13 +83,13 @@ it('keeps the53m tapered silhouette, paint split, galleries and real recessed op
         a = profile[i - 1],
         c = profile[i];
       const r = a[1] + ((c[1] - a[1]) * (y - a[0])) / (c[0] - a[0]);
-      expect(6 - Math.min(...ds), name + ' recessed glass ' + y).toBeLessThan(r - 0.22);
+      expect(6 - Math.min(...ds), `${name} recessed glass ${y}`).toBeLessThan(r - 0.22);
     }
   }
 });
 it('preserves the original master and binds the actual northwest access to native-Z entry', async () => {
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json');
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`);
   expect(s.nativeAxes.front).toBe('-Z');
   expect(s.sourceFacts.heightMeters).toBe(53);
   expect(f.accessPath.at(-1)[0]).toBeCloseTo(0, 4);
@@ -99,12 +99,12 @@ it('preserves the original master and binds the actual northwest access to nativ
   expect(s.geographicProposal.elevationMode).toBe('terrain-contact');
 });
 it('reproduces independent image-free levels with three draws and sub-phone initial download', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3_000_000);
   const graph = new Set();
   for (const l of a.runtimeLods.levels) {
-    const b = await readFile(runtime + '/' + l.file);
+    const b = await readFile(`${runtime}/${l.file}`);
     const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);
     expect(l.drawCalls).toBeLessThanOrEqual(3);

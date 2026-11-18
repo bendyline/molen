@@ -347,7 +347,7 @@ walker. `actors.adopt(pedestrianId)` turns an ambient pedestrian into an actor (
 ```ts
 const view = await mountEarthView({ /* … */ interaction: { reach: 2.5, pedestrians: true } });
 view.setInteraction({ pedestrians: false }); // change it later, e.g. only while a game runs
-view.interactable();   // { kind: 'actor' | 'vehicle' | 'pedestrian' | 'none', id?, distance? }
+view.interactable();   // { kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'door' | 'none', id?, distance?, open? }
 view.on('interact', (interaction) => {
   if (interaction.kind === 'actor') {
     interaction.claim();   // the view does nothing else with this press
@@ -355,17 +355,24 @@ view.on('interact', (interaction) => {
   } else if (interaction.kind === 'pedestrian') {
     const id = view.actors.adopt(interaction.id);   // stop them and talk
     if (id) talkTo(id);
+  } else if (interaction.kind === 'door' && !interaction.open && !hasKey) {
+    interaction.claim();   // keep this door shut until the player finds the key
+    say('Locked.');
   }
 });
 ```
 
 The interact key (E, or F, or the right mouse button) emits `interact` first with what it found. On
 foot that is the nearest of: a car or aircraft within reach of its door (aircraft can be boarded on
-foot too), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
-sight, and, with `interaction.pedestrians`, an ambient pedestrian. Aboard, it is the vehicle the
-viewer is in; otherwise `none`. A handler that calls `claim()` synchronously takes the press, and
-nothing else happens. Unclaimed, the view boards or leaves a vehicle as it always did (or explains
-why there is nothing to board), and does nothing for an actor or a pedestrian.
+foot too), a building's door within 1.8 m and in front of the walker (`open` says whether it is
+open), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
+sight, and, with `interaction.pedestrians`, an ambient pedestrian. Standing in a lift, it is the
+`elevator`. Aboard, it is the vehicle the viewer is in; otherwise `none`. A handler that calls
+`claim()` synchronously takes the press, and nothing else happens. Unclaimed, the view boards or
+leaves a vehicle as it always did (or explains why there is nothing to board), opens or shuts a
+door (away from the walker, so it never swings into them), takes a lift up a floor, and does
+nothing for an actor or a pedestrian. A door opens onto rooms that are built, waiting for them
+if need be; see [Doors](building-interiors.md#doors).
 
 ### Overrides: replacing mapped places
 
@@ -1094,7 +1101,7 @@ geometry and materials are counted once. Procedural scatter uses its separate in
 | Geometry CPU backing buffers | 64 MB | 192 MB |
 | Estimated geometry GPU uploads | 64 MB | 192 MB |
 | Shared worldgen textures, including mipmaps | 16 MB | 48 MB |
-| Triangle / draw-call allowance | 350,000 / 100 | 1,000,000 / 200 |
+| Triangle / draw-call allowance | 350,000 / 100 | 1,000,000 / 400 |
 | Concurrent model loads | 2 | 4 |
 | Cooperative preparation time per frame | 2 ms | 4 ms |
 
@@ -1103,9 +1110,15 @@ overhead. Initial payload limits cover the active skyline set, not lifetime trav
 pack metadata. Upgrades can download larger files after a one-second skyline grace period.
 Draw/triangle admission reserves twice the nominal geometry cost for extra passes; shadows and
 other renderer passes have their own costs. Preparation yields between instances; an individual
-GLB parse or GPU upload can exceed the cooperative time allowance.
+GLB parse or GPU upload can exceed the cooperative time allowance. Every placement is shown, at
+least on its skyline: skylines are reserved before detail, so a placement that overruns the
+allowance moves the farthest detailed landmarks down on the next update rather than being refused.
+Only drawn instances count: one in a tile hidden in the terrain's warm cache costs nothing until
+the tile is shown again.
 
-Touch devices or browsers reporting at most 4 GB use the phone preset. Hosts can choose explicitly:
+Touch-first devices (a coarse primary pointer: phones and tablets) or browsers reporting at most
+4 GB use the phone preset; a laptop with a touch screen keeps the desktop one. Hosts can choose
+explicitly:
 
 ```ts
 const view = await mountEarthView({
@@ -1122,8 +1135,10 @@ const view = await mountEarthView({
 
 Runtime variants use separate vertex attribute streams so Float32 positions and Uint8 colors
 do not cause overlapping GPU uploads. The reducer preserves source material references on detailed
-levels; skyline uses a single color material and local convex pieces derived from the source.
-Small openings and fine trim can disappear in that distant silhouette. Detailed levels use
+levels; skyline uses a single color material. A dense master's skyline is its own surfaces
+simplified, or local convex pieces where those are closer to the source (convex pieces fill a
+stadium bowl or a canopy). Small openings and fine trim can disappear in that distant silhouette.
+Detailed levels use
 conservative reduction and can exceed their advisory triangle targets. Expensive models stay
 coarse when an upgrade does not fit; source-authored LODs may be needed for more detail on phones.
 Geometric error is an estimate for selection, not a certified maximum deviation.

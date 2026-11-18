@@ -59,8 +59,15 @@ not cast additional shadows; walls do not occlude them. Distant lamps keep their
 and pavement pools beyond the real-light budget.
 
 Traffic lenses remain self-lit in both daytime and nighttime and keep their simulation-driven
-signal phases. Mapped props that replace inferred fixtures still need their own model lighting
-metadata; arbitrary tagged model lamps currently emit without creating a point light.
+signal phases. After dark each lit lens also gets a soft glow in its own color, about a meter
+across, which follows the phase from red to green (`surface:night-signal-glow`, one batch per
+tile). Road signs light up too: their lettered faces fade in with the night factor, street
+names at 85% as lit panels and the other boards at 60%, as retroreflective faces caught by
+lamps and headlights. Each glow (`surface:night-street-names`, `surface:night-road-signs`)
+draws its face mesh's own geometry, so it adds a draw call per tile, not memory; blank sign
+backs and edges are a separate `surface:sign-backs` mesh and stay dark. Mapped props that
+replace inferred fixtures still need their own model lighting metadata; arbitrary tagged model
+lamps currently emit without creating a point light.
 
 ## Cars
 

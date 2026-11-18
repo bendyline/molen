@@ -25,20 +25,27 @@ export function architectureVariants(base) {
         base.facade.windows.probabilityPerBay * v.probability,
       );
       style.roof.overhang = scaled(base.roof.overhang, v.eave);
-      for (const roof of style.roof.choices) {
-        if (roof.type === 'gable') roof.weight = v.name === 'compact' ? 5 : 1;
-        if (roof.type === 'hip') roof.weight = v.name === 'compact' ? 1 : 5;
-        if (roof.parapet) roof.parapet.height = scaled(roof.parapet.height, v.detail);
+      // Compact fronts lean to gables and open ones to hips, five to one, within the weight the
+      // family gives its pitched roofs: the share of flat roofs is the family's, not the facade's.
+      const gable = style.roof.choices.find((roof) => roof.type === 'gable');
+      const hip = style.roof.choices.find((roof) => roof.type === 'hip');
+      if (gable && hip) {
+        const total = gable.weight + hip.weight;
+        gable.weight = rounded((total * (v.name === 'compact' ? 5 : 1)) / 6);
+        hip.weight = rounded((total * (v.name === 'compact' ? 1 : 5)) / 6);
       }
+      for (const roof of style.roof.choices)
+        if (roof.parapet) roof.parapet.height = scaled(roof.parapet.height, v.detail);
       const details = style.facade.details;
-      for (const key of ['awnings', 'veranda', 'balconies'])
+      for (const key of ['awnings', 'veranda', 'balconies', 'porch'])
         if (details[key]) details[key].depth = rounded(details[key].depth * v.detail);
       if (details.balconies) details.balconies.every = v.name === 'compact' ? 3 : 1;
-      // Same regional palette, different stable samples; never bleach its visible hue quota.
-      for (const name of ['regional_wall', 'regional_roof']) {
-        const entries = style.palettes[name].entries;
-        const offset = v.name === 'compact' ? 1 : 2;
-        style.palettes[name].entries = [...entries.slice(offset), ...entries.slice(0, offset)];
+      // Same regional palettes, different stable samples; never bleach their visible hue quota.
+      for (const [name, palette] of Object.entries(style.palettes)) {
+        if (!/^(regional_(wall|roof)|wall_|roof_)/.test(name)) continue;
+        const entries = palette.entries;
+        const offset = (v.name === 'compact' ? 1 : 2) % entries.length;
+        palette.entries = [...entries.slice(offset), ...entries.slice(0, offset)];
       }
       return style;
     }),

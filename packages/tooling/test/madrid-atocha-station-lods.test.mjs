@@ -69,16 +69,16 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+const frame = await read(`${source}/map-frame.json`),
+  layout = await read(`${source}/layout.json`);
 it('pins the whole historic-modern station, signed site identity, distinct map/source levels and real occupied floors', async () => {
-  const m = await read(source + '/source.json'),
-    a = await read(installed + '/asset.json'),
-    p = await read(source + '/placement-report.json'),
-    s = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(m.files.models[0].sha256);
+  const m = await read(`${source}/source.json`),
+    a = await read(`${installed}/asset.json`),
+    p = await read(`${source}/placement-report.json`),
+    s = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(m.files.models[0].sha256);
   expect(a.sourceHash).toBe(m.files.models[0].sha256);
-  expect(hashBytes(await readFile(installed + '/' + a.files.main))).toBe(a.hash);
+  expect(hashBytes(await readFile(`${installed}/${a.files.main}`))).toBe(a.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.anchor).toEqual([-3.688996601, 40.405254358]);
   expect(frame.heading).toBe(-0.958259534774);
@@ -107,7 +107,7 @@ it('pins the whole historic-modern station, signed site identity, distinct map/s
   expect(p.entry.elevation).toBe(0);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: m,
       spec: s,
       placement: p.entry,
@@ -116,8 +116,8 @@ it('pins the whole historic-modern station, signed site identity, distinct map/s
   ).toBeDefined();
 });
 it('retains curved hall, both brick pavilions and wings, rooflight, clocktower, round hall, modern roofs and open platforms in six GLBs', async () => {
-  const asset = await read(installed + '/asset.json'),
-    { controls } = await import(source + '/models/station-model.mjs'),
+  const asset = await read(`${installed}/asset.json`),
+    { controls } = await import(`${source}/models/station-model.mjs`),
     P = (u, y, v) => {
       const p = controls.historicFrame.phi,
         c = Math.cos(p),
@@ -126,9 +126,9 @@ it('retains curved hall, both brick pavilions and wings, rooflight, clocktower, 
       return [x + c * u - s * v, y, z + s * u + c * v];
     },
     files = [
-      { name: 'source', path: source + '/models/source.glb' },
-      { name: 'import', path: installed + '/' + asset.files.main },
-      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: runtime + '/' + l.file })),
+      { name: 'source', path: `${source}/models/source.glb` },
+      { name: 'import', path: `${installed}/${asset.files.main}` },
+      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: `${runtime}/${l.file}` })),
     ];
   for (const f of files) {
     const ts = await triangles(f.path),
@@ -137,31 +137,31 @@ it('retains curved hall, both brick pavilions and wings, rooflight, clocktower, 
         const [x, , z] = P(u, 0, v);
         return top(x, z, y);
       };
-    expect.soft(at(0, 0), f.name + ' raised central rooflight').toBeCloseTo(27, 2);
-    expect.soft(at(0, 18), f.name + ' true curved nave roof').toBeGreaterThan(20.5);
+    expect.soft(at(0, 0), `${f.name} raised central rooflight`).toBeCloseTo(27, 2);
+    expect.soft(at(0, 18), `${f.name} true curved nave roof`).toBeGreaterThan(20.5);
     expect.soft(at(0, 18)).toBeLessThan(23);
     for (const i of [521, 522, 198, 200]) {
       const r = controls.groups[i][0][0],
         x = r.reduce((n, p) => n + p[0], 0) / r.length,
         z = r.reduce((n, p) => n + p[1], 0) / r.length;
-      expect.soft(top(x, z), f.name + ' full pavilion/wing ' + i).toBeCloseTo(i < 300 ? 12 : 17, 2);
+      expect.soft(top(x, z), `${f.name} full pavilion/wing ${i}`).toBeCloseTo(i < 300 ? 12 : 17, 2);
     }
     expect
-      .soft(top(-198.8, 22.4), f.name + ' complete tall modern clocktower')
+      .soft(top(-198.8, 22.4), `${f.name} complete tall modern clocktower`)
       .toBeCloseTo(35.1, 3);
     expect
-      .soft(top(...controls.roundCenter), f.name + ' full round passenger hall')
+      .soft(top(...controls.roundCenter), `${f.name} full round passenger hall`)
       .toBeCloseTo(14.8, 2);
-    expect.soft(at(0, 0, 2), f.name + ' actual closed historic floor').toBeCloseTo(0.65, 2);
+    expect.soft(at(0, 0, 2), `${f.name} actual closed historic floor`).toBeCloseTo(0.65, 2);
     expect
-      .soft(top(-355, 43, 8.3), f.name + ' complete mapped low entrance range')
+      .soft(top(-355, 43, 8.3), `${f.name} complete mapped low entrance range`)
       .toBeCloseTo(8, 2);
     expect
-      .soft(top(...controls.roundCenter, 5), f.name + ' actual upper round floor')
+      .soft(top(...controls.roundCenter, 5), `${f.name} actual upper round floor`)
       .toBeCloseTo(4.8, 2);
-    expect.soft(top(300, 35), f.name + ' complete long main roof field').toBeGreaterThan(7);
+    expect.soft(top(300, 35), `${f.name} complete long main roof field`).toBeGreaterThan(7);
     expect.soft(top(300, 35)).toBeLessThan(9.5);
-    expect.soft(top(0, -65), f.name + ' complete secondary roof field').toBeGreaterThan(7.1);
+    expect.soft(top(0, -65), `${f.name} complete secondary roof field`).toBeGreaterThan(7.1);
     expect.soft(top(0, -65)).toBeLessThan(10);
     for (const [x, z] of [
       [105.2, 35.3],
@@ -169,28 +169,28 @@ it('retains curved hall, both brick pavilions and wings, rooflight, clocktower, 
       [250.2, 50.3],
     ])
       expect
-        .soft(nearest(ts, [x, -1, z], [0, -1, 0], true), f.name + ' no invented platform floor')
+        .soft(nearest(ts, [x, -1, z], [0, -1, 0], true), `${f.name} no invented platform floor`)
         .toBe(Infinity);
     expect
-      .soft(top(-139, -28, 4), f.name + ' portico has no invented surface floor')
+      .soft(top(-139, -28, 4), `${f.name} portico has no invented surface floor`)
       .toBeLessThan(-7.9);
     if (f.name !== 'skyline') {
       const gs = await triangles(f.path, 'window'),
         origin = P(-83, 18.3, 0.47),
         dir = [Math.cos(controls.historicFrame.phi), 0, Math.sin(controls.historicFrame.phi)],
         glass = nearest(gs, origin, dir, true);
-      expect.soft(glass, f.name + ' exposed arched front glass').toBeGreaterThan(6.9);
+      expect.soft(glass, `${f.name} exposed arched front glass`).toBeGreaterThan(6.9);
       expect.soft(glass).toBeLessThan(7.5);
       expect
-        .soft(nearest(ts, origin, dir, true), f.name + ' glazing is truly visible')
+        .soft(nearest(ts, origin, dir, true), `${f.name} glazing is truly visible`)
         .toBeCloseTo(glass, 2);
     }
   }
 }, 60000);
 it('uses the production viewer to replace the whole passenger building and preserve all independent native neighbors', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -219,7 +219,7 @@ it('uses the production viewer to replace the whole passenger building and prese
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         height: f.properties.height ?? 30,
         minHeight: f.properties.min_height ?? 0,
@@ -235,12 +235,12 @@ it('uses the production viewer to replace the whole passenger building and prese
   const owned = layout.nativeMap.ownedParts,
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
-  expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
+  expect(all).toHaveLength((await read(`${source}/mapped-parts.json`)).parts.length);
   expect(target).toHaveLength(27);
   expect(neighbor).toHaveLength(3168);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -254,8 +254,8 @@ it('uses the production viewer to replace the whole passenger building and prese
       model.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial()));
     }
   const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     objects = new StructureModelLibrary(async () => model),
     seen = [],
@@ -382,7 +382,7 @@ it('uses the production viewer to replace the whole passenger building and prese
       heightfield: field,
       signal: new AbortController().signal,
     });
-    const landmark = root?.getObjectByName('structure:' + placed.id);
+    const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
@@ -401,7 +401,7 @@ it('uses the production viewer to replace the whole passenger building and prese
       'station components left duplicated',
     ).toEqual([]);
     for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+      expect(neighbor.map((b) => b.id)).toContain(`native-${i}`);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
@@ -409,8 +409,8 @@ it('uses the production viewer to replace the whole passenger building and prese
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -419,7 +419,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -437,7 +437,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

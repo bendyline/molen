@@ -102,16 +102,16 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   warsawStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(27495);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.id).toBe(64436);
   expect(frame.identity.version).toBe(49);
   expect(frame.identity.tags.wikidata).toBe('Q756098');
   expect(frame.currentMapReconciliation.maxSavedVertexErrorMeters).toBeLessThan(3.635);
   expect(frame.anchor).toEqual([21.014829838, 52.247715277]);
-  const plan = await read(source + '/reviewed-plan.json');
+  const plan = await read(`${source}/reviewed-plan.json`);
   for (const f of plan.features) {
     expect(f.points).toHaveLength(f.wgs84.length);
     for (const p of f.points) expect(p.every(Number.isFinite)).toBe(true);
@@ -123,7 +123,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   );
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -134,15 +134,15 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(106.7541);
   expect(grade.workingCourtFloor).toBe(2.2125);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps court roofless, Clock/Grodzka passages open, foundations outward and aprons at grade at every tier', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json'),
-    plan = await read(source + '/reviewed-plan.json'),
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`),
+    plan = await read(`${source}/reviewed-plan.json`),
     q = plan.geometry.outline.slice(0, -1),
     sign =
       q.reduce((n, a, i) => {
@@ -152,19 +152,19 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
         ? -1
         : 1;
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z] of [
       [-20, 0],
       [15, 10],
     ])
-      expect(80 - nearest(triangles, [x, 80, z], [0, -1, 0]), l.name + ' court').toBeCloseTo(
+      expect(80 - nearest(triangles, [x, 80, z], [0, -1, 0]), `${l.name} court`).toBeCloseTo(
         grade.workingCourtFloor + 0.04,
         3,
       );
     for (const lateral of [-0.35, 0, 0.35]) {
       expect(
         nearest(triangles, [lateral, grade.workingCourtFloor + 1.8, 73], [0, 0, -1]),
-        l.name + ' Clock Gate',
+        `${l.name} Clock Gate`,
       ).toBeGreaterThan(80);
       expect(
         nearest(
@@ -172,7 +172,7 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
           [60, grade.workingCourtFloor + 1.8, 8.68490825789657 + lateral],
           [-1, 0, 0],
         ),
-        l.name + ' Grodzka Gate',
+        `${l.name} Grodzka Gate`,
       ).toBeGreaterThan(35);
     }
     for (const i of [0, 24, 37]) {
@@ -187,7 +187,7 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
           [x + n[0] * 3, warsawGround(x, z) + 0.12, z + n[1] * 3],
           [-n[0], 0, -n[1]],
         );
-      expect(hit.distance, l.name + ' foundation ' + i).toBeLessThan(3.1);
+      expect(hit.distance, `${l.name} foundation ${i}`).toBeLessThan(3.1);
       expect(hit.normal[0] * n[0] + hit.normal[2] * n[1]).toBeGreaterThan(0.9);
     }
     for (const [p, axis, len] of [
@@ -196,7 +196,7 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
     ]) {
       const x = p[0] + axis[0] * (len - 0.02),
         z = p[1] + axis[1] * (len - 0.02);
-      expect(80 - nearest(triangles, [x, 80, z], [0, -1, 0]), l.name + ' far apron').toBeCloseTo(
+      expect(80 - nearest(triangles, [x, 80, z], [0, -1, 0]), `${l.name} far apron`).toBeCloseTo(
         warsawGround(p[0] + axis[0] * len, p[1] + axis[1] * len) + 0.05,
         2,
       );
@@ -204,7 +204,7 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -214,7 +214,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -224,7 +224,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

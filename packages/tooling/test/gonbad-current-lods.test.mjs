@@ -109,33 +109,33 @@ it('reproduces the unchanged Gonbad draft and binds the published east-facing en
 });
 it('keeps ten tapered flanges, the whole measured cone, deep pointed entrance and closed roof light at every level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const b = await readFile(runtime + '/model.' + name + '.glb'),
+    const b = await readFile(`${runtime}/model.${name}.glb`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
       ts = geometry(b),
       ps = g.meshes.flatMap((m) => m.primitives).map((p) => g.accessors[p.attributes.POSITION]);
-    expect(Math.max(...ps.map((p) => p.max[1])), name + ' full measured52.844m tip').toBeCloseTo(
+    expect(Math.max(...ps.map((p) => p.max[1])), `${name} full measured52.844m tip`).toBeCloseTo(
       52.844,
       4,
     );
-    expect(Math.min(...ps.map((p) => p.min[1])), name + ' summit ground').toBe(0);
+    expect(Math.min(...ps.map((p) => p.min[1])), `${name} summit ground`).toBe(0);
     for (let i = 0; i < 10; i++) {
       const a = Math.PI / 2 + Math.PI / 10 - (i * 2 * Math.PI) / 10,
         d = [-Math.cos(a), 0, -Math.sin(a)];
       expect(
         nearest(ts, [20 * Math.cos(a), 20, 20 * Math.sin(a)], d),
-        name + ' flange' + i,
+        `${name} flange${i}`,
       ).toBeCloseTo(20 - (8.648 - ((8.648 - 7.729) * 20) / 36), 1);
     }
     const door = nearest(ts, [0, 2, 20], [0, 0, -1]);
-    expect(door, name + ' entrance is recessed, not filled at exterior').toBeGreaterThan(15.65);
-    expect(door, name + ' entrance has opaque rear/wood infill').toBeLessThan(15.8);
+    expect(door, `${name} entrance is recessed, not filled at exterior`).toBeGreaterThan(15.65);
+    expect(door, `${name} entrance has opaque rear/wood infill`).toBeLessThan(15.8);
     const light = nearest(ts, [0, 41, 20], [0, 0, -1]);
-    expect(light, name + ' roof-light recess').toBeGreaterThan(14.4);
-    expect(light, name + ' roof-light closed backing').toBeLessThan(15.7);
+    expect(light, `${name} roof-light recess`).toBeGreaterThan(14.4);
+    expect(light, `${name} roof-light closed backing`).toBeLessThan(15.7);
     const foot = nearest(ts, [0, 1, 8.7], [0, -1, 0]);
-    expect(foot, name + ' lower approach step').toBeCloseTo(0.8, 3);
+    expect(foot, `${name} lower approach step`).toBeCloseTo(0.8, 3);
   }
-  const ts = geometry(await readFile(runtime + '/model.closeup.glb'));
+  const ts = geometry(await readFile(`${runtime}/model.closeup.glb`));
   expect(
     nearest(ts, [0.61, 4.5, 10], [0, 0, -1]),
     'right entrance niche has physical closed recess',

@@ -22,7 +22,7 @@ catalogs across those packs, validates references, and passes plain documents to
 An architecture-only catalog works without an ecological atlas. A catalog scoped to a different
 style pack is omitted, so a custom style pack can retain the ecological content.
 
-The ecological atlas and catalog total about 169 KB gzip (173 KB as a content pack). Its 264 procedural plant presets need no
+The ecological atlas and catalog total about 207 KB gzip (212 KB as a content pack). Its 546 procedural plant presets need no
 GLB downloads. The architectural atlas is about 313 KB gzip; ordinary regional recipes are small
 JSON files using the default pack's shared material graphs. Authored landmark GLBs continue to
 use the existing geographically sharded, lazy model archives.
@@ -39,10 +39,16 @@ observations. Actual local land cover controls whether a plant can be placed.
 Architectural envelopes derive from [Natural Earth 1:50m country outlines](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/),
 which are [public domain](https://www.naturalearthdata.com/about/terms-of-use/). Exterior rings are
 simplified at 0.02 degrees and coordinates rounded to 0.001 degrees. The shipped atlas groups 241
-country/territory features into 53 broad envelopes, retaining the Pacific Northwest and US
-Southwest subregions. Exact containment wins; an optional nearest-outline fallback fills
-otherwise unclassified coastal gaps within 2.5 km in local world coordinates. These envelopes
-are visual priors, not building-style surveys or a political boundary service.
+country/territory features into 51 broad envelopes, with ten subregions above them where a
+building tradition changes inside one country or runs across several: the Pacific Northwest, the
+US Southwest, the North American Northeast, the Cyclades, Mediterranean France, the English
+limestone belt (Bath and the Cotswolds), central Italy, the Rif, and the western and central
+Sahel. Each is a rectangle masked by its parent envelope's land. Exact containment wins; a
+nearest-outline fallback fills otherwise unclassified coastal gaps within 15 km in local world
+coordinates. Simplified outlines cut estuaries, lagoons and inshore islands off (central Lisbon,
+Venice, Mumbai's Fort, Cartagena, Cádiz, Miami Beach), and a building stands on land, so the
+nearest outline is its region. These envelopes are visual priors, not building-style surveys or
+a political boundary service.
 
 Ecological lookup uses a separate grid, so a national border does not move a forest. Each plant
 candidate and each building centroid resolves its own profile. Ground meshes sample regional
@@ -105,15 +111,15 @@ placement seeds stay tied to individual scatter IDs/versions rather than unrelat
 ## Plant and building selection
 
 The plant families cover broadleaf, conifer, palm, cactus, succulent, bamboo, banana, grass, fern, reed,
-mangrove, deadwood, shrub, thicket, forb, vine, mat, and fallen-wood silhouettes. Habitats combine canopy, understory, ground cover, open land,
-parks, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
+mangrove, deadwood, shrub, thicket, forb, vine, mat, fallen-wood, clipped hedge, and rock silhouettes. Habitats combine canopy, understory, ground cover, open land,
+parks, yards, verges, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
 desert profiles and avoid applying Australian eucalyptus profiles to New Zealand.
 
-Each of the 88 plant forms has a base, spreading, and slender preset, available in
+Each of the 182 plant forms has a base, spreading, and slender preset, available in
 every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
 crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
 trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
-All 19 procedural families share the existing near/medium/far triangle limits.
+All 21 procedural families share the existing near/medium/far triangle limits.
 
 ### Brush and ground coverage
 
@@ -125,7 +131,8 @@ trunk and hanging from their branches. They do not attach to arbitrary mapped tr
 
 Natural forest, wood, scrub and heath receive an `understory` scatter layer. Open grassland and
 savanna receive sparser brush. Cultivated polygons, parks, gardens and residential land do not
-receive wild overgrowth from these rules. Explicit wetland labels permit sedge patches; desert
+receive wild overgrowth from these rules; yards and parks are planted instead (see
+[Yards, parks and verges](#yards-parks-and-verges)). Explicit wetland labels permit sedge patches; desert
 profiles retain sparse dry forms and never acquire humid forest plants.
 
 The optional clustering `sharedSeed` coordinates broad patches across vegetation layers while
@@ -136,10 +143,78 @@ building clearances than trees; road surfaces, buildings and water remain exclud
 
 Earth tiles reserve `maxUnderstoryInstances` / `maxUnderstoryModels` separately from canopy and
 groundcover. At the finest level, Economy allows 450 brush instances/two models, Balanced
-1,600/three, and High 2,400/four. One coarser level retains 80/250/400 instances respectively;
-coarser levels omit brush. Existing groundcover instance caps stay at 0/5,000/8,000, with
-0/five/seven model slots. Economy keeps simplified shrub masses while omitting fine blades and
+1,800/four, and High 2,800/six. One coarser level retains 80/250/400 instances respectively;
+coarser levels omit brush. Groundcover instance caps are 0/6,500/10,000, with
+0/seven/ten model slots. Economy keeps simplified shrub masses while omitting fine blades and
 litter. These are per-tile limits, not whole-scene frame-rate guarantees.
+
+A model slot is what a walker reads as variety: a tile draws only its commonest species in each
+layer, and the rest take the place of their rule's commonest one. Ground cover and beds, which
+have no distant form, stop drawing about 165 m from the edge of their quarter of the tile at
+High on a 1080-line view (sooner at lower quality). That is nearer than before, and it is what
+pays for the larger counts: a tuft a quarter of a kilometer off is a pixel or two.
+
+### Yards, parks and verges
+
+Planted ground has its own scatter layer, `garden`, with its own budget
+(`maxGardenInstances` / `maxGardenModels`: 700/three at Economy, 5,000/nine at Balanced and
+9,000/fourteen at High on the finest level), so a wood in the same tile cannot thin a
+neighborhood's planting and the planting cannot thin the wood. Each habitat plants by role:
+
+| Rule | Land | What it places |
+| --- | --- | --- |
+| `yard_shrubs`, `yard_beds` | Residential land and inferred yards | Garden shrubs and clipped globes, with flower beds, ornamental grasses, ferns and mulch gathered round them |
+| `yard_ornamentals` | The same | Small flowering and red-leaved trees, columnar conifers, hedge runs |
+| `lawn_flowers` | Yards and parks | Clover, daisies and other low flowers in mown grass |
+| `park_shrubs`, `park_beds` | Parks, gardens, cemeteries, greens | Larger shrub borders and planted beds |
+| `street_planting` | Commercial, retail, civic, school and hospital land | Sparse landscaping shrubs and hedges |
+
+Shrubs and beds share one density field, so a yard is planted in pockets a few meters across
+with lawn between them. Rough ground is separate and stays in the wild layers: `verge_grass` and
+`verge_brush` put rank grass, weeds, wildflowers and pioneer brush on unmapped ground, `waste_ground`
+puts weeds on industrial and railway land, and `outcrops` puts stones on open dry, cold and
+desert ground.
+
+The 83 forms added for this are regional lists, not a planting survey: rhododendron, hydrangea
+and sword fern in Pacific Northwest yards, sheared azalea mounds and cloud-pruned pines in
+Japan, oleander, lavender and pencil cypress round the Mediterranean, hibiscus and croton in the
+tropics, bottlebrush in Australia. A preset's optional `bloom` color draws blossom as part of the
+plant's own mesh, and small ornamental trees carry theirs as the spring color of their
+`phenology`, so a cherry is pink in its spring months.
+
+A tile draws each garden model once per quarter, so the layer chooses its models quarter by
+quarter and by role: each rule's commonest species there first, then each rule's second. A street
+therefore differs from the next, and the few trees and hedges are not crowded out by the beds.
+Lists are nearly flat for the same reason.
+
+Limits: hedge runs are placed like any other plant, at a random bearing, and do not follow a lot
+line or a fence. Blossom on shrubs and beds does not follow the month. Planting follows mapped
+land use, so a yard mapped as nothing in particular gets verge grass, not a garden.
+
+### Shrubs on painted crowns
+
+Dry ground paints its own shrubs. A scatter document's `surface.detail` gives each land class a
+brush level, and the terrain ground material paints round shrub crowns at that level: one
+candidate per 8 m cell, 2 to 5 m across, covering a tenth of the ground at full brush. Desert and
+scrubland keep their speckle to the horizon without a model per shrub. Each crown is shaded as a
+low dome, lit on the sun's side, with a leafy outline that resolves as the camera nears.
+
+A rule with `crowns` stands a plant on each of those crowns. The plant sits at the crown's
+center and is fitted to its width by the population's `width` (the model's crown width in meters
+at scale 1); a wider crown also stands taller. Within about 25 to 60 m of the camera the painted
+crown gives way to the plant, so the crown seen from the air is the shrub walked up to. The
+regional catalog gives every habitat with ground detail a `ground_crowns` rule: creosote-like
+resin bush, dryland shrubs and thorn thickets in deserts, and the habitat's own brush elsewhere.
+
+Crowns are kept whole, because a crown left without its plant would vanish as it was reached.
+`keepByTier` only switches the rule off (the catalog runs it on the finest tiles alone), a host's
+quality keep does not thin it, and its plants sit outside their layer's instance cap, bounded by
+the rule's own cap. A tile of open desert at Yuma, about a kilometer across, carries about 3,000.
+The crown pattern is a host input (`ScatterSampleInput.crowns`): Earth tiles supply it, and
+without it a `crowns` rule places nothing. Limits: the brush is matched by land class and
+building coverage, so where two mapped land classes overlap and the ground and scatter pick
+different ones, a crown at that edge can have no plant. Economy, which skips the finest
+vegetation tier, shows the painted crowns only.
 
 The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
 is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
@@ -211,33 +286,71 @@ tree line at sea level comes from the ecological atlas's tundra, not from this. 
 own `altitude` limits still apply; pass `treeline` to the worldgen kernel's scatter sampler to
 use the mechanism elsewhere.
 
-The ordinary architectural catalog supplies 294 recipes across 14 construction families and seven
-uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm
-buildings. Mapped use wins over neighborhood inference. Taller measured residential buildings
-select compatible apartment recipes; source footprint, height, and levels still control the
-generated geometry. Named precedents from the 120-entry structure library remain available
-explicitly. Without evidence of age, the ordinary catalog does not randomly assign an iconic
-historic building type to an untyped home.
-Each family/use has three weighted recipes: base, compact facade, and open facade. Stable building
+The ordinary architectural catalog supplies 608 recipes across 32 construction families and nine
+uses: detached homes, attached homes, apartments, commercial, towers, civic, industrial, farm
+buildings, and places of worship. Mapped use wins over neighborhood inference. Taller measured
+residential buildings select compatible apartment recipes; source footprint, height, and levels
+still control the generated geometry. Named precedents from the 120-entry structure library
+remain available explicitly. Without evidence of age, the ordinary catalog does not randomly
+assign an iconic historic building type to an untyped home.
+
+A family is what an ordinary building in its regions is made of and roofed with: several wall
+materials and roof coverings, each with its own palette and texture scale (brick colors stay on
+brick), a roof pitch, the share of flat roofs, the colors shutters and doors are painted, and
+which way a house in a row turns its ridge. Britain's is brick, render and sandstone under slate
+with eaves to the street; the Low Countries' dark brick under pantiles with gables to it;
+the Mediterranean's warm render and limestone under terracotta; the Cyclades' limewash under
+flat roofs; the Maghreb's and South Asia's render under roof terraces; sub-Saharan Africa's and
+the Pacific's under corrugated sheet. Where a town's larger buildings are built like its houses,
+its flats, shops and civic buildings take the family's walls and keep a pitched roof through the
+height those roofs were built to. They are also drawn as masonry blocks: storeys of 3.15–3.5 m
+over a 3.7–4.3 m ground floor (so a mapped 21 m is five floors, not seven), windows taller than
+wide over a low sill, a plinth, a string course to each floor and a cornice under a flat roof.
+Elsewhere a block is rendered concrete under a flat roof, and one of its three facades is an
+older building: brick in North America, Australia, the Pacific and South Africa, the family's
+own wall materials in the rest, with the same tall windows, plinth and cornice. A town whose
+blocks were all built in one decade reads as an office park.
+
+A block of flats with no mapped height is guessed a storey taller than the family's row houses:
+two to three floors in the Cyclades and the Sahel, three to five around the Mediterranean, four
+to five in the North American Northeast. The upper figure is also the most the Earth binding
+lets any unmeasured building of the region be guessed at; see
+[how tall an unmeasured building is](worldgen.md#how-tall-an-unmeasured-building-is).
+
+A building is its region's before it is anything else. The basemap does not keep a building's
+type, and most towns have no land-use polygon, so each profile ends in rules for footprints
+that are neither typed nor on labelled land: small ones are the family's houses, ones that share
+their walls its row houses, large or tall ones its flats or commercial blocks. A footprint over
+35 m takes the glass-and-panel tower recipe only with a floor plate of 250 m² (50 m where towns
+are built in masonry): a slender shaft is a bell tower or a minaret. See
+[rows, shops and places of worship](worldgen.md#rows-shops-and-places-of-worship) for how
+party walls, businesses and religion are read from the map.
+Homes, attached homes, apartments, commercial buildings and towers each have three weighted
+recipes per family: base, compact facade, and open facade. Civic, industrial and farm buildings
+and places of worship, which stand alone in a street, have one. Stable building
 identity selects their window/bay rhythm, roof weighting, eaves, parapets and supported facade
 details. The facade names do not resize the mapped building. Explicit original recipe IDs remain
 available, and identity-free selection keeps the base recipe.
 
-For inferred vacant lots, regional `lotPlans` weights select cottages, L-shaped ranches,
-courtyards, compact homes, attached-garage plans or commercial shopfronts. The US Southwest has
+For inferred vacant lots, the family's `lots` pattern first decides whether a block is rows at
+the street or houses in yards (rows in most of the world, by a share and a rhythm per family;
+yards in North America, Australia and the Pacific). In a block of yards, regional `lotPlans`
+weights select cottages, L-shaped ranches, courtyards, compact homes, attached-garage plans or
+commercial shopfronts. The US Southwest has
 its own stucco-and-ceramic-tile family; Washington uses the North American siding-and-shingle
-family. Each inferred lot reserves a path or driveway to its frontage street. Mapped land use
+family, with a share of shingled and brick houses. Each inferred lot reserves a path or driveway to its frontage street. Mapped land use
 selects residential versus commercial pools; see [building infill](worldgen.md#inferred-buildings-where-outlines-are-missing).
 
 Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred
 entrance fits an eligible exterior wall, reserves a ground-floor window bay, and yields to known
 structural openings, open ground floors, and raised buildings. It is a visual entrance; it does
-not create a traversable opening or claim a surveyed door position. Industrial and farm recipes
+not create a traversable opening or claim a surveyed door position. A building drawn with the
+simplified facade a crowded tile falls back to keeps the same entrance as a bare door leaf. Industrial and farm recipes
 also include high windows and larger service doors.
 
 ## Agricultural land use
 
-All 36 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
+All 38 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
 agricultural overrides (including the Corn Belt, Cerrado/Pampas and Indus/Gangetic plains). It activates only on
 mapped or retrieved farmland, cropland, orchards, vineyards, plantations and pasture. Climate
 alone never turns natural habitat into a farm. Ordinary farmland receives agricultural
@@ -246,7 +359,7 @@ appearance from the ecology pack without another download.
 The 22 crop recipes cover maize, soybean, small cereals, rice, cotton, sugarcane, sunflower,
 rapeseed, root vegetables, sorghum; olive, fruit, date, coconut, oil-palm, coffee, tea, banana,
 rubber and grape cultivation; and pasture/fallow surfaces. Ten annual forms each have three
-procedural variants. The complete catalog now has 264 plant recipes and 474 appearances with
+procedural variants. The complete catalog now has 546 plant recipes and 837 appearances with
 crop stages and deciduous seasons. Several source tags share a visual recipe: wheat, barley
 and rye use the small-cereal model. Preserve the source `crop` tag when presenting observations;
 `cultivation.crop` identifies a rendering recipe.
@@ -340,12 +453,12 @@ different order does not change selection. Earth and World Explorer load it by d
 is in the host's pack index. `ambient: { wildlife: false }` disables animals in `mountEarthView`;
 World Explorer accepts `?wildlife=0`. Frozen captures retain the existing ambient opt-in rule.
 
-The catalog has 90 recipes: three adult body/coat forms for each of 21 named mammal taxa and nine
-functional bird, reptile, fish, and insect groups. These are modest visual variations, not claims
+The catalog has 111 recipes: three adult body/coat forms for each of 21 named mammal taxa and of
+sixteen functional groups (birds, reptiles, fish, insects, and an unnamed cat and rabbit). These are modest visual variations, not claims
 about sex, age or subspecies. Each trio shares habitat/range/season gates and divides the previous
 visual density equally; total expected abundance and population caps stay unchanged. Mammal country membership comes from Mammal Diversity Database v2.5 under
 CC BY 4.0. A quarter-degree Natural Earth map-unit grid preserves overseas territory distinctions.
-The range document compresses to about 30 KB; the recipe catalog adds about 6 KB (40 KB as a content pack). No animal GLBs
+The range document compresses to about 30 KB; the recipe catalog adds about 7.5 KB (41 KB as a content pack). No animal GLBs
 are downloaded. Source hashes, transformations, licenses, and limitations ship in the pack.
 
 Country membership is a coarse limit, not within-country occupancy. Named taxa require an
@@ -355,12 +468,26 @@ explicit mapped conservation habitat, and water-dependent animals require mapped
 An uncovered range cell cannot authorize a named mammal. Unnamed functional groups deliberately
 make no precise species claim. These choices and visual densities are authored priors, not a census.
 
-Wildlife reads the finest displayed land-cover and human-feature tiles. Unknown terrain, built
-areas, roads, buildings, water inappropriate to the animal, and steep slopes reject placement.
+Seven of the functional groups live in towns: small songbirds, a crow-sized dark bird, pigeons,
+waterfowl grazing lawns within 60 m of mapped water, butterflies, cats and rabbits. They carry no
+taxon and no range: habitat places them, within broad biome limits for the waterfowl and
+butterflies and on temperate Nearctic and Palearctic ground for the rabbit. Their
+visual densities are several times the wild groups', because roads and houses leave only part of
+a block to stand on and a small bird is seen from tens of meters, not hundreds.
+
+Wildlife reads the finest displayed land-cover and human-feature tiles. Residential land is the
+`yard` habitat: its lawns and gardens are usable between the houses and streets, which keep their
+buffers. Gardens, cemeteries, village greens, recreation grounds and golf courses count as `park`,
+and a park, lawn or wood mapped on residential land is that habitat, in whichever order the map
+lists them. Unknown terrain, commercial, industrial and other built-up land, roads, buildings,
+water inappropriate to the animal, and steep slopes reject placement.
 Island/courtyard holes remain usable. Swimming animals share the rendered water datum; flight
-uses a bounded clearance. The 20 Hz kernel uses stable world-grid candidates, independent seeds,
-plain restorable state, bounded wandering, and path substeps. Population, distance and pose caps
-follow Earth quality. Models share recipe geometry, use one opaque skinned draw per animal, and
+uses a bounded clearance, and a flying animal may cross a road on its way but never a building
+(the habitat has no building heights). The 20 Hz kernel uses stable world-grid candidates,
+independent seeds, plain restorable state, bounded wandering, and path substeps. Earth quality
+sets the population, the nearest candidates first: 6, 8, 12, 16, 24 and 32 animals from Minimum
+to Ultra (`earthPerformanceTier(level).ambient.animals`). Distance and pose caps follow quality
+too. Models share recipe geometry, use one opaque skinned draw per animal, and
 dispose with the terrain stream. Tiny animals disappear at short distances.
 
 An explicit vegetation month also suppresses the generic insect/lizard groups in the coarse
@@ -373,7 +500,10 @@ priors, not a migration simulation. They are independent of the named visual mam
 Crickets still use the generic recording gated by regional habitat and season. Both retain
 weather, height and vehicle suppression. Composing hosts supply `EarthAudioFrame.location`
 and `regionalAmbience` from `EarthWildlife.ambience`; older packs without a birdsong catalog
-retain the generic bird soundscape. See [Sound and music](audio.md).
+retain the generic bird soundscape. A listener on a street or path hears the habitat the road
+runs through; inside a building's footprint or on built-up land there is none. The habitat
+reported in residential land is `yard`, so a birdsong profile is heard there only when its
+`habitats` name it. See [Sound and music](audio.md).
 
 ## Authoring and verification in this repository
 

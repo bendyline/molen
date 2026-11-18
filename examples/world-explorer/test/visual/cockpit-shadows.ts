@@ -31,7 +31,9 @@ applyEnvironment(renderer, {
   sun: { direction: toSun.toArray(), intensity: 3 },
   toneMapping: 'aces',
 });
-renderer.setShadowQuality('high');
+renderer.setShadowQuality(
+  (new URLSearchParams(location.search).get('quality') ?? 'high') as 'medium' | 'high',
+);
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(40_000, 40_000),
   new THREE.MeshStandardMaterial({ color: '#6f7d62' }),

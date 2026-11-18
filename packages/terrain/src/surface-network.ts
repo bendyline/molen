@@ -80,6 +80,74 @@ export function isSurfaceLink(road: SurfaceRoad): boolean {
   return isTransportLink(road.feature);
 }
 
+/** A stable value in [0, 1) for a world position (decimeter resolution), shared by tile neighbors. */
+export function surfaceHash(x: number, z: number): number {
+  let value = Math.imul(Math.round(x * 10), 73856093) ^ Math.imul(Math.round(z * 10), 19349663);
+  value = Math.imul(value ^ (value >>> 16), 0x45d9f3b);
+  return ((value ^ (value >>> 16)) >>> 0) / 4294967296;
+}
+
+type SurfaceJunctionArm = SurfaceJunction['arms'][number];
+
+/** A street corner: where the outer sidewalk edges of two neighboring arms meet. */
+export interface SurfaceJunctionCorner {
+  /** The arm before the corner, counterclockwise, and its index in the sorted arms. */
+  a: SurfaceJunctionArm;
+  index: number;
+  /** The arm after the corner. */
+  b: SurfaceJunctionArm;
+  x: number;
+  z: number;
+  /** Bisector angle between the two arms (away from the junction center). */
+  direction: number;
+}
+
+/** A junction's arms in angle order, the order `surfaceJunctionCorners` expects. */
+export function sortedJunctionArms(node: SurfaceJunction): SurfaceJunctionArm[] {
+  return [...node.arms].sort((a, b) => Math.atan2(a.dz, a.dx) - Math.atan2(b.dz, b.dx));
+}
+
+/**
+ * The corners between neighboring arms (`arms` from `sortedJunctionArms`). Reflex angles and slivers
+ * have none; the straight side of a T-junction, whose curb runs on uninterrupted, gets a point on
+ * that curb opposite the side street.
+ */
+export function surfaceJunctionCorners(
+  node: SurfaceJunction,
+  arms: readonly SurfaceJunctionArm[],
+): SurfaceJunctionCorner[] {
+  const corners: SurfaceJunctionCorner[] = [];
+  for (let i = 0; i < arms.length; i++) {
+    const a = arms[i],
+      b = arms[(i + 1) % arms.length];
+    if (!a || !b) continue;
+    const angle = (Math.atan2(b.dz, b.dx) - Math.atan2(a.dz, a.dx) + Math.PI * 2) % (Math.PI * 2);
+    if (angle > Math.PI + 0.1 || angle < 0.3) continue;
+    const direction = Math.atan2(a.dz, a.dx) + angle / 2;
+    // Intersect the two outer sidewalk edges, including divided carriageway widths.
+    const ax = a.x - a.dz * (a.width / 2 + 1.5);
+    const az = a.z + a.dx * (a.width / 2 + 1.5);
+    const bx = b.x + b.dz * (b.width / 2 + 1.5);
+    const bz = b.z - b.dx * (b.width / 2 + 1.5);
+    const cross = a.dx * b.dz - a.dz * b.dx;
+    let x: number, z: number;
+    if (Math.abs(cross) < 0.15) {
+      // Nearly opposite arms: a straight curb, unless the angle is only just short of straight.
+      if (angle < 3) continue;
+      const distance = Math.max(a.width, b.width) / 2 + 1.5;
+      x = node.x + Math.cos(direction) * distance;
+      z = node.z + Math.sin(direction) * distance;
+    } else {
+      const along = ((bx - ax) * b.dz - (bz - az) * b.dx) / cross;
+      x = ax + a.dx * along;
+      z = az + a.dz * along;
+    }
+    if (Math.hypot(x - node.x, z - node.z) > node.radius + 15) continue;
+    corners.push({ a, index: i, b, x, z, direction });
+  }
+  return corners;
+}
+
 /** Subtract a convex footprint, retaining convex pieces for the terrain draper. */
 function subtractFootprint(
   subject: TerrainSemanticPoint[],

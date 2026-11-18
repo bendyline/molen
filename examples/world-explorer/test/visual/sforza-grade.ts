@@ -293,7 +293,7 @@ async function passageProbes() {
     ray.set(p.clone().applyMatrix4(matrix), d.transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
     return {
-      name: 'Filarete-gate-' + lateral,
+      name: `Filarete-gate-${lateral}`,
       native: p.toArray(),
       required: 35,
       distance: hit?.distance ?? null,

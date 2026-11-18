@@ -292,7 +292,7 @@ async function passageProbes() {
     ray.set(p.clone().applyMatrix4(matrix), d.transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
     return {
-      name: 'barrel-' + lateral,
+      name: `barrel-${lateral}`,
       native: p.toArray(),
       required: 50,
       distance: hit?.distance ?? null,
@@ -309,7 +309,7 @@ async function foundationProbes() {
       d = new THREE.Vector3(-nx, 0, -nz);
     ray.set(p.clone().applyMatrix4(matrix), d.transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
-    return { id: 'platform-' + x + ',' + z, native: p.toArray(), distance: hit?.distance ?? null };
+    return { id: `platform-${x},${z}`, native: p.toArray(), distance: hit?.distance ?? null };
   });
 }
 declare global {

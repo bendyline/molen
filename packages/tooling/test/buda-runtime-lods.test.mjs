@@ -92,17 +92,17 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   budaStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(394698);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.tags.wikidata).toBe('Q46313');
   expect(frame.identity.version).toBe(33);
 
   expect(frame.currentFootprintComparison.maxSavedOutlineErrorMeters).toBeLessThan(0.0006);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -113,7 +113,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(152.564);
   expect(grade.workingCourtFloor).toBe(3.5393);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
@@ -128,18 +128,18 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
     expect(index.query(bounds, { viewingDate })).toEqual([]);
 });
 it('keeps Lions Court roofless and South Range passage open at every browser tier', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json');
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`);
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
-    expect(nearest(triangles, [50, 90, -10], [0, -1, 0]), l.name + ' open Lions Court').toBeCloseTo(
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
+    expect(nearest(triangles, [50, 90, -10], [0, -1, 0]), `${l.name} open Lions Court`).toBeCloseTo(
       90 - grade.workingCourtFloor,
       2,
     );
     for (const z of [7.2, 8, 8.8])
       expect(
         nearest(triangles, [112, grade.workingCourtFloor + 1.8, z], [-1, 0, 0]),
-        l.name + ' South Range portal ' + z,
+        `${l.name} South Range portal ${z}`,
       ).toBeGreaterThan(19);
     const steps = { skyline: 2, district: 4, street: 12, closeup: 12 }[l.name];
     for (const x of [-33, 9]) {
@@ -147,13 +147,13 @@ it('keeps Lions Court roofless and South Range passage open at every browser tie
       const firstTread = foot + (grade.workingCourtFloor - foot) / steps;
       expect(
         nearest(triangles, [x, 100, -93.8], [0, -1, 0]),
-        l.name + ' visible stair ' + x,
+        `${l.name} visible stair ${x}`,
       ).toBeCloseTo(100 - firstTread, 2);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -163,7 +163,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -173,7 +173,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

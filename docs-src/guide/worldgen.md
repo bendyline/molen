@@ -130,6 +130,16 @@ pinpoint errors with did-you-mean hints for palette names. The sections:
   square plans). Roofs are built per wing: an L becomes two gable wings meeting in a valley.
   Outlines that do not decompose, cut pieces at tile edges, and anything beyond `maxWingSpan` fall
   back to flat (with a parapet when the choice has one) or, for small irregular plans, a skillion.
+  A parapet is drawn no taller than 0.9 m (`MAX_PARAPET_HEIGHT`) whatever the choice asks for, so
+  a walker who lands on a flat roof can jump onto it and over; under a mapped `height` the wall
+  below keeps whatever the parapet gives up. With `fallback: 'hipped'` a footprint the chosen
+  pitched form cannot cover (an irregular plan, a block round a courtyard, a hall wider than
+  `maxWingSpan`) takes slopes rising from every wall to a level deck instead of going flat, and
+  under a `mansard` choice the slopes are the steep lower pitch. A plan too thin to inset keeps
+  the flat or skillion roof. `partyRidge` turns the ridge of a building that shares walls with
+  its neighbours (a request's `partyEdges`): `between` runs it from party wall to party wall,
+  eaves to the street, and `along` runs it along them, a gable to the street. Such a roof is
+  gabled, since a hip would slope down onto the neighbours.
 - `facade`: bay widths, window rhythm, base bands, and cornice. Windows and trim are generated
   geometry with cell UVs for glass and metric UVs for solid materials.
 - `materials` and `palettes`: one weighted material choice per part (wall, roof, trim, foundation,
@@ -155,7 +165,9 @@ default pack asserts a mean luminance of at least 0.55 for every tinted material
 
 A material choice may name its own `palette`, which replaces the part's palette when that choice
 is picked. The material and the color are otherwise independent picks, so without it a brick wall
-can draw a concrete grey and a concrete panel can draw brick red. `materials.flatRoof` is an
+can draw a concrete grey and a concrete panel can draw brick red. A choice may also carry its own
+`uvScale`, so a style that mixes brick, render and boarding draws each at its own course and
+board size instead of stretching all three to the part's scale. `materials.flatRoof` is an
 optional roof material used only when the style resolves a flat roof (a flat choice or the
 wide-footprint fallback). A pitched style keeps shingles or tile on its slopes and puts light
 membrane or gravel on its flat tops. Tile-edge cuts and dropped roof shapes keep `roof`, so a
@@ -171,6 +183,20 @@ by `facade-texture`. The `facade-bands` feature adds raised window surrounds, si
 storefront mullions, and projecting bands with exposed upper and lower faces. Structural entrance
 frames remain open at every tier; simplified frames omit depth and hidden faces to conserve the
 geometry budget. Shared linear-filtered worldgen textures use mipmaps and anisotropic filtering.
+
+`facade.details` adds near-detail ornament fitted to the live outline: an `entrance`, `shutters`,
+`cornerBoards`, `balconies`, `framing`, `awnings`, a `veranda`, and a `porch` (a step in front of
+the entrance under a small canopy on two posts, 44 vertices, on the seeded `probability` share of
+the style's buildings). `paint` lists the colors a building paints its shutters and door leaf,
+one drawn per building; without it they take the trim darkened.
+
+A request's `partyEdges` names the outline edges it shares with a neighbouring building. The
+walls are built, since neighbours differ in height, but take no windows, bands, ornament,
+storefront or entrance, and no interior opening. A request's `crown` adds what a building is
+known by from a distance, in the style's own wall and roof materials: a square tower under a
+`spire` or a low-capped `belfry` at one end of the long axis, a `dome` on a drum over the middle,
+a `minaret` at a corner, or a stepped `shikhara`. A crown is sized from the footprint, stands
+inside it, and is omitted on one narrower than 3.5 m.
 
 `props` attach pack or builtin models: `roof-ridge` walks the ridge of the dominant wing
 (chimneys), `roof-flat` fills a flat roof with `margin` from every edge (rooftop units),
@@ -253,7 +279,13 @@ tussock) and `builtin:groundcover.fern`, each under 70 triangles, plus small shr
 A rule joins it with `"layer": "groundcover"`, which gives it its own instance and model budget
 (`maxGroundCoverInstances`, `maxGroundCoverModels`), so thousands of clumps never thin the trees
 or take their model slots. Ground cover models draw only at the near level; the medium and far
-levels are empty, so the clumps fade out about 400 meters away instead of shimmering. The Earth
+levels are empty, so the clumps stop drawing at 65% of the distance a shrub would hand over to
+its medium level (about 165 meters from a batch's edge at High on a 1080-line view) instead of
+shimmering. `"layer": "understory"` and `"layer": "garden"` are two more pools with budgets of
+their own (`maxUnderstoryInstances`, `maxGardenInstances` and their `…Models`): shoulder-height
+wild brush, and planted ground such as yards and park borders. The garden pool keeps models by
+role, each rule's commonest species first, and chooses them separately in each quarter of the
+batch, which is how a host draws them. The Earth
 adapter labels land that no map polygon covers `open_ground` (the `OPEN_GROUND_LABEL` export), as a
 tile-wide polygon that every mapped polygon paints over, so verges and unmapped meadows can carry
 ground cover too. The default packs place it in meadows, parks, yards, forest floors and open
@@ -323,6 +355,80 @@ styles prefer pitched roofs through three floors and flat roofs from four upward
 style also allows flat roofs on low buildings. Wide, clipped, or unsuitable footprints can still
 require a flat roof for geometric reasons.
 
+### Rows, shops and places of worship
+
+A map draws a terrace or an old town's block as footprints that touch, and nothing in it says so.
+The adapter probes every outline edge of a ground-standing mapped building: an edge whose far
+side, 0.6 m out at three points along it, lies inside another building's footprint is a party
+wall. Those edges become the request's `partyEdges`. A building of at least 40 m² that gives
+22% of its outline to neighbours (the end house of a terrace gives a quarter, a house with a
+garage against it a seventh) also gains the `attached` label (`ATTACHED_LABEL`), which the
+regional rules send to their row-house styles. A mapped part and what remains of its building
+are one building, not each other's neighbours; generalized footprints, a host's buildings and
+inferred ones take no part. `associatePartyWalls(pieces, tileSize)` and `isAttached` are
+exported for other pipelines.
+
+A recognized business gives its building a frontage and a sign. Whether it also replaces the
+building depends on the region. A regional profile with a style rule for the class `shop_shell`
+(`SHOP_SHELL_CLASS`; the default catalog's North American, Southwest and neutral profiles) builds
+every low building with a business as a store, as an arterial strip is. Elsewhere the building
+stays its region's unless it is purpose-built: free-standing on retail or commercial land, a
+catalog chain's own building, or a single footprint of 600 m² or more. A shop in a row or under
+flats keeps its walls and roof.
+
+A POI that names a whole building (a hotel, a museum, a library, a theatre, a civic office)
+changes its inside at any size and its outside only from the size of one: 900 m² or a mapped
+15 m for a lodging, 400–500 m² for the others. A guest house in a town house stays a town house.
+Size alone is not enough in an old town, where a hotel, a school or a museum occupies a building
+of the street: a footprint that is one of a row with no height mapped keeps its region's
+exterior, and so does one that holds four other businesses or a second institution, since old
+centers are often mapped a block to an outline (`BuildingUseEvidence.shared`).
+
+### How tall an unmeasured building is
+
+A basemap carries a height or a level count for about one building in ten, and in many towns
+for none (of 37 town tiles surveyed in November 2026, 21 had heights on 2% of their buildings or
+fewer). Storeys therefore come from four places, in this order:
+
+1. **A mapped height.** The wall and roof fill it exactly; the style's storey height decides how
+   many rows of windows that is, and the rows are stretched to fit.
+2. **Mapped levels.** That many rows, at the style's storey height.
+3. **A dense-district prior** (`districtLevels`): an unmeasured block of 250 m² or more on ground
+   that footprints cover by a third or more, on commercial land or none, rises from 3 toward 10
+   levels as the cover does.
+4. **The style's fallback** (`massing.heightFallback`).
+
+The last two are guesses, and a guess is bounded by its surroundings. `measuredStoreys(tile,
+size)` reads how tall a place is built from its own map: the storeys four in five of its
+measured buildings stay within, once at least eight footprints of 60 m² or more carry a height
+or a level count (a smaller one is a mast or a minaret). `guessCeiling` is that figure or the
+region's ordinary block of flats, whichever is greater: the upper end of the fallback of the
+style the region's rules give a block of flats, three storeys in the Cyclades and five in
+Naples. The district prior stops at the ceiling, and every mapped building with neither a height
+nor levels carries it as the request's `fallbackLevelsMax`, which the recipe applies to a
+fallback in levels (a hall's fallback in meters is one tall room and is left alone). A use says
+what a building is for, not how tall it is: the hotel style's own fallback is five to twelve
+storeys, and without the ceiling five lodgings in Mykonos were drawn seven storeys or taller
+and one in Chefchaouen twelve.
+Dense ground alone is not a downtown either; a medina covers as much of its ground at two
+storeys. Where a core's towers are measured, its unmeasured blocks still rise with them.
+
+A mapped height is the wall's height, not always a count of floors. `shaftLevels(height, area)`
+recognizes a shaft: a whole building of under 250 m² (the plate a regional profile asks of its
+tower style) standing 20 m or more and five and a half times its footprint's side, as a bell
+tower, a tower house, a minaret, a chimney or a lighthouse does. It is drawn with a tier of
+openings every 11 m in its region's masonry. Divided into storeys, the Torre del Mangia (102 m
+on 21 m²) was 29 floors of flats. A slender part of a larger tower is that tower's and keeps
+its storeys, and so does a building whose levels the map counts.
+
+A place of worship takes its region's `worship` style and a crown from its religion, which the
+basemap carries as the POI's `kind_detail`: `worshipCrowns(religion, regionId, areaM2)` returns a
+dome for Orthodox and Oriental churches (by region), a spire or a belfry for Western ones, a dome
+and a minaret for a mosque, a stepped tower for a Hindu or Jain temple, and nothing for
+traditions told by their roof and walls alone. A footprint from 25 m² is recognized when it
+carries the POI's id or holds its point alone; a hall up to 3,000 m² when the point is the only
+business in it. These are the commonest forms for a region, not a record of the building.
+
 ### Inferred buildings where outlines are missing
 
 Earth views enable neighborhood building infill by default. `mountEarthView` and
@@ -358,6 +464,19 @@ establishes residential demand. Density considers streets within 240 meters and 
 edges: 650 meters of road in the full window, or 300 meters with explicit suitable land use.
 Highways, paths, service roads, bridges and tunnels do not establish demand. Mapped buildings keep
 priority in the shared rendering budgets.
+
+A house in a yard is one street pattern among several. The regional house style's optional
+`lots` says how the lots it invents line a street: `rows` is the share of blocks built as rows,
+fronts wall to wall at the back of the footway; `units` how many fronts stand to each 16 m of
+frontage (three is a 5.3 m tube house, one a 16 m front); `setback`, `depth` and `levels` their
+ranges; `gap` the share of frontages left open; and `compact` fills a detached lot's frontage
+close to the street. A block of 128 m is rows or yards as a whole, so one street keeps one
+pattern, and within a row the storeys and rear walls step from house to house while the fronts
+hold the street line. Each front is its own building with its own door and path, its side walls
+are party walls (`partyEdges`), and its style is the one the region's rules give the label
+`terrace`. The default catalog builds rows in most of the world: a Moroccan medina, a British
+terrace, Hanoi's tube houses and a Mexican street of continuous fronts are not suburbs. North
+America, Australia and the Pacific keep houses in yards.
 
 The regional style's optional `lotPlans` weights select reusable, resizable plans: `cottage`
 (recessed porch), `ranch` (L-shaped), `front-garage`, `side-garage`, `courtyard`, `compact`, and
@@ -493,7 +612,15 @@ plants on it unless a pack names its class.
 numbers are sized for real footprints: a zoom-15 suburb puts 800 to 1,600 houses in a zoom-14
 tile, and a downtown about 1,700 footprints and parts.
 
-A batch spends its budget in priority order, largest footprints first. First every building gets
+A batch spends its budget in priority order, largest footprints first. That suits a view from the
+air; for someone on the ground the buildings that matter are the nearest. `WorldgenBatchInput.focus`
+(`{ x, z, radius }` in the buildings' frame) queues the buildings within `radius` of a viewer
+nearest first, ahead of every other, so the same budget details and opens the doors of what the
+viewer can walk up to. The Earth renderers set it themselves: once the position passed to
+`updateInteriors` is down among the buildings and moving at a walk, the finest tiles within 90 m
+are regenerated round it, and again each 36 m it moves (never while it is inside a building, and
+the tile shown stays until its replacement is ready). In a dense Seattle tile of 1,091 buildings,
+where the largest 75 were detailed, that details the nearest 148, out to 140 m. First every building gets
 walls and its roof shape (the style's coarsest tier); only when even that does not fit does a
 building become an instanced stand-in. Then buildings gain a simplified facade while it fits, then
 the largest (`detailedCount`) gain full detail. The simplified facade preserves the authored
@@ -539,7 +666,9 @@ cells draw only their active LOD; keep `maxPropModels` small because each model 
 visible cell. The per-tile placement budgets still bound the resident instance data. Balanced quality
 allows 6,000 nearby placements, 2,400 one level below, and 800 two levels below. Economy uses
 2,200 / 800 / 200; high uses 9,000 / 3,600 / 1,200. Ground cover has its own budget on the finest
-level only: 5,000 placements and 3 models at Balanced, 8,000 and 4 at High, none at Economy.
+level only: 6,500 placements and 7 models at Balanced, 10,000 and 10 at High, none at Economy.
+Planted ground (the `garden` layer) has 5,000 placements and 9 models at Balanced and 9,000 and
+14 at High on the finest level, a few hundred one level below, and 700 and 3 at Economy.
 The forest rules fill nearby crowns while
 understory is limited to the finest tier; parks and yards retain lower densities and all
 placements retain road, building, and water clearances.
@@ -603,8 +732,10 @@ more triangles a frame, and 1.9 ms more main thread, so it is off unless a host 
 optional fourth, horizon model (`ModelLibrary.prepare(ref, 'horizon')`): a conifer's far level
 keeps three plain skirts, so a stand of firs is not a field of cones from a few hundred meters,
 and hands over to the one-cone horizon model where 2.5 m of error fits the budget (about 930 m
-at 2.5 pixels on a 1080-line view). For every other model the horizon model is the far model
-and adds no level. That handover reads the policy's `horizonPixelError` (default
+at 2.5 pixels on a 1080-line view). A broadleaf or mangrove tree in leaf, 2.5 m or taller, has
+one too: its far crown with fewer faces and no trunk (30 triangles for 56), reaching a little
+further and a little lighter so that a wood keeps its cover and tone where the two levels meet.
+For every other model the horizon model is the far model and adds no level. That handover reads the policy's `horizonPixelError` (default
 `maxPixelError`): a host that relaxes `maxPixelError` with camera height, to shed leaf cards,
 keeps `horizonPixelError` at its base value, or every conifer under an aircraft is the cone. A
 batch within a quarter of a handover's distance asks for the material across it, so its shaders
@@ -639,7 +770,12 @@ changes and disposing when the entity goes away.
 - Protomaps business identity comes from optional POIs at the finest detail level. Buildings mostly carry `kind: building`; rules lean on footprint metrics, height
   presence, and the surrounding land use. Context is available when land use and buildings share
   one archive (the Sammamish package does).
-- Roofs of clipped tile-edge pieces are flat; secondary wings share the main eave height.
+- Roofs of clipped tile-edge pieces are flat; secondary wings share the main eave height. The
+  hipped fallback ends in a level deck, not ridges: there is no straight skeleton.
+- Party walls are found between separately mapped footprints. A terrace mapped as one long
+  outline is still one building under one roof.
+- Crowns are five forms, placed by rule (a tower at one end, a dome over the middle), not where
+  the real building has them.
 - Windows are surface quads, not openings; dormers and setbacks are declared in the format but not
   built yet; the `wall-any` prop anchor places nothing yet. `ground-any` props do not know where
   driveways and paths run, so on a lot that is paved to the wall one can stand on the paving.

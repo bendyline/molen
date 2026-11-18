@@ -112,7 +112,7 @@ try {
       passages.every(
         (p) => p.floorError !== null && Math.abs(p.floorError) < 0.03 && p.terrainMasked,
       ),
-      'Gate road floor or mask mismatch: ' + JSON.stringify({ level, passages }),
+      `Gate road floor or mask mismatch: ${JSON.stringify({ level, passages })}`,
     );
     states.push({ ...state, probes, foundations, paving, passages });
     for (const camera of [

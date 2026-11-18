@@ -2,12 +2,128 @@
   "planId": "A08",
   "id": "molen.worldgen.structure.a08_t_mobile_park_seattle",
   "title": "T-Mobile Park, Seattle",
-  "visualBrief": "Retractable roof and stadium bowl",
+  "wikidataId": "Q1193117",
+  "visualBrief": "Retro ballpark on its SoDo block: a horseshoe of dark-green seat bands wrapping home plate in the south-west corner and the first- and third-base lines, a sun canopy and light towers on the upper deck, left-field bleachers under the big scoreboard, natural grass with a red-brown infield opening north-east toward downtown, a red-and-blond brick facade with arched bays and the home-plate rotunda, and the three-panel retractable roof parked open over the railway on exposed dark-green tri-chord trusses, tripod legs and its north and south runways.",
   "size": [
-    240,
-    66,
-    216
+    292.69,
+    83.39,
+    209.95
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -114.6,
+      -1,
+      -102.475
+    ],
+    "max": [
+      178.092,
+      82.394,
+      107.475
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-t-mobile-park.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: mapped OSM building 52776561141580 (outer ring), stands 35185823923355, steps 35185823923340-52, left-field bleachers 35185823923344, parked roof 35185823923353/54 and runways 35185823923342/43; field, warning track and infield from the mapped pitch and sand polygons",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "Field: 331 ft left, 401 ft centre, 326 ft right, natural grass; home-plate entry rotunda at First Avenue South and South Atlantic Street (the south-west corner)",
+      "source": "https://en.wikipedia.org/wiki/T-Mobile_Park"
+    },
+    {
+      "fact": "Roof: three panels, panels 1 and 3 span 631 ft and panel 2 655 ft; 217 ft clear at second base with the centre panel highest, highest truss 275 ft; south runway 100 ft high, north runway 50 ft, lower to keep downtown views; tri-chord trusses with triangular downturned legs on eight-wheel trucks",
+      "source": "https://www.djc.com/special/safeco/10053886.htm"
+    },
+    {
+      "fact": "Retractable roof of about 9 acres stacks over the BNSF tracks east of the ballpark, partly over the right-field stands; skewed 8 degrees to suit the field",
+      "source": "https://en.wikipedia.org/wiki/T-Mobile_Park"
+    },
+    {
+      "fact": "Exposed steel painted dark green; facade of red and blond brick; four main entrances at the corners; home-plate rotunda",
+      "source": "https://portal.djc.com/special/safeco/10053885.htm"
+    },
+    {
+      "fact": "Centre-field scoreboard 56.7 ft high by 201.5 ft wide (2013); bleachers above left field below it",
+      "source": "https://pcad.lib.washington.edu/building/4552"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.3325,
+      47.591389
+    ],
+    "heading": 0,
+    "groundAtAnchor": 4.93,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Home plate, foul lines (5.5 deg off the grid) and the infield are fitted to the mapped infield sand; stand rakes, deck heights (lower bowl to 12 m, upper deck 20.5-35 m, canopy 39 m) and the bleacher level are estimated from the mapped heights and photographs.",
+    "Seat tiers are stepped bands of about 1.1 m per row with aisle strips; concourses, suites, the Pen, bullpens and signage are reduced to plain masses, glazing and a dark screen.",
+    "The parked roof is an interpretation: panel widths (62-66 m), stacking order and offsets are fitted to the mapped roof outline and the 8 deg skew; trusses are drawn as a few members per bay, and the runways as box girders with face lattice.",
+    "The brick facade repeats one arched-bay rhythm on every side; gate canopies, team-store fronts and the parking garage south of Edgar Martinez Drive are not modelled.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19669,
+    "vertices": 59007,
+    "materials": 9,
+    "bytes": 2365020,
+    "sha256": "sha256:a5405bd10ce8a630f8683aceee95af72f3eb94d06dabee3c5183d0d9c1649fe8"
+  }
 }

@@ -106,14 +106,14 @@ const surfaces = {
   wood: { graph: 'wood_plain', slot: 'trim', roughness: 0.82, metallic: 0 },
 };
 it('reproduces unchanged Center master and independently signs star, gallery and southwest entrance', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, { legacyAlphaFields: true });
   centerStudy.build(a.wrap(b), prior);
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(488748);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(m.anchor).toEqual(prior.anchor);
   expect(m.heading).toBe(prior.heading);
@@ -156,13 +156,13 @@ it('reproduces unchanged Center master and independently signs star, gallery and
   expect(m.elements.find((e) => e.id === 1323732353).tags['roof:direction']).toBe('213.31');
   expect(m.heading).toBeCloseTo(-0.5813691738393112, 12);
   expect(m.geometry.parts.find((e) => e.id === 148461575).outline).toEqual(prior.geometry.outline);
-  expect(decode(await readFile(source + '/models/source.glb')).g.images ?? []).toHaveLength(0);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.images ?? []).toHaveLength(0);
 }, 120000);
 it('retains suspended half-pyramids, star envelope, open column base and gallery court at every level', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    master = decode(await readFile(source + '/models/source.glb'));
+  const asset = await read(`${runtime}/asset.json`),
+    master = decode(await readFile(`${source}/models/source.glb`));
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file));
+    const d = decode(await readFile(`${runtime}/${l.file}`));
     for (const y of [31, 39, 80, 145, 200, 250, 267, 284, 294, 316.4, 330])
       for (let k = 0; k < 24; k++) {
         const a = (k * Math.PI) / 12,
@@ -170,11 +170,11 @@ it('retains suspended half-pyramids, star envelope, open column base and gallery
           v = [-Math.cos(a), 0, -Math.sin(a)],
           ref = nearestWithNormal(master.triangles, o, v),
           hit = nearestWithNormal(d.triangles, o, v);
-        expect(Number.isFinite(ref.distance), l.name + 'reference' + y + '/' + k).toBe(true);
-        expect(Number.isFinite(hit.distance), l.name + 'hit' + y + '/' + k).toBe(true);
+        expect(Number.isFinite(ref.distance), `${l.name}reference${y}/${k}`).toBe(true);
+        expect(Number.isFinite(hit.distance), `${l.name}hit${y}/${k}`).toBe(true);
         expect(
           Math.abs(hit.distance - ref.distance) * Math.abs(dot(v, ref.normal)),
-          l.name + 'radial' + y + '/' + k,
+          `${l.name}radial${y}/${k}`,
         ).toBeLessThanOrEqual(l.errorMeters + 0.015);
       }
     for (let k = 0; k < 4; k++)
@@ -188,15 +188,15 @@ it('retains suspended half-pyramids, star envelope, open column base and gallery
             (distance + 8.92 * (y === 40 ? (y - 35.4) / (45.3 - 35.4) : (270 - y) / (270 - 260.8)));
         expect(
           Math.abs(nearest(d.triangles, o, v) - expected),
-          l.name + 'half-pyramid' + k + '/' + y,
+          `${l.name}half-pyramid${k}/${y}`,
         ).toBeLessThan(0.12);
       }
     // No opaque wall fills the public undercroft between the four principal columns.
-    expect(nearest(d.triangles, [21, 12, 0], [-1, 0, 0]), l.name + 'undercroft').toBeCloseTo(
+    expect(nearest(d.triangles, [21, 12, 0], [-1, 0, 0]), `${l.name}undercroft`).toBeCloseTo(
       12.2,
       2,
     );
-    expect(nearest(d.triangles, [0, 20, -25], [0, -1, 0]), l.name + 'gallery-court').toBeCloseTo(
+    expect(nearest(d.triangles, [0, 20, -25], [0, -1, 0]), `${l.name}gallery-court`).toBeCloseTo(
       19.8,
       2,
     );
@@ -208,7 +208,7 @@ it('retains suspended half-pyramids, star envelope, open column base and gallery
     ])
       expect(
         nearest(d.triangles, [x, 20, z], [0, -1, 0]),
-        l.name + 'gallery-roof' + x + '/' + z,
+        `${l.name}gallery-roof${x}/${z}`,
       ).toBeCloseTo(8.7, 2);
     const stoneTriangles = d.g.meshes.flatMap((m) =>
       m.primitives
@@ -225,9 +225,9 @@ it('retains suspended half-pyramids, star envelope, open column base and gallery
     if (l.name !== 'skyline')
       expect(
         nearest(stoneTriangles, [-14, 25, 22], [0, -1, 0]),
-        l.name + 'atrium-slab-void',
+        `${l.name}atrium-slab-void`,
       ).toBeGreaterThan(24.7);
-    expect(nearest(d.triangles, [0, 350, 0], [0, -1, 0]), l.name + 'mast-tip').toBeCloseTo(4, 2);
+    expect(nearest(d.triangles, [0, 350, 0], [0, -1, 0]), `${l.name}mast-tip`).toBeCloseTo(4, 2);
   }
 }, 120000);
 it('rebuilds four levels within download/triangle/draw budgets, with separate vertex streams and clear atrium', async () => {
@@ -238,7 +238,7 @@ it('rebuilds four levels within download/triangle/draw budgets, with separate ve
     3000000,
   );
   for (const [i, l] of next.runtimeLods.levels.entries()) {
-    const bytes = await readFile(runtime + '/' + l.file);
+    const bytes = await readFile(`${runtime}/${l.file}`);
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(4);
     const { g } = decode(bytes);

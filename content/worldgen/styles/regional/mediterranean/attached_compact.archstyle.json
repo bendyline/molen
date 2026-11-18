@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.mediterranean.attached.compact",
-  "title": "Mediterranean render and tile: attached: compact facade",
+  "title": "Mediterranean render, stone and clay tile: attached: compact facade",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -19,9 +19,18 @@
     },
     "heightFallback": [
       {
+        "when": {
+          "areaMax": 55
+        },
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      },
+      {
         "levels": {
           "min": 2,
-          "max": 3
+          "max": 4
         }
       }
     ],
@@ -56,24 +65,24 @@
     "choices": [
       {
         "type": "gable",
-        "weight": 5,
+        "weight": 4.167,
         "pitchDeg": {
-          "min": 18,
-          "max": 27
+          "min": 17,
+          "max": 26
         },
         "when": {
-          "levelsMax": 3
+          "levelsMax": 7
         }
       },
       {
         "type": "hip",
-        "weight": 1,
+        "weight": 0.833,
         "pitchDeg": {
-          "min": 18,
-          "max": 27
+          "min": 17,
+          "max": 26
         },
         "when": {
-          "levelsMax": 3
+          "levelsMax": 7
         }
       },
       {
@@ -87,11 +96,12 @@
           "thickness": 0.25
         },
         "when": {
-          "levelsMin": 4
+          "levelsMin": 8
         }
       }
     ],
-    "fallback": "flat"
+    "fallback": "hipped",
+    "partyRidge": "between"
   },
   "facade": {
     "bays": {
@@ -133,7 +143,20 @@
         "height": 2.15,
         "style": "single"
       },
-      "shutters": true
+      "shutters": true,
+      "paint": [
+        "#4d6b55",
+        "#5e3a2e",
+        "#3f5f7a",
+        "#6f7f6a",
+        "#7a4a3a",
+        "#3b4248"
+      ],
+      "balconies": {
+        "depth": 0.765,
+        "railing": "open",
+        "every": 3
+      }
     }
   },
   "materials": {
@@ -141,7 +164,21 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.stucco",
-          "weight": 1
+          "weight": 7,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_limestone",
+          "weight": 2,
+          "palette": "wall_stone_limestone",
+          "uvScale": [
+            2.4,
+            1.6
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -158,7 +195,12 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.tile_ceramic",
-          "weight": 1
+          "weight": 1,
+          "palette": "roof_tile_ceramic",
+          "uvScale": [
+            2.4,
+            2.4
+          ]
         }
       ],
       "palette": "regional_roof",
@@ -175,19 +217,15 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.membrane",
-          "weight": 2
-        },
-        {
-          "ref": "matgraph:molen.worldgen.material.gravel",
           "weight": 1
         }
       ],
-      "palette": "flatRoof",
+      "palette": "regional_flat_roof",
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        4,
-        4
+        6,
+        6
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -362,48 +400,6 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
-      "entries": [
-        {
-          "color": "#d5be99",
-          "weight": 1
-        },
-        {
-          "color": "#dfc2af",
-          "weight": 1
-        },
-        {
-          "color": "#ece7d9",
-          "weight": 1
-        },
-        {
-          "color": "#e4ddc8",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
-    "regional_roof": {
-      "entries": [
-        {
-          "color": "#9c7664",
-          "weight": 1
-        },
-        {
-          "color": "#b58e73",
-          "weight": 1
-        }
-      ],
-      "jitter": {
-        "hue": 0.005,
-        "saturation": 0.015,
-        "lightness": 0.025
-      }
-    },
     "regional_trim": {
       "entries": [
         {
@@ -412,6 +408,236 @@
         },
         {
           "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stucco": {
+      "entries": [
+        {
+          "color": "#ece6d6",
+          "weight": 1
+        },
+        {
+          "color": "#dcc08f",
+          "weight": 1
+        },
+        {
+          "color": "#e6d39a",
+          "weight": 1
+        },
+        {
+          "color": "#dfbda4",
+          "weight": 1
+        },
+        {
+          "color": "#d6a98f",
+          "weight": 1
+        },
+        {
+          "color": "#d9d4c8",
+          "weight": 1
+        },
+        {
+          "color": "#e3cba0",
+          "weight": 1
+        },
+        {
+          "color": "#e6dcc3",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stone_limestone": {
+      "entries": [
+        {
+          "color": "#cfc3a8",
+          "weight": 1
+        },
+        {
+          "color": "#e0d6bf",
+          "weight": 1
+        },
+        {
+          "color": "#d8cdb4",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#ece6d6",
+          "weight": 9.7
+        },
+        {
+          "color": "#dcc08f",
+          "weight": 9.7
+        },
+        {
+          "color": "#e6d39a",
+          "weight": 9.7
+        },
+        {
+          "color": "#dfbda4",
+          "weight": 9.7
+        },
+        {
+          "color": "#d6a98f",
+          "weight": 9.7
+        },
+        {
+          "color": "#d9d4c8",
+          "weight": 9.7
+        },
+        {
+          "color": "#e3cba0",
+          "weight": 9.7
+        },
+        {
+          "color": "#d8cdb4",
+          "weight": 7.4
+        },
+        {
+          "color": "#cfc3a8",
+          "weight": 7.4
+        },
+        {
+          "color": "#e0d6bf",
+          "weight": 7.4
+        },
+        {
+          "color": "#e6dcc3",
+          "weight": 9.7
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "roof_tile_ceramic": {
+      "entries": [
+        {
+          "color": "#c06c48",
+          "weight": 1
+        },
+        {
+          "color": "#b9603f",
+          "weight": 1
+        },
+        {
+          "color": "#cf8660",
+          "weight": 1
+        },
+        {
+          "color": "#b8755a",
+          "weight": 1
+        },
+        {
+          "color": "#d1946f",
+          "weight": 1
+        },
+        {
+          "color": "#c47a55",
+          "weight": 1
+        },
+        {
+          "color": "#a85a3e",
+          "weight": 1
+        },
+        {
+          "color": "#c9774f",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.03,
+        "lightness": 0.045
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#c06c48",
+          "weight": 12.5
+        },
+        {
+          "color": "#b9603f",
+          "weight": 12.5
+        },
+        {
+          "color": "#cf8660",
+          "weight": 12.5
+        },
+        {
+          "color": "#b8755a",
+          "weight": 12.5
+        },
+        {
+          "color": "#d1946f",
+          "weight": 12.5
+        },
+        {
+          "color": "#c47a55",
+          "weight": 12.5
+        },
+        {
+          "color": "#a85a3e",
+          "weight": 12.5
+        },
+        {
+          "color": "#c9774f",
+          "weight": 12.5
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_flat_roof": {
+      "entries": [
+        {
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
+        },
+        {
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
+          "weight": 1
+        },
+        {
+          "color": "#b5ab98",
           "weight": 1
         }
       ],
@@ -440,6 +666,28 @@
       "margin": 1.2,
       "scale": {
         "min": 0.9,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    },
+    {
+      "id": "rooftop",
+      "model": "builtin:rooftop.solar",
+      "anchor": "roof-flat",
+      "probability": 0.55,
+      "count": {
+        "min": 1,
+        "max": 3
+      },
+      "perAreaM2": 90,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 2.4,
+      "margin": 0.9,
+      "scale": {
+        "min": 0.85,
         "max": 1.15
       },
       "yaw": "align-wall",

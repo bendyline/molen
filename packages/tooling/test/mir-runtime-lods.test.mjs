@@ -105,16 +105,16 @@ it('reproduces the original mesh and verifies fresh map and retained terrain inp
   mirStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(255892);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.tags.wikidata).toBe('Q209643');
   expect(frame.identity.version).toBe(31);
   expect(frame.cachedVertexMaxErrorMeters).toBeLessThan(0.001);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -125,15 +125,15 @@ it('reproduces the original mesh and verifies fresh map and retained terrain inp
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(175.0822);
   expect(grade.workingCourtFloor).toBe(0.375);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps the court, gate and four bridge arches open while mapped feet meet grade', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    parts = await read(source + '/map-parts.json');
+  const asset = await read(`${runtime}/asset.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    parts = await read(`${source}/map-parts.json`);
   const { mirGround } = await import('../../worldgen/scripts/mir-runtime-model.mjs');
   const [a, b] = parts.features.find((f) => f.id === 'way/128319139').points,
     dx = b[0] - a[0],
@@ -141,14 +141,14 @@ it('keeps the court, gate and four bridge arches open while mapped feet meet gra
     len = Math.hypot(dx, dz),
     n = [-dz / len, dx / len];
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
-    expect(nearest(triangles, [-10, 80, 8], [0, -1, 0]), l.name + ' open court').toBeCloseTo(
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
+    expect(nearest(triangles, [-10, 80, 8], [0, -1, 0]), `${l.name} open court`).toBeCloseTo(
       80 - grade.workingCourtFloor - 0.125,
       l.name === 'closeup' ? 2 : 1,
     );
     expect(
       nearest(triangles, [-45, grade.workingCourtFloor + 1.8, 1], [1, 0, 0]),
-      l.name + ' west gate passage',
+      `${l.name} west gate passage`,
     ).toBeGreaterThan(14);
     for (const t of [0.125, 0.375, 0.625, 0.875]) {
       const x = a[0] + dx * t,
@@ -159,7 +159,7 @@ it('keeps the court, gate and four bridge arches open while mapped feet meet gra
           [x + 3 * n[0], grade.workingCourtFloor + 2, z + 3 * n[1]],
           [-n[0], 0, -n[1]],
         ),
-        l.name + ' bridge arch ' + t,
+        `${l.name} bridge arch ${t}`,
       ).toBeGreaterThan(4.6);
     }
     const p = frame.geometry.outline,
@@ -184,13 +184,13 @@ it('keeps the court, gate and four bridge arches open while mapped feet meet gra
           [x + 3 * n[0], mirGround(x, z) + 0.12, z + 3 * n[1]],
           [-n[0], 0, -n[1]],
         ).distance,
-        l.name + ' mapped exterior foot ' + i,
+        `${l.name} mapped exterior foot ${i}`,
       ).toBeLessThan(4.2);
     }
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -200,7 +200,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -210,7 +210,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

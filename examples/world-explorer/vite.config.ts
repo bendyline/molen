@@ -8,6 +8,9 @@ export default defineConfig({
   base: './',
   build: {
     target: 'es2022',
+    // The golden build hard-links public/ into dist instead (scripts/build-golden.mjs): copying
+    // its ~20 GB of content packs into this and the Earth view's dist filled the CI runner.
+    copyPublicDir: process.env.MOLEN_SKIP_PUBLIC_COPY !== '1',
     rollupOptions: {
       input: {
         main: 'index.html',

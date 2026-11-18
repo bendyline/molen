@@ -294,12 +294,9 @@ it('loads the placement directory at startup and reads geographic regions only o
       manifest: { id, version: '0.0.1', provides },
       close,
       readJson: async (path: string) => {
-        reads.push(folder + '/' + path);
+        reads.push(`${folder}/${path}`);
         return JSON.parse(
-          await readFile(
-            new URL('../../../content/' + folder + '/' + path, import.meta.url),
-            'utf8',
-          ),
+          await readFile(new URL(`../../../content/${folder}/${path}`, import.meta.url), 'utf8'),
         );
       },
       readBytes: async () => {

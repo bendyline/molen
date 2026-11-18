@@ -38,17 +38,19 @@ const SPECS = [
 ] as const;
 
 // cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
-// activity radius (m), pose evaluations per frame. Car and pedestrian caps are a third of what
-// they were (High drew 320 cars and 40 people), matching the lower spawn density in ambient.ts.
-// Trains count consists: a freight is a few locomotives and a score of cars, drawn far as
-// instanced stand-ins and in full only near the camera.
+// activity radius (m), pose evaluations per frame, animals. Car and pedestrian caps are a third
+// of what they were (High drew 320 cars and 40 people), matching the lower spawn density in
+// ambient.ts. Trains count consists: a freight is a few locomotives and a score of cars, drawn
+// far as instanced stand-ins and in full only near the camera. Animals are wildlife, one skinned
+// draw each, with a count of their own: half the pedestrian cap left 4 to 7 of them, the
+// nearest often too far to see.
 const AMBIENT = [
-  [8, 1, 0, 0, 2, 6, 60, 250, 4],
-  [16, 2, 1, 1, 4, 12, 80, 350, 8],
-  [32, 4, 2, 1, 6, 20, 100, 450, 12],
-  [54, 6, 3, 2, 8, 32, 120, 600, 20],
-  [80, 9, 4, 3, 12, 48, 150, 800, 32],
-  [108, 13, 6, 4, 16, 64, 180, 1000, 48],
+  [8, 1, 0, 0, 2, 6, 60, 250, 4, 6],
+  [16, 2, 1, 1, 4, 12, 80, 350, 8, 8],
+  [32, 4, 2, 1, 6, 20, 100, 450, 12, 12],
+  [54, 6, 3, 2, 8, 32, 120, 600, 20, 16],
+  [80, 9, 4, 3, 12, 48, 150, 800, 32, 24],
+  [108, 13, 6, 4, 16, 64, 180, 1000, 48, 32],
 ] as const;
 
 /**
@@ -211,6 +213,7 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       figureRadius: ambient[6],
       activityRadius: ambient[7],
       posesPerFrame: ambient[8],
+      animals: ambient[9],
     },
     shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
     clouds: index >= 5 ? 'ultra' : index === 4 ? 'high' : index >= 2 ? 'medium' : 'low',

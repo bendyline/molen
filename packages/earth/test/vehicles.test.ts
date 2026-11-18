@@ -228,6 +228,33 @@ describe('earth vehicles', () => {
     vehicles.dispose();
   });
 
+  it('takes the driven car out of a coarse sun shadow map in its cockpit view only', async () => {
+    const { vehicles } = setup();
+    vehicles.sync(300, [1000, 1.7, 2004]);
+    await Promise.resolve();
+    const body = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+    body.castShadow = true;
+    (vehicles.object.children[0] as THREE.Object3D).add(body);
+    // A driving view's map on High: 0.14 m texels.
+    vehicles.shadowTexel = 0.14;
+    vehicles.render();
+    expect(body.castShadow).toBe(true);
+    expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+    vehicles.render();
+    expect(body.castShadow).toBe(false);
+    vehicles.view = 'chase';
+    vehicles.render();
+    expect(body.castShadow).toBe(true);
+    vehicles.view = 'cockpit';
+    vehicles.render();
+    expect(body.castShadow).toBe(false);
+    // Sun shadows off or parked.
+    vehicles.shadowTexel = undefined;
+    vehicles.render();
+    expect(body.castShadow).toBe(true);
+    vehicles.dispose();
+  });
+
   it('disposes an in-flight detail load after the host is disposed', async () => {
     const { root, tile, vehicles: original } = setup();
     original.dispose();

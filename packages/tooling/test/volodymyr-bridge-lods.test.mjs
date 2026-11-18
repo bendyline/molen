@@ -63,16 +63,16 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('reconstitutes the exact source and fits both hill ends and column feet to the retained unmodified viewer terrain', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    grid = await read(source + '/terrain-grid.json');
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grid = await read(`${source}/terrain-grid.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(volodymyrSurfaces);
   buildVolodymyrLevel(a.wrap(b), 'master');
   const mesh = b.finalize(),
     bytes = Buffer.from(encodeGlb(mesh, a.materials(mesh.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([30.528425311, 50.45519774]);
   expect(frame.heading).toBe(-0.219431849013);
   const legacy = await read(resolve('../../content/earth/structures/georeferencing.json'));
@@ -80,23 +80,23 @@ it('reconstitutes the exact source and fits both hill ends and column feet to th
     legacy.candidates.find((c) => c.candidateId === 'bridge_over_saint_volodymyr_descent').geometry
       .outline,
   );
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png);
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png);
   for (const p of [volodymyrControls.spine[0], volodymyrControls.spine.at(-1)])
     expect(volodymyrDeckY(p[0]) - field.sampleHeight(...p)).toBeCloseTo(0.3, 2);
   for (const p of volodymyrControls.columns)
     expect(p.ground - field.sampleHeight(p.x, p.z)).toBeCloseTo(0, 2);
-  const placement = await read(source + '/placement-report.json');
+  const placement = await read(`${source}/placement-report.json`);
   expect(placement.entry.elevation).toBe(grid.modelDatumElevationMeters);
   expect(placement.entry.replaceFootprint).toBe(false);
   expect(placement.entry.replaceRoads.outline).toEqual(frame.geometry.outline);
   expect(placement.entry.bounds).toHaveLength(4);
 }, 30000);
 it('retains the bent full deck, real see-through floor openings and both supporting columns at browser tiers', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file, true);
+    const ts = await triangles(`${runtime}/${l.file}`, true);
     for (const [x, z] of [
       [-80, 4.5],
       [0, 1.5],
@@ -104,12 +104,12 @@ it('retains the bent full deck, real see-through floor openings and both support
     ])
       expect(
         Math.abs(nearest(ts, [x, 40, z], [0, -1, 0]) - (40 - volodymyrDeckY(x))),
-        l.name + ' complete deck',
+        `${l.name} complete deck`,
       ).toBeLessThan(0.06);
     for (const p of volodymyrControls.columns)
       expect(
         nearest(ts, [p.x, p.ground + 3, p.z + 10], [0, 0, -1]),
-        l.name + ' supporting column',
+        `${l.name} supporting column`,
       ).toBeLessThan(10);
     if (l.name !== 'skyline')
       for (const r of volodymyrControls.glassGroups) {
@@ -119,16 +119,16 @@ it('retains the bent full deck, real see-through floor openings and both support
             (k) =>
               (1 - v) * ((1 - u) * r[0][k] + u * r[1][k]) + v * ((1 - u) * r[3][k] + u * r[2][k]),
           );
-        expect(nearest(ts, [q[0], 40, q[1]], [0, -1, 0]), l.name + ' real floor opening').toBe(
+        expect(nearest(ts, [q[0], 40, q[1]], [0, -1, 0]), `${l.name} real floor opening`).toBe(
           Infinity,
         );
       }
   }
 }, 60000);
 it('replaces the mapped upper footbridge without removing the transverse lower descent road', async () => {
-  const placement = (await read(source + '/placement-report.json')).entry,
-    map = await read(source + '/pmtiles-map.json');
-  const frame = await read(source + '/map-frame.json'),
+  const placement = (await read(`${source}/placement-report.json`)).entry,
+    map = await read(`${source}/pmtiles-map.json`);
+  const frame = await read(`${source}/map-frame.json`),
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -175,8 +175,8 @@ it('replaces the mapped upper footbridge without removing the transverse lower d
     };
   tile.transportation.push(upper, lower);
   const field = heightfieldFromPng(
-    await read(source + '/terrain-review.terrain.json'),
-    await readFile(source + '/terrain-review.height.png'),
+    await read(`${source}/terrain-review.terrain.json`),
+    await readFile(`${source}/terrain-review.height.png`),
   );
   const result = withoutStructureRoads(
     tile,
@@ -194,8 +194,8 @@ it('replaces the mapped upper footbridge without removing the transverse lower d
   ).toBeLessThan(4);
 }, 30000);
 it('rebuilds exact browser tiers within budgets using shared graphs, image-free clear glass and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -204,7 +204,7 @@ it('rebuilds exact browser tiers within budgets using shared graphs, image-free 
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hashBytes(b)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);

@@ -19,7 +19,7 @@ Original component-authored geometry and shared procedural materials. Primary re
 
 ## Authored geometry and materials
 
-1,141,392 triangles, 2,253,446 vertices, 6 surface groups; 94,824,332 source bytes. SHA-256: `sha256:2e66469b9c9cecf32343148446bf3cf86b788162f6575795709aa9d4aafcd29a`. Actual bounds: -174.962, -0.380, -163.551 to 183.398, 51.499, 162.895 m.
+1,141,112 triangles, 2,255,870 vertices, 6 surface groups; 94,908,236 source bytes. SHA-256: `sha256:699de1d658bedc24b38609c0e410b83d71ae3bfff61bce1a8eb3ee34acc51d0c`. Actual bounds: -174.962, -0.380, -163.551 to 183.398, 51.499, 162.895 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Exact mapped playing-field center. +Z follows its north-northwest axis, +X faces the west main entrance. Y0 is the playing-field and outer approach ground reference."}.
 

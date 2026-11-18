@@ -57,17 +57,17 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('rebuilds the exact source with separate mapped road/path axes, four access connectors and native endpoints', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    alignment = await read(source + '/alignment.json'),
-    grid = await read(source + '/terrain-grid.json');
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    alignment = await read(`${source}/alignment.json`),
+    grid = await read(`${source}/terrain-grid.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(voroshilovskySurfaces);
   buildVoroshilovskyLevel(a.wrap(b), 'master');
   const mesh = b.finalize(),
     bytes = Buffer.from(encodeGlb(mesh, a.materials(mesh.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([39.7225821018219, 47.21405337319303]);
   expect(frame.heading).toBe(1.8769918226849933);
   expect(alignment.roadLines).toHaveLength(2);
@@ -83,39 +83,39 @@ it('rebuilds the exact source with separate mapped road/path axes, four access c
   }
   for (const line of alignment.footLines)
     for (const p of line) expect(Math.abs(Math.abs(p[1]) - 16.1433)).toBeLessThan(0.7);
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png);
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png);
   for (const x of alignment.limits)
     expect(voroshilovskyDeckY(x) - field.sampleHeight(x, 0)).toBeCloseTo(0.25, 2);
-  const placement = await read(source + '/placement-report.json');
+  const placement = await read(`${source}/placement-report.json`);
   expect(placement.entry.elevation).toBe(grid.modelDatumElevationMeters);
   expect(placement.entry.replaceFootprint).toBe(false);
   expect(placement.entry.replaceRoads.includeConnectedApproaches).toBe(true);
   expect(placement.entry.bounds).toHaveLength(4);
 }, 30000);
 it('keeps both decks continuous, the median physically open and daylight between the pier legs in every tier', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file);
+    const ts = await triangles(`${runtime}/${l.file}`);
     for (const x of [-300, -120, 0, 120, 300])
       for (const z of [-8.1433, 8.1433]) {
         const y = voroshilovskyDeckY(x),
           distance = nearest(ts, [x, y + 2, z], [0, -1, 0]);
-        expect(Number.isFinite(distance), l.name + ' continuous deck').toBe(true);
-        expect(Math.abs(distance - 1.965), l.name + ' deck grade').toBeLessThan(
+        expect(Number.isFinite(distance), `${l.name} continuous deck`).toBe(true);
+        expect(Math.abs(distance - 1.965), `${l.name} deck grade`).toBeLessThan(
           ['skyline', 'district'].includes(l.name) ? 1.6 : 0.1,
         );
       }
-    expect(nearest(ts, [0, 60, 0], [0, -1, 0]), l.name + ' real median aperture').toBe(Infinity);
-    expect(nearest(ts, [0, 4, 0], [0, 0, 1]), l.name + ' clear river').toBe(Infinity);
-    expect(nearest(ts, [62, 10, 0], [1, 0, 0]), l.name + ' open pier legs').toBeGreaterThan(10);
+    expect(nearest(ts, [0, 60, 0], [0, -1, 0]), `${l.name} real median aperture`).toBe(Infinity);
+    expect(nearest(ts, [0, 4, 0], [0, 0, 1]), `${l.name} clear river`).toBe(Infinity);
+    expect(nearest(ts, [62, 10, 0], [1, 0, 0]), `${l.name} open pier legs`).toBeGreaterThan(10);
   }
 }, 60000);
 it('replaces the two bridge roadways and outer paths without erasing the bank street or river promenade', async () => {
-  const placement = (await read(source + '/placement-report.json')).entry,
-    map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json');
+  const placement = (await read(`${source}/placement-report.json`)).entry,
+    map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`);
   const local = ([lon, lat]) => {
     const E = (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
       S = -(lat - frame.anchor[1]) * 111319.490793;
@@ -146,7 +146,7 @@ it('replaces the two bridge roadways and outer paths without erasing the bank st
     tile = createEmptyTerrainSemanticTile();
   for (const [i, r] of bridge.entries())
     tile.transportation.push({
-      id: 'bridge-' + i,
+      id: `bridge-${i}`,
       class: r.properties.kind === 'path' ? 'path' : 'major_road',
       subclass: r.properties.kind === 'path' ? 'footway' : 'primary',
       bridge: true,
@@ -154,7 +154,7 @@ it('replaces the two bridge roadways and outer paths without erasing the bank st
       lines: [r.points.map(point)],
     });
   const lower = [bank, promenade].map((r, i) => ({
-    id: 'lower-' + i,
+    id: `lower-${i}`,
     class: i ? 'path' : 'major_road',
     subclass: i ? 'footway' : 'tertiary',
     layer: 0,
@@ -162,8 +162,8 @@ it('replaces the two bridge roadways and outer paths without erasing the bank st
   }));
   tile.transportation.push(...lower);
   const field = heightfieldFromPng(
-    await read(source + '/terrain-review.terrain.json'),
-    await readFile(source + '/terrain-review.height.png'),
+    await read(`${source}/terrain-review.terrain.json`),
+    await readFile(`${source}/terrain-review.height.png`),
   );
   const result = withoutStructureRoads(
     tile,
@@ -176,8 +176,8 @@ it('replaces the two bridge roadways and outer paths without erasing the bank st
     expect(f.lines.flat().length).toBeLessThan(3);
 }, 30000);
 it('rebuilds exact browser tiers within budgets with shared graphs, image-free glazing and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -186,7 +186,7 @@ it('rebuilds exact browser tiers within budgets with shared graphs, image-free g
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hashBytes(b)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -196,7 +196,7 @@ it('rebuilds exact browser tiers within budgets with shared graphs, image-free g
       for (const graph of ['concrete_plain', 'metal_painted', 'gravel'])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     if (['street', 'closeup'].includes(name))

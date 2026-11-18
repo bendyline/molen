@@ -30,6 +30,22 @@ import {
   type WorldgenProgress,
 } from './types';
 
+/**
+ * The shrub crowns a host's ground material paints, for `crowns` rules: one candidate crown per
+ * pattern cell, in request-local meters.
+ */
+export interface ScatterGroundCrowns {
+  /** Pattern cells whose crowns may fall in this request-local rectangle: [i0, j0, i1, j1]. */
+  cells(bounds: Bounds2): [i0: number, j0: number, i1: number, j1: number];
+  /** Cell (i, j)'s crown: center, radius, and the least brush (0..1) at which it is painted. */
+  crown(i: number, j: number): { x: number; z: number; radius: number; brush: number };
+  /**
+   * Share of an appearance class's brush the ground keeps at (x, z), where built-up ground paves
+   * over it; omitted means all of it.
+   */
+  open?(x: number, z: number, appearance: string): number;
+}
+
 export interface ScatterBudget {
   /** Instances one rule may emit. */
   maxInstancesPerRule: number;
@@ -43,6 +59,9 @@ export interface ScatterBudget {
   maxUnderstoryModels?: number;
   maxAgricultureInstances?: number;
   maxAgricultureModels?: number;
+  /** Instances and model varieties for `garden` rules: planted yards, parks and verges. */
+  maxGardenInstances?: number;
+  maxGardenModels?: number;
 }
 
 export interface ScatterSampleInput {
@@ -63,7 +82,12 @@ export interface ScatterSampleInput {
    * it. Ground cover and crops are unaffected; undefined anywhere means no limit there.
    */
   treeline?: (x: number, z: number) => number | undefined;
+  /** The ground's painted shrub crowns; `crowns` rules place nothing without them. */
+  crowns?: ScatterGroundCrowns;
 }
+
+/** Mean radius of the painted crowns a population without a `width` is scaled around, meters. */
+const CROWN_MEAN_RADIUS = 1.8;
 
 /**
  * Meters below a tree line over which stands thin from full density to none: closed forest
@@ -265,7 +289,10 @@ export function* samplePlacementsSteps(
   const agricultureInstances = input.budget.maxAgricultureInstances ?? 0;
   const agricultureModels = input.budget.maxAgricultureModels ?? 0;
   const agricultureOpen = agricultureInstances > 0 && agricultureModels > 0;
-  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen) return [];
+  const gardenInstances = input.budget.maxGardenInstances ?? 0;
+  const gardenModels = input.budget.maxGardenModels ?? 0;
+  const gardenOpen = gardenInstances > 0 && gardenModels > 0;
+  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen && !gardenOpen) return [];
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
@@ -278,10 +305,16 @@ export function* samplePlacementsSteps(
     model: string;
     base: string;
     rule: number;
-    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden';
     /** The rule's kept share at this tier, and how far its crowns may widen to hold cover. */
     keep: number;
     growth: number;
+    /**
+     * Stands on a painted crown (a `crowns` rule): outside its layer's instance cap and never
+     * widened. A crown left without its plant would vanish as it is reached, and admitting
+     * crowns ahead of the layer would evict the rest of it; their rule's own cap bounds them.
+     */
+    fitted?: boolean;
   }> = [];
   const scatterId = { id: doc.id, version: doc.version };
   let visited = 0;
@@ -294,14 +327,17 @@ export function* samplePlacementsSteps(
     if (
       layer === 'agriculture'
         ? !agricultureOpen
-        : layer === 'groundcover'
-          ? !groundOpen
-          : layer === 'understory'
-            ? !understoryOpen
-            : !canopyOpen
+        : layer === 'garden'
+          ? !gardenOpen
+          : layer === 'groundcover'
+            ? !groundOpen
+            : layer === 'understory'
+              ? !understoryOpen
+              : !canopyOpen
     )
       continue;
-    if (rule.densityPerHectare <= 0) continue;
+    const crowns = rule.crowns !== undefined ? input.crowns : undefined;
+    if (rule.crowns !== undefined ? crowns === undefined : rule.densityPerHectare <= 0) continue;
     const matches = request.polygons.map(
       (polygon) =>
         classMatches(polygon.label, rule.classes) &&
@@ -324,7 +360,13 @@ export function* samplePlacementsSteps(
     });
     const visit = area !== undefined ? intersectBounds(area, bounds) : undefined;
     if (visit === undefined) continue;
-    const keep = keepFor(rule, doc, input.tier) * request.keep;
+    // Crowns are kept whole: a painted crown with no plant on it would vanish as it is reached.
+    const keep =
+      crowns !== undefined
+        ? keepFor(rule, doc, input.tier) > 0
+          ? 1
+          : 0
+        : keepFor(rule, doc, input.tier) * request.keep;
     if (keep <= 0) continue;
     const avoid = { ...doc.defaults.avoid, ...rule.avoid };
     const key = exclusionKey(avoid);
@@ -394,6 +436,89 @@ export function* samplePlacementsSteps(
     const cellZ0 = Math.floor(Math.min(...grid.map((p) => p[1] as number)));
     const cellZ1 = Math.floor(Math.max(...grid.map((p) => p[1] as number)));
     const ruleCandidates = new LowestDraws(cap);
+    if (crowns !== undefined) {
+      const brushes = rule.crowns as Record<string, number>;
+      const [i0, j0, i1, j1] = crowns.cells(visit);
+      for (let cz = j0; cz <= j1; cz++) {
+        for (let cx = i0; cx <= i1; cx++) {
+          if (++visited % CHUNK === 0) yield { done: ruleIndex, total: doc.rules.length };
+          const crown = crowns.crown(cx, cz);
+          const { x, z } = crown;
+          if (x < bounds[0] || x >= bounds[2] || z < bounds[1] || z >= bounds[3]) continue;
+          let polygonIndex = labels.get(x, z) - 1;
+          // The crown belongs to the ground's own polygon here, beneath any scatter-only one.
+          if (request.polygons[polygonIndex]?.ground === false)
+            for (polygonIndex--; polygonIndex >= 0; polygonIndex--) {
+              const beneath = request.polygons[polygonIndex];
+              if (beneath === undefined || beneath.ground === false) continue;
+              if (pointInPolygon([x, z], beneath.ring, beneath.holes)) break;
+            }
+          if (polygonIndex < 0 || matches[polygonIndex] !== true) continue;
+          const polygon = request.polygons[polygonIndex];
+          if (polygon === undefined) continue;
+          let hash = hashCoord(cx, cz, salt);
+          if (polygon.seed !== undefined) {
+            if (!pointInPolygon([x, z], polygon.ring, polygon.holes)) continue;
+            hash = fmix32(hash ^ polygon.seed);
+          }
+          const appearance = polygon.appearance ?? polygon.label;
+          const brush = (brushes[appearance] ?? 0) * (crowns.open?.(x, z, appearance) ?? 1);
+          if (crown.brush > brush) continue;
+          const u = unit01(hash, 2);
+          if (ruleCandidates.rejects(u, cz, cx)) continue;
+          if (exclusion.get(x, z) !== 0) continue;
+          if (nearWater !== undefined && nearWater.get(x, z) === 0) continue;
+          if (input.acceptsRule !== undefined && !input.acceptsRule(rule, x, z)) continue;
+          const population = rule.populations[pickWeighted(unit01(hash, 3), weights)];
+          if (population === undefined) continue;
+          if (ground.slopeAt(x, z) > (population.slopeMax ?? ruleSlopeMax)) continue;
+          const y = ground.sampleHeight(x, z);
+          const altitude = population.altitude ?? rule.altitude;
+          if (altitude?.min !== undefined && y < altitude.min) continue;
+          if (altitude?.max !== undefined && y > altitude.max) continue;
+          if (input.treeline !== undefined) {
+            const line = input.treeline(x, z);
+            if (line !== undefined && y >= line) continue;
+          }
+          // Fitted to the crown across; a wider crown also stands taller, by its square root.
+          const across =
+            population.width !== undefined
+              ? (2 * crown.radius) / population.width
+              : (crown.radius / CROWN_MEAN_RADIUS) *
+                (population.widthScale === undefined
+                  ? 1
+                  : sampleRange(population.widthScale, unit01(hash, 9)));
+          const scale = sampleRange(population.scale, unit01(hash, 4)) * Math.sqrt(across);
+          const variants = population.variants;
+          const variant =
+            variants?.[pickWeighted(unit01(hash, 10), variantWeights(variants))]?.model ??
+            population.model;
+          const [r, g, b] = tintFor(population, hash);
+          ruleCandidates.add({
+            model: input.modelAt?.(variant, x, z) ?? variant,
+            base: input.modelAt?.(population.model, x, z) ?? population.model,
+            candidate: {
+              x,
+              y: y - 0.15,
+              z,
+              yaw: population.yaw === 'none' ? 0 : unit01(hash, 5) * dmath.TAU,
+              scale,
+              widthScale: across / scale,
+              r,
+              g,
+              b,
+              u,
+              cx,
+              cz,
+            },
+          });
+        }
+      }
+      for (const entry of ruleCandidates.result())
+        accepted.push({ ...entry, rule: ruleIndex, layer, keep, growth: 1, fitted: true });
+      yield { done: ruleIndex + 1, total: doc.rules.length };
+      continue;
+    }
     for (let cz = cellZ0; cz <= cellZ1; cz++) {
       for (let cx = cellX0; cx <= cellX1; cx++) {
         if (++visited % CHUNK === 0) yield { done: ruleIndex, total: doc.rules.length };
@@ -541,11 +666,12 @@ export function* samplePlacementsSteps(
     p.candidate.cz - q.candidate.cz ||
     p.candidate.cx - q.candidate.cx;
   const pool = (
-    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture',
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden',
     maxInstances: number,
     maxModels: number,
   ) => {
-    const entries = accepted.filter((entry) => entry.layer === layer);
+    const entries = accepted.filter((entry) => entry.layer === layer && entry.fitted !== true);
+    const fitted = accepted.filter((entry) => entry.layer === layer && entry.fitted === true);
     const sampled = entries.length;
     if (entries.length > maxInstances) {
       entries.sort(byDraw);
@@ -571,6 +697,24 @@ export function* samplePlacementsSteps(
           },
         };
       }
+    entries.unshift(...fitted);
+    if (layer !== 'garden') return admit(entries, maxModels, false);
+    // A host draws each model once per quarter of the batch, so planting chooses its models
+    // quarter by quarter: the same draws, and a neighborhood that differs from the next one
+    // instead of one handful of species for the whole batch.
+    const midX = (bounds[0] + bounds[2]) / 2,
+      midZ = (bounds[1] + bounds[3]) / 2;
+    const quarters: (typeof entries)[] = [[], [], [], []];
+    for (const entry of entries)
+      (
+        quarters[
+          (entry.candidate.x >= midX ? 1 : 0) + (entry.candidate.z >= midZ ? 2 : 0)
+        ] as typeof entries
+      ).push(entry);
+    return quarters.flatMap((quarter) => admit(quarter, maxModels, true));
+  };
+  /** The entries a model budget keeps, each with the model it is drawn as. */
+  function admit(entries: typeof accepted, maxModels: number, byRole: boolean): typeof accepted {
     const counts = new Map<string, number>();
     for (const entry of entries) counts.set(entry.base, (counts.get(entry.base) ?? 0) + 1);
     // Reserve one fallback per species before spending spare draws on interchangeable forms.
@@ -578,9 +722,41 @@ export function* samplePlacementsSteps(
     const kept = new Set(
       [...counts.entries()]
         .sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1))
-        .slice(0, Math.max(0, maxModels))
+        .slice(0, Math.max(0, byRole ? 0 : maxModels))
         .map(([model]) => model),
     );
+    if (byRole) {
+      // Planting is by role: a rule is the shrubs of a yard, its beds, its small trees. Counted
+      // together the beds alone would take every slot, and a rule left with no species drops
+      // out, so the few trees and hedges would vanish. Each rule's commonest species is kept
+      // first, largest rule first, then each rule's second, until the slots are spent.
+      const perRule = new Map<number, Map<string, number>>();
+      for (const entry of entries) {
+        let byBase = perRule.get(entry.rule);
+        if (byBase === undefined) {
+          byBase = new Map();
+          perRule.set(entry.rule, byBase);
+        }
+        byBase.set(entry.base, (byBase.get(entry.base) ?? 0) + 1);
+      }
+      const ranked = [...perRule.entries()]
+        .map(([rule, byBase]) => ({
+          rule,
+          total: [...byBase.values()].reduce((sum, count) => sum + count, 0),
+          species: [...byBase.entries()].sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1)),
+        }))
+        .sort((p, q) => q.total - p.total || p.rule - q.rule);
+      for (let round = 0; kept.size < maxModels; round++) {
+        let offered = false;
+        for (const { species } of ranked) {
+          const next = species[round];
+          if (next === undefined) continue;
+          offered = true;
+          if (kept.size < maxModels) kept.add(next[0]);
+        }
+        if (!offered) break;
+      }
+    }
     // A species past the cap gives its places to its own rule's most common kept species, so a
     // tight budget simplifies a mixed stand rather than thinning it. A rule with no kept species
     // (a crop row, a lone riparian stand) still drops out.
@@ -616,13 +792,14 @@ export function* samplePlacementsSteps(
     return retained.map((entry) =>
       kept.has(entry.model) ? entry : { ...entry, model: entry.base },
     );
-  };
+  }
   const perModel = new Map<string, Candidate[]>();
   for (const entry of [
     ...pool('canopy', input.budget.maxInstances, input.budget.maxPropModels),
     ...pool('understory', understoryInstances, understoryModels),
     ...pool('groundcover', groundCoverInstances, groundCoverModels),
     ...pool('agriculture', agricultureInstances, agricultureModels),
+    ...pool('garden', gardenInstances, gardenModels),
   ]) {
     let list = perModel.get(entry.model);
     if (list === undefined) {

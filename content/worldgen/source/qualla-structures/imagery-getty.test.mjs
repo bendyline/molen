@@ -21,7 +21,7 @@ test('Getty requires the exact object image grant, all creators, native image se
       identifier: ['84.XA.889.4.27'],
       creator: [{ name: 'John Burke' }, { name: 'William H. Baker' }],
       license: 'http://creativecommons.org/publicdomain/zero/1.0/',
-      thumbnailUrl: id + '/full/!300,300/0/default.jpg',
+      thumbnailUrl: `${id}/full/!300,300/0/default.jpg`,
       creditText: [
         'Images provided here are available under https://creativecommons.org/publicdomain/zero/1.0/ through Open Content Program. Text CC BY.',
       ],
@@ -42,18 +42,18 @@ test('Getty requires the exact object image grant, all creators, native image se
       creators: obj.creator.map((c) => c.name),
       artist: 'John Burke; William H. Baker',
       era: obj.temporal,
-      downloadUrl: id + '/full/max/0/default.jpg',
+      downloadUrl: `${id}/full/max/0/default.jpg`,
       width: 6633,
       height: 5088,
       bytes: image.length,
       originalReview: { status: 'inspected', rendition: 'native-original' },
       rightsEvidence: { path: 'object.html', sourceUrl: url },
-      catalogEvidence: { path: 'info.json', sourceUrl: id + '/info.json' },
+      catalogEvidence: { path: 'info.json', sourceUrl: `${id}/info.json` },
     };
   const snap = (o) => {
     r.rightsEvidence.sha256 = save(
       'object.html',
-      '<script type="application/ld+json">' + JSON.stringify(o) + '</script>',
+      `<script type="application/ld+json">${JSON.stringify(o)}</script>`,
     );
     r.catalogEvidence.sha256 = save('info.json', JSON.stringify(info));
   };
@@ -62,8 +62,8 @@ test('Getty requires the exact object image grant, all creators, native image se
   for (const patch of [
     { license: 'https://creativecommons.org/licenses/by/4.0/' },
     { creator: [{ name: 'John Burke' }] },
-    { url: url + 'X' },
-    { thumbnailUrl: id + '/other.jpg' },
+    { url: `${url}X` },
+    { thumbnailUrl: `${id}/other.jpg` },
     { identifier: ['different-accession'] },
   ]) {
     snap({ ...obj, ...patch });
@@ -71,7 +71,7 @@ test('Getty requires the exact object image grant, all creators, native image se
   }
   snap(obj);
   for (const patch of [
-    { downloadUrl: id + '/full/!1000,1000/0/default.jpg' },
+    { downloadUrl: `${id}/full/!1000,1000/0/default.jpg` },
     { sha256: hash('unrelated') },
     { originalReview: { status: 'pending' } },
     { width: 300 },

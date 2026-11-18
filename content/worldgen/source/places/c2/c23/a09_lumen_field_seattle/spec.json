@@ -2,12 +2,133 @@
   "planId": "A09",
   "id": "molen.worldgen.structure.a09_lumen_field_seattle",
   "title": "Lumen Field, Seattle",
-  "visualBrief": "Two large roof canopies",
+  "wikidataId": "Q612736",
+  "visualBrief": "U-shaped football and soccer stadium on its SoDo site: a ring of grey-blue seat bands round the green turf, club glazing and a steep cantilevered upper deck on the sidelines and the south end, an open north end toward downtown with the Hawks' Nest bleachers and the scoreboard tower, two long lens-shaped blue roofs over the sideline stands each carried by a light steel tied arch springing between concrete corner pylons, and a salmon-concrete masonry base with red brick on the west and a glass curtain wall on the east.",
   "size": [
-    212,
-    55,
-    257
+    229.2,
+    67.25,
+    258.1
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -112.6,
+      -1,
+      -112.6
+    ],
+    "max": [
+      116.6,
+      66.25,
+      145.5
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-lumen-field.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: mapped OSM bowl 52776560439079 (outer edge and pitch hole), roofs 35184830296938/39 (= buildings 35185007241382/83), Hawks' Nest part 35184830296935 and north tower 35184830296944 (60 m)",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "Roof covers about 70% of the seats and leaves the field open; 720 ft span between concrete pylons at the north and south ends; two arches rise about 200 ft over the field; painted blue in 2010",
+      "source": "https://en.wikipedia.org/wiki/Lumen_Field"
+    },
+    {
+      "fact": "Tied-arch roof: a lower tri-chord truss and a steel arch of 16 A-frame components acting together, on friction-pendulum bearings in the pylons",
+      "source": "https://www.bdcnetwork.com/nurturing-community"
+    },
+    {
+      "fact": "85 ft masonry base of stained concrete and concrete masonry; 56 ft upper-bowl cantilever over the suite level; U-shaped bowl open to the north toward downtown",
+      "source": "https://www.bdcnetwork.com/nurturing-community"
+    },
+    {
+      "fact": "Salmon-coloured concrete exterior, red brick on part of the west side, glass curtain wall on the east; 13-storey north tower with a vertical scoreboard above the Hawks' Nest; FieldTurf surface",
+      "source": "https://en.wikipedia.org/wiki/Lumen_Field"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.331667,
+      47.595278
+    ],
+    "heading": 0,
+    "groundAtAnchor": 5.19,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Seat rakes, deck heights (lower bowl to 12 m, upper deck 20.6-37 m), the roof deck levels (39-46 m) and the arch crown (about 62 m) are estimated from the mapped 36 m roof height, the 200 ft arch figure and photographs.",
+    "Seat tiers are stepped bands of about 1.1-1.8 m per row with aisle strips; suites, concourses and the Toyota fan deck are reduced to glazing, decks and plain masses.",
+    "The roof deck is one sloped surface per side on the mapped lens outline; the tied arch, its tri-chord tie and the A-frame hangers are a few members per bay. Painted lettering and lights on the roof are omitted.",
+    "The north tower video board and the south-end board are plain dark screens of estimated size; the separate Event Center and garage to the south are not part of this model.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19318,
+    "vertices": 57954,
+    "materials": 10,
+    "bytes": 2323348,
+    "sha256": "sha256:bf2db25408dc5d8d97eefaa0005716001f728183e50b9be95b7738ec20c1d114"
+  }
 }

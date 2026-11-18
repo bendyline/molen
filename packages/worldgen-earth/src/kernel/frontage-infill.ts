@@ -48,11 +48,14 @@ export interface InferredBuildingFeature extends TerrainBuildingFeature {
     access: NonNullable<BuildingRequest['access']>;
     yard?: BuildingRequest['yard'];
     style?: string;
+    /** Outline edges built against the next building of a row. */
+    partyEdges?: number[];
   };
 }
+/** The style of an invented lot: a house in a yard, a house in a row (`terrace`), or a shop. */
 export type InfillStyleAt = (
   point: Vec2,
-  use: 'house' | 'commercial',
+  use: 'house' | 'terrace' | 'commercial',
   identity: string,
 ) => ArchStyleDoc | undefined;
 type Segment = {
@@ -75,6 +78,20 @@ type Lot = {
 const PITCH = 16; // Projected-meter frontage, anchored to the global line rather than tile endpoints.
 const RADIUS = 240;
 const MAX_LOTS = 3072;
+/**
+ * Frontage slots across a tile beyond which no lots are laid out in it. A zoom-15 tile is 76
+ * slots wide. A zoom-13 one is 306, sixteen times the ground: laying lots out across one took a
+ * worker 0.2 to 2 s and tripled the time to generate the tile (measured November 2026), so a
+ * package whose finest tiles are that coarse invents no buildings.
+ */
+const MAX_SLOTS = 300;
+/** Row fronts and depths where a style names none: a plain two-up terrace. */
+const ROW_UNITS = { min: 2, max: 2 };
+const ROW_SETBACK = { min: 0.3, max: 1.2 };
+const ROW_DEPTH = { min: 9, max: 13 };
+const ROW_LEVELS = { min: 2, max: 3 };
+/** A row's setback is measured from the back of the footway a street carries beside it, m. */
+const ROW_WALK = 1.9;
 const HALO = 64;
 const STREETS = new Set([
   'minor_road',
@@ -159,7 +176,7 @@ export function inferBuildingFootprints(
     geom.levelBelowMax > 1 ||
     !(scale > 0) ||
     !(size > 0) ||
-    size / (PITCH * scale) > 300
+    size / (PITCH * scale) > MAX_SLOTS
   )
     return [];
   const metric = (p: Vec2): Vec2 => [p[0] * size, p[1] * size];
@@ -257,15 +274,23 @@ export function inferBuildingFootprints(
         const blockId = `block:${seed}:${Math.floor(gx / 12800)}:${Math.floor(gz / 12800)}`;
         const blockHash = hashString(blockId);
         const districtStyle = styleAt?.(anchor, 'house', blockId);
-        const compact = districtStyle?.id.includes('.east_asian.') === true;
+        const pattern = districtStyle?.lots;
+        const compact = pattern?.compact === true;
+        // A block is rows or houses in yards as a whole: one street, one pattern.
+        const row = pattern?.rows !== undefined && unit01(blockHash, 6) < pattern.rows;
+        const rowBack = pattern?.setback ?? ROW_SETBACK;
         if (lots.has(id)) continue;
         // Derive metric offsets from the geographic location, not the camera's latitude scale.
         const northing = (anchor[1] + geom.originZ) / scale / WEB_MERCATOR_EARTH_RADIUS_METERS;
         const metricScale = (scale * (dmath.exp(northing) + dmath.exp(-northing))) / 2;
         let front =
           (road.width / 2 +
-            (compact ? 1.5 : 2.5 + unit01(blockHash, 1) * 2) +
-            unit01(hash, 1) * 1.1) *
+            (row
+              ? ROW_WALK + rowBack.min + unit01(blockHash, 1) * (rowBack.max - rowBack.min)
+              : compact
+                ? 1.5
+                : 2.5 + unit01(blockHash, 1) * 2) +
+            unit01(hash, 1) * (row ? 0.15 : 1.1)) *
           metricScale;
         let fenceFront = (road.width / 2 + 1.3) * metricScale;
         // Separately mapped sidewalks often sit beyond the road's estimated width. Move the
@@ -333,6 +358,142 @@ export function inferBuildingFootprints(
         )
           continue;
         const style = styleAt?.(center, use, blockId);
+        if (row && pattern !== undefined) {
+          // A row: fronts wall to wall at the street. One 16 m frontage holds one to four
+          // buildings, and a block keeps one rhythm, so a street reads as a terrace.
+          if (unit01(hash, 9) < (pattern.gap ?? 0)) continue;
+          const rowStyle = commercial ? style : (styleAt?.(center, 'terrace', blockId) ?? style);
+          const slot = PITCH * scale;
+          const fronts = pattern.units ?? ROW_UNITS;
+          const count = commercial
+            ? 1
+            : Math.max(
+                1,
+                Math.min(
+                  4,
+                  fronts.min + Math.floor(unit01(blockHash, 7) * (fronts.max - fronts.min + 1)),
+                ),
+              );
+          const deep = pattern.depth ?? ROW_DEPTH;
+          const blockDepth = deep.min + unit01(blockHash, 3) * (deep.max - deep.min);
+          const tall = pattern.levels ?? ROW_LEVELS;
+          const units = Array.from({ length: count }, (_, k) => {
+            const unitHash = hashString(`${id}:u${k}`);
+            return {
+              k,
+              x0: -slot / 2 + (slot * k) / count,
+              x1: -slot / 2 + (slot * (k + 1)) / count,
+              // Rear walls step a little from house to house; fronts hold the street line.
+              depth:
+                (commercial
+                  ? Math.max(blockDepth, 12)
+                  : blockDepth + (unit01(unitHash, 3) - 0.5) * 2.4) * scale,
+              levels: Math.max(
+                1,
+                Math.round(
+                  tall.min +
+                    (tall.max - tall.min) *
+                      (0.55 * unit01(blockHash, 4) + 0.45 * unit01(unitHash, 4)),
+                ),
+              ),
+            };
+          });
+          const depthMax = Math.max(...units.map((unit) => unit.depth));
+          const ring = (x0: number, z0: number, x1: number, z1: number): Vec2[] =>
+            [
+              [x0, z0],
+              [x1, z0],
+              [x1, z1],
+              [x0, z1],
+            ].map(([x, z]) => at(x as number, z as number));
+          const parcel: TerrainSemanticPolygon = {
+            outer: ring(-slot / 2 + 0.5, -setback + 0.65, slot / 2 - 0.5, depthMax + 0.9),
+          };
+          const bounds = polygonBounds(parcel);
+          if (
+            obstacles
+              .query([bounds[0] - 1, bounds[1] - 1, bounds[2] + 1, bounds[3] + 1])
+              .some((o) => polygonsNear(parcel, o.polygon, 0.6))
+          )
+            continue;
+          const envelope: TerrainSemanticPolygon = {
+            outer: ring(-slot / 2, 0, slot / 2, depthMax),
+          };
+          const localRoads = segments.query([
+            bounds[0] - 20,
+            bounds[1] - 20,
+            bounds[2] + 20,
+            bounds[3] + 20,
+          ]);
+          if (localRoads.some((r) => lineNearPolygon(r.a, r.b, envelope, r.width / 2 + 0.7)))
+            continue;
+          const doors = units.map((unit) => (unit.x0 + unit.x1) / 2);
+          if (
+            doors.some((x) =>
+              localRoads.some(
+                (r) =>
+                  !r.walkable &&
+                  r.key !== road.key &&
+                  lineNearPolygon(
+                    r.a,
+                    r.b,
+                    corridor(at(x, -setback + 0.65), at(x, 0), 1.2),
+                    r.width / 2,
+                  ),
+              ),
+            )
+          )
+            continue;
+          if (ground) {
+            const samples = [...parcel.outer, ...envelope.outer];
+            const heights = samples.map((p) => ground.sampleHeight(...p));
+            if (
+              heights.some((h) => !Number.isFinite(h)) ||
+              Math.max(...heights) - Math.min(...heights) > 3 ||
+              samples.some(
+                (p) => !Number.isFinite(ground.slopeAt(...p)) || ground.slopeAt(...p) > 0.3,
+              )
+            )
+              continue;
+          }
+          lots.set(id, {
+            id,
+            rank: hash,
+            parcel,
+            features: units.map((unit, index): InferredBuildingFeature => {
+              const outline = ring(unit.x0, 0, unit.x1, unit.depth);
+              const door = doors[index] as number;
+              return {
+                id: `${id}:u${unit.k}`,
+                class: use,
+                levels: unit.levels,
+                tags: {
+                  'molen:inferred': 'street-frontage-v3',
+                  'molen:lot-plan': 'row',
+                  'molen:lot': id,
+                },
+                polygons: [{ outer: outline.map(([x, z]): Vec2 => [x / size, z / size]) }],
+                infill: {
+                  lotId: id,
+                  shape: 'compact',
+                  part: 'home',
+                  parcel,
+                  groundOutline: outline,
+                  access: {
+                    from: at(door, -setback + 0.02),
+                    to: at(door, 0),
+                    width: 1.2,
+                    lift: 0.25,
+                  },
+                  // The side walls stand against the next house of the row.
+                  partyEdges: [1, 3],
+                  ...(rowStyle ? { style: rowStyle.id } : {}),
+                },
+              };
+            }),
+          });
+          continue;
+        }
         const shape = choosePlan(
           style?.lotPlans ?? (commercial ? [{ shape: 'shopfront', weight: 1 }] : DEFAULT_PLANS),
           unit01(hash, 8) < 0.7 ? blockHash : hash,
@@ -500,6 +661,7 @@ export function inferBuildingFootprints(
   // Resolve junction/curve conflicts including a halo before tile ownership or density thinning.
   const occupied = new InfillBins<TerrainSemanticPolygon>(size),
     accepted: Lot[] = [];
+  let built = 0;
   for (const lot of [...lots.values()].sort((a, b) => a.rank - b.rank || (a.id < b.id ? -1 : 1))) {
     if (occupied.query(polygonBounds(lot.parcel)).some((p) => polygonsNear(p, lot.parcel, 0.15)))
       continue;
@@ -508,7 +670,9 @@ export function inferBuildingFootprints(
       lot.parcel.outer.every(([x, z]) => x >= 0.5 && z >= 0.5 && x <= size - 0.5 && z <= size - 0.5)
     )
       accepted.push(lot);
-    if (accepted.length === MAX_LOTS) break;
+    // A row lot is up to four buildings: count them, so a town of rows stays inside the cap.
+    built += lot.features.some((feature) => feature.infill.partyEdges) ? lot.features.length : 1;
+    if (built >= MAX_LOTS) break;
   }
   return accepted.filter((l) => unit01(l.rank, 0) < density).flatMap((l) => l.features);
 }

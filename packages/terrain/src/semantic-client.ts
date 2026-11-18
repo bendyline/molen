@@ -8,6 +8,8 @@ import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { agricultureFarColor, appendAgricultureAttributes } from './agriculture-surface';
 import {
   sampleTerrainBuildingCoverage,
+  TERRAIN_URBAN_GROUND_CLASSES,
+  TERRAIN_URBAN_GROUND_COVERAGE,
   type TerrainBuildingCoverage,
   terrainBuildingCoverage,
 } from './building-coverage';
@@ -584,19 +586,6 @@ export interface TerrainUrbanGround {
   coverage?: TerrainBuildingCoverage;
 }
 
-const URBAN_GROUND_CLASSES: readonly string[] = [
-  'open_ground',
-  'urban_area',
-  'residential',
-  'commercial',
-  'retail',
-  'industrial',
-  'civic',
-  'school',
-  'hospital',
-  'university',
-];
-
 export interface TerrainWaterFeatureStyle {
   /** Absolute rendered water elevation in the terrain frame. Used for polygon surfaces. */
   elevation?: number;
@@ -1011,15 +1000,15 @@ function landcoverPainter(
 ): (feature: TerrainLandcoverFeature) => LandcoverPaint {
   const urban = options.urbanGround;
   const coverage = urban ? (urban.coverage ?? terrainBuildingCoverage(tile)) : undefined;
-  const urbanClasses = new Set(urban?.classes ?? URBAN_GROUND_CLASSES);
+  const urbanClasses = new Set(urban?.classes ?? TERRAIN_URBAN_GROUND_CLASSES);
   const urbanColor = new THREE.Color(
     urban?.color ??
       options.landcoverColors?.urban_ground ??
       options.landcoverColors?.pavement ??
       DEFAULT_LANDCOVER_COLORS.pavement,
   );
-  const urbanFrom = urban?.from ?? 0.15;
-  const urbanFull = Math.max(urbanFrom + 0.01, urban?.full ?? 0.45);
+  const urbanFrom = urban?.from ?? TERRAIN_URBAN_GROUND_COVERAGE.from;
+  const urbanFull = Math.max(urbanFrom + 0.01, urban?.full ?? TERRAIN_URBAN_GROUND_COVERAGE.full);
   return (feature) => {
     const color = feature.cultivation
       ? new THREE.Color(feature.cultivation.color)

@@ -71,15 +71,15 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json');
+const frame = await read(`${source}/map-frame.json`);
 
 it('pins the exact signed barrier plan and single standard terrain datum', async () => {
-  const manifest = await read(source + '/source.json'),
-    asset = await read(installed + '/asset.json'),
-    spec = await read(source + '/spec.json'),
-    p = await read(source + '/placement-report.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(asset.sourceHash);
-  expect(hashBytes(await readFile(installed + '/' + asset.files.main))).toBe(asset.hash);
+  const manifest = await read(`${source}/source.json`),
+    asset = await read(`${installed}/asset.json`),
+    spec = await read(`${source}/spec.json`),
+    p = await read(`${source}/placement-report.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(asset.sourceHash);
+  expect(hashBytes(await readFile(`${installed}/${asset.files.main}`))).toBe(asset.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, asset.id));
   expect(frame.mappedIdentity.featureIds).toEqual(['way/174344884']);
   expect(p.entry.heading).toBe(-1.242090458781);
@@ -98,7 +98,7 @@ it('pins the exact signed barrier plan and single standard terrain datum', async
   expect(p.entry.buildingCutout).toBeUndefined();
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: p.entry,
@@ -108,11 +108,11 @@ it('pins the exact signed barrier plan and single standard terrain datum', async
 });
 
 it('preserves fifteen through-bays, the complete crest deck and paired outlet openings in all six GLBs', async () => {
-  const a = await read(installed + '/asset.json'),
+  const a = await read(`${installed}/asset.json`),
     files = [
-      ['source', source + '/models/source.glb'],
-      ['runtime', installed + '/' + a.files.main],
-      ...a.runtimeLods.levels.map((l) => [l.name, installed + '/' + l.file]),
+      ['source', `${source}/models/source.glb`],
+      ['runtime', `${installed}/${a.files.main}`],
+      ...a.runtimeLods.levels.map((l) => [l.name, `${installed}/${l.file}`]),
     ];
   for (const [name, path] of files) {
     const ts = await triangles(path);
@@ -120,10 +120,10 @@ it('preserves fifteen through-bays, the complete crest deck and paired outlet op
       step = (b - a) / controls.bays;
     for (let i = 0; i < controls.bays; i++) {
       const x = a + (i + 0.5) * step;
-      expect(nearest(ts, [x, 2, 120], [0, 0, -1]), name + ' open bay ' + i).toBe(Infinity);
+      expect(nearest(ts, [x, 2, 120], [0, 0, -1]), `${name} open bay ${i}`).toBe(Infinity);
       expect(
         nearest(ts, [a + i * step, 2, 120], [0, 0, -1]),
-        name + ' structural pier ' + i,
+        `${name} structural pier ${i}`,
       ).toBeLessThan(300);
     }
     for (let i = 1; i < controls.crest.length; i++) {
@@ -133,18 +133,18 @@ it('preserves fifteen through-bays, the complete crest deck and paired outlet op
         z = (p[1] + q[1]) / 2;
       const top = 25 - nearest(ts, [x, 25, z], [0, -1, 0]);
       const y = i === 1 ? (controls.deck + controls.westTieHeight) / 2 : controls.deck;
-      expect(Math.abs(top - y), name + ' crest segment ' + i).toBeLessThan(0.15);
+      expect(Math.abs(top - y), `${name} crest segment ${i}`).toBeLessThan(0.15);
     }
     for (const x of [92.5, 102.5])
-      expect(nearest(ts, [x, -50, 55], [0, 0, -1]), name + ' circular mouth ' + x).toBeGreaterThan(
+      expect(nearest(ts, [x, -50, 55], [0, 0, -1]), `${name} circular mouth ${x}`).toBeGreaterThan(
         28,
       );
   }
 }, 30000);
 
 it('replaces the crest bridge and fits its two approaches while retaining independent roads', async () => {
-  const { records } = await read(source + '/native-roads.json'),
-    placed = (await read(source + '/placement-report.json')).entry;
+  const { records } = await read(`${source}/native-roads.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry;
   const tile = createEmptyTerrainSemanticTile(),
     context = { origin: [-1500, -1500], tileSize: 3000, heightfield: { sampleHeight: () => 1261 } };
   const c = Math.cos(placed.heading),
@@ -196,8 +196,8 @@ it('replaces the crest bridge and fits its two approaches while retaining indepe
 });
 
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -206,7 +206,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -216,7 +216,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       for (const graph of ['concrete_plain', 'metal_standing_seam', 'metal_painted', 'window_grid'])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

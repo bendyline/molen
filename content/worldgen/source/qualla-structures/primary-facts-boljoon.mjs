@@ -6,7 +6,7 @@ const museumUrl =
   'https://www.nationalmuseum.gov.ph/2021/11/11/the-patrocinio-de-maria-church-in-boljoon-cebu/';
 const conservationUrl =
   'https://weblinks.nationalmuseum.gov.ph/wp-content/uploads/2025/10/24142103/Bidding-Documents-Boljoon.pdf';
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readPinned(dir, record, relativePath) {
   if (record?.path !== relativePath) throw Error('Evidence path mismatch');

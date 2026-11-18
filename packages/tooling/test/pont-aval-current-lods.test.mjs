@@ -70,7 +70,7 @@ function hit(o, d, p) {
 
 it('retains continuous curved road slabs, four separate boxes and outward-facing piers', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const u of [
       -156,
       (-156.25 - 88.78) / 2,
@@ -81,12 +81,12 @@ it('retains continuous curved road slabs, four separate boxes and outward-facing
     ]) {
       const [x, z] = pontAvalPlan(u, -6.5),
         y = 30 - nearest(ts, [x, 30, z], [0, -1, 0]);
-      expect(Math.abs(y - pontAvalRoadY(u, -6.5)), name + ' road ' + u).toBeLessThan(0.06);
+      expect(Math.abs(y - pontAvalRoadY(u, -6.5)), `${name} road ${u}`).toBeLessThan(0.06);
     }
     for (const zc of [-12.5, -4.5, 4.5, 12.5]) {
       const [x, z] = pontAvalPlan(43.96, zc),
         y = 4 + nearest(ts, [x, 4, z], [0, 1, 0]);
-      expect(y, name + ' separate box ' + zc).toBeCloseTo(
+      expect(y, `${name} separate box ${zc}`).toBeCloseTo(
         pontAvalRoadY(43.96, zc) - pontAvalDepth(43.96),
         3,
       );
@@ -94,16 +94,16 @@ it('retains continuous curved road slabs, four separate boxes and outward-facing
     for (const zc of [-8.5, 0, 8.5]) {
       const [x, z] = pontAvalPlan(43.96, zc),
         y = 4 + nearest(ts, [x, 4, z], [0, 1, 0]);
-      expect(y, name + ' open gap ' + zc).toBeGreaterThan(13.5);
+      expect(y, `${name} open gap ${zc}`).toBeGreaterThan(13.5);
     }
     const [x, z] = pontAvalPlan(-98.78, -12.5),
       d = nearest(ts, [x, 4, z], [1, 0, 0]);
-    expect(d, name + ' outward pier face').toBeGreaterThan(7);
+    expect(d, `${name} outward pier face`).toBeGreaterThan(7);
     expect(d).toBeLessThan(10);
   }
 });
 it('preserves the detailed master, signed mapped plan and archival vertical controls', async () => {
-  const s = await read(source + '/spec.json'),
+  const s = await read(`${source}/spec.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -116,12 +116,12 @@ it('preserves the detailed master, signed mapped plan and archival vertical cont
   expect(p.replaceRoads.outline).toHaveLength(130);
 });
 it('reproduces four independently authored budgeted levels with canonical shared surfaces', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -131,7 +131,7 @@ it('reproduces four independently authored budgeted levels with canonical shared
   }
   expect([...refs].sort()).toEqual(
     ['concrete_plain', 'stone_granite', 'metal_painted', 'metal_stainless']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

@@ -44,6 +44,8 @@ export interface WorldgenGenerateRequest {
   tierOffset?: number;
   /** Extra keep multiplier on the plant scatter (default 1). */
   keep?: number;
+  /** A viewer on the ground, in world X/Z: the buildings nearest it are detailed first. */
+  focus?: readonly [number, number];
   /**
    * How soon the view needs the tile, lower first, read when a worker frees (the terrain
    * layer context's `priority`). A pool starts the most urgent waiting tile next.
@@ -200,6 +202,7 @@ export function createWorldgenWorkerBridge(
         ...(request.features !== undefined ? { features: request.features } : {}),
         ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
         ...(request.keep !== undefined ? { keep: request.keep } : {}),
+        ...(request.focus !== undefined ? { focus: request.focus } : {}),
       };
       return new Promise((resolve, reject) => {
         const onAbort = (): void => {

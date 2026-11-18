@@ -4,8 +4,17 @@ import { unit01 } from '../kernel/seed';
 
 type Point = [number, number, number];
 interface Mesh {
+  readonly vertexCount: number;
   tube(points: Point[], radii: number[], sides: number, color: string): void;
-  crown(center: Point, size: Point, color: string, sides: number, phase: number): void;
+  crown(
+    center: Point,
+    size: Point,
+    color: string,
+    sides: number,
+    phase: number,
+    bend?: number,
+    tone?: number,
+  ): void;
   leaf(
     root: Point,
     angle: number,
@@ -15,6 +24,72 @@ interface Mesh {
     color: string,
     coarse: boolean,
   ): void;
+  triangle(a: Point, b: Point, c: Point, color: string, shade?: number): void;
+  volume(start: number, center: Point, size: Point, bend?: number): void;
+  /** Append what `build` draws as a foliage mass, shaded as clumps of leaves. */
+  mass(build: () => void): void;
+}
+
+/** A color part way from `from` to `to`, for a level too coarse to draw blossoms one by one. */
+function blend(from: string, to: string, share: number): string {
+  const channel = (hex: string, at: number): number => Number.parseInt(hex.slice(at, at + 2), 16);
+  let mixed = '#';
+  for (const at of [1, 3, 5]) {
+    const value = Math.round(channel(from, at) * (1 - share) + channel(to, at) * share);
+    mixed += value.toString(16).padStart(2, '0');
+  }
+  return mixed;
+}
+
+/**
+ * A faceted stone: a ring at the ground, a wider belly and a narrow shoulder under one apex, each
+ * with its own irregular outline. Open underneath, where it is buried.
+ */
+function stone(
+  mesh: Mesh,
+  center: Point,
+  size: Point,
+  color: string,
+  sides: number,
+  rnd: (i: number) => number,
+  stream: number,
+): void {
+  const start = mesh.vertexCount;
+  const rings = [
+    [0, 0.86],
+    [0.42, 1],
+    [0.84, 0.56],
+  ].map(([y = 0, radius = 0], ring) =>
+    Array.from({ length: sides }, (_, i): Point => {
+      const angle = (i * Math.PI * 2) / sides + rnd(stream) * 2;
+      const k = radius * (0.8 + rnd(stream + 1 + ring * sides + i) * 0.34);
+      return [
+        center[0] + Math.cos(angle) * size[0] * k,
+        center[1] + y * size[1],
+        center[2] + Math.sin(angle) * size[2] * k,
+      ];
+    }),
+  );
+  const top: Point = [center[0] + size[0] * 0.08, center[1] + size[1], center[2] - size[2] * 0.06];
+  for (let i = 0; i < sides; i++) {
+    const next = (i + 1) % sides;
+    for (let ring = 1; ring < rings.length; ring++) {
+      const a = rings[ring - 1] as Point[],
+        b = rings[ring] as Point[];
+      const shade = 0.74 + ring * 0.1;
+      mesh.triangle(a[i] as Point, b[i] as Point, a[next] as Point, color, shade);
+      mesh.triangle(a[next] as Point, b[i] as Point, b[next] as Point, color, shade);
+    }
+    const last = rings[rings.length - 1] as Point[];
+    mesh.triangle(last[i] as Point, top, last[next] as Point, color, 1);
+  }
+  // Mostly its own facets: a boulder is not a soft mass of leaves.
+  mesh.volume(
+    start,
+    [center[0], center[1] + size[1] * 0.4, center[2]],
+    [size[0], size[1], size[2]],
+    0.2,
+  );
 }
 
 export function addBrushGeometry(
@@ -27,6 +102,7 @@ export function addBrushGeometry(
   const h = p.height,
     r = p.width / 2;
   const rnd = (i: number) => unit01(p.shapeSeed || 701, i);
+  const bloom = p.bloom;
   if (p.family === 'crop') {
     const grain = p.cropKind === 'cereal' || p.cropKind === 'rice';
     const maize = p.cropKind === 'maize' || p.cropKind === 'cane';
@@ -93,7 +169,16 @@ export function addBrushGeometry(
   if (p.family === 'shrub' || p.family === 'thicket') {
     const thorn = p.form === 'branching';
     if (far) {
-      mesh.crown([0, h * 0.48, 0], [r, h * 0.96, r * 0.85], p.foliage, 5, rnd(2));
+      // One solid from far off, shaded as the clumps of leaves it stands for.
+      mesh.mass(() => {
+        mesh.crown(
+          [0, h * 0.48, 0],
+          [r, h * 0.96, r * 0.85],
+          bloom ? blend(p.foliage, bloom, 0.22) : p.foliage,
+          5,
+          rnd(2),
+        );
+      });
       mesh.tube(
         [
           [0, 0, 0],
@@ -130,13 +215,39 @@ export function addBrushGeometry(
           from[1] + (to[1] - from[1]) * f,
           from[2] + (to[2] - from[2]) * f,
         ];
+        const lobe: Point = [
+          r * (thorn ? 0.2 : 0.36),
+          h * (thorn ? 0.3 : 0.66),
+          r * (thorn ? 0.16 : 0.28),
+        ];
+        // At medium range a flowering shrub's outer lobes carry the blossom color between them.
         mesh.crown(
           center,
-          [r * (thorn ? 0.2 : 0.36), h * (thorn ? 0.3 : 0.66), r * (thorn ? 0.16 : 0.28)],
-          p.foliage,
+          lobe,
+          bloom && medium && j > 0 ? blend(p.foliage, bloom, 0.4) : p.foliage,
           medium ? 4 : 5,
           i + j,
         );
+        if (bloom && !medium)
+          // Trusses of blossom stud the lobe from its shoulder to its crown: small enough to
+          // read as flowers among leaves, not as a cap on each lobe.
+          for (let k = 0; k < (thorn ? 1 : p.family === 'thicket' ? 2 : 3); k++) {
+            const angle = (i * 3 + j * 5 + k * 2) * 1.19 + rnd(i * 7 + j + 40) * 2;
+            // Higher on the lobe is nearer its axis.
+            const lift = 0.02 + k * 0.15 + rnd(i * 5 + j * 3 + k + 60) * 0.06;
+            const out = 0.92 - lift * 1.1;
+            mesh.crown(
+              [
+                center[0] + Math.cos(angle) * lobe[0] * out,
+                center[1] + lobe[1] * lift,
+                center[2] + Math.sin(angle) * lobe[2] * out,
+              ],
+              [lobe[0] * 0.3, lobe[1] * 0.15, lobe[2] * 0.34],
+              bloom,
+              3,
+              k + j,
+            );
+          }
         if (!medium && thorn) {
           const twig = at(i + j + 12, r * 0.22, h * 0.16);
           mesh.tube(
@@ -182,29 +293,45 @@ export function addBrushGeometry(
       if (!fern) {
         const top: Point = [root[0] + r * 0.08, h * (0.7 + rnd(clump + 70) * 0.3), root[2]];
         mesh.tube([root, top], [0.012, 0.007], 3, p.bark);
-        mesh.crown(top, [r * 0.025, h * 0.15, r * 0.025], p.bark, 3, clump);
+        // A plumed grass carries a feathery head several times a seed head's size.
+        if (bloom) mesh.crown(top, [r * 0.07, h * 0.3, r * 0.07], bloom, 4, clump);
+        else mesh.crown(top, [r * 0.025, h * 0.15, r * 0.025], p.bark, 3, clump);
       }
     }
     return true;
   }
   if (p.family === 'forb') {
-    for (let i = 0; i < 5; i++) {
-      const root = at(i, r * 0.48, 0);
+    // A patch is a bed: more stems, spread to the edge, rather than one loose clump.
+    const stems = p.patch ? 7 : 5;
+    for (let i = 0; i < stems; i++) {
+      const root = at(i, r * (p.patch ? 0.2 + (i / stems) * 0.62 : 0.48), 0);
       const top: Point = [root[0] + r * 0.05, h * (0.65 + rnd(i + 5) * 0.35), root[2]];
       mesh.tube([root, top], [p.stemRadius, 0.007], 3, p.bark);
-      for (let j = 0; j < 4; j++) {
+      for (let j = 0; j < (p.patch ? 3 : 4); j++) {
         const y = top[1] * (0.2 + j * 0.17);
         mesh.leaf(
           [root[0], y, root[2]],
           i * 2.4 + j * 2,
-          r * 0.4,
+          r * (p.patch ? 0.26 : 0.4),
           h * 0.15,
-          r * 0.14,
+          r * (p.patch ? 0.1 : 0.14),
           p.foliage,
           true,
         );
       }
-      mesh.crown(top, [r * 0.065, h * 0.09, r * 0.06], p.bark, 4, i);
+      if (!bloom) mesh.crown(top, [r * 0.065, h * 0.09, r * 0.06], p.bark, 4, i);
+      else if (p.form === 'columnar')
+        // A flower spike down the top third of the stem.
+        mesh.crown(
+          [top[0], top[1] - h * 0.13, top[2]],
+          [r * 0.075, h * 0.34, r * 0.075],
+          bloom,
+          4,
+          i,
+        );
+      // An open flower head, flat for daisies and domed for clustered blooms.
+      else
+        mesh.crown(top, [r * 0.13, h * (p.form === 'round' ? 0.06 : 0.13), r * 0.13], bloom, 5, i);
     }
     return true;
   }
@@ -229,7 +356,8 @@ export function addBrushGeometry(
               r * 0.22,
               h * (0.15 + rnd(j + i * 10) * 0.25),
               r * 0.09,
-              p.foliage,
+              // A flowering runner opens a bloom at every other node, on one side.
+              bloom && side === 1 && j % 2 === 0 ? bloom : p.foliage,
               true,
             );
       }
@@ -242,13 +370,226 @@ export function addBrushGeometry(
     }
     return true;
   }
+  if (p.family === 'mat' && p.form === 'fan') {
+    // A dressed bed: one low, slightly domed patch of ground, with a few clods on it. A scatter of
+    // loose leaves reads as litter; mulch and gravel are a surface.
+    const sides = 9;
+    const rim = Array.from({ length: sides }, (_, i): Point => {
+      const angle = (i * Math.PI * 2) / sides;
+      const reach = r * (0.72 + rnd(i + 4) * 0.28);
+      return [Math.cos(angle) * reach, 0, Math.sin(angle) * reach];
+    });
+    const start = mesh.vertexCount;
+    for (let i = 0; i < sides; i++)
+      mesh.triangle(
+        rim[i] as Point,
+        [0, h * 0.5, 0],
+        rim[(i + 1) % sides] as Point,
+        p.foliage,
+        0.86 + rnd(i + 20) * 0.14,
+      );
+    mesh.volume(start, [0, 0, 0], [r, h * 6, r], 0.5);
+    for (let i = 0; i < 4; i++)
+      mesh.crown(
+        at(i, r * (0.25 + rnd(i + 30) * 0.4), h * 0.5),
+        [r * 0.1, h, r * 0.09],
+        p.bark,
+        3,
+        i,
+      );
+    return true;
+  }
   if (p.family === 'mat') {
     for (let i = 0; i < 15; i++) {
       const center = at(i, r * (0.15 + rnd(i + 18) * 0.7), h * (0.25 + rnd(i + 28) * 0.5));
+      // A flowering carpet shows its color in a third of its leaves or cushions.
+      const flower = bloom !== undefined && i % 3 === 1 ? bloom : undefined;
       if (p.form === 'paddle')
-        mesh.leaf(center, i * 2.4, r * 0.35, h * 0.15, r * 0.16, i % 3 ? p.foliage : p.bark, true);
-      else mesh.crown(center, [r * 0.3, h * 0.65, r * 0.25], i % 4 ? p.foliage : p.bark, 3, i);
+        mesh.leaf(
+          center,
+          i * 2.4,
+          r * 0.35,
+          h * 0.15,
+          r * 0.16,
+          flower ?? (i % 3 ? p.foliage : p.bark),
+          true,
+        );
+      else
+        mesh.crown(
+          center,
+          [r * 0.3, h * 0.65, r * 0.25],
+          flower ?? (i % 4 ? p.foliage : p.bark),
+          3,
+          i,
+        );
     }
+    return true;
+  }
+  if (p.family === 'hedge') {
+    const sprig = bloom ?? p.foliage;
+    if (p.form === 'columnar') {
+      // A clipped run: flat faces, a beveled shoulder and a top that is not quite level. Its
+      // length lies along x; scatter turns it.
+      const depth = r * 0.34;
+      const stations = far ? 2 : medium ? 3 : 5;
+      const start = mesh.vertexCount;
+      const section = (i: number): Point[] => {
+        const x = -r + (2 * r * i) / (stations - 1);
+        const top = h * (0.94 + rnd(i + 3) * 0.06);
+        const d = depth * (0.92 + rnd(i + 13) * 0.12);
+        return medium || far
+          ? [
+              [x, 0, -d],
+              [x, top, -d * 0.82],
+              [x, top, d * 0.82],
+              [x, 0, d],
+            ]
+          : [
+              [x, 0, -d],
+              [x, top * 0.82, -d * 0.96],
+              [x, top, -d * 0.62],
+              [x, top, d * 0.62],
+              [x, top * 0.82, d * 0.96],
+              [x, 0, d],
+            ];
+      };
+      for (let i = 1; i < stations; i++) {
+        const a = section(i - 1),
+          b = section(i);
+        // Lit from above: the top bright, the shoulders between it and the shaded faces.
+        const shades = a.length === 6 ? [0.78, 0.9, 1, 0.9, 0.78] : [0.78, 1, 0.78];
+        for (let k = 1; k < a.length; k++) {
+          const shade = shades[k - 1] as number;
+          mesh.triangle(a[k - 1] as Point, a[k] as Point, b[k - 1] as Point, p.foliage, shade);
+          mesh.triangle(b[k - 1] as Point, a[k] as Point, b[k] as Point, p.foliage, shade);
+        }
+      }
+      for (const [end, flip] of [
+        [section(0), false],
+        [section(stations - 1), true],
+      ] as Array<[Point[], boolean]>)
+        for (let k = 1; k < end.length - 1; k++) {
+          const a = end[0] as Point,
+            b = end[k] as Point,
+            c = end[k + 1] as Point;
+          if (flip) mesh.triangle(a, b, c, p.foliage, 0.8);
+          else mesh.triangle(a, c, b, p.foliage, 0.8);
+        }
+      mesh.volume(start, [0, h * 0.5, 0], [r, h * 0.5, depth], 0.25);
+      // New growth breaks the clipped line up close, in the blossom color where it flowers.
+      if (!medium && !far)
+        for (let i = 0; i < 6; i++)
+          mesh.crown(
+            [
+              -r * 0.82 + ((i + rnd(i + 30) * 0.6) / 6) * r * 1.7,
+              h * (0.9 + rnd(i + 40) * 0.06),
+              (rnd(i + 50) - 0.5) * depth * 1.1,
+            ],
+            [r * 0.11, h * 0.16, depth * 0.42],
+            sprig,
+            3,
+            i,
+          );
+      return true;
+    }
+    if (p.form === 'umbrella') {
+      // A cloud-pruned specimen: a bent trunk carrying a few flattened pads.
+      const pads = far ? 1 : medium ? 3 : 5;
+      const top: Point = [r * 0.18, h * 0.78, 0];
+      mesh.tube(
+        far ? [[0, 0, 0], top] : [[0, 0, 0], [-r * 0.16, h * 0.42, r * 0.06], top],
+        far
+          ? [p.stemRadius, p.stemRadius * 0.5]
+          : [p.stemRadius, p.stemRadius * 0.8, p.stemRadius * 0.45],
+        far || medium ? 3 : 5,
+        p.bark,
+      );
+      for (let i = 0; i < pads; i++) {
+        const tier = pads === 1 ? 1 : i / (pads - 1);
+        const reach = i === pads - 1 ? 0 : r * (0.62 - tier * 0.2);
+        const pad = at(i, reach, h * (0.42 + tier * 0.44));
+        if (!far && !medium && reach > 0)
+          mesh.tube(
+            [[top[0] * tier, pad[1] - h * 0.12, 0], pad],
+            [p.stemRadius * 0.4, p.stemRadius * 0.22],
+            3,
+            p.bark,
+          );
+        mesh.crown(
+          pad,
+          [r * (0.46 - tier * 0.1), h * 0.2, r * (0.4 - tier * 0.08)],
+          i % 2 === 1 ? sprig : p.foliage,
+          far ? 5 : medium ? 5 : 8,
+          i,
+        );
+      }
+      return true;
+    }
+    // Clipped globes of three sizes, as a planted group.
+    const globes = far ? 1 : medium ? 2 : 3;
+    for (let i = 0; i < globes; i++) {
+      const radius = r * ([0.52, 0.38, 0.3][i] as number);
+      const center = i === 0 ? ([-r * 0.34, 0, r * 0.06] as Point) : at(i + 1, r * 0.56, 0);
+      const tall = h * ([1, 0.72, 0.56][i] as number);
+      mesh.crown(
+        [center[0], tall * 0.5, center[2]],
+        [radius, tall, radius],
+        i === 2 ? sprig : p.foliage,
+        far || medium ? 5 : 8,
+        i,
+      );
+    }
+    return true;
+  }
+  if (p.family === 'rock') {
+    // Boulders, or flat slabs where the form is a paddle. `bark` is the weathered or mossy tone.
+    const slab = p.form === 'paddle';
+    const count = far ? 1 : medium ? 2 : slab ? 5 : 4;
+    for (let i = 0; i < count; i++) {
+      const scale = i === 0 ? 1 : 0.34 + rnd(i + 8) * 0.34;
+      const center = i === 0 ? ([0, 0, 0] as Point) : at(i, r * (0.5 + rnd(i + 3) * 0.3), 0);
+      stone(
+        mesh,
+        center,
+        [r * 0.56 * scale, h * (slab ? 0.6 : 1) * (i === 0 ? 1 : scale + 0.12), r * 0.5 * scale],
+        i % 3 === 2 ? p.bark : p.foliage,
+        far ? 4 : medium ? 5 : 6,
+        rnd,
+        60 + i * 31,
+      );
+    }
+    return true;
+  }
+  if (p.family === 'fallenwood' && p.form === 'columnar') {
+    // A cut stump on its root flare, mossed over on top where foliage differs from bark.
+    const trunk = r * 0.46;
+    const coarse = medium || far;
+    mesh.tube(
+      coarse
+        ? [
+            [0, 0, 0],
+            [r * 0.03, h, 0],
+          ]
+        : [
+            [0, 0, 0],
+            [0, h * 0.5, 0],
+            [r * 0.03, h, 0],
+          ],
+      coarse ? [trunk * 1.2, trunk * 0.9] : [trunk * 1.25, trunk, trunk * 0.92],
+      far ? 3 : medium ? 4 : 7,
+      p.bark,
+    );
+    for (let i = 0; i < (far ? 0 : medium ? 2 : 4); i++) {
+      const tip = at(i, r * (0.8 + rnd(i + 4) * 0.2), 0);
+      mesh.tube(
+        [[tip[0] * 0.3, h * 0.42, tip[2] * 0.3], tip],
+        [trunk * 0.42, trunk * 0.14],
+        3,
+        p.bark,
+      );
+    }
+    if (!coarse && p.foliage !== p.bark)
+      mesh.crown([r * 0.03, h * 0.97, 0], [trunk * 0.8, h * 0.14, trunk * 0.8], p.foliage, 5, 2);
     return true;
   }
   if (p.family === 'fallenwood') {

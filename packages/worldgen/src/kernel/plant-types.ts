@@ -25,6 +25,8 @@ export interface PlantPreset {
     | 'vine'
     | 'mat'
     | 'fallenwood'
+    | 'hedge'
+    | 'rock'
     | 'crop';
   form: 'round' | 'columnar' | 'umbrella' | 'feather' | 'fan' | 'branching' | 'paddle';
   /** Mature silhouette bounds in meters; scatter supplies modest individual variation. */
@@ -43,6 +45,11 @@ export interface PlantPreset {
   patch?: boolean;
   /** Foliage on bounded vines supported by this broadleaf tree's own trunk and branches. */
   climber?: string;
+  /**
+   * Blossom color of a flowering shrub, thicket, forb, vine, mat or hedge, and the plume of a
+   * grass patch. Drawn as part of the plant's own mesh; omitted means no visible flowers.
+   */
+  bloom?: string;
   cropKind?: 'maize' | 'cereal' | 'rice' | 'broadleaf' | 'cotton' | 'cane' | 'sunflower' | 'roots';
   cropStage?: 'sown' | 'growing' | 'mature' | 'ripe' | 'stubble';
   /** Source species/genus names represented by this silhouette; exact case-insensitive matches. */
@@ -78,6 +85,8 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
     'vine',
     'mat',
     'fallenwood',
+    'hedge',
+    'rock',
     'crop',
   ]),
   form: z.enum(['round', 'columnar', 'umbrella', 'feather', 'fan', 'branching', 'paddle']),
@@ -91,6 +100,7 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
   shapeSeed: z.int().min(0).max(65535).optional(),
   patch: z.boolean().optional(),
   climber: z.string().regex(COLOR_RE).optional(),
+  bloom: z.string().regex(COLOR_RE).optional(),
   cropKind: z
     .enum(['maize', 'cereal', 'rice', 'broadleaf', 'cotton', 'cane', 'sunflower', 'roots'])
     .optional(),

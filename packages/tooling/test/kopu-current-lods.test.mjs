@@ -16,7 +16,7 @@ const source = resolve('../../content/worldgen/source/places/u6/u6r/kopu_lightho
   );
 const read = async (p) => JSON.parse(await readFile(p));
 it('matches every mapped ground vertex, maintains four buttresses and the37.7m upper tower', async () => {
-  const f = await read(source + '/map-frame.json');
+  const f = await read(`${source}/map-frame.json`);
   for (const [build, cap] of [
     [buildKopuCurrent, 64000],
     [buildKopuDistrict, 4000],
@@ -55,8 +55,8 @@ it('matches every mapped ground vertex, maintains four buttresses and the37.7m u
   }
 });
 it('retains the signed mapped main entrance and current source-to-runtime hashes', async () => {
-  const f = await read(source + '/map-frame.json'),
-    s = await read(source + '/spec.json');
+  const f = await read(`${source}/map-frame.json`),
+    s = await read(`${source}/spec.json`);
   expect(f.elements[0].tags.wikidata).toBe('Q1795607');
   expect(f.elements[1].tags.entrance).toBe('main');
   expect(s.geographicProposal.heading).toBe(-0.087025590763);
@@ -72,12 +72,12 @@ it('retains the signed mapped main entrance and current source-to-runtime hashes
   for (const p of ps) expect(p[2]).toBeCloseTo(f.geometry.outline[10][1], 5);
 });
 it('reproduces four independently downloadable image-free levels with bounded draw and initial costs', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3_000_000);
   const graphs = new Set();
   for (const l of a.runtimeLods.levels) {
-    const b = await readFile(runtime + '/' + l.file);
+    const b = await readFile(`${runtime}/${l.file}`);
     expect(l.drawCalls).toBeLessThanOrEqual(5);
     const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);

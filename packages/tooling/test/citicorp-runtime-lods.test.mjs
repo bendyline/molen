@@ -92,14 +92,14 @@ const surfaces = {
   foliage: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.94, metallic: 0 },
 };
 it('reproduces the unchanged detailed master and verifies independent church, tower, supports and signed street frame', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildCiticorp(a.wrap(b), prior);
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(369848);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout.outline).toEqual([
@@ -122,12 +122,12 @@ it('reproduces the unchanged detailed master and verifies independent church, to
   expect(spec.sourceFacts.heightFeet).toBe(915);
   expect(spec.sourceFacts.plazaLevelsFeet.lower).toBe(-12.5);
   expect(spec.sourceFacts.lpcCompleted).toBe(1978);
-  expect(decode(await readFile(source + '/models/source.glb')).g.materials).toHaveLength(4);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.materials).toHaveLength(4);
 }, 60000);
 it('keeps continuous ribbon walls, four independent support faces, open underside, sloped closed roof and complete market/church/plaza', async () => {
-  const master = decode(await readFile(source + '/models/source.glb')).triangles,
-    asset = await read(runtime + '/asset.json');
-  const frame = await read(source + '/map-frame.json'),
+  const master = decode(await readFile(`${source}/models/source.glb`)).triangles,
+    asset = await read(`${runtime}/asset.json`);
+  const frame = await read(`${source}/map-frame.json`),
     project = (p) => {
       const E =
           (p.lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -147,7 +147,7 @@ it('keeps continuous ribbon walls, four independent support faces, open undersid
     );
   });
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file)),
+    const d = decode(await readFile(`${runtime}/${l.file}`)),
       ts = d.triangles,
       allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[l.name];
     for (const y of [40.1, 60.3, 127.7, 211.3, 241.2, 253.7])
@@ -156,8 +156,8 @@ it('keeps continuous ribbon walls, four independent support faces, open undersid
           o = [-30 + 100 * Math.cos(t), y, 6 + 100 * Math.sin(t)],
           v = [-Math.cos(t), 0, -Math.sin(t)],
           target = nearest(master, o, v);
-        expect(Number.isFinite(target), l.name + ' source ' + y + '/' + k).toBe(true);
-        expect(Math.abs(nearest(ts, o, v) - target), l.name + ' tower ' + y + '/' + k).toBeLessThan(
+        expect(Number.isFinite(target), `${l.name} source ${y}/${k}`).toBe(true);
+        expect(Math.abs(nearest(ts, o, v) - target), `${l.name} tower ${y}/${k}`).toBeLessThan(
           allowance,
         );
       }
@@ -175,7 +175,7 @@ it('keeps continuous ribbon walls, four independent support faces, open undersid
       ]) {
         expect(
           Math.abs(nearest(ts, o, v) - (10 - 7.3152 / 2)),
-          l.name + ' 24ft support including18mm flat seam',
+          `${l.name} 24ft support including18mm flat seam`,
         ).toBeLessThan(0.025);
       }
     for (const p of [
@@ -184,13 +184,13 @@ it('keeps continuous ribbon walls, four independent support faces, open undersid
       [-8, 32, 27],
       [-8, 32, -15],
     ])
-      expect(nearest(ts, p, [0, 1, 0]), l.name + ' open underside').toBeCloseTo(35 - p[1], 2);
+      expect(nearest(ts, p, [0, 1, 0]), `${l.name} open underside`).toBeCloseTo(35 - p[1], 2);
     for (const [z, y] of [
       [-17, 278.892],
       [0, 263.542],
       [26, 242],
     ])
-      expect(nearest(ts, [-30, 310, z], [0, -1, 0]), l.name + ' roof ' + z).toBeCloseTo(310 - y, 2);
+      expect(nearest(ts, [-30, 310, z], [0, -1, 0]), `${l.name} roof ${z}`).toBeCloseTo(310 - y, 2);
     expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeCloseTo(280.592, 3);
     for (const p of [
       [40, 18, -12],
@@ -202,14 +202,14 @@ it('keeps continuous ribbon walls, four independent support faces, open undersid
       const o = [p[0], 350, p[2]],
         v = [0, -1, 0],
         target = nearest(master, o, v);
-      expect(Number.isFinite(target), l.name + ' source site ' + p).toBe(true);
-      expect(Math.abs(nearest(ts, o, v) - target), l.name + ' site ' + p).toBeLessThan(allowance);
+      expect(Number.isFinite(target), `${l.name} source site ${p}`).toBe(true);
+      expect(Math.abs(nearest(ts, o, v) - target), `${l.name} site ${p}`).toBeLessThan(allowance);
     }
     if (l.name !== 'skyline') expect(d.g.materials.some((m) => m.alphaMode === 'BLEND')).toBe(true);
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -218,7 +218,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);

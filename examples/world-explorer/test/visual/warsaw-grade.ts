@@ -289,13 +289,13 @@ async function passageProbes() {
   return [-0.35, 0, 0.35].flatMap((lateral) =>
     [
       {
-        name: 'clock-' + lateral,
+        name: `clock-${lateral}`,
         p: new THREE.Vector3(lateral, grade.workingCourtFloor + 1.8, 73),
         d: new THREE.Vector3(0, 0, -1),
         required: 80,
       },
       {
-        name: 'grodzka-' + lateral,
+        name: `grodzka-${lateral}`,
         p: new THREE.Vector3(60, grade.workingCourtFloor + 1.8, 8.68490825789657 + lateral),
         d: new THREE.Vector3(-1, 0, 0),
         required: 35,
@@ -308,7 +308,7 @@ async function passageProbes() {
   );
 }
 async function foundationProbes() {
-  const data = await json<{ geometry: { outline: number[][] } }>(folder + '/reviewed-plan.json'),
+  const data = await json<{ geometry: { outline: number[][] } }>(`${folder}/reviewed-plan.json`),
     q = data.geometry.outline.slice(0, -1),
     sign =
       q.reduce((n, a, i) => {
@@ -327,7 +327,7 @@ async function foundationProbes() {
       p = new THREE.Vector3(x + 3 * n.x, heightAt(x, z) + 0.12, z + 3 * n.z);
     ray.set(p.clone().applyMatrix4(matrix), n.negate().transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
-    return { id: 'court-plinth-' + i, native: p.toArray(), distance: hit?.distance ?? null };
+    return { id: `court-plinth-${i}`, native: p.toArray(), distance: hit?.distance ?? null };
   });
 }
 declare global {

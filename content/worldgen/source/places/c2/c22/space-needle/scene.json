@@ -1,29 +1,63 @@
 {
   "format": "molen/scene@3",
-  "name": "Space Needle asset preview",
-  "seed": "space-needle",
+  "name": "Space Needle model review",
+  "seed": "molen.worldgen.structure.space_needle",
   "tickRate": 30,
   "entities": [
     {
       "id": "structure",
       "components": {
-        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
         "renderable": {
           "kind": "gltf",
           "ref": "molen.worldgen.structure.space_needle",
-          "shadows": { "cast": true, "receive": true }
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
         }
       }
     },
     {
       "id": "ground",
       "components": {
-        "transform": { "pos": [0, -0.12, 0], "rot": [0, 0, 0, 1], "scale": [550, 0.2, 320] },
+        "transform": {
+          "pos": [
+            0,
+            -0.16,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            67.3,
+            0.3,
+            67.3
+          ]
+        },
         "renderable": {
           "kind": "primitive",
           "ref": "box",
-          "materialRef": "palette:#798369",
-          "shadows": { "receive": true }
+          "materialRef": "palette:#b4b4a6",
+          "shadows": {
+            "receive": true
+          }
         }
       }
     },
@@ -31,21 +65,44 @@
       "id": "environment",
       "components": {
         "environment": {
-          "ambient": { "sky": "#dce5ed", "ground": "#6c7473", "intensity": 1.15 },
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
           "sun": {
-            "direction": [-8, 14, 9],
-            "color": "#fff1d3",
-            "intensity": 2.2,
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
             "castShadow": true
           },
-          "background": "#b5d2df",
-          "toneMapping": "agx",
-          "exposure": 1.08,
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
           "shadows": "high"
         }
       }
     }
   ],
-  "camera": { "mode": "fixed", "position": [125, 100, 175], "lookAt": [0, 92, 0], "fov": 36 },
-  "physics": { "engine": "none" }
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      162.14,
+      138.98,
+      208.46
+    ],
+    "lookAt": [
+      0,
+      74.12,
+      0
+    ],
+    "fov": 42
+  },
+  "physics": {
+    "engine": "none"
+  }
 }

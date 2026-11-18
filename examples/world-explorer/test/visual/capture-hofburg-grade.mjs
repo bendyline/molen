@@ -79,7 +79,7 @@ try {
     );
     assert(
       Math.abs(state.modelOriginElevation) < 0.0001,
-      'Retained terrain/model reference mismatch: ' + JSON.stringify(state),
+      `Retained terrain/model reference mismatch: ${JSON.stringify(state)}`,
     );
     const probes = await page.evaluate(
       (points) => points.map((p) => window.hofburgGradeQA.probe(p)),
@@ -104,7 +104,7 @@ try {
       passages = await page.evaluate(() => window.hofburgGradeQA.passageProbes());
     assert(
       passages.every((p) => p.distance === null || p.distance > 70),
-      'Michaeler passage must stay open:' + JSON.stringify({ level, passages }),
+      `Michaeler passage must stay open:${JSON.stringify({ level, passages })}`,
     );
     states.push({ ...state, probes, foundations, paving, passages });
     for (const camera of [

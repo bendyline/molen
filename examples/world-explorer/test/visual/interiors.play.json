@@ -30,6 +30,39 @@
       "name": "01-entrance"
     },
     {
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Open the door",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Close the door",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "wait",
+      "durationMs": 1200
+    },
+    {
+      "type": "screenshot",
+      "name": "01b-restaurant-door-open"
+    },
+    {
       "type": "keys",
       "keys": ["w"],
       "durationMs": 7000
@@ -65,6 +98,39 @@
     {
       "type": "screenshot",
       "name": "04-grocery-entrance"
+    },
+    {
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Open the door",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Close the door",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "wait",
+      "durationMs": 1200
+    },
+    {
+      "type": "screenshot",
+      "name": "04b-grocery-door-open"
     },
     {
       "type": "keys",

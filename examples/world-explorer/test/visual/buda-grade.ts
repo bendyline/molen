@@ -292,7 +292,7 @@ async function passageProbes() {
     ray.set(p.clone().applyMatrix4(matrix), new THREE.Vector3(-1, 0, 0).transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
     return {
-      name: 'South-Range-' + z,
+      name: `South-Range-${z}`,
       native: p.toArray(),
       required: 19,
       distance: hit?.distance ?? null,
@@ -318,7 +318,7 @@ async function foundationProbes() {
       ray.set(point.clone().applyMatrix4(matrix), n.negate().transformDirection(matrix));
       const hit = object ? ray.intersectObject(object, true)[0] : undefined;
       result.push({
-        id: 'owned-terrace-' + i + '-' + j,
+        id: `owned-terrace-${i}-${j}`,
         native: point.toArray(),
         distance: hit?.distance ?? null,
       });

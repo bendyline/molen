@@ -31,3 +31,65 @@ it('keeps a dense neighborhood textured and enterable within the High tile budge
   expect(result.buildings?.groups.length).toBeLessThanOrEqual(budgets.maxMaterialGroups);
   expect(generateWorldgenBatch(input).hash).toBe(result.hash);
 }, 30_000); // Loads the whole default pack and generates 240 houses twice under full-suite load.
+
+it('spends a crowded tile budget on the houses round a viewer on the ground', async () => {
+  const pack = await loadDefaultPack();
+  const centre = (i: number): Vec2 => [(i % 30) * 20 + 6, Math.floor(i / 30) * 20 + 5];
+  const buildings = Array.from({ length: 900 }, (_, i) => {
+    const [x, z] = centre(i);
+    return {
+      identity: `focus-budget:${i}`,
+      labels: ['house'],
+      levels: 2,
+      style: 'molen.worldgen.pnw.house',
+      outline: [
+        [x - 6, z - 5],
+        [x + 6, z - 5],
+        [x + 6, z + 5],
+        [x - 6, z + 5],
+      ] as Vec2[],
+    };
+  });
+  // What a WebGL host gives a finest tile: far fewer vertices than 900 detailed houses need.
+  const budgets = worldgenTileBudgetForQuality('high', 0, { compactBuildings: true });
+  const enterable = (focus?: { x: number; z: number; radius: number }): Set<number> => {
+    const result = generateWorldgenBatch({
+      buildings,
+      pack,
+      interiors: true,
+      budgets,
+      ...(focus ? { focus } : {}),
+    });
+    expect(result.stats.vertices).toBeLessThanOrEqual(budgets.maxBuildingVertices);
+    expect(result.records).toHaveLength(buildings.length);
+    return new Set(
+      result.records.flatMap((record) =>
+        record.interior ? [Number(record.identity.split(':')[1])] : [],
+      ),
+    );
+  };
+  const unfocused = enterable();
+  expect(unfocused.size).toBeGreaterThan(40);
+  expect(unfocused.size).toBeLessThan(buildings.length / 2);
+  // Equal footprints queue by identity hash: the doors are scattered over the whole tile.
+  const viewer = { x: 306, z: 305, radius: 140 };
+  const distance = (i: number): number =>
+    Math.hypot(centre(i)[0] - viewer.x, centre(i)[1] - viewer.z);
+  expect([...unfocused].filter((i) => distance(i) > 140).length).toBeGreaterThan(
+    unfocused.size / 2,
+  );
+  const focused = enterable(viewer);
+  // The same budget opens about as many doors, and they are the nearest ones: everything a
+  // walker can reach in half a minute, and nothing across the tile.
+  expect(focused.size).toBeGreaterThan(unfocused.size * 0.8);
+  // Whatever the budget has left after the viewer's surroundings still goes to the rest.
+  const nearest = buildings
+    .map((_, i) => i)
+    .filter((i) => distance(i) <= 130)
+    .sort((a, b) => distance(a) - distance(b))
+    .slice(0, focused.size - 8);
+  expect(nearest.length).toBeGreaterThan(40);
+  for (const i of nearest) expect(focused.has(i), `house ${i}`).toBe(true);
+  expect(nearest.filter((i) => unfocused.has(i)).length).toBeLessThan(nearest.length / 2);
+  expect(enterable(viewer)).toEqual(focused);
+}, 60_000); // Generates 900 houses three times under full-suite load.

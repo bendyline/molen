@@ -212,6 +212,34 @@ for (const [id, title, bbox, countries, priority] of regions) {
 }
 for (const [id, title] of additionalArchitectureRegions)
   atlas.regions.push({ id: `library.${id}`, title, priority: 2, bindings: { buildings: [] } });
+// Building traditions that change inside one country: a rectangle masked by that country's land,
+// above its envelope. The regional catalog binds each to its own construction family.
+const subnational = [
+  // Brick rows and clapboard from the Chesapeake to the Maritimes and the lower Great Lakes.
+  ['us.northeast', 'Northeastern North America', [-80.6, 38.8, -66.9, 47.5], 'north_america', 9],
+  // The Cyclades: whitewashed flat-roofed houses, unlike the tiled mainland.
+  ['gr.aegean', 'Aegean islands', [24.2, 36.2, 26.4, 37.98], 'greece', 12],
+  // Provence, Languedoc, Roussillon and Corsica: render and Roman tile, not slate.
+  ['fr.midi', 'Mediterranean France', [1.6, 41.3, 9.7, 44.4], 'france', 10],
+  // Bath and the Cotswolds: oolitic limestone in every wall, not brick.
+  ['gb.limestone', 'English limestone belt', [-2.75, 51.2, -1.45, 52.15], 'britain', 9],
+  // Tuscany, Umbria and the Marche: hill towns of bare stone and brick.
+  ['it.central', 'Central Italy', [10.0, 42.3, 13.4, 44.1], 'italy', 9],
+  // The Rif: limewashed and blue-washed towns, half of them tiled.
+  ['ma.rif', 'Rif', [-6.0, 34.75, -3.7, 35.95], 'maghreb', 8],
+  // The Sahel: flat-roofed towns of earth, from Senegal to Chad.
+  ['sahel.west', 'Western Sahel', [-17.6, 11.8, 16.0, 18.5], 'west_africa', 6],
+  ['sahel.central', 'Central Sahel', [13.4, 9.5, 24.0, 16.0], 'central_africa', 6],
+];
+const parentOf = new Map([
+  ['us.pnw', 'north_america'],
+  ['us.southwest', 'north_america'],
+]);
+atlas.regions = atlas.regions.filter((region) => !subnational.some(([id]) => id === region.id));
+for (const [id, title, bbox, parent, priority] of subnational) {
+  atlas.regions.push({ id, title, priority, bbox, bindings: { buildings: [] } });
+  parentOf.set(id, parent);
+}
 const outlines = new Map();
 for (const country of countryData.countries) {
   const id = architectureRegionForCountry(country);
@@ -220,8 +248,9 @@ for (const country of countryData.countries) {
   outlines.set(id, polygons);
 }
 for (const region of atlas.regions) {
-  if (region.id === 'us.pnw' || region.id === 'us.southwest') {
-    // Retain these subnational rectangles, masked by actual North American land outlines.
+  const parent = parentOf.get(region.id);
+  if (parent !== undefined) {
+    // Retain these subnational rectangles, masked by their country's actual land outlines.
     const [west, south, east, north] = region.bbox;
     const rectangle = [
       [
@@ -232,7 +261,7 @@ for (const region of atlas.regions) {
       ],
     ];
     region.polygons = outlines
-      .get('library.north_america')
+      .get(`library.${parent}`)
       .flatMap((ring) =>
         polygonClipping.intersection([ring], rectangle).map((polygon) => polygon[0]),
       );
@@ -250,7 +279,11 @@ atlas.default.buildings = rulesFor(
   ),
 );
 atlas.version = 4;
-atlas.fallbackDistanceMeters = 2500;
+// Outlines simplified at 0.02 degrees cut estuaries, lagoons and inshore islands off: central
+// Lisbon is 2.6 km outside Iberia's, Venice 3.9 km outside Italy's, Mumbai's Fort 4.9 km outside
+// South Asia's. A building stands on land, so the nearest outline within 15 km is its region;
+// at 2.5 km those cities were built in the worldwide fallback family.
+atlas.fallbackDistanceMeters = 15000;
 // Conservative residential priors: ordinary North American yards get modest canopy;
 // denser PNW overrides still win. Matched orthophotos show Southwest yards irrigated under
 // mesquite, palm and citrus, and Delhi's compounds under heavy canopy. Unconfigured regions
@@ -261,6 +294,7 @@ for (const region of atlas.regions) {
     'library.north_america': 0.35,
     'us.pnw': 0.9,
     'us.southwest': 0.3,
+    'us.northeast': 0.35,
     'library.south_asia': 0.6,
     jp: 0.3,
   }[region.id];

@@ -2,7 +2,7 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.stade_velodrome",
   "inputHash": "sha256:403c4dad7297f60c55aa576a383296bd67903437c8522e7ded92b194fabe96f7",
-  "captureReportHash": "sha256:6e6b0228bbaacd54bc40ba0c91cc048c0300d161da6f211d5a594f0ee108fb86",
+  "captureReportHash": "sha256:cc1f30ae10302883ce9419f8bde3cc6de71c5b3da1685b80b3f691e0c3f7a7aa",
   "visualReview": {
     "status": "passed",
     "scope": "Completed stadium exterior and visible football bowl.",
@@ -137,5 +137,15 @@
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
     "notes": "Primary SCAU completed photographs, FHECOR executed steelwork diagrams and contractor/operator evidence support the individual four-lobed roof, suspended skirt and facade. Exact structural sections, membrane panel inventory, chair count and local vertical street gradients remain architectural reconstructions. Enclosed rooms, sponsor graphics and surrounding commercial district are outside the permanent exterior asset."
+  },
+  "sourceHash": "sha256:dd6f99f4c378b9b16de0b68e6cb41657dab714a133b94ed76b4e9a8074f5877a",
+  "runtimeHash": "sha256:67f7931c74d282b663f194b22880521ea2bc79b04fd3baa794e034a0e5501694",
+  "reviewMaintenance": {
+    "sharedHelperAdoption": {
+      "reviewedOn": "2026-11-15",
+      "inputHash": "sha256:403c4dad7297f60c55aa576a383296bd67903437c8522e7ded92b194fabe96f7",
+      "change": "Adopts commit 730813689 (2026-10-26): the shared stadium-models.mjs curve() helper, used for this stadium's rails, ring cables and frames, switched from one tube() per segment to a continuous tubePath() with shared miter rings and caps only at open ends. That removed overlapping segment caps and seams at every joint; nothing else in the model changed. The source pin had stayed at the pre-change output, which the build has not produced since that commit.",
+      "evidence": "The shared helper is not one of this model's listed recipes, so its input hash did not move while its output did. Regenerating with only that helper reverted reproduced the previous source pin exactly. Portable and shared-surface frames were recaptured from the current model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }

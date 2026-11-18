@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const litoralPerimeterCases = {
   'litoral-primary-original-osm-whole-perimeter-wall-2023': 'litoral_perimeter_wall',
 };
@@ -57,7 +57,7 @@ export function inspectLitoralPerimeterPrimaryFacts({ dir, proof, controls: P, f
     )
       return fail('litoral-perimeter-original-path-incomplete');
     const node = (id) => {
-      const m = xml.match(new RegExp('<node\\b[^>]*\\bid="' + id + '"[^>]*>'));
+      const m = xml.match(new RegExp(`<node\\b[^>]*\\bid="${id}"[^>]*>`));
       const a = Object.fromEntries(
         [...m[0].matchAll(/([\w:]+)="([^"]*)"/g)].map((m) => [m[1], m[2]]),
       );

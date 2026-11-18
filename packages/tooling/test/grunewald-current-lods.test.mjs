@@ -75,7 +75,7 @@ const nearest = (ts, o, d) =>
 it('reproduces the untouched historical draft and binds the signed northeast entrance to the exact mapped terrace', async () => {
   const gen = await readFile('../worldgen/scripts/generate-heritage-towers.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')(),
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)(),
     wrap = Function(
       'surfaces',
       'normalize',
@@ -89,9 +89,9 @@ it('reproduces the untouched historical draft and binds the signed northeast ent
     used = new Map();
   grunewaldTower.build(wrap(b, used, grunewaldTower.componentMap));
   const m = b.finalize(),
-    s = await read(source + '/spec.json'),
-    scope = await read(source + '/review-scope.json'),
-    frame = await read(source + '/map-frame.json'),
+    s = await read(`${source}/spec.json`),
+    scope = await read(`${source}/review-scope.json`),
+    frame = await read(`${source}/map-frame.json`),
     live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -103,7 +103,7 @@ it('reproduces the untouched historical draft and binds the signed northeast ent
   expect(live.datum).toBe('terrain');
   expect(live.replaceFootprint).toBe(false);
   expect(frame.mappedIdentity.featureIds).toEqual(['way/23722446']);
-  const captured = sourceLocalFootprint(s, await readFile(source + '/map-frame.json'));
+  const captured = sourceLocalFootprint(s, await readFile(`${source}/map-frame.json`));
   expect(captured.footprint[0][0]).toBeCloseTo(13.1964768, 10);
   expect(captured.footprint[0][1]).toBeCloseTo(52.4782276, 10);
   expect(s.sourceFacts.heightMeters).toBe(55);
@@ -111,45 +111,45 @@ it('reproduces the untouched historical draft and binds the signed northeast ent
 });
 it('keeps the complete height, supported podium, three front stair routes and open galleries while adding the hall artwork', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0.008, 60, 0.008], [0, -1, 0]), name + ' whole height').toBeCloseTo(5, 3);
-    expect(nearest(ts, [8, 10, 8], [0, -1, 0]), name + ' podium').toBeCloseTo(6, 3);
-    expect(nearest(ts, [0, 10, -18], [0, -1, 0]), name + ' no invented rear staircase').toBe(
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0.008, 60, 0.008], [0, -1, 0]), `${name} whole height`).toBeCloseTo(5, 3);
+    expect(nearest(ts, [8, 10, 8], [0, -1, 0]), `${name} podium`).toBeCloseTo(6, 3);
+    expect(nearest(ts, [0, 10, -18], [0, -1, 0]), `${name} no invented rear staircase`).toBe(
       Infinity,
     );
     for (const x of [-6, 6]) {
       const stair = nearest(ts, [x, 10, 13.5], [0, -1, 0]);
-      expect(stair, name + ' side stair').toBeGreaterThan(6);
-      expect(stair, name + ' side stair').toBeLessThan(9);
+      expect(stair, `${name} side stair`).toBeGreaterThan(6);
+      expect(stair, `${name} side stair`).toBeLessThan(9);
     }
-    expect(nearest(ts, [1.8, 6, 8], [0, 0, -1]), name + ' open east portal').toBeGreaterThan(8);
-    expect(nearest(ts, [0, 39, 8], [0, 0, -1]), name + ' open viewing hall').toBeGreaterThan(12);
+    expect(nearest(ts, [1.8, 6, 8], [0, 0, -1]), `${name} open east portal`).toBeGreaterThan(8);
+    expect(nearest(ts, [0, 39, 8], [0, 0, -1]), `${name} open viewing hall`).toBeGreaterThan(12);
     if (name === 'street' || name === 'closeup') {
-      expect(nearest(ts, [0.08, 7.8, 3.5], [0, 0, -1]), name + ' sculpted figure').toBeGreaterThan(
+      expect(nearest(ts, [0.08, 7.8, 3.5], [0, 0, -1]), `${name} sculpted figure`).toBeGreaterThan(
         2.9,
       );
-      expect(nearest(ts, [0.08, 7.8, 3.5], [0, 0, -1]), name + ' sculpted figure').toBeLessThan(
+      expect(nearest(ts, [0.08, 7.8, 3.5], [0, 0, -1]), `${name} sculpted figure`).toBeLessThan(
         3.6,
       );
-      expect(nearest(ts, [1, 6, 0], [0, 1, 0]), name + ' visible mosaic underside').toBeGreaterThan(
+      expect(nearest(ts, [1, 6, 0], [0, 1, 0]), `${name} visible mosaic underside`).toBeGreaterThan(
         3.8,
       );
-      expect(nearest(ts, [1, 6, 0], [0, 1, 0]), name + ' visible mosaic underside').toBeLessThan(
+      expect(nearest(ts, [1, 6, 0], [0, 1, 0]), `${name} visible mosaic underside`).toBeLessThan(
         5.2,
       );
     }
   }
-  const m = geometry(await readFile(source + '/models/source.glb'));
+  const m = geometry(await readFile(`${source}/models/source.glb`));
   expect(nearest(m, [1.8, 6, 8], [0, 0, -1])).toBeGreaterThan(10);
   expect(nearest(m, [1, 6, 0], [0, 1, 0])).toBeLessThan(5.2);
 });
 it('regenerates identical four-level bytes within all triangle/draw/download budgets and uses six shared graphs without duplicated GPU streams', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -166,7 +166,7 @@ it('regenerates identical four-level bytes within all triangle/draw/download bud
   }
   expect([...refs].sort()).toEqual(
     ['stone_sandstone_raw', 'brick', 'metal_painted', 'plaster_lime', 'stone_marble', 'tile_mosaic']
-      .map((n) => 'matgraph:molen.worldgen.material.' + n)
+      .map((n) => `matgraph:molen.worldgen.material.${n}`)
       .sort(),
   );
 });

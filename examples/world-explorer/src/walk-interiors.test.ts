@@ -29,6 +29,15 @@ function required<T>(value: T | undefined): T {
 
 const INTERIORS = JSON.parse(interiorsRaw) as InteriorCatalogDoc;
 
+/** A clock that moves on 50 ms each time the streamer reads it: one update, one frame. */
+function frames(): () => number {
+  let time = 0;
+  return () => {
+    time += 50;
+    return time;
+  };
+}
+
 function styleOf(source: string): ArchStyleDoc {
   const result = validateByKind('archstyle', JSON.parse(source));
   if (!result.ok) throw new Error(result.formatted);
@@ -86,11 +95,16 @@ describe('walkable generated interiors', () => {
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshBasicMaterial());
     ground.rotation.x = -Math.PI / 2;
     region.add(ground);
-    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS });
+    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS, now: frames() });
     stream.register(region, [site]);
     const start = interiorToWorld(site, [0, -3]);
     for (let i = 0; i < 30; i++) stream.update([start[0], 1.7, start[1]]);
     expect(stream.stats().resident).toBe(1);
+    // The front door is shut until someone opens it.
+    const door = required(stream.doorAt([start[0], 1.7, start[1]], { reach: 4 }));
+    expect(stream.setDoor(door.id, true, [start[0], 0, start[1]])).toBe(true);
+    for (let i = 0; i < 30; i++) stream.update([start[0], 1.7, start[1]]);
+    expect(stream.doorAt([start[0], 1.7, start[1]], { reach: 4 })?.amount).toBe(1);
     const collision = new WalkCollision(),
       walker = new WalkController();
     collision.update(scene, ...start);
@@ -190,7 +204,9 @@ describe('walkable generated interiors', () => {
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshBasicMaterial());
     ground.rotation.x = -Math.PI / 2;
     region.add(ground);
-    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS });
+    // The door swings on the walker's clock, so a press-and-walk is timed as it would be played.
+    let time = 0;
+    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS, now: () => time });
     stream.register(region, [site]);
     const start: [number, number, number] = [
       site.entrance[0] - site.inward[0] * 3,
@@ -203,8 +219,10 @@ describe('walkable generated interiors', () => {
     walker.reset(start[0], start[2]);
     expect(walker.place(collision, () => 0)).toBe(true);
     const yaw = Math.atan2(site.inward[1], site.inward[0]);
-    const advance = (seconds: number, forward: number): void => {
+    const advance = (seconds: number, forward: number, streaming = false): void => {
       for (let i = 0; i < seconds * 120; i++) {
+        time += 1000 / 120;
+        if (streaming) stream.update([walker.feet.x, walker.feet.y + 1.7, walker.feet.z]);
         collision.update(scene, walker.feet.x, walker.feet.z);
         walker.update(
           1 / 120,
@@ -218,10 +236,26 @@ describe('walkable generated interiors', () => {
       (walker.feet.x - site.entrance[0]) * site.inward[0] +
       (walker.feet.z - site.entrance[1]) * site.inward[1];
     advance(4, 1);
-    expect(depth()).toBeLessThan(-0.25); // Portal stays solid until published.
+    expect(depth()).toBeLessThan(-0.25); // The shut door blocks the way.
     for (let i = 0; i < 20; i++) stream.update(start);
     expect(stream.stats().resident).toBe(1);
-    advance(5, 1);
+    advance(2, 1);
+    expect(depth(), 'shut once the rooms are built too').toBeLessThan(-0.25);
+    // Pressed against it, the walker reaches the door they face, and opens it.
+    const door = required(
+      stream.doorAt([walker.feet.x, walker.feet.y + 1.7, walker.feet.z], {
+        facing: [site.inward[0], 0, site.inward[1]],
+      }),
+    );
+    expect(door.open).toBe(false);
+    expect(stream.setDoor(door.id, true, [walker.feet.x, walker.feet.y, walker.feet.z])).toBe(true);
+    // Walking straight on as it opens, the leaf swings ahead of them rather than into their way:
+    // they cover what they would on open ground (1.5 m in the first second). A leaf that started
+    // slowly held them back to 1.3-1.4 m and nudged them aside.
+    const before = depth();
+    advance(1, 1, true);
+    expect(depth() - before, 'unhindered by the opening leaf').toBeGreaterThan(1.45);
+    advance(4, 1, true);
     expect(depth()).toBeGreaterThan(6);
     expect(walker.feet.y).toBeCloseTo(site.floor, 1);
     expect(walker.grounded).toBe(true);

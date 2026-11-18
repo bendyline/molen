@@ -9,6 +9,7 @@ import type { GlyphAtlasSet } from '@bendyline/molen-materials/text';
 import { normalizeBudgets } from './budgets';
 import { type BoxPlacement, type BuildingResult, generateBuilding } from './building';
 import { analyzeFootprint, DEFAULT_FOOTPRINT_OPTIONS, type FootprintAnalysis } from './footprint';
+import { distancePointToRing, pointInRing } from './geometry2d';
 import { MeshBufferBuilder } from './mesh-buffers';
 import type { PropPlacement } from './props';
 import { buildingMetrics } from './recipe';
@@ -59,7 +60,7 @@ export interface WorldgenBatchInput {
   /** A composed scatter channel with its own identity and optional spatial rule gate. */
   scatterEnvironment?: Pick<
     ScatterSampleInput,
-    'doc' | 'pack' | 'acceptsRule' | 'modelAt' | 'treeline'
+    'doc' | 'pack' | 'acceptsRule' | 'modelAt' | 'treeline' | 'crowns'
   >;
   budgets?: Partial<WorldgenBudgets>;
   /** Detail tier for the batch (0 = full). */
@@ -71,6 +72,13 @@ export interface WorldgenBatchInput {
    * storefronts build `WorldgenBatchOutput.signs`; without it they show their sign models.
    */
   glyphs?: GlyphAtlasSet;
+  /**
+   * Where a viewer stands, in the buildings' own frame. Buildings within `radius` of it are
+   * queued nearest first, ahead of every other, so the batch's detail budget (and with it real
+   * entrances and interiors) goes to what the viewer can walk up to instead of to the largest
+   * footprints. Omitted, the queue is by priority and area alone.
+   */
+  focus?: { x: number; z: number; radius: number };
 }
 
 export interface WorldgenBatchOutput {
@@ -90,6 +98,8 @@ export interface QueuedBuilding {
   analysis: FootprintAnalysis;
   styleId: string;
   order: number;
+  /** Distance from the batch's focus to the footprint, when within the focus radius. */
+  near?: number;
 }
 
 /** Named signs per batch when the budgets do not say: more than a dense downtown block holds. */
@@ -232,10 +242,28 @@ export function queueBuildings(input: WorldgenBatchInput, stats: WorldgenStats):
           ? fallback
           : (Object.keys(pack.archstyles)[0] ?? fallback);
     }
-    queue.push({ request, analysis, styleId, order: index });
+    const focus = input.focus;
+    let near: number | undefined;
+    if (focus !== undefined) {
+      const at: [number, number] = [focus.x, focus.z];
+      const distance = pointInRing(at, request.outline)
+        ? 0
+        : distancePointToRing(at, request.outline);
+      if (distance <= focus.radius) near = distance;
+    }
+    queue.push({
+      request,
+      analysis,
+      styleId,
+      order: index,
+      ...(near !== undefined ? { near } : {}),
+    });
   });
   queue.sort(
     (a, b) =>
+      // Focused buildings first, nearest first; the rest keep their order among themselves.
+      (a.near === undefined ? 1 : 0) - (b.near === undefined ? 1 : 0) ||
+      (a.near ?? 0) - (b.near ?? 0) ||
       (b.request.priority ?? 0) - (a.request.priority ?? 0) ||
       b.analysis.area - a.analysis.area ||
       hashString(a.request.identity) - hashString(b.request.identity) ||
@@ -609,6 +637,9 @@ export function* generateWorldgenBatchSteps(
       ...(input.scatterEnvironment?.treeline !== undefined
         ? { treeline: input.scatterEnvironment.treeline }
         : {}),
+      ...(input.scatterEnvironment?.crowns !== undefined
+        ? { crowns: input.scatterEnvironment.crowns }
+        : {}),
       ground,
       budget: {
         maxInstancesPerRule: budgets.maxInstancesPerRule,
@@ -620,6 +651,8 @@ export function* generateWorldgenBatchSteps(
         maxUnderstoryModels: budgets.maxUnderstoryModels ?? 0,
         maxAgricultureInstances: budgets.maxAgricultureInstances ?? 0,
         maxAgricultureModels: budgets.maxAgricultureModels ?? 0,
+        maxGardenInstances: budgets.maxGardenInstances ?? 0,
+        maxGardenModels: budgets.maxGardenModels ?? 0,
       },
       tier: baseTier,
     });

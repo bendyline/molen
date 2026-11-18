@@ -69,6 +69,7 @@ export function createInThreadWorldgenGenerator(
           ...(request.features !== undefined ? { features: request.features } : {}),
           ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
           ...(request.keep !== undefined ? { keep: request.keep } : {}),
+          ...(request.focus !== undefined ? { focus: request.focus } : {}),
         },
         options.yieldEveryBuildings ?? 48,
       );

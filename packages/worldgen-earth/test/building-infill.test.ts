@@ -538,6 +538,79 @@ describe('seeded building infill', () => {
       semanticTileToBatch(tile, geom, { pack, buildingInfill: false }, flat).buildings,
     ).toHaveLength(1);
   });
+
+  it('builds the blocks a style lays out as rows, wall to wall at the street', () => {
+    const base = required(Object.values(pack.archstyles)[0]);
+    const lots = {
+      rows: 1,
+      units: { min: 2, max: 3 },
+      setback: { min: 0, max: 0.5 },
+      depth: { min: 8, max: 10 },
+      levels: { min: 2, max: 3 },
+      gap: 0,
+    };
+    const asked = new Set<string>();
+    const rows = inferBuildingFootprints(streets(), geom, settings, flat, [], (_point, use) => {
+      asked.add(use);
+      return { ...base, lots };
+    });
+    // The style of a row is asked for as a terrace, after the block's own house style.
+    expect([...asked].sort()).toEqual(['house', 'terrace']);
+    expect(rows.length).toBeGreaterThan(infer(streets()).length * 1.5);
+    expect(new Set(rows.map((f) => f.id)).size).toBe(rows.length);
+    const byLot = new Map<string, typeof rows>();
+    for (const feature of rows) {
+      expect(feature.tags?.['molen:lot-plan']).toBe('row');
+      expect(feature.infill.partyEdges).toEqual([1, 3]);
+      expect(feature.levels).toBeGreaterThanOrEqual(2);
+      expect(feature.levels).toBeLessThanOrEqual(3);
+      byLot.set(feature.infill.lotId, [...(byLot.get(feature.infill.lotId) ?? []), feature]);
+    }
+    const span = (a: readonly number[], b: readonly number[]): number =>
+      Math.hypot((a[0] as number) - (b[0] as number), (a[1] as number) - (b[1] as number));
+    for (const units of byLot.values()) {
+      expect(units.length).toBeGreaterThanOrEqual(2);
+      expect(units.length).toBeLessThanOrEqual(3);
+      const rings = units.map((unit) => unit.infill.groundOutline);
+      for (let k = 0; k < rings.length; k++) {
+        const ring = required(rings[k]);
+        const [a, b, c] = [required(ring[0]), required(ring[1]), required(ring[2])];
+        // Side walls stand 8-10 m deep, give or take the step between neighbors.
+        expect(span(b, c)).toBeGreaterThan(6.7);
+        expect(span(b, c)).toBeLessThan(11.3);
+        // Each front starts where the last one ended: no gap and no overlap.
+        const next = rings[k + 1];
+        if (next) expect(span(b, required(next[0]))).toBeLessThan(1e-6);
+        // The door stands in the front wall.
+        expect(distance(required(units[k]).infill.access.to, a, b)).toBeLessThan(1e-6);
+      }
+      // Together they fill the whole 16 m frontage, so the next lot's row continues the wall.
+      const first = required(required(rings[0])[0]);
+      const last = required(required(rings[rings.length - 1])[1]);
+      expect(span(first, last)).toBeCloseTo(16, 6);
+    }
+  });
+
+  it('leaves blocks as houses in yards where a style lays out no rows', () => {
+    const base = required(Object.values(pack.archstyles)[0]);
+    const { lots: _lots, ...yards } = base;
+    const none = inferBuildingFootprints(streets(), geom, settings, flat, [], () => yards);
+    const never = inferBuildingFootprints(streets(), geom, settings, flat, [], () => ({
+      ...yards,
+      lots: { rows: 0, units: { min: 3, max: 3 } },
+    }));
+    expect(none.length).toBeGreaterThan(30);
+    expect(none.some((f) => f.tags?.['molen:lot-plan'] === 'row')).toBe(false);
+    expect(none.some((f) => f.infill.partyEdges !== undefined)).toBe(false);
+    expect(never).toEqual(none);
+    // Some of a part-row town's blocks are rows and the rest stay yards, block by block.
+    const mixed = inferBuildingFootprints(streets(), geom, settings, flat, [], () => ({
+      ...yards,
+      lots: { rows: 0.5 },
+    }));
+    const plans = new Set(mixed.map((f) => f.tags?.['molen:lot-plan'] === 'row'));
+    expect(plans).toEqual(new Set([true, false]));
+  });
 });
 
 describe('infill bins', () => {

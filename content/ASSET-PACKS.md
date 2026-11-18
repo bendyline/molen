@@ -2,10 +2,10 @@
 
 Every GLB in this repository is a build output of checked-in source, except five small authored
 masters. Git holds the generators, their specs, shared materials and textures, sidecars and
-review reports. Full-size review captures stay local (see below). Asset inputs name the reproducible model bundle. The
-Assets workflow builds them from a clean checkout, requires those bytes, and publishes them as a
-GitHub release that `pnpm assets:fetch` downloads as a cache. Building and fetching produce
-identical files.
+review reports. Full-size review captures stay local (see below). Asset inputs name the reproducible model bundle. When
+no release exists for a commit's inputs, the CI `assets` job builds the bundle from a clean
+checkout, and a push to `main` publishes it as a GitHub release that `pnpm assets:fetch`
+downloads as a cache. Building and fetching produce identical files.
 
 ## How the pieces fit
 
@@ -19,7 +19,7 @@ CI and production builds retain their normal restoration, packaging and verifica
 | --- | --- | --- |
 | Generate | The programs in [`asset-build.json`](../asset-build.json), plus the specs, material graphs and textures they read | `models/source.glb` in each source bundle, and a few direct runtime models |
 | Import | Each bundle's `source.json` model entry (`pipeline`, sidecar `output`) and optional `spec.json` `importOptions`, then the `afterImport` scripts in `asset-build.json` that derive reports from the imported models | The runtime `model.glb` beside each `asset.json` sidecar |
-| Verify | `asset-lock.json` | Nothing; any byte difference fails the build |
+| Verify | The installed bundle's record, `.artifacts/asset-packs/installed.json` (its input key and every file's hash) | Nothing; `pnpm assets:check` fails if the bundle was built from other inputs or any file differs |
 | Derive landmark detail levels (after import, before verification) | The imported structure master and `packages/tooling/scripts/landmark-lods.mjs` | Separate `model.skyline.glb`, `model.district.glb`, `model.street.glb`, `model.closeup.glb`, plus hash/cost metadata in the sidecar |
 
 The generators are the source of truth. Dedicated place generators (including Willis Tower,
@@ -37,9 +37,13 @@ The five vehicle `source.glb` files are listed as `masters` in `asset-build.json
 for them survives, so the committed binary is their source (about 125 KB each). Their runtime
 models are still imported by the build. Prefer a generator for anything new.
 
-`asset-lock.json` (`molen/asset-lock@2`) lists the path, size and SHA-256 of every built GLB.
-Its release name, `assets-<16 hex>`, is derived from those entries alone, so a lock can be
-committed before its release exists.
+There is no lock file. The bundle's release name, `assets-<16 hex>`, hashes what builds it:
+`asset-build.json`, every generator script with the relative modules it imports, the authored
+masters and the source data `asset-build.json` declares (`scripts/asset-inputs.mjs`). Outputs are
+not inputs, so every machine computes the same name. `node scripts/asset-packs.mjs key --explain`
+prints the name and the inputs that differ from the installed bundle. Engine code under
+`packages/` is not an input; bump `inputs.version` in `asset-build.json` when an engine change
+should rebuild the assets.
 
 ## Get the GLBs
 
@@ -141,17 +145,11 @@ are restored. `--force` restores even matching files. `--offline` uses only the 
 `.artifacts/asset-packs/`, and `--prefix content/worldgen/assets/places/c2/` restores part of the
 tree. `pnpm all` and `pnpm dev` fetch automatically.
 
-When the release is not published yet, the local source-build fallback verifies every pinned
-GLB and warns about additional, unpinned outputs from models still in progress. Those outputs
-stay as local work. `pnpm assets:check` also warns about unpinned GLBs instead of blocking
-`pnpm all`; missing or changed pinned GLBs still fail. `pnpm source:check` skips model bundles
-whose source and runtime GLBs are not yet pinned or declared authored masters, with a warning.
-Bundles containing a pinned GLB or authored master, and bundles without GLB models, still
-receive all source checks. The structure authoring index is checked in either mode.
-
-When finalizing a model batch, use `pnpm assets:check --strict` and
-`pnpm source:check --strict` to include unfinished work. `pnpm assets:build` and
-`pnpm assets:pack` always require the complete GLB inventory to match the lock.
+When the release for the current inputs is not published yet, `pnpm assets:fetch` builds the
+bundle locally instead (`--no-build` exits with status 3, which CI uses to build it itself).
+`pnpm assets:check` fails when the installed bundle was built from other inputs, a bundled file is
+missing or changed, or a runtime sidecar disagrees with its GLB; after editing a generator, run
+`pnpm assets:build` and check again.
 
 To build everything from source instead, with no network access for models (Node 24, the major
 `asset-build.json` pins):
@@ -376,11 +374,11 @@ that still need review; an asset build alone does not update story coverage.
 For the Qualla workstream, every structure catalog candidate and collection member is reserved for
 production on a separate device. Retain coverage links, but exclude these models from local
 authoring and refinement; the Qualla batch preparation check enforces this ownership rule.
-After the selected generators and imports have run, a local lock checkpoint can use
-`pnpm assets:build --no-generate --update-lock`: this reuses current source GLBs, imports only
-stale runtime models, and hashes the inventory without running every generator. Review that
-only the intended paths changed and none disappeared. This checkpoint does **not** prove a
-clean source rebuild; use the full build below once at a batch milestone and in Assets CI.
+After the selected generators and imports have run, a local checkpoint can use
+`pnpm assets:build --no-generate`: this reuses current source GLBs and imports only stale runtime
+models without running every generator. Review that only the intended paths changed and none
+disappeared. This checkpoint does **not** prove a clean source rebuild; use the full build below
+once at a batch milestone, and CI rebuilds from source.
 
 Model-only iterations do not require `pnpm verify`, `pnpm audit:prod`, `pnpm smoke:packed`,
 documentation builds or the full engine golden suite. Those checks cover engine packaging,
@@ -412,9 +410,9 @@ within its geometry and render budgets; additional authored LODs may be needed t
 make those structures detailed on phones. Estimated geometric error is not a certified bound.
 
 `asset.json.runtimeLods` records each level's hash, raw/gzip sizes, geometry bytes, triangle/draw
-costs and estimated error, bound to both the master hash and generator recipe hash. The existing
-Assets workflow rebuilds and verifies these files through `asset-build.json`; release packs and
-`asset-lock.json` include them automatically. No GLBs are committed.
+costs and estimated error, bound to both the master hash and generator recipe hash. CI rebuilds
+and verifies these files through `asset-build.json`, and release packs include them
+automatically. No GLBs are committed.
 
 For a targeted visual comparison and integrity check:
 
@@ -445,19 +443,17 @@ checkpoint exposes a relevant change or failure.
 
 1. Edit the generator, spec, material graph or texture. Iterate with the bundle's own command,
    for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=munich_olympic_stadium`.
-2. Once the batch is stable, run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
-   `asset-lock.json` for whatever the source now produces.
-3. Review the diff: generator code, regenerated metadata (`source.json`, `spec.json`, sidecars,
-   README), and the lock entries that changed. Commit them together. Never commit a built GLB,
-   and there is nothing to upload.
-4. On the pull request, the Assets workflow rebuilds from source and fails unless every byte
-   matches the committed lock. The other workflows build from source too, because the new
-   snapshot is not published yet. After the merge, Assets on `main` publishes it.
-
-Instead of step 2, the Update asset lock workflow can run the build on GitHub's runner and commit
-the lock and metadata to the branch (Actions, or `gh workflow run update-asset-lock.yml --ref
-<branch>`). A push made with the workflow's token starts no workflows, so the pull request's
-checks run on your next push.
+2. Once the batch is stable, run `pnpm assets:build`, then `pnpm assets:check`. The build reruns
+   only the generators and imports whose recorded dependencies changed and installs the bundle
+   for the new inputs. There is no lock to update (`--update-lock` was removed with
+   `asset-lock.json` on 2026-10-08).
+3. Review the diff: generator code and regenerated metadata (`source.json`, `spec.json`,
+   sidecars, README). Commit them together. Never commit a built GLB, and there is nothing to
+   upload. When the build reports that generators "would change" committed metadata it kept,
+   those bundles' pins no longer match what their generator produces; regenerate them with their
+   own command and review them before committing.
+4. CI finds no published bundle for the new inputs, builds it from source and shares it with the
+   other jobs. After the merge, the push to `main` publishes it as the release those inputs name.
 
 To add a generator, append it to `generators` in `asset-build.json`. Every GLB the build produces
 must be in the lock, and every locked GLB must be produced. A GLB that is neither locked nor a
@@ -510,10 +506,10 @@ deterministic:
   derived textures and embed or reference their bytes. Lantern Dungeon re-derives its maps only
   with `--derive-textures`.
 
-The Assets and Update asset lock workflows pin Node 24 (`.node-version`) and Python 3.12. When another workflow has to build from
+The CI asset build pins Node 24 (`.node-version`) and Python 3.12. When another workflow has to build from
 source, it switches to Node 24 for the build only. Pillow is pinned by
-`examples/lantern-dungeon/tools/requirements.txt`. If a runner-image update ever changes a byte,
-the weekly scheduled run reports it before a model change is blamed for it.
+`examples/lantern-dungeon/tools/requirements.txt`. A runner-image update that changes a byte
+shows up only when the inputs next change and CI rebuilds; the bundle name does not move with it.
 
 ## Shared materials and textures
 

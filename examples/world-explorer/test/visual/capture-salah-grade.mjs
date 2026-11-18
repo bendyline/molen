@@ -79,7 +79,7 @@ try {
     );
     assert(
       Math.abs(state.modelOriginElevation) < 0.0001,
-      'Retained terrain/model reference mismatch: ' + JSON.stringify(state),
+      `Retained terrain/model reference mismatch: ${JSON.stringify(state)}`,
     );
     const probes = await page.evaluate(
       (points) => points.map((p) => window.salahGradeQA.probe(p)),
@@ -92,7 +92,7 @@ try {
     for (const p of probes) {
       assert(
         p.clearance !== null && Math.abs(p.clearance) < 0.08,
-        'Signed open-ground datum mismatch: ' + JSON.stringify(p),
+        `Signed open-ground datum mismatch: ${JSON.stringify(p)}`,
       );
     }
     const foundations = await page.evaluate(() => window.salahGradeQA.foundationProbes());
@@ -114,7 +114,7 @@ try {
       passages = await page.evaluate(() => window.salahGradeQA.passageProbes());
     assert(
       passages.every((p) => p.distance === null || p.distance > p.required),
-      'Signed Salah gatehouse must remain open:' + JSON.stringify({ level, passages }),
+      `Signed Salah gatehouse must remain open:${JSON.stringify({ level, passages })}`,
     );
     states.push({ ...state, probes, foundations, paving, passages, moat });
     for (const camera of [

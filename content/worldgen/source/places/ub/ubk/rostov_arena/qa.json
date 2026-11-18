@@ -2,7 +2,7 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.rostov_arena",
   "inputHash": "sha256:3b7e8a06b1d157dd4bcf3c6f716868ff926bc43a2bb500966965d5b5acde76e2",
-  "captureReportHash": "sha256:7058e24972e7011cafc435649dbeb6c02b53a5834125c5ecb9190ed094ad2872",
+  "captureReportHash": "sha256:08885fb58a10142d42dd9c90af8d5897937ad763dd03ef1b53375a5a043cbb6a",
   "visualReview": {
     "status": "passed",
     "scope": "Completed stadium exterior and visible football bowl.",
@@ -143,5 +143,15 @@
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
     "notes": "Resident club, executed structural engineer and tension-rod manufacturer support the individual architecture and major dimensions. Console sections, chair inventory, local ramp grades, membrane camber and panel distribution remain photograph-based reconstruction; no event graphics or enclosed service rooms are included."
+  },
+  "sourceHash": "sha256:699de1d658bedc24b38609c0e410b83d71ae3bfff61bce1a8eb3ee34acc51d0c",
+  "runtimeHash": "sha256:c76aedcaf6b60e1626df0263f6acbc2ad969b5af89983ed248891906e18ca388",
+  "reviewMaintenance": {
+    "sharedHelperAdoption": {
+      "reviewedOn": "2026-11-15",
+      "inputHash": "sha256:3b7e8a06b1d157dd4bcf3c6f716868ff926bc43a2bb500966965d5b5acde76e2",
+      "change": "Adopts commit 730813689 (2026-10-26): the shared stadium-models.mjs curve() helper, used for this stadium's rails, ring cables and frames, switched from one tube() per segment to a continuous tubePath() with shared miter rings and caps only at open ends. That removed overlapping segment caps and seams at every joint; nothing else in the model changed. The source pin had stayed at the pre-change output, which the build has not produced since that commit.",
+      "evidence": "The shared helper is not one of this model's listed recipes, so its input hash did not move while its output did. Regenerating with only that helper reverted reproduced the previous source pin exactly. Portable and shared-surface frames were recaptured from the current model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }

@@ -176,6 +176,8 @@ export function residentialTreePolygons(
           polygons: shapes.map(
             (shape): ScatterPolygon => ({
               label: INFILL_LABEL,
+              // Scatter's alone: the ground beneath keeps its own class and crowns.
+              ground: false,
               ring: shape[0] as Vec2[],
               holes: shape.slice(1),
               density: fill * (0.7 + 0.3 * unit01(seed, 1)),

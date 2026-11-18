@@ -94,14 +94,14 @@ const surfaces = {
   },
 };
 it('reproduces unchanged detailed Telekom master and signs antenna versus mapped helipad', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildTelekom(a.wrap(b));
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(1458078);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(m.anchor).toEqual(prior.anchor);
@@ -127,12 +127,12 @@ it('reproduces unchanged detailed Telekom master and signs antenna versus mapped
   expect(spec.sourceFacts.skyGardens).toBe(22);
 }, 120000);
 it('retains two closed curved wings, open gardens and helipad bowl with unfilled safety grating', async () => {
-  const decodedMaster = decode(await readFile(source + '/models/source.glb')),
+  const decodedMaster = decode(await readFile(`${source}/models/source.glb`)),
     master = decodedMaster.triangles,
     main = decodedMaster.mainTriangles,
-    asset = await read(runtime + '/asset.json');
+    asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file)),
+    const d = decode(await readFile(`${runtime}/${l.file}`)),
       ts = d.triangles,
       allowance = { skyline: 3, district: 2, street: 1, closeup: 0.15 }[l.name];
     for (const y of [8.2, 54.3, 111.8, 173.4, 211.3])
@@ -141,10 +141,10 @@ it('retains two closed curved wings, open gardens and helipad bowl with unfilled
           o = [-8 + 100 * Math.cos(t), y, 100 * Math.sin(t)],
           v = [-Math.cos(t), 0, -Math.sin(t)],
           target = nearest(main, o, v);
-        expect(Number.isFinite(target), l.name + ' source ' + y + '/' + k).toBe(true);
+        expect(Number.isFinite(target), `${l.name} source ${y}/${k}`).toBe(true);
         expect(
           Math.abs(nearest(l.name === 'skyline' ? ts : d.mainTriangles, o, v) - target),
-          l.name + ' envelope ' + y + '/' + k,
+          `${l.name} envelope ${y}/${k}`,
         ).toBeLessThan(allowance);
       }
     for (let k = 0; k < 12; k++) {
@@ -153,16 +153,16 @@ it('retains two closed curved wings, open gardens and helipad bowl with unfilled
         v = [-Math.cos(t), 0, -Math.sin(t)];
       expect(
         Math.abs(nearest(ts, o, v) - nearest(master, o, v)),
-        l.name + ' bowl ' + k,
+        `${l.name} bowl ${k}`,
       ).toBeLessThan(allowance);
     }
-    expect(nearest(ts, [-1.5, 250, 18], [0, -1, 0]), l.name + '236m landing disk').toBeCloseTo(
+    expect(nearest(ts, [-1.5, 250, 18], [0, -1, 0]), `${l.name}236m landing disk`).toBeCloseTo(
       14,
       1,
     );
     const t = 0.123,
       o = [-1.5 + 20.95 * Math.cos(t), 247, 18 + 20.95 * Math.sin(t)];
-    expect(nearest(ts, o, [0, -1, 0]), l.name + ' open grating hole').toBeGreaterThan(12);
+    expect(nearest(ts, o, [0, -1, 0]), `${l.name} open grating hole`).toBeGreaterThan(12);
     expect(ts.flat().reduce((m, p) => Math.max(m, p[1]), 0)).toBeGreaterThanOrEqual(310);
     // Two opposed triangular gardens stay separate from each other and from the core.
     const levels = [
@@ -172,13 +172,13 @@ it('retains two closed curved wings, open gardens and helipad bowl with unfilled
     for (const y of levels)
       expect(
         ts.some((p) => p.every((v) => Math.abs(v[1] - y) < 0.001)),
-        l.name + ' garden deck ' + y,
+        `${l.name} garden deck ${y}`,
       ).toBe(true);
     if (l.name !== 'skyline') expect(d.g.materials.some((m) => m.alphaMode === 'BLEND')).toBe(true);
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -187,7 +187,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);

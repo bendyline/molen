@@ -79,7 +79,7 @@ try {
     );
     assert(
       Math.abs(state.modelOriginElevation) < 0.0001,
-      'Retained terrain/model reference mismatch: ' + JSON.stringify(state),
+      `Retained terrain/model reference mismatch: ${JSON.stringify(state)}`,
     );
     const probes = await page.evaluate(
       (points) => points.map((p) => window.malborkGradeQA.probe(p)),
@@ -107,7 +107,7 @@ try {
         (p) =>
           p.floorError !== null && Math.abs(p.floorError) < 0.03 && p.clearanceOverTerrain > 0.15,
       ),
-      'Gate/bridge floors must sit above bare-earth:' + JSON.stringify({ level, passages }),
+      `Gate/bridge floors must sit above bare-earth:${JSON.stringify({ level, passages })}`,
     );
     states.push({ ...state, probes, foundations, paving, passages });
     for (const camera of [

@@ -310,12 +310,12 @@ async function passageProbes() {
         direction = new THREE.Vector3().fromArray(d as number[]).transformDirection(matrix);
       ray.set(start, direction);
       const hit = object ? ray.intersectObject(object, true)[0] : undefined;
-      return { id: 'gate-' + i, clear, distance: hit?.distance ?? null };
+      return { id: `gate-${i}`, clear, distance: hit?.distance ?? null };
     },
   );
 }
 async function foundationProbes() {
-  const data = await json<{ foundationOutline: number[][] }>(folder + '/site-grade.json'),
+  const data = await json<{ foundationOutline: number[][] }>(`${folder}/site-grade.json`),
     q = data.foundationOutline.slice(0, -1),
     sign =
       q.reduce((n, a, i) => {
@@ -334,7 +334,7 @@ async function foundationProbes() {
       p = new THREE.Vector3(x + 3 * n.x, heightAt(x, z) + 0.12, z + 3 * n.z);
     ray.set(p.clone().applyMatrix4(matrix), n.negate().transformDirection(matrix));
     const hit = object ? ray.intersectObject(object, true)[0] : undefined;
-    return { id: 'court-plinth-' + i, native: p.toArray(), distance: hit?.distance ?? null };
+    return { id: `court-plinth-${i}`, native: p.toArray(), distance: hit?.distance ?? null };
   });
 }
 declare global {

@@ -22,19 +22,19 @@ function digest(value: unknown): string {
 describe('worldgen content parity', () => {
   it('keeps the landmark catalog hash', () => {
     expect(LANDMARKS.hash).toBe(
-      'sha256:eaeabd3e27f061ea4a09ecd5d0342306b3018d97c5d1387637f275e6e0d92e5e',
+      'sha256:09ccd62e8c561c8fb8c3e172d030fa6f0f6cf6e914c484d9e099963981c0b6c3',
     );
   });
 
   it('keeps the landmark definitions, sign designs and interior catalog', () => {
-    expect(Object.keys(LANDMARKS.definitions)).toHaveLength(59);
+    expect(Object.keys(LANDMARKS.definitions)).toHaveLength(61);
     expect(Object.keys(LANDMARKS.signDesigns)).toHaveLength(53);
     expect({
       definitions: digest(LANDMARKS.definitions),
       signs: digest(LANDMARKS.signDesigns),
       interiors: digest(validateInteriorCatalog(INTERIORS)),
     }).toEqual({
-      definitions: 'a0fa1d2791341f4c',
+      definitions: '62be04f79480baad',
       signs: '9798f722883bfda5',
       interiors: '34ea2d69750909d9',
     });

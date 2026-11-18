@@ -21,6 +21,8 @@ export interface EarthWildlifeStats {
   triangles: number;
   candidates: number;
 }
+/** Animals drawn when a budget names no count: the Balanced tier's. */
+const DEFAULT_ANIMALS = 16;
 export class EarthWildlife {
   readonly landcover: SemanticTileObserver;
   readonly features: SemanticTileObserver;
@@ -36,7 +38,7 @@ export class EarthWildlife {
   private lastSync = -Infinity;
   private habitatVersion = -1;
   private habitatLost = 0;
-  private budget = { animals: 24, radius: 250, density: 0.65 };
+  private budget = { animals: 24, radius: 250, density: 1 };
   private enabled = true;
   // Species choices by candidate point, for the habitat sample they were read from: a resample
   // asks about every cell within reach, and sampling each again cost it 5 ms. A kept sample is
@@ -46,6 +48,13 @@ export class EarthWildlife {
     { habitat: WildlifeLocalHabitat; choices: readonly WildlifeChoice[] }
   >();
   private readonly winter = new Map<string, WildlifeSpecies>();
+  // The point either world's `habitat` last sampled, and that sample. The kernel asks for a
+  // point's habitat and then its choices, which read only the water distance and protection, the
+  // same at any margin: sampling the point a second time for them was half an animal's step.
+  // Forgotten whenever the tiles may have changed (see update).
+  private lastX = Number.NaN;
+  private lastZ = Number.NaN;
+  private lastHabitat: WildlifeLocalHabitat | undefined;
 
   constructor(
     private readonly environment: RegionalEnvironment,
@@ -61,14 +70,14 @@ export class EarthWildlife {
     parent.add(this.renderer.group);
     this.world = {
       choices: (x, z) => {
-        const habitat = this.habitat.sample(x, z, 0);
+        const habitat = this.context(x, z, false);
         return habitat === undefined ? [] : environment.wildlife(x, z, habitat);
       },
-      habitat: (x, z, margin) => this.habitat.sample(x, z, margin),
+      habitat: (x, z, margin) => this.sampled(x, z, this.habitat.sample(x, z, margin)),
     };
     this.grid = {
       choices: (x, z) => {
-        const habitat = this.habitat.sample(x, z, 0, true);
+        const habitat = this.context(x, z, true);
         if (habitat === undefined) return [];
         const key = `${x},${z}`;
         const known = this.local.get(key);
@@ -78,21 +87,46 @@ export class EarthWildlife {
         this.local.set(key, { habitat, choices });
         return choices;
       },
-      habitat: (x, z, margin) => this.habitat.sample(x, z, margin, true),
+      habitat: (x, z, margin) => this.sampled(x, z, this.habitat.sample(x, z, margin, true)),
     };
   }
 
+  private sampled(
+    x: number,
+    z: number,
+    habitat: WildlifeLocalHabitat | undefined,
+  ): WildlifeLocalHabitat | undefined {
+    this.lastX = x;
+    this.lastZ = z;
+    this.lastHabitat = habitat;
+    return habitat;
+  }
+  /** The habitat a point's species choices are read against (its water distance, protection). */
+  private context(x: number, z: number, keep: boolean): WildlifeLocalHabitat | undefined {
+    return x === this.lastX && z === this.lastZ
+      ? this.lastHabitat
+      : this.habitat.sample(x, z, 0, keep);
+  }
+
   setBudget(ambient: EarthAmbientBudget): void {
-    const animals = Math.min(64, Math.max(4, Math.round(ambient.pedestrians * 0.5)));
+    // The tier's own count (see performance.ts), not a share of its pedestrians: that cap was cut
+    // to a third for the streets' sake and left 4 to 7 animals.
+    const wanted = ambient.animals ?? DEFAULT_ANIMALS;
+    const animals = Number.isFinite(wanted) ? Math.min(64, Math.max(0, Math.round(wanted))) : 0;
     this.budget = {
       animals,
       radius: Math.min(450, ambient.activityRadius),
-      density: Math.min(1, 0.3 + animals / 64),
+      // No thinning: the cap already takes the nearest animals, and thinning the candidates only
+      // stood the same number farther from the viewer (at 0.55, seven Seattle and Bellevue
+      // blocks' 16 animals reached out 160-310 m rather than 120-170 m).
+      density: 1,
     };
     this.renderer.setBudget({
       animals,
       radius: Math.min(300, this.budget.radius),
-      posesPerFrame: Math.max(2, Math.floor(ambient.posesPerFrame / 2)),
+      // Half the figures' poses, and never fewer than half the animals: the nearest half of a
+      // frame's poses are the nearest animals, the rest take turns.
+      posesPerFrame: Math.max(Math.ceil(animals / 2), Math.floor(ambient.posesPerFrame / 2)),
     });
     this.lastSync = -Infinity;
   }
@@ -106,9 +140,11 @@ export class EarthWildlife {
   update(dt: number, camera: readonly [number, number, number]): void {
     if (!this.enabled) return;
     this.habitat.sync(camera, this.budget.radius);
+    this.lastX = Number.NaN;
     // Habitat changes resample sooner than the once-a-second refresh: at once when animals may
     // stand on lost habitat or there are none yet, else within half a second. The visible tiles
-    // change most frames while the view turns, and each resample walks ~90 cells.
+    // change most frames while the view turns, and a resample walks up to ~90 cells (all of them
+    // where the cap is not filled: over built-up ground, or from the air).
     const since = this.tick - this.lastSync;
     const changed = this.habitat.version !== this.habitatVersion;
     if (
@@ -163,7 +199,10 @@ export class EarthWildlife {
     habitat?: string;
   } {
     const habitat = this.habitat.sample(position[0], position[2], 0);
-    if (!this.enabled || habitat === undefined || !habitat.safe) return { birds: 0, insects: 0 };
+    // A listener on a street or a path still hears the habitat it runs through (`overflight`);
+    // inside a building's or a built-up area's buffer, or on unknown ground, there is none.
+    if (!this.enabled || habitat === undefined || !(habitat.safe || habitat.overflight))
+      return { birds: 0, insects: 0 };
     const choices = this.environment
       .wildlife(position[0], position[2], habitat)
       .filter((choice) => choice.habitats.includes(habitat.kind));

@@ -62,6 +62,7 @@ export interface WorldgenWorkerGenerate {
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
   keep?: number;
+  focus?: readonly [number, number];
 }
 
 export interface WorldgenWorkerCancel {
@@ -176,6 +177,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           ...(request.features !== undefined ? { features: request.features } : {}),
           ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
           ...(request.keep !== undefined ? { keep: request.keep } : {}),
+          ...(request.focus !== undefined ? { focus: request.focus } : {}),
         },
         STEP_EVERY_BUILDINGS,
       );

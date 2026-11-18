@@ -90,6 +90,9 @@ export function associateBusinesses(
   }
   return output;
 }
+/** A single-tenant footprint this large is a supermarket or a big box wherever it stands, m². */
+const PURPOSE_BUILT_AREA = 600;
+
 /** How far a frontage's road access counts in its score, in tile units. */
 const ACCESS_REACH = 0.03;
 
@@ -207,6 +210,13 @@ export function applyBusinessAppearance(
   styles: ResolvedStylePack['archstyles'],
   /** Sets mapped names on the signs; without it every sign keeps its descriptor text. */
   namer?: SignNamer,
+  /**
+   * What is known of the building itself. With it, only a purpose-built shop takes a store's
+   * shell and colors: one that stands free on retail land, is a chain's own building, or is the
+   * size of a supermarket. A shop in a row or under flats keeps its building and gains a
+   * frontage. Without it every low building with a business is a store, as before.
+   */
+  setting?: { attached: boolean; retailLand: boolean; areaM2: number },
 ): void {
   if (!occupants.length) return;
   request.interiorLabels = [
@@ -278,11 +288,17 @@ export function applyBusinessAppearance(
   const direct = occupants.filter((o) => o.direct);
   const hostStyle = direct.length === 1 ? direct[0]?.business.style : undefined;
   const preferredStyle = hostStyle ?? 'molen.worldgen.generic.store';
+  const purposeBuilt =
+    setting === undefined ||
+    (!setting.attached &&
+      (setting.retailLand ||
+        setting.areaM2 >= PURPOSE_BUILT_AREA ||
+        direct.some((o) => o.business.profile !== undefined)));
 
-  if (storeEnvelope && styles[preferredStyle] && (hostStyle || !mallEnvelope))
+  if (purposeBuilt && storeEnvelope && styles[preferredStyle] && (hostStyle || !mallEnvelope))
     request.style = preferredStyle;
   const standalone = signs.length === 1 ? signs[0] : undefined;
-  if (storeEnvelope && standalone?.direct && standalone.business.profile)
+  if (purposeBuilt && storeEnvelope && standalone?.direct && standalone.business.profile)
     request.appearance = {
       wall: standalone.business.profile.wall,
       trim: standalone.business.profile.accent,

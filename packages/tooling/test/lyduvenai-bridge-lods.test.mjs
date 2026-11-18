@@ -59,26 +59,26 @@ function nearest(ts, o, d) {
 }
 
 it('reconstructs exact original source and its mapped railway frame, with native-fitting foundations', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    frame = await read(source + '/map-frame.json'),
-    alignment = await read(source + '/alignment.json'),
-    grid = await read(source + '/terrain-grid.json');
+  const brief = await read(`${source}/model-brief.json`),
+    frame = await read(`${source}/map-frame.json`),
+    alignment = await read(`${source}/alignment.json`),
+    grid = await read(`${source}/terrain-grid.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(lyduvenaiSurfaces);
   buildLyduvenaiLevel(a.wrap(b), 'master');
   const m = b.finalize(),
     bytes = Buffer.from(encodeGlb(m, a.materials(m.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(frame.anchor).toEqual([23.086682574, 55.505915036]);
   expect(frame.heading).toBe(0.75995116399);
   expect(alignment.limits[1] - alignment.limits[0]).toBeCloseTo(598.246, 5);
   expect(alignment.piers).toHaveLength(8);
   for (const p of alignment.railLine) expect(Math.abs(p[1])).toBeLessThan(0.3);
-  const png = await readFile(source + '/terrain-review.height.png');
+  const png = await readFile(`${source}/terrain-review.height.png`);
   expect(hashBytes(png)).toBe(grid.reviewHeightfieldHash);
-  const field = heightfieldFromPng(await read(source + '/terrain-review.terrain.json'), png);
-  const ts = await triangles(source + '/models/source.glb');
+  const field = heightfieldFromPng(await read(`${source}/terrain-review.terrain.json`), png);
+  const ts = await triangles(`${source}/models/source.glb`);
   for (const x of alignment.piers) {
     const ground = field.sampleHeight(x, 0),
       hit = nearest(ts, [x, ground - 3, 0], [0, 1, 0]);
@@ -89,43 +89,43 @@ it('reconstructs exact original source and its mapped railway frame, with native
     expect(lyduvenaiDeckY(x)).toBe(42.5);
     expect(lyduvenaiDeckY(x) - field.sampleHeight(x, 0)).toBeGreaterThan(13);
   }
-  const placed = (await read(source + '/placement-report.json')).entry;
+  const placed = (await read(`${source}/placement-report.json`)).entry;
   expect(placed.elevation).toBe(66);
   expect(placed.replaceFootprint).toBe(false);
   expect(placed.replaceRoads.deckHeights).toEqual([108.5, 108.5]);
 }, 30000);
 it('keeps actual lattice apertures, two top rails and an unobstructed current lower visitor path', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const [i, l] of asset.runtimeLods.levels.entries()) {
-    const ts = await triangles(runtime + '/' + l.file),
+    const ts = await triangles(`${runtime}/${l.file}`),
       cells = [1, 4, 10, 10][i],
       start = lyduvenaiControls.spanEnds[4] + 0.14,
       end = lyduvenaiControls.spanEnds[5] - 0.14,
       x = start + ((end - start) / cells) * 0.25;
-    expect(nearest(ts, [x, 37.7, -5], [0, 0, 1]), l.name + ' physical truss aperture').toBe(
+    expect(nearest(ts, [x, 37.7, -5], [0, 0, 1]), `${l.name} physical truss aperture`).toBe(
       Infinity,
     );
     for (const z of [-0.76, 0.76])
-      expect(nearest(ts, [12, 45, z], [0, -1, 0]), l.name + ' single track rails').toBeCloseTo(
+      expect(nearest(ts, [12, 45, z], [0, -1, 0]), `${l.name} single track rails`).toBeCloseTo(
         2.33,
         i > 1 ? 1 : 1,
       );
     if (i > 0) {
-      expect(nearest(ts, [12, 34.9, 0], [0, -1, 0]), l.name + ' lower visitor floor').toBeCloseTo(
+      expect(nearest(ts, [12, 34.9, 0], [0, -1, 0]), `${l.name} lower visitor floor`).toBeCloseTo(
         1.28,
         1,
       );
-      expect(nearest(ts, [-156, 35.2, 0], [1, 0, 0]), l.name + ' visitor headroom').toBeGreaterThan(
+      expect(nearest(ts, [-156, 35.2, 0], [1, 0, 0]), `${l.name} visitor headroom`).toBeGreaterThan(
         200,
       );
     }
-    expect(nearest(ts, [0, 5, -8], [0, 0, 1]), l.name + ' valley remains open').toBe(Infinity);
+    expect(nearest(ts, [0, 5, -8], [0, 0, 1]), `${l.name} valley remains open`).toBe(Infinity);
   }
 }, 60000);
 it('suppresses the actual mapped railway bridge while preserving the lower crossing street', async () => {
-  const p = (await read(source + '/placement-report.json')).entry,
-    map = await read(source + '/pmtiles-map.json'),
-    f = await read(source + '/map-frame.json');
+  const p = (await read(`${source}/placement-report.json`)).entry,
+    map = await read(`${source}/pmtiles-map.json`),
+    f = await read(`${source}/map-frame.json`);
   const local = ([lon, lat]) => {
     const E = (lon - f.anchor[0]) * 111319.490793 * Math.cos((f.anchor[1] * Math.PI) / 180),
       S = -(lat - f.anchor[1]) * 111319.490793;
@@ -173,8 +173,8 @@ it('suppresses the actual mapped railway bridge while preserving the lower cross
   );
   const lower = tile.transportation[1],
     field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     result = withoutStructureRoads(
       tile,
@@ -192,8 +192,8 @@ it('suppresses the actual mapped railway bridge while preserving the lower cross
   expect(remainingMeters).toBeLessThan(1);
 }, 30000);
 it('reconstructs all four exact browser tiers within shared-material, bandwidth and GPU-layout budgets', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    a = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    a = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -202,7 +202,7 @@ it('reconstructs all four exact browser tiers within shared-material, bandwidth 
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hashBytes(b)).toBe(a.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -212,7 +212,7 @@ it('reconstructs all four exact browser tiers within shared-material, bandwidth 
       for (const graph of ['concrete_plain', 'metal_painted', 'wood_plain'])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

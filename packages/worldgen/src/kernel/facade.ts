@@ -6,7 +6,7 @@
  */
 
 import type { ArchFacadeDetails } from './archstyle-types';
-import { buildFacadeDetails, type FacadeDetailWindow } from './facade-details';
+import { buildFacadeDetails, buildPorch, type FacadeDetailWindow } from './facade-details';
 import { distancePointToSegment } from './geometry2d';
 import type { BuildingOpening } from './interior-types';
 import type { MeshBufferBuilder } from './mesh-buffers';
@@ -68,10 +68,14 @@ export interface FacadeInput {
   trim: WallSurface;
   roof?: WallSurface;
   details?: ArchFacadeDetails;
+  /** Color shutters and the door leaf are painted (sRGB, 0..1); default the trim darkened. */
+  paint?: readonly [number, number, number];
   /** Raised building parts cannot support a ground veranda. */
   raised?: boolean;
   /** Outer-ring edges on a cut boundary get no elements. */
   seamEdges?: ReadonlySet<number>;
+  /** Outer-ring edges that are party walls: no windows, bands, ornament or entrance. */
+  blindEdges?: ReadonlySet<number>;
   /** Ground frontage supplied by structural door/window openings. */
   openGroundEdges?: ReadonlySet<number>;
   structuralOpenings?: readonly {
@@ -84,6 +88,12 @@ export interface FacadeInput {
   }[];
   /** Internal layout reservation so a fallback entrance does not overlap a punched window. */
   entranceReservation?: { edge: number; start: number; end: number };
+  /**
+   * Draw the fallback entrance as a door leaf and its light alone, with no frame, handle or
+   * mullion: eight vertices, which a simplified facade can spend on every building of a crowded
+   * batch. A street of houses with windows and no way in reads as a row of sheds.
+   */
+  plainEntrance?: boolean;
 }
 
 export interface FacadeStats {
@@ -543,7 +553,7 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
   ) {
     const ring = input.rings[0] ?? [];
     for (let index = 0; index < ring.length; index++) {
-      if (input.seamEdges?.has(index)) continue;
+      if (input.seamEdges?.has(index) || input.blindEdges?.has(index)) continue;
       const edge = edgeOf(ring, index, 0, input);
       if (
         edge.length < (input.entranceAt ? 0.65 : entrance.width) + 2 * input.cornerMargin ||
@@ -587,12 +597,42 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
       };
     }
   }
+  // One seeded draw per building decides whether its entrance has the style's porch.
+  const porch =
+    input.details?.porch !== undefined &&
+    input.raised !== true &&
+    unit01(hashCoord(7, 11, input.salt), 0) < input.details.porch.probability
+      ? input.details.porch
+      : undefined;
+  if (porch !== undefined) {
+    // A real doorway (an interior's) takes the porch; the fallback entrance takes it below.
+    const door = input.structuralOpenings?.find(
+      (opening) =>
+        opening.kind === 'door' &&
+        opening.start !== undefined &&
+        opening.end !== undefined &&
+        opening.bottom < input.base + 0.5,
+    );
+    const ring = input.rings[0] ?? [];
+    if (door?.start !== undefined && door.end !== undefined && door.edge < ring.length)
+      buildPorch(
+        edgeOf(ring, door.edge, 0, input),
+        input,
+        porch,
+        door.start,
+        door.end,
+        input.base,
+        door.top,
+        out,
+      );
+  }
   const detailBudget = { remaining: 3600 };
   let remainingEdges = input.rings.reduce((count, ring) => count + ring.length, 0);
   input.rings.forEach((ring, ringIndex) => {
     for (let index = 0; index < ring.length; index++) {
       remainingEdges--;
       if (ringIndex === 0 && input.seamEdges?.has(index) === true) continue;
+      if (ringIndex === 0 && input.blindEdges?.has(index) === true) continue;
       const edge = edgeOf(ring, index, ringIndex, input);
       if (edge.length < 0.5 || edge.top - input.base < 1.2) continue;
       const layout: FacadeDetailWindow[] = [];
@@ -619,13 +659,19 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
       top = bottom + entrance.height;
     const panel: WallSurface = {
       ...input.trim,
-      color: [input.trim.color[0] * 0.42, input.trim.color[1] * 0.42, input.trim.color[2] * 0.42],
+      color: input.paint
+        ? [input.paint[0], input.paint[1], input.paint[2]]
+        : [input.trim.color[0] * 0.42, input.trim.color[1] * 0.42, input.trim.color[2] * 0.42],
     };
+    const plain = input.plainEntrance === true;
+    if (!plain && porch !== undefined)
+      buildPorch(edge, input, porch, start, end, input.base, top, out);
     wallQuad(edge, 0.065, start, end, bottom, top, UNIT_UV, panel, out);
-    windowFrame(edge, start, end, bottom, top, input.trim, out, input.relief === true, true);
+    if (!plain)
+      windowFrame(edge, start, end, bottom, top, input.trim, out, input.relief === true, true);
     if (entrance.style === 'service') {
       // Broad shutter panels read as a working loading entrance, with bounded horizontal ribs.
-      for (let i = 1; i < 7; i++) {
+      for (let i = 1; i < (plain ? 0 : 7); i++) {
         const y = bottom + (entrance.height * i) / 7;
         wallQuad(edge, 0.075, start + 0.04, end - 0.04, y, y + 0.025, UNIT_UV, input.trim, out);
       }
@@ -645,6 +691,7 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
           input.window,
           out,
         );
+        if (plain) continue;
         wallQuad(
           edge,
           0.09,
@@ -657,7 +704,7 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
           out,
         );
       }
-      if (panes === 2)
+      if (panes === 2 && !plain)
         wallQuad(
           edge,
           0.08,

@@ -69,16 +69,16 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+const frame = await read(`${source}/map-frame.json`),
+  layout = await read(`${source}/layout.json`);
 it('pins the actual small canopy andfour corner plinths within thelarger precinct', async () => {
-  const m = await read(source + '/source.json'),
-    a = await read(installed + '/asset.json'),
-    p = await read(source + '/placement-report.json'),
-    spec = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(m.files.models[0].sha256);
+  const m = await read(`${source}/source.json`),
+    a = await read(`${installed}/asset.json`),
+    p = await read(`${source}/placement-report.json`),
+    spec = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(m.files.models[0].sha256);
   expect(a.sourceHash).toBe(m.files.models[0].sha256);
-  expect(hashBytes(await readFile(installed + '/' + a.files.main))).toBe(a.hash);
+  expect(hashBytes(await readFile(`${installed}/${a.files.main}`))).toBe(a.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.anchor).toEqual([-0.177681308, 51.502385064]);
   expect(frame.heading).toBe(0.11315986672389666);
@@ -99,7 +99,7 @@ it('pins the actual small canopy andfour corner plinths within thelarger precinc
   expect(layout.canopy.center).toEqual([-0.1763015, -3.5732855]);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: m,
       spec,
       placement: p.entry,
@@ -108,11 +108,11 @@ it('pins the actual small canopy andfour corner plinths within thelarger precinc
   ).toBeDefined();
 });
 it('preserves allfour through arches,closed roofs,spire,figure,column clusters andeach occupied group plinth in all six GLBs', async () => {
-  const asset = await read(runtime + '/asset.json'),
+  const asset = await read(`${runtime}/asset.json`),
     files = [
-      { name: 'source', path: source + '/models/source.glb' },
-      { name: 'import', path: installed + '/' + asset.files.main },
-      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: runtime + '/' + l.file })),
+      { name: 'source', path: `${source}/models/source.glb` },
+      { name: 'import', path: `${installed}/${asset.files.main}` },
+      ...asset.runtimeLods.levels.map((l) => ({ name: l.name, path: `${runtime}/${l.file}` })),
     ],
     C = layout.canopy.center;
   for (const f of files) {
@@ -138,49 +138,49 @@ it('preserves allfour through arches,closed roofs,spire,figure,column clusters a
       ],
     ])
       expect
-        .soft(nearest(ts, P(o), d, true), f.name + ' everycanopyface is genuinely open')
+        .soft(nearest(ts, P(o), d, true), `${f.name} everycanopyface is genuinely open`)
         .toBe(Infinity);
     expect
       .soft(
         24 + nearest(ts, P([0, 24, 5.4]), [0, 1, 0], false),
-        f.name + ' closed pointed arch soffit',
+        `${f.name} closed pointed arch soffit`,
       )
       .toBeCloseTo(27, 2);
     expect
-      .soft(27.5 + nearest(ts, P([0, 27.5, 0]), [0, 1, 0], true), f.name + ' closed roof underside')
+      .soft(27.5 + nearest(ts, P([0, 27.5, 0]), [0, 1, 0], true), `${f.name} closed roof underside`)
       .toBeCloseTo(28.2, 2);
     const ridge = 50 - nearest(ts, P([3, 50, 0]), [0, -1, 0], true);
-    expect.soft(ridge, f.name + ' closed cross-gable ridge').toBeGreaterThan(34.4);
+    expect.soft(ridge, `${f.name} closed cross-gable ridge`).toBeGreaterThan(34.4);
     expect.soft(ridge).toBeLessThan(34.8);
     expect
-      .soft(60 - nearest(ts, P([0, 60, 0]), [0, -1, 0], true), f.name + ' full54m cross')
+      .soft(60 - nearest(ts, P([0, 60, 0]), [0, -1, 0], true), `${f.name} full54m cross`)
       .toBeCloseTo(54, 2);
     expect
       .soft(
         18 - nearest(ts, P([0, 18, 0.035]), [0, -1, 0], true),
-        f.name + ' complete central seated figure',
+        `${f.name} complete central seated figure`,
       )
       .toBeGreaterThan(12.8);
     const column = 10 - nearest(ts, P([10, 10, 4.8]), [-1, 0, 0], true);
-    expect.soft(column, f.name + ' column cluster retains width').toBeGreaterThan(5.1);
+    expect.soft(column, `${f.name} column cluster retains width`).toBeGreaterThan(5.1);
     expect.soft(column).toBeLessThan(5.6);
     expect
       .soft(
         -8 + nearest(ts, P([0, -8, 0]), [0, 1, 0], true),
-        f.name + ' closed central stair underside',
+        `${f.name} closed central stair underside`,
       )
       .toBeCloseTo(far ? 0 : -6, 2);
     for (const g of layout.cornerGroups) {
       expect
         .soft(
           -8 + nearest(ts, [g.center[0], -8, g.center[1]], [0, 1, 0], true),
-          f.name + ' eachgroup hasclosedoccupied foundation',
+          `${f.name} eachgroup hasclosedoccupied foundation`,
         )
         .toBeCloseTo(far ? 0 : -6, 2);
       expect
         .soft(
           15 - nearest(ts, [g.center[0], 15, g.center[1]], [0, -1, 0], true),
-          f.name + ' no missing outer group',
+          `${f.name} no missing outer group`,
         )
         .toBeGreaterThan(3.5);
     }
@@ -188,7 +188,7 @@ it('preserves allfour through arches,closed roofs,spire,figure,column clusters a
       expect
         .soft(
           16 - nearest(ts, P([5.4, 16, 4.85]), [0, -1, 0], true),
-          f.name + ' supported column statuary',
+          `${f.name} supported column statuary`,
         )
         .toBeCloseTo(15.7, 2);
     if (!far)
@@ -196,15 +196,15 @@ it('preserves allfour through arches,closed roofs,spire,figure,column clusters a
         expect
           .soft(
             nearest(ts, P([0, y, 8]), [0, 0, -1], true),
-            f.name + ' two actual open spire stages',
+            `${f.name} two actual open spire stages`,
           )
           .toBe(Infinity);
   }
 }, 60000);
 it('uses the production viewer to replace thecanopy andfour corner groups and preserve all independent native neighbors', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -233,7 +233,7 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         height: f.properties.height ?? 30,
         minHeight: f.properties.min_height ?? 0,
@@ -249,12 +249,12 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
   const owned = layout.nativeMap.ownedParts,
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
-  expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
+  expect(all).toHaveLength((await read(`${source}/mapped-parts.json`)).parts.length);
   expect(target).toHaveLength(5);
   expect(neighbor).toHaveLength(118);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -268,8 +268,8 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
       model.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial()));
     }
   const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     objects = new StructureModelLibrary(async () => model),
     seen = [],
@@ -353,7 +353,7 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
       heightfield: field,
       signal: new AbortController().signal,
     });
-    const landmark = root?.getObjectByName('structure:' + placed.id);
+    const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
@@ -365,7 +365,7 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
       JSON.stringify({ remaining: seen.at(-1), owned: target.map((p) => p.id) }),
     ).toEqual(neighbor.map((b) => b.id).sort());
     for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+      expect(neighbor.map((b) => b.id)).toContain(`native-${i}`);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
@@ -373,8 +373,8 @@ it('uses the production viewer to replace thecanopy andfour corner groups and pr
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -383,7 +383,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -400,7 +400,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

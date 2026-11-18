@@ -1,0 +1,445 @@
+{
+  "source": {
+    "map": "examples/world-explorer/public/terrain/seattle-bellevue-sammamish/world.pmtiles",
+    "layer": "buildings",
+    "zoom": 15,
+    "ground": "examples/world-explorer/public/terrain/seattle-bellevue-sammamish/elevation.pmtiles",
+    "groundZoom": 14,
+    "attribution": "OpenStreetMap contributors (Protomaps); terrain per the region LICENSES.md",
+    "command": "node packages/worldgen/scripts/map-footprint-frame.mjs --center=-122.33272,47.60671 --radius=80 --features=35184409145274,35184830292128,35184830292126,35184830292131,35184830292122 --anchor=-122.333052,47.606623 --heading=edge:35184409145274"
+  },
+  "frame": "Model metres: +Y up from the ground at the anchor; +X along heading (radians counterclockwise from east seen from above); placement rotation.y = heading.",
+  "anchor": [
+    -122.333052,
+    47.606623
+  ],
+  "heading": -1.008773,
+  "headingBasis": "longest mapped edge of feature 35184409145274",
+  "groundAtAnchor": 49.19,
+  "groundRelative": {
+    "min": -5.97,
+    "max": 5.81
+  },
+  "features": [
+    {
+      "id": "35184409145274",
+      "kind": "building",
+      "height": 60,
+      "pieces": [
+        {
+          "tile": "15/5248/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              -25.77,
+              -56.79
+            ],
+            [
+              -25.66,
+              -56.96
+            ],
+            [
+              45.71,
+              -12.01
+            ],
+            [
+              45.77,
+              -3.41
+            ],
+            [
+              29.2,
+              5.9
+            ],
+            [
+              14.1,
+              9.47
+            ],
+            [
+              -22.05,
+              9.07
+            ],
+            [
+              -26.17,
+              5.05
+            ],
+            [
+              -25.77,
+              -56.79
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -2.01,
+            -2.06,
+            -2.15,
+            -2.44,
+            -4.65,
+            -1.4,
+            0.09,
+            0.45,
+            -2.01
+          ]
+        },
+        {
+          "tile": "15/5249/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              -25.77,
+              -56.79
+            ],
+            [
+              -16.37,
+              -64.91
+            ],
+            [
+              45.96,
+              -64.91
+            ],
+            [
+              45.77,
+              -3.41
+            ],
+            [
+              29.2,
+              5.9
+            ],
+            [
+              26.7,
+              6.47
+            ],
+            [
+              -25.94,
+              -26.68
+            ],
+            [
+              -25.77,
+              -56.79
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -2.01,
+            -2.81,
+            5.81,
+            -2.44,
+            -4.65,
+            -4.46,
+            -1.82,
+            -2.01
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184830292128",
+      "kind": "building_part",
+      "kindDetail": "roof",
+      "pieces": [
+        {
+          "tile": "15/5248/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              29.2,
+              5.9
+            ],
+            [
+              36.03,
+              -8.35
+            ],
+            [
+              36.17,
+              -18.02
+            ],
+            [
+              45.71,
+              -12.01
+            ],
+            [
+              45.77,
+              -3.41
+            ],
+            [
+              29.2,
+              5.9
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -4.65,
+            -5.52,
+            -5.97,
+            -2.15,
+            -2.44,
+            -4.65
+          ]
+        },
+        {
+          "tile": "15/5249/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              29.2,
+              5.9
+            ],
+            [
+              36.03,
+              -8.35
+            ],
+            [
+              36.72,
+              -59.31
+            ],
+            [
+              45.9,
+              -54.24
+            ],
+            [
+              45.77,
+              -3.41
+            ],
+            [
+              29.2,
+              5.9
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -4.65,
+            -5.52,
+            -2.99,
+            1,
+            -2.44,
+            -4.65
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184830292126",
+      "kind": "building_part",
+      "kindDetail": "roof",
+      "pieces": [
+        {
+          "tile": "15/5248/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              -7.41,
+              -8.12
+            ],
+            [
+              36.03,
+              -8.35
+            ],
+            [
+              29.2,
+              5.9
+            ],
+            [
+              -26.17,
+              5.05
+            ],
+            [
+              -7.41,
+              -8.12
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.55,
+            -5.52,
+            -4.65,
+            0.45,
+            -0.55
+          ]
+        },
+        {
+          "tile": "15/5249/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              3.53,
+              -8.12
+            ],
+            [
+              36.03,
+              -8.35
+            ],
+            [
+              29.2,
+              5.9
+            ],
+            [
+              25.68,
+              5.82
+            ],
+            [
+              3.53,
+              -8.12
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -0.38,
+            -5.52,
+            -4.65,
+            -4.55,
+            -0.38
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184830292131",
+      "kind": "building_part",
+      "kindDetail": "roof",
+      "pieces": [
+        {
+          "tile": "15/5248/11443",
+          "crossesTileEdge": false,
+          "outline": [
+            [
+              29.2,
+              5.9
+            ],
+            [
+              14.1,
+              9.47
+            ],
+            [
+              -22.05,
+              9.07
+            ],
+            [
+              -26.17,
+              5.05
+            ],
+            [
+              29.2,
+              5.9
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -4.65,
+            -1.4,
+            0.09,
+            0.45,
+            -4.65
+          ]
+        },
+        {
+          "tile": "15/5249/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              29.2,
+              5.9
+            ],
+            [
+              26.7,
+              6.47
+            ],
+            [
+              25.68,
+              5.82
+            ],
+            [
+              29.2,
+              5.9
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -4.65,
+            -4.46,
+            -4.55,
+            -4.65
+          ]
+        }
+      ]
+    },
+    {
+      "id": "35184830292122",
+      "kind": "building_part",
+      "kindDetail": "roof",
+      "pieces": [
+        {
+          "tile": "15/5248/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              -7.44,
+              -45.48
+            ],
+            [
+              -7.41,
+              -8.12
+            ],
+            [
+              -26.17,
+              5.05
+            ],
+            [
+              -25.77,
+              -56.79
+            ],
+            [
+              -25.66,
+              -56.96
+            ],
+            [
+              -7.44,
+              -45.48
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -3.75,
+            -0.55,
+            0.45,
+            -2.01,
+            -2.06,
+            -3.75
+          ]
+        },
+        {
+          "tile": "15/5249/11443",
+          "crossesTileEdge": true,
+          "outline": [
+            [
+              -7.33,
+              -64.92
+            ],
+            [
+              -7.37,
+              -14.99
+            ],
+            [
+              -25.94,
+              -26.68
+            ],
+            [
+              -25.77,
+              -56.79
+            ],
+            [
+              -7.33,
+              -64.92
+            ]
+          ],
+          "holes": [],
+          "groundAtVertices": [
+            -2.99,
+            -0.98,
+            -1.82,
+            -2.01,
+            -2.99
+          ]
+        }
+      ]
+    }
+  ]
+}

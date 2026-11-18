@@ -1,4 +1,6 @@
-/** Deterministic source GLBs for the first site-specific structure studies.
+/** Deterministic source GLBs for the first site-specific structure studies: the Golden Gate and
+ * SR 520 bridge sections. The Space Needle moved to its own bundle generator
+ * (content/worldgen/source/places/c2/c22/space-needle/models/).
  * Run after building @bendyline/molen-worldgen:
  *   node packages/worldgen/scripts/generate-site-structures.mjs [--check]
  *
@@ -21,7 +23,7 @@ const biome = resolve(
   fileURLToPath(new URL('.', import.meta.url)),
   '../node_modules/@biomejs/biome/bin/biome',
 );
-const names = ['space-needle', 'golden-gate-bridge', 'sr-520-floating-bridge'];
+const names = ['golden-gate-bridge', 'sr-520-floating-bridge'];
 const white = [0.88, 0.9, 0.88];
 const steel = [0.78, 0.25, 0.11];
 const concrete = [0.58, 0.6, 0.58];
@@ -158,195 +160,6 @@ function tube(out, slot, a, b, radius, color, sides = 8) {
   );
 }
 
-/** Solid circular profile; layers are [height, radius, material slot, color]. */
-function profile(out, layers, sides = 24) {
-  for (let j = 0; j < layers.length - 1; j++) {
-    const [y0, r0] = layers[j];
-    const [y1, r1, slot, color] = layers[j + 1];
-    for (let i = 0; i < sides; i++) {
-      const t0 = (i / sides) * Math.PI * 2;
-      const t1 = ((i + 1) / sides) * Math.PI * 2;
-      const p = (y, r, t) => [r * Math.cos(t), y, r * Math.sin(t)];
-      const mid = (t0 + t1) / 2;
-      const normal = normalize([(y1 - y0) * Math.cos(mid), r0 - r1, (y1 - y0) * Math.sin(mid)]);
-      quad(out, slot, [p(y0, r0, t0), p(y0, r0, t1), p(y1, r1, t1), p(y1, r1, t0)], normal, color);
-    }
-  }
-  const [bottomY, bottomR] = layers[0];
-  const [topY, topR, topSlot, topColor] = layers.at(-1);
-  const circle = (y, r) =>
-    Array.from({ length: sides }, (_, i) => {
-      const t = (i / sides) * Math.PI * 2;
-      return [r * Math.cos(t), y, r * Math.sin(t)];
-    });
-  out.addConvexPolygon(
-    layers[1][2],
-    ref,
-    circle(bottomY, bottomR),
-    [0, -1, 0],
-    (p) => [p[0], p[2]],
-    layers[1][3],
-  );
-  out.addConvexPolygon(topSlot, ref, circle(topY, topR), [0, 1, 0], (p) => [p[0], p[2]], topColor);
-}
-
-/** Faceted tube along a polyline, capped only at its ends (legs and spires). */
-function polyTube(out, slot, points, radius, color, sides = 6) {
-  for (let i = 0; i < points.length - 1; i++) {
-    const a = points[i];
-    const b = points[i + 1];
-    const axis = normalize(b.map((v, k) => v - a[k]));
-    const across = normalize(cross(axis, Math.abs(axis[1]) < 0.95 ? [0, 1, 0] : [1, 0, 0]));
-    const other = normalize(cross(axis, across));
-    const ring = (center, angle) =>
-      center.map((v, k) => v + radius * (Math.cos(angle) * across[k] + Math.sin(angle) * other[k]));
-    for (let j = 0; j < sides; j++) {
-      const t0 = (j / sides) * Math.PI * 2;
-      const t1 = ((j + 1) / sides) * Math.PI * 2;
-      const normal = normalize(
-        across.map((v, k) => Math.cos((t0 + t1) / 2) * v + Math.sin((t0 + t1) / 2) * other[k]),
-      );
-      quad(out, slot, [ring(a, t0), ring(a, t1), ring(b, t1), ring(b, t0)], normal, color);
-    }
-  }
-}
-
-/**
- * The Space Needle at medium-fi: six legs in three pairs pinch to the hourglass waist and splay
- * again under the top house; a central core carries the gold elevators; the 100-foot SkyLine
- * level rings the core; the top house is a tapered, ribbed underside, the restaurant and
- * observation glass bands, the flared halo rim and a conical roof under the spire and beacon.
- * Under 3,000 triangles, so the skyline level keeps this exact silhouette.
- */
-function spaceNeedle(out, spec) {
-  const total = spec.heightMeters;
-  const legWhite = [0.78, 0.8, 0.78];
-  const roofWhite = [0.7, 0.72, 0.71];
-  const core = [0.52, 0.54, 0.55];
-  const restaurantGlass = [0.05, 0.1, 0.16];
-  const deckGlass = [0.09, 0.17, 0.25];
-  const gold = [0.8, 0.43, 0.07];
-  const beacon = [0.8, 0.13, 0.1];
-  const base = 1.5;
-  const waist = 105;
-  const top = 149;
-  // Plinth.
-  profile(
-    out,
-    [
-      [0, 19],
-      [base, 19, 'foundation', concrete],
-      [base + 0.1, 17.5, 'foundation', concrete],
-    ],
-    24,
-  );
-  // Leg centerline radius and pair half-separation by height: wide tripod, waist, splay.
-  const radius = (y) =>
-    y <= waist
-      ? 4.6 + 12.4 * Math.pow((waist - y) / (waist - base), 1.6)
-      : 4.6 + 4.2 * Math.pow((y - waist) / (top - waist), 1.4);
-  const spread = (y) =>
-    y <= waist
-      ? 0.9 + 2.5 * Math.pow((waist - y) / (waist - base), 1.3)
-      : 0.9 + 0.8 * ((y - waist) / (top - waist));
-  const heights = [base, 12, 26, 42, 60, 80, waist, 124, 138, top];
-  const legPoint = (a, side, y) => {
-    const radial = [Math.cos(a), 0, Math.sin(a)];
-    const tangent = [-Math.sin(a), 0, Math.cos(a)];
-    const r = radius(y);
-    const s = spread(y) * side;
-    return [radial[0] * r + tangent[0] * s, y, radial[2] * r + tangent[2] * s];
-  };
-  for (let pair = 0; pair < 3; pair++) {
-    const a = (pair / 3) * Math.PI * 2 + Math.PI / 6;
-    for (const side of [-1, 1])
-      polyTube(
-        out,
-        'wall',
-        heights.map((y) => legPoint(a, side, y)),
-        0.95,
-        legWhite,
-        6,
-      );
-    // Ties across each pair.
-    for (const y of [26, 60, waist, 138])
-      tube(out, 'trim', legPoint(a, -1, y), legPoint(a, 1, y), 0.35, legWhite, 4);
-  }
-  // Central core, tapering slightly, into the top house.
-  profile(
-    out,
-    [
-      [base, 3.4],
-      [top, 2.7, 'trim', core],
-    ],
-    12,
-  );
-  // Gold elevator cabs on the core: the Needle's one accent color.
-  for (const [angle, y] of [
-    [0, 72],
-    [Math.PI, 118],
-  ]) {
-    const c = [Math.cos(angle) * 3.4, y, Math.sin(angle) * 3.4];
-    box(out, 'trim', [c[0] - 1.2, y, c[2] - 1.2], [c[0] + 1.2, y + 3.4, c[2] + 1.2], gold);
-  }
-  // SkyLine level at 100 feet.
-  profile(
-    out,
-    [
-      [28.2, 3.4],
-      [29.2, 11.5, 'trim', legWhite],
-      [32, 11.5, 'window', restaurantGlass],
-      [32.6, 11, 'roof', roofWhite],
-      [33, 3.4, 'roof', roofWhite],
-    ],
-    24,
-  );
-  // Top house.
-  profile(
-    out,
-    [
-      [top - 3, 3],
-      [top - 1, 8, 'wall', legWhite],
-      [152.4, 17.5, 'wall', legWhite],
-      [153.2, 19.6, 'trim', legWhite],
-      [156.8, 19.8, 'window', restaurantGlass],
-      [157.8, 21, 'trim', legWhite],
-      [161.2, 21, 'window', deckGlass],
-      [162, 22.6, 'trim', legWhite],
-      [162.8, 22.6, 'trim', legWhite],
-      [164, 19.6, 'roof', roofWhite],
-      [169.4, 6.6, 'roof', roofWhite],
-      [171, 4, 'roof', roofWhite],
-      [172, 2.2, 'trim', legWhite],
-    ],
-    32,
-  );
-  // Ribs under the top house, where the legs fan out to the deck.
-  for (let i = 0; i < 24; i++) {
-    const a = (i / 24) * Math.PI * 2;
-    tube(
-      out,
-      'trim',
-      [Math.cos(a) * 7.6, top - 0.6, Math.sin(a) * 7.6],
-      [Math.cos(a) * 19.6, 153.1, Math.sin(a) * 19.6],
-      0.32,
-      legWhite,
-      4,
-    );
-  }
-  // Spire and beacon.
-  profile(
-    out,
-    [
-      [172, 1.2],
-      [179, 0.75, 'trim', legWhite],
-      [total - 1.6, 0.42, 'trim', legWhite],
-      [total, 0.12, 'trim', beacon],
-    ],
-    8,
-  );
-}
-
 function goldenGate(out, spec) {
   const main = spec.mainSpanMeters;
   const side = spec.sideSpanMeters;
@@ -455,7 +268,6 @@ function sr520(out, spec) {
 }
 
 const builders = {
-  'space-needle': spaceNeedle,
   'golden-gate-bridge': goldenGate,
   'sr-520-floating-bridge': sr520,
 };
@@ -468,19 +280,15 @@ const material = {
 };
 
 function previewScene(name, spec) {
-  const isBridge = name !== 'space-needle';
+  const isBridge = true;
   const length =
     name === 'golden-gate-bridge'
       ? spec.mainSpanMeters + 2 * spec.sideSpanMeters
-      : name === 'sr-520-floating-bridge'
-        ? spec.lengthMeters
-        : 300;
+      : spec.lengthMeters;
   const camera =
-    name === 'space-needle'
-      ? { position: [125, 100, 175], lookAt: [0, 92, 0], fov: 36 }
-      : name === 'golden-gate-bridge'
-        ? { position: [80, 320, 1500], lookAt: [0, 95, 0], fov: 43 }
-        : { position: [250, 55, 240], lookAt: [0, 5, 0], fov: 43 };
+    name === 'golden-gate-bridge'
+      ? { position: [80, 320, 1500], lookAt: [0, 95, 0], fov: 43 }
+      : { position: [250, 55, 240], lookAt: [0, 5, 0], fov: 43 };
   return {
     format: 'molen/scene@3',
     name: `${spec.title} asset preview`,

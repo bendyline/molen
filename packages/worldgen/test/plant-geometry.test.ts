@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { ModelLibrary } from '../src/client/instanced-models';
 import { createPlantGeometry } from '../src/client/plant-geometry';
-import { SCATTER_SOLID_UV } from '../src/client/scatter-material';
+import { SCATTER_MASS_UV, SCATTER_SOLID_UV } from '../src/client/scatter-material';
 import { seasonalPlantPresets } from '../src/kernel/plant-seasons';
 import { type PlantPreset, plantPresetSchema } from '../src/kernel/plant-types';
 
@@ -31,7 +31,7 @@ describe('regional procedural plants', () => {
   });
   it('varies branching and fronds in every family without changing bounds, density or topology', () => {
     const families = new Map(catalog.plants.map((p) => [p.family, p]));
-    expect(families.size).toBe(19);
+    expect(families.size).toBe(21);
     for (const p of families.values()) {
       const base = createPlantGeometry({ ...p, shapeSeed: 0 });
       const a = createPlantGeometry({ ...p, shapeSeed: 137 });
@@ -107,6 +107,67 @@ describe('regional procedural plants', () => {
     }
   }, 30_000); // Checks every preset's vertices at three detail levels; exceeds 5 s on CI.
 
+  it('draws a far broadleaf crown round the near crown, on its trunk', () => {
+    const tree = catalog.plants.find(
+      (plant) => plant.id === 'molen.ecology.plant.maple' && plant.family === 'broadleaf',
+    );
+    if (!tree) throw new Error('Missing maple fixture');
+    const p = { ...tree, shapeSeed: 0 };
+    // Per level: how wide the tree is at each tenth of its height, and where its foliage is.
+    const profile = (detail: boolean | 'distant' | 'horizon') => {
+      const geometry = createPlantGeometry(p, detail);
+      const position = geometry.getAttribute('position');
+      const uv = geometry.getAttribute('uv');
+      const widths = new Array<number>(10).fill(0);
+      let lowestFoliage = Number.POSITIVE_INFINITY;
+      let mass = 0;
+      for (let i = 0; i < position.count; i++) {
+        const band = Math.min(9, Math.floor((position.getY(i) / p.height) * 10));
+        widths[band] = Math.max(
+          widths[band] as number,
+          Math.hypot(position.getX(i) - p.lean * p.height, position.getZ(i)),
+        );
+        const isMass =
+          uv.getX(i) === Math.fround(SCATTER_MASS_UV[0]) &&
+          uv.getY(i) === Math.fround(SCATTER_MASS_UV[1]);
+        const isCard = uv.getX(i) < 0.9;
+        if (isMass) mass++;
+        if (isMass || isCard) lowestFoliage = Math.min(lowestFoliage, position.getY(i));
+      }
+      const triangles = position.count / 3;
+      geometry.dispose();
+      return { widths, lowestFoliage, mass, triangles };
+    };
+    const near = profile(false);
+    const far = profile('distant');
+    const horizon = profile('horizon');
+    // The near tree is a trunk under a crown: nothing but stem in its lowest fifth.
+    expect(Math.max(near.widths[0] as number, near.widths[1] as number)).toBeLessThan(
+      p.width * 0.1,
+    );
+    // So is the far one. As one ellipsoid over the tree's whole height it was half the tree's
+    // width at a tenth of its height, and its widest at the middle.
+    expect(Math.max(far.widths[0] as number, far.widths[1] as number)).toBeLessThan(p.width * 0.1);
+    expect(far.lowestFoliage).toBeGreaterThan(p.height * p.crownBase * 0.6);
+    expect(far.lowestFoliage).toBeLessThan(near.lowestFoliage + p.height * 0.08);
+    // Both are widest in the same part of the crown, and to nearly the same width.
+    const widest = (widths: number[]): number => widths.indexOf(Math.max(...widths));
+    expect(Math.abs(widest(far.widths) - widest(near.widths))).toBeLessThanOrEqual(1);
+    expect(Math.max(...far.widths)).toBeGreaterThan(Math.max(...near.widths) * 0.8);
+    expect(Math.max(...far.widths)).toBeLessThanOrEqual(Math.max(...near.widths) * 1.001);
+    // Its crown is a foliage mass, and all of its crown: the trunk is eight triangles of bark.
+    expect(far.mass).toBe((far.triangles - 8) * 3);
+    expect(far.triangles).toBeLessThanOrEqual(56);
+    // Past it the horizon level has no trunk and fewer faces, and stands at the same height.
+    expect(horizon.triangles).toBeLessThanOrEqual(30);
+    expect(horizon.mass).toBe(horizon.triangles * 3);
+    expect(horizon.lowestFoliage).toBeGreaterThan(p.height * p.crownBase * 0.6);
+    // Its corners reach a little past the far crown's: with fewer sides its outline cuts
+    // inside theirs, and at the same reach a wood thinned where the two levels met.
+    expect(Math.max(...horizon.widths)).toBeGreaterThan(Math.max(...far.widths));
+    expect(Math.max(...horizon.widths)).toBeLessThan(Math.max(...far.widths) * 1.25);
+  });
+
   it('gives conifers a horizon cone past a far level that keeps their skirts', async () => {
     const fir = plants.find((entry) => entry.family === 'conifer' && !entry.leafless);
     const palm = plants.find((entry) => entry.family === 'palm');
@@ -140,11 +201,29 @@ describe('regional procedural plants', () => {
     expect(await library.prepare(fir.id, 'horizon')).not.toBe(
       await library.prepare(fir.id, 'distant'),
     );
-    // Every other family's horizon level is its far model, cached once.
+    // A palm's horizon level is its far model, cached once.
     expect(await library.prepare(palm.id, 'horizon')).toBe(
       await library.prepare(palm.id, 'distant'),
     );
     library.dispose();
+    // A broadleaf tree in leaf has one of its own; a bare one and a shrub do not.
+    const maple = plants.find((entry) => entry.id === 'molen.ecology.plant.maple');
+    const bare = plants.find((entry) => entry.id === 'molen.ecology.plant.maple.winter');
+    if (maple === undefined || bare === undefined) throw new Error('Missing maple fixtures');
+    const broadleaf = new ModelLibrary(undefined, {}, false, {
+      [maple.id]: maple,
+      [bare.id]: bare,
+    });
+    expect(await broadleaf.prepare(maple.id, 'horizon')).not.toBe(
+      await broadleaf.prepare(maple.id, 'distant'),
+    );
+    expect(await broadleaf.prepare(bare.id, 'horizon')).toBe(
+      await broadleaf.prepare(bare.id, 'distant'),
+    );
+    expect(await broadleaf.prepare('builtin:shrub', 'horizon')).toBe(
+      await broadleaf.prepare('builtin:shrub', 'distant'),
+    );
+    broadleaf.dispose();
   });
 
   it('caches and releases distinct procedural LODs without requesting a GLB', async () => {
@@ -254,7 +333,10 @@ describe('regional procedural plants', () => {
         const counts: [number, number] = [0, 0];
         for (let i = 0; i < uv.count; i++) {
           if (uv.getX(i) === Math.fround(SCATTER_SOLID_UV[0])) {
-            expect(uv.getY(i)).toBe(Math.fround(SCATTER_SOLID_UV[1]));
+            // Bark and cores are plain solids; a far crown is a foliage mass.
+            expect([SCATTER_SOLID_UV[1], SCATTER_MASS_UV[1]].map(Math.fround)).toContain(
+              uv.getY(i),
+            );
             continue;
           }
           expect(uv.getX(i)).toBeLessThan(0.9);

@@ -25,6 +25,8 @@ export {
 export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
 export {
+  type InteriorDoorQuery,
+  type InteriorDoorState,
   type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
@@ -84,6 +86,7 @@ export {
   type StructureStreamingView,
   structureGeometryBytes,
   structureStreamingBudget,
+  structureStreamingMobile,
 } from './client/structure-streamer';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';
 export { loadStylePack, withStylePackDocuments } from './client/stylepack-loader';

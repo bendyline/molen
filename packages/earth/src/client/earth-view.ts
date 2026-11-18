@@ -2,6 +2,7 @@ import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
 import type {
   LiveryData,
   LiveryVariant,
+  Quat,
   WaterSettings,
   WeatherData,
 } from '@bendyline/molen-schema';
@@ -636,11 +637,15 @@ export interface EarthInteractable {
    * `actor`: an interactable actor within reach and in sight. `pedestrian`: an ambient
    * pedestrian (with `interaction.pedestrians`; `view.actors.adopt(id)` makes it an actor).
    * `elevator`: the lift the viewer is standing in, which the key takes up a floor.
+   * `door`: a building's door within reach and in front of the walker, which the key opens or
+   * shuts; `id` names it and `open` says which way it is.
    */
-  kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'none';
+  kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'door' | 'none';
   id?: string;
   /** Meters from the viewer, on foot. */
   distance?: number;
+  /** For a `door`: open or opening. */
+  open?: boolean;
 }
 
 /** The interact key was pressed. A handler that `claim()`s it keeps the view's own action from running. */
@@ -970,6 +975,13 @@ interface EarthStack {
 }
 
 type Listeners = { [K in keyof EarthViewEvents]: Set<(payload: EarthViewEvents[K]) => void> };
+
+/**
+ * A frame's camera. `rotation` is set when the view's up is not world up: an aircraft's views
+ * carry the airframe's own orientation (the cockpit rolls and pitches with it, the chase view
+ * takes its up near the vertical of a loop), which aiming at `lookAt` would level again.
+ */
+type EarthCameraPose = NavigationPose & { rotation?: Quat };
 
 function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
   const fixtures = quality === 'high' ? 300 : quality === 'balanced' ? 160 : 60;
@@ -1826,7 +1838,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ),
       },
     );
-    let pose = orbit.update(0, input.read(0), environment);
+    let pose: EarthCameraPose = orbit.update(0, input.read(0), environment);
     stack = await createStack(frameLatitude, pose);
     // Disposed, the stack is dropped too: the view's methods close over this scope, so a handle
     // the host keeps after dispose() (a stale closure, a dev tool) would otherwise keep every
@@ -2578,6 +2590,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       if (current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]))
         return { kind: 'elevator', distance: 0 };
       const eye = walkerEye();
+      const door = current.worldgen?.doorAt(eye, { facing: cameraForward(look.yaw, 0) });
       const distanceTo = (position: [number, number, number] | undefined): number =>
         position === undefined
           ? Number.POSITIVE_INFINITY
@@ -2586,6 +2599,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const plane = current.aircraft?.nearest(eye);
       // Nearest wins; on a tie the earlier kind (car, aircraft, actor, pedestrian).
       const candidates: EarthInteractable[] = [];
+      if (door !== undefined)
+        candidates.push({ kind: 'door', id: door.id, distance: door.distance, open: door.open });
       if (car !== undefined)
         candidates.push({
           kind: 'vehicle',
@@ -2628,6 +2643,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       if (found.kind === 'elevator') {
         const stop = current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]);
         if (stop) ride = { ...stop, level: ((ride?.level ?? stop.level) + 1) % stop.floors.length };
+        return;
+      }
+      if (found.kind === 'door' && found.id !== undefined) {
+        const open = found.open !== true;
+        if (
+          !current.worldgen?.setDoor(found.id, open, [walker.feet.x, walker.feet.y, walker.feet.z])
+        )
+          emit('message', { text: open ? 'The door is locked' : 'Step out of the doorway first' });
         return;
       }
       // Talking to someone is the host's business: unclaimed, nothing happens.
@@ -3539,6 +3562,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       // Auto hold: a car at rest with no throttle stays put, even parked on a slope.
       const holding = frameInput.move.forward === 0 && Math.abs(vehicles.speed) < 0.6;
       if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
+      // Last frame's shadow map: from the driver's seat the car leaves one too coarse for its cabin.
+      vehicles.shadowTexel = renderer.shadowTexelSize;
       vehicles.update(dt, {
         throttle: frameInput.move.forward,
         steering: frameInput.move.right,
@@ -3566,7 +3591,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       dt: number,
       frameInput: NavigationInput,
       current: EarthStack,
-    ): NavigationPose => {
+    ): EarthCameraPose => {
       const aircraft = current.aircraft as EarthAircraft;
       const pilot = frameInput.pilot;
       if (pilot?.power !== undefined) aircraft.setPower(pilot.power);
@@ -3615,7 +3640,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         .sub(new THREE.Vector3().fromArray(view.position))
         .normalize()
         .toArray() as [number, number, number];
-      return { position: view.position, lookAt: view.lookAt, direction };
+      // The pilot's head rides the seat: the horizon tilts in a bank instead of the cockpit
+      // turning around a level camera.
+      return { position: view.position, lookAt: view.lookAt, direction, rotation: view.rotation };
     };
 
     let audio: EarthAudio | undefined;
@@ -3868,7 +3895,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       markers.update(pose.position);
       if (shadowsOn) renderer.setShadowFocus(shadowFocus(pose));
-      viewer.setCamera({ position: pose.position, lookAt: pose.lookAt });
+      // The renderer takes a look-at target before a rotation, so a rotated pose sends only that.
+      viewer.setCamera(
+        pose.rotation !== undefined
+          ? { position: pose.position, rotation: pose.rotation }
+          : { position: pose.position, lookAt: pose.lookAt },
+      );
       const audible = audio !== undefined && !audio.layer.muted && audio.layer.unlocked;
       if (audio !== undefined && (audible || now - audioSilentAt >= SILENT_AUDIO_MS)) {
         audioSilentAt = audible ? Number.NEGATIVE_INFINITY : now;

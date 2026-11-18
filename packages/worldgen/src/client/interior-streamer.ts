@@ -1,6 +1,12 @@
 import * as THREE from 'three';
 import { distancePointToRing, pointInPolygon } from '../kernel/geometry2d';
 import { resolveInteriorProfile, validateInteriorCatalog } from '../kernel/interior-catalog';
+import {
+  buildInteriorDoorFrame,
+  buildInteriorDoorLeaf,
+  type InteriorDoor,
+  interiorDoors,
+} from '../kernel/interior-doors';
 import { generateInteriorGeometrySteps } from '../kernel/interior-geometry';
 import { generateInteriorPlanSteps } from '../kernel/interior-plan';
 import { interiorToLocal } from '../kernel/interior-site';
@@ -33,6 +39,33 @@ export interface InteriorStreamingOptions extends InteriorGenerateOptions {
    * added to `group` are disposed with it. `origin` converts site coordinates to the host's.
    */
   furnish?: (plan: InteriorPlan, group: THREE.Group, origin: Vec2) => void;
+  /** Clock for door swings, in milliseconds (default `performance.now`). */
+  now?: () => number;
+}
+/** A door near a viewer: see {@link InteriorStreamer.doorAt}. */
+export interface InteriorDoorState {
+  /** `<building identity>#door<n>`; pass it to {@link InteriorStreamer.setDoor}. */
+  id: string;
+  /** Identity of the building it opens into. */
+  identity: string;
+  /** Middle of the threshold, at floor height, in the frame of the position asked about. */
+  position: [number, number, number];
+  /** Horizontal meters from the position asked about to the nearest point of the doorway. */
+  distance: number;
+  /** Open, or opening; false when closed or closing. */
+  open: boolean;
+  /** How far open: 0 shut, 1 fully open. */
+  amount: number;
+  /** Asked to open, and waiting for the rooms behind it to be built before it swings. */
+  waiting: boolean;
+  /** Its rooms could not be built, so it stays shut. */
+  locked: boolean;
+}
+export interface InteriorDoorQuery {
+  /** Horizontal meters from the position to the doorway (default 1.8). */
+  reach?: number;
+  /** The viewer's forward direction; a door behind or beside them is passed over. */
+  facing?: readonly [number, number, number];
 }
 /** The lift a viewer is standing in. */
 export interface InteriorElevatorStop {
@@ -66,6 +99,18 @@ interface Entry {
   plan?: InteriorPlan;
   /** A storey a lift has been asked for, built before anyone is moved to it. */
   requested?: number;
+  doors: DoorEntry[];
+}
+interface DoorEntry {
+  door: InteriorDoor;
+  entry: Entry;
+  /** First vertex and vertex count of each leaf in the region's door mesh. */
+  leaves: Array<[first: number, count: number]>;
+  /** 0 shut to 1 open. */
+  amount: number;
+  target: 0 | 1;
+  /** 1 swings into the building, -1 out of it: away from whoever opened it. */
+  sense: 1 | -1;
 }
 interface Region {
   root: THREE.Object3D;
@@ -73,9 +118,16 @@ interface Region {
   bounds: [number, number, number, number];
   height: [number, number];
   entries: Entry[];
-  gates: THREE.Mesh;
+  /** Opaque stand-ins for unready windows; absent when the sites have none. */
+  gates?: THREE.Mesh;
   indices: Uint32Array;
+  /** Every door of the region in one mesh, with its leaves' closed vertices to swing them from. */
+  doors?: { mesh: THREE.Mesh; positions: Float32Array; normals: Float32Array };
 }
+/** Seconds a door takes to swing fully open or shut. */
+const DOOR_SWING_SECONDS = 0.7;
+/** Default reach of {@link InteriorStreamer.doorAt}. */
+const DOOR_REACH = 1.8;
 interface Candidate {
   entry: Entry;
   distance: number;
@@ -122,6 +174,16 @@ export class InteriorStreamer {
     depthWrite: false,
   });
   private readonly cover = new THREE.MeshBasicMaterial({ color: 0x33434b, side: THREE.DoubleSide });
+  // Doors stand in the street's light like the walls round them, not in a room's dimmer share.
+  private readonly door = new THREE.MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.62,
+    metalness: 0,
+  });
+  /** Doors on their way open or shut, or waiting for their rooms. */
+  private readonly swinging = new Set<DoorEntry>();
+  private readonly now: () => number;
+  private lastUpdate: number | undefined;
   private readonly furnish: InteriorStreamingOptions['furnish'];
   private job:
     | {
@@ -159,9 +221,10 @@ export class InteriorStreamer {
       throw new RangeError(
         'Interior streaming needs positive finite budgets, an integer resident cap, and unloadDistance > loadDistance',
       );
-    const { prepare, furnish, ...generation } = options;
+    const { prepare, furnish, now, ...generation } = options;
     this.prepare = prepare;
     this.furnish = furnish;
+    this.now = now ?? (() => performance.now());
     this.generation = { ...generation, catalog: validateInteriorCatalog(generation.catalog) };
   }
 
@@ -169,6 +232,7 @@ export class InteriorStreamer {
     this.unregister(root);
     if (!sites.length) return;
     const builder = new MeshBufferBuilder();
+    const doorBuilder = new MeshBufferBuilder();
     const region = {
       root,
       origin,
@@ -178,7 +242,11 @@ export class InteriorStreamer {
     } as unknown as Region;
     for (const site of sites) {
       const start = builder.triangleCount() * 3;
-      for (const o of site.openings) {
+      const doors = interiorDoors(site, this.generation.catalog);
+      // A doorway with a door needs no stand-in: the shut door is what closes it.
+      const doorways = new Set(doors.map((door) => door.opening));
+      for (const [index, o] of site.openings.entries()) {
+        if (doorways.has(index)) continue;
         const a = site.outline[o.edge] as Vec2,
           b = site.outline[(o.edge + 1) % site.outline.length] as Vec2;
         const len = Math.hypot(b[0] - a[0], b[1] - a[1]),
@@ -213,13 +281,24 @@ export class InteriorStreamer {
           ],
           [1, 1, 1],
         );
-      region.entries.push({
+      const entry: Entry = {
         site,
         region,
         range: [start, builder.triangleCount() * 3],
         bytes: 0,
         failed: false,
-      });
+        doors: [],
+      };
+      for (const door of doors) {
+        const leaves = door.leaves.map((_, leaf): [number, number] => {
+          const first = doorBuilder.vertexCount();
+          buildInteriorDoorLeaf(door, leaf, doorBuilder);
+          return [first, doorBuilder.vertexCount() - first];
+        });
+        buildInteriorDoorFrame(door, doorBuilder);
+        entry.doors.push({ door, entry, leaves, amount: 0, target: 0, sense: 1 });
+      }
+      region.entries.push(entry);
       region.bounds[0] = Math.min(region.bounds[0], site.bounds[0] + origin[0]);
       region.bounds[1] = Math.min(region.bounds[1], site.bounds[1] + origin[1]);
       region.bounds[2] = Math.max(region.bounds[2], site.bounds[2] + origin[0]);
@@ -229,18 +308,32 @@ export class InteriorStreamer {
     }
     const buffers = builder.finalize();
     region.indices = buffers.indices.slice();
-    region.gates = buffersToObject3D(
-      buffers,
-      { materialFor: () => this.cover },
-      'worldgen:interior-portals',
-    );
-    region.gates.userData.walkDoubleSided = true;
-    // Covers and interior structure block the sun like the walls around them; without them in the
-    // shadow pass, sunlight crossed a building through every pair of windows in line and patched
-    // its shadow with bright window shapes. Rooms change little: the shell already shades them,
-    // and only sun that passed through an inner wall is stopped now.
-    region.gates.castShadow = true;
-    root.add(region.gates);
+    if (buffers.triangleCount > 0) {
+      const gates = buffersToObject3D(
+        buffers,
+        { materialFor: () => this.cover },
+        'worldgen:interior-portals',
+      );
+      gates.userData.walkDoubleSided = true;
+      // Covers and interior structure block the sun like the walls around them; without them in
+      // the shadow pass, sunlight crossed a building through every pair of windows in line and
+      // patched its shadow with bright window shapes. Rooms change little: the shell already
+      // shades them, and only sun that passed through an inner wall is stopped now.
+      gates.castShadow = true;
+      root.add(gates);
+      region.gates = gates;
+    }
+    if (!doorBuilder.isEmpty()) {
+      const doors = doorBuilder.finalize();
+      // The mesh swings leaves in place; the closed copies are what each pose is turned from.
+      const positions = doors.positions.slice(),
+        normals = doors.normals.slice();
+      const mesh = buffersToObject3D(doors, { materialFor: () => this.door }, 'worldgen:doors');
+      // An open leaf reaches past the shut doors' bounds; keep it from being culled.
+      if (mesh.geometry.boundingSphere) mesh.geometry.boundingSphere.radius += 1.6;
+      root.add(mesh);
+      region.doors = { mesh, positions, normals };
+    }
     this.regions.set(root, region);
     this.counters.sites += sites.length;
   }
@@ -249,14 +342,21 @@ export class InteriorStreamer {
     const region = this.regions.get(root);
     if (!region) return;
     if (this.job?.entry.region === region) this.job = undefined;
-    for (const entry of region.entries) this.evict(entry, false);
-    region.gates.removeFromParent();
-    disposeWorldgenObject(region.gates);
+    for (const entry of region.entries) {
+      this.evict(entry, false);
+      for (const door of entry.doors) this.swinging.delete(door);
+    }
+    for (const mesh of [region.gates, region.doors?.mesh]) {
+      if (mesh === undefined) continue;
+      mesh.removeFromParent();
+      disposeWorldgenObject(mesh);
+    }
     this.regions.delete(root);
     this.counters.sites -= region.entries.length;
   }
 
   private gates(region: Region): void {
+    if (region.gates === undefined) return;
     const index = region.gates.geometry.index as THREE.BufferAttribute;
     let count = 0;
     for (const entry of region.entries) {
@@ -268,8 +368,10 @@ export class InteriorStreamer {
     index.needsUpdate = true;
     region.gates.geometry.setDrawRange(0, count);
   }
-  private evict(entry: Entry, updateGates = true): void {
+  /** Release an interior. Its doors shut with it, unless it is a tower rebuilt in place. */
+  private evict(entry: Entry, updateGates = true, keepDoors = false): void {
     if (!entry.object) return;
+    if (!keepDoors) for (const door of entry.doors) this.shut(door);
     entry.preparing?.abort();
     delete entry.preparing;
     entry.object.removeFromParent();
@@ -287,6 +389,10 @@ export class InteriorStreamer {
     if (!position.every(Number.isFinite)) return;
     const started = performance.now(),
       o = this.options;
+    const clock = this.now();
+    // A long stall (a hidden page) finishes a swing rather than snapping through several.
+    const seconds = Math.min(0.1, Math.max(0, (clock - (this.lastUpdate ?? clock)) / 1000));
+    this.lastUpdate = clock;
     const candidates: Candidate[] = [];
     for (const region of this.regions.values()) {
       const [x0, z0, x1, z1] = region.bounds;
@@ -371,7 +477,7 @@ export class InteriorStreamer {
         this.job = undefined;
         // A resident tower rebuilt around another floor.
         const rebuilt = entry.object !== undefined;
-        if (rebuilt) this.evict(entry, false);
+        if (rebuilt) this.evict(entry, false, true);
         // Keep the nearest occupied interior even when more distant furnishings exhaust memory.
         for (const candidate of [...wanted].reverse()) {
           if (this.counters.bytes + geometry.bytes <= o.maxBytes) break;
@@ -453,7 +559,182 @@ export class InteriorStreamer {
       this.counters.failed++;
       console.warn('[molen] interior generation:', error);
     }
+    this.swing(seconds, keep);
     this.counters.lastWorkMs = performance.now() - started;
+  }
+
+  /** Whether an interior is in the scene, so its door may open onto it. */
+  private published(entry: Entry): boolean {
+    return entry.object !== undefined && entry.preparing === undefined;
+  }
+
+  private swing(seconds: number, wanted: ReadonlySet<Entry>): void {
+    for (const door of this.swinging) {
+      const entry = door.entry;
+      if (door.target === 1 && !this.published(entry)) {
+        // Its rooms are still being built. Give up if they never will be, or not here.
+        if (!entry.failed && wanted.has(entry)) continue;
+        door.target = 0;
+      }
+      const step = seconds / DOOR_SWING_SECONDS;
+      door.amount =
+        door.target === 1 ? Math.min(1, door.amount + step) : Math.max(0, door.amount - step);
+      this.pose(door);
+      if (door.amount === door.target) this.swinging.delete(door);
+    }
+  }
+
+  /** Shut a door at once, as its interior goes. */
+  private shut(door: DoorEntry): void {
+    this.swinging.delete(door);
+    door.target = 0;
+    if (door.amount === 0) return;
+    door.amount = 0;
+    this.pose(door);
+  }
+
+  /** Turn a door's leaves to its current opening, from their closed vertices. */
+  private pose(door: DoorEntry): void {
+    const doors = door.entry.region.doors;
+    if (doors === undefined) return;
+    const geometry = doors.mesh.geometry;
+    const position = geometry.getAttribute('position') as THREE.BufferAttribute;
+    const normal = geometry.getAttribute('normal') as THREE.BufferAttribute;
+    const p = position.array as Float32Array,
+      n = normal.array as Float32Array;
+    // Quick off the mark and settling as it opens: a walker who opens a door and walks straight
+    // on stays clear of the leaf. An ease-in start let them catch it within the first step.
+    const t = door.amount,
+      eased = 1 - (1 - t) * (1 - t);
+    for (const [index, leaf] of door.door.leaves.entries()) {
+      const [first, count] = door.leaves[index] as [number, number];
+      const angle = door.sense * (door.door.swing[index] ?? 0) * eased;
+      const c = Math.cos(angle),
+        s = Math.sin(angle);
+      const [hx, , hz] = leaf.hinge;
+      for (let v = first * 3, end = (first + count) * 3; v < end; v += 3) {
+        const x = (doors.positions[v] as number) - hx,
+          z = (doors.positions[v + 2] as number) - hz;
+        p[v] = hx + x * c + z * s;
+        p[v + 1] = doors.positions[v + 1] as number;
+        p[v + 2] = hz - x * s + z * c;
+        const nx = doors.normals[v] as number,
+          nz = doors.normals[v + 2] as number;
+        n[v] = nx * c + nz * s;
+        n[v + 1] = doors.normals[v + 1] as number;
+        n[v + 2] = -nx * s + nz * c;
+      }
+      position.addUpdateRange(first * 3, count * 3);
+      normal.addUpdateRange(first * 3, count * 3);
+    }
+    position.needsUpdate = true;
+    normal.needsUpdate = true;
+  }
+
+  /**
+   * The nearest door within `reach` of a viewer at `position` (eyes or feet, metric), in a shown
+   * region, and in front of them when `facing` is given.
+   */
+  doorAt(
+    position: readonly [number, number, number],
+    query: InteriorDoorQuery = {},
+  ): InteriorDoorState | undefined {
+    if (!position.every(Number.isFinite)) return undefined;
+    const reach = query.reach ?? DOOR_REACH;
+    const facing = query.facing;
+    const facingLength = facing ? Math.hypot(facing[0], facing[2]) : 0;
+    let best: { door: DoorEntry; distance: number; origin: Vec2 } | undefined;
+    for (const region of this.regions.values()) {
+      const [x0, z0, x1, z1] = region.bounds;
+      if (
+        region.doors === undefined ||
+        !visible(region.root) ||
+        position[0] < x0 - reach ||
+        position[0] > x1 + reach ||
+        position[2] < z0 - reach ||
+        position[2] > z1 + reach
+      )
+        continue;
+      const px = position[0] - region.origin[0],
+        pz = position[2] - region.origin[1];
+      for (const entry of region.entries)
+        for (const door of entry.doors) {
+          const { center, along, width, height } = door.door;
+          // Eyes or feet: from below the threshold to a little over the door's head.
+          if (
+            position[1] < center[1] - 1.2 ||
+            position[1] > center[1] + Math.max(height, 1.9) + 0.6
+          )
+            continue;
+          const dx = px - center[0],
+            dz = pz - center[2];
+          const s = Math.max(-width / 2, Math.min(width / 2, dx * along[0] + dz * along[1]));
+          const tx = center[0] + along[0] * s - px,
+            tz = center[2] + along[1] * s - pz;
+          const distance = Math.hypot(tx, tz);
+          if (distance > reach || (best && distance >= best.distance)) continue;
+          // Standing in the doorway, any heading reaches it.
+          if (
+            facing &&
+            facingLength > 0 &&
+            distance > 0.45 &&
+            (tx * facing[0] + tz * facing[2]) / (distance * facingLength) < 0.25
+          )
+            continue;
+          best = { door, distance, origin: region.origin };
+        }
+    }
+    if (best === undefined) return undefined;
+    const { door, distance, origin } = best;
+    const center = door.door.center;
+    return {
+      id: door.door.id,
+      identity: door.entry.site.identity,
+      position: [center[0] + origin[0], center[1], center[2] + origin[1]],
+      distance,
+      open: door.target === 1,
+      amount: door.amount,
+      waiting: door.target === 1 && !this.published(door.entry),
+      locked: door.entry.failed,
+    };
+  }
+
+  /**
+   * Open or shut a door. It opens away from `from` (where the viewer stands; into the building
+   * when omitted), and only onto rooms that are built: asked earlier, it waits for them. False
+   * when no shown door has this id, when it is locked, or when shutting it would close it on
+   * someone standing in the doorway at `from`.
+   */
+  setDoor(id: string, open: boolean, from?: readonly [number, number, number]): boolean {
+    let done = false;
+    for (const region of this.regions.values()) {
+      if (region.doors === undefined || !visible(region.root)) continue;
+      for (const entry of region.entries)
+        for (const door of entry.doors) {
+          if (door.door.id !== id) continue;
+          const { center, along, inward, width } = door.door;
+          const across = from
+            ? (from[0] - region.origin[0] - center[0]) * inward[0] +
+              (from[2] - region.origin[1] - center[2]) * inward[1]
+            : -1;
+          if (open) {
+            if (entry.failed) continue;
+            // A door already moving keeps its direction; reversing it mid-swing would jump.
+            if (door.amount === 0) door.sense = across < 0 ? 1 : -1;
+            door.target = 1;
+          } else {
+            const sideways = from
+              ? (from[0] - region.origin[0] - center[0]) * along[0] +
+                (from[2] - region.origin[1] - center[2]) * along[1]
+              : Number.POSITIVE_INFINITY;
+            if (Math.abs(sideways) < width / 2 + 0.2 && Math.abs(across) < 0.45) continue;
+            door.target = 0;
+          }
+          if (door.amount !== door.target || door.target === 1) this.swinging.add(door);
+          done = true;
+        }
+    }
+    return done;
   }
 
   private publish(entry: Entry, plan: InteriorPlan | undefined): void {
@@ -476,6 +757,46 @@ export class InteriorStreamer {
     return yield* generateInteriorGeometrySteps(plan, this.generation.catalog);
   }
   /** The lift at a metric position, if it is standing in one of a resident building. */
+  /**
+   * Whether `position` is down among registered buildings: over a region that has sites, and no
+   * more than `margin` above or below the storeys they span. A camera cruising well above the
+   * roofs is not; a walker, or anything hovering at street level, is.
+   */
+  among(position: readonly [number, number, number], margin = 25): boolean {
+    for (const region of this.regions.values()) {
+      const [x0, z0, x1, z1] = region.bounds;
+      if (
+        visible(region.root) &&
+        position[0] >= x0 - margin &&
+        position[0] <= x1 + margin &&
+        position[2] >= z0 - margin &&
+        position[2] <= z1 + margin &&
+        position[1] >= region.height[0] - margin &&
+        position[1] <= region.height[1] + margin
+      )
+        return true;
+    }
+    return false;
+  }
+
+  /** Whether `position` is inside a published interior: within its walls, between its floors. */
+  occupied(position: readonly [number, number, number]): boolean {
+    for (const region of this.regions.values()) {
+      const p: Vec2 = [position[0] - region.origin[0], position[2] - region.origin[1]];
+      for (const entry of region.entries) {
+        if (!entry.object) continue;
+        const site = entry.site;
+        if (
+          position[1] >= site.floor - 1 &&
+          position[1] <= (site.storeys?.at(-1)?.ceiling ?? site.ceiling) + 1 &&
+          pointInPolygon(p, site.outline, site.holes)
+        )
+          return true;
+      }
+    }
+    return false;
+  }
+
   elevatorAt(position: readonly [number, number, number]): InteriorElevatorStop | undefined {
     for (const entry of this.active) {
       const tower = entry.plan?.tower;
@@ -521,5 +842,6 @@ export class InteriorStreamer {
     this.solids.dispose?.();
     this.glass.dispose();
     this.cover.dispose();
+    this.door.dispose();
   }
 }

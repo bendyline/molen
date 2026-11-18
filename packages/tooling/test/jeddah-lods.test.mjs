@@ -50,8 +50,8 @@ it('keeps the skyline surfaces outward facing, including the slender shaft', () 
 });
 
 it('round trips the independently mapped base and retains its signed south wing', async () => {
-  const spec = JSON.parse(await readFile(source + '/spec.json'));
-  const bytes = await readFile(source + '/map-frame.json'),
+  const spec = JSON.parse(await readFile(`${source}/spec.json`));
+  const bytes = await readFile(`${source}/map-frame.json`),
     frame = JSON.parse(bytes);
   const result = sourceLocalFootprint(spec, bytes);
   expect(result.footprint).toHaveLength(frame.elements[0].coordinates.length);
@@ -75,9 +75,9 @@ it('leaves unrelated recipe fingerprints unchanged', async () => {
 });
 
 it('reuses all current derivatives without changing the source or detailed import', async () => {
-  const before = await readFile(runtime + '/asset.json');
-  const levels = await buildModelLandmarkLods(runtime + '/asset.json');
-  expect(await readFile(runtime + '/asset.json')).toEqual(before);
+  const before = await readFile(`${runtime}/asset.json`);
+  const levels = await buildModelLandmarkLods(`${runtime}/asset.json`);
+  expect(await readFile(`${runtime}/asset.json`)).toEqual(before);
   expect(levels.levels[0].triangles).toBeLessThanOrEqual(1000);
   expect(levels.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
 });

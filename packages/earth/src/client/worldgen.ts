@@ -36,6 +36,7 @@ import {
   type StructureStreamingStats,
   type StructureStreamingView,
   structureStreamingBudget,
+  structureStreamingMobile,
 } from '@bendyline/molen-worldgen/client';
 import {
   createRegionResolver,
@@ -131,6 +132,12 @@ export interface CreateEarthWorldgenOptions {
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
   interiors?: boolean;
+  /**
+   * Detail the buildings nearest a viewer on the ground first, regenerating the tiles round them
+   * as they walk (default true). Off, a tile keeps the buildings it first chose, largest first:
+   * for captures that compare frames from a still camera.
+   */
+  viewerFocus?: boolean;
   /** Landcover class colors (forest, grass, park, urban_area…) over the style pack's palette. */
   landcoverColors?: Readonly<Record<string, string>>;
   /**
@@ -259,12 +266,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       ? pool
       : withBakedMaterialStore(pool ?? inThreadBaker, options.materialStore);
   const streamingOptions = options.landmarkStreaming || {};
-  const nav =
-    typeof navigator === 'undefined'
-      ? undefined
-      : (navigator as Navigator & { deviceMemory?: number });
-  const mobile =
-    streamingOptions.mobile ?? ((nav?.maxTouchPoints ?? 0) > 0 || (nav?.deviceMemory ?? 8) <= 4);
+  const mobile = streamingOptions.mobile ?? structureStreamingMobile();
   const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
     progressive: true,
     prepareOnUse: true,
@@ -452,6 +454,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       (options.interiors ?? true)
         ? { furnish: createGarageFurnisher(options.content.parkedVehicles ?? []) }
         : false,
+    ...(options.viewerFocus === false ? { viewerFocus: false } : {}),
     propLod: options.propLod ?? true,
     ...(options.landcoverColors !== undefined ||
     options.groundMaterial !== undefined ||

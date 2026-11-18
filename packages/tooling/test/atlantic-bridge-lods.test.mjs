@@ -57,18 +57,18 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('reconstitutes the complete detailed source and preserves the named PMTiles crossing and off-center main span', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    spec = await read(source + '/spec.json'),
-    m = await read(source + '/map-frame.json'),
-    alignment = await read(source + '/alignment.json'),
-    map = await read(source + '/pmtiles-map.json');
+  const brief = await read(`${source}/model-brief.json`),
+    spec = await read(`${source}/spec.json`),
+    m = await read(`${source}/map-frame.json`),
+    alignment = await read(`${source}/alignment.json`),
+    map = await read(`${source}/pmtiles-map.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(atlanticSurfaces);
   buildAtlanticLevel(a.wrap(b), 'master');
   const mesh = b.finalize(),
     bytes = Buffer.from(encodeGlb(mesh, a.materials(mesh.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(mesh.triangleCount).toBe(103718);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(m.anchor).toEqual([-79.917758854, 9.307713221]);
@@ -85,38 +85,38 @@ it('reconstitutes the complete detailed source and preserves the named PMTiles c
   expect(atlanticControls.pylons).toEqual([-340, 190]);
   expect(atlanticControls.pylons[1] - atlanticControls.pylons[0]).toBe(530);
   // Approach ends and high western ground must fit the regular terrain samples, not a flat road.
-  const terrain = await read(source + '/terrain-samples.json');
+  const terrain = await read(`${source}/terrain-samples.json`);
   for (const x of [-1570, -1250, 1570])
     expect(
       atlanticDeckY(x) - terrain.samples.find((s) => s.x === x).heightMeters,
     ).toBeGreaterThanOrEqual(1.5);
-  const placement = await read(source + '/placement-report.json');
+  const placement = await read(`${source}/placement-report.json`);
   expect(placement.entry.bounds).toHaveLength(4);
   expect(placement.entry.replaceRoads.deckProfile).toHaveLength(127);
   expect(placement.entry.elevation).toBe(0);
 }, 30000);
 it('retains both inverted-Y portals, navigation clearance, curved approaches and complete deck at every tier', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file);
+    const ts = await triangles(`${runtime}/${l.file}`);
     expect(
       ts.flat().reduce((h, p) => Math.max(h, p[1]), 0),
-      l.name + ' pylons',
+      `${l.name} pylons`,
     ).toBeCloseTo(212.5, 3);
     const center = -75,
       z = atlanticCenterZ(center) + 5;
-    expect(nearest(ts, [center, 60, z], [0, 1, 0]), l.name + ' navigation opening').toBeCloseTo(
+    expect(nearest(ts, [center, 60, z], [0, 1, 0]), `${l.name} navigation opening`).toBeCloseTo(
       15,
       2,
     );
-    expect(nearest(ts, [center, 100, z], [0, -1, 0]), l.name + ' main roadway').toBeCloseTo(
+    expect(nearest(ts, [center, 100, z], [0, -1, 0]), `${l.name} main roadway`).toBeCloseTo(
       100 - 77.825,
       2,
     );
     for (const x of [-340, 190]) {
       const z = atlanticCenterZ(x);
-      expect(nearest(ts, [x - 20, 110, z], [1, 0, 0]), l.name + ' open Y portal').toBe(Infinity);
-      expect(nearest(ts, [x - 20, 211, z], [1, 0, 0]), l.name + ' closed pylon crown').toBeLessThan(
+      expect(nearest(ts, [x - 20, 110, z], [1, 0, 0]), `${l.name} open Y portal`).toBe(Infinity);
+      expect(nearest(ts, [x - 20, 211, z], [1, 0, 0]), `${l.name} closed pylon crown`).toBeLessThan(
         20,
       );
     }
@@ -125,14 +125,14 @@ it('retains both inverted-Y portals, navigation clearance, curved approaches and
         y = atlanticDeckY(x);
       expect(
         Math.abs(nearest(ts, [x, y + 5, z], [0, -1, 0]) - 4.975),
-        l.name + ' approach ' + x,
+        `${l.name} approach ${x}`,
       ).toBeLessThan(l.name === 'skyline' ? 1.2 : 0.4);
     }
   }
 }, 60000);
 it('rebuilds exact pinned LODs within transfer, triangle and draw caps with shared materials and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    current = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    current = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -141,7 +141,7 @@ it('rebuilds exact pinned LODs within transfer, triangle and draw caps with shar
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(current.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);

@@ -88,14 +88,14 @@ const surfaces = {
   },
 };
 it('reproduces the original Marina101 master and independently signs the sea lift and podium', async () => {
-  const prior = await read(source + '/georeferencing-baseline.json'),
-    m = await read(source + '/map-frame.json'),
+  const prior = await read(`${source}/georeferencing-baseline.json`),
+    m = await read(`${source}/map-frame.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildMarina101(a.wrap(b), prior);
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(233064);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(m.anchor).toEqual(prior.anchor);
@@ -110,13 +110,13 @@ it('reproduces the original Marina101 master and independently signs the sea lif
   expect(-Math.sin(m.heading)).toBeLessThan(-0.75);
   expect(spec.sourceFacts.heightMeters).toBe(425);
   expect(spec.sourceFacts.highestOccupiedMeters).toBe(370.9);
-  expect(decode(await readFile(source + '/models/source.glb')).g.materials).toHaveLength(4);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.materials).toHaveLength(4);
 }, 60000);
 it('keeps closed shaft faces, seaward paired lift, flared bands, podium and four separated blue crown tips', async () => {
-  const master = decode(await readFile(source + '/models/source.glb')).triangles,
-    asset = await read(runtime + '/asset.json');
+  const master = decode(await readFile(`${source}/models/source.glb`)).triangles,
+    asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file)),
+    const d = decode(await readFile(`${runtime}/${l.file}`)),
       ts = d.triangles,
       allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[l.name];
     for (const y of [18.2, 48.3, 122.7, 201.3, 299.1, 339.7, 376.2])
@@ -125,8 +125,8 @@ it('keeps closed shaft faces, seaward paired lift, flared bands, podium and four
           o = [80 * Math.cos(t), y, 80 * Math.sin(t)],
           v = [-Math.cos(t), 0, -Math.sin(t)],
           target = nearest(master, o, v);
-        expect(Number.isFinite(target), l.name + ' source ' + y + '/' + k).toBe(true);
-        expect(Math.abs(nearest(ts, o, v) - target), l.name + ' shaft ' + y + '/' + k).toBeLessThan(
+        expect(Number.isFinite(target), `${l.name} source ${y}/${k}`).toBe(true);
+        expect(Math.abs(nearest(ts, o, v) - target), `${l.name} shaft ${y}/${k}`).toBeLessThan(
           allowance,
         );
       }
@@ -134,24 +134,24 @@ it('keeps closed shaft faces, seaward paired lift, flared bands, podium and four
     for (const x of [1.2, 4.2])
       expect(
         nearest(windows, [x, 187.4, -70], [0, 0, 1]),
-        l.name + ' projecting paired lift',
+        `${l.name} projecting paired lift`,
       ).toBeCloseTo(70 - 22.117, 2);
     for (const sx of [-1, 1])
       for (const sz of [-1, 1]) {
         expect(
           nearest(ts, [sx * 2.7, 440, sz * 2.7], [0, -1, 0]),
-          l.name + ' separated425m tip',
+          `${l.name} separated425m tip`,
         ).toBeLessThan(15.03);
         expect(
           nearest(ts, [sx * 8.3, 420, sz * 8.3], [0, -1, 0]),
-          l.name + '413m shoulder',
+          `${l.name}413m shoulder`,
         ).toBeLessThan(7.03);
         expect(
           nearest(ts, [sx * 13.7, 410, sz * 13.7], [0, -1, 0]),
-          l.name + '400m shoulder',
+          `${l.name}400m shoulder`,
         ).toBeLessThan(10.03);
       }
-    expect(nearest(ts, [0, 430, 0], [0, -1, 0]), l.name + ' open crown center').toBeCloseTo(50, 2);
+    expect(nearest(ts, [0, 430, 0], [0, -1, 0]), `${l.name} open crown center`).toBeCloseTo(50, 2);
     expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeGreaterThanOrEqual(425);
     expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeLessThan(425.03);
     for (const p of [
@@ -161,18 +161,18 @@ it('keeps closed shaft faces, seaward paired lift, flared bands, podium and four
       const o = [p[0], 350, p[2]],
         v = [0, -1, 0],
         target = nearest(master, o, v);
-      expect(Number.isFinite(target), l.name + ' podium source').toBe(true);
-      expect(Math.abs(nearest(ts, o, v) - target), l.name + ' podium').toBeLessThan(allowance);
+      expect(Number.isFinite(target), `${l.name} podium source`).toBe(true);
+      expect(Math.abs(nearest(ts, o, v) - target), `${l.name} podium`).toBeLessThan(allowance);
     }
     for (const y of [61, 232, 316])
-      expect(nearest(ts, [20.64 + 20, y - 0.2, 0], [-1, 0, 0]), l.name + 'flareband').toBeLessThan(
+      expect(nearest(ts, [20.64 + 20, y - 0.2, 0], [-1, 0, 0]), `${l.name}flareband`).toBeLessThan(
         19.5,
       );
     if (l.name !== 'skyline') expect(d.g.materials.some((m) => m.alphaMode === 'BLEND')).toBe(true);
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -181,7 +181,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);

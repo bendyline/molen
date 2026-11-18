@@ -101,10 +101,10 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   khotynStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(8615);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    grade = await read(source + '/site-grade.json'),
-    manifest = await read(source + '/source.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    grade = await read(`${source}/site-grade.json`),
+    manifest = await read(`${source}/source.json`);
   expect(frame.identity.id).toBe(8520372);
   expect(frame.identity.version).toBe(24);
   expect(frame.identity.tags.wikidata).toBe('Q141012');
@@ -112,7 +112,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(frame.currentMapReconciliation.widerRelationReplaced).toBe(false);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: manifest,
       spec,
       placement: spec.geographicProposal,
@@ -123,15 +123,15 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(126.3247);
   expect(grade.workingCourtFloor).toBe(8.4609);
-  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(`${source}/${r.file}`)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
 });
 it('keeps north/south court regions roofless, the mapped gate open and foundations outward-facing at every tier', async () => {
-  const asset = await read(runtime + '/asset.json'),
-    grade = await read(source + '/site-grade.json'),
-    plan = await read(source + '/map-parts-reviewed.json'),
+  const asset = await read(`${runtime}/asset.json`),
+    grade = await read(`${source}/site-grade.json`),
+    plan = await read(`${source}/map-parts-reviewed.json`),
     q = plan.courtOutline.slice(0, -1),
     sign =
       q.reduce((n, a, i) => {
@@ -141,7 +141,7 @@ it('keeps north/south court regions roofless, the mapped gate open and foundatio
         ? -1
         : 1;
   for (const l of asset.runtimeLods.levels) {
-    const { triangles } = decode(await readFile(runtime + '/' + l.file));
+    const { triangles } = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z] of [
       [0, 10],
       [-12, -45],
@@ -149,12 +149,12 @@ it('keeps north/south court regions roofless, the mapped gate open and foundatio
     ])
       expect(
         80 - nearest(triangles, [x, 80, z], [0, -1, 0]),
-        l.name + ' open court ' + x + ',' + z,
+        `${l.name} open court ${x},${z}`,
       ).toBeCloseTo(grade.workingCourtFloor, 3);
     for (const lateral of [-0.4, 0, 0.4])
       expect(
         nearest(triangles, [-2.4563 + lateral, grade.workingCourtFloor + 1.8, 75], [0, 0, -1]),
-        l.name + ' mapped portal',
+        `${l.name} mapped portal`,
       ).toBeGreaterThan(35);
     for (const i of [0, 4, 8]) {
       const a = q[i],
@@ -168,7 +168,7 @@ it('keeps north/south court regions roofless, the mapped gate open and foundatio
           [x + n[0] * 3, khotynGround(x, z) + 0.12, z + n[1] * 3],
           [-n[0], 0, -n[1]],
         );
-      expect(hit.distance, l.name + ' foundation ' + i).toBeLessThan(3.1);
+      expect(hit.distance, `${l.name} foundation ${i}`).toBeLessThan(3.1);
       expect(hit.normal[0] * n[0] + hit.normal[2] * n[1]).toBeGreaterThan(0.9);
     }
     const p = plan.bridges[0].points,
@@ -179,7 +179,7 @@ it('keeps north/south court regions roofless, the mapped gate open and foundatio
       ez = b[1] + ((b[1] - a[1]) * 4.98) / len;
     expect(
       80 - nearest(triangles, [ex, 80, ez], [0, -1, 0]),
-      l.name + ' bridge/apron far end',
+      `${l.name} bridge/apron far end`,
     ).toBeCloseTo(
       khotynGround(b[0] + ((b[0] - a[0]) * 5) / len, b[1] + ((b[1] - a[1]) * 5) / len) + 0.05,
       2,
@@ -187,7 +187,7 @@ it('keeps north/south court regions roofless, the mapped gate open and foundatio
   }
 });
 it('rebuilds four browser levels within download, draw and upload limits', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
   );
@@ -197,7 +197,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       [
         '--input-type=module',
         '-e',
-        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(runtime + '/asset.json')},{force:true})));`,
+        `import {buildModelLandmarkLods} from './packages/tooling/scripts/source-runtime-lods.mjs'; console.log(JSON.stringify(await buildModelLandmarkLods(${JSON.stringify(`${runtime}/asset.json`)},{force:true})));`,
       ],
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
@@ -207,7 +207,7 @@ it('rebuilds four browser levels within download, draw and upload limits', async
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],
     );
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const { g } = decode(await readFile(runtime + '/' + l.file));
+    const { g } = decode(await readFile(`${runtime}/${l.file}`));
     expect(g.images ?? []).toHaveLength(0);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {
       const pa = g.accessors[p.attributes.POSITION],

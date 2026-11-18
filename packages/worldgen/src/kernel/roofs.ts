@@ -6,7 +6,15 @@
  */
 
 import { directionToWorld, type Frame, toLocal, toWorld } from './footprint';
-import { offsetRing } from './geometry2d';
+import {
+  distancePointToRing,
+  isSimpleRing,
+  offsetRing,
+  pointInRing,
+  ringSignedArea,
+  ringStrictlyInside,
+  ringsOverlap,
+} from './geometry2d';
 import { type MeshBufferBuilder, normalize3 } from './mesh-buffers';
 import type { Wing } from './rectangles';
 import type { MaterialSlot, RGB, Vec2, Vec3 } from './types';
@@ -693,6 +701,171 @@ export function buildFlatRoof(
     );
   }
   return true;
+}
+
+export interface DeckRoofSpec {
+  eave: number;
+  /** Rise per meter of run on the slopes. */
+  rise: number;
+  /** Tallest the slopes climb above the eave, meters. */
+  maxHeight: number;
+  /** Eave projection past the outer walls, meters; none at tier 2 and beyond. */
+  overhang: number;
+  /** Narrowest dimension of the footprint, meters: bounds how far the slopes can run. */
+  span: number;
+  tier: number;
+}
+
+/** Fractions of the widest safe run tried in turn; a thin or pinched plan takes a later one. */
+const DECK_RUNS: readonly number[] = [0.42, 0.33, 0.24, 0.16, 0.09];
+/** Slopes shorter than this are not worth their vertices. */
+const MIN_DECK_RUN = 0.5;
+
+/** Every ring edge moved `distance` into the solid, when that leaves a sound ring; else undefined. */
+function insetSoundly(
+  outline: readonly Vec2[],
+  holes: readonly (readonly Vec2[])[],
+  distance: number,
+): { outer: Vec2[]; holes: Vec2[][] } | undefined {
+  const outer = offsetRing(outline, -distance);
+  if (!isSimpleRing(outer)) return undefined;
+  const area = ringSignedArea(outline);
+  const insetArea = ringSignedArea(outer);
+  // A ring that turned inside out, or shrank to a sliver, has run past the middle of the plan.
+  if (insetArea * area <= 0 || Math.abs(insetArea) < Math.abs(area) * 0.04) return undefined;
+  for (const point of outer) {
+    if (!pointInRing(point, outline)) return undefined;
+    if (distancePointToRing(point, outline) < distance * 0.7) return undefined;
+  }
+  const insetHoles: Vec2[][] = [];
+  for (const hole of holes) {
+    const grown = offsetRing(hole, -distance);
+    if (!isSimpleRing(grown) || !ringStrictlyInside(grown, outer)) return undefined;
+    for (const point of grown)
+      if (distancePointToRing(point, hole) < distance * 0.7) return undefined;
+    for (const other of insetHoles) if (ringsOverlap(grown, other)) return undefined;
+    insetHoles.push(grown);
+  }
+  return { outer, holes: insetHoles };
+}
+
+/**
+ * A hipped roof for any simple outline: slopes rise from every wall, courtyard walls included, to
+ * a level deck. Footprints no ridge fits (irregular plans, blocks round a courtyard, very wide
+ * plans) take it in place of a flat roof, and with a steep `rise` and a low `maxHeight` it is a
+ * mansard. Returns the deck height, or undefined (nothing emitted) when the plan is too thin or
+ * too pinched to inset.
+ */
+export function buildDeckRoof(
+  outline: readonly Vec2[],
+  holes: readonly (readonly Vec2[])[],
+  spec: DeckRoofSpec,
+  surfaces: RoofSurfaces,
+  out: MeshBufferBuilder,
+): number | undefined {
+  let area = Math.abs(ringSignedArea(outline));
+  let perimeter = ringLength(outline);
+  for (const hole of holes) {
+    area -= Math.abs(ringSignedArea(hole));
+    perimeter += ringLength(hole);
+  }
+  if (area <= 0 || perimeter <= 0 || spec.rise <= 0) return undefined;
+  // Four times area over perimeter is a square's side and twice a long strip's width: half of it
+  // is as far as slopes from opposite walls can run before they meet.
+  const reach = Math.min(spec.span, (4 * area) / perimeter);
+  let inset: { outer: Vec2[]; holes: Vec2[][] } | undefined;
+  let run = 0;
+  for (const fraction of DECK_RUNS) {
+    run = reach * fraction;
+    if (run < MIN_DECK_RUN) return undefined;
+    inset = insetSoundly(outline, holes, run);
+    if (inset !== undefined) break;
+  }
+  if (inset === undefined) return undefined;
+  // A broad plan would climb past `maxHeight`: it keeps at least half its pitch and a wider deck.
+  const steepest = (spec.maxHeight / spec.rise) * 2;
+  if (run > steepest && steepest >= MIN_DECK_RUN) {
+    const shorter = insetSoundly(outline, holes, steepest);
+    if (shorter !== undefined) {
+      inset = shorter;
+      run = steepest;
+    }
+  }
+  const height = Math.min(spec.maxHeight, run * spec.rise);
+  const slope = height / run;
+  const deck = spec.eave + height;
+  const roof = surfaces.roof;
+  const capped = out.addCap(
+    roof.slot,
+    roof.ref,
+    inset.outer,
+    inset.holes,
+    () => deck,
+    [0, 1, 0],
+    (p) => [p[0], p[1]],
+    roof.color,
+  );
+  if (!capped) return undefined;
+  const overhang = spec.tier >= 2 ? 0 : Math.max(0, spec.overhang);
+  const rings: Array<{ low: readonly Vec2[]; high: readonly Vec2[]; lowY: number }> = [
+    {
+      low: overhang > 0 ? offsetRing(outline, overhang) : outline,
+      high: inset.outer,
+      lowY: spec.eave - overhang * slope,
+    },
+    ...holes.map((hole, index) => ({
+      low: hole,
+      high: inset.holes[index] as Vec2[],
+      lowY: spec.eave,
+    })),
+  ];
+  for (const ring of rings) {
+    const count = ring.low.length;
+    for (let index = 0; index < count; index++) {
+      const a = ring.low[index] as Vec2;
+      const b = ring.low[(index + 1) % count] as Vec2;
+      const ia = ring.high[index] as Vec2;
+      const ib = ring.high[(index + 1) % count] as Vec2;
+      const dx = b[0] - a[0];
+      const dz = b[1] - a[1];
+      const length = Math.hypot(dx, dz);
+      if (length < 1e-6) continue;
+      const tx = dx / length;
+      const tz = dz / length;
+      // Outward of the solid, as for walls: the slope faces out and up.
+      const normal = normalize3([tz * slope, 1, -tx * slope]);
+      const across = Math.hypot(run + overhang, deck - ring.lowY);
+      out.addQuad(
+        roof.slot,
+        roof.ref,
+        [
+          [a[0], ring.lowY, a[1]],
+          [b[0], ring.lowY, b[1]],
+          [ib[0], deck, ib[1]],
+          [ia[0], deck, ia[1]],
+        ],
+        normal,
+        [
+          [0, across],
+          [length, across],
+          [(ib[0] - a[0]) * tx + (ib[1] - a[1]) * tz, 0],
+          [(ia[0] - a[0]) * tx + (ia[1] - a[1]) * tz, 0],
+        ],
+        roof.color,
+      );
+    }
+  }
+  return deck;
+}
+
+function ringLength(ring: readonly Vec2[]): number {
+  let length = 0;
+  for (let index = 0; index < ring.length; index++) {
+    const a = ring[index] as Vec2;
+    const b = ring[(index + 1) % ring.length] as Vec2;
+    length += Math.hypot(b[0] - a[0], b[1] - a[1]);
+  }
+  return length;
 }
 
 export interface SkillionPlane {

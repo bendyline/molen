@@ -8,7 +8,7 @@ import { landmarkLodRecipeHash } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/wx/wx4/beijing_national_stadium');
 const runtime = resolve('../../content/worldgen/assets/places/wx/wx4/beijing_national_stadium');
-const digest = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const digest = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 async function geometry(path) {
   const b = await readFile(path);
   const g = await new GLTFLoader().parseAsync(
@@ -28,15 +28,15 @@ it('keeps an open oval roof, depressed field, saddle and three seating tiers in 
   for (const level of ['source', 'master', 'skyline', 'district', 'street', 'closeup']) {
     const hit = await geometry(
       level === 'source'
-        ? source + '/models/source.glb'
-        : runtime + '/' + (level === 'master' ? 'model.glb' : `model.${level}.glb`),
+        ? `${source}/models/source.glb`
+        : `${runtime}/${level === 'master' ? 'model.glb' : `model.${level}.glb`}`,
     );
     for (const [x, z] of [
       [0, 0],
       [20, 20],
       [-20, -20],
     ])
-      expect(Math.abs(hit(x, z) + 5), level + ' open aperture to field').toBeLessThan(0.08);
+      expect(Math.abs(hit(x, z) + 5), `${level} open aperture to field`).toBeLessThan(0.08);
     for (const [x, lo, hi, eye] of [
       [60, -5, 6, 8],
       [86, 8, 22, 22.6],
@@ -44,39 +44,39 @@ it('keeps an open oval roof, depressed field, saddle and three seating tiers in 
     ]) {
       // Start beneath the acoustic roof and overhead steel, above the tier under test.
       const y = hit(x, 0, eye);
-      expect(y, level + ' tier at ' + x).toBeGreaterThan(lo);
-      expect(y, level + ' tier at ' + x).toBeLessThan(hi);
+      expect(y, `${level} tier at ${x}`).toBeGreaterThan(lo);
+      expect(y, `${level} tier at ${x}`).toBeLessThan(hi);
     }
     const crest = hit(140, 0),
       valley = hit(0, 160);
-    expect(crest, level + ' east crest').toBeGreaterThan(63);
-    expect(valley, level + ' north valley').toBeGreaterThan(38);
-    expect(valley, level + ' north valley').toBeLessThan(47);
-    expect(crest - valley, level + ' saddle').toBeGreaterThan(19);
+    expect(crest, `${level} east crest`).toBeGreaterThan(63);
+    expect(valley, `${level} north valley`).toBeGreaterThan(38);
+    expect(valley, `${level} north valley`).toBeLessThan(47);
+    expect(crest - valley, `${level} saddle`).toBeGreaterThan(19);
   }
 }, 120000);
 it('covers all120 inherited cutout edges with a plaza slab at each browser tier', async () => {
-  const spec = JSON.parse(await readFile(source + '/spec.json'));
+  const spec = JSON.parse(await readFile(`${source}/spec.json`));
   const ps = spec.geographicProposal.groundCutout.outline;
   expect(ps).toHaveLength(120);
   for (const level of ['skyline', 'district', 'street', 'closeup']) {
-    const hit = await geometry(runtime + `/model.${level}.glb`);
+    const hit = await geometry(`${runtime}/model.${level}.glb`);
     for (let i = 0; i < ps.length; i++) {
       const a = ps[i],
         b = ps[(i + 1) % ps.length];
       expect(
         hit((a[0] + b[0]) * 0.495, (a[1] + b[1]) * 0.495, 0.3, 1),
-        level + ' edge ' + i,
+        `${level} edge ${i}`,
       ).toBeCloseTo(0.01, 3);
     }
   }
 }, 120000);
 it('preserves both detailed master pins and four budgeted image-free tiers using three shared graphs and separate GPU streams', async () => {
-  const a = JSON.parse(await readFile(runtime + '/asset.json'));
-  expect(digest(await readFile(source + '/models/source.glb'))).toBe(
+  const a = JSON.parse(await readFile(`${runtime}/asset.json`));
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(
     'sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1',
   );
-  expect(digest(await readFile(runtime + '/model.glb'))).toBe(
+  expect(digest(await readFile(`${runtime}/model.glb`))).toBe(
     'sha256:05a3a96bc409f54a983c0937c55f7db0fd7b1c8084466f2d58396ce3c246faea',
   );
   expect(await landmarkLodRecipeHash(a.id)).toBe(a.runtimeLods.recipeHash);
@@ -84,7 +84,7 @@ it('preserves both detailed master pins and four budgeted image-free tiers using
   for (const [i, l] of a.runtimeLods.levels.entries()) {
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    const b = await readFile(runtime + '/' + l.file);
+    const b = await readFile(`${runtime}/${l.file}`);
     expect(digest(b)).toBe(l.hash);
     const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);

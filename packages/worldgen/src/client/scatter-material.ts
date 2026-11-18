@@ -34,6 +34,58 @@ export const SCATTER_CANOPY_ATTRIBUTE: 'canopy' = 'canopy';
 const LEAF = 0.35;
 const CLUMP = 2.2;
 const TIER = 1.5;
+/**
+ * A foliage mass (see `SCATTER_MASS_UV`) is drawn as clumps of leaves this far apart, model
+ * meters, with sprays a finer size among them nearer the camera: each lit across its face in a
+ * tone of its own, more toward its top, and shaded along the gap where it meets the next. A
+ * crown that is one solid at its far level otherwise shades as a smooth ball; with them it reads
+ * as foliage at the distances that level is seen from.
+ */
+const PUFF = 2.3;
+const PUFF_FINE = 0.95;
+/** Light left in the gap between two clumps, and between two sprays. */
+const PUFF_GAP = 0.6;
+const PUFF_FINE_GAP = 0.78;
+/** How far from the line where two clumps meet their relief falls away, in cells. */
+const PUFF_GAP_WIDTH = 0.32;
+/**
+ * How far a clump's shade reaches from that line into its upper side, as a share of that width;
+ * into its underside it reaches all of it. (No further: past that width the second-nearest
+ * clump is not always among those looked at, and the shade would break along the lattice.)
+ */
+const PUFF_SHADE_TOP = 0.45;
+/** How much lighter a clump's top is than its middle, and its underside darker: sky light. */
+const PUFF_LIFT = 0.16;
+/** How far one clump's tone lies from the next's, either way. */
+const PUFF_TONE = 0.1;
+/**
+ * How much of that marking out (top from underside, tone from tone) a spray gets, as a share of
+ * a clump's: sprays are a grain on the clumps, and marked out as strongly they hid them.
+ */
+const PUFF_FINE_MARK = 0.3;
+/** How flat a clump is: its width over its height. */
+const PUFF_FLAT = 1.15;
+/**
+ * The clump lattice is bent before it is read, by this share of a cell in waves this many
+ * radians a cell: each cell holds one clump near its middle, so unbent they stood in rows, and
+ * a crown seen from above was courses of brick.
+ */
+const PUFF_BEND = 0.35;
+const PUFF_BEND_RATE = 1.9;
+/**
+ * How far a clump and a spray stand proud of the crown's surface at their middles, model meters.
+ * The surface normal follows that relief, so each clump has a sunlit side and a shaded one: the
+ * shading, more than the tone, is what stops a solid crown reading as a ball.
+ */
+const PUFF_RELIEF = 0.5;
+const PUFF_FINE_RELIEF = 0.2;
+/**
+ * A mass's mean brightness under its clumps and under its sprays: what each settles to once a
+ * pixel covers more than one of them, so a crown neither brightens nor darkens as they fade
+ * out with distance.
+ */
+const PUFF_MEAN = 0.87;
+const PUFF_FINE_MEAN = 0.925;
 /** Sunlit share of a crown's lower part among its neighbours: sun on the horizon, and overhead. */
 const STAND_SHADE_LOW = 0.12;
 const STAND_SHADE_HIGH = 0.7;
@@ -75,6 +127,14 @@ export const SCATTER_CARD_FILL = 0.92;
  * block at full resolution and leaves the vertex color unchanged at any distance.
  */
 export const SCATTER_SOLID_UV: readonly [number, number] = [0.97, 0.5];
+
+/**
+ * Atlas coordinates of a foliage mass: a crown drawn as one solid (a broadleaf's far level). The
+ * same opaque white block, higher up it, so the shader can tell such a surface from bark and
+ * props by its coordinate alone and shade it as puffs of leaves. No extra attribute, no second
+ * program.
+ */
+export const SCATTER_MASS_UV: readonly [number, number] = [0.97, 0.9];
 
 let atlas: THREE.DataTexture | undefined;
 
@@ -382,7 +442,96 @@ const GLSL = /* glsl */ `
       mix(scatterHash(i + vec2(0.0, 1.0)), scatterHash(i + vec2(1.0, 1.0)), u.x), u.y);
   }
 
-  float scatterFactor() {
+  // The two nearest of the eight clump centers round a point of a clump lattice: their
+  // distances in cells (x the nearer) and the vectors to them, and a number of the nearer one's
+  // own. Each cell holds one center, kept to its middle, so the nearest is among the eight.
+  // The two are kept by arithmetic, not by branches: with one more value set in a branch here,
+  // a Direct3D shader compiler returned other centers than the nearest (seen as a square grid
+  // on every crown).
+  vec2 scatterPuff(vec3 q, out vec3 toFirst, out vec3 toSecond, out float seed) {
+    vec3 i = floor(q - 0.5);
+    vec3 f = q - i;
+    vec2 nearest = vec2(16.0);
+    toFirst = vec3(0.0);
+    toSecond = vec3(0.0);
+    seed = 0.0;
+    for (int z = 0; z < 2; z++)
+      for (int y = 0; y < 2; y++)
+        for (int x = 0; x < 2; x++) {
+          vec3 g = vec3(float(x), float(y), float(z));
+          vec3 c = i + g;
+          float h = scatterHash(vec2(c.x + c.z * 37.0, c.y - c.z * 17.0));
+          vec3 r = g + 0.2 + 0.6 * fract(h * vec3(1.0, 61.0, 127.0)) - f;
+          float d = dot(r, r);
+          float closest = step(d, nearest.x);
+          float closer = (1.0 - closest) * step(d, nearest.y);
+          toSecond = mix(mix(toSecond, r, closer), toFirst, closest);
+          nearest.y = mix(mix(nearest.y, d, closer), nearest.x, closest);
+          toFirst = mix(toFirst, r, closest);
+          nearest.x = mix(nearest.x, d, closest);
+          seed = mix(seed, h, closest);
+        }
+    return sqrt(nearest);
+  }
+
+  // A clump at a point of its lattice. Returned: its light, in its own tone across its face and
+  // down to gapLight on the line where it meets the next clump. That shade reaches a little way
+  // into a clump's upper side and well into its underside (up: which way that is in the
+  // lattice), so each reads as a mass of leaves under the sky; shaded the same all round it was
+  // a stone in mortar. mark: how strongly its top is told from its underside and its tone from
+  // its neighbours'. slope: how its relief changes there, per cell; the relief is 1 at a
+  // clump's middle, falls toward its rim and is 0 in the gap.
+  float scatterClumps(vec3 q, float gapLight, vec3 up, float mark, out vec3 slope) {
+    vec3 a;
+    vec3 b;
+    float seed;
+    vec3 bend = ${PUFF_BEND_RATE.toFixed(2)} * q;
+    vec2 d = scatterPuff(q + ${PUFF_BEND.toFixed(2)} * sin(bend.yzx + vec3(1.3, 2.9, 5.2)), a, b, seed);
+    float gap = d.y - d.x;
+    float t = clamp(gap / ${PUFF_GAP_WIDTH.toFixed(2)}, 0.0, 1.0);
+    float face = t * t * (3.0 - 2.0 * t);
+    float u = clamp(d.x / 0.7, 0.0, 1.0);
+    float dome = 1.0 - 0.6 * u * u * (3.0 - 2.0 * u);
+    // How each distance changes with the point: away from its center.
+    vec3 nearer = -a / max(d.x, 0.0001);
+    vec3 farther = -b / max(d.y, 0.0001);
+    slope = (6.0 * t * (1.0 - t) / ${PUFF_GAP_WIDTH.toFixed(2)}) * dome * (farther - nearer) -
+      face * (3.6 * u * (1.0 - u) / 0.7) * nearer;
+    // That was along the bent lattice; back to the lattice itself.
+    slope += slope.zxy * ${(PUFF_BEND * PUFF_BEND_RATE).toFixed(3)} * cos(bend + vec3(5.2, 1.3, 2.9));
+    // 1 at the clump's top, -1 at its underside, 0 through its middle.
+    float side = mark * dot(nearer, up) * min(d.x / 0.25, 1.0);
+    float s = clamp(gap / mix(${PUFF_GAP_WIDTH.toFixed(3)}, ${(PUFF_GAP_WIDTH * PUFF_SHADE_TOP).toFixed(3)}, 0.5 + 0.5 * side), 0.0, 1.0);
+    float lit = (1.0 + ${PUFF_LIFT.toFixed(2)} * side) *
+      (1.0 + ${PUFF_TONE.toFixed(2)} * mark * (2.0 * fract(seed * 419.0) - 1.0));
+    return mix(gapLight, lit, s * s * (3.0 - 2.0 * s));
+  }
+
+  // How the relief of a foliage mass's clumps changes at this fragment, along the model's axes
+  // (meters of height a meter): set by scatterFactor, read where the normal is found.
+  vec3 scatterSlope = vec3(0.0);
+
+  // The normal of a foliage mass under its clumps: tilted down the slope of their relief, so
+  // each clump has a sunlit side and a shaded one. The slope is known along the model's axes
+  // and the normal in view, so the pixel's own two edges, known in both, carry it across: no
+  // tangents, and no grain, since the slope itself is exact at every pixel.
+  vec3 scatterBump(vec3 normal, vec3 viewPosition, vec3 slope) {
+    vec3 a = dFdx(vScatterLocal);
+    vec3 b = dFdy(vScatterLocal);
+    vec3 viewA = dFdx(viewPosition);
+    vec3 viewB = dFdy(viewPosition);
+    float aa = dot(a, a);
+    float ab = dot(a, b);
+    float bb = dot(b, b);
+    float det = aa * bb - ab * ab;
+    if (det < 1e-14) return normal;
+    float ga = dot(slope, a);
+    float gb = dot(slope, b);
+    return normalize(normal - ((ga * bb - gb * ab) * viewA + (gb * aa - ga * ab) * viewB) / det);
+  }
+
+  // mass: 1 on a foliage mass (a crown drawn as one solid), 0 elsewhere.
+  float scatterFactor(float mass) {
     vec3 q = vScatterLocal;
     // A slanted plane through the model, so the pattern varies with height as well.
     vec2 p = q.xz + q.y * vec2(0.71, -0.53);
@@ -407,7 +556,35 @@ const GLSL = /* glsl */ `
     }
     float occlusion = mix(1.0, mix(0.5, 1.08, smoothstep(0.0, 0.95, height)) * (1.0 - 0.16 * tier),
       plant);
-    return (1.0 + leaf * mix(0.12, 0.4, plant)) * occlusion;
+    float puffs = 1.0;
+    if (mass > 0.5) {
+      // Each lattice is turned off the model's axes, and the two differently, so neither their
+      // rows nor their sum line up with the crown.
+      vec3 squat = q * vec3(1.0, ${PUFF_FLAT.toFixed(2)}, 1.0);
+      vec3 turned = vec3(dot(squat, vec3(0.8, 0.36, -0.48)), dot(squat, vec3(-0.6, 0.48, -0.64)),
+        dot(squat, vec3(0.0, 0.8, 0.6)));
+      float broadFade = 1.0 - smoothstep(0.3, 0.8, footprint / ${PUFF.toFixed(2)});
+      float fineFade = 1.0 - smoothstep(0.3, 0.8, footprint / ${PUFF_FINE.toFixed(2)});
+      vec3 slope;
+      vec3 lattice = vec3(0.0);
+      float broad = ${PUFF_MEAN.toFixed(2)};
+      if (broadFade > 0.0) {
+        broad = mix(broad, scatterClumps(turned / ${PUFF.toFixed(2)}, ${PUFF_GAP.toFixed(2)}, vec3(0.36, 0.48, 0.8), 1.0,
+          slope), broadFade);
+        lattice += slope * (broadFade * ${(PUFF_RELIEF / PUFF).toFixed(4)});
+      }
+      float fine = ${PUFF_FINE_MEAN.toFixed(2)};
+      if (fineFade > 0.0) {
+        fine = mix(fine, scatterClumps(turned.zxy / ${PUFF_FINE.toFixed(2)} + 7.3, ${PUFF_FINE_GAP.toFixed(2)},
+          vec3(0.8, 0.36, 0.48), ${PUFF_FINE_MARK.toFixed(2)}, slope), fineFade);
+        lattice += slope.yzx * (fineFade * ${(PUFF_FINE_RELIEF / PUFF_FINE).toFixed(4)});
+      }
+      puffs = broad * fine;
+      // Back through the turn and the flattening to the model's own axes.
+      scatterSlope = (lattice.x * vec3(0.8, 0.36, -0.48) + lattice.y * vec3(-0.6, 0.48, -0.64) +
+        lattice.z * vec3(0.0, 0.8, 0.6)) * vec3(1.0, ${PUFF_FLAT.toFixed(2)}, 1.0);
+    }
+    return (1.0 + leaf * mix(0.12, 0.4, plant)) * occlusion * puffs;
   }
 
   // The sun a crown gets where the shadow map is not read (a tree's distant levels): its top
@@ -456,7 +633,14 @@ export function createScatterMaterial(): THREE.MeshStandardMaterial {
       .replace(
         '#include <color_fragment>',
         `#include <color_fragment>
-       diffuseColor.rgb *= scatterFactor();`,
+       diffuseColor.rgb *= scatterFactor( step( 0.94, vMapUv.x ) * step( 0.7, vMapUv.y ) );`,
+      )
+      // A foliage mass's clumps tilt its normal; elsewhere the relief is zero and this is the
+      // normal unchanged.
+      .replace(
+        '#include <normal_fragment_maps>',
+        `#include <normal_fragment_maps>
+       normal = scatterBump( normal, - vViewPosition, scatterSlope );`,
       )
       // A renderer's own hooks may already have written the lighting chunk out in full.
       .replace('#include <lights_fragment_begin>', THREE.ShaderChunk.lights_fragment_begin)
@@ -466,7 +650,7 @@ export function createScatterMaterial(): THREE.MeshStandardMaterial {
         `vDirectionalShadowCoord[ i ] ) : mix( 1.0, scatterStandShade( dot( directLight.direction, normalize( ( viewMatrix * vec4( 0.0, 1.0, 0.0, 0.0 ) ).xyz ) ) ), directionalLightShadow.shadowIntensity );`,
       );
   };
-  material.customProgramCacheKey = (): string => 'worldgen-scatter@4';
+  material.customProgramCacheKey = (): string => 'worldgen-scatter@5';
   return enableSnowCover(material, SCATTER_SNOW, SCATTER_SNOW_FACING);
 }
 
@@ -480,6 +664,8 @@ export async function createScatterMaterialAsync(
     {
       attribute,
       cameraViewMatrix,
+      dFdx,
+      dFdy,
       dot,
       float,
       floor,
@@ -490,13 +676,19 @@ export async function createScatterMaterialAsync(
       lightTargetDirection,
       materialColor,
       max,
+      min,
       mix,
+      normalize,
+      normalViewGeometry,
       positionGeometry,
+      positionView,
       pow,
       cos,
       reference,
       renderGroup,
+      sin,
       smoothstep,
+      sqrt,
       step,
       clamp,
       texture,
@@ -527,10 +719,95 @@ export async function createScatterMaterialAsync(
   };
   const q = varying(positionGeometry).toVar() as unknown as V3;
   const canopy = varying(attribute(SCATTER_CANOPY_ATTRIBUTE, 'float')) as unknown as F;
+  // A clump at a point of its lattice, as scatterPuff and scatterClumps in GLSL: its light, and
+  // how its relief changes there.
+  const clumps = (
+    at: V3,
+    gapLight: number,
+    up: readonly [number, number, number],
+    mark: number,
+  ): { light: F; slope: V3 } => {
+    // The lattice bent before it is read, so clumps do not stand in rows.
+    const bend = at.mul(PUFF_BEND_RATE).toVar();
+    const bent = at.add(sin(bend.yzx.add(vec3(1.3, 2.9, 5.2))).mul(PUFF_BEND)).toVar();
+    const cell = floor(bent.sub(0.5)).toVar();
+    const within = bent.sub(cell).toVar();
+    const first = float(16).toVar();
+    const second = float(16).toVar();
+    const toFirst = vec3(0).toVar();
+    const toSecond = vec3(0).toVar();
+    const seed = float(0).toVar();
+    for (let z = 0; z < 2; z++)
+      for (let y = 0; y < 2; y++)
+        for (let x = 0; x < 2; x++) {
+          const c = cell.add(vec3(x, y, z));
+          const h = hash(vec2(c.x.add(c.z.mul(37)), c.y.sub(c.z.mul(17))) as unknown as V2);
+          const r = vec3(x, y, z)
+            .add(0.2)
+            .add(fract(vec3(1, 61, 127).mul(h)).mul(0.6))
+            .sub(within)
+            .toVar();
+          const d = dot(r, r).toVar();
+          // By arithmetic, not by branches: see scatterPuff.
+          const closest = step(d, first).toVar();
+          const closer = closest.oneMinus().mul(step(d, second)).toVar();
+          toSecond.assign(mix(mix(toSecond, r, closer), toFirst, closest));
+          second.assign(mix(mix(second, d, closer), first, closest));
+          toFirst.assign(mix(toFirst, r, closest));
+          first.assign(mix(first, d, closest));
+          seed.assign(mix(seed, h, closest));
+        }
+    const d1 = sqrt(first).toVar();
+    const d2 = sqrt(second).toVar();
+    const gap = d2.sub(d1).toVar();
+    const t = clamp(gap.div(PUFF_GAP_WIDTH), 0, 1).toVar();
+    const face = t.mul(t).mul(t.mul(-2).add(3)).toVar();
+    const u = clamp(d1.div(0.7), 0, 1).toVar();
+    const dome = u.mul(u).mul(u.mul(-2).add(3)).mul(-0.6).add(1);
+    const nearer = toFirst.div(max(d1, 0.0001)).negate().toVar();
+    const farther = toSecond.div(max(d2, 0.0001)).negate();
+    const along = farther
+      .sub(nearer)
+      .mul(t.mul(t.oneMinus()).mul(6 / PUFF_GAP_WIDTH))
+      .mul(dome)
+      .sub(nearer.mul(face.mul(u.mul(u.oneMinus())).mul(3.6 / 0.7)))
+      .toVar();
+    // That was along the bent lattice; back to the lattice itself.
+    const slope = along.add(
+      along.zxy.mul(cos(bend.add(vec3(5.2, 1.3, 2.9)))).mul(PUFF_BEND * PUFF_BEND_RATE),
+    );
+    // 1 at the clump's top, -1 at its underside, 0 through its middle.
+    const side = dot(nearer, vec3(...up))
+      .mul(min(d1.div(0.25), 1))
+      .mul(mark)
+      .toVar();
+    const s = clamp(
+      gap.div(mix(PUFF_GAP_WIDTH, PUFF_GAP_WIDTH * PUFF_SHADE_TOP, side.mul(0.5).add(0.5))),
+      0,
+      1,
+    ).toVar();
+    const lit = side
+      .mul(PUFF_LIFT)
+      .add(1)
+      .mul(
+        fract(seed.mul(419))
+          .mul(2)
+          .sub(1)
+          .mul(PUFF_TONE * mark)
+          .add(1),
+      );
+    return {
+      light: mix(gapLight, lit, s.mul(s).mul(s.mul(-2).add(3))) as unknown as F,
+      slope: slope as unknown as V3,
+    };
+  };
+  // 1 on a foliage mass (see SCATTER_MASS_UV), 0 elsewhere.
+  const mass = step(0.94, uv().x).mul(step(0.7, uv().y)) as unknown as F;
   const p = q.xz.add(vec2(0.71, -0.53).mul(q.y)).toVar() as unknown as V2;
   // Each layer only where it still shows, so distant canopy skips its noise. The derivative
   // comes first, outside the branches.
-  const factor = Fn(() => {
+  // xyz: the slope of a foliage mass's clumps; w: the factor on the surface's color.
+  const shade = Fn(() => {
     const footprint = max(fwidth(q).length(), 0.0001).toVar();
     const plant = step(0.5, canopy).toVar();
     const leafFade = smoothstep(0.25, 0.6, footprint.div(LEAF)).oneMinus().toVar();
@@ -577,15 +854,80 @@ export async function createScatterMaterialAsync(
       mix(0.5, 1.08, smoothstep(0, 0.95, height)).mul(tier.mul(0.16).oneMinus()),
       plant,
     );
-    return leaf
-      .mul(mix(0.12, 0.4, plant))
-      .add(1)
-      .mul(occlusion);
-  })().toVar() as unknown as F;
+    const puffs = float(1).toVar();
+    // How the clumps' relief changes here, along the model's axes: scatterSlope in GLSL.
+    const slope = vec3(0).toVar();
+    If(mass.greaterThan(0.5), () => {
+      // Each lattice is turned off the model's axes, and the two differently.
+      const squat = q.mul(vec3(1, PUFF_FLAT, 1));
+      const turned = vec3(
+        dot(squat, vec3(0.8, 0.36, -0.48)),
+        dot(squat, vec3(-0.6, 0.48, -0.64)),
+        dot(squat, vec3(0, 0.8, 0.6)),
+      ).toVar();
+      const broadFade = smoothstep(0.3, 0.8, footprint.div(PUFF)).oneMinus().toVar();
+      const fineFade = smoothstep(0.3, 0.8, footprint.div(PUFF_FINE)).oneMinus().toVar();
+      const lattice = vec3(0).toVar();
+      const broad = float(PUFF_MEAN).toVar();
+      If(broadFade.greaterThan(0), () => {
+        const clump = clumps(turned.div(PUFF) as unknown as V3, PUFF_GAP, [0.36, 0.48, 0.8], 1);
+        broad.assign(mix(broad, clump.light, broadFade));
+        lattice.addAssign(clump.slope.mul(broadFade.mul(PUFF_RELIEF / PUFF)));
+      });
+      const fine = float(PUFF_FINE_MEAN).toVar();
+      If(fineFade.greaterThan(0), () => {
+        const spray = clumps(
+          turned.zxy.div(PUFF_FINE).add(7.3) as unknown as V3,
+          PUFF_FINE_GAP,
+          [0.8, 0.36, 0.48],
+          PUFF_FINE_MARK,
+        );
+        fine.assign(mix(fine, spray.light, fineFade));
+        lattice.addAssign(spray.slope.yzx.mul(fineFade.mul(PUFF_FINE_RELIEF / PUFF_FINE)));
+      });
+      puffs.assign(broad.mul(fine));
+      // Back through the turn and the flattening to the model's own axes.
+      slope.assign(
+        vec3(0.8, 0.36, -0.48)
+          .mul(lattice.x)
+          .add(vec3(-0.6, 0.48, -0.64).mul(lattice.y))
+          .add(vec3(0, 0.8, 0.6).mul(lattice.z))
+          .mul(vec3(1, PUFF_FLAT, 1)),
+      );
+    });
+    return vec4(
+      slope,
+      leaf
+        .mul(mix(0.12, 0.4, plant))
+        .add(1)
+        .mul(occlusion)
+        .mul(puffs),
+    );
+  })().toVar() as unknown as Node<'vec4'>;
+  const factor = shade.w as unknown as F;
   const material = new MeshStandardNodeMaterial(parameters());
   material.name = 'worldgen:models';
   const color = materialColor as unknown as Node<'vec4'>;
   material.colorNode = vec4(color.rgb.mul(factor), color.a);
+  // The normal of a foliage mass under its clumps, as scatterBump in GLSL: tilted down the slope
+  // of their relief, carried from the model's axes into view by the pixel's own two edges.
+  material.normalNode = Fn(() => {
+    const a = dFdx(q).toVar();
+    const b = dFdy(q).toVar();
+    const viewA = dFdx(positionView).toVar();
+    const viewB = dFdy(positionView).toVar();
+    const aa = dot(a, a).toVar();
+    const ab = dot(a, b).toVar();
+    const bb = dot(b, b).toVar();
+    const det = max(aa.mul(bb).sub(ab.mul(ab)), 1e-14);
+    const ga = dot(shade.xyz, a).toVar();
+    const gb = dot(shade.xyz, b).toVar();
+    const tilt = viewA
+      .mul(ga.mul(bb).sub(gb.mul(ab)))
+      .add(viewB.mul(gb.mul(aa).sub(ga.mul(ab))))
+      .div(det);
+    return normalize(normalViewGeometry.sub(tilt));
+  })();
   // The cut is a node, not `alphaTest`: Three copies each shadow caster's `alphaTest` onto the
   // light's one shadow-pass material, and every switch between a carded and a solid caster
   // bumped that material's version, so every caster after it rebuilt its render-object key

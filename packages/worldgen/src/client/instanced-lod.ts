@@ -61,6 +61,15 @@ const LEVEL_ERRORS = [0.45, 2] as const;
 const CARD_HANDOVER = 0.25;
 
 /**
+ * Share of the first handover at which a near-detail-only model (ground cover, flower beds) stops
+ * being drawn. Nothing replaces it, and a batch spans hundreds of meters: at the full distance
+ * the tufts of up to nine batches were drawn, most of them a pixel or two tall, which is what
+ * kept ground cover to a few thousand instances a region. Nearer, the same triangles go to what
+ * a walker can see: about 165 m from a batch's edge at a 2 pixel budget on a 1080-line view.
+ */
+const NEAR_ONLY_REACH = 0.65;
+
+/**
  * Projected error at which the horizon level (a fourth model, where one is given) takes over:
  * about 930 m out at a 2.5 pixel budget on a 1080-line view. The far level's skirts are under a
  * pixel deep well before that; what they keep to this distance is the banded shading that tells
@@ -495,7 +504,7 @@ export function createInstancedPlacementLod(
         unit = handoverError(level, models[level - 1] as PreparedModel, unit);
         geometries.push(drawn(model) ? model.geometry : undefined);
         materials.push(levelMaterial(model.material, model.geometry));
-        errors.push(unit * largestScale);
+        errors.push(unit * largestScale * (drawn(model) ? 1 : NEAR_ONLY_REACH));
         if (level >= 2 && distantFrom < 0) distantFrom = geometries.length - 1;
         if (level >= HORIZON_MODEL) horizonLevel = geometries.length - 1;
         if (!drawn(model)) break;

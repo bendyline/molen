@@ -72,7 +72,7 @@ describe('places content', () => {
   it('builds the default content from raw documents with the pinned hashes', () => {
     const places = createPlacesContent(docs);
     expect(places.landmarks.hash).toBe(
-      'sha256:eaeabd3e27f061ea4a09ecd5d0342306b3018d97c5d1387637f275e6e0d92e5e',
+      'sha256:09ccd62e8c561c8fb8c3e172d030fa6f0f6cf6e914c484d9e099963981c0b6c3',
     );
     expect(places.businesses.hash).toBe(
       'sha256:68e93df7a0e1b17030909c2b5d80cd91ea550639fc7cf81b89a8fe4e06d7a927',

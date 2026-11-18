@@ -2,7 +2,7 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.volksparkstadion",
   "inputHash": "sha256:abebca40d2d35c9a2fe429d6a2f4dd86f5be1aa58c2cc58e6a1ebbb659199745",
-  "captureReportHash": "sha256:76d6f3d1fbdfd080fdf8a67bd2fa3a7b9814cc8a6aff1df292fe8caf957f78b5",
+  "captureReportHash": "sha256:dec5e3ad01f7da0e2ca57785e92107969e358ec6aac3208e767694cbe943e772",
   "visualReview": {
     "status": "passed",
     "scope": "Completed2024 exterior and visible stadium bowl.",
@@ -143,5 +143,15 @@
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
     "notes": "Original and refurbishment structural engineer plus current operator evidence support the individual roof, dimensions, three seating tiers, light inventory, audio arrays and site axes. Local profiles, construction sections, floor heights, chair inventory and core spacing remain photo reconstructions. Proposed October2026 expansion, event art, roof sponsors and enclosed rooms are excluded."
+  },
+  "sourceHash": "sha256:d97b48dec3cd61c476cfa2ab6451b9efad27bfce27702af6477d5ef62118f96d",
+  "runtimeHash": "sha256:a0772156453163aef8102aba0372dede6f8aecb77c9eaf723434090ac7752e00",
+  "reviewMaintenance": {
+    "sharedHelperAdoption": {
+      "reviewedOn": "2026-11-15",
+      "inputHash": "sha256:abebca40d2d35c9a2fe429d6a2f4dd86f5be1aa58c2cc58e6a1ebbb659199745",
+      "change": "Adopts commit 730813689 (2026-10-26): the shared stadium-models.mjs curve() helper, used for this stadium's rails, ring cables and frames, switched from one tube() per segment to a continuous tubePath() with shared miter rings and caps only at open ends. That removed overlapping segment caps and seams at every joint; nothing else in the model changed. The source pin had stayed at the pre-change output, which the build has not produced since that commit.",
+      "evidence": "The shared helper is not one of this model's listed recipes, so its input hash did not move while its output did. Regenerating with only that helper reverted reproduced the previous source pin exactly. Portable and shared-surface frames were recaptured from the current model and inspected; the existing review statuses and notes are retained."
+    }
   }
 }

@@ -1,13 +1,14 @@
 # Inferred building interiors
 
-World explorer enables lazy interiors in the styled **Human** layer: choose **Walk**, approach
-a building, and walk through its framed entrance. Near the entrance, the windows become
-transparent and reveal the same interior you can enter.
+World explorer enables lazy interiors in the styled **Human** layer: choose **Walk**, walk up to
+a building's front door, press **E** to open it, and walk in. Near the entrance, the windows
+become transparent and reveal the same interior you can enter.
 
 `?interiors=0` disables this capability. `?synthetic=1&stores=1` provides a repeatable block of recognizable
-stores; `test/visual/interiors.play.json` walks into and out of its fast-food restaurant and grocery store.
+stores; `test/visual/interiors.play.json` opens the doors of its fast-food restaurant and grocery
+store, walks in, and walks back out.
 Use `?synthetic=1&houses=1` for a residential block with two-storey houses and a bungalow.
-`test/visual/houses.play.json` walks through its entrance, climbs the stairs, and enters a bedroom.
+`test/visual/houses.play.json` opens a front door, walks in, climbs the stairs, and enters a bedroom.
 
 These layouts are plausible procedural interpretations of building use, **not surveyed floor
 plans**. Confirmed occupant categories take precedence over building labels, then surrounding
@@ -209,6 +210,16 @@ using the style pack's catalog (and generating no interiors when the pack has no
 `renderers.updateInteriors(cameraPosition)` each frame. Only complete buildings at the finest
 semantic level receive sites; coarse representations retain the cheap exterior path.
 
+A site comes with a building's full detail, and a crowded tile cannot detail every building: a
+dense Seattle tile holds 1,091 buildings and a WebGL host's vertex budget details 75 of them.
+From the air those are the largest. Once the position passed to `updateInteriors` is down among
+the buildings and moving at a walk, the tiles within 90 m of it are regenerated with their
+buildings queued nearest first, and again each 36 m it moves, so the houses round a walker
+(148 of them in that tile, out to 140 m) are the ones with doors. Nothing is regenerated while the
+viewer is inside a building or travelling faster than 10 m/s, and the tile on screen stays
+until its replacement is ready. `viewerFocus: false` on the renderers keeps a tile's first
+choice; World Explorer accepts `?focus=0`, and frozen captures (`?freeze`) never regenerate.
+
 Defaults are a 65 m load distance, 90 m release distance, 12 resident interiors and a 16 MiB
 resident geometry cap. Distance is measured to the footprint (including courtyard boundaries)
 and vertically to the available storey envelope, so a large building remains resident while you are inside
@@ -218,7 +229,8 @@ candidate modules and 160 fixtures (hard ceilings 4,096 and 512). The work budge
 64 iterator steps per frame, with at most one completed upload per frame. This is a cooperative
 budget, not a hard deadline: triangulation and final buffer upload are indivisible operations.
 
-One opaque portal batch covers unready entrances/windows per region. Publication attaches the
+One opaque portal batch covers unready windows per region; a shut door closes its own doorway
+(see [Doors](#doors)). Publication attaches the
 complete interior and removes those covers atomically. Eviction restores covers and disposes
 owned geometry; shared materials survive until streamer disposal. Hidden layers, region
 disposal and moving out of range cancel pending work. There is no unbounded interior cache:
@@ -241,7 +253,45 @@ the same published geometry, except that visible stair steps are skipped (`walkI
 a closed wedge supplies smooth stair collision. The published proxy is marked
 `walkCollisionOnly` and has rendering layers disabled. Hosts using the kernel buffers directly
 should likewise omit `steps` from physics and add `collision` to their collision scene. Portal index changes invalidate collision, and window glass is
-solid from either side. Doorways remain open without an interaction key or door animation.
+solid from either side.
+
+## Doors
+
+Every site's entrance has a door, shut until someone opens it. A house gets one painted panel
+door, sometimes with a glass light, in one of a street's usual front-door colors, with a knob
+and a fanlight over it where the opening is taller than a door. Shops, offices and everything
+else get framed glass doors with a pull, in pairs where the doorway is 1.8 m or wider. A car
+park's entrances stay open for cars. The look and the hinge side come from the site's identity,
+so a building keeps its door.
+
+`interiorDoors(site, catalog)` in the kernel describes them: each `InteriorDoor` has an `id`
+(`<identity>#door0`), the doorway's `center`, `along` and `inward` directions, its leaves (each a
+`hinge` and a direction across the leaf), and per leaf the `swing` angle about +Y that opens it
+inward (the negative opens it outward). `buildInteriorDoorLeaf` and `buildInteriorDoorFrame`
+build the closed leaves and the fixed transom. The kernel decides nothing about when a door opens.
+
+`InteriorStreamer` draws every door of a region in one mesh and swings a leaf by rewriting its
+own vertices, so doors cost one draw per region. Walking collision sees the leaves wherever they
+are, shut or open, and picks up a swing on its next scan.
+
+```ts
+const door = interiors.doorAt(eye, { facing: forward }); // within 1.8 m, in front of the viewer
+if (door && !door.locked) interiors.setDoor(door.id, !door.open, feet);
+```
+
+`doorAt` returns the nearest door within `reach` (1.8 m) of a position, at eye or foot height,
+and ahead of `facing` when given. `setDoor(id, open, from)` opens a door away from `from`, so it
+never swings into whoever opened it: from the street it opens inward, and from inside it opens
+outward. It swings over 0.7 s, quickest at the start, on the streamer's clock (`now`, `performance.now` by default).
+A door opens only onto rooms that are built: asked before then, it reports `waiting` and swings
+when they are published, or gives up if the viewer leaves first. A site whose rooms could not
+be built is `locked` and stays shut. Shutting is refused while `from` stands in the doorway.
+When an interior is released, its door shuts with it.
+
+The Earth renderers expose the same `doorAt` and `setDoor`. World Explorer and the Earth view
+use the interact key for them: **E** opens or shuts the door the walker faces, and the explorer's
+status line says which it will do. In the Earth view a door is an interactable of kind `door` (see
+[Earth view](earth-view.md#interaction)).
 
 ## Current limits and next extensions
 
@@ -250,7 +300,8 @@ tower or mall, and every deck of a car park, in complete, non-elevated polygon b
 exterior geometry budget and have room for human-scale access. It does not promise entry into
 every mapped fragment: clipped footprints, elevated parts, very low/narrow structures,
 budget-boxed and omitted buildings lack a site. Additional storeys, switchback stairs, elevators,
-animated doors, tenant subdivision and persistent object edits remain future extensions.
+doors between rooms (their doorways are open), tenant subdivision and persistent object edits
+remain future extensions.
 
 Ground-floor platforms use the highest sampled perimeter height and an entrance ramp. Very
 steep sites, terrain protruding inside a large footprint, adjacent buildings obstructing a

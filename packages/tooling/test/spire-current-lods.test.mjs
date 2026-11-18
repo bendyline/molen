@@ -37,7 +37,7 @@ function glb(b) {
 }
 
 it('preserves the instanced physical-hole master and the exact mapped monument center', async () => {
-  const b = await readFile(source + '/models/source.glb'),
+  const b = await readFile(`${source}/models/source.glb`),
     { g } = glb(b);
   const rows = g.nodes.filter((n) => n.extensions?.EXT_mesh_gpu_instancing);
   expect(rows).toHaveLength(212);
@@ -48,8 +48,8 @@ it('preserves the instanced physical-hole master and the exact mapped monument c
       0,
     ),
   ).toBe(11884);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json');
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`);
   const p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
     (p) => p.asset === s.assetId,
   );
@@ -64,7 +64,7 @@ it('preserves the instanced physical-hole master and the exact mapped monument c
 });
 
 it('keeps all 11884 close-up daylight marks visibly outside the taper, including the narrow tip', async () => {
-  const { g, array } = glb(await readFile(runtime + '/model.closeup.glb'));
+  const { g, array } = glb(await readFile(`${runtime}/model.closeup.glb`));
   const marks = g.meshes
     .flatMap((m) => m.primitives)
     .filter((p) => g.materials[p.material].name === 'local-architectural-surface');
@@ -87,15 +87,15 @@ it('keeps all 11884 close-up daylight marks visibly outside the taper, including
 // The forced rebuild expands the instanced master to over 1.3 million triangles before
 // authoring the browser levels. Allow the same budget as other full landmark rebuilds.
 it('rebuilds deterministic whole-height browser levels within strict budgets using four shared graphs', async () => {
-  const before = await read(runtime + '/asset.json');
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const before = await read(`${runtime}/asset.json`);
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels).toEqual(before.runtimeLods.levels);
   expect(after.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of after.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       { g } = glb(b);
-    expect('sha256:' + createHash('sha256').update(b).digest('hex')).toBe(l.hash);
+    expect(`sha256:${createHash('sha256').update(b).digest('hex')}`).toBe(l.hash);
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
     expect(g.images ?? []).toHaveLength(0);
@@ -114,7 +114,7 @@ it('rebuilds deterministic whole-height browser levels within strict budgets usi
   }
   expect([...refs].sort()).toEqual(
     ['metal_stainless', 'metal_stainless_beadblasted', 'metal_stainless_polished', 'stone_marble']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 }, 120_000);

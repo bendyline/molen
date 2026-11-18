@@ -291,7 +291,7 @@ async function foundationProbes() {
   const ids = ['way/62144160', 'way/261513898', 'way/1395191028', 'way/261512837'];
   const result = [];
   for (const id of ids) {
-    const ring = frame.features.find((p) => p.type + '/' + p.id === id)?.points;
+    const ring = frame.features.find((p) => `${p.type}/${p.id}` === id)?.points;
     if (!ring) throw Error(id);
     const signed = ring.reduce((n, p, i) => {
       const q = ring[(i + 1) % ring.length];

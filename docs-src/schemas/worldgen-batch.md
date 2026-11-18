@@ -527,6 +527,36 @@ A serialized generation request: labeled building outlines, optional labeled pol
             },
             "description": "Outline edge indices on the cut boundary."
           },
+          "partyEdges": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "description": "Outline edge indices shared with a neighbouring building: walls with no openings or trim."
+          },
+          "fallbackLevelsMax": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200,
+            "description": "Most storeys the style may guess when neither height nor levels is supplied; ignored otherwise."
+          },
+          "crown": {
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "spire",
+                "belfry",
+                "dome",
+                "minaret",
+                "shikhara"
+              ]
+            },
+            "description": "Towers and domes the building carries, in its style materials."
+          },
           "style": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
@@ -595,6 +625,15 @@ A serialized generation request: labeled building outlines, optional labeled pol
                 "minimum": 0,
                 "maximum": 4294967295,
                 "description": "Owner seed for acceptance and appearance on the shared placement grid."
+              },
+              "appearance": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The ground's appearance class here, the key a crowns rule looks its brush up by (default: label)."
+              },
+              "ground": {
+                "type": "boolean",
+                "description": "False for a polygon only scatter sees (an inferred yard): crowns rules look through it to the polygon beneath."
               }
             },
             "required": [

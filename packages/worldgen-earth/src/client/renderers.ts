@@ -43,6 +43,8 @@ import {
   createSignMeshObject,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
+  type InteriorDoorQuery,
+  type InteriorDoorState,
   type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
@@ -104,6 +106,18 @@ import type { WorldgenGenerateRequest, WorldgenGenerator } from './worker-bridge
 const FOOTPRINT_SIZE_RATIO = 1.6;
 /** Share of the plant scatter a compact scene keeps (see `compact`). */
 const COMPACT_SCATTER_KEEP = 0.5;
+
+/**
+ * Meters a viewer on the ground moves before the buildings round them are chosen again. A tile's
+ * detail budget reaches past 100 m in a dense suburb (148 buildings of a Seattle tile's 1,091,
+ * the farthest at the 140 m focus radius), so at the step's end the houses ahead are still the
+ * detailed ones.
+ */
+const FOCUS_STEP = 36;
+/** A tile's buildings are chosen round the viewer while they stand within this of it, meters. */
+const FOCUS_REACH = 90;
+/** Faster than this (a car, an aircraft) and the viewer is passing through, m/s. */
+const FOCUS_MAX_SPEED = 10;
 const FOOTPRINT_SLACK = 12;
 /**
  * Distant shells take a roof and a wall each, so a city seen from an airplane is not one beige
@@ -195,6 +209,14 @@ export interface WorldgenRendererOptions {
    * laid out by the style pack's interior catalog; a pack without one generates no interiors.
    */
   interiors?: boolean | Omit<InteriorStreamingOptions, 'catalog'>;
+  /**
+   * With `interiors`: once the position passed to `updateInteriors` is down among the buildings
+   * and moving at a walk, regenerate the finest tiles round it with their buildings queued
+   * nearest first, so the ones a walker can reach are the detailed, enterable ones (default
+   * true). A tile is replaced some seconds after the viewer arrives: turn it off where a frame
+   * must not change under a still camera, as in a render test.
+   */
+  viewerFocus?: boolean;
   /** Shared screen-space policy for resident building and vegetation LODs. */
   lodPolicy?: ScreenSpaceLodPolicy;
   /** Buildings generated between cooperative yields (default 48, in-thread only). */
@@ -277,6 +299,16 @@ export interface WorldgenSemanticRenderers {
   elevatorAt(position: readonly [number, number, number]): InteriorElevatorStop | undefined;
   /** Ask a tower for a storey; true once it is built and a viewer can be moved there. */
   requestStorey(identity: string, level: number): boolean;
+  /** The nearest building door within reach of a viewer, in front of them with `facing`. */
+  doorAt(
+    position: readonly [number, number, number],
+    query?: InteriorDoorQuery,
+  ): InteriorDoorState | undefined;
+  /**
+   * Open or shut a building door, away from a viewer at `from`. False when there is no such
+   * door, it is locked, or shutting it would close it on someone standing in the doorway.
+   */
+  setDoor(id: string, open: boolean, from?: readonly [number, number, number]): boolean;
   dispose(): void;
 }
 
@@ -360,6 +392,8 @@ export function createWorldgenSemanticRenderers(
     quality: WorldgenQualityPreset;
     /** A neighbour's landmark footprints changed since this tile's buildings were generated. */
     stale?: boolean;
+    /** The viewer position its buildings were last chosen round (see refocus). */
+    focus?: readonly [number, number];
     pending?: AbortController;
     /** The landmarks standing on it, for buildingsNear. */
     placed: readonly PlacedStructure[];
@@ -385,6 +419,10 @@ export function createWorldgenSemanticRenderers(
   const disposedHumanTiles = new WeakSet<THREE.Object3D>();
   let rebuilding = false;
   let disposed = false;
+  // Where a viewer on the ground last was when the buildings round them were chosen, in world
+  // X/Z, and the position and time they were last seen at (for their speed).
+  let focus: readonly [number, number] | undefined;
+  let focusSample: { x: number; z: number; at: number } | undefined;
   // Distant levels stand in for textured buildings, so they carry the textures' mean brightness.
   const flatMaterials = options.lodPolicy
     ? createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN, ...decorate })
@@ -487,9 +525,13 @@ export function createWorldgenSemanticRenderers(
     features: { buildings: boolean; scatter: boolean },
     preset = quality,
     buildingInfillExclusions?: TerrainSemanticPolygon[],
-  ): Promise<{ output: WorldgenTileOutput; generateMs: number } | undefined> {
+  ): Promise<
+    | { output: WorldgenTileOutput; generateMs: number; focus?: readonly [number, number] }
+    | undefined
+  > {
     const geom = geometryFor(context, metersPerUnit);
     const started = now();
+    const focused = features.buildings ? focusFor(context) : undefined;
     const input: WorldgenGenerateRequest = {
       tile,
       geom,
@@ -508,7 +550,11 @@ export function createWorldgenSemanticRenderers(
       tierOffset: preset === 'economy' ? 1 : 0,
       ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
       ...(context.priority !== undefined ? { priority: context.priority } : {}),
+      ...(focused !== undefined ? { focus: focused } : {}),
     };
+    // Buildings chosen round a viewer are theirs alone: the next step chooses again, so a cached
+    // copy would never be read, only held.
+    const source = focused !== undefined ? base : generator;
     // The request's own main-thread work (its cache key, ground grid and the message to a worker)
     // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
     // For a dense town tile it was 8-16 ms in one piece, past any frame's budget, so the tile's
@@ -517,10 +563,11 @@ export function createWorldgenSemanticRenderers(
       context.admission ? context.admission.run(work, { signal: context.signal, label }) : work();
     let output: WorldgenTileOutput | undefined;
     try {
-      if (cache !== undefined) await admitted('worldgen-key', () => tileHash(tile));
-      if (generator.prepare !== undefined)
-        await admitted('worldgen-prepare', () => generator.prepare?.(input));
-      output = await admitted('worldgen-request', () => generator.generate(input, context.signal));
+      if (cache !== undefined && source === generator)
+        await admitted('worldgen-key', () => tileHash(tile));
+      if (source.prepare !== undefined)
+        await admitted('worldgen-prepare', () => source.prepare?.(input));
+      output = await admitted('worldgen-request', () => source.generate(input, context.signal));
     } catch (error) {
       if (context.signal.aborted) return undefined;
       throw error;
@@ -535,7 +582,7 @@ export function createWorldgenSemanticRenderers(
       max: Math.max(stats.generateMs.max, generateMs),
     };
     options.onTileStats?.(output, generateMs);
-    return { output, generateMs };
+    return { output, generateMs, ...(focused !== undefined ? { focus: focused } : {}) };
   }
 
   async function instancedProps(
@@ -1211,6 +1258,60 @@ export function createWorldgenSemanticRenderers(
     );
   }
 
+  /** The viewer position `context`'s buildings should be chosen round, if they stand near it. */
+  function focusFor(
+    context: TerrainPyramidTileLayerContext,
+  ): readonly [number, number] | undefined {
+    if (focus === undefined || interiors === undefined) return undefined;
+    if (context.address.level < context.pyramid.maxLevel) return undefined;
+    const reach = FOCUS_REACH / metersPerUnit;
+    const [x, z] = context.origin;
+    return focus[0] < x - reach ||
+      focus[0] > x + context.tileSize + reach ||
+      focus[1] < z - reach ||
+      focus[1] > z + context.tileSize + reach
+      ? undefined
+      : focus;
+  }
+
+  /**
+   * A tile's detail budget goes to its largest buildings, which from the air is right: a dense
+   * suburb's tile holds a thousand buildings and can detail, and so open the doors of, about
+   * seventy-five of them. For someone on the ground the ones that matter are the nearest, and
+   * being houses they are cheaper: the same budget details about twice as many. Once a viewer is
+   * down among the buildings and moving at a walk, the tiles they stand in or beside are
+   * regenerated with their buildings queued nearest first, and again each `FOCUS_STEP` they move.
+   * The tile shown stays until its replacement is ready (see rebuildResidents).
+   */
+  function refocus(position: readonly [number, number, number]): void {
+    if (interiors === undefined || options.viewerFocus === false || disposed) return;
+    if (!position.every(Number.isFinite)) return;
+    const at = now();
+    const last = focusSample;
+    focusSample = { x: position[0], z: position[2], at };
+    if (last === undefined || !(at > last.at)) return;
+    const moved = Math.hypot(position[0] - last.x, position[2] - last.z) * metersPerUnit;
+    if (moved / ((at - last.at) / 1000) > FOCUS_MAX_SPEED) return;
+    if (
+      focus !== undefined &&
+      Math.hypot(position[0] - focus[0], position[2] - focus[1]) * metersPerUnit < FOCUS_STEP
+    )
+      return;
+    // Not from the air, and not from inside: the swap republishes the room a viewer stands in.
+    if (!interiors.among(position) || interiors.occupied(position)) return;
+    focus = [position[0], position[2]];
+    let marked = false;
+    for (const [root, resident] of residents) {
+      if (resident.generalized || superseded.has(root)) continue;
+      const wanted = focusFor(resident.context);
+      // A tile the viewer has left keeps the buildings it last chose: nothing there needs redoing.
+      if (wanted === undefined || wanted === resident.focus) continue;
+      resident.stale = true;
+      marked = true;
+    }
+    if (marked) void rebuildResidents();
+  }
+
   // One replacement at a time bounds extra memory and worker pressure. Quality changes and
   // tile eviction cancel pending work; the displayed architecture survives until the swap.
   async function rebuildResidents(): Promise<void> {
@@ -1284,6 +1385,8 @@ export function createWorldgenSemanticRenderers(
             resident.architecture = replacement;
             resident.quality = preset;
             resident.placed = placed;
+            if (generated.focus !== undefined) resident.focus = generated.focus;
+            else delete resident.focus;
             registerInteriors(replacement, generated.output, context);
             shareFootprints(root, context, placed);
             replacement = undefined;
@@ -1464,7 +1567,7 @@ export function createWorldgenSemanticRenderers(
           disposeHumanTile(group);
           return undefined;
         }
-        const { output } = generated.value;
+        const { output, focus: focusedOn } = generated.value;
         const architecture = await assembleBuildings(output, context, group.name);
         await structureTask;
         if (structureGroup.children.length) architecture.add(structureGroup);
@@ -1487,7 +1590,9 @@ export function createWorldgenSemanticRenderers(
           context,
           architecture,
           quality: preset,
-          stale,
+          // The viewer moved on while this tile generated: choose its buildings again.
+          stale: stale || focusFor(context) !== focusedOn,
+          ...(focusedOn !== undefined ? { focus: focusedOn } : {}),
           // Landmarks that replace nothing were not gathered for the footprint pass above.
           placed:
             placed.length > 0 ? placed : placedStructures(structureGroup, context, structures),
@@ -1676,9 +1781,14 @@ export function createWorldgenSemanticRenderers(
   return {
     classification,
     humanFeatures,
-    updateInteriors: (position): void => interiors?.update(position),
+    updateInteriors: (position): void => {
+      interiors?.update(position);
+      refocus(position);
+    },
     elevatorAt: (position) => interiors?.elevatorAt(position),
     requestStorey: (identity, level) => interiors?.requestStorey(identity, level) ?? false,
+    doorAt: (position, query) => interiors?.doorAt(position, query),
+    setDoor: (id, open, from) => interiors?.setDoor(id, open, from) ?? false,
     setQuality(next): void {
       if (quality === next) return;
       quality = next;

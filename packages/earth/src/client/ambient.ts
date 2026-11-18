@@ -72,6 +72,8 @@ export interface EarthAmbientBudget {
   figureRadius: number;
   activityRadius: number;
   posesPerFrame: number;
+  /** Wildlife drawn at once, one skinned draw each (default 16, the Balanced tier's). */
+  animals?: number;
 }
 
 export interface EarthAmbientStats {

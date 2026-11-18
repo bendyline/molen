@@ -74,15 +74,15 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json');
+const frame = await read(`${source}/map-frame.json`);
 
 it('pins the native A-118 corridor, eight openings and shared sea-level frame', async () => {
-  const m = await read(source + '/source.json'),
-    p = await read(source + '/placement-report.json'),
-    a = await read(installed + '/asset.json'),
-    spec = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(a.sourceHash);
-  expect(hashBytes(await readFile(installed + '/' + a.files.main))).toBe(a.hash);
+  const m = await read(`${source}/source.json`),
+    p = await read(`${source}/placement-report.json`),
+    a = await read(`${installed}/asset.json`),
+    spec = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(a.sourceHash);
+  expect(hashBytes(await readFile(`${installed}/${a.files.main}`))).toBe(a.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(p.entry.anchor).toEqual([29.74833, 60.00639]);
   expect(p.entry.heading).toBe(0.78);
@@ -106,7 +106,7 @@ it('pins the native A-118 corridor, eight openings and shared sea-level frame', 
   expect(p.entry.buildingCutout).toBeUndefined();
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest: m,
       spec,
       placement: p.entry,
@@ -116,11 +116,11 @@ it('pins the native A-118 corridor, eight openings and shared sea-level frame', 
 });
 
 it('retains all 64 clear sluice openings, the open S-1 channel and S-2 bridge clearance in every GLB', async () => {
-  const a = await read(installed + '/asset.json'),
+  const a = await read(`${installed}/asset.json`),
     files = [
-      ['source', source + '/models/source.glb'],
-      ['runtime', installed + '/' + a.files.main],
-      ...a.runtimeLods.levels.map((l) => [l.name, installed + '/' + l.file]),
+      ['source', `${source}/models/source.glb`],
+      ['runtime', `${installed}/${a.files.main}`],
+      ...a.runtimeLods.levels.map((l) => [l.name, `${installed}/${l.file}`]),
     ];
   for (const [name, path] of files) {
     const ts = await triangles(path);
@@ -136,18 +136,18 @@ it('retains all 64 clear sluice openings, the open S-1 channel and S-2 bridge cl
       if (q.type === 'sluice') {
         const cell = (q.b - q.a) / q.bays;
         for (let i = 0; i < q.bays; i++) {
-          expect(line(q.a + (i + 0.5) * cell, 1), name + ' ' + q.id + ' bay ' + i).toBe(Infinity);
-          if (i) expect(line(q.a + i * cell, 1), name + ' ' + q.id + ' pier ' + i).toBeLessThan(80);
+          expect(line(q.a + (i + 0.5) * cell, 1), `${name} ${q.id} bay ${i}`).toBe(Infinity);
+          if (i) expect(line(q.a + i * cell, 1), `${name} ${q.id} pier ${i}`).toBeLessThan(80);
         }
       } else {
-        expect(line(q.middle, 3), name + ' ' + q.id + ' open navigation').toBe(Infinity);
+        expect(line(q.middle, 3), `${name} ${q.id} open navigation`).toBe(Infinity);
         const t = nearest(ts, from(q.middle, 5, 40), [0, -1, 0]);
-        if (q.id === 'S1') expect(t, name + ' S1 remains free of any surface road').toBe(Infinity);
+        if (q.id === 'S1') expect(t, `${name} S1 remains free of any surface road`).toBe(Infinity);
         else {
-          expect(40 - t, name + ' S2 lift deck').toBeCloseTo(17.8, 2);
+          expect(40 - t, `${name} S2 lift deck`).toBeCloseTo(17.8, 2);
           if (name !== 'skyline') {
             const underside = nearest(ts, from(q.middle, 5, 3), [0, 1, 0]);
-            expect(3 + underside, name + ' S2 navigation clearance').toBeCloseTo(16, 2);
+            expect(3 + underside, `${name} S2 navigation clearance`).toBeCloseTo(16, 2);
           }
         }
       }
@@ -155,14 +155,14 @@ it('retains all 64 clear sluice openings, the open S-1 channel and S-2 bridge cl
     const kotlin = (controls.kotlin[0] + controls.kotlin[1]) / 2;
     expect(
       nearest(ts, from(kotlin, 0, 40), [0, -1, 0]),
-      name + ' native Kotlin road and terrain remain',
+      `${name} native Kotlin road and terrain remain`,
     ).toBe(Infinity);
   }
 }, 30000);
 
 it('clips covered bridge segments while preserving tunnel and mainland routes', async () => {
-  const { records } = await read(source + '/native-roads.json'),
-    p = (await read(source + '/placement-report.json')).entry;
+  const { records } = await read(`${source}/native-roads.json`),
+    p = (await read(`${source}/placement-report.json`)).entry;
   const tile = createEmptyTerrainSemanticTile(),
     origin = [-15000, -15000],
     tileSize = 30000;
@@ -204,8 +204,8 @@ it('clips covered bridge segments while preserving tunnel and mainland routes', 
 });
 
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -214,7 +214,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -230,7 +230,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

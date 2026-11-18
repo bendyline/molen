@@ -93,8 +93,8 @@ it('reproduces the original master and binds fresh signed component evidence to 
   takhtStudy.build(a.wrap(b));
   const m = b.finalize();
   expect(m.triangleCount).toBe(817410);
-  const spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json');
+  const spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`);
   expect(frame.identity.id).toBe(203537193);
   expect(frame.identity.version).toBe(7);
   expect(frame.identity.tags.ref).toBe('1077');
@@ -102,10 +102,10 @@ it('reproduces the original master and binds fresh signed component evidence to 
   expect(frame.features).toHaveLength(2);
   expect(frame.cachedVertexMaxErrorMeters).toBeLessThan(0.001);
   expect(frame.nativeAxisBearings).toEqual({ x: 0, z: 90 });
-  const sourceManifest = await read(source + '/source.json');
+  const sourceManifest = await read(`${source}/source.json`);
   expect(
     reviewedSourceMapFrame({
-      frameBytes: await readFile(source + '/map-frame.json'),
+      frameBytes: await readFile(`${source}/map-frame.json`),
       sourceManifest,
       spec,
       placement: spec.geographicProposal,
@@ -118,9 +118,9 @@ it('reproduces the original master and binds fresh signed component evidence to 
   expect(spec.geographicProposal.status).toBe('preview-proposal');
 });
 it('keeps open land, the northern gate and ruined courts while retaining mapped water and the protective canopy', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file));
+    const d = decode(await readFile(`${runtime}/${l.file}`));
     for (const [x, z] of [
       [-140, -60],
       [-70, 115],
@@ -128,23 +128,23 @@ it('keeps open land, the northern gate and ruined courts while retaining mapped 
     ])
       expect(
         nearest(d.triangles, [x, 100, z], [0, -1, 0]),
-        l.name + ' open plateau ' + [x, z],
+        `${l.name} open plateau ${[x, z]}`,
       ).toBe(Infinity);
     expect(
       nearest(d.triangles, [225, 1.5, 18], [-1, 0, 0]),
-      l.name + ' north gate',
+      `${l.name} north gate`,
     ).toBeGreaterThan(35);
     expect(
       nearest(d.triangles, [225, -3, 30], [-1, 0, 0]),
-      l.name + ' occupied wall feet',
+      `${l.name} occupied wall feet`,
     ).toBeLessThan(40);
-    expect(nearest(d.triangles, [-50, 100, 20], [0, -1, 0]), l.name + ' mapped lake').toBeCloseTo(
+    expect(nearest(d.triangles, [-50, 100, 20], [0, -1, 0]), `${l.name} mapped lake`).toBeCloseTo(
       99.975,
       4,
     );
     expect(
       nearest(d.triangles, [-43, 100, -106], [0, -1, 0]),
-      l.name + ' protective roof',
+      `${l.name} protective roof`,
     ).toBeCloseTo(l.name === 'skyline' ? 94.9 : 94.5, 4);
     expect(d.triangles.reduce((n, t) => Math.max(n, ...t.map((p) => p[1])), -Infinity)).toBeCloseTo(
       22,

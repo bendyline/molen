@@ -120,13 +120,16 @@ describe('ordinary regional architecture', () => {
       ).toBe(true);
     }
   });
-  it('selects all three recipes for every family and use from stable building identities', () => {
+  it('selects every recipe of each family and use from stable building identities', () => {
     for (const profile of doc.profiles) {
       const seen = new Set<string>();
       for (const rule of profile.buildings ?? []) {
         if (!rule.style.startsWith('molen.worldgen.regional.') || seen.has(rule.style)) continue;
         seen.add(rule.style);
-        expect(rule.variants).toHaveLength(3);
+        // Three facade rhythms where a street is made of the use; one recipe for the buildings
+        // that stand alone in it.
+        const rhythm = /\.(detached|attached|apartments|commercial|tower)$/.test(rule.style);
+        expect(rule.variants, rule.style).toHaveLength(rhythm ? 3 : 1);
         const rules = [{ ...rule, when: undefined }];
         const draws = Array.from(
           { length: 100 },
@@ -141,7 +144,7 @@ describe('ordinary regional architecture', () => {
           ),
         );
       }
-      expect(seen.size).toBe(8);
+      expect(seen.size).toBe(9);
     }
   });
   it('keeps homes colored and commercial/apartment/tower palettes mostly neutral', () => {
@@ -157,16 +160,23 @@ describe('ordinary regional architecture', () => {
           colored += weight;
       }
       expect(total, style.id).toBeGreaterThan(0);
-      if (/\.(commercial|apartments|civic|industrial|tower)(\.|$)/.test(style.id))
+      // Where a town's flats, shops and offices are built like its houses (brick rows, rendered
+      // old towns) they carry the houses' own wall materials, each with its palette. Everywhere
+      // else, and for every shed and tower, large blocks stay light neutrals.
+      const likeHouses = style.materials.wall.choices.some((choice) => choice.palette);
+      const urban = /\.(commercial|apartments|civic)(\.|$)/.test(style.id);
+      if (/\.(industrial|tower)(\.|$)/.test(style.id) || (urban && !likeHouses))
         expect(colored / total, style.id).toBeLessThanOrEqual(0.25);
-      else if (!style.id.includes('.neutral.'))
+      // Whitewash and pale limestone are those places' color; a worship hall follows its town.
+      else if (!urban && !/\.(neutral|aegean|levantine)\.|\.worship(\.|$)/.test(style.id))
         expect(colored / total, style.id).toBeGreaterThanOrEqual(1 / 3);
     }
   });
 
   it('covers every architectural atlas region, with a conservative worldwide fallback', () => {
-    // Fourteen additional tower profiles/variants; still a bounded shared metadata payload.
-    expect(gzipSync(bytes).length).toBeLessThan(32_000);
+    // Thirty-two profiles, each repeating the explicit precedents ahead of its own rules;
+    // still a bounded shared metadata payload.
+    expect(gzipSync(bytes).length).toBeLessThan(70_000);
     for (const region of atlas.regions) {
       const profile = library.select({ regionId: region.id }).architectureProfile;
       expect(profile, region.id).toBeDefined();
@@ -198,8 +208,17 @@ describe('ordinary regional architecture', () => {
         );
       expect(selected(region, ['house'], { levels: 5 })).toMatch(/\.apartments$/);
       expect(selected(region, ['house'], { height: 18 })).toMatch(/\.apartments$/);
-      expect(selected(region, ['office'], { height: 90 })).toMatch(/\.tower$/);
-      expect(selected(region, ['apartments'], { levels: 15 })).toMatch(/\.tower$/);
+      expect(selected(region, ['office'], { height: 90, areaM2: 900 })).toMatch(/\.tower$/);
+      expect(selected(region, ['apartments'], { levels: 15, areaM2: 900 })).toMatch(/\.tower$/);
+      // A slender shaft that tall is a bell tower or a minaret, not a floor plate of offices.
+      expect(selected(region, ['building'], { height: 80, areaM2: 60 })).not.toMatch(/\.tower$/);
+      // No land use says what an untyped footprint is: the region still decides.
+      expect(selected(region, ['building'])).toMatch(/\.regional\..*\.detached$/);
+      expect(selected(region, ['building', 'attached'])).toMatch(/\.attached$/);
+      expect(selected(region, ['building', 'attached'], { context: 'retail' })).toMatch(
+        /\.commercial$/,
+      );
+      expect(selected(region, ['place_of_worship', 'building'])).toMatch(/\.worship$/);
       expect(selected(region, ['yes'], { context: 'industrial' })).toMatch(/\.industrial$/);
       expect(selected(region, ['yes'], { context: 'farmyard' })).toMatch(/\.farm$/);
       expect(selected(region, ['cowshed'])).toMatch(/\.farm$/);
@@ -261,7 +280,8 @@ describe('ordinary regional architecture', () => {
     const styles = Object.values(pack.archstyles).filter((style) =>
       style.id.startsWith('molen.worldgen.regional.'),
     );
-    expect(styles).toHaveLength(336);
+    // 32 families: five uses in three facade rhythms, four in one.
+    expect(styles).toHaveLength(32 * (5 * 3 + 4));
     for (const style of styles) {
       const build = () => {
         const builder = new MeshBufferBuilder();
@@ -293,7 +313,12 @@ describe('ordinary regional architecture', () => {
       expect(a.result.recipe?.heightSource, style.id).toBe('height');
       expect(a.result.record?.height, style.id).toBe(17);
       expect(a.result.recipe?.floors, style.id).toBe(5);
-      expect(a.result.recipe?.roof.type, style.id).toBe('flat');
+      // Five storeys are flat-roofed, except where the style's roofs were built that high.
+      const pitchedAtFive = style.roof.choices.some(
+        (choice) => choice.type !== 'flat' && (choice.when?.levelsMax ?? 99) >= 5,
+      );
+      if (pitchedAtFive) expect(a.result.recipe?.roof.type, style.id).not.toBe('flat');
+      else expect(a.result.recipe?.roof.type, style.id).toBe('flat');
       expect(a.mesh.triangleCount, style.id).toBeGreaterThan(12);
       expect(a.mesh.triangleCount, style.id).toBeLessThan(15_000);
       expect(Array.from(a.mesh.positions).every(Number.isFinite), style.id).toBe(true);

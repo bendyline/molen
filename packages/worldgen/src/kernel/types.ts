@@ -139,6 +139,21 @@ export interface BuildingParkingRequest {
   /** Mapped vehicle entrances near the footprint, in local meters, strongest first. */
   entrances?: Vec2[];
 }
+/**
+ * A tall feature a building is known by from a distance, built in the style's own wall and roof
+ * materials: a square tower under a spire (`spire`) or a low cap (`belfry`), a dome on a drum, a
+ * slender round tower with a gallery (`minaret`), or a stepped, tapering tower (`shikhara`).
+ */
+export type BuildingCrown = 'spire' | 'belfry' | 'dome' | 'minaret' | 'shikhara';
+
+export const BUILDING_CROWNS: readonly BuildingCrown[] = [
+  'spire',
+  'belfry',
+  'dome',
+  'minaret',
+  'shikhara',
+];
+
 export interface BuildingRequest {
   /** Optional lot decoration, owned once by the main house rather than by each building part. */
   yard?: BuildingYard;
@@ -167,6 +182,19 @@ export interface BuildingRequest {
   clipped?: boolean;
   /** Outline edge indices that lie on a cut boundary. */
   seamEdges?: number[];
+  /**
+   * Outline edge indices shared with a neighbouring building: party walls. The wall is still
+   * built, since neighbours differ in height, but it takes no windows, doors, trim or
+   * storefronts, and a pitched roof turns its ridge to the row (the style's `roof.partyRidge`).
+   */
+  partyEdges?: number[];
+  /**
+   * The most storeys the style may guess where neither `height` nor `levels` is supplied: what
+   * the buildings around it justify. A use says what a building is for, not how tall it is.
+   */
+  fallbackLevelsMax?: number;
+  /** Towers and domes the building carries (a place of worship's, say), in the style's materials. */
+  crown?: BuildingCrown[];
   /** Bypass style rules with an explicit style id. */
   style?: string;
   /** Optional identity palette; explicit structural measurements still win. */
@@ -186,6 +214,16 @@ export interface ScatterPolygon {
   density?: number;
   /** Optional owner seed for acceptance and appearance; the shared placement grid stays fixed. */
   seed?: number;
+  /**
+   * The ground's appearance class here: the key a `crowns` rule (and `surface.detail`) looks its
+   * brush up by. Defaults to `label`.
+   */
+  appearance?: string;
+  /**
+   * False for a polygon scatter alone sees and the ground does not draw (an inferred yard):
+   * `crowns` rules look through it to the polygon beneath, whose crowns the ground paints.
+   */
+  ground?: boolean;
 }
 
 export interface ScatterExclusion {
@@ -248,6 +286,9 @@ export interface WorldgenBudgets {
   maxUnderstoryModels?: number;
   maxAgricultureInstances?: number;
   maxAgricultureModels?: number;
+  /** Planted ornamental vegetation (the `garden` layer); omitted or zero disables it. */
+  maxGardenInstances?: number;
+  maxGardenModels?: number;
   maxMaterialGroups: number;
 }
 

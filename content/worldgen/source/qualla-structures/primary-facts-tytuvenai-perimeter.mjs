@@ -70,7 +70,7 @@ export function inspectTytuvenaiPerimeterFacts({ dir, proof, controls, frame, in
       !['x', 'y'].every((axis) =>
         native.registerBounds.some(
           (q) =>
-            q.id.startsWith(unique + '-' + axis) &&
+            q.id.startsWith(`${unique}-${axis}`) &&
             q.codes.includes(unique) &&
             q.url.startsWith('https://www.geoportal.lt/mapproxy/kpd_kvr/MapServer/0/query?'),
         ),

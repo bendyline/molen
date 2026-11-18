@@ -2,12 +2,129 @@
   "planId": "A06",
   "id": "molen.worldgen.structure.a06_pike_place_market_seattle",
   "title": "Pike Place Market, Seattle",
-  "visualBrief": "Terraced market block and arcade",
+  "wikidataId": "Q1373418",
+  "visualBrief": "Pike Place Market at the foot of Pike Street: the Main Arcade and North Arcade along the west side of Pike Place as one low storey of open stalls under a sidewalk canopy with green cast-iron posts, cream fascia and planters, with glazed roof monitors; the corner arcade with the red neon PUBLIC MARKET CENTER sign and its clock on a steel frame, the FARMERS MARKET entrance band, the three-storey cream building with the green MEET THE PRODUCER board; and the bay side falling four more storeys down the bluff toward Western Avenue, cream walls with rows of white-framed industrial windows and the painted PIKE PLACE MARKET name.",
   "size": [
-    65,
-    23,
-    55
+    240.09,
+    34.1,
+    44.13
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -72.744,
+      -18,
+      -41.358
+    ],
+    "max": [
+      167.345,
+      16.1,
+      2.775
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-pike-place-market.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: mapped OSM buildings 35185643742633 (Main Arcade), 35185647971802 (its Pike Place sidewalk bay), 35185647971799 (corner arcade at Pike Street), 35184603446492 and 35185643742632 (south blocks), 35184603446491 (North Arcade); ground at each vertex falls 12-16 m from Pike Place to the Western Avenue side",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "Main Arcade built 1907 at the foot of Pike Street on the west side of Pike Place, North Arcade 1911; the market drops several floors down the bluff toward Western Avenue (Down Under); the Public Market Center sign and clock, among the first neon signs in Seattle, date from the 1930s",
+      "source": "https://en.wikipedia.org/wiki/Pike_Place_Market"
+    },
+    {
+      "fact": "Sign layout (PUBLIC over MARKET over CENTER, clock to the right of PUBLIC and MARKET on an open steel frame on the corner arcade roof) and the FARMERS MARKET and MEET THE PRODUCER signs, from street photographs looking west down Pike Street",
+      "source": "https://commons.wikimedia.org/wiki/File:Public_Market_Center_sign_at_Pike_Place.jpg"
+    },
+    {
+      "fact": "West (Western Avenue) facade: cream walls with rows of large white-framed multi-pane windows, five levels, painted Pike Place Market lettering",
+      "source": "https://commons.wikimedia.org/wiki/File:Pike_Place_Market_from_Western_Avenue_in_Seattle.jpg"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.341194,
+      47.608963
+    ],
+    "heading": 2.421472,
+    "groundAtAnchor": 34.06,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.storefront",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Heights are estimated from photographs: arcade roofs 4.8 m above Pike Place, the canopy at 3.75-4.5 m, the MEET THE PRODUCER building three storeys, the sign about 7.5 m tall and 13 m wide with a 3.5 m clock. Pike Place is modelled level along each arcade (the North Arcade 1.9 m lower).",
+    "The Economy Market, Corner Market, Sanitary Market and the other buildings east of Pike Place, the MarketFront and the parking garage on Western Avenue are separate mapped buildings and are not part of this model.",
+    "Lettering uses block capitals (the painted name on the bay side is mixed case in reality); the clock has bars instead of numerals; stall fronts, produce tables and the flags along the roof are reduced to a dark storefront band.",
+    "The explorer terrain carries a few metres of noise along the bluff edge here (a mound inside the south end of the Main Arcade), so the sidewalk grade under the canopies can differ from the modelled level by up to about 2-3 m.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14361,
+    "vertices": 43083,
+    "materials": 8,
+    "bytes": 1727824,
+    "sha256": "sha256:876ba6e3478e272ee719199c289d2a93f124cee22e6a7e9a4751c5df06d62eb2"
+  }
 }

@@ -71,7 +71,7 @@ function hit(o, d, p) {
 
 it('closes the helideck top and underside at every detail level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const [x, z] of [
       [0, 0],
       [3, 2],
@@ -79,16 +79,16 @@ it('closes the helideck top and underside at every detail level', async () => {
       [4, 1],
     ]) {
       const ds = ts.map((p) => hit([x, 50, z], [0, -1, 0], p)).filter((t) => t !== null && t > 0);
-      expect(Math.min(...ds), name + ' deck top').toBeGreaterThan(1.15);
+      expect(Math.min(...ds), `${name} deck top`).toBeGreaterThan(1.15);
       expect(Math.min(...ds)).toBeLessThan(1.22);
       const bs = ts.map((p) => hit([x, 48.3, z], [0, 1, 0], p)).filter((t) => t !== null && t > 0);
-      expect(Math.min(...bs), name + ' underside').toBeCloseTo(0.25, 4);
+      expect(Math.min(...bs), `${name} underside`).toBeCloseTo(0.25, 4);
     }
   }
 });
 it('retains the real staggered door and port recesses in all near levels', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const h of eddystoneHoles) {
       const y = h.y + h.h * 0.2,
         a = h.angle,
@@ -96,7 +96,7 @@ it('retains the real staggered door and port recesses in all near levels', async
         o = [(r + 1) * Math.sin(a), y, (r + 1) * Math.cos(a)],
         d = [-Math.sin(a), 0, -Math.cos(a)],
         ds = ts.map((p) => hit(o, d, p)).filter((t) => t !== null && t > 0 && t < 2);
-      expect(Math.min(...ds), name + ' port ' + h.y).toBeGreaterThan(1.14);
+      expect(Math.min(...ds), `${name} port ${h.y}`).toBeGreaterThan(1.14);
       expect(Math.min(...ds)).toBeLessThan(1.5);
     }
   }
@@ -119,8 +119,8 @@ it('preserves a byte-reproducible original master recipe and an explicitly recon
   buildEddystoneOriginal(authoring.wrap(b));
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation'], 32);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -135,17 +135,17 @@ it('preserves a byte-reproducible original master recipe and an explicitly recon
   expect(p.replaceFootprint).toBe(false);
   expect(s.sourceFacts.heightMeters).toBe(49);
   expect(s.sourceFacts.lightHeightAboveMeanHighWaterMeters).toBe(41);
-  expect((await read(source + '/scene.json')).entities.some((e) => e.id === 'review-water')).toBe(
+  expect((await read(`${source}/scene.json`)).entities.some((e) => e.id === 'review-water')).toBe(
     true,
   );
 });
 it('rebuilds strict browser budgets with four reused graphs and no embedded images', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -155,7 +155,7 @@ it('rebuilds strict browser budgets with four reused graphs and no embedded imag
   }
   expect([...refs].sort()).toEqual(
     ['stone_ashlar', 'metal_painted', 'stone_granite', 'wood_plain']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

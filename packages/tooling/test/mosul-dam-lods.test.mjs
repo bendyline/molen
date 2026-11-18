@@ -84,17 +84,17 @@ function nearest(ts, o, d, frontOnly = false) {
   }, Infinity);
 }
 
-const frame = await read(source + '/map-frame.json'),
-  layout = await read(source + '/layout.json');
+const frame = await read(`${source}/map-frame.json`),
+  layout = await read(`${source}/layout.json`);
 
 import { controls } from '../../../content/worldgen/source/places/sy/syw/mosul_dam/models/dam-model.mjs';
 
 it('keeps the mapped crest, four towers, five visible gates and complete canal apron at every tier', async () => {
-  const a = await read(installed + '/asset.json'),
-    p = await read(source + '/placement-report.json'),
-    spec = await read(source + '/spec.json');
-  expect(hashBytes(await readFile(source + '/models/source.glb'))).toBe(a.sourceHash);
-  expect(hashBytes(await readFile(installed + '/' + a.files.main))).toBe(a.hash);
+  const a = await read(`${installed}/asset.json`),
+    p = await read(`${source}/placement-report.json`),
+    spec = await read(`${source}/spec.json`);
+  expect(hashBytes(await readFile(`${source}/models/source.glb`))).toBe(a.sourceHash);
+  expect(hashBytes(await readFile(`${installed}/${a.files.main}`))).toBe(a.hash);
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.anchor).toEqual([42.82421, 36.63083]);
   expect(frame.heading).toBe(0);
@@ -104,19 +104,19 @@ it('keeps the mapped crest, four towers, five visible gates and complete canal a
   expect(spec.sourceFacts.terrainDatum).toBeCloseTo(307.003906, 4);
   expect(layout.groundCutout.outlines).toHaveLength(7);
   const files = [
-      ['source', source + '/models/source.glb'],
-      ['runtime', installed + '/' + a.files.main],
-      ...a.runtimeLods.levels.map((l) => [l.name, installed + '/' + l.file]),
+      ['source', `${source}/models/source.glb`],
+      ['runtime', `${installed}/${a.files.main}`],
+      ...a.runtimeLods.levels.map((l) => [l.name, `${installed}/${l.file}`]),
     ],
     sp = controls.spillway;
   for (const [name, path] of files) {
     const ts = await triangles(path),
       top = ([x, z]) => 90 - nearest(ts, [x, 90, z], [0, -1, 0]),
       close = (value, expected, tolerance, label) =>
-        expect(Math.abs(value - expected), name + ' ' + label).toBeLessThan(tolerance);
+        expect(Math.abs(value - expected), `${name} ${label}`).toBeLessThan(tolerance);
     for (const point of controls.path.slice(1, -1))
-      close(top(point), 30, 0.1, 'crest road at ' + point);
-    for (const point of controls.tanks) close(top(point), 13.5, 0.15, 'surge cylinder at ' + point);
+      close(top(point), 30, 0.1, `crest road at ${point}`);
+    for (const point of controls.tanks) close(top(point), 13.5, 0.15, `surge cylinder at ${point}`);
     for (let j = 0; j < 5; j++) {
       const t = (j + 0.5) / 5,
         [x, z] = sp.start[0].map((v, i) => v + (sp.start[1][i] - v) * t),
@@ -125,7 +125,7 @@ it('keeps the mapped crest, four towers, five visible gates and complete canal a
         nearest(ts, [x + a * 40, 20, z + b * 40], [-a, 0, -b], true),
         39.25,
         2,
-        'visible closed gate ' + j,
+        `visible closed gate ${j}`,
       );
     }
     const apron = sp.basin[0].map((v, i) => (v + sp.basin[1][i] + sp.end[0][i] + sp.end[1][i]) / 4);
@@ -134,8 +134,8 @@ it('keeps the mapped crest, four towers, five visible gates and complete canal a
 }, 30000);
 
 it('clips only the authored transverse service bridge from the retained map roads', async () => {
-  const { records } = await read(source + '/native-roads.json'),
-    placed = (await read(source + '/placement-report.json')).entry;
+  const { records } = await read(`${source}/native-roads.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry;
   const tile = createEmptyTerrainSemanticTile(),
     context = { origin: [-3000, -3000], tileSize: 6000, heightfield: { sampleHeight: () => 307 } };
   tile.transportation = records.map((r) => ({
@@ -160,9 +160,9 @@ it('clips only the authored transverse service bridge from the retained map road
 });
 
 it('uses the production viewer to replace four hydraulic components and preserve all independent native neighbors', async () => {
-  const map = await read(source + '/pmtiles-map.json'),
-    frame = await read(source + '/map-frame.json'),
-    placed = (await read(source + '/placement-report.json')).entry,
+  const map = await read(`${source}/pmtiles-map.json`),
+    frame = await read(`${source}/map-frame.json`),
+    placed = (await read(`${source}/placement-report.json`)).entry,
     local = ([lon, lat]) => {
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
@@ -191,7 +191,7 @@ it('uses the production viewer to replace four hydraulic components and preserve
           Math.max(...flat.map((p) => p[1])),
         ];
       all.push({
-        id: 'native-' + all.length,
+        id: `native-${all.length}`,
         kind: f.properties.kind,
         // Match the production decoder: omit unsupported negative basement heights.
         ...(f.properties.height >= 0 ? { height: f.properties.height } : {}),
@@ -209,12 +209,12 @@ it('uses the production viewer to replace four hydraulic components and preserve
   const owned = layout.nativeMap.ownedParts,
     target = owned.map((i) => all[i]),
     neighbor = all.filter((_, i) => !owned.includes(i));
-  expect(all).toHaveLength((await read(source + '/mapped-parts.json')).parts.length);
+  expect(all).toHaveLength((await read(`${source}/mapped-parts.json`)).parts.length);
   expect(target).toHaveLength(4);
   expect(neighbor).toHaveLength(342);
-  const asset = await read(installed + '/asset.json'),
+  const asset = await read(`${installed}/asset.json`),
     doc = await new NodeIO().readBinary(
-      await readFile(installed + '/' + asset.runtimeLods.levels[0].file),
+      await readFile(`${installed}/${asset.runtimeLods.levels[0].file}`),
     ),
     model = new THREE.Group();
   for (const m of doc.getRoot().listMeshes())
@@ -228,8 +228,8 @@ it('uses the production viewer to replace four hydraulic components and preserve
       model.add(new THREE.Mesh(geometry, new THREE.MeshBasicMaterial()));
     }
   const field = heightfieldFromPng(
-      await read(source + '/terrain-review.terrain.json'),
-      await readFile(source + '/terrain-review.height.png'),
+      await read(`${source}/terrain-review.terrain.json`),
+      await readFile(`${source}/terrain-review.height.png`),
     ),
     objects = new StructureModelLibrary(async () => model),
     seen = [],
@@ -356,7 +356,7 @@ it('uses the production viewer to replace four hydraulic components and preserve
       heightfield: field,
       signal: new AbortController().signal,
     });
-    const landmark = root?.getObjectByName('structure:' + placed.id);
+    const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
@@ -395,7 +395,7 @@ it('uses the production viewer to replace four hydraulic components and preserve
     for (const n of neighbor)
       expect(
         actual.find((b) => b.id === n.id)?.polygons,
-        'independent footprint changed ' + n.id,
+        `independent footprint changed ${n.id}`,
       ).toEqual(n.polygons);
     const fragments = actual.filter((b) => !expected.has(b.id));
     for (const b of fragments) {
@@ -416,7 +416,7 @@ it('uses the production viewer to replace four hydraulic components and preserve
         }),
     );
     for (const i of layout.nativeMap.preservedNeighbors)
-      expect(neighbor.map((b) => b.id)).toContain('native-' + i);
+      expect(neighbor.map((b) => b.id)).toContain(`native-${i}`);
   } finally {
     if (root) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
@@ -424,8 +424,8 @@ it('uses the production viewer to replace four hydraulic components and preserve
   }
 }, 30000);
 it('rebuilds four exact budgeted tiers with existing shared graphs, no image copies and separate GPU streams', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -434,7 +434,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      bytes = await readFile(runtime + '/' + l.file),
+      bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(hashBytes(bytes)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
@@ -451,7 +451,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
       ])
         expect(
           g.materials.some(
-            (m) => m.extras?.molenSurface?.ref === 'matgraph:molen.worldgen.material.' + graph,
+            (m) => m.extras?.molenSurface?.ref === `matgraph:molen.worldgen.material.${graph}`,
           ),
         ).toBe(true);
     for (const p of g.meshes.flatMap((m) => m.primitives)) {

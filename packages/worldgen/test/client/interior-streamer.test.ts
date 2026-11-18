@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { InteriorStreamer } from '../../src/client/interior-streamer';
+import {
+  InteriorStreamer,
+  type InteriorStreamingOptions,
+} from '../../src/client/interior-streamer';
 import { createInteriorSite } from '../../src/kernel/interior-site';
 import { FLAT_GROUND, type Vec2 } from '../../src/kernel/types';
 import { INTERIORS } from '../helpers/content';
@@ -80,7 +83,7 @@ describe('lazy interior lifecycle', () => {
     const region = new THREE.Group();
     scene.add(region);
     const site = fixture('covered');
-    const walls = site.openings.length;
+    const windows = site.openings.filter((opening) => opening.kind === 'window').length;
     site.covers = [
       [
         [4, 6, 4],
@@ -95,8 +98,8 @@ describe('lazy interior lifecycle', () => {
     const stream = new InteriorStreamer({ catalog: INTERIORS, frameBudgetMs: 50, furnish });
     stream.register(region, [site]);
     const portals = region.getObjectByName('worldgen:interior-portals') as THREE.Mesh;
-    // One quad for each wall opening, and one for the roof.
-    expect(portals.geometry.index?.count).toBe((walls + 1) * 6);
+    // One quad for each window, and one for the roof; the shut door closes its own doorway.
+    expect(portals.geometry.index?.count).toBe((windows + 1) * 6);
     expect(furnish).not.toHaveBeenCalled();
     settle(stream, [10, 2, 10]);
     expect(furnish).toHaveBeenCalledTimes(1);
@@ -221,8 +224,9 @@ describe('lazy interior lifecycle', () => {
     settle(stream, [10, 1.7, -3]);
     expect(stream.stats().resident).toBe(1);
     expect(gate.geometry.drawRange.count).toBe(0);
-    const resident = region.children[1] as THREE.Group;
-    const geometry = (resident.children[0] as THREE.Mesh).geometry;
+    const interior = (): THREE.Group =>
+      region.children.find((o) => o.name === 'worldgen:interior:one') as THREE.Group;
+    const geometry = (interior().children[0] as THREE.Mesh).geometry;
     const positions = Array.from(geometry.getAttribute('position').array);
     const dispose = vi.spyOn(geometry, 'dispose');
     settle(stream, [1000, 1.7, 1000]);
@@ -231,11 +235,7 @@ describe('lazy interior lifecycle', () => {
     expect(gate.geometry.drawRange.count).toBe(original.length);
     settle(stream, [10, 1.7, -3]);
     expect(
-      Array.from(
-        ((region.children[1] as THREE.Group).children[0] as THREE.Mesh).geometry.getAttribute(
-          'position',
-        ).array,
-      ),
+      Array.from((interior().children[0] as THREE.Mesh).geometry.getAttribute('position').array),
     ).toEqual(positions);
     stream.dispose();
     expect(region.children.length).toBe(0);
@@ -274,5 +274,167 @@ describe('lazy interior lifecycle', () => {
     expect(stream.stats().pending).toBe(0);
     expect(region.children).toEqual([]);
     stream.dispose();
+  });
+
+  describe('doors', () => {
+    /** A clock the test advances, so swings take a known time. */
+    function setup(
+      site = fixture('shop'),
+      options: Pick<InteriorStreamingOptions, 'maxBytes' | 'prepare'> = {},
+    ) {
+      const scene = new THREE.Group(),
+        region = new THREE.Group();
+      scene.add(region);
+      let time = 0;
+      const stream = new InteriorStreamer({
+        catalog: INTERIORS,
+        frameBudgetMs: 50,
+        now: () => time,
+        ...options,
+      });
+      stream.register(region, [site]);
+      const mesh = region.getObjectByName('worldgen:doors') as THREE.Mesh;
+      const step = (at: [number, number, number], seconds: number): void => {
+        for (let t = 0; t < seconds; t += 1 / 30) {
+          time += 1000 / 30;
+          stream.update(at);
+        }
+      };
+      return { scene, region, stream, mesh, step, site };
+    }
+    const outside: [number, number, number] = [10, 1.7, -1];
+    const inside: [number, number, number] = [10, 1.7, 1.2];
+    const facingIn: [number, number, number] = [0, 0, 1];
+    /** How far the leaves reach into (+) or out of (-) the building, in meters. */
+    const reach = (mesh: THREE.Mesh): [number, number] => {
+      const z = Array.from(mesh.geometry.getAttribute('position').array).filter(
+        (_, i) => i % 3 === 2,
+      );
+      return [Math.min(...z), Math.max(...z)];
+    };
+
+    it('closes a doorway with a shut door instead of a cover, found from in front of it', () => {
+      const { mesh, stream, site } = setup();
+      expect(mesh.isMesh).toBe(true);
+      expect(site.openings.some((opening) => opening.kind === 'door')).toBe(true);
+      const shut = reach(mesh);
+      expect(shut[0]).toBeGreaterThan(-0.2);
+      expect(shut[1]).toBeLessThan(0.2);
+      const door = stream.doorAt(outside, { facing: facingIn });
+      expect(door).toMatchObject({
+        id: 'shop#door0',
+        identity: 'shop',
+        open: false,
+        amount: 0,
+        waiting: false,
+        locked: false,
+      });
+      expect(door?.distance).toBeCloseTo(1, 5);
+      door?.position.forEach((value, i) => {
+        expect(value).toBeCloseTo([10, 0.04, 0][i] as number, 6);
+      });
+      expect(stream.doorAt(outside, { facing: [0, 0, -1] })).toBeUndefined();
+      expect(stream.doorAt([10, 1.7, -3])).toBeUndefined();
+      expect(stream.doorAt([10, 30, -1])).toBeUndefined();
+      stream.dispose();
+    });
+
+    it('waits for its rooms, then swings in away from an opener outside and back shut', async () => {
+      let release = (): void => {};
+      const { mesh, stream, step } = setup(fixture('shop'), {
+        prepare: () =>
+          new Promise<void>((resolve) => {
+            release = resolve;
+          }),
+      });
+      const closed = Array.from(mesh.geometry.getAttribute('position').array);
+      // Asked from too far out for its rooms to be built, it gives up.
+      expect(stream.setDoor('shop#door0', true, [10, 1.7, -80])).toBe(true);
+      step([10, 1.7, -80], 0.2);
+      expect(stream.doorAt(outside)?.open).toBe(false);
+      // Asked while its rooms are being prepared, it waits for them.
+      step(outside, 0.3);
+      expect(stream.stats().generated).toBe(1);
+      expect(stream.setDoor('shop#door0', true, outside)).toBe(true);
+      step(outside, 0.5);
+      expect(stream.doorAt(outside)).toMatchObject({ open: true, waiting: true, amount: 0 });
+      expect(Array.from(mesh.geometry.getAttribute('position').array)).toEqual(closed);
+      release();
+      for (let i = 0; i < 4; i++) await Promise.resolve();
+      step(outside, 1);
+      expect(stream.doorAt(outside, { facing: facingIn })).toMatchObject({
+        open: true,
+        amount: 1,
+        waiting: false,
+      });
+      // Both leaves of the wide shop door lie into the building, clear of the street.
+      const open = reach(mesh);
+      expect(open[0]).toBeGreaterThan(-0.2);
+      expect(open[1]).toBeGreaterThan(0.9);
+      expect(stream.setDoor('shop#door0', false, outside)).toBe(true);
+      step(outside, 1);
+      expect(stream.doorAt(outside)?.open).toBe(false);
+      const back = Array.from(mesh.geometry.getAttribute('position').array);
+      back.forEach((value, i) => {
+        expect(value).toBeCloseTo(closed[i] as number, 4);
+      });
+      stream.dispose();
+    });
+
+    it('opens outward for someone inside, will not shut on the doorway, and shuts with its rooms', () => {
+      const { mesh, stream, step } = setup();
+      step(inside, 0.5);
+      expect(stream.setDoor('shop#door0', true, inside)).toBe(true);
+      step(inside, 1);
+      const open = reach(mesh);
+      expect(open[0]).toBeLessThan(-0.9);
+      expect(open[1]).toBeLessThan(0.2);
+      expect(stream.setDoor('shop#door0', false, [10, 0.04, 0])).toBe(false);
+      expect(stream.doorAt(inside)?.open).toBe(true);
+      // Walking away releases the interior, and the door shuts with it.
+      step([10, 1.7, -300], 0.2);
+      expect(stream.stats().resident).toBe(0);
+      expect(reach(mesh)[0]).toBeGreaterThan(-0.2);
+      expect(stream.doorAt(outside)?.open).toBe(false);
+      stream.dispose();
+    });
+
+    it('stays shut when its rooms cannot be built', () => {
+      const { stream, step } = setup(fixture('vault'), { maxBytes: 64 });
+      step(outside, 0.5);
+      expect(stream.stats().failed).toBe(1);
+      expect(stream.doorAt(outside)?.locked).toBe(true);
+      expect(stream.setDoor('vault#door0', true, outside)).toBe(false);
+      stream.dispose();
+    });
+
+    it('gives a house one painted leaf and a parked-car entrance none', () => {
+      const outline: Vec2[] = [
+        [0, 0],
+        [9, 0],
+        [9, 8],
+        [0, 8],
+      ];
+      const house = createInteriorSite(
+        { identity: 'house', labels: ['house'], outline },
+        INTERIORS,
+        outline,
+        [],
+        0,
+        2.9,
+        FLAT_GROUND,
+      );
+      if (!house) throw new Error('No site');
+      const { stream, mesh } = setup(house);
+      expect(mesh.geometry.getAttribute('position').count).toBeGreaterThan(24);
+      const door = stream.doorAt([4.5, 1.7, -1]);
+      expect(door?.id).toBe('house#door0');
+      stream.dispose();
+      const garage = { ...fixture('garage'), parking: {} as never };
+      const parked = setup(garage);
+      expect(parked.mesh).toBeUndefined();
+      expect(parked.stream.doorAt([10, 1.7, -1])).toBeUndefined();
+      parked.stream.dispose();
+    });
   });
 });

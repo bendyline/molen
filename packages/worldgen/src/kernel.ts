@@ -53,6 +53,15 @@ export type { Bounds2 } from './kernel/geometry2d';
 export { clipRingToRect, pointInRing, ringArea, ringCentroid } from './kernel/geometry2d';
 export { resolveInteriorProfile, validateInteriorCatalog } from './kernel/interior-catalog';
 export {
+  buildInteriorDoorFrame,
+  buildInteriorDoorLeaf,
+  INTERIOR_DOOR_OPEN_ANGLE,
+  INTERIOR_DOOR_THICKNESS,
+  type InteriorDoor,
+  type InteriorDoorLeaf,
+  interiorDoors,
+} from './kernel/interior-doors';
+export {
   generateInteriorGeometry,
   generateInteriorGeometrySteps,
 } from './kernel/interior-geometry';
@@ -111,7 +120,7 @@ export {
   whenIssues,
   whenSchema,
 } from './kernel/rules';
-export type { ScatterBudget, ScatterSampleInput } from './kernel/scatter';
+export type { ScatterBudget, ScatterGroundCrowns, ScatterSampleInput } from './kernel/scatter';
 export { samplePlacements, samplePlacementsSteps } from './kernel/scatter';
 export { scatterSchema, validateScatter } from './kernel/scatter-schema';
 export type {
@@ -147,6 +156,7 @@ export type {
 export type {
   BuildingAppearance,
   BuildingApproach,
+  BuildingCrown,
   BuildingRecord,
   BuildingRequest,
   BuildingYard,
@@ -170,7 +180,12 @@ export type {
   WorldgenStats,
   YardFenceKind,
 } from './kernel/types';
-export { emptyWorldgenStats, FLAT_GROUND, PLACEMENT_STRIDE } from './kernel/types';
+export {
+  BUILDING_CROWNS,
+  emptyWorldgenStats,
+  FLAT_GROUND,
+  PLACEMENT_STRIDE,
+} from './kernel/types';
 
 import { registerWorldgenComponents } from './kernel/components';
 import { registerWorldgenSchemas } from './kernel/schema';
@@ -212,7 +227,7 @@ export type { WorldgenHandle } from './kernel/install';
 export { installWorldgen, worldgenIndexOf, worldgenScriptApi } from './kernel/install';
 export type { PropPlacement } from './kernel/props';
 export type { BuildingRecipe, RecipePart, RecipeProp, RecipeRoof } from './kernel/recipe';
-export { buildingMetrics } from './kernel/recipe';
+export { buildingMetrics, MAX_PARAPET_HEIGHT } from './kernel/recipe';
 export type { SignMeshBuffers, SignPlacement } from './kernel/sign-mesh';
 export { buildSignMesh, signMeshTransferables } from './kernel/sign-mesh';
 export type { ResolvedStylePack, StylePackDocumentReader } from './kernel/stylepack';

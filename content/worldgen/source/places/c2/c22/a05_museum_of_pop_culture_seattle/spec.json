@@ -2,12 +2,119 @@
   "planId": "A05",
   "id": "molen.worldgen.structure.a05_museum_of_pop_culture_seattle",
   "title": "Museum of Pop Culture, Seattle",
-  "visualBrief": "Curved metal volumes",
+  "wikidataId": "Q1384356",
+  "visualBrief": "Frank Gehry's 2000 Museum of Pop Culture (built as the Experience Music Project): a cluster of undulating sheet-metal masses on the mapped building parts, each clad in its own color of stainless steel or painted aluminum shingles: the tall rose-purple Sky Church crown in the middle, sky blue to the southwest, gold to the southeast, red along 5th Avenue North and rippling silver at the north end; the Seattle Center Monorail's twin concrete guideways pass through the building between the blue and gold masses; glazed entrances on the Seattle Center and 5th Avenue sides.",
   "size": [
-    65,
-    35,
-    55
+    74.67,
+    32.08,
+    113.32
   ],
-  "scaleBasis": "Stylized provisional dimensions in meters, pending measured site geometry and orientation.",
-  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture."
+  "actualBounds": {
+    "min": [
+      -37.439,
+      -4.55,
+      -57.293
+    ],
+    "max": [
+      37.232,
+      27.531,
+      56.031
+    ]
+  },
+  "scaleBasis": "Measured: plan from the mapped footprint in footprint.json, heights from the sourced dimensions below.",
+  "geometrySource": "Original deterministic Molen mesh generator models/generate-museum-of-pop-culture.mjs; no third-party model or bitmap texture.",
+  "dimensions": [
+    {
+      "fact": "Plan: the mapped OSM building 35184533676574 (way 161587742, MoPOP) and its seven parts 35185906997820-35185906997826; each part is one colored mass",
+      "source": "footprint.json"
+    },
+    {
+      "fact": "Part colors as mapped: 1534908988 maroon (h 22, tallest, the purple Sky Church crown), 1534908989 and 1534908990 silver (h 20), 1534908991 #6495ED blue (h 20), 1534908992 and 1534908993 red (h 19, 18), 1534908994 gold (h 19)",
+      "source": "https://www.openstreetmap.org/way/1534908988"
+    },
+    {
+      "fact": "140,000 sq ft on a 35,000 sq ft footprint; highest point 85 ft at the Sky Church; widest 210 ft at W Harrison St; 360 ft long on 5th Ave N; about 3,000 panels of 21,000 stainless steel and painted aluminum shingles",
+      "source": "https://www.mopop.org/building"
+    },
+    {
+      "fact": "Purple, gold and silver skins are stainless steel; red and blue skins are painted aluminum; curved steel ribs carry the skin",
+      "source": "https://special.seattletimes.com/o/special/emp/bldg/cons20.html"
+    },
+    {
+      "fact": "The Sky Church is the purple-skinned central tower",
+      "source": "https://www.thestranger.com/news/its-a-bird-its-a-plane-4134/"
+    },
+    {
+      "fact": "Monorail guideways: OSM ways 505897789 and 916411048 (tunnel=building_passage) through the building; beams 3 ft wide by 5 ft deep, about 20 ft clear underneath",
+      "source": "https://en.wikipedia.org/wiki/Seattle_Center_Monorail"
+    }
+  ],
+  "geographicFrame": {
+    "anchor": [
+      -122.3482378,
+      47.6214968
+    ],
+    "heading": 0,
+    "groundAtAnchor": 34.95,
+    "basis": "footprint.json"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Each mass is a smooth lofted shell over its mapped outline with an estimated profile, lean and crown ripple; the real crumpled folds, fins and shingle courses are not modelled, and crown heights follow the mapped part heights above local ground (the Sky Church crown is set to the published 85 ft).",
+    "Colors are the mapped part colors matched to published finishes; the iridescent shift of the stainless skins is a single tint per mass.",
+    "The monorail passage is shown as twin beams on two T-pylons with dark tunnel mouths where the mapped passage meets the skin; beam height is estimated from the published 20 ft clearance. Trains are not part of the model.",
+    "Entrance glazing, the glass canopy and interior spaces are simplified or omitted.",
+    "Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12125,
+    "vertices": 36375,
+    "materials": 5,
+    "bytes": 1458280,
+    "sha256": "sha256:eea33050f5a7662def60384b83a9bb94d3cb4841c6bf7d9fde330fe34920669b"
+  }
 }

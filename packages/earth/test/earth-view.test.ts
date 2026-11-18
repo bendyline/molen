@@ -26,6 +26,8 @@ const viewerState = vi.hoisted(() => ({
   shadowRadius: undefined as number | undefined,
   /** The latest viewer's scene, held weakly so tests can look at it without keeping it alive. */
   scene: undefined as WeakRef<{ traverse(visit: (object: object) => void): void }> | undefined,
+  /** The latest camera orientation the view set, as a quaternion. */
+  cameraRotation: undefined as [number, number, number, number] | undefined,
 }));
 
 vi.mock('@bendyline/molen-client', async (importOriginal) => {
@@ -75,10 +77,18 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
       viewerState.scene = new WeakRef(renderer.scene);
       return {
         renderer,
-        setCamera: (pose: { position: number[]; lookAt: number[] }) => {
+        // Like Renderer.setCamera: a look-at target aims with world up and wins over a rotation.
+        setCamera: (pose: { position: number[]; lookAt?: number[]; rotation?: number[] }) => {
           camera.position.fromArray(pose.position);
-          camera.lookAt(new THREE.Vector3().fromArray(pose.lookAt));
+          if (pose.lookAt !== undefined) camera.lookAt(new THREE.Vector3().fromArray(pose.lookAt));
+          else if (pose.rotation !== undefined) camera.quaternion.fromArray(pose.rotation);
           camera.updateMatrixWorld();
+          viewerState.cameraRotation = camera.quaternion.toArray() as [
+            number,
+            number,
+            number,
+            number,
+          ];
         },
         renderFrame: () => {
           viewerState.frames++;
@@ -474,6 +484,68 @@ describe('mountEarthView', () => {
     expect(view.getCamera().latitude).toBeCloseTo(47.6, 2);
     expect(view.setMode('walk', { force: true })).toBe(true);
     view.dispose();
+  });
+
+  it('banks the cockpit view with the aircraft while the chase view keeps the horizon level', async () => {
+    const canvas = fakeCanvas();
+    const content = {
+      packs: {
+        readBytes: async () => {
+          throw new Error('no models in unit tests');
+        },
+      },
+      types: ENTITY_TYPES,
+      parkedVehicles: [],
+      assets: { load: async () => new Uint8Array(), loadText: async () => '' },
+      stars: async () => [],
+    } as unknown as EarthContent;
+    const view = await mountEarthView({
+      canvas: canvas as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      content,
+      audio: false,
+      ambient: false,
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, heading: Math.PI / 2 },
+      style: { sky: false },
+      onError: () => {},
+    });
+    // The camera's bank from the orientation the view set: positive with its right side down.
+    const cameraBank = (): number => {
+      const [x, y, z, w] = viewerState.cameraRotation ?? [0, 0, 0, 1];
+      const rightY = 2 * (x * y + w * z);
+      const upY = 1 - 2 * (x * x + z * z);
+      return Math.atan2(-rightY, upY);
+    };
+    const flight = () => {
+      const status = view.vehicleStatus();
+      if (status?.kind !== 'aircraft') throw new Error('not flying');
+      return status;
+    };
+    try {
+      await pump(10);
+      expect(view.setMode('fly')).toBe(true);
+      await pump(60);
+      expect(flight().view).toBe('chase');
+      view.input.map.setVirtual('test', 'nav-right', 1);
+      for (let i = 0; i < 300 && Math.abs(flight().roll) < 0.5; i++) await pump(1);
+      view.input.map.setVirtual('test', 'nav-right', 0);
+      expect(Math.abs(flight().roll)).toBeGreaterThan(0.5);
+      // Behind the aircraft the horizon stays level in an ordinary bank.
+      expect(Math.abs(cameraBank())).toBeLessThan(0.02);
+      view.input.map.setVirtual('test', 'nav-view', 1);
+      await pump(1);
+      view.input.map.setVirtual('test', 'nav-view', 0);
+      await pump(1);
+      expect(flight().view).toBe('cockpit');
+      // In the seat the head goes with the airframe: rolling right puts the view's right side
+      // down by the bank, less a little for the head leaning toward the horizon.
+      const bank = cameraBank();
+      expect(bank).toBeGreaterThan(0.35);
+      expect(Math.abs(bank - Math.abs(flight().roll))).toBeLessThan(0.15);
+    } finally {
+      view.dispose();
+    }
   });
 
   it('re-anchors the metric frame after a long hop', async () => {

@@ -1,7 +1,7 @@
 {
   "format": "molen/archstyle@1",
   "id": "molen.worldgen.regional.east_asian.farm",
-  "title": "East Asian compact masonry: farm",
+  "title": "Japanese compact masonry: farm",
   "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
   "version": 1,
   "applicability": {
@@ -93,7 +93,8 @@
         }
       }
     ],
-    "fallback": "flat"
+    "fallback": "hipped",
+    "partyRidge": "between"
   },
   "facade": {
     "bays": {
@@ -141,8 +142,13 @@
     "wall": {
       "choices": [
         {
-          "ref": "matgraph:molen.worldgen.material.concrete_panel",
-          "weight": 1
+          "ref": "matgraph:molen.worldgen.material.stucco",
+          "weight": 1,
+          "palette": "wall_stucco",
+          "uvScale": [
+            3,
+            2.5
+          ]
         }
       ],
       "palette": "regional_wall",
@@ -159,7 +165,12 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.tile_ceramic",
-          "weight": 1
+          "weight": 1,
+          "palette": "roof_tile_ceramic",
+          "uvScale": [
+            2.4,
+            2.4
+          ]
         }
       ],
       "palette": "regional_roof",
@@ -197,6 +208,23 @@
       "uv": "meters",
       "uvOffset": "none",
       "uvMirror": false
+    },
+    "flatRoof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_flat_roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "uvScale": [
+        6,
+        6
+      ]
     }
   },
   "palettes": {
@@ -234,7 +262,24 @@
         "lightness": 0.04
       }
     },
-    "regional_wall": {
+    "regional_trim": {
+      "entries": [
+        {
+          "color": "#dcd8cc",
+          "weight": 1
+        },
+        {
+          "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "wall_stucco": {
       "entries": [
         {
           "color": "#dfcfac",
@@ -259,7 +304,32 @@
         "lightness": 0.025
       }
     },
-    "regional_roof": {
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#dfcfac",
+          "weight": 25
+        },
+        {
+          "color": "#abc5d2",
+          "weight": 25
+        },
+        {
+          "color": "#b7b7af",
+          "weight": 25
+        },
+        {
+          "color": "#e7e3d9",
+          "weight": 25
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "roof_tile_ceramic": {
       "entries": [
         {
           "color": "#626a72",
@@ -271,19 +341,52 @@
         }
       ],
       "jitter": {
+        "hue": 0.008,
+        "saturation": 0.03,
+        "lightness": 0.045
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#626a72",
+          "weight": 50
+        },
+        {
+          "color": "#747b7b",
+          "weight": 50
+        }
+      ],
+      "jitter": {
         "hue": 0.005,
         "saturation": 0.015,
         "lightness": 0.025
       }
     },
-    "regional_trim": {
+    "regional_flat_roof": {
       "entries": [
         {
-          "color": "#dcd8cc",
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
+        },
+        {
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
           "weight": 1
         },
         {
-          "color": "#8c918c",
+          "color": "#b5ab98",
           "weight": 1
         }
       ],

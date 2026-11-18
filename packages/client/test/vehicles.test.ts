@@ -250,6 +250,38 @@ describe('vehicle visuals', () => {
     visual.dispose();
   });
 
+  it('stops casting into a sun shadow map too coarse for its cabin, seen from its seat', () => {
+    const visual = createVehicleVisual(model(), DATA);
+    const meshes: THREE.Mesh[] = [];
+    visual.object.traverse((object) => {
+      if (object instanceof THREE.Mesh) meshes.push(object);
+    });
+    const body = meshes[0] as THREE.Mesh;
+    const casting = (): boolean[] => meshes.map((mesh) => mesh.castShadow);
+    // A driving view's map (0.14 m texels on High) takes the whole vehicle out.
+    visual.updateShadows(0.14);
+    expect(casting().every((cast) => !cast)).toBe(true);
+    // A part cloned meanwhile (a damage section, debris) comes back with the rest.
+    const section = body.clone();
+    body.parent?.add(section);
+    meshes.push(section);
+    // Between the limits it stays out, then casts again once texels are fine enough.
+    visual.updateShadows(0.026);
+    expect(casting().every((cast) => !cast)).toBe(true);
+    visual.updateShadows(0.025);
+    expect(casting().every((cast) => cast)).toBe(true);
+    expect(section.userData.seatShadowOut).toBeUndefined();
+    visual.updateShadows(0.026);
+    expect(casting().every((cast) => cast)).toBe(true);
+    // A part that never cast stays out; any other view (`undefined`) casts.
+    body.castShadow = false;
+    visual.updateShadows(0.28);
+    visual.updateShadows(undefined);
+    expect(body.castShadow).toBe(false);
+    expect(section.castShadow).toBe(true);
+    visual.dispose();
+  });
+
   it('binds external paint and named wheel nodes', () => {
     const visual = createVehicleVisual(model(), DATA);
     visual.update(0.4, 1.2);

@@ -41,6 +41,11 @@ export interface ScatterPopulation {
   scale: NumberRange;
   /** Independent multiplier of X/Z scale (crown width/bushiness); defaults to 1. */
   widthScale?: NumberRange;
+  /**
+   * Crown width in meters of the model at scale 1. A `crowns` rule fits the plant to the width
+   * of the crown it stands on with it; `scale` then varies its height alone.
+   */
+  width?: number;
   yaw: 'random' | 'none' | 'rows';
   align: 'up' | 'normal';
   tint?: ScatterTint;
@@ -77,9 +82,24 @@ export interface ScatterRule {
   altitude?: ScatterAltitude;
   avoid?: Partial<ScatterAvoid>;
   populations: ScatterPopulation[];
+  /**
+   * Stand one plant on each shrub crown the ground material paints (see `surface.detail`), at
+   * its center and fitted to its width, instead of sampling `densityPerHectare`. Maps a ground
+   * appearance class to the brush (0..1) the ground paints it with, normally the class's
+   * `surface.detail` brush; other classes get no crowns. Up close the painted crown gives way to
+   * the plant, so the shrub seen from the air is the one walked up to. Crowns are kept whole:
+   * `keepByTier` only switches the rule off, and they stand outside their layer's instance cap
+   * (the rule's own cap bounds them).
+   * Places nothing unless the host supplies the ground's crowns (`ScatterSampleInput.crowns`).
+   */
+  crowns?: Record<string, number>;
   lod?: Partial<ScatterLod>;
-  /** Trees, shoulder-height brush, and low ground detail have independent budget pools. */
-  layer?: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
+  /**
+   * Trees, shoulder-height brush, and low ground detail have independent budget pools. `garden`
+   * is planted ornamental vegetation (yards, parks, verges): its own pool, so a wood in the same
+   * batch cannot thin a neighborhood's planting, nor the planting the wood's brush.
+   */
+  layer?: 'canopy' | 'understory' | 'groundcover' | 'agriculture' | 'garden';
 }
 
 export interface ScatterDoc {

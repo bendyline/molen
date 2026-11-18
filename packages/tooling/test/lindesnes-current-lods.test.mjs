@@ -80,28 +80,28 @@ const houseDirection = ([x, y, z]) => [
 ];
 it('retains the open gallery, full16.1m tip and reconstructed north vestibule at every browser level', async () => {
   for (const name of ['skyline', 'district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0, 17, 0], [0, -1, 0]), name + ' conductor tip').toBeCloseTo(0.9, 4);
-    expect(nearest(ts, [2.8, 12, 0], [0, -1, 0]), name + ' open gallery deck').toBeCloseTo(3.31, 4);
-    expect(nearest(ts, [0.36, 9, 4], [0, 0, -1]), name + ' gallery clear gap').toBeGreaterThan(1.9);
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0, 17, 0], [0, -1, 0]), `${name} conductor tip`).toBeCloseTo(0.9, 4);
+    expect(nearest(ts, [2.8, 12, 0], [0, -1, 0]), `${name} open gallery deck`).toBeCloseTo(3.31, 4);
+    expect(nearest(ts, [0.36, 9, 4], [0, 0, -1]), `${name} gallery clear gap`).toBeGreaterThan(1.9);
     expect(
       nearest(ts, housePoint([-4.25, 10, 3.5]), [0, -1, 0]),
-      name + ' vestibule roof',
+      `${name} vestibule roof`,
     ).toBeCloseTo(7.03, 4);
   }
 });
 it('keeps round continuous pressure-vessel bodies and a true tower-door recess in district and near levels', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
-    expect(nearest(ts, [0.1, 2, 4], [0, 0, -1]), name + ' main door back').toBeCloseTo(1.52, 4);
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
+    expect(nearest(ts, [0.1, 2, 4], [0, 0, -1]), `${name} main door back`).toBeCloseTo(1.52, 4);
     for (const x of [-2.7, 2.7]) {
       expect(
         nearest(ts, housePoint([x, 1.6, -6.5]), houseDirection([0, 0, 1])),
-        name + ' round vessel mid-body',
+        `${name} round vessel mid-body`,
       ).toBeCloseTo(1.03, 4);
       expect(
         nearest(ts, housePoint([x + 0.5, 4, -4.6]), [0, -1, 0]),
-        name + ' full vessel top',
+        `${name} full vessel top`,
       ).toBeCloseTo(1.53, 4);
     }
   }
@@ -109,7 +109,7 @@ it('keeps round continuous pressure-vessel bodies and a true tower-door recess i
 it('reproduces the original master mesh and uses mapped main entrance to sign the station frame', async () => {
   const gen = await readFile('../worldgen/scripts/generate-lighthouse-models.mjs', 'utf8'),
     at = gen.indexOf('const surfaces = '),
-    surfaces = Function('return (' + gen.slice(at + 17, gen.indexOf(';', at)) + ')')();
+    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)();
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces, {
       defaultLocalName: 'lantern-glass-and-dark-recess',
@@ -119,8 +119,8 @@ it('reproduces the original master mesh and uses mapped main entrance to sign th
   const m = b.finalize();
   smoothMeshNormals(m, ['trim', 'foundation', 'wall'], 32);
   expect(m.triangleCount).toBe(57082);
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -135,12 +135,12 @@ it('reproduces the original master mesh and uses mapped main entrance to sign th
   expect(f.heightControl.mappedLightFocalHeightMeters).toBe(66.1);
 });
 it('rebuilds derivatives within every geometry and draw limit using shared surfaces', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -150,7 +150,7 @@ it('rebuilds derivatives within every geometry and draw limit using shared surfa
   }
   expect([...refs].sort()).toEqual(
     ['wood_painted_lap', 'slate', 'metal_painted', 'wood_plain', 'concrete_plain', 'stone_granite']
-      .map((g) => 'matgraph:molen.worldgen.material.' + g)
+      .map((g) => `matgraph:molen.worldgen.material.${g}`)
       .sort(),
   );
 });

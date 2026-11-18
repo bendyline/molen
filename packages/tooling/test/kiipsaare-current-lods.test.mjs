@@ -72,20 +72,20 @@ const tilt = (-2 * Math.PI) / 180,
   ];
 it('keeps the true door and stair-window recesses in district, street and closeup', async () => {
   for (const name of ['district', 'street', 'closeup']) {
-    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    const ts = geometry(await readFile(`${runtime}/model.${name}.glb`));
     for (const h of kiipsaareHoles) {
       const y = h.y + h.h / 2,
         o = pose([0, y, kiipsaareRadius(y) + 1]),
         ds = ts.map((p) => hit(o, [0, 0, -1], p)).filter((t) => t !== null && t > 0 && t < 2);
       expect(ds.length).toBeGreaterThan(0);
-      expect(Math.min(...ds), name + ' ' + h.y).toBeGreaterThan(1.2);
+      expect(Math.min(...ds), `${name} ${h.y}`).toBeGreaterThan(1.2);
       expect(Math.min(...ds)).toBeLessThan(1.4);
     }
   }
 });
 it('preserves the source master and places the offshore base with an explicit water datum', async () => {
-  const s = await read(source + '/spec.json'),
-    f = await read(source + '/map-frame.json'),
+  const s = await read(`${source}/spec.json`),
+    f = await read(`${source}/map-frame.json`),
     p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
@@ -100,18 +100,18 @@ it('preserves the source master and places the offshore base with an explicit wa
   expect(p.replaceFootprint).toBe(false);
   expect(s.geographicProposal.groundContactReviewed).toBe(true);
   expect(f.limits).toContain('not surveyed');
-  const scene = await read(source + '/scene.json');
+  const scene = await read(`${source}/scene.json`);
   expect(scene.entities.find((e) => e.id === 'review-water').components.transform.pos[1]).toBe(
     -0.05,
   );
 });
 it('rebuilds all browser files within strict budgets and reuses two shared material graphs', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const a = await read(`${runtime}/asset.json`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
-    const b = await readFile(runtime + '/' + l.file),
+    const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
@@ -121,6 +121,6 @@ it('rebuilds all browser files within strict budgets and reuses two shared mater
       if (m.extras?.molenSurface?.ref) refs.add(m.extras.molenSurface.ref);
   }
   expect([...refs].sort()).toEqual(
-    ['concrete_plain', 'metal_painted'].map((g) => 'matgraph:molen.worldgen.material.' + g).sort(),
+    ['concrete_plain', 'metal_painted'].map((g) => `matgraph:molen.worldgen.material.${g}`).sort(),
   );
 });

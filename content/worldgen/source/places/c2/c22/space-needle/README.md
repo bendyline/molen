@@ -1,30 +1,44 @@
-# Space Needle — first-pass 3D asset
+# Space Needle — A01
 
-![Space Needle lit Molen scene preview](preview.png)
+Seattle's 605 ft observation tower at Seattle Center: six white steel legs in three pairs that pinch to a plated hourglass waist at 373 ft and splay out under the top house; a dark six-sided core with gold elevator cabs; the three-winged SkyLine level at 100 ft and the 200 ft platform; the flying-saucer top house with its white sunburst underside, the Loupe's tilted glass at 500 ft, the downward-sloping bronze halo 138 ft across, the open 520 ft deck behind outward-tilted glass barriers, the white roof, pagoda and penthouse drum; the slender spire with its red beacon; and the glass pavilion wrapped round the base.
 
-Original stylized geometry, generated deterministically by
-`packages/worldgen/scripts/generate-site-structures.mjs` from `spec.json`. The model is 184.4 m
-tall (605 ft, per the [Space Needle](https://www.spaceneedle.com/about)), +Y up, centered at its
-ground footprint. The tripod, braces, observation saucer, glazing band and mast are actual
-geometry. It uses five flat PBR/vertex-color material groups; there are no bitmap textures or
-texture-generation prompts.
+![Molen preview](preview.png)
 
-Imported runtime model: 1,324 triangles, 5 materials, 0 textures, 59,968 bytes. The preview
-above is rendered from `scene.json` with the imported asset at tick 30.
+Built by `content/worldgen/source/places/c2/c22/space-needle/models/generate-space-needle.mjs` with the shared emitter
+`packages/worldgen/scripts/place-master-emitter.mjs`: 12993 triangles,
+7 materials, no embedded bitmaps. The runtime asset is `molen.worldgen.structure.space_needle`; its runtime
+levels come from the landmark LOD generator after import.
 
-Runtime asset: `molen.worldgen.structure.space_needle` in
-`content/worldgen/assets/places/c2/c22/space-needle/`. The source GLB is
-`models/source.glb`; `source.json` pins its hash and imported sidecar. Rebuild, import and inspect
-from the repository root:
+## Frame
+
+`footprint.json` holds the mapped outlines this recipe follows, already in the model frame: +X
+along heading 0 rad from the anchor [-122.349309, 47.620503], +Y up from the
+ground there (40.66 m). The placement in
+`content/earth/source/placements` uses the same anchor and heading.
+
+## Dimensions
+
+- Plan and heights of the mapped OSM building 35184384991964 and its parts: base 35184766343165 (0–6.1 m), SkyLine 35184766343319 with wings 35184766343316/317/318 (30.48–36.58 m), 200 ft platform 35184766343320 (60.96–64.0 m), core 35184766343166, underside 35184766343169 (149.96–152.4 m, r 16.7 m), restaurant/Loupe 35184766343167 (152.4–156.06 m, r 15.5 m), deck enclosure 35184766343168 (158.1–161.2 m, r 13.7 m), pagoda 35184766343164 (164.5–166.95 m) and roof 35184766343161; the SkyLine and platform corners give the leg-pair bearings (south, 60° and 300°) (footprint.json)
+- 605 ft (184.4 m) from the ground to the top of the red aircraft warning beacon (https://spaceneedle.com/facts-1)
+- Observation deck at 520 ft (158.5 m); restaurant level (now the Loupe revolving glass floor) at 500 ft; the top house is 138 ft (42 m) wide; SkyLine level added at 100 ft in 1982; first of three double-deck glass elevators installed in 2025 (https://en.wikipedia.org/wiki/Space_Needle)
+- Three pairs of slender steel legs curve inwards from a 102 ft diameter base to the 373 ft 'waist'; three cantilevered dining wings at the 100 ft level (https://www.docomomo-wewa.org/modern-places/the-space-needle/)
+- Six columns in three pairs, each pair joined by a steel-plate 'shirtwaist' between 260 ft and 420 ft; tie beams to the core at 100 ft and 200 ft; ring girder segments from leg tip to leg tip with radiating fins (the 'sunburst'); a halo of downward-sloping steel outriggers around the saucer; a pagoda-like roof curving inward then outward; a six-sided core of three elevator trusses, each carrying an outward-facing elevator; a 50 ft spire to 605 ft (https://asce.org/publications-and-news/civil-engineering-source/civil-engineering-magazine/issues/magazine-issue/article/2024/07/engineers-and-steel-took-seattles-space-needle-skyward)
+- 2018 Century Project: 11 x 7 ft structural glass barriers on the 520 ft open deck that tilt outward to match the angle of the building; floor-to-ceiling glass inside; revolving glass floor at 500 ft (https://www.spaceneedle.com/renovation)
+- Original colors: Astronaut White legs, Orbital Olive core, Re-entry Red halo, Galaxy Gold sunburst and roof; the roof was repainted from Galaxy Gold back to Astronaut White in May 2023 (https://www.fox13seattle.com/news/space-needle-being-repainted-from-galaxy-gold-back-to-astronaut-white)
+- 2000 pavilion: a glazed, two-storey building at the foot of the Needle that wraps around the base in a spiral form (https://pcad.lib.washington.edu/building/4565)
+
+## Limitations
+
+- Leg curves, pair spacing (2.4 m off the centreline at the ground), section sizes (about 1.5 x 1.3 m) and the fork and tip geometry are fitted to the published base, waist and shirtwaist heights and to photographs; the legs are box sections rather than the real three-sided plated tubes.
+- Top-house radii and heights blend the mapped parts with photographic proportions scaled to the 138 ft width; the mapped outer ring (r 18.9 m) is narrower than the published width, so the halo rim follows the published 42 m. The halo is a perforated cone with 48 ribs rather than individual slats; its bronze color is taken from photographs.
+- The sunburst is 48 fins and three skirt rings; the core is a dark hexagonal shaft with storey bands instead of open trusswork and stairs; elevator cabs are boxes (two gold 1993 cabs, one 2025 glass cab) at arbitrary heights.
+- The SkyLine wings follow the mapped outlines with a simplified sloped soffit and glass band; the 200 ft platform is a deck with a glass rail.
+- The base pavilion is mapped only as the 20 ft drum 35184766343165; the model raises that drum to two storeys (8.5 m) and simplifies the spiral ramp and canopies to a circular glass ring (r 19 m, 4.55 m) under a flat roof, sized from aerial photographs; the real ring is a spiral and partly open.
+- The spire is a solid tapering mast with a beacon instead of an open lattice; flagpoles, antennas, railings, benches and rooftop equipment are omitted.
+- Original deterministic geometry from mapped footprints, published dimensions and general knowledge of the building; not a survey, photogrammetric reconstruction or replica of any third-party model. No photographs or generated bitmaps are embedded.
+
+## Rebuild
 
 ```sh
-node packages/worldgen/scripts/generate-site-structures.mjs
-node packages/tooling/dist/cli.mjs asset import content/worldgen/source/places/c2/c22/space-needle/models/source.glb --id molen.worldgen.structure.space_needle --project content/worldgen/project.json --force
-node packages/tooling/dist/cli.mjs asset inspect molen.worldgen.structure.space_needle --project content/worldgen/project.json --verify
-node packages/tooling/dist/cli.mjs asset shot molen.worldgen.structure.space_needle --project content/worldgen/project.json --out-dir content/worldgen/source/places/c2/c22/space-needle/shots/turntable
-node packages/tooling/dist/cli.mjs shot content/worldgen/source/places/c2/c22/space-needle/scene.json --project content/worldgen/project.json --out content/worldgen/source/places/c2/c22/space-needle/shots/scene.png
+node content/worldgen/source/places/c2/c22/space-needle/models/generate-space-needle.mjs          # add --check to verify
 ```
-
-This is a recognizable first pass, not a surveyed replica. Facade panels, elevators, entrance
-and exact site orientation are deferred. The asset is pack-registered; geographic placement in
-the Earth viewer still needs the structure catalog and Seattle terrain coverage.

@@ -56,18 +56,18 @@ function nearest(ts, o, d) {
   }, Infinity);
 }
 it('rebuilds the source exactly and distinguishes the five-span river unit from the mapped land viaduct and signed lower ramps', async () => {
-  const brief = await read(source + '/model-brief.json'),
-    spec = await read(source + '/spec.json'),
-    frame = await read(source + '/map-frame.json'),
-    map = await read(source + '/pmtiles-map.json'),
-    alignment = await read(source + '/alignment.json');
+  const brief = await read(`${source}/model-brief.json`),
+    spec = await read(`${source}/spec.json`),
+    frame = await read(`${source}/map-frame.json`),
+    map = await read(`${source}/pmtiles-map.json`),
+    alignment = await read(`${source}/alignment.json`);
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(lazienkowskiSurfaces);
   buildLazienkowskiLevel(a.wrap(b), 'master');
   const mesh = b.finalize(),
     bytes = Buffer.from(encodeGlb(mesh, a.materials(mesh.groups), brief.exportLabel));
   expect(hashBytes(bytes)).toBe(brief.expectedDraftMasterHash);
-  expect(bytes.equals(await readFile(source + '/models/source.glb'))).toBe(true);
+  expect(bytes.equals(await readFile(`${source}/models/source.glb`))).toBe(true);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(frame.anchor).toEqual([21.049177019, 52.225365347]);
   expect(frame.heading).toBe(0.321568078803);
@@ -81,39 +81,39 @@ it('rebuilds the source exactly and distinguishes the five-span river unit from 
   expect(alignment.cyclePaths).toHaveLength(3);
   expect(alignment.cyclePaths.some((p) => p.points.some((p) => p[1] > 60))).toBe(true);
   expect(alignment.cyclePaths.some((p) => p.points.some((p) => p[1] < -45))).toBe(true);
-  const terrain = await read(source + '/terrain-samples.json');
+  const terrain = await read(`${source}/terrain-samples.json`);
   for (const x of [-430, 430])
     expect(
       74 + lazienkowskiDeckY(x) - terrain.samples.find((s) => s.x === x).heightMeters,
     ).toBeGreaterThan(1.5);
-  const placement = await read(source + '/placement-report.json');
+  const placement = await read(`${source}/placement-report.json`);
   expect(placement.entry.elevation).toBe(74);
   expect(placement.entry.replaceFootprint).toBe(false);
   expect(placement.entry.replaceRoads.outline).toEqual(frame.geometry.outline);
   expect(placement.entry.bounds).toHaveLength(4);
 }, 30000);
 it('retains the complete road, separated lower paths, four girder lines and open water at every tier', async () => {
-  const asset = await read(runtime + '/asset.json');
+  const asset = await read(`${runtime}/asset.json`);
   for (const l of asset.runtimeLods.levels) {
-    const ts = await triangles(runtime + '/' + l.file);
+    const ts = await triangles(`${runtime}/${l.file}`);
     for (const x of [-400, -200, 0, 180, 400])
       expect(
         Math.abs(nearest(ts, [x, 32, 3], [0, -1, 0]) - (32 - lazienkowskiDeckY(x) - 0.035)),
-        l.name + ' complete road ' + x,
+        `${l.name} complete road ${x}`,
       ).toBeLessThan(0.22);
     for (const z of [-12.2, 13.5])
-      expect(nearest(ts, [35, 10, z], [0, -1, 0]), l.name + ' lower path').toBeCloseTo(1.2, 1);
+      expect(nearest(ts, [35, 10, z], [0, -1, 0]), `${l.name} lower path`).toBeCloseTo(1.2, 1);
     for (const z of lazienkowskiControls.girderZ)
-      expect(nearest(ts, [50, 10, z], [0, 1, 0]), l.name + ' girder').toBeGreaterThan(2.4);
-    expect(nearest(ts, [45, 6, 0], [0, 0, 1]), l.name + ' water opening').toBe(Infinity);
+      expect(nearest(ts, [50, 10, z], [0, 1, 0]), `${l.name} girder`).toBeGreaterThan(2.4);
+    expect(nearest(ts, [45, 6, 0], [0, 0, 1]), `${l.name} water opening`).toBe(Infinity);
     const pierHit = nearest(ts, [11, 6, 20], [0, 0, -1]);
-    expect(pierHit, l.name + ' river pier near the transverse bank').toBeGreaterThan(7);
-    expect(pierHit, l.name + ' river pier remains present').toBeLessThan(10);
+    expect(pierHit, `${l.name} river pier near the transverse bank`).toBeGreaterThan(7);
+    expect(pierHit, `${l.name} river pier remains present`).toBeLessThan(10);
   }
 }, 60000);
 it('rebuilds all browser tiers with shared surfaces, no embedded images and separate GPU streams within scene budgets', async () => {
-  const r = await buildModelLandmarkLods(runtime + '/asset.json', { force: true }),
-    asset = await read(installed + '/asset.json');
+  const r = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true }),
+    asset = await read(`${installed}/asset.json`);
   expect(r.levels[0].bytes + r.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -122,7 +122,7 @@ it('rebuilds all browser tiers with shared surfaces, no embedded images and sepa
     closeup: 64000,
   })) {
     const l = r.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(hashBytes(b)).toBe(asset.runtimeLods.levels.find((l) => l.name === name).hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);

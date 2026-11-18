@@ -31,33 +31,33 @@ it('retains three open spans, two rounded granite supports and a continuous skew
   for (const name of ['source', 'master', 'skyline', 'district', 'street', 'closeup']) {
     const hit = await geometry(
       name === 'source'
-        ? source + '/models/source.glb'
+        ? `${source}/models/source.glb`
         : resolve(sidecar, '..', name === 'master' ? 'model.glb' : `model.${name}.glb`),
     );
     for (const x of [-11, -8, 0, 8, 11]) {
       for (const z of [-4, 4])
         expect(
           Math.abs(20 - hit([x + C.skew * z, 20, z], [0, -1, 0]) - deck(x)),
-          name + ' road',
+          `${name} road`,
         ).toBeLessThan(0.1);
       for (const z of [-7, 7])
         expect(
           Math.abs(20 - hit([x + C.skew * z, 20, z], [0, -1, 0]) - deck(x) - 0.18),
-          name + ' sidewalk',
+          `${name} sidewalk`,
         ).toBeLessThan(0.1);
     }
     for (const x of [-8, 0, 8])
-      expect(hit([x, 1.3, 15], [0, 0, -1], 30), name + ' open span').toBe(Infinity);
+      expect(hit([x, 1.3, 15], [0, 0, -1], 30), `${name} open span`).toBe(Infinity);
     for (const x of C.piers)
       expect(
         hit([x + C.skew * 8.6, 1.3, 12], [0, 0, -1], 7),
-        name + ' projecting drum',
+        `${name} projecting drum`,
       ).toBeLessThan(4);
     for (const x of C.piers)
       for (const side of [-1, 1])
         expect(
           hit([x + C.skew * side * 8.55, deck(x) + 0.05, side * 12], [0, 0, -side], 4),
-          name + ' stone coping beneath the outboard obelisk base',
+          `${name} stone coping beneath the outboard obelisk base`,
         ).toBeLessThan(3.5);
   }
 }, 120000);
@@ -85,13 +85,13 @@ it('keeps four obelisk finials, oval lanterns and actual pierced ornamental iron
 }, 120000);
 it('rebuilds exact budgeted shared-material tiers without altering the master or duplicating GPU streams', async () => {
   const before = JSON.parse(await readFile(sidecar)),
-    src = digest(await readFile(source + '/models/source.glb')),
+    src = digest(await readFile(`${source}/models/source.glb`)),
     master = digest(await readFile(resolve(sidecar, '../model.glb')));
   expect(src).toBe('d9d8f2caa97a2fd7a9d3ecf271dd48f3ff585b992c1d53bc946b78df2f20252c');
   await buildModelLandmarkLods(sidecar, { force: true });
   const after = JSON.parse(await readFile(sidecar));
   expect(after.runtimeLods.levels).toEqual(before.runtimeLods.levels);
-  expect(digest(await readFile(source + '/models/source.glb'))).toBe(src);
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(src);
   expect(digest(await readFile(resolve(sidecar, '../model.glb')))).toBe(master);
   expect(after.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,

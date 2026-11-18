@@ -89,14 +89,14 @@ const surfaces = {
   },
 };
 it('reproduces the original master and preserves four independent map rings and current source bindings', async () => {
-  const m = await read(source + '/map-frame.json'),
-    prior = await read(source + '/georeferencing-baseline.json'),
+  const m = await read(`${source}/map-frame.json`),
+    prior = await read(`${source}/georeferencing-baseline.json`),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildPrincess(a.wrap(b), prior);
   const mesh = b.finalize();
   expect(mesh.triangleCount).toBe(699554);
-  const spec = await read(source + '/spec.json');
+  const spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(m.anchor).toEqual(prior.anchor);
@@ -107,11 +107,11 @@ it('reproduces the original master and preserves four independent map rings and 
     expect(p.geometry).toEqual(prior.elements.find((x) => x.id === p.id).geometry);
   expect(m.elements[0].tags.wikidata).toBe('Q19492');
   expect(m.orientationControl.projectionResidualMeters).toBeLessThan(0.001);
-  expect(decode(await readFile(source + '/models/source.glb')).g.materials).toHaveLength(4);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.materials).toHaveLength(4);
 }, 60000);
 it('retains complete facade envelopes, all street balconies, keyholes, crown tiers, striped dome and414m tip', async () => {
-  const master = decode(await readFile(source + '/models/source.glb')).triangles,
-    asset = await read(runtime + '/asset.json');
+  const master = decode(await readFile(`${source}/models/source.glb`)).triangles,
+    asset = await read(`${runtime}/asset.json`);
   // These 240 reference rays scan the 699,554-triangle master. Reuse their exact hits
   // for every LOD instead of repeating the same expensive intersection work four times.
   const probes = [];
@@ -121,19 +121,17 @@ it('retains complete facade envelopes, all street balconies, keyholes, crown tie
         o = [70 * Math.cos(t), y, 70 * Math.sin(t)],
         v = [-Math.cos(t), 0, -Math.sin(t)],
         target = nearest(master, o, v);
-      expect(Number.isFinite(target), 'master coverage ' + y + '/' + k).toBe(true);
+      expect(Number.isFinite(target), `master coverage ${y}/${k}`).toBe(true);
       probes.push({ y, k, o, v, target });
     }
   for (const l of asset.runtimeLods.levels) {
-    const d = decode(await readFile(runtime + '/' + l.file)),
+    const d = decode(await readFile(`${runtime}/${l.file}`)),
       ts = d.triangles,
       allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[l.name];
     for (const { y, k, o, v, target } of probes) {
       const actual = nearest(ts, o, v);
-      expect(Number.isFinite(actual), l.name + ' coverage ' + y + '/' + k).toBe(true);
-      expect(Math.abs(actual - target), l.name + ' envelope ' + y + '/' + k).toBeLessThan(
-        allowance,
-      );
+      expect(Number.isFinite(actual), `${l.name} coverage ${y}/${k}`).toBe(true);
+      expect(Math.abs(actual - target), `${l.name} envelope ${y}/${k}`).toBeLessThan(allowance);
     }
     expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeCloseTo(414, 3);
     if (l.name === 'street' || l.name === 'closeup') {
@@ -143,18 +141,18 @@ it('retains complete facade envelopes, all street balconies, keyholes, crown tie
           [[60, 27.75 + j * pitch + 0.15, 0], [-1, 0, 0], 40.129],
           [[0, 27.75 + j * pitch + 0.15, 60], [0, 0, -1], 41.258],
         ])
-          expect(nearest(ts, o, v), l.name + ' balcony ' + j).toBeCloseTo(dist, 2);
+          expect(nearest(ts, o, v), `${l.name} balcony ${j}`).toBeCloseTo(dist, 2);
       expect(d.g.materials.some((m) => m.alphaMode === 'BLEND')).toBe(true);
     }
     for (const y of [352.9, 363.4, 369.3])
       expect(
         Number.isFinite(nearest(ts, [0, y, 50], [0, 0, -1])),
-        l.name + ' glazed tier ' + y,
+        `${l.name} glazed tier ${y}`,
       ).toBe(true);
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -163,7 +161,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);

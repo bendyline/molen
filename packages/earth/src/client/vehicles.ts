@@ -214,6 +214,13 @@ export class EarthVehicles {
   view: 'cockpit' | 'chase' = 'cockpit';
   lookYaw: number = 0;
   lookPitch: number = 0;
+  /**
+   * The sun shadow map's texel size (`Renderer.shadowTexelSize`), for the host to set each frame
+   * before {@link update}. Seen from its own seat (the cockpit view), the mounted vehicle stops
+   * casting into a map too coarse for its cabin (`VehicleVisual.updateShadows`): its roof and
+   * pillars made the dashboard flicker in the sun while driving.
+   */
+  shadowTexel: number | undefined = undefined;
   /** A short explanation when entering or leaving a vehicle did not work. */
   message: string = '';
   private accumulator = 0;
@@ -1502,12 +1509,14 @@ export class EarthVehicles {
   }
   /** Move loaded models to their simulated poses and animate wheels and steering. */
   render(): void {
+    const seated = this.view === 'cockpit' ? this.mountedId : undefined;
     for (const [id, visual] of this.active) {
       const t = this.world.get(id, Transform),
         state = this.state(id);
       if (!t || !state) continue;
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
+      visual.updateShadows(id === seated ? this.shadowTexel : undefined);
       const input = this.world.get(id, BoatInput) ?? this.world.get(id, VehicleInput);
       visual.update(
         state.steer,

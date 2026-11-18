@@ -24,7 +24,7 @@ import {
   litoralSiteRoofCases,
 } from './primary-facts-litoral-site-roofs.mjs';
 
-const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 export const litoralCases = {
   ...litoralRoofSectionCases,
   ...litoralMicrosoftEstimatedCases,
@@ -355,7 +355,7 @@ export function inspectLitoralPrimaryFacts({ dir, proof, controls: P, frame: f }
     if (
       hash(bytes) !== n.sha256 ||
       n.sha256 !== P.numericalRecordHash ||
-      n.featureId !== 'overture/' + id ||
+      n.featureId !== `overture/${id}` ||
       m.gersId !== id ||
       P.gersId !== id ||
       P.googleRecordId !== recordId ||
@@ -431,8 +431,8 @@ export function inspectLitoralPrimaryFacts({ dir, proof, controls: P, frame: f }
       P.nativeRing.length !== corners ||
       JSON.stringify(P.nativeRing) !== JSON.stringify(f.geometry.polygons[0]) ||
       data.compoundIdentity.poi.properties.name !==
-        'Pabellón ' + String(pavilion).padStart(2, '0') ||
-      data.compoundIdentity.area.id !== 'landuse/' + (35185886821920 + pavilion)
+        `Pabellón ${String(pavilion).padStart(2, '0')}` ||
+      data.compoundIdentity.area.id !== `landuse/${35185886821920 + pavilion}`
     )
       return fail('litoral-roof-and-compound-scope-invalid');
     const anchor = [0, 1].map((k) => ring.slice(0, -1).reduce((s, p) => s + p[k] / corners, 0)),

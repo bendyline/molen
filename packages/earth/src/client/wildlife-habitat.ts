@@ -169,13 +169,22 @@ function distanceToShape(x: number, z: number, tile: Tile, shape: number): numbe
       (tile.widths[shape] as number) / 2,
   );
 }
+/**
+ * Residential land: lawns and gardens between houses and streets, which keep their own buffers.
+ * It is the broad use under whatever is mapped on it, so any other habitat at a point wins (see
+ * sample).
+ */
+const YARD = 'yard';
+/** Tended green space that reads as a park to the animals on it. */
+const PARKS = ['garden', 'cemetery', 'village_green', 'recreation_ground', 'golf_course'];
 function kindOf(value: string): string {
   const kind = value.toLowerCase().replaceAll('-', '_');
   if (['nature_reserve', 'national_park', 'protected_area'].includes(kind)) return 'protected';
+  if (kind === 'residential') return YARD;
+  if (PARKS.includes(kind)) return 'park';
   if (
     [
       'urban_area',
-      'residential',
       'commercial',
       'industrial',
       'retail',
@@ -533,7 +542,8 @@ export class WildlifeHabitatTiles {
       if (known !== undefined) return known;
     }
     let kind = 'unknown',
-      safe = true,
+      blocked = false,
+      road = false,
       water = false,
       waterDistance = Infinity,
       protectedArea = false;
@@ -579,10 +589,20 @@ export class WildlifeHabitatTiles {
                 ? (tile.waterHeights[shape] as number)
                 : tile.height(x, z) + 0.65;
           }
-        } else if (shapeKind === 'building' || shapeKind === 'road' || shapeKind === 'built') {
-          if (distance <= margin + (shapeKind === 'road' ? 2 : 1)) safe = false;
+        } else if (shapeKind === 'road') {
+          if (distance <= margin + 2) road = true;
+        } else if (shapeKind === 'building' || shapeKind === 'built') {
+          if (distance <= margin + 1) blocked = true;
         } else if (distance === 0 && shapeKind === 'protected') protectedArea = true;
-        else if (distance === 0 && !water && shapeKind !== 'unknown') kind = shapeKind;
+        // Among mapped habitats the last shape wins, but a yard only where nothing else is
+        // mapped: a park or a wood inside a residential area is drawn in either order.
+        else if (
+          distance === 0 &&
+          !water &&
+          shapeKind !== 'unknown' &&
+          (shapeKind !== YARD || kind === 'unknown')
+        )
+          kind = shapeKind;
       }
     }
     const delta = Math.max(1, margin);
@@ -592,10 +612,15 @@ export class WildlifeHabitatTiles {
         Math.abs(cover.height(x, z + delta) - cover.height(x, z - delta)),
       ) /
       (2 * delta);
+    // Ground an animal could use, were no road on it: a flyer may cross where only the road is in
+    // the way (`overflight`), never a building, whose height nothing here knows.
+    const open =
+      !blocked && kind !== 'unknown' && Number.isFinite(height) && (water || slope < 0.65);
     const habitat = {
       kind,
       height,
-      safe: safe && kind !== 'unknown' && Number.isFinite(height) && (water || slope < 0.65),
+      safe: open && !road,
+      overflight: open && road,
       water,
       waterDistance,
       protected: protectedArea,

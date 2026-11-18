@@ -1,6 +1,6 @@
 # Road sign appearances
 
-`catalog.json` separates country conventions from the terrain renderer's ten global detection
+`catalog.json` separates country conventions from the terrain renderer's twelve global detection
 patterns. It currently covers the United States, Great Britain, Germany, France, Italy and
 Switzerland. Every profile includes official reference URLs and approximation notes. The
 `generic` fallback is explicitly unclassified, with neutral guide panels, visible speed units
@@ -13,6 +13,30 @@ Only the U.S. preset currently enables inferred stop controls; mapped controls w
 Uniform mapped destination colours override guide defaults. Mixed destination panels, detailed
 national layouts and route shields are still approximate. Driving side is shared with ambient
 road lanes, junction turns, stop lines and signal heads; one-way point order is preserved.
+
+A profile's optional `streetNames` style turns on street-name signs and says how the region
+posts them. `mount: "post"` puts both names of a junction corner on one post (`panel: "blade"`
+for narrow North American blades, `"plate"` for taller European plates); `mount: "wall"` fixes a
+plate for each street to the corner building's wall that faces it, with a low two-legged frame
+where no wall is near. `mastArms: true` also hangs the cross street's name from each signal mast
+arm. The style gives panel, ink and optional border colours, `letterCase: "upper"` for capitals,
+and any abbreviations signs use for spelled-out map names: `directions` apply to a first or
+last word, `types` to the last word (or the last before a direction), and `words` anywhere but
+the end.
+
+| Profile | Street names |
+| --- | --- |
+| `us` and the states | White on green blades on corner posts and panels on signal mast arms (MUTCD); USPS Publication 28 abbreviations |
+| `gb` | Black capitals on white plates on corner walls, or low frames |
+| `fr` | White capitals on blue plates on corner walls, or low frames |
+| `it` | Dark capitals on white plates on corner walls, or low frames |
+| `de` | Black on white plates, two to a corner post (StVO Zeichen 437) |
+| `ch` | White on blue plates, two to a corner post |
+| `generic`, `generic-left` | Neutral light plates on corner posts, claiming no national design |
+
+Only the U.S. abbreviates; the other profiles keep names as mapped. Municipal designs (Paris's
+green border, Rome's marble, cities that post blue or brown blades) are not distinguished, and
+a name in a script the sign font lacks is not posted.
 
 The `generic-left` profile adds left-driving countries and territories, including Japan,
 Australia, New Zealand, Ireland, India, Thailand, South Africa, Hong Kong and Macao. Its source
@@ -67,8 +91,9 @@ networks, and unimplemented toll/business variants are omitted. Tennessee requir
 These cues establish identity, not a surveyed marker position. See the
 [Protomaps shield attributes](https://docs.protomaps.com/basemaps/layers#shields).
 
-Stop, yield, speed and guide panels retain the shared U.S. convention. Street-name blades
-vary by municipality and are not assigned invented statewide colours. The gallery's
+Stop, yield, speed, guide and street-name panels retain the shared U.S. convention. Street-name
+blades vary by municipality; states keep the national white on green rather than invented
+statewide colours. The gallery's
 `?view=states` collection compares all 50 designs; `?region=us-wa` shows a state's full pattern
 set. Route 28 in the gallery is synthetic, not a claim that every state has that route.
 

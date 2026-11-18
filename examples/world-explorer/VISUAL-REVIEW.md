@@ -421,6 +421,11 @@ roof, wall color and chimney.
 
 **Start:** footprint analysis in `packages/worldgen/src/kernel`, the regional `attached` styles.
 
+**Part done (2026-11-16).** Houses mapped as separate footprints that share walls are now read
+as a row: no windows in the party walls, the family's row-house style, gabled roofs with the
+ridge turned to the row. Splitting one long footprint into units is still open. See the
+[building diversity review](BUILDING-DIVERSITY-REVIEW.md).
+
 #### 24. More kinds of building from the map
 
 **P1.** A church without a matching POI becomes a shop; stadiums, greenhouses and construction
@@ -433,6 +438,10 @@ warehouse with loading docks, and pylons, water towers, silos and masts.
 
 **Start:** `building-use.ts` and the style rules in `packages/worldgen-earth/src/kernel`,
 `content/worldgen/styles/use/`.
+
+**Part done (2026-11-16).** Places of worship: recognized from 25 m², by a point inside the
+building as well as by id, built in the region's own walls and roof, with a crown from the
+POI's religion (dome, spire, belfry, minaret, stepped tower). The other kinds are open.
 
 #### 25. Infill that belongs to its region
 

@@ -86,9 +86,9 @@ it('reproduces the original hotel master and independently signs the primary-sou
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildEmirates(a.wrap(b), null, true);
-  const spec = await read(source + '/spec.json'),
-    m = await read(source + '/map-frame.json'),
-    baseline = await read(source + '/georeferencing-baseline.json');
+  const spec = await read(`${source}/spec.json`),
+    m = await read(`${source}/map-frame.json`),
+    baseline = await read(`${source}/georeferencing-baseline.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.sourceFacts.equilateralPlanSideMeters).toBe(55.5);
@@ -114,11 +114,11 @@ it('reproduces the original hotel master and independently signs the primary-sou
   }
   expect(Math.cos(m.heading)).toBeGreaterThan(0.8);
   expect(-Math.sin(m.heading)).toBeGreaterThan(0.5);
-  expect(decode(await readFile(source + '/models/source.glb')).g.materials).toHaveLength(3);
+  expect(decode(await readFile(`${source}/models/source.glb`)).g.materials).toHaveLength(3);
 }, 60000);
 it('retains triangular/curved shaft, three open base bays, five crown slits, copper beacon, sloped roof and309m mast', async () => {
-  const master = decode(await readFile(source + '/models/source.glb')).triangles,
-    asset = await read(runtime + '/asset.json'),
+  const master = decode(await readFile(`${source}/models/source.glb`)).triangles,
+    asset = await read(`${runtime}/asset.json`),
     S = 55.5,
     H = (S * Math.sqrt(3)) / 2,
     rear = -H / 3,
@@ -126,7 +126,7 @@ it('retains triangular/curved shaft, three open base bays, five crown slits, cop
     cut = tip - 10,
     w = (10 * S) / (2 * H);
   for (const level of asset.runtimeLods.levels) {
-    const decoded = decode(await readFile(runtime + '/' + level.file)),
+    const decoded = decode(await readFile(`${runtime}/${level.file}`)),
       { g, triangles: ts } = decoded,
       windowTriangles = level.name === 'skyline' ? ts : decoded.windowTriangles,
       allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[level.name];
@@ -190,7 +190,7 @@ it('retains triangular/curved shaft, three open base bays, five crown slits, cop
   }
 }, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
-  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -199,7 +199,7 @@ it('rebuilds four pinned browser levels within transfer/triangle/draw caps with 
     closeup: 64000,
   })) {
     const l = after.levels.find((l) => l.name === name),
-      b = await readFile(runtime + '/' + l.file),
+      b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(3);

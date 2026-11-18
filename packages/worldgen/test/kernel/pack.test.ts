@@ -164,7 +164,7 @@ describe('default pack', () => {
       }
     }
     expect(seen.has('molen.worldgen.prop.chimney.brick')).toBe(true);
-  });
+  }, 30_000); // Four buildings for each of 741 house styles; past the 5 s default on CI.
 });
 
 it('draws one continuous storey in the commercial glass texture', async () => {

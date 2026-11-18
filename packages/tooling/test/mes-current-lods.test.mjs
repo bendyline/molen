@@ -19,7 +19,7 @@ const runtime = await runtimeLodFixture(
   resolve('../../content/worldgen/assets/places/sr/srm/mes_bridge'),
 );
 const read = async (p) => JSON.parse(await readFile(p));
-const awaitFrame = await readFile(source + '/map-frame.json', 'utf8');
+const awaitFrame = await readFile(`${source}/map-frame.json`, 'utf8');
 const centerline = JSON.parse(awaitFrame).centerline;
 function center(x) {
   const upper = centerline.findIndex((p) => p[0] >= x);
@@ -67,7 +67,7 @@ it('retains thirteen clear arches, outward faces and the humped deck at every br
         const v = hit([a.x, y, z - 1.8], [0, 0, 1], t.p);
         return v !== null && v > 0 && v < 3.6;
       });
-      expect(hits, name + ' arch ' + a.x).toHaveLength(0);
+      expect(hits, `${name} arch ${a.x}`).toHaveLength(0);
     }
     const front = ts.filter(
       (t) =>
@@ -89,8 +89,8 @@ it('retains thirteen clear arches, outward faces and the humped deck at every br
   }
 });
 it('keeps measured terrain separate from reconstructed rock and matches both outer approaches', async () => {
-  const g = await read(source + '/terrain-grid.json'),
-    s = await read(source + '/spec.json');
+  const g = await read(`${source}/terrain-grid.json`),
+    s = await read(`${source}/spec.json`);
   expect(g.source.verticalDatum).toContain('Not stated');
   expect(g.source.nativeResolution).toContain('does not establish2m');
   expect(g.heights).toHaveLength(129 * 129);
@@ -102,13 +102,13 @@ it('keeps measured terrain separate from reconstructed rock and matches both out
   expect(mesDeckDelta(-6.4)).toBe(0);
 });
 it('reproduces all four image-free shared-material levels and keeps initial downloads below phone limits', async () => {
-  const a = await read(runtime + '/asset.json'),
-    master = await readFile(runtime + '/model.glb');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  expect((await readFile(runtime + '/model.glb')).equals(master)).toBe(true);
+  const a = await read(`${runtime}/asset.json`),
+    master = await readFile(`${runtime}/model.glb`);
+  await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  expect((await readFile(`${runtime}/model.glb`)).equals(master)).toBe(true);
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   for (const l of a.runtimeLods.levels) {
-    const bytes = await readFile(runtime + '/' + l.file),
+    const bytes = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     expect(g.images ?? []).toHaveLength(0);
     expect(l.drawCalls).toBeLessThanOrEqual(3);
