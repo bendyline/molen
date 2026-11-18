@@ -1101,7 +1101,7 @@ geometry and materials are counted once. Procedural scatter uses its separate in
 | Geometry CPU backing buffers | 64 MB | 192 MB |
 | Estimated geometry GPU uploads | 64 MB | 192 MB |
 | Shared worldgen textures, including mipmaps | 16 MB | 48 MB |
-| Triangle / draw-call allowance | 350,000 / 100 | 1,000,000 / 200 |
+| Triangle / draw-call allowance | 350,000 / 100 | 1,000,000 / 400 |
 | Concurrent model loads | 2 | 4 |
 | Cooperative preparation time per frame | 2 ms | 4 ms |
 
@@ -1110,9 +1110,15 @@ overhead. Initial payload limits cover the active skyline set, not lifetime trav
 pack metadata. Upgrades can download larger files after a one-second skyline grace period.
 Draw/triangle admission reserves twice the nominal geometry cost for extra passes; shadows and
 other renderer passes have their own costs. Preparation yields between instances; an individual
-GLB parse or GPU upload can exceed the cooperative time allowance.
+GLB parse or GPU upload can exceed the cooperative time allowance. Every placement is shown, at
+least on its skyline: skylines are reserved before detail, so a placement that overruns the
+allowance moves the farthest detailed landmarks down on the next update rather than being refused.
+Only drawn instances count: one in a tile hidden in the terrain's warm cache costs nothing until
+the tile is shown again.
 
-Touch devices or browsers reporting at most 4 GB use the phone preset. Hosts can choose explicitly:
+Touch-first devices (a coarse primary pointer: phones and tablets) or browsers reporting at most
+4 GB use the phone preset; a laptop with a touch screen keeps the desktop one. Hosts can choose
+explicitly:
 
 ```ts
 const view = await mountEarthView({
@@ -1129,8 +1135,10 @@ const view = await mountEarthView({
 
 Runtime variants use separate vertex attribute streams so Float32 positions and Uint8 colors
 do not cause overlapping GPU uploads. The reducer preserves source material references on detailed
-levels; skyline uses a single color material and local convex pieces derived from the source.
-Small openings and fine trim can disappear in that distant silhouette. Detailed levels use
+levels; skyline uses a single color material. A dense master's skyline is its own surfaces
+simplified, or local convex pieces where those are closer to the source (convex pieces fill a
+stadium bowl or a canopy). Small openings and fine trim can disappear in that distant silhouette.
+Detailed levels use
 conservative reduction and can exceed their advisory triangle targets. Expensive models stay
 coarse when an upgrade does not fit; source-authored LODs may be needed for more detail on phones.
 Geometric error is an estimate for selection, not a certified maximum deviation.

@@ -5,6 +5,7 @@ import {
   type StructureLodManifest,
   StructureLodStreamer,
   structureGeometryBytes,
+  structureStreamingMobile,
 } from '../../src/client/structure-streamer';
 
 const flush = async () => {
@@ -146,6 +147,102 @@ describe('bounded landmark LOD streaming', () => {
     expect(second.children).toHaveLength(1);
     expect(streamer.stats().drawCalls * 2).toBeLessThanOrEqual(16);
     streamer.dispose();
+  });
+
+  it('places a landmark on its skyline while others hold the detail budget', async () => {
+    let now = 0;
+    const doc = manifest();
+    for (const [index, level] of doc.runtimeLods.levels.entries())
+      if (index > 0) level.drawCalls = 5;
+    const streamer = new StructureLodStreamer(
+      async () => doc,
+      async (_ref, level) => model(level.name),
+      { clock: () => now, budget: { maxDrawCalls: 12 } },
+    );
+    const near = streamer.instantiate(await streamer.acquire('near', { position: [0, 0, 0] }), {
+      position: [0, 0, 0],
+    });
+    const far = await streamer.acquire('far', { position: [0, 0, 40] });
+    streamer.instantiate(far, { position: [0, 0, 40] });
+    const settle = async () => {
+      for (let i = 0; i < 6; i++) {
+        streamer.update(view);
+        await flush();
+        now += 100;
+      }
+    };
+    now = 2000;
+    await settle();
+    expect(near.userData.landmarkLod).toBe('closeup');
+    // A child tile places the far landmark again while its parent is still resident (a flight
+    // towards it). The far one is already on its skyline, yet its extra draw overruns the budget
+    // the near one fills. Refusing it dropped the landmark for as long as the child tile stayed.
+    await streamer.acquire('far', { position: [0, 0, 40] });
+    const child = streamer.instantiate(far, { position: [0, 0, 40] });
+    expect(child.userData.landmarkLod).toBe('skyline');
+    expect(child.children).toHaveLength(1);
+    // The next passes reserve both skylines first and move the detailed one down to fit.
+    await settle();
+    expect(near.userData.landmarkLod).toBe('skyline');
+    expect(streamer.stats().drawCalls * 2).toBeLessThanOrEqual(12);
+    streamer.dispose();
+  });
+
+  it('charges only drawn instances, not those hidden in the warm cache', async () => {
+    let now = 0;
+    const doc = manifest();
+    for (const [index, level] of doc.runtimeLods.levels.entries())
+      if (index > 0) level.drawCalls = 5;
+    const streamer = new StructureLodStreamer(
+      async () => doc,
+      async (_ref, level) => model(level.name),
+      { clock: () => now, budget: { maxDrawCalls: 12 } },
+    );
+    // A flight towards the landmark: the coarser tile that placed it first has left the view
+    // and waits, hidden, in the warm cache; the finer tile now drawing it holds a second instance.
+    const cached = new THREE.Group();
+    const shown = new THREE.Group();
+    const handle = await streamer.acquire('tower', { position: [0, 0, 0] });
+    cached.add(streamer.instantiate(handle, { position: [0, 0, 0] }));
+    await streamer.acquire('tower', { position: [0, 0, 0] });
+    const drawn = streamer.instantiate(handle, { position: [0, 0, 0] });
+    shown.add(drawn);
+    cached.visible = false;
+    const settle = async () => {
+      for (let i = 0; i < 6; i++) {
+        streamer.update(view);
+        await flush();
+        now += 100;
+      }
+    };
+    now = 2000;
+    await settle();
+    // Counted twice, five closeup draws (ten with shadows) per instance would not fit in twelve.
+    expect(drawn.userData.landmarkLod).toBe('closeup');
+    expect(streamer.stats().drawCalls).toBe(5);
+    // Back on screen, both draw: the next passes move it down to fit.
+    cached.visible = true;
+    await settle();
+    expect(drawn.userData.landmarkLod).toBe('skyline');
+    expect(streamer.stats().drawCalls * 2).toBeLessThanOrEqual(12);
+    streamer.dispose();
+  });
+
+  it('gives a touch-screen laptop the desktop budget and a coarse pointer the phone one', () => {
+    const media = (coarse: boolean) => (query: string) =>
+      ({ matches: coarse && query === '(pointer: coarse)' }) as MediaQueryList;
+    try {
+      vi.stubGlobal('navigator', { maxTouchPoints: 10, deviceMemory: 8 });
+      vi.stubGlobal('matchMedia', media(false));
+      expect(structureStreamingMobile()).toBe(false);
+      vi.stubGlobal('matchMedia', media(true));
+      expect(structureStreamingMobile()).toBe(true);
+      vi.stubGlobal('navigator', { maxTouchPoints: 0, deviceMemory: 4 });
+      vi.stubGlobal('matchMedia', media(false));
+      expect(structureStreamingMobile()).toBe(true);
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 
   it('gives instances placed during a publication the published level', async () => {

@@ -6,6 +6,7 @@ import {
   createScatterMaterial,
   createScatterMaterialAsync,
   SCATTER_CANOPY_ATTRIBUTE,
+  SCATTER_MASS_UV,
   SCATTER_SOLID_UV,
   setScatterCanopy,
 } from '../../src/client/scatter-material';
@@ -22,11 +23,14 @@ describe('scatter material', () => {
     material.onBeforeCompile(shader, {} as THREE.WebGLRenderer);
     expect(shader.vertexShader).toContain(`attribute float ${SCATTER_CANOPY_ATTRIBUTE};`);
     expect(shader.vertexShader).toContain('vScatterLocal = transformed;');
-    expect(shader.fragmentShader).toContain('diffuseColor.rgb *= scatterFactor();');
+    // The factor is told whether the surface is a foliage mass, by its atlas coordinate.
+    expect(shader.fragmentShader).toContain(
+      'diffuseColor.rgb *= scatterFactor( step( 0.94, vMapUv.x ) * step( 0.7, vMapUv.y ) );',
+    );
     // Crowns and props take the weather's lying snow, thinner than a roof does; the mark is part
     // of the key, so a WebGPU build is not shared with an unmarked material.
     expect(material.customProgramCacheKey()).toBe(
-      'worldgen-scatter@4|molen-snow-cover:0.8:-0.05,0.55',
+      'worldgen-scatter@5|molen-snow-cover:0.8:-0.05,0.55',
     );
     expect(snowCoverAmount(material)).toBe(0.8);
     material.dispose();
@@ -48,6 +52,48 @@ describe('scatter material', () => {
     );
     expect(shader.fragmentShader).toContain('directionalLightShadow.shadowIntensity );');
     expect(shader.fragmentShader).not.toContain('#include <lights_fragment_begin>');
+    material.dispose();
+  });
+
+  it('shades a foliage mass as clumps of leaves, in its tone and in its normal', () => {
+    const material = createScatterMaterial();
+    const shader = {
+      uniforms: {},
+      vertexShader: THREE.ShaderLib.standard.vertexShader,
+      fragmentShader: THREE.ShaderLib.standard.fragmentShader,
+    } as THREE.WebGLProgramParametersWithUniforms;
+    material.onBeforeCompile(shader, {} as THREE.WebGLRenderer);
+    // Guards three upgrades: the normal must still be found where the clumps tilt it, after the
+    // color (which is where their slope is worked out).
+    const color = shader.fragmentShader.indexOf('diffuseColor.rgb *= scatterFactor(');
+    const normal = shader.fragmentShader.indexOf(
+      'normal = scatterBump( normal, - vViewPosition, scatterSlope );',
+    );
+    expect(color).toBeGreaterThan(0);
+    expect(normal).toBeGreaterThan(color);
+    // The search for a point's two nearest clumps keeps them by arithmetic. Written with
+    // branches, one more value set in a branch made a Direct3D shader compiler return other
+    // clumps than the nearest, and every crown was drawn as a square grid.
+    const search = shader.fragmentShader.slice(
+      shader.fragmentShader.indexOf('vec2 scatterPuff('),
+      shader.fragmentShader.indexOf('float scatterClumps('),
+    );
+    expect(search).toContain('float closest = step(d, nearest.x);');
+    expect(search).not.toMatch(/\bif\s*\(/);
+    // A mass is told from bark and props by where in the atlas's solid block it samples: the
+    // same white texels, so neither needs a program of its own.
+    expect(SCATTER_MASS_UV[0]).toBe(SCATTER_SOLID_UV[0]);
+    expect(SCATTER_MASS_UV[1]).toBeGreaterThan(0.7);
+    expect(SCATTER_SOLID_UV[1]).toBeLessThan(0.7);
+    const atlas = material.map as THREE.DataTexture;
+    const { data, width } = atlas.image as { data: Uint8Array; width: number; height: number };
+    const texel = (uv: readonly [number, number]): number[] => {
+      const x = Math.floor(uv[0] * width);
+      const y = Math.floor(uv[1] * (atlas.image as { height: number }).height);
+      return [...data.subarray((y * width + x) * 4, (y * width + x) * 4 + 4)];
+    };
+    expect(texel(SCATTER_MASS_UV)).toEqual([255, 255, 255, 255]);
+    expect(texel(SCATTER_SOLID_UV)).toEqual([255, 255, 255, 255]);
     material.dispose();
   });
 

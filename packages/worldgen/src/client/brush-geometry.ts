@@ -26,6 +26,8 @@ interface Mesh {
   ): void;
   triangle(a: Point, b: Point, c: Point, color: string, shade?: number): void;
   volume(start: number, center: Point, size: Point, bend?: number): void;
+  /** Append what `build` draws as a foliage mass, shaded as clumps of leaves. */
+  mass(build: () => void): void;
 }
 
 /** A color part way from `from` to `to`, for a level too coarse to draw blossoms one by one. */
@@ -167,13 +169,16 @@ export function addBrushGeometry(
   if (p.family === 'shrub' || p.family === 'thicket') {
     const thorn = p.form === 'branching';
     if (far) {
-      mesh.crown(
-        [0, h * 0.48, 0],
-        [r, h * 0.96, r * 0.85],
-        bloom ? blend(p.foliage, bloom, 0.22) : p.foliage,
-        5,
-        rnd(2),
-      );
+      // One solid from far off, shaded as the clumps of leaves it stands for.
+      mesh.mass(() => {
+        mesh.crown(
+          [0, h * 0.48, 0],
+          [r, h * 0.96, r * 0.85],
+          bloom ? blend(p.foliage, bloom, 0.22) : p.foliage,
+          5,
+          rnd(2),
+        );
+      });
       mesh.tube(
         [
           [0, 0, 0],

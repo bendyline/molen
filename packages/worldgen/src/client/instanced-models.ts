@@ -237,10 +237,19 @@ export class ModelLibrary {
     return `${ref}:${coarse === 'horizon' && this.hasHorizon(ref) ? 'horizon' : 'distant'}`;
   }
 
-  /** Whether `ref` draws its horizon level differently from its far one: standing conifers. */
+  /**
+   * Whether `ref` draws its horizon level differently from its far one: standing conifers, and
+   * broadleaf trees in leaf tall enough to have a far level at all.
+   */
   private hasHorizon(ref: string): boolean {
     const plant = this.plants[ref] ?? BUILTIN_PLANTS[ref];
-    if (plant !== undefined) return plant.family === 'conifer' && plant.leafless !== true;
+    if (plant !== undefined) {
+      if (plant.leafless === true) return false;
+      return (
+        plant.family === 'conifer' ||
+        ((plant.family === 'broadleaf' || plant.family === 'mangrove') && plant.height >= 2.5)
+      );
+    }
     return (
       ref.startsWith('builtin:tree.conifer') || ref.startsWith('builtin:tree.mapped.needleleaf')
     );

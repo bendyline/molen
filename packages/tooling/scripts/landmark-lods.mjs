@@ -157,12 +157,14 @@ function cluster(parts, grid, bounds, flat = false, minimumCells = 12) {
 /** Largest geometric error a level may take to meet its triangle target, as extent fractions. */
 const MAXIMUM_ERROR = { 4000: 0.02, 16000: 0.006, 64000: 0.0015 };
 
-const componentCache = new WeakMap();
-function reduceComponents(parts, bounds, target) {
+/** Connected components per source, for material-preserving levels and the one-color skyline. */
+const componentCaches = { material: new WeakMap(), flat: new WeakMap() };
+function reduceComponents(parts, bounds, target, flat = false) {
   const extent = Math.max(...bounds.max.map((v, a) => v - bounds.min[a]));
+  const componentCache = componentCaches[flat ? 'flat' : 'material'];
   let data = componentCache.get(parts);
   if (!data) {
-    const groups = cluster(parts, Math.max(1e-6, extent * 1e-8), bounds, false);
+    const groups = cluster(parts, Math.max(1e-6, extent * 1e-8), bounds, flat);
     const components = [];
     for (const group of groups) {
       group.positions = new Float32Array(group.vertices.flatMap((v) => v.position));
@@ -292,6 +294,27 @@ function reduceComponents(parts, bounds, target) {
   return result;
 }
 
+/**
+ * The skyline of a dense master: its own surfaces simplified into one vertex-colored draw, or
+ * convex cells when those are closer or simplification needs more than twice the target. Convex
+ * cells fill open structures (stadium bowls under their roofs, canopies, lattice towers) into
+ * blobs off by a tenth to half of the model's size: Lumen Field's were 80 m out, its
+ * simplification 4 m. Seat rows and other disconnected parts can keep a simplification above the
+ * target (Mineirão's 1,384 triangles, 13 m, against 96 m), still well inside the skyline ceiling.
+ */
+function skylineDerivative(parts, bounds, target) {
+  const simplified = reduceComponents(parts, bounds, target, true);
+  const fits = simplified.triangles <= target * 2;
+  let convex;
+  try {
+    convex = convexDerivative(parts, bounds, target, true);
+  } catch (error) {
+    if (fits) return simplified;
+    throw error;
+  }
+  return fits && simplified.grid < convex.grid ? simplified : convex;
+}
+
 async function derivative(source, parts, bounds, target, flat = false) {
   const sourceTriangles = parts.reduce(
     (sum, { primitive }) =>
@@ -309,7 +332,7 @@ async function derivative(source, parts, bounds, target, flat = false) {
           triangles: sourceTriangles,
           grid: extent / 1000,
         }
-      : convexDerivative(parts, bounds, target, true)
+      : skylineDerivative(parts, bounds, target)
     : reduceComponents(parts, bounds, target);
   if (!best?.triangles) throw new Error('Reduction removed the whole model');
   const errorMeters = best.grid * (flat ? 2 : 1);

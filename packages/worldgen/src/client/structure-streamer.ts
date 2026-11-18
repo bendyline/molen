@@ -25,6 +25,21 @@ export interface StructureStreamingBudget {
   upgradeDelayMs: number;
 }
 
+/**
+ * Whether landmarks get the phone budget: a touch-first device (a coarse primary pointer, the test
+ * earth's memory budget uses) or one reporting 4 GiB or less. A laptop with a touch screen still
+ * has a fine primary pointer. Counting any touch point as a phone held such a desktop to the phone
+ * draw-call budget, which kept a city's landmarks on their skylines.
+ */
+export function structureStreamingMobile(): boolean {
+  const memory =
+    typeof navigator === 'undefined'
+      ? undefined
+      : (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+  const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  return coarse || (memory ?? 8) <= 4;
+}
+
 export function structureStreamingBudget(mobile: boolean): StructureStreamingBudget {
   return {
     maxCpuBytes: mobile ? 64_000_000 : 192_000_000,
@@ -118,6 +133,26 @@ interface Job {
 }
 const aborted = () => new DOMException('Landmark request cancelled', 'AbortError');
 
+/**
+ * Instances of `slot` the renderer draws: none of their ancestors is hidden. The terrain's warm
+ * cache keeps tiles that left the view resident but hidden, each with its landmark instances, and
+ * a flight leaves one such tile behind for every level it passes. Charging those to the draw and
+ * triangle budgets as if drawn held the landmarks around them on their skylines.
+ */
+function drawnInstances(slot: Slot): number {
+  let count = 0;
+  for (const instance of slot.instances) {
+    let drawn = true;
+    for (let object: THREE.Object3D | null = instance.root; object; object = object.parent)
+      if (!object.visible) {
+        drawn = false;
+        break;
+      }
+    if (drawn) count++;
+  }
+  return count;
+}
+
 function disposeInstance(root: THREE.Object3D): void {
   root.traverse((object) => {
     const mesh = object as THREE.InstancedMesh;
@@ -187,14 +222,8 @@ export class StructureLodStreamer implements StructureModelSource {
     load: (ref: string, level: AssetRuntimeLod, signal: AbortSignal) => Promise<THREE.Object3D>,
     private readonly options: StructureStreamingOptions = {},
   ) {
-    const nav =
-      typeof navigator === 'undefined'
-        ? undefined
-        : (navigator as Navigator & { deviceMemory?: number });
     this.budget = {
-      ...structureStreamingBudget(
-        options.mobile ?? ((nav?.maxTouchPoints ?? 0) > 0 || (nav?.deviceMemory ?? 8) <= 4),
-      ),
+      ...structureStreamingBudget(options.mobile ?? structureStreamingMobile()),
       ...options.budget,
     };
     for (const [key, value] of Object.entries(this.budget))
@@ -502,12 +531,11 @@ export class StructureLodStreamer implements StructureModelSource {
       slot.desired = 0;
       this.show(slot, skyline);
     }
-    if (this.overBudget()) {
-      slot.instances.delete(instance);
-      disposeInstance(instance.child);
-      this.remeasure();
-      throw new Error('Landmark placement geometry exceeds budget');
-    }
+    // A placement is never refused, even while other landmarks' detail still fills the budget:
+    // a tile does not place again, so a refusal left the landmark missing (its footprint
+    // replaced) for as long as that tile stayed, as each refinement on a flight towards it did.
+    // update() reserves every placed skyline first, so its next pass moves the farthest detailed
+    // landmarks down to make room.
     root.userData.disposeTerrainSurfaces = (): void => {
       if (!slot.instances.delete(instance)) return;
       disposeInstance(instance.child);
@@ -553,12 +581,13 @@ export class StructureLodStreamer implements StructureModelSource {
         return;
       const totals = this.stats();
       const old = this.level(slot, slot.current),
-        next = this.level(slot, ready.level);
+        next = this.level(slot, ready.level),
+        drawn = drawnInstances(slot);
       if (
         ready.level > slot.current &&
-        ((totals.triangles + (next.triangles - old.triangles) * slot.instances.size) * 2 >
+        ((totals.triangles + (next.triangles - old.triangles) * drawn) * 2 >
           this.budget.maxTriangles ||
-          (totals.drawCalls + (next.drawCalls - old.drawCalls) * slot.instances.size) * 2 >
+          (totals.drawCalls + (next.drawCalls - old.drawCalls) * drawn) * 2 >
             this.budget.maxDrawCalls)
       )
         return;
@@ -600,11 +629,14 @@ export class StructureLodStreamer implements StructureModelSource {
     // Reserve a skyline for every resident placement before spending detail budget.
     // Otherwise early upgrades consume the capacity needed by later skyline instances,
     // and rejected publications download the same unreachable level every retry.
+    // A placement only hidden in the warm cache still reserves one, ready for its return.
     let triangles = 0,
       calls = 0;
+    const counts = new Map<Slot, number>();
     for (const slot of this.slots.values())
       if (slot.refs && slot.manifest && slot.handle) {
-        const count = Math.max(1, slot.instances.size);
+        const count = Math.max(1, drawnInstances(slot));
+        counts.set(slot, count);
         triangles += this.level(slot, 0).triangles * 2 * count;
         calls += this.level(slot, 0).drawCalls * 2 * count;
       }
@@ -616,7 +648,7 @@ export class StructureLodStreamer implements StructureModelSource {
     for (const slot of [...this.slots.values()]
       .filter((slot) => slot.refs && slot.manifest && slot.handle)
       .sort((a, b) => this.distance(a) - this.distance(b))) {
-      const count = Math.max(1, slot.instances.size);
+      const count = counts.get(slot) ?? 1;
       triangles -= this.level(slot, 0).triangles * 2 * count;
       calls -= this.level(slot, 0).drawCalls * 2 * count;
       const scale = Math.max(
@@ -708,12 +740,14 @@ export class StructureLodStreamer implements StructureModelSource {
     const levels: Record<string, number> = {};
     let triangles = 0,
       drawCalls = 0;
+    // What is drawn: instances hidden in the warm cache cost nothing until they are shown.
     for (const slot of this.slots.values())
       if (slot.ready.has(slot.current)) {
-        const level = this.level(slot, slot.current);
-        levels[level.name] = (levels[level.name] ?? 0) + slot.instances.size;
-        triangles += level.triangles * slot.instances.size;
-        drawCalls += level.drawCalls * slot.instances.size;
+        const level = this.level(slot, slot.current),
+          drawn = drawnInstances(slot);
+        levels[level.name] = (levels[level.name] ?? 0) + drawn;
+        triangles += level.triangles * drawn;
+        drawCalls += level.drawCalls * drawn;
       }
     return {
       assets: this.slots.size,

@@ -647,8 +647,20 @@ A rain or snow frame is recognizable with its particles turned off.
   crown's shell (twenty clusters of four cards up close, six of three at medium distance) around
   a solid core in the crown's own shade, so the outline breaks into sprigs of leaves and the gaps
   show foliage rather than sky. Plants are sized by their foliage, not by the cards' clear
-  corners. A distant crown is one faceted volume (six-sided and lumpy for broadleaf trees), drawn
-  opaque. Clear atlas texels carry the tone of the leaves beside them, so filtering never blends
+  corners. A distant crown is one faceted volume, drawn opaque. For a broadleaf tree it is drawn
+  round the near crown's own clusters and core, on the same trunk (six sides and four rings, 56
+  triangles; five sides, three rings and no trunk past the horizon handover), so it stands where
+  the near crown stands with its lumps in its outline: one ellipsoid over the tree's whole height
+  was a ball on the ground, two fifths larger in view than the tree that replaced it. Such a
+  crown is a _foliage mass_ (`SCATTER_MASS_UV` in place of `SCATTER_SOLID_UV`; shrubs' far crowns
+  are too), and the scatter material shades it as clumps of leaves rather than a smooth ball:
+  clumps about 2.3 m across with sprays a finer size among them, each lit toward its top and
+  shaded beneath and where it meets the next, each in its own tone, with a relief that tilts the
+  normal so a clump has a sunlit side. Both sizes fade to their mean tone as a pixel grows past
+  them, so a far wood neither sparkles nor changes brightness. Its tone and reach are set against
+  the near tree's (a solid fills its outline and has no shade between cards, so it is drawn nine
+  percent narrower and a little toward gray), measured over six suns and two views: within four
+  percent of the near tree's area in view and one percent of its brightness. Clear atlas texels carry the tone of the leaves beside them, so filtering never blends
   a pale rim into a card's cut edge. Cards are for tree crowns only, and only
   through the shared scatter material: no alpha blending, no per-species textures, no cards on
   buildings, fences or ground cover. That material (`createScatterMaterialAsync` from

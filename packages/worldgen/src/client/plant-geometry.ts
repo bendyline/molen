@@ -1,6 +1,7 @@
 /**
  * Faceted plant families with bounded geometry and independent near/medium/far meshes. Broadleaf
- * crowns are leaf cards around a solid core up close; everything else is closed and opaque.
+ * crowns are leaf cards around a solid core up close, and at their far levels one solid drawn
+ * round those same clusters; everything else is closed and opaque.
  */
 import * as THREE from 'three';
 import type { PlantPreset } from '../kernel/plant-types';
@@ -9,14 +10,16 @@ import { addBrushGeometry, addClimberGeometry } from './brush-geometry';
 import {
   SCATTER_CARD_FILL,
   SCATTER_CARD_UVS,
+  SCATTER_MASS_UV,
   SCATTER_SOLID_UV,
   SCATTER_SPRAY_UVS,
 } from './scatter-material';
 
 type Point = [number, number, number];
 /**
- * `false` near, `true` medium, `'distant'` the far level and `'horizon'` the level past it. Only
- * conifers draw the last differently: see the conifer branch of `createPlantGeometry`.
+ * `false` near, `true` medium, `'distant'` the far level and `'horizon'` the level past it.
+ * Conifers and broadleaf trees draw the last differently: see their branches of
+ * `createPlantGeometry`.
  */
 type Detail = boolean | 'distant' | 'horizon';
 const TAU = Math.PI * 2;
@@ -29,8 +32,51 @@ const SCRATCH = new THREE.Vector3();
 /** Leaf cards' color gain, offsetting the leaf atlas's average tone below white. */
 const CARD_GAIN = 1.24;
 
+/**
+ * A far crown's tone against its foliage color. Up close a crown is leaf cards over a darker
+ * core, with shade between the cards; one solid in the full foliage color stood out from a
+ * distance as a brighter, more saturated ball than the tree it turned into.
+ */
+const MASS_GAIN = 1.05;
+/**
+ * A far crown's width against the reach of the leaf clusters it is drawn round. A solid fills
+ * its outline where leaf cards leave gaps, so at their full reach it covered an eighth more of
+ * the view than the tree it stands for.
+ */
+const MASS_REACH = 0.91;
+/** Share of a far crown's color taken toward gray: cards mix with bark and deep shade. */
+const MASS_MUTE = 0.07;
+/**
+ * The horizon crown's reach and tone against the far crown's. With five sides and three rings
+ * its outline cuts inside the far one's and more of it is underside: at the far crown's own
+ * reach and tone it covered a sixth less and stood an eighth darker, a step across a wood where
+ * the two levels meet.
+ */
+const HORIZON_REACH = 1.2;
+const HORIZON_GAIN = 1.14;
+
+/** One clump of a broadleaf crown: where it is, how far it reaches, and how it catches the light. */
+interface Lobe {
+  x: number;
+  y: number;
+  z: number;
+  /** Half extents: sideways and up. */
+  reach: number;
+  tall: number;
+  tone: number;
+}
+
 class PlantMesh {
   constructor(private readonly seed = 0) {}
+  /** Atlas coordinate of the solid triangles being appended: plain, or a foliage mass. */
+  private solid: readonly [number, number] = SCATTER_SOLID_UV;
+
+  /** Append what `build` draws as a foliage mass, shaded as clumps of leaves. */
+  mass(build: () => void): void {
+    this.solid = SCATTER_MASS_UV;
+    build();
+    this.solid = SCATTER_SOLID_UV;
+  }
   readonly positions: number[] = [];
   readonly colors: number[] = [];
   readonly uvs: number[] = [];
@@ -87,9 +133,112 @@ class PlantMesh {
       const k = typeof shade === 'number' ? shade : (shade[i] as number);
       this.positions.push(...point);
       this.colors.push(color.r * k, color.g * k, color.b * k);
-      this.uvs.push(...SCATTER_SOLID_UV);
+      this.uvs.push(...this.solid);
       this.extent.expandByPoint(SCRATCH.set(...point));
     }
+  }
+
+  /**
+   * A far crown: one closed solid drawn round the clumps (`lobes`) the near crown is made of, so
+   * it has their outline, lumps and height, and a tree keeps its shape when its leaf cards take
+   * over. Rings of `sides` vertices at `heights` (shares of the crown's height) reach out from
+   * the vertical `axis` to the farthest clump in each direction; each vertex takes that clump's
+   * tone and rounds toward it, so the solid shades as several puffs rather than one ball.
+   */
+  hull(
+    lobes: readonly Lobe[],
+    axis: readonly [number, number],
+    sides: number,
+    heights: readonly number[],
+    hex: string,
+    gain: number,
+  ): void {
+    const start = this.vertexCount;
+    const low = Math.min(...lobes.map((lobe) => lobe.y - lobe.tall));
+    const high = Math.max(...lobes.map((lobe) => lobe.y + lobe.tall));
+    const widest = Math.max(...lobes.map((lobe) => lobe.reach));
+    const phase = this.seed ? unit01(this.seed, 42) * TAU : 0.4;
+    type Corner = { point: Point; shade: number; lobe: Lobe };
+    const nearest = (y: number): Lobe =>
+      lobes.reduce((best, lobe) => (Math.abs(lobe.y - y) < Math.abs(best.y - y) ? lobe : best));
+    const rings = heights.map((share, ring): Corner[] => {
+      const y = low + (high - low) * share;
+      return Array.from({ length: sides }, (_, side): Corner => {
+        // Alternate rings turn half a side, so no ridge runs straight up the crown.
+        const angle = ((side + (ring % 2) * 0.5) * TAU) / sides + phase;
+        const dx = Math.cos(angle),
+          dz = Math.sin(angle);
+        let radius = 0,
+          owner: Lobe | undefined;
+        for (const lobe of lobes) {
+          const v = (y - lobe.y) / lobe.tall;
+          if (Math.abs(v) >= 1) continue;
+          // The clump's slice at this height is a disc; the ray from the axis leaves it here.
+          const disc = lobe.reach * Math.sqrt(1 - v * v);
+          const cx = lobe.x - axis[0],
+            cz = lobe.z - axis[1];
+          const along = cx * dx + cz * dz;
+          const aside = cx * cx + cz * cz - along * along;
+          if (aside >= disc * disc) continue;
+          const exit = along + Math.sqrt(disc * disc - aside);
+          if (exit > radius) {
+            radius = exit;
+            owner = lobe;
+          }
+        }
+        // Between clumps the solid keeps a waist, never a hole.
+        radius = Math.max(radius, widest * 0.3);
+        const lobe = owner ?? nearest(y);
+        return {
+          point: [axis[0] + dx * radius, y, axis[1] + dz * radius],
+          shade: gain * lobe.tone * (0.8 + 0.2 * share),
+          lobe,
+        };
+      });
+    });
+    const bottom: Corner = {
+      point: [axis[0], low, axis[1]],
+      shade: gain * 0.68,
+      lobe: nearest(low),
+    };
+    const top: Corner = { point: [axis[0], high, axis[1]], shade: gain, lobe: nearest(high) };
+    const face = (a: Corner, b: Corner, c: Corner): void => {
+      const first = this.vertexCount;
+      this.triangle(a.point, b.point, c.point, hex, [a.shade, b.shade, c.shade]);
+      [a, b, c].forEach(({ lobe }, i) => {
+        this.volumes.push({
+          start: first + i,
+          end: first + i + 1,
+          center: [lobe.x, lobe.y, lobe.z],
+          size: [lobe.reach, lobe.tall, lobe.reach],
+          bend: 0.6,
+        });
+      });
+    };
+    this.solid = SCATTER_MASS_UV;
+    for (let i = 0; i < sides; i++) {
+      const next = (i + 1) % sides;
+      const first = rings[0] as Corner[];
+      face(bottom, first[i] as Corner, first[next] as Corner);
+      for (let j = 1; j < rings.length; j++) {
+        const a = rings[j - 1] as Corner[],
+          b = rings[j] as Corner[];
+        // An odd ring leans half a side on: split the band along its shorter diagonal's side.
+        if (j % 2 === 1) {
+          face(a[i] as Corner, b[i] as Corner, a[next] as Corner);
+          face(a[next] as Corner, b[i] as Corner, b[next] as Corner);
+        } else {
+          face(a[i] as Corner, b[i] as Corner, b[next] as Corner);
+          face(a[i] as Corner, b[next] as Corner, a[next] as Corner);
+        }
+      }
+      const last = rings[rings.length - 1] as Corner[];
+      face(last[i] as Corner, top, last[next] as Corner);
+    }
+    this.solid = SCATTER_SOLID_UV;
+    // Under its puffs the crown is still one mass: its sunlit side is lit as a whole.
+    const middle = (low + high) / 2;
+    this.volume(start, [axis[0], middle, axis[1]], [widest * 2, (high - low) / 2, widest * 2], 0.3);
   }
 
   /**
@@ -433,12 +582,15 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   if (far && h < 2.5) return mesh.finish();
   const trunkTop: Point = [p.lean * h, base, 0];
   const trunk = (top = trunkTop, radius = p.stemRadius, sides = far ? 3 : medium ? 4 : 6): void => {
+    const start = mesh.vertexCount;
     mesh.tube(
       far ? [[0, 0, 0], top] : [[0, 0, 0], [top[0] * 0.3, top[1] * 0.5, 0], top],
       far ? [radius, radius * 0.42] : [radius, radius * 0.76, radius * 0.42],
       sides,
       p.bark,
     );
+    // Three sides from far off: lit as the round stem they stand for.
+    if (far) mesh.volume(start, [top[0] / 2, top[1] / 2, 0], [radius, 1e6, radius], 0.85);
   };
 
   if (addBrushGeometry(mesh, p, detail)) {
@@ -839,20 +991,75 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     mesh.volume(start, [p.lean * middle, middle, 0], [r, span * 0.7, r]);
   } else {
     const canopyHeight = h - base;
-    // Six sides give the distant crown a lumpy outline, and facets that keep some of their own
-    // light: five, fully rounded, read as flat colored blobs along a far tree line. Three rings
-    // round it off: with two, each crown was a bicone, a row of yellow diamonds on the skyline.
+    const random = (stream: number, fallback: number): number =>
+      seed ? unit01(seed, stream) : fallback % 1;
+    // Leaf cluster `i` of `count`: a golden-angle spiral from the crown top down its sides.
+    const cluster = (i: number, count: number, coarse: boolean): Lobe & { angle: number } => {
+      const t = count > 1 ? i / (count - 1) : 0;
+      const height = 0.9 - 0.58 * t;
+      const shell = Math.sin(Math.PI * Math.min(0.95, 0.22 + 0.78 * t)) * (coarse ? 0.55 : 0.64);
+      const angle = angleFor(i * 2.39996, i);
+      const reach = r * (coarse ? 0.62 : 0.46 + 0.08 * ((i * 0.43) % 1));
+      return {
+        angle,
+        x: p.lean * h + Math.cos(angle) * r * shell,
+        y: base + vary(canopyHeight * height, 0.08, i),
+        z: Math.sin(angle) * r * shell,
+        reach,
+        tall: Math.min(reach * 1.15, Math.max(reach * 0.8, canopyHeight * 0.3)),
+        // Each cluster catches the light a little differently, so the canopy reads as clumps
+        // of leaves rather than one swatch.
+        tone: 0.86 + 0.22 * random(70 + i, i * 0.618),
+      };
+    };
     if (far) {
-      mesh.crown(
-        [p.lean * h, base + canopyHeight / 2, 0],
-        [r, canopyHeight, r * 0.94],
-        p.foliage,
-        6,
-        1,
-        0.75,
-        1,
-        true,
-      );
+      // The far crown is one solid round the near crown's own clusters and core, so it stands
+      // where they stand, on the same trunk, with their lumps in its outline. As one ellipsoid
+      // filling the tree's whole height it was a ball on the ground, and a different shape from
+      // the tree that replaced it a few hundred meters on. Six sides and four rings keep the
+      // lumps; past the distance where a crown is a few pixels across, the horizon level is
+      // five sides and three rings with no trunk.
+      const count = p.climber ? 14 : 20;
+      const lobes: Lobe[] = [
+        {
+          x: p.lean * h,
+          y: base + canopyHeight * 0.5,
+          z: 0,
+          reach: r * 0.56,
+          tall: canopyHeight * 0.33,
+          tone: 0.92,
+        },
+        ...Array.from({ length: count }, (_, i): Lobe => {
+          const lobe = cluster(i, count, false);
+          // A card's leaves reach this share of its half extents.
+          const reach = lobe.reach * SCATTER_CARD_FILL,
+            tall = lobe.tall * SCATTER_CARD_FILL;
+          // Sized as the near tree is, by what its cards show, so both fill one outline.
+          mesh.extent
+            .expandByPoint(SCRATCH.set(lobe.x - reach, lobe.y - tall, lobe.z - reach))
+            .expandByPoint(SCRATCH.set(lobe.x + reach, lobe.y + tall, lobe.z + reach));
+          return { ...lobe, reach: reach * MASS_REACH, tall };
+        }),
+      ];
+      // The crown's color a little toward gray.
+      const leaf = new THREE.Color(p.foliage);
+      const gray = 0.2126 * leaf.r + 0.7152 * leaf.g + 0.0722 * leaf.b;
+      const foliage = `#${leaf.lerp(new THREE.Color(gray, gray, gray), MASS_MUTE).getHexString()}`;
+      if (horizon) {
+        // No trunk at this distance, and the crown still stands at its height above the ground.
+        mesh.extent.expandByPoint(SCRATCH.set(0, 0, 0));
+        mesh.hull(
+          lobes.map((lobe) => ({ ...lobe, reach: lobe.reach * HORIZON_REACH })),
+          [p.lean * h, 0],
+          5,
+          [0.14, 0.5, 0.86],
+          foliage,
+          MASS_GAIN * HORIZON_GAIN,
+        );
+      } else {
+        trunk();
+        mesh.hull(lobes, [p.lean * h, 0], 6, [0.1, 0.36, 0.64, 0.88], foliage, MASS_GAIN);
+      }
     } else {
       trunk();
       // Leaf clusters spread over the canopy's shell, each a few crossed leaf cards around one
@@ -873,17 +1080,8 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       ];
       const clusters = medium ? (p.family === 'mangrove' ? 3 : 6) : p.climber ? 14 : 20;
       const limbs = medium ? 2 : 5;
-      const random = (stream: number, fallback: number): number =>
-        seed ? unit01(seed, stream) : fallback % 1;
       for (let i = 0; i < clusters; i++) {
-        // A golden-angle spiral from the crown top down its sides.
-        const t = clusters > 1 ? i / (clusters - 1) : 0;
-        const height = 0.9 - 0.58 * t;
-        const shell = Math.sin(Math.PI * Math.min(0.95, 0.22 + 0.78 * t)) * (medium ? 0.55 : 0.64);
-        const angle = angleFor(i * 2.39996, i),
-          x = p.lean * h + Math.cos(angle) * r * shell,
-          z = Math.sin(angle) * r * shell;
-        const y = base + vary(canopyHeight * height, 0.08, i);
+        const { angle, x, y, z, reach, tall, tone } = cluster(i, clusters, medium);
         if (i < limbs) {
           const branchBase = base * (0.55 + (i % 3) * 0.06);
           mesh.tube(
@@ -896,11 +1094,6 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
             p.bark,
           );
         }
-        // Each cluster catches the light a little differently, so the canopy reads as clumps
-        // of leaves rather than one swatch.
-        const tone = 0.86 + 0.22 * random(70 + i, i * 0.618);
-        const reach = r * (medium ? 0.62 : 0.46 + 0.08 * ((i * 0.43) % 1));
-        const tall = Math.min(reach * 1.15, Math.max(reach * 0.8, canopyHeight * 0.3));
         const start = mesh.vertexCount;
         const yaw = angle + random(100 + i, i * 0.37) * Math.PI;
         const upright = medium ? 2 : 3;

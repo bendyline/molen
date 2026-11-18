@@ -36,6 +36,7 @@ import {
   type StructureStreamingStats,
   type StructureStreamingView,
   structureStreamingBudget,
+  structureStreamingMobile,
 } from '@bendyline/molen-worldgen/client';
 import {
   createRegionResolver,
@@ -265,12 +266,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       ? pool
       : withBakedMaterialStore(pool ?? inThreadBaker, options.materialStore);
   const streamingOptions = options.landmarkStreaming || {};
-  const nav =
-    typeof navigator === 'undefined'
-      ? undefined
-      : (navigator as Navigator & { deviceMemory?: number });
-  const mobile =
-    streamingOptions.mobile ?? ((nav?.maxTouchPoints ?? 0) > 0 || (nav?.deviceMemory ?? 8) <= 4);
+  const mobile = streamingOptions.mobile ?? structureStreamingMobile();
   const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
     progressive: true,
     prepareOnUse: true,

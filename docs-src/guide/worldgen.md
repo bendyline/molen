@@ -732,8 +732,10 @@ more triangles a frame, and 1.9 ms more main thread, so it is off unless a host 
 optional fourth, horizon model (`ModelLibrary.prepare(ref, 'horizon')`): a conifer's far level
 keeps three plain skirts, so a stand of firs is not a field of cones from a few hundred meters,
 and hands over to the one-cone horizon model where 2.5 m of error fits the budget (about 930 m
-at 2.5 pixels on a 1080-line view). For every other model the horizon model is the far model
-and adds no level. That handover reads the policy's `horizonPixelError` (default
+at 2.5 pixels on a 1080-line view). A broadleaf or mangrove tree in leaf, 2.5 m or taller, has
+one too: its far crown with fewer faces and no trunk (30 triangles for 56), reaching a little
+further and a little lighter so that a wood keeps its cover and tone where the two levels meet.
+For every other model the horizon model is the far model and adds no level. That handover reads the policy's `horizonPixelError` (default
 `maxPixelError`): a host that relaxes `maxPixelError` with camera height, to shed leaf cards,
 keeps `horizonPixelError` at its base value, or every conifer under an aircraft is the cone. A
 batch within a quarter of a handover's distance asks for the material across it, so its shaders
