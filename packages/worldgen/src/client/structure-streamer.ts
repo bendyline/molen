@@ -27,7 +27,7 @@ export interface StructureStreamingBudget {
 
 /**
  * Whether landmarks get the phone budget: a touch-first device (a coarse primary pointer, the test
- * earth's memory budget uses) or one reporting 4 GiB or less. A laptop with a touch screen still
+ * the host binding's memory budget uses) or one reporting 4 GiB or less. A laptop with a touch screen still
  * has a fine primary pointer. Counting any touch point as a phone held such a desktop to the phone
  * draw-call budget, which kept a city's landmarks on their skylines.
  */
@@ -135,8 +135,8 @@ const aborted = () => new DOMException('Landmark request cancelled', 'AbortError
 
 /**
  * Instances of `slot` the renderer draws: none of their ancestors is hidden. The terrain's warm
- * cache keeps tiles that left the view resident but hidden, each with its landmark instances, and
- * a flight leaves one such tile behind for every level it passes. Charging those to the draw and
+ * cache keeps regions that left the view resident but hidden, each with its landmark instances,
+ * and a flight leaves one such region behind for every level it passes. Charging those to the draw and
  * triangle budgets as if drawn held the landmarks around them on their skylines.
  */
 function drawnInstances(slot: Slot): number {
@@ -520,7 +520,7 @@ export class StructureLodStreamer implements StructureModelSource {
     root.userData.landmarkLod = this.level(slot, slot.current).name;
     slot.instances.add(instance);
     this.remeasure();
-    // Another tile placing a landmark that is already detailed elsewhere (a parent and its
+    // Another region placing a landmark that is already detailed elsewhere (a parent and its
     // children during a level change, or a flight across a dense city) can overrun the shared
     // budget. Its footprint is replaced either way, so falling back to the resident skyline
     // beats leaving an empty lot; update() then spends the detail budget nearest-first again.
@@ -532,8 +532,8 @@ export class StructureLodStreamer implements StructureModelSource {
       this.show(slot, skyline);
     }
     // A placement is never refused, even while other landmarks' detail still fills the budget:
-    // a tile does not place again, so a refusal left the landmark missing (its footprint
-    // replaced) for as long as that tile stayed, as each refinement on a flight towards it did.
+    // a region does not place again, so a refusal left the landmark missing (its footprint
+    // replaced) for as long as that region stayed, as each refinement on a flight towards it did.
     // update() reserves every placed skyline first, so its next pass moves the farthest detailed
     // landmarks down to make room.
     root.userData.disposeTerrainSurfaces = (): void => {
