@@ -1,3 +1,20 @@
+## @bendyline/molen-worldgen-earth [0.0.18](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.17...@bendyline/molen-worldgen-earth@0.0.18) (2026-11-18)
+
+### Bug Fixes
+
+* Add more qualla buildings ([25a8fb6](https://github.com/bendyline/molen/commit/25a8fb6a26dc0a38cd36801644c02da91f50377b))
+* More content ([50dace1](https://github.com/bendyline/molen/commit/50dace130b7ae961f11e9fece4616f3ee5614b16))
+* More visual updates ([13efcda](https://github.com/bendyline/molen/commit/13efcdafec4834b53e720a1bc9e0bcc42fc47d9d))
+* Visual fixes ([e5d7d80](https://github.com/bendyline/molen/commit/e5d7d8091aaa25818ac1127a6b0537f1618ace47))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.19
+* **@bendyline/molen-terrain:** upgraded to 0.0.18
+* **@bendyline/molen-worldgen:** upgraded to 0.0.17
+* **@bendyline/molen-client:** upgraded to 0.0.17
+
 ## @bendyline/molen-worldgen-earth [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.16...@bendyline/molen-worldgen-earth@0.0.17) (2026-11-16)
 
 ### Bug Fixes
