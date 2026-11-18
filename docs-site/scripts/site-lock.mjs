@@ -5,6 +5,21 @@ import { mkdir, mkdtemp, readdir, rename, rm, rmdir, unlink, writeFile } from 'n
 import { dirname, join } from 'node:path';
 import { setTimeout } from 'node:timers/promises';
 
+const WINDOWS_FILE_LOCKS = new Set(['EBUSY', 'EPERM', 'EACCES', 'EUNKNOWN', 'UNKNOWN']);
+
+async function retryCleanup(operation) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (process.platform !== 'win32' || attempt >= 20 || !WINDOWS_FILE_LOCKS.has(error.code))
+        throw error;
+      // Concurrent stale-owner cleanup or a Windows scanner can briefly keep deletion pending.
+      await setTimeout(Math.min(25 * 2 ** attempt, 250));
+    }
+  }
+}
+
 function alive(pid) {
   try {
     process.kill(pid, 0);
@@ -20,12 +35,12 @@ async function release(directory, owner) {
   // Remove only this owner's file. Another waiter may already have recovered this dead owner
   // and installed a new lock; its different owner file keeps rmdir from removing the live lock.
   try {
-    await unlink(join(directory, owner));
+    await retryCleanup(() => unlink(join(directory, owner)));
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
   }
   try {
-    await rmdir(directory);
+    await retryCleanup(() => rmdir(directory));
   } catch (error) {
     if (!['ENOENT', 'ENOTEMPTY', 'EEXIST'].includes(error.code)) throw error;
   }
