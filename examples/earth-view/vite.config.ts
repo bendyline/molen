@@ -10,6 +10,9 @@ export default defineConfig({
   publicDir: '../world-explorer/public',
   build: {
     target: 'es2022',
+    // The golden build hard-links the shared public/ into dist instead (scripts/build-golden.mjs):
+    // copying its ~20 GB of content packs into this and the explorer's dist filled the CI runner.
+    copyPublicDir: process.env.MOLEN_SKIP_PUBLIC_COPY !== '1',
     // main.ts mounts with a top-level `await` and the client lazy-loads its WebGPU driver; three
     // and the client in their own chunk keep that lazy import from waiting on the entry. The
     // dioramas' lazy scripting runtime shares the kernel and figures with the Earth view, so the
