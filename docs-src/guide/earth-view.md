@@ -1387,7 +1387,7 @@ the map's coverage. Building heights and untagged taxiway widths are interpreted
 missing endpoints, closed runways and water runways are omitted. Supplemental airports also
 render when the basemap has no tile, such as an airport outside a package's street-detail
 coverage. The bundled Seattle and Kyoto street detail include Boeing Field and Osaka Itami and
-their surroundings.
+their surroundings; Kyoto's reaches south to central Osaka.
 No airport data is fetched without a supplied pack. Hosts composing their own
 terrain renderer can use `withEarthAirports`
 around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.

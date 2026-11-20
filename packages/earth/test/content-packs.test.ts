@@ -283,7 +283,8 @@ describe('Earth structure catalogs', () => {
       content.worldgen?.structures.rules.some((rule) => rule.asset.endsWith('map_smock_windmill')),
     ).toBe(true);
     expect(binaryRead).not.toHaveBeenCalled();
-  });
+    // Parses the whole compiled authoring.json (~25 MB) three times: 3.5–5 s on CI runners.
+  }, 30_000);
 });
 
 it('loads the placement directory at startup and reads geographic regions only on request', async () => {

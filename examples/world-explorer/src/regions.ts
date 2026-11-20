@@ -101,10 +101,11 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     detailBounds: [135.66, 34.88, 135.88, 35.09],
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
     detailWindows: [
-      // Widens the city window southwest to Itami: the starter runway, Toyonaka, Suita, Ibaraki,
-      // Takatsuki and Hirakata, so streets run unbroken from the airport to Kyoto. Its map tiles
-      // are a later release's; the city's own tiles stay as they were.
-      { id: 'itami', label: 'Osaka Itami to Kyoto', bounds: [135.4, 34.76, 135.88, 35.09] },
+      // Widens the city window southwest to Itami and on south to central Osaka (Umeda, Namba):
+      // the starter runway, Toyonaka, Suita, Ibaraki, Takatsuki and Hirakata, so streets run
+      // unbroken from the airport to Kyoto and the runway's view south ends in the city, not at a
+      // hard edge. Its map tiles are a later release's; the city's own tiles stay as they were.
+      { id: 'itami', label: 'Osaka and Itami to Kyoto', bounds: [135.4, 34.66, 135.88, 35.09] },
     ],
     // JR and private railways around Kyoto run under overhead catenary, on 1,067 mm gauge.
     surfaces: { railElectrification: 'all', railGauge: 1.067 },

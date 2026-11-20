@@ -193,10 +193,11 @@ Kingsford Smith, Osaka Itami within the wider Kyoto area, Yuma International, an
 International for New Delhi. Aircraft selection places one aircraft on the mapped runway,
 aligned for takeoff at terrain height. The raised practice airfield belongs only to the
 synthetic fixture. Seattle's detail window extends south to 47.49° N, covering Boeing Field
-and its surrounding neighborhoods. Kyoto's street detail reaches southwest to Itami
-(135.40–135.88° E, 34.76–35.09° N), so streets and buildings run unbroken from the runway along
-the Yodo valley into the city; that widening is an `itami` detail window whose map tiles come from
-the 2026-11-18 Protomaps build, while the city's own tiles keep the 2026-10-23 extract.
+and its surrounding neighborhoods. Kyoto's street detail reaches southwest to Itami and south to
+central Osaka (135.40–135.88° E, 34.66–35.09° N), so streets and buildings run unbroken from the
+runway along the Yodo valley into Kyoto, and the runway's view south ends in Umeda and Namba; that
+widening is an `itami` detail window whose map tiles come from the 2026-11-18 Protomaps build,
+while Kyoto's own tiles keep the 2026-10-23 extract.
 
 Pass `?synthetic=1` to use the deterministic in-memory fixture instead. That path keeps adaptive
 coverage and semantic-layer transitions testable without network-derived data; its trees, roads,
