@@ -1,0 +1,504 @@
+{
+  "planId": "shivneri_fort",
+  "id": "shivneri_fort",
+  "assetId": "molen.worldgen.structure.shivneri_fort",
+  "title": "Shivneri Fort",
+  "wikidataId": "Q3520074",
+  "category": "fortification",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 73.8569,
+    "latitude": 19.1978
+  },
+  "size": [
+    752.6622314453125,
+    166.6507272720337,
+    1063.6111755371094
+  ],
+  "actualBounds": {
+    "min": [
+      -424.1441650390625,
+      -11.295136451721191,
+      -554.5007934570312
+    ],
+    "max": [
+      328.51806640625,
+      155.3555908203125,
+      509.1103820800781
+    ]
+  },
+  "visualBrief": "The surviving basalt fortress at Shivneri on its original triangular hill, with the seven ascending gates, shrine, old granary and birthplace structures.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Shivneri_fort1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "shivneri-fort-wp",
+      "url": "https://qualla.com/shivneri-fort/"
+    }
+  ],
+  "referenceInputHash": "sha256:8fae252f95b780d81ae3546fcf3aa8aa5844fe21da16404725c9143f74069408",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/tek/shivneri_fort/models/shivneri-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/tek/shivneri_fort/models/shivneri-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_basalt",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_basalt_raw",
+    "stone_basalt",
+    "plaster_lime",
+    "tile_ceramic",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.58,
+    "focus": {
+      "center": [
+        0,
+        60,
+        -18
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The Archaeological Survey’s gate sequence, Maharashtra tourism descriptions, the 1912 eyewitness record of pointed masonry gates, the two rows of vaults and sculpted shrine, and the Parliamentary Secretariat’s written description of the two-storey birthplace establish the principal forms. The 2007 Qualla photograph confirms the exposed double scarp and dark gray-tan masonry palette on the upland silhouette.",
+    "anchor": [
+      73.8569,
+      19.1978
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        73.8569,
+        19.1978
+      ],
+      "modelHeight": 0,
+      "basis": "Original field at the geographic anchor on the fort hill."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/198116052",
+      "way/198116045",
+      "way/1150674006",
+      "way/1150616772",
+      "way/553328913",
+      "way/553328914",
+      "ASI/mahadarwaza",
+      "ASI/ganesh-darwaza",
+      "ASI/pir-darwaza",
+      "ASI/haathi-darwaza",
+      "ASI/shivai-devi-darwaza",
+      "ASI/shivai-devi-temple",
+      "ASI/path-to-buddhist-caves",
+      "ASI/mena-darwaza",
+      "ASI/kulup-darwaza",
+      "ASI/amberkhana",
+      "ASI/shivkunj",
+      "ASI/kamani-mosque",
+      "ASI/shiv-janmasthan",
+      "ASI/badami-tank",
+      "ASI/kadelot",
+      "ASI/idgah",
+      "ASI/koli-chauthara",
+      "overture/c06fa575-f2bf-4196-a198-a5d08f1b1fe3",
+      "overture/cafc800d-ea76-4314-8bf4-fe4dbc176c9a"
+    ],
+    "source": "https://www.openstreetmap.org/way/198116052",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f145e85687b189b5cfe8347d3b2a54dc9364644d9981e6db9609facbc5b7e7ea",
+    "notes": "The Archaeological Survey’s gate sequence, Maharashtra tourism descriptions, the 1912 eyewitness record of pointed masonry gates, the two rows of vaults and sculpted shrine, and the Parliamentary Secretariat’s written description of the two-storey birthplace establish the principal forms. The 2007 Qualla photograph confirms the exposed double scarp and dark gray-tan masonry palette on the upland silhouette."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The seven masonry gates are located using visitor-stop coordinates and mapped paths. Orientations, immediate walls, heights and ornaments are approximate.",
+    "The modern birthplace mass is placed at the Archaeological Survey coordinate. Its unmapped footprint and roof construction are estimates.",
+    "The Badami reservoir has a visual edging only. Its water depth, rock-cut spring interiors and terrain drainage are outside the model. The original elevation grid is unchanged.",
+    "The open terrain cannot resolve every small terrace. The model uses estimated local retaining plinths where needed to keep standing structures above the original hillside.",
+    "The 2007 public-domain photograph is a distant landscape reference. Present close architectural details are interpreted from factual records and observed footprints."
+  ],
+  "sourceLicense": "Original geometry from mapped public heritage coordinates, open footprint and terrain data, written architectural history and a confirmed public-domain Qualla landscape photograph.",
+  "qaLodCameras": [
+    {
+      "name": "shivneri-fort-skyline",
+      "position": [
+        875,
+        525,
+        750
+      ],
+      "lookAt": [
+        0,
+        60,
+        -18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "shivneri-fort-district",
+      "position": [
+        875,
+        525,
+        750
+      ],
+      "lookAt": [
+        0,
+        60,
+        -18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "shivneri-fort-street",
+      "position": [
+        875,
+        525,
+        750
+      ],
+      "lookAt": [
+        0,
+        60,
+        -18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "shivneri-fort-closeup",
+      "position": [
+        875,
+        525,
+        750
+      ],
+      "lookAt": [
+        0,
+        60,
+        -18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "seven-gates-on-southwestern-ascent",
+      "position": [
+        -265,
+        146,
+        650
+      ],
+      "lookAt": [
+        -234,
+        32,
+        438
+      ]
+    },
+    {
+      "name": "mahadarwaza-basalt-portal",
+      "position": [
+        -75,
+        12,
+        482
+      ],
+      "lookAt": [
+        -97,
+        6,
+        467
+      ]
+    },
+    {
+      "name": "amberkhana-vaults",
+      "position": [
+        -179,
+        110,
+        377
+      ],
+      "lookAt": [
+        -206,
+        98,
+        341
+      ]
+    },
+    {
+      "name": "birthplace-and-badami-rim",
+      "position": [
+        306,
+        114,
+        -343
+      ],
+      "lookAt": [
+        271,
+        97,
+        -299
+      ]
+    },
+    {
+      "name": "northern-end-and-summit",
+      "position": [
+        520,
+        270,
+        -690
+      ],
+      "lookAt": [
+        256,
+        112,
+        -286
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4918,
+    "vertices": 14754,
+    "materials": 6,
+    "bytes": 817420,
+    "sha256": "sha256:f8847e7ee8a1fdb1b7508a7c83ebd7f77211dd9189c5f0c07464f61e17c2765c"
+  }
+}

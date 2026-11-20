@@ -1,0 +1,499 @@
+{
+  "planId": "outeniqua_transport_museum",
+  "id": "outeniqua_transport_museum",
+  "assetId": "molen.worldgen.structure.outeniqua_transport_museum",
+  "title": "Outeniqua Transport Museum",
+  "wikidataId": "Q7111957",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 22.473020862,
+    "latitude": -33.963255125
+  },
+  "size": [
+    175.87892150878906,
+    12.885952472686768,
+    137.41845703125
+  ],
+  "actualBounds": {
+    "min": [
+      -38.814178466796875,
+      -4.107784748077393,
+      -93.87577819824219
+    ],
+    "max": [
+      137.0647430419922,
+      8.778167724609375,
+      43.54267883300781
+    ]
+  },
+  "visualBrief": "The former PX goods shed in George: its long, shallow metal roof, corrugated walls, rail bays and brick museum entrance.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:GerogeTransportMuseum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "outeniqua-transport-museum-wp",
+      "url": "https://qualla.com/outeniqua-transport-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:8dbc1d5edebc2ee9c4187f8c045c4b724e494a7d91f0b3019554e47b347647a4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/k3/k3z/outeniqua_transport_museum/models/outeniqua-transport-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/k3/k3z/outeniqua_transport_museum/models/outeniqua-transport-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "ground": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.08
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.11
+      },
+      "flashed": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.48,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.11
+          },
+          "flashed": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.11
+          },
+          "flashed": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.11
+          },
+          "flashed": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_panel",
+    "brick",
+    "metal_corrugated",
+    "metal_standing_seam",
+    "metal_painted",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.73,
+    "focus": {
+      "center": [
+        42,
+        1,
+        -24
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The cleared Qualla view establishes ribbed cool-gray corrugated walls and the upper rail-side edge. Transnet documents a brick museum section and public entrance; their position is matched approximately to the mapped east-end entrance. The municipal footprint separates the main 153.56 × 95.379 m shed and small west returns. Three shallow parallel steel roofs are a reconstruction based on span and railway layout; no surveyed roof section was available.",
+    "anchor": [
+      22.473020862,
+      -33.963255125
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        22.473020862,
+        -33.963255125
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged terrain at the center of the named museum envelope."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/172467203"
+    ],
+    "source": "https://www.openstreetmap.org/way/172467203",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3da577b18fc32675852b7095b113895b20aa45f1bba7375fd2d3e5d0e7c6a534",
+    "notes": "The cleared Qualla view establishes ribbed cool-gray corrugated walls and the upper rail-side edge. Transnet documents a brick museum section and public entrance; their position is matched approximately to the mapped east-end entrance. The municipal footprint separates the main 153.56 × 95.379 m shed and small west returns. Three shallow parallel steel roofs are a reconstruction based on span and railway layout; no surveyed roof section was available."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The named OSM envelope is used in full. George Municipality’s two matching 2026 building polygons independently check the main shed length, span and small returns.",
+    "The roof pitch and three spans, exact gates, entry facade openings and material colors are estimates. The public-domain photo constrains the rail-side cladding and visible trim only. Possible storm repairs and the status of verandah additions are not modeled.",
+    "The original terrain samples stay unchanged. The finished floor, individual thresholds and apron heights are approximate."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "outeniqua-transport-museum-skyline",
+      "position": [
+        198,
+        77,
+        160
+      ],
+      "lookAt": [
+        42,
+        1,
+        -24
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "outeniqua-transport-museum-district",
+      "position": [
+        198,
+        77,
+        160
+      ],
+      "lookAt": [
+        42,
+        1,
+        -24
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "outeniqua-transport-museum-street",
+      "position": [
+        198,
+        77,
+        160
+      ],
+      "lookAt": [
+        42,
+        1,
+        -24
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "outeniqua-transport-museum-closeup",
+      "position": [
+        198,
+        77,
+        160
+      ],
+      "lookAt": [
+        42,
+        1,
+        -24
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "visitor-entry-and-terrain",
+      "position": [
+        177,
+        21,
+        70
+      ],
+      "lookAt": [
+        105,
+        2,
+        -10
+      ]
+    },
+    {
+      "name": "rail-doors-and-ribbed-cladding",
+      "position": [
+        -119,
+        21,
+        49
+      ],
+      "lookAt": [
+        -20,
+        1,
+        -7
+      ]
+    },
+    {
+      "name": "shed-profile-and-roof",
+      "position": [
+        164,
+        81,
+        -131
+      ],
+      "lookAt": [
+        44,
+        2,
+        -28
+      ]
+    },
+    {
+      "name": "entry-sign-and-brickwork",
+      "position": [
+        160,
+        8,
+        29
+      ],
+      "lookAt": [
+        130,
+        0,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1542,
+    "vertices": 4626,
+    "materials": 7,
+    "bytes": 355444,
+    "sha256": "sha256:037d027eb75d904258004f0498749b4e761826e7b015c6b17f29899e76883f2c"
+  }
+}

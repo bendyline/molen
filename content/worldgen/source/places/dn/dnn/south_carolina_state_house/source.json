@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.south_carolina_state_house",
+  "kind": "static-structure",
+  "title": "South Carolina State House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.south_carolina_state_house",
+        "output": "assets/places/dn/dnn/south_carolina_state_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8594fdf4f6ab3a224992b97cdb3a6c7a78e19c169f50400479578a18f069fca8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-south-carolina-state-house",
+        "path": "models/generate-south-carolina-state-house.mjs"
+      },
+      {
+        "id": "south-carolina-state-house-model",
+        "path": "models/south-carolina-state-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/state-house-and-approaches.json",
+      "reference-rights/architectural-sources.json",
+      "reference-rights/commons-ang-2018.json",
+      "reference-rights/commons-davis-2006.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/usgs-3dep-state-house.tif",
+      "terrain-sources/usgs-3dep-source.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.villa_wolf",
+  "kind": "static-structure",
+  "title": "Villa Wolf",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.villa_wolf",
+        "output": "assets/places/u3/u34/villa_wolf/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9a1d29643f481ccbef095142aaf353ff24561890be7aa3d96a7a596df49e09b2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-villa-wolf",
+        "path": "models/generate-villa-wolf.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/villa-wolf-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/villa-ruins-and-park.json",
+      "reference-rights/villa-building-facts.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17724-10830.png",
+      "terrain-sources/terrarium-15-17724-10829.png",
+      "terrain-sources/terrarium-15-17723-10830.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

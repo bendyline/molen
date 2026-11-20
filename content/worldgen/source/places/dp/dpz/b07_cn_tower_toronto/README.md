@@ -1,13 +1,18 @@
-# CN Tower, Toronto — B07 structure asset
+# CN Tower, Toronto
 
-![Lit Molen preview](preview.png)
+Geographically fitted concrete CN Tower with three swept buttresses, stacked observation decks and segmented broadcast mast.
 
-Original stylized geometry generated from the [100-structure plan](../../../../../../../examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md) by `packages/worldgen/scripts/generate-structure-catalog.mjs`. Visual brief: Concrete shaft and observation pod.
+![Molen preview](preview.png)
 
-Provisional dimensions: 60 × 553 × 58 meters (X × Y × Z). These dimensions are artistic working values and require measured terrain/footprint alignment before geographic placement. +Y is up; the model is centered at ground or water datum. The runtime asset ID is `molen.worldgen.structure.b07_cn_tower_toronto`.
+Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.json](qa.json) and the [completion ledger](../../../../qualla-structures/batches/qualla-003.PROGRESS.md).
 
-Source: `spec.json`, `models/source.glb`; the imported runtime GLB and sidecar are under `content/worldgen/assets/places/dp/dpz/b07_cn_tower_toronto`. `source.json` pins the source hash. There are no third-party meshes, bitmap textures or texture-generation prompts. The preview is rendered by Molen from `scene.json`.
+- [Toronto CN Tower: The Needle That Defined a Skyline](https://qualla.com/toronto-cn-tower/)
+- [CN Tower: The Communications Tower That Became a City's Symbol](https://qualla.com/cn-tower-toronto/)
 
-Rebuild and re-import from the repository root using `node packages/worldgen/scripts/generate-structure-catalog.mjs` and `node packages/worldgen/scripts/import-structure-catalog.mjs`. Verify with `node packages/worldgen/scripts/generate-structure-catalog.mjs --check`, `node scripts/check-source-bundles.mjs`, and `molen asset inspect molen.worldgen.structure.b07_cn_tower_toronto --project content/worldgen/project.json --verify`.
+This replaces the provisional tower asset in its existing catalog location and covers the tower itself; the aquarium, adjacent SkyWalk, stadia, and interiors are outside scope.
 
-Site anchor, exact facade detail, LOD and collision refinement remain to be completed before in-place Earth-viewer release.
+Current plan geometry and the tower operator’s elevations govern the major forms. The exact shape of the transitions, glazing subdivision, plinth details and communications equipment are estimated.
+
+Ground elevation is an unmodified Terrarium sample; individual thresholds and the elevation of the surrounding paved plaza are approximate.
+
+Build: `node content/worldgen/source/places/dp/dpz/b07_cn_tower_toronto/models/generate-b07-cn-tower-toronto.mjs`. Add `--check` to verify exact regeneration. 7153 triangles; 6 materials; no embedded photographs.

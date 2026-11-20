@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dura_europos_church",
+  "kind": "static-structure",
+  "title": "Dura-Europos Church",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dura_europos_church",
+        "output": "assets/places/sy/syh/dura_europos_church/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5b7fd306d7e0f1a0db5c8dbc6f9d5fc5af17d15ab9176b94693c9f6b0019e2f7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dura-europos-church",
+        "path": "models/generate-dura-europos-church.mjs"
+      },
+      {
+        "id": "dura-europos-church-model",
+        "path": "models/dura-europos-church-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/dura-m8-total-station-and-photogrammetry.json",
+      "reference-rights/dura-archaeological-written-records.json",
+      "reference-rights/yale-34493-baptistery-wall-fragment.json",
+      "reference-rights/yale-baptistery-section-76-cc0.json",
+      "reference-originals/yuag-baptistery-section-76.tif",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-20091-13007.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

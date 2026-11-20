@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pggmb_building",
+  "kind": "static-structure",
+  "title": "PGGMB Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pggmb_building",
+        "output": "assets/places/w8/w8c/pggmb_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ef52bd3d0103fa295793997daae3fd68503b9ddb007e334700a6c1499c4869c3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pggmb-building",
+        "path": "models/generate-pggmb-building.mjs"
+      },
+      {
+        "id": "pggmb-building-model",
+        "path": "models/pggmb-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/jalan-kianggeh-footprint.json",
+      "reference-rights/pggmb-building-written-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26846-15938.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

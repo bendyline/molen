@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mission_basilica_san_juan_capistrano",
+  "kind": "static-structure",
+  "title": "Mission Basilica San Juan Capistrano",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mission_basilica_san_juan_capistrano",
+        "output": "assets/places/9m/9mu/mission_basilica_san_juan_capistrano/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:506c0f6e773fcdbd4a8fbabf0939699968d598f7245f688b7b0b64836d445b67"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mission-basilica-san-juan-capistrano",
+        "path": "models/generate-mission-basilica-san-juan-capistrano.mjs"
+      },
+      {
+        "id": "mission-basilica-san-juan-capistrano-model",
+        "path": "models/mission-basilica-san-juan-capistrano-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mission-basilica-outline.json",
+      "reference-rights/mission-basilica-architecture.json",
+      "reference-rights/front-commons-original.json",
+      "reference-rights/bell-commons-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/usgs-3dep-site.tif",
+      "terrain-sources/usgs-3dep-site.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

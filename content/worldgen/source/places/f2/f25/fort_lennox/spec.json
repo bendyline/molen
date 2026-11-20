@@ -1,0 +1,1083 @@
+{
+  "planId": "fort_lennox",
+  "id": "fort_lennox",
+  "assetId": "molen.worldgen.structure.fort_lennox",
+  "title": "Fort Lennox",
+  "wikidataId": "Q3077926",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.268,
+    "latitude": 45.12095
+  },
+  "size": [
+    248.9167022705078,
+    13.197995513677597,
+    329.86778259277344
+  ],
+  "actualBounds": {
+    "min": [
+      -122.12550354003906,
+      -0.3779958188533783,
+      -128.2535858154297
+    ],
+    "max": [
+      126.79119873046875,
+      12.819999694824219,
+      201.61419677734375
+    ]
+  },
+  "visualBrief": "Fort Lennox on Île aux Noix, with four grass-covered bastions around the open parade, the arcaded gate buildings, stone barracks, twin magazines, south ravelin and two bridges.",
+  "nativeAxes": {
+    "x": "across the parade toward the twin magazines",
+    "y": "up",
+    "z": "along the courtyard to the ravelin"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Lennox,_Ile_aux_noix,_Quebec,_looking_southwest_(I0017513).jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-lennox-wp",
+      "url": "https://qualla.com/fort-lennox/"
+    }
+  ],
+  "referenceInputHash": "sha256:d3a175fcec28dbae464f896073478022bb297824b9014be722306ddc156e6187",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/fort_lennox/models/fort-lennox-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/fort_lennox/models/fort-lennox-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.7,
+    "surfaces": {
+      "sod": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.69,
+        "surfaces": {
+          "sod": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "sod": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sod": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "earth_rammed",
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "wood_plain",
+    "metal_standing_seam",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "exact-native-frame",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original island elevation at the open parade ground. The ramparts sit above the independent raw field, while the mapped moat remains world terrain.",
+    "anchor": [
+      -73.268,
+      45.12095
+    ],
+    "heading": -0.7174269764986696,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.268,
+        45.12095
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain within the open parade ground, away from the bank and roofed buildings."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -122.1255,
+          -127.8674
+        ],
+        [
+          126.7912,
+          -127.8674
+        ],
+        [
+          126.7912,
+          201.6142
+        ],
+        [
+          -122.1255,
+          201.6142
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -90.6003,
+            40.7873
+          ],
+          [
+            -99.1577,
+            48.0766
+          ],
+          [
+            -108.4652,
+            53.5384
+          ],
+          [
+            -112.3562,
+            63.7145
+          ],
+          [
+            -114.9176,
+            77.7683
+          ],
+          [
+            -117.8263,
+            92.3319
+          ],
+          [
+            -120.4278,
+            103.9979
+          ],
+          [
+            -122.1255,
+            113.5456
+          ],
+          [
+            -121.8612,
+            117.5403
+          ],
+          [
+            -119.708,
+            121.0834
+          ],
+          [
+            -115.1279,
+            122.7603
+          ],
+          [
+            -106.6362,
+            121.3935
+          ],
+          [
+            -92.7343,
+            119.0587
+          ],
+          [
+            -78.5785,
+            116.0591
+          ],
+          [
+            -69.3972,
+            111.062
+          ],
+          [
+            -63.2147,
+            104.205
+          ],
+          [
+            -58.781,
+            95.535
+          ],
+          [
+            -52.4354,
+            90.9439
+          ],
+          [
+            -45.0529,
+            90.4562
+          ],
+          [
+            -32.844,
+            89.0963
+          ],
+          [
+            -18.1918,
+            89.0911
+          ],
+          [
+            -10.1884,
+            88.9925
+          ],
+          [
+            4.391,
+            89.6565
+          ],
+          [
+            31.0744,
+            90.9431
+          ],
+          [
+            36.8249,
+            96.2672
+          ],
+          [
+            47.4121,
+            113.6222
+          ],
+          [
+            54.997,
+            115.4694
+          ],
+          [
+            69.3969,
+            118.58
+          ],
+          [
+            90.3013,
+            124.8204
+          ],
+          [
+            100.4033,
+            124.9884
+          ],
+          [
+            104.7738,
+            119.8898
+          ],
+          [
+            107.0147,
+            109.292
+          ],
+          [
+            105.7344,
+            95.0887
+          ],
+          [
+            101.8497,
+            79.6567
+          ],
+          [
+            94.6675,
+            65.0333
+          ],
+          [
+            88.1309,
+            54.1606
+          ],
+          [
+            81.083,
+            45.2706
+          ],
+          [
+            77.9181,
+            38.1188
+          ],
+          [
+            81.4969,
+            -0.0616
+          ],
+          [
+            84.1499,
+            -27.9053
+          ],
+          [
+            88.2396,
+            -46.0258
+          ],
+          [
+            91.5182,
+            -50.2013
+          ],
+          [
+            102.1274,
+            -53.4304
+          ],
+          [
+            109.1365,
+            -56.7833
+          ],
+          [
+            112.7603,
+            -60.8021
+          ],
+          [
+            116.7226,
+            -69.1642
+          ],
+          [
+            119.5908,
+            -76.4386
+          ],
+          [
+            121.6034,
+            -86.4975
+          ],
+          [
+            123.7593,
+            -95.2335
+          ],
+          [
+            126.1247,
+            -103.2512
+          ],
+          [
+            126.7912,
+            -110.54
+          ],
+          [
+            125.8091,
+            -113.864
+          ],
+          [
+            123.4491,
+            -117.5961
+          ],
+          [
+            118.7782,
+            -119.9029
+          ],
+          [
+            89.7764,
+            -113.7151
+          ],
+          [
+            62.5656,
+            -108.9276
+          ],
+          [
+            58.1951,
+            -106.5769
+          ],
+          [
+            52.4256,
+            -89.6648
+          ],
+          [
+            50.3684,
+            -87.7812
+          ],
+          [
+            46.9926,
+            -87.1699
+          ],
+          [
+            4.7109,
+            -88.3646
+          ],
+          [
+            -38.3759,
+            -87.9851
+          ],
+          [
+            -43.9648,
+            -89.3726
+          ],
+          [
+            -46.9803,
+            -93.0795
+          ],
+          [
+            -49.1163,
+            -99.8287
+          ],
+          [
+            -52.7363,
+            -106.1401
+          ],
+          [
+            -56.4878,
+            -111.2879
+          ],
+          [
+            -68.4902,
+            -114.9243
+          ],
+          [
+            -83.4034,
+            -117.8824
+          ],
+          [
+            -103.1065,
+            -124.8607
+          ],
+          [
+            -114.3406,
+            -127.8674
+          ],
+          [
+            -119.0394,
+            -126.8848
+          ],
+          [
+            -121.22,
+            -123.1355
+          ],
+          [
+            -118.6784,
+            -109.3384
+          ],
+          [
+            -115.797,
+            -92.1888
+          ],
+          [
+            -110.4008,
+            -63.3757
+          ],
+          [
+            -103.8471,
+            -54.5862
+          ],
+          [
+            -95.2782,
+            -52.2088
+          ],
+          [
+            -90.7158,
+            -48.8914
+          ],
+          [
+            -89.2172,
+            -43.5656
+          ],
+          [
+            -89.0138,
+            -38.0995
+          ],
+          [
+            -88.8632,
+            8.5129
+          ],
+          [
+            -88.857,
+            35.366
+          ]
+        ],
+        [
+          [
+            -41.4469,
+            135.3538
+          ],
+          [
+            -36.7728,
+            139.8147
+          ],
+          [
+            -27.9009,
+            151.8705
+          ],
+          [
+            -15.8249,
+            169.522
+          ],
+          [
+            -10.9067,
+            174.0358
+          ],
+          [
+            -7.1049,
+            170.6152
+          ],
+          [
+            6.1802,
+            153.9415
+          ],
+          [
+            18.5865,
+            137.1924
+          ],
+          [
+            22.621,
+            133.7757
+          ],
+          [
+            26.7204,
+            134.1729
+          ],
+          [
+            30.7801,
+            135.9345
+          ],
+          [
+            32.6064,
+            138.1231
+          ],
+          [
+            33.5015,
+            141.4787
+          ],
+          [
+            33.2345,
+            144.0163
+          ],
+          [
+            12.1475,
+            173.4807
+          ],
+          [
+            2.7029,
+            186.6706
+          ],
+          [
+            -6.348,
+            198.926
+          ],
+          [
+            -10.7158,
+            201.6142
+          ],
+          [
+            -14.65,
+            199.5067
+          ],
+          [
+            -17.7512,
+            196.1555
+          ],
+          [
+            -25.2208,
+            184.8706
+          ],
+          [
+            -31.7876,
+            174.955
+          ],
+          [
+            -47.9651,
+            151.2645
+          ],
+          [
+            -50.5423,
+            143.5557
+          ],
+          [
+            -49.5772,
+            137.9713
+          ],
+          [
+            -46.3944,
+            135.7409
+          ]
+        ],
+        [
+          [
+            -66.2517,
+            -41.0443
+          ],
+          [
+            -66.2517,
+            36.3993
+          ],
+          [
+            -52.0501,
+            36.4031
+          ],
+          [
+            -52.025,
+            -41.0475
+          ]
+        ],
+        [
+          [
+            -90.6699,
+            -91.7899
+          ],
+          [
+            -82.6635,
+            -99.0416
+          ],
+          [
+            -65.2632,
+            -79.8159
+          ],
+          [
+            -68.6848,
+            -76.7123
+          ],
+          [
+            -70.2367,
+            -78.4312
+          ],
+          [
+            -74.8155,
+            -74.2883
+          ]
+        ],
+        [
+          [
+            -29.9907,
+            -54.659
+          ],
+          [
+            -2.3333,
+            -54.0006
+          ],
+          [
+            -2.0138,
+            -67.4575
+          ],
+          [
+            -29.6711,
+            -68.116
+          ]
+        ],
+        [
+          [
+            13.1366,
+            -66.7007
+          ],
+          [
+            40.4,
+            -65.9202
+          ],
+          [
+            40.0218,
+            -52.7814
+          ],
+          [
+            12.7569,
+            -53.5755
+          ]
+        ],
+        [
+          [
+            52.3695,
+            -40.4935
+          ],
+          [
+            49.8238,
+            -21.6667
+          ],
+          [
+            61.0983,
+            -20.143
+          ],
+          [
+            63.644,
+            -38.9697
+          ]
+        ],
+        [
+          [
+            46.6115,
+            6.1332
+          ],
+          [
+            44.1752,
+            24.3327
+          ],
+          [
+            54.5196,
+            25.7224
+          ],
+          [
+            56.9618,
+            7.5178
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Individually mapped fort, ravelin and six roofed heritage structures."
+    },
+    "featureIds": [
+      "way/915623034",
+      "way/915623035",
+      "way/915623036",
+      "way/915623037",
+      "way/915623038",
+      "way/915623039",
+      "way/224671524",
+      "way/461583234",
+      "way/1482629244",
+      "way/1482629245",
+      "way/1482629242",
+      "way/1482638605",
+      "way/1482638606",
+      "way/1482638608"
+    ],
+    "source": "https://www.openstreetmap.org/relation/12428539",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c231186e43412e96023ff6bb2caf7427c4559a0d7e57cbcbc830165cb629b0b9",
+    "notes": "The 1923 Ontario archive plate identifies the low grass banks, stone casemate frontage and principal masonry building proportions. Parks Canada documents the cut-stone range, arched paired gate buildings and twin magazines."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing historic park with the four earthen bastions and open parade, original exterior buildings, ravelin and bridges. Earlier fortifications, movable objects and private interiors are outside the scope.",
+    "The raw terrain is preserved. The berm cross sections and stone gate lintels, bridge deck heights, casemate openings and building heights are modest estimates constrained by the native feature geometry and federal heritage records.",
+    "The 1923 photo describes the surviving palette only in grayscale. Roof and stone colors are estimates. Modern visitor infrastructure and historic activities are outside the scope."
+  ],
+  "sourceLicense": "Original mesh under the repository license. The Archives of Ontario 1923 lantern slide I0017513 is in the public domain. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "fort-lennox-skyline",
+      "position": [
+        240,
+        194,
+        267
+      ],
+      "lookAt": [
+        -2,
+        2,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "fort-lennox-district",
+      "position": [
+        240,
+        194,
+        267
+      ],
+      "lookAt": [
+        -2,
+        2,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "fort-lennox-street",
+      "position": [
+        240,
+        194,
+        267
+      ],
+      "lookAt": [
+        -2,
+        2,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "fort-lennox-closeup",
+      "position": [
+        240,
+        194,
+        267
+      ],
+      "lookAt": [
+        -2,
+        2,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "parade-and-barracks",
+      "position": [
+        28,
+        21,
+        14
+      ],
+      "lookAt": [
+        -54,
+        3,
+        -4
+      ]
+    },
+    {
+      "name": "north-bridge-and-gate",
+      "position": [
+        32,
+        10,
+        -126
+      ],
+      "lookAt": [
+        5,
+        2,
+        -88
+      ]
+    },
+    {
+      "name": "officers-and-guardhouse",
+      "position": [
+        3,
+        11,
+        -7
+      ],
+      "lookAt": [
+        4,
+        3,
+        -62
+      ]
+    },
+    {
+      "name": "ravelin-and-fort-enclosure",
+      "position": [
+        189,
+        159,
+        209
+      ],
+      "lookAt": [
+        -8,
+        2,
+        14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4445,
+    "vertices": 13335,
+    "materials": 7,
+    "bytes": 845040,
+    "sha256": "sha256:359a029bc7b73f4884f1e9dfa707fc88532a5f730595468ee92ac623d0b1198b"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chernobyl_nuclear_power_plant",
+  "kind": "static-structure",
+  "title": "Chernobyl Nuclear Power Plant",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chernobyl_nuclear_power_plant",
+        "output": "assets/places/u9/u9j/chernobyl_nuclear_power_plant/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b586963c45faa9914c8c005b71bd1e7acef89d38a0f4d9cb0ef544f51542825d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chernobyl-nuclear-power-plant",
+        "path": "models/generate-chernobyl-nuclear-power-plant.mjs"
+      },
+      {
+        "id": "chernobyl-nuclear-power-plant-model",
+        "path": "models/chernobyl-nuclear-power-plant-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/chernobyl-arch-and-industrial-exteriors.json",
+      "reference-rights/chernobyl-exterior-architecture-facts.json",
+      "reference-rights/qualla-diagram-screening.json",
+      "reference-images/hnapel-2018-standing-arch-original.jpg",
+      "reference-rights/hnapel-standing-arch-native-release.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19123-10913.png",
+      "terrain-sources/terrarium-15-19123-10912.png",
+      "terrain-sources/terrarium-15-19124-10912.png",
+      "terrain-sources/terrarium-15-19124-10913.png",
+      "terrain-sources/terrarium-15-19123-10914.png",
+      "terrain-sources/terrarium-15-19124-10914.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

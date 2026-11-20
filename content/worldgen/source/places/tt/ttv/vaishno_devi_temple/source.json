@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.vaishno_devi_temple",
+  "kind": "static-structure",
+  "title": "Vaishno Devi Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.vaishno_devi_temple",
+        "output": "assets/places/tt/ttv/vaishno_devi_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a5697557f564d8080c2e5b0ea038d711283d9052433b8125c14be460fe524d89"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-vaishno-devi-temple",
+        "path": "models/generate-vaishno-devi-temple.mjs"
+      },
+      {
+        "id": "vaishno-devi-temple-model",
+        "path": "models/vaishno-devi-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/bhawan-and-roof-outlines.json",
+      "reference-rights/shrine-board-architectural-evidence.json",
+      "reference-images/bhawan-hillside-facades.jpg",
+      "reference-rights/bhawan-hillside-facades-first-commons-upload.json",
+      "reference-images/bhawan-valley-context.jpg",
+      "reference-rights/bhawan-valley-context-first-commons-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23205-13195.png",
+      "terrain-sources/terrarium-15-23206-13195.png",
+      "terrain-sources/terrarium-15-23205-13196.png",
+      "terrain-sources/terrarium-15-23206-13196.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

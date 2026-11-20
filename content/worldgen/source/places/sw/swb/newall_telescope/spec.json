@@ -1,0 +1,631 @@
+{
+  "planId": "newall_telescope",
+  "id": "newall_telescope",
+  "assetId": "molen.worldgen.structure.newall_telescope",
+  "title": "Newall Telescope Observatory",
+  "wikidataId": "Q130974778",
+  "category": "observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.864775441176466,
+    "latitude": 38.0487716
+  },
+  "size": [
+    18.933500289916992,
+    18.025735914707184,
+    25.761499404907227
+  ],
+  "actualBounds": {
+    "min": [
+      -9.313199996948242,
+      -0.6562595963478088,
+      -9.46150016784668
+    ],
+    "max": [
+      9.62030029296875,
+      17.369476318359375,
+      16.299999237060547
+    ]
+  },
+  "visualBrief": "Penteli’s marble Newall observatory with a 14-metre aluminum dome and the historic refractor visible at the open shutter.",
+  "nativeAxes": {
+    "x": "east along the visitor terrace",
+    "y": "up",
+    "z": "toward the southern approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Newall_Telescope_(The_Engineer,_May_13,_1870).jpg"
+  ],
+  "stories": [
+    {
+      "id": "newall-telescope-wp",
+      "url": "https://qualla.com/newall-telescope/"
+    }
+  ],
+  "referenceInputHash": "sha256:50bba1e0193ae3f4d5cc59697ad9a382fa371f0a439b5fb040c5fc4496082319",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/newall_telescope/models/newall-telescope-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sw/swb/newall_telescope/models/newall-telescope-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.72,
+        "metallic": 0.26
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.18
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.71,
+        "metallic": 0.37
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.49
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.37
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.37
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.26
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.71,
+            "metallic": 0.37
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_marble",
+    "stone_ashlar",
+    "metal_standing_seam",
+    "metal_painted",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Penteli terrain at the fan-shaped approach.",
+    "anchor": [
+      23.864775441176466,
+      38.0487716
+    ],
+    "heading": -0.08403927514516427,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.86476021636817,
+        38.04862927260717
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified open Penteli terrain immediately outside the mapped southern approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          2.9997,
+          -9.0446
+        ],
+        [
+          -0.2728,
+          -9.4615
+        ],
+        [
+          -4.7913,
+          -8.0643
+        ],
+        [
+          -7.264,
+          -5.8787
+        ],
+        [
+          -8.8582,
+          -2.8733
+        ],
+        [
+          -9.3132,
+          0.3935
+        ],
+        [
+          -8.5883,
+          3.6727
+        ],
+        [
+          -6.8148,
+          6.4502
+        ],
+        [
+          -5.4816,
+          7.6561
+        ],
+        [
+          -2.5327,
+          9.1393
+        ],
+        [
+          1.4452,
+          9.2622
+        ],
+        [
+          6.6798,
+          6.9668
+        ],
+        [
+          8.6649,
+          4.3196
+        ],
+        [
+          9.6203,
+          1.1446
+        ],
+        [
+          9.4398,
+          -2.1469
+        ],
+        [
+          8.5575,
+          -4.4744
+        ],
+        [
+          6.5098,
+          -7.0613
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            2.9997,
+            -9.0446
+          ],
+          [
+            -0.2728,
+            -9.4615
+          ],
+          [
+            -4.7913,
+            -8.0643
+          ],
+          [
+            -7.264,
+            -5.8787
+          ],
+          [
+            -8.8582,
+            -2.8733
+          ],
+          [
+            -9.3132,
+            0.3935
+          ],
+          [
+            -8.5883,
+            3.6727
+          ],
+          [
+            -6.8148,
+            6.4502
+          ],
+          [
+            -5.4816,
+            7.6561
+          ],
+          [
+            -2.5327,
+            9.1393
+          ],
+          [
+            1.4452,
+            9.2622
+          ],
+          [
+            6.6798,
+            6.9668
+          ],
+          [
+            8.6649,
+            4.3196
+          ],
+          [
+            9.6203,
+            1.1446
+          ],
+          [
+            9.4398,
+            -2.1469
+          ],
+          [
+            8.5575,
+            -4.4744
+          ],
+          [
+            6.5098,
+            -7.0613
+          ]
+        ],
+        [
+          [
+            -5.3099,
+            9.1721
+          ],
+          [
+            -7.3518,
+            14.0696
+          ],
+          [
+            -4.6368,
+            14.9692
+          ],
+          [
+            -1.7683,
+            15.4984
+          ],
+          [
+            0.7233,
+            15.8359
+          ],
+          [
+            3.1287,
+            15.2535
+          ],
+          [
+            5.6796,
+            14.1002
+          ],
+          [
+            6.8955,
+            12.8695
+          ],
+          [
+            3.7273,
+            8.9918
+          ],
+          [
+            1.4452,
+            9.2622
+          ],
+          [
+            -2.5327,
+            9.1393
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped astronomical rotunda and adjoining approach."
+    },
+    "featureIds": [
+      "way/373094592",
+      "way/373094799"
+    ],
+    "source": "https://www.openstreetmap.org/way/373094592",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:db5fc77b8ed3927a6a5ceb8d963ab245cf1c3f63520cc16214f0022835020b2e",
+    "notes": "The observatory and scholarly inventory document the 14-metre hemisphere and the 62.5 cm refractor with an 8.86 m focal length. The 1870 engraving shows the original banded optical tube, equatorial mounting and large spoked wheel."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The permanent observatory footprint, crown diameter and general instrument form are grounded in primary evidence. Eave heights, exterior openings, dome shading and shutter framing are approximate.",
+    "The historic refractor is posed behind an open shutter and shown as a static visual reconstruction. Fine optical mechanics, the movable floor mechanism and surrounding campus buildings are outside scope.",
+    "The approach follows the mapped southern footprint, with simpler stair and pavement geometry over the original hill elevation."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "newall-telescope-skyline",
+      "position": [
+        30,
+        19,
+        31
+      ],
+      "lookAt": [
+        0,
+        7,
+        1.4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "newall-telescope-district",
+      "position": [
+        30,
+        19,
+        31
+      ],
+      "lookAt": [
+        0,
+        7,
+        1.4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "newall-telescope-street",
+      "position": [
+        30,
+        19,
+        31
+      ],
+      "lookAt": [
+        0,
+        7,
+        1.4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "newall-telescope-closeup",
+      "position": [
+        30,
+        19,
+        31
+      ],
+      "lookAt": [
+        0,
+        7,
+        1.4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "marble-rotunda-and-fan-shaped-stairs",
+      "position": [
+        15,
+        12,
+        27
+      ],
+      "lookAt": [
+        0,
+        6,
+        4
+      ]
+    },
+    {
+      "name": "open-shutter-and-refractor",
+      "position": [
+        1,
+        18.5,
+        16.8
+      ],
+      "lookAt": [
+        0.15,
+        13.5,
+        2.6
+      ]
+    },
+    {
+      "name": "aluminum-shell-and-track",
+      "position": [
+        -22,
+        20,
+        -15
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7702,
+    "vertices": 23106,
+    "materials": 6,
+    "bytes": 1099416,
+    "sha256": "sha256:8708b22fd7b194ef674754d6c7f9d8742193462242305bcbbfb5f61c03f657a1"
+  }
+}

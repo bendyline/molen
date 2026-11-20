@@ -6,6 +6,7 @@ import { inspectArchivedAuthorReference } from './imagery-archived-author.mjs';
 import { inspectCarterExcavationReference } from './imagery-carter-excavation.mjs';
 import { inspectChileIlustradoReference } from './imagery-chile-ilustrado.mjs';
 import { inspectDanishFortDrawingReference } from './imagery-danish-fort-drawings.mjs';
+import { inspectTaganrogArchiveReference } from './imagery-taganrog-archive.mjs';
 import {
   inspectDhakaEmbassyReference,
   inspectNewZealandEmbassyReference,
@@ -14,13 +15,19 @@ import { inspectExcavationPlanReference } from './imagery-excavation-plan.mjs';
 import { inspectExpiredUsBookReference } from './imagery-expired-us-book.mjs';
 import { inspectFlickrOriginalReference } from './imagery-flickr-original.mjs';
 import { inspectGettyReference } from './imagery-getty.mjs';
+import { inspectCommonsCreatorOriginal } from './imagery-commons-creator.mjs';
+import { inspectEsplanadeArchive } from './imagery-esplanade-archive.mjs';
+import { inspectJacksonShrinePlate } from './imagery-jackson-shrine.mjs';
 import { inspectCarpenterReference } from './imagery-loc-carpenter.mjs';
 import { inspectMoranCartagenaReference } from './imagery-moran-cartagena.mjs';
 import { inspectNdlTannaReference } from './imagery-ndl-tanna.mjs';
 import { inspectNpsAgencyReference } from './imagery-nps-agency.mjs';
 import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
-import { inspectPublicArchiveReference } from './imagery-public-archives.mjs';
+import {
+  inspectPublicArchiveReference,
+  inspectYaleDuraBaptisteryPlan,
+} from './imagery-public-archives.mjs';
 import { inspectSilesianPeriodicalReference } from './imagery-silesian-periodical.mjs';
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -37,6 +44,33 @@ function snapshotJson(bytes) {
   } catch {
     return null;
   }
+}
+
+function inspectCanadianaOttawaEngraving(dir, reference) {
+  const page = 'https://www.canadiana.ca/view/oocihm.8_06230_382/2';
+  const imageUrl =
+    'https://image-tor.canadiana.ca/iiif/2/69429%2Fc0hm52h8hb05/full/max/0/default.jpg';
+  const archive = localBytes(dir, reference.rightsEvidence?.path);
+  const image = localBytes(dir, reference.path);
+  const expectedHash = 'a012c802445f49a551740e8191604d0f03c6ab47db28e8568482247b44f2d052';
+  const review = reference.originalReview;
+  const text = archive?.toString();
+  const bound =
+    image && digest(image) === expectedHash && plainHash(reference.sha256) === expectedHash &&
+    archive && digest(archive) === plainHash(reference.rightsEvidence?.sha256);
+  const documented =
+    reference.origin === 'canadiana-1877-library-engraving' &&
+    reference.sourceUrl === page && reference.rightsEvidence?.sourceUrl === page &&
+    reference.downloadUrl === imageUrl && reference.license === 'Public domain' &&
+    reference.visuallyReviewedForThisPolicy === true &&
+    review?.status === 'inspected' && review?.publicationDate === '1877-03-10' &&
+    review?.printedPage === 145 &&
+    text?.includes('[Vol. 15, no. 10 (Mar. 10, 1877)]') &&
+    text.includes(`href="${imageUrl}" target="_blank">p. 145</a>`);
+  const blockers = [];
+  if (!bound) blockers.push('supplemental-image-or-archive-bytes-unbound');
+  if (!documented) blockers.push('supplemental-canadiana-original-publication-unverified');
+  return { path: reference.path, sourceUrl: reference.sourceUrl, blockers, eligible: !blockers.length };
 }
 function localBytes(dir, relative) {
   if (
@@ -780,12 +814,15 @@ export function inspectNpsReference(dir, reference) {
     ['NPS', 'NPS Photo', 'National Park Service', 'Cape Hatteras National Seashore'].includes(
       field(html, 'PhotoCredit'),
     ) && field(html, 'Constraints Information') === 'Public domain:Full Granting Rights';
-  // Older agency records use Photographer and Publisher instead of PhotoCredit.
-  // Accept only the explicit staff/public-domain combination, with no competing credit.
+  // Some agency records use Photographer and Publisher instead of PhotoCredit.
+  // Require an exact staff or office credit and the corresponding agency publisher.
+  const photographer = field(html, 'Photographer');
+  const publisher = field(html, 'Publisher');
   const legacyStaffRelease =
     !field(html, 'PhotoCredit') &&
-    field(html, 'Photographer') === 'NPS staff' &&
-    field(html, 'Publisher') === 'National Park Service' &&
+    ((photographer === 'NPS staff' && publisher === 'National Park Service') ||
+      (photographer === 'National Trails Office US National Park Service' &&
+        publisher === 'U.S. National Park Service')) &&
     field(html, 'Constraints Information') === 'Public domain';
   if (
     reference.origin !== 'nps-gallery-public-domain' ||
@@ -1885,6 +1922,20 @@ export function inspectCommonsSelfReference(dir, reference) {
     (plainText(value('Credit')) === 'I took it' &&
       /\|\s*source\s*=\s*I took it\s*(?:\n|\|)/i.test(body)) ||
     (reference.license === 'Public domain' &&
+      dedication?.kind === 'contemporaneous-photographers-own-files' &&
+      dedication.username === first?.user &&
+      dedication.username === info?.user &&
+      dedication.revision === first?.revid &&
+      first?.parentid === 0 &&
+      page.imageinfo.length === 1 &&
+      !json?.continue?.iicontinue &&
+      Date.parse(first.timestamp) === Date.parse(info.timestamp) &&
+      info.size === image?.length &&
+      plainText(value('Credit')) === "Photographer's own files" &&
+      /^\|Source=Photographer's own files$/m.test(body) &&
+      body.split('\n').includes(`|Author=${reference.artist}`) &&
+      /^\{\{PD-self\}\}$/m.test(body)) ||
+    (reference.license === 'Public domain' &&
       plainText(value('Credit')) === "uploader's creation" &&
       /^[A-Za-z0-9_-]+$/.test(info?.user ?? '') &&
       info.user === reference.artist &&
@@ -2109,7 +2160,7 @@ export function inspectFlickrCc0Reference(dir, reference) {
     reference.origin !== 'commons-flickr-cc0' ||
     reference.license !== 'CC0' ||
     !/^\d+$/.test(id ?? '') ||
-    !/^[\w-]+$/.test(account ?? '') ||
+    !(/^[\w-]+$/.test(account ?? '') || (account === nsid && stableCreator)) ||
     !/^\d+@N\d+$/.test(nsid ?? '') ||
     !name?.trim() ||
     !page?.revisions?.[0]?.revid ||
@@ -2263,7 +2314,7 @@ export function inspectCreatorCc0Reference(dir, reference) {
   };
 }
 
-/** Old Abdullah Frères prints: Commons' collection PD record plus the exact LOC native. */
+/** Old Abdullah Frères prints with collection rights and the exact Library of Congress TIFF. */
 export function inspectAbdulHamidReference(dir, reference) {
   const blockers = [],
     image = localBytes(dir, reference.path),
@@ -2285,9 +2336,31 @@ export function inspectAbdulHamidReference(dir, reference) {
     catalog = snapshotJson(catalogBytes),
     item = catalog?.item,
     id = reference.sourceUrl?.match(/^https:\/\/www\.loc\.gov\/item\/(\d+)\/$/)?.[1],
-    period = body.match(/\|date=\{\{between\|(\d{4})\|(\d{4})\}\}/),
-    digitalId = body.match(/\|source=\{\{LOC-image\|id=(cph\.[a-z0-9]+)\}\}/)?.[1],
+    collectionRightsUrl = 'https://wwws.loc.gov/rr/print/res/374_abdu.html',
+    nativeCollectionRights = reference.rightsEvidence?.sourceUrl === collectionRightsUrl,
+    period = nativeCollectionRights
+      ? item?.created_published?.[0]?.match(/^\[between (\d{4}) and (\d{4})\]$/)
+      : body.match(/\|date=\{\{between\|(\d{4})\|(\d{4})\}\}/),
+    digitalId = nativeCollectionRights
+      ? (reference.downloadUrl?.match(/\/(3[a-z][a-z0-9]+)u\.tif$/)?.[1] ?? '')
+      : body.match(/\|source=\{\{LOC-image\|id=cph\.([a-z0-9]+)\}\}/)?.[1],
     files = (catalog?.resources ?? []).flatMap((r) => (r.files ?? []).flat());
+  const rights = snapshot?.toString('utf8') ?? '';
+  const collectionRightsVerified = nativeCollectionRights
+    ? Array.isArray(item?.rights) &&
+      item.rights.some(
+        (value) =>
+          typeof value === 'string' && value.includes('www.loc.gov/rr/print/res/374_abdu.html'),
+      ) &&
+      rights.includes('<title>Abdul Hamid II Collection - Rights and Restrictions Information') &&
+      rights.includes('There are no known restrictions on this collection.') &&
+      /Publication and other forms of distribution:<\/strong>\s*Permitted\./i.test(rights)
+    : body.includes('{{PD-Abdul Hamid}}') &&
+      body.includes('|author={{Creator:Abdullah frères}}') &&
+      plainText(metadata?.Artist?.value) === reference.artist &&
+      metadata?.LicenseShortName?.value === 'Public domain' &&
+      metadata?.UsageTerms?.value === 'Public domain' &&
+      page?.imageinfo?.[0]?.descriptionurl === reference.rightsEvidence?.sourceUrl;
   if (
     reference.origin !== 'loc-abdul-hamid-public-domain' ||
     reference.license !== 'Public domain' ||
@@ -2304,16 +2377,11 @@ export function inspectAbdulHamidReference(dir, reference) {
     Number(period[2]) > 1893 ||
     Number(period[1]) > Number(period[2]) ||
     !item?.created_published?.includes(`[between ${period?.[1]} and ${period?.[2]}]`) ||
-    !body.includes('{{PD-Abdul Hamid}}') ||
-    !body.includes('|author={{Creator:Abdullah frères}}') ||
-    plainText(metadata?.Artist?.value) !== reference.artist ||
+    !collectionRightsVerified ||
     reference.artist !== 'Abdullah frères' ||
-    metadata?.LicenseShortName?.value !== 'Public domain' ||
-    metadata?.UsageTerms?.value !== 'Public domain' ||
-    page?.imageinfo?.[0]?.descriptionurl !== reference.rightsEvidence?.sourceUrl ||
     !digitalId ||
     !(catalog?.resources ?? []).some(
-      (r) => r.url === `https://www.loc.gov/resource/${digitalId}/`,
+      (r) => r.url === `https://www.loc.gov/resource/cph.${digitalId}/`,
     ) ||
     !files.some(
       (f) =>
@@ -2349,26 +2417,48 @@ export function inspectHighsmithReference(dir, reference) {
     blockers.push('supplemental-rights-snapshot-unbound');
   const json = snapshotJson(catalog),
     item = json?.item,
-    source = reference.sourceUrl?.match(/^https:\/\/www\.loc\.gov\/item\/(\d+)\/$/),
-    id = source?.[1],
+    source = reference.sourceUrl?.match(/^https:\/\/www\.loc\.gov\/(pictures\/)?item\/(\d+)\/$/),
+    id = source?.[2],
     files = (json?.resources ?? []).flatMap((r) => (r.files ?? []).flat());
+  const modernRecord =
+    !source?.[1] &&
+    item?.item?.id === id &&
+    item?.access_restricted === false &&
+    item?.group?.includes('highsm') &&
+    item?.contributor_names?.some((n) => /^Highsmith, Carol M\.,.*photographer/.test(n)) &&
+    item?.rights_advisory === 'No known restrictions on publication.' &&
+    files.some((f) => f.url === reference.downloadUrl && /^https:\/\/tile\.loc\.gov\//.test(f.url));
+  const picturesRecord =
+    source?.[1] === 'pictures/' &&
+    reference.catalogEvidence?.sourceUrl === `${reference.sourceUrl}?fo=json` &&
+    item?.id === id &&
+    item?.display_offsite === true &&
+    item?.raw_collections?.includes('highsm') &&
+    item?.creators?.some(
+      (creator) => creator.role === 'photographer' && /^Highsmith, Carol M\.,/.test(creator.title),
+    ) &&
+    item?.rights_information === 'No known restrictions on publication.' &&
+    /^https:\/\/cdn\.loc\.gov\/service\/pnp\/highsm\/\d+\/\d+[rv]\.jpg$/.test(
+      reference.downloadUrl,
+    ) &&
+    (json?.resources ?? []).some((resource) =>
+      ['large', 'medium'].some(
+        (size) =>
+          resource[size] === reference.downloadUrl && resource[`${size}_s`] === image?.length,
+      ),
+    );
   if (
     reference.origin !== 'loc-highsmith-public-domain' ||
     reference.license !== 'Public domain' ||
     reference.artist !== 'Carol M. Highsmith' ||
     !id ||
-    item?.item?.id !== id ||
-    item?.access_restricted !== false ||
-    !item?.group?.includes('highsm') ||
-    !item?.contributor_names?.some((n) => /^Highsmith, Carol M\.,.*photographer/.test(n)) ||
-    item?.rights_advisory !== 'No known restrictions on publication.' ||
+    !(modernRecord || picturesRecord) ||
     !/^https:\/\/wwws?\.loc\.gov\/rr\/print\/res\/482_high\.html$/.test(
       reference.rightsEvidence?.sourceUrl ?? '',
     ) ||
     !plainText(rights?.toString()).includes(
       'Highsmith has stipulated that her photographs are in the public domain',
-    ) ||
-    !files.some((f) => f.url === reference.downloadUrl && /^https:\/\/tile\.loc\.gov\//.test(f.url))
+    )
   )
     blockers.push('supplemental-photographer-public-domain-dedication-unverified');
   return {
@@ -2881,21 +2971,42 @@ export function inspectImageryInventory({
           'archive-comayagua-harpers-1859',
           'archive-khartoum-cathedral-building-news-1915',
           'archive-victoria-daily-times-1912',
+          'efeo-cambodia-museum-1930-plate',
+          'archives-ontario-hammond-expired-photograph',
+          'eth-gau-dendur-1822-survey',
+          'met-teynard-dendur-1851-original',
+          'met-al-hakim-1842-daguerreotype',
+          'commons-ottawa-war-museum-original-construction',
+          'dlg-macon-terminal-public-domain-postcard',
           'loc-carpenter-expired-original',
           'silesian-library-public-domain-periodical',
+          'canadiana-1877-library-engraving',
           'expired-danish-svedstrup-fort-drawings',
+          'expired-rgada-1704-taganrog-plan',
           'amon-carter-moran1870-public-domain',
           'ndl-tanna1936-public-domain-plates',
           'commons-mccord-public-domain',
+          'commons-rietberg-sepahsalar-public-domain',
           'rijksmuseum-public-domain',
+          'loc-cordoba-photochrom-public-domain',
+          'loc-matson-winter-palace-public-domain',
+          'cornell-tughlaqabad-1902-plate',
+          'slq-cooktown-expired-original',
           'banq-public-domain-atlas',
           'te-papa-expired-postcard',
           'commons-museu-paulista-expired-postcard',
+          'archive-jackson-shrine-1911',
+          'berlin-esplanade-historical-archive',
+          'commons-native-creator-cc0',
           'usgs-national-map-pr-naip',
+          'usgs-national-map-amos-naip',
+          'usda-naip-california-2009',
+          'usda-naip-encina-2018',
           'commons-nara-bureau-of-public-roads',
           'commons-presidencia-sv-cc0',
           'commons-vrt-cc0',
           'commons-history-trust-glass-negative-cc0',
+          'yale-dura-archive-cc0-plan',
           'commons-nlc-republic-era-original-book',
           'commons-dhaka-embassy-government-photo',
         ].includes(r.origin),
@@ -3019,6 +3130,9 @@ export function inspectImageryInventory({
     );
   additionalProof.push(
     ...additional
+      .filter((r) => r.origin === 'yale-dura-archive-cc0-plan')
+      .map((r) => inspectYaleDuraBaptisteryPlan(dir, r)),
+    ...additional
       .filter((r) => r.origin === 'commons-history-trust-glass-negative-cc0')
       .map((r) => inspectHistoryTrustGlassNegative(dir, r)),
     ...additional
@@ -3046,16 +3160,40 @@ export function inspectImageryInventory({
       .filter((r) =>
         [
           'commons-mccord-public-domain',
+          'commons-rietberg-sepahsalar-public-domain',
           'rijksmuseum-public-domain',
+          'loc-cordoba-photochrom-public-domain',
+          'loc-matson-winter-palace-public-domain',
+          'cornell-tughlaqabad-1902-plate',
+          'slq-cooktown-expired-original',
           'banq-public-domain-atlas',
           'te-papa-expired-postcard',
           'commons-museu-paulista-expired-postcard',
           'usgs-national-map-pr-naip',
+          'usgs-national-map-amos-naip',
+          'usda-naip-california-2009',
+          'usda-naip-encina-2018',
           'commons-nara-bureau-of-public-roads',
           'commons-presidencia-sv-cc0',
+          'efeo-cambodia-museum-1930-plate',
+          'archives-ontario-hammond-expired-photograph',
+          'eth-gau-dendur-1822-survey',
+          'met-teynard-dendur-1851-original',
+          'met-al-hakim-1842-daguerreotype',
+          'commons-ottawa-war-museum-original-construction',
+          'dlg-macon-terminal-public-domain-postcard',
         ].includes(r.origin),
       )
       .map((r) => inspectPublicArchiveReference(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'commons-native-creator-cc0')
+      .map((r) => inspectCommonsCreatorOriginal(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'berlin-esplanade-historical-archive')
+      .map((r) => inspectEsplanadeArchive(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'archive-jackson-shrine-1911')
+      .map((r) => inspectJacksonShrinePlate(dir, r)),
     ...additional
       .filter((r) => r.origin === 'ndl-tanna1936-public-domain-plates')
       .map((r) => inspectNdlTannaReference(dir, r)),
@@ -3066,8 +3204,14 @@ export function inspectImageryInventory({
       .filter((r) => r.origin === 'expired-danish-svedstrup-fort-drawings')
       .map((r) => inspectDanishFortDrawingReference(dir, r)),
     ...additional
+      .filter((r) => r.origin === 'expired-rgada-1704-taganrog-plan')
+      .map((r) => inspectTaganrogArchiveReference(dir, r)),
+    ...additional
       .filter((r) => r.origin === 'silesian-library-public-domain-periodical')
       .map((r) => inspectSilesianPeriodicalReference(dir, r)),
+    ...additional
+      .filter((r) => r.origin === 'canadiana-1877-library-engraving')
+      .map((r) => inspectCanadianaOttawaEngraving(dir, r)),
     ...additional
       .filter((r) => r.origin === 'loc-carpenter-expired-original')
       .map((r) => inspectCarpenterReference(dir, r)),

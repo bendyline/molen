@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.borssele_nuclear_power_station",
+  "kind": "static-structure",
+  "title": "Borssele Nuclear Power Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.borssele_nuclear_power_station",
+        "output": "assets/places/u1/u14/borssele_nuclear_power_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4c73f4f5bb031aec61ebee2f7434d0fdc1361773842c641587777278675c525d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-borssele-nuclear-power-station",
+        "path": "models/generate-borssele-nuclear-power-station.mjs"
+      },
+      {
+        "id": "borssele-nuclear-power-station-model",
+        "path": "models/borssele-nuclear-power-station-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mapped-main-exterior.json",
+      "reference-rights/borssele-exterior-written-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16722-10907.png",
+      "terrain-sources/terrarium-15-16722-10906.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

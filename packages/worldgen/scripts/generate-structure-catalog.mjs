@@ -1,7 +1,7 @@
-/** Generate the 86 planned Molen structure masters that are still catalog studies. The three
+/** Generate the 85 planned Molen structure masters that are still catalog studies. The three
  * reference assets have their own hand-tuned generator in generate-site-structures.mjs, and the
- * placed Seattle landmarks A02–A12 have dedicated generators in their bundles' models/ folders
- * (place-master-emitter.mjs). This script reads the 100-item design brief, emits one editable
+ * placed Seattle landmarks A02–A12 and Toronto's CN Tower B07 have dedicated generators in
+ * their bundles' models/ folders. This script reads the 100-item design brief, emits one editable
  * source bundle per remaining entry, and never imports runtime assets.
  */
 
@@ -27,7 +27,7 @@ const selection = process.argv
   ?.slice(6)
   .split(',');
 const referenceIds = new Set(['A01', 'C01', 'C02']);
-// Placed Seattle landmarks, authored from mapped footprints by their own bundle generators.
+// Placed landmarks, authored from mapped footprints by their own bundle generators.
 const dedicatedIds = new Set([
   'A02',
   'A03',
@@ -40,6 +40,7 @@ const dedicatedIds = new Set([
   'A10',
   'A11',
   'A12',
+  'B07',
 ]);
 const materials = {
   wall: { name: 'structure-cladding', roughness: 0.67, metallic: 0.16 },
@@ -219,8 +220,8 @@ const entries = [...plan.matchAll(/^\| ([A-E]\d{2}) \| ([^|]+) \| ([^|]+) \|$/gm
 if (entries.length !== 100 || new Set(entries.map((e) => e.planId)).size !== 100)
   throw new Error(`Expected 100 distinct plan entries, found ${entries.length}`);
 const pending = entries.filter((e) => !referenceIds.has(e.planId) && !dedicatedIds.has(e.planId));
-if (pending.length !== 86)
-  throw new Error(`Expected 86 remaining entries, found ${pending.length}`);
+if (pending.length !== 85)
+  throw new Error(`Expected 85 remaining entries, found ${pending.length}`);
 
 for (const entry of pending) {
   const key = `${entry.planId.toLowerCase()}_${slug(entry.title)}`;

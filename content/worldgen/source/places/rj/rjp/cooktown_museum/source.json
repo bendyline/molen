@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cooktown_museum",
+  "kind": "static-structure",
+  "title": "Cooktown Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cooktown_museum",
+        "output": "assets/places/rj/rjp/cooktown_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:75155b4211b10b06720bb2c8cc4b0723986cc3bee060c2e089737db7c5e94eb7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cooktown-museum",
+        "path": "models/generate-cooktown-museum.mjs"
+      },
+      {
+        "id": "cooktown-museum-model",
+        "path": "models/cooktown-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/furneaux-and-helen-standing-building.json",
+      "reference-rights/slq-negative-70851-original-record.json",
+      "reference-rights/slq-negative-70851.jpg",
+      "reference-rights/convent-written-heritage-facts.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/queensland-government-dem-cooktown.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

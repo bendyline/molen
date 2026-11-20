@@ -1,0 +1,846 @@
+{
+  "planId": "john_e_amos_power_plant",
+  "id": "john_e_amos_power_plant",
+  "assetId": "molen.worldgen.structure.john_e_amos_power_plant",
+  "title": "John E. Amos Power Plant",
+  "wikidataId": "Q11978950",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.8231,
+    "latitude": 38.4743
+  },
+  "size": [
+    555.783935546875,
+    278.3999993801117,
+    548.1661376953125
+  ],
+  "actualBounds": {
+    "min": [
+      -251.53244018554688,
+      -3.3137261867523193,
+      -291.2341003417969
+    ],
+    "max": [
+      304.2514953613281,
+      275.0862731933594,
+      256.9320373535156
+    ]
+  },
+  "visualBrief": "The John E. Amos plant skyline with three waisted concrete cooling towers, slender stacks and grounded industrial roof masses.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:A_TRAILER_PARK_IN_POCA,_DIRECTLY_ACROSS_THE_KANAWHA_RIVER_FROM_THE_JOHN_AMOS_POWER_PLANT._WATER_COOLING_TOWERS_OF_THE..._-_NARA_-_551154.jpg",
+    "https://commons.wikimedia.org/wiki/File:RAILROAD_YARDS_AT_NITRO._THE_TALL_SMOKESTACKS_AND_COOLING_TOWERS_OF_THE_JOHN_AMOS_POWER_PLANT_(BACKGROUND)_ARE_BARELY..._-_NARA_-_551007.jpg",
+    "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer"
+  ],
+  "stories": [
+    {
+      "id": "john-e-amos-power-plant-wp",
+      "url": "https://qualla.com/john-e-amos-power-plant/"
+    }
+  ],
+  "referenceInputHash": "sha256:81b2b4ae4d8878f80d27e9b24ec32bab032f5cb636a71fc881ad05214d56a707",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnv/john_e_amos_power_plant/models/john-e-amos-power-plant-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnv/john_e_amos_power_plant/models/john-e-amos-power-plant-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 3.1,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "textured": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.12
+      },
+      "panel": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.31,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "textured": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "textured": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "textured": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_boardformed",
+    "metal_standing_seam",
+    "concrete_panel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original open elevation from the Kanawha valley floor.",
+    "anchor": [
+      -81.8231,
+      38.4743
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.82342128139875,
+        38.47470424002874
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain on the common plain among the visible plant structures."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          261.0335,
+          171.0647
+        ],
+        [
+          276.3546,
+          166.6787
+        ],
+        [
+          289.5056,
+          157.6841
+        ],
+        [
+          299.1358,
+          144.9825
+        ],
+        [
+          304.2515,
+          129.8876
+        ],
+        [
+          304.1295,
+          112.8
+        ],
+        [
+          298.2207,
+          96.7589
+        ],
+        [
+          287.231,
+          83.6566
+        ],
+        [
+          272.459,
+          75.0627
+        ],
+        [
+          255.6389,
+          71.9903
+        ],
+        [
+          238.7753,
+          74.7844
+        ],
+        [
+          223.8638,
+          83.1223
+        ],
+        [
+          213.2663,
+          95.0334
+        ],
+        [
+          206.9827,
+          109.6831
+        ],
+        [
+          205.6667,
+          125.5573
+        ],
+        [
+          209.4404,
+          141.0418
+        ],
+        [
+          217.9114,
+          154.5448
+        ],
+        [
+          230.2258,
+          164.6638
+        ],
+        [
+          245.1111,
+          170.3633
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            261.0335,
+            171.0647
+          ],
+          [
+            276.3546,
+            166.6787
+          ],
+          [
+            289.5056,
+            157.6841
+          ],
+          [
+            299.1358,
+            144.9825
+          ],
+          [
+            304.2515,
+            129.8876
+          ],
+          [
+            304.1295,
+            112.8
+          ],
+          [
+            298.2207,
+            96.7589
+          ],
+          [
+            287.231,
+            83.6566
+          ],
+          [
+            272.459,
+            75.0627
+          ],
+          [
+            255.6389,
+            71.9903
+          ],
+          [
+            238.7753,
+            74.7844
+          ],
+          [
+            223.8638,
+            83.1223
+          ],
+          [
+            213.2663,
+            95.0334
+          ],
+          [
+            206.9827,
+            109.6831
+          ],
+          [
+            205.6667,
+            125.5573
+          ],
+          [
+            209.4404,
+            141.0418
+          ],
+          [
+            217.9114,
+            154.5448
+          ],
+          [
+            230.2258,
+            164.6638
+          ],
+          [
+            245.1111,
+            170.3633
+          ]
+        ],
+        [
+          [
+            173.177,
+            5.3322
+          ],
+          [
+            188.4981,
+            0.9573
+          ],
+          [
+            201.6491,
+            -8.0373
+          ],
+          [
+            211.2792,
+            -20.7388
+          ],
+          [
+            216.395,
+            -35.8337
+          ],
+          [
+            216.273,
+            -52.9324
+          ],
+          [
+            210.3642,
+            -68.9736
+          ],
+          [
+            199.3745,
+            -82.0647
+          ],
+          [
+            184.6024,
+            -90.6586
+          ],
+          [
+            167.7911,
+            -93.7421
+          ],
+          [
+            150.9274,
+            -90.9369
+          ],
+          [
+            136.0073,
+            -82.5991
+          ],
+          [
+            125.4097,
+            -70.6879
+          ],
+          [
+            119.1349,
+            -56.0494
+          ],
+          [
+            117.8102,
+            -40.1641
+          ],
+          [
+            121.5838,
+            -24.6795
+          ],
+          [
+            130.0636,
+            -11.1876
+          ],
+          [
+            142.3692,
+            -1.0687
+          ],
+          [
+            157.2546,
+            4.6309
+          ]
+        ],
+        [
+          [
+            51.2446,
+            -211.1397
+          ],
+          [
+            49.1617,
+            -218.9877
+          ],
+          [
+            48.142,
+            -227.0472
+          ],
+          [
+            48.2117,
+            -235.1736
+          ],
+          [
+            49.3708,
+            -243.2108
+          ],
+          [
+            51.5844,
+            -251.0143
+          ],
+          [
+            54.8265,
+            -258.4616
+          ],
+          [
+            59.0358,
+            -265.4079
+          ],
+          [
+            64.1341,
+            -271.7309
+          ],
+          [
+            70.0255,
+            -277.3191
+          ],
+          [
+            76.6141,
+            -282.0613
+          ],
+          [
+            83.7779,
+            -285.8907
+          ],
+          [
+            91.3861,
+            -288.7182
+          ],
+          [
+            99.3081,
+            -290.5105
+          ],
+          [
+            107.3957,
+            -291.2341
+          ],
+          [
+            115.5094,
+            -290.8667
+          ],
+          [
+            123.5011,
+            -289.4084
+          ],
+          [
+            131.2227,
+            -286.9037
+          ],
+          [
+            138.5433,
+            -283.3972
+          ],
+          [
+            145.3324,
+            -278.9332
+          ],
+          [
+            151.4591,
+            -273.6122
+          ],
+          [
+            156.8275,
+            -267.5119
+          ],
+          [
+            161.3245,
+            -260.7548
+          ],
+          [
+            164.8803,
+            -253.4522
+          ],
+          [
+            167.4338,
+            -245.7378
+          ],
+          [
+            168.9328,
+            -237.7562
+          ],
+          [
+            169.3511,
+            -229.6521
+          ],
+          [
+            168.68,
+            -221.5592
+          ],
+          [
+            166.937,
+            -213.6221
+          ],
+          [
+            164.1482,
+            -205.9967
+          ],
+          [
+            160.7232,
+            -199.3955
+          ],
+          [
+            156.5051,
+            -193.2618
+          ],
+          [
+            151.5724,
+            -187.6847
+          ],
+          [
+            146.0034,
+            -182.7532
+          ],
+          [
+            139.8593,
+            -178.5453
+          ],
+          [
+            133.2533,
+            -175.1278
+          ],
+          [
+            126.2725,
+            -172.5341
+          ],
+          [
+            119.0303,
+            -170.8198
+          ],
+          [
+            111.2739,
+            -169.9849
+          ],
+          [
+            103.4826,
+            -170.163
+          ],
+          [
+            95.7698,
+            -171.3318
+          ],
+          [
+            88.2661,
+            -173.4803
+          ],
+          [
+            81.1024,
+            -176.575
+          ],
+          [
+            74.4005,
+            -180.5602
+          ],
+          [
+            68.2651,
+            -185.3803
+          ],
+          [
+            62.8007,
+            -190.9352
+          ],
+          [
+            58.0859,
+            -197.158
+          ],
+          [
+            54.2164,
+            -203.9262
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Three mapped exterior cooling tower shells."
+    },
+    "featureIds": [
+      "way/651762855",
+      "way/651762857",
+      "way/662472090",
+      "node/2193433744",
+      "node/2193433761",
+      "node/2193433804",
+      "node/6111403495"
+    ],
+    "source": "https://www.openstreetmap.org/way/419366187",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6157903a8652e9eacb05361bb748fcc3d057a0b18cd70b285e1227ccb6e31d68",
+    "notes": "The historical operator journal gives two 435-ft cooling towers and the largest as 492 ft. It records the two original 900-ft chimneys and approximate diameters. The modern permit document gives the same height for the newer pair. NARA photographs show the tapered concrete forms and characteristic riverside silhouette."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the dominant exterior skyline only. Roof polygons are approximate orthophoto readings with estimated eaves and roof top detail.",
+    "Cooling tower radius at grade follows the mapped circumference. Throat profile, wall colours, lower ribs, chimney details and proportions beyond published dimensions are approximate.",
+    "The model omits interior rooms, equipment, access infrastructure, minor ancillary buildings, steam, water and the wider industrial site."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open elevation.",
+  "qaLodCameras": [
+    {
+      "name": "john-e-amos-power-plant-skyline",
+      "position": [
+        864,
+        462,
+        734
+      ],
+      "lookAt": [
+        0,
+        88,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "john-e-amos-power-plant-district",
+      "position": [
+        864,
+        462,
+        734
+      ],
+      "lookAt": [
+        0,
+        88,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "john-e-amos-power-plant-street",
+      "position": [
+        864,
+        462,
+        734
+      ],
+      "lookAt": [
+        0,
+        88,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "john-e-amos-power-plant-closeup",
+      "position": [
+        864,
+        462,
+        734
+      ],
+      "lookAt": [
+        0,
+        88,
+        -3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "kanawha-river-silhouette",
+      "position": [
+        621,
+        119,
+        349
+      ],
+      "lookAt": [
+        0,
+        107,
+        -35
+      ]
+    },
+    {
+      "name": "largest-cooling-tower-shell",
+      "position": [
+        292,
+        78,
+        -327
+      ],
+      "lookAt": [
+        100,
+        66,
+        -224
+      ]
+    },
+    {
+      "name": "industrial-roofs-and-concrete-stacks",
+      "position": [
+        -488,
+        309,
+        -440
+      ],
+      "lookAt": [
+        -113,
+        102,
+        -30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18976,
+    "vertices": 56928,
+    "materials": 5,
+    "bytes": 2381700,
+    "sha256": "sha256:1c1ad5de3fd16f8a5060caaf739cd6ccc51c109c588cbec0a8e09e7d7f0371e9"
+  }
+}

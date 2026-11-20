@@ -46,13 +46,22 @@ export function upsertCompletedModels(previous, desired) {
   for (const model of desired.models) {
     const old = previous?.models?.filter((m) => m.assetId === model.assetId) ?? [];
     if (old.length > 1) throw Error(`Duplicate model association: ${model.assetId}`);
-    if (
-      old[0] &&
-      ['structureId', 'candidateId', 'sourcePath', 'storyContentHash'].some(
-        (key) => old[0][key] !== model[key],
-      )
-    )
-      throw Error(`Existing model/story identity differs: ${model.assetId}`);
+    if (old[0]) {
+      const prior = old[0];
+      const sameStoryAndAssetPath = ['structureId', 'sourcePath', 'storyContentHash'].every(
+        (key) => prior[key] === model[key],
+      );
+      // A schematic catalog asset can gain a dedicated source recipe in place. Its old
+      // plan code and the verified key designate the same asset, path and story.
+      const upgradesPlanCode =
+        prior.state === 'needs-review' &&
+        /^[A-E]\d{2}$/.test(prior.candidateId) &&
+        model.candidateId?.startsWith(`${prior.candidateId.toLowerCase()}_`) &&
+        model.assetId === `molen.worldgen.structure.${model.candidateId}` &&
+        model.sourcePath?.endsWith(`/${model.candidateId}`);
+      if (!sameStoryAndAssetPath || (prior.candidateId !== model.candidateId && !upgradesPlanCode))
+        throw Error(`Existing model/story identity differs: ${model.assetId}`);
+    }
   }
   return {
     ...previous,

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.jagannath_temple_puri",
+  "kind": "static-structure",
+  "title": "Jagannath Temple, Puri",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.jagannath_temple_puri",
+        "output": "assets/places/tg/tgt/jagannath_temple_puri/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fcc82fe68519fbb9263f683e7055b2c173f40f1b72a04290c386e637ccd2a36e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-jagannath-temple-puri",
+        "path": "models/generate-jagannath-temple-puri.mjs"
+      },
+      {
+        "id": "jagannath-temple-puri-model",
+        "path": "models/jagannath-temple-puri-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/precinct-and-gates.json",
+      "reference-rights/commons-singhadwara-1870.json",
+      "reference-rights/commons-hunter-orissa-1872.json",
+      "reference-images/hunter-orissa-vol-1-1872.pdf",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-24195-14544.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

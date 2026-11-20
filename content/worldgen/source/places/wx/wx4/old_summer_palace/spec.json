@@ -1,0 +1,436 @@
+{
+  "planId": "old_summer_palace",
+  "id": "old_summer_palace",
+  "assetId": "molen.worldgen.structure.old_summer_palace",
+  "title": "Old Summer Palace, Great Fountain Ruins",
+  "wikidataId": "Q907894",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 116.3066351,
+    "latitude": 40.0121153
+  },
+  "size": [
+    30.707377433776855,
+    7.7778096199035645,
+    72.6961784362793
+  ],
+  "actualBounds": {
+    "min": [
+      -15.970715522766113,
+      -0.7566094398498535,
+      -38.90876007080078
+    ],
+    "max": [
+      14.736661911010742,
+      7.021200180053711,
+      33.787418365478516
+    ]
+  },
+  "visualBrief": "The present Great Fountain, Yuanyingguan and Fountain View ruins at the Old Summer Palace, including the broken Baroque arch, white marble columns, and five-panel viewing screen.",
+  "nativeAxes": {
+    "x": "across the stone screen toward the east",
+    "y": "up",
+    "z": "south toward the viewing area"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Photos_of_Ruins_of_Old_Summer_Palace_-_2019_-_13.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ruins_of_Old_Summer_Palace_(Yuanmingyuan)_-_2019_-_13.jpg"
+  ],
+  "stories": [
+    {
+      "id": "old-summer-palace-wp",
+      "url": "https://qualla.com/old-summer-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:1d49926aec1795c1a0952260b8c7b07052c435320ebbc1ece03241d57a85b2eb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/old_summer_palace/models/old-summer-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/wx/wx4/old_summer_palace/models/old-summer-palace-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.37,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.67,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_marble",
+    "stone_ashlar",
+    "stone_drywall",
+    "brick"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "exact-native-frame",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The independent original terrain anchors the three named sites and their open approaches. The fallen masonry and architectural terraces are estimated above the existing grade.",
+    "anchor": [
+      116.3066351,
+      40.0121153
+    ],
+    "heading": 0.1524862542302179,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        116.3066573692849,
+        40.01200431404946
+      ],
+      "modelHeight": 0,
+      "basis": "Original path grade immediately south of the named Great Fountain ruin, outside the broken wall."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/584882143",
+      "node/269720154",
+      "node/5546986123",
+      "node/494772254"
+    ],
+    "source": "https://www.openstreetmap.org/way/584882143",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3b0049b33b7dc6027fa9f5b90ca492320b2f09d4fac28fbfc949a6ad3b88d90c",
+    "notes": "Leiem’s two exact CC0 originals show the fractured central carved fountain screen and the stepped viewing dais with five stone panels. Government conservation records identify the white marble Yuanyingguan fragments and elevated base."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers three visible remains on the Western Mansions axis, anchored at the Great Fountain on the story’s original site. The wider park grounds and other ruins occupy separate places.",
+    "The standing fragments, carved shapes and collapsed courses follow the surviving form documented by public-domain photography. Precise stone profiles, restoration joints, heights and fragment positions are estimates.",
+    "The original terrain preserves the broad site grade. Low ruin platforms reproduce above-ground shapes. Lost fountains, bronze sculpture, original palace interiors and temporary visitor barriers are outside the modeled scope."
+  ],
+  "sourceLicense": "Original mesh under the repository license. Leiem’s photographs are CC0. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "old-summer-palace-skyline",
+      "position": [
+        47,
+        40,
+        76
+      ],
+      "lookAt": [
+        -1,
+        1,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "old-summer-palace-district",
+      "position": [
+        47,
+        40,
+        76
+      ],
+      "lookAt": [
+        -1,
+        1,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "old-summer-palace-street",
+      "position": [
+        47,
+        40,
+        76
+      ],
+      "lookAt": [
+        -1,
+        1,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "old-summer-palace-closeup",
+      "position": [
+        47,
+        40,
+        76
+      ],
+      "lookAt": [
+        -1,
+        1,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "great-fountain-broken-arch",
+      "position": [
+        8,
+        6.1,
+        22
+      ],
+      "lookAt": [
+        0,
+        2.65,
+        -1.4
+      ]
+    },
+    {
+      "name": "yuanyingguan-column-fragments",
+      "position": [
+        23,
+        12,
+        -10
+      ],
+      "lookAt": [
+        0,
+        2,
+        -29
+      ]
+    },
+    {
+      "name": "five-panels-and-viewing-dais",
+      "position": [
+        -11,
+        5,
+        16
+      ],
+      "lookAt": [
+        -1,
+        2.45,
+        32
+      ]
+    },
+    {
+      "name": "three-ruins-on-the-axis",
+      "position": [
+        61,
+        45,
+        30
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5695,
+    "vertices": 17085,
+    "materials": 5,
+    "bytes": 1078368,
+    "sha256": "sha256:2bdece6ff19b4c48de0a2e5159a7757410183196e7adef139a425732b97c2e78"
+  }
+}

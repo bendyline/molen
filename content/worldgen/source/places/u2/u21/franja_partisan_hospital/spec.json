@@ -1,0 +1,773 @@
+{
+  "planId": "franja_partisan_hospital",
+  "id": "franja_partisan_hospital",
+  "assetId": "molen.worldgen.structure.franja_partisan_hospital",
+  "title": "Franja Partisan Hospital",
+  "wikidataId": "Q1003498",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 14.028214,
+    "latitude": 46.154041
+  },
+  "size": [
+    37.701406478881836,
+    32.82220387458801,
+    83.93952178955078
+  ],
+  "actualBounds": {
+    "min": [
+      -17.344436645507812,
+      -1.8242676258087158,
+      -41.251468658447266
+    ],
+    "max": [
+      20.356969833374023,
+      30.997936248779297,
+      42.688053131103516
+    ]
+  },
+  "visualBrief": "Franja’s timber field hospital huts, weathered roofs and linked public footway in the Pasice gorge as pictured just before the 2007 flood.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south toward the lower Pasice gorge"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2007-09-15",
+    "validFrom": "2006-10-29",
+    "validUntil": "2007-09-18"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:FranjaPartizanskaBolnisnica.jpg",
+    "https://commons.wikimedia.org/wiki/File:BolnicaFranja1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "franja-partisan-hospital-wp",
+      "url": "https://qualla.com/franja-partisan-hospital/"
+    }
+  ],
+  "referenceInputHash": "sha256:4d1038f0297e83fc98de71c095ad4f590671db39e678060e98f582030d50dfce",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u2/u21/franja_partisan_hospital/models/franja-partisan-hospital-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u2/u21/franja_partisan_hospital/models/franja-partisan-hospital-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.76,
+    "surfaces": {
+      "walls": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "cliff": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.65,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cliff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cliff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.053,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "cliff": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_weatherboard",
+    "wood_painted_shingle",
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "wood_plain",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -8,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The lower Pasice approach anchors the original gorge heights. Cabins and paths use sampled ground at their recorded location.",
+    "anchor": [
+      14.028214,
+      46.154041
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        14.028202069580594,
+        46.153704133309375
+      ],
+      "modelHeight": 0,
+      "basis": "Independently sampled lower approach just below the documented timber huts."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -0.6323,
+          -32.6277
+        ],
+        [
+          2.1438,
+          -39.5629
+        ],
+        [
+          6.1305,
+          -42.6799
+        ],
+        [
+          12.716,
+          -43.2031
+        ],
+        [
+          17.3968,
+          -41.2995
+        ],
+        [
+          18.9545,
+          -36.0898
+        ],
+        [
+          18.9545,
+          -29.6778
+        ],
+        [
+          18.2605,
+          -22.7537
+        ],
+        [
+          14.9677,
+          -17.0319
+        ],
+        [
+          10.8113,
+          -9.2284
+        ],
+        [
+          9.4233,
+          -3.3396
+        ],
+        [
+          9.0763,
+          5.6773
+        ],
+        [
+          8.3822,
+          17.2879
+        ],
+        [
+          6.6472,
+          26.1267
+        ],
+        [
+          5.4365,
+          32.5387
+        ],
+        [
+          2.3211,
+          38.7837
+        ],
+        [
+          0.0617,
+          42.4239
+        ],
+        [
+          -6.5238,
+          44.8506
+        ],
+        [
+          -9.9862,
+          41.3886
+        ],
+        [
+          -12.4153,
+          38.2605
+        ],
+        [
+          -14.667,
+          34.4534
+        ],
+        [
+          -14.8443,
+          27.6963
+        ],
+        [
+          -16.5717,
+          23.1878
+        ],
+        [
+          -20.3888,
+          16.0745
+        ],
+        [
+          -19.5251,
+          8.6273
+        ],
+        [
+          -12.4153,
+          4.642
+        ],
+        [
+          -9.1225,
+          -0.7347
+        ],
+        [
+          -7.7345,
+          -9.2284
+        ],
+        [
+          -6.1768,
+          -19.6256
+        ],
+        [
+          -3.7477,
+          -27.251
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            11.5053,
+            -36.4905
+          ],
+          [
+            2.7067,
+            -29.8336
+          ],
+          [
+            6.6472,
+            -24.6239
+          ],
+          [
+            15.4458,
+            -31.2808
+          ]
+        ],
+        [
+          [
+            5.3671,
+            -24.2899
+          ],
+          [
+            9.4772,
+            -23.6665
+          ],
+          [
+            8.6753,
+            -18.4011
+          ],
+          [
+            4.5651,
+            -19.0245
+          ]
+        ],
+        [
+          [
+            1.1259,
+            -18.3009
+          ],
+          [
+            6.7783,
+            -18.1451
+          ],
+          [
+            6.5546,
+            -10.2191
+          ],
+          [
+            0.9022,
+            -10.375
+          ]
+        ],
+        [
+          [
+            -2.4831,
+            -1.9481
+          ],
+          [
+            4.6422,
+            -1.9592
+          ],
+          [
+            4.6499,
+            1.0909
+          ],
+          [
+            6.4544,
+            1.0909
+          ],
+          [
+            6.4621,
+            8.7497
+          ],
+          [
+            0.3316,
+            8.7608
+          ],
+          [
+            0.3239,
+            1.3136
+          ],
+          [
+            -2.4831,
+            1.3136
+          ]
+        ],
+        [
+          [
+            -1.843,
+            11.4993
+          ],
+          [
+            -1.8584,
+            4.2413
+          ],
+          [
+            -7.3335,
+            4.2524
+          ],
+          [
+            -7.3258,
+            11.5104
+          ]
+        ],
+        [
+          [
+            -7.4877,
+            17.4104
+          ],
+          [
+            -3.8017,
+            17.9336
+          ],
+          [
+            -3.2002,
+            13.6812
+          ],
+          [
+            -6.8785,
+            13.158
+          ]
+        ],
+        [
+          [
+            -2.2594,
+            27.7297
+          ],
+          [
+            3.1771,
+            27.5182
+          ],
+          [
+            2.9457,
+            21.2732
+          ],
+          [
+            -2.4908,
+            21.4847
+          ]
+        ],
+        [
+          [
+            -1.7196,
+            28.6314
+          ],
+          [
+            -1.8199,
+            32.4496
+          ],
+          [
+            1.7273,
+            32.5387
+          ],
+          [
+            1.8276,
+            28.7204
+          ]
+        ],
+        [
+          [
+            -6.5161,
+            28.8651
+          ],
+          [
+            -6.678,
+            36.112
+          ],
+          [
+            -11.9757,
+            35.9896
+          ],
+          [
+            -11.8061,
+            28.7427
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The nine surviving mapped pavilion traces define the dated replacement building positions."
+    },
+    "featureIds": [
+      "way/933916182",
+      "way/933916183",
+      "way/933916184",
+      "way/933916185",
+      "way/933916186",
+      "way/933916187",
+      "way/933916188",
+      "way/933916189",
+      "way/933916190"
+    ],
+    "source": "https://www.openstreetmap.org/way/933916191",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:72cfe893402285cf9c37b97bc1ff6766e1039b4f60179901315232e8a8bb3a37",
+    "notes": "The two recovered creator-signed public-domain Qualla images document the low weathered gray timber walls, small ochre shutters, pale pitched board roofs, footbridge and rocky footway."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The placement shows the documented pavilion exteriors in the pre-flood preserved site. The hospital had fourteen named cabins; the model covers the nine structures with mapped footprints and the adjoining visible walk.",
+    "The surviving map mostly records the reconstructed site. Exact pre-flood footprints, the small ledges under the huts and the historical stream bed are approximate.",
+    "The two photos document a preserved appearance from 2006–2007, several decades after the hospital operated. Current flood repair is outside this historical placement."
+  ],
+  "sourceLicense": "Original mesh under the repository license. Žiga’s exact Qualla originals were released to the public domain. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "franja-skyline",
+      "position": [
+        41,
+        68,
+        77
+      ],
+      "lookAt": [
+        2,
+        13,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "franja-district",
+      "position": [
+        41,
+        68,
+        77
+      ],
+      "lookAt": [
+        2,
+        13,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "franja-street",
+      "position": [
+        41,
+        68,
+        77
+      ],
+      "lookAt": [
+        2,
+        13,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "franja-closeup",
+      "position": [
+        41,
+        68,
+        77
+      ],
+      "lookAt": [
+        2,
+        13,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "timber-huts-and-pasice-gorge",
+      "position": [
+        -7,
+        30,
+        67
+      ],
+      "lookAt": [
+        0,
+        12,
+        -8
+      ]
+    },
+    {
+      "name": "weathered-board-cladding-and-walkway",
+      "position": [
+        -2,
+        14,
+        28
+      ],
+      "lookAt": [
+        1,
+        11,
+        8
+      ]
+    },
+    {
+      "name": "mapped-huts-on-both-banks",
+      "position": [
+        38,
+        57,
+        -21
+      ],
+      "lookAt": [
+        0,
+        13,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3526,
+    "vertices": 10578,
+    "materials": 6,
+    "bytes": 635900,
+    "sha256": "sha256:56ac0e5b3fd0f639cba323e6aa7db4e34fcfa02be83b2de810decc6caa7bb1fa"
+  }
+}

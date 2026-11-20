@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tokai_nuclear_power_plant",
+  "kind": "static-structure",
+  "title": "Tōkai Power Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tokai_nuclear_power_plant",
+        "output": "assets/places/xn/xn7/tokai_nuclear_power_plant/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6bf609f8864d5aff02736d2d6eadd2b61d80ff7c50f5f71e3f90fb6a76b7193b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tokai-nuclear-power-plant",
+        "path": "models/generate-tokai-nuclear-power-plant.mjs"
+      },
+      {
+        "id": "tokai-nuclear-power-plant-model",
+        "path": "models/tokai-nuclear-power-plant-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/original-tokai-i-envelope.json",
+      "reference-rights/tokai-written-history.json",
+      "reference-rights/doe-hd-15-058-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-15-29182-12815.txt",
+      "terrain-sources/gsi-15-29182-12814.txt",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

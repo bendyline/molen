@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fram_museum",
+  "kind": "static-structure",
+  "title": "Fram Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fram_museum",
+        "output": "assets/places/u4/u4x/fram_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:32b794de2c7b2e0105a845416631166ebc0f7f71de8b04c60cd757a980c12a68"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fram-museum",
+        "path": "models/generate-fram-museum.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/fram-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fram-museum-three-halls.json",
+      "reference-rights/fram-museum-architecture-facts.json",
+      "reference-rights/qualla-original-screening.json",
+      "reference-images/ida-tolgensbakk-fram-original-2012.jpg",
+      "reference-rights/ida-tolgensbakk-native-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/kartverket-1m-site-provenance.json",
+      "terrain-sources/kartverket-dtm-1m.tif",
+      "terrain-sources/kartverket-dom-1m.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

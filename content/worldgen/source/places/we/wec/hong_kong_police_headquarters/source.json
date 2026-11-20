@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hong_kong_police_headquarters",
+  "kind": "static-structure",
+  "title": "Hong Kong Police Headquarters",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hong_kong_police_headquarters",
+        "output": "assets/places/we/wec/hong_kong_police_headquarters/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3bb6692fc54c6a8aec83c0600c989aed216f70793fd14b5176fcda98aeb858f6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hong-kong-police-headquarters",
+        "path": "models/generate-hong-kong-police-headquarters.mjs"
+      },
+      {
+        "id": "hong-kong-police-headquarters-model",
+        "path": "models/hong-kong-police-headquarters-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/arsenal-house-footprints.json",
+      "reference-rights/arsenal-house-written-evidence.json",
+      "reference-rights/qualla-image-screening.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/landsd-5m-site.asc",
+      "terrain-sources/landsd-5m-grid-provenance.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

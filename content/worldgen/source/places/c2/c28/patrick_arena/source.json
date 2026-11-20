@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.patrick_arena",
+  "kind": "static-structure",
+  "title": "Patrick Arena",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.patrick_arena",
+        "output": "assets/places/c2/c28/patrick_arena/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fcedac85654a11fd5677313d21132f0f0418e49a9484ff4bd2404e7ca0c0dbb9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-patrick-arena",
+        "path": "models/generate-patrick-arena.mjs"
+      },
+      {
+        "id": "patrick-arena-model",
+        "path": "models/patrick-arena-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/epworth-and-cadboro.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/commons-dwyer-opening-photo.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-5159-11331.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

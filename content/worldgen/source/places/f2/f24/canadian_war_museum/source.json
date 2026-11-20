@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canadian_war_museum",
+  "kind": "static-structure",
+  "title": "Canadian War Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canadian_war_museum",
+        "output": "assets/places/f2/f24/canadian_war_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bfac3e5f015e76fd6e893a35c2b3647e381a6af715eb1159ba67299022883058"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canadian-war-museum",
+        "path": "models/generate-canadian-war-museum.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/canadian-war-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/canadian-war-museum-footprint-and-roof-parts.json",
+      "reference-rights/canadian-war-museum-architecture-facts.json",
+      "reference-rights/qualla-original-screening.json",
+      "reference-images/realgrouchy-museum-construction-2004.jpg",
+      "reference-rights/realgrouchy-commons-native-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/nrcan-hrdem-bare-earth.tif",
+      "terrain-sources/nrcan-hrdem-first-return.tif",
+      "terrain-sources/nrcan-ottawa-native-elevation.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

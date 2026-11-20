@@ -1,0 +1,532 @@
+{
+  "planId": "normanton_gaol",
+  "id": "normanton_gaol",
+  "assetId": "molen.worldgen.structure.normanton_gaol",
+  "title": "Normanton Gaol",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.07993896000005,
+    "latitude": -17.668129956453672
+  },
+  "size": [
+    45.93584728240967,
+    7.318218231201172,
+    29.864357948303223
+  ],
+  "actualBounds": {
+    "min": [
+      -12.801207542419434,
+      -0.8813204765319824,
+      -22.73399543762207
+    ],
+    "max": [
+      33.134639739990234,
+      6.4368977546691895,
+      7.130362510681152
+    ]
+  },
+  "visualBrief": "Standing concrete Normanton Gaol at Haig Street: open exercise yards, low iron roofs and rear timber trackers’ quarters.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "normanton-gaol-wp",
+      "url": "https://qualla.com/normanton-gaol/"
+    }
+  ],
+  "referenceInputHash": "sha256:b6c75102b62cb8aa960a3b055c51eda24e7b6ded0a3dee092fe62968ab02373b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rh/rhu/normanton_gaol/models/normanton-gaol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rh/rhu/normanton_gaol/models/normanton-gaol-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "block": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.72,
+        "metallic": 0.13
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.46,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "block": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.13
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_panel",
+    "stone_ashlar",
+    "wood_weatherboard",
+    "metal_corrugated",
+    "metal_painted",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 2.1,
+    "focus": {
+      "center": [
+        8,
+        1.5,
+        -4
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The official heritage description identifies one-storey concrete cells, 3.5 m courtyard walls, the core’s hipped skillion and two roof ventilators, the later pitched roof and three ridge ventilators, and the hipped weatherboard quarters with a covered porch.",
+    "anchor": [
+      141.07993896000005,
+      -17.668129956453672
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.07993896000005,
+        -17.668129956453672
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified terrain at Queensland’s mapped Normanton Gaol point."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "qra/805884",
+      "qra/1290"
+    ],
+    "source": "https://gisservices.qra.qld.gov.au/arcgis/rest/services/Foundation_Data/Queensland_Building_Footprints/FeatureServer/0",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aefb52d4f23f4f5a8d9a95fc0d216661c212a8c9e4e10b946a762817ea0e6451",
+    "notes": "The official heritage description identifies one-storey concrete cells, 3.5 m courtyard walls, the core’s hipped skillion and two roof ventilators, the later pitched roof and three ridge ventilators, and the hipped weatherboard quarters with a covered porch."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The two roof envelopes come from QRA mapping. The exact exercise yard divisions, core and annex roof breakpoints, porch depth and entrance positions are reconstructed from written facts.",
+    "Roof elevations and paint are estimates. Interior fabric, furnishings and proposed park additions are outside scope.",
+    "Original terrain stays unchanged; door thresholds and foundation elevations are approximate.",
+    "No reference imagery was used. The archive candidate is excluded because its applicable rights are unresolved, and the other candidate does not depict this property."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "normanton-gaol-skyline",
+      "position": [
+        -45,
+        30,
+        55
+      ],
+      "lookAt": [
+        8,
+        1.5,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "normanton-gaol-district",
+      "position": [
+        -45,
+        30,
+        55
+      ],
+      "lookAt": [
+        8,
+        1.5,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "normanton-gaol-street",
+      "position": [
+        -45,
+        30,
+        55
+      ],
+      "lookAt": [
+        8,
+        1.5,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "normanton-gaol-closeup",
+      "position": [
+        -45,
+        30,
+        55
+      ],
+      "lookAt": [
+        8,
+        1.5,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "compound-terrain-and-yard-walls",
+      "position": [
+        48,
+        23,
+        -47
+      ],
+      "lookAt": [
+        8,
+        2,
+        -5
+      ]
+    },
+    {
+      "name": "concrete-range-and-ridge-vents",
+      "position": [
+        -27,
+        10,
+        25
+      ],
+      "lookAt": [
+        0,
+        2,
+        -5
+      ]
+    },
+    {
+      "name": "exercise-yard-iron-doors",
+      "position": [
+        40,
+        13,
+        -28
+      ],
+      "lookAt": [
+        6,
+        2,
+        -8
+      ]
+    },
+    {
+      "name": "trackers-quarters-and-porch",
+      "position": [
+        47,
+        9,
+        18
+      ],
+      "lookAt": [
+        26,
+        2,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2036,
+    "vertices": 6108,
+    "materials": 8,
+    "bytes": 478328,
+    "sha256": "sha256:2be08ed03b0d71dec156b92a4e0fa736c2525db4697e0c8912eabcfecdd38657"
+  }
+}

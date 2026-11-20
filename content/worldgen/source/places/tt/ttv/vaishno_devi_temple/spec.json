@@ -1,0 +1,890 @@
+{
+  "planId": "vaishno_devi_temple",
+  "id": "vaishno_devi_temple",
+  "assetId": "molen.worldgen.structure.vaishno_devi_temple",
+  "title": "Vaishno Devi Temple",
+  "wikidataId": "Q611371",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 74.94825,
+    "latitude": 33.03019
+  },
+  "size": [
+    110.19784355163574,
+    87.98384857177734,
+    166.58567810058594
+  ],
+  "actualBounds": {
+    "min": [
+      -80.22525787353516,
+      -67.70157623291016,
+      -58.16773986816406
+    ],
+    "max": [
+      29.972585678100586,
+      20.282272338867188,
+      108.41793823242188
+    ]
+  },
+  "visualBrief": "The Vaishno Devi Holy Bhawan’s stacked white hillside buildings and the immediately adjoining covered approach on Trikuta.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Maa_Vaishno_Devi_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Shri_Mata_Vaishno_Devi_Shrine,_Katra,_Jammu_and_Kashmir,_India.jpg"
+  ],
+  "stories": [
+    {
+      "id": "vaishno-devi-temple-wp",
+      "url": "https://qualla.com/vaishno-devi-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:56d93aedb9f5f143e82e0d984e788c7b5267cd214d3b7cf7404fb0904de118a9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttv/vaishno_devi_temple/models/vaishno-devi-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttv/vaishno_devi_temple/models/vaishno-devi-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.16,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.85,
+        "metallic": 0.16
+      },
+      "window": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.47,
+        "metallic": 0
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.47,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.47,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.47,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "concrete_plain",
+    "stone_ashlar",
+    "metal_corrugated",
+    "window_grid",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -72,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The central Bhawan terrace fixes the model datum. The visible wings were fitted to heights from the original hillside field.",
+    "anchor": [
+      74.94825,
+      33.03019
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        74.94825,
+        33.03014508444125
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain near the central Bhawan public terrace."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -71.5456,
+          -37.036
+        ],
+        [
+          -89.9873,
+          -38.1603
+        ],
+        [
+          -79.9265,
+          18.2898
+        ],
+        [
+          -111.2288,
+          14.3713
+        ],
+        [
+          -116.2592,
+          30.5795
+        ],
+        [
+          -71.5456,
+          41.1993
+        ],
+        [
+          -66.5152,
+          31.7038
+        ],
+        [
+          7.2516,
+          128.9414
+        ],
+        [
+          55.3158,
+          97.0929
+        ],
+        [
+          29.0531,
+          49.0251
+        ],
+        [
+          36.3141,
+          33.3736
+        ],
+        [
+          17.8724,
+          -3.5066
+        ],
+        [
+          35.7541,
+          -30.8912
+        ],
+        [
+          20.1123,
+          -62.1942
+        ],
+        [
+          34.0835,
+          -85.6603
+        ],
+        [
+          86.6181,
+          -80.6287
+        ],
+        [
+          86.6181,
+          -104.6626
+        ],
+        [
+          26.8133,
+          -105.2192
+        ],
+        [
+          -6.7196,
+          -83.9906
+        ],
+        [
+          -11.75,
+          -65.5449
+        ],
+        [
+          -49.7534,
+          -53.8118
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -71.2003,
+            38.3718
+          ],
+          [
+            -69.007,
+            28.4978
+          ],
+          [
+            -77.9852,
+            26.4718
+          ],
+          [
+            -80.1784,
+            36.3458
+          ]
+        ],
+        [
+          [
+            -53.6172,
+            -8.0484
+          ],
+          [
+            -55.7451,
+            -8.182
+          ],
+          [
+            -54.0745,
+            -33.6074
+          ],
+          [
+            -60.4208,
+            -34.0304
+          ],
+          [
+            -62.3994,
+            -3.963
+          ],
+          [
+            -59.6555,
+            -3.7849
+          ],
+          [
+            -59.8702,
+            -0.4453
+          ],
+          [
+            -54.1398,
+            -0.0668
+          ]
+        ],
+        [
+          [
+            12.506,
+            -42.0008
+          ],
+          [
+            22.3895,
+            -42.8246
+          ],
+          [
+            21.1296,
+            -58.1199
+          ],
+          [
+            14.2139,
+            -57.5522
+          ],
+          [
+            15.1005,
+            -46.7208
+          ],
+          [
+            12.142,
+            -46.4759
+          ]
+        ],
+        [
+          [
+            12.7207,
+            6.3563
+          ],
+          [
+            29.9304,
+            -25.3474
+          ],
+          [
+            21.5122,
+            -29.9672
+          ],
+          [
+            4.2931,
+            1.7366
+          ]
+        ],
+        [
+          [
+            6.7383,
+            -18.0672
+          ],
+          [
+            11.3767,
+            -15.607
+          ],
+          [
+            18.227,
+            -28.6648
+          ],
+          [
+            13.598,
+            -31.1249
+          ]
+        ],
+        [
+          [
+            5.3477,
+            -4.3192
+          ],
+          [
+            11.3207,
+            -15.4289
+          ],
+          [
+            6.8503,
+            -17.7666
+          ],
+          [
+            0.9426,
+            -6.6792
+          ]
+        ],
+        [
+          [
+            -5.525,
+            -14.6274
+          ],
+          [
+            0.7933,
+            -11.1208
+          ],
+          [
+            9.8181,
+            -27.3957
+          ],
+          [
+            3.4998,
+            -30.9023
+          ]
+        ],
+        [
+          [
+            -7.8863,
+            -24.9578
+          ],
+          [
+            -12.6553,
+            -15.9855
+          ],
+          [
+            -8.9502,
+            -14.0151
+          ],
+          [
+            -4.1718,
+            -22.9875
+          ]
+        ],
+        [
+          [
+            -41.5125,
+            -30.5127
+          ],
+          [
+            -38.078,
+            -28.854
+          ],
+          [
+            -35.0542,
+            -35.1436
+          ],
+          [
+            -38.4886,
+            -36.8134
+          ]
+        ],
+        [
+          [
+            -39.9446,
+            2.9388
+          ],
+          [
+            -35.1848,
+            5.399
+          ],
+          [
+            -33.8596,
+            2.8275
+          ],
+          [
+            -32.0956,
+            3.7403
+          ],
+          [
+            -22.6601,
+            -14.7164
+          ],
+          [
+            -29.1931,
+            -18.0783
+          ]
+        ],
+        [
+          [
+            -13.7286,
+            9.7182
+          ],
+          [
+            -7.2703,
+            0.0445
+          ],
+          [
+            -13.4206,
+            -4.0966
+          ],
+          [
+            -19.935,
+            5.5437
+          ]
+        ],
+        [
+          [
+            -13.8499,
+            17.8334
+          ],
+          [
+            -9.3048,
+            14.9502
+          ],
+          [
+            -12.45,
+            9.952
+          ],
+          [
+            -16.9951,
+            12.8463
+          ]
+        ],
+        [
+          [
+            -29.6598,
+            12.7238
+          ],
+          [
+            -27.4106,
+            8.7831
+          ],
+          [
+            -32.021,
+            6.1226
+          ],
+          [
+            -34.2702,
+            10.0633
+          ]
+        ],
+        [
+          [
+            -4.3771,
+            14.5049
+          ],
+          [
+            0.9893,
+            24.7018
+          ],
+          [
+            4.7131,
+            22.7314
+          ],
+          [
+            -0.6533,
+            12.5457
+          ]
+        ],
+        [
+          [
+            13.0566,
+            45.6299
+          ],
+          [
+            0.2893,
+            28.7093
+          ],
+          [
+            -3.1825,
+            31.3476
+          ],
+          [
+            9.5848,
+            48.2681
+          ]
+        ],
+        [
+          [
+            23.8081,
+            38.5611
+          ],
+          [
+            10.4808,
+            19.8483
+          ],
+          [
+            2.6785,
+            25.4142
+          ],
+          [
+            18.8337,
+            48.1123
+          ],
+          [
+            24.3121,
+            44.205
+          ],
+          [
+            21.4749,
+            40.2197
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Each of the selected Overture building outlines bounds the corresponding authored roof and replaces ordinary building massing."
+    },
+    "featureIds": [
+      "overture/building/baac89ef-7df3-4e33-ae85-d7197da05446",
+      "overture/building/59fd866c-93a3-4d48-a8f7-ad420f35dae3",
+      "overture/building/d9059d56-c6f9-4206-a411-6fe5e5833432",
+      "overture/building/d7b6e321-031c-4231-8966-51356e4549c8",
+      "overture/building/98dc7c5d-774b-4c95-b924-bd2b394eb828",
+      "overture/building/67bb9201-c6e1-4f6f-aa1d-3dcb35e47384",
+      "overture/building/6946e414-17a4-46f6-852b-73d1724a610b",
+      "overture/building/cf201815-11aa-4ba6-855a-f616f641021b",
+      "overture/building/1dce7fde-31e9-429f-ad27-593fa7e72c0d",
+      "overture/building/d275d480-cd8a-4f7b-a55b-9d9fbb0b9266",
+      "overture/building/5d77f2a4-377a-4fde-8a2b-3b13f300c861",
+      "overture/building/e6867db8-9b9b-42a8-ab33-e5b4baa6bb85",
+      "overture/building/0dcea0e8-fe0e-4041-a9bf-0f1e697887db",
+      "overture/building/9f35e73c-4b0e-4b7b-9752-3924ddfa1eb9",
+      "overture/building/3d2d6bba-7d33-4912-b795-26979df2cd78",
+      "overture/building/43188627-8511-481e-ba86-bb297e2d1c19"
+    ],
+    "source": "https://www.openstreetmap.org/way/166322199",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2955d0ec9e8fe8b6d818bb6b3746c62a9d8835da3932089c455c3dba56960417",
+    "notes": "Two CC0 2025 views establish stacked white plaster volumes, open galleries, compressed window grids, red roof accents and the pale continuous roof of the pilgrim approach."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "The reconstruction covers publicly visible buildings of the Holy Bhawan. The cave interior, distant pilgrimage gates and the separate Bhairon Temple are outside its scope.",
+    "Footprints come from aerial-derived Overture vector geometry. Individual block names, roofs behind the main frontage, façade heights and floor levels are approximate.",
+    "The covered approach is a partial exterior based on the mapped hillside track and photos. Its framing and deck elevations are estimated.",
+    "The original source terrain is kept independent. The source-scale elevation field cannot resolve the real retaining benches at each floor level."
+  ],
+  "sourceLicense": "Original mesh under the repository license. Supplementary creator photographs are released under CC0. OpenStreetMap and Overture building vectors are attributed in the geographic source file.",
+  "qaLodCameras": [
+    {
+      "name": "bhawan-skyline",
+      "position": [
+        -163,
+        41,
+        190
+      ],
+      "lookAt": [
+        -14,
+        1,
+        20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bhawan-district",
+      "position": [
+        -163,
+        41,
+        190
+      ],
+      "lookAt": [
+        -14,
+        1,
+        20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bhawan-street",
+      "position": [
+        -163,
+        41,
+        190
+      ],
+      "lookAt": [
+        -14,
+        1,
+        20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bhawan-closeup",
+      "position": [
+        -163,
+        41,
+        190
+      ],
+      "lookAt": [
+        -14,
+        1,
+        20
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bhawan-from-the-valley",
+      "position": [
+        -158,
+        30,
+        167
+      ],
+      "lookAt": [
+        -13,
+        -10,
+        12
+      ]
+    },
+    {
+      "name": "terraces-and-rooftops",
+      "position": [
+        -108,
+        46,
+        111
+      ],
+      "lookAt": [
+        -15,
+        1,
+        16
+      ]
+    },
+    {
+      "name": "covered-pilgrim-approach",
+      "position": [
+        -57,
+        24,
+        106
+      ],
+      "lookAt": [
+        5,
+        0,
+        51
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7738,
+    "vertices": 23214,
+    "materials": 6,
+    "bytes": 1134264,
+    "sha256": "sha256:a5697557f564d8080c2e5b0ea038d711283d9052433b8125c14be460fe524d89"
+  }
+}

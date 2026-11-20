@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.birdsville_courthouse",
+  "kind": "static-structure",
+  "title": "Birdsville Courthouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.birdsville_courthouse",
+        "output": "assets/places/r5/r57/birdsville_courthouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:818d3f0b1ed981906239b385ab2d5404d05ce53ac91e1e41a4528ebb89e45b8e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-birdsville-courthouse",
+        "path": "models/generate-birdsville-courthouse.mjs"
+      },
+      {
+        "id": "birdsville-courthouse-model",
+        "path": "models/birdsville-courthouse-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/original-courthouse-envelope.json",
+      "reference-rights/courthouse-architecture-evidence.json",
+      "reference-rights/archival-courthouse-commons.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-29067-18826.png",
+      "terrain-sources/terrarium-15-29068-18826.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

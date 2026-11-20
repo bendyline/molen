@@ -1,0 +1,864 @@
+{
+  "planId": "ambras_castle",
+  "id": "ambras_castle",
+  "assetId": "molen.worldgen.structure.ambras_castle",
+  "title": "Ambras Castle",
+  "wikidataId": "Q700764",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 11.43444,
+    "latitude": 47.25625
+  },
+  "size": [
+    148.6189193725586,
+    38.09929943084717,
+    147.14789581298828
+  ],
+  "actualBounds": {
+    "min": [
+      -73.06739044189453,
+      -2.839900016784668,
+      -66.08670806884766
+    ],
+    "max": [
+      75.55152893066406,
+      35.2593994140625,
+      81.06118774414062
+    ]
+  },
+  "visualBrief": "Ambras Castle in Innsbruck, including the white Upper Castle and red-and-white shutters, the Spanish Hall and its circular windows, the Lower Castle and two western ranges.",
+  "nativeAxes": {
+    "x": "east-northeast along the hall",
+    "y": "up",
+    "z": "south-southeast toward the garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Schloss_Ambras_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Innsbruck_2_248.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ambras-castle-wp",
+      "url": "https://qualla.com/ambras-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:8afe4bae95582268bf026ef123fe21b968e2a25fc5db464b82a00d49b52f6886",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u2/u22/ambras_castle/models/ambras-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u2/u22/ambras_castle/models/ambras-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.85,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.09
+      },
+      "shutter": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.77,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.57,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.09
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.67,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.09
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.09
+          },
+          "shutter": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.77,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "stone_ashlar",
+    "metal_painted",
+    "wood_painted_lap"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "exact-native-frame",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent native terrain beneath the garden-facing Spanish Hall. The upper court and lower ranges sit at their distinct terrain-constrained working elevations.",
+    "anchor": [
+      11.43444,
+      47.25625
+    ],
+    "heading": 0.18518438018754665,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        11.434569352509001,
+        47.256239942366726
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain at the open garden approach just below the western end of the Spanish Hall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -73.06739,
+          51.63824
+        ],
+        [
+          -70.78174,
+          39.64224
+        ],
+        [
+          -65.34112,
+          11.2149
+        ],
+        [
+          -61.01471,
+          4.36927
+        ],
+        [
+          15.28572,
+          -66.08671
+        ],
+        [
+          38.17438,
+          -59.34131
+        ],
+        [
+          46.53742,
+          -55.11314
+        ],
+        [
+          74.33194,
+          -35.40962
+        ],
+        [
+          75.49064,
+          -31.82886
+        ],
+        [
+          61.5085,
+          -5.03558
+        ],
+        [
+          3.14216,
+          57.04669
+        ],
+        [
+          -36.61636,
+          81.06119
+        ],
+        [
+          -49.18472,
+          78.55952
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            61.13211,
+            -13.73619
+          ],
+          [
+            64.28936,
+            -13.64307
+          ],
+          [
+            64.95842,
+            -18.2405
+          ],
+          [
+            65.39917,
+            -21.24982
+          ],
+          [
+            67.17693,
+            -26.96466
+          ],
+          [
+            73.22394,
+            -28.01771
+          ],
+          [
+            75.49064,
+            -31.82886
+          ],
+          [
+            74.33194,
+            -35.40962
+          ],
+          [
+            71.5546,
+            -36.91523
+          ],
+          [
+            66.54166,
+            -35.88365
+          ],
+          [
+            48.27737,
+            -53.60933
+          ],
+          [
+            46.92101,
+            -54.78079
+          ],
+          [
+            46.53742,
+            -55.11314
+          ],
+          [
+            38.17438,
+            -59.34131
+          ],
+          [
+            32.12907,
+            -60.02076
+          ],
+          [
+            26.45201,
+            -57.94706
+          ],
+          [
+            23.67241,
+            -51.80831
+          ],
+          [
+            16.94884,
+            -37.3366
+          ],
+          [
+            22.28996,
+            -28.91778
+          ],
+          [
+            22.22906,
+            -26.66407
+          ],
+          [
+            24.32375,
+            -25.86395
+          ],
+          [
+            28.41402,
+            -21.51883
+          ],
+          [
+            29.63389,
+            -20.31631
+          ],
+          [
+            58.55058,
+            -14.27642
+          ]
+        ],
+        [
+          [
+            23.89634,
+            -14.92422
+          ],
+          [
+            6.78327,
+            -14.91355
+          ],
+          [
+            6.82441,
+            -13.94317
+          ],
+          [
+            6.97233,
+            -10.17802
+          ],
+          [
+            7.10569,
+            -6.86861
+          ],
+          [
+            7.1931,
+            -2.28803
+          ],
+          [
+            58.7031,
+            -2.28803
+          ],
+          [
+            58.61167,
+            -5.00064
+          ],
+          [
+            61.5085,
+            -5.03558
+          ],
+          [
+            61.13211,
+            -13.73619
+          ],
+          [
+            58.55058,
+            -14.27642
+          ],
+          [
+            29.63389,
+            -20.31631
+          ],
+          [
+            28.41402,
+            -21.51883
+          ],
+          [
+            24.92424,
+            -17.41583
+          ]
+        ],
+        [
+          [
+            -3.00398,
+            42.01016
+          ],
+          [
+            3.14216,
+            57.04669
+          ],
+          [
+            -14.8451,
+            64.39113
+          ],
+          [
+            -28.386,
+            74.75436
+          ],
+          [
+            -36.61636,
+            81.06119
+          ],
+          [
+            -41.23053,
+            73.48074
+          ],
+          [
+            -49.18472,
+            78.55952
+          ],
+          [
+            -55.67897,
+            69.93601
+          ],
+          [
+            -53.4052,
+            67.23609
+          ],
+          [
+            -50.89547,
+            68.81615
+          ],
+          [
+            -49.29869,
+            67.80151
+          ],
+          [
+            -73.06739,
+            51.63824
+          ],
+          [
+            -70.78174,
+            39.64224
+          ],
+          [
+            -68.08103,
+            25.59478
+          ],
+          [
+            -67.25937,
+            21.33172
+          ],
+          [
+            -65.34112,
+            11.2149
+          ],
+          [
+            -61.71245,
+            11.62285
+          ],
+          [
+            -27.18215,
+            14.94292
+          ],
+          [
+            -27.76614,
+            18.92206
+          ],
+          [
+            -28.2871,
+            22.48263
+          ],
+          [
+            -29.07914,
+            27.73656
+          ],
+          [
+            -51.83453,
+            25.28588
+          ],
+          [
+            -55.79816,
+            24.86048
+          ],
+          [
+            -58.97852,
+            41.79672
+          ],
+          [
+            -59.84786,
+            46.5605
+          ],
+          [
+            -38.53459,
+            61.01797
+          ],
+          [
+            -24.7251,
+            51.06748
+          ]
+        ],
+        [
+          [
+            -61.71245,
+            11.62285
+          ],
+          [
+            -61.01471,
+            4.36927
+          ],
+          [
+            -50.54225,
+            5.37973
+          ],
+          [
+            -50.25567,
+            2.45479
+          ],
+          [
+            -44.82802,
+            2.98455
+          ],
+          [
+            -44.92543,
+            3.99694
+          ],
+          [
+            -26.29934,
+            5.79866
+          ],
+          [
+            -27.18215,
+            14.94292
+          ]
+        ],
+        [
+          [
+            0.27603,
+            -51.41177
+          ],
+          [
+            -7.17107,
+            -44.07481
+          ],
+          [
+            -1.53981,
+            -38.35376
+          ],
+          [
+            5.91677,
+            -45.70027
+          ]
+        ],
+        [
+          [
+            21.23295,
+            -60.00068
+          ],
+          [
+            15.28572,
+            -66.08671
+          ],
+          [
+            0.27603,
+            -51.41177
+          ],
+          [
+            5.91677,
+            -45.70027
+          ],
+          [
+            6.23274,
+            -45.33529
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Only the six mapped building extents with authored structures replace generic volumes."
+    },
+    "featureIds": [
+      "way/102400571",
+      "way/44221564",
+      "way/44221565",
+      "way/102372109",
+      "way/1327639760",
+      "way/100190401",
+      "way/100190402",
+      "way/1327641877"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1432849",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d152d58c0421936f4102eefe81df45442f28cc58cabe4ea016f219ff6fb435f1",
+    "notes": "Two exact public-domain Qualla photographs show the standing white upper palace, red and white shutters, green belvedere, Spanish Hall oculi and roof dormers. The official operator describes the five-sided Lower Castle court and 43 by 13 metre Spanish Hall interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the standing hilltop complex. The upper court and lower ranges follow their mapped plans. Individual rooms, old grotto interiors and outlying landscape structures are outside the model scope.",
+    "Roof pitches, wall sections, floors, patterning, the measured exterior oculus rhythm and masonry relief are architectural estimates tied to the public-domain exterior photographs and documented hall dimensions.",
+    "The two structural levels and connecting approaches use the original DEM and the established hill geometry. Hidden foundation details and terrace elevations are approximate.",
+    "The ground rises along the southern side of the Lower Castle. The section heights follow that rise approximately while keeping the open inner court and unmodified elevation samples."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The two exact creator-released photographs are public domain. Mapped geometry © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "ambras-skyline",
+      "position": [
+        -151,
+        99,
+        170
+      ],
+      "lookAt": [
+        -1,
+        11,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ambras-district",
+      "position": [
+        -151,
+        99,
+        170
+      ],
+      "lookAt": [
+        -1,
+        11,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ambras-street",
+      "position": [
+        -151,
+        99,
+        170
+      ],
+      "lookAt": [
+        -1,
+        11,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ambras-closeup",
+      "position": [
+        -151,
+        99,
+        170
+      ],
+      "lookAt": [
+        -1,
+        11,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "upper-castle-and-spanish-hall",
+      "position": [
+        -26,
+        31,
+        104
+      ],
+      "lookAt": [
+        31,
+        13,
+        -19
+      ]
+    },
+    {
+      "name": "spanish-hall-from-the-garden",
+      "position": [
+        38,
+        7,
+        49
+      ],
+      "lookAt": [
+        31,
+        4,
+        -6
+      ]
+    },
+    {
+      "name": "lower-castle-pentagonal-court",
+      "position": [
+        19,
+        63,
+        114
+      ],
+      "lookAt": [
+        -38,
+        6,
+        43
+      ]
+    },
+    {
+      "name": "upper-court-and-belvedere",
+      "position": [
+        101,
+        67,
+        -112
+      ],
+      "lookAt": [
+        44,
+        18,
+        -36
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10745,
+    "vertices": 32235,
+    "materials": 6,
+    "bytes": 1494556,
+    "sha256": "sha256:9dbcec77a5a7f19f6d09f37f2ba1c922a6fe7b824fc54f4bafe36a162abca479"
+  }
+}

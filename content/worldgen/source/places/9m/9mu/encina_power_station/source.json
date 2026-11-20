@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.encina_power_station",
+  "kind": "static-structure",
+  "title": "Encina Power Station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.encina_power_station",
+        "output": "assets/places/9m/9mu/encina_power_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:19d3df33edd2e2b125de7ba207b41cdba5a28dfcef57539eaf3ddeb77fa134e8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-encina-power-station",
+        "path": "models/generate-encina-power-station.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/encina-power-station-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/encina-historic-site.json",
+      "native-map/naip-2018-encina-aerial.jpg",
+      "reference-rights/naip-2018-tile-913.json",
+      "reference-rights/architecture-and-demolition-facts.json",
+      "reference-rights/encina-power-station-creator-release.json",
+      "reference-rights/agua-hedionda-lagoon-1-creator-release.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-5703-13184.png",
+      "terrain-sources/terrarium-15-5703-13183.png",
+      "terrain-sources/terrarium-15-5704-13183.png",
+      "terrain-sources/terrarium-15-5704-13184.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

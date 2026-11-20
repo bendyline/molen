@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.franja_partisan_hospital",
+  "kind": "static-structure",
+  "title": "Franja Partisan Hospital",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.franja_partisan_hospital",
+        "output": "assets/places/u2/u21/franja_partisan_hospital/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:56ac0e5b3fd0f639cba323e6aa7db4e34fcfa02be83b2de810decc6caa7bb1fa"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-franja-partisan-hospital",
+        "path": "models/generate-franja-partisan-hospital.mjs"
+      },
+      {
+        "id": "franja-partisan-hospital-model",
+        "path": "models/franja-partisan-hospital-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/memorial-and-nine-hut-footprints.json",
+      "reference-rights/historical-evidence.json",
+      "reference-rights/commons-sl-ziga-franja-1.json",
+      "reference-rights/commons-sl-ziga-franja-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17660-11637.png",
+      "terrain-sources/terrarium-15-17661-11637.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

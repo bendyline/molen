@@ -1,0 +1,619 @@
+{
+  "planId": "piyale_pasha_mosque",
+  "id": "piyale_pasha_mosque",
+  "assetId": "molen.worldgen.structure.piyale_pasha_mosque",
+  "title": "Piyale Pasha Mosque",
+  "wikidataId": "Q7199786",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.966,
+    "latitude": 41.0446
+  },
+  "size": [
+    56.45310974121094,
+    45.005699157714844,
+    70.92718124389648
+  ],
+  "actualBounds": {
+    "min": [
+      -30.961999893188477,
+      -4.955699920654297,
+      -23.450000762939453
+    ],
+    "max": [
+      25.49110984802246,
+      40.04999923706055,
+      47.47718048095703
+    ]
+  },
+  "visualBrief": "Piyale Pasha Mosque with six matching lead domes, double galleries, a 39.5-meter north minaret and nearby octagonal türbe.",
+  "nativeAxes": {
+    "x": "northeast along the qibla wall",
+    "y": "up",
+    "z": "southeast from court to prayer hall"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cross_sections_and_plan_of_the_Piyale_Pasha_Mosque_in_Istanbul_by_Gurlitt_1912.jpg"
+  ],
+  "stories": [
+    {
+      "id": "piyale-pasha-mosque-wp",
+      "url": "https://qualla.com/piyale-pasha-mosque/"
+    }
+  ],
+  "referenceInputHash": "sha256:d819b2675595c13d17aa4dd105f29a03527ae128b5a96df4337cb036ca517d75",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxk/piyale_pasha_mosque/models/piyale-pasha-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxk/piyale_pasha_mosque/models/piyale-pasha-mosque-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.28,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "metal_painted",
+    "stone_marble",
+    "stone_limestone_raw",
+    "brick"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.17,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-exterior",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Open north courtyard fixes the datum, with an independently sampled lower southern tomb and axial prayer hall base.",
+    "anchor": [
+      28.966,
+      41.0446
+    ],
+    "heading": 0.8378358241557237,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.965741202348887,
+        41.04473764329665
+      ],
+      "modelHeight": 0,
+      "basis": "Independent terrain sample in the open court before the north colonnades."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -30.87842,
+          -21.13877
+        ],
+        [
+          -30.78535,
+          -18.24022
+        ],
+        [
+          -30.962,
+          -11.98095
+        ],
+        [
+          -30.81294,
+          26.13562
+        ],
+        [
+          25.49111,
+          26.13562
+        ],
+        [
+          25.4203,
+          23.54464
+        ],
+        [
+          24.18296,
+          -21.73714
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -30.87842,
+            -21.13877
+          ],
+          [
+            -30.78535,
+            -18.24022
+          ],
+          [
+            -30.962,
+            -11.98095
+          ],
+          [
+            -30.81294,
+            26.13562
+          ],
+          [
+            25.49111,
+            26.13562
+          ],
+          [
+            25.4203,
+            23.54464
+          ],
+          [
+            24.18296,
+            -21.73714
+          ]
+        ],
+        [
+          [
+            -14.37854,
+            39.89849
+          ],
+          [
+            -14.87618,
+            41.12597
+          ],
+          [
+            -15.03657,
+            42.44523
+          ],
+          [
+            -14.84673,
+            43.7542
+          ],
+          [
+            -14.33241,
+            44.97438
+          ],
+          [
+            -13.52494,
+            46.02104
+          ],
+          [
+            -12.46397,
+            46.81688
+          ],
+          [
+            -11.2361,
+            47.31561
+          ],
+          [
+            -9.92233,
+            47.47718
+          ],
+          [
+            -8.61723,
+            47.29636
+          ],
+          [
+            -7.39025,
+            46.77919
+          ],
+          [
+            -6.34394,
+            45.9615
+          ],
+          [
+            -5.55277,
+            44.91033
+          ],
+          [
+            -5.05513,
+            43.68285
+          ],
+          [
+            -4.88913,
+            42.36984
+          ],
+          [
+            -5.07069,
+            41.05342
+          ],
+          [
+            -5.58502,
+            39.83324
+          ],
+          [
+            -6.40075,
+            38.79403
+          ],
+          [
+            -7.45345,
+            37.99074
+          ],
+          [
+            -8.68132,
+            37.49201
+          ],
+          [
+            -9.99509,
+            37.33044
+          ],
+          [
+            -11.31409,
+            37.51247
+          ],
+          [
+            -12.52717,
+            38.02843
+          ],
+          [
+            -13.57348,
+            38.84612
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Suppress the generic mosque and octagonal tomb geometries using their separate native outlines."
+    },
+    "featureIds": [
+      "way/498861900",
+      "way/498861899"
+    ],
+    "source": "https://www.openstreetmap.org/way/498861900",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b2419b25ad75f5f39f74feb8084916d98c830d7bb6c2b290ba14eaf314d2c4b2",
+    "notes": "The exact Qualla plate 24c is a measured historic plan with two sections. The drawing fixes the double gallery, sectional spacing, approximate spring 17.5 m and apex 22.5 m, and minaret height about 39.5 m. The Istanbul survey documents lead roofing, pale cut limestone, brick vaulting and the southern weight towers."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing mosque galleries, prayer hall and extant türbe. Former medrese and dervish lodge wings are outside the represented period.",
+    "The long span and reference sections produce estimated external dimensions. Portico paving, tomb eaves and sill heights follow approximate terrain grades.",
+    "Mortar details, timber joinery, finial ornament and individual stone panels are generalized. Interior tilework and furniture are outside the model scope."
+  ],
+  "sourceLicense": "Original Molen geometry. Uses the public-domain 1912 Gurlitt plan and ODbL 1.0 OpenStreetMap control points.",
+  "qaLodCameras": [
+    {
+      "name": "piyale-pasha-skyline",
+      "position": [
+        104,
+        50,
+        -109
+      ],
+      "lookAt": [
+        -2,
+        11,
+        6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "piyale-pasha-district",
+      "position": [
+        104,
+        50,
+        -109
+      ],
+      "lookAt": [
+        -2,
+        11,
+        6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "piyale-pasha-street",
+      "position": [
+        104,
+        50,
+        -109
+      ],
+      "lookAt": [
+        -2,
+        11,
+        6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "piyale-pasha-closeup",
+      "position": [
+        104,
+        50,
+        -109
+      ],
+      "lookAt": [
+        -2,
+        11,
+        6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "double-portico-and-north-minaret",
+      "position": [
+        -18,
+        17,
+        -83
+      ],
+      "lookAt": [
+        -3,
+        15,
+        -5
+      ]
+    },
+    {
+      "name": "six-lead-domes-and-east-gallery",
+      "position": [
+        57,
+        44,
+        9
+      ],
+      "lookAt": [
+        -2,
+        15,
+        5
+      ]
+    },
+    {
+      "name": "qibla-buttresses-and-turbe",
+      "position": [
+        -55,
+        31,
+        78
+      ],
+      "lookAt": [
+        -4,
+        9,
+        23
+      ]
+    },
+    {
+      "name": "whole-six-domed-mosque",
+      "position": [
+        -87,
+        64,
+        -67
+      ],
+      "lookAt": [
+        -2,
+        10,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21348,
+    "vertices": 64044,
+    "materials": 6,
+    "bytes": 2806724,
+    "sha256": "sha256:6d58f220eb2eb85505ed1309338c70ae7b1ceb37a8bf98ba858b8537a6d48802"
+  }
+}

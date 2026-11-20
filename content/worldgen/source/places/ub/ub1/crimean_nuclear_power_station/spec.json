@@ -1,0 +1,544 @@
+{
+  "planId": "crimean_nuclear_power_station",
+  "id": "crimean_nuclear_power_station",
+  "assetId": "molen.worldgen.structure.crimean_nuclear_power_station",
+  "title": "Crimean Nuclear Power Station, 1999",
+  "wikidataId": "Q1121496",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.803611849999996,
+    "latitude": 45.391688200000004
+  },
+  "size": [
+    189,
+    52.917866706848145,
+    150
+  ],
+  "actualBounds": {
+    "min": [
+      -109,
+      -10.917866706848145,
+      -70
+    ],
+    "max": [
+      80,
+      42,
+      80
+    ]
+  },
+  "visualBrief": "The unfinished 1999 exterior of the former Crimean Nuclear Power Station, with its tall central concrete mass and long adjacent ranges.",
+  "nativeAxes": {
+    "x": "east-northeast across the main shell",
+    "y": "up",
+    "z": "south-southeast toward open ground"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1999-01-01",
+    "validFrom": "1999-01-01",
+    "validUntil": "2000-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Crimean_Atomic_Energy_Station.jpg"
+  ],
+  "stories": [
+    {
+      "id": "crimean-atomic-energy-station-wp",
+      "url": "https://qualla.com/crimean-atomic-energy-station/"
+    }
+  ],
+  "referenceInputHash": "sha256:955f04c58d85642c1f067d3f675748f609645ca8f76eb2000f8c56be3acf2a80",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub1/crimean_nuclear_power_station/models/crimean-nuclear-power-station-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ub/ub1/crimean_nuclear_power_station/models/crimean-nuclear-power-station-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "opening": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.59,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "opening": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "earth_rammed",
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "exact-native-frame",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original terrain southeast of the footprint anchors the historical grade. The mapped shell coincides with a localized high return in the raw field.",
+    "anchor": [
+      35.803611849999996,
+      45.391688200000004
+    ],
+    "heading": 0.5881151290383362,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.80476843686344,
+        45.39166835965998
+      ],
+      "modelHeight": 0,
+      "basis": "Original DEM sample on open ground southeast of the mapped shell, outside the central high return."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -108,
+          -70
+        ],
+        [
+          62,
+          -70
+        ],
+        [
+          80,
+          -53
+        ],
+        [
+          80,
+          61
+        ],
+        [
+          52,
+          80
+        ],
+        [
+          -86,
+          76
+        ],
+        [
+          -109,
+          48
+        ]
+      ],
+      "basis": "The localized terrain return overlaps the main shell and west range. Only the 1999 historical view uses an estimated site grade within the recorded outline."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -108,
+          -70
+        ],
+        [
+          62,
+          -70
+        ],
+        [
+          80,
+          -53
+        ],
+        [
+          80,
+          61
+        ],
+        [
+          52,
+          80
+        ],
+        [
+          -86,
+          76
+        ],
+        [
+          -109,
+          48
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            35.9963,
+            34.0651
+          ],
+          [
+            -35.997,
+            34.0651
+          ],
+          [
+            -35.9963,
+            -34.0651
+          ],
+          [
+            35.997,
+            -34.0651
+          ]
+        ],
+        [
+          [
+            -89.4919,
+            -48.2494
+          ],
+          [
+            -88.1503,
+            7.0882
+          ],
+          [
+            -59.4529,
+            6.3954
+          ],
+          [
+            -60.788,
+            -48.9378
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The two exterior footprints retained in native version history support the main shell and detached west range."
+    },
+    "featureIds": [
+      "way/113561246",
+      "way/179608982"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2888901",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:13c25b93350e7286a167ee7041f78c28e3ce6c4d576f898512764083dca9da63",
+    "notes": "The exact 1999 photograph already published in Qualla shows the tall unfinished concrete shell, a stepped roof and the long low horizontal works against the steppe."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Only the documented 1999 historical view shows this exterior. The architecture represents the unfinished shell as a visual landmark, with an empty central silhouette and low adjoining range.",
+    "The raw DEM has a localized elevation rise at the mapped shell. The historical placement uses an estimated local grade inside that source feature. The original surrounding field is retained. Open bay counts, roof height and concrete tone are estimates.",
+    "The model covers the silhouette of the buildings in the source photograph. The surrounding grounds and construction equipment are outside the modeled area."
+  ],
+  "sourceLicense": "Original mesh under the repository license. Lite released the 1999 Qualla photograph into the public domain. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "crimean-station-skyline",
+      "position": [
+        177,
+        94,
+        165
+      ],
+      "lookAt": [
+        -23,
+        15,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "crimean-station-district",
+      "position": [
+        177,
+        94,
+        165
+      ],
+      "lookAt": [
+        -23,
+        15,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "crimean-station-street",
+      "position": [
+        177,
+        94,
+        165
+      ],
+      "lookAt": [
+        -23,
+        15,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "crimean-station-closeup",
+      "position": [
+        177,
+        94,
+        165
+      ],
+      "lookAt": [
+        -23,
+        15,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "historic-steppe-silhouette",
+      "position": [
+        105,
+        41,
+        132
+      ],
+      "lookAt": [
+        -8,
+        19,
+        1
+      ]
+    },
+    {
+      "name": "stepped-concrete-shell-and-crown",
+      "position": [
+        71,
+        42,
+        93
+      ],
+      "lookAt": [
+        0,
+        23,
+        -9
+      ]
+    },
+    {
+      "name": "unfinished-west-range",
+      "position": [
+        -153,
+        36,
+        43
+      ],
+      "lookAt": [
+        -62,
+        7,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1468,
+    "vertices": 4404,
+    "materials": 6,
+    "bytes": 310552,
+    "sha256": "sha256:4b02d19a3fa95e4ef9b304f9962e0a0a7378ba7a7e7af55c879eb116bbbae365"
+  }
+}

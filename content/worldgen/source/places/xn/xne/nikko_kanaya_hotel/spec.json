@@ -1,0 +1,777 @@
+{
+  "planId": "nikko_kanaya_hotel",
+  "id": "nikko_kanaya_hotel",
+  "assetId": "molen.worldgen.structure.nikko_kanaya_hotel",
+  "title": "Nikkō Kanaya Hotel",
+  "wikidataId": "Q11504902",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.6040332,
+    "latitude": 36.7520827
+  },
+  "size": [
+    108.05407333374023,
+    24.61240577697754,
+    104.93326568603516
+  ],
+  "actualBounds": {
+    "min": [
+      -56.324073791503906,
+      -3.4364051818847656,
+      -40.025001525878906
+    ],
+    "max": [
+      51.72999954223633,
+      21.176000595092773,
+      64.90826416015625
+    ]
+  },
+  "visualBrief": "The standing hillside hotel in Nikkō, with the 1893 clapboard Main over its stone ground floor, the early New Building, copper-roofed Annex and 1961 Second New Building.",
+  "nativeAxes": {
+    "x": "southeast along the entrance elevation",
+    "y": "up",
+    "z": "southwest into the hill"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://id.rijksmuseum.nl/200345728"
+  ],
+  "stories": [
+    {
+      "id": "nikk-kanaya-hotel-wp",
+      "url": "https://qualla.com/nikk-kanaya-hotel/"
+    }
+  ],
+  "referenceInputHash": "sha256:4aefa646ee036031321a7be61c07058aafd28cac5c30e95a6fc30ddb24eec6e7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xne/nikko_kanaya_hotel/models/nikko-kanaya-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xne/nikko_kanaya_hotel/models/nikko-kanaya-hotel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.18,
+    "surfaces": {
+      "walls": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48
+      },
+      "paintedMetal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "paintedMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "paintedMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "walls": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48
+          },
+          "paintedMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI elevation for the entry courtyard and stepped wing foundations.",
+    "anchor": [
+      139.6040332,
+      36.7520827
+    ],
+    "heading": -0.9342846503110374,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.60422292983947,
+        36.75223974409447
+      ],
+      "modelHeight": 0,
+      "basis": "GSI national elevation at the courtyard on the eastern approach to the historic Main Building."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -35.167,
+          62.6922
+        ],
+        [
+          -50.124,
+          54.4985
+        ],
+        [
+          -34.0383,
+          25.1508
+        ],
+        [
+          -26.6921,
+          29.1832
+        ],
+        [
+          -21.9364,
+          21.3631
+        ],
+        [
+          -21.9406,
+          8.4276
+        ],
+        [
+          -20.6236,
+          8.425
+        ],
+        [
+          -20.6284,
+          -7.4501
+        ],
+        [
+          -23.3426,
+          -7.4487
+        ],
+        [
+          -23.347,
+          -16.7132
+        ],
+        [
+          -20.6239,
+          -16.7079
+        ],
+        [
+          -20.6254,
+          -20.6575
+        ],
+        [
+          14.3828,
+          -20.6575
+        ],
+        [
+          14.3804,
+          -9.923
+        ],
+        [
+          20.8032,
+          -9.9227
+        ],
+        [
+          20.7945,
+          -22.1405
+        ],
+        [
+          26.5776,
+          -22.1362
+        ],
+        [
+          26.5774,
+          -9.6255
+        ],
+        [
+          42.3,
+          -17.2254
+        ],
+        [
+          42.2969,
+          -33.9643
+        ],
+        [
+          51.0507,
+          -33.9714
+        ],
+        [
+          51.0546,
+          3.1427
+        ],
+        [
+          42.3008,
+          3.1498
+        ],
+        [
+          42.2998,
+          -8.9848
+        ],
+        [
+          26.5772,
+          -1.3848
+        ],
+        [
+          26.58,
+          12.4702
+        ],
+        [
+          25.2631,
+          12.4728
+        ],
+        [
+          25.258,
+          18.7911
+        ],
+        [
+          -5.3216,
+          18.7925
+        ],
+        [
+          -16.7269,
+          31.1142
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -35.167,
+            62.6922
+          ],
+          [
+            -50.124,
+            54.4985
+          ],
+          [
+            -34.0383,
+            25.1508
+          ],
+          [
+            -26.6921,
+            29.1832
+          ],
+          [
+            -21.9364,
+            21.3631
+          ],
+          [
+            -21.9406,
+            8.4276
+          ],
+          [
+            -20.6236,
+            8.425
+          ],
+          [
+            -20.6284,
+            -7.4501
+          ],
+          [
+            -23.3426,
+            -7.4487
+          ],
+          [
+            -23.347,
+            -16.7132
+          ],
+          [
+            -20.6239,
+            -16.7079
+          ],
+          [
+            -20.6254,
+            -20.6575
+          ],
+          [
+            14.3828,
+            -20.6575
+          ],
+          [
+            14.3804,
+            -9.923
+          ],
+          [
+            20.8032,
+            -9.9227
+          ],
+          [
+            20.7945,
+            -22.1405
+          ],
+          [
+            26.5776,
+            -22.1362
+          ],
+          [
+            26.5774,
+            -9.6255
+          ],
+          [
+            42.3,
+            -17.2254
+          ],
+          [
+            42.2969,
+            -33.9643
+          ],
+          [
+            51.0507,
+            -33.9714
+          ],
+          [
+            51.0546,
+            3.1427
+          ],
+          [
+            42.3008,
+            3.1498
+          ],
+          [
+            42.2998,
+            -8.9848
+          ],
+          [
+            26.5772,
+            -1.3848
+          ],
+          [
+            26.58,
+            12.4702
+          ],
+          [
+            25.2631,
+            12.4728
+          ],
+          [
+            25.258,
+            18.7911
+          ],
+          [
+            -5.3216,
+            18.7925
+          ],
+          [
+            -16.7269,
+            31.1142
+          ]
+        ],
+        [
+          [
+            -45.1173,
+            -19.2287
+          ],
+          [
+            -45.0585,
+            -16.6675
+          ],
+          [
+            -55.7978,
+            -16.4089
+          ],
+          [
+            -56.2341,
+            -34.3221
+          ],
+          [
+            -45.4895,
+            -34.5879
+          ],
+          [
+            -45.4639,
+            -33.3489
+          ],
+          [
+            -38.0656,
+            -33.526
+          ],
+          [
+            -38.1535,
+            -37.0404
+          ],
+          [
+            -36.5498,
+            -37.075
+          ],
+          [
+            -36.5804,
+            -38.2511
+          ],
+          [
+            -24.2748,
+            -38.5499
+          ],
+          [
+            -24.2443,
+            -37.3738
+          ],
+          [
+            -24.1678,
+            -34.2561
+          ],
+          [
+            -19.9822,
+            -34.3566
+          ],
+          [
+            -19.7925,
+            -26.5413
+          ],
+          [
+            -23.6699,
+            -26.4459
+          ],
+          [
+            -23.7296,
+            -28.8746
+          ],
+          [
+            -24.0379,
+            -28.8696
+          ],
+          [
+            -24.902,
+            -28.8428
+          ],
+          [
+            -24.6828,
+            -19.7191
+          ]
+        ],
+        [
+          [
+            38.8006,
+            19.3845
+          ],
+          [
+            50.0564,
+            21.6482
+          ],
+          [
+            48.1983,
+            30.8669
+          ],
+          [
+            30.6382,
+            27.3374
+          ],
+          [
+            31.0894,
+            25.0977
+          ],
+          [
+            26.0074,
+            24.0699
+          ],
+          [
+            28.327,
+            12.5414
+          ],
+          [
+            39.7184,
+            14.8278
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Native mapped outlines of the main hotel, detached Annex and Second New Building."
+    },
+    "featureIds": [
+      "way/388082750",
+      "way/388082749",
+      "way/388082757"
+    ],
+    "source": "https://www.openstreetmap.org/way/388082750",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8448bb50e4d052de9091f7e840b7472d3316d9fec07a85be2eb2afa7ce753ba5",
+    "notes": "The Rijksmuseum period albumen print records the original timber exterior and balcony. The Japanese Agency for Cultural Affairs and hotel operator document the excavated stone ground floor, New Building clapboards and cornices, layered copper Annex with a karahafu portico and the five-storey Second New Building."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The footprint of the outdoor stair and porte-cochère, heights, shutters, rail spacing, material colors and modern service details are approximate.",
+    "The standing hotel is modeled, including the raised stone plinth under the historic timber hotel. The early archival photo guides the upper timber floors and period architectural details.",
+    "The detached garden viewing pavilions, landscaped features, signs, interior fittings and courtyard furnishings are outside this exterior model."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors, ODbL 1.0. GSI Japan elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "nikko-kanaya-hotel-skyline",
+      "position": [
+        128,
+        76,
+        -148
+      ],
+      "lookAt": [
+        -2,
+        10,
+        8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "nikko-kanaya-hotel-district",
+      "position": [
+        128,
+        76,
+        -148
+      ],
+      "lookAt": [
+        -2,
+        10,
+        8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "nikko-kanaya-hotel-street",
+      "position": [
+        128,
+        76,
+        -148
+      ],
+      "lookAt": [
+        -2,
+        10,
+        8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "nikko-kanaya-hotel-closeup",
+      "position": [
+        128,
+        76,
+        -148
+      ],
+      "lookAt": [
+        -2,
+        10,
+        8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "stone-base-clapboards-and-carriage-entrance",
+      "position": [
+        17,
+        8.2,
+        -51
+      ],
+      "lookAt": [
+        -3.5,
+        7.1,
+        -20
+      ]
+    },
+    {
+      "name": "annex-copper-and-karahafu",
+      "position": [
+        -64,
+        19,
+        -73
+      ],
+      "lookAt": [
+        -36,
+        8.2,
+        -28
+      ]
+    },
+    {
+      "name": "upper-new-building-and-hillside",
+      "position": [
+        -84,
+        49,
+        87
+      ],
+      "lookAt": [
+        -23,
+        13,
+        24
+      ]
+    },
+    {
+      "name": "second-new-building",
+      "position": [
+        88,
+        35,
+        67
+      ],
+      "lookAt": [
+        28,
+        12,
+        13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24842,
+    "vertices": 74526,
+    "materials": 6,
+    "bytes": 3076772,
+    "sha256": "sha256:ced7f91833f4fb701bcac92e191bab2a184b9c8f89b5ebafa270d5944ab82132"
+  }
+}

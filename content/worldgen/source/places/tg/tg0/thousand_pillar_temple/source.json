@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.thousand_pillar_temple",
+  "kind": "static-structure",
+  "title": "Thousand Pillar Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.thousand_pillar_temple",
+        "output": "assets/places/tg/tg0/thousand_pillar_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1d6d82ec094d1905dd654c55292bb8f192d91e6460afd8f6d7540d4dbc3634bc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-thousand-pillar-temple",
+        "path": "models/generate-thousand-pillar-temple.mjs"
+      },
+      {
+        "id": "thousand-pillar-temple-model",
+        "path": "models/thousand-pillar-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/hanumakonda-named-precinct-and-roof.json",
+      "reference-rights/architecture-and-survey.json",
+      "reference-rights/fergusson-1910-p433.jpg",
+      "reference-rights/fergusson-1910-imprint.jpg",
+      "reference-rights/commons-ms-sarah-welch-02.json",
+      "reference-rights/commons-ms-sarah-welch-03.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23627-14717.png",
+      "terrain-sources/terrarium-15-23626-14717.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lincoln_s_inn",
+  "kind": "static-structure",
+  "title": "Lincoln's Inn",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lincoln_s_inn",
+        "output": "assets/places/gc/gcp/lincoln_s_inn/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b5a04e1eea176c9333380a8859484bc09567d4549244e0c830f10617c6dead37"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lincoln-s-inn",
+        "path": "models/generate-lincoln-s-inn.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/lincoln-s-inn-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/lincolns-inn-precinct.json",
+      "reference-rights/inn-and-listed-building-facts.json",
+      "reference-rights/edward-betts-creator-release.json",
+      "reference-rights/spilsbury-1873-library-original.json",
+      "reference-originals/lincolns-inn-spilsbury-1873.pdf",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-16373-10894.png",
+      "terrain-sources/terrarium-15-16373-10895.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_museum_of_korea",
+  "kind": "static-structure",
+  "title": "National Museum of Korea",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_museum_of_korea",
+        "output": "assets/places/wy/wyd/national_museum_of_korea/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:88a1cb431b6c3f44ce44be8cbd5b92659c333415fbd76acf7dd99901f5b1db19"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-national-museum-of-korea",
+        "path": "models/generate-national-museum-of-korea.mjs"
+      },
+      {
+        "id": "national-museum-of-korea-model",
+        "path": "models/national-museum-of-korea-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/museum-open-plaza-and-pond.json",
+      "reference-rights/museum-architectural-facts.json",
+      "reference-rights/image-screening.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-window.tif",
+      "terrain-sources/copernicus-roof-samples.json",
+      "terrain-sources/terrarium-15-27941-12694.png",
+      "terrain-sources/terrarium-15-27942-12694.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

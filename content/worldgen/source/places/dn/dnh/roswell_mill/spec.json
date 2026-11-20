@@ -1,0 +1,534 @@
+{
+  "planId": "roswell_mill",
+  "id": "roswell_mill",
+  "assetId": "molen.worldgen.structure.roswell_mill",
+  "title": "Roswell Mill",
+  "category": "historic-mill",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.35886,
+    "latitude": 34.01338
+  },
+  "size": [
+    343.67999744415283,
+    13.787627696990967,
+    32.06013345718384
+  ],
+  "actualBounds": {
+    "min": [
+      -6.601048469543457,
+      -4.782627582550049,
+      -6.659704685211182
+    ],
+    "max": [
+      337.0789489746094,
+      9.005000114440918,
+      25.400428771972656
+    ]
+  },
+  "visualBrief": "The surviving Roswell Mill site on Vickery Creek, with the brick Machine Shop, stone mill ruins, exposed turbine and documented masonry dam.",
+  "nativeAxes": {
+    "x": "east along the valley",
+    "y": "up",
+    "z": "south across creek"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Roswell_Mill_July_2021_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Roswell_Mill_July_2021_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "roswell-mill-wp",
+      "url": "https://qualla.com/roswell-mill/"
+    }
+  ],
+  "referenceInputHash": "sha256:507fd1d2a072c81a1f3b33187f6ca4a8886541c654aa9174ad86a507e5e6852f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnh/roswell_mill/models/roswell-mill-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnh/roswell_mill/models/roswell-mill-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "sill": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.46,
+        "metallic": 0.15
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.91,
+        "metallic": 0.17
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.18
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.46,
+            "metallic": 0.15
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.17
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.46,
+            "metallic": 0.15
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.17
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "sill": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.46,
+            "metallic": 0.15
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.17
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone_weathered",
+    "stone_ashlar",
+    "window_punched",
+    "wood_plain",
+    "metal_painted",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.72,
+    "focus": {
+      "center": [
+        165,
+        3,
+        12
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The City of Roswell documents the 1853 Machine Shop as the extant two-storey mill company building, separately from the nearby 1850s factory ruins and water-power dam. The official walking guide reports the historical dam at approximately 30 feet.",
+    "anchor": [
+      -84.35886,
+      34.01338
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.3588166508082,
+        34.013444678404596
+      ],
+      "modelHeight": 0,
+      "basis": "Original USGS elevation just uphill of the surviving brick machine shop."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.67838,
+          -6.53445
+        ],
+        [
+          14.72685,
+          3.16147
+        ],
+        [
+          -3.35876,
+          6.97973
+        ],
+        [
+          -5.40723,
+          -2.72733
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Replace the mapped two-storey Machine Shop while preserving the terrain around the separate mill remains."
+    },
+    "featureIds": [
+      "way/345809282",
+      "way/1204274622",
+      "way/1302359735",
+      "way/1302359738",
+      "way/1322314936"
+    ],
+    "source": "https://www.openstreetmap.org/way/345809282",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:55d1a709ffc579ad5d598530f877dd2c46eaf02e0bfb3ad2268f087c181ebfdd",
+    "notes": "The City of Roswell documents the 1853 Machine Shop as the extant two-storey mill company building, separately from the nearby 1850s factory ruins and water-power dam. The official walking guide reports the historical dam at approximately 30 feet."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The machine shop eaves, openings and inaccessible wall details are approximate. The ruin row, turbine fittings and masonry course widths are inferred from ground-level photographs and measured site positions.",
+    "The mill dam is represented as a solid masonry form. Moving water, woodland, the modern covered bridge, the private redeveloped 1882 mill and the entire vanished factory are outside this model."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "roswell-mill-skyline",
+      "position": [
+        216,
+        89,
+        268
+      ],
+      "lookAt": [
+        165,
+        3,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "roswell-mill-district",
+      "position": [
+        216,
+        89,
+        268
+      ],
+      "lookAt": [
+        165,
+        3,
+        12
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "roswell-mill-street",
+      "position": [
+        216,
+        89,
+        268
+      ],
+      "lookAt": [
+        165,
+        3,
+        12
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "roswell-mill-closeup",
+      "position": [
+        216,
+        89,
+        268
+      ],
+      "lookAt": [
+        165,
+        3,
+        12
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "vickery-creek-machine-shop-to-dam",
+      "position": [
+        164,
+        80,
+        212
+      ],
+      "lookAt": [
+        170,
+        -3,
+        6
+      ]
+    },
+    {
+      "name": "two-storey-machine-shop",
+      "position": [
+        -20,
+        6.1,
+        36
+      ],
+      "lookAt": [
+        4,
+        1.6,
+        1.3
+      ]
+    },
+    {
+      "name": "ruined-stonework-and-iron-turbine",
+      "position": [
+        203,
+        6,
+        28
+      ],
+      "lookAt": [
+        187,
+        -1,
+        10
+      ]
+    },
+    {
+      "name": "stone-mill-dam",
+      "position": [
+        306,
+        18,
+        36
+      ],
+      "lookAt": [
+        334,
+        0,
+        15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5336,
+    "vertices": 16008,
+    "materials": 7,
+    "bytes": 1004112,
+    "sha256": "sha256:049462311493efc21a38677d3e202d3eb9b2c6f6febae48403f0e2c67d4cc7fe"
+  }
+}

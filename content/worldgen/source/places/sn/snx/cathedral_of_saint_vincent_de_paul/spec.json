@@ -1,0 +1,600 @@
+{
+  "planId": "cathedral_of_saint_vincent_de_paul",
+  "id": "cathedral_of_saint_vincent_de_paul",
+  "assetId": "molen.worldgen.structure.cathedral_of_saint_vincent_de_paul",
+  "title": "Cathedral of Saint Vincent de Paul, Tunis",
+  "wikidataId": "Q2296514",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.178924822727272,
+    "latitude": 36.80015082272727
+  },
+  "size": [
+    35.615827560424805,
+    40.807701587677,
+    77.12202835083008
+  ],
+  "actualBounds": {
+    "min": [
+      -19.137313842773438,
+      -4.884602069854736,
+      -34.00202941894531
+    ],
+    "max": [
+      16.478513717651367,
+      35.923099517822266,
+      43.119998931884766
+    ]
+  },
+  "visualBrief": "Tunis cathedral with its patterned limestone façade, triple columned porch, rose window, twin tiara-shaped bell towers, crossing dome and rounded apse.",
+  "nativeAxes": {
+    "x": "east along the cathedral front",
+    "y": "up",
+    "z": "toward the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "cathedral-of-saint-vincent-de-paul-wp",
+      "url": "https://qualla.com/cathedral-of-saint-vincent-de-paul/"
+    }
+  ],
+  "referenceInputHash": "sha256:80b5148292d4f80c94c1b9c91fbc7902b4596692a98b0d8f03985c525a020a7b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snx/cathedral_of_saint_vincent_de_paul/models/cathedral-of-saint-vincent-de-paul-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snx/cathedral_of_saint_vincent_de_paul/models/cathedral-of-saint-vincent-de-paul-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.53,
+        "metallic": 0.035
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.035
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.035
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.035
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "tile_ceramic",
+    "storefront",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.63,
+    "focus": {
+      "center": [
+        0,
+        13,
+        11
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The cathedral vicar’s architectural history records the triple arched porch supported by paired columns, façade mosaic, grand rose window, twin square towers with tiara-like cupolas and Lorraine crosses, crossing dome and rounded apse. The Church inventory describes pale stone from Djebel-Oust and the 1910 tower completion.",
+    "anchor": [
+      10.178924822727272,
+      36.80015082272727
+    ],
+    "heading": 0.11312156243031796,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.178924822727272,
+        36.80015082272727
+      ],
+      "modelHeight": 0,
+      "basis": "The original field at the mapped cathedral anchor."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.9765,
+          -21.53534
+        ],
+        [
+          10.98709,
+          -27.23989
+        ],
+        [
+          6.57694,
+          -32.00947
+        ],
+        [
+          -0.76864,
+          -33.91951
+        ],
+        [
+          -7.8106,
+          -32.57965
+        ],
+        [
+          -12.16888,
+          -27.54022
+        ],
+        [
+          -14.22075,
+          -20.7711
+        ],
+        [
+          -14.19902,
+          -13.93447
+        ],
+        [
+          -18.93693,
+          -13.92375
+        ],
+        [
+          -18.88808,
+          0.17587
+        ],
+        [
+          -13.83515,
+          0.15613
+        ],
+        [
+          -13.66644,
+          41.62845
+        ],
+        [
+          -6.22621,
+          41.59983
+        ],
+        [
+          -6.23043,
+          39.42587
+        ],
+        [
+          4.73698,
+          39.38343
+        ],
+        [
+          4.7476,
+          41.65895
+        ],
+        [
+          13.94636,
+          41.62845
+        ],
+        [
+          13.67712,
+          5.93695
+        ],
+        [
+          13.78219,
+          -0.51557
+        ],
+        [
+          16.27703,
+          -0.52343
+        ],
+        [
+          16.23279,
+          -13.55819
+        ],
+        [
+          13.01051,
+          -13.54334
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The named survey outline of the Cathedral of Saint Vincent de Paul in Tunis."
+    },
+    "featureIds": [
+      "way/100080986"
+    ],
+    "source": "https://www.openstreetmap.org/way/100080986",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:26cef6da78ee500a1e5ceb83aa1b386eb6f42e6b326923ab55d1c16c84885b55",
+    "notes": "The cathedral vicar’s architectural history records the triple arched porch supported by paired columns, façade mosaic, grand rose window, twin square towers with tiara-like cupolas and Lorraine crosses, crossing dome and rounded apse. The Church inventory describes pale stone from Djebel-Oust and the 1910 tower completion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.storefront",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The main footprint follows the current mapped perimeter. Tower, roof, dome and side-aisle heights, individual stone ornaments and some façade details are approximate.",
+    "The façade includes geometric interpretations of the stained glass and mosaic. The model excludes interiors, adjacent buildings and individual carved figures."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "cathedral-of-saint-vincent-de-paul-skyline",
+      "position": [
+        66,
+        54,
+        119
+      ],
+      "lookAt": [
+        0,
+        13,
+        11
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "cathedral-of-saint-vincent-de-paul-district",
+      "position": [
+        66,
+        54,
+        119
+      ],
+      "lookAt": [
+        0,
+        13,
+        11
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cathedral-of-saint-vincent-de-paul-street",
+      "position": [
+        66,
+        54,
+        119
+      ],
+      "lookAt": [
+        0,
+        13,
+        11
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "cathedral-of-saint-vincent-de-paul-closeup",
+      "position": [
+        66,
+        54,
+        119
+      ],
+      "lookAt": [
+        0,
+        13,
+        11
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "square-and-tiara-cupolas",
+      "position": [
+        -31,
+        18,
+        98
+      ],
+      "lookAt": [
+        0,
+        15.5,
+        30
+      ]
+    },
+    {
+      "name": "triple-porch-and-rose-window",
+      "position": [
+        -1,
+        7,
+        68
+      ],
+      "lookAt": [
+        0,
+        12.2,
+        39
+      ]
+    },
+    {
+      "name": "crossing-dome-and-apse",
+      "position": [
+        37,
+        49,
+        -71
+      ],
+      "lookAt": [
+        0.1,
+        12,
+        -12
+      ]
+    },
+    {
+      "name": "nave-and-north-transept",
+      "position": [
+        -61,
+        30,
+        -18
+      ],
+      "lookAt": [
+        -0.2,
+        12.3,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8690,
+    "vertices": 26070,
+    "materials": 7,
+    "bytes": 1405328,
+    "sha256": "sha256:8cafc75aa3fb68196b2c3a4f05cdf00f4757fed2e927945979dff640c610f144"
+  }
+}

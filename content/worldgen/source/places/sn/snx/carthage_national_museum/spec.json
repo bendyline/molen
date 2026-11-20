@@ -1,0 +1,633 @@
+{
+  "planId": "carthage_national_museum",
+  "id": "carthage_national_museum",
+  "assetId": "molen.worldgen.structure.carthage_national_museum",
+  "title": "Carthage National Museum",
+  "wikidataId": "Q1961849",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.32418,
+    "latitude": 36.85335
+  },
+  "size": [
+    99.92921829223633,
+    16.660736322402954,
+    85.05044174194336
+  ],
+  "actualBounds": {
+    "min": [
+      -60.83359909057617,
+      -2.321336030960083,
+      -47.402400970458984
+    ],
+    "max": [
+      39.095619201660156,
+      14.339400291442871,
+      37.648040771484375
+    ]
+  },
+  "visualBrief": "Carthage National Museum in the former White Fathers seminary above Byrsa, with white arcades and a planted cloister court.",
+  "nativeAxes": {
+    "x": "along principal north wing",
+    "y": "up",
+    "z": "towards southern court boundary"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cour_MNC.JPG"
+  ],
+  "stories": [
+    {
+      "id": "carthage-national-museum-wp",
+      "url": "https://qualla.com/carthage-national-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:0f7190882160210329f2457e0e76186e9e7a461fb7521fc1bacfffb25d8448b8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snx/carthage_national_museum/models/carthage-national-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snx/carthage_national_museum/models/carthage-national-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "window": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.54,
+        "metallic": 0.04
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "garden": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.54,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.54,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.54,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "garden": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.85,
+    "focus": {
+      "center": [
+        -10,
+        4.4,
+        -4
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Tunisia’s national heritage institute identifies the former White Fathers seminary as the museum. The 2022 conservation programme gives a highest seminary elevation of 73.29 m above national datum and distinguishes the seminary from the cathedral. The exact public-domain 2008 Qualla courtyard photograph supplies the white arcade, piano nobile, rhythm and planted court enclosure.",
+    "anchor": [
+      10.32418,
+      36.85335
+    ],
+    "heading": -0.5211712480944097,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.32418,
+        36.85335
+      ],
+      "modelHeight": 0,
+      "basis": "Original sampled elevation towards the southern edge of the museum precinct."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -31.62745,
+          -21.04361
+        ],
+        [
+          16.18194,
+          -21.04823
+        ],
+        [
+          36.16192,
+          -21.04361
+        ],
+        [
+          36.15736,
+          -32.55498
+        ],
+        [
+          13.49389,
+          -32.54646
+        ],
+        [
+          -31.62647,
+          -32.54533
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -31.62745,
+            -21.04361
+          ],
+          [
+            16.18194,
+            -21.04823
+          ],
+          [
+            36.16192,
+            -21.04361
+          ],
+          [
+            36.15736,
+            -32.55498
+          ],
+          [
+            13.49389,
+            -32.54646
+          ],
+          [
+            -31.62647,
+            -32.54533
+          ]
+        ],
+        [
+          [
+            36.18045,
+            26.86298
+          ],
+          [
+            36.16192,
+            -21.04361
+          ],
+          [
+            16.18194,
+            -21.04823
+          ],
+          [
+            16.02592,
+            28.57592
+          ]
+        ],
+        [
+          [
+            12.40114,
+            28.57752
+          ],
+          [
+            16.02592,
+            28.57592
+          ],
+          [
+            36.18045,
+            26.86298
+          ],
+          [
+            36.18681,
+            37.59032
+          ],
+          [
+            12.55115,
+            37.60504
+          ],
+          [
+            12.55686,
+            34.84199
+          ]
+        ],
+        [
+          [
+            -22.39411,
+            27.34884
+          ],
+          [
+            -21.27933,
+            27.3763
+          ],
+          [
+            12.40114,
+            28.57752
+          ],
+          [
+            12.55686,
+            34.84199
+          ],
+          [
+            -21.38972,
+            34.85895
+          ],
+          [
+            -22.38072,
+            34.85028
+          ]
+        ],
+        [
+          [
+            -22.39411,
+            27.34884
+          ],
+          [
+            -31.61665,
+            26.86741
+          ],
+          [
+            -53.27365,
+            26.87573
+          ],
+          [
+            -60.79058,
+            26.8784
+          ],
+          [
+            -60.7906,
+            34.87531
+          ],
+          [
+            -22.38072,
+            34.85028
+          ]
+        ],
+        [
+          [
+            13.49389,
+            -32.54646
+          ],
+          [
+            36.15736,
+            -32.55498
+          ],
+          [
+            39.04304,
+            -32.55585
+          ],
+          [
+            39.04158,
+            -37.31721
+          ],
+          [
+            39.05262,
+            -40.75079
+          ],
+          [
+            39.04869,
+            -47.35913
+          ],
+          [
+            13.494,
+            -47.3594
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Separate mapped ranges replace the former seminary without suppressing the independent cathedral or the open court."
+    },
+    "featureIds": [
+      "way/93164364",
+      "way/93164781",
+      "way/93164391",
+      "way/93164955",
+      "way/93164984",
+      "way/93164830"
+    ],
+    "source": "https://www.openstreetmap.org/node/288347882",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6544bf6881d29185bf9f1b2589a0cf831c9a70927121705ad56609386f6e11f3",
+    "notes": "Tunisia’s national heritage institute identifies the former White Fathers seminary as the museum. The 2022 conservation programme gives a highest seminary elevation of 73.29 m above national datum and distinguishes the seminary from the cathedral. The exact public-domain 2008 Qualla courtyard photograph supplies the white arcade, piano nobile, rhythm and planted court enclosure."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "The scene depicts the documented historic seminary buildings before any new competition interventions. Hidden exterior openings, roof parapets, internal court grading and the annex eaves are estimates.",
+    "The adjacent cathedral, archaeological ruins, excavated artifacts, modern equipment and future museum fit-out are outside the modeled footprint."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "carthage-national-museum-skyline",
+      "position": [
+        -101,
+        52,
+        84
+      ],
+      "lookAt": [
+        -10,
+        4.4,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "carthage-national-museum-district",
+      "position": [
+        -101,
+        52,
+        84
+      ],
+      "lookAt": [
+        -10,
+        4.4,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "carthage-national-museum-street",
+      "position": [
+        -101,
+        52,
+        84
+      ],
+      "lookAt": [
+        -10,
+        4.4,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "carthage-national-museum-closeup",
+      "position": [
+        -101,
+        52,
+        84
+      ],
+      "lookAt": [
+        -10,
+        4.4,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "white-north-arcade-and-east-wing",
+      "position": [
+        -28,
+        8.6,
+        14
+      ],
+      "lookAt": [
+        -1,
+        5.5,
+        -15
+      ]
+    },
+    {
+      "name": "flat-roofs-and-byrsa-court",
+      "position": [
+        -52,
+        92,
+        66
+      ],
+      "lookAt": [
+        -8,
+        4,
+        -1
+      ]
+    },
+    {
+      "name": "south-range-above-hill",
+      "position": [
+        46,
+        23,
+        92
+      ],
+      "lookAt": [
+        -14,
+        4,
+        11
+      ]
+    },
+    {
+      "name": "north-and-east-museum-exterior",
+      "position": [
+        83,
+        35,
+        -68
+      ],
+      "lookAt": [
+        6,
+        6,
+        -21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5927,
+    "vertices": 17781,
+    "materials": 6,
+    "bytes": 836160,
+    "sha256": "sha256:97efdec05e4c4fff8259947586603a8e94c3940b2e02d7640236a61f45c029ed"
+  }
+}

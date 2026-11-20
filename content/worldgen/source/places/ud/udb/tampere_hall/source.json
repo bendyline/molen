@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tampere_hall",
+  "kind": "static-structure",
+  "title": "Tampere Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tampere_hall",
+        "output": "assets/places/ud/udb/tampere_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:78bfaa75e2c84a96696cbf9ec69056f42fe192b821700668bca71dcda624b13b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tampere-hall",
+        "path": "models/generate-tampere-hall.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/tampere-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/tampere-hall-exterior-and-main-entrance.json",
+      "reference-rights/tampere-hall-architecture-and-history.json",
+      "reference-rights/commons-native-release-1.json",
+      "reference-rights/commons-native-release-2.json",
+      "reference-rights/commons-native-release-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/finland-2m-m4212g-window.tif",
+      "terrain-sources/m4212g-native-provenance.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

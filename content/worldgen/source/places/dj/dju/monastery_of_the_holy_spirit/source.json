@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.monastery_of_the_holy_spirit",
+  "kind": "static-structure",
+  "title": "Monastery of the Holy Spirit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.monastery_of_the_holy_spirit",
+        "output": "assets/places/dj/dju/monastery_of_the_holy_spirit/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:dbbf647bbcc76343c25c9c4f75e4cd1a4689ea6d20b1a6a5b6cf5d11c30902dc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-monastery-of-the-holy-spirit",
+        "path": "models/generate-monastery-of-the-holy-spirit.mjs"
+      },
+      {
+        "id": "monastery-of-the-holy-spirit-model",
+        "path": "models/monastery-of-the-holy-spirit-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/abbey-church-and-connected-monastery.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/commons-nancyheise-abbey-1.json",
+      "reference-rights/commons-nancyheise-abbey-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8732-13135.png",
+      "terrain-sources/terrarium-15-8732-13134.png",
+      "terrain-sources/terrarium-15-8731-13135.png",
+      "terrain-sources/terrarium-15-8731-13134.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

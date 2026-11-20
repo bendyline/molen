@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cloncurry_courthouse",
+  "kind": "static-structure",
+  "title": "Cloncurry Courthouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cloncurry_courthouse",
+        "output": "assets/places/rh/rh7/cloncurry_courthouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9c4d9eee47e252e6c46d956b19ab45c0c5b8c8ae8158026af17f61eb90699429"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cloncurry-courthouse",
+        "path": "models/generate-cloncurry-courthouse.mjs"
+      },
+      {
+        "id": "cloncurry-courthouse-model",
+        "path": "models/cloncurry-courthouse-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/standing-court-house-roofs.json",
+      "reference-rights/1907-court-house-native-plan.json",
+      "reference-rights/standing-building-heritage-facts.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/queensland-government-dem-cloncurry.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

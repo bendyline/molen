@@ -1,0 +1,966 @@
+{
+  "planId": "sule_pagoda",
+  "id": "sule_pagoda",
+  "assetId": "molen.worldgen.structure.sule_pagoda",
+  "title": "Sule Pagoda",
+  "wikidataId": "Q1209410",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 96.15876677499999,
+    "latitude": 16.7743702375
+  },
+  "size": [
+    95.29584121704102,
+    49.45279812812805,
+    86.96811294555664
+  ],
+  "actualBounds": {
+    "min": [
+      -47.72000503540039,
+      -2.23009991645813,
+      -47.71570587158203
+    ],
+    "max": [
+      47.575836181640625,
+      47.22269821166992,
+      39.25240707397461
+    ]
+  },
+  "visualBrief": "The gilt octagonal Sule stupa, 151 feet high, with the four cardinal worship halls and mapped perimeter ranges in central Yangon.",
+  "nativeAxes": {
+    "x": "approximately east along the cardinal halls",
+    "y": "up",
+    "z": "approximately south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sule_Pagoda_Rd.JPG",
+    "https://commons.wikimedia.org/wiki/File:Fytche_Square,_Rangoon.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sule-pagoda-wp",
+      "url": "https://qualla.com/sule-pagoda/"
+    }
+  ],
+  "referenceInputHash": "sha256:3f78baecd1957e4b37df9b17b960a2ab40a3d9cc775232fde6c5f2939beecb59",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4u/sule_pagoda/models/sule-pagoda-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w4/w4u/sule_pagoda/models/sule-pagoda-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.37,
+    "surfaces": {
+      "gold": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.52,
+        "metallic": 0.43
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "court": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "trim",
+        "graph": "tile_flat",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 1.05,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.43
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.43
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.43
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "plaster_lime",
+    "stone_limestone",
+    "tile_flat",
+    "wood_painted_lap"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-exterior",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The sample in the north court fixes the vertical datum. Foundations use independent grade samples around the outer precinct and stupa.",
+    "anchor": [
+      96.15876677499999,
+      16.7743702375
+    ],
+    "heading": -0.01699103580079498,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        96.15876137921283,
+        16.774594935502282
+      ],
+      "modelHeight": 0,
+      "basis": "Independent elevation in the open north courtyard between pavilion and octagonal stupa."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -42.19608,
+          14.00353
+        ],
+        [
+          -47.01478,
+          4.56622
+        ],
+        [
+          -47.0082,
+          -0.06545
+        ],
+        [
+          -47.01361,
+          -4.77485
+        ],
+        [
+          -44.11426,
+          -13.56396
+        ],
+        [
+          -40.7578,
+          -20.54607
+        ],
+        [
+          -35.3417,
+          -28.01965
+        ],
+        [
+          -29.50551,
+          -34.60968
+        ],
+        [
+          -22.6121,
+          -40.4606
+        ],
+        [
+          -14.83796,
+          -44.66759
+        ],
+        [
+          -10.49537,
+          -46.31121
+        ],
+        [
+          -5.37989,
+          -47.01048
+        ],
+        [
+          0.85695,
+          -46.96059
+        ],
+        [
+          7.05116,
+          -46.90998
+        ],
+        [
+          14.86297,
+          -43.88079
+        ],
+        [
+          23.79619,
+          -36.96278
+        ],
+        [
+          32.30105,
+          -28.27839
+        ],
+        [
+          36.89755,
+          -23.13486
+        ],
+        [
+          41.74742,
+          -16.88228
+        ],
+        [
+          45.52416,
+          -10.4222
+        ],
+        [
+          46.87061,
+          -3.95421
+        ],
+        [
+          46.84411,
+          0.13225
+        ],
+        [
+          46.82121,
+          4.4302
+        ],
+        [
+          42.15233,
+          14.47407
+        ],
+        [
+          36.4763,
+          21.70713
+        ],
+        [
+          30.43788,
+          27.68825
+        ],
+        [
+          23.48993,
+          32.83868
+        ],
+        [
+          14.65549,
+          36.75195
+        ],
+        [
+          5.97693,
+          38.54718
+        ],
+        [
+          -0.31376,
+          38.46481
+        ],
+        [
+          -6.46572,
+          38.39121
+        ],
+        [
+          -14.88907,
+          36.38557
+        ],
+        [
+          -22.61871,
+          31.91876
+        ],
+        [
+          -29.8963,
+          26.45338
+        ],
+        [
+          -36.08494,
+          20.45735
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -18.49804,
+            -2.23108
+          ],
+          [
+            -14.66172,
+            11.49821
+          ],
+          [
+            -2.24149,
+            18.49057
+          ],
+          [
+            11.55061,
+            14.62666
+          ],
+          [
+            18.48219,
+            2.2397
+          ],
+          [
+            14.64588,
+            -11.48959
+          ],
+          [
+            2.22564,
+            -18.48195
+          ],
+          [
+            -11.50308,
+            -14.65252
+          ]
+        ],
+        [
+          [
+            -5.37989,
+            -47.01048
+          ],
+          [
+            0.85695,
+            -46.96059
+          ],
+          [
+            7.05116,
+            -46.90998
+          ],
+          [
+            6.91161,
+            -28.14757
+          ],
+          [
+            6.86341,
+            -22.20143
+          ],
+          [
+            -5.56744,
+            -22.2908
+          ],
+          [
+            -5.52032,
+            -28.9272
+          ]
+        ],
+        [
+          [
+            46.87061,
+            -3.95421
+          ],
+          [
+            31.34836,
+            -4.04672
+          ],
+          [
+            21.01801,
+            -4.10499
+          ],
+          [
+            20.96861,
+            4.27942
+          ],
+          [
+            26.85339,
+            4.31303
+          ],
+          [
+            46.82121,
+            4.4302
+          ],
+          [
+            46.84411,
+            0.13225
+          ]
+        ],
+        [
+          [
+            -6.46572,
+            38.39121
+          ],
+          [
+            -0.31376,
+            38.46481
+          ],
+          [
+            5.97693,
+            38.54718
+          ],
+          [
+            6.12207,
+            26.38687
+          ],
+          [
+            6.17165,
+            21.77674
+          ],
+          [
+            -6.26016,
+            21.63172
+          ],
+          [
+            -6.31465,
+            25.95246
+          ]
+        ],
+        [
+          [
+            -47.01478,
+            4.56622
+          ],
+          [
+            -28.66925,
+            4.56622
+          ],
+          [
+            -21.62326,
+            4.55783
+          ],
+          [
+            -21.62209,
+            -4.78324
+          ],
+          [
+            -27.06919,
+            -4.77975
+          ],
+          [
+            -47.01361,
+            -4.77485
+          ],
+          [
+            -47.0082,
+            -0.06545
+          ]
+        ],
+        [
+          [
+            -47.01361,
+            -4.77485
+          ],
+          [
+            -44.11426,
+            -13.56396
+          ],
+          [
+            -40.7578,
+            -20.54607
+          ],
+          [
+            -35.3417,
+            -28.01965
+          ],
+          [
+            -29.50551,
+            -34.60968
+          ],
+          [
+            -22.6121,
+            -40.4606
+          ],
+          [
+            -14.83796,
+            -44.66759
+          ],
+          [
+            -10.49537,
+            -46.31121
+          ],
+          [
+            -5.37989,
+            -47.01048
+          ],
+          [
+            -5.52032,
+            -28.9272
+          ],
+          [
+            -17.30647,
+            -28.71579
+          ],
+          [
+            -21.81996,
+            -25.20996
+          ],
+          [
+            -27.51604,
+            -15.39357
+          ],
+          [
+            -27.73342,
+            -11.24819
+          ],
+          [
+            -27.06919,
+            -4.77975
+          ]
+        ],
+        [
+          [
+            19.42745,
+            -21.80258
+          ],
+          [
+            16.44138,
+            -28.15363
+          ],
+          [
+            6.91161,
+            -28.14757
+          ],
+          [
+            7.05116,
+            -46.90998
+          ],
+          [
+            14.86297,
+            -43.88079
+          ],
+          [
+            23.79619,
+            -36.96278
+          ],
+          [
+            32.30105,
+            -28.27839
+          ],
+          [
+            36.89755,
+            -23.13486
+          ],
+          [
+            41.74742,
+            -16.88228
+          ],
+          [
+            45.52416,
+            -10.4222
+          ],
+          [
+            46.87061,
+            -3.95421
+          ],
+          [
+            31.34836,
+            -4.04672
+          ]
+        ],
+        [
+          [
+            5.97693,
+            38.54718
+          ],
+          [
+            6.12207,
+            26.38687
+          ],
+          [
+            9.3283,
+            25.61984
+          ],
+          [
+            24.42401,
+            13.78443
+          ],
+          [
+            26.85339,
+            4.31303
+          ],
+          [
+            46.82121,
+            4.4302
+          ],
+          [
+            42.15233,
+            14.47407
+          ],
+          [
+            36.4763,
+            21.70713
+          ],
+          [
+            30.43788,
+            27.68825
+          ],
+          [
+            23.48993,
+            32.83868
+          ],
+          [
+            14.65549,
+            36.75195
+          ]
+        ],
+        [
+          [
+            -6.46572,
+            38.39121
+          ],
+          [
+            -6.31465,
+            25.95246
+          ],
+          [
+            -21.00918,
+            17.48459
+          ],
+          [
+            -28.66925,
+            4.56622
+          ],
+          [
+            -47.01478,
+            4.56622
+          ],
+          [
+            -42.19608,
+            14.00353
+          ],
+          [
+            -36.08494,
+            20.45735
+          ],
+          [
+            -29.8963,
+            26.45338
+          ],
+          [
+            -22.61871,
+            31.91876
+          ],
+          [
+            -14.88907,
+            36.38557
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Native stupa and eight building outlines suppress generic volumes within the mapped roadside precinct."
+    },
+    "featureIds": [
+      "way/131745510",
+      "way/477836654",
+      "way/481432187",
+      "way/481432189",
+      "way/481432190",
+      "way/481432188",
+      "way/481432186",
+      "way/481432185",
+      "way/481432194",
+      "way/481432193"
+    ],
+    "source": "https://www.openstreetmap.org/way/131745510",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:08088f8926c73cafea1401b919fe7780976ea263cc5866f78b8df3fca689178f",
+    "notes": "Two archived photographs establish the stepped octagonal base, flared lower bell, narrow ornamented spire and tall hti. The board of trustees confirms the 2023 regilding, 151-foot height and the four cardinal halls."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing precinct following its 2023 regilding. Historic photographs establish the central stupa proportions while the present outer buildings follow their mapped plans.",
+    "The tier proportions, doorway height, roof ornament, finial details and modern storefront divisions are estimates.",
+    "The immediate court is included. Streets, overhead crossings, neighboring buildings, freestanding interior shrines and signs are outside the model scope."
+  ],
+  "sourceLicense": "Original model under the repository license. Two published Qualla photographs are public-domain archival originals. Native map controls are ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "sule-pagoda-skyline",
+      "position": [
+        101,
+        59,
+        107
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "sule-pagoda-district",
+      "position": [
+        101,
+        59,
+        107
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "sule-pagoda-street",
+      "position": [
+        101,
+        59,
+        107
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "sule-pagoda-closeup",
+      "position": [
+        101,
+        59,
+        107
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "octagonal-stupa-and-hti",
+      "position": [
+        50,
+        38,
+        -49
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "east-worship-hall-and-gilded-terraces",
+      "position": [
+        78,
+        11,
+        8
+      ],
+      "lookAt": [
+        13,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "four-cardinal-worship-halls",
+      "position": [
+        91,
+        78,
+        -84
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "sule-pagoda-and-precinct",
+      "position": [
+        -104,
+        63,
+        112
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10840,
+    "vertices": 32520,
+    "materials": 6,
+    "bytes": 1500192,
+    "sha256": "sha256:54da54228942adef9d1a51c4bdda8a03063beeb712a042ac20cd4048ee6c2e85"
+  }
+}

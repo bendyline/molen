@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hame_castle",
+  "kind": "static-structure",
+  "title": "Häme Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hame_castle",
+        "output": "assets/places/ud/udc/hame_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:766938af549bb61dc927172046d7265510d4f5a678f8e49027205ac25e799551"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hame-castle",
+        "path": "models/generate-hame-castle.mjs"
+      },
+      {
+        "id": "hame-castle-model",
+        "path": "models/hame-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/hame-castle-envelopes.json",
+      "reference-rights/lake-commons.json",
+      "reference-rights/lake-flickr.html",
+      "reference-rights/south-commons.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/finland-2m-m4131c-window.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

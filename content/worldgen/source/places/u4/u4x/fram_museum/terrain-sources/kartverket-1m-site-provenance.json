@@ -1,0 +1,21 @@
+{
+  "provider": "Kartverket",
+  "projection": "EPSG:25833",
+  "verticalDatum": "NN2000",
+  "pixelMeters": 1,
+  "sources": [
+    {
+      "url": "https://wcs.geonorge.no/skwms1/wcs.hoyde-dtm-nhm-25833?service=WCS&version=1.0.0&request=GetCoverage&coverage=nhm_dtm_topo_25833&CRS=EPSG:25833&BBOX=259300,6648220,259790,6648710&WIDTH=490&HEIGHT=490&FORMAT=GeoTIFF",
+      "sha256": "sha256:7c4c783f4eb03240800233c6cee389bec89c86f29db210c8016f5dbf2cd0499f",
+      "path": "terrain-sources/kartverket-dtm-1m.tif",
+      "role": "bare earth"
+    },
+    {
+      "url": "https://wcs.geonorge.no/skwms1/wcs.hoyde-dom-nhm-25833?service=WCS&version=1.0.0&request=GetCoverage&coverage=nhm_dom_topo_25833&CRS=EPSG:25833&BBOX=259300,6648220,259790,6648710&WIDTH=490&HEIGHT=490&FORMAT=GeoTIFF",
+      "sha256": "sha256:2a1b146f19d43bf0126bb5853b114aa559b7ed915d3844c4712ce61e17899c92",
+      "path": "terrain-sources/kartverket-dom-1m.tif",
+      "role": "surface height for ridge and roof sections"
+    }
+  ],
+  "notes": "The 216 m rendering crop uses bilinear sampling of the bare-earth layer. A band of corrupt extreme offshore values outside that crop is retained in the unmodified native response. No such values occur in the crop."
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.turaida_castle",
+  "kind": "static-structure",
+  "title": "Turaida Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.turaida_castle",
+        "output": "assets/places/ud/ud1/turaida_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2d1ca813ef502cb3d870e2893a4c5f5e5eeb7fee131b04218921478b2f586272"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-turaida-castle",
+        "path": "models/generate-turaida-castle.mjs"
+      },
+      {
+        "id": "turaida-castle-model",
+        "path": "models/turaida-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/turaida-castle-footprints.json",
+      "reference-rights/turaida-museum-architectural-facts.json",
+      "reference-rights/qasinka-turaida-castle-1.json",
+      "reference-rights/qasinka-turaida-castle-2.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18645-10008.png",
+      "terrain-sources/terrarium-15-18645-10007.png",
+      "terrain-sources/terrarium-15-18646-10007.png",
+      "terrain-sources/terrarium-15-18646-10008.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

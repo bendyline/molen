@@ -1,0 +1,69 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hotel_esplanade_berlin",
+  "kind": "static-structure",
+  "title": "Grand Hotel Esplanade, Berlin",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hotel_esplanade_berlin",
+        "output": "assets/places/u3/u33/hotel_esplanade_berlin/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4ade8882bf91a6036ac676a564e94ca8283492b7433d99fde87a7f6fcbae72d2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hotel-esplanade-berlin",
+        "path": "models/generate-hotel-esplanade-berlin.mjs"
+      },
+      {
+        "id": "hotel-esplanade-berlin-model",
+        "path": "models/hotel-esplanade-berlin-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/straube-1910-esplanade.png",
+      "native-map/berlin-aerial-1928-esplanade.png",
+      "native-map/controls.json",
+      "reference-rights/berlin-straube-wms.xml",
+      "reference-rights/berlin-aerial-1928-wms.xml",
+      "reference-rights/deutsche-bauzeitung-1913-p761.jpg",
+      "reference-rights/commons-courtyard-published-1913.json",
+      "reference-rights/berlin-published-archive.json",
+      "reference-rights/deutsche-bauzeitung-1913-p753.jpg",
+      "reference-rights/deutsche-bauzeitung-1913-p754.jpg",
+      "reference-rights/deutsche-bauzeitung-1913-p757.jpg",
+      "reference-rights/deutsche-bauzeitung-1913-p763.jpg",
+      "reference-rights/deutsche-bauzeitung-1913-p778.jpg",
+      "reference-rights/building-history.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/berlin-dgm1-site.json",
+      "terrain-sources/berlin-dgm1-site.xyz.gz",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

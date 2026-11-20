@@ -1,7 +1,7 @@
 {
   "format": "molen/scene@3",
-  "name": "CN Tower, Toronto asset preview",
-  "seed": "molen.worldgen.structure.b07_cn_tower_toronto",
+  "name": "CN Tower, Toronto model review",
+  "seed": "b07_cn_tower_toronto",
   "tickRate": 30,
   "entities": [
     {
@@ -31,58 +31,27 @@
       }
     },
     {
-      "id": "ground",
-      "components": {
-        "transform": {
-          "pos": [
-            0,
-            -0.14,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "scale": [
-            140,
-            0.2,
-            138
-          ]
-        },
-        "renderable": {
-          "kind": "primitive",
-          "ref": "box",
-          "materialRef": "palette:#777b72",
-          "shadows": {
-            "receive": true
-          }
-        }
-      }
-    },
-    {
       "id": "environment",
       "components": {
         "environment": {
           "ambient": {
-            "sky": "#dce5ed",
-            "ground": "#6c7473",
-            "intensity": 1.15
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
           },
           "sun": {
             "direction": [
-              -8,
-              14,
-              9
+              -370,
+              870,
+              450
             ],
-            "color": "#fff1d3",
-            "intensity": 2.2,
+            "color": "#fff1d8",
+            "intensity": 3.5,
             "castShadow": true
           },
-          "background": "#b5d2df",
-          "toneMapping": "agx",
-          "exposure": 1.08,
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
           "shadows": "high"
         }
       }
@@ -91,16 +60,20 @@
   "camera": {
     "mode": "fixed",
     "position": [
-      462.86100000000005,
-      442.40000000000003,
-      746.5500000000001
+      455,
+      275,
+      610
     ],
     "lookAt": [
       0,
-      254.38000000000002,
+      271,
       0
     ],
-    "fov": 42
+    "fov": 43
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
   },
   "physics": {
     "engine": "none"

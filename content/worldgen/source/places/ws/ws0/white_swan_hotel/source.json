@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.white_swan_hotel",
+  "kind": "static-structure",
+  "title": "White Swan Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.white_swan_hotel",
+        "output": "assets/places/ws/ws0/white_swan_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0d3b6ee7422672d6f3319882a740447890780e5d9ad7eb454150c0a390813ff3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-white-swan-hotel",
+        "path": "models/generate-white-swan-hotel.mjs"
+      },
+      {
+        "id": "white-swan-hotel-model",
+        "path": "models/white-swan-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/shamian-standing-hotel-and-tower-parts.json",
+      "reference-rights/white-swan-written-architectural-records.json",
+      "reference-rights/onteien-2008-shamian-native-public-domain.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/copernicus-glo30-native-shamian-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

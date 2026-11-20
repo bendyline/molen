@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.airborne_division_war_memorial_museum",
+  "kind": "static-structure",
+  "title": "82nd Airborne Division War Memorial Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.airborne_division_war_memorial_museum",
+        "output": "assets/places/dn/dnp/airborne_division_war_memorial_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8eb4ab8f23930fb63a523f69a679b6ed9976d5596cb7912fa2078b3304674acb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-airborne-division-war-memorial-museum",
+        "path": "models/generate-airborne-division-war-memorial-museum.mjs"
+      },
+      {
+        "id": "airborne-division-war-memorial-museum-model",
+        "path": "models/airborne-division-war-memorial-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/airborne-museum-perimeter.json",
+      "reference-rights/primary-source-facts.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9191-12964.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

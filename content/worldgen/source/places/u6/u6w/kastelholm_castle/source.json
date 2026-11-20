@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kastelholm_castle",
+  "kind": "static-structure",
+  "title": "Kastelholm Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kastelholm_castle",
+        "output": "assets/places/u6/u6w/kastelholm_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:44afd614fd57d963828f33954523205d1b32204c171ed44c2849d06bc66e1803"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kastelholm-castle",
+        "path": "models/generate-kastelholm-castle.mjs"
+      },
+      {
+        "id": "kastelholm-castle-model",
+        "path": "models/kastelholm-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/castle-enclosure-and-approaches.json",
+      "reference-rights/kastelholm-surveys-and-restoration.json",
+      "reference-rights/qualla-transferred-photo-screening.json",
+      "reference-rights/ypsilon-december-one-exact-release.json",
+      "reference-rights/ypsilon-december-two-exact-release.json",
+      "reference-images/jaakko-kulta-kastelholm-2024-original.jpg",
+      "reference-rights/jaakko-kulta-cc0-native-release.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/nls-l3121b-native-window.tif",
+      "terrain-sources/nls-kastelholm-dtm-window.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

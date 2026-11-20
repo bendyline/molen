@@ -1,0 +1,490 @@
+{
+  "planId": "tughlaqabad_fort",
+  "id": "tughlaqabad_fort",
+  "assetId": "molen.worldgen.structure.tughlaqabad_fort",
+  "title": "Tughlaqabad Fort",
+  "wikidataId": "Q2511605",
+  "category": "fortification",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 77.25996409999999,
+    "latitude": 28.513964950000002
+  },
+  "size": [
+    1037.168212890625,
+    36.137070298194885,
+    1017.3612670898438
+  ],
+  "actualBounds": {
+    "min": [
+      -514.5637817382812,
+      -0.2858930826187134,
+      -454.8818359375
+    ],
+    "max": [
+      522.6044311523438,
+      35.85117721557617,
+      562.4794311523438
+    ]
+  },
+  "visualBrief": "Tughlaqabad’s long rubble curtain walls, gate passages, broken citadel crowns and low palace ruins, set against Delhi’s original rocky terrain. South of the modern road, the fortified tomb retains its red and pale stone chamber and white dome.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/cu31924095603076/page/n431/mode/1up",
+    "https://archive.org/details/cu31924095603076/page/n432/mode/1up"
+  ],
+  "stories": [
+    {
+      "id": "tughlaqabad-fort-wp",
+      "url": "https://qualla.com/tughlaqabad-fort/"
+    }
+  ],
+  "referenceInputHash": "sha256:e2af423fedefd529e74415387caa4e0dcfd89e02fb05dfccac7b476ba6f07a60",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttn/tughlaqabad_fort/models/tughlaqabad-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttn/tughlaqabad_fort/models/tughlaqabad-fort-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "quartzite": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "white": {
+        "slot": "roof",
+        "graph": "stone_marble",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "ruin": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "quartzite": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "quartzite": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "quartzite": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "stone_ashlar",
+    "stone_sandstone",
+    "stone_marble",
+    "stone_granite",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.65,
+    "focus": {
+      "center": [
+        58,
+        18,
+        64
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Cunningham’s field report records steeply battered stone curtain walls and exposed circular bastions on rocky terrain, with a southern wall about 12.2 m above rock before surviving losses. The 1902 photographs show the uneven ruined wall caps and distinct pale dome, arches and banded stonework of the Tughluq tomb.",
+    "anchor": [
+      77.25996409999999,
+      28.513964950000002
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        77.2621620825849,
+        28.511341881369027
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation near the south entrance above the modern Mehrauli–Badarpur Road."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/102684251",
+      "way/102758309",
+      "way/102758310",
+      "way/102758312",
+      "way/102758313",
+      "way/102758314",
+      "way/102758315",
+      "way/102758344",
+      "way/102758345",
+      "way/102758346",
+      "way/699350689",
+      "way/699365575",
+      "way/699365576",
+      "way/699365577",
+      "way/1179899165"
+    ],
+    "source": "https://www.openstreetmap.org/way/102684251",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d2baa81c1ae47161e7c9758f3259c7466aebc8e4fb24c948ea70b2256801b55e",
+    "notes": "Cunningham’s field report records steeply battered stone curtain walls and exposed circular bastions on rocky terrain, with a southern wall about 12.2 m above rock before surviving losses. The 1902 photographs show the uneven ruined wall caps and distinct pale dome, arches and banded stonework of the Tughluq tomb."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model follows the mapped surviving wall circuit and principal visitor-facing structures. Wall heights, losses between mapped controls, masonry joints and culvert details are approximate.",
+    "Reconstruction focuses on the present above-ground stone fabric. The wider ancient city grid, Adilabad, underground rooms, former lake and the stepwell below the mapped ground surface are outside its scope.",
+    "The in-situ palace and mosque are shown as low ruin fabric, and the known tomb causeway retains the break at the modern road. The fortified tomb enclosure and its main exterior are modeled as the associated southern monument."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "tughlaqabad-fort-skyline",
+      "position": [
+        705,
+        555,
+        910
+      ],
+      "lookAt": [
+        58,
+        18,
+        64
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tughlaqabad-fort-district",
+      "position": [
+        705,
+        555,
+        910
+      ],
+      "lookAt": [
+        58,
+        18,
+        64
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tughlaqabad-fort-street",
+      "position": [
+        705,
+        555,
+        910
+      ],
+      "lookAt": [
+        58,
+        18,
+        64
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tughlaqabad-fort-closeup",
+      "position": [
+        705,
+        555,
+        910
+      ],
+      "lookAt": [
+        58,
+        18,
+        64
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "citadel-and-south-gateway",
+      "position": [
+        331,
+        32,
+        356
+      ],
+      "lookAt": [
+        245,
+        13,
+        254
+      ]
+    },
+    {
+      "name": "ruined-walls-and-bastions",
+      "position": [
+        -47,
+        30,
+        244
+      ],
+      "lookAt": [
+        -132,
+        22,
+        137
+      ]
+    },
+    {
+      "name": "tughluq-tomb-and-outwork",
+      "position": [
+        183,
+        28,
+        574
+      ],
+      "lookAt": [
+        130,
+        13,
+        509
+      ]
+    },
+    {
+      "name": "mapped-rampart-circuit",
+      "position": [
+        0,
+        850,
+        605
+      ],
+      "lookAt": [
+        0,
+        12,
+        25
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16520,
+    "vertices": 49560,
+    "materials": 6,
+    "bytes": 2390744,
+    "sha256": "sha256:4fee9b800c344a6843c019cb8e05bf5c6cc591e7b61013e8a8de2ae3c049f922"
+  }
+}

@@ -49,12 +49,11 @@ export function inspectFlickrOriginalReference(dir, reference) {
       throw Error('Primary record changed');
     const html = primary.toString('utf8'),
       models = flickrPrimaryModels(html);
-    const match = /^https:\/\/www\.flickr\.com\/photos\/(\d+@N\d+)\/(\d+)\/$/.exec(
+    const match = /^https:\/\/www\.flickr\.com\/photos\/(\d+@N\d+|[\w-]+)\/(\d+)\/$/.exec(
       reference.sourceUrl ?? '',
     );
     if (!match) throw Error('Original source identity missing');
-    const [, nsid, id] = match,
-      ownerUrl = `https://www.flickr.com/photos/${nsid}`;
+    const [, account, id] = match;
     const records = [
       ...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi),
     ].flatMap((m) => {
@@ -64,13 +63,19 @@ export function inspectFlickrOriginalReference(dir, reference) {
     const photo = records.find((r) => r['@type'] === 'ImageObject');
     const data = models?.['photo-models']?.find((m) => m.data?.id === id)?.data;
     const owner = data?.owner?.data,
+      nsid = owner?.id,
       original = data?.sizes?.data?.o?.data;
+    if (!/^\d+@N\d+$/.test(nsid ?? '') || (account !== nsid && account !== owner.pathAlias))
+      throw Error('Original creator account differs');
+    const ownerUrls = [nsid, owner.pathAlias]
+      .filter((value) => /^(?:\d+@N\d+|[\w-]+)$/.test(value ?? ''))
+      .map((value) => `https://www.flickr.com/photos/${value}`);
     const originalUrl = original?.url?.startsWith('//') ? `https:${original.url}` : original?.url;
     const creatorBound = [photo?.author, photo?.creator].every((person) => {
       const icon = new URL(person?.image);
       return (
         person['@type'] === 'Person' &&
-        person.url === ownerUrl &&
+        ownerUrls.includes(person.url) &&
         person.name === reference.artist &&
         icon.protocol === 'https:' &&
         /^(?:farm\d+|live)\.staticflickr\.com$/.test(icon.hostname) &&
@@ -92,7 +97,6 @@ export function inspectFlickrOriginalReference(dir, reference) {
       data?.license !== 9 ||
       photo?.acquireLicensePage?.replace(/\/$/, '') !== reference.sourceUrl.replace(/\/$/, '') ||
       !creatorBound ||
-      owner?.id !== nsid ||
       owner.realname !== reference.artist ||
       data.title !== reference.title ||
       reference.downloadUrl !== originalUrl ||

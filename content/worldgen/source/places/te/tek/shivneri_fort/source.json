@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shivneri_fort",
+  "kind": "static-structure",
+  "title": "Shivneri Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shivneri_fort",
+        "output": "assets/places/te/tek/shivneri_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f8847e7ee8a1fdb1b7508a7c83ebd7f77211dd9189c5f0c07464f61e17c2765c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shivneri-fort",
+        "path": "models/generate-shivneri-fort.mjs"
+      },
+      {
+        "id": "shivneri-fort-model",
+        "path": "models/shivneri-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-boundary-and-access-trails.json",
+      "native-map/asi-heritage-walk-coordinates.json",
+      "native-map/summit-and-shrine-footprint-controls.json",
+      "reference-rights/fort-written-architecture.json",
+      "reference-rights/qualla-fort-commons-transfer-and-crop.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23106-14602.png",
+      "terrain-sources/terrarium-15-23105-14602.png",
+      "terrain-sources/terrarium-15-23107-14602.png",
+      "terrain-sources/terrarium-15-23105-14603.png",
+      "terrain-sources/terrarium-15-23106-14603.png",
+      "terrain-sources/terrarium-15-23107-14603.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

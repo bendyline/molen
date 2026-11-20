@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.al_alam_palace",
+  "kind": "static-structure",
+  "title": "Al Alam Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.al_alam_palace",
+        "output": "assets/places/tk/tk1/al_alam_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ace91fa78b645cf3fd2b3c89c54838e44e504b24f10e59f1c1481559fd7c2e22"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-al-alam-palace",
+        "path": "models/generate-al-alam-palace.mjs"
+      },
+      {
+        "id": "al-alam-palace-model",
+        "path": "models/al-alam-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/ceremonial-palace-outline.json",
+      "reference-rights/al-alam-written-architectural-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "reference-rights/qualla-photo-commons-first-upload.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21717-14170.png",
+      "terrain-sources/terrarium-15-21717-14171.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

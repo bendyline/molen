@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kerobokan_prison",
+  "kind": "static-structure",
+  "title": "Kerobokan Prison",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kerobokan_prison",
+        "output": "assets/places/qw/qw3/kerobokan_prison/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:54c9e4dbb7dd85919dc214f58869b310d562fe62d4760e5ae52edac96ee8b7f4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-kerobokan-prison",
+        "path": "models/generate-kerobokan-prison.mjs"
+      },
+      {
+        "id": "kerobokan-prison-model",
+        "path": "models/kerobokan-prison-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/kerobokan-street-frontage.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/commons-davidelit-2012.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26866-17176.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

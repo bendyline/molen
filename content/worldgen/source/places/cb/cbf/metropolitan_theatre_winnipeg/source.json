@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.metropolitan_theatre_winnipeg",
+  "kind": "static-structure",
+  "title": "Metropolitan Theatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.metropolitan_theatre_winnipeg",
+        "output": "assets/places/cb/cbf/metropolitan_theatre_winnipeg/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:112b9022dc6a7f9a1383f08f080cd98d36434fd663bfa972ab394bceedbfd9e2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-metropolitan-theatre-winnipeg",
+        "path": "models/generate-metropolitan-theatre-winnipeg.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/metropolitan-theatre-winnipeg-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/donald-street-metropolitan-theatre.json",
+      "reference-rights/theatre-and-restoration-facts.json",
+      "reference-rights/manitoba-archives-N9863-original-publication.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-7541-11128.png",
+      "terrain-sources/terrarium-15-7542-11128.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

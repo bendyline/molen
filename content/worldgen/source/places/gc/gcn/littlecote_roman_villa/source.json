@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.littlecote_roman_villa",
+  "kind": "static-structure",
+  "title": "Littlecote Roman Villa",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.littlecote_roman_villa",
+        "output": "assets/places/gc/gcn/littlecote_roman_villa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bf3f92a51d2a743b232c5120fed028309e6140050b9fc9486bafd6cc03179b74"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-littlecote-roman-villa",
+        "path": "models/generate-littlecote-roman-villa.mjs"
+      },
+      {
+        "id": "littlecote-roman-villa-model",
+        "path": "models/littlecote-roman-villa-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/littlecote-villa-and-shelter.json",
+      "reference-rights/littlecote-villa-architecture.json",
+      "reference-rights/jahr-commons-account.json",
+      "reference-rights/jahr-littlecote-original-1.json",
+      "reference-rights/jahr-littlecote-original-2.json",
+      "reference-rights/qualla-image-screening.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/environment-agency-1m-dtm.tif",
+      "terrain-sources/environment-agency-dtm-metadata.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

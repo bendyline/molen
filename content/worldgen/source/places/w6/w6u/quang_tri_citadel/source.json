@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.quang_tri_citadel",
+  "kind": "static-structure",
+  "title": "Quảng Trị Citadel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.quang_tri_citadel",
+        "output": "assets/places/w6/w6u/quang_tri_citadel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9abe2a0736dea6e8102c8a88c7f884793c6544905ac2dbb2eb9f35bf59c3fcda"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-quang-tri-citadel",
+        "path": "models/generate-quang-tri-citadel.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/quang-tri-citadel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/quang-tri-citadel-remains-and-memorial.json",
+      "reference-rights/quang-tri-citadel-preservation-facts.json",
+      "reference-rights/prof-mk-qualla-exact-dedication.json",
+      "reference-images/prof-mk-south-gate-2012.jpg",
+      "reference-rights/prof-mk-native-gate-dedication.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26140-14836.png",
+      "terrain-sources/terrarium-15-26141-14836.png",
+      "terrain-sources/terrarium-15-26141-14837.png",
+      "terrain-sources/terrarium-15-26140-14837.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}
