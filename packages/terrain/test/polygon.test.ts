@@ -11,7 +11,8 @@ import {
   ringArea,
   ringSignedArea,
 } from '../src/polygon';
-import { roadWidth, waterwayWidth } from '../src/semantic-widths';
+import { carriagewayWidth, roadWidth, waterwayWidth } from '../src/semantic-widths';
+import { transportWidth } from '../src/transport-features';
 
 const square: [number, number][] = [
   [0, 0],
@@ -51,6 +52,22 @@ describe('semantic polygon helpers', () => {
         ...square.slice(1),
       ]),
     ).toHaveLength(4);
+  });
+
+  it('draws a ramp or one carriageway of a freeway narrower than the whole road of its class', () => {
+    // Two lanes off a freeway, one off a street; three lanes to a freeway's carriageway.
+    expect(carriagewayWidth('motorway_link', { link: true, oneway: true })).toBe(6.6);
+    expect(carriagewayWidth('primary_link', { link: true })).toBe(4.5);
+    expect(carriagewayWidth('motorway', { oneway: true })).toBe(11);
+    // A whole road, and one-way streets, keep their class's width.
+    expect(carriagewayWidth('motorway')).toBe(16);
+    expect(carriagewayWidth('primary', { oneway: true })).toBe(12);
+    const ramp = { class: 'highway', subclass: 'motorway_link', oneway: true, lines: [] };
+    expect(transportWidth(ramp)).toBe(6.6);
+    expect(transportWidth({ ...ramp, subclass: 'motorway', link: true })).toBe(6.6);
+    // What the map says of a road still wins.
+    expect(transportWidth({ ...ramp, lanes: 3 })).toBeCloseTo(9.6);
+    expect(transportWidth({ ...ramp, width: 14 })).toBe(14);
   });
 
   it('exposes the ribbon width heuristics', () => {

@@ -255,6 +255,29 @@ describe('earth vehicles', () => {
     vehicles.dispose();
   });
 
+  it('names the driven car as the subject of a sun shadow map of its own', async () => {
+    const { vehicles } = setup();
+    vehicles.sync(300, [1000, 1.7, 2004]);
+    await Promise.resolve();
+    const model = vehicles.object.children[0] as THREE.Object3D;
+    const body = new THREE.Mesh(new THREE.BoxGeometry(2, 1, 4), new THREE.MeshStandardMaterial());
+    body.position.y = 0.5;
+    model.add(body);
+    // On foot beside it: no subject.
+    expect(vehicles.shadowSubject).toBeUndefined();
+    expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+    const subject = vehicles.shadowSubject;
+    expect(subject?.object).toBe(model);
+    expect(subject?.radius).toBeGreaterThanOrEqual(Math.hypot(1, 0.5, 2));
+    // Measured once: the same sphere every frame keeps the car on the same texels.
+    expect(vehicles.shadowSubject).toBe(subject);
+    vehicles.view = 'chase';
+    expect(vehicles.shadowSubject).toBe(subject);
+    vehicles.exit();
+    expect(vehicles.shadowSubject).toBeUndefined();
+    vehicles.dispose();
+  });
+
   it('disposes an in-flight detail load after the host is disposed', async () => {
     const { root, tile, vehicles: original } = setup();
     original.dispose();

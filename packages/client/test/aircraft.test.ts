@@ -406,6 +406,50 @@ it('drives externally named rotor and instrument nodes without moving their pivo
   visual.dispose();
 });
 
+it('takes a turning rotor’s blades out of the shadow pass', () => {
+  const model = new THREE.Group();
+  const rotor = new THREE.Group();
+  rotor.name = 'main-rotor';
+  rotor.position.set(0, 2.64, -0.25);
+  const material = new THREE.MeshStandardMaterial();
+  const blade = new THREE.Mesh(new THREE.BoxGeometry(8, 0.05, 0.3), material);
+  const hub = new THREE.Mesh(new THREE.SphereGeometry(0.2, 8, 8), material);
+  rotor.add(blade, hub);
+  model.add(rotor);
+  const visual = createAircraftVisual(model, SPEC);
+  const input = {
+    power: 0.5,
+    pitch: 0,
+    roll: 0,
+    yaw: 0,
+    engine: true,
+    gear: true,
+    flaps: false,
+    brake: false,
+  };
+  const at = (rpm: number): AircraftStateData =>
+    ({ rotorAngle: 0, rpm, airspeed: 0, yaw: 0, roll: 0, pitch: 0 }) as AircraftStateData;
+  // Turning slowly (15 rad/s), the blades' shadows move with them.
+  visual.update(at(0.3), input, 100);
+  expect(blade.castShadow).toBe(true);
+  // At flight speed (50 rad/s) they turned half their spacing between frames, and their hard
+  // shadows flashed about the cabin; so did the hub's grips and links.
+  visual.update(at(1), input, 100);
+  expect(blade.castShadow).toBe(false);
+  expect(hub.castShadow).toBe(false);
+  // Spun down, and with the whole aircraft out of a coarse map and back.
+  visual.update(at(0.3), input, 100);
+  expect(blade.castShadow).toBe(true);
+  visual.updateShadows(0.4);
+  visual.update(at(0.3), input, 100);
+  expect(blade.castShadow).toBe(false);
+  visual.updateShadows(undefined);
+  visual.update(at(0.3), input, 100);
+  expect(blade.castShadow).toBe(true);
+  expect(hub.castShadow).toBe(true);
+  visual.dispose();
+});
+
 it('moves the gear, its doors and the flaps with their positions, not the selection', () => {
   const airplane: AircraftSpec = {
     ...SPEC,

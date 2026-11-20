@@ -30,6 +30,7 @@ import { createTerrainRoadGrading, withTerrainRoadGrading } from '../src/road-gr
 import type { TerrainSemanticTileSource } from '../src/semantic-client';
 import {
   createEmptyTerrainSemanticTile,
+  type TerrainBridgeProfileSample,
   type TerrainSemanticPoint,
   type TerrainSemanticTile,
   type TerrainTransportationFeature,
@@ -397,6 +398,148 @@ describe('road grading across tiles', () => {
     // Profiles graded over the reference ground say so, for whoever draws them.
     expect(westDeck.bridgeApproachProfile?.[0]?.ground).toBeCloseTo(3, 5);
     expect(westDeck.bridgeApproachProfile?.[0]?.anchor).toBe(1);
+  });
+
+  it('keeps a raised road level where it doubles back near a tile edge', async () => {
+    const heights = heightsFor(() => 0);
+    // A deck over a street lands on a road that runs east, turns back 20 m short of the next
+    // tile and returns: the two carriageways of a divided road, joined at the junction where
+    // it stops being divided. The turn is in reach of the next tile's grading.
+    const tiles = {
+      '3/3': [
+        way([
+          [0.825, 0.3],
+          [0.825, 0.7],
+        ]),
+        way(
+          [
+            [0.75, 0.5],
+            [0.9, 0.5],
+          ],
+          { bridge: true },
+        ),
+        way(
+          [
+            [0.9, 0.5],
+            [0.95, 0.51],
+            [0.9, 0.52],
+          ],
+          { oneway: true },
+        ),
+      ],
+      '4/3': [
+        way([
+          [0.5, 0.2],
+          [0.5, 0.8],
+        ]),
+      ],
+    };
+    const grading = createTerrainRoadGrading({ features: featuresFor(tiles), heights });
+    const graded = await grading.gradeTile(tileOf(tiles['3/3']), {
+      address: { level: 3, x: 3, z: 3 },
+      pyramid,
+      signal: new AbortController().signal,
+    });
+    const road = graded.transportation.find(
+      (f) => f.oneway === true,
+    ) as TerrainTransportationFeature;
+    const samples = road.bridgeApproachProfile ?? [];
+    const apex = samples.findIndex(
+      (sample) => Math.hypot(sample.point[0] - 0.95, sample.point[1] - 0.51) < 1e-6,
+    );
+    expect(apex).toBeGreaterThan(0);
+    const [before, at, after] = [samples[apex - 1], samples[apex], samples[apex + 1]] as [
+      TerrainBridgeProfileSample,
+      TerrainBridgeProfileSample,
+      TerrainBridgeProfileSample,
+    ];
+    // Still off the ground at the turn, and no lower there than on either side of it.
+    expect(at.elevation).toBeGreaterThan(1);
+    expect(at.elevation).toBeGreaterThan(Math.min(before.elevation, after.elevation) - 0.3);
+  });
+
+  it('draws a deck at one height on a tile edge where the two tiles grade it differently', async () => {
+    // Flat ground that climbs 20 m to a bank in the tile east of the two graded here.
+    const ground = (x: number): number => Math.max(0, Math.min(1, (x - 1700) / 300)) * 20;
+    const heights = heightsFor(ground);
+    const buffer = 1 / 64;
+    const deck = { bridge: true as const };
+    // A viaduct from the middle of tile 3 to that bank in tile 5. Tile 4 reads tile 5 and
+    // grades the deck up to the bank; tile 3 cannot, and takes the deck to end in the air
+    // where what it reads stops. Each alone, the deck steps where the two tiles meet.
+    const tiles = {
+      '3/3': [
+        way([
+          [0.2, 0.5],
+          [0.5, 0.5],
+        ]),
+        way(
+          [
+            [0.5, 0.5],
+            [1 + buffer, 0.5],
+          ],
+          deck,
+        ),
+      ],
+      '4/3': [
+        way(
+          [
+            [-buffer, 0.5],
+            [1 + buffer, 0.5],
+          ],
+          deck,
+        ),
+      ],
+      '5/3': [
+        way(
+          [
+            [-buffer, 0.5],
+            [0.25, 0.5],
+          ],
+          deck,
+        ),
+        way([
+          [0.25, 0.5],
+          [0.8, 0.5],
+        ]),
+      ],
+    };
+    const drawn = async (
+      features: TerrainSemanticTileSource,
+      x: number,
+      at: number,
+    ): Promise<number> => {
+      const grading = createTerrainRoadGrading({ features, heights });
+      const tile = tileOf(tiles[`${x}/3` as keyof typeof tiles]);
+      const graded = await grading.gradeTile(tile, {
+        address: { level: 3, x, z: 3 },
+        pyramid,
+        signal: new AbortController().signal,
+      });
+      const feature = graded.transportation.find((f) => f.bridge) as TerrainTransportationFeature;
+      const origin = x * SIZE;
+      const path = terrainLinePath(feature.lines[0] as TerrainSemanticPoint[], SIZE);
+      return bridgeDeckHeightFn(path, (px) => ground(origin + px), {
+        clearance: 6,
+        approachLift: 0.32,
+        connects: [true, true],
+        approachProfile: (feature.bridgeApproachProfile ?? []).map((sample) => ({
+          ...sample,
+          point: [sample.point[0] * SIZE, sample.point[1] * SIZE] as TerrainSemanticPoint,
+        })),
+      })(at, 1200);
+    };
+    const features = featuresFor(tiles);
+    const [west, east] = await Promise.all([drawn(features, 3, SIZE), drawn(features, 4, 0)]);
+    expect(west).toBeCloseTo(east, 2);
+    // The two do grade it differently: with no tile 5 to read, both take the deck to end in
+    // the air at the same place, and stand elsewhere on the edge.
+    const { '5/3': _beyond, ...near } = tiles;
+    const short = featuresFor(near);
+    const [alone] = await Promise.all([drawn(short, 3, SIZE), drawn(short, 4, 0)]);
+    expect(Math.abs(alone - west)).toBeGreaterThan(0.5);
+    // And well inside its tile each keeps its own grading: the deck still lands on its road.
+    expect(await drawn(features, 3, 0.5 * SIZE)).toBeCloseTo(0.32, 1);
   });
 
   it('hands the graded tile to the renderer it wraps, and tiles without bridges as they came', async () => {

@@ -3,6 +3,7 @@ import { bridgeDeckHeightFn } from '../src/bridge-profile';
 import { gradeTransportSeparations, TERRAIN_GRADE_SEPARATION } from '../src/grade-separation';
 import { gradeHighwayBridges } from '../src/highway-grading';
 import { terrainLinePath } from '../src/line-path';
+import { roadProfileHeight } from '../src/road-earthworks';
 import type { TerrainSemanticPoint, TerrainTransportationFeature } from '../src/semantic-types';
 
 const SIZE = 400;
@@ -381,7 +382,7 @@ describe('grade separation', () => {
     expect(profile(frontage)[0]?.elevation).toBeCloseTo(profile(bridge)[0]?.elevation as number, 5);
   });
 
-  it('clears a road that is still climbing to another structure', () => {
+  it('brings a road climbing to one structure down to pass beneath another', () => {
     const result = gradeTransportSeparations(
       [
         // An overpass at x = 200 whose east approach climbs along z = 200...
@@ -416,12 +417,22 @@ describe('grade separation', () => {
       SIZE,
       flat,
     );
-    const [, approach, , , second] = result as [Feature, Feature, Feature, Feature, Feature];
+    const [first, approach, , , second] = result as [Feature, Feature, Feature, Feature, Feature];
+    // The approach leaves its own bridge at the deck's height, well off the ground...
+    expect(profile(approach)[0]?.elevation).toBeCloseTo(
+      profile(first).at(-1)?.elevation as number,
+      5,
+    );
+    expect(profile(approach)[0]?.elevation).toBeGreaterThan(4);
+    // ...and is down beneath the second, which stands where it would over a road on the ground:
+    // cleared where it stood, the road lifted the deck, and a deck's ends lift more roads.
     const beneath = heightAt(approach, 260, 200);
-    expect(beneath).toBeGreaterThan(2); // still well off the ground there
     expect(heightAt(second, 260, 200) - beneath).toBeGreaterThanOrEqual(
       TERRAIN_GRADE_SEPARATION.road - 0.05,
     );
+    expect(Math.max(...profile(second).map((p) => p.elevation))).toBeLessThan(7.5);
+    // A steep ramp, not a step.
+    expect(steepest(approach)).toBeLessThan(0.3);
   });
 
   it('keeps decks side by side level with each other', () => {
@@ -453,6 +464,326 @@ describe('grade separation', () => {
     const [north, south] = result as [Feature, Feature];
     expect(heightAt(north, 200, 200)).toBeGreaterThanOrEqual(0.32 + TERRAIN_GRADE_SEPARATION.road);
     expect(heightAt(south, 200, 212)).toBeCloseTo(heightAt(north, 200, 200), 1);
+  });
+
+  it('makes one surface of carriageways whose paving overlaps, however far apart they would stand', () => {
+    const result = gradeTransportSeparations(
+      [
+        // Two carriageways 6 m apart and 10 m wide: mapped closer than they are drawn.
+        motorway(
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+          { bridge: true, oneway: true, layer: 2 },
+        ),
+        motorway(
+          [
+            [0, 0.515],
+            [1, 0.515],
+          ],
+          { bridge: true, oneway: true, layer: 2 },
+        ),
+        // A lower deck that the first crosses and that stops short of the second: on its own
+        // the first stands a story over the second, its edge barrier in the second's lanes.
+        way(
+          [
+            [0.5, 0.3],
+            [0.5, 0.5025],
+          ],
+          { bridge: true, layer: 1 },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [north, south, lower] = result as [Feature, Feature, Feature];
+    const top = heightAt(north, 200, 200);
+    expect(top - heightAt(lower, 200, 200)).toBeGreaterThanOrEqual(
+      TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
+    expect(top).toBeGreaterThan(12);
+    for (const x of [140, 200, 260])
+      expect(Math.abs(heightAt(south, x, 206) - heightAt(north, x, 200))).toBeLessThan(0.35);
+  });
+
+  it('leaves a bridge of another kind under a viaduct where it stands', () => {
+    // A valley 14 m deep between two banks.
+    const valley = (x: number): number => (x < 60 || x > 340 ? 14 : 0);
+    const result = gradeTransportSeparations(
+      [
+        // A viaduct from bank to bank, and a railway bridge along the valley floor beneath it.
+        way([
+          [0, 0.5],
+          [0.1, 0.5],
+        ]),
+        motorway(
+          [
+            [0.1, 0.5],
+            [0.9, 0.5],
+          ],
+          { bridge: true, oneway: true },
+        ),
+        way([
+          [0.9, 0.5],
+          [1, 0.5],
+        ]),
+        rail(
+          [
+            [0.25, 0.505],
+            [0.75, 0.505],
+          ],
+          { bridge: true },
+        ),
+      ],
+      SIZE,
+      valley,
+    );
+    const [, viaduct, , railway] = result as [Feature, Feature, Feature, Feature];
+    expect(heightAt(viaduct, 200, 200, valley)).toBeGreaterThan(13);
+    // Its paving lies under the viaduct's, and it is no part of the viaduct.
+    expect(Math.max(...profile(railway).map((p) => p.elevation))).toBeLessThan(7.5);
+  });
+
+  it('holds a ramp level with the road it merges into for as long as their paving overlaps', () => {
+    const result = gradeTransportSeparations(
+      [
+        // A street's deck between two banks, low near them...
+        way([
+          [0, 0.5],
+          [0.15, 0.5],
+        ]),
+        way(
+          [
+            [0.15, 0.5],
+            [0.5, 0.5],
+            [0.85, 0.5],
+          ],
+          { bridge: true },
+        ),
+        way([
+          [0.85, 0.5],
+          [1, 0.5],
+        ]),
+        // ...and a freeway's ramp that comes in at a few degrees, over a road the street's deck
+        // does not cross, and joins it in the middle.
+        motorway(
+          [
+            [0.25, 0.4775],
+            [0.5, 0.5],
+          ],
+          { bridge: true, link: true, oneway: true },
+        ),
+        way([
+          [0.275, 0.3],
+          [0.275, 0.49],
+        ]),
+      ],
+      SIZE,
+      flat,
+    );
+    const [, street, , ramp] = result as [Feature, Feature, Feature, Feature];
+    // Over the road, the ramp is a story up...
+    expect(heightAt(ramp, 110, 191.9)).toBeGreaterThanOrEqual(
+      0.32 + TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
+    // ...and the street's deck beside it there is with it, not a wall's height below.
+    for (const x of [110, 140, 170])
+      expect(
+        Math.abs(heightAt(street, x, 200) - heightAt(ramp, x, 191 + (x - 100) * 0.09)),
+      ).toBeLessThan(0.6);
+  });
+
+  it('takes a ramp over both carriageways of a road, or under both', () => {
+    const result = gradeTransportSeparations(
+      [
+        motorway(
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+          { bridge: true, oneway: true },
+        ),
+        motorway(
+          [
+            [0, 0.53],
+            [1, 0.53],
+          ],
+          { bridge: true, oneway: true },
+        ),
+        // A ramp that leaves the ground 35 m before the first carriageway and 47 m before the
+        // second. So near its landing, the first's span stands just far enough over the ramp's
+        // to be taken for the upper; the second's does not, and what each carries decides.
+        way([
+          [0.5, 0.3],
+          [0.5, 0.4125],
+        ]),
+        motorway(
+          [
+            [0.5, 0.4125],
+            [0.5, 0.65],
+          ],
+          { bridge: true, link: true },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [north, south, , ramp] = result as [Feature, Feature, Feature, Feature];
+    const overNorth = heightAt(ramp, 200, 200) - heightAt(north, 200, 200),
+      overSouth = heightAt(ramp, 200, 212) - heightAt(south, 200, 212);
+    expect(Math.sign(overNorth)).toBe(Math.sign(overSouth));
+    expect(Math.abs(overNorth)).toBeGreaterThanOrEqual(TERRAIN_GRADE_SEPARATION.road - 0.05);
+    expect(Math.abs(overSouth)).toBeGreaterThanOrEqual(TERRAIN_GRADE_SEPARATION.road - 0.05);
+  });
+
+  it('lets decks joined too near to stand a story apart cross on the level', () => {
+    // Two tracks on one bridge and a scissors crossover between them.
+    const result = gradeTransportSeparations(
+      [
+        rail(
+          [
+            [0, 0.5],
+            [0.45, 0.5],
+            [0.55, 0.5],
+            [1, 0.5],
+          ],
+          { bridge: true },
+        ),
+        rail(
+          [
+            [0, 0.51],
+            [0.45, 0.51],
+            [0.55, 0.51],
+            [1, 0.51],
+          ],
+          { bridge: true },
+        ),
+        rail(
+          [
+            [0.45, 0.5],
+            [0.55, 0.51],
+          ],
+          { bridge: true },
+        ),
+        rail(
+          [
+            [0.45, 0.51],
+            [0.55, 0.5],
+          ],
+          { bridge: true },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [, , one, other] = result as [Feature, Feature, Feature, Feature];
+    expect(Math.abs(heightAt(one, 200, 202) - heightAt(other, 200, 202))).toBeLessThan(0.3);
+    for (const feature of result)
+      expect(Math.max(...profile(feature).map((p) => p.elevation))).toBeLessThan(8);
+  });
+
+  it('gives decks that chase each other upward another arrangement', () => {
+    const result = gradeTransportSeparations(
+      [
+        // A freeway's deck, a ramp that leaves it...
+        motorway(
+          [
+            [0, 0.5],
+            [0.5, 0.5],
+            [1, 0.5],
+          ],
+          { bridge: true, oneway: true },
+        ),
+        motorway(
+          [
+            [0.5, 0.5],
+            [0.75, 0.25],
+          ],
+          { bridge: true, link: true, oneway: true },
+        ),
+        // ...and a second freeway that crosses both, 25 m and 35 m from where they part. Running
+        // north and south it is taken to pass over the first, and the ramp over it: the ramp
+        // would climb two stories in the 35 m since it left the deck beneath them both.
+        motorway(
+          [
+            [0.5625, 0.2],
+            [0.5625, 0.8],
+          ],
+          { bridge: true, oneway: true },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [first, ramp, second] = result as [Feature, Feature, Feature];
+    // Nothing ran up to the limit of what a deck may rise...
+    for (const feature of result)
+      expect(Math.max(...profile(feature).map((p) => p.elevation))).toBeLessThan(20);
+    // ...and each crossing still clears, whichever way up it was left.
+    expect(Math.abs(heightAt(first, 225, 200) - heightAt(second, 225, 200))).toBeGreaterThanOrEqual(
+      TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
+    expect(Math.abs(heightAt(ramp, 225, 175) - heightAt(second, 225, 175))).toBeGreaterThanOrEqual(
+      TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
+  });
+
+  it('brings two climbing roads to a merge at one height, with no spike in either', () => {
+    const result = gradeTransportSeparations(
+      [
+        // Two ramps' decks end 4 m apart, one a story above the other (it has a road to clear)...
+        motorway(
+          [
+            [0.2, 0.5],
+            [0.5, 0.5],
+          ],
+          { bridge: true, link: true, oneway: true },
+        ),
+        motorway(
+          [
+            [0.2, 0.62],
+            [0.35, 0.56],
+            [0.5, 0.51],
+          ],
+          { bridge: true, link: true, oneway: true },
+        ),
+        way([
+          [0.3, 0.35],
+          [0.3, 0.54],
+        ]),
+        // ...and the roads that carry them on merge 24 m later.
+        motorway(
+          [
+            [0.5, 0.5],
+            [0.56, 0.5],
+            [0.95, 0.5],
+          ],
+          { link: true, oneway: true },
+        ),
+        motorway(
+          [
+            [0.5, 0.51],
+            [0.56, 0.5],
+          ],
+          { link: true, oneway: true },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [, , , through, joining] = result as [Feature, Feature, Feature, Feature, Feature];
+    expect(profile(joining).at(-1)?.elevation).toBeCloseTo(heightAt(through, 224, 200), 1);
+    for (const feature of [through, joining]) {
+      const samples = profile(feature);
+      for (let i = 1; i + 1 < samples.length; i++)
+        expect(
+          Math.abs(
+            (samples[i]?.elevation as number) -
+              ((samples[i - 1]?.elevation as number) + (samples[i + 1]?.elevation as number)) / 2,
+          ),
+        ).toBeLessThan(0.6);
+    }
   });
 
   it('leaves surveyed and authored roads untouched', () => {
@@ -543,6 +874,99 @@ describe('grade separation', () => {
       endTolerance: 1.5,
     });
     expect(profile(mirrored[0])[0]?.elevation).toBeCloseTo(end, 5);
+  });
+
+  it('keeps a bridge over a road in a cutting out of the cutting when it is moved onto drawn ground', () => {
+    // A cutting 8 m deep and 40 m wide, its road along the bottom, and a bridge 60 m long
+    // from lip to lip. The grading reads the ground leveled along each way, as a tile's does.
+    const cutting = (x: number): number => (Math.abs(x - 200) < 20 ? -8 : 0);
+    const result = gradeTransportSeparations(
+      [
+        way([
+          [0.2, 0.5],
+          [0.425, 0.5],
+        ]),
+        way(
+          [
+            [0.425, 0.5],
+            [0.575, 0.5],
+          ],
+          { bridge: true },
+        ),
+        way([
+          [0.575, 0.5],
+          [0.8, 0.5],
+        ]),
+        motorway([
+          [0.5, 0],
+          [0.5, 1],
+        ]),
+      ],
+      SIZE,
+      (x, z, dx, dz) => roadProfileHeight(cutting, x, z, dx, dz),
+      { anchored: true },
+    );
+    const [, bridge] = result as [Feature, Feature];
+    const path = terrainLinePath(bridge.lines[0] as TerrainSemanticPoint[], SIZE);
+    // As a tile draws it: on the ground as it is, not as the grading read it.
+    const drawn = bridgeDeckHeightFn(path, cutting, {
+      clearance: 6,
+      approachLift: 0.32,
+      connects: [true, true],
+      approachProfile: profile(bridge).map((sample) => ({
+        ...sample,
+        point: [sample.point[0] * SIZE, sample.point[1] * SIZE] as TerrainSemanticPoint,
+      })),
+    });
+    // It lands on the road at the lip...
+    expect(drawn(170, 200)).toBeCloseTo(0.32, 1);
+    // ...and over the road in the cutting it stands where it was graded, a truck's height
+    // clear: the ground under it there has not sunk since.
+    for (const x of [192, 200, 208])
+      expect(drawn(x, 200) - (cutting(x) + 0.32)).toBeGreaterThanOrEqual(
+        TERRAIN_GRADE_SEPARATION.road - 0.3,
+      );
+  });
+
+  it('clears a road where it climbs from a landing, not where it would lie on the ground', () => {
+    const result = gradeTransportSeparations(
+      [
+        // A deck that clears a street 4 m before it lands on a road...
+        way(
+          [
+            [0.3, 0.5],
+            [0.5, 0.5],
+          ],
+          { bridge: true },
+        ),
+        way([
+          [0.49, 0.3],
+          [0.49, 0.7],
+        ]),
+        way([
+          [0.5, 0.5],
+          [0.8, 0.5],
+        ]),
+        // ...and another structure that crosses that road 10 m from the landing.
+        way(
+          [
+            [0.525, 0.2],
+            [0.525, 0.8],
+          ],
+          { bridge: true },
+        ),
+      ],
+      SIZE,
+      flat,
+    );
+    const [, , road, over] = result as [Feature, Feature, Feature, Feature];
+    // The road comes down from the landing as a steep ramp might, not as a wall...
+    expect(profile(road)[0]?.elevation).toBeGreaterThan(5);
+    expect(steepest(road)).toBeLessThan(0.3);
+    // ...and the other structure clears it where it stands.
+    expect(heightAt(over, 210, 200) - heightAt(road, 210, 200)).toBeGreaterThanOrEqual(
+      TERRAIN_GRADE_SEPARATION.road - 0.05,
+    );
   });
 
   it('passes the direction of travel to callers that level roads along it', () => {

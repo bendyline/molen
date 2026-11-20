@@ -16,6 +16,7 @@ import { createTerrainSemanticObject, disposeTerrainSemanticObject } from '../sr
 import {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
+  type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   type TerrainTransportationFeature,
@@ -580,6 +581,38 @@ describe('surface styles', () => {
       },
     ];
     expect(stats(createTerrainSurfaceObject(tile, context())).junctions).toBe(0);
+  });
+
+  it('stands no lamps or masts on the ground under a junction of roads raised to a deck', () => {
+    const near = (object: THREE.Object3D) =>
+      (object.userData.streetLights as TerrainStreetLight[]).filter(
+        (light) => Math.hypot(light.x - 60, light.z - 60) < 14,
+      );
+    const level = createTerrainSurfaceObject(builtUp(fixture()), context());
+    expect(stats(level).junctions).toBe(1);
+    expect(near(level).length).toBeGreaterThan(0);
+    // Both roads climbing to an overpass beyond the tile: 6 m up where they meet.
+    const tile = builtUp(fixture());
+    const { heightfield, origin, tileSize } = context();
+    for (const road of tile.transportation) {
+      const [a, b] = (road.lines[0] ?? []) as [TerrainSemanticPoint, TerrainSemanticPoint];
+      road.bridgeApproachProfile = Array.from({ length: 25 }, (_, i) => {
+        const t = i / 24;
+        const point: TerrainSemanticPoint = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+        return {
+          point,
+          elevation:
+            heightfield.sampleHeight(
+              origin[0] + point[0] * tileSize,
+              origin[1] + point[1] * tileSize,
+            ) + 6.32,
+          flatness: 1,
+        };
+      });
+    }
+    const raised = createTerrainSurfaceObject(tile, context());
+    expect(stats(raised).junctions).toBe(0);
+    expect(near(raised)).toEqual([]);
   });
 
   it('gives arterials mast arms over the road and other streets post-top lamps', () => {

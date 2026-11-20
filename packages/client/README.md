@@ -69,7 +69,8 @@ probe — a pinned backend is what makes a captured frame reproducible.
 | `./glass` | `createGlassVisual` — retained laminate cracks, released sheets and bounded glass fragments |
 | `./aircraft` | `createAircraftVisual`, `aircraftCameraPose`, `PilotMotion` — animated airframe, instrumented cockpit and the pilot's body under g, the render half of `@bendyline/molen-kernel/aircraft` |
 | `./instruments` | Named signal expressions and reusable wiring for calibrated dials, altimeters, attitude indicators, annunciators and seven-segment readouts; geometry stays in each model |
-| `./navigation` | `OrbitController`, `FlyController`, `WalkController` + `WalkCollision`, `FollowController`, `NavigationInputSource` (keys, gamepad, pointer gestures) and `createTouchJoystick` — camera navigation for `createViewer` hosts |
+| `./navigation` | `OrbitController`, `FlyController`, `WalkController` + `WalkCollision`, `FollowController`, `NavigationInputSource` (keys, gamepad, pointer gestures), `createTouchJoystick` and touch lever/button zones — camera navigation for `createViewer` hosts |
+| `./console` | `createVehicleConsole` — touch controls drawn as the vehicle's own (an aircraft's stick, pedals, throttle, gear and flap handles and dials; a car's wheel and pedals), lifted from its model into one see-through strip |
 | `./markers` | `createMarkerLayer`, `composeMarkerImage`, `projectWorldToScreen` — screen-sized, ground-snapped, pickable world markers such as photo pins |
 | `./audio` | `createAudioLayer`, `AudioDirector`, `WebAudioBackend`, `loadPackSoundbanks`, `attachAutoplayUnlock` — plays sound banks and a scene's `audioEnvironment`/`audioSource`/`audioZone` rules and `molen.audio.*` events; three-free at runtime, so the director also runs in Node |
 

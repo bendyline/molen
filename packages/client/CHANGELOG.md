@@ -1,3 +1,10 @@
+## @bendyline/molen-client [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.16...@bendyline/molen-client@0.0.17) (2026-11-18)
+
+### Bug Fixes
+
+* Timeout updates ([68a5d1e](https://github.com/bendyline/molen/commit/68a5d1eab051089998cf48c6afafcd5f5d4256d1))
+* Visual fixes ([e5d7d80](https://github.com/bendyline/molen/commit/e5d7d8091aaa25818ac1127a6b0537f1618ace47))
+
 ## @bendyline/molen-client [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.15...@bendyline/molen-client@0.0.16) (2026-11-16)
 
 ### Bug Fixes

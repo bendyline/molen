@@ -220,7 +220,8 @@ export function addInterior(parent, layout, api) {
       pedal.attach(cabin.getObjectByName(`rudder-pedal-${side}-${dx}`));
       pedal.userData.aircraftControl = {
         action: 'yaw',
-        motion: { property: 'position', axis: 'z', scale: Math.sign(dx) * 0.035 },
+        // Right rudder pushes the right pedal (-X) forward.
+        motion: { property: 'position', axis: 'z', scale: -Math.sign(dx) * 0.035 },
       };
     }
     rod(

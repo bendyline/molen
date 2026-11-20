@@ -284,6 +284,54 @@ describe('normalized semantic mesh adapter', () => {
     expect(floor).toBeCloseTo(0.01 * tileArea, 3);
   });
 
+  it("paints a building in the host's own colors, and the palette's where the host has none", () => {
+    const ring = (x: number): [number, number][] => [
+      [x, 0.2],
+      [x + 0.1, 0.2],
+      [x + 0.1, 0.3],
+      [x, 0.3],
+    ];
+    const tile = semanticTile();
+    tile.buildings = [
+      { id: 'known', height: 30, polygons: [{ outer: ring(0.2) }] },
+      { id: 'unknown', height: 30, polygons: [{ outer: ring(0.6) }] },
+    ];
+    const asked: [string | number | undefined, number][] = [];
+    const object = createTerrainSemanticObject(tile, context(), {
+      buildingColors: {
+        roofs: [['#ffffff', 1]],
+        walls: [['#ffffff', 1]],
+        pick: (feature, polygonIndex) => {
+          asked.push([feature.id, polygonIndex]);
+          return feature.id === 'known'
+            ? { roof: [0.2, 0.2, 0.2], wall: [0.3, 0.4, 0.5] }
+            : undefined;
+        },
+      },
+    });
+    expect(asked).toEqual([
+      ['known', 0],
+      ['unknown', 0],
+    ]);
+    const geometry = (object.getObjectByName('semantic:buildings') as THREE.Mesh).geometry;
+    const position = geometry.getAttribute('position');
+    const normal = geometry.getAttribute('normal');
+    const color = geometry.getAttribute('color');
+    const wall = new THREE.Color().setRGB(0.3, 0.4, 0.5, THREE.SRGBColorSpace);
+    const roof = new THREE.Color().setRGB(0.2, 0.2, 0.2, THREE.SRGBColorSpace);
+    const seen = { known: 0, unknown: 0 };
+    for (let i = 0; i < position.count; i++) {
+      const known = position.getX(i) < 0.5 * context().tileSize;
+      const expected = known ? (normal.getY(i) > 0.5 ? roof : wall) : new THREE.Color(1, 1, 1);
+      expect(color.getX(i)).toBeCloseTo(expected.r, 5);
+      expect(color.getY(i)).toBeCloseTo(expected.g, 5);
+      expect(color.getZ(i)).toBeCloseTo(expected.b, 5);
+      seen[known ? 'known' : 'unknown']++;
+    }
+    expect(seen.known).toBeGreaterThan(0);
+    expect(seen.unknown).toBeGreaterThan(0);
+  });
+
   it('builds the same buildings a slice at a time, and stops once cancelled', async () => {
     const tile = semanticTile();
     tile.buildings = Array.from({ length: 40 }, (_, i) => {

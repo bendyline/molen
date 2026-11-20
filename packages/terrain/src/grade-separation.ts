@@ -10,7 +10,9 @@
  * not a survey of the real one.
  *
  * Every rule reads only what lies near the thing it decides, so two tiles that both see a
- * crossing reach the same answer about it.
+ * crossing reach the same answer about it. What a tile cannot see (the far bank of a long
+ * bridge, the ramp three hundred meters on that lifts a deck) it cannot answer for: whoever
+ * grades tile by tile settles that between the tiles (see `road-grading`).
  */
 import type {
   TerrainBridgeProfileSample,
@@ -49,6 +51,19 @@ const FREE_END_DEPTH = 120;
 const MAX_RISE = 30;
 /** Meters a deck may rise above where it would stand alone to stay level with one beside it. */
 const BESIDE_ALLOWANCE = 2.5;
+/**
+ * Meters between the paving of two decks running the same way under which they are one surface,
+ * level throughout: carriageways mapped closer than they are wide, a ramp where it merges.
+ */
+const ABREAST_GAP = 1;
+/** Meters along two decks from where they cross within which neither counts as beside the other. */
+const STACKED_HOLD = 40;
+/** Meters along two decks from where they join within which their paving is one surface. */
+const MERGE_REACH = 150;
+/** Meters along two ways within which crossings of a way and its twin are one crossing. */
+const TWIN_REACH = 80;
+/** Times a set of decks that cannot be placed is given another arrangement before it is left be. */
+const MAX_REMEDIES = 24;
 /** Meters from a bridge within which a way can cross it or climb to it, and the cell that sorts by. */
 const BRIDGE_REACH = 260;
 const BRIDGE_ZONE = 64;
@@ -90,6 +105,16 @@ export interface GradeSeparationOptions {
    * `TerrainBridgeProfileSample.anchor`.
    */
   anchored?: boolean;
+  /**
+   * Called with the profile of every way that was given one, the context's ways among them
+   * (which are not returned): what this pass made of the roads around `features` as well as
+   * of `features`. Each way's own stations only, in the frame of `features`.
+   */
+  profiled?: (
+    feature: TerrainTransportationFeature,
+    line: number,
+    samples: readonly TerrainBridgeProfileSample[],
+  ) => void;
 }
 
 interface Way {
@@ -99,6 +124,7 @@ interface Way {
   line: number;
   bridge: boolean;
   family: TerrainGradeFamily;
+  kind: TransportKind;
   lift: number;
   grade: number;
   halfWidth: number;
@@ -129,6 +155,20 @@ interface Crossing {
   under: number;
   /** Waiting to be looked at again. */
   queued: boolean;
+  /** Index of the meeting it was made from, and of this crossing. */
+  meeting: number;
+  /** Whether the meeting's first way is the upper. */
+  first: boolean;
+  /**
+   * How surely the upper way is the upper: 5 a deck over a road on the ground, 4 the mapped
+   * layer, 3 the ground the spans stand on, 2 what the decks carry, 1 how far each has come
+   * from its landing, 0 their bearing.
+   */
+  confidence: number;
+  /** Turned over after its first arrangement could not be placed. */
+  flipped: boolean;
+  /** Given up: the two ways meet on the level there. */
+  dropped: boolean;
 }
 
 /** Steepest sustained grade of a class of way; stairs climb as stairs do. */
@@ -213,12 +253,20 @@ class Heap {
  *   mapped `layer` decides which is on top; without one, the deck whose span already stands
  *   well above the other's, then what each carries (ramps over streets over freeway
  *   carriageways and railways), then the one farther along its structure from where it lands.
+ *   Carriageways side by side are one road to what crosses them: over both, or under both.
+ * - Decks whose paving overlaps (carriageways mapped closer than they are wide, a ramp where
+ *   it merges) are one surface, level with each other; decks a little apart are level as far
+ *   as a few meters' difference goes.
  * - A deck falls away from that height no faster than its class allows, and where it reaches
  *   its end still raised, the roads joined to it there carry the rest of the descent, each at
- *   its own grade.
+ *   its own grade. Such a road fits beneath every deck that passes over it: it never lifts one.
+ * - Decks that no heights can satisfy (each must clear the other, or is tied to it, before it
+ *   has the length to fall a story) are given another arrangement: a crossing turned over,
+ *   two decks no longer held level, or at the last a crossing on the level.
  *
  * `groundAt` takes tile-local meters and, for callers that level roads along their own direction,
- * the unit direction of the way at that point. Coordinates and profiles stay tile-normalized.
+ * the unit direction of the way at that point (zero for the ground at the point itself).
+ * Coordinates and profiles stay tile-normalized.
  */
 export function gradeTransportSeparations(
   features: readonly TerrainTransportationFeature[],
@@ -300,6 +348,7 @@ export function* gradeTransportSeparationSteps(
         line: lineIndex,
         bridge: feature.bridge === true,
         family,
+        kind,
         lift: kind === 'path' ? PATH_SURFACE_LIFT : ROAD_SURFACE_LIFT,
         grade: maxGrade(feature, kind),
         halfWidth: transportWidth(feature, kind) / 2,
@@ -553,6 +602,13 @@ export function* gradeTransportSeparationSteps(
 
   // --- Decks: spans between the roads at their ends. ---
   const depth = new Float64Array(nodeCount).fill(Number.POSITIVE_INFINITY);
+  /**
+   * For each deck node, how far the ground its landing was graded over stands above the ground
+   * at the landing itself (see `sampleOf`): that of the landing nearest along the structure.
+   */
+  const seat = new Float64Array(nodeCount);
+  /** The ground at a node itself, not leveled along its way. */
+  const spot = (node: number): number => groundAt(xs[node] as number, zs[node] as number, 0, 0);
   const component = new Int32Array(nodeCount).fill(-1);
   let components = 0;
   for (const seed of ways) {
@@ -582,7 +638,7 @@ export function* gradeTransportSeparationSteps(
       return root;
     };
     const fixed = new Map<number, number>();
-    const sources: { node: number; start: number }[] = [];
+    const sources: { node: number; start: number; seat: number }[] = [];
     for (const node of members) {
       const joined = links[node];
       if (!joined && !isEnd(node)) continue;
@@ -594,22 +650,31 @@ export function* gradeTransportSeparationSteps(
       }
     }
     for (const node of group.keys()) {
-      let landing = Number.NEGATIVE_INFINITY;
-      for (const other of links[node] ?? [])
-        if (!wayAt(other).bridge) landing = Math.max(landing, floorOf(other));
+      let landing = Number.NEGATIVE_INFINITY,
+        on = -1;
+      for (const other of links[node] ?? []) {
+        if (wayAt(other).bridge || floorOf(other) <= landing) continue;
+        landing = floorOf(other);
+        on = other;
+      }
       const free = landing === Number.NEGATIVE_INFINITY && !links[node];
       if (free) landing = groundOf(node) + FREE_CLEARANCE[wayAt(node).family];
       if (landing === Number.NEGATIVE_INFINITY) continue;
       const root = find(node);
       fixed.set(root, Math.max(fixed.get(root) ?? Number.NEGATIVE_INFINITY, landing));
-      sources.push({ node, start: free ? FREE_END_DEPTH : 0 });
+      sources.push({
+        node,
+        start: free ? FREE_END_DEPTH : 0,
+        seat: on >= 0 && options.anchored ? groundOf(on) - spot(node) : 0,
+      });
     }
     // How far along the structure each point is from the ground.
     const heap = new Heap();
-    for (const { node, start } of sources) {
-      if (start >= (depth[node] as number)) continue;
-      depth[node] = start;
-      heap.push(node, -start);
+    for (const source of sources) {
+      if (source.start >= (depth[source.node] as number)) continue;
+      depth[source.node] = source.start;
+      seat[source.node] = source.seat;
+      heap.push(source.node, -source.start);
     }
     while (heap.size) {
       const [node, key] = heap.pop();
@@ -619,6 +684,7 @@ export function* gradeTransportSeparationSteps(
         const next = -key + length;
         if (next >= (depth[other] as number)) return;
         depth[other] = next;
+        seat[other] = seat[node] as number;
         heap.push(other, -next);
       });
     }
@@ -791,37 +857,10 @@ export function* gradeTransportSeparationSteps(
   }
   yield;
   const pairKey = (a: number, b: number): string => `${a}/${b}`;
-  const crossings: Crossing[] = [];
-  /** The crossings each node lies beneath, to look at again when it rises. */
-  const above = new Map<number, Crossing[]>();
-  const cross = (meeting: Meeting, over: boolean): Crossing => {
-    const upper = over ? meeting.a : meeting.b,
-      lower = over ? meeting.b : meeting.a;
-    const upperAt = over ? meeting.aAt : meeting.bAt,
-      lowerAt = over ? meeting.bAt : meeting.aAt;
-    const beneath = ways[lower] as Way;
-    const skew = Math.max(0.25, meeting.sine);
-    const crossing: Crossing = {
-      upper,
-      at: upperAt,
-      lower,
-      beneath: lowerAt,
-      lowerNode: nodeNear(beneath, lowerAt),
-      separation: TERRAIN_GRADE_SEPARATION[beneath.family],
-      hold: Math.min(40, (beneath.halfWidth + 1.5) / skew),
-      under: Math.min(40, ((ways[upper] as Way).halfWidth + 1.5) / skew),
-      queued: false,
-    };
-    crossings.push(crossing);
-    const list = above.get(crossing.lowerNode);
-    if (list) list.push(crossing);
-    else above.set(crossing.lowerNode, [crossing]);
-    return crossing;
-  };
   // Decks side by side (twin carriageways, a footway along a road bridge) stand level with each
   // other: they read as one structure, and crossing different things must not split them.
   const deckCells = new Map<string, number[]>();
-  const deckCell = 12;
+  const deckCell = 20;
   for (const way of ways) {
     if (!way.bridge) continue;
     for (let node = way.first; node < way.first + way.count; node++) {
@@ -831,11 +870,103 @@ export function* gradeTransportSeparationSteps(
       else deckCells.set(key, [node]);
     }
   }
-  const stacked = new Set<string>();
+  // A road is many ways end to end (its tags change, a tile cuts it): the deck that carries
+  // each on is the same road, to what it crosses as much as to itself.
+  const carried = new Int32Array(ways.length);
+  for (let w = 0; w < ways.length; w++) carried[w] = w;
+  const roadOf = (w: number): number => {
+    let root = w;
+    while (carried[root] !== root) root = carried[root] as number;
+    carried[w] = root;
+    return root;
+  };
+  ways.forEach((way, w) => {
+    if (!way.bridge) return;
+    for (const node of [way.first, way.first + way.count - 1]) {
+      let ends = 0,
+        onto = -1;
+      for (const other of links[node] ?? []) {
+        const peer = wayAt(other);
+        if (peer === way || !peer.bridge || peer.family !== way.family || !isEnd(other)) continue;
+        ends++;
+        onto = wayOf[other] as number;
+      }
+      // Three ways meeting are a junction, not one road carrying on.
+      if (ends === 1) carried[roadOf(w)] = roadOf(onto);
+    }
+  });
+  /** Where each pair of roads cross, as x and z in turn. */
+  const stackedAt = new Map<string, number[]>();
   for (const meeting of meetings) {
-    stacked.add(pairKey(meeting.a, meeting.b));
-    stacked.add(pairKey(meeting.b, meeting.a));
+    const node = nodeNear(ways[meeting.a] as Way, meeting.aAt);
+    const a = roadOf(meeting.a),
+      b = roadOf(meeting.b);
+    for (const key of a === b ? [pairKey(a, b)] : [pairKey(a, b), pairKey(b, a)]) {
+      const list = stackedAt.get(key);
+      if (list) list.push(xs[node] as number, zs[node] as number);
+      else stackedAt.set(key, [xs[node] as number, zs[node] as number]);
+    }
   }
+  /**
+   * Whether two nodes lie where their roads cross: there the decks are stacked, however nearly
+   * parallel they run, out to where the upper could have come down to the lower again.
+   */
+  const stackedNear = (node: number, other: number): boolean => {
+    const list = stackedAt.get(
+      pairKey(roadOf(wayOf[node] as number), roadOf(wayOf[other] as number)),
+    );
+    if (!list) return false;
+    const a = wayAt(node),
+      b = wayAt(other);
+    const reach =
+      STACKED_HOLD +
+      Math.max(TERRAIN_GRADE_SEPARATION[a.family], TERRAIN_GRADE_SEPARATION[b.family]) /
+        (a.grade + b.grade);
+    for (let i = 0; i < list.length; i += 2) {
+      const x = list[i] as number,
+        z = list[i + 1] as number;
+      if (
+        Math.hypot((xs[node] as number) - x, (zs[node] as number) - z) < reach &&
+        Math.hypot((xs[other] as number) - x, (zs[other] as number) - z) < reach
+      )
+        return true;
+    }
+    return false;
+  };
+  /** Where each pair of decks join: arc distances along the first and along the second, in turn. */
+  const joinedAt = new Map<string, number[]>();
+  for (const way of ways) {
+    if (!way.bridge) continue;
+    for (let node = way.first; node < way.first + way.count; node++)
+      for (const other of links[node] ?? []) {
+        if (!wayAt(other).bridge) continue;
+        const key = pairKey(wayOf[node] as number, wayOf[other] as number);
+        const list = joinedAt.get(key);
+        if (list) list.push(along[node] as number, along[other] as number);
+        else joinedAt.set(key, [along[node] as number, along[other] as number]);
+      }
+  }
+  /** Whether two nodes lie within `MERGE_REACH` of where their ways join. */
+  const mergingNear = (node: number, other: number): boolean => {
+    const list = joinedAt.get(pairKey(wayOf[node] as number, wayOf[other] as number));
+    if (!list) return false;
+    for (let i = 0; i < list.length; i += 2)
+      if (
+        Math.abs((along[node] as number) - (list[i] as number)) < MERGE_REACH &&
+        Math.abs((along[other] as number) - (list[i + 1] as number)) < MERGE_REACH
+      )
+        return true;
+    return false;
+  };
+  /**
+   * Decks whose paving overlaps or touches, as [node, meters along between the two, ...]: one
+   * surface, level throughout. Carriageways are mapped closer than they are drawn wide, and a
+   * ramp runs into the road it joins; at different heights each would stand in the other. Only
+   * decks of one kind, or that join nearby: a railway bridge under a viaduct that follows the
+   * same river crossing is another structure, a story below.
+   */
+  const abreast: (number[] | undefined)[] = new Array(nodeCount);
+  /** Decks a little apart, in the same form: level as far as `BESIDE_ALLOWANCE` goes. */
   const beside: (number[] | undefined)[] = new Array(nodeCount);
   for (const way of ways) {
     if (!way.bridge) continue;
@@ -850,13 +981,17 @@ export function* gradeTransportSeparationSteps(
             if (other <= node) continue;
             const peer = wayAt(other);
             if (peer === way || effectiveLayer(peer) !== effectiveLayer(way)) continue;
-            // Two decks that cross are stacked, however nearly parallel they run there.
-            if (stacked.has(pairKey(wayOf[node] as number, wayOf[other] as number))) continue;
             const ox = (xs[other] as number) - x,
               oz = (zs[other] as number) - z;
             const distance = Math.hypot(ox, oz);
             const gap = distance - way.halfWidth - peer.halfWidth;
-            if (gap < -1 || gap > 4) continue;
+            if (gap > 4) continue;
+            // One surface: the carriageways of one road, or a ramp and the road it joins.
+            const one =
+              gap < ABREAST_GAP &&
+              (way.family !== 'path' || peer.family !== 'path') &&
+              (way.kind === peer.kind || mergingNear(node, other));
+            if (gap < -1 && !one) continue;
             const tx = tangentX[node] as number,
               tz = tangentZ[node] as number;
             // Abreast: parallel, and across from each other rather than ahead.
@@ -864,14 +999,19 @@ export function* gradeTransportSeparationSteps(
               Math.abs(tx * (tangentX[other] as number) + tz * (tangentZ[other] as number)) < 0.94
             )
               continue;
-            if (Math.abs(ox * tx + oz * tz) > 0.35 * distance + 1) continue;
+            const offset = Math.abs(ox * tx + oz * tz);
+            if (offset > 0.35 * distance + 1) continue;
+            if (stackedNear(node, other)) continue;
+            // (The legs of a footbridge's switchback ramp lie side by side a story apart: two
+            // paths are never one surface.)
+            const lists = one ? abreast : beside;
             for (const [from, to] of [
               [node, other],
               [other, node],
             ] as const) {
-              const list = beside[from];
-              if (list) list.push(to);
-              else beside[from] = [to];
+              const list = lists[from];
+              if (list) list.push(to, offset);
+              else lists[from] = [to, offset];
             }
           }
     }
@@ -885,37 +1025,257 @@ export function* gradeTransportSeparationSteps(
       standing = 0;
     for (let node = way.first; node < way.first + way.count; node++) {
       let best = -1;
-      for (const other of beside[node] ?? [])
-        if (wayAt(other).family !== 'path') best = Math.max(best, wayAt(other).standing);
+      for (const list of [abreast[node], beside[node]])
+        if (list)
+          for (let i = 0; i < list.length; i += 2) {
+            const peer = wayAt(list[i] as number);
+            if (peer.family !== 'path') best = Math.max(best, peer.standing);
+          }
       if (best < 0) continue;
       carried++;
       standing = Math.max(standing, best);
     }
     if (carried * 2.5 >= way.count) way.standing = standing;
   }
-  // Which of two decks is on top where they cross. Nothing but the two structures near the
+  // Which of two decks is on top where they cross. Nothing but the structures near the
   // crossing decides it, so every tile that sees the crossing decides alike: the mapped layer;
   // else the deck whose span already stands well above the other's; else what the decks carry
   // (ramps fly over streets, streets over freeway carriageways and railways); else the one
   // farther from where it lands, which has had the length to climb; else the one running more
   // nearly north and south.
-  const over = (meeting: Meeting): boolean => {
+  //
+  // Carriageways side by side are one road to whatever crosses them: a ramp passes over both or
+  // under both. So the crossings of a way with decks that run beside each other there are
+  // decided as one, on what they find between them. Decided each on its own, a ramp went over
+  // one carriageway of a freeway and under the other wherever the ground under the two
+  // differed by the width of a threshold, and the three then chased each other upward.
+  const group = new Int32Array(meetings.length);
+  /** Whether a meeting's first way stands for its group's second. */
+  const turned = new Uint8Array(meetings.length);
+  for (let m = 0; m < meetings.length; m++) group[m] = m;
+  const rootOf = (m: number): [root: number, turned: number] => {
+    let root = m,
+      parity = 0;
+    while (group[root] !== root) {
+      parity ^= turned[root] as number;
+      root = group[root] as number;
+    }
+    if (root !== m) {
+      group[m] = root;
+      turned[m] = parity;
+    }
+    return [root, parity];
+  };
+  const stackedDecks = (meeting: Meeting): boolean =>
+    meeting.a !== meeting.b && (ways[meeting.a] as Way).bridge && (ways[meeting.b] as Way).bridge;
+  const meetingsOf = new Map<string, number[]>();
+  meetings.forEach((meeting, m) => {
+    if (!stackedDecks(meeting)) return;
+    for (const key of [pairKey(meeting.a, meeting.b), pairKey(meeting.b, meeting.a)]) {
+      const list = meetingsOf.get(key);
+      if (list) list.push(m);
+      else meetingsOf.set(key, [m]);
+    }
+  });
+  /** The decks running beside way `w` near arc distance `at`, each with where along it. */
+  const twinsNear = (w: number, at: number): Map<number, number> => {
+    const way = ways[w] as Way;
+    const found = new Map<number, number>();
+    const visit = (node: number): void => {
+      for (const list of [abreast[node], beside[node]])
+        if (list)
+          for (let i = 0; i < list.length; i += 2) {
+            const other = list[i] as number;
+            const peer = wayOf[other] as number;
+            if (!found.has(peer)) found.set(peer, along[other] as number);
+          }
+    };
+    const center = nodeNear(way, at);
+    for (let node = center; node >= way.first && at - (along[node] as number) <= 24; node--)
+      visit(node);
+    for (
+      let node = center + 1;
+      node < way.first + way.count && (along[node] as number) - at <= 24;
+      node++
+    )
+      visit(node);
+    return found;
+  };
+  meetings.forEach((meeting, m) => {
+    if (!stackedDecks(meeting)) return;
+    for (const [own, ownAt, other, otherAt] of [
+      [meeting.a, meeting.aAt, meeting.b, meeting.bAt],
+      [meeting.b, meeting.bAt, meeting.a, meeting.aAt],
+    ] as const)
+      for (const [twin, twinAt] of twinsNear(other, otherAt)) {
+        if (twin === own) continue;
+        for (const n of meetingsOf.get(pairKey(own, twin)) ?? []) {
+          if (n === m) continue;
+          const peer = meetings[n] as Meeting;
+          const first = peer.a === own;
+          if (
+            Math.abs((first ? peer.aAt : peer.bAt) - ownAt) > TWIN_REACH ||
+            Math.abs((first ? peer.bAt : peer.aAt) - twinAt) > TWIN_REACH
+          )
+            continue;
+          const [rootM, turnedM] = rootOf(m),
+            [rootN, turnedN] = rootOf(n);
+          if (rootM === rootN) continue;
+          group[rootN] = rootM;
+          turned[rootN] = turnedM ^ turnedN ^ ((own === meeting.a) === first ? 0 : 1);
+        }
+      }
+  });
+  const reachOf = (node: number): number => Math.min(LOCAL_DEPTH, depth[node] as number);
+  interface Vote {
+    layer: number;
+    floor: number;
+    standing: number;
+    reach: number;
+    bearing: number;
+    count: number;
+  }
+  const votes = new Map<number, Vote>();
+  meetings.forEach((meeting, m) => {
+    if (!stackedDecks(meeting)) return;
+    const [root, parity] = rootOf(m);
+    const sign = parity ? -1 : 1;
     const a = ways[meeting.a] as Way,
       b = ways[meeting.b] as Way;
     const na = nodeNear(a, meeting.aAt),
       nb = nodeNear(b, meeting.bAt);
-    const reach = (node: number): number => Math.min(LOCAL_DEPTH, depth[node] as number);
-    if (meeting.a === meeting.b) return (depth[na] as number) >= (depth[nb] as number);
-    if (effectiveLayer(a) !== effectiveLayer(b)) return effectiveLayer(a) > effectiveLayer(b);
+    let vote = votes.get(root);
+    if (!vote) {
+      vote = { layer: 0, floor: 0, standing: 0, reach: 0, bearing: 0, count: 0 };
+      votes.set(root, vote);
+    }
+    vote.layer += sign * Math.sign(effectiveLayer(a) - effectiveLayer(b));
     // The ground has a say: a bridge between two hilltops is over a ramp in the valley,
     // whatever each carries.
-    const higher = floorOf(na) - floorOf(nb);
-    if (Math.abs(higher) > SPAN_MARGIN) return higher > 0;
-    if (a.standing !== b.standing) return a.standing > b.standing;
-    if (Math.abs(reach(na) - reach(nb)) > 12) return reach(na) > reach(nb);
-    return Math.abs(meeting.ax) <= Math.abs(meeting.bx);
+    vote.floor += sign * (floorOf(na) - floorOf(nb));
+    vote.standing += sign * Math.sign(a.standing - b.standing);
+    vote.reach += sign * (reachOf(na) - reachOf(nb));
+    vote.bearing += sign * (Math.abs(meeting.bx) - Math.abs(meeting.ax));
+    vote.count++;
+  });
+  /** Whether a meeting's first way is the upper, and how surely (see `Crossing.confidence`). */
+  const over = (meeting: Meeting, m: number): [first: boolean, confidence: number] => {
+    const a = ways[meeting.a] as Way,
+      b = ways[meeting.b] as Way;
+    if (!b.bridge) return [true, 5];
+    if (meeting.a === meeting.b)
+      return [
+        (depth[nodeNear(a, meeting.aAt)] as number) >= (depth[nodeNear(b, meeting.bAt)] as number),
+        1,
+      ];
+    const [root, parity] = rootOf(m);
+    const vote = votes.get(root) as Vote;
+    const [first, confidence]: [boolean, number] =
+      vote.layer !== 0
+        ? [vote.layer > 0, 4]
+        : Math.abs(vote.floor) > SPAN_MARGIN * vote.count
+          ? [vote.floor > 0, 3]
+          : vote.standing !== 0
+            ? [vote.standing > 0, 2]
+            : Math.abs(vote.reach) > 12 * vote.count
+              ? [vote.reach > 0, 1]
+              : [vote.bearing >= 0, 0];
+    return [first !== (parity === 1), confidence];
   };
-  for (const meeting of meetings) cross(meeting, !(ways[meeting.b] as Way).bridge || over(meeting));
+  const crossings: Crossing[] = [];
+  /** The crossings each node lies beneath, to look at again when it rises. */
+  const above = new Map<number, Crossing[]>();
+  /** Put the first way of a crossing's meeting on top, or the second. */
+  const orient = (crossing: Crossing, first: boolean): void => {
+    const meeting = meetings[crossing.meeting] as Meeting;
+    const upper = first ? meeting.a : meeting.b,
+      lower = first ? meeting.b : meeting.a;
+    const beneath = ways[lower] as Way;
+    const skew = Math.max(0.25, meeting.sine);
+    crossing.first = first;
+    crossing.upper = upper;
+    crossing.at = first ? meeting.aAt : meeting.bAt;
+    crossing.lower = lower;
+    crossing.beneath = first ? meeting.bAt : meeting.aAt;
+    crossing.lowerNode = nodeNear(beneath, crossing.beneath);
+    crossing.separation = TERRAIN_GRADE_SEPARATION[beneath.family];
+    crossing.hold = Math.min(40, (beneath.halfWidth + 1.5) / skew);
+    crossing.under = Math.min(40, ((ways[upper] as Way).halfWidth + 1.5) / skew);
+  };
+  /** Let the two ways of a crossing meet on the level there. */
+  const meetLevel = (crossing: Crossing): void => {
+    crossing.dropped = true;
+    const upper = nodeNear(ways[crossing.upper] as Way, crossing.at);
+    if (upper === crossing.lowerNode) return;
+    for (const [from, to] of [
+      [upper, crossing.lowerNode],
+      [crossing.lowerNode, upper],
+    ] as const) {
+      const list = abreast[from];
+      if (list) list.push(to, 0);
+      else abreast[from] = [to, 0];
+    }
+  };
+  /**
+   * Whether the two decks of a crossing are joined so near it that neither could stand a
+   * story over the other there: a crossover between two tracks, a ramp across the road it
+   * has only just left. Followed along the decks and through their joins from the upper way,
+   * every meter costs what its deck may fall in it; reaching the lower way for less than the
+   * clearance, the two cannot be separated, and cross on the level.
+   */
+  const tied = (crossing: Crossing): boolean => {
+    const from = nodeNear(ways[crossing.upper] as Way, crossing.at);
+    const cost = new Map<number, number>([[from, 0]]);
+    const heap = new Heap();
+    heap.push(from, 0);
+    while (heap.size) {
+      const [node, key] = heap.pop();
+      if (-key > (cost.get(node) as number)) continue;
+      if (node === crossing.lowerNode) return true;
+      const grade = wayAt(node).grade;
+      neighbors(node, (other, length) => {
+        if (!wayAt(other).bridge) return;
+        const next = -key + grade * length;
+        if (next >= crossing.separation || next >= (cost.get(other) ?? Number.POSITIVE_INFINITY))
+          return;
+        cost.set(other, next);
+        heap.push(other, -next);
+      });
+    }
+    return false;
+  };
+  const indexCrossings = (): void => {
+    above.clear();
+    for (const crossing of crossings) {
+      if (crossing.dropped) continue;
+      const list = above.get(crossing.lowerNode);
+      if (list) list.push(crossing);
+      else above.set(crossing.lowerNode, [crossing]);
+    }
+  };
+  meetings.forEach((meeting, m) => {
+    const [first, confidence] = over(meeting, m);
+    const crossing: Crossing = {
+      upper: 0,
+      at: 0,
+      lower: 0,
+      beneath: 0,
+      lowerNode: 0,
+      separation: 0,
+      hold: 0,
+      under: 0,
+      queued: false,
+      meeting: m,
+      first,
+      confidence,
+      flipped: false,
+      dropped: false,
+    };
+    orient(crossing, first);
+    if ((ways[crossing.lower] as Way).bridge && tied(crossing)) meetLevel(crossing);
+    crossings.push(crossing);
+  });
+  indexCrossings();
 
   yield;
   // --- Decks: each clears what it crosses, and falls away no faster than its class. ---
@@ -929,15 +1289,64 @@ export function* gradeTransportSeparationSteps(
   };
   /** Deck heights before decks side by side are leveled with each other. */
   let alone: Float64Array | undefined;
-  const raise = (node: number, value: number): boolean => {
+  // What last raised each node: the node it took its height from, how (0 along its way or
+  // through a join, 1 from a deck abreast, 2 from a deck beside, 3 from the way beneath a
+  // crossing), and for a crossing which one. Read back from a crossing, the chain shows decks
+  // that chase each other upward (see `chasing`).
+  const causeNode = new Int32Array(nodeCount).fill(-1);
+  const causeKind = new Uint8Array(nodeCount);
+  const causeRef = new Int32Array(nodeCount).fill(-1);
+  /** Pairs of ways whose decks are no longer held level with each other. */
+  const parted = new Set<string>();
+  /** Grade (m/m) at which a lift may fall to a point that holds it down: a ramp, or stairs. */
+  const steep = (way: Way): number => (way.family === 'path' ? 0.5 : 0.25);
+  // Where decks land on roads on the ground, as the road's node and the deck's, in turn. A road
+  // stands where a deck lands on it, and no lower than a steep ramp's fall from there along it:
+  // a deck that crosses it there must clear that, or the road climbing from the landing would
+  // have to drop a story in a few meters to pass beneath (an I-90 ramp left a deck 19 m up and
+  // met a light rail viaduct 10 m on).
+  const landings = new Map<number, number[]>();
+  for (let w = 0; w < ways.length; w++) {
+    const way = ways[w] as Way;
+    if (way.bridge) continue;
+    for (let node = way.first; node < way.first + way.count; node++)
+      for (const other of links[node] ?? []) {
+        if (!wayAt(other).bridge) continue;
+        const list = landings.get(w);
+        if (list) list.push(node, other);
+        else landings.set(w, [node, other]);
+      }
+  }
+  /** Crossings to look at again when a deck's landing rises, by the deck's node. */
+  const landingCrossings = new Map<number, Crossing[]>();
+  for (const crossing of crossings) {
+    const lower = ways[crossing.lower] as Way;
+    const list = lower.bridge ? undefined : landings.get(crossing.lower);
+    if (!list) continue;
+    for (let i = 0; i < list.length; i += 2) {
+      const distance = Math.abs((along[list[i] as number] as number) - crossing.beneath);
+      if (steep(lower) * (distance - crossing.under) > MAX_RISE) continue;
+      const deck = list[i + 1] as number;
+      const known = landingCrossings.get(deck);
+      if (known) known.push(crossing);
+      else landingCrossings.set(deck, [crossing]);
+    }
+  }
+  /** Crossings whose lower road is cleared where it lies, whatever lands on it nearby. */
+  const loose = new Set<Crossing>();
+  const raise = (node: number, value: number, from = -1, kind = 0, ref = -1): boolean => {
     const next = Math.min(value, floorOf(node) + MAX_RISE);
     if (next <= heightOf(node) + 1e-3) return false;
     height[node] = next;
+    causeNode[node] = from;
+    causeKind[node] = kind;
+    causeRef[node] = ref;
     if (!queued[node]) {
       queued[node] = 1;
       queue.push(node);
     }
     for (const crossing of above.get(node) ?? []) recheck(crossing);
+    for (const crossing of landingCrossings.get(node) ?? []) recheck(crossing);
     return true;
   };
   const settle = (): void => {
@@ -948,13 +1357,35 @@ export function* gradeTransportSeparationSteps(
       const value = heightOf(node);
       neighbors(node, (other, length) => {
         if (!wayAt(other).bridge) return;
-        raise(other, length === 0 ? value : value - way.grade * length);
+        raise(other, length === 0 ? value : value - way.grade * length, node, 0);
       });
+      // One surface with the deck abreast of it. The two stations are seldom square across
+      // from each other: a deck gives the other what it would give its own station that far
+      // along, or two decks on a slope would lift each other, station by station, to its top.
+      const level = abreast[node];
+      if (level)
+        for (let i = 0; i < level.length; i += 2) {
+          const other = level[i] as number;
+          if (parted.size > 0 && parted.has(pairKey(wayOf[node] as number, wayOf[other] as number)))
+            continue;
+          raise(other, value - way.grade * (level[i + 1] as number), node, 1);
+        }
       // Level with the deck beside it, but only so far above where it stood alone: twins
       // differ by decimeters, while a ramp's switchback legs run side by side a story apart.
-      if (alone)
-        for (const other of beside[node] ?? [])
-          raise(other, Math.min(value, (alone[other] as number) + BESIDE_ALLOWANCE));
+      const near = alone ? beside[node] : undefined;
+      if (near && alone)
+        for (let i = 0; i < near.length; i += 2) {
+          const other = near[i] as number;
+          raise(
+            other,
+            Math.min(
+              value - way.grade * (near[i + 1] as number),
+              (alone[other] as number) + BESIDE_ALLOWANCE,
+            ),
+            node,
+            2,
+          );
+        }
     }
     queue.length = 0;
   };
@@ -984,36 +1415,168 @@ export function* gradeTransportSeparationSteps(
       if (beyond > 0) break;
     }
   };
+  /**
+   * The surface a crossing's deck must clear, and the node that holds it there: the deck beneath
+   * as it stands, or the road beneath as it lies on the ground. A road climbing to some other
+   * deck is not cleared where it stands: it comes down to fit beneath (see `roofOf`). Cleared
+   * where they stood, such roads lifted every deck over them, whose ends lifted more roads, and
+   * a viaduct's surface streets finished four stories up with the interchange above them. It
+   * comes down no faster than a steep ramp, though: near where a deck lands on it, it is
+   * cleared that far below the landing (see `landings`), unless the deck that lands there is
+   * the one crossing over it, which it passes under on the ground.
+   */
+  const beneathOf = (crossing: Crossing): [height: number, by: number] => {
+    const lower = ways[crossing.lower] as Way;
+    if (lower.bridge) return [heightOf(crossing.lowerNode), crossing.lowerNode];
+    let value = floorOf(crossing.lowerNode),
+      by = crossing.lowerNode;
+    const list = loose.has(crossing) ? undefined : landings.get(crossing.lower);
+    if (!list) return [value, by];
+    const own = component[(ways[crossing.upper] as Way).first];
+    for (let i = 0; i < list.length; i += 2) {
+      const ground = list[i] as number,
+        deck = list[i + 1] as number;
+      if (component[deck] === own) continue;
+      const distance = Math.max(
+        0,
+        Math.abs((along[ground] as number) - crossing.beneath) - crossing.under,
+      );
+      // Its lift at the landing, less what a steep ramp falls in the distance.
+      const least =
+        floorOf(crossing.lowerNode) + heightOf(deck) - floorOf(ground) - steep(lower) * distance;
+      if (least > value) {
+        value = least;
+        by = deck;
+      }
+    }
+    return [value, by];
+  };
+  const visited = new Int32Array(nodeCount);
+  let traces = 0;
+  /**
+   * Whether the way beneath a crossing stands where it does because of that same crossing:
+   * its height came, deck by deck, from the deck this crossing raised over it. Then the decks
+   * chase each other upward. A must clear B here and B is tied to A (it joins it, lies abreast
+   * of it, or must itself clear something A is tied to) before either has the length to fall a
+   * story: no heights satisfy that, and raising them in turn only ends at `MAX_RISE`. Returns
+   * the crossings on the way round and the pairs of nodes held abreast, else undefined.
+   */
+  const chasing = (
+    crossing: Crossing,
+    start: number,
+  ): { crossings: number[]; level: number[] } | undefined => {
+    const found = [crossing.meeting];
+    const level: number[] = [];
+    traces++;
+    for (let node = start; ; ) {
+      if (visited[node] === traces) return undefined;
+      visited[node] = traces;
+      const from = causeNode[node] as number;
+      // Its own span, or as far as a deck beside it could take it: no farther.
+      if (from < 0 || causeKind[node] === 2) return undefined;
+      if (causeKind[node] === 3) {
+        if (causeRef[node] === crossing.meeting) return { crossings: found, level };
+        found.push(causeRef[node] as number);
+      } else if (causeKind[node] === 1) level.push(from, node);
+      node = from;
+    }
+  };
+  let remedies = 0;
+  /**
+   * Give decks that chase each other upward another arrangement, trying what costs the look
+   * of the interchange least first: turn over a crossing that was decided on little (how far
+   * each deck had come, or its bearing); stop holding two decks abreast level with each other;
+   * turn over a crossing decided on what the decks carry or the ground they span; and at the
+   * last let two decks meet on the level where they cross. False when there is nothing to try.
+   */
+  const rearrange = (cycle: { crossings: number[]; level: number[] }): boolean => {
+    if (remedies >= MAX_REMEDIES) return false;
+    // The same choice whichever tile looks: how surely each was decided, then where it lies.
+    const open = cycle.crossings
+      .map((m) => crossings[m] as Crossing)
+      .filter((crossing) => !crossing.dropped && crossing.confidence < 5)
+      .sort(
+        (a, b) =>
+          a.confidence - b.confidence ||
+          (xs[a.lowerNode] as number) - (xs[b.lowerNode] as number) ||
+          (zs[a.lowerNode] as number) - (zs[b.lowerNode] as number),
+      );
+    const turnOver = (most: number): boolean => {
+      const chosen = open.find((crossing) => !crossing.flipped && crossing.confidence <= most);
+      if (!chosen) return false;
+      // With every crossing decided along with it.
+      const [root] = rootOf(chosen.meeting);
+      for (const crossing of crossings) {
+        if (rootOf(crossing.meeting)[0] !== root) continue;
+        orient(crossing, !crossing.first);
+        crossing.flipped = true;
+      }
+      return true;
+    };
+    if (turnOver(1)) {
+      // Done.
+    } else if (cycle.level.length > 0) {
+      const a = wayOf[cycle.level[0] as number] as number,
+        b = wayOf[cycle.level[1] as number] as number;
+      parted.add(pairKey(a, b));
+      parted.add(pairKey(b, a));
+    } else if (!turnOver(3)) {
+      const chosen = open[0];
+      if (chosen) meetLevel(chosen);
+      else {
+        // Only decks over roads they cross near a landing: clear one where it lies.
+        const over = cycle.crossings
+          .map((m) => crossings[m] as Crossing)
+          .find((crossing) => !(ways[crossing.lower] as Way).bridge && !loose.has(crossing));
+        if (!over) return false;
+        loose.add(over);
+      }
+    }
+    remedies++;
+    indexCrossings();
+    return true;
+  };
   // Work through the crossings whose lower way has moved, each raising its upper way and that
-  // in turn whatever crosses over it. Bounded, in case two decks are each mapped over the other.
-  const clear = (): void => {
+  // in turn whatever crosses over it. Stops, returning false, when decks that chased each other
+  // upward were given another arrangement: nothing placed so far stands then. Bounded, in case
+  // an arrangement that cannot be placed is all that is left.
+  const clear = (rearranging = true): boolean => {
     settle();
     for (let budget = crossings.length * 24 + 64; waiting.length > 0 && budget > 0; budget--) {
       const crossing = waiting.pop() as Crossing;
       crossing.queued = false;
-      const need = heightOf(crossing.lowerNode) + crossing.separation;
+      if (crossing.dropped) continue;
+      const [below, by] = beneathOf(crossing);
+      const need = below + crossing.separation;
       const upper = ways[crossing.upper] as Way;
+      let raised = false;
       held(upper, crossing.at, crossing.hold + rounding, (node, beyond) => {
-        raise(node, need - upper.grade * beyond);
+        if (raise(node, need - upper.grade * beyond, by, 3, crossing.meeting)) raised = true;
       });
+      if (raised && rearranging) {
+        const cycle = chasing(crossing, by);
+        if (cycle && rearrange(cycle)) return false;
+      }
       settle();
     }
     for (const crossing of waiting) crossing.queued = false;
     waiting.length = 0;
+    return true;
   };
   const bridgeNodes: number[] = [];
   for (const way of ways)
     if (way.bridge)
       for (let node = way.first; node < way.first + way.count; node++) bridgeNodes.push(node);
-  const placeDecks = (): void => {
+  /** Place the decks over what stands now; false when they must be placed afresh (see `clear`). */
+  const placeDecks = (): boolean => {
     for (const node of bridgeNodes)
       if (!queued[node]) {
         queued[node] = 1;
         queue.push(node);
       }
     for (const crossing of crossings) recheck(crossing);
-    clear();
-    if (alone !== undefined || !beside.some((list) => list !== undefined)) return;
+    if (!clear()) return false;
+    if (alone !== undefined || !beside.some((list) => list !== undefined)) return true;
     alone = new Float64Array(nodeCount);
     for (const node of bridgeNodes) alone[node] = heightOf(node);
     for (const node of bridgeNodes)
@@ -1021,7 +1584,7 @@ export function* gradeTransportSeparationSteps(
         queued[node] = 1;
         queue.push(node);
       }
-    clear();
+    return clear();
   };
 
   // --- Approaches: the roads at a raised deck's ends carry the rest of the descent. ---
@@ -1029,35 +1592,49 @@ export function* gradeTransportSeparationSteps(
   // level and a footpath with the road it crosses, never the other way round, so a footbridge's
   // steps come down to the street rather than lifting the street to the footbridge.
   const rank = (way: Way): number => (way.family === 'rail' ? 0 : way.family === 'road' ? 1 : 2);
-  /** Grade (m/m) at which a lift may fall to a point that holds it down: a ramp, or stairs. */
-  const steep = (way: Way): number => (way.family === 'path' ? 0.5 : 0.25);
   const lift = new Float64Array(nodeCount);
-  /** The structure (deck component) each node's lift climbs to. */
-  const origin = new Int32Array(nodeCount).fill(-1);
   /** Held to its lift: at a deck's end, or where it meets a way that outranks it. */
   const fixed = new Uint8Array(nodeCount);
-  // A road climbing to a structure lies on the ground wherever that same structure passes over
-  // it: an approach must never lift the thing its own bridge has to clear, or the two would
-  // chase each other upward. Under any other structure it may stay raised, and is cleared so.
-  const under = new Map<number, { structure: number; from: number; to: number }[]>();
+  // A road that climbs fits beneath every deck that passes over it: it stands no higher there
+  // than leaves the deck its clearance (on the ground, under a deck that only just clears the
+  // ground), and falls to that at a steep ramp's grade. An approach never lifts what a bridge
+  // has to clear, its own bridge or any other, or the two would chase each other upward.
+  const under = new Map<number, { crossing: Crossing; from: number; to: number; room: number }[]>();
   for (const crossing of crossings) {
     if ((ways[crossing.lower] as Way).bridge) continue;
     const spans = under.get(crossing.lower) ?? [];
     spans.push({
-      structure: component[(ways[crossing.upper] as Way).first] as number,
+      crossing,
       from: crossing.beneath - crossing.under,
       to: crossing.beneath + crossing.under,
+      room: 0,
     });
     under.set(crossing.lower, spans);
   }
-  /** Meters along its way from `node` to where `structure` passes over that way (0 beneath it). */
-  const clearOf = (node: number, structure: number): number => {
-    let nearest = Number.POSITIVE_INFINITY;
+  /** Measure the room under each deck as it stands now. */
+  const measureRoom = (): void => {
+    for (const spans of under.values())
+      for (const span of spans) {
+        const { crossing } = span;
+        let lowest = Number.POSITIVE_INFINITY;
+        held(ways[crossing.upper] as Way, crossing.at, crossing.hold, (node, beyond) => {
+          if (beyond === 0) lowest = Math.min(lowest, heightOf(node));
+        });
+        if (lowest === Number.POSITIVE_INFINITY)
+          lowest = heightOf(nodeNear(ways[crossing.upper] as Way, crossing.at));
+        span.room = Math.max(0, lowest - crossing.separation - floorOf(crossing.lowerNode));
+      }
+  };
+  /** How high a lift may stand at `node` for the decks that pass over its way. */
+  const roofOf = (node: number): number => {
+    const spans = under.get(wayOf[node] as number);
+    if (!spans) return Number.POSITIVE_INFINITY;
+    const slope = steep(wayAt(node));
     const at = along[node] as number;
-    for (const span of under.get(wayOf[node] as number) ?? [])
-      if (span.structure === structure)
-        nearest = Math.min(nearest, Math.max(0, span.from - at, at - span.to));
-    return nearest;
+    let roof = Number.POSITIVE_INFINITY;
+    for (const span of spans)
+      roof = Math.min(roof, span.room + slope * Math.max(0, span.from - at, at - span.to));
+    return roof;
   };
   /** Whether any structure passes over `node`. */
   const beneathDeck = (node: number): boolean => {
@@ -1153,15 +1730,19 @@ export function* gradeTransportSeparationSteps(
       else pathCells.set(key, [node]);
     }
   }
-  const placeApproaches = (final: boolean): void => {
+  /** Put every road that climbed back on the ground. */
+  const groundApproaches = (): void => {
     for (const node of climbed) {
       touched[node] = 0;
       height[node] = Number.NaN;
       lift[node] = 0;
-      origin[node] = -1;
       fixed[node] = 0;
     }
     climbed = [];
+  };
+  const placeApproaches = (): void => {
+    groundApproaches();
+    measureRoom();
     // Lifted roads, for the footpaths beside them: a sidewalk shares no vertex with the street
     // it follows, and would otherwise stay in the ditch while the street climbed.
     const roadCells = new Map<number, number[]>();
@@ -1170,24 +1751,21 @@ export function* gradeTransportSeparationSteps(
       // outranks it to that way's lift (the ground, if that way does not climb).
       const sources: number[] = [];
       for (const node of joined[tier] as number[]) {
-        let value = Number.NEGATIVE_INFINITY,
-          from = -1;
+        let value = Number.NEGATIVE_INFINITY;
         for (const other of links[node] as number[]) {
           const peer = wayAt(other);
-          const candidate = peer.bridge
-            ? heightOf(other) - floorOf(node)
-            : rank(peer) < tier
-              ? (lift[other] as number)
-              : Number.NEGATIVE_INFINITY;
-          if (candidate > value) {
-            value = candidate;
-            from = peer.bridge ? (component[other] as number) : (origin[other] as number);
-          }
+          value = Math.max(
+            value,
+            peer.bridge
+              ? heightOf(other) - floorOf(node)
+              : rank(peer) < tier
+                ? (lift[other] as number)
+                : Number.NEGATIVE_INFINITY,
+          );
         }
         if (value === Number.NEGATIVE_INFINITY) continue;
         fixed[node] = 1;
         lift[node] = Math.max(0, value);
-        origin[node] = from;
         touch(node);
         if ((lift[node] as number) > LIFT_EPSILON) sources.push(node);
       }
@@ -1217,7 +1795,7 @@ export function* gradeTransportSeparationSteps(
         return cap;
       };
       const pinnedCaps = new Map<number, Float64Array | null>();
-      const capOf = (node: number, structure: number): number => {
+      const wayCap = (node: number): number => {
         const w = wayOf[node] as number;
         const way = ways[w] as Way;
         let pinned = pinnedCaps.get(w);
@@ -1225,12 +1803,22 @@ export function* gradeTransportSeparationSteps(
           pinned = ramp(way);
           pinnedCaps.set(w, pinned);
         }
-        // A lift climbing to `structure` also falls to the ground wherever that structure
-        // passes over the way.
         return Math.min(
           pinned ? (pinned[node - way.first] as number) : Number.POSITIVE_INFINITY,
-          steep(way) * clearOf(node, structure),
+          roofOf(node),
         );
+      };
+      // A join is one point of every road through it: what holds one of them down holds all.
+      // Capped each on its own, a ramp arrived at a merge stories above the road it merged
+      // into, and the two were then made to agree at that one station: a spike in the road.
+      const capOf = (node: number): number => {
+        let cap = wayCap(node);
+        for (const other of links[node] ?? []) {
+          const peer = wayAt(other);
+          if (!peer.bridge && rank(peer) === tier && fixed[other] === 0)
+            cap = Math.min(cap, wayCap(other));
+        }
+        return cap;
       };
       if (tier === 2 && roadCells.size > 0) {
         // Footpaths beside a lifted road, within a sidewalk's reach of its edge and running
@@ -1246,8 +1834,7 @@ export function* gradeTransportSeparationSteps(
           const x = xs[node] as number,
             z = zs[node] as number;
           let nearest = Number.POSITIVE_INFINITY,
-            value = 0,
-            from = -1;
+            value = 0;
           for (let dx = -1; dx <= 1; dx++)
             for (let dz = -1; dz <= 1; dz++)
               for (const other of roadCells.get(roadCellKey(x, z) + dx * 0x200000 + dz) ?? []) {
@@ -1266,12 +1853,10 @@ export function* gradeTransportSeparationSteps(
                 if (Math.abs(ox * tx + oz * tz) > 0.5 * distance + 2) continue;
                 nearest = distance;
                 value = lift[other] as number;
-                from = origin[other] as number;
               }
-          value = Math.min(value, capOf(node, from));
+          value = Math.min(value, capOf(node));
           if (value <= Math.max(LIFT_EPSILON, lift[node] as number)) continue;
           lift[node] = value;
-          origin[node] = from;
           touch(node);
           sources.push(node);
         }
@@ -1280,20 +1865,18 @@ export function* gradeTransportSeparationSteps(
       for (let head = 0; head < spread.length; head++) {
         const node = spread[head] as number;
         const way = wayAt(node);
-        const value = lift[node] as number,
-          structure = origin[node] as number;
+        const value = lift[node] as number;
         neighbors(node, (other, length) => {
           const peer = wayAt(other);
           if (peer.bridge || rank(peer) !== tier || fixed[other] !== 0) return;
           const next = Math.min(
             length === 0 ? value : value - way.grade * length,
-            capOf(other, structure),
+            capOf(other),
             MAX_RISE,
           );
           if (next <= (lift[other] as number) + 1e-3 || next <= LIFT_EPSILON) return;
           touch(other);
           lift[other] = next;
-          origin[other] = structure;
           spread.push(other);
         });
       }
@@ -1301,7 +1884,7 @@ export function* gradeTransportSeparationSteps(
       for (const node of climbed)
         if ((lift[node] as number) > LIFT_EPSILON && rank(wayAt(node)) === tier)
           climbing.push(node);
-      if (final && climbing.length) {
+      if (climbing.length) {
         // Round the breaks in grade, holding every held point, then let joined roads agree.
         const rounded = new Set<number>(climbing);
         for (const node of climbing) {
@@ -1317,7 +1900,8 @@ export function* gradeTransportSeparationSteps(
           (node) => fixed[node] !== 0 || (lift[node] === 0 && beneathDeck(node)),
           (node) => lift[node] as number,
           (node, value) => {
-            lift[node] = value;
+            // Rounding spreads a lift a little: not past what holds the road down.
+            lift[node] = fixed[node] !== 0 ? value : Math.min(value, capOf(node));
           },
         );
         for (let pass = 0; pass < 2; pass++)
@@ -1325,9 +1909,10 @@ export function* gradeTransportSeparationSteps(
             for (const other of links[node] ?? []) {
               const peer = wayAt(other);
               if (peer.bridge || rank(peer) !== tier || fixed[other] !== 0) continue;
-              if ((lift[node] as number) > (lift[other] as number) + 1e-6) {
+              const next = Math.min(lift[node] as number, capOf(other));
+              if (next > (lift[other] as number) + 1e-6) {
                 touch(other);
-                lift[other] = lift[node] as number;
+                lift[other] = next;
                 rounded.add(other);
               }
             }
@@ -1344,18 +1929,20 @@ export function* gradeTransportSeparationSteps(
     }
   };
 
-  // A road raised toward one structure and crossed by another lifts what the second must clear,
-  // so decks and approaches are placed in turn until they agree (heights only ever rise).
-  for (let turn = 0; turn < 4; turn++) {
+  // Decks that could not be placed are given another arrangement (see `rearrange`) and placed
+  // afresh.
+  for (;;) {
     yield;
-    placeDecks();
-    yield;
-    const before = crossings.map((crossing) => heightOf(crossing.lowerNode));
-    placeApproaches(false);
-    if (
-      crossings.every((crossing, i) => heightOf(crossing.lowerNode) <= (before[i] as number) + 0.05)
-    )
-      break;
+    if (placeDecks()) break;
+    for (const node of bridgeNodes) {
+      height[node] = Number.NaN;
+      causeNode[node] = -1;
+      queued[node] = 0;
+    }
+    queue.length = 0;
+    for (const crossing of waiting) crossing.queued = false;
+    waiting.length = 0;
+    alone = undefined;
   }
   // Vertical curves on the decks: round their heights, holding each where it lands on a road.
   // A cut end holds its height too: the tile beside this one assumes the same of its half.
@@ -1368,36 +1955,51 @@ export function* gradeTransportSeparationSteps(
     height[node] = Math.max(value, groundOf(node) + wayAt(node).lift);
   });
   yield;
-  placeApproaches(true);
-  yield;
-  // Make good what rounding took from a crossing, then let joined decks agree: the higher holds.
+  // Make good what rounding took from a crossing: each deck falls away from there at its grade
+  // again, never a step. Then let joined decks agree, and decks abreast: the higher holds.
   for (const crossing of crossings) {
-    const need = heightOf(crossing.lowerNode) + crossing.separation;
+    if (crossing.dropped) continue;
+    const [below, by] = beneathOf(crossing);
+    const need = below + crossing.separation;
     const upper = ways[crossing.upper] as Way;
     held(upper, crossing.at, crossing.hold, (node, beyond) => {
-      const least = need - upper.grade * beyond;
-      if (heightOf(node) < least) height[node] = Math.min(least, floorOf(node) + MAX_RISE);
+      raise(node, need - upper.grade * beyond, by, 3, crossing.meeting);
     });
   }
+  clear(false);
   for (let pass = 0; pass < 2; pass++)
-    for (const node of bridgeNodes)
+    for (const node of bridgeNodes) {
       for (const other of links[node] ?? [])
         if (wayAt(other).bridge && heightOf(node) > heightOf(other) + 1e-6)
           height[other] = heightOf(node);
+      const level = abreast[node];
+      if (!level) continue;
+      for (let i = 0; i < level.length; i += 2) {
+        const other = level[i] as number;
+        if (parted.has(pairKey(wayOf[node] as number, wayOf[other] as number))) continue;
+        const least = heightOf(node) - wayAt(node).grade * (level[i + 1] as number);
+        if (heightOf(other) < least - 1e-6) height[other] = least;
+      }
+    }
+  // Last, the roads at the decks' ends: they take the decks as they stand.
+  yield;
+  placeApproaches();
+  yield;
 
   // --- Profiles for the decks and for every road that climbs. ---
   const profiled = new Map<number, Map<number, Way>>();
+  const wanted: Way[] = [];
   for (const way of ways) {
+    let climbs = way.bridge;
+    for (let node = way.first; !climbs && node < way.first + way.count; node++)
+      climbs = (lift[node] as number) > LIFT_EPSILON;
+    if (!climbs) continue;
+    wanted.push(way);
     if (way.output < 0) continue;
-    let wanted = way.bridge;
-    for (let node = way.first; !wanted && node < way.first + way.count; node++)
-      wanted = (lift[node] as number) > LIFT_EPSILON;
-    if (!wanted) continue;
     const lines = profiled.get(way.output) ?? new Map<number, Way>();
     lines.set(way.line, way);
     profiled.set(way.output, lines);
   }
-  if (profiled.size === 0) return features;
   const sampleOf = (node: number): TerrainBridgeProfileSample => {
     const way = wayAt(node);
     const elevation = heightOf(node);
@@ -1407,11 +2009,26 @@ export function* gradeTransportSeparationSteps(
       point: [(xs[node] as number) / tileSize, (zs[node] as number) / tileSize],
       elevation,
       flatness: way.bridge ? 1 : Math.max(0, Math.min(1, (elevation - floorOf(node)) / FLAT_LIFT)),
+      // A road on the ground moves with the ground under each station. A deck moves with the
+      // ground under its landing, so that it lands on the road drawn there: its stations
+      // record the ground at each as that landing would find it. Recorded as the ground along
+      // the deck, a bridge over a road in a cutting read the cutting as ground that had sunk
+      // since it was graded, and came down into it by most of the cutting's depth.
       ...(options.anchored
-        ? { ground: groundOf(node), anchor: way.bridge ? 1 - reach * reach * (3 - 2 * reach) : 1 }
+        ? {
+            ground: way.bridge ? spot(node) + (seat[node] as number) : groundOf(node),
+            anchor: way.bridge ? 1 - reach * reach * (3 - 2 * reach) : 1,
+          }
         : {}),
     };
   };
+  if (options.profiled)
+    for (const way of wanted) {
+      const samples: TerrainBridgeProfileSample[] = [];
+      for (let node = way.first; node < way.first + way.count; node++) samples.push(sampleOf(node));
+      options.profiled(way.feature, way.line, samples);
+    }
+  if (profiled.size === 0) return features;
   /**
    * The nodes of the context way that carries `way` on past its end `end` (the other half of a
    * way cut at a tile edge), nearest first, out to `options.extend` meters.

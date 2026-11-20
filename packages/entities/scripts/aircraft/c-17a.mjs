@@ -1253,7 +1253,8 @@ function cockpit(root, m) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: Math.sign(dx) * 0.055,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -Math.sign(dx) * 0.055,
       });
     }
     for (const zz of [22.58, 20.6]) {

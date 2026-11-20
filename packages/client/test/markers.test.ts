@@ -270,6 +270,118 @@ describe('marker layer', () => {
   });
 });
 
+describe('marker occlusion', () => {
+  type DrawHook = (renderer: unknown, scene: THREE.Scene, camera: THREE.Camera) => void;
+
+  /** Run a sprite's draw hooks the way a renderer does around its draw call. */
+  function draw(sprite: THREE.Sprite, renderer: unknown, camera: THREE.Camera): void {
+    const scene = new THREE.Scene();
+    (sprite.onBeforeRender as unknown as DrawHook)(renderer, scene, camera);
+    (sprite.onAfterRender as unknown as DrawHook)(renderer, scene, camera);
+  }
+
+  /** A WebGL2 renderer with just the query calls; `samples` hands out each query's result. */
+  function webgl2Renderer() {
+    const log: string[] = [];
+    const samples = new Map<object, number>();
+    const queries: object[] = [];
+    const gl = {
+      ANY_SAMPLES_PASSED: 0x8c2f,
+      QUERY_RESULT: 0x8866,
+      QUERY_RESULT_AVAILABLE: 0x8867,
+      createQuery: () => {
+        const query = { id: queries.length + 1 };
+        queries.push(query);
+        return query;
+      },
+      deleteQuery: (query: { id: number }) => log.push(`delete ${query.id}`),
+      beginQuery: (_target: number, query: { id: number }) => log.push(`begin ${query.id}`),
+      endQuery: () => log.push('end'),
+      getQueryParameter: (query: object, name: number) =>
+        name === gl.QUERY_RESULT_AVAILABLE ? samples.has(query) : samples.get(query),
+    };
+    return { renderer: { isWebGLRenderer: true, getContext: () => gl }, log, samples, queries };
+  }
+
+  it('reports WebGL2 query results as occluded and leaves taps to what hides a marker', () => {
+    const view = host();
+    view.look([0, 0, 100], [0, 0, 0]);
+    const layer = createMarkerLayer(view, { fadeMs: 0 });
+    layer.set([marker('pin', 0, 0, { y: 0, size: 60 })]);
+    layer.update([0, 0, 100]);
+    const sprite = layer.object.children[0] as THREE.Sprite;
+    const { renderer, log, samples, queries } = webgl2Renderer();
+    expect(layer.screenPosition('pin')?.occluded).toBeUndefined();
+
+    // A draw for another camera (a reflection, an instrument panel) is not measured.
+    draw(sprite, renderer, new THREE.PerspectiveCamera());
+    expect(log).toEqual([]);
+
+    // One query brackets the draw; while its result is out, later draws start no other.
+    draw(sprite, renderer, view.camera);
+    draw(sprite, renderer, view.camera);
+    expect(log).toEqual(['begin 1', 'end']);
+    layer.update([0, 0, 100]);
+    expect(layer.screenPosition('pin')?.occluded).toBeUndefined();
+
+    // No samples passed: the scene hides the marker, and a tap there is not the marker's.
+    const query = queries[0] as object;
+    samples.set(query, 0);
+    layer.update([0, 0, 100]);
+    expect(layer.screenPosition('pin')).toMatchObject({ visible: true, occluded: true });
+    expect(layer.pick(400, 280)).toBeUndefined();
+
+    // The next draw measures again with the same query; a passing sample shows it again.
+    samples.delete(query);
+    draw(sprite, renderer, view.camera);
+    expect(log).toEqual(['begin 1', 'end', 'begin 1', 'end']);
+    samples.set(query, 1);
+    layer.update([0, 0, 100]);
+    expect(layer.screenPosition('pin')?.occluded).toBe(false);
+    expect(layer.pick(400, 280)).toBe('pin');
+
+    layer.dispose();
+    expect(log.at(-1)).toBe('delete 1');
+  });
+
+  it('reads a WebGPU renderer’s own occlusion queries, and none when the layer does not occlude', () => {
+    const view = host();
+    view.look([0, 0, 100], [0, 0, 0]);
+    const layer = createMarkerLayer(view);
+    layer.set([marker('pin', 0, 0, { y: 0 })]);
+    layer.update([0, 0, 100]);
+    const sprite = layer.object.children[0] as THREE.Sprite & { occlusionTest?: boolean };
+    expect(sprite.occlusionTest).toBe(true);
+    // An invisible margin must not count as in sight: near-transparent texels are discarded.
+    expect(sprite.material.alphaTest).toBeGreaterThan(0);
+    let hidden: Set<object> | undefined;
+    const webgpu = { isOccluded: (object: object) => hidden?.has(object) };
+    // Until the renderer resolves its first queries the answer stays unknown.
+    draw(sprite, webgpu, view.camera);
+    expect(layer.screenPosition('pin')?.occluded).toBeUndefined();
+    hidden = new Set([sprite]);
+    draw(sprite, webgpu, view.camera);
+    expect(layer.screenPosition('pin')?.occluded).toBe(true);
+    // Another camera's answer does not count.
+    hidden = new Set();
+    draw(sprite, webgpu, new THREE.PerspectiveCamera());
+    expect(layer.screenPosition('pin')?.occluded).toBe(true);
+    draw(sprite, webgpu, view.camera);
+    expect(layer.screenPosition('pin')?.occluded).toBe(false);
+    layer.dispose();
+
+    const flat = createMarkerLayer(view, { occlude: false });
+    flat.set([marker('pin', 0, 0, { y: 0 })]);
+    flat.update([0, 0, 100]);
+    const plain = flat.object.children[0] as THREE.Sprite & { occlusionTest?: boolean };
+    expect(plain.occlusionTest).toBeUndefined();
+    expect(plain.material.alphaTest).toBe(0);
+    draw(plain, { isOccluded: () => true }, view.camera);
+    expect(flat.screenPosition('pin')?.occluded).toBeUndefined();
+    flat.dispose();
+  });
+});
+
 describe('marker images', () => {
   it('frames the image with a border and a tail whose tip is the bottom-center', () => {
     const calls: string[] = [];

@@ -1,3 +1,18 @@
+## @bendyline/molen-terrain [0.0.18](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.17...@bendyline/molen-terrain@0.0.18) (2026-11-18)
+
+### Bug Fixes
+
+* Add richer versions of Seattle-area buildings ([6f2a657](https://github.com/bendyline/molen/commit/6f2a6572110d0da70d19cc45d8fd7118324a3f0b))
+* Molen seattle structures ([10614be](https://github.com/bendyline/molen/commit/10614be14441c0a098ab4412f350dd16ea2045a1))
+* More content ([50dace1](https://github.com/bendyline/molen/commit/50dace130b7ae961f11e9fece4616f3ee5614b16))
+* More visual updates ([13efcda](https://github.com/bendyline/molen/commit/13efcdafec4834b53e720a1bc9e0bcc42fc47d9d))
+* Visual fixes ([e5d7d80](https://github.com/bendyline/molen/commit/e5d7d8091aaa25818ac1127a6b0537f1618ace47))
+
+
+### Dependencies
+
+* **@bendyline/molen-client:** upgraded to 0.0.17
+
 ## @bendyline/molen-terrain [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.16...@bendyline/molen-terrain@0.0.17) (2026-11-16)
 
 ### Bug Fixes

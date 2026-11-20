@@ -13,10 +13,23 @@ const DISC_OPACITY = 0.09;
 const TIP_OPACITY = 0.14;
 /** A mesh reaching past this share of the radius is a blade; anything shorter is hub or spinner. */
 const HUB_SHARE = 0.4;
+/**
+ * Above this shaft speed (radians per second) the rotor leaves the shadow pass, hub and all: the
+ * speed where an airplane's propeller starts to fade (createAircraftPropellers), about 20 degrees
+ * per 60 Hz frame. A blade's shadow is a hard edge across the cabin, and a frame later it lands
+ * somewhere else: an OH-6's four blades at 50 rad/s turned 48 degrees between frames, half their
+ * spacing, and their shadows flashed about the cockpit at random. Its blade grips, dampers and
+ * pitch links are spokes too, and their shade on the cabin floor jumped as fast. An eye sees the
+ * blades passing over as a faint, even flicker, closer to no shadow than to any one of them.
+ */
+const SHADOW_SPEED = 20;
 
 export interface RotorBlur {
-  /** Absolute shaft speed of this rotor, in radians per second. */
-  update(angularSpeed: number): void;
+  /**
+   * Absolute shaft speed of this rotor, in radians per second. `castShadows` false keeps all of
+   * it out of the shadow pass (see AircraftVisual.updateShadows).
+   */
+  update(angularSpeed: number, castShadows?: boolean): void;
 }
 
 const ACROSS = { x: [1, 2], y: [0, 2], z: [0, 1] } as const;
@@ -56,6 +69,8 @@ export function createRotorBlur(
   if (radius === 0) return undefined;
   const blades: THREE.Material[] = [];
   const copies = new Map<THREE.Material, THREE.Material>();
+  // Each part's own shadow flag, which it keeps while the rotor turns slowly.
+  const shadows = [...reach.keys()].map((mesh) => ({ mesh, shadow: mesh.castShadow }));
   for (const [mesh, furthest] of reach) {
     if (furthest < radius * HUB_SHARE || Array.isArray(mesh.material)) continue;
     // Materials are shared across the airframe, so fade a private copy of the blades' own.
@@ -101,7 +116,9 @@ export function createRotorBlur(
   const disc = ring(radius * 0.12, radius * 0.94);
   const tip = ring(radius * 0.94, radius);
   return {
-    update(angularSpeed) {
+    update(angularSpeed, castShadows = true) {
+      const casting = castShadows && Math.abs(angularSpeed) <= SHADOW_SPEED;
+      for (const { mesh, shadow } of shadows) mesh.castShadow = shadow && casting;
       const t = THREE.MathUtils.clamp(
         (Math.abs(angularSpeed) - BLUR_START) / (BLUR_FULL - BLUR_START),
         0,

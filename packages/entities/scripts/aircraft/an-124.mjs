@@ -1084,7 +1084,8 @@ function cockpit(root, m) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: Math.sign(dx) * 0.055,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -Math.sign(dx) * 0.055,
       });
     }
     seatAt(`pilot-${side}`, x, 27.23, 0, 0.46);

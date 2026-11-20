@@ -1,3 +1,23 @@
+## @bendyline/molen-worldgen [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.16...@bendyline/molen-worldgen@0.0.17) (2026-11-18)
+
+### Bug Fixes
+
+* Add more qualla buildings ([25a8fb6](https://github.com/bendyline/molen/commit/25a8fb6a26dc0a38cd36801644c02da91f50377b))
+* Add richer versions of Seattle-area buildings ([6f2a657](https://github.com/bendyline/molen/commit/6f2a6572110d0da70d19cc45d8fd7118324a3f0b))
+* Asset and rendering updates ([cc8347e](https://github.com/bendyline/molen/commit/cc8347e48c82741747e979268799438103f62ad8))
+* Content updates ([2c9f0e5](https://github.com/bendyline/molen/commit/2c9f0e579cd07b8de4635bce3b0d1246f3698c2b))
+* Molen seattle structures ([10614be](https://github.com/bendyline/molen/commit/10614be14441c0a098ab4412f350dd16ea2045a1))
+* More content ([50dace1](https://github.com/bendyline/molen/commit/50dace130b7ae961f11e9fece4616f3ee5614b16))
+* More visual updates ([13efcda](https://github.com/bendyline/molen/commit/13efcdafec4834b53e720a1bc9e0bcc42fc47d9d))
+* Structure streamer fix ([296cc0e](https://github.com/bendyline/molen/commit/296cc0e7ca5ad74793a7ac9f83fc0b7c8f7ee099))
+* Timeout updates ([68a5d1e](https://github.com/bendyline/molen/commit/68a5d1eab051089998cf48c6afafcd5f5d4256d1))
+* Visual fixes ([e5d7d80](https://github.com/bendyline/molen/commit/e5d7d8091aaa25818ac1127a6b0537f1618ace47))
+
+
+### Dependencies
+
+* **@bendyline/molen-client:** upgraded to 0.0.17
+
 ## @bendyline/molen-worldgen [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.15...@bendyline/molen-worldgen@0.0.16) (2026-11-16)
 
 ### Bug Fixes

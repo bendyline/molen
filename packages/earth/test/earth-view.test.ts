@@ -72,6 +72,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         setShadowFocus: (focus: { radius: number } | undefined) => {
           viewerState.shadowRadius = focus?.radius;
         },
+        setShadowSubject: () => false,
       };
       renderer.scene.add(renderer.worldRoot);
       viewerState.scene = new WeakRef(renderer.scene);

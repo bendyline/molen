@@ -16,9 +16,11 @@ import {
   openTerrainPackageSemantics,
   type TerrainPackageSemanticSource,
   terrainPackageArchiveSourceLocation,
+  terrainPyramidDescriptorFromPackage,
 } from './package-client';
 import type { TerrainPackageDescriptor } from './package-types';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayer } from './pyramid-stream';
+import { terrainPyramidTileSize } from './pyramid-types';
 import {
   createTerrainRoadGrading,
   type TerrainRoadGrading,
@@ -37,7 +39,9 @@ import {
 } from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
 import { composeTerrainSemanticTile } from './semantic-packet';
+import type { TerrainSemanticTile } from './semantic-types';
 import { withTerrainTunnels } from './tunnels';
+import { withTerrainUnderpasses } from './underpasses';
 
 export interface TerrainPackageSemanticLayerStyle {
   id?: string;
@@ -192,6 +196,27 @@ export async function createTerrainPackageSemanticLayers(
       landcoverSource = route(semantics.landcover.source);
       featuresSource = route(semantics.features.source);
     }
+  }
+  // A street mapped as a tunnel only where it passes beneath bridges is the street under them,
+  // for every reader of the road tiles alike: the grading, the bores, the painter, traffic.
+  if (featuresSource !== undefined) {
+    const tiled = featuresSource;
+    const pyramid = terrainPyramidDescriptorFromPackage(pkg);
+    // One answer per decoded tile: its readers ask for it again and again (neighbours' grading,
+    // bores completing their routes), and some keep what they derived by the tile they were given.
+    const opened = new WeakMap<TerrainSemanticTile, TerrainSemanticTile>();
+    featuresSource = {
+      load: async (address, signal) => {
+        const tile = await tiled.load(address, signal);
+        if (tile === undefined) return undefined;
+        let result = opened.get(tile);
+        if (result === undefined) {
+          result = withTerrainUnderpasses(tile, terrainPyramidTileSize(pyramid, address.level));
+          opened.set(tile, result);
+        }
+        return result;
+      },
+    };
   }
   // Layers may reach past a sidecar's last level; those tiles overzoom its finest tiles.
   const packageMaxLevel = pkg.tileMatrix.maxLevel;

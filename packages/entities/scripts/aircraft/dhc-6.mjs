@@ -1123,7 +1123,8 @@ function twinOtterCockpit(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: off < 0 ? -0.04 : 0.04,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: off < 0 ? 0.04 : -0.04,
       });
     }
   }

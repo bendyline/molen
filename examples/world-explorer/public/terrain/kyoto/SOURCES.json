@@ -2,6 +2,12 @@
   "format": "molen/terrain-sources@1",
   "coverageBounds": [135.15, 34.5, 136.4, 35.7],
   "detailBounds": [135.66, 34.88, 135.88, 35.09],
+  "detailWindows": [
+    {
+      "id": "itami",
+      "bounds": [135.4, 34.66, 135.88, 35.09]
+    }
+  ],
   "elevation": {
     "id": "mapzen-terrain-tiles",
     "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
@@ -15,7 +21,7 @@
       "max": 5000
     },
     "observedHeightRange": [0, 2788],
-    "flattenedSubseaSamples": 322933,
+    "flattenedSubseaSamples": 989124,
     "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
     "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey; NOAA ETOPO1; Global ETOPO1 terrain data, U.S. National Oceanic and Atmospheric Administration",
     "additionalSources": [
@@ -33,6 +39,15 @@
     "url": "https://build.protomaps.com/20261023.pmtiles",
     "profile": "protomaps-basemap@1",
     "maxLevel": 15,
+    "windows": [
+      {
+        "id": "itami",
+        "bounds": [135.4, 34.66, 135.88, 35.09],
+        "url": "https://build.protomaps.com/20261118.pmtiles",
+        "release": "2026-11-18 daily archive",
+        "tiles": 2287
+      }
+    ],
     "attribution": "© OpenStreetMap contributors",
     "extractMinLevel": 0,
     "layersPresent": [

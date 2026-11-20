@@ -1,3 +1,24 @@
+## @bendyline/molen-tooling [0.0.18](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.17...@bendyline/molen-tooling@0.0.18) (2026-11-18)
+
+### Bug Fixes
+
+* Asset and rendering updates ([cc8347e](https://github.com/bendyline/molen/commit/cc8347e48c82741747e979268799438103f62ad8))
+* Content updates ([2c9f0e5](https://github.com/bendyline/molen/commit/2c9f0e579cd07b8de4635bce3b0d1246f3698c2b))
+* Molen seattle structures ([10614be](https://github.com/bendyline/molen/commit/10614be14441c0a098ab4412f350dd16ea2045a1))
+* More content ([50dace1](https://github.com/bendyline/molen/commit/50dace130b7ae961f11e9fece4616f3ee5614b16))
+* More visual updates ([13efcda](https://github.com/bendyline/molen/commit/13efcdafec4834b53e720a1bc9e0bcc42fc47d9d))
+* Update locations ([a5e8a40](https://github.com/bendyline/molen/commit/a5e8a40046ba75d93378b50a430fc2b943dac066))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.19
+* **@bendyline/molen-client:** upgraded to 0.0.17
+* **@bendyline/molen-figures:** upgraded to 0.0.17
+* **@bendyline/molen-terrain:** upgraded to 0.0.18
+* **@bendyline/molen-worldgen:** upgraded to 0.0.17
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.18
+
 ## @bendyline/molen-tooling [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.16...@bendyline/molen-tooling@0.0.17) (2026-11-16)
 
 ### Bug Fixes

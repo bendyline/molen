@@ -348,7 +348,8 @@ export function beech18Cockpit(root, m) {
     wd.finish();
     bindings.push(
       { node: pitch.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.08 },
-      { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: -0.7 },
+      // Right bank turns the wheel clockwise from the seat.
+      { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.7 },
     );
     for (const sign of [-1, 1]) {
       const ped = group(cabin, `Beech18-pedal-${side}-${sign}`, [
@@ -371,7 +372,8 @@ export function beech18Cockpit(root, m) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: sign * 0.035,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -sign * 0.035,
       });
     }
     d.box([0.033, 0.6, 1.3], [side * 0.65, 1.32, 1.85], green);

@@ -33,6 +33,7 @@ export {
   type EarthAircraftOptions,
   type EarthAircraftPlacement,
   type EarthFlightStatus,
+  type EarthInstrument,
   type EarthPilotControls,
 } from './client/aircraft';
 export {
@@ -112,6 +113,7 @@ export {
   type EarthCacheStats,
   type EarthCameraState,
   type EarthCameraTarget,
+  type EarthConsoleOptions,
   type EarthFrame,
   type EarthInteractable,
   type EarthInteraction,

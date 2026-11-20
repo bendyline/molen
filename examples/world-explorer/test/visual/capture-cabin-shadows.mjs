@@ -4,8 +4,11 @@
 // quality and speed in km/h.
 //
 // The worst frame's share of changed pixels at 28 km/h: 4.1% on High (0.14 m texels) and 4.0% on
-// Medium while the truck's roof, pillars and doors shaded its own dashboard (the page's
-// `?selfShadow=always`), now 0. The limit is 0.6%, as for the aircraft cockpit.
+// Medium while the truck's roof, pillars and doors shaded its own dashboard from the sun's main
+// map (the page's `?subject=0&selfShadow=always`). Now 0: the truck casts from a map of its own
+// (`Renderer.setShadowSubject`), which keeps the roof's shade, and without one (`?subject=0`, as
+// on WebGPU) it casts nothing from the driver's seat. The limit is 0.6%, as for the aircraft
+// cockpit.
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';

@@ -5,7 +5,7 @@
  */
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
-import { roadWidth } from '@bendyline/molen-terrain/kernel';
+import { carriagewayWidth } from '@bendyline/molen-terrain/kernel';
 import { type EdgeDraft, type Point2, roadLanes, type WorldPoi } from './drafts';
 import type { RoadKind } from './types';
 
@@ -129,7 +129,16 @@ export function wayDraft(way: TransportNetworkWay): EdgeDraft | undefined {
       oneway: false,
     };
   const kind = roadKindOf(way.subclass);
-  const width = dmath.min(80, way.width ?? roadWidth(way.subclass ?? 'residential'));
+  // As the painter draws it (terrain's `transportWidth`): a ramp or one carriageway of a freeway
+  // is narrower than the whole road of its class.
+  const width = dmath.min(
+    80,
+    way.width ??
+      carriagewayWidth(way.subclass ?? 'residential', {
+        link: common.link,
+        oneway: way.oneway === true,
+      }),
+  );
   const lanes = roadLanes(
     { ...(way.lanes !== undefined ? { lanes: way.lanes } : {}), oneway: way.oneway === true },
     width,

@@ -885,7 +885,8 @@ function cockpit(root, m) {
       pd.box([0.12, 0.06, 0.05], [0, 0, 0], m.metal);
       pedal.userData.aircraftControl = {
         action: 'yaw',
-        motion: { property: 'position', axis: 'z', scale: j * 0.035 },
+        // Right rudder pushes the right pedal (-X) forward.
+        motion: { property: 'position', axis: 'z', scale: -j * 0.035 },
       };
       pd.finish();
     }
