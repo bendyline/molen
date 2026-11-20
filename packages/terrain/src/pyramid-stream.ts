@@ -366,6 +366,12 @@ export interface TerrainPyramidStreamStats extends TerrainStreamStats {
   /** Terrain surfaces built so far, and how many of those had been built before and evicted. */
   builtTiles: number;
   rebuiltTiles: number;
+  /**
+   * Of `rebuiltTiles`, those built again within a minute of their eviction: the cache giving up
+   * ground the view still wants. `rebuiltTiles` also counts ground a long flight comes back to
+   * minutes later, which over a session in one region becomes most of what is built.
+   */
+  thrashedTiles: number;
   /** Tile layers built so far, and how many of those had been built before and evicted. */
   builtLayers: number;
   rebuiltLayers: number;
@@ -1129,6 +1135,10 @@ const AHEAD_ROOM_FRACTION = 0.9;
  * so room judged when its ground arrived was gone by the time its buildings did.
  */
 const AHEAD_RESUME_FRACTION = 0.75;
+/** A tile built again within this long of its eviction counts as thrashed (`thrashedTiles`), ms. */
+const THRASH_MS = 60_000;
+/** Evictions remembered for `thrashedTiles`, at most. */
+const THRASH_MEMORY = 4096;
 /** Tiles ahead wait while the frame queue holds this many jobs: they take only spare capacity. */
 const MAX_AHEAD_BACKLOG = 12;
 /** Tile selection along the track runs this often, ms; the track changes slowly. */
@@ -1538,9 +1548,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   /** Completed builds per tile, and per tile layer: a second build means the cache lost it. */
   private readonly tileBuilds = new Set<string>();
   private readonly layerBuilds = new Set<string>();
+  /** When recently evicted tiles left, oldest first (see THRASH_MS). */
+  private readonly evictedAt = new Map<string, number>();
   private readonly buildCounts = {
     tiles: 0,
     rebuiltTiles: 0,
+    thrashedTiles: 0,
     layers: 0,
     rebuiltLayers: 0,
     refreshedLayers: 0,
@@ -2558,6 +2571,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       effectiveViewDistance: this.selection.effectiveViewDistance,
       builtTiles: this.buildCounts.tiles,
       rebuiltTiles: this.buildCounts.rebuiltTiles,
+      thrashedTiles: this.buildCounts.thrashedTiles,
       builtLayers: this.buildCounts.layers,
       rebuiltLayers: this.buildCounts.rebuiltLayers,
       refreshedLayers: this.buildCounts.refreshedLayers,
@@ -2662,6 +2676,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.ahead.clear();
     this.groundCutouts.dispose();
     for (const key of [...this.resident.keys()]) this.evict(key);
+    this.evictedAt.clear();
     // Nothing is left to replace: refreshes in progress end here.
     this.outdatedLayers.clear();
     const waiters = this.refreshWaiters;
@@ -2923,6 +2938,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           this.buildCounts.tiles++;
           if (this.tileBuilds.has(key)) this.buildCounts.rebuiltTiles++;
           this.tileBuilds.add(key);
+          const evictedAt = this.evictedAt.get(key);
+          if (evictedAt !== undefined) {
+            this.evictedAt.delete(key);
+            if (this.clock() - evictedAt < THRASH_MS) this.buildCounts.thrashedTiles++;
+          }
           this.trackAllocations(this.resident.get(key) as ResidentTile);
           this.decodedHeightBytes +=
             heightfield.cols * heightfield.rows * Float32Array.BYTES_PER_ELEMENT;
@@ -3355,6 +3375,26 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       }
       return result;
     };
+    // Layer tiles standing in for selected ground far finer than themselves, as for surfaces
+    // (PLACEHOLDER_LEVELS), once per pass.
+    const placeholders = new Map<string, boolean>();
+    const placeholder = (key: string, address: TerrainPyramidTileAddress): boolean => {
+      let result = placeholders.get(key);
+      if (result === undefined) {
+        result = false;
+        for (const leaf of this.selected.values()) {
+          if (
+            leaf.level - address.level > PLACEHOLDER_LEVELS &&
+            pyramidAddressesOverlap(address, leaf)
+          ) {
+            result = true;
+            break;
+          }
+        }
+        placeholders.set(key, result);
+      }
+      return result;
+    };
     for (const key of this.displayed) {
       const tile = this.resident.get(key);
       if (tile === undefined || ready(tile)) continue;
@@ -3430,7 +3470,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             const previousTile = this.resident.get(previousKey);
             if (
               previousTile !== undefined &&
-              pyramidAddressesOverlap(tile.address, previousTile.address)
+              pyramidAddressesOverlap(tile.address, previousTile.address) &&
+              // Not a placeholder's, as for its surface: kept for any unfinished tile beneath
+              // it, it covered every finished one. A first view of Rome showed no roads or
+              // buildings for 40 s, though the tile under the camera had them at 19 s: the
+              // zoom-7 tile's all but empty layer waited for the slowest of 64 tiles.
+              !placeholder(previousKey, previousTile.address)
             ) {
               candidates.add(previousKey);
             }
@@ -4252,6 +4297,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     for (const layerTiles of this.displayedLayers.values()) layerTiles.delete(key);
     if (wasDisplayed) this.refreshDisplayedBytes();
     this.evictionCount++;
+    const now = this.clock();
+    this.evictedAt.delete(key);
+    this.evictedAt.set(key, now);
+    for (const [old, at] of this.evictedAt) {
+      if (this.evictedAt.size <= THRASH_MEMORY && now - at < THRASH_MS) break;
+      this.evictedAt.delete(old);
+    }
   }
 
   private isIdle(): boolean {

@@ -205,7 +205,7 @@ export {
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
 } from './semantic-types';
-export { roadWidth, waterwayWidth } from './semantic-widths';
+export { carriagewayWidth, roadWidth, waterwayWidth } from './semantic-widths';
 export {
   heightfieldSubtileFromPng,
   heightfieldTileFromPng,
@@ -228,6 +228,7 @@ export {
   transportSurfaceLift,
   transportWidth,
 } from './transport-features';
+export { TERRAIN_UNDERPASS_REACH, withTerrainUnderpasses } from './underpasses';
 
 import type { TerrainDescriptor } from './descriptor-types';
 import { Heightfield } from './heightfield';

@@ -61,6 +61,16 @@ export {
   TouchStick,
   type TouchStickOptions,
 } from './navigation/touch-joystick';
+export {
+  createTouchButtonZone,
+  createTouchLeverZone,
+  type TouchButtonZoneOptions,
+  TouchLever,
+  type TouchLeverOptions,
+  type TouchLeverZoneOptions,
+  type TouchZone,
+  type TouchZoneRect,
+} from './navigation/touch-lever';
 export { WalkCollision, type WalkCollisionOptions } from './navigation/walk-collision';
 export {
   RUN_SPEED,

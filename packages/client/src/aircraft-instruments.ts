@@ -1,17 +1,50 @@
+/**
+ * An aircraft's own airspeed and altitude instruments, cropped out of its cockpit for a display
+ * beside a chase or fly-by view: the needles, faces, units and calibration of the dials (or the
+ * digits of a glass cockpit's tapes) exactly as the model draws them, at a size the pilot's seat
+ * never shows.
+ *
+ * `createAircraftInstrumentViews` finds the instruments from the spec's interior bindings: the
+ * first binding (author order: the primary station before standby copies) whose source traces
+ * back through its derived conversions to airspeed or to altitude, and that turns a needle or
+ * lights a digital readout. Each view is a small scene of copies of the cockpit meshes inside
+ * that instrument's crop, sharing their geometry and materials, with an orthographic camera
+ * square-on to the face. `sync()` poses the copies from the live meshes, so needles follow the
+ * cockpit while the aircraft's own position, attitude and distance culling do not matter.
+ *
+ * `createAircraftInstrumentDisplay` draws views side by side into a host canvas through a small
+ * WebGL context of its own, a few times a second, building their programs before the first draw
+ * so boarding does not hitch.
+ *
+ * Related: `vehicle-interior.ts` and `model-signals.ts` (the bindings that move the needles),
+ * the Earth view's `setInstrumentCanvas` (which feeds this the flown aircraft), and the World
+ * Explorer's flight instrument panel (examples/world-explorer/src/flight-instrument-panel.ts).
+ *
+ * Gotchas: the copies share the aircraft's geometry and materials and must never be disposed
+ * here. `sync()` reads world matrices, so call it after they are current (after a frame renders,
+ * or `model.updateWorldMatrix(true, true)`). A disposed display has lost its canvas's context:
+ * show the instruments again on a new canvas.
+ */
 import type { AircraftSpec, ModelSignalSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 
+/** A loaded aircraft: its model (as `createAircraftVisual` holds it) and its spec. */
 export interface AircraftInstrumentSource {
   model: THREE.Object3D;
   spec: AircraftSpec;
 }
 
+/** One instrument cropped out of the cockpit, to draw with `camera` (see `sync`). */
 export interface AircraftInstrumentView {
+  /** Airspeed or altitude. */
   kind: 'speed' | 'altitude';
+  /** The needle or readout node the view was found by. */
   node: string;
+  /** A digital readout's units ('kt', 'mph', 'ft', …) where its conversion names them; dials carry their own. */
   unit?: string;
   scene: THREE.Scene;
   camera: THREE.OrthographicCamera;
+  /** Pose the copies from the live cockpit meshes; call once world matrices are current. */
   sync(): void;
 }
 
@@ -222,4 +255,120 @@ export function createAircraftInstrumentViews({
     });
   }
   return result;
+}
+
+export interface AircraftInstrumentDisplayOptions {
+  /** Least time between draws in milliseconds (default 50: 20 Hz). */
+  frameIntervalMs?: number;
+  /** Highest device pixel ratio drawn (default 2). */
+  maxPixelRatio?: number;
+}
+
+export interface AircraftInstrumentDisplay {
+  /**
+   * Draw `views` side by side across the canvas, each in a square cell as wide as its share of
+   * the canvas (and no taller than it), centered. Call it every frame; it draws at its own rate,
+   * and not while the canvas has no size (hidden). The first time it meets a set of views it
+   * builds their programs instead of drawing. `prepare` runs just before views are posed, for a
+   * host whose world matrices are not current yet (`model.updateWorldMatrix(true, true)`).
+   * Returns whether `views` are on show: false while building, without views, or where WebGL is
+   * unavailable.
+   */
+  update(
+    views: readonly AircraftInstrumentView[] | undefined,
+    nowMs: number,
+    prepare?: () => void,
+  ): boolean;
+  /** Release the WebGL context. The canvas cannot draw again; use a new one. */
+  dispose(): void;
+}
+
+/**
+ * A display for `createAircraftInstrumentViews` in a host canvas, drawn through its own small
+ * WebGL context (made on the first update with views, so a canvas never shown costs nothing).
+ */
+export function createAircraftInstrumentDisplay(
+  canvas: HTMLCanvasElement,
+  options: AircraftInstrumentDisplayOptions = {},
+): AircraftInstrumentDisplay {
+  const interval = options.frameIntervalMs ?? 50;
+  const maxPixelRatio = options.maxPixelRatio ?? 2;
+  let renderer: THREE.WebGLRenderer | undefined;
+  let unavailable = false;
+  let disposed = false;
+  let shown: readonly AircraftInstrumentView[] | undefined;
+  // The views whose shaders are built. A first draw would build every program in one frame: a
+  // hitch of up to 90 ms when boarding.
+  let compiled: readonly AircraftInstrumentView[] | undefined;
+  let compiling: readonly AircraftInstrumentView[] | undefined;
+  let lastFrame = Number.NEGATIVE_INFINITY;
+  return {
+    update(views, nowMs, prepare) {
+      if (disposed || unavailable || views === undefined || views.length === 0) return false;
+      if (!renderer) {
+        try {
+          renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+          renderer.setClearColor(0x000000, 0);
+        } catch (error) {
+          console.warn('Aircraft instruments unavailable:', error);
+          unavailable = true;
+          return false;
+        }
+      }
+      if (views !== shown) {
+        shown = views;
+        renderer.renderLists.dispose();
+        lastFrame = Number.NEGATIVE_INFINITY;
+      }
+      if (compiled !== views) {
+        if (compiling !== views) {
+          const pending = views;
+          compiling = pending;
+          prepare?.();
+          for (const view of pending) view.sync();
+          // Shown once built; a failed build draws anyway.
+          const done = (): void => {
+            if (compiling === pending) compiled = pending;
+          };
+          const target = renderer;
+          void Promise.all(
+            pending.map((view) => target.compileAsync(view.scene, view.camera)),
+          ).then(done, done);
+        }
+        return false;
+      }
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      if (width === 0 || height === 0 || nowMs - lastFrame < interval) return true;
+      lastFrame = nowMs;
+      prepare?.();
+      const ratio = Math.min(window.devicePixelRatio || 1, maxPixelRatio);
+      if (renderer.getPixelRatio() !== ratio) renderer.setPixelRatio(ratio);
+      const size = renderer.getSize(new THREE.Vector2());
+      if (size.x !== width || size.y !== height) renderer.setSize(width, height, false);
+      const cell = Math.min(width / views.length, height);
+      const left = (width - cell * views.length) / 2;
+      // WebGL counts the viewport from the bottom.
+      const bottom = (height - cell) / 2;
+      renderer.setScissorTest(false);
+      renderer.clear();
+      renderer.setScissorTest(true);
+      for (const [index, view] of views.entries()) {
+        view.sync();
+        renderer.setViewport(left + index * cell, bottom, cell, cell);
+        renderer.setScissor(left + index * cell, bottom, cell, cell);
+        renderer.render(view.scene, view.camera);
+      }
+      renderer.setScissorTest(false);
+      return true;
+    },
+    dispose() {
+      if (disposed) return;
+      disposed = true;
+      shown = compiled = compiling = undefined;
+      renderer?.dispose();
+      renderer?.forceContextLoss();
+      renderer = undefined;
+    },
+  };
 }

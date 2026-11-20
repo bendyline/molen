@@ -101,6 +101,11 @@
       }
       #credit a { color: #bde5c8; }
       #help { position: fixed; right: 14px; bottom: 11px; color: #173141; font-size: 12px; }
+      /* The touch console (body[data-console]) holds the bottom edge and the top-right corner: the
+         key legend has nothing to say to a touch screen, and the rest moves clear of it. */
+      body[data-console] #help { display: none; }
+      body[data-console] #location { bottom: calc(32px + var(--molen-console-height, 0px)); }
+      body[data-console] #credit { top: 66px; }
       body[data-navigation="walk"] #help { max-width: calc(100vw - 40px); padding: 8px 10px; border-radius: 6px; color: #e6eef2; background: rgba(15, 29, 39, 0.88); }
       /* Below ~700px #hud spans the full width from the top, so the credit moves to the other
          corner rather than sitting on the panel header. It is last among the fixed overlays in
@@ -117,6 +122,8 @@
         #hud summary { display: flex; align-items: center; }
         #location { bottom: 142px; max-height: 64px; overflow: auto; font-size: 10px; }
         #credit { top: auto; bottom: 68px; max-width: calc(100vw - 28px); font-size: 10px; }
+        body[data-console] #location { bottom: calc(16px + var(--molen-console-height, 0px)); }
+        body[data-console] #credit { top: auto; bottom: calc(92px + var(--molen-console-height, 0px)); }
         #help { box-sizing: border-box; left: 14px; max-width: calc(100vw - 28px); margin: 0; padding: 6px 8px; border-radius: 6px; background: rgb(12 24 35 / 90%); color: #deedf6; font-size: 11px; }
       }
       #error { color: #ffd1c7; }

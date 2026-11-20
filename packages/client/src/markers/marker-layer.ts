@@ -3,6 +3,13 @@
 // terrain streams in), hides behind hills and buildings through the depth test, fades with
 // distance, and is budgeted so only the nearest/most important ones draw. `pick(x, y)` resolves a
 // click or tap to a marker id in screen space.
+//
+// The depth test happens on the GPU, so a DOM callout beside a marker cannot see it. An occluding
+// layer therefore asks the GPU, as each marker draws for the host's camera, whether any of it
+// passed the depth test (an occlusion query: WebGPU renderers run their own through
+// `occlusionTest`, WebGL2 renderers one ANY_SAMPLES_PASSED query per marker). Results arrive a
+// frame or two after drawing; `screenPosition` reports them as `occluded`, and `pick` ignores a
+// marker the scene hides.
 
 import * as THREE from 'three';
 
@@ -78,6 +85,12 @@ export interface MarkerScreenPosition {
   distance: number;
   /** In front of the camera and inside the viewport. */
   visible: boolean;
+  /**
+   * `screenPosition` only: whether the scene (terrain, buildings, vehicles) hid all of the marker
+   * at the latest finished occlusion query, a frame or two behind drawing. Absent until a query
+   * finishes, for a layer that does not occlude, and on a renderer without occlusion queries.
+   */
+  occluded?: boolean;
 }
 
 interface MarkerEntry {
@@ -95,10 +108,33 @@ interface MarkerEntry {
   shown: boolean;
   /** Fade-in progress, 0 (hidden) to 1 (fully drawn). */
   presence: number;
+  /** All of it failed the depth test at the latest finished occlusion query; undefined until one. */
+  occluded: boolean | undefined;
+  /** WebGL2: this marker's occlusion query, reused for every measurement. */
+  query: WebGLQuery | undefined;
+  /** WebGL2: a measured draw whose result `update` has not collected yet. */
+  queryPending: boolean;
+}
+
+/** The WebGL2 context behind a three WebGLRenderer, if it can run occlusion queries. */
+function webgl2Of(renderer: unknown): WebGL2RenderingContext | undefined {
+  const three = renderer as { isWebGLRenderer?: boolean; getContext?: () => unknown };
+  if (three.isWebGLRenderer !== true || typeof three.getContext !== 'function') return undefined;
+  const gl = three.getContext() as Partial<WebGL2RenderingContext> | null;
+  return gl !== null && typeof gl.createQuery === 'function'
+    ? (gl as WebGL2RenderingContext)
+    : undefined;
 }
 
 /** Share of a shown marker's footprint, per side, that others may cover before it yields. */
 const DECLUTTER_KEEP_INSET = 0.2;
+
+/**
+ * Occluding markers discard texels fainter than this. An image's empty margin and the faint edge
+ * of a pin's shadow are invisible, yet they would pass the depth test, and an occlusion query
+ * would then call a pin whose frame a roof hides "in sight" because its blank margin clears it.
+ */
+const OCCLUSION_ALPHA_TEST = 0.05;
 
 const scratch = new THREE.Vector3();
 const viewSpace = new THREE.Vector3();
@@ -147,6 +183,10 @@ export class MarkerLayer {
   private visible = true;
   private disposed = false;
   private lastUpdateMs: number | undefined;
+  /** WebGL2: the context the occlusion queries live on, once a marker has drawn. */
+  private gl: WebGL2RenderingContext | undefined;
+  /** WebGL2: the marker whose draw a query is measuring right now (one query runs at a time). */
+  private measuring: MarkerEntry | undefined;
 
   constructor(
     private readonly host: MarkerHost,
@@ -205,6 +245,7 @@ export class MarkerLayer {
     const fadeStep = fadeMs > 0 ? elapsedMs / fadeMs : Number.POSITIVE_INFINITY;
     const hideUntilGrounded = this.options.hideUntilGrounded ?? true;
     const groundRefreshMs = this.options.groundRefreshMs ?? 0;
+    this.collectOcclusion();
     const candidates: MarkerEntry[] = [];
     for (const entry of this.entries.values()) {
       const { spec } = entry;
@@ -329,8 +370,9 @@ export class MarkerLayer {
   pick(x: number, y: number): string | undefined {
     let best: { id: string; distance: number } | undefined;
     for (const [id, entry] of this.entries) {
-      // A marker fading out has yielded its place and no longer takes taps.
-      if (!entry.sprite.visible || !entry.shown) continue;
+      // A marker fading out has yielded its place and no longer takes taps; one the scene hides
+      // leaves the tap to what hides it.
+      if (!entry.sprite.visible || !entry.shown || entry.occluded === true) continue;
       const p = entry.sprite.position;
       const screen = projectWorldToScreen(this.host, [p.x, p.y, p.z]);
       if (screen.distance <= 0) continue;
@@ -348,13 +390,20 @@ export class MarkerLayer {
     return best?.id;
   }
 
-  /** Where a marker's anchor point appears on screen (for DOM callouts), if it exists. */
+  /**
+   * Where a marker's anchor point appears on screen (for DOM callouts), if it exists. `visible`
+   * means drawn and on screen; `occluded` says whether the scene hides it there.
+   */
   screenPosition(id: string): MarkerScreenPosition | undefined {
     const entry = this.entries.get(id);
     if (entry === undefined) return undefined;
     const p = entry.sprite.position;
     const screen = projectWorldToScreen(this.host, [p.x, p.y, p.z]);
-    return { ...screen, visible: screen.visible && entry.sprite.visible };
+    return {
+      ...screen,
+      visible: screen.visible && entry.sprite.visible,
+      ...(entry.occluded !== undefined ? { occluded: entry.occluded } : {}),
+    };
   }
 
   setVisible(visible: boolean): void {
@@ -387,10 +436,13 @@ export class MarkerLayer {
   }
 
   private create(spec: MarkerSpec): MarkerEntry {
+    const occlude = this.options.occlude ?? true;
     const material = new THREE.SpriteMaterial({
       transparent: true,
       depthWrite: false,
-      depthTest: this.options.occlude ?? true,
+      depthTest: occlude,
+      // Only what can be seen counts as in sight (see OCCLUSION_ALPHA_TEST).
+      alphaTest: occlude ? OCCLUSION_ALPHA_TEST : 0,
       sizeAttenuation: false,
       // Markers are interface, not scenery: distance haze would wash distant pins to blank
       // cards. The layer's own `fade` handles distance.
@@ -408,6 +460,9 @@ export class MarkerLayer {
       distance: 0,
       shown: false,
       presence: 0,
+      occluded: undefined,
+      query: undefined,
+      queryPending: false,
     };
     entry.texture = this.acquire(spec.image, entry);
     material.map = entry.texture;
@@ -415,13 +470,75 @@ export class MarkerLayer {
     entry.sprite.userData.markerId = spec.id;
     entry.sprite.visible = false;
     if (this.options.renderOrder !== undefined) entry.sprite.renderOrder = this.options.renderOrder;
+    if (occlude) this.measureOcclusion(entry);
     return entry;
+  }
+
+  /**
+   * Ask the GPU, as the marker draws for the host's camera, whether any of it passes the depth
+   * test. Draws for other cameras (a reflection, an instrument panel) are not measured. A WebGPU
+   * renderer queries every object marked `occlusionTest` and answers `isOccluded` while the frame
+   * draws, from its last finished results. On WebGL2 the marker brackets its own draw in an
+   * ANY_SAMPLES_PASSED query, one in flight per marker, which `update` collects once it is ready.
+   */
+  private measureOcclusion(entry: MarkerEntry): void {
+    const sprite = entry.sprite as THREE.Sprite & { occlusionTest?: boolean };
+    sprite.occlusionTest = true;
+    sprite.onBeforeRender = (renderer, _scene, camera) => {
+      if (camera !== this.host.camera || entry.queryPending || this.measuring !== undefined) return;
+      const gl = webgl2Of(renderer);
+      if (gl === undefined) return;
+      if (this.gl !== gl) {
+        // A new context (the renderer was replaced): queries from the old one are gone.
+        for (const other of this.entries.values()) {
+          other.query = undefined;
+          other.queryPending = false;
+        }
+        this.gl = gl;
+      }
+      entry.query ??= gl.createQuery() ?? undefined;
+      if (entry.query === undefined) return;
+      gl.beginQuery(gl.ANY_SAMPLES_PASSED, entry.query);
+      this.measuring = entry;
+    };
+    sprite.onAfterRender = (renderer, _scene, camera) => {
+      if (this.measuring === entry) {
+        this.gl?.endQuery(this.gl.ANY_SAMPLES_PASSED);
+        this.measuring = undefined;
+        entry.queryPending = true;
+        return;
+      }
+      if (camera !== this.host.camera) return;
+      const gpu = renderer as unknown as {
+        isWebGLRenderer?: boolean;
+        isOccluded?: (object: THREE.Object3D) => unknown;
+      };
+      if (gpu.isWebGLRenderer === true || typeof gpu.isOccluded !== 'function') return;
+      // Undefined until the renderer resolves its first queries for this frame's context.
+      const occluded = gpu.isOccluded(sprite);
+      if (typeof occluded === 'boolean') entry.occluded = occluded;
+    };
+  }
+
+  /** WebGL2: read the occlusion queries whose results have arrived. */
+  private collectOcclusion(): void {
+    const gl = this.gl;
+    if (gl === undefined) return;
+    for (const entry of this.entries.values()) {
+      const query = entry.query;
+      if (!entry.queryPending || query === undefined) continue;
+      if (gl.getQueryParameter(query, gl.QUERY_RESULT_AVAILABLE) !== true) continue;
+      entry.occluded = Number(gl.getQueryParameter(query, gl.QUERY_RESULT)) === 0;
+      entry.queryPending = false;
+    }
   }
 
   private remove(id: string, entry: MarkerEntry): void {
     entry.sprite.removeFromParent();
     entry.material.dispose();
     this.release(entry.imageKey);
+    if (entry.query !== undefined) this.gl?.deleteQuery(entry.query);
+    if (this.measuring === entry) this.measuring = undefined;
     this.entries.delete(id);
   }
 

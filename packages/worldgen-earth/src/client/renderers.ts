@@ -56,6 +56,7 @@ import {
   type WorldgenMaterialSet,
 } from '@bendyline/molen-worldgen/client';
 import type {
+  DistantLook,
   PlacementSet,
   ResolvedStylePack,
   WorldgenBudgets,
@@ -63,6 +64,7 @@ import type {
 import * as THREE from 'three';
 import { prepareAgricultureTile } from '../kernel/agriculture';
 import { coarseBuildingTile } from '../kernel/coarse-buildings';
+import { distantBuildingLooks } from '../kernel/distant-looks';
 import { withDistrictLevels } from '../kernel/district-heights';
 import { isLandcoverDesignation } from '../kernel/labels';
 import { LAND_SITE_COLORS, prepareLandSites } from '../kernel/land-sites';
@@ -121,8 +123,9 @@ const FOCUS_MAX_SPEED = 10;
 const FOOTPRINT_SLACK = 12;
 /**
  * Distant shells take a roof and a wall each, so a city seen from an airplane is not one beige
- * block. Weights follow matched orthophoto reviews of Seattle, Bellevue, Sydney and Yuma: pale
- * membranes and grey decks lead, with dark shingle, gravel and a little tile.
+ * block. Each takes its own style's colors where a style is found (see distantBuildingLooks);
+ * these are the fallback. Weights follow matched orthophoto reviews of Seattle, Bellevue, Sydney
+ * and Yuma: pale membranes and grey decks lead, with dark shingle, gravel and a little tile.
  */
 const DISTANT_BUILDING_COLORS: {
   roofs: ReadonlyArray<readonly [string, number]>;
@@ -423,6 +426,8 @@ export function createWorldgenSemanticRenderers(
   // X/Z, and the position and time they were last seen at (for their speed).
   let focus: readonly [number, number] | undefined;
   let focusSample: { x: number; z: number; at: number } | undefined;
+  // Each style's distant looks, worked out once for every coarse tile's shells.
+  const distantLookSamples = new Map<string, (DistantLook | undefined)[]>();
   // Distant levels stand in for textured buildings, so they carry the textures' mean brightness.
   const flatMaterials = options.lodPolicy
     ? createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN, ...decorate })
@@ -1435,10 +1440,21 @@ export function createWorldgenSemanticRenderers(
             placed,
             nearbyFootprints(group, context),
           );
+          const leveled = withDistrictLevels(mapped, context.origin, context.tileSize);
+          // Each shell in its own style's colors, as the finer tile that replaces it draws the
+          // building: a glass tower stays blue and a membrane roof grey (the palette is a
+          // fallback for a building no style takes).
+          const looks = distantBuildingLooks(leveled, geometryFor(context, metersPerUnit), {
+            pack,
+            ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
+            ...(options.regions !== undefined ? { regions: options.regions } : {}),
+            ...(options.environment !== undefined ? { environment: options.environment } : {}),
+            samples: distantLookSamples,
+          });
           // A slice of footprints per admitted job: a coarse tile's thousands, built in one go,
           // held a frame 12-19 ms.
           const shells = await createTerrainSemanticObjectSliced(
-            coarseBuildingTile(withDistrictLevels(mapped, context.origin, context.tileSize)),
+            coarseBuildingTile(leveled),
             context,
             {
               renderLandcover: false,
@@ -1446,7 +1462,7 @@ export function createWorldgenSemanticRenderers(
               renderTransportation: false,
               defaultBuildingHeight: 6.4,
               defaultLevelHeight: 3.2,
-              buildingColors: DISTANT_BUILDING_COLORS,
+              buildingColors: { ...DISTANT_BUILDING_COLORS, pick: looks },
             },
             <T>(slice: () => T): Promise<T> =>
               context.admission

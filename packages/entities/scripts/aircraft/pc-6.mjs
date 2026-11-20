@@ -961,7 +961,8 @@ function porterCockpit(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: sign * 0.04,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -sign * 0.04,
       });
     }
     d.box([0.025, 0.27, 1.15], [side * 0.6, 0.78, 2.02], liner);

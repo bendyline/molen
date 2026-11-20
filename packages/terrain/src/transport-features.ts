@@ -3,7 +3,7 @@
  * transport graphs, so simulated lanes land exactly on painted lanes.
  */
 import type { TerrainTransportationFeature } from './semantic-types';
-import { roadWidth } from './semantic-widths';
+import { carriagewayWidth } from './semantic-widths';
 
 /** Painter/simulation class of a transportation feature. */
 export type TransportKind = 'street' | 'service' | 'path' | 'rail' | 'motorway';
@@ -78,7 +78,10 @@ export function transportWidth(
         ? 4.5
         : feature.lanes
           ? Math.min(12, feature.lanes) * 3.2
-          : roadWidth(feature.subclass ?? feature.class)) * scale;
+          : carriagewayWidth(feature.subclass ?? feature.class, {
+              link: isTransportLink(feature),
+              oneway: feature.oneway === true,
+            })) * scale;
   return Math.min(80, width);
 }
 

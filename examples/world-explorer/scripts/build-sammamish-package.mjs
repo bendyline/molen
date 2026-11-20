@@ -442,13 +442,11 @@ async function addVectorWindows(vectorPath, windows, url, maxLevel, provenance) 
     const earlier = previous.find((entry) => entry.id === window.id);
     // Nothing fetched: the tiles are an earlier run's, recorded then.
     if (count === 0 && earlier) return earlier;
-    return {
-      id: window.id,
-      bounds: window.bounds,
-      url,
-      release: provenance.release ?? (url === provenance.mainUrl ? provenance.mainRelease : url),
-      tiles: count,
-    };
+    const release =
+      provenance.release ?? (url === provenance.mainUrl ? provenance.mainRelease : url);
+    // A window widened from the same release keeps the tiles an earlier run added, so count them.
+    const kept = earlier?.url === url && earlier.release === release ? earlier.tiles : 0;
+    return { id: window.id, bounds: window.bounds, url, release, tiles: kept + count };
   });
 }
 

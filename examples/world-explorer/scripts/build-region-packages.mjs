@@ -16,8 +16,13 @@ const regions = WORLD_REGIONS.filter((region) =>
 );
 if (regions.length === 0) throw new Error(`Unknown region: ${regionId}`);
 const pmtilesCli = argument('--pmtiles-cli', process.env.PMTILES_CLI);
-if (!pmtilesCli)
+// --skip-vector keeps each world.pmtiles (adding only detail-window tiles, which need no CLI).
+const skipVector = process.argv.includes('--skip-vector');
+if (!pmtilesCli && !skipVector)
   throw new Error('--pmtiles-cli or PMTILES_CLI must name the go-pmtiles executable');
+// Daily Protomaps builds expire: a window added after the main extract reads a newer one.
+const windowVectorUrl = argument('--window-vector-url', undefined);
+const windowVectorRelease = argument('--window-vector-release', undefined);
 const version = argument('--version', '2026-10-23');
 const vectorUrl = argument(
   '--vector-url',
@@ -51,8 +56,7 @@ for (const region of regions) {
   if (regionalElevationCredits[region.id]) extraCredits.push(regionalElevationCredits[region.id]);
   const args = [
     builder,
-    '--pmtiles-cli',
-    pmtilesCli,
+    ...(pmtilesCli ? ['--pmtiles-cli', pmtilesCli] : []),
     '--output',
     fileURLToPath(new URL(`../public/terrain/${region.id}`, import.meta.url)),
     '--name',
@@ -74,7 +78,9 @@ for (const region of regions) {
     const level = window.elevationMaxLevel === undefined ? '' : `@${window.elevationMaxLevel}`;
     args.push('--detail-window', `${window.id}=${window.bounds.join(',')}${level}`);
   }
-  if (process.argv.includes('--skip-vector')) args.push('--skip-vector');
+  if (skipVector) args.push('--skip-vector');
+  if (windowVectorUrl) args.push('--window-vector-url', windowVectorUrl);
+  if (windowVectorRelease) args.push('--window-vector-release', windowVectorRelease);
   await new Promise((resolve, reject) => {
     const child = spawn(process.execPath, args, { stdio: 'inherit', shell: false });
     child.once('error', reject);

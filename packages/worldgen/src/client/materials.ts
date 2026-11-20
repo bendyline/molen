@@ -3,9 +3,12 @@
 import type { MaterialResolver } from '@bendyline/molen-client';
 import { enableSnowCover } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
+import { TEXTURED_SURFACE_MEAN } from '../kernel/distant-look';
 import type { MaterialSlot } from '../kernel/types';
 import type { BuildingMaterialDecorator } from './building-weathering';
 import type { WorldgenMaterialSet } from './upload';
+
+export { TEXTURED_SURFACE_MEAN };
 
 const SLOT_ROUGHNESS: Readonly<Record<MaterialSlot, number>> = {
   wall: 0.86,
@@ -15,14 +18,6 @@ const SLOT_ROUGHNESS: Readonly<Record<MaterialSlot, number>> = {
   window: 0.25,
   door: 0.75,
 };
-
-/**
- * Mean linear base color of the shared tinted material graphs (siding, shingle, brick, render,
- * concrete, membrane: 0.52–0.77, most near 0.65). A flat stand-in for a textured surface
- * multiplies by it, so a building keeps its brightness when its textures finish loading or its
- * level of detail changes; untinted it renders about 1.5 times brighter than up close.
- */
-export const TEXTURED_SURFACE_MEAN = 0.65;
 
 /**
  * Four-ish shared vertex-colored materials (one per slot). Every material reference collapses

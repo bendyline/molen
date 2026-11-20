@@ -159,12 +159,21 @@ For movement on phones, add the on-screen stick:
 import { createTouchJoystick } from '@bendyline/molen-client/navigation';
 
 const stick = createTouchJoystick(container, input.map); // bottom-left, style with className
-stick.setVisible(matchMedia('(pointer: coarse)').matches);
+// Any coarse pointer: phones, tablets and touchscreen laptops.
+stick.setVisible(matchMedia('(any-pointer: coarse)').matches);
 ```
 
 The stick drives the same `nav-forward`/`nav-back`/`nav-left`/`nav-right` actions through
 `InputMap.setVirtual`, so a phone moves exactly like a keyboard or gamepad. `TouchStick` is its
-DOM-free geometry, if you want to draw your own.
+DOM-free geometry, if you want to draw your own; `appearance: 'none'` leaves the zone invisible
+under a stick you draw.
+
+For levers, handles and switches, `createTouchLeverZone` and `createTouchButtonZone` put an
+invisible zone over a rectangle you draw: a lever follows the thumb's travel from where it landed
+(so a touch never makes it jump), optionally springing back or settling on notches, and each zone
+captures its own pointer so two thumbs work two controls at once. `TouchLever` is the lever's
+geometry. The [vehicle console](vehicle-console.md) builds a whole set of them, drawn as the
+vehicle's own controls.
 
 ## Streaming alongside the camera
 

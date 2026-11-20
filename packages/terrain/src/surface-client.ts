@@ -196,6 +196,8 @@ const BUILT_REACH = 3;
 const SIDEWALK_STATION = 10;
 /** Meters between the stations at which a two-lane road's passing zones are decided. */
 const PASSING_STATION = 5;
+/** Meters above its lift on the ground at which a junction's roads no longer stand on the ground. */
+const RAISED_JUNCTION = 0.5;
 /** Countries whose center lines are yellow (MUTCD and its neighbors, much of Latin America, Korea). */
 const YELLOW_CENTER_LINES: ReadonlySet<string> = new Set([
   'US',
@@ -1487,6 +1489,20 @@ export function createTerrainSurfaceObject(
   };
   for (const node of network.junctions) {
     if (!inTile(node.x, node.z)) continue;
+    // A junction on roads climbing to a deck stands off the ground: its paint is draped on the
+    // ground and its lamps and masts stand there, under the road. Aurora Avenue's carriageways
+    // meet on an overpass approach six meters up, and a corner lamp stood through the pavement.
+    if (
+      node.arms.some(
+        (arm) =>
+          bridgeProfiles.has(arm.road) &&
+          heightOnRoad(arm.road, arm.x, arm.z) >
+            context.heightfield.sampleHeight(context.origin[0] + arm.x, context.origin[1] + arm.z) +
+              arm.road.elevation +
+              RAISED_JUNCTION,
+      )
+    )
+      continue;
     stats.junctions++;
     const control = controls.get(node);
     if (style.crossings || style.markings)

@@ -27,12 +27,19 @@ import {
   type RendererBackendPreference,
 } from '@bendyline/molen-client';
 import {
+  type AircraftInstrumentDisplay,
   bindAircraftCockpitPointer,
+  createAircraftInstrumentDisplay,
   type PilotMotionOverrides,
   type PilotMotionTuning,
   pilotMotionTuning,
 } from '@bendyline/molen-client/aircraft';
 import type { AudioLayer } from '@bendyline/molen-client/audio';
+import {
+  type ConsoleSubject,
+  createVehicleConsole,
+  type VehicleConsole,
+} from '@bendyline/molen-client/console';
 import {
   createMarkerLayer,
   type MarkerLayer,
@@ -257,6 +264,8 @@ export interface EarthModeOptions {
 export type EarthVehicleStatus =
   | {
       kind: 'car' | 'boat';
+      /** Entity type id, e.g. `molen.entities.vehicle.toyota_corolla_2025`. */
+      type?: string;
       anchored?: boolean;
       grounded?: boolean;
       label: string;
@@ -283,6 +292,18 @@ export type EarthVehicleStatus =
       stuck?: boolean;
     }
   | ({ kind: 'aircraft' } & EarthFlightStatus);
+
+/** The vehicle console (`EarthViewOptions.console`). */
+export interface EarthConsoleOptions {
+  /** The positioned element it goes in, usually the stage around the canvas. */
+  container: HTMLElement;
+  /** When it shows: on touch devices (`'auto'`, the default) or on every device. */
+  touch?: 'auto' | 'always';
+  /** The flown aircraft's own airspeed and altitude dials in a chase view (default true). */
+  gauges?: boolean;
+  /** `left` puts the stick on the right and the throttle on the left. */
+  handed?: 'right' | 'left';
+}
 
 /** Where to look, in geographic terms. Angles are radians. */
 export interface EarthCameraTarget {
@@ -495,6 +516,13 @@ export interface EarthViewOptions {
   touchJoystickContainer?: HTMLElement;
   /** When the stick shows: on touch devices (`'auto'`, the default) or on every device. */
   touchJoystick?: 'auto' | 'always';
+  /**
+   * The vehicle console: touch controls drawn as the vehicle's own, along the bottom of its
+   * container. An aircraft's stick, rudder pedals, throttle, gear and flap handles and dials; a
+   * car's wheel, pedals and handbrake; the plain stick on foot. Where it shows it takes the place
+   * of `touchJoystickContainer`'s stick (see the Vehicle console guide).
+   */
+  console?: EarthConsoleOptions;
   /** Graphics backend (default `'webgl'`, which skips the WebGPU probe). */
   backend?: RendererBackendPreference;
   /** Highest device pixel ratio rendered (default 2). */
@@ -746,6 +774,11 @@ export interface EarthView {
   }): EarthBuildingHit | undefined;
   readonly viewer: MolenClient;
   readonly input: NavigationInputSource;
+  /**
+   * The vehicle console, where `options.console` shows one (touch devices by default). Hosts lay
+   * out around it with `--molen-console-height` and its `layout`.
+   */
+  readonly console: VehicleConsole | undefined;
   /** Required data credits; keep them visible whenever the view is. */
   readonly credits: EarthCredit[];
   readonly mode: EarthViewMode;
@@ -762,6 +795,16 @@ export interface EarthView {
   vehicleStatus(): EarthVehicleStatus | undefined;
   /** Set the mounted aircraft's throttle or collective directly, 0..1 (e.g. an on-screen lever). */
   setThrottle(power: number): void;
+  /**
+   * Draw the flown aircraft's own airspeed and altitude instruments into `canvas`, side by side:
+   * close-ups of the dials (or glass readouts) in its cockpit, with their faces, units, needles
+   * and calibration as modeled, for a HUD beside a chase view. `vehicleStatus().instruments`
+   * lists them, to size and label the canvas (each takes a square cell of its width). They draw
+   * about 20 times a second while flying, and not while the canvas is hidden, through a small
+   * WebGL context of the canvas's own. `undefined` stops and releases it; the canvas cannot draw
+   * again, so show them later on a new one.
+   */
+  setInstrumentCanvas(canvas: HTMLCanvasElement | undefined): void;
   /** The tuning of the pilot's body under load in cockpit views; `enabled` is its switch. */
   readonly pilotMotion: PilotMotionTuning;
   /**
@@ -799,7 +842,10 @@ export interface EarthView {
    */
   setInteraction(settings: EarthInteractionSettings): void;
   setMarkers(markers: readonly EarthMarker[]): void;
-  /** Where a marker's pin point is on screen, for DOM callouts. */
+  /**
+   * Where a marker's pin point is on screen, for DOM callouts; `occluded` once the GPU has found
+   * terrain or buildings hiding it (see the Markers guide).
+   */
   markerScreenPosition(id: string): MarkerScreenPosition | undefined;
   on<K extends keyof EarthViewEvents>(
     event: K,
@@ -848,6 +894,8 @@ const VERTICAL_FOV_DEGREES = 60;
 const VERTICAL_FOV = THREE.MathUtils.degToRad(VERTICAL_FOV_DEGREES);
 /** The entity that stands for the viewer in the shared world (seats, avatar). */
 const PLAYER_ID = 'world-player';
+/** The vehicle console on foot: the plain stick with jump and use. */
+const ON_FOOT: ConsoleSubject = { kind: 'walk' };
 /** The package with its bare-ground surface layers recolored by name (others untouched). */
 function withGroundColors(
   pkg: TerrainPackageDescriptor,
@@ -1221,9 +1269,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     });
     disposers.push(() => input.dispose());
     let joystick: TouchJoystick | undefined;
+    let vehicleConsole: VehicleConsole | undefined;
     const touchDevice =
       typeof matchMedia === 'function' && matchMedia('(any-pointer: coarse)').matches;
-    if (
+    if (options.console !== undefined && (options.console.touch === 'always' || touchDevice)) {
+      vehicleConsole = createVehicleConsole(options.console.container, {
+        input: input.map,
+        focusTarget: canvas,
+        ...(options.console.handed !== undefined ? { handed: options.console.handed } : {}),
+      });
+      vehicleConsole.setVisible(false);
+      disposers.push(() => vehicleConsole?.dispose());
+    } else if (
       options.touchJoystickContainer !== undefined &&
       (options.touchJoystick === 'always' || touchDevice)
     ) {
@@ -1934,6 +1991,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const applyProfile = (): void => {
       input.setProfile(mode === 'fly' ? 'pilot' : mode);
       joystick?.setVisible(mode !== 'orbit');
+      vehicleConsole?.setVisible(mode !== 'orbit');
       renderer.setCameraClip(mode === 'orbit' ? 1 : 0.05, 500_000);
     };
     const enterWalk = (x: number, z: number, yaw: number): void => {
@@ -3562,8 +3620,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       // Auto hold: a car at rest with no throttle stays put, even parked on a slope.
       const holding = frameInput.move.forward === 0 && Math.abs(vehicles.speed) < 0.6;
       if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
-      // Last frame's shadow map: from the driver's seat the car leaves one too coarse for its cabin.
-      vehicles.shadowTexel = renderer.shadowTexelSize;
+      // The driven car casts from a sun map of its own where there is one (WebGL). Without it,
+      // from the driver's seat the car leaves a map too coarse for its cabin: last frame's.
+      vehicles.shadowTexel = renderer.setShadowSubject(vehicles.shadowSubject)
+        ? undefined
+        : renderer.shadowTexelSize;
       vehicles.update(dt, {
         throttle: frameInput.move.forward,
         steering: frameInput.move.right,
@@ -3633,7 +3694,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       // aircraft by the ticks run since (2 m each at 120 m/s), so single dial numerals and screws
       // flashed in and out as frames ran 0, 1 or 2 ticks.
       const view = aircraft.cameraPose();
-      aircraft.render(view?.position ?? pose.position, renderer.shadowTexelSize);
+      // As the driven car: a sun map of its own where there is one (WebGL), or out of last
+      // frame's main map if that is too coarse for it.
+      const ownShadow = renderer.setShadowSubject(aircraft.shadowSubject);
+      aircraft.render(
+        view?.position ?? pose.position,
+        ownShadow ? undefined : renderer.shadowTexelSize,
+      );
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
         .fromArray(view.lookAt)
@@ -3694,6 +3761,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         Math.hypot(current.lookAt[0] - x, current.lookAt[1] - y, current.lookAt[2] - z),
       );
     };
+
+    /** What the vehicle console shows: the flown aircraft, the driven vehicle, or on foot. */
+    const consoleSubject = (current: EarthStack | undefined): ConsoleSubject | undefined => {
+      if (mode === 'fly')
+        return current?.aircraft?.consoleSubject(
+          options.console?.gauges !== false && current.aircraft.view === 'chase',
+        );
+      if (mode === 'drive') return current?.vehicles?.consoleSubject();
+      return mode === 'walk' ? ON_FOOT : undefined;
+    };
+    // The flown aircraft's own instruments in a host canvas (setInstrumentCanvas), drawn after
+    // the frame, when the cockpit's world matrices are this frame's.
+    let instrumentCanvas: HTMLCanvasElement | undefined;
+    let instrumentDisplay: AircraftInstrumentDisplay | undefined;
+    disposers.push(() => instrumentDisplay?.dispose());
 
     const frame = (now: number): void => {
       if (disposed || paused) return;
@@ -3895,6 +3977,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       markers.update(pose.position);
       if (shadowsOn) renderer.setShadowFocus(shadowFocus(pose));
+      if ((mode !== 'drive' && mode !== 'fly') || current === undefined || pending !== undefined)
+        renderer.setShadowSubject(undefined);
       // The renderer takes a look-at target before a rotation, so a rotated pose sends only that.
       viewer.setCamera(
         pose.rotation !== undefined
@@ -3962,6 +4046,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();
+      instrumentDisplay?.update(
+        mode === 'fly' ? current?.aircraft?.mountedInstruments() : undefined,
+        now,
+      );
+      // After the frame: the console's dials copy the cockpit's world matrices.
+      if (vehicleConsole !== undefined) {
+        vehicleConsole.setSubject(consoleSubject(current));
+        vehicleConsole.update(now);
+      }
       frames++;
       workMs = performance.now() - workStart;
       const admission = admissionGovernor.sample(workMs, frameMs);
@@ -4113,6 +4206,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       get audio() {
         return audio?.layer;
       },
+      get console() {
+        return vehicleConsole;
+      },
       setMode,
       vehicleStatus() {
         const current = stack;
@@ -4132,6 +4228,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 }
               : {}),
             label: vehicles.label(vehicles.mountedId as string),
+            ...(vehicles.typeOf(vehicles.mountedId as string) !== undefined
+              ? { type: vehicles.typeOf(vehicles.mountedId as string) as string }
+              : {}),
             ...vehicles.genericIdentity(vehicles.mountedId as string),
             speed: vehicles.speed,
             heading: vehicles.heading ?? 0,
@@ -4154,6 +4253,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       },
       setThrottle(power) {
         stack?.aircraft?.setPower(power);
+      },
+      setInstrumentCanvas(canvas) {
+        if (canvas === instrumentCanvas || disposed) return;
+        instrumentDisplay?.dispose();
+        instrumentCanvas = canvas;
+        instrumentDisplay =
+          canvas === undefined ? undefined : createAircraftInstrumentDisplay(canvas);
       },
       recover() {
         return mode === 'drive'

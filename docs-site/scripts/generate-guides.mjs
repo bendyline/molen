@@ -82,6 +82,7 @@ const GUIDE_ORDER = [
   'browser-mount',
   'input',
   'navigation',
+  'vehicle-console',
   'markers',
   'entities',
   'experience-playback',

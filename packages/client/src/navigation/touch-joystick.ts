@@ -74,12 +74,19 @@ export interface TouchJoystickOptions extends TouchStickOptions {
   source?: string;
   /** Extra class names for styling the root element. */
   className?: string;
+  /**
+   * `'circles'` (default) draws the base ring and knob; `'none'` leaves the zone invisible, for a
+   * host that draws the stick itself (the vehicle console draws the vehicle's own stick).
+   */
+  appearance?: 'circles' | 'none';
 }
 
 export interface TouchJoystick {
   readonly element: HTMLElement;
   readonly stick: TouchStick;
   setVisible(visible: boolean): void;
+  /** Draw the base ring and knob (`'circles'`) or nothing (`'none'`). */
+  setAppearance(appearance: 'circles' | 'none'): void;
   dispose(): void;
 }
 
@@ -129,6 +136,13 @@ export function createTouchJoystick(
   });
   root.append(knob);
   container.append(root);
+  const setAppearance = (appearance: 'circles' | 'none'): void => {
+    const circles = appearance === 'circles';
+    root.style.background = circles ? 'rgba(255, 255, 255, 0.16)' : 'transparent';
+    root.style.border = circles ? '2px solid rgba(255, 255, 255, 0.45)' : '2px solid transparent';
+    knob.style.display = circles ? '' : 'none';
+  };
+  setAppearance(options.appearance ?? 'circles');
 
   let pointer: number | undefined;
   const reset = (): void => {
@@ -192,6 +206,7 @@ export function createTouchJoystick(
         reset();
       }
     },
+    setAppearance,
     dispose(): void {
       root.removeEventListener('pointerdown', onDown);
       root.removeEventListener('pointermove', onMove);

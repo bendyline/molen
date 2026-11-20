@@ -23,6 +23,19 @@ describe('world region navigation', () => {
     expect(region.latitude).toBeLessThan(north);
   });
 
+  // A starter runway outside the street extract opens on bare terrain: no buildings, no roads.
+  it.each(WORLD_REGIONS)('starts $label inside its street detail', (region) => {
+    const boxes = [region.detailBounds, ...(region.detailWindows ?? []).map((w) => w.bounds)];
+    const inside = boxes.some(
+      ([west, south, east, north]) =>
+        region.longitude > west &&
+        region.longitude < east &&
+        region.latitude > south &&
+        region.latitude < north,
+    );
+    expect(inside).toBe(true);
+  });
+
   it('clears stale location and vehicle overrides without losing display preferences', () => {
     const current = new URL(
       'https://molen.dev/play/world-explorer/?package=qualla&synthetic=1&lat=47&lon=-122' +

@@ -669,6 +669,64 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it("shows each finished detail layer without waiting behind a far coarser placeholder's layer", async () => {
+    const d = descriptor({ maxLevel: 6 });
+    let openFine!: () => void;
+    const fine = new Promise<void>((resolve) => (openFine = resolve));
+    const pending = new Map<string, (object: THREE.Object3D) => void>();
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        load: async (address) => {
+          if (address.level > 0) await fine;
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 0.05,
+        viewDistance: 100,
+        maxSelectedTiles: 64,
+        maxResidentTiles: 512,
+        maxConcurrentLoads: 64,
+        maxConcurrentLayerLoads: 64,
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              // The placeholder's layer (a coarse tile's few highways) builds at once; the
+              // selected ground's layers finish one by one, and some not at all.
+              if (address.level === 0) return new THREE.Group();
+              return new Promise<THREE.Object3D>((resolve) =>
+                pending.set(terrainPyramidTileKey(address), resolve),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await expect.poll(() => drawn(stream, 'layer:detail:0/0/0')).toBe(true);
+      openFine();
+      await expect.poll(() => stream.loading().tiles).toBe(0);
+      for (let i = 0; i < 5; i++) stream.update(VIEW);
+      const fineLeaf = () =>
+        stream
+          .displayedTiles()
+          .map((address) => terrainPyramidTileKey(address))
+          .find((key) => Number(key.split('/')[0]) > 3 && pending.has(key));
+      await expect.poll(fineLeaf).toBeDefined();
+      const key = fineLeaf() as string;
+      expect(pending.size).toBeGreaterThan(1);
+      pending.get(key)?.(new THREE.Group());
+      // One finished tile's roads and buildings show while its neighbours still build.
+      await expect.poll(() => drawn(stream, `layer:detail:${key}`)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('keeps the predicted route when a transient future-tile failure retries', async () => {
     const d = descriptor({ rootSize: 512, minLevel: 4, maxLevel: 4 });
     let attempts = 0;
@@ -2921,6 +2979,61 @@ describe('screen-space terrain pyramid', () => {
     expect(stream.stats().layerObjects).toBe(4);
     stream.dispose();
   });
+});
+
+it('tells ground rebuilt soon after its eviction from ground come back to later', async () => {
+  // The world explorer read every rebuild as the cache straining under its level: over a session
+  // in one region nearly every build is ground flown over before, and each was a step down.
+  const d = descriptor({ rootSize: 1024, maxLevel: 4, tileResolution: 3 });
+  let now = 0;
+  const stream = createTerrainPyramidStream(
+    d,
+    { load: async (address) => flatTile(d, address) },
+    {
+      maxScreenSpaceError: 2,
+      viewDistance: 300,
+      maxSelectedTiles: 8,
+      maxResidentTiles: 16,
+      maxConcurrentLoads: 8,
+      maxSurfaceTileResolution: 3,
+      now: () => now,
+    },
+  );
+  const at = (x: number, z: number) => ({
+    position: [x, 30, z] as [number, number, number],
+    direction: [0, -1, 0] as [number, number, number],
+    aspect: 1,
+    verticalFov: 1,
+    viewportHeight: 720,
+  });
+  const visit = async (x: number, z: number): Promise<void> => {
+    for (let i = 0; i < 3; i++) {
+      now += 500;
+      stream.update(at(x, z));
+      await stream.whenIdle();
+    }
+  };
+  try {
+    await visit(100, 100);
+    await visit(900, 900);
+    const away = stream.stats();
+    expect(away.evictions).toBeGreaterThan(0);
+    // Straight back: the cache lost ground it had only just left.
+    await visit(100, 100);
+    const back = stream.stats();
+    expect(back.rebuiltTiles).toBeGreaterThan(away.rebuiltTiles);
+    expect(back.thrashedTiles - away.thrashedTiles).toBe(back.rebuiltTiles - away.rebuiltTiles);
+    // Away, then back minutes later: built again, but not thrashed.
+    await visit(900, 900);
+    now += 5 * 60_000;
+    const later = stream.stats();
+    await visit(100, 100);
+    const returned = stream.stats();
+    expect(returned.rebuiltTiles).toBeGreaterThan(later.rebuiltTiles);
+    expect(returned.thrashedTiles).toBe(later.thrashedTiles);
+  } finally {
+    stream.dispose();
+  }
 });
 
 it('does not reload covered ancestors after the cache evicts them', async () => {

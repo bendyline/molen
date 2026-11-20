@@ -147,7 +147,7 @@ function toMeters(
  * What a host's building (a map override) says outright, from the tags it travels with: built
  * ahead of its neighbours, in its own style when the pack has it, and in its own colors.
  */
-function hostBuildingChoices(
+export function hostBuildingChoices(
   feature: TerrainBuildingFeature,
   styles: ResolvedStylePack['archstyles'],
 ): Pick<BuildingRequest, 'priority' | 'style' | 'appearance'> {

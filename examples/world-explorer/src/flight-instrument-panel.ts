@@ -1,9 +1,10 @@
-import * as THREE from 'three';
 import {
   type AircraftInstrumentSource,
   type AircraftInstrumentView,
+  createAircraftInstrumentDisplay,
   createAircraftInstrumentViews,
-} from './aircraft-instrument-views';
+} from '@bendyline/molen-client/aircraft';
+import type * as THREE from 'three';
 import './flight-instrument-panel.css';
 
 /** A single small canvas, rendered at 20 Hz only while piloting in an external view. */
@@ -21,25 +22,17 @@ export function createFlightInstrumentPanel(enabled = true): {
   canvas.setAttribute('role', 'img');
   panel.append(title, canvas);
   document.body.append(panel);
-  let renderer: THREE.WebGLRenderer | undefined;
+  // Its own small WebGL context, made on the first draw and built before it is shown.
+  const display = createAircraftInstrumentDisplay(canvas);
   let model: THREE.Object3D | undefined;
   let views: AircraftInstrumentView[] = [];
-  // The views whose shaders are built. The panel draws in its own context, and its first draw
-  // after boarding built every program there in one frame: a hitch of up to 90 ms.
-  let compiled: AircraftInstrumentView[] | undefined;
-  let compiling: AircraftInstrumentView[] | undefined;
-  let lastFrame = -Infinity;
-  let unavailable = false;
   return {
     update(source, external, nowMs) {
-      const shown = enabled && external && source !== undefined && !unavailable;
-      panel.hidden = !shown;
-      if (!shown) {
-        lastFrame = -Infinity;
+      if (!enabled || !external || source === undefined) {
+        panel.hidden = true;
         if (!source && model) {
           model = undefined;
           views = [];
-          renderer?.renderLists.dispose();
         }
         return;
       }
@@ -47,7 +40,6 @@ export function createFlightInstrumentPanel(enabled = true): {
         model = source.model;
         views = createAircraftInstrumentViews(source);
         panel.style.setProperty('--instrument-count', String(views.length));
-        renderer?.renderLists.dispose();
         title.textContent = source.spec.label;
         const instrumentNames = views
           .map(
@@ -59,54 +51,16 @@ export function createFlightInstrumentPanel(enabled = true): {
           'aria-label',
           `${source.spec.label}: ${instrumentNames}. Live cockpit instruments.`,
         );
-        lastFrame = -Infinity;
       }
-      panel.hidden = views.length === 0 || compiled !== views;
-      if (views.length === 0 || nowMs - lastFrame < 50) return;
-      lastFrame = nowMs;
-      if (!renderer) {
-        try {
-          renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-        } catch (error) {
-          console.warn('Aircraft instrument preview unavailable:', error);
-          unavailable = true;
-          panel.hidden = true;
-          return;
-        }
-      }
-      const size = 124;
-      if (canvas.width !== Math.round(size * views.length * renderer.getPixelRatio()))
-        renderer.setSize(size * views.length, size, false);
-      source.model.updateWorldMatrix(true, true);
-      if (compiled !== views) {
-        if (compiling !== views) {
-          const pending = views;
-          compiling = pending;
-          for (const view of pending) view.sync();
-          // Shown once built; a failed build draws anyway, as before.
-          const done = (): void => {
-            if (views === pending) compiled = pending;
-          };
-          void Promise.all(
-            pending.map((view) => renderer?.compileAsync(view.scene, view.camera)),
-          ).then(done, done);
-        }
-        return;
-      }
-      renderer.setScissorTest(true);
-      for (const [index, view] of views.entries()) {
-        view.sync();
-        renderer.setViewport(index * size, 0, size, size);
-        renderer.setScissor(index * size, 0, size, size);
-        renderer.render(view.scene, view.camera);
-      }
+      // The frame has not rendered yet: pose the cockpit from this frame's transforms.
+      panel.hidden = !display.update(views, nowMs, () =>
+        source.model.updateWorldMatrix(true, true),
+      );
     },
     dispose() {
       views = [];
       model = undefined;
-      renderer?.dispose();
-      renderer?.forceContextLoss();
+      display.dispose();
       panel.remove();
     },
   };

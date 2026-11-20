@@ -50,6 +50,7 @@ import type { TerrainPyramidTileLayer, TerrainPyramidTileLayerContext } from './
 import { TERRAIN_RAILWAY_GROUND } from './rail-features';
 import {
   assertTerrainSemanticTile,
+  type TerrainBuildingFeature,
   type TerrainLandcoverFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,
@@ -646,6 +647,16 @@ export interface TerrainSemanticMeshOptions {
   buildingColors?: {
     roofs: ReadonlyArray<readonly [string, number]>;
     walls: ReadonlyArray<readonly [string, number]>;
+    /**
+     * A building's own colors, sRGB-encoded red, green and blue in 0..1, when the host knows how
+     * it is drawn up close (its style, glass and textures); the weighted picks above otherwise.
+     */
+    pick?: (
+      feature: TerrainBuildingFeature,
+      polygonIndex: number,
+    ) =>
+      | { roof: readonly [number, number, number]; wall: readonly [number, number, number] }
+      | undefined;
   };
   waterOffset?: number;
   /** Supply consistent water levels across tiles and control duplicate waterway ribbons. */
@@ -1382,7 +1393,10 @@ function* buildingMeshSteps(
           ? feature.levels * (options.defaultLevelHeight ?? 3.1)
           : (options.defaultBuildingHeight ?? 9)),
     );
-    for (const polygon of feature.polygons) {
+    for (const [polygonIndex, polygon] of feature.polygons.entries()) {
+      // Between footprints too: a coarse tile merges hundreds of buildings into one feature,
+      // whose footprints in one slice held a frame for up to 200 ms.
+      if (polygonIndex > 0) yield* pauseWhenDue(clock);
       if (isDegenerateRing(polygon.outer)) continue;
       const rings = [polygon.outer, ...(polygon.holes ?? []).filter((h) => !isDegenerateRing(h))];
       const plan = rings.map((ring) => {
@@ -1399,9 +1413,15 @@ function* buildingMeshSteps(
       let roof: THREE.Color | undefined;
       let wall: THREE.Color | undefined;
       if (palette) {
-        const seed = buildingSeed(feature.id, polygon, context);
-        roof = weightedColor(palette.roofs, hash01(seed));
-        wall = weightedColor(palette.walls, hash01(seed ^ 0x5bd1e995));
+        const own = palette.pick?.(feature, polygonIndex);
+        if (own !== undefined) {
+          roof = new THREE.Color().setRGB(...own.roof, THREE.SRGBColorSpace);
+          wall = new THREE.Color().setRGB(...own.wall, THREE.SRGBColorSpace);
+        } else {
+          const seed = buildingSeed(feature.id, polygon, context);
+          roof = weightedColor(palette.roofs, hash01(seed));
+          wall = weightedColor(palette.walls, hash01(seed ^ 0x5bd1e995));
+        }
       }
       // triangulateShape drops a repeated end point in place: index the rings after it.
       const triangles = THREE.ShapeUtils.triangulateShape(outer, holes);

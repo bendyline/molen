@@ -237,6 +237,11 @@ frame the engine starts. Every other rotor (helicopter main and tail rotors, and
 binds as rotors) blurs between 35 and 78 rad/s instead: its blades fade into a faint disc with a
 slightly darker tip ring, sized from the model, and its hub stays solid.
 
+Neither casts a sun shadow while it turns fast. A fading propeller's blades leave the shadow
+pass, and so does a rotor above 20 rad/s, hub and all: its blades, grips and pitch links turned
+up to half their spacing between frames, and their hard shadows flashed about the cabin (an
+OH-6's four blades at 50 rad/s, 48 degrees a frame). A slow rotor's shadow turns with it.
+
 For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
 `pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating
 forward-facing engine installations `vectored: true`. `aircraftInput.thrustVector` is 0–1;
@@ -758,14 +763,25 @@ Glass casts no sun shadow: a mesh whose materials all blend at less than full op
 name contains `canopy` or `bubble`. Three's shadow pass draws a pane as solid, so a windscreen
 shaded its whole cockpit.
 
-For the aircraft a view follows (flown or watched), hosts also pass `renderer.shadowTexelSize`
-to `visual.updateShadows(texel)` each frame, and `undefined` for every other aircraft. Over a
-wide view the sun's shadow map coarsens (on High, 0.2 m texels 100 m above the ground, 1.6 m in
-cruise at 2,500 ft). It then cannot resolve the aircraft's own canopy frame and seat, and their
-shadows on the cockpit jumped from frame to frame as the aircraft crossed the map's texel grid.
-Coarser than 0.15 m, the aircraft casts no sun shadow; at 0.12 m or finer it casts again. It
-still receives shadows from terrain, buildings and clouds. The Earth view and the world explorer
-do this for the mounted aircraft.
+The flown aircraft casts its sun shadow from a map of its own, which travels with it: hosts pass
+`EarthAircraft.shadowSubject` (its model and measured sphere, `undefined` while none is flown) to
+`renderer.setShadowSubject` each frame, as for the driven car. The sun's main map is fixed to the
+ground, and an aircraft crossing it lands on different texels every frame: an OH-6 30 m up is in
+7 cm texels, and the canopy frame's shade crawled over its panel. Its own map holds it at about
+13 mm a texel (up to 2048 texels across for a larger aircraft, where the main map has as many),
+and its ground shadow reaches ten times its radius down the light before it fades. See
+[the sky guide](sky.md) for the map itself. WebGL only: `setShadowSubject` returns false on
+WebGPU, and the rule below applies there instead.
+
+Without that map, for the aircraft a view follows (flown or watched), hosts pass
+`renderer.shadowTexelSize` to `visual.updateShadows(texel)` each frame, and `undefined` for every
+other aircraft. Over a wide view the sun's shadow map coarsens (on High, 0.2 m texels 100 m above
+the ground, 1.6 m in cruise at 2,500 ft). It then cannot resolve the aircraft's own canopy frame
+and seat, and their shadows on the cockpit jumped from frame to frame as the aircraft crossed the
+map's texel grid. Coarser than 0.15 m, the aircraft casts no sun shadow; at 0.12 m or finer it
+casts again. It still receives shadows from terrain, buildings and clouds. The Earth view and
+the world explorer do this for the mounted aircraft, and pass `undefined` while it has its own
+map.
 
 `createAircraftVisual` exposes `cockpit`, a mesh picker and control inventory derived from the
 interior's authored primary-input bindings and glTF node `extras.aircraftControl` metadata.
@@ -781,6 +797,12 @@ and `dispose()` on teardown. Hosts apply changes with `applyAircraftControl`, su
 through `flyAircraft`, and mix `AircraftPointerAxes` with their keyboard/gamepad inputs. Session
 release must clear transient axes. The binder cancels drags on exit, view change, blur and pointer
 cancellation; it does not write simulation components directly.
+
+The same inventory drives the [vehicle console](vehicle-console.md)'s touch controls, which copy
+the modeled stick, pedals and levers out of the cockpit and pose them from `AircraftVisual.signals`
+(the readings the cockpit was last posed with). The console works the controls in any view, so the
+Earth view's `EarthAircraft.controlSession()` is the cockpit session without its cockpit-view
+check.
 
 In the engine repository, build the client and kernel, then run a local live review of all 54 bundled aircraft:
 

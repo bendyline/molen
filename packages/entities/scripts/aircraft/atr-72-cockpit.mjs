@@ -388,7 +388,8 @@ export function buildATR72Cockpit(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: off < 0 ? -0.045 : 0.045,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: off < 0 ? 0.045 : -0.045,
       });
     }
     // Side shelf, oxygen mask, sill, chart holder and tiller on the captain's side.

@@ -12,6 +12,7 @@ import { createAircraftPropellers } from './aircraft-propellers';
 export * from './aircraft-cockpit-pointer';
 export * from './aircraft-collision';
 export * from './aircraft-controls';
+export * from './aircraft-instruments';
 export * from './pilot-motion';
 
 import { applyLivery } from './livery';
@@ -51,6 +52,12 @@ export interface AircraftVisual {
   interior?: VehicleInteriorVisual;
   /** The spec's exterior `animation` bindings (gear legs and doors, control surfaces). */
   animation?: ModelSignalVisual;
+  /**
+   * The readings the cockpit and exterior were last posed with: telemetry, pilot input and the
+   * host's own signals, before derived expressions. A copy of a cockpit part posed from them (the
+   * vehicle console) moves exactly as the cockpit does.
+   */
+  readonly signals: ModelSignals;
   update(
     state: AircraftStateData,
     input: AircraftInputData,
@@ -72,7 +79,8 @@ export interface AircraftVisual {
    * is built around: the one flown or followed. Hosts pass `undefined` for every other aircraft.
    * While texels are too coarse to resolve the aircraft's own parts (over 0.15 m), it casts no
    * sun shadow until they are 0.12 m or finer. Its shadows on itself and on the ground below go,
-   * and it still receives shadows from terrain, buildings and clouds.
+   * and it still receives shadows from terrain, buildings and clouds. Hosts also pass `undefined`
+   * for the aircraft while it casts from a sun map of its own (`Renderer.setShadowSubject`).
    */
   updateShadows(texel: number | undefined): void;
   dispose(): void;
@@ -159,6 +167,7 @@ export function createAircraftVisual(
     spec.engines?.[0]?.rotorAngularSpeed ??
     0;
   let cabinShown = true;
+  let lastSignals: ModelSignals = {};
   // Cabin parts, farthest-seen first, with the camera distance from the pilot's eye beyond which
   // each is too small to draw. The first `detailed` are drawn; the rest keep their layers here.
   model.updateMatrixWorld(true);
@@ -212,6 +221,9 @@ export function createAircraftVisual(
     cockpit,
     interior,
     animation,
+    get signals() {
+      return lastSignals;
+    },
     update(state, input, altitude, signals, timeSeconds) {
       const gear = state.gearPosition ?? Number(input.gear);
       const flaps = state.flapPosition ?? Number(input.flaps);
@@ -225,7 +237,7 @@ export function createAircraftVisual(
         // State rpm is a 0..1 fraction; ambient traffic reports a nominal figure, so it saturates.
         const fraction = Math.min(1, engine?.rpm ?? state.rpm ?? 0);
         const speed = fraction * shaftSpeed(binding.engine) * binding.multiplier;
-        for (const blur of blurs.get(binding) ?? []) blur.update(speed);
+        for (const blur of blurs.get(binding) ?? []) blur.update(speed, !shadowsOut);
       }
       for (const name of spec.visual.gearNodes) {
         // Authored hinges carry the gear into its well. Keep exposed stowed wheels visible
@@ -339,6 +351,7 @@ export function createAircraftVisual(
         mixture: input.mixture ?? 1,
         propeller: input.propeller ?? 1,
       });
+      lastSignals = telemetry;
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
       propellers.update(state, !shadowsOut);

@@ -12,7 +12,9 @@ export interface WorldRegion {
   coverageBounds: [number, number, number, number];
   /**
    * Further places inside the coverage with fine elevation (through `elevationMaxLevel`) and map
-   * features of their own, away from the main detail window.
+   * features of their own, away from the main detail window or widening it. A window's map tiles
+   * come from whichever Protomaps release it was added from; tiles the main extract already holds
+   * are kept.
    */
   detailWindows?: readonly {
     id: string;
@@ -98,6 +100,13 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     airport: { id: 'RJOO', runway: '14R/32L' },
     detailBounds: [135.66, 34.88, 135.88, 35.09],
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
+    detailWindows: [
+      // Widens the city window southwest to Itami and on south to central Osaka (Umeda, Namba):
+      // the starter runway, Toyonaka, Suita, Ibaraki, Takatsuki and Hirakata, so streets run
+      // unbroken from the airport to Kyoto and the runway's view south ends in the city, not at a
+      // hard edge. Its map tiles are a later release's; the city's own tiles stay as they were.
+      { id: 'itami', label: 'Osaka and Itami to Kyoto', bounds: [135.4, 34.66, 135.88, 35.09] },
+    ],
     // JR and private railways around Kyoto run under overhead catenary, on 1,067 mm gauge.
     surfaces: { railElectrification: 'all', railGauge: 1.067 },
     // Japanese letters for the city's storefront names (content/glyphs-kyoto).

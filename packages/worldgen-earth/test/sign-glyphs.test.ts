@@ -50,11 +50,13 @@ describe('sign glyph atlases', () => {
       (char) => face === undefined || !Object.hasOwn(face.glyphs, char),
     );
     expect(absent.join('')).toBe(build.missing);
-    // What the font lacks is other scripts (Thai, Hangul, simplified Chinese), not Japanese.
+    // What the font lacks is other scripts (Thai, Hangul, Arabic, simplified Chinese), not
+    // Japanese. Central Osaka's names brought most of the 77 absent of 2,375; a font without
+    // Japanese would lack well over a thousand.
     expect(absent.filter((char) => /[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(char))).toEqual(
       [],
     );
-    expect(absent.length).toBeLessThan(40);
+    expect(absent.length).toBeLessThan(100);
   });
 
   it('sets Japanese names in the region face and Latin names in the Latin faces', async () => {
@@ -62,7 +64,8 @@ describe('sign glyph atlases', () => {
     expect(set.faceFor('マクドナルド')).toBe('sign.gothic.jp');
     expect(set.faceFor('cafe RanZan 嵐山', 'serif')).toBe('sign.gothic.jp');
     expect(set.faceFor('Starbucks', 'serif')).toBe('sign.serif');
-    expect(set.faceFor('Phở')).toBeUndefined();
+    // Neither font has Thai. (Not "Phở": an Osaka name brought ở into the Japanese atlas.)
+    expect(set.faceFor('ผัดไทย')).toBeUndefined();
     const layout = set.layout('ドトールコーヒーショップ', {
       maxWidth: 4,
       maxHeight: 0.8,
