@@ -106,6 +106,21 @@ that has arrived, so a moving caster would leave its shadow behind. It is at mos
 across (meters a texel: a house's shadow, not a chimney's) and costs under a millisecond of
 main thread each time it is drawn. `renderer.farShadowInfo` reports its radius, how often it has
 been drawn and how long the last drawing took.
+A focused map is fixed to the ground, so a moving object is drawn into different texels every
+frame. Texels of a driving view are 0.14 to 0.56 m, and a car's shadow on the road changed
+outline each frame. On WebGL `renderer.setShadowSubject({ object, center, radius })` gives one
+moving subject (the driven car, the flown aircraft) a third map that travels with it and holds
+nothing else: its shadow keeps its shape on the ground and on itself. The map is 1024 texels
+across the subject's sphere, about 5 mm each around a car and 13 mm around a helicopter; a
+larger subject's grows toward 1.5 cm texels, up to the focused map's size and at most 2048.
+`measureShadowSubject(object)` measures the sphere from the object's meshes; measure once and
+pass the same subject each frame, `undefined` for none. Everything under `object` that casts
+shadows casts into this map instead of the focused one. Its see-through glass lets sunlight
+1.8 m past a pane (onto a dashboard and seats) and shades beyond that, so the shadow on the
+ground stays whole. The shadow fades out down the light past the subject, from 30 m or ten times
+its radius (whichever is farther) over as far again. The call returns false on WebGPU, where the
+subject goes on casting into the focused map; `renderer.subjectShadowInfo` reports the map's
+radius, texel size and how often it was drawn.
 `renderer.shadowTexelSize` reports the meters one texel covers as of the last frame (`undefined`
 while sun shadows are off), for hosts that keep a subject the map cannot resolve out of the
 shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide and

@@ -292,8 +292,9 @@ export function dc3Cockpit(root, m) {
     ellipsoid(wd, [0, 0, 0], [0.05, 0.05, 0.03], m.metal, 16);
     wd.finish();
     bindings.push(
-      { node: pitch.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: 0.16 },
-      { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: -0.75 },
+      // Nose up pulls the column aft; right bank turns the wheel clockwise from the seat.
+      { node: pitch.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.16 },
+      { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.75 },
     );
     for (const sign of [-1, 1]) {
       const g = group(cabin, `DC3-pedal-${side}-${sign}`, [
@@ -311,7 +312,8 @@ export function dc3Cockpit(root, m) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: sign * 0.05,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -sign * 0.05,
       });
     }
     beveledBox(d, [0.57, 0.15, 0.62], [side * 0.58, 3.345, 7.42], cloth, 0.055);

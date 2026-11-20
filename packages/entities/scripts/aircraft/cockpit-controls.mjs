@@ -265,7 +265,8 @@ export function completeCockpitControls(model, spec, frame = {}) {
       for (let i = -2; i <= 2; i++) d.box([0.11, 0.003, 0.003], [0, i * 0.014, -0.014], alloy);
       pedal.userData.aircraftControl = {
         action: 'yaw',
-        motion: { property: 'position', axis: 'z', scale: side * 0.035 },
+        // Right rudder pushes the right pedal (-X) forward.
+        motion: { property: 'position', axis: 'z', scale: -side * 0.035 },
       };
       d.finish();
     }

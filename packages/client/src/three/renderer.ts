@@ -44,6 +44,13 @@ import {
   type SkyReflectionFilter,
   SkyReflections,
 } from './sky-reflections';
+import {
+  injectSubjectShadow,
+  type ShadowSubject,
+  SubjectShadow,
+  type SubjectShadowInfo,
+  type SubjectShadowView,
+} from './subject-shadow';
 import type { AmbientOcclusionOptions, WebGpuAmbientOcclusion } from './webgpu-ambient-occlusion';
 import { createWebGpuFrameTimer } from './webgpu-frame-timer';
 import type { WebGpuSceneOptimizer } from './webgpu-scene-optimizer';
@@ -406,6 +413,9 @@ export class Renderer {
   private farShadow: FarShadow | undefined;
   private readonly farShadowCenter = new THREE.Vector3();
   private readonly farShadowDirection = new THREE.Vector3();
+  /** The sun's map for one moving subject (WebGL); see setShadowSubject. */
+  private subjectShadow: SubjectShadow | undefined;
+  private readonly subjectShadowDirection = new THREE.Vector3();
 
   /** Active clear-sky visual and sampled ephemeris, when environment.sky is configured. */
   get sky(): SkyVisual | undefined {
@@ -449,6 +459,33 @@ export class Renderer {
   /** The far shadow map as last drawn, or `undefined` while there is none. */
   get farShadowInfo(): FarShadowInfo | undefined {
     return this.farShadow?.info;
+  }
+
+  /**
+   * Give one moving subject (the car being driven, the aircraft being flown) a sun shadow map of
+   * its own, or `undefined` for none. The sun's main map is snapped to the ground, which keeps the
+   * shadows of buildings and trees still but draws a moving car into different texels every
+   * frame: at a driving view's 0.14 to 0.56 m texels its shadow on the road changed shape as it
+   * went. The subject map travels with the subject and holds nothing else, at about 5 mm a texel
+   * around a car and 13 mm around a helicopter (up to 2048 texels across for a larger subject,
+   * where the main map has as many), so its shadow keeps its shape on the ground and on itself.
+   * Everything under `subject.object` that casts shadows casts into it instead of the main map,
+   * see-through glass excepted; measure the subject once with `measureShadowSubject`. Call when
+   * the subject changes, or every frame.
+   *
+   * Returns whether the subject has its own map: WebGL. False on WebGPU, where it goes on
+   * casting into the main map.
+   */
+  setShadowSubject(subject: ShadowSubject | undefined): boolean {
+    if (subject !== undefined && (!(subject.radius > 0) || !Number.isFinite(subject.radius)))
+      throw new RangeError('Shadow subject radius must be a positive number of meters');
+    this.subjectShadow?.setSubject(this.scene, subject);
+    return this.subjectShadow !== undefined;
+  }
+
+  /** The subject's shadow map as last drawn, or `undefined` while nothing casts from it. */
+  get subjectShadowInfo(): SubjectShadowInfo | undefined {
+    return this.subjectShadow?.info;
   }
 
   /**
@@ -552,12 +589,16 @@ export class Renderer {
   private applyShadowFocus(): void {
     const focus = this.shadowFocus;
     let far: FarShadowView | undefined;
-    if (focus !== undefined && this.three.shadowMap.enabled) {
-      const center = this.shadowCenter.set(
-        focus.center[0] - this.worldOrigin[0],
-        focus.center[1] - this.worldOrigin[1],
-        focus.center[2] - this.worldOrigin[2],
-      );
+    let subject: SubjectShadowView | undefined;
+    if (this.three.shadowMap.enabled) {
+      const center =
+        focus === undefined
+          ? undefined
+          : this.shadowCenter.set(
+              focus.center[0] - this.worldOrigin[0],
+              focus.center[1] - this.worldOrigin[1],
+              focus.center[2] - this.worldOrigin[2],
+            );
       const reversedPcf = this.backend === 'webgl' && this.webglReversedPcfShadows();
       for (const light of this.sunLights()) {
         if (!light.castShadow) continue;
@@ -565,24 +606,30 @@ export class Renderer {
           light === this.activeSky?.sunLight
             ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
             : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
-        focusDirectionalShadow(
-          light,
-          direction,
-          center,
-          focus.radius,
-          reversedPcf,
-          this.worldOrigin,
-        );
-        // The far map follows the first sun that is casting: not a parked map's, nor a sun
-        // below the horizon.
+        if (focus !== undefined && center !== undefined)
+          focusDirectionalShadow(
+            light,
+            direction,
+            center,
+            focus.radius,
+            reversedPcf,
+            this.worldOrigin,
+          );
+        // The far and subject maps follow the first sun that is casting: not a parked map's,
+        // nor a sun below the horizon.
         if (
-          far === undefined &&
-          focus.far !== undefined &&
-          light.shadow.autoUpdate &&
-          light.shadow.intensity > 0 &&
-          light.visible &&
-          direction.y > 0.02
+          !light.shadow.autoUpdate ||
+          light.shadow.intensity <= 0 ||
+          !light.visible ||
+          direction.y <= 0.02
         )
+          continue;
+        subject ??= {
+          direction: this.subjectShadowDirection.copy(direction).normalize(),
+          biasAddsTowardLight: reversedPcf,
+          mapSize: Math.min(2048, light.shadow.mapSize.x),
+        };
+        if (far === undefined && focus?.far !== undefined)
           far = {
             direction: this.farShadowDirection.copy(direction).normalize(),
             center: this.farShadowCenter.set(
@@ -600,6 +647,7 @@ export class Renderer {
       }
     }
     this.farShadow?.update(far);
+    this.subjectShadow?.update(subject);
   }
 
   /** Active weather effects; physical weather data is also available in the simulation component. */
@@ -805,6 +853,10 @@ export class Renderer {
       this.cloudBackend.installSnowCover(this.snowCover);
     } else {
       this.cullGroups = opts.cullRenderGroups !== false;
+      // Innermost on the shadow pass: the subject's map is drawn from its own root, which the
+      // pruning of render groups has no part in.
+      const subject = new SubjectShadow(this.three as THREE.WebGLRenderer);
+      this.subjectShadow = subject;
       // Before the far shadow wraps the same pass, so that its own drawing comes through here.
       if (this.cullGroups) this.installShadowCulling(this.three as THREE.WebGLRenderer);
       const far = new FarShadow(this.three as THREE.WebGLRenderer);
@@ -813,6 +865,7 @@ export class Renderer {
         this.three as THREE.WebGLRenderer,
         this.cloudShadows,
         (shader, material) => {
+          injectSubjectShadow(shader, subject.uniforms);
           injectFarShadow(shader, far.uniforms);
           injectSnowCover(shader, this.snowCover, material);
         },
@@ -2130,6 +2183,7 @@ export class Renderer {
     this.releaseCloudShadows?.();
     this.farShadow?.dispose();
     this.releaseShadowCulling?.();
+    this.subjectShadow?.dispose();
     this.renderGroups.clear();
     this.cloudTextures.dispose();
     this.reflections?.dispose();

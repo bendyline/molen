@@ -1,9 +1,9 @@
 import { readFile } from 'node:fs/promises';
+import { createAircraftInstrumentViews } from '@bendyline/molen-client/aircraft';
 import type { AircraftSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it, vi } from 'vitest';
-import { createAircraftInstrumentViews } from '../src/aircraft-instrument-views';
 
 async function aircraft(slug: string) {
   const base = new URL('../../../content/entities/', import.meta.url);

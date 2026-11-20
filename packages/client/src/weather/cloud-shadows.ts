@@ -91,8 +91,9 @@ let original: THREE.Material['onBeforeCompile'] | undefined;
 
 /**
  * Give every lit shader `renderer` builds from now on the cloud shadow, and then whatever `also`
- * adds to it for the material being built (the sun's far shadow map, three/far-shadow.ts, and
- * lying snow, weather/snow-cover.ts). Call before its first frame.
+ * adds to it for the material being built (the sun's far and subject shadow maps,
+ * three/far-shadow.ts and three/subject-shadow.ts, and lying snow, weather/snow-cover.ts). Call
+ * before its first frame.
  * Returns a function that unregisters it.
  */
 export function installWebGlCloudShadows(

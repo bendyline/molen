@@ -8,6 +8,7 @@ import type { ArchStyleDoc } from './archstyle-types';
 import { buildBuildingAccess } from './building-access';
 import { buildYardFence } from './building-yard';
 import { buildCrowns } from './crowns';
+import { recipeDistantLook, standInTint } from './distant-look';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -240,15 +241,14 @@ export function generateBuilding(
       input.footprintOptions ?? DEFAULT_FOOTPRINT_OPTIONS,
     );
   if (analysis.kind === 'degenerate') return { analysis, skipped: 'degenerate' };
+  const collapse = input.collapseMaterials ?? input.simplified === true;
   const recipe = resolveBuildingRecipe(
     input.style,
     input.pack,
     input.request,
     analysis,
     input.tier,
-    {
-      collapseMaterials: input.collapseMaterials ?? input.simplified === true,
-    },
+    { collapseMaterials: collapse },
   );
   const outline = analysis.rectilinear
     ? analysis.localOutline.map((point) => toWorld(analysis.frame, point))
@@ -285,11 +285,18 @@ export function generateBuilding(
   };
   if (recipe.box) {
     record.roof = 'box';
+    // A stand-in shows the building's mean colors, glass and textures included: the wall tint
+    // alone drew a glass office tower as a pale box. A collapsed recipe has lost its textures.
+    const look = recipeDistantLook(
+      collapse
+        ? resolveBuildingRecipe(input.style, input.pack, input.request, analysis, input.tier)
+        : recipe,
+    );
     const box = boxPlacement(
       analysis,
       wallBase,
       recipe.totalHeight,
-      recipe.parts.wall.color,
+      standInTint(look.wall),
       input.ground,
       recipe.minHeight === 0 ? foundationDepth : undefined,
     );
@@ -303,7 +310,7 @@ export function generateBuilding(
       box.roof = 'gable';
       // One color per stand-in: its roof's, since the roof is most of what a pitched building
       // shows from above or afar. Wall-colored ridges made a tiled district read as plaster.
-      box.color = recipe.parts.roof.color;
+      box.color = standInTint(look.roof);
       if (box.sz > box.sx) {
         [box.sx, box.sz] = [box.sz, box.sx];
         box.yaw += Math.PI / 2;

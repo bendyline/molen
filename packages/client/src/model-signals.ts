@@ -63,6 +63,24 @@ export function modelSignalDisplacement(binding: ModelSignalBinding, signal: num
   return y0 + (y1 - y0) * f;
 }
 
+/** A bound node's authored pose: what its bindings move it from. */
+export interface ModelSignalRestPose {
+  position: Object3D['position'];
+  rotation: Object3D['rotation'];
+  visible: boolean;
+}
+/** Authored poses of every node a model-signal visual binds, as found when it was created. */
+const restPoses = new WeakMap<Object3D, ModelSignalRestPose>();
+/**
+ * The authored pose of a node some `createModelSignalVisual` binds, recorded before any reading
+ * moved it; undefined for a node no visual binds. A copy of a moving part (the vehicle console's
+ * controls) starts from it rather than from wherever the live part stands.
+ * @internal
+ */
+export function modelSignalRestPose(node: Object3D): ModelSignalRestPose | undefined {
+  return restPoses.get(node);
+}
+
 /** Model-agnostic; moves existing geometry without creating a cockpit or changing physics. */
 export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec): ModelSignalVisual {
   const derive = compileModelSignalExpressions(spec.derived);
@@ -79,6 +97,12 @@ export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec):
   const bindings = spec.bindings.flatMap((binding) =>
     (nodes.get(binding.node) ?? []).map((node) => {
       node.matrixAutoUpdate = true;
+      if (!restPoses.has(node))
+        restPoses.set(node, {
+          position: node.position.clone(),
+          rotation: node.rotation.clone(),
+          visible: node.visible,
+        });
       const rest =
         binding.property === 'visible'
           ? Number(node.visible)

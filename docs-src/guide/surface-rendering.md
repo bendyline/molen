@@ -250,6 +250,8 @@ await surfaces.setOptions({
   Red, amber and green lenses are self-lit, remaining visible at night. Instanced streetlights
   occupy eligible corners outside road corridors, buildings, and water: mast arms where an
   arterial meets the junction, post-top lanterns otherwise (see [night lighting](night-lighting.md)).
+  A junction whose roads are raised on an approach to a bridge gets none of this, nor crossing
+  paint: all of it stands on the ground, under the road.
 - Freeways receive wider paved shoulders, longer lane dashes, a yellow left edge on one-way
   carriageways, and white ramp edges. Green overhead boards use mapped route references or
   destinations. At a connected outgoing ramp, an advance gantry and roadside exit board use
@@ -322,7 +324,10 @@ await surfaces.setOptions({
 - Simple surfaces retain road and parking fills with decoration disabled.
 
 The decoder preserves road `subclass`, `service`, `link` (including Protomaps `is_link`), `surface`, `lanes`, `oneway`, `layer`, `bridge`, `tunnel`
-and explicit `width`. Properties absent from the source use class-based defaults. Tunnel roads are
+and explicit `width`. Properties absent from the source use class-based defaults. A class's
+default width is that of the whole road, both directions; a ramp (`link`) is drawn 6.6 m wide off
+a freeway and 4.5 m off a street, and a one-way freeway carriageway 11 m, with the shoulders
+outside that. Tunnel roads are
 excluded from the ground painter; Earth views add separate underground bores as described below.
 Bridges and differing layers do not form surface junctions. Tagged bridges receive inferred
 decks, slabs, barriers and supports, at heights that clear whatever they cross (see
@@ -499,17 +504,35 @@ Every inferred bridge gets a height profile, and so does every road that has to 
   other's (a bridge between two hilltops is over a ramp in the valley); else by what they
   carry (ramps over streets, streets over freeway carriageways and railways); else the one
   farther along its structure from where it lands; else the one running more nearly north
-  and south. Only the two structures near the crossing enter into it, so every tile that
-  sees the crossing decides alike.
+  and south. Only the structures near the crossing enter into it, so every tile that
+  sees the crossing decides alike. Carriageways side by side are one road to whatever crosses
+  them: a ramp's crossings of the two are decided together, so it passes over both or under
+  both.
 - A deck falls away from a crossing no faster than its class allows: 5% for a freeway, 7% for
   its ramps, 6 to 8% for streets, 10% for service roads and footpaths, 3% for heavy rail and
   as stairs do for steps. Breaks in grade are rounded over about 20 m.
-- A road climbing to a structure lies on the ground wherever that same structure passes over
-  it: an approach never lifts what its own bridge has to clear. Lift passes down the ranks
-  only, so a footbridge's steps come down to the street and the street does not rise to the
-  footbridge; a footpath beside a climbing road rides on its embankment.
-- Decks side by side (twin carriageways, a sidewalk mapped along a road bridge) stand level
-  with each other.
+- A road climbing to a structure fits beneath every deck that passes over it, its own
+  bridge's or another's: it stands no higher there than leaves the deck its clearance, and
+  comes down to that as steeply as 25% if it must. A deck is never raised to clear a road that
+  is itself climbing; where that was done, a viaduct's surface streets rose with the ramps
+  that joined them and lifted every deck above. Near where a deck lands on it, though, the
+  road can only come down so fast: a deck crossing it there clears the road as high as a 25%
+  ramp from the landing leaves it, not the ground. Lift passes down the ranks only, so a
+  footbridge's steps come down to the street and the street does not rise to the footbridge;
+  a footpath beside a climbing road rides on its embankment.
+- Decks whose paving overlaps are one surface, level throughout: the carriageways of one road
+  mapped closer than they are drawn wide, and a ramp for as long as it runs into the road it
+  joins. That holds for decks of one kind (two freeway decks, two tracks) or that join within
+  150 m; a railway bridge under a viaduct on the same river crossing is another structure.
+  Decks a little apart (a sidewalk mapped along a road bridge) are level as far as 2.5 m goes.
+- Decks joined so near a crossing that neither could stand a story over the other (a
+  crossover between two tracks, a ramp across the road it has just left) cross on the level.
+- Some arrangements no heights satisfy: one deck must clear another that is tied to it, by a
+  join or by lying abreast, before either has the length to fall a story. Raised in turn,
+  such decks only stop at the 30 m limit. They are found as they start, and given another
+  arrangement, cheapest first: a crossing decided on little (bearing, or how far each deck
+  had come) is turned over; two decks are no longer held level; a crossing decided on what
+  the decks carry is turned over; at the last, two decks cross on the level.
 
 A vertex shared by a bridge and a road beneath it is taken for a junction or a mapper's tie,
 never a flyover, and a way's end lying on another way is joined to it even where the tile
@@ -547,9 +570,27 @@ Without the option, each tile's bridges are still graded from that tile alone, w
 clearances. A bridge cut by a tile edge then cannot see what it crosses in the next tile and
 assumes a free clearance at the cut.
 
+### Tile edges
+
+Each tile grades its bridges with what lies within 400 m of it, and an interchange reaches
+farther: one tile reads the ramp that lifts a deck, or the far bank a long bridge lands on, and
+the tile beside it does not. Each alone would draw its half of the deck at its own height. So
+within 300 m of an edge a road takes its height from both tiles' gradings, half and half on
+the edge and wholly its own tile's from 300 m inward (four tiles' at a corner). Both tiles read
+the same two gradings of the same point, so a road is one height where they meet whatever each
+grading made of it, and a mix of profiles that each clear what they cross clears it too. A
+tile's grading is kept for the tiles around it, so this costs about one grading a tile, as
+before, once the first tile of an interchange has asked for its eight neighbors'.
+
+A long bridge is still graded by tiles that cannot read both its banks (a tile reads 400 m
+past its own edges), and such a tile takes the end it cannot see to stand a free clearance
+over the ground there. The mix makes the deck continuous, not right: a high bridge between two
+hills sags toward its middle.
+
 Both passes run on the main thread in slices of about 2 ms, so a tile arriving under a fast
 camera does not hold a frame. A town tile's earthworks take 3 to 10 ms in all; an
-interchange and its surroundings, 15 to 35 ms.
+interchange and its surroundings, 10 to 60 ms a tile, and the densest in Seattle 300 ms. A
+grading that no tile still waits for stops.
 
 ## Tunnels
 
@@ -578,6 +619,16 @@ such as a city subway split into thousands of pieces, would otherwise grade the 
 street there and open the ground along its whole length. Tunnel inference runs at the finest source
 feature level and above. Hiding the Human layer also removes its portal cuts and navigation
 support; the original elevation heightfield always remains available for surface anchoring.
+
+A way tagged as a tunnel only where it passes beneath bridges is an underpass, not a bore.
+Mappers often tag a street that runs under a railway's bridges this way, and an elevation model
+has no dip for it. Built as a bore, it stood on the ground as a 6.5 m box with the bridges
+through it. `createTerrainPackageSemanticLayers` hands every reader of its road tiles such a way
+as an ordinary one. The road painter draws it, grade separation lifts the bridges over it, and
+traffic shows on it. The rule is `withTerrainUnderpasses` in `@bendyline/molen-terrain/kernel`.
+A way qualifies when bridges cross over it at least every 30 m and within 15 m of each end
+(`TERRAIN_UNDERPASS_REACH`). Lines with a surveyed `tunnelFloorElevation` stay tunnels. So do
+lines the tile does not see whole and lines that continue as a tunnel.
 
 Custom package hosts opt in with `createTerrainPackageSemanticLayers` (or its profiled variant),
 passing `tunnels: { heights: elevationSource }` alongside their feature renderer. Share the

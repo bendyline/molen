@@ -260,6 +260,71 @@ describe('aircraft flight and mounting', () => {
     expect(drift.track).toBeCloseTo(-Math.PI / 2, 2);
     expect(Math.abs(drift.heading)).toBeLessThan(0.01);
   });
+  it.each([
+    'assisted',
+    'direct',
+  ] as const)('pedal-turns a hovering helicopter all the way around in a 25 kt wind (%s cyclic)', (cyclicMode) => {
+    // Before the fin stalled, its pull outgrew the pedals above about 18 kt, and full pedal
+    // stopped 28° off this wind. Heading is +left and unwrapped; right pedal turns it negative.
+    let result = {
+      transform: { pos: [0, 300, 0], rot: [0, 0, 0, 1] } as TransformData,
+      state: { ...initialAircraftState(), grounded: false, rpm: 1 },
+    };
+    const env = { ...flat, wind: [0, 0, -12.9] as [number, number, number] };
+    const heading = (rot: TransformData['rot']) => {
+      const nose = quatRotateVec3(rot, [0, 0, 1]);
+      return Math.atan2(nose[0], nose[2]);
+    };
+    let turned = 0;
+    for (let i = 0; i < 20 * 60 && turned > -2 * Math.PI; i++) {
+      const before = heading(result.transform.rot);
+      result = stepAircraft(
+        result.transform,
+        result.state,
+        { ...running, power: 0.49, yaw: 1, cyclicMode },
+        specFor('oh6'),
+        1 / 60,
+        env,
+      );
+      // A pilot holds the cyclic into the wind; the test just keeps the helicopter on its spot.
+      result = { ...result, state: { ...result.state, velocity: [0, 0, 0] } };
+      const step = heading(result.transform.rot) - before;
+      turned += step - 2 * Math.PI * Math.round(step / (2 * Math.PI));
+    }
+    expect(result.state.crashed).toBe(false);
+    expect(turned).toBeLessThan(-2 * Math.PI);
+  });
+  it('holds a limited sideslip under full pedal at cruise and weathervanes back on release', () => {
+    let result = {
+      transform: { pos: [0, 300, 0], rot: [0, 0, 0, 1] } as TransformData,
+      state: {
+        ...initialAircraftState(),
+        grounded: false,
+        rpm: 1,
+        velocity: [0, 0, 60] as [number, number, number],
+      },
+    };
+    const fly = (seconds: number, yaw: number) => {
+      for (let i = 0; i < seconds * 60; i++)
+        result = stepAircraft(
+          result.transform,
+          result.state,
+          { ...running, power: 0.56, yaw },
+          specFor('oh6'),
+          1 / 60,
+          flat,
+        );
+      const [vx, , vz] = result.state.velocity;
+      return result.state.yaw - Math.atan2(vx, vz);
+    };
+    // At 117 kt full right pedal holds about 17° of nose-right sideslip (it held 6° when the
+    // pedals had their hover rate at any speed), steady rather than still swinging.
+    const held = fly(2.5, 1);
+    expect(held).toBeLessThan(-0.25);
+    expect(held).toBeGreaterThan(-0.35);
+    expect(Math.abs(fly(0.5, 1) - held)).toBeLessThan(0.01);
+    expect(Math.abs(fly(2, 0))).toBeLessThan(0.01);
+  });
   describe('direct cyclic', () => {
     type Flight = { transform: TransformData; state: AircraftStateData };
     const start = (speed: number): Flight => ({

@@ -1,7 +1,12 @@
-import { readModelSignals } from '@bendyline/molen-client';
+import {
+  measureShadowSubject,
+  readModelSignals,
+  type ShadowSubject,
+} from '@bendyline/molen-client';
 import {
   type AircraftCameraPose,
   type AircraftCockpitSession,
+  type AircraftInstrumentSource,
   AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
@@ -11,6 +16,7 @@ import {
   PilotMotion,
   pilotMotionSample,
 } from '@bendyline/molen-client/aircraft';
+import type { ConsoleAircraftSubject } from '@bendyline/molen-client/console';
 import { type NavigationInput, WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
@@ -38,7 +44,6 @@ import { sampleAirportPavement } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import type { AircraftInstrumentSource } from './aircraft-instrument-views';
 import type { AirportStart } from './airport-start.js';
 import { FlybyCamera } from './flyby-camera.js';
 import type { EjectionSeat } from './world-parachute.js';
@@ -119,6 +124,7 @@ export class WorldAircraft {
   message = '';
   private elevation: number | undefined;
   private visuals = new Map<AircraftChoice, AircraftVisual>();
+  private readonly shadowSubjects = new WeakMap<AircraftVisual, ShadowSubject>();
   private loading = false;
   private disposed = false;
   private requested: AircraftChoice | undefined;
@@ -162,6 +168,24 @@ export class WorldAircraft {
     return kind && visual
       ? { model: visual.object, spec: this.aircraftData(this.typeId(kind)).spec }
       : undefined;
+  }
+  /**
+   * The flown aircraft for the vehicle console: its loaded model and its pilot's controls;
+   * `gauges` shows its dials. Undefined until the model loads.
+   */
+  consoleSubject(gauges: boolean): ConsoleAircraftSubject | undefined {
+    const kind = this.mountedKind;
+    const visual = kind ? this.visuals.get(kind) : undefined;
+    if (!kind || !visual) return undefined;
+    const type = this.typeId(kind);
+    return {
+      kind: 'aircraft',
+      visual,
+      spec: this.aircraftData(type).spec,
+      type,
+      session: () => this.cockpitSession(),
+      gauges,
+    };
   }
   cockpitSession(): AircraftCockpitSession | undefined {
     const kind = this.mountedKind;
@@ -408,6 +432,23 @@ export class WorldAircraft {
   get state(): import('@bendyline/molen-schema').AircraftStateData | undefined {
     const kind = this.mountedKind;
     return kind ? this.world.get(`aircraft-${kind}`, AircraftState) : undefined;
+  }
+  /**
+   * The flown aircraft's model, for `Renderer.setShadowSubject` each frame: a sun shadow map of its
+   * own, which travels with it. In the main map, fixed to the ground, the aircraft lands on
+   * different texels every frame, and its canopy frame's shade crawled over the panel. `undefined`
+   * while no aircraft is flown, and while its model is loading.
+   */
+  get shadowSubject(): ShadowSubject | undefined {
+    const kind = this.mountedKind;
+    const visual = kind === undefined ? undefined : this.visuals.get(kind);
+    if (visual === undefined) return undefined;
+    let subject = this.shadowSubjects.get(visual);
+    if (subject === undefined) {
+      subject = measureShadowSubject(visual.object);
+      this.shadowSubjects.set(visual, subject);
+    }
+    return subject;
   }
   get power(): number {
     return this.inputs.power;
@@ -693,7 +734,8 @@ export class WorldAircraft {
   }
   /**
    * `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. `shadowTexel`
-   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it;
+   * leave it `undefined` while the aircraft casts from a map of its own ({@link shadowSubject}).
    */
   render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     // A cockpit shows within tens of meters of the camera. A pilot rolling or flying past the

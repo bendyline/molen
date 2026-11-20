@@ -133,6 +133,8 @@ export {
   SkyReflections,
 } from './three/sky-reflections';
 export type { StaticBatchOptions } from './three/static-batches';
+export type { ShadowSubject, SubjectShadowInfo } from './three/subject-shadow';
+export { measureShadowSubject } from './three/subject-shadow';
 export type { CloudQuality } from './weather/clouds';
 export type { WeatherVisualOptions } from './weather/visual';
 export { WeatherVisual } from './weather/visual';

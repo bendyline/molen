@@ -605,7 +605,15 @@ and `dispose()`. `signals` feeds the interior and `vehicle.visual.animation` bin
 them keep the wheels planted. The camera helper accepts a transform, `vehicle.spec`, view, look offsets, and an
 optional obstruction-distance callback.
 
-While the view is from a vehicle's own seat (the cockpit view), hosts pass
+The driven vehicle casts its sun shadow from a map of its own, which travels with it: hosts pass
+`EarthVehicles.shadowSubject` (the mounted vehicle's model and its measured sphere, `undefined`
+on foot) to `renderer.setShadowSubject` each frame. The sun's main map is fixed to the ground, and
+a car at speed lands on different texels of it every frame, so its shadow on the road changed
+shape as it drove; from its own map the shadow holds still, in the chase view and in the cabin.
+See [the sky guide](sky.md) for the map itself. WebGL only: `setShadowSubject` returns false on
+WebGPU, and the rule below applies there instead.
+
+Without that map, while the view is from a vehicle's own seat (the cockpit view), hosts pass
 `renderer.shadowTexelSize` to that vehicle's `visual.updateShadows(texel)` each frame, and
 `undefined` for every other vehicle and view. From the seat the dashboard is under a meter away,
 and the vehicle's roof, pillars and doors shaded it in blocks that jumped as it drove across the
@@ -613,7 +621,7 @@ sun shadow map's texel grid (a driving view's map spans hundreds of meters, 0.14
 High). Coarser than 0.027 m, the vehicle casts no sun shadow; at 0.025 m or finer it casts
 again. It still receives shadows from terrain, buildings, trees, other vehicles and clouds.
 `EarthVehicles` does this for the mounted vehicle from its `shadowTexel` field, which the Earth
-view and the world explorer set each frame.
+view and the world explorer set each frame (to `undefined` while the vehicle has its own map).
 
 Surface objects expose `userData.vehicles: VehiclePlacement[]`; each record has an `id`, external
 type `kind`, `color`, resolved `spec`, absolute metric `position`, and `yaw`, with optional

@@ -233,13 +233,15 @@ export function addInterior(parent, layout, api) {
       [side * 0.145, 1.42, panelZ - 0.075],
       silver,
     );
-    pedal.rotation.x = -0.28;
+    // The pad's top leans forward, away from the foot, so its treaded face looks up and aft at
+    // the pilot; the treads sit on that face.
+    pedal.rotation.x = 0.28;
     for (let i = 0; i < 5; i++)
       box(
-        cabin,
+        pedal,
         `pedal-tread-${side}-${i}`,
         [0.13, 0.008, 0.007],
-        [side * 0.145, 1.38 + i * 0.021, panelZ - 0.098],
+        [0, -0.04 + i * 0.021, -0.016],
         dark,
       );
   }
@@ -251,9 +253,10 @@ export function addInterior(parent, layout, api) {
       ...Array.from({ length: 5 }, (_, i) => `pedal-tread-${side}-${i}`),
     ])
       pedal.attach(cabin.getObjectByName(name));
+    // Right rudder pushes the right pedal (-X) forward.
     pedal.userData.aircraftControl = {
       action: 'yaw',
-      motion: { property: 'position', axis: 'z', scale: side * 0.035 },
+      motion: { property: 'position', axis: 'z', scale: -side * 0.035 },
     };
   }
   for (const name of ['instrument-panel', 'lower-switch-panel']) {

@@ -3,7 +3,7 @@
  * shadows while driving. Measures how much the cabin changes from one frame to the next: nothing
  * in it moves, so any change is shadow flicker.
  */
-import { applyEnvironment, Renderer } from '@bendyline/molen-client';
+import { applyEnvironment, measureShadowSubject, Renderer } from '@bendyline/molen-client';
 import { createVehicleVisual } from '@bendyline/molen-client/vehicles';
 import type { VehicleData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
@@ -34,8 +34,10 @@ applyEnvironment(renderer, {
 });
 const quality = (params.get('quality') ?? 'high') as 'medium' | 'high';
 renderer.setShadowQuality(quality);
+// In 8 m squares, as terrain is: across one triangle 40 km wide, a software renderer's
+// interpolation put the car's shadow as much as a meter off, differently each frame.
 const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(40_000, 40_000),
+  new THREE.PlaneGeometry(2_000, 2_000, 250, 250),
   new THREE.MeshStandardMaterial({ color: '#6f6f6a' }),
 );
 ground.rotation.x = -Math.PI / 2;
@@ -48,6 +50,10 @@ const vehicle = (
 const { scene: model } = await new GLTFLoader().loadAsync(modelUrl);
 const visual = createVehicleVisual(model, vehicle);
 renderer.worldRoot.add(model);
+// As the hosts do for the driven car: a sun map of its own, which the cabin's shade comes from.
+// `?subject=0` leaves the truck to the main map, as on WebGPU.
+const ownShadow =
+  params.get('subject') !== '0' && renderer.setShadowSubject(measureShadowSubject(model));
 
 // 28 km/h, the speed in the report, at 60 frames per second.
 const STEP = Number(params.get('kmh') ?? 28) / 3.6 / 60;
@@ -62,8 +68,10 @@ const place = (z: number): void => {
   const direction: [number, number, number] = [0, Math.sin(LOOK_PITCH), Math.cos(LOOK_PITCH)];
   look.copy(eye).add(new THREE.Vector3(...direction).multiplyScalar(10));
   renderer.setCamera({ position: eye.toArray(), lookAt: look.toArray() });
-  // As EarthVehicles does in the cockpit view: last frame's shadow map decides whether it casts.
-  if (params.get('selfShadow') !== 'always') visual.updateShadows(renderer.shadowTexelSize);
+  // As EarthVehicles does in the cockpit view without a map of the truck's own: last frame's
+  // shadow map decides whether it casts.
+  if (!ownShadow && params.get('selfShadow') !== 'always')
+    visual.updateShadows(renderer.shadowTexelSize);
   const focus = earthShadowFocus('drive', eye.toArray(), direction, 0);
   // `radius` overrides the driving map's half-width, to measure flicker against texel size.
   if (params.has('radius')) focus.radius = Number(params.get('radius'));

@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { it } from 'vitest';
 
-it('keeps a sunlit cockpit steady in straight flight, low and in cruise', async () => {
+it('keeps a sunlit cockpit steady in straight flight, low, in cruise and under a turning rotor', async () => {
   await promisify(execFile)(
     process.execPath,
     [resolve('test/visual/capture-cockpit-shadows.mjs')],

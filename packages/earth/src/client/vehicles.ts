@@ -1,4 +1,9 @@
-import { readModelSignals } from '@bendyline/molen-client';
+import {
+  measureShadowSubject,
+  readModelSignals,
+  type ShadowSubject,
+} from '@bendyline/molen-client';
+import type { ConsoleVehicleSubject } from '@bendyline/molen-client/console';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   createVehicleVisual,
@@ -218,9 +223,11 @@ export class EarthVehicles {
    * The sun shadow map's texel size (`Renderer.shadowTexelSize`), for the host to set each frame
    * before {@link update}. Seen from its own seat (the cockpit view), the mounted vehicle stops
    * casting into a map too coarse for its cabin (`VehicleVisual.updateShadows`): its roof and
-   * pillars made the dashboard flicker in the sun while driving.
+   * pillars made the dashboard flicker in the sun while driving. Leave it `undefined` while the
+   * vehicle casts from a map of its own ({@link shadowSubject}).
    */
   shadowTexel: number | undefined = undefined;
+  private readonly shadowSubjects = new WeakMap<VehicleVisual, ShadowSubject>();
   /** A short explanation when entering or leaving a vehicle did not work. */
   message: string = '';
   private accumulator = 0;
@@ -389,6 +396,34 @@ export class EarthVehicles {
   }
   get mountedId(): string | undefined {
     return this.world.get(PLAYER, Mounted)?.vehicle;
+  }
+  /**
+   * The driven vehicle or boat for the vehicle console (`@bendyline/molen-client/console`): its
+   * loaded model and data. Undefined on foot and while the model loads.
+   */
+  consoleSubject(): ConsoleVehicleSubject | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.active.get(id);
+    const data = id === undefined ? undefined : this.data(id);
+    if (id === undefined || visual === undefined || data === undefined) return undefined;
+    return { kind: 'vehicle', visual, data, boat: this.isBoat(id), type: data.kind };
+  }
+  /**
+   * The mounted vehicle's model, for `Renderer.setShadowSubject` each frame: a sun shadow map of
+   * its own, which travels with it. In the main map, fixed to the ground, a car at speed lands
+   * on different texels every frame and its shadow on the road changed shape as it drove.
+   * `undefined` on foot, and while the vehicle's model is loading.
+   */
+  get shadowSubject(): ShadowSubject | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.active.get(id);
+    if (visual === undefined) return undefined;
+    let subject = this.shadowSubjects.get(visual);
+    if (subject === undefined) {
+      subject = measureShadowSubject(visual.object);
+      this.shadowSubjects.set(visual, subject);
+    }
+    return subject;
   }
   get speed(): number {
     return this.mountedId ? (this.state(this.mountedId)?.speed ?? 0) : 0;
@@ -1601,6 +1636,10 @@ export class EarthVehicles {
         return hit ? hit.distance : undefined;
       },
     });
+  }
+  /** A vehicle's or boat's entity type id, e.g. `molen.entities.vehicle.sedan`. */
+  typeOf(id: string): string | undefined {
+    return this.data(id)?.kind;
   }
   label(id: string): string {
     const v = this.data(id) ?? this.trafficParts(id)?.vehicle;

@@ -54,5 +54,14 @@ const id = markers.pick(tap.x, tap.y);
 - **Budget:** `maxVisible` keeps the highest `priority`, then nearest, markers.
 - `screenPosition(id)` places DOM callouts next to a marker. `projectWorldToScreen(renderer,
   position)` projects any world point the same way.
+- **Occlusion:** markers hide behind terrain, buildings and vehicles through the GPU's depth test
+  (`occlude`, on by default), which a DOM callout cannot see. So as each marker draws for the
+  renderer's camera, the layer asks the GPU whether any of it passed (an occlusion query: three's
+  own `occlusionTest` on WebGPU, one `ANY_SAMPLES_PASSED` query per marker on WebGL2). Only
+  what can be seen counts: an occluding layer discards near-transparent texels, so a pin's blank
+  margin or shadow halo peeking over a roof does not keep it "in sight".
+  `screenPosition(id).occluded` reports the latest finished answer, a frame or two behind drawing
+  and absent until the first one; hide a callout while it is `true`. `pick` passes over an
+  occluded marker, leaving the tap to whatever hides it.
 
 The layer never fetches anything you did not pass it, and it adds no draw calls when it is empty.

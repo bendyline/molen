@@ -55,6 +55,11 @@ export interface VehicleVisual {
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
   animation?: ModelSignalVisual;
+  /**
+   * The readings the interior and animation were last posed with (`steering`, `wheelAngle` and
+   * the host's signals), for copies of its parts that move as they do (the vehicle console).
+   */
+  readonly signals: VehicleInteriorSignals;
   glass?: GlassVisual;
   update(
     steer: number,
@@ -69,7 +74,8 @@ export interface VehicleVisual {
    * one of this vehicle's own seats. Hosts pass `undefined` for every other vehicle and view.
    * While texels are coarser than SEAT_SHADOW_TEXEL the vehicle casts no sun shadow, until they
    * are SEAT_SHADOW_RETURN or finer. It still receives shadows from terrain, buildings, trees,
-   * other vehicles and clouds.
+   * other vehicles and clouds. A vehicle with a sun map of its own (`Renderer.setShadowSubject`)
+   * needs none of this: pass `undefined` for it too.
    */
   updateShadows(texel: number | undefined): void;
   dispose(): void;
@@ -196,6 +202,7 @@ export function createVehicleVisual(
   // Parts updateShadows took out of the shadow pass carry `userData.seatShadowOut`, which
   // survives cloning: damage sections and debris cloned meanwhile cast again with the rest.
   let shadowsOut = false;
+  let lastSignals: VehicleInteriorSignals = {};
   return {
     setLivery(data) {
       appearance?.dispose();
@@ -203,6 +210,9 @@ export function createVehicleVisual(
       appearance = data === undefined ? undefined : applyLivery(model, data);
     },
     object: model,
+    get signals() {
+      return lastSignals;
+    },
     interior,
     animation,
     glass,
@@ -228,6 +238,7 @@ export function createVehicleVisual(
       if (interior === undefined && steeringWheel !== undefined)
         steeringWheel.rotation.z = steer * 2.5;
       const telemetry = { steering: steer, wheelAngle: angle, ...signals };
+      lastSignals = telemetry;
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
       glass?.update(glassState, timeSeconds ?? 0);

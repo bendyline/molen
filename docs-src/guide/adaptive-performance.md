@@ -20,8 +20,10 @@ of being mistaken for normal rendering. A second pause within a minute of render
 
 Frame times cannot show a level that streams more than it can hold: that work runs outside the
 frame. A host reports it as `strained` in each sample (the explorer does when half of the
-tiles built over ten seconds had been evicted and rebuilt, or when the view fills most of a full
-terrain cache). Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
+tiles built over ten seconds had been evicted within the minute before, the terrain stream's
+`thrashedTiles`, or when the view fills most of a full terrain cache). Ground built again
+minutes after it was evicted (`rebuiltTiles` counts it too) is a flight coming back, not strain:
+over a session in one region it becomes nearly every tile built. Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
 detail with the reason `'streaming'`. `upgradeWorkFraction` (default 0.9) is the share of the
 target that measured frame work must stay under before a step up.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
@@ -41,13 +43,21 @@ controller's thresholds both ways, Balanced to Medium to Balanced to High in fou
 step a change of resolution, shadows and terrain detail across the whole view, and a slow takeoff
 roll left a fast laptop at the lowest tiers for the rest of the flight.
 
-Three things still lower the tier, one step at a time and for good: displayed content over the
-memory budget, streaming strain, and frames under 30 a second for ten seconds running, which is a
-device the guess was wrong about rather than a busy moment. Slow frames while content loads count
-only when frame work itself is heavy, and long stalls never do. Nothing raises the tier: High is a
-manual preset (Ultra, whose view alone holds most of the terrain cache, is reached only with
-`?tier=5`). Choosing Auto again in the quality menu makes the guess afresh. Manual presets remain
-fixed.
+Three things still lower the tier, one step at a time: displayed content over the memory budget,
+streaming strain, and frames under 30 a second for ten seconds running. Slow frames while content
+loads count only when frame work itself is heavy, and long stalls never do. A lowered tier comes
+back one step at a time, never past the guess, once the view has been calm for most of a minute:
+frames at 45 a second or better, frame work within 20 ms, no streaming strain, and displayed
+content within three quarters of the memory budget. A hitch (a frame over 100 ms) costs a couple of
+seconds of that minute rather than restarting it. A tier lost again within three
+minutes of coming back waits twice as long the next time (up to ten minutes), so a device or a
+place that cannot hold it does not flip back and forth. Each lowering used to be for good, and the
+busy moments behind them pass: a ten-minute circle over Seattle lost a tier over downtown and kept
+the lower one at 50 frames a second for the rest of the flight, and a longer session went the same
+way down to Minimum, where a street view shows bare ground with no buildings near and has nothing
+left to load. Nothing raises the tier past the guess: High is a manual preset (Ultra, whose view
+alone holds most of the terrain cache, is reached only with `?tier=5`, which also holds that tier).
+Choosing Auto again in the quality menu makes the guess afresh. Manual presets remain fixed.
 
 The explorer applies a tier's resolution, terrain, building, surface and shadow changes over
 separate frames. The embeddable Earth view keeps its own policy: a default ceiling of Balanced

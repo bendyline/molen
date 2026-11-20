@@ -342,6 +342,67 @@ describe('terrain package semantic layer wiring', () => {
     expect(line?.at(-1)?.[0]).toBeGreaterThanOrEqual(1);
   });
 
+  it('hands every reader of the road tiles a street under bridges as an ordinary way', async () => {
+    let rendered: ReturnType<typeof createEmptyTerrainSemanticTile> | undefined;
+    const opened = await createTerrainPackageSemanticLayers(descriptor(), {
+      decoder: {
+        decode: () => {
+          const tile = createEmptyTerrainSemanticTile();
+          // Level 8 tiles are 4 m across here: a street tagged as a tunnel for 0.6 m, under a
+          // 3.2 m railway bridge crossing it in the middle.
+          tile.transportation.push(
+            {
+              class: 'minor_road',
+              tunnel: true,
+              lines: [
+                [
+                  [0.3, 0.1],
+                  [0.45, 0.1],
+                ],
+              ],
+            },
+            {
+              class: 'rail',
+              bridge: true,
+              lines: [
+                [
+                  [0.375, -0.3],
+                  [0.375, 0.5],
+                ],
+              ],
+            },
+          );
+          return tile;
+        },
+      },
+      landcoverArchive: archive,
+      featuresArchive: {
+        ...archive,
+        async getZxy() {
+          return { data: new Uint8Array([1]).buffer };
+        },
+      },
+      featuresLayer: {
+        renderer: {
+          createTile(tile) {
+            rendered = tile;
+            return undefined;
+          },
+        },
+      },
+    });
+    await opened.layers
+      .find((layer) => layer.category === 'human-feature')
+      ?.createTile({
+        address: { level: 10, x: 1, z: 0 },
+        signal: new AbortController().signal,
+      } as TerrainPyramidTileLayerContext);
+    expect(rendered?.transportation.map((f) => [f.class, f.tunnel, f.bridge])).toEqual([
+      ['minor_road', undefined, undefined],
+      ['rail', undefined, true],
+    ]);
+  });
+
   it('extends distant coverage through the available map levels and preserves explicit bounds', async () => {
     const opened = await createTerrainPackageSemanticLayers(descriptor(), {
       decoder: { decode: () => createEmptyTerrainSemanticTile() },

@@ -933,7 +933,8 @@ function broncoCockpit(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: side * 0.04,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -side * 0.04,
       });
     }
     const seatZ = z - 0.12,

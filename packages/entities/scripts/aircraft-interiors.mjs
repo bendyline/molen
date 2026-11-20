@@ -605,7 +605,8 @@ export function addAircraftCockpit(root, s, f) {
           source: 'yawInput',
           property: 'position',
           axis: 'z',
-          scale: side * 0.035,
+          // Right rudder pushes the right pedal (-X) forward.
+          scale: -side * 0.035,
         });
       }
     }

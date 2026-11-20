@@ -209,7 +209,8 @@ async function main(): Promise<void> {
       material: () =>
         new Worker(new URL('./material.worker.ts', import.meta.url), { type: 'module' }),
     },
-    touchJoystickContainer: stage,
+    // On touch devices (or `?console=1`): the vehicle's own controls along the bottom.
+    console: { container: stage, ...(params.get('console') === '1' ? { touch: 'always' } : {}) },
     // `?snow=1500` lays snow above that height in meters; `?snow=0` covers the lowlands too.
     ...(Number.isFinite(Number(params.get('snow') ?? 'none'))
       ? { weather: { snowCover: { level: Number(params.get('snow')) } } }

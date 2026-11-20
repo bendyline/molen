@@ -872,6 +872,27 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('gives a moving subject a sun shadow map of its own on WebGL only', async () => {
+    const car = new THREE.Group();
+    const subject = { object: car, center: [0, 0.7, 0] as const, radius: 2.8 };
+    const renderer = new Renderer();
+    renderer.worldRoot.add(car);
+    expect(renderer.setShadowSubject(subject)).toBe(true);
+    expect(() => renderer.setShadowSubject({ ...subject, radius: 0 })).toThrow(RangeError);
+    expect(() => renderer.setShadowSubject({ ...subject, radius: Number.NaN })).toThrow(RangeError);
+    // Without sun shadows, or a shadow pass to draw it: no map.
+    renderer.render();
+    expect(renderer.subjectShadowInfo).toBeUndefined();
+    expect(renderer.setShadowSubject(undefined)).toBe(true);
+    renderer.dispose();
+    // WebGPU: the subject goes on casting into the sun's main map, and hosts are told so.
+    const gpu = await Renderer.create({});
+    expect(gpu.backend).toBe('webgpu');
+    expect(gpu.setShadowSubject(subject)).toBe(false);
+    expect(gpu.subjectShadowInfo).toBeUndefined();
+    gpu.dispose();
+  });
+
   it('asks a parked shadow map to draw once for each kind of caster it has not drawn', () => {
     const renderer = new Renderer();
     applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });

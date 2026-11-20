@@ -7,6 +7,7 @@ import {
   observePageActivity,
 } from '@bendyline/molen-client';
 import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
+import { type ConsoleSubject, createVehicleConsole } from '@bendyline/molen-client/console';
 import {
   applyCameraLookDelta,
   cameraForward,
@@ -859,7 +860,9 @@ async function main(): Promise<void> {
   // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
   const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
   if (pinnedTier !== undefined) performanceLevel = pinnedTier;
-  const qualityController = createExplorerQualityController(guessedLevel);
+  // A pinned tier is the guess as well: Auto brings a lowered level back toward its guess, which
+  // must not lift it off the pin.
+  const qualityController = createExplorerQualityController(pinnedTier ?? guessedLevel);
   if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
   // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
   const memoryBudget =
@@ -1722,6 +1725,15 @@ async function main(): Promise<void> {
   input.map.onReset(() => {
     jumpRequested = false;
   });
+  // Touch devices (or `?touch=1`): the vehicle's own controls along the bottom, the plain stick
+  // on foot. Left out of `hud=0` captures with the other overlays.
+  const touchConsole =
+    params.get('hud') !== '0' &&
+    (params.get('touch') === '1' ||
+      (typeof matchMedia === 'function' && matchMedia('(any-pointer: coarse)').matches))
+      ? createVehicleConsole(document.body, { input: input.map, focusTarget: canvas })
+      : undefined;
+  if (touchConsole) document.body.dataset.console = '';
   const controllerControls = createNavigationControls(input, {
     container: document.getElementById('navigation') as HTMLElement,
     focusTarget: canvas,
@@ -2602,8 +2614,13 @@ async function main(): Promise<void> {
     }
     if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
     if ((frameInput.recover ?? 0) > 0) vehicles.recover();
-    // Last frame's shadow map: from the driver's seat the car leaves one too coarse for its cabin.
-    vehicles.shadowTexel = viewer.renderer.shadowTexelSize;
+    // The driven car or the flown aircraft casts from a sun map of its own where there is one
+    // (WebGL). Without it, from the seat it leaves a map too coarse for its cabin: last frame's.
+    const ownShadow = viewer.renderer.setShadowSubject(
+      flight.shadowSubject ?? vehicles.shadowSubject,
+    );
+    const shadowTexel = ownShadow ? undefined : viewer.renderer.shadowTexelSize;
+    vehicles.shadowTexel = shadowTexel;
     vehicles.update(dt, {
       throttle: frameInput.move.forward,
       steering: frameInput.move.right,
@@ -2619,16 +2636,21 @@ async function main(): Promise<void> {
     // Parked and distant aircraft draw without their cockpits, and a cockpit's parts too small to
     // see from the camera leave the frame (AircraftVisual.updateView). Flying, that needs this
     // frame's camera: last frame's trailed the aircraft by the ticks run since (2 m each at
-    // 120 m/s), so single dial numerals and screws flashed as frames ran 0, 1 or 2 ticks. The
-    // shadow map is last frame's: the flown aircraft leaves one too coarse for it.
+    // 120 m/s), so single dial numerals and screws flashed as frames ran 0, 1 or 2 ticks. Without
+    // a sun map of its own, the flown aircraft leaves last frame's map if it is too coarse for it.
     const flightCamera = flight.cameraPose(
       flyby ? 'flyby' : vehicles.view,
       vehicles.lookYaw,
       vehicles.lookPitch,
     );
-    flight.render(flightCamera?.position ?? camera.pos, viewer.renderer.shadowTexelSize);
+    flight.render(flightCamera?.position ?? camera.pos, shadowTexel);
     cockpitPointer.update();
-    flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
+    // On a touch console the dials are the console's.
+    flightInstruments.update(
+      flight.instrumentSource(),
+      (flyby || vehicles.view === 'chase') && touchConsole === undefined,
+      now,
+    );
     pilotVision.update(flight.state);
     surfaceRenderer.updateSignals(
       params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
@@ -3021,6 +3043,18 @@ async function main(): Promise<void> {
       takePersonalRide(kind);
     }
     viewer.renderFrame();
+    if (touchConsole) {
+      // After the frame: the console's dials copy the cockpit's world matrices.
+      const subject: ConsoleSubject | undefined = flight.mountedKind
+        ? flight.consoleSubject(flyby || vehicles.view === 'chase')
+        : vehicles.mountedId
+          ? vehicles.consoleSubject()
+          : parachute.active
+            ? undefined
+            : { kind: navigation === 'walk' ? 'walk' : 'free' };
+      touchConsole.setSubject(subject);
+      touchConsole.update(now);
+    }
     if (firstFrame) {
       startupStage('first-frame');
       // Let the first frame paint before starting CPU-heavy fallback bakes (?materialWorker=0).
@@ -3061,7 +3095,7 @@ async function main(): Promise<void> {
         streamStrained = streamStrain({
           nowMs: now,
           builtTiles: stats.builtTiles,
-          rebuiltTiles: stats.rebuiltTiles,
+          thrashedTiles: stats.thrashedTiles,
           residentBytes: cache?.residentBytes ?? 0,
           displayedBytes: cache?.displayedBytes ?? 0,
           maxResidentBytes: cache?.maxResidentBytes,
@@ -3263,7 +3297,7 @@ async function main(): Promise<void> {
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
-          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, held`}`
+          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, back when calm`}`
           : `Manual · ${quality}`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,
         `CPU ${previousCpuMs.toFixed(1)}ms · GPU ${lastGpuMs?.toFixed(1) ?? 'unavailable'}ms · resolution ${canvas.width}×${canvas.height}`,
@@ -3335,10 +3369,16 @@ const setControlsCollapsed = (collapsed: boolean): void => {
   hudCollapse.setAttribute('aria-label', label);
   hudCollapse.title = label;
 };
+// With the touch console (touch screens, `?touch=1`) it starts folded: open, it covers the stick.
+const touchControls =
+  new URLSearchParams(location.search).get('touch') === '1' ||
+  (typeof matchMedia === 'function' && matchMedia('(any-pointer: coarse)').matches);
 try {
-  setControlsCollapsed(localStorage.getItem(HUD_COLLAPSED_KEY) === '1');
+  const stored = localStorage.getItem(HUD_COLLAPSED_KEY);
+  setControlsCollapsed(stored === null ? touchControls : stored === '1');
 } catch {
-  // Private windows may refuse storage; the panel just starts expanded.
+  // Private windows may refuse storage; the panel starts as the device suggests.
+  setControlsCollapsed(touchControls);
 }
 // The whole bar is the hit target, not just the chevron; the button stays the keyboard control.
 document.getElementById('hud-titlebar')?.addEventListener('click', () => {

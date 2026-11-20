@@ -1144,7 +1144,8 @@ function cockpit(root, m) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: Math.sign(dx) * 0.05,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -Math.sign(dx) * 0.05,
       });
     }
     const sideboard = group(cabin, `MV22-sideboard-${side}`, [side * 1.05, 1.98, 5.7]);

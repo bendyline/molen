@@ -126,6 +126,11 @@ so from the air the ground carries tree shadows only around the aircraft: the LO
 host gets the far map from `earthShadowFocus` (its `far` square) and
 `renderer.setFarShadowCasters(stream.object)`.
 
+Also on WebGL, the car being driven and the aircraft being flown cast from a third, small map
+that travels with them (`renderer.setShadowSubject(vehicles.shadowSubject)`, and
+`aircraft.shadowSubject` in flight), so a shadow on the ground and in its own cabin holds still
+at any speed; see the [sky guide](sky.md).
+
 Earth viewers reserve a 4096-pixel sun map before preparing materials. WebGPU retains that
 allocation across quality changes, so High really uses 4096 pixels even after starting at a
 lower tier; WebGL can resize it with the tier. A chase camera 10 m above ground covers an
@@ -135,6 +140,12 @@ large airliners and their shadows inside the tighter runway footprint.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
+
+`console: { container }` adds the [vehicle console](vehicle-console.md) instead: touch controls
+drawn as the vehicle's own, the flown aircraft's stick, rudder pedals, throttle, gear and flap
+handles and dials, or a car's wheel and pedals, in a see-through strip along the bottom. It shows
+on touch devices (`touch: 'always'` everywhere), follows the mode, and is `view.console`. A page
+lays out around it with the `--molen-console-height` CSS property it sets on the container.
 
 ## Modes
 
@@ -176,10 +187,30 @@ heading for a car, with its gear, engine rev/min, traction or stability control 
 (`assist`) and the grip of the surface under it (`surfaceGrip`); airspeed, altitude and height
 above ground, vertical speed, attitude, load factor (g), sideslip, power, engine, gear, flaps,
 fuel remaining, stall buffet, the pilot's `greyout` and `redout` under g, and stall/impact flags
-for an aircraft (SI units, compass radians). Both carry the type's `label` and, where the type declares them, its name-free
+for an aircraft (SI units, compass radians). Both carry the type's `label` and entity `type`, and, where the type declares them, its name-free
 `genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
 manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
+
+`view.setInstrumentCanvas(canvas)` draws the flown aircraft's own airspeed and altitude
+instruments into a host canvas, side by side: close-ups of the dials (or a glass cockpit's
+readouts) in its cockpit, with the faces, units, needles and calibration the model has, for a HUD
+beside a chase view. `vehicleStatus().instruments` lists them (`{ kind: 'speed' | 'altitude',
+unit? }`, empty until the model loads or for a cockpit without them); give each a square cell of
+the canvas's width. They draw about 20 times a second while flying, not while the canvas is
+hidden, through a small WebGL context of the canvas's own. `undefined` stops and releases it; the
+canvas cannot draw again, so show them later on a new one. The pieces are in
+`@bendyline/molen-client/aircraft` for hosts with their own aircraft:
+`createAircraftInstrumentViews({ model, spec })` crops the instruments out of a loaded cockpit
+and `createAircraftInstrumentDisplay(canvas)` draws them.
+
+```ts
+const status = view.vehicleStatus();
+if (status?.kind === 'aircraft' && status.view === 'chase' && status.instruments.length > 0) {
+  gauges.style.aspectRatio = `${status.instruments.length} / 1`;
+  view.setInstrumentCanvas(gauges);
+}
+```
 
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode
 automatically.
@@ -1217,7 +1248,8 @@ does not establish bridge engineering type, navigation clearance, foundations or
 The SR-520 preview replaces the floating section; its approaches use this same fallback.
 
 Mapped tunnels receive separate inferred underground bores and portal cuts that retain the
-terrain above them. Aircraft support queries use the bore floor while underground. Centerlines
+terrain above them; a way tagged as a tunnel only beneath bridges is drawn as the street under
+them instead. Aircraft support queries use the bore floor while underground. Centerlines
 alone do not establish surveyed grades, widths or clearances; see [Tunnels](surface-rendering.md#tunnels)
 for the metadata overrides, inference and bounded route stitching.
 
@@ -1353,8 +1385,9 @@ The runway snapshot covers 10,746 airports with complete endpoint and width reco
 aprons, taxiways and hangars are currently bundled for Boeing Field; elsewhere these depend on
 the map's coverage. Building heights and untagged taxiway widths are interpreted. Runways with
 missing endpoints, closed runways and water runways are omitted. Supplemental airports also
-render when the basemap has no tile (Itami lies outside the bundled Kyoto street-detail
-coverage). Seattle's street-detail coverage includes Boeing Field and its surroundings.
+render when the basemap has no tile, such as an airport outside a package's street-detail
+coverage. The bundled Seattle and Kyoto street detail include Boeing Field and Osaka Itami and
+their surroundings.
 No airport data is fetched without a supplied pack. Hosts composing their own
 terrain renderer can use `withEarthAirports`
 around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.

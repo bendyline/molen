@@ -1,16 +1,51 @@
 /**
- * The pilot's view of a jet in cruise with the sun behind it, the way Earth aims sun shadows in
- * flight. Measures how much the cockpit changes from one frame to the next while the aircraft
- * flies straight and level: nothing in the cockpit moves, so any change is shadow flicker.
+ * The pilot's view of an aircraft in straight and level flight, the way Earth aims sun shadows in
+ * flight. Measures how much the cockpit changes from one frame to the next: nothing in the cockpit
+ * moves, so any change is shadow flicker.
+ *
+ * `?aircraft=f15c` (the default): a jet in cruise with a low sun behind it. `?aircraft=oh6`: the
+ * helicopter at 30 knots 32 m up with its main rotor turning at full speed and the sun high
+ * behind it; `?spin=0` holds the rotor still.
  */
-import { applyEnvironment, Renderer } from '@bendyline/molen-client';
+import { applyEnvironment, measureShadowSubject, Renderer } from '@bendyline/molen-client';
 import { createAircraftVisual } from '@bendyline/molen-client/aircraft';
-import type { AircraftSpec } from '@bendyline/molen-schema';
+import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import modelUrl from '../../../../content/entities/assets/molen/entities/aircraft/f_15c/model.glb?url';
-import types from '../../../../content/entities/source/aircraft/f-15c/entity.types.json';
+import f15cUrl from '../../../../content/entities/assets/molen/entities/aircraft/f_15c/model.glb?url';
+import oh6Url from '../../../../content/entities/assets/molen/entities/aircraft/oh6/model.glb?url';
+import f15cTypes from '../../../../content/entities/source/aircraft/f-15c/entity.types.json';
+import oh6Types from '../../../../content/entities/source/aircraft/oh-6/entity.types.json';
 import { earthShadowFocus } from '../../../../packages/earth/src/client/look';
+
+const params = new URLSearchParams(location.search);
+const CASES = {
+  f15c: {
+    url: f15cUrl,
+    types: f15cTypes,
+    // Low sun behind the aircraft and a little to its right: flying north over Seattle in autumn.
+    toSun: [0.3, 0.55, -0.78],
+    agl: 772,
+    // 706 knots, the speed in the report.
+    speed: 706 * 0.514444,
+    // The seat's view pitch when the report was captured.
+    lookPitch: -0.245,
+    rotor: false,
+  },
+  oh6: {
+    url: oh6Url,
+    types: oh6Types,
+    // The sun 50 degrees up, behind and to the right: the rotor's shadow falls across the cabin.
+    toSun: [0.3, 0.77, -0.56],
+    // 105 feet over the ground at 30 knots, as in the report.
+    agl: 32,
+    speed: 30 * 0.514444,
+    lookPitch: -0.29,
+    rotor: true,
+  },
+} as const;
+const flown = CASES[(params.get('aircraft') ?? 'f15c') as keyof typeof CASES];
+if (flown === undefined) throw new Error(`Unknown aircraft ${params.get('aircraft')}`);
 
 const WIDTH = 640;
 const HEIGHT = 480;
@@ -24,18 +59,19 @@ const renderer = await Renderer.create({
   optimizeWebGpu: false,
 });
 document.body.append(renderer.three.domElement);
-// Low sun behind the aircraft and a little to its right: flying north over Seattle in autumn.
-const toSun = new THREE.Vector3(0.3, 0.55, -0.78).normalize();
+const toSun = new THREE.Vector3(...flown.toSun).normalize();
 applyEnvironment(renderer, {
   ambient: { intensity: 0.8 },
   sun: { direction: toSun.toArray(), intensity: 3 },
   toneMapping: 'aces',
 });
-renderer.setShadowQuality(
-  (new URLSearchParams(location.search).get('quality') ?? 'high') as 'medium' | 'high',
-);
+renderer.setShadowQuality((params.get('quality') ?? 'high') as 'medium' | 'high');
+// Low and slow, in 8 m squares as terrain is: across one triangle kilometers wide, a software
+// renderer's interpolation moves shadows on it differently each frame (see chase-shadows.ts).
 const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(40_000, 40_000),
+  flown.rotor
+    ? new THREE.PlaneGeometry(2_000, 2_000, 250, 250)
+    : new THREE.PlaneGeometry(40_000, 40_000),
   new THREE.MeshStandardMaterial({ color: '#6f7d62' }),
 );
 ground.rotation.x = -Math.PI / 2;
@@ -43,30 +79,66 @@ ground.receiveShadow = true;
 renderer.worldRoot.add(ground);
 
 const spec = (
-  Object.values(types.types)[0] as unknown as { components: { aircraft: { spec: AircraftSpec } } }
+  Object.values(flown.types.types)[0] as unknown as {
+    components: { aircraft: { spec: AircraftSpec } };
+  }
 ).components.aircraft.spec;
-const { scene: model } = await new GLTFLoader().loadAsync(modelUrl);
+const { scene: model } = await new GLTFLoader().loadAsync(flown.url);
 const visual = createAircraftVisual(model, spec);
 renderer.worldRoot.add(model);
+// As the hosts do for the flown aircraft: a sun map of its own. `?subject=0` leaves it to the
+// main map, as on WebGPU; `?selfShadow=always` also keeps it there at any texel size.
+const ownShadow =
+  params.get('subject') !== '0' && renderer.setShadowSubject(measureShadowSubject(model));
 
-const altitude = Number(new URLSearchParams(location.search).get('agl') ?? 772);
-// 706 knots, the speed in the report, at 60 frames per second.
-const STEP = (706 * 0.514444) / 60;
-// The seat's view pitch when the report was captured.
-const LOOK_PITCH = -0.245;
+const altitude = Number(params.get('agl') ?? flown.agl);
+const FRAME = 1 / 60;
+const STEP = flown.speed * FRAME;
+const rotorSpeed = params.get('spin') === '0' ? 0 : (spec.engine?.rotorAngularSpeed ?? 0);
+const input: AircraftInputData = {
+  power: 0.6,
+  pitch: 0,
+  roll: 0,
+  yaw: 0,
+  brake: false,
+  engine: true,
+  gear: true,
+  flaps: false,
+};
+const stateAt = (frame: number): AircraftStateData =>
+  ({
+    velocity: [0, 0, flown.speed],
+    airspeed: flown.speed,
+    yaw: 0,
+    pitch: 0,
+    roll: 0,
+    pitchRate: 0,
+    rollRate: 0,
+    rpm: 1,
+    rotorAngle: frame * FRAME * rotorSpeed,
+    grounded: false,
+    stalled: false,
+    crashed: false,
+  }) as unknown as AircraftStateData;
 const eye = new THREE.Vector3();
 const look = new THREE.Vector3();
-const place = (z: number): void => {
-  model.position.set(0, altitude, z);
+const place = (frame: number): void => {
+  model.position.set(0, altitude, frame * STEP);
   model.updateMatrixWorld(true);
   eye.fromArray(spec.pilotEye).applyMatrix4(model.matrixWorld);
-  const direction: [number, number, number] = [0, Math.sin(LOOK_PITCH), Math.cos(LOOK_PITCH)];
+  const direction: [number, number, number] = [
+    0,
+    Math.sin(flown.lookPitch),
+    Math.cos(flown.lookPitch),
+  ];
   look.copy(eye).add(new THREE.Vector3(...direction).multiplyScalar(10));
   renderer.setCamera({ position: eye.toArray(), lookAt: look.toArray() });
   visual.updateView(eye.toArray() as [number, number, number]);
-  // As the hosts do: last frame's shadow map decides whether the flown aircraft casts.
-  if (new URLSearchParams(location.search).get('selfShadow') !== 'always')
+  // As the hosts do without a map of the aircraft's own: last frame's shadow map decides whether
+  // the flown aircraft casts.
+  if (!ownShadow && params.get('selfShadow') !== 'always')
     visual.updateShadows(renderer.shadowTexelSize);
+  if (flown.rotor) visual.update(stateAt(frame), input, altitude);
   renderer.setShadowFocus(earthShadowFocus('fly', eye.toArray(), direction, 0, 0));
 };
 place(0);
@@ -106,7 +178,7 @@ const api = {
         (object) => object instanceof THREE.DirectionalLight,
       ) as THREE.DirectionalLight;
     for (let frame = 0; frame < frames; frame++) {
-      place(frame * STEP);
+      place(frame);
       renderer.render();
       const current = luma();
       if (frame < 4) shots.push(renderer.three.domElement.toDataURL('image/png'));
@@ -121,6 +193,7 @@ const api = {
     const sorted = [...changed].sort((a, b) => a - b);
     return {
       texel: (2 * sun.shadow.camera.right) / sun.shadow.mapSize.x,
+      subjectTexel: renderer.subjectShadowInfo?.texel,
       meanChanged: changed.reduce((sum, value) => sum + value, 0) / changed.length,
       p90Changed: sorted[Math.floor(sorted.length * 0.9)] ?? 0,
       maxChanged: sorted.at(-1) ?? 0,

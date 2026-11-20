@@ -980,7 +980,8 @@ function beaverCockpit(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: sign * 0.04,
+        // Right rudder pushes the right pedal (-X) forward.
+        scale: -sign * 0.04,
       });
     }
   }

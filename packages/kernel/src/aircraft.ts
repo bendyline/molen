@@ -1118,11 +1118,27 @@ export function stepAircraft(
       // and its damping both grow with dynamic pressure, so the nose aligns at a rate
       // proportional to airspeed over the tail arm. Below about 7 kt the tail sits in the rotor
       // wake and only the pedals hold the heading.
-      const weathervane = (speed: number): number =>
+      const fin = (speed: number): number =>
         ((helicopter.directionalStability ?? 1) *
-          tailAuthority *
           m.smoothstep((speed / helicopter.translationalLiftSpeed - 0.2) / 0.5)) /
         spec.length;
+      // The nose's turn toward the relative wind, from `lateral` (leftward air speed) and the
+      // `speed` of the air across the fin. It is taken from the sideslip left after the turn,
+      // which keeps a fast fin stable at large steps. Past about 20° of sideslip the fin stalls
+      // and pulls no harder, so the tail rotor out-pulls it in relative winds below about
+      // `yawRate × length / 0.34` (34 kt for the OH-6): a pedal turn in a hover goes all the
+      // way around in a breeze, as it does in a real helicopter.
+      const finTurn = (lateral: number, speed: number): number => {
+        const vane = tailAuthority * fin(speed);
+        const settled = lateral / (1 + h * vane * speed);
+        return vane * m.clamp(settled, -0.34 * speed, 0.34 * speed);
+      };
+      // Full-pedal yaw rate. In a hover the pedals turn the helicopter at `yawRate`. In forward
+      // flight the tail rotor works clear of the main rotor's wake, and full pedal holds about
+      // 17° of sideslip against the fin at any speed: a fixed rate would hold only
+      // `asin(yawRate × length / airspeed)`, 6° for the OH-6 at 117 kt.
+      const pedalRate = (speed: number): number =>
+        authority * tailAuthority * m.max(helicopter.yawRate, 0.29 * speed * fin(speed));
       if (direct) {
         // Cyclic tilts the disc against the mast and the hub drags the fuselage after it: the
         // stick sets a pitch and roll rate, which the turning disc damps. Part of the hub moment
@@ -1139,25 +1155,20 @@ export function stepAircraft(
         s.pitchRate = (s.pitchRate + h * command * m.clamp(input.pitch, -1, 1)) / damping;
         s.rollRate = (s.rollRate + h * command * m.clamp(input.roll, -1, 1)) / damping;
         gust();
+        // The fin works in the fuselage's own frame, so it weathervanes inverted or nose-down.
+        const along = dot(air, axes.forward);
+        const lateral = dot(air, axes.left);
+        const across = m.hypot(along, lateral);
         // The tail rotor yaws the fuselage with the pedals and damps its yawing; with the tail
         // gone the main rotor's torque spins it instead.
         const pedals = 8 * tailAuthority;
         s.yawRate =
           ((s.yawRate ?? 0) +
             h *
-              (-pedals * m.clamp(input.yaw, -1, 1) * authority * helicopter.yawRate +
+              (-8 * m.clamp(input.yaw, -1, 1) * pedalRate(across) +
                 authority * (1 - tailAuthority) * 1.5)) /
           (1 + h * (pedals + 0.1));
-        // The fin works in the fuselage's own frame, so it weathervanes inverted or nose-down.
-        const along = dot(air, axes.forward);
-        const lateral = dot(air, axes.left);
-        const across = m.hypot(along, lateral);
-        const vane = weathervane(across);
-        const turn: Vec3 = [
-          -s.pitchRate,
-          s.yawRate + (vane * lateral) / (1 + h * vane * across),
-          s.rollRate,
-        ];
+        const turn: Vec3 = [-s.pitchRate, s.yawRate + finTurn(lateral, across), s.rollRate];
         const angle = m.hypot(turn[0], turn[1], turn[2]) * h;
         if (angle > 0)
           rot = quatNormalize(
@@ -1183,12 +1194,12 @@ export function stepAircraft(
         const rollLimit = m.max(helicopter.maxTilt, m.abs(s.roll));
         s.pitch = m.clamp(s.pitch + s.pitchRate * h, -pitchLimit, pitchLimit);
         s.roll = m.clamp(s.roll + s.rollRate * h, -rollLimit, rollLimit);
-        s.yaw -= input.yaw * authority * h * helicopter.yawRate * tailAuthority;
+        // On the skids the fin does not act, and neither does the pedals' extra authority.
+        s.yaw -= input.yaw * h * pedalRate(s.grounded ? 0 : horizontal);
         if (!s.grounded) {
-          const vane = weathervane(horizontal);
           // Leftward air speed (yaw is +left): horizontal speed times the sine of the sideslip.
           const lateral = (air[0] ?? 0) * m.cos(s.yaw) - (air[2] ?? 0) * m.sin(s.yaw);
-          s.yaw += (h * vane * lateral) / (1 + h * vane * horizontal);
+          s.yaw += h * finTurn(lateral, horizontal);
         }
         if (tailAuthority < 1) {
           s.yawRate =

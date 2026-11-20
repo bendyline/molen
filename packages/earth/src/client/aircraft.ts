@@ -4,20 +4,27 @@
 // their authored GLBs. Hosts spawn one where they like — on the ground, or already flying at a
 // chosen speed — board it, and read a status for their HUD.
 
-import { readModelSignals } from '@bendyline/molen-client';
+import {
+  measureShadowSubject,
+  readModelSignals,
+  type ShadowSubject,
+} from '@bendyline/molen-client';
 import {
   type AircraftCameraPose,
   type AircraftCockpitSession,
+  type AircraftInstrumentView,
   AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
   aircraftObstacleContacts,
   applyAircraftControl,
+  createAircraftInstrumentViews,
   createAircraftVisual,
   PilotMotion,
   type PilotMotionOverrides,
   pilotMotionSample,
 } from '@bendyline/molen-client/aircraft';
+import type { ConsoleAircraftSubject } from '@bendyline/molen-client/console';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
@@ -110,6 +117,13 @@ export interface EarthAircraftPlacement {
 }
 
 /** A mounted aircraft as a HUD sees it. SI units; angles in radians. */
+/** One of the flown aircraft's own cockpit instruments (`EarthView.setInstrumentCanvas`). */
+export interface EarthInstrument {
+  kind: 'speed' | 'altitude';
+  /** A digital readout's units where its conversion names them; a dial's face shows its own. */
+  unit?: string;
+}
+
 export interface EarthFlightStatus {
   id: string;
   type: string;
@@ -152,6 +166,11 @@ export interface EarthFlightStatus {
   crashed: boolean;
   waitingForTerrain: boolean;
   view: 'cockpit' | 'chase';
+  /**
+   * The aircraft's own airspeed and altitude instruments that `EarthView.setInstrumentCanvas`
+   * draws, in its order: empty until the model has loaded, and for a cockpit without them.
+   */
+  instruments: EarthInstrument[];
   /** Fuel remaining and full-tank capacity in kg, for aircraft that carry fuel. */
   fuel?: number;
   fuelCapacity?: number;
@@ -209,6 +228,9 @@ export class EarthAircraft {
   private readonly types: TypeLibrary;
   private readonly vehicleEnvironment: VehicleEnvironment;
   private readonly visuals = new Map<string, AircraftVisual>();
+  /** Each loaded aircraft's instruments, cropped out of its cockpit when first asked for. */
+  private readonly instrumentViews = new WeakMap<AircraftVisual, AircraftInstrumentView[]>();
+  private readonly shadowSubjects = new WeakMap<AircraftVisual, ShadowSubject>();
   private readonly modelLoads = new Map<string, object>();
   private readonly spawned = new Set<string>();
   /** Spawned aircraft a host owns: they survive `release` until removed. */
@@ -227,8 +249,15 @@ export class EarthAircraft {
 
   /** Active pilot station for the shared mesh picker and accessible control panel. */
   cockpitSession(): AircraftCockpitSession | undefined {
+    return this.view === 'cockpit' ? this.controlSession() : undefined;
+  }
+  /**
+   * The pilot's controls in any view: the cockpit session without its view check, for controls
+   * outside the cockpit (the vehicle console's levers in a chase view).
+   */
+  controlSession(): AircraftCockpitSession | undefined {
     const id = this.mountedId;
-    if (!id || this.view !== 'cockpit') return undefined;
+    if (!id) return undefined;
     const visual = this.visuals.get(id);
     const spec = this.world.get(id, Aircraft)?.spec;
     if (!visual || !spec) return undefined;
@@ -239,7 +268,7 @@ export class EarthAircraft {
       input: this.controls,
       state: this.world.get(id, AircraftState),
       change: (change) => {
-        if (this.mountedId !== id || this.view !== 'cockpit') return;
+        if (this.mountedId !== id) return;
         const next = applyAircraftControl(
           this.controls,
           change,
@@ -307,6 +336,60 @@ export class EarthAircraft {
   get mountedId(): string | undefined {
     const id = this.world.get(PLAYER, Mounted)?.vehicle;
     return id !== undefined && this.world.has(id, Aircraft) ? id : undefined;
+  }
+
+  /**
+   * The flown aircraft's model, for `Renderer.setShadowSubject` each frame: a sun shadow map of its
+   * own, which travels with it. In the main map, fixed to the ground, the aircraft lands on
+   * different texels every frame, and its canopy frame's shade crawled over the panel. `undefined`
+   * while no aircraft is flown, and while its model is loading.
+   */
+  get shadowSubject(): ShadowSubject | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.visuals.get(id);
+    if (visual === undefined) return undefined;
+    let subject = this.shadowSubjects.get(visual);
+    if (subject === undefined) {
+      subject = measureShadowSubject(visual.object);
+      this.shadowSubjects.set(visual, subject);
+    }
+    return subject;
+  }
+
+  /**
+   * The flown aircraft for the vehicle console (`@bendyline/molen-client/console`): its loaded
+   * model and its pilot's controls; `gauges` shows its dials. Undefined until the model loads.
+   */
+  consoleSubject(gauges: boolean): ConsoleAircraftSubject | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.visuals.get(id);
+    const aircraft = id === undefined ? undefined : this.world.get(id, Aircraft);
+    if (visual === undefined || aircraft === undefined) return undefined;
+    return {
+      kind: 'aircraft',
+      visual,
+      spec: aircraft.spec,
+      type: aircraft.kind,
+      session: () => this.controlSession(),
+      gauges,
+    };
+  }
+
+  /**
+   * The flown aircraft's own airspeed and altitude instruments (`createAircraftInstrumentViews`),
+   * once its model has loaded; empty for a cockpit without them.
+   */
+  mountedInstruments(): AircraftInstrumentView[] | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.visuals.get(id);
+    const spec = id === undefined ? undefined : this.world.get(id, Aircraft)?.spec;
+    if (visual === undefined || spec === undefined) return undefined;
+    let views = this.instrumentViews.get(visual);
+    if (views === undefined) {
+      views = createAircraftInstrumentViews({ model: visual.object, spec });
+      this.instrumentViews.set(visual, views);
+    }
+    return views;
   }
 
   /** World position of the mounted aircraft's landing-contact origin. */
@@ -657,7 +740,8 @@ export class EarthAircraft {
   /**
    * Move models to their simulated poses and animate controls, gear and propellers. `camera`
    * (in the same frame) keeps distant cockpits out of the frame. `shadowTexel`
-   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it;
+   * leave it `undefined` while the aircraft casts from a map of its own ({@link shadowSubject}).
    */
   render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     for (const [id, visual] of this.visuals) {
@@ -781,6 +865,9 @@ export class EarthAircraft {
       crashed: state.crashed,
       waitingForTerrain: state.waitingForTerrain,
       view: this.view,
+      instruments: (this.mountedInstruments() ?? []).map(({ kind, unit }) =>
+        unit === undefined ? { kind } : { kind, unit },
+      ),
       ...(aircraft.spec.fuel
         ? {
             fuel: state.fuel ?? aircraft.spec.fuel.capacity,
