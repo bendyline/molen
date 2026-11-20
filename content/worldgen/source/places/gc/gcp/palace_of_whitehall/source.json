@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palace_of_whitehall",
+  "kind": "static-structure",
+  "title": "Palace of Whitehall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palace_of_whitehall",
+        "output": "assets/places/gc/gcp/palace_of_whitehall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b8240d07e4b1b4e68d7f23240f4c5ddd693e0506ee50bae68fd866c447510be5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "whitehall-model",
+        "path": "models/whitehall-model.mjs"
+      },
+      {
+        "id": "whitehall-plan",
+        "path": "models/whitehall-plan.mjs"
+      },
+      {
+        "id": "generate-whitehall",
+        "path": "models/generate-whitehall.mjs"
+      },
+      {
+        "id": "whitehall-west-plan",
+        "path": "models/whitehall-west-plan.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "pmtiles-context.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "privy-garden-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "terrain-fit.json",
+      "map-frame.json",
+      "dated-site-fit.json",
+      "placement-report.json"
+    ]
+  }
+}

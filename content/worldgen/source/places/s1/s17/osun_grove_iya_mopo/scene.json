@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Ìyá Mọòpó exterior review",
+  "seed": "osun_grove_iya_mopo",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "figure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_iya_mopo",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce9df",
+            "ground": "#8e815a",
+            "intensity": 1.3
+          },
+          "sun": {
+            "direction": [
+              -4,
+              8,
+              6
+            ],
+            "color": "#fff1d4",
+            "intensity": 1.7,
+            "castShadow": true
+          },
+          "background": "#b6c5ac",
+          "toneMapping": "agx",
+          "exposure": 1.04,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            9,
+            -0.26,
+            -4
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              112,
+              0.5,
+              64
+            ]
+          },
+          "materialRef": "palette:#77794b",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      27,
+      20,
+      49
+    ],
+    "lookAt": [
+      10,
+      5,
+      -3
+    ],
+    "fov": 47
+  }
+}

@@ -1,17 +1,18 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.temple_of_jupiter_optimus_maximus",
-  "inputHash": "sha256:1730e517d5c210c1148ed84023462c07a58ab11d4e6a46b042777b0b6afa999e",
-  "placementHash": "sha256:2d232b3e3057eafb4f4997ff9aac34dc437e7caedd22759c68abc5e1176c68b9",
+  "inputHash": "sha256:b883bf02bd7b82d89ef95d917b257a3bdb8e199fe6a9d1520d384b413a0ffde4",
+  "sourceHash": "sha256:87f694b83abcd1eb441e2debe3173847920b18ab41e02b9cff1420098289e168",
+  "runtimeHash": "sha256:1061274edb547a191eb06712d07ac3e48f1bf8e4dd7a6b5957d14c705377f3a0",
   "entry": {
     "id": "temple.of.jupiter.optimus.maximus",
     "title": "Temple of Jupiter Optimus Maximus",
     "asset": "molen.worldgen.structure.temple_of_jupiter_optimus_maximus",
     "anchor": [
-      12.482268244687624,
-      41.892642123947745
+      12.482152876399208,
+      41.89246685633882
     ],
-    "heading": 0.45316101061196945,
+    "heading": 2.064347435686355,
     "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
@@ -22,22 +23,165 @@
     "replaceFootprint": false,
     "terrainReference": {
       "anchor": [
-        12.482051027929765,
-        41.89276788808752
+        12.482840300013704,
+        41.89318844584958
       ],
-      "modelHeight": 8.982000160217286,
-      "basis": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled."
+      "modelHeight": 9.403,
+      "basis": "The retained museum datum establishes a common vertical reference for the authored visitor room and tufa foundation. The display floor is reconstructed from public views and the standard terrain."
     },
     "bounds": [
-      12.482070037106107,
-      41.892556415551134,
-      12.48243950738274,
-      41.8927690223023
+      12.482002432568807,
+      41.892346458989195,
+      12.482324575132624,
+      41.892595765336694
     ],
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://build.protomaps.com/20261014.pmtiles",
-    "note": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://www.museicapitolini.org/sites/default/files/f_file/Dep%20CAPITOLINI_ES_dig_sett.%202021.pdf",
+    "note": "The exposed eastern foundation sits in the visitor gallery adjoining the Esedra. The registered visitor plan and the photograph determine the signed horizontal pose. Gallery levels are approximated from pictures and standard terrain."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "placementHash": "sha256:16e1d678bc3cf392e3864562ecec2e5a0e743e2234071113b7643a242510b763",
+  "status": "passed",
+  "review": {
+    "status": "passed",
+    "inputHash": "sha256:b883bf02bd7b82d89ef95d917b257a3bdb8e199fe6a9d1520d384b413a0ffde4",
+    "placementHash": "sha256:16e1d678bc3cf392e3864562ecec2e5a0e743e2234071113b7643a242510b763",
+    "mapFrameHash": "sha256:525651aaef143369041aa37cab69657504357a808e302571b235fcf616c94f54",
+    "notes": "The signed museum gallery and tufa wall share a terrain datum. The modern museum stays visible above ground and independent surroundings are retained. The interior geometry is an approximate museum display.",
+    "native": {
+      "fixtureHash": "sha256:af5cf1ee66457b91eb3e111f391df3f861521e1b68101258942d07bbb72c68c5",
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "temple_of_jupiter_optimus_maximus-skyline-visitor-photo-position.png",
+          "hash": "sha256:da08d84dab0392021c50f03c73aca104cbde6849a2a4a931667fbf68c4c2136f",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "skyline",
+          "file": "temple_of_jupiter_optimus_maximus-skyline-gallery-terrace.png",
+          "hash": "sha256:f7dcc750d7b27b2e074289746371eedadd2eb4639aa12bb4980f2d65565ce675",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "skyline",
+          "file": "temple_of_jupiter_optimus_maximus-skyline-base-of-display.png",
+          "hash": "sha256:969f875753273cefe6d4a10e33e850afaff3f06288a98a977ecae2da0c1ad0c3",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "skyline",
+          "file": "temple_of_jupiter_optimus_maximus-skyline-surface-and-museum.png",
+          "hash": "sha256:72e34d322be4348e12578d2792cb6cf22237eb465fef9b2abf40eb925ae5a586",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "district",
+          "file": "temple_of_jupiter_optimus_maximus-district-visitor-photo-position.png",
+          "hash": "sha256:47e46856880c202d335794592bdc4670fe4d6222f8550a7d1078ae2a68a778ab",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "district",
+          "file": "temple_of_jupiter_optimus_maximus-district-gallery-terrace.png",
+          "hash": "sha256:d299909e7fafe753dea68d891cfb1453f8c00af74f7379cba14ac72cef66d55c",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "district",
+          "file": "temple_of_jupiter_optimus_maximus-district-base-of-display.png",
+          "hash": "sha256:74c860ac39985863840cd87a10b12a9dbbf12e839818676bf8f95d6e840ae8c0",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "district",
+          "file": "temple_of_jupiter_optimus_maximus-district-surface-and-museum.png",
+          "hash": "sha256:caea7fe11e172feba62ee171819a9fc312b480e68f8bdde8e84674dace1aba3d",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "street",
+          "file": "temple_of_jupiter_optimus_maximus-street-visitor-photo-position.png",
+          "hash": "sha256:530e8ce1c2d1b3370090ff6311072d004d960d7d06b14aecb9af18626a5401a8",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "street",
+          "file": "temple_of_jupiter_optimus_maximus-street-gallery-terrace.png",
+          "hash": "sha256:87c1b3aa36977270f5e3aef6b6738e40a625963e4928c1a8479446851a556d82",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "street",
+          "file": "temple_of_jupiter_optimus_maximus-street-base-of-display.png",
+          "hash": "sha256:8588ce1b2cf6bba40d95d38142a92a0b151e7e2953555450c6f4e71bfd8a8f29",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "street",
+          "file": "temple_of_jupiter_optimus_maximus-street-surface-and-museum.png",
+          "hash": "sha256:4311bdb40d1323d258633b248519262d29ecb2f3024c5ea628d6857e32dc68e8",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "closeup",
+          "file": "temple_of_jupiter_optimus_maximus-closeup-visitor-photo-position.png",
+          "hash": "sha256:b6095cff5c4444052053ef31deab66421894c4e766ba0f6f2844119a10a901fc",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "closeup",
+          "file": "temple_of_jupiter_optimus_maximus-closeup-gallery-terrace.png",
+          "hash": "sha256:d05454324a927d2339755da064dc9d506ff58653f9869d94c30d26456e93d59d",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "closeup",
+          "file": "temple_of_jupiter_optimus_maximus-closeup-base-of-display.png",
+          "hash": "sha256:43373dd1e409647f5f5a2134094ec2f8013a3b9d3acd115d37705caf0382d67f",
+          "firstHit": "structure:temple.of.jupiter.optimus.maximus"
+        },
+        {
+          "level": "closeup",
+          "file": "temple_of_jupiter_optimus_maximus-closeup-surface-and-museum.png",
+          "hash": "sha256:4311bdb40d1323d258633b248519262d29ecb2f3024c5ea628d6857e32dc68e8",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "failure",
+          "file": "temple_of_jupiter_optimus_maximus-failure-visitor-photo-position.png",
+          "hash": "sha256:fd21a487f121080e807171c12c8a909a240823755bae73970ccf6e81adaee37e",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "failure",
+          "file": "temple_of_jupiter_optimus_maximus-failure-gallery-terrace.png",
+          "hash": "sha256:b748d704c6039997f5ea4e779f60cb9babbfac3f0fc0b2a4c4ff65588482ec2d",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "failure",
+          "file": "temple_of_jupiter_optimus_maximus-failure-base-of-display.png",
+          "hash": "sha256:59c5ca71f24140e1f38dbbb1fae36be399ad6d06237d9bcff9abf60d0af99c9f",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        },
+        {
+          "level": "failure",
+          "file": "temple_of_jupiter_optimus_maximus-failure-surface-and-museum.png",
+          "hash": "sha256:4311bdb40d1323d258633b248519262d29ecb2f3024c5ea628d6857e32dc68e8",
+          "firstHit": "structure:palazzo.dei.conservatori"
+        }
+      ],
+      "maxRoomHeightDifferenceMeters": 3.1280517708877353e-7,
+      "threeIndoorSightlinesClear": true,
+      "guestFailureKeepsMuseum": true,
+      "sameRoads": true,
+      "waterRetained": true,
+      "retainedIndependentBuildings": 106,
+      "sitePreview": {
+        "path": "site-preview.png",
+        "hash": "sha256:f369a6d184bba165b003a3fcc3f9cd7506312fef7fea74120a75a660ae4651fc"
+      }
+    }
+  }
 }

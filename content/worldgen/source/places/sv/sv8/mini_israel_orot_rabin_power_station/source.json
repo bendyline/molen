@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_orot_rabin_power_station",
+  "kind": "static-structure",
+  "title": "Mini Israel · Orot Rabin Power Station exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_orot_rabin_power_station",
+        "output": "assets/places/sv/sv8/mini_israel_orot_rabin_power_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4fe6eb120307f9f408542bf53f7ab99cca43a6241e2e7dc00ba77c6770632e60"
+      }
+    ],
+    "generators": [
+      {
+        "id": "power-station-exhibit-mesh",
+        "path": "models/power-station-model.mjs"
+      },
+      {
+        "id": "power-station-exhibit-master",
+        "path": "models/generate-power-station.mjs"
+      },
+      {
+        "id": "power-station-exhibit-sign-lettering",
+        "path": "models/exhibit-sign-lettering.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "station-materials-preview.webp",
+      "placement-report.json",
+      "map-frame.json"
+    ]
+  }
+}

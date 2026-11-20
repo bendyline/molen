@@ -1,0 +1,300 @@
+{
+  "id": "mini_israel_teddy_stadium",
+  "planId": "mini_israel_teddy_stadium",
+  "assetId": "molen.worldgen.structure.mini_israel_teddy_stadium",
+  "title": "Mini Israel · Teddy Stadium exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.96851481,
+    "latitude": 31.84219247
+  },
+  "visualBrief": "A miniature football stadium with a U-shaped double-tier bowl, an open end, a ribbed canopy and multicolored seating around a green pitch.",
+  "nativeAxes": "+Y up. +X follows the pitch toward the open southwest end and visitor semicircle. +Z faces the northwestern long stand.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_teddy_stadium/models/teddy-exhibit-model.mjs",
+    "export": "buildTeddyExhibit"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25
+  },
+  "referencePages": [
+    "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=452s",
+    "https://virtualglobetrotting.com/map/mini-israel-teddy-stadium/view/google/",
+    "https://st.depositphotos.com/6698764/60359/i/450/depositphotos_603593270-stock-photo-latrun-isrsael-september-2017-fragment.jpg",
+    "https://virtualglobetrotting.com/map/mini-israel-track-and-field-stadium/view/google/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      34.96851481,
+      31.84219247
+    ],
+    "heading": -2.63559265,
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 172.55,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The local level grade sits inside the buried plinth and below the visible platform.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:29801842ea2301e57d4ce04cfc1ec8ecc07c9a23ba7967c030de53f02df0e4e2",
+    "notes": "The drone footage and aerial pin locate the Teddy Stadium miniature. Its open end faces southwest toward the white visitor semicircle. The small grade supports the plinth while preserving the nearby PMTiles paths, water and buildings."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Four shared surfaces use metric UVs for the plinth, concrete, canopy and colored seat bands. Turf and pitch lines use vertex colors and no texture.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_teddy_stadium/models/teddy-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "risers": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "shell": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.05
+      },
+      "seats": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "field": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "name": "miniature turf",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "risers": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "seats": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "miniature turf",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.045
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "risers": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "seats": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "miniature turf",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.012
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "risers": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shell": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "seats": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "miniature turf",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.006
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "open-end",
+      "position": [
+        7.5,
+        2.85,
+        1.7
+      ],
+      "lookAt": [
+        -0.6,
+        0.55,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "seat-and-canopy",
+      "position": [
+        2.75,
+        1.6,
+        -0.6
+      ],
+      "lookAt": [
+        -0.3,
+        0.7,
+        2
+      ],
+      "fov": 58
+    },
+    {
+      "name": "pitch-and-bowl",
+      "position": [
+        2.3,
+        11.4,
+        3.6
+      ],
+      "lookAt": [
+        -0.55,
+        0.25,
+        0
+      ],
+      "fov": 47
+    }
+  ],
+  "limitations": [
+    "The exhibit footprint, tiers and roof heights are estimated from the aerial and close views. The reconstruction represents the miniature at Latrun at about 1:25 scale.",
+    "The placement is an aerial estimate within the display site. PMTiles provides park paths and context. The miniature has no independent mapped polygon.",
+    "The roof uses a pale shared corrugated-metal material to represent the aged ribbed canopy. The pitch markings and seating colors represent the exhibit display."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -4.579999923706055,
+      -0.3700000047683716,
+      -3.240000009536743
+    ],
+    "max": [
+      2.7699999809265137,
+      1.5834381580352783,
+      3.240000009536743
+    ]
+  },
+  "size": [
+    7.349999904632568,
+    1.95343816280365,
+    6.480000019073486
+  ],
+  "mesh": {
+    "triangles": 9228,
+    "vertices": 18434,
+    "materials": 5,
+    "bytes": 777660,
+    "sha256": "sha256:82c41972805a432bd199a839ea078ab832d972c85417a16136e0ba41f55d280d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

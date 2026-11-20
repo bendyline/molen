@@ -224,6 +224,7 @@ export {
   isRunningTrack,
 } from './client/rail';
 export { createRegionalGroundColor } from './client/regional-ground';
+export { createEarthRoadAlignments, type EarthRoadAlignments } from './client/road-alignments';
 export {
   createEarthRoadSigns,
   type EarthRoadSignContent,

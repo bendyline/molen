@@ -1,0 +1,402 @@
+{
+  "id": "2_world_trade_center",
+  "planId": "2_world_trade_center",
+  "assetId": "molen.worldgen.structure.2_world_trade_center",
+  "title": "2 World Trade Center",
+  "category": "skyscraper",
+  "quality": "planned-design",
+  "wikidataId": "Q1127212",
+  "referenceCoordinate": {
+    "longitude": -74.0111516887352,
+    "latitude": 40.712166635679885
+  },
+  "visualBrief": "The February 2026 Foster + Partners design with blue curtain walls, a tall glazed lobby, a silver-finned podium, six alternating corner gardens and a stepped crown.",
+  "nativeAxes": "+X points toward Church Street, +Z toward Fulton Street, +Y up.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dr/dr5/2_world_trade_center/models/two-wtc-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://wtc.com/developments/2-world-trade-center/",
+    "https://wtcprod.panynj.gov/en/local/learn-about-wtc/2-world-trade-center.html",
+    "https://www.governor.ny.gov/news/governor-hochul-celebrates-groundbreaking-new-american-express-global-headquarters-2-world"
+  ],
+  "sourceFacts": {
+    "address": "200 Greenwich Street",
+    "design": "Foster + Partners 2026 announcement",
+    "proposedHeightFeet": 1226,
+    "proposedHeightMeters": 373.6848,
+    "proposedStories": 55,
+    "proposedCornerGardens": 6,
+    "expectedOpeningYear": 2031
+  },
+  "geographicProposal": {
+    "status": "planned-design",
+    "anchor": [
+      -74.0111516887352,
+      40.712166635679885
+    ],
+    "heading": -0.388318718195356,
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "mapEvidence": "site-frame.json",
+    "mappedBuildingId": 35184650122439,
+    "constructionPointId": 35185922537093,
+    "notes": "The mapped project ground envelope and street frontages sign the proposed tower. PMTiles height is a design value. The project is under construction."
+  },
+  "materialMethod": "Shared curtain-wall, stainless steel, limestone and concrete graphs with repeat scales. Glass panes and terrace plants also use local PBR colors.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "planned-design-review",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/2_world_trade_center/models/two-wtc-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "panes": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.34,
+        "metallic": 0.06
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.49,
+        "metallic": 0.2
+      },
+      "ceiling": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "pavers": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "leaves": {
+        "slot": "roof",
+        "localRef": "palette:#385836",
+        "name": "Terrace planting",
+        "roughness": 0.96
+      },
+      "tint": {
+        "slot": "wall",
+        "localRef": "palette:#506c85",
+        "name": "Blue curtain wall",
+        "roughness": 0.3,
+        "metallic": 0.14
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#a6cadd",
+        "name": "Clear lobby and terrace glass",
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.31
+        ],
+        "roughness": 0.19,
+        "metallic": 0.04,
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.34,
+            "metallic": 0.06
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.49,
+            "metallic": 0.2
+          },
+          "ceiling": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "leaves": {
+            "slot": "roof",
+            "localRef": "palette:#385836",
+            "name": "Terrace planting",
+            "roughness": 0.96
+          },
+          "tint": {
+            "slot": "wall",
+            "localRef": "palette:#506c85",
+            "name": "Blue curtain wall",
+            "roughness": 0.3,
+            "metallic": 0.14
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#a6cadd",
+            "name": "Clear lobby and terrace glass",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.31
+            ],
+            "roughness": 0.19,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.85
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.34,
+            "metallic": 0.06
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.49,
+            "metallic": 0.2
+          },
+          "ceiling": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "leaves": {
+            "slot": "roof",
+            "localRef": "palette:#385836",
+            "name": "Terrace planting",
+            "roughness": 0.96
+          },
+          "tint": {
+            "slot": "wall",
+            "localRef": "palette:#506c85",
+            "name": "Blue curtain wall",
+            "roughness": 0.3,
+            "metallic": 0.14
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#a6cadd",
+            "name": "Clear lobby and terrace glass",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.31
+            ],
+            "roughness": 0.19,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.34,
+            "metallic": 0.06
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.49,
+            "metallic": 0.2
+          },
+          "ceiling": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "leaves": {
+            "slot": "roof",
+            "localRef": "palette:#385836",
+            "name": "Terrace planting",
+            "roughness": 0.96
+          },
+          "tint": {
+            "slot": "wall",
+            "localRef": "palette:#506c85",
+            "name": "Blue curtain wall",
+            "roughness": 0.3,
+            "metallic": 0.14
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#a6cadd",
+            "name": "Clear lobby and terrace glass",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.31
+            ],
+            "roughness": 0.19,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 6
+  },
+  "qaCameras": [
+    {
+      "name": "memorial-and-garden-front",
+      "position": [
+        -458,
+        195,
+        287
+      ],
+      "lookAt": [
+        -5,
+        170,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "church-fulton-lobby",
+      "position": [
+        78,
+        6,
+        53
+      ],
+      "lookAt": [
+        18,
+        12,
+        14
+      ],
+      "fov": 57
+    },
+    {
+      "name": "stacked-north-crown",
+      "position": [
+        -118,
+        387,
+        -144
+      ],
+      "lookAt": [
+        -9,
+        288,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "lower-corner-garden",
+      "position": [
+        -62,
+        89,
+        39
+      ],
+      "lookAt": [
+        -29,
+        74,
+        12
+      ],
+      "fov": 52
+    }
+  ],
+  "limitations": [
+    "The model depicts a published design under construction. The 2031 opening is a project forecast.",
+    "The podium uses the mapped project outline. The upper and roof geometry, garden sizes and floor rhythms are visual estimates.",
+    "The mesh describes public exterior surfaces and a simple lobby backdrop. It has no tenanted fit-out, construction equipment, logos or underground connections."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -45.774864196777344,
+      0,
+      -26.863712310791016
+    ],
+    "max": [
+      48.624732971191406,
+      373.684814453125,
+      26.374446868896484
+    ]
+  },
+  "size": [
+    94.39959716796875,
+    373.684814453125,
+    53.2381591796875
+  ],
+  "mesh": {
+    "triangles": 7492,
+    "vertices": 15460,
+    "materials": 7,
+    "bytes": 650460,
+    "sha256": "sha256:c4ef30c54b36a81b834580618b18b2b1778141d74e9047a536d068d20c171f95"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -126,6 +126,7 @@ import {
 import {
   createMapOverrideSet,
   isStructureViewingDate,
+  type StructureIndex,
   withMapOverrideStructures,
 } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
@@ -212,11 +213,17 @@ import {
 } from './prefetch';
 import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
+import { createEarthRoadAlignments } from './road-alignments';
 import { createEarthRoadSigns } from './road-signs';
 import { createEarthSiteGrading } from './site-grades';
 import { createSnowPace } from './snow';
 import { EarthVehicles } from './vehicles';
-import { earthWaterMeshOptions } from './water-features';
+import {
+  earthWaterMeshOptions,
+  selectEarthWaterFeatures,
+  withEarthShorelineRoadMask,
+  withEarthWaterShorelines,
+} from './water-features';
 import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
 import {
   type CreateEarthWorldgenOptions,
@@ -387,6 +394,8 @@ export interface EarthViewOptions {
   boostMode?: boolean;
   /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
   viewingDate?: string;
+  /** Placement ID of a proposal to show at its planned location. Remount to change it. */
+  structureProposal?: string;
   /** Explicit month (1..12) for regional foliage; remount to change. Omitted means leaf-on. */
   vegetationMonth?: number;
   /**
@@ -1010,6 +1019,7 @@ interface EarthStack {
   prefetcher: EarthPrefetcher | undefined;
   surface: TerrainSurfaceRenderer;
   worldgen: EarthWorldgen | undefined;
+  structures: StructureIndex | undefined;
   vehicles: EarthVehicles | undefined;
   walkWater: EarthWater | undefined;
   aircraft: EarthAircraft | undefined;
@@ -1045,7 +1055,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   let boostMode = options.boostMode ?? false;
   let pilotMotion = pilotMotionTuning(options.pilotMotion);
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
-    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+    throw new Error('viewingDate must be a valid ISO calendar date');
   if (
     options.vegetationMonth !== undefined &&
     (!Number.isInteger(options.vegetationMonth) ||
@@ -1307,16 +1317,6 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     // The view's map overrides are geographic: one set serves every stack the view anchors.
     const overrideSet = createMapOverrideSet<EarthOverride>(options.overrides ?? []);
-    const worldgenContent =
-      content?.worldgen !== undefined
-        ? {
-            ...content.worldgen,
-            // Without the landmarks an override clears, and with the models it places.
-            structures: withMapOverrideStructures(content.worldgen.structures, overrideSet, {
-              isCatalogAsset: (asset) => content.worldgen?.pack.assets[asset] !== undefined,
-            }),
-          }
-        : undefined;
 
     let stack: EarthStack | undefined;
     const cockpitPointer = bindAircraftCockpitPointer({
@@ -1354,6 +1354,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       selected: EarthTerrainSource = source,
     ): Promise<EarthStack> => {
       const pkg = selected.terrain;
+      const roadAlignments = createEarthRoadAlignments(content?.roadAlignments, pkg);
+      const baseContent = content?.worldgen;
+      const worldgenContent = baseContent && {
+        ...baseContent,
+        // Apply the host's overrides at the corrected landmark position.
+        structures: withMapOverrideStructures(
+          roadAlignments?.withStructures(baseContent.structures) ?? baseContent.structures,
+          overrideSet,
+          { isCatalogAsset: (asset) => baseContent.pack.assets[asset] !== undefined },
+        ),
+      };
       const frame = { latitude: frameLatitude };
       const metersPerUnit = terrainPackageMetersPerUnit(pkg, frame);
       const fleet =
@@ -1412,6 +1423,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { buildingInfill: options.buildingInfill }
                   : {}),
                 ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+                ...(options.structureProposal !== undefined
+                  ? { structureProposal: options.structureProposal }
+                  : {}),
                 ...(options.vegetationMonth !== undefined
                   ? { vegetationMonth: options.vegetationMonth }
                   : {}),
@@ -1466,7 +1480,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         const audioTerrain = new EarthAudioTerrain();
-        const waterMesh = earthWaterMeshOptions(content?.waterFeatures, pkg);
+        const waterFeatures = selectEarthWaterFeatures(content?.waterFeatures, options.viewingDate);
+        const waterMesh = earthWaterMeshOptions(waterFeatures, pkg);
         parts.push(() => audioTerrain.clear());
         const wildlifeWanted =
           ambientSettings !== undefined &&
@@ -1478,6 +1493,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           try {
             const decoderWorker = semanticDecoderWorker();
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
+              ...(roadAlignments ? { transformFeatures: roadAlignments.transformFeatures } : {}),
               // Worldgen bounds distant tiles to land colors and simple building silhouettes.
               distantCoverage: worldgen !== undefined,
               admission: renderer.admission,
@@ -1516,21 +1532,25 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 : {}),
               waterLayer: {
                 visible: true,
-                renderer: observeSemanticTiles(
-                  createDefaultTerrainSemanticRenderer({
-                    renderLandcover: false,
-                    renderTransportation: false,
-                    renderBuildings: false,
-                    materials: { water },
-                    waterOffset: 0.65,
-                    ...waterMesh,
-                    // Earth packages have a sea: harbors and coasts draw at one flat level.
-                    ...(pkg.coordinateSpace.kind === 'geospatial' ||
-                    pkg.surface?.seaLevel !== undefined
-                      ? { seaLevel: pkg.surface?.seaLevel ?? 0 }
-                      : {}),
-                  }),
-                  audioTerrain.observer,
+                renderer: withEarthWaterShorelines(
+                  observeSemanticTiles(
+                    createDefaultTerrainSemanticRenderer({
+                      renderLandcover: false,
+                      renderTransportation: false,
+                      renderBuildings: false,
+                      materials: { water },
+                      waterOffset: 0.65,
+                      ...waterMesh,
+                      // Earth packages have a sea: harbors and coasts draw at one flat level.
+                      ...(pkg.coordinateSpace.kind === 'geospatial' ||
+                      pkg.surface?.seaLevel !== undefined
+                        ? { seaLevel: pkg.surface?.seaLevel ?? 0 }
+                        : {}),
+                    }),
+                    audioTerrain.observer,
+                  ),
+                  waterFeatures,
+                  pkg,
                 ),
               },
               landcoverLayer:
@@ -1589,11 +1609,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   visible: true,
                   renderer: withEarthAirports(
                     withMapOverrides(
-                      observeSemanticTiles(
-                        ambientTiles !== undefined
-                          ? observeSemanticTiles(inner, ambientTiles)
-                          : inner,
-                        audioTerrain.observer,
+                      withEarthShorelineRoadMask(
+                        observeSemanticTiles(
+                          ambientTiles !== undefined
+                            ? observeSemanticTiles(inner, ambientTiles)
+                            : inner,
+                          audioTerrain.observer,
+                        ),
+                        waterFeatures,
+                        pkg,
                       ),
                       overrideSet,
                       { metersPerUnit },
@@ -1639,7 +1663,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const groundGrading = composeEarthGroundGrading(
           roadGrading,
           content?.airports ? createAirportTerrainGrading(content.airports) : undefined,
-          createEarthSiteGrading(content?.siteGrades, pkg),
+          createEarthSiteGrading(content?.siteGrades, pkg, options.viewingDate),
         );
         if (roadGrading !== undefined) {
           const grading = roadGrading;
@@ -1844,6 +1868,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           prefetcher,
           surface,
           worldgen,
+          structures: worldgenContent?.structures,
           vehicles,
           walkWater: vehicles
             ? undefined
@@ -2413,7 +2438,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
      * so the ground there is no place to leave a car.
      */
     const nearLandmark = (x: number, z: number): boolean => {
-      const structures = worldgenContent?.structures;
+      const structures = stack?.structures;
       if (structures === undefined) return false;
       const { latitude, longitude } = toLatLon(x, z);
       const dLat = 0.0015;

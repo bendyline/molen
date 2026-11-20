@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Arugbá Gate review",
+  "seed": "osun_grove_arugba_gate",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "gate",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_arugba_gate",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dde6d0",
+            "ground": "#aa9c82",
+            "intensity": 1.1
+          },
+          "sun": {
+            "direction": [
+              -2,
+              5,
+              6
+            ],
+            "color": "#fff2de",
+            "intensity": 1.45,
+            "castShadow": true
+          },
+          "background": "#afc0ad",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.218,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              90,
+              0.35,
+              70
+            ]
+          },
+          "materialRef": "palette:#857d64",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -6.4967,
+      3.257,
+      22.7628
+    ],
+    "lookAt": [
+      -1.4986,
+      2.507,
+      3.9251
+    ],
+    "fov": 56
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.grand_inga_dam",
+  "kind": "static-structure",
+  "title": "Grand Inga Dam, 2014 proposal",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "models/landscape.json",
+      "models/earth-site-fit.json",
+      "site-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.grand_inga_dam",
+        "output": "assets/places/kr/kr1/grand_inga_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fdac6fe1d22dfc96688b2bf485c57437593ef93c4c28ba02270a870121d4d60e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "grand-inga-relief-mesh",
+        "path": "models/grand-inga-model.mjs"
+      },
+      {
+        "id": "grand-inga-relief-master",
+        "path": "models/generate-grand-inga.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "proposal-preview.webp",
+      "placement-report.json"
+    ]
+  }
+}

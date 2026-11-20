@@ -1,0 +1,226 @@
+{
+  "id": "sanabria_lake",
+  "planId": "sanabria_lake",
+  "assetId": "molen.worldgen.structure.sanabria_lake",
+  "title": "Sanabria Lake",
+  "category": "lake",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": -6.71916667,
+    "latitude": 42.1225
+  },
+  "visualBrief": "Terrain relief of a glacial lake with connected western and eastern basins, mapped shoreline and islands.",
+  "nativeAxes": "+X east, +Z south, +Y up. Local Y=0 is the illustrative 1000 m surface elevation.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ez/ez7/sanabria_lake/models/sanabria-lake-model.mjs",
+    "export": "buildMaster"
+  },
+  "materialMethod": "Shared granite and gravel surfaces with planar mapping and slope-based vertex colors. A local water color distinguishes the surface in portable scenes.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "reviewed-as-relief",
+  "mediumFiContext": {
+    "groundY": -24,
+    "scale": 46
+  },
+  "geographicProposal": {
+    "status": "native-hydrology",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "notes": "The portable topographic relief is registered for standalone scenes. In the Earth viewer feature 177168713 uses the built-in terrain and water layers with a shared stage."
+  },
+  "referencePages": [
+    "https://info.igme.es/ielig/LIGInfo.aspx?codigo=CI043",
+    "https://www.miteco.gob.es/es/agua/temas/delimitacion-y-restauracion-del-dominio-publico-hidraulico/catalogo-nacional-de-reservas-hidrologicas/informacion/duero/lago-sanabria.html"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ez7/sanabria_lake/models/sanabria-lake-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "slopes": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "lake": {
+        "slot": "trim",
+        "localRef": "palette:#426e7d",
+        "name": "Sanabria Lake water",
+        "roughness": 0.48,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 110,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "slopes": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lake": {
+            "slot": "trim",
+            "localRef": "palette:#426e7d",
+            "name": "Sanabria Lake water",
+            "roughness": 0.48,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 44
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "slopes": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lake": {
+            "slot": "trim",
+            "localRef": "palette:#426e7d",
+            "name": "Sanabria Lake water",
+            "roughness": 0.48,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 16
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "slopes": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lake": {
+            "slot": "trim",
+            "localRef": "palette:#426e7d",
+            "name": "Sanabria Lake water",
+            "roughness": 0.48,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 7
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "glacial-basins",
+      "position": [
+        -2940,
+        4050,
+        3020
+      ],
+      "lookAt": [
+        105,
+        20,
+        60
+      ],
+      "fov": 43
+    },
+    {
+      "name": "shoreline-and-islands",
+      "position": [
+        2850,
+        4000,
+        -1570
+      ],
+      "lookAt": [
+        85,
+        20,
+        45
+      ],
+      "fov": 42
+    },
+    {
+      "name": "terrain-above-the-lake",
+      "position": [
+        830,
+        1010,
+        -2540
+      ],
+      "lookAt": [
+        50,
+        105,
+        140
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Relief above the water comes from the retained standard Terrarium grid. The model has no underwater bathymetry or survey-grade shoreline elevations.",
+    "The 1000 m water elevation is a rounded visual stage. The water level varies in reality.",
+    "The relief color is schematic. Land use, vegetation, buildings and seasonal water are supplied by the normal viewer layers."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2080,
+      -20.8799991607666,
+      -1488
+    ],
+    "max": [
+      2320,
+      433.0199890136719,
+      1664
+    ]
+  },
+  "size": [
+    4400,
+    453.8999881744385,
+    3152
+  ],
+  "mesh": {
+    "triangles": 82663,
+    "vertices": 247989,
+    "materials": 3,
+    "bytes": 9921864,
+    "sha256": "sha256:1f9145441bf7223493722ee7df59038975025dbef19cb30825aefc283f106c9f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

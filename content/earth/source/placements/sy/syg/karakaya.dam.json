@@ -106,22 +106,6 @@
         -1.72726
       ],
       [
-        43.41277,
-        -6.39928
-      ],
-      [
-        61.35132,
-        1.62131
-      ],
-      [
-        41.82375,
-        45.82461
-      ],
-      [
-        36.78169,
-        43.63597
-      ],
-      [
         36.66952,
         44.75273
       ],
@@ -134,16 +118,16 @@
         45
       ],
       [
-        63,
-        24
+        59,
+        26
       ],
       [
-        76,
-        31
+        66,
+        33
       ],
       [
-        73,
-        52
+        66,
+        56
       ],
       [
         54,
@@ -325,22 +309,6 @@
           -1.72726
         ],
         [
-          43.41277,
-          -6.39928
-        ],
-        [
-          61.35132,
-          1.62131
-        ],
-        [
-          41.82375,
-          45.82461
-        ],
-        [
-          36.78169,
-          43.63597
-        ],
-        [
           36.66952,
           44.75273
         ],
@@ -353,16 +321,16 @@
           45
         ],
         [
-          63,
-          24
+          59,
+          26
         ],
         [
-          76,
-          31
+          66,
+          33
         ],
         [
-          73,
-          52
+          66,
+          56
         ],
         [
           54,
@@ -454,8 +422,8 @@
         ]
       ]
     ],
-    "minHeight": -142,
-    "basis": "Only the central gate sill, spillway runout, powerhouse and occupied platforms. The outer rock shoulders, river below the apron, native roads and bridge remain in the terrain and semantic layers."
+    "minHeight": -121,
+    "basis": "The opening follows the occupied central spillway, apron and powerhouse. The east platform meets the retained rock shoulder."
   },
   "buildingCutout": {
     "outline": [
@@ -506,6 +474,29 @@
     ],
     "minimumCoverage": 0.95,
     "basis": "Replace the native powerhouse footprint only, source PMTiles feature 35184583045645."
+  },
+  "waterCutout": {
+    "outlines": [
+      [
+        [
+          -17,
+          27
+        ],
+        [
+          17,
+          27
+        ],
+        [
+          17,
+          75
+        ],
+        [
+          -17,
+          75
+        ]
+      ]
+    ],
+    "basis": "Prevent the mapped river centerline from covering the dry spillway runout and concrete apron."
   },
   "terrainReference": {
     "anchor": [

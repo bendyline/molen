@@ -1,0 +1,249 @@
+{
+  "id": "summer_palace_chengxian_gallery",
+  "planId": "summer_palace",
+  "title": "Summer Palace · Chengxian covered gallery",
+  "category": "palace",
+  "quality": "medium-fi",
+  "wikidataId": "Q4132",
+  "assetId": "molen.worldgen.structure.summer_palace_chengxian_gallery",
+  "referenceCoordinate": {
+    "longitude": 116.25968674335894,
+    "latitude": 39.9946079912801
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_chengxian_gallery/models/chengxian-gallery-model.mjs",
+    "export": "buildMaster"
+  },
+  "visualBrief": "An open gallery following the inside bank of the pond. Continuous dark tiled eaves turn south over red posts and painted beams. The lakeside timber rail follows a low masonry platform.",
+  "nativeAxes": "+X points east, +Z points south. The long roof runs toward the north gable of Chengxian Hall.",
+  "referencePages": [
+    "https://summerpalace.net.cn/guide_map.html",
+    "https://www.weishoot.com/story/E8F8F74C-2540-442D-BBC7-AB6C60ADB47C.html",
+    "https://www.sohu.com/a/495036451_100157110",
+    "https://earth.google.com/web/@39.99445,116.25962,52a,320d,35y,0h,0t,0r/data=ChYqEAgBEgoyMDIyLTAxLTE3GAFCAggBQgIIAEoNCP___________wEQAA"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Shared ceramic tile, timber and ashlar graphs with vertex tint for the red posts and painted beams.",
+  "geographicProposal": {
+    "status": "preview",
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "anchor": [
+      116.25968674335894,
+      39.9946079912801
+    ],
+    "heading": 0,
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 57,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The stone base follows the sampled terrain between the gallery and the hall. The footings extend into the native terrain and preserve the shore.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f1667eec4ea3ec8c87d4784c975ed97076242be8183d1e0f69cf36b2b117262a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "orientationPolicy": "approximate-visualization",
+    "bounds": [
+      116.25957498366166,
+      39.994214536927885,
+      116.25977738332274,
+      39.99466446651888
+    ],
+    "notes": "The park guide shows the corridor joining Jade River Studio and Chengxian Hall on the eastern shore. Leaf-off imagery shows the waterfront and the endpoint pavilions. The turning route is estimated between those endpoints and fitted to the PMTiles shore and nearby footprints. Canopy obscures the exact roof ridge and connection details."
+  },
+  "mediumFiContext": {
+    "groundY": -0.7,
+    "scale": 0.52,
+    "focus": {
+      "center": [
+        2,
+        0,
+        16
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_chengxian_gallery/models/chengxian-gallery-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      }
+    },
+    "errorMeters": 0.16,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.064
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.022
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.007
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "roof-turn-and-shore",
+      "position": [
+        -23,
+        22,
+        19
+      ],
+      "lookAt": [
+        1,
+        1.75,
+        15.5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "under-the-corner-beams",
+      "position": [
+        -2.9,
+        1.55,
+        5.9
+      ],
+      "lookAt": [
+        -1.22,
+        1.56,
+        -0.6
+      ],
+      "fov": 56
+    },
+    {
+      "name": "north-approach-and-rails",
+      "position": [
+        -12.4,
+        3.2,
+        -2.3
+      ],
+      "lookAt": [
+        -4,
+        1.55,
+        -2.8
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-gable-approach",
+      "position": [
+        0.7,
+        6.7,
+        44.8
+      ],
+      "lookAt": [
+        6.14,
+        1.33,
+        37.9
+      ],
+      "fov": 56
+    }
+  ],
+  "limitations": [
+    "The corner and roof width are estimated from the guide, shore and endpoint buildings. Trees obscure individual roof edges in the aerial image.",
+    "Decorative beams, tile count and rails are interpreted from ground views of the connected group. The east-bank run has an open aisle and uses no speculative stone relief panels."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -9.588982582092285,
+      -1.733199954032898,
+      -6.333170413970947
+    ],
+    "max": [
+      7.774130821228027,
+      3.9260001182556152,
+      43.96149826049805
+    ]
+  },
+  "size": [
+    17.363113403320312,
+    5.659200072288513,
+    50.294668674468994
+  ],
+  "mesh": {
+    "triangles": 31992,
+    "vertices": 61424,
+    "materials": 3,
+    "bytes": 2597644,
+    "sha256": "sha256:24027331cd4199d64d3d13d9aee6e7b045aef1f3866716ca9b44426981099bf8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

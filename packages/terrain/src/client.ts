@@ -54,6 +54,12 @@ export {
 } from './ground-material';
 export type { TerrainLandcoverRasterOptions } from './landcover-raster';
 export {
+  clipTerrainPolygonToTile,
+  partitionTerrainPolygon,
+  subtractTerrainPolygon,
+  unionTerrainPolygons,
+} from './landcover-surface';
+export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
   type TerrainLandcoverGenerator,

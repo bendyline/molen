@@ -1,0 +1,59 @@
+{
+  "format": "molen/structure-terrain-fit@1",
+  "site": "Lotte World Tower",
+  "reference": {
+    "anchor": [
+      127.10329584042599,
+      37.51213910866832
+    ],
+    "modelHeight": 0,
+    "basis": "Single uncovered outdoor sample west of the tower apron. Standard Mapzen terrain away from the mapped foundation gives an approximate local street level."
+  },
+  "grade": [
+    {
+      "name": "Lotte World Tower tower base and entrance apron",
+      "anchor": [
+        127.10265952499999,
+        37.51254125
+      ],
+      "heading": 2.7509722771473926,
+      "bounds": [
+        -42,
+        -39,
+        42,
+        39
+      ],
+      "blend": 16,
+      "elevation": 20.726,
+      "basis": "Tie the mapped tower foundation to the nearby western outdoor reference and blend into the plaza."
+    },
+    {
+      "name": "Lotte World Tower two opposed seam entrances",
+      "anchor": [
+        127.10265952499999,
+        37.51254125
+      ],
+      "heading": 2.7509722771473926,
+      "bounds": [
+        -48,
+        -8,
+        48,
+        8
+      ],
+      "blend": 15,
+      "elevation": 20.726,
+      "basis": "Continue the same grade under the two basal seam tips and their immediate landings."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "pmtiles-map.json",
+      "hash": "sha256:b1a7fc77400a548e482e1e2c0b7b6be51d37a8bbe755c2b2abeb692072c1835a"
+    },
+    {
+      "path": "terrain-grid.json",
+      "hash": "sha256:99e7f80bbd57c71c43f5a637ec59b48b1db6438cb7483d83c720c90baffc7b0e"
+    }
+  ],
+  "scope": "Retained tower base and upper part geometry. The independently mapped mall and neighboring site features are preserved."
+}

@@ -539,6 +539,20 @@ function bowl(out) {
     }
   }
 }
+export const warsawSections = {
+  clearR,
+  innerR,
+  lowerY,
+  ringY,
+  roofPoint,
+  roofR,
+  rounded,
+  seat,
+  skinPoint,
+  tipY,
+  upperY,
+};
+
 export function buildWarsaw(out) {
   site(out);
   bowl(out);

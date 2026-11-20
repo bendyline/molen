@@ -68,7 +68,15 @@ function arch(out, w, y, h, z, depth, color, slot = 'brick', rise = w / 2) {
     );
   }
 }
-function dividedWindow(out, x, y, w, h, z, { shutters = false, color = pale } = {}) {
+function dividedWindow(
+  out,
+  x,
+  y,
+  w,
+  h,
+  z,
+  { shutters = false, color = pale, reduced = false } = {},
+) {
   panel(out, 'glass', x - w / 2, x + w / 2, y, y + h, z, [0.15, 0.22, 0.2]);
   for (const xx of [x - w / 2, x + w / 2, x])
     box(
@@ -80,7 +88,7 @@ function dividedWindow(out, x, y, w, h, z, { shutters = false, color = pale } = 
     );
   for (const yy of [y, y + h, y + h * 0.61])
     box(out, 'wood', [x - w / 2, yy - 0.035, z + 0.017], [x + w / 2, yy + 0.035, z + 0.075], color);
-  for (let i = 1; i < 5; i++)
+  for (let i = 1; !reduced && i < 5; i++)
     for (const offset of [-w / 4, w / 4])
       box(
         out,
@@ -89,7 +97,7 @@ function dividedWindow(out, x, y, w, h, z, { shutters = false, color = pale } = 
         [x + offset + 0.009, y + (i * h) / 5 + 0.01, z + 0.07],
         color,
       );
-  for (const offset of [-w / 4, w / 4])
+  for (const offset of reduced ? [] : [-w / 4, w / 4])
     box(
       out,
       'wood',
@@ -97,7 +105,7 @@ function dividedWindow(out, x, y, w, h, z, { shutters = false, color = pale } = 
       [x + offset + 0.012, y + h, z + 0.06],
       color,
     );
-  for (let i = 1; i < 5; i++)
+  for (let i = 1; !reduced && i < 5; i++)
     box(
       out,
       'wood',
@@ -115,7 +123,7 @@ function dividedWindow(out, x, y, w, h, z, { shutters = false, color = pale } = 
         [cx + w * 0.24, y + h + 0.02, z + 0.06],
         green,
       );
-      for (let i = 1; i < 5; i++)
+      for (let i = 1; !reduced && i < 5; i++)
         box(
           out,
           'wood',
@@ -133,7 +141,7 @@ function circularWall(
   y1,
   holes,
   color,
-  { inside = false, slot = 'brick', n = 192 } = {},
+  { inside = false, slot = 'brick', n = 192, reduced = false } = {},
 ) {
   const hs = holes.map((h) => ({ ...h, a: h.a ?? 0, theta: Math.asin(h.w / (2 * r)) }));
   const ys = [...new Set([y0, y1, ...hs.flatMap((h) => [h.y, h.y + h.h])])].sort((a, b) => a - b);
@@ -183,7 +191,7 @@ function circularWall(
       box(o, slot, [-w - 0.04, y - 0.035, -depth], [w + 0.04, y + 0.035, 0.018], color);
     if (h.arch) arch(o, h.w, h.y, h.h, 0.005, depth, color, slot);
     if (h.door) panel(o, 'wood', -w, w, h.y, h.y + h.h, -depth + 0.012, green);
-    else if (!h.open) dividedWindow(o, 0, h.y, h.w, h.h, -depth + 0.02, { color: pale });
+    else if (!h.open) dividedWindow(o, 0, h.y, h.w, h.h, -depth + 0.02, { color: pale, reduced });
   }
 }
 function rectangleRoof(out, rx, depth, y, h, color = roof) {
@@ -230,9 +238,10 @@ function rectangleRoof(out, rx, depth, y, h, color = roof) {
     quad(out, 'plaster', ps, normalFor(...ps.slice(0, 3)), salmon);
   }
 }
-function ringAndHouses(out) {
+function ringAndHouses(out, reduced = false) {
   const outer = 17.05,
-    inner = 12.25;
+    inner = 12.25,
+    segments = reduced ? 56 : 192;
   const topHoles = Array.from({ length: 16 }, (_, i) => ({
     a: radians(-42) + (i * Math.PI) / 8,
     y: 8.83,
@@ -242,7 +251,7 @@ function ringAndHouses(out) {
     depth: 0.65,
     open: true,
   }));
-  circularWall(out, outer, 0, 11.32, topHoles, brick);
+  circularWall(out, outer, 0, 11.32, topHoles, brick, { n: segments, reduced });
   const innerHoles = Array.from({ length: 20 }, (_, i) => ({
     a: (i * Math.PI) / 10,
     y: i % 5 === 0 ? 0.08 : 0.86,
@@ -252,8 +261,8 @@ function ringAndHouses(out) {
     door: i % 5 === 0,
     depth: 0.31,
   }));
-  circularWall(out, inner, 0, 6.36, innerHoles, brick, { inside: true });
-  ring(out, 'wood', 6.33, inner - 0.13, 16.38, 0.17, timber, 192);
+  circularWall(out, inner, 0, 6.36, innerHoles, brick, { inside: true, n: segments, reduced });
+  ring(out, 'wood', 6.33, inner - 0.13, 16.38, 0.17, timber, segments);
   for (let i = 0; i < 32; i++) {
     const a = (i * Math.PI) / 16,
       b = ((i + 1) * Math.PI) / 16;
@@ -274,6 +283,9 @@ function ringAndHouses(out) {
       [10.45, 11.85],
     ],
     roof,
+    0,
+    Math.PI * 2,
+    segments,
   );
   profileArc(
     out,
@@ -283,9 +295,12 @@ function ringAndHouses(out) {
       [12.09, 17.47],
     ],
     timber,
+    0,
+    Math.PI * 2,
+    segments,
   );
-  ring(out, 'wood', 10.3, 11.73, 12.01, 0.15, timber, 192);
-  ring(out, 'brick', 11.29, 16.6, 17.31, 0.16, brick, 192);
+  ring(out, 'wood', 10.3, 11.73, 12.01, 0.15, timber, segments);
+  ring(out, 'brick', 11.29, 16.6, 17.31, 0.16, brick, segments);
   for (let i = 0; i < 72; i++)
     box(
       transformed(out, (i * Math.PI) / 36),
@@ -321,7 +336,7 @@ function ringAndHouses(out) {
         panel(o, 'wood', h.x - h.w / 2, h.x + h.w / 2, h.y, h.y + h.h, -0.26, iron);
         for (const xx of [h.x - h.w / 2 - 0.08, h.x + h.w / 2 + 0.08])
           box(o, 'limestone', [xx - 0.055, h.y, -0.01], [xx + 0.055, h.y + h.h + 0.08, 0.08], pale);
-      } else dividedWindow(o, h.x, h.y, h.w, h.h, -0.24, { shutters: h.y < 2 });
+      } else dividedWindow(o, h.x, h.y, h.w, h.h, -0.24, { shutters: h.y < 2, reduced });
       box(
         o,
         'limestone',
@@ -331,7 +346,7 @@ function ringAndHouses(out) {
       );
     }
     rectangleRoof(o, half, 5.22, 6.8, 3.33);
-    dividedWindow(o, 0, 7.35, 1.02, 1.05, -0.24);
+    dividedWindow(o, 0, 7.35, 1.02, 1.05, -0.24, { reduced });
     for (const s of [-1, 1])
       box(o, 'plaster', [s * half - 0.05, 0, -5.22], [s * half + 0.05, 6.8, -0.015], salmon);
     for (const s of [-1, 1]) {
@@ -340,7 +355,15 @@ function ringAndHouses(out) {
     }
     box(o, 'limestone', [-0.12, 9.77, -0.08], [0.12, 10.55, 0.18], pale);
     tube(o, 'metal', [0, 10.55, 0.05], [0, 11.22, 0.05], 0.024, iron, 8);
-    sphere(o, 'metal', [0, 10.94, 0.05], [0.07, 0.07, 0.07], iron, 12, 8);
+    sphere(
+      o,
+      'metal',
+      [0, 10.94, 0.05],
+      [0.07, 0.07, 0.07],
+      iron,
+      reduced ? 6 : 12,
+      reduced ? 4 : 8,
+    );
     for (const x of [-half + 0.09])
       tube(o, 'metal', [x, 0.16, 0.095], [x, 6.77, 0.095], 0.046, [0.33, 0.31, 0.25], 10);
     const chimney = transformed(out, a - radians(6.2), P(17.59, 0, a - radians(6.2)));
@@ -364,7 +387,11 @@ function ringAndHouses(out) {
     const a = Math.atan2(c[0], c[1]);
     if (a >= lo - 0.03 && a <= hi + 0.03) section.addQuad(slot, ref, ps, n, uv, color);
   };
-  circularWall(clipped, r, 0, 6.8, commanderHoles, salmon, { slot: 'plaster' });
+  circularWall(clipped, r, 0, 6.8, commanderHoles, salmon, {
+    slot: 'plaster',
+    n: segments,
+    reduced,
+  });
   profileArc(
     out,
     'tiles',
@@ -376,7 +403,7 @@ function ringAndHouses(out) {
     roof,
     lo,
     hi,
-    80,
+    reduced ? 24 : 80,
   );
   for (const a of [lo, hi]) {
     const ps = [
@@ -416,7 +443,7 @@ function ringAndHouses(out) {
   box(portal, 'limestone', [-1.51, 4.55, 0.97], [1.51, 4.68, 1.28], pale);
 }
 
-function tower(out) {
+function tower(out, reduced = false) {
   const doorway = radians(-28),
     r = 3.86;
   const holes = [
@@ -450,7 +477,7 @@ function tower(out) {
     holes,
     slot: 'plaster',
     color: (y) => (y < 6.27 ? brick : pale),
-    segments: 192,
+    segments: reduced ? 56 : 192,
   });
   // Exposed lower brick replaces painted plaster while preserving the real openings.
   circularWall(
@@ -460,8 +487,9 @@ function tower(out) {
     6.27,
     [{ a: doorway, y: 0.03, w: 1.61, h: 2.86, door: true, arch: true, depth: 0.63 }],
     brick,
+    { n: reduced ? 56 : 192, reduced },
   );
-  ring(out, 'brick', 22.9, 3.12, 3.78, 0.18, brick, 160);
+  ring(out, 'brick', 22.9, 3.12, 3.78, 0.18, brick, reduced ? 56 : 160);
   lathe(
     out,
     'concrete',
@@ -470,9 +498,9 @@ function tower(out) {
       [21.88, 3.13],
     ],
     [0.39, 0.4, 0.34],
-    128,
+    reduced ? 56 : 128,
   );
-  railRing(out, 21.88, 3.13, 1.12, iron, 48);
+  railRing(out, 21.88, 3.13, 1.12, iron, reduced ? 24 : 48);
   // Stone top merlon/embrasure details remain low, as in the current restored tower.
   for (let i = 0; i < 12; i++)
     box(
@@ -490,8 +518,24 @@ function tower(out) {
     beam(o, 'limestone', [x, 3.28, 0.09], [x * 0.87, 5.7, 0.09], 0.17, 0.2, pale);
   for (const y of [3.21, 5.73]) box(o, 'limestone', [-1.13, y, 0.02], [1.13, y + 0.16, 0.24], pale);
   for (const s of [-1, 1]) {
-    sphere(o, 'limestone', [s * 0.95, 3.48, 0.16], [0.28, 0.3, 0.1], pale, 24, 12);
-    sphere(o, 'limestone', [s * 0.81, 5.58, 0.19], [0.16, 0.16, 0.07], pale, 20, 10);
+    sphere(
+      o,
+      'limestone',
+      [s * 0.95, 3.48, 0.16],
+      [0.28, 0.3, 0.1],
+      pale,
+      reduced ? 12 : 24,
+      reduced ? 6 : 12,
+    );
+    sphere(
+      o,
+      'limestone',
+      [s * 0.81, 5.58, 0.19],
+      [0.16, 0.16, 0.07],
+      pale,
+      reduced ? 10 : 20,
+      reduced ? 5 : 10,
+    );
     for (let j = 0; j < 4; j++)
       beam(
         o,
@@ -503,7 +547,15 @@ function tower(out) {
         [0.49, 0.24, 0.23],
       );
   }
-  sphere(o, 'limestone', [0, 6.1, 0.11], [0.23, 0.27, 0.1], pale, 24, 12);
+  sphere(
+    o,
+    'limestone',
+    [0, 6.1, 0.11],
+    [0.23, 0.27, 0.1],
+    pale,
+    reduced ? 12 : 24,
+    reduced ? 6 : 12,
+  );
   for (const s of [-1, 1])
     beam(
       o,
@@ -591,7 +643,7 @@ function flatPolygon(out, slot, points, y, color, holes = []) {
     );
   }
 }
-function fortGate(out) {
+function fortGate(out, reduced = false) {
   const anchor = [60.0987, 0, 45.3311],
     angle = Math.atan2(0.905, 0.425);
   const o = transformed(out, angle, anchor),
@@ -627,7 +679,7 @@ function fortGate(out) {
         [s < 0 ? -0.11 : 1.91, y + 0.075, -0.2],
         iron,
       );
-      for (let i = 0; i < 7; i++)
+      for (let i = 0; !reduced && i < 7; i++)
         sphere(
           o,
           'metal',
@@ -690,7 +742,7 @@ function fortGate(out) {
   arch(inside, 2.82, 0.03, 2.96, 0.02, 1.2, brick);
   panel(inside, 'wood', -1.41, 1.41, 0.03, 2.99, -1.17, [0.035, 0.03, 0.024]);
 }
-function ancillaryBuildings(out) {
+function ancillaryBuildings(out, reduced = false) {
   // Exact irregular footprint of the long two-storey barracks against the southeastern rampart.
   const points = cleanLoop(plan.features['185876662'].outline),
     center = points.reduce(
@@ -721,7 +773,7 @@ function ancillaryBuildings(out) {
             depth: 0.28,
           });
     piercedFacade(o, { half: len / 2, y0: 0, y1: 5.53, z: 0, holes, slot: 'brick', color: brick });
-    for (const h of holes) dividedWindow(o, h.x, h.y, h.w, h.h, -0.23, { color: green });
+    for (const h of holes) dividedWindow(o, h.x, h.y, h.w, h.h, -0.23, { color: green, reduced });
     box(o, 'limestone', [-len / 2, 5.48, -0.16], [len / 2, 5.68, 0.17], [0.57, 0.55, 0.47]);
   }
   flatPolygon(out, 'metal', points, 5.62, [0.29, 0.3, 0.28]);
@@ -818,7 +870,7 @@ function terrainRing(out, outer, inner, outerY, innerY, holes = [], doorway = fa
       }
   }
 }
-function bastions(out) {
+function bastions(out, reduced = false) {
   const f = plan.features,
     // The shoreline includes the low moat ledge and approach. Earth above the
     // rampart starts at the retaining wall, otherwise it buries the gateway.
@@ -947,7 +999,7 @@ function bastions(out) {
     beam(bridge, 'wood', [x, 4.72, -L * 0.87], [x, 4.91, L * 0.49], 0.2, 0.31, [0.4, 0.23, 0.14]);
     tube(bridge, 'metal', [x - 0.25, 4.69, -L * 0.4], [x + 0.25, 4.69, -L * 0.4], 0.095, iron, 16);
     tube(bridge, 'metal', [x, 4.9, L * 0.45], [x, 0.12, L * 0.45], 0.019, iron, 8);
-    for (let y = 0.18; y < 4.85; y += 0.11) {
+    for (let y = 0.18; !reduced && y < 4.85; y += 0.11) {
       const points = [];
       for (let j = 0; j < 8; j++) {
         const a = (j * Math.PI) / 4;
@@ -994,13 +1046,15 @@ function causeway(out, points, width) {
     }
   }
 }
-export function buildWisloujscie(out) {
-  bastions(out);
-  fortGate(out);
-  ancillaryBuildings(out);
-  ringAndHouses(out);
-  tower(out);
+export function buildWisloujscie(out, reduced = false) {
+  bastions(out, reduced);
+  fortGate(out, reduced);
+  ancillaryBuildings(out, reduced);
+  ringAndHouses(out, reduced);
+  tower(out, reduced);
 }
+
+export const wisloujscieSections = { arch, cleanLoop, flatPolygon, profileArc, terrainRing, tower };
 
 export const wisloujscieStudies = [
   lighthouseStudy({

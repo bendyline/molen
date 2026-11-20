@@ -81,19 +81,25 @@ export async function buildPlaceGallery() {
       geohash2: entry.geohash2,
       geohash3: entry.geohash3,
       review:
-        reviewed?.geographic?.placementKind === 'map-category'
-          ? 'Reusable map type · rendering and rule integration reviewed'
-          : reviewed?.readiness === 'ready'
-            ? 'Exterior, rendering and placement reviewed'
-            : reviewed?.geographic?.activePlacement
-              ? 'World-viewer preview · further review pending'
-              : 'Imported model · review pending',
+        reviewed?.geographic?.placementKind === 'native-water'
+          ? 'Portable relief and native Earth terrain and water reviewed'
+          : reviewed?.geographic?.placementKind === 'map-category'
+            ? 'Reusable map type · rendering and rule integration reviewed'
+            : reviewed?.readiness === 'ready'
+              ? reviewed.geographic?.appearance?.representedDate
+                ? `Historical placement · ${reviewed.geographic.appearance.representedDate}`
+                : 'Exterior, rendering and placement reviewed'
+              : reviewed?.geographic?.activePlacement
+                ? 'World-viewer preview · further review pending'
+                : 'Imported model · review pending',
       preview: link(
-        source.files.documents?.includes('site-preview.png')
-          ? 'site-preview.png'
-          : reviewed?.sharedSurfaceQa?.hashBoundReviewPassed
-            ? 'shots/shared/angle-0.png'
-            : 'preview.png',
+        reviewed?.geographic?.placementKind === 'native-water'
+          ? 'native-preview.webp'
+          : source.files.documents?.includes('site-preview.png')
+            ? 'site-preview.png'
+            : reviewed?.sharedSurfaceQa?.hashBoundReviewPassed
+              ? 'shots/shared/angle-0.png'
+              : 'preview.png',
       ),
       readme: link('README.md'),
       model: link(source.files.models[0].path),

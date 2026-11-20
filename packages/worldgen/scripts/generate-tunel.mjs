@@ -77,9 +77,9 @@ const spec = {
     status: 'preview-proposal',
     anchor: placement.anchor,
     heading: placement.heading,
-    elevationMode: 'terrain-contact',
+    elevationMode: placement.datum === 'sea-level' ? 'sea-level' : 'terrain-contact',
     orientationPolicy: 'approximate-visualization',
-    elevationMeters: 0,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis:
       'Both terminal hosts and the approximate buried route share one common lower outside datum and fixed source grade offsets. Exact threshold and tunnel grades remain approximate. ' +
@@ -201,6 +201,7 @@ const source = {
         'pmtiles-map.json',
         'terrain-samples.json',
         'terrain-grid.json',
+        'site-fit.json',
         'review-scope.json',
         'reference-observations.json',
         'terrain-review.height.png',

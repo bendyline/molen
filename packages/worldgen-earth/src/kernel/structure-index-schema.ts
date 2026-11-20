@@ -1,7 +1,11 @@
 import { getSchema, registerSchema } from '@bendyline/molen-schema';
 import { z } from 'zod';
 import { MAX_STRUCTURE_GROUND_OUTLINES, validGroundOutline } from './ground-cutout';
-import { isHistoricalStructureAppearance, isStructureViewingDate } from './structure-date';
+import {
+  isHistoricalStructureAppearance,
+  isStructureViewingDate,
+  isStructureViewingDateRange,
+} from './structure-date';
 
 const finite = z.number().finite();
 const featureIds = z
@@ -36,6 +40,7 @@ const roadReplacement = z
       .optional(),
     includeConnectedApproaches: z.boolean().optional(),
     bridgeFeatureIds: featureIds.optional(),
+    approachFeatureIds: featureIds.optional(),
     pavingAreaIds: featureIds.optional(),
   })
   .refine(
@@ -54,6 +59,10 @@ const roadReplacement = z
   .refine(
     (road) => !road.includeTransverseBridges || !!road.outline,
     'transverse bridge replacement requires an exact outline',
+  )
+  .refine(
+    (road) => !road.approachFeatureIds || (!!road.outline && !!road.deckProfile),
+    'explicit road approach IDs require an outline and deck profile',
   );
 const placementSchema = (runtime: boolean) =>
   z
@@ -211,7 +220,7 @@ const placementSchema = (runtime: boolean) =>
       orientation: z.enum(['fixed', 'mapped']).optional(),
       lengthAxis: z.enum(['x', 'z']).optional(),
       minLevel: z.int().min(0).max(26).optional(),
-      status: z.enum(['preview', 'draft', 'historical']),
+      status: z.enum(['preview', 'draft', 'historical', 'proposal']),
       appearance: z
         .strictObject({
           kind: z.literal('historical'),
@@ -224,6 +233,17 @@ const placementSchema = (runtime: boolean) =>
           isHistoricalStructureAppearance,
           'historical appearance needs an ordered date range',
         )
+        .optional(),
+      hiddenDuring: z
+        .strictObject({ validFrom: z.string(), validUntil: z.string() })
+        .refine(
+          ({ validFrom, validUntil }) => isStructureViewingDateRange(validFrom, validUntil),
+          'date exclusion needs an ordered date range',
+        )
+        .optional(),
+      hiddenByProposal: z
+        .string()
+        .regex(/^[a-z0-9][a-z0-9.-]*$/)
         .optional(),
       source: z.string().url(),
       note: runtime ? z.never().optional() : z.string().optional(),
@@ -247,8 +267,14 @@ const placementSchema = (runtime: boolean) =>
     .refine(
       (entry) =>
         (entry.status !== 'historical' || !!entry.appearance) &&
-        (entry.status !== 'preview' || !entry.appearance),
-      'historical placements need dates and cannot be current-world previews',
+        ((entry.status !== 'preview' && entry.status !== 'proposal') || !entry.appearance),
+      'historical placements need dates and current or proposal placements exclude archival dates',
+    )
+    .refine(
+      (entry) =>
+        entry.hiddenByProposal === undefined ||
+        (entry.status !== 'proposal' && entry.id !== entry.hiddenByProposal),
+      'proposal exclusions must refer to a different proposal placement',
     )
     .refine(
       (entry) => (!entry.replaceRoads && !entry.surfacePassageIds) || !!entry.bounds,

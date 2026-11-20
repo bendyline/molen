@@ -3252,6 +3252,43 @@ function powerhouse(o, c, poly, index) {
     box(o, c, cc[0] - 2, cc[0] + 2, roof + 5, roof + 8, cc[1] - 2, cc[1] + 2, 'metal');
   }
 }
+function gravityFaceEnd(face, index) {
+  const [a, b] = face.top;
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1],
+    length = Math.hypot(dx, dz);
+  const top = face.top[index];
+  return [
+    [top[0] + (10 * dz) / length, 14, top[1] - (10 * dx) / length],
+    pt(face.toe[index], face.floor),
+  ];
+}
+function rockFillEnd(wing) {
+  const crest = wing.n + (wing.s - wing.n) * 0.83;
+  const width = Math.min(9, (wing.s - wing.n) * 0.13);
+  return [
+    [wing.x, 14, crest - width],
+    [wing.x, wing.toeN, wing.n],
+  ];
+}
+function spillwayAbutments(o, c) {
+  const [a, b] = controls.spillway.top;
+  const wing = controls.wings[1][0];
+  const contact = [wing.x, wing.n + (wing.s - wing.n) * 0.83 - 4];
+  // Continue the reservoir wall behind the open chutes and into the east embankment.
+  const crest = [a, b, contact];
+  for (let i = 1; i < crest.length; i++) {
+    const from = crest[i - 1];
+    const to = crest[i];
+    Q(o, c, [pt(from, 14), pt(to, 14), pt(to, -154), pt(from, -154)], 'wall', C.wall, [0, 0, -1]);
+  }
+  const [eastTop, eastToe] = rockFillEnd(wing);
+  const exit = controls.spillway.exits[2];
+  Q(o, c, [pt(b, 14), eastTop, eastToe, pt(exit, -140)], 'wall', C.wall, [0, 0, -1]);
+  const [westTop, westToe] = rockFillEnd(controls.wings[0].at(-1));
+  const [coreTop, coreToe] = gravityFaceEnd(controls.gravityFaces[0], 0);
+  Q(o, c, [westTop, coreTop, coreToe, westToe], 'wall', C.wall, [0, 0, -1]);
+}
 function spillway(o, c) {
   const [a, b] = controls.spillway.top,
     dx = b[0] - a[0],
@@ -3283,6 +3320,18 @@ function spillway(o, c) {
         C.wall,
         [0, 1, 0],
       );
+      if (k === 0) {
+        const [top, toe] = gravityFaceEnd(controls.gravityFaces[1], 1);
+        const at = (h) => mix(top, toe, (top[1] - h) / (top[1] - toe[1]));
+        Q(
+          o,
+          c,
+          [at(profile(t)), pt(P, profile(t)), pt(S, profile(v)), at(profile(v))],
+          'wall',
+          C.wall,
+          [0, 0, -1],
+        );
+      }
     }
     for (const [s, e] of [
       [A, D],
@@ -3386,6 +3435,7 @@ export function buildStationLevel(o, level = 'master', mark = () => {}) {
     for (const p of polys) powerhouse(o, c, p, i);
   });
   M('two-native-plan-powerhouses');
+  spillwayAbutments(o, c);
   spillway(o, c);
   M('three-chutes-six-closed-gates');
   controls.gravityFaces.forEach((f, i) => {

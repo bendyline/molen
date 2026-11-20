@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.iron_gate_ii_gogosu",
+  "kind": "static-structure",
+  "title": "Iron Gate II Gogoșu spillway and powerhouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.iron_gate_ii_gogosu",
+        "output": "assets/places/sx/sxb/iron_gate_ii_gogosu/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9c29313a0530495159c86d022f24bdbe025aa53d81f8b6dc3ed96a20ae9c3d6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "gogosu-model",
+        "path": "models/gogosu-model.mjs"
+      },
+      {
+        "id": "gogosu-master",
+        "path": "models/generate-gogosu.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-observations.json",
+      "placement-draft.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "site-preview.png"
+    ]
+  }
+}

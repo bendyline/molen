@@ -20,6 +20,7 @@ const C = {
   doorGlass: lin('657b83'),
   brick: lin('8e6250'),
   opening: lin('586463'),
+  vestibule: lin('585047'),
 };
 export const stationSurfaces = {
   far: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.9 },
@@ -903,6 +904,23 @@ function trimRing(o, c, e, r, s = 'stone', width = 0.11, d = 0.09) {
     true,
   );
 }
+
+function vestibule(o, c, e, ring, depth) {
+  const [a, b, highB, highA] = ring;
+  const outside = (p) => e.p([...p, 0]);
+  const inside = (p) => e.p([...p, -depth]);
+  const across = sub(outside(b), outside(a));
+  // Deep entrance returns separate the public façade from the unmodeled service rooms.
+  const returns = [
+    [a, highA, across],
+    [highA, highB, [0, -1, 0]],
+    [highB, b, across.map((v) => -v)],
+  ];
+  for (const [lo, hi, normal] of returns)
+    Q(o, c, [outside(lo), outside(hi), inside(hi), inside(lo)], 'stone', C.vestibule, normal);
+  Q(o, c, [inside(a), inside(b), inside(highB), inside(highA)], 'stone', C.vestibule, e.N);
+}
+
 function facadeHost(o, c, t, k) {
   const poly = t.polygons[0],
     grade = controls.terminalGrades[k],
@@ -929,7 +947,7 @@ function facadeHost(o, c, t, k) {
         holes.push({
           ring: rect(u, floor, entrance ? Math.min(w, 3.2) : w, upper ? 2.65 : 2.8),
           kind: entrance ? 'opening' : 'glass',
-          depth: entrance ? 0.38 : 0.22,
+          depth: entrance ? 0 : 0.22,
         });
         holes.push({
           ring: arch(
@@ -972,7 +990,10 @@ function facadeHost(o, c, t, k) {
         if (upper) pilaster(o, c, e, u, grade + 7.45, grade + 24, 0.25, 0.1);
       }
       for (const h of holes) {
-        if (h.kind === 'opening') continue;
+        if (h.kind === 'opening') {
+          vestibule(o, c, e, h.ring, upper ? 2.2 : 3.1);
+          continue;
+        }
         if (c.near || publicFace) trimRing(o, c, e, h.ring, 'stone', upper ? 0.13 : 0.1, 0.08);
         const xs = h.ring.map((p) => p[0]),
           ys = h.ring.map((p) => p[1]),
@@ -1061,43 +1082,118 @@ function facadeHost(o, c, t, k) {
           );
         }
     }
+    if (upper && !front) {
+      // The downhill sides expose a deeper stone plinth beneath the public floor.
+      for (const offset of [-4.5, -2.7, -0.9]) fascia(o, c, e, grade + offset, 0.1, 0.045);
+    }
   });
 }
+function tunnelSection(halfWidth, shoulder, rise, bed, segments) {
+  return [
+    [-halfWidth, bed],
+    [halfWidth, bed],
+    [halfWidth, shoulder],
+    ...Array.from({ length: segments }, (_, j) => {
+      const angle = ((j + 1) / segments) * Math.PI;
+      return [halfWidth * Math.cos(angle), shoulder + rise * Math.sin(angle)];
+    }),
+    [-halfWidth, bed],
+  ];
+}
+
 function tunnel(o, c) {
-  if (!c.fine) return;
-  const n = c.master ? 24 : c.near ? 12 : 6;
+  if (!c.detail) return;
+  const n = c.master ? 24 : c.near ? 12 : c.fine ? 6 : 4;
+  const outer = tunnelSection(3.25, 1.55, 2.9, -0.25, n);
+  const inner = tunnelSection(3.07, 1.55, 2.72, -0.07, n);
   for (const nodes of controls.route.sections) {
+    // A shared tangent at each knot keeps the lining and rails continuous around bends.
+    const sectionFrames = nodes.map((p, index) => {
+      const a = nodes[Math.max(0, index - 1)];
+      const b = nodes[Math.min(nodes.length - 1, index + 1)];
+      const length = Math.hypot(b[0] - a[0], b[2] - a[2]);
+      return [-(b[2] - a[2]) / length, (b[0] - a[0]) / length];
+    });
+    const at = (i, width, height) => [
+      nodes[i][0] + sectionFrames[i][0] * width,
+      nodes[i][1] + height,
+      nodes[i][2] + sectionFrames[i][1] * width,
+    ];
     for (let k = 0; k < nodes.length - 1; k++) {
       const a = nodes[k],
         b = nodes[k + 1],
-        L = Math.hypot(b[0] - a[0], b[2] - a[2]),
-        N = [-(b[2] - a[2]) / L, 0, (b[0] - a[0]) / L],
-        at = (p, w, y) => [p[0] + N[0] * w, p[1] + y, p[2] + N[2] * w];
-      const section = [
-        [-3.25, -0.25],
-        [3.25, -0.25],
-        [3.25, 1.55],
-        ...Array.from({ length: n }, (_, j) => {
-          const t = ((j + 1) / n) * Math.PI;
-          return [3.25 * Math.cos(t), 1.55 + 2.9 * Math.sin(t)];
-        }),
-        [-3.25, -0.25],
-      ];
-      for (let j = 0; j < section.length - 1; j++) {
-        const [w0, y0] = section[j],
-          [w1, y1] = section[j + 1],
-          v = [at(a, w0, y0), at(b, w0, y0), at(b, w1, y1), at(a, w1, y1)],
-          mid = (w0 + w1) / 2;
-        Q(o, c, v, 'brick', C.brick, [N[0] * mid, (y0 + y1) / 2 > 1.55 ? 1 : 0, N[2] * mid]);
+        length = Math.hypot(b[0] - a[0], b[2] - a[2]);
+      for (let j = 0; j < outer.length - 1; j++) {
+        const [w0, y0] = outer[j];
+        const [w1, y1] = outer[j + 1];
+        const midpoint = (w0 + w1) / 2;
+        const normal = [
+          sectionFrames[k][0] * midpoint,
+          j === 0 ? -1 : j > 1 && j < outer.length - 2 ? 1 : 0,
+          sectionFrames[k][1] * midpoint,
+        ];
+        const quad = (section) => [
+          at(k, ...section[j]),
+          at(k + 1, ...section[j]),
+          at(k + 1, ...section[j + 1]),
+          at(k, ...section[j + 1]),
+        ];
+        if (c.near) Q(o, c, quad(outer), 'brick', C.brick, normal);
+        Q(
+          o,
+          c,
+          quad(inner),
+          j === 0 ? 'base' : 'brick',
+          j === 0 ? C.base : C.brick,
+          normal.map((v) => -v),
+        );
       }
-      for (const w of [-0.72, 0.72])
-        beam(adapter(o, c), 'metal', at(a, w, 0.02), at(b, w, 0.02), 0.07, 0.1, C.metal);
+      for (const w of [-0.72, 0.72]) {
+        if (c.fine) {
+          beam(adapter(o, c), 'metal', at(k, w, 0.025), at(k + 1, w, 0.025), 0.07, 0.1, C.metal);
+        } else {
+          Q(
+            o,
+            c,
+            [at(k, w - 0.04, 0.026), at(k + 1, w - 0.04, 0.026),
+              at(k + 1, w + 0.04, 0.026), at(k, w + 0.04, 0.026)],
+            'metal',
+            C.metal,
+            [0, 1, 0],
+          );
+        }
+      }
       if (c.master) {
-        const ties = Math.ceil(L / 0.75);
+        const ties = Math.ceil(length / 0.75);
         for (let j = 0; j < ties; j++) {
           const t = (j + 0.5) / ties,
-            p = a.map((v, i) => v + (b[i] - v) * t);
-          beam(adapter(o, c), 'metal', at(p, -1.1, -0.1), at(p, 1.1, -0.1), 0.15, 0.15, C.metal);
+            position = (w) => {
+              const start = at(k, w, -0.06);
+              const end = at(k + 1, w, -0.06);
+              return start.map((v, i) => v + (end[i] - v) * t);
+            };
+          beam(adapter(o, c), 'metal', position(-1.1), position(1.1), 0.15, 0.15, C.metal);
+        }
+      }
+    }
+    if (c.near) {
+      for (const index of [0, nodes.length - 1]) {
+        const neighbor = index === 0 ? 1 : index - 1;
+        const normal = sub(nodes[index], nodes[neighbor]);
+        for (let j = 0; j < outer.length - 1; j++) {
+          Q(
+            o,
+            c,
+            [
+              at(index, ...outer[j]),
+              at(index, ...outer[j + 1]),
+              at(index, ...inner[j + 1]),
+              at(index, ...inner[j]),
+            ],
+            'brick',
+            C.brick,
+            normal,
+          );
         }
       }
     }

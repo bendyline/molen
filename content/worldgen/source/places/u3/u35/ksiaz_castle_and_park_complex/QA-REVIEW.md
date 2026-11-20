@@ -8,9 +8,11 @@ Inspected all 12 final shared-material views. Five common graphs provide sandsto
 
 Inspected all 28 final medium-fi views: noon/late light, high/economy quality, silhouette, six original feature views, the mapped Powder Tower view and all four matched tiers. Castle roofline, pink wing, paired western towers and visible terraces remain consistent through upgrades. Terrace tops use reconstructed levels above coarse PMTiles ground.
 
+![Książ Castle, terrace gardens and mapped context](site-preview.png)
+
 ## Placement and runtime
 
-The current castle preview uses the retained castle ring, four tower parts and Powder Tower footprint to remove their procedural duplicates. All four detail levels preserve the other seven mapped buildings and 220 transportation inputs in the viewer fixture. Failed loading restores all 13 mapped buildings. Review of the wider park and Palm House ensemble remains open.
+The current castle preview uses the retained castle ring, four tower parts and Powder Tower footprint to remove their procedural duplicates. All four detail levels preserve the other seven mapped buildings and 220 transportation inputs in the viewer fixture. Failed loading restores all 13 mapped buildings. The current Earth viewer replay confirmed this behavior with the registered footprint masks. Park buildings outside this asset use their own catalog entries or native map features.
 
 Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 

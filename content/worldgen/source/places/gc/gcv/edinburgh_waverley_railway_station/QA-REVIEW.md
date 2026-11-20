@@ -1,15 +1,26 @@
-# Edinburgh Waverley railway station — complete passenger ensemble
+# Edinburgh Waverley Railway Station
 
-Reviewed2026-11-02. **Geometry complete; native terrain fit pending. Not counted ready.**
+Five rows of separate pitched shed roofs, the booking hall opening, both western pavilions and the glazed Market Street entrance remain distinct. The lower concourse and track corridors sit beneath the sheds.
 
-All9 final portable views actually inspected. Complete permanent station: five rows of pale pitched/glazed shed roofs, central opening above the separately closed booking hall and low clerestory, six internal stone passenger/service ranges, two western classical entrance pavilions and open descending links, long arched Market Street frontage, upper street office, curved glazed entrance pavilion and two enclosed descending stair roofs. The generalized old shed roof is cut back around the modern office, pavilion and stairs; these features remain exposed rather than hidden under another roof. The stone frontage also breaks around the office and pavilion. Hidden openings, exact rooflight form, western links and stair construction remain original medium-fi approximations. No copied brands, trains, buses, neighboring hotels or navigable interiors.
+The common 52.70 m reference remains at the eastern end of the tracks. Local grades clear the lower rail floor and expose the west pavilion and Market Street entrances. The fixture retains the bridge approach terrain, all 541 independent buildings and all 687 road and rail records. The eight grouped station building records are replaced by the original asset.
 
-StationQ800716 has named native POI17599336042612. Roof and passenger-range identity is an approximate physical match from two ordinary pictures and current PMTiles, not an exact Wikidata-tagged building match. Anchor[-3.1904205679893494,55.95190154504826], heading0.26667699929917466: +X ENE along tracks, +Z SSE toward Market Street. Facing uncertainty about10 degrees. Production replaces exactly11 of2883 components:803/856/857/942/1284/1285/1334/1560/2229/2538/2648. The extra803/2229 are alternate outer-roof records of the same layer1 station, not independent buildings; all tile copies are included. All2872 other components remain, including Waverley Market1566, hotel part1576 and other neighboring buildings. Native roads, rails, Waverley Bridge and North Bridge remain untouched. Source keeps the true booking-hall opening and photo-proportioned modern entrance/stair cutouts. Native8m/5m range heights are retained separately from the original upper/lower floor and roof controls.
+![Edinburgh Waverley Railway Station in the Earth viewer](site-preview.png)
 
-All25 final native-field, context, lighting, silhouette, detail and four-tier views actually inspected. Four unchanged global Terrarium tiles supply the field. Ten masks cover only closed occupied floors: six retained ranges, two western entrance pavilions, the upper street office and curved pavilion with its enclosed stepped stairwells. There is no full platform-roof floor/mask, no outside plaza floor and no mask under the open western stair links. All84 opening probes find zero covered terrain and all original samples remain unchanged. Source lower floor+.65m and upper entry floors+7.5m preserve real level connections; they are not per-part host offsets. Native contact still fails visibly, especially at the western entrances and lower passenger spaces. Shared/portable views demonstrate the intact architecture; native views record the remaining site problem. Synthetic context blocks are not literal Edinburgh reconstruction. No bespoke geographic research or outside flattening was used.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-All9 final shared-material and flat-map views actually inspected. Six existing shared256px graphs: stone_sandstone, stone_granite, membrane, metal_painted, window_grid and storefront. Seven merged semantic groups distinguish opaque metal roofing from structural metal. Metric UVs and linear colors; zero embedded images or private textures. Only actual glazing uses window, including glazed roof panels. Blind stone arch reveals and surrounds remain stone. Ribs, arches, curved pavilion roof, closed doors and stairs are geometry. Shared pane grids are finer than the ordinary pictures. Unload disposal and original ground restoration pass. Flat staging verifies geometry, not native grades.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 992 | 90,708 | 1 |
+| district | 3,355 | 301,872 | 7 |
+| street | 9,828 | 850,260 | 7 |
+| closeup | 33,636 | 2,855,160 | 7 |
 
-Detailed source: 61284 triangles / 7358432 bytes. Four browser tiers: 992 / 3355 / 9828 / 33636 triangles. Initial skyline plus district: 392580 bytes; close-up: 2855160 bytes. Four focused tests and six GLBs without errors or warnings. All43 final current views actually inspected. Numerical LOD errors and physical-device timings remain unmeasured.
+Skyline and district total 392,580 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the viewer. The review covers 76 renders and 150 geographic samples.
 
-Rebuild: node packages/worldgen/scripts/generate-edinburgh-waverley-railway-station.mjs; append --check for exact bytes. Import/LOD/placement select --ids=edinburgh_waverley_railway_station. GLBs remain ignored outputs.
+The model covers the passenger exterior, enclosed ranges, canopies and visible stair connections. Entrance levels, underground spaces and hidden roof details remain approximate.
+
+North Bridge and Waverley Bridge use the host map and procedural surfaces. Their exact deck elevations and continuous pedestrian routing are outside this model review.
+
+Rebuild with node packages/worldgen/scripts/generate-edinburgh-waverley-railway-station.mjs. Add --check to verify exact bytes.
+
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

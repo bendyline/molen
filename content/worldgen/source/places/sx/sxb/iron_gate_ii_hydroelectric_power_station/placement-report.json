@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.iron_gate_ii_hydroelectric_power_station",
-  "inputHash": "sha256:ec9fdca8a5b44daa36adb609ba595fce9fb614376af37d036f87f74a2e5237c6",
-  "placementHash": "sha256:c1ccfa4fb4d1c1a173c72af706d8aae307589c9f2f195cc5d87660adfb1fd730",
+  "inputHash": "sha256:a5bf9d807b8104bb738ad3af0a7d3e5ec63a67146c98dc345f8b76759173a76c",
+  "placementHash": "sha256:7fa53ced2172d61ceda5da1775258f504b28a47bcc4da36ff121dbad6c00937b",
   "entry": {
     "id": "iron.gate.ii.hydroelectric.power.station",
     "title": "Iron Gate II Hydroelectric Power Station",
@@ -23,8 +23,8 @@
     "groundCutout": {
       "outline": [
         [
-          -569.83,
-          -4.67
+          -567.5304426073859,
+          -3.99414826190435
         ],
         [
           -531.79,
@@ -103,19 +103,19 @@
           8.370000000000001
         ],
         [
-          -569.83,
-          3.83
+          -572.1295573926142,
+          3.15414826190435
         ],
         [
-          -569.83,
-          -4.67
+          -567.5304426073859,
+          -3.99414826190435
         ]
       ],
       "outlines": [
         [
           [
-            -569.83,
-            -4.67
+            -567.5304426073859,
+            -3.99414826190435
           ],
           [
             -531.79,
@@ -194,12 +194,12 @@
             8.370000000000001
           ],
           [
-            -569.83,
-            3.83
+            -572.1295573926142,
+            3.15414826190435
           ],
           [
-            -569.83,
-            -4.67
+            -567.5304426073859,
+            -3.99414826190435
           ]
         ],
         [
@@ -252,8 +252,8 @@
       "pavingOutlines": [
         [
           [
-            -569.83,
-            -5.72
+            -567.6007820099835,
+            -3.8848213738931583
           ],
           [
             -531.79,
@@ -288,12 +288,12 @@
             9.42
           ],
           [
-            -569.83,
-            4.88
+            -572.0592179900166,
+            3.0448213738931584
           ],
           [
-            -569.83,
-            -5.72
+            -567.6007820099835,
+            -3.8848213738931583
           ]
         ]
       ],
@@ -1078,8 +1078,8 @@
       "width": 10.6,
       "outline": [
         [
-          -569.83,
-          -5.72
+          -567.6007820099835,
+          -3.8848213738931583
         ],
         [
           -531.79,
@@ -1094,11 +1094,11 @@
           -3.6799999999999997
         ],
         [
-          565.14,
+          565.18,
           -5.3
         ],
         [
-          565.14,
+          565.18,
           5.3
         ],
         [
@@ -1114,12 +1114,12 @@
           9.42
         ],
         [
-          -569.83,
-          4.88
+          -572.0592179900166,
+          3.0448213738931584
         ],
         [
-          -569.83,
-          -5.72
+          -567.6007820099835,
+          -3.8848213738931583
         ]
       ],
       "deckHeights": [
@@ -1162,6 +1162,14 @@
           11.005485749999998,
           0
         ]
+      ],
+      "bridgeFeatureIds": [
+        35184409064137,
+        35184497785129
+      ],
+      "approachFeatureIds": [
+        35184441085810,
+        35184819198040
       ]
     },
     "minLevel": 13,
@@ -1169,5 +1177,478 @@
     "source": "https://build.protomaps.com/20261031.pmtiles",
     "note": "Main Iron Gate II crossing with the two sections of the sixteen-unit powerhouse, Serbian two-unit auxiliary plant, seven-bay spillway, 310 × 34 m Serbian navigation chamber, guide walls and 1,135 m crest road. Fixed 34.99451425 m model datum and approximate 46 m deck. Standard viewer sampling gives 35.65 m headwater, 33.65 m tailwater and 33.65 m in the chamber. Reference headwater is 41 m and the comparison chamber stage is 37.1 m. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The three site-specific components load at their mapped locations. Both main crest road joins align with their retained approaches within 4 cm at the sampled lane positions. The 41 m upstream pool, sampled lower water stages and scoped terrain openings were checked in the Earth renderer. The model and both independent components depict the static exterior in the Molen medium-fi standard. Equipment positions and the unmeasured portions of the bank and coping grades remain approximate.",
+  "stockWaterStageReview": {
+    "status": "passed",
+    "reviewedOn": "2026-11-18",
+    "stageMeters": 41,
+    "waterConfigHash": "sha256:17db607a8388166b3b6c0d792525d819ced3c27219f2ab14fbcf47cb1aabae9b",
+    "elevationSource": "https://www.revistaconstructiilor.eu/wp-content/uploads/2015/03/rc_nr_112_martie_2015.pdf#page=31",
+    "mapFeatureIds": [
+      15733160,
+      15732850
+    ],
+    "checkedTileSizesMeters": [
+      160,
+      520,
+      1250
+    ],
+    "raycasts": 15,
+    "method": "Stock Earth renderer applied to retained Protomaps water polygons and standard Terrarium terrain. Before and after checks preserve the total polygon area and the decoded tile inputs.",
+    "samples": [
+      {
+        "site": "main",
+        "name": "headwater west",
+        "featureIds": [
+          15733160
+        ],
+        "terrainDerivedMeters": 35.649,
+        "stockViewerMeters": 41
+      },
+      {
+        "site": "main",
+        "name": "headwater east",
+        "featureIds": [
+          15733160
+        ],
+        "terrainDerivedMeters": 35.649,
+        "stockViewerMeters": 41
+      },
+      {
+        "site": "main",
+        "name": "Serbian head lead",
+        "featureIds": [
+          15733160
+        ],
+        "terrainDerivedMeters": 35.649,
+        "stockViewerMeters": 41
+      },
+      {
+        "site": "main",
+        "name": "Serbian chamber",
+        "featureIds": [
+          3263479742
+        ],
+        "terrainDerivedMeters": 33.649,
+        "stockViewerMeters": 33.649
+      },
+      {
+        "site": "main",
+        "name": "main tailwater",
+        "featureIds": [
+          15733160
+        ],
+        "terrainDerivedMeters": 33.649,
+        "stockViewerMeters": 33.649
+      }
+    ],
+    "remaining": "Water stages depict a static exterior. Chamber and tailwater elevations vary with the retained terrain samples."
+  },
+  "complexStreamingReview": {
+    "status": "passed",
+    "scope": "Production regional catalog loader against three local views, an encompassing view and an unrelated view.",
+    "indexHash": "sha256:04af6acc19891b531857c88d6b2f75240d3c826a76a19848ca703d3feba37cbf",
+    "regions": [
+      "structures/placements/cells/sx.json",
+      "structures/placements/cells/dp.json"
+    ],
+    "placements": [
+      "iron.gate.ii.hydroelectric.power.station",
+      "iron.gate.ii.romanian.locks",
+      "iron.gate.ii.gogosu"
+    ]
+  },
+  "componentReviews": [
+    {
+      "id": "iron.gate.ii.romanian.locks",
+      "asset": "molen.worldgen.structure.iron_gate_ii_romanian_locks",
+      "placementHash": "sha256:44d4a7796666e60858b626528918e45ce8e08051de69b1e01de6de8dda2afa78",
+      "reviewHash": "sha256:c65334f9c3250ae2ade17dff88e14151f07755a7895273caf5f714c44d1e0fbd"
+    },
+    {
+      "id": "iron.gate.ii.gogosu",
+      "asset": "molen.worldgen.structure.iron_gate_ii_gogosu",
+      "placementHash": "sha256:411e62746eeeb163f6dfa4293dd0a6bee6ae2d733c722c6d3148f01337113795",
+      "reviewHash": "sha256:fdea2a993883232045094878b281c82de979f55314cc55a283d241c1d595e27d"
+    }
+  ],
+  "stockRoadJoinReview": {
+    "status": "passed",
+    "scope": "Production Earth renderer, Mapzen terrain and retained Protomaps transportation, water and buildings. Pavement raycasts 8 cm to each side of the seams.",
+    "maximumDifferenceMeters": {
+      "serbian": 0.036204224708335175,
+      "romanian": 0.03299977703857593
+    },
+    "untouchedBridges": [
+      35184411743667,
+      35184819145180
+    ],
+    "ownedBuildings": [
+      35184794006172,
+      35184794006173,
+      52776562689870,
+      35184698436833,
+      35184698436834,
+      35184698436836,
+      35184698436837,
+      35184698436838,
+      35184698436839,
+      35184698436841,
+      35184698436842
+    ],
+    "evidence": [
+      {
+        "level": "master",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/master-main-crossing-overview.png",
+            "hash": "sha256:19d76b13e7d9190aa0ff3a201696f8455bf083e8eed01fda9de488bc02f91c84"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/master-serbian-lock.png",
+            "hash": "sha256:cb63252c74a02d63a6ac3d08c7ec01843783f4df7e445b965c02272e58240e8b"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/master-upstream-intakes.png",
+            "hash": "sha256:47065c67385568ae3e409f4140f79b812b6828f6c43930a9840b5c5776e3e48b"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/master-serbian-road-join.png",
+            "hash": "sha256:298202d5b47908cd9ca48b1d4eed327c803be5497e4a13d898256ac791125e83"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/master-romanian-road-join.png",
+            "hash": "sha256:a1b0ecf10ce2e36cc884fd31595c39524a5d86fb6dbf897ce6fa80354da76c62"
+          }
+        ],
+        "serbian": [
+          {
+            "offsetMeters": -3.5,
+            "model": 43.105053645396815,
+            "road": 43.098515693634
+          },
+          {
+            "offsetMeters": -2,
+            "model": 43.10505338278977,
+            "road": 43.10056632080102
+          },
+          {
+            "offsetMeters": 0,
+            "model": 43.13677065122322,
+            "road": 43.10056642651489
+          },
+          {
+            "offsetMeters": 2,
+            "model": 43.105052682503974,
+            "road": 43.10420649162461
+          },
+          {
+            "offsetMeters": 3.5,
+            "model": 43.105052419896815,
+            "road": 43.10408765401314
+          }
+        ],
+        "romanian": [
+          {
+            "offsetMeters": -2,
+            "model": 45.999999784668084,
+            "road": 45.99599838256836
+          },
+          {
+            "offsetMeters": 0,
+            "model": 46.032999777038576,
+            "road": 46
+          },
+          {
+            "offsetMeters": 2,
+            "model": 45.999999784668084,
+            "road": 46
+          }
+        ]
+      },
+      {
+        "level": "skyline",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/skyline-main-crossing-overview.png",
+            "hash": "sha256:4b839d0c037a3b4a37d8a37f2437e276ad8737136a7fa12e58cbc34b2ac50136"
+          }
+        ],
+        "serbian": [
+          {
+            "offsetMeters": -3.5,
+            "model": 43.105053645396815,
+            "road": 43.098515693634
+          },
+          {
+            "offsetMeters": -2,
+            "model": 43.10505338278977,
+            "road": 43.10056632080102
+          },
+          {
+            "offsetMeters": 0,
+            "model": 43.105053032646815,
+            "road": 43.10056642651489
+          },
+          {
+            "offsetMeters": 2,
+            "model": 43.105052682503974,
+            "road": 43.10420649162461
+          },
+          {
+            "offsetMeters": 3.5,
+            "model": 43.105052419896815,
+            "road": 43.10408765401314
+          }
+        ],
+        "romanian": [
+          {
+            "offsetMeters": -2,
+            "model": 45.999999784668084,
+            "road": 45.99599838256836
+          },
+          {
+            "offsetMeters": 0,
+            "model": 45.999999784668084,
+            "road": 46
+          },
+          {
+            "offsetMeters": 2,
+            "model": 45.999999784668084,
+            "road": 46
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/district-main-crossing-overview.png",
+            "hash": "sha256:e178a72e855fa5427aba697cb8b9bd30c7e6941eaefd4177b454d0c291f7da9b"
+          }
+        ],
+        "serbian": [
+          {
+            "offsetMeters": -3.5,
+            "model": 43.105053645396815,
+            "road": 43.098515693634
+          },
+          {
+            "offsetMeters": -2,
+            "model": 43.10505338278977,
+            "road": 43.10056632080102
+          },
+          {
+            "offsetMeters": 0,
+            "model": 43.105053032646815,
+            "road": 43.10056642651489
+          },
+          {
+            "offsetMeters": 2,
+            "model": 43.105052682503974,
+            "road": 43.10420649162461
+          },
+          {
+            "offsetMeters": 3.5,
+            "model": 43.105052419896815,
+            "road": 43.10408765401314
+          }
+        ],
+        "romanian": [
+          {
+            "offsetMeters": -2,
+            "model": 45.999999784668084,
+            "road": 45.99599838256836
+          },
+          {
+            "offsetMeters": 0,
+            "model": 45.999999784668084,
+            "road": 46
+          },
+          {
+            "offsetMeters": 2,
+            "model": 45.999999784668084,
+            "road": 46
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/street-main-crossing-overview.png",
+            "hash": "sha256:e886a160ba8f367e7b700fba9a0f5db06d325b1e76c5ac8c8fbaabcc2b11364b"
+          }
+        ],
+        "serbian": [
+          {
+            "offsetMeters": -3.5,
+            "model": 43.105053645396815,
+            "road": 43.098515693634
+          },
+          {
+            "offsetMeters": -2,
+            "model": 43.10505338278977,
+            "road": 43.10056632080102
+          },
+          {
+            "offsetMeters": 0,
+            "model": 43.13677065122322,
+            "road": 43.10056642651489
+          },
+          {
+            "offsetMeters": 2,
+            "model": 43.105052682503974,
+            "road": 43.10420649162461
+          },
+          {
+            "offsetMeters": 3.5,
+            "model": 43.105052419896815,
+            "road": 43.10408765401314
+          }
+        ],
+        "romanian": [
+          {
+            "offsetMeters": -2,
+            "model": 45.999999784668084,
+            "road": 45.99599838256836
+          },
+          {
+            "offsetMeters": 0,
+            "model": 46.032999777038576,
+            "road": 46
+          },
+          {
+            "offsetMeters": 2,
+            "model": 45.999999784668084,
+            "road": 46
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/closeup-main-crossing-overview.png",
+            "hash": "sha256:19d76b13e7d9190aa0ff3a201696f8455bf083e8eed01fda9de488bc02f91c84"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/closeup-serbian-lock.png",
+            "hash": "sha256:cb63252c74a02d63a6ac3d08c7ec01843783f4df7e445b965c02272e58240e8b"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/closeup-upstream-intakes.png",
+            "hash": "sha256:95f85bb4e272ee01a50a088fcbd75e637155406c227504f0f631da308c4c51e5"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/closeup-serbian-road-join.png",
+            "hash": "sha256:298202d5b47908cd9ca48b1d4eed327c803be5497e4a13d898256ac791125e83"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/closeup-romanian-road-join.png",
+            "hash": "sha256:a1b0ecf10ce2e36cc884fd31595c39524a5d86fb6dbf897ce6fa80354da76c62"
+          }
+        ],
+        "serbian": [
+          {
+            "offsetMeters": -3.5,
+            "model": 43.105053645396815,
+            "road": 43.098515693634
+          },
+          {
+            "offsetMeters": -2,
+            "model": 43.10505338278977,
+            "road": 43.10056632080102
+          },
+          {
+            "offsetMeters": 0,
+            "model": 43.13677065122322,
+            "road": 43.10056642651489
+          },
+          {
+            "offsetMeters": 2,
+            "model": 43.105052682503974,
+            "road": 43.10420649162461
+          },
+          {
+            "offsetMeters": 3.5,
+            "model": 43.105052419896815,
+            "road": 43.10408765401314
+          }
+        ],
+        "romanian": [
+          {
+            "offsetMeters": -2,
+            "model": 45.999999784668084,
+            "road": 45.99599838256836
+          },
+          {
+            "offsetMeters": 0,
+            "model": 46.032999777038576,
+            "road": 46
+          },
+          {
+            "offsetMeters": 2,
+            "model": 45.999999784668084,
+            "road": 46
+          }
+        ]
+      },
+      {
+        "level": "failure",
+        "unloaded": {
+          "groundRestored": true,
+          "waterRetained": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/failure-main-crossing-overview.png",
+            "hash": "sha256:1143ce3d2199d84186ca601243c8218870b13104ad3c511829ebd7409f0be5c3"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/failure-serbian-lock.png",
+            "hash": "sha256:e35598fd3f2d9e096f2d00b10b4d19f7a8404230714305d2fa922a7444051298"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/failure-upstream-intakes.png",
+            "hash": "sha256:1ec6b9165f99d599d9ff37a6aace3c5ad736d327387daa6ba2ba9775634d6c94"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/failure-serbian-road-join.png",
+            "hash": "sha256:554af55d14c4af46133f3ff1cee8a982443a5d21cee57466c7c168e1f5a311d7"
+          },
+          {
+            "path": ".artifacts/iron-gate-ii-review/main-native/shots/failure-romanian-road-join.png",
+            "hash": "sha256:5981d5de83b16bf8bf05e91648c68cdf809ccf2604c469796df272b3f0036a74"
+          }
+        ]
+      }
+    ]
+  }
 }

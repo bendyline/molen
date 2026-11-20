@@ -1,0 +1,74 @@
+{
+  "format": "molen/scene@3",
+  "name": "Sanabria Lake relief review",
+  "seed": "sanabria_lake",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "relief",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.sanabria_lake",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce9f3",
+            "ground": "#9e9a71",
+            "intensity": 1.13
+          },
+          "sun": {
+            "direction": [
+              -3,
+              3,
+              2
+            ],
+            "color": "#fff3db",
+            "intensity": 1.65,
+            "castShadow": true
+          },
+          "background": "#becad0",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -2940,
+      4050,
+      3020
+    ],
+    "lookAt": [
+      105,
+      20,
+      60
+    ],
+    "fov": 43
+  }
+}

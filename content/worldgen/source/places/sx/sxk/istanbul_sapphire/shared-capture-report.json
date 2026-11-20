@@ -8,7 +8,8 @@
   "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:40e884877d0bf1028c0a6cfd44b4555386c4edaf1474e9c2b89b20f8cdaae9be",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "legacy",
+  "clippingMode": "bounds",
+  "targetOnly": true,
   "placementHash": "sha256:9b110dab0e09af97a2ca0b2272c06a2c0f73ed9ee7572e1f54288ada329bdf92",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -27,7 +28,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:3fa55d1962d88e8067f83baa16c5c80451710be288aef605387f612b36a96889",
+      "hash": "sha256:07df566656ab84902065af484b570409f2cdee61b0f04877eb50d289e4f25b14",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -58,9 +59,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -79,9 +80,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -89,7 +97,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:a353e3f2a3db3d20bdfa453238d69fd55fa8831ffe76c80fda7577a08d8b24f8",
+      "hash": "sha256:4c73e501a4710259f78af92b7fdf228f019db5674e9bb9c7469193804e866784",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -120,9 +128,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -141,9 +149,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -151,7 +166,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:204085a0f1c3c04c837b41bc931c7e919a7c5fd07153fcc5116fb0dd3b4d9a9d",
+      "hash": "sha256:a18a5c8b2b9b9251d1d3023a4aa6151089e05ce8077ceb8eeb7d8df199a5ce50",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -182,9 +197,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -203,9 +218,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -213,7 +235,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:47dbfd2bc00680ba64a6f94721989ce8736a8a396766fd45a1168d8ebba07d57",
+      "hash": "sha256:abb67b9a5591b92b6509b0851dac18f11806530ee4493cdb0190d3d8d026b08e",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -244,9 +266,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -265,9 +287,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -315,9 +344,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -336,9 +365,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -386,9 +422,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -407,9 +443,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -457,9 +500,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -478,9 +521,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -528,9 +578,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -549,9 +599,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -599,9 +656,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -620,9 +677,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -630,7 +694,7 @@
     },
     {
       "path": "shots/shared/curved-canopy.png",
-      "hash": "sha256:7dbdb68621eacdeedcf3e3c28c8e15e453f629a1e202b2b588e5412774f5fedc",
+      "hash": "sha256:90569cf0d1e8917acf4296aa24e19d1d3da915d026baf4d6591097a667ebe367",
       "camera": {
         "name": "curved-canopy",
         "position": [
@@ -670,9 +734,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -691,9 +755,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -741,9 +812,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -762,9 +833,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -812,9 +890,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -833,9 +911,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -843,7 +928,7 @@
     },
     {
       "path": "shots/shared/rear-skirt.png",
-      "hash": "sha256:f6fd141756f2bd16b98abc76c7ad9b4b72b927d6d2b2fa22efe55c70a05a0039",
+      "hash": "sha256:eefb7b2e510504b729b995f09de7aeb0512b5cfebf9417775f11f60660250d3a",
       "camera": {
         "name": "rear-skirt",
         "position": [
@@ -883,9 +968,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -904,9 +989,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -914,7 +1006,7 @@
     },
     {
       "path": "shots/shared/observation-and-roof.png",
-      "hash": "sha256:60af9015406aeb1811f3c3adbae03be92003c2b507cc54759c17cbdf317abbd5",
+      "hash": "sha256:a22d12d24e7ff77f75afc7134ad8f2f599eee1b782471a3b58b828f980e39678",
       "camera": {
         "name": "observation-and-roof",
         "position": [
@@ -954,9 +1046,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -975,9 +1067,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1025,9 +1124,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1046,9 +1145,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1096,9 +1202,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1117,9 +1223,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1127,7 +1240,7 @@
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:c06eb03112578104417757786e746f1b3cb685a012b5f24113353c6fd647fed6",
+      "hash": "sha256:f6f0b9c6328794e00cebf93fa744fb6613c806e292db32edc86aed93df15e1d4",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -1167,9 +1280,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1188,9 +1301,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1198,7 +1318,7 @@
     },
     {
       "path": "shots/shared/whole-reviewed-sapphire.png",
-      "hash": "sha256:ff49a1faa404ab682cb96c9f656dcee5f8b5e15b232d51dcf1625e846c3f7508",
+      "hash": "sha256:390733113698cc7472951ce8440f8859d9bc14fb002d29a6df3cf12ee0a9aa6b",
       "camera": {
         "name": "whole-reviewed-sapphire",
         "position": [
@@ -1238,9 +1358,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1259,9 +1379,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1309,9 +1436,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1330,9 +1457,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 8,
         "renderedTriangles": 77336
@@ -1340,7 +1474,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:9691117bb97d86521f2e83f668c7554894fa12e1bb237bbbb384971605e9d550",
+      "hash": "sha256:7d67fc3361e19569cff71bd0da7402d83f3c1eec8491448b680b1506b01b8d5a",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1371,9 +1505,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "5f9251d3-b0a4-468f-b1e8-9a6b2463b9b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "b2230878-4e9a-48aa-8b98-23c4536b01c5",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9cce5ff2-dcec-4734-9299-c86c550578e2"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "ba5d17b9-485e-4e8a-a3cb-04dfa2947b71",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1"
         },
         "loads": [
           "molen.worldgen.structure.istanbul_sapphire"
@@ -1392,9 +1526,16 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
+          "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless": 1
         },
         "draws": 9,
         "renderedTriangles": 77336

@@ -1,0 +1,47 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.summer_palace_farming_stele_2006",
+  "kind": "static-structure",
+  "title": "Summer Palace · Farming and Weaving Stele (2006)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.summer_palace_farming_stele_2006",
+        "output": "assets/places/wx/wx4/summer_palace_farming_stele_2006/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bb8830afac7867d76b969299af9535710ab0aa71d1ca81b2cc454e2f8c10041f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "2006-open-apron-mesh",
+        "path": "models/open-apron-model.mjs"
+      },
+      {
+        "id": "2006-open-apron-master",
+        "path": "models/generate-open-apron.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "open-apron-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json"
+    ]
+  }
+}

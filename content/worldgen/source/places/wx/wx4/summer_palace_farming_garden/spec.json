@@ -11,7 +11,7 @@
   "title": "Summer Palace · Garden of Farming and Weaving",
   "category": "palace",
   "quality": "detailed",
-  "visualBrief": "Grey tiled halls, red timber frames, green lattice screens and pale stone thresholds surround the Water Training School courts. A sheltered southern gallery and separate waterside structures sit above the native pond.",
+  "visualBrief": "Grey tiled halls, red timber frames, green lattice screens and pale stone thresholds surround the Water Training School courts. A sheltered southern gallery and separate waterside structures sit above the native pond. The Water Village court to the north has grey tiles, broad dark timber and glass doors, and low stone sills. The south range has a recessed veranda with irregular stone under the windows and a narrow central stair. A short walk and stone landing join the south-range approach to the veranda.",
   "nativeAxes": "+X and +Z are mapped local axes. Building bearings are derived independently from their mapped outlines.",
   "actualBounds": {
     "min": [
@@ -63,7 +63,12 @@
     "https://gygl.beijing.gov.cn/xxgk/xxgk_gyxx/202406/t20240628_3732372.html",
     "https://gygl.beijing.gov.cn/whgy/whgy_zlzc/202102/t20210226_2289416.html",
     "https://gygl.beijing.gov.cn/whgy/whgy_wsgc/201912/t20191206_885784.html",
-    "https://english.beijing.gov.cn/specials/beijingmagazine/list/202409/P020240924405190259657.pdf"
+    "https://english.beijing.gov.cn/specials/beijingmagazine/list/202409/P020240924405190259657.pdf",
+    "https://pamperherself.substack.com/p/summer-in-the-summer-palace-a-quiet",
+    "https://g.udn.com.tw/upfiles/B_GE/ger0830/PSN_PHOTO/631/f_21127631_1.jpg",
+    "https://yllhj.beijing.gov.cn/ztxx/bjhx/gssd/202605/t20260507_4639416.shtml",
+    "https://www.thepaper.cn/newsDetail_forward_8235946",
+    "https://www.hkcd.com.hk/content/2018-05/31/content_1091159.html"
   ],
   "geographicProposal": {
     "status": "preview-proposal",
@@ -372,12 +377,12 @@
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://build.protomaps.com/20261111.pmtiles",
     "wikidataId": "Q4132",
-    "notes": "Fourteen occupied PMTiles footprints establish the Water Training School courts, the long gallery, the waterfront pavilions and northern court ranges. Exterior photographs guide the grey tiled school façades, timber screens, light door and stone paving. Individual heights, courtyard paving alignments and the functions of unlabelled ranges are reconstructed. The native shoreline, ponds and public paths are retained. Outer landscape structures and the stele await identification."
+    "notes": "Fourteen occupied PMTiles footprints establish the Water Training School courts, inland gallery, waterfront pavilions and the three northern ranges in the Water Village court. The native shoreline, ponds and public paths are retained. Individual room names, heights and courtyard paving are approximate. The small entry gate and fence lack a mapped footprint. The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. Its approach strip in the overhead view supports the south-facing trial. The tea-house attribution and the position of its separate gate remain provisional."
   },
   "sourceGeometry": {
     "module": "content/worldgen/source/places/wx/wx4/summer_palace_farming_garden/models/member-model.mjs",
     "export": "buildMaster",
-    "layoutHash": "sha256:30816e32d7bedde9adab618733ee6a1a70943f45662cea8aa3a39513a1348148"
+    "layoutHash": "sha256:40cf6badd677248dbb899eb0dba79423361f23685b860cddb5cfc8b710b8cec7"
   },
   "runtimeLodOverlay": {
     "level": "skyline",
@@ -406,7 +411,7 @@
         "graph": "window_grid"
       }
     },
-    "inputHash": "sha256:f7bac5dfb9c2152aa9e2ad1f006cf8a4a75397ba9de6b157fdddac244e6311e4",
+    "inputHash": "sha256:31e4e4a39aa70ed949bc3f4a4c9916e7636764ccbd64d7f740b7a7b8643935ef",
     "authoredLevels": {
       "district": {
         "export": "buildDistrict",
@@ -492,7 +497,8 @@
   "fidelityStatus": "pending",
   "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
   "limitations": [
-    "Fourteen occupied PMTiles footprints establish the Water Training School courts, the long gallery, the waterfront pavilions and northern court ranges. Exterior photographs guide the grey tiled school façades, timber screens, light door and stone paving. Individual heights, courtyard paving alignments and the functions of unlabelled ranges are reconstructed. The native shoreline, ponds and public paths are retained. Outer landscape structures and the stele await identification."
+    "Fourteen occupied PMTiles footprints establish the Water Training School courts, inland gallery, waterfront pavilions and the three northern ranges in the Water Village court. The native shoreline, ponds and public paths are retained. Individual room names, heights and courtyard paving are approximate. The small entry gate and fence lack a mapped footprint.",
+    "The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. Its approach strip in the overhead view supports the south-facing trial. The tea-house attribution and the position of its separate gate remain provisional."
   ],
   "qaCameras": [
     {
@@ -550,16 +556,58 @@
         -43
       ],
       "fov": 57
+    },
+    {
+      "name": "water-village-court",
+      "position": [
+        126,
+        2.05,
+        -104.2
+      ],
+      "lookAt": [
+        129,
+        1.35,
+        -113.9
+      ],
+      "fov": 64
+    },
+    {
+      "name": "water-village-ranges",
+      "position": [
+        153,
+        17,
+        -93
+      ],
+      "lookAt": [
+        116,
+        1,
+        -114
+      ],
+      "fov": 57
+    },
+    {
+      "name": "water-village-south-veranda",
+      "position": [
+        110.45444981285921,
+        1.0499999999999998,
+        -91.92559337035493
+      ],
+      "lookAt": [
+        108.73403801462054,
+        1.1,
+        -103.23986238096631
+      ],
+      "fov": 65
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 47890,
-    "vertices": 96004,
+    "triangles": 47416,
+    "vertices": 95056,
     "materials": 5,
-    "bytes": 4034248,
-    "sha256": "sha256:15024abdaca31e580dbe6262beb360400d35f1ada108803aaa8a09dd2dd75445"
+    "bytes": 3994432,
+    "sha256": "sha256:f621649d8c0b851ac0c0baeae90ed184d8e5bf9a118098f08468ec278df25ff9"
   }
 }

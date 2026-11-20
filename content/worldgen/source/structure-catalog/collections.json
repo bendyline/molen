@@ -936,7 +936,7 @@
       "wikidataId": "Q749556",
       "title": "Yasnaya Polyana",
       "identityKind": "site-members",
-      "requiredCount": 19,
+      "requiredCount": 20,
       "membershipEvidence": {
         "source": "https://ypmuseum.ru/map",
         "featureIds": [
@@ -958,11 +958,8 @@
           "way/167382258",
           "way/167382241"
         ],
-        "note": "Independent fixed architectural structures identified in ordinary museum visitor-map inventory and pictures. Use actual OSM feature IDs where available and explicit attributed photo-position references for unmapped members. Connected Volkonsky wings and paired gate towers each form one member. Gardens, ponds, paths and the unbuilt grave remain terrain/context. Keep unresolved service inventory gated; individual role/facing/level inferences remain in each model review.",
-        "inventoryStatus": "needs-review",
-        "outstanding": [
-          "Woodshed"
-        ],
+        "note": "Independent fixed structures identified from the museum visitor map and photographs. Mapped members use their OSM identities. The White Kitchen, icehouse and woodshed keep separate photo-derived positions. Connected Volkonsky wings and paired gate towers each form one member. Gardens, paths, ponds and the unbuilt grave remain site context.",
+        "inventoryStatus": "complete",
         "memberIds": [
           "leo_tolstoy_house_yasnaya_polyana",
           "kuzminsky_house_yasnaya_polyana",
@@ -982,8 +979,10 @@
           "equipment_shed_yasnaya_polyana",
           "riga_yasnaya_polyana",
           "white_kitchen_yasnaya_polyana",
-          "icehouse_yasnaya_polyana"
-        ]
+          "icehouse_yasnaya_polyana",
+          "woodshed_yasnaya_polyana"
+        ],
+        "outstanding": []
       },
       "members": [
         {
@@ -1218,6 +1217,21 @@
           "positionReference": {
             "source": "https://www.google.com/maps/@54.076364,37.526021,20z/data=!3m1!1e3",
             "basis": "Two ordinary courtyard photos show the same independent low log outbuilding with steep weathered board gable roof, horizontal timber gable, small triangular vent and braced low door immediately beside the kitchen. The aerial roof northeast of the kitchen supplies approximate center[37.526115,54.076448] and southwest-facing gable axis. Assignment as the icehouse rather than woodshed remains an explicit estate-context inference: the photographs are grouped under kitchen and do not label this outbuilding individually. This is an original specific exterior interpretation, not a generic icehouse preset. Standard PMTiles/current OSM omit its footprint; own or replace no native building. Position about5m/facing20degrees are author estimates, not measured bounds."
+          }
+        },
+        {
+          "id": "woodshed_yasnaya_polyana",
+          "title": "Woodshed — Yasnaya Polyana",
+          "wikidataId": "Q749556",
+          "sourceKey": "woodshed_yasnaya_polyana",
+          "assetId": "molen.worldgen.structure.woodshed_yasnaya_polyana",
+          "referenceCoordinate": {
+            "longitude": 37.5258249,
+            "latitude": 54.07631053
+          },
+          "positionReference": {
+            "source": "https://artsandculture.google.com/streetview/state-memorial-and-natural-preserve-leo-tolstoy-museum-estate-yasnaya-polyana-exterior/QgE4EprFLI_giw",
+            "basis": "Two views in the museum exterior tour place the boarded shed beside the white garden wall, west of the White Kitchen. The high louver end faces northeast. The photo rays use two White Kitchen eave corners and the rear of Tolstoy House to align the photos to the aerial view. The native PMTiles lacks the shed outline and supplies independent path and building context."
           }
         }
       ]
@@ -3136,7 +3150,7 @@
       "title": "Summer Palace",
       "wikidataId": "Q4132",
       "identityKind": "site-members",
-      "requiredCount": 44,
+      "requiredCount": 49,
       "membershipEvidence": {
         "source": "https://build.protomaps.com/20261111.pmtiles",
         "corroboration": [
@@ -3232,12 +3246,17 @@
           "https://www.china-qiao.com/ql01/bjql037.htm",
           "https://www.sohu.com/a/397185340_216077",
           "https://hpcbristol.net/visual/bo01-087",
-          "https://gygl.beijing.gov.cn/mlgy/mlgy_lsmy/201911/t20191129_732237.html"
+          "https://gygl.beijing.gov.cn/mlgy/mlgy_lsmy/201911/t20191129_732237.html",
+          "https://summerpalace.net.cn/guide_map.html",
+          "https://www.weishoot.com/story/E8F8F74C-2540-442D-BBC7-AB6C60ADB47C.html",
+          "https://www.china-qiao.com/ql01/bjql378.htm",
+          "https://pamperherself.substack.com/p/summer-in-the-summer-palace-a-quiet",
+          "https://g.udn.com.tw/upfiles/B_GE/ger0830/PSN_PHOTO/631/f_21127631_1.jpg",
+          "https://www.summerpalace.net.cn/noticelist/detail/1000685.html"
         ],
         "inventoryStatus": "needs-review",
         "outstanding": [
-          "Locate the authored Farming and Weaving Stele shelter along the garden’s west wall and verify its ground fit.",
-          "Identify smaller outer buildings in the Garden of Farming and Weaving."
+          "Confirm remaining smaller Farming and Weaving structures and the individual uses of the two rear Water Village ranges."
         ],
         "memberIds": [
           "summer_palace_incense_tower",
@@ -3283,7 +3302,12 @@
           "summer_palace_sumeru_entrance",
           "summer_palace_west_gate",
           "summer_palace_silkworm_temple",
-          "summer_palace_farming_stele"
+          "summer_palace_farming_stele",
+          "summer_palace_chengxian_hall",
+          "summer_palace_jade_river_gallery",
+          "summer_palace_chengxian_gallery",
+          "summer_palace_water_village_bridge",
+          "summer_palace_water_village_gate"
         ],
         "featureIds": [],
         "note": "The site covers separate hill, court, garden and lakeshore landmarks. Each authored compound or crossing is streamed by its mapped location."
@@ -3941,12 +3965,87 @@
           "wikidataId": "Q4132",
           "title": "Summer Palace · Farming and Weaving Stele",
           "referenceCoordinate": {
-            "longitude": 116.258507967,
-            "latitude": 39.995259841
+            "longitude": 116.25778796313595,
+            "latitude": 39.99466794232615
           },
           "positionReference": {
-            "source": "https://build.protomaps.com/20261111.pmtiles",
-            "basis": "The reference coordinate marks a search area in the northern garden near the west wall. Its exact position awaits field or map confirmation."
+            "source": "https://build.protomaps.com/20261118.pmtiles",
+            "basis": "The draft is beside the west garden walk, about 37 m west of the Silkworm Deity Temple. The title faces south. The canopy conceals the exact location beneath it."
+          }
+        },
+        {
+          "id": "summer_palace_chengxian_hall",
+          "sourceKey": "summer_palace_chengxian_hall",
+          "assetId": "molen.worldgen.structure.summer_palace_chengxian_hall",
+          "wikidataId": "Q4132",
+          "title": "Summer Palace · Hall of Freshness and Clarity",
+          "referenceCoordinate": {
+            "longitude": 116.25975499313864,
+            "latitude": 39.994158336505926
+          },
+          "positionReference": {
+            "source": "https://build.protomaps.com/20261118.pmtiles",
+            "basis": "The dated roof imagery and visitor photo identify the hall on the projecting east bank. Two neighboring pavilion footprints register the aerial image to PMTiles. The west-facing trace and terrace fit remain approximate."
+          }
+        },
+        {
+          "id": "summer_palace_jade_river_gallery",
+          "sourceKey": "summer_palace_jade_river_gallery",
+          "assetId": "molen.worldgen.structure.summer_palace_jade_river_gallery",
+          "wikidataId": "Q4132",
+          "title": "Summer Palace · Jade River Gallery",
+          "referenceCoordinate": {
+            "longitude": 116.25916612004124,
+            "latitude": 39.99462595758815
+          },
+          "positionReference": {
+            "source": "https://build.protomaps.com/20261118.pmtiles",
+            "basis": "North-bank roof ridges traced from dated imagery and registered against the two adjacent PMTiles studio footprints. Approximate exterior model includes the detached west pavilion and both roofed wings."
+          }
+        },
+        {
+          "id": "summer_palace_chengxian_gallery",
+          "sourceKey": "summer_palace_chengxian_gallery",
+          "title": "Summer Palace · Chengxian covered gallery",
+          "assetId": "molen.worldgen.structure.summer_palace_chengxian_gallery",
+          "wikidataId": "Q4132",
+          "referenceCoordinate": {
+            "longitude": 116.25968674335894,
+            "latitude": 39.9946079912801
+          },
+          "positionReference": {
+            "source": "https://build.protomaps.com/20261118.pmtiles",
+            "basis": "The park map and visitor views identify the southward connection. The modeled bank route fits between Jade River Studio and the hall under a shared local PMTiles and terrain view. Roof edges and covered joins remain approximate."
+          }
+        },
+        {
+          "id": "summer_palace_water_village_bridge",
+          "sourceKey": "summer_palace_water_village_bridge",
+          "assetId": "molen.worldgen.structure.summer_palace_water_village_bridge",
+          "wikidataId": "Q4132",
+          "title": "Summer Palace · Water Village Stone Bridge",
+          "referenceCoordinate": {
+            "longitude": 116.25997692346571,
+            "latitude": 39.99545676233474
+          },
+          "positionReference": {
+            "source": "https://build.protomaps.com/20261118.pmtiles",
+            "basis": "The photographed three-opening bridge follows the mapped footpath crossing immediately south of Water Village. Deck ends and open water were reviewed with the native terrain and mapped approaches."
+          }
+        },
+        {
+          "id": "summer_palace_water_village_gate",
+          "sourceKey": "summer_palace_water_village_gate",
+          "assetId": "molen.worldgen.structure.summer_palace_water_village_gate",
+          "wikidataId": "Q4132",
+          "title": "Summer Palace · Water Village gate and fence",
+          "referenceCoordinate": {
+            "longitude": 116.2600303455727,
+            "latitude": 39.99615583800516
+          },
+          "positionReference": {
+            "source": "https://www.summerpalace.net.cn/noticelist/detail/1000685.html",
+            "basis": "The July 2026 park photograph shows the gate, both fences and the tea-room facade. The depicted approach follows the paved strip south of the PMTiles range. The gate setback and fence ends are approximate."
           }
         }
       ]
@@ -4005,6 +4104,452 @@
           "referenceCoordinate": {
             "longitude": 34.47929933667183,
             "latitude": 45.9524140495781
+          }
+        }
+      ]
+    },
+    {
+      "id": "mini_israel",
+      "wikidataId": "Q456800",
+      "title": "Mini Israel",
+      "identityKind": "site-members",
+      "requiredCount": 11,
+      "membershipEvidence": {
+        "source": "https://www.israel-in-photos.com/mini-israel.html",
+        "corroboration": [
+          "https://g-m-a.co.il/en/mini-israel",
+          "https://www.the7eye.org.il/460149",
+          "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=82s",
+          "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=452s",
+          "https://jr.co.il/pictures/israel/mini-israel/index2.htm",
+          "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=306s"
+        ],
+        "memberIds": [
+          "mini_israel_entrance",
+          "mini_israel_azrieli_towers",
+          "mini_israel_teddy_stadium",
+          "mini_israel_dome_of_the_rock",
+          "mini_israel_track_and_field_stadium",
+          "mini_israel_amphitheater",
+          "mini_israel_king_david_hotel",
+          "mini_israel_ben_gurion_airport",
+          "mini_israel_yad_eliyahu_arena",
+          "mini_israel_orot_rabin_power_station",
+          "mini_israel_dizengoff_center"
+        ],
+        "featureIds": [
+          "way/292811379"
+        ],
+        "inventoryStatus": "needs-review",
+        "outstanding": [
+          "Confirm the Dome of the Rock miniature's plinth and current display beneath or beside the canopy.",
+          "Confirm the track-and-field exhibit's current plinth and axis beside Teddy Stadium.",
+          "Confirm the King David Hotel miniature's current display and platform.",
+          "Identify the remaining outdoor exhibits and visitor buildings from the park inventory.",
+          "Confirm the airport miniature’s present-day location and display condition. The reconstructed 2012 exhibit has a dated placement.",
+          "Confirm the Yad Eliyahu Arena miniature’s current display condition. The November 2011 platform has a dated placement.",
+          "Confirm the Orot Rabin miniature’s current display condition. The photographed November 2011 apron has a dated placement."
+        ],
+        "note": "Four members have current placements and seven have dated historical placements. The King David Hotel miniature uses the planting-island fit for the panorama published on 17 May 2012. The airport apron uses the panorama published on 17 May 2012 and a bounded grade for that date. The power station and Yad Eliyahu Arena use dated November 2011 panoramas. The Dizengoff Center towers use the archive published on 17 May 2012."
+      },
+      "members": [
+        {
+          "id": "mini_israel_entrance",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel entrance and workshop",
+          "sourceKey": "mini_israel_entrance",
+          "assetId": "molen.worldgen.structure.mini_israel_entrance",
+          "referenceCoordinate": {
+            "longitude": 34.968284271,
+            "latitude": 31.842779992
+          },
+          "featureId": "way/292811379"
+        },
+        {
+          "id": "mini_israel_azrieli_towers",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel Azrieli Towers exhibit",
+          "sourceKey": "mini_israel_azrieli_towers",
+          "assetId": "molen.worldgen.structure.mini_israel_azrieli_towers",
+          "referenceCoordinate": {
+            "longitude": 34.9683044,
+            "latitude": 31.84227883
+          },
+          "positionReference": {
+            "source": "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=82s",
+            "basis": "The three towers and platform in the drone tour align with the pad between the pool path and circular visitor plaza. Overhead curb and PMTiles path controls support the approximate pose."
+          }
+        },
+        {
+          "id": "mini_israel_teddy_stadium",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel Teddy Stadium exhibit",
+          "sourceKey": "mini_israel_teddy_stadium",
+          "assetId": "molen.worldgen.structure.mini_israel_teddy_stadium",
+          "referenceCoordinate": {
+            "longitude": 34.96851481,
+            "latitude": 31.84219247
+          },
+          "positionReference": {
+            "source": "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=452s",
+            "basis": "The photographed pitch, horseshoe and adjacent visitor semicircle locate the exhibit and its open southwest end. Nearby PMTiles paths provide context."
+          }
+        },
+        {
+          "id": "mini_israel_dome_of_the_rock",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel Dome of the Rock exhibit",
+          "sourceKey": "mini_israel_dome_of_the_rock",
+          "assetId": "molen.worldgen.structure.mini_israel_dome_of_the_rock",
+          "referenceCoordinate": {
+            "longitude": 34.96952009,
+            "latitude": 31.84167795
+          },
+          "positionReference": {
+            "source": "https://virtualglobetrotting.com/map/mini-israel-dome-of-the-rock/view/google/",
+            "basis": "The coordinate estimates the former exhibit from the photographed viewing direction. Current overhead imagery obscures the plinth and the display remains a draft."
+          }
+        },
+        {
+          "id": "mini_israel_track_and_field_stadium",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel track-and-field stadium exhibit",
+          "sourceKey": "mini_israel_track_and_field_stadium",
+          "assetId": "molen.worldgen.structure.mini_israel_track_and_field_stadium",
+          "referenceCoordinate": {
+            "longitude": 34.96861922,
+            "latitude": 31.84221918
+          },
+          "positionReference": {
+            "source": "https://virtualglobetrotting.com/map/mini-israel-track-and-field-stadium/view/google/",
+            "basis": "An older view shows the running track alongside Teddy Stadium. The coordinate marks a search area from the photographed direction. The current plinth and axis are pending."
+          }
+        },
+        {
+          "id": "mini_israel_amphitheater",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel · Outdoor amphitheater",
+          "sourceKey": "mini_israel_amphitheater",
+          "assetId": "molen.worldgen.structure.mini_israel_amphitheater",
+          "referenceCoordinate": {
+            "longitude": 34.96898353099823,
+            "latitude": 31.84135145215394
+          },
+          "positionReference": {
+            "source": "https://www.the7eye.org.il/460149",
+            "basis": "The full-size stage and terraced audience bowl match both overhead and oblique views of the park."
+          }
+        },
+        {
+          "id": "mini_israel_king_david_hotel",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel · King David Hotel exhibit",
+          "sourceKey": "mini_israel_king_david_hotel",
+          "assetId": "molen.worldgen.structure.mini_israel_king_david_hotel",
+          "referenceCoordinate": {
+            "longitude": 34.9695251,
+            "latitude": 31.8416045
+          },
+          "positionReference": {
+            "source": "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=306s",
+            "basis": "The flyover identifies the hotel exhibit in the Jerusalem section. The reference point marks the section. The dated model placement uses the garden-facing panorama and the photographed planting island."
+          }
+        },
+        {
+          "id": "mini_israel_ben_gurion_airport",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel · Ben Gurion Airport exhibit",
+          "sourceKey": "mini_israel_ben_gurion_airport",
+          "assetId": "molen.worldgen.structure.mini_israel_ben_gurion_airport",
+          "referenceCoordinate": {
+            "longitude": 34.96911592657312,
+            "latitude": 31.842230571006983
+          },
+          "positionReference": {
+            "source": "https://virtualglobetrotting.com/map/mini-israel-airplane-models/view/google/",
+            "basis": "The 2012 panorama fixes the west-southwest camera and the signed aircraft poses. The reconstruction is scaled uniformly to 89% around that camera and clears the nearest mapped visitor path by 2.7706 m. A date-specific ground grade seats the deck at all tested detail levels. The historical grade and the original platform dimensions are estimates."
+          }
+        },
+        {
+          "id": "mini_israel_yad_eliyahu_arena",
+          "title": "Mini Israel · Yad Eliyahu Arena exhibit",
+          "assetId": "molen.worldgen.structure.mini_israel_yad_eliyahu_arena",
+          "sourceKey": "mini_israel_yad_eliyahu_arena",
+          "wikidataId": "Q456800",
+          "referenceCoordinate": {
+            "longitude": 34.96846916,
+            "latitude": 31.84232783
+          },
+          "positionReference": {
+            "source": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?cb_client=maps_sv.tactile&w=1024&h=768&panoid=cCkFKhSVbCQlsROigVyU8w&yaw=138&pitch=25&thumbfov=68",
+            "basis": "Four November 2011 panorama stations place the model on the paved platform below the wooden terrace. The cutaway faces approximately 340 degrees true. The model and platform grade load during the documented month. The current display condition remains unverified."
+          }
+        },
+        {
+          "id": "mini_israel_orot_rabin_power_station",
+          "title": "Mini Israel · Orot Rabin Power Station exhibit",
+          "assetId": "molen.worldgen.structure.mini_israel_orot_rabin_power_station",
+          "sourceKey": "mini_israel_orot_rabin_power_station",
+          "wikidataId": "Q456800",
+          "referenceCoordinate": {
+            "longitude": 34.968412838318486,
+            "latitude": 31.84258931290298
+          },
+          "positionReference": {
+            "source": "https://virtualglobetrotting.com/map/mini-israel-power-plant/view/google/",
+            "basis": "The four November 2011 panoramas place the miniature beside the visitor plaza at an apron bearing of 262.1° true. The fitted apron clears the nearest PMTiles path by 1.21 m. Its retaining edge reaches the rendered canal surface. In the dated view the water mask follows the two dry apron outlines, with the rest of the canal and the path preserved. The exact capture day, original platform elevation and present exhibit condition remain unresolved."
+          }
+        },
+        {
+          "id": "mini_israel_dizengoff_center",
+          "sourceKey": "mini_israel_dizengoff_center",
+          "assetId": "molen.worldgen.structure.mini_israel_dizengoff_center",
+          "wikidataId": "Q456800",
+          "title": "Mini Israel · Dizengoff Center exhibit",
+          "referenceCoordinate": {
+            "longitude": 34.96815069286164,
+            "latitude": 31.842346826144567
+          },
+          "positionReference": {
+            "source": "https://virtualglobetrotting.com/map/mini-israel-tel-aviv/view/google/",
+            "basis": "Three archived views locate the two towers by their distinct silhouettes. Their centers fix an approximate signed axis. The May 2012 reconstruction sits in the Tel Aviv exhibit bed beside the entrance frontage."
+          }
+        }
+      ]
+    },
+    {
+      "id": "osun_osogbo_grove",
+      "wikidataId": "Q621498",
+      "title": "Osun-Osogbo Grove",
+      "identityKind": "site-members",
+      "requiredCount": 13,
+      "membershipEvidence": {
+        "source": "https://whc.unesco.org/uploads/nominations/1118.pdf",
+        "corroboration": [
+          "https://artsandculture.google.com/partner/the-osun-osogbo-grove",
+          "https://whc.unesco.org/document/169248",
+          "https://artsandculture.google.com/asset/ela-in-silhouette/ngG0PONodRJXTg",
+          "https://artsandculture.google.com/asset/sanponna-deity-of-smallpox-and-infectious-diseases-susanne-wenger/-AEZB2DVgTkN2Q?hl=en",
+          "https://whc.unesco.org/document/224879",
+          "https://www.foluoyefeso.com/post/the-osun-osogbo-festival-osun-state",
+          "https://repository.ui.edu.ng/server/api/core/bitstreams/ae627eab-e1c8-4863-aa3c-ea98e50c3bab/content"
+        ],
+        "memberIds": [
+          "osun_grove_suspension_bridge",
+          "osun_grove_first_palace",
+          "osun_grove_main_gateway",
+          "osun_grove_arugba_gate",
+          "osun_grove_second_palace",
+          "osun_grove_iya_mopo",
+          "osun_grove_busanyin_shrine",
+          "osun_grove_chameleon_gate",
+          "osun_grove_flying_tortoise",
+          "osun_grove_ela",
+          "osun_grove_sanponna",
+          "osun_grove_road_gate",
+          "osun_grove_festival_pavilion"
+        ],
+        "featureIds": [
+          "way/425244615"
+        ],
+        "inventoryStatus": "needs-review",
+        "outstanding": [
+          "Resolve the Second Palace footprint and signed bearing under the forest canopy.",
+          "Additional shrines and sculptures in the protected grove still need an attributed inventory."
+        ],
+        "note": "The current inventory includes separate known structures with individual review. The parent is the protected site. Its coordinate does not place members."
+      },
+      "members": [
+        {
+          "id": "osun_grove_suspension_bridge",
+          "wikidataId": "Q621498",
+          "title": "Osun Grove suspension footbridge",
+          "sourceKey": "osun_grove_suspension_bridge",
+          "assetId": "molen.worldgen.structure.osun_grove_suspension_bridge",
+          "referenceCoordinate": {
+            "longitude": 4.552750736474991,
+            "latitude": 7.7542822090875845
+          },
+          "featureId": "way/425244615"
+        },
+        {
+          "id": "osun_grove_first_palace",
+          "wikidataId": "Q621498",
+          "title": "Ojúbọ Òṣogbo, First Palace",
+          "sourceKey": "osun_grove_first_palace",
+          "assetId": "molen.worldgen.structure.osun_grove_first_palace",
+          "referenceCoordinate": {
+            "longitude": 4.551853298397008,
+            "latitude": 7.755520283640526
+          },
+          "positionReference": {
+            "source": "https://commons.wikimedia.org/wiki/File:Entrance_To_The_First_Palace_in_Osogbo.jpg",
+            "basis": "The September 2024 geotagged entrance photo constrains the west-facing placement to about 265° true. Alternative photo controls give about 252°–268°, and the phone reports 4.8 m horizontal position uncertainty. The reconstructed footprint lies clear of the PMTiles road and river. A bounded grade exposes the lowest step and supports the documented court without moving the sampled road or river. The precise footprint and grade remain approximate."
+          }
+        },
+        {
+          "id": "osun_grove_main_gateway",
+          "wikidataId": "Q621498",
+          "title": "Gateway to Ojúbọ Òṣogbo",
+          "sourceKey": "osun_grove_main_gateway",
+          "assetId": "molen.worldgen.structure.osun_grove_main_gateway",
+          "referenceCoordinate": {
+            "longitude": 4.552222222222222,
+            "latitude": 7.7555555555555555
+          },
+          "positionReference": {
+            "source": "https://whc.unesco.org/uploads/nominations/1118.pdf",
+            "basis": "The nomination identifies the First Palace courtyard. The map has no separately identified gateway footprint."
+          }
+        },
+        {
+          "id": "osun_grove_arugba_gate",
+          "wikidataId": "Q621498",
+          "title": "Arugbá Gate",
+          "sourceKey": "osun_grove_arugba_gate",
+          "assetId": "molen.worldgen.structure.osun_grove_arugba_gate",
+          "referenceCoordinate": {
+            "longitude": 4.552222,
+            "latitude": 7.755556
+          },
+          "positionReference": {
+            "source": "https://artsandculture.google.com/streetview/arugb%C3%A1-gate/rAEf1RfoVGbBUg",
+            "basis": "The shrine trust identifies the entrance gate. The reference point is for the grove."
+          }
+        },
+        {
+          "id": "osun_grove_second_palace",
+          "wikidataId": "Q621498",
+          "title": "Ilédì Oǹtótóo, Second Palace",
+          "sourceKey": "osun_grove_second_palace",
+          "assetId": "molen.worldgen.structure.osun_grove_second_palace",
+          "referenceCoordinate": {
+            "longitude": 4.5491085,
+            "latitude": 7.757122
+          },
+          "positionReference": {
+            "source": "https://openheritage3d.org/project.php?id=4qq4-8d77",
+            "basis": "The published scan coverage locates the search area. The exterior panorama supports a south-facing trial that clears the PMTiles road and river. Its camera pin differs from the archive center by about 167 m. The footprint and bearing still need confirmation."
+          }
+        },
+        {
+          "id": "osun_grove_iya_mopo",
+          "wikidataId": "Q621498",
+          "title": "Ìyá Mọòpó",
+          "sourceKey": "osun_grove_iya_mopo",
+          "assetId": "molen.worldgen.structure.osun_grove_iya_mopo",
+          "referenceCoordinate": {
+            "longitude": 4.5489896,
+            "latitude": 7.7542732
+          },
+          "positionReference": {
+            "source": "https://file.scirp.org/Html/3-1620376_68142.htm#f1",
+            "basis": "Figure 1 point 17 marks the western sculpture and has been compared to the archived PMTiles access road. The trial heading faces the road."
+          }
+        },
+        {
+          "id": "osun_grove_busanyin_shrine",
+          "wikidataId": "Q621498",
+          "title": "Búsanyìn Shrine",
+          "sourceKey": "osun_grove_busanyin_shrine",
+          "assetId": "molen.worldgen.structure.osun_grove_busanyin_shrine",
+          "referenceCoordinate": {
+            "latitude": 7.75491,
+            "longitude": 4.550625
+          },
+          "positionReference": {
+            "source": "https://artsandculture.google.com/streetview/b%C3%BAsany%C3%ACn-shrine-exterior/FAFd-WgclbDY8g",
+            "basis": "The field reference identifies this member. The coordinate denotes the grove."
+          }
+        },
+        {
+          "id": "osun_grove_chameleon_gate",
+          "wikidataId": "Q621498",
+          "title": "Chameleon Gate at Ẹbu Ìyá Mọòpó",
+          "sourceKey": "osun_grove_chameleon_gate",
+          "assetId": "molen.worldgen.structure.osun_grove_chameleon_gate",
+          "referenceCoordinate": {
+            "longitude": 4.549444,
+            "latitude": 7.754167
+          },
+          "positionReference": {
+            "source": "https://artsandculture.google.com/story/rgXhbJXdFehtIA",
+            "basis": "The Trust identifies the gate at the Sacred Potter Field. The coordinate is a search point for the courtyard."
+          }
+        },
+        {
+          "id": "osun_grove_flying_tortoise",
+          "wikidataId": "Q621498",
+          "title": "Arch of the Flying Tortoise",
+          "sourceKey": "osun_grove_flying_tortoise",
+          "assetId": "molen.worldgen.structure.osun_grove_flying_tortoise",
+          "referenceCoordinate": {
+            "longitude": 4.5496515,
+            "latitude": 7.7557705
+          },
+          "positionReference": {
+            "source": "https://file.scirp.org/Html/3-1620376_68142.htm#f1",
+            "basis": "Figure 1 point 32 identifies the Flying Tortoise beside the access route. The signed crossing frame awaits local map fit."
+          }
+        },
+        {
+          "id": "osun_grove_ela",
+          "wikidataId": "Q621498",
+          "title": "Ẹ̀là sculpture at Ẹbu Ìyá Mọòpó",
+          "sourceKey": "osun_grove_ela",
+          "assetId": "molen.worldgen.structure.osun_grove_ela",
+          "referenceCoordinate": {
+            "longitude": 4.54861157,
+            "latitude": 7.75417114
+          },
+          "positionReference": {
+            "source": "https://www.foluoyefeso.com/post/osun-osogbo-sacred-grove",
+            "basis": "A geotagged March 2020 visitor photo supports an approximate 118° true facing and projects the footing 10.7 m from site-map marker 16. All four viewer levels retain the native surface."
+          }
+        },
+        {
+          "id": "osun_grove_sanponna",
+          "wikidataId": "Q621498",
+          "title": "Ṣànpọ̀nná sculpture at Ẹbu Ìyá Mọòpó",
+          "sourceKey": "osun_grove_sanponna",
+          "assetId": "molen.worldgen.structure.osun_grove_sanponna",
+          "referenceCoordinate": {
+            "longitude": 4.5490062,
+            "latitude": 7.7537753
+          },
+          "positionReference": {
+            "source": "https://artsandculture.google.com/asset/sanponna-deity-of-smallpox-and-infectious-diseases-susanne-wenger/-AEZB2DVgTkN2Q?hl=en",
+            "basis": "The PMTiles show River Osun and the western access road. The courtyard point is for searching. The sculpture needs its own verified footprint, bearing and ground height before live geographic placement."
+          }
+        },
+        {
+          "id": "osun_grove_road_gate",
+          "wikidataId": "Q621498",
+          "title": "Osun Grove road entrance gate",
+          "sourceKey": "osun_grove_road_gate",
+          "assetId": "molen.worldgen.structure.osun_grove_road_gate",
+          "referenceCoordinate": {
+            "longitude": 4.550539925694466,
+            "latitude": 7.7589327953937755
+          },
+          "positionReference": {
+            "source": "https://build.protomaps.com/20261115.pmtiles",
+            "basis": "The trial fits the visible overhead crossing at the town-side fork. Across the facade, the PMTiles approach centerline is approximately 3.5 m toward the right pier relative to the overhead crossing midpoint. The terrain sample indicates about 0.62 m of crossfall. Live placement awaits reconciliation of the mapped road and the observed opening."
+          }
+        },
+        {
+          "id": "osun_grove_festival_pavilion",
+          "wikidataId": "Q621498",
+          "title": "Osun Grove Festival Pavilion",
+          "sourceKey": "osun_grove_festival_pavilion",
+          "assetId": "molen.worldgen.structure.osun_grove_festival_pavilion",
+          "referenceCoordinate": {
+            "longitude": 4.551817832015127,
+            "latitude": 7.75571884715855
+          },
+          "positionReference": {
+            "source": "https://www.foluoyefeso.com/post/the-osun-osogbo-festival-osun-state",
+            "basis": "The selected photo fit faces about 194 degrees true and clears the First Palace model by 5.96 m. The two bearing checks favor this fit over the 2020 map marker. The mapped roads and river remain in the scene. The ramp toe meets the reconstructed forecourt within 3 cm at all four levels, and three First Palace probes retain their prior terrain and model elevations. The exact pavilion footprint and hillside remain approximate."
           }
         }
       ]

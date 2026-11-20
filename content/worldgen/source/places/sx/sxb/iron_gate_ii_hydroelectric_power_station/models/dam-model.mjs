@@ -18,6 +18,8 @@ export const controls = {
     [565.14, 0, 46],
   ],
   roadIds: [35184497785129, 35184409064137],
+  // Incoming PMTiles segment to the Serbian landing. The retained secondary road is 8 m wide.
+  westApproach: { id: 35184441085810, direction: [8.777, 5.647], halfWidth: 4 },
   powerhouse: [195.3, 525],
   annexEnd: 604.7,
   auxiliary: [-390.4, -305.7],
@@ -74,15 +76,35 @@ export function roadAt(x) {
   return [z + (w - z) * t, y + (h - y) * t];
 }
 
+export function westRoadSection(lateral) {
+  const [x, z] = road[0];
+  const [dx, dz] = controls.westApproach.direction;
+  const unit = lateral / Math.hypot(dx, dz);
+  return [x - dz * unit, z + dx * unit];
+}
+
 function roadDeck(out, tier) {
   for (let i = 1; i < road.length; i++) {
     const [a, az, ay] = road[i - 1],
       [b, bz, by] = road[i];
     const point = (x, z, y, lateral, high) => p(x, y + high, z + lateral);
-    const at = (z, h) => [point(a, az, ay, z, h), point(b, bz, by, z, h)];
+    const at = (z, h) => {
+      const [westX, westZ] =
+        i === 1 ? westRoadSection((z / 5.15) * controls.westApproach.halfWidth) : [a, az + z];
+      return [p(westX, ay + h, westZ), point(b, bz, by, z, h)];
+    };
     const top = [...at(-5.15, 0), ...at(5.15, 0).reverse()];
     panel(out, 'deck', top, [0, 1, 0]);
     panel(out, 'fascia', [...at(-5.15, -1.3), ...at(5.15, -1.3).reverse()], [0, -1, 0]);
+    if (i === 1) {
+      const [dx, dz] = controls.westApproach.direction;
+      panel(
+        out,
+        'fascia',
+        [at(-5.15, -1.3)[0], at(5.15, -1.3)[0], at(5.15, 0)[0], at(-5.15, 0)[0]],
+        [-dx, 0, -dz],
+      );
+    }
     for (const side of [-1, 1]) {
       const z = side * 5.15;
       panel(out, 'fascia', [...at(z, -1.3), ...at(z, 0).reverse()], [0, 0, side]);

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Surviving Angkor stone bridge ruin: squared stepped corbel passages, irregular sandstone courses, displaced roof slabs and eastern collapsed blocks, pale strangler roots and a second dark tree growing through the retained paving. Six visible passages and two broken channels; full ruin scope unverified. Provisional extent, not a restored intact road crossing.
+Spean Thma ruin with stepped sandstone corbels, projecting moss-stained pier bases, displaced paving and a low broken eastern apron. Two intertwining trees retain the pale low fork and the rooted dark trunk.
 
 Editable geometry lives in models/; model-brief.json records the material library, four authored runtime levels, reference pictures and reconstruction limits. The detailed master is reproducible from this editable recipe; inspection and readiness decisions are recorded separately. All GLBs are ignored generated outputs.
 

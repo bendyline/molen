@@ -1,0 +1,9 @@
+# Chameleon Gate exterior review
+
+The front and rear retain the asymmetrical open arch, leaning tail, branching shoulders, splayed feet and adjoining perforated clay wall. The piers flare at ground level. The left flower wall has a deeper footing to keep the wall seated while leaving the entrance steps exposed. The district, street and close-up tiers show asymmetric hollows beneath projecting clay lips on the front and courtyard faces. The larger flower wall retains concave bowls. The photographs guide proportions and color. Fine sculptural profiles remain interpreted. [Overview](preview.png) · [Flower wall detail](flower-wall-preview.webp) · [Trust photographs](https://artsandculture.google.com/story/rgXhbJXdFehtIA)
+
+The source master, imported GLB and all four detail levels passed Khronos validation with zero errors, warnings or embedded images. Geometry probes check the passage, wall opening, approach grade, tail and flower cavity. Four additional rays in each near tier measure the pier recesses. The first two viewer tiers total 354,644 bytes. [QA record](qa.json)
+
+The geotagged rear photo shows the paved access road directly through the arch, with the larger flower wall on the left. The photograph places the gate west of the mapped road. The preview uses the road station nearest the tagged camera and faces across the road at 93° true. The 8.1 m setback from the PMTiles centerline follows the visible approach and modeled steps. The GPS tag is a camera position, and the exact threshold position and facing are estimated. [Geotagged photograph](https://www.flickr.com/photos/jbdodane/10688988383/)
+
+The deeper foundations seat on native terrain. The lowest step clears rendered landcover by at least 2.6 cm in all four detail levels. The viewer preserves the three mapped roads and shows the access road through the open arch. [Placement report](placement-report.json)

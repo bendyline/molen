@@ -83,6 +83,7 @@ for (const [id, module] of recipes.filter(([id]) => !selected || selected.includ
     attribution: '© OpenStreetMap contributors',
     source: placement.source,
     wikidataId: brief.wikidataId,
+    ...(brief.orientationPolicy ? { orientationPolicy: brief.orientationPolicy } : {}),
     ...(brief.reviewSurface ? { reviewSurface: brief.reviewSurface } : {}),
   };
   const spec = {

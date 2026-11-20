@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Dome of the Rock exhibit review",
+  "seed": "mini_israel_dome_of_the_rock",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "display",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_dome_of_the_rock",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "floor",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.17,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              35,
+              0.3,
+              35
+            ]
+          },
+          "materialRef": "palette:#919179",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d9e5ec",
+            "ground": "#b5a482",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -4,
+              6,
+              5
+            ],
+            "color": "#fff3df",
+            "intensity": 1.86,
+            "castShadow": true
+          },
+          "background": "#c1cfbf",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -5.9,
+      6.1,
+      8.6
+    ],
+    "lookAt": [
+      0,
+      0.68,
+      0.2
+    ],
+    "fov": 45
+  }
+}

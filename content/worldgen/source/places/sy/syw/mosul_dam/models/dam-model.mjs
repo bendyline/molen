@@ -1,4 +1,4 @@
-/** Original Mosul Dam principal hydraulic core; ordinary aerial and named-map controls. */
+/** Original Mosul Dam exterior; ordinary aerial and named-map controls. */
 import {
   beam,
   beamPath,
@@ -15,6 +15,7 @@ const C = {
   wall: lin('d2cec5'),
   base: lin('a2a495'),
   gravel: lin('8d7e6a'),
+  spillwayEarth: lin('beb19b'),
   roof: lin('b9bab0'),
   metal: lin('a0a093'),
   dark: lin('607975'),
@@ -529,7 +530,7 @@ export const controls = {
     crestBridgeKnots: 4,
   },
   scope:
-    'Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater.',
+    'Mosul Dam exterior with the bent embankment and crest road, five-gate service spillway, powerhouse, outlet hall, four surge cylinders, and the eastern saddle dam and dry emergency spillway. The tailrace, neighboring buildings, substation and islands are native map context.',
   interpretation:
     'One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir.',
 };
@@ -661,7 +662,16 @@ function wall(o, c, p, L, lo, hi, holes = [], surface = 'stone') {
       N,
     );
   for (const h of holes) {
-    if (h.kind === 'opening') continue;
+    if (h.kind === 'opening') {
+      const front = h.ring.map((point) => p([...point, 0]));
+      const back = h.ring.map((point) => p([...point, -h.depth]));
+      for (let i = 0; i < front.length; i++) {
+        const next = (i + 1) % front.length;
+        Q(o, c, [front[i], front[next], back[next], back[i]], surface, C[surface]);
+      }
+      Q(o, c, back, 'dark', C.dark, N);
+      continue;
+    }
     const depth = c.recess ? (h.depth ?? 0.2) : -0.02,
       r = h.ring,
       frameSurface = h.kind === 'blind' ? 'stone' : 'metal';
@@ -956,6 +966,44 @@ const boundsFor = (a, b) =>
     ...[3020, 3305].filter((s) => s > a && s < b),
   ].sort((x, y) => x - y);
 const bankOffset = (d, k) => Math.sign(d) * (5 + (Math.abs(d) - 5) * k);
+const ramp = (s, a, b) => Math.min(1, Math.max(0, (s - a) / (b - a)));
+// Figure 2 in the Logistics Cluster aerial places the dry spillway along the east crest.
+// Use existing map knots for its joins and keep the road at the shared crest grade.
+const eastStations = controls.stations.filter(({ p }) => p[0] >= 1108 && p[0] <= 1977);
+const saddleStart = eastStations[0].s;
+const saddleFull = eastStations[3].s;
+const spillwayStart = eastStations.find(({ p }) => p[0] > 1420).s;
+const spillwayFull = eastStations.find(({ p }) => p[0] > 1460).s;
+const spillwayTaper = eastStations.find(({ p }) => p[0] > 1720).s;
+const spillwayEnd = eastStations.find(({ p }) => p[0] > 1940).s;
+const spillwayBench = (s) =>
+  ramp(s, spillwayStart, spillwayFull) * (1 - ramp(s, spillwayTaper, spillwayEnd));
+// Upstream and downstream toe samples in model-local metres. Both section faces meet
+// the retained 20 m terrain profile at the outer edge of the ground cutout.
+const eastToeGrades = {
+  2383: [10.9, 1.9],
+  2400: [14.1, 4],
+  2422: [15.6, 6.4],
+  2439: [16.6, 10.2],
+  2472: [19.3, 10.6],
+  2503: [21.2, 18.1],
+  2548: [23.6, 20.5],
+  2604: [24.1, 18.4],
+  2800: [18.4, 23.5],
+  2815: [19, 23.3],
+  2826: [18.8, 22.6],
+  2840: [18.8, 23.7],
+  2937: [15.4, 15.4],
+  3020: [16.5, 15.5],
+  3120: [24.2, 16.3],
+  3305: [27.4, 24.3],
+  3356: [29.6, 26.5],
+  3392: [31.2, 27.9],
+  3419: [31.5, 28.8],
+  3447: [30.2, 29.1],
+  3479: [28.7, 28.1],
+  3485: [28.5, 28],
+};
 function section(s) {
   const q = along(s),
     gapDistance = Math.min(...controls.gap.map((t) => Math.abs(t - s))),
@@ -964,8 +1012,13 @@ function section(s) {
     L = Math.hypot(...N);
   // At the eastern road tie-in the occupied embankment narrows into the hillside.
   // Retaining the full downstream profile here would cover mapped village buildings.
-  const bank = 1 - 0.91 * Math.min(1, Math.max(0, (s - 3020) / 285));
-  return { ...q, N: N.map((v) => v / L), bank };
+  const bank = 1 - 0.91 * ramp(s, 3020, 3305);
+  const saddle = ramp(s, saddleStart, saddleFull);
+  const bench = spillwayBench(s);
+  const shoulder = bank * (1 - 0.5 * saddle);
+  const downstreamBank = shoulder + (0.37 - shoulder) * bench;
+  const [upstreamToe, toe] = eastToeGrades[Math.round(s)] ?? [-8, q.toe];
+  return { ...q, N: N.map((v) => v / L), bank, downstreamBank, bench, upstreamToe, toe };
 }
 // Same cross-section endpoints as the modeled levee. Adjacent cells are unioned for runtime masks.
 export function leveeMaskCells() {
@@ -976,7 +1029,7 @@ export function leveeMaskCells() {
     const rows = boundsFor(a, b).map((s) => {
       const q = section(s);
       return [-65, 230].map((d) => {
-        const p = side(q.p, q.N, bankOffset(d, q.bank), 0);
+        const p = side(q.p, q.N, bankOffset(d, d < 0 ? q.bank : q.downstreamBank), 0);
         return [p[0], p[2]];
       });
     });
@@ -992,34 +1045,38 @@ function levee(o, c, a, b) {
     sections = fixed.map((s) => {
       const q = section(s),
         height = (t) => 30 + (q.toe - 30) * t;
+      const upstreamHeight = (fraction) => 30 + (q.upstreamToe - 30) * fraction;
+      const benchY = (fraction) => height(fraction) + (28.8 - height(fraction)) * q.bench;
       const profile =
         c.profile === 4
           ? [
-              [-65, -8],
+              [-65, q.upstreamToe],
               [-5, 30],
               [5, 30],
               [230, q.toe],
             ]
           : c.profile === 6
             ? [
-                [-65, -8],
-                [-18, 15],
+                [-65, q.upstreamToe],
+                [-18, upstreamHeight(15 / 38)],
                 [-5, 30],
                 [5, 30],
-                [110, height(0.55)],
+                [110 - 20 * q.bench, benchY(0.55)],
                 [230, q.toe],
               ]
             : [
-                [-65, -8],
-                [-25, 10],
+                [-65, q.upstreamToe],
+                [-25, upstreamHeight(20 / 38)],
                 [-5, 30],
                 [5, 30],
-                [75, height(0.47)],
-                [90, height(0.47)],
+                [75, benchY(0.47)],
+                [90, benchY(0.47)],
                 [175, height(0.86)],
                 [230, q.toe],
               ];
-      return profile.map(([d, y]) => side(q.p, q.N, bankOffset(d, q.bank), y));
+      return profile.map(([d, y]) =>
+        side(q.p, q.N, bankOffset(d, d < 0 ? q.bank : q.downstreamBank), y),
+      );
     });
   // Interpolate complete cross-sections so every LOD shares the occupied boundary.
   const rows = xs.map((s) => {
@@ -1028,26 +1085,23 @@ function levee(o, c, a, b) {
     const t = (s - fixed[j - 1]) / (fixed[j] - fixed[j - 1]);
     return sections[j - 1].map((p, k) => mix(p, sections[j][k], t));
   });
-  for (let j = 1; j < rows.length; j++)
-    for (let i = 0; i < rows[j].length - 1; i++)
+  const roadIndex = c.profile === 4 ? 1 : 2;
+  for (let j = 1; j < rows.length; j++) {
+    const bench = Math.max(spillwayBench(xs[j - 1]), spillwayBench(xs[j]));
+    for (let i = 0; i < rows[j].length - 1; i++) {
+      const surface = i === roadIndex ? 'paving' : i < roadIndex ? 'stone' : 'gravel';
+      const color =
+        i > roadIndex && i <= roadIndex + 2 ? mix(C.gravel, C.spillwayEarth, bench) : C[surface];
       Q(
         o,
         c,
         [rows[j - 1][i], rows[j][i], rows[j][i + 1], rows[j - 1][i + 1]],
-        i === (c.profile === 4 ? 1 : 2)
-          ? 'paving'
-          : i < (c.profile === 4 ? 1 : 2)
-            ? 'stone'
-            : 'gravel',
-        C[
-          i === (c.profile === 4 ? 1 : 2)
-            ? 'paving'
-            : i < (c.profile === 4 ? 1 : 2)
-              ? 'stone'
-              : 'gravel'
-        ],
+        surface,
+        color,
         [0, 1, 0],
       );
+    }
+  }
   for (let j = 1; j < rows.length; j++)
     for (const k of [0, rows[j].length - 1]) {
       const P = rows[j - 1][k],
@@ -1198,7 +1252,7 @@ function building(o, c, poly, floor, height, count) {
           depth: 0.4,
         });
         if (e.N[2] > 0.25)
-          ports.push({ ring: rect(u, -54, (e.L / count) * 0.6, 12), kind: 'opening' });
+          ports.push({ ring: rect(u, -57.6, (e.L / count) * 0.6, 9.6), kind: 'opening', depth: 3 });
       }
     }
     wall(o, c, e.p, e.L, -58, floor, ports, 'wall');

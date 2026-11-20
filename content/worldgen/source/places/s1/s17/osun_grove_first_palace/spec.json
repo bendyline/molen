@@ -1,0 +1,472 @@
+{
+  "planId": "osun_grove_first_palace",
+  "id": "osun_grove_first_palace",
+  "assetId": "molen.worldgen.structure.osun_grove_first_palace",
+  "title": "Ojúbọ Òṣogbo, First Palace",
+  "category": "shrine",
+  "quality": "photo-based-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.551853298397008,
+    "latitude": 7.755520283640526
+  },
+  "visualBrief": "A projecting entrance gable shelters carved posts and painted openings. Corrugated metal laps out beneath the straw on the two roof wings. Four roof ranges surround the open court. Its canopy has paired sculpted supports and a smaller figure beside its right post. A sagging fiber fringe hangs between the inner carved posts above the rounded stone treads. The two entrance jambs swell unevenly into the approach, connecting the weathered base to the lintel. Worn grey paving surrounds the small canopy. The recessed portal has narrow wrought-iron scroll panels beside its central square grid.",
+  "size": [
+    16.225777626037598,
+    5.073424190282822,
+    17.79917287826538
+  ],
+  "actualBounds": {
+    "min": [
+      -8.112000465393066,
+      -0.3400000035762787,
+      -11.949999809265137
+    ],
+    "max": [
+      8.113777160644531,
+      4.733424186706543,
+      5.849173069000244
+    ]
+  },
+  "nativeAxes": "+Y up, +Z faces the photographed entrance, +X runs right along its façade.",
+  "geographicProposal": {
+    "status": "preview",
+    "anchor": [
+      4.551853298397008,
+      7.755520283640526
+    ],
+    "heading": -1.4855903915594777,
+    "bounds": [
+      4.551794202889215,
+      7.755443189109176,
+      4.55196750520874,
+      7.755602026288381
+    ],
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 317.8395,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9273fadf25b9965a03d0873f8779f89289bc979f423a5f1547f76bd4ee27fe71",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap.",
+    "source": "https://commons.wikimedia.org/wiki/File:Entrance_To_The_First_Palace_in_Osogbo.jpg",
+    "wikidataId": "Q621498",
+    "notes": "The September 2024 geotagged entrance photo constrains the west-facing placement to about 265° true. Alternative photo controls give about 252°–268°, and the phone reports 4.8 m horizontal position uncertainty. The reconstructed footprint lies clear of the PMTiles road and river. A bounded grade exposes the lowest step and supports the documented court without moving the sampled road or river. The precise footprint and grade remain approximate.",
+    "groundContactBasis": "All four loaded detail levels rest on the localized Terrarium grade. A 6 cm rise remains at the lowest tread. Grading preserves the tested road and river elevations."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_first_palace/models/first-palace-model.mjs",
+    "export": "buildFirstPalace"
+  },
+  "sourceFacts": {
+    "groveCandidateId": "osun_osogbo_grove",
+    "photoLedDimensions": true
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/story/BgURvVEBTRI0TA",
+    "https://commons.wikimedia.org/wiki/File:First_palace_of_the_king_osogbo_at_the_osun-osogbo_sacred_grove.jpg",
+    "https://commons.wikimedia.org/wiki/File:Oke_Altar_at_Osun_Shrine.jpg",
+    "https://www.youtube.com/watch?v=DFvp6TAVAKw",
+    "https://file.scirp.org/Html/3-1620376_68142.htm#f1",
+    "https://www.youtube.com/watch?v=Ih0Y4OjkxdM",
+    "https://commons.wikimedia.org/wiki/File:Entrance_To_The_First_Palace_in_Osogbo.jpg"
+  ],
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "Photo-based exterior and courtyard reconstruction with reviewed viewer placement.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.thatch",
+      "slot": "roof",
+      "uv": "repeats"
+    }
+  ],
+  "materialMethod": "Five shared material graphs for thatch, metal, plaster, sandstone and wood. Vertex colors describe weathered roof sections and surviving wall pigments.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_first_palace/models/first-palace-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "earth": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "posts": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.22
+      },
+      "grille": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.32
+      },
+      "thatch": {
+        "slot": "roof",
+        "graph": "thatch",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "pigment": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "name": "shrine-painted-plaster",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.31,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "posts": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "grille": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.32
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pigment": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "name": "shrine-painted-plaster",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "posts": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "grille": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.32
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pigment": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "name": "shrine-painted-plaster",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.085
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "posts": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.22
+          },
+          "grille": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.32
+          },
+          "thatch": {
+            "slot": "roof",
+            "graph": "thatch",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pigment": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "name": "shrine-painted-plaster",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "limitations": [
+    "The First Palace includes the courtyard and covered galleries seen in the shrine trust’s aerial footage. The gallery dimensions, flat review floor and door connection are reconstructed.",
+    "The entrance roof wings expose corrugated metal beneath the straw. The exact material boundary, finer wall paintings and carvings are interpreted. The grove’s gates, forest and separate shrines have their own catalog records.",
+    "The September 2024 geotagged entrance photo constrains the west-facing placement to about 265° true. Alternative photo controls give about 252°–268°, and the phone reports 4.8 m horizontal position uncertainty. The reconstructed footprint lies clear of the PMTiles road and river. A bounded grade exposes the lowest step and supports the documented court without moving the sampled road or river. The precise footprint and grade remain approximate.",
+    "The entrance fringe follows the Trust photograph. The cord and individual strand lengths are reconstructed, and the current arrangement is unverified.",
+    "The flared entrance jambs follow their visible silhouette. Their dimensions and the depth of the plaster moldings are estimates.",
+    "The 2024 entrance photo shows faded rose plaster, a recessed iron grille and hanging fibers on the right eave. The exact grille spacing, fiber lengths and finish colors are estimated.",
+    "The courtyard photographs show the worn stone around the canopy and a dark recessed doorway between the carved supports. Slab outlines, the recess dimensions and the courtyard grade are estimated. The deeper sanctuary is out of view.",
+    "Narrow iron scroll panels flank the straight central grid in the street and close-up tiers. Their proportions follow the two front photographs. Individual curls and bar spacing are reconstructed."
+  ],
+  "qaCameras": [
+    {
+      "name": "entry-and-carved-posts",
+      "position": [
+        -4.2,
+        2.14,
+        8.4
+      ],
+      "lookAt": [
+        -1.2,
+        1.95,
+        2.2
+      ],
+      "fov": 53
+    },
+    {
+      "name": "plaster-openings-and-painted-wall",
+      "position": [
+        3.13,
+        1.77,
+        3.89
+      ],
+      "lookAt": [
+        3.02,
+        1.68,
+        0.44
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-court",
+      "position": [
+        -8.8,
+        18.2,
+        -13.65
+      ],
+      "lookAt": [
+        -0.6,
+        0.95,
+        -3.1
+      ],
+      "fov": 52
+    },
+    {
+      "name": "court-canopy",
+      "position": [
+        -1.62,
+        1.57,
+        -3.39
+      ],
+      "lookAt": [
+        -1.25,
+        1.53,
+        -4.68
+      ],
+      "fov": 73
+    },
+    {
+      "name": "straw-and-corrugated-eave",
+      "position": [
+        5.4,
+        4.9,
+        7.6
+      ],
+      "lookAt": [
+        3.65,
+        2.89,
+        3.3
+      ],
+      "fov": 47
+    },
+    {
+      "name": "entrance-fringe-and-worn-steps",
+      "position": [
+        -0.39,
+        2.35,
+        7.96
+      ],
+      "lookAt": [
+        -1.7,
+        1.76,
+        4.87
+      ],
+      "fov": 62
+    },
+    {
+      "name": "entrance-jambs",
+      "position": [
+        -0.92,
+        1.78,
+        8.88
+      ],
+      "lookAt": [
+        -1.64,
+        1.21,
+        3.42
+      ],
+      "fov": 59
+    },
+    {
+      "name": "iron-entrance-grille",
+      "position": [
+        -1.62,
+        1.53,
+        3.72
+      ],
+      "lookAt": [
+        -1.62,
+        1.38,
+        0.477
+      ],
+      "fov": 54
+    },
+    {
+      "name": "canopy-paving-and-posts",
+      "position": [
+        1.62,
+        2.29,
+        -3.63
+      ],
+      "lookAt": [
+        -1.65,
+        0.83,
+        -5.91
+      ],
+      "fov": 56
+    },
+    {
+      "name": "courtyard-shrine-doorway",
+      "position": [
+        -1.42,
+        1.4,
+        -3.34
+      ],
+      "lookAt": [
+        -1.6,
+        1.32,
+        -5.65
+      ],
+      "fov": 81
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 34768,
+    "vertices": 85234,
+    "materials": 7,
+    "bytes": 3489856,
+    "sha256": "sha256:3f4a9b1a083f4e01528e86fd4827937fa5a9bcceebd84b12448f5cce017fbba6"
+  },
+  "wikidataId": "Q621498",
+  "collectionId": "osun_osogbo_grove"
+}

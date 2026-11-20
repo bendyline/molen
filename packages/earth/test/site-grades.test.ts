@@ -99,3 +99,93 @@ it('raises only the void samples inside a bounded repair', async () => {
   expect(repaired.sampleHeight(0, -20)).toBeCloseTo(60, 4);
   expect(heightfield.sampleHeight(0, 0)).toBeCloseTo(10, 4);
 });
+
+it('interpolates several levels along a local grade and preserves valid terrain and its far edge', async () => {
+  const origin: [number, number] = [-60, -60];
+  const size = 120;
+  const samples = new Float32Array(25 * 25).fill(0.4);
+  samples[12 * 25 + 13] = 0.85;
+  const heightfield = new Heightfield(samples, 25, 25, {
+    origin,
+    worldSize: [size, size],
+    height: { min: 0, max: 100 },
+  });
+  const site = {
+    anchor: [0, 0],
+    heading: 0,
+    bounds: [-10, -25, 10, 15],
+    blend: 30,
+    elevation: 82,
+    elevationProfile: [
+      [-20, 68],
+      [0, 82],
+    ],
+    repairBelow: 60,
+  };
+  const document = { format: 'molen/earth-site-grades@1', sites: [site] };
+  const grades = readEarthSiteGrades(document);
+  expect(() =>
+    readEarthSiteGrades({
+      ...document,
+      sites: [
+        {
+          ...site,
+          elevationProfile: [
+            [0, 82],
+            [0, 68],
+          ],
+        },
+      ],
+    }),
+  ).toThrow();
+  const grade = createEarthSiteGrading(grades, {
+    coordinateSpace: { kind: 'geospatial' },
+    features: { profile: 'protomaps-basemap@1' },
+  } as TerrainPackageDescriptor);
+  if (!grade) throw new Error('Expected the profiled site grade');
+  const rated = await grade(
+    {
+      origin,
+      tileSize: size,
+      heightfield,
+      signal: new AbortController().signal,
+      pyramid: {},
+    } as TerrainPyramidTileLayerContext,
+    { load: async () => undefined },
+  );
+  expect(rated.sampleHeight(0, -20)).toBeCloseTo(68, 4);
+  expect(rated.sampleHeight(0, -10)).toBeCloseTo(75, 4);
+  expect(rated.sampleHeight(0, 0)).toBeCloseTo(82, 4);
+  expect(rated.sampleHeight(0, 10)).toBeCloseTo(82, 4);
+  expect(rated.sampleHeight(5, 0)).toBeCloseTo(85, 4);
+  expect(rated.sampleHeight(60, 0)).toBeCloseTo(40, 4);
+  expect(heightfield.sampleHeight(0, 0)).toBeCloseTo(40, 4);
+});
+
+it.each([
+  ['2017-01-07', '2017-01-08', '2017-01-09'],
+  ['-000581-12-31', '-000580-01-01', '-000560-01-01'],
+])('enables historical grade data only between its bounds for %s', (before, validFrom, validUntil) => {
+  const site = {
+    anchor: [0, 0],
+    heading: 0,
+    bounds: [-12, -15, 12, 15],
+    elevation: 20,
+    blend: 30,
+    validFrom,
+    validUntil,
+  };
+  const document = { format: 'molen/earth-site-grades@1', sites: [site] };
+  const grades = readEarthSiteGrades(document);
+  expect(() =>
+    readEarthSiteGrades({ ...document, sites: [{ ...site, validUntil: undefined }] }),
+  ).toThrow();
+  const terrain = {
+    coordinateSpace: { kind: 'geospatial' },
+    features: { profile: 'protomaps-basemap@1' },
+  } as TerrainPackageDescriptor;
+  expect(createEarthSiteGrading(grades, terrain)).toBeUndefined();
+  expect(createEarthSiteGrading(grades, terrain, before)).toBeUndefined();
+  expect(createEarthSiteGrading(grades, terrain, validFrom)).toBeTypeOf('function');
+  expect(createEarthSiteGrading(grades, terrain, validUntil)).toBeUndefined();
+});

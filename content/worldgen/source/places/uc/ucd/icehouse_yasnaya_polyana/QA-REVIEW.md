@@ -1,6 +1,6 @@
 # Icehouse interpretation — Yasnaya Polyana
 
-Reviewed2026-10-25. **Complete photo-specific gabled service exterior; icehouse function and aerial placement remain inferred. The estate remains incomplete.**
+Reviewed 2026-11-18. **Complete photo-specific gabled service exterior; icehouse function and aerial placement remain inferred. The estate remains incomplete.**
 
 ![Native gabled service outbuilding](site-preview.png)
 

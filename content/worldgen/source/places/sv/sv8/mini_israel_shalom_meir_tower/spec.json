@@ -1,0 +1,245 @@
+{
+  "id": "mini_israel_shalom_meir_tower",
+  "planId": "mini_israel",
+  "title": "Mini Israel · Shalom Meir Tower exhibit",
+  "assetId": "molen.worldgen.structure.mini_israel_shalom_meir_tower",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.96897280216217,
+    "latitude": 31.842251482585
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_shalom_meir_tower/models/shalom-meir-exhibit-model.mjs",
+    "export": "buildMaster"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25
+  },
+  "visualBrief": "The park’s pale Shalom Meir slab tower with fine window ribbons, a recessed top band and a light well over the drive-through podium. The road has a crossing and dashed lane markings.",
+  "nativeAxes": "+Y is up. +X follows the broad facade. +Z faces the photographed drive-through entrance.",
+  "materialMethod": "Shared concrete, limestone, window and painted metal graphs with vertex tints for the cream facade and smoke-colored glazing.",
+  "referencePages": [
+    "https://jr.co.il/pictures/israel/mini-israel/mi022.htm",
+    "https://jr.co.il/pictures/israel/mini-israel/mi023.htm",
+    "https://image5.slideserve.com/9466890/tel-aviv-migdal-shalom-l.jpg"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "The 5.315 m maximum height and 4.94 m apron width are photo estimates at miniature scale. The rear facade and roof equipment are approximate.",
+    "The dated photographs place the exhibit beside the stepped Tel Aviv buildings. The position and signed axis within that bed remain unconfirmed. The source coordinate identifies the park."
+  ],
+  "qaCameras": [
+    {
+      "name": "window-bands-and-crown",
+      "position": [
+        3.95,
+        3.4,
+        8.55
+      ],
+      "lookAt": [
+        0,
+        2.65,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "drive-through-and-crosswalk",
+      "position": [
+        1.2,
+        0.84,
+        3.74
+      ],
+      "lookAt": [
+        0,
+        0.32,
+        0.65
+      ],
+      "fov": 48
+    },
+    {
+      "name": "open-light-well-and-wings",
+      "position": [
+        3.6,
+        3.58,
+        4.05
+      ],
+      "lookAt": [
+        0,
+        0.7,
+        0.64
+      ],
+      "fov": 49
+    },
+    {
+      "name": "narrow-side-and-rear",
+      "position": [
+        -5.96,
+        5.25,
+        -7.25
+      ],
+      "lookAt": [
+        0,
+        2.62,
+        0
+      ],
+      "fov": 46
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.28,
+    "focus": {
+      "center": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_shalom_meir_tower/models/shalom-meir-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "shell": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_limestone"
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 0.073,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.035
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.016
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.005
+      }
+    }
+  },
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.4700000286102295,
+      -0.10999999940395355,
+      -1.590000033378601
+    ],
+    "max": [
+      2.4700000286102295,
+      5.315000057220459,
+      1.8200000524520874
+    ]
+  },
+  "size": [
+    4.940000057220459,
+    5.4250000566244125,
+    3.4100000858306885
+  ],
+  "mesh": {
+    "triangles": 23744,
+    "vertices": 47488,
+    "materials": 4,
+    "bytes": 1997432,
+    "sha256": "sha256:f23ed7cb693127e6f51ffbe3938357d3f6d11236fe3a0e4dd2dbadcc668bf01e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

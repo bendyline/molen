@@ -1,0 +1,275 @@
+{
+  "id": "osun_grove_road_gate",
+  "planId": "osun_grove_road_gate",
+  "collectionId": "osun_osogbo_grove",
+  "wikidataId": "Q621498",
+  "assetId": "molen.worldgen.structure.osun_grove_road_gate",
+  "title": "Osun Grove road entrance gate",
+  "category": "gate",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 4.550513045339727,
+    "latitude": 7.7589503179338015
+  },
+  "nativeAxes": "+Y up. +Z toward the town. +X toward the covered side opening and round emblem.",
+  "visualBrief": "An earth-colored entrance with a wide vehicle aperture, sloping side wings and separate pedestrian openings. Two elongated figures run across the lintel beneath a fish-shaped iron crest. Scalloped iron leaves open into the grove. The fish-shaped crest retains open jaws, a forked tail and overlapping plates. The two open iron leaves have distinct cast silhouettes and raised folds from the 2023 frontage photograph. Concealed metalworking details remain interpreted.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_road_gate/models/road-gate-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Osun_Osogbo_Sacred_Groove_Entrance_Gate.jpg",
+    "https://commons.wikimedia.org/wiki/File:Main_Entrance_Gate_To_The_Osun_Osogbo_World_Heritage_Site.jpg",
+    "https://whc.unesco.org/document/224879"
+  ],
+  "sourceFacts": {
+    "protectedSiteCandidateId": "osun_osogbo_grove",
+    "recordedEntry": "first gate with the two heritage emblems"
+  },
+  "materialMethod": "Shared lime plaster and painted metal graphs with metric UVs. Clay color and iron oxidization use vertex tint. Reliefs and bars are modeled.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exterior",
+  "geographicProposal": {
+    "status": "preview",
+    "anchor": [
+      4.550513045339727,
+      7.7589503179338015
+    ],
+    "heading": 2.5596875354384965,
+    "bounds": [
+      4.550452364613047,
+      7.758901624631723,
+      4.550562288431278,
+      7.758988546863192
+    ],
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "minLevel": 16,
+    "elevationMode": "terrain",
+    "elevationMeters": 0,
+    "orientationPolicy": "approximate-visualization",
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "notes": "The signed gate axis follows the photographed facade and aerial pier line. Matched source roads use the aerial opening and the bounded road correction. The fallback uses the same bearing at the original mapped crossing 3.55 m northwest.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e9a5de342fd1585b76786aa9b189759bc2a9076848d7d7d75c24587e107e22e1",
+    "groundModelY": 0
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_road_gate/models/road-gate-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.095
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.04
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.021
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0
+  },
+  "qaCameras": [
+    {
+      "name": "town-facing-entrance",
+      "position": [
+        0,
+        2.36,
+        17.5
+      ],
+      "lookAt": [
+        0,
+        2.48,
+        -0.18
+      ],
+      "fov": 42
+    },
+    {
+      "name": "crest-and-carved-lintel",
+      "position": [
+        0.72,
+        5,
+        8.5
+      ],
+      "lookAt": [
+        -0.24,
+        4,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "right-portal-and-emblem",
+      "position": [
+        7.2,
+        1.98,
+        6.25
+      ],
+      "lookAt": [
+        4.99,
+        1.55,
+        -0.045
+      ],
+      "fov": 47
+    },
+    {
+      "name": "left-door-and-open-iron",
+      "position": [
+        -7,
+        2.1,
+        6.47
+      ],
+      "lookAt": [
+        -4.11,
+        1.72,
+        -0.32
+      ],
+      "fov": 50
+    },
+    {
+      "name": "grove-side-through-road",
+      "position": [
+        -1.9,
+        2.48,
+        -12.3
+      ],
+      "lookAt": [
+        0,
+        2.48,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "left-leaf-reliefs",
+      "position": [
+        -0.47,
+        1.86,
+        -1.56
+      ],
+      "lookAt": [
+        -2.94,
+        1.75,
+        -1.42
+      ],
+      "fov": 58
+    },
+    {
+      "name": "right-leaf-reliefs",
+      "position": [
+        0.48,
+        1.84,
+        -1.53
+      ],
+      "lookAt": [
+        2.93,
+        1.76,
+        -1.41
+      ],
+      "fov": 59
+    }
+  ],
+  "limitations": [
+    "The portal and crest dimensions come from the photographs and approximate overhead span. Rear mortar, sculpted reliefs, iron hinges, emblem details and animal anatomy are interpreted.",
+    "The vehicle opening follows the existing PMTiles approach. The town-facing angle follows the photographed facade. The mapped road location is 3.55 m northwest of the overhead trace, and the placement is an approximate visualization."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -5.869999885559082,
+      -0.6000000238418579,
+      -2.6265499591827393
+    ],
+    "max": [
+      6.2836995124816895,
+      5.179999828338623,
+      0.9599999785423279
+    ]
+  },
+  "size": [
+    12.153699398040771,
+    5.779999852180481,
+    3.586549937725067
+  ],
+  "mesh": {
+    "triangles": 6818,
+    "vertices": 18086,
+    "materials": 2,
+    "bytes": 734908,
+    "sha256": "sha256:a86032d2f1f067b5afbbc165658131a8a7840a450ed272e424c8a6c43714e738"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ]
+}

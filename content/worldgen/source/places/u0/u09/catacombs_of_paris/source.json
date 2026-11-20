@@ -1,0 +1,78 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.catacombs_of_paris",
+  "kind": "static-structure",
+  "title": "Catacombs of Paris",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.catacombs_of_paris",
+        "output": "assets/places/u0/u09/catacombs_of_paris/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2acbe6d35b4d166ef4fa3abc02406744b11470b6194a9f5138b44d0f1f7a5cc6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "catacombs-of-paris-model",
+        "path": "models/catacombs-of-paris-model.mjs"
+      },
+      {
+        "id": "generate-catacombs-of-paris",
+        "path": "models/generate-catacombs-of-paris.mjs"
+      },
+      {
+        "id": "catacombs-surface",
+        "path": "models/catacombs-surface.mjs"
+      },
+      {
+        "id": "catacombs-interior",
+        "path": "models/catacombs-interior.mjs"
+      },
+      {
+        "id": "site-controls",
+        "path": "models/site-controls.mjs"
+      },
+      {
+        "id": "catacombs-port-mahon",
+        "path": "models/catacombs-port-mahon.mjs"
+      },
+      {
+        "id": "catacombs-decure",
+        "path": "models/catacombs-decure.mjs"
+      },
+      {
+        "id": "catacombs-fontis",
+        "path": "models/catacombs-fontis.mjs"
+      },
+      {
+        "id": "catacombs-vestibule",
+        "path": "models/catacombs-vestibule.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "pmtiles-context.json",
+      "native-landing-fit-report.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "ossuary-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-inventory.json",
+      "placement-report.json"
+    ]
+  }
+}

@@ -6,12 +6,12 @@ Main Iron Gate II crossing with the two sections of the sixteen-unit powerhouse,
 
 Rebuild: `node packages/worldgen/scripts/generate-iron-gate-ii.mjs`;append `--check` for exact source bytes. Select import/LOD/placement with `--ids=iron_gate_ii_hydroelectric_power_station`. Detailed source and four browser tiers are separate ignored GLB outputs.
 
-Fixed 34.99451425 m model datum and approximate 46 m deck. Standard viewer sampling gives 35.65 m headwater, 33.65 m tailwater and 33.65 m in the chamber. Reference headwater is 41 m and the comparison chamber stage is 37.1 m.
+The main border crossing, the Romanian locks and the Gogoșu spillway and powerhouse are separate geographic placements.
 
-The candidate includes a wider two-branch hydropower system. This model covers its main border crossing. The independently located Romanian island locks and Gogoșu powerhouse and spillway remain pending.
+The Earth renderer uses the documented 41 m normal pool on the upstream side. The lock chamber and tailwater use sampled stages. The older comparison fixtures retain their recorded water levels.
 
-The standard water sampler puts upstream water 5.35 m below the documented normal pool. Reference and native sampled fixtures keep both results explicit. Control equipment, exact pier grades and buried structures are visual approximations.
+Exact pier grades, equipment positions and buried geometry are approximate. The Romanian main lock lower gate follows its published chamber length.
 
-The static exterior preserves the open lock chamber, both gates, crest road, main and auxiliary plants and long guide walls. It omits interior equipment and operating water flows.
+The static exterior depicts the navigation chambers, gates, crest roads, powerhouses, spillway and guide walls. It omits interiors and operating flows.
 
 Original geometry:repository license. Map:© OpenStreetMap contributors,ODbL-1.0;Protomaps. Standard terrain:terrain-grid.json. Ordinary pictures stay local and are not redistributed or used as textures. Current acceptance:qa.json.

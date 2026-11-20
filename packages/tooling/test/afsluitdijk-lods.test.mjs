@@ -11,6 +11,13 @@ import { NodeIO } from '@gltf-transform/core';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import {
+  controls,
+  centerZ,
+  newerSluices,
+  projectMapPoint,
+  roadHeightAt,
+} from '../../../content/worldgen/source/places/u1/u17/afsluitdijk/models/station-model.mjs';
+import {
   createEmptyTerrainSemanticTile,
   heightfieldFromPng,
   wgs84ToWorld,
@@ -110,9 +117,9 @@ it('pins the named barrier source,signed sea/lake frame and explicit constructio
   expect(layout.nativeMap.preservedNeighbors).toHaveLength(573);
   expect(p.entry.datum).toBe('sea-level');
   expect(p.entry.terrainReference).toBeUndefined();
-  expect(p.entry.groundCutout.outlines).toHaveLength(11);
+  expect(p.entry.groundCutout.outlines).toHaveLength(13);
   expect(p.entry.buildingCutout.outlines).toHaveLength(61);
-  expect(p.entry.replaceRoads.deckProfile.length).toBe(78);
+  expect(p.entry.replaceRoads.deckProfile.length).toBe(80);
   expect(s.qaLodCameras.map((c) => c.name)).toEqual([
     'den-oever-skyline',
     'den-oever-district',
@@ -129,22 +136,8 @@ it('pins the named barrier source,signed sea/lake frame and explicit constructio
     }),
   ).toBeDefined();
 });
-it('keeps the entire levee,five open sluice banks,bridge decks and three lock chambers in six GLBs', async () => {
+it('keeps the causeway, open sluice banks and three lock chambers across all tiers', async () => {
   const a = await read(`${installed}/asset.json`),
-    c = (
-      await import(
-        '../../../content/worldgen/source/places/u1/u17/afsluitdijk/models/station-model.mjs'
-      )
-    ).controls,
-    Z = (x) => {
-      const p = c.path;
-      for (let i = 1; i < p.length; i++)
-        if (x <= p[i][0])
-          return (
-            p[i - 1][1] + ((p[i][1] - p[i - 1][1]) * (x - p[i - 1][0])) / (p[i][0] - p[i - 1][0])
-          );
-      return p.at(-1)[1];
-    },
     files = [
       { name: 'source', path: `${source}/models/source.glb` },
       { name: 'import', path: `${installed}/${a.files.main}` },
@@ -152,27 +145,42 @@ it('keeps the entire levee,five open sluice banks,bridge decks and three lock ch
     ];
   for (const f of files) {
     const ts = await triangles(f.path),
-      top = (x, z, Y = 30) => Y - nearest(ts, [x, Y, z], [0, -1, 0]),
+      ray = (x, y, z, dir) => {
+        const [a, b] = projectMapPoint([x, z]);
+        return nearest(ts, [a, y, b], dir);
+      },
+      top = (x, z, Y = 30) => Y - ray(x, Y, z, [0, -1, 0]),
       check = (n, v, lo, hi) => {
         expect.soft(v, `${f.name} ${n}`).toBeGreaterThanOrEqual(lo);
         expect.soft(v, `${f.name} ${n}`).toBeLessThanOrEqual(hi);
       };
-    for (const x of [-14000, -8000, 0, 5000, 11000, 14500])
-      check(`complete road ${x}`, top(x, Z(x) + 8), 4.88, 4.95);
-    check('whole raised seaward crest', top(0, Z(0) - 24), 7.8, 8.21);
-    for (const s of c.spans) {
+    for (const x of [-16320, -14000, -8000, 0, 5000, 11000, 14500, 14815])
+      check(
+        `complete road ${x}`,
+        top(x, centerZ(x) + 8),
+        roadHeightAt(x) - 0.05,
+        roadHeightAt(x) + 0.05,
+      );
+    check('whole raised seaward crest', top(0, centerZ(0) - 24), 7.8, 8.21);
+    for (const s of controls.spans) {
       const x = s.min + 2 + (s.max - s.min - 4) * 0.1,
-        z = Z(x);
+        z = centerZ(x);
       check(`whole ${s.name} deck`, top(x, z + 8), 4.89, 4.91);
-      check(`open underside ${s.name}`, nearest(ts, [x, 0.4, z + 8], [0, 1, 0]), 3.99, 4.01);
+      check(`open underside ${s.name}`, ray(x, 0.4, z + 8, [0, 1, 0]), 3.99, 4.01);
       if (s.kind === 'sluice') {
-        check(`free water flow ${s.name}`, nearest(ts, [x, 0.4, z - 65], [0, 0, 1]), 120, Infinity);
-        check(`structural pier ${s.name}`, top(s.min + 2, Z(s.min + 2) - 5), 4.4, 15);
+        check(`free water opening ${s.name}`, ray(x, 0.4, z - 65, [0, 0, 1]), 120, Infinity);
+        check(`structural pier ${s.name}`, top(s.min + 2, centerZ(s.min + 2) - 5), 4.4, 15);
       }
     }
-    for (const l of c.locks) {
+    for (const { name, min, max } of newerSluices) {
+      const x = min + (max - min) / 4;
+      const z = centerZ(x);
+      check(`new sluice deck ${name}`, top(x, z), 4.89, 4.91);
+      if (f.name !== 'skyline') check(`clear span ${name}`, ray(x, 2.15, z, [0, 1, 0]), 2.24, 2.26);
+    }
+    for (const l of controls.locks) {
       const p = l.center ?? l.centerline[0].map((v, i) => (v + l.centerline[1][i]) / 2),
-        hit = nearest(ts, [p[0], 0.4, p[1]], [0, 1, 0]);
+        hit = ray(p[0], 0.4, p[1], [0, 1, 0]);
       expect.soft(hit, `${f.name} open ${l.name} chamber`).toBe(Infinity);
     }
   }
@@ -185,10 +193,10 @@ it('uses production sea-level placement to replace only the authored hydraulic c
       const E =
           (lon - frame.anchor[0]) * 111319.490793 * Math.cos((frame.anchor[1] * Math.PI) / 180),
         S = -(lat - frame.anchor[1]) * 111319.490793;
-      return [
+      return projectMapPoint([
         E * Math.cos(frame.heading) - S * Math.sin(frame.heading),
         E * Math.sin(frame.heading) + S * Math.cos(frame.heading),
-      ];
+      ]);
     };
   const c = Math.cos(frame.heading),
     s = Math.sin(frame.heading),
@@ -395,9 +403,10 @@ it('uses production sea-level placement to replace only the authored hydraulic c
     expect(seenContext.at(-1).water).toEqual(originalContext.water);
     expect(seenRoadTiles.length).toBeGreaterThan(0);
     const after = seenRoadTiles.at(-1).transportation;
-    const nonBridge = (rs) =>
+    const ownedApproaches = new Set(placed.replaceRoads.approachFeatureIds);
+    const unaffectedRoad = (rs) =>
       rs
-        .filter((r) => !r.bridge)
+        .filter((r) => !r.bridge && !ownedApproaches.has(r.id))
         .flatMap((r) =>
           r.lines.map((line) =>
             JSON.stringify([
@@ -409,7 +418,7 @@ it('uses production sea-level placement to replace only the authored hydraulic c
           ),
         )
         .sort();
-    expect(nonBridge(after)).toEqual(nonBridge(originalContext.transportation));
+    expect(unaffectedRoad(after)).toEqual(unaffectedRoad(originalContext.transportation));
     const length = (rs) =>
       rs
         .filter((r) => r.bridge)
@@ -502,7 +511,7 @@ it('rebuilds four exact budgeted tiers with existing shared graphs, no image cop
         'stone_basalt',
         'metal_standing_seam',
         'metal_painted',
-        'window_grid',
+        ...(name === 'district' ? [] : ['window_grid']),
       ])
         expect(
           g.materials.some(

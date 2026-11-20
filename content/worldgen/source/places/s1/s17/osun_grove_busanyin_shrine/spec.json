@@ -1,0 +1,336 @@
+{
+  "id": "osun_grove_busanyin_shrine",
+  "planId": "osun_grove_busanyin_shrine",
+  "assetId": "molen.worldgen.structure.osun_grove_busanyin_shrine",
+  "title": "Búsanyìn Shrine",
+  "category": "shrine",
+  "quality": "medium-fi",
+  "collectionId": "osun_osogbo_grove",
+  "wikidataId": "Q621498",
+  "referenceCoordinate": {
+    "longitude": 4.550625,
+    "latitude": 7.75491
+  },
+  "visualBrief": "Standing river-facing shrine with a bird-shaped corrugated roof, lifted porch and diamond finial. Openings pierce a molded concrete facade, and carved wooden posts stand on a curved, low stepped approach.",
+  "nativeAxes": "+Y up, +Z toward the river approach, +X to the right of the porch when looking from the river.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_busanyin_shrine/models/busanyin-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/asset/ZgEWgPJKkHDImg?hl=en",
+    "https://artsandculture.google.com/story/iwUR-yMsjP088g",
+    "https://artsandculture.google.com/story/YQVheZdxunQhIA?hl=en",
+    "https://artsandculture.google.com/streetview/b%C3%BAsany%C3%ACn-shrine-exterior/FAFd-WgclbDY8g",
+    "https://whc.unesco.org/document/224880",
+    "https://whc.unesco.org/uploads/nominations/1118.pdf",
+    "https://www.youtube.com/watch?v=XqRFNxT3TG4"
+  ],
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "observedYear": 2015,
+    "notes": "The model depicts the documented standing exterior around 2015. The 2019 flood severely damaged the shrine. The current restoration state remains unverified.",
+    "representedDate": "2015-01-01",
+    "validFrom": "2015-01-01",
+    "validUntil": "2016-01-01"
+  },
+  "materialMethod": "Shared corrugated metal, bamboo, wood, mottled concrete and weathered stone. Local ochre and green tints follow the molded surfaces and damp approach in the standing-shrine photographs.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "historical-exterior-review",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      4.55625189,
+      7.758572315
+    ],
+    "heading": -0.367963,
+    "source": "https://artsandculture.google.com/asset/busanyin-shrine-flood-and-erosion-study-cdr-engineering/RAEgf5BAIoI1FA",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0f7820a96f4d18cae08139586e08d57da19136129149923f52f47d7468174101",
+    "notes": "The 2022 conservation plan and overhead remnant show the shrine on the bank in the archived scan area. Their rear axes agree within 2.3°. The 2015 exterior faces the river. Historical placement uses the measured plan span and an estimated height. The lower tread cleared rendered landcover by 7 cm on the 1 m and 2.4 m trial grids. The renderer retained the mapped road, both independent buildings, landcover and the river. The local grade and placement are active only for a 2015 viewing date."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_busanyin_shrine/models/busanyin-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.85,
+        "metallic": 0.12
+      },
+      "soffit": {
+        "slot": "wall",
+        "graph": "bamboo",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.62,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.14
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.85,
+            "metallic": 0.12
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.05
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.45
+  },
+  "qaCameras": [
+    {
+      "name": "riverfront-and-wing-openings",
+      "position": [
+        12.4,
+        7.9,
+        21.2
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        1.41
+      ],
+      "fov": 52
+    },
+    {
+      "name": "pointed-porch",
+      "position": [
+        -6.9,
+        3.5,
+        11.3
+      ],
+      "lookAt": [
+        -0.4,
+        3.02,
+        3.5
+      ],
+      "fov": 65
+    },
+    {
+      "name": "roof-crest-and-tower",
+      "position": [
+        -13.9,
+        16,
+        11.5
+      ],
+      "lookAt": [
+        0.6,
+        6,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "rear-return",
+      "position": [
+        13.9,
+        9.2,
+        -18.7
+      ],
+      "lookAt": [
+        0,
+        3.89,
+        -1.8
+      ],
+      "fov": 55
+    },
+    {
+      "name": "curved-river-approach",
+      "position": [
+        3.6,
+        1.06,
+        9.4
+      ],
+      "lookAt": [
+        -0.28,
+        0.72,
+        5.99
+      ],
+      "fov": 59
+    }
+  ],
+  "limitations": [
+    "The model depicts the documented standing exterior around 2015. The 2019 flood severely damaged the shrine. The current restoration state remains unverified.",
+    "Roof sections, opening profiles and carved supports are interpreted from photographs. Dimensions are approximate. The model covers the exterior and covered threshold.",
+    "The historic footprint dimensions and bearing are estimated from the conservation plan and the visible remnant. The 2015 standing height is inferred from photographs. Ground height uses the viewer’s Terrarium datum."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -12.100000381469727,
+      0.017999999225139618,
+      -6.449999809265137
+    ],
+    "max": [
+      13.683333396911621,
+      10.979999542236328,
+      8.002224922180176
+    ]
+  },
+  "size": [
+    25.783333778381348,
+    10.961999543011189,
+    14.452224731445312
+  ],
+  "mesh": {
+    "triangles": 32173,
+    "vertices": 93739,
+    "materials": 5,
+    "bytes": 3764092,
+    "sha256": "sha256:6c8b2a5a179d034ba5c48d67df629936431463db631b86bf87dc3ca23e4a092d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.bamboo",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

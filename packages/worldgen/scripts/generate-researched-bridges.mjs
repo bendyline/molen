@@ -196,8 +196,8 @@ for (let study of [
     dir = structureSourceDirectory(key);
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
   if (reviewScope) {
-    if (reviewScope.fidelityTarget !== 'medium-fi')
-      throw new Error(`${study.id}: review scope must use medium-fi`);
+    if (!['medium-fi', 'maximum'].includes(reviewScope.fidelityTarget))
+      throw new Error(`${study.id}: review scope must use medium-fi or maximum`);
     study = {
       ...study,
       ...Object.fromEntries(

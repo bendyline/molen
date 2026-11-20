@@ -4,6 +4,10 @@ import {
   type TerrainPackageDescriptor,
   wgs84ToWorld,
 } from '@bendyline/molen-terrain/kernel';
+import {
+  isStructureViewingDateInRange,
+  isStructureViewingDateRange,
+} from '@bendyline/molen-worldgen-earth/kernel';
 
 type Grading = NonNullable<TerrainPyramidStreamOptions['transformHeightfield']>;
 export type EarthSiteGrades = readonly {
@@ -11,8 +15,12 @@ export type EarthSiteGrades = readonly {
   heading: number;
   bounds: [number, number, number, number];
   elevation: number;
+  /** Optional station/elevation controls along the site's local +Z axis in metres. */
+  elevationProfile?: [station: number, elevation: number][];
   blend: number;
   repairBelow?: number;
+  validFrom?: string;
+  validUntil?: string;
 }[];
 
 export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
@@ -21,10 +29,17 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
     throw new Error('Invalid Earth site grades document');
   return document.sites.map((value: unknown) => {
     if (!value || typeof value !== 'object') throw new Error('Invalid Earth site grade');
-    const { anchor, bounds, heading, elevation, blend, repairBelow } = value as Record<
-      string,
-      unknown
-    >;
+    const {
+      anchor,
+      bounds,
+      heading,
+      elevation,
+      elevationProfile,
+      blend,
+      repairBelow,
+      validFrom,
+      validUntil,
+    } = value as Record<string, unknown>;
     if (
       !Array.isArray(anchor) ||
       anchor.length !== 2 ||
@@ -34,9 +49,15 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       !bounds.every(finite) ||
       !finite(heading) ||
       !finite(elevation) ||
+      (elevationProfile !== undefined && !validElevationProfile(elevationProfile)) ||
       !finite(blend) ||
       blend <= 0 ||
-      (repairBelow !== undefined && (!finite(repairBelow) || repairBelow > elevation))
+      ((validFrom !== undefined || validUntil !== undefined) &&
+        !isStructureViewingDateRange(validFrom, validUntil)) ||
+      (repairBelow !== undefined &&
+        (!finite(repairBelow) ||
+          repairBelow > elevation ||
+          elevationProfile?.some(([, height]) => height < repairBelow)))
     )
       throw new Error('Invalid Earth site grade');
     const center = anchor as [number, number];
@@ -53,8 +74,12 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
       bounds: extent,
       heading,
       elevation,
+      ...(elevationProfile !== undefined ? { elevationProfile } : {}),
       blend,
       ...(repairBelow === undefined ? {} : { repairBelow }),
+      ...(typeof validFrom === 'string' && typeof validUntil === 'string'
+        ? { validFrom, validUntil }
+        : {}),
     };
   });
 }
@@ -62,21 +87,58 @@ export function readEarthSiteGrades(value: unknown): EarthSiteGrades {
 const finite = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);
 
-/** Grade a small, mapped site to a shared elevation, with a smooth tie to its provider's terrain. */
+function validElevationProfile(value: unknown): value is [number, number][] {
+  return (
+    Array.isArray(value) &&
+    value.length >= 2 &&
+    value.length <= 32 &&
+    value.every(
+      (point, i) =>
+        Array.isArray(point) &&
+        point.length === 2 &&
+        finite(point[0]) &&
+        finite(point[1]) &&
+        (i === 0 || point[0] > (value[i - 1]?.[0] ?? Infinity)),
+    )
+  );
+}
+
+function profileElevation(
+  profile: readonly [number, number][],
+  station: number,
+  fallback: number,
+): number {
+  const upper = profile.findIndex(([z]) => station < z);
+  const next = profile[upper];
+  if (!next) return profile.at(-1)?.[1] ?? fallback;
+  const previous = profile[upper - 1];
+  if (!previous) return next[1];
+  const [start, low] = previous;
+  const [end, high] = next;
+  return low + ((station - start) / (end - start)) * (high - low);
+}
+
+/** Grade a small, mapped site with a smooth tie to its provider's terrain. */
 export function createEarthSiteGrading(
   grades: EarthSiteGrades | undefined,
   terrain: TerrainPackageDescriptor,
+  viewingDate?: string,
 ): Grading | undefined {
+  const activeGrades = grades?.filter(
+    ({ validFrom, validUntil }) =>
+      (validFrom === undefined && validUntil === undefined) ||
+      isStructureViewingDateInRange(viewingDate, validFrom, validUntil),
+  );
   if (
     terrain.coordinateSpace.kind !== 'geospatial' ||
     terrain.features?.profile !== 'protomaps-basemap@1' ||
-    !grades?.length
+    !activeGrades?.length
   )
     return undefined;
   return ({ heightfield, pyramid, origin, tileSize, signal }) => {
     if (signal.aborted) return heightfield;
     const scale = pyramid.metersPerUnit ?? 1;
-    const sites = grades.flatMap((site) => {
+    const sites = activeGrades.flatMap((site) => {
       const factor = scale / Math.cos((site.anchor[1] * Math.PI) / 180);
       const blend = site.blend * factor;
       // A coarse grid can spread one corrected sample beyond the site's shoulder.
@@ -112,6 +174,10 @@ export function createEarthSiteGrading(
           south,
           blend,
           elevation: site.elevation,
+          elevationProfile: site.elevationProfile?.map(([z, y]): [number, number] => [
+            z * factor,
+            y,
+          ]),
           repairBelow: site.repairBelow,
         },
       ];
@@ -145,7 +211,9 @@ export function createEarthSiteGrading(
             continue;
           if (influence > weight) {
             weight = influence;
-            elevation = site.elevation;
+            elevation = site.elevationProfile
+              ? profileElevation(site.elevationProfile, v, site.elevation)
+              : site.elevation;
           }
         }
         if (weight === 0) continue;

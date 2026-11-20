@@ -53,6 +53,7 @@ const data = JSON.stringify(
       verified: readiness.get(id)?.readiness === 'ready',
       mapCategory: readiness.get(id)?.geographic.placementKind === 'map-category',
       mapEvidence: readiness.get(id)?.geographic.orientationEvidence ?? 'unresolved',
+      historicalDate: readiness.get(id)?.geographic.appearance?.representedDate,
       visualReviewed: readiness.get(id)?.visualQa.hashBoundReviewPassed ?? false,
       previewPlacement: Boolean(readiness.get(id)?.geographic.activePlacement),
       sharedReviewed: readiness.get(id)?.sharedSurfaceQa?.hashBoundReviewPassed ?? false,
@@ -135,7 +136,7 @@ function render() {
     const group = document.createElement('td'); group.textContent = e.category.replaceAll('_', ' ');
     const score = document.createElement('td'); score.textContent = e.sitelinks;
     const state = document.createElement('td'); state.textContent = e.collection ? \`\${e.collection.readyCount} / \${e.collection.requiredCount} independent members complete\` : e.quality ? e.quality + (e.visualReviewed ? ' · reviewed' : ' · review pending') : 'Source model pending'; if (e.visualReviewed) state.className = 'modeled';
-    const placement = document.createElement('td'); placement.textContent = e.mapCategory ? 'Reviewed map category' : e.verified ? 'Verified placement' : e.previewPlacement ? 'World-viewer preview' : e.mapEvidence; placement.title = e.blockers.join('\\n');
+    const placement = document.createElement('td'); placement.textContent = e.mapCategory ? 'Reviewed map category' : e.verified && e.historicalDate ? 'Historical placement · ' + e.historicalDate : e.verified ? 'Verified placement' : e.previewPlacement ? 'World-viewer preview' : e.mapEvidence; placement.title = e.blockers.join('\\n');
     const coord = document.createElement('td'); coord.className = 'coord'; coord.textContent = e.mapCategory ? 'Regional type · mapped instances' : \`\${e.referenceCoordinate.latitude.toFixed(4)}, \${e.referenceCoordinate.longitude.toFixed(4)}\`;
     tr.append(id, title, group, score, state, placement, coord); rows.append(tr);
   }

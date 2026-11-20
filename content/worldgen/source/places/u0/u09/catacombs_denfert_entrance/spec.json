@@ -1,0 +1,451 @@
+{
+  "id": "catacombs_denfert_entrance",
+  "planId": "catacombs_denfert_entrance",
+  "assetId": "molen.worldgen.structure.catacombs_denfert_entrance",
+  "title": "Catacombs of Paris · Denfert-Rochereau entrance",
+  "category": "museum",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 2.3323984359767334,
+    "latitude": 48.833829420885976
+  },
+  "visualBrief": "Ledoux pavilion with three rusticated arches and a hipped slate roof, beside the separate black-framed modern visitor entrance.",
+  "nativeAxes": "+X follows the front wall to the right as viewed from the street. +Z points toward the public approach.",
+  "sourceFacts": {
+    "siteCandidateId": "catacombs_of_paris",
+    "mapFeatureIds": [
+      35184451717376,
+      35185064145404
+    ],
+    "portalRole": "entrance"
+  },
+  "referencePages": [
+    "https://www.catacombes.paris.fr/sites/default/files/2026-04/Catacombes_Dossier%20presse2026_WEB.pdf",
+    "https://catacombes.paris.fr/visiter/informations-pratiques"
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u0/u09/catacombs_denfert_entrance/models/denfert-entrance-model.mjs",
+    "export": "buildMaster"
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      2.3323984359767334,
+      48.833829420885976
+    ],
+    "heading": -2.08128560281,
+    "bounds": [
+      2.3321317004203794,
+      48.83359179197891,
+      2.3326642943382265,
+      48.83405367248775
+    ],
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 66.50342,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          8.5775,
+          -6.1182
+        ],
+        [
+          8.4472,
+          6.1188
+        ],
+        [
+          -8.4472,
+          6.1189
+        ],
+        [
+          -8.4884,
+          5.2409
+        ],
+        [
+          -11.7534,
+          5.0419
+        ],
+        [
+          -11.5477,
+          -7.4626
+        ],
+        [
+          -8.3787,
+          -7.4351
+        ],
+        [
+          -8.413,
+          -6.2896
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            8.5775,
+            -6.1182
+          ],
+          [
+            8.4472,
+            6.1188
+          ],
+          [
+            -8.4472,
+            6.1189
+          ],
+          [
+            -8.4884,
+            5.2409
+          ],
+          [
+            -11.7534,
+            5.0419
+          ],
+          [
+            -11.5477,
+            -7.4626
+          ],
+          [
+            -8.3787,
+            -7.4351
+          ],
+          [
+            -8.413,
+            -6.2896
+          ]
+        ],
+        [
+          [
+            8.5775,
+            5.1448
+          ],
+          [
+            8.653,
+            -0.7542
+          ],
+          [
+            15.6769,
+            -1.0834
+          ],
+          [
+            15.6221,
+            5.2546
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Match the independently identified building footprint. The nearby structures and public routes stay native."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:546b03c9afade7b43263f9fb82db761f1e65e494de61265670c020f941357567",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap",
+    "notes": "The entrance photograph matches the paved plaza face of the pavilion and the low building on its right. The direction is signed from the corresponding edge of the PMTiles footprint.",
+    "groundContactBasis": "The lower visitor sill was raised 0.205 m above the initial coarse terrain datum. The production terrain and surface renderer show it meeting the sampled plaza approach. The buried plinth follows neighboring terrain."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "reviewed-medium-fi",
+  "materialMethod": "Existing shared limestone, ashlar, metal and glazing graphs. The entrance also uses shared slate.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/catacombs_denfert_entrance/models/denfert-entrance-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "rough": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.18
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.59,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.36,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.025
+      }
+    }
+  },
+  "limitations": [
+    "Wall depth, small façade hardware and ground heights are reconstructed. The adjacent streets and other buildings stay in the standard map layers.",
+    "The public surface building is separate from the quarry galleries and underground visitor itinerary."
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-front",
+      "position": [
+        4.7,
+        5.8,
+        29
+      ],
+      "lookAt": [
+        1.6,
+        5.7,
+        4.3
+      ],
+      "fov": 50
+    },
+    {
+      "name": "modern-entry",
+      "position": [
+        15.88,
+        2.7,
+        15.65
+      ],
+      "lookAt": [
+        11.15,
+        2.42,
+        5.84
+      ],
+      "fov": 54
+    },
+    {
+      "name": "slate-roof-and-annex",
+      "position": [
+        -18,
+        13.5,
+        -16.8
+      ],
+      "lookAt": [
+        0,
+        7.38,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -11.859999656677246,
+      -0.6299999952316284,
+      -7.409999847412109
+    ],
+    "max": [
+      15.670000076293945,
+      14.239999771118164,
+      6.708849906921387
+    ]
+  },
+  "size": [
+    27.52999973297119,
+    14.869999766349792,
+    14.118849754333496
+  ],
+  "mesh": {
+    "triangles": 6204,
+    "vertices": 12464,
+    "materials": 5,
+    "bytes": 526576,
+    "sha256": "sha256:49a742ddc6fc9bf4082681413e34e3c657c3f5611d5b6476167f237ed573c94a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.glass_frit_triangular",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

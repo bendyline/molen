@@ -69,6 +69,63 @@ function clip(
   }
 }
 
+/** Clip an area to the tile, including when the cut separates it into several pieces. */
+export function clipTerrainPolygonToTile(
+  polygon: TerrainSemanticPolygon,
+): TerrainSemanticPolygon[] {
+  if (isDegenerateRing(polygon.outer)) return [];
+  const rings = [polygon.outer, ...(polygon.holes ?? []).filter((ring) => !isDegenerateRing(ring))];
+  const inside = clip(polygonClipping.intersection, [rings], [TILE]) ?? [];
+  return inside.flatMap(([outer, ...holes]) =>
+    outer ? [{ outer, ...(holes.length ? { holes } : {}) }] : [],
+  );
+}
+
+/** Join adjacent areas before creating shoreline geometry. On clipping failure, keep the input areas. */
+export function unionTerrainPolygons(
+  polygons: readonly TerrainSemanticPolygon[],
+): TerrainSemanticPolygon[] {
+  const rings = polygons.map(({ outer, holes }): Polygon => [outer, ...(holes ?? [])]);
+  const merged = clip(polygonClipping.union, rings, []);
+  return merged
+    ? merged.flatMap(([outer, ...holes]) => (outer ? [{ outer, holes }] : []))
+    : [...polygons];
+}
+
+/** Remove a local area from a polygon, keeping the original if clipping fails. */
+export function subtractTerrainPolygon(
+  polygon: TerrainSemanticPolygon,
+  mask: TerrainSemanticPolygon,
+): TerrainSemanticPolygon[] {
+  if (!overlaps(polygonBounds(polygon), polygonBounds(mask))) return [polygon];
+  const result = clip(
+    polygonClipping.difference,
+    [[polygon.outer, ...(polygon.holes ?? [])]],
+    [[mask.outer, ...(mask.holes ?? [])]],
+  );
+  return result
+    ? result.flatMap(([outer, ...holes]) => (outer ? [{ outer, holes }] : []))
+    : [polygon];
+}
+
+/** Split an area at a local boundary. If either clip fails, keep the input area intact. */
+export function partitionTerrainPolygon(
+  polygon: TerrainSemanticPolygon,
+  mask: TerrainSemanticPolygon,
+): { inside: TerrainSemanticPolygon[]; outside: TerrainSemanticPolygon[] } {
+  const uncut = { inside: [], outside: [polygon] };
+  if (!overlaps(polygonBounds(polygon), polygonBounds(mask))) return uncut;
+  const subject = [[polygon.outer, ...(polygon.holes ?? [])]];
+  const boundary = [[mask.outer, ...(mask.holes ?? [])]];
+  const inside = clip(polygonClipping.intersection, subject, boundary);
+  if (!inside?.length) return uncut;
+  const outside = clip(polygonClipping.difference, subject, boundary);
+  if (!outside) return uncut;
+  const areas = (result: MultiPolygon): TerrainSemanticPolygon[] =>
+    result.flatMap(([outer, ...holes]) => (outer ? [{ outer, holes }] : []));
+  return { inside: areas(inside), outside: areas(outside) };
+}
+
 /** Resolve the existing last-feature-wins order in X/Z before draping. A bounded height stack
  * becomes nearly coplanar in dense tiles; hidden land-cover faces must not reach the GPU. */
 export function visibleLandcoverPolygons(

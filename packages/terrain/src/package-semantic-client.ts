@@ -20,7 +20,7 @@ import {
 } from './package-client';
 import type { TerrainPackageDescriptor } from './package-types';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayer } from './pyramid-stream';
-import { terrainPyramidTileSize } from './pyramid-types';
+import { type TerrainPyramidTileAddress, terrainPyramidTileSize } from './pyramid-types';
 import {
   createTerrainRoadGrading,
   type TerrainRoadGrading,
@@ -64,6 +64,12 @@ export interface CreateTerrainPackageSemanticLayersOptions
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
   waterLayer?: TerrainPackageSemanticLayerStyle;
   featuresLayer?: TerrainPackageSemanticLayerStyle;
+  /** Edit native decoded features before overzoom, grading and rendering consume them. */
+  transformFeatures?: (
+    tile: TerrainSemanticTile,
+    address: TerrainPyramidTileAddress,
+    sourceMaxLevel: number,
+  ) => TerrainSemanticTile;
   /** Render inferred underground corridors in the finest feature levels. Share the stream's elevation source. */
   tunnels?: { heights: TerrainPyramidHeightSource; minLevel?: number };
   /**
@@ -143,6 +149,7 @@ export async function createTerrainPackageSemanticLayers(
     landcoverLayer,
     waterLayer,
     featuresLayer,
+    transformFeatures,
     tunnels,
     roadGrading,
     overzoom = true,
@@ -197,12 +204,22 @@ export async function createTerrainPackageSemanticLayers(
       featuresSource = route(semantics.features.source);
     }
   }
+  if (transformFeatures && featuresSource && semantics.features) {
+    const source = featuresSource;
+    const sourceMaxLevel = semantics.features.maxLevel;
+    featuresSource = {
+      async load(address, signal) {
+        const tile = await source.load(address, signal);
+        return tile && !signal.aborted ? transformFeatures(tile, address, sourceMaxLevel) : tile;
+      },
+    };
+  }
   // A street mapped as a tunnel only where it passes beneath bridges is the street under them,
   // for every reader of the road tiles alike: the grading, the bores, the painter, traffic.
   if (featuresSource !== undefined) {
     const tiled = featuresSource;
     const pyramid = terrainPyramidDescriptorFromPackage(pkg);
-    // One answer per decoded tile: its readers ask for it again and again (neighbours' grading,
+    // One answer per input tile: its readers ask for it again and again (neighbours' grading,
     // bores completing their routes), and some keep what they derived by the tile they were given.
     const opened = new WeakMap<TerrainSemanticTile, TerrainSemanticTile>();
     featuresSource = {

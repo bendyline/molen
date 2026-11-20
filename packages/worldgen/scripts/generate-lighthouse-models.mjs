@@ -135,8 +135,8 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     modelPath = resolve(dir, 'models/source.glb');
   const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
-  if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
-    throw new Error(`${asset.id}: review scope must declare the current medium-fi standard`);
+  if (reviewScope && !['medium-fi', 'maximum'].includes(reviewScope.fidelityTarget))
+    throw new Error(`${asset.id}: review scope must declare medium-fi or maximum`);
   const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
   const reviewedProposal = { ...asset.geographicProposal, ...(reviewScope?.geographic ?? {}) };
   if (
@@ -353,7 +353,7 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
           sha256: hash(glb),
         },
       ],
-      generators: [],
+      generators: priorSource?.files.generators ?? [],
       scripts: [],
       textures: [],
       sounds: [],

@@ -10,11 +10,7 @@ import { resolve } from 'node:path';
 import { NodeIO } from '@gltf-transform/core';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
-import {
-  createEmptyTerrainSemanticTile,
-  heightfieldFromPng,
-  wgs84ToWorld,
-} from '../../terrain/dist/kernel.mjs';
+import { createEmptyTerrainSemanticTile, heightfieldFromPng } from '../../terrain/dist/kernel.mjs';
 import { StructureModelLibrary } from '../../worldgen/dist/client.mjs';
 import { emptyWorldgenStats } from '../../worldgen/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
@@ -104,7 +100,16 @@ it('pins the legacy terminal, signed frame, epoch limitation and actual occupied
   expect(layout.nativeMap.ownedParts).toHaveLength(6);
   expect(layout.nativeMap.preservedNeighbors).toHaveLength(2619);
   expect(s.sourceFacts.northService).toBe(5);
-  expect(s.sourceFacts.epoch.status).toBe('pending-redevelopment-epoch');
+  expect(s.sourceFacts.epoch.status).toBe('dated-legacy');
+  expect(p.entry.datum).toBe('sea-level');
+  expect(p.entry.appearance).toEqual({
+    kind: 'historical',
+    currentWorldEligible: false,
+    representedDate: '2017-01-08',
+    validFrom: '2017-01-08',
+    validUntil: '2017-01-09',
+  });
+  expect(p.entry.terrainReference).toBeUndefined();
   expect(s.sourceFacts.epoch.constructionGeometryIncluded).toBe(false);
   expect(p.entry.groundCutout.outlines).toHaveLength(3);
   expect(p.entry.replaceRoads).toBeUndefined();
@@ -266,10 +271,7 @@ it('uses the production viewer to replace the whole passenger building and prese
     seenContext = [],
     pack = await loadDefaultPack(),
     renderers = createWorldgenSemanticRenderers(pack, {
-      sampleStructureTerrain: (coordinate) => {
-        const [e, S] = wgs84ToWorld(1, ...coordinate);
-        return field.sampleHeight(e * c - S * s, e * s + S * c);
-      },
+      viewingDate: '2017-01-08',
       structures: createStructureIndex({
         format: 'molen/structure-placements@1',
         title: 'Kollam Central station actual map replacement',
@@ -277,18 +279,6 @@ it('uses the production viewer to replace the whole passenger building and prese
           {
             ...placed,
             anchor: [0, 0],
-            ...(placed.terrainReference
-              ? {
-                  terrainReference: {
-                    ...placed.terrainReference,
-                    anchor: [
-                      (placed.terrainReference.anchor[0] - frame.anchor[0]) *
-                        Math.cos((frame.anchor[1] * Math.PI) / 180),
-                      placed.terrainReference.anchor[1] - frame.anchor[1],
-                    ],
-                  },
-                }
-              : {}),
             bounds: placed.bounds.map((v, i) =>
               i % 2 === 0
                 ? (v - frame.anchor[0]) * Math.cos((frame.anchor[1] * Math.PI) / 180)
@@ -387,10 +377,8 @@ it('uses the production viewer to replace the whole passenger building and prese
     });
     const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
-    expect(
-      landmark.position.y,
-      'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(40, 28), 2);
+    expect(landmark.position.y).toBeCloseTo(placed.elevation, 3);
+    expect(field.sampleHeight(40, 28)).toBeCloseTo(0, 2);
     expect(seen.length).toBeGreaterThan(0);
     expect(seenContext.at(-1)).toEqual(originalContext);
     const remaining = new Set(seen.at(-1)),

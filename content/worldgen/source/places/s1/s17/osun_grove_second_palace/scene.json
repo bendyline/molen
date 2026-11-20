@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Ilédì Oǹtótóo, Second Palace exterior review",
+  "seed": "osun_grove_second_palace",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "palace",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_second_palace",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce9df",
+            "ground": "#978359",
+            "intensity": 1.3
+          },
+          "sun": {
+            "direction": [
+              -4,
+              7,
+              5
+            ],
+            "color": "#fff1d4",
+            "intensity": 1.6,
+            "castShadow": true
+          },
+          "background": "#b6c5ac",
+          "toneMapping": "agx",
+          "exposure": 1.04,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.29,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              65,
+              0.5,
+              47
+            ]
+          },
+          "materialRef": "palette:#86805e",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      12.4,
+      8.8,
+      29
+    ],
+    "lookAt": [
+      0.2,
+      2.75,
+      0.1
+    ],
+    "fov": 50
+  }
+}

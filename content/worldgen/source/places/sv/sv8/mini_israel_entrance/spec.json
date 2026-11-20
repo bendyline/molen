@@ -1,0 +1,465 @@
+{
+  "id": "mini_israel_entrance",
+  "planId": "mini_israel_entrance",
+  "collectionId": "mini_israel",
+  "wikidataId": "Q456800",
+  "mapFeatureId": "way/292811379",
+  "assetId": "molen.worldgen.structure.mini_israel_entrance",
+  "title": "Mini Israel · Entrance and workshop",
+  "category": "museum",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 34.968284271,
+    "latitude": 31.842779992
+  },
+  "visualBrief": "Stepped limestone workshop, two raised pointed arches at the open entrance, a steel canopy, a glazed roof pavilion and the curved waterside café terrace.",
+  "nativeAxes": "+X follows the long wing toward the southwest. +Z faces the northwestern visitor approach.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_entrance/models/entrance-model.mjs",
+    "export": "buildEntrance"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "mapPrimaryFeature": 35184664900211
+  },
+  "referencePages": [
+    "https://g-m-a.co.il/en/mini-israel",
+    "https://hamigvan.blogspot.com/2015/08/blog-post_7.html",
+    "https://www.the7eye.org.il/460149"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      34.968284271,
+      31.842779992
+    ],
+    "heading": -2.526,
+    "bounds": [
+      34.96776332960129,
+      31.842447821069616,
+      34.9687499751091,
+      31.843301504235693
+    ],
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 171.22,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          25.0855,
+          -6.7857
+        ],
+        [
+          25.1059,
+          -2.4219
+        ],
+        [
+          31.8587,
+          -2.3059
+        ],
+        [
+          31.8541,
+          15.7101
+        ],
+        [
+          22.4194,
+          15.8719
+        ],
+        [
+          22.5459,
+          24.039
+        ],
+        [
+          14.9395,
+          24.2513
+        ],
+        [
+          15.0102,
+          26.7868
+        ],
+        [
+          -1.738,
+          26.7468
+        ],
+        [
+          -1.6672,
+          29.2823
+        ],
+        [
+          -16.0264,
+          29.3786
+        ],
+        [
+          -16.0821,
+          23.7471
+        ],
+        [
+          -38.1083,
+          23.7022
+        ],
+        [
+          -38.1493,
+          2.2366
+        ],
+        [
+          -35.0532,
+          2.2517
+        ],
+        [
+          -35.0988,
+          -1.198
+        ],
+        [
+          -18.3506,
+          -1.158
+        ],
+        [
+          -18.5727,
+          1.7916
+        ],
+        [
+          -15.1231,
+          1.7461
+        ],
+        [
+          -15.1532,
+          7.9383
+        ],
+        [
+          -10.5823,
+          8.0644
+        ],
+        [
+          -10.5518,
+          14.6102
+        ],
+        [
+          -3.6525,
+          14.5191
+        ],
+        [
+          -3.7338,
+          -2.9363
+        ],
+        [
+          2.6048,
+          -3.1132
+        ],
+        [
+          2.7058,
+          -6.7699
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Replace only the mapped main entrance/workshop body identified in the PMTiles and the aerial photo. Keep the independently mapped visitor buildings."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:585b2f3a940eb2da7622725800e6bace881b6f4f61ebd554bf67c2177b8a7432",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "notes": "The stepped workshop outline matches the large footprint beside the information point and approach. The gate faces the visitor approach, toward the northwest. The precise opening positions, pavilion height and rear openings are reconstructed from photographs. The retained Terrarium rises across the workshop. Stepped building volumes and buried foundation skirts follow that terrain. The entrance slab is anchored near the sampled front path. The exterior heights are approximate. The asset represents the park’s full-size entrance and workshop. Other visitor buildings and miniature exhibits are separate components.",
+    "groundContactBasis": "The standard Terrarium terrain confirms both entrance slab samples at the estimated datum. The roof tiers and buried foundation skirts follow the mapped slope. The slab ranges from terrain level to a 0.37 m rise at the measured entrances. Exact grades and accessibility remain unverified."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Shared limestone, concrete, metal and window graphs with authored vertex colors. No embedded images.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_entrance/models/entrance-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "facing": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stonework": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.23
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.38,
+        "metallic": 0.17
+      }
+    },
+    "errorMeters": 0.69,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "facing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stonework": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.23
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "facing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stonework": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.23
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.14
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "facing": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stonework": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.23
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.062
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pointed-entrance",
+      "position": [
+        22.5,
+        3.7,
+        36.4
+      ],
+      "lookAt": [
+        18.7,
+        3.78,
+        22.1
+      ],
+      "fov": 50
+    },
+    {
+      "name": "workshop-frontage",
+      "position": [
+        -32,
+        12.4,
+        47.8
+      ],
+      "lookAt": [
+        -7.6,
+        4.8,
+        19.6
+      ],
+      "fov": 52
+    },
+    {
+      "name": "park-side",
+      "position": [
+        7.6,
+        24.1,
+        -39.1
+      ],
+      "lookAt": [
+        -2.4,
+        4.8,
+        8.7
+      ],
+      "fov": 51
+    },
+    {
+      "name": "waterside-cafe-terrace",
+      "position": [
+        -8.2,
+        11.6,
+        -33
+      ],
+      "lookAt": [
+        -11.1,
+        4.3,
+        -5.9
+      ],
+      "fov": 54
+    }
+  ],
+  "limitations": [
+    "The stepped workshop outline matches the large footprint beside the information point and approach. The gate faces the visitor approach, toward the northwest. The precise opening positions, pavilion height and rear openings are reconstructed from photographs.",
+    "The retained Terrarium rises across the workshop. Stepped building volumes and buried foundation skirts follow that terrain. The entrance slab is anchored near the sampled front path. The exterior heights are approximate.",
+    "The asset represents the park’s full-size entrance, workshop and connected waterside café frontage. The terrace edge follows the mapped water bank. Its paving width, measured terrain fit and the smaller window details approximate the photographed complex. Other visitor buildings and miniature exhibits are separate components."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -38.13199996948242,
+      -2.4700000286102295,
+      -21.51799964904785
+    ],
+    "max": [
+      31.881999969482422,
+      9.220000267028809,
+      29.36400032043457
+    ]
+  },
+  "size": [
+    70.01399993896484,
+    11.690000295639038,
+    50.88199996948242
+  ],
+  "mesh": {
+    "triangles": 5128,
+    "vertices": 10996,
+    "materials": 6,
+    "bytes": 461280,
+    "sha256": "sha256:79d5c28ddc4ccc0d25cd7941af78d09078475f8c81fb7535d718d3db517109b6"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_busanyin_shrine",
+  "kind": "static-structure",
+  "title": "Búsanyìn Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_busanyin_shrine",
+        "output": "assets/places/s1/s17/osun_grove_busanyin_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6c8b2a5a179d034ba5c48d67df629936431463db631b86bf87dc3ca23e4a092d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "busanyin-shrine-mesh",
+        "path": "models/busanyin-model.mjs"
+      },
+      {
+        "id": "busanyin-shrine-master",
+        "path": "models/generate-busanyin.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "riverfront-preview.webp",
+      "map-frame.json",
+      "placement-report.json"
+    ]
+  }
+}

@@ -8,7 +8,7 @@ import {
   controls,
   station,
 } from '../../../content/worldgen/source/places/ud/udt/saint_petersburg_dam/models/dam-model.mjs';
-import { createEmptyTerrainSemanticTile } from '../../terrain/dist/kernel.mjs';
+import { createEmptyTerrainSemanticTile, pointInPolygon } from '../../terrain/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { withoutStructureRoads } from '../../worldgen-earth/src/client/structure-geometry.ts';
@@ -101,9 +101,23 @@ it('pins the native A-118 corridor, eight openings and shared sea-level frame', 
     'B6',
   ]);
   expect(controls.crossings.reduce((sum, q) => sum + (q.bays ?? 0), 0)).toBe(64);
-  expect(p.entry.groundCutout.outlines).toHaveLength(8);
+  expect(p.entry.groundCutout.outlines).toHaveLength(10);
+  for (const [index, portal] of controls.s1Portals.entries()) {
+    const { x, z } = station((portal.approach + portal.mouth) / 2);
+    expect(pointInPolygon([x, z], { outer: p.entry.groundCutout.outlines[8 + index] })).toBe(true);
+  }
   expect(p.entry.replaceFootprint).toBe(false);
   expect(p.entry.buildingCutout).toBeUndefined();
+  const lift = controls.crossings.find((crossing) => crossing.id === 'S2');
+  const { layers } = await read(`${source}/native-water.json`);
+  const containsWater = (s) => {
+    const { x, z } = station(s);
+    return layers.some((layer) =>
+      layer.polygons.some(([outer, ...holes]) => pointInPolygon([x, z], { outer, holes })),
+    );
+  };
+  expect(containsWater((lift.a + lift.b) / 2)).toBe(false);
+  for (const offset of [-48, 0, 48]) expect(containsWater(lift.middle + offset)).toBe(true);
   expect(
     reviewedSourceMapFrame({
       frameBytes: await readFile(`${source}/map-frame.json`),
@@ -151,6 +165,14 @@ it('retains all 64 clear sluice openings, the open S-1 channel and S-2 bridge cl
           }
         }
       }
+    }
+    for (const portal of controls.s1Portals) {
+      const midpoint = (portal.approach + portal.mouth) / 2;
+      const ramp = nearest(ts, from(midpoint, 7, 40), [0, -1, 0]);
+      expect(40 - ramp, `${name} exposed portal ramp`).toBeCloseTo(
+        (portal.approachHeight + portal.floor) / 2,
+        2,
+      );
     }
     const kotlin = (controls.kotlin[0] + controls.kotlin[1]) / 2;
     expect(

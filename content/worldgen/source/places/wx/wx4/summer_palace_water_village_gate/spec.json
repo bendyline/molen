@@ -1,0 +1,256 @@
+{
+  "id": "summer_palace_water_village_gate",
+  "planId": "summer_palace",
+  "title": "Summer Palace · Water Village gate and fence",
+  "assetId": "molen.worldgen.structure.summer_palace_water_village_gate",
+  "category": "gate",
+  "wikidataId": "Q4132",
+  "quality": "medium-fi",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-site-fit",
+  "referenceCoordinate": {
+    "longitude": 116.2600303455727,
+    "latitude": 39.99615583800516
+  },
+  "nativeAxes": "+Z points from the enclosure through the gate toward the visitor approach. +X runs along the fence.",
+  "visualBrief": "A small charcoal-tiled canopy spans a clear walkway between paired timber fence runs. Two red lanterns hang from the posts in the 2026 festival photograph. The canopy has a plain tie beam and shallow stone feet. The fence uses crossed timber slats and a plain top rail.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_gate/models/water-village-gate-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://g.udn.com.tw/upfiles/B_GE/ger0830/PSN_PHOTO/631/f_21127631_1.jpg",
+    "https://blog.udn.com/ger0830/99721645",
+    "https://xinwen.bjd.com.cn/content/s69b9436cd5de6b42d6e3df70.html",
+    "https://www.summerpalace.net.cn/noticelist/detail/1000685.html",
+    "https://www.summerpalace.net.cn/Uploads/Picture/2026/07/30/u6a6ae1c385f4d.jpeg"
+  ],
+  "geographicProposal": {
+    "status": "preview",
+    "anchor": [
+      116.2600303455727,
+      39.99615583800516
+    ],
+    "heading": 0.2366940840237171,
+    "bounds": [
+      116.25997400349196,
+      39.99614331536474,
+      116.26007272545918,
+      39.996167405036324
+    ],
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 55.9532,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "orientationPolicy": "approximate-visualization",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3536d4edd44297f6240f59ddc6290bd2e80d436c6bb24c3ac131b42954d6aa3e",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap.",
+    "mapGeometryLicense": "ODbL-1.0",
+    "source": "https://www.summerpalace.net.cn/noticelist/detail/1000685.html",
+    "notes": "The 2017 and July 2026 photographs agree on the signed approach from the south. The PMTiles south range and the paved approach visible in two aerial versions constrain the placement west of the range midpoint. The nominal 7 m setback remains approximate. The gate and fence ends are partially obscured in the aerial images."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_gate/models/water-village-gate-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "fabric": {
+        "slot": "trim",
+        "graph": "fabric_canvas"
+      }
+    },
+    "errorMeters": 0.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "fabric": {
+            "slot": "trim",
+            "graph": "fabric_canvas"
+          }
+        },
+        "errorMeters": 0.055
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "fabric": {
+            "slot": "trim",
+            "graph": "fabric_canvas"
+          }
+        },
+        "errorMeters": 0.02
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "fabric": {
+            "slot": "trim",
+            "graph": "fabric_canvas"
+          }
+        },
+        "errorMeters": 0.009
+      }
+    }
+  },
+  "materialMethod": "Shared ceramic tile, plain timber, ashlar and canvas graphs use metric UVs with vertex tints.",
+  "qaCameras": [
+    {
+      "name": "open-gate-and-lattice",
+      "position": [
+        0.1,
+        1.75,
+        7.7
+      ],
+      "lookAt": [
+        -0.2,
+        1.2,
+        0.08
+      ],
+      "fov": 55
+    },
+    {
+      "name": "tiled-canopy-and-post-feet",
+      "position": [
+        3.15,
+        2.5,
+        3.45
+      ],
+      "lookAt": [
+        0.44,
+        1.55,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "diamond-fence",
+      "position": [
+        -3.12,
+        1.25,
+        2.85
+      ],
+      "lookAt": [
+        -2.91,
+        0.62,
+        0.12
+      ],
+      "fov": 56
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.42,
+    "focus": {
+      "center": [
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  "limitations": [
+    "The fence extends behind foliage in the photograph. Its hidden end and the canopy dimensions are estimated.",
+    "The 2017 and July 2026 photographs agree on the signed approach from the south. The PMTiles south range and the paved approach visible in two aerial versions constrain the placement west of the range midpoint. The nominal 7 m setback remains approximate. The gate and fence ends are partially obscured in the aerial images.",
+    "The July photograph shows a festival display. The date range for the lanterns is unknown."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -4.923999786376953,
+      -0.25,
+      -0.9539999961853027
+    ],
+    "max": [
+      3.634000062942505,
+      2.930999994277954,
+      0.9539999961853027
+    ]
+  },
+  "size": [
+    8.557999849319458,
+    3.180999994277954,
+    1.9079999923706055
+  ],
+  "mesh": {
+    "triangles": 2906,
+    "vertices": 5716,
+    "materials": 4,
+    "bytes": 243556,
+    "sha256": "sha256:c612076da4790e1ca0b7806e5fcb6a85398e2d3ac89b2bdd309a5f0a8e8e57b9"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

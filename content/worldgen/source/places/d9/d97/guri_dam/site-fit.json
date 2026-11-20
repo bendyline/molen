@@ -1,0 +1,80 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 269.580123348029,
+  "sites": [
+    {
+      "name": "Guri first powerhouse river apron",
+      "anchor": [
+        -63.002756238,
+        7.766215034
+      ],
+      "heading": 0.01836529159509069,
+      "bounds": [
+        -8,
+        -26,
+        297.97512292003256,
+        2
+      ],
+      "elevation": 127.3,
+      "blend": 44,
+      "basis": "Blend the retained low-resolution riverbank into the mapped powerhouse frontage."
+    },
+    {
+      "name": "Guri second powerhouse river apron",
+      "anchor": [
+        -63.000224233,
+        7.766805022
+      ],
+      "heading": 0.6323182519148736,
+      "bounds": [
+        -8,
+        -26,
+        378.4183787110371,
+        2
+      ],
+      "elevation": 130.2,
+      "blend": 44,
+      "basis": "Blend the retained low-resolution riverbank into the mapped powerhouse frontage."
+    },
+    {
+      "name": "Guri stilling apron below the three chutes",
+      "anchor": [
+        -62.992554595,
+        7.766734302
+      ],
+      "heading": 0.077255684331,
+      "bounds": [
+        -454,
+        -294,
+        -255,
+        -224
+      ],
+      "elevation": 127,
+      "blend": 44,
+      "basis": "Keep the bounded chute exits and stilling apron above the coarse ground."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 34007213,
+      "name": "Guri Reservoir",
+      "elevation": 269.58,
+      "basis": "Stable representative stage at the common terrain datum."
+    },
+    {
+      "id": 35184625867420,
+      "name": "Buried Caroní alignments at Guri Dam",
+      "hideLines": true,
+      "basis": "The retained map tags the centerlines under the dam as layer -1."
+    },
+    {
+      "id": 72985923,
+      "name": "Caroní below Guri Dam",
+      "elevation": 124.58,
+      "basis": "Representative tailrace elevation from the common site datum."
+    }
+  ],
+  "waterStageNotes": "Representative levels for the principal reservoir and the Caroní tailrace. Terrain grades reveal the two powerhouse aprons and dry chute exits.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

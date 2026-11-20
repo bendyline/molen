@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Chameleon Gate at Ẹbu Ìyá Mọòpó review",
+  "seed": "osun_grove_chameleon_gate",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "gate",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_chameleon_gate",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d5e4d6",
+            "ground": "#a78f6e",
+            "intensity": 1.07
+          },
+          "sun": {
+            "direction": [
+              -3,
+              6,
+              8
+            ],
+            "color": "#fff2dc",
+            "intensity": 1.5,
+            "castShadow": true
+          },
+          "background": "#aebfae",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.47,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              53,
+              0.48,
+              45
+            ]
+          },
+          "materialRef": "palette:#8a8364",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      7.75,
+      4.8,
+      14.7
+    ],
+    "lookAt": [
+      0.67,
+      2.4,
+      0.02
+    ],
+    "fov": 52
+  }
+}

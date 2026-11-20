@@ -1,17 +1,24 @@
 # Sanmenxia Dam
 
-Reviewed 2026-11-03. **49 current catalog views and seven runtime-stage views inspected.**
-
 The model follows the 713 m bowed main dam and includes the 12 upper west outlets, 12 lower east outlets and spillway aprons, two red crest gantries, the photographed inscriptions, the powerhouse and sloped service apron, and the mapped downstream divider.
 
-The retained PMTiles crest sets anchor [111.344695197, 34.829672083] and heading 0.097144258939 radians. Local +X follows the crest east-northeast and +Z points downstream. The native replacement removes the mapped powerhouse and preserves the downstream crossing and neighboring buildings.
+The Earth viewer holds the reservoir at 316.96 m and the tailwater at 281.57 m. The local shoreline joins the mapped tailwater around the concrete divider, and local grades blend the west abutment, lower the submerged channel beside the divider, and repair invalid terrain near the forebay. The model replaces the mapped powerhouse footprint and retains the other thirteen local buildings and all fifty road records, including the separate downstream bridge.
 
-Six shared material graphs cover the structure, with zero embedded images in all six GLBs. Eviction releases the model geometry and restores the terrain.
+![Sanmenxia Dam in the Earth viewer](site-preview.png)
 
-The 27 terrain views use six standard Terrarium tiles and two continuous mapped water polygons at 316.96 m upstream and 281.57 m downstream. Seven additional views use the production sampler. In both sets a light strip remains beside the divider and terrain occludes part of the west abutment and powerhouse approach.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-The detailed master contains 3,908 triangles. Viewer tiers contain 962, 2002, 2936, 3704 triangles. Skyline plus district are 271,908 bytes and close-up is 339,284 bytes. Four focused checks verify exact source pins, selective replacement, all 24 recessed outlets, the powerhouse roof, the divider crest and both gantries, and byte-for-byte LOD reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 962 | 88,036 | 1 |
+| district | 2,002 | 183,872 | 6 |
+| street | 2,936 | 272,756 | 7 |
+| closeup | 3,704 | 339,284 | 7 |
 
-The model is available for preview while the divider shoreline gap and west-side terrain fit remain open. The gate machinery is approximate exterior geometry. The auxiliary earth embankment and buried tunnels are outside this asset. Physical-device timing remains unmeasured.
+Skyline and district total 271,908 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the viewer. The review covers 78 renders and 115 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-sanmenxia-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=sanmenxia_dam`.
+Water stages represent the retained map and terrain samples. Coarse terrain limits the precision of the banks and abutment contacts.
+
+The original exterior covers the main dam, divider and generating hall. Auxiliary earthworks, buried tunnels and operating discharge are outside the modeled area.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

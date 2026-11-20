@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.woodshed_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Woodshed — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.woodshed_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/woodshed_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f98e9878c715deaf7e7d6b0ed7d62fe16fedce8aa40bdd5ed0663605873053e0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-woodshed",
+        "path": "models/generate-woodshed.mjs"
+      },
+      {
+        "id": "woodshed-model",
+        "path": "models/woodshed-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-observations.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "site-fit.json",
+      "pmtiles-map.json",
+      "placement-report.json"
+    ]
+  }
+}

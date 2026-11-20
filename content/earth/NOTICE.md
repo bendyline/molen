@@ -24,6 +24,10 @@ medium-fi signs, plus authored primitive shapes. See [signs/americana-LICENSE.tx
 and [signs/README.md](signs/README.md) for pinned revisions, changes and reproduction commands.
 The state boundary layer uses public-domain Natural Earth 1:50m admin-1 data; its upstream
 revision, source URL and hash are retained in `source/signs/us-state-boundaries.json`.
+
+The approach segment in `terrain/road-alignments.json` uses Protomaps geometry from
+© OpenStreetMap contributors under ODbL-1.0. The file records the two source snapshots
+and the local edit around the photographed Ọ̀ṣun–Òṣogbo gate.
 # Airport data
 
 Runway endpoints and dimensions: OurAirports, public domain,

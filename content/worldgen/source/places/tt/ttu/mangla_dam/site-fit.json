@@ -1,0 +1,127 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "sampledTerrainElevation": 334.99723592708335,
+  "sites": [],
+  "waterStages": [
+    {
+      "id": 105517553,
+      "name": "Mangla Reservoir",
+      "elevation": 334.99723592708335,
+      "basis": "Representative stage at the model’s standard terrain datum."
+    },
+    {
+      "id": 105517550,
+      "name": "Mangla western forebay water",
+      "elevation": 334.99723592708335,
+      "exclude": [
+        [
+          73.6337353721,
+          33.1512445615
+        ],
+        [
+          73.6382406536,
+          33.1512445615
+        ],
+        [
+          73.6382406536,
+          33.1463049555
+        ],
+        [
+          73.6337353721,
+          33.1463049555
+        ]
+      ],
+      "basis": "Keep the mapped reservoir extension upstream of the gates. The overlapping mapped polygon otherwise covers the downstream chute and both dry shoulders."
+    },
+    {
+      "id": 194559103,
+      "name": "Mangla main spillway receiving channel",
+      "elevation": 265.19723592708334,
+      "basis": "Representative static level beneath the western spillway apron."
+    },
+    {
+      "id": -4,
+      "name": "Mangla western stilling basin",
+      "shoreline": [
+        [
+          73.6351983014,
+          33.1497088229
+        ],
+        [
+          73.6350418608,
+          33.1495381836
+        ],
+        [
+          73.635035768,
+          33.1489723773
+        ],
+        [
+          73.6351014164,
+          33.1482538878
+        ],
+        [
+          73.6350549047,
+          33.1475713174
+        ],
+        [
+          73.6348786409,
+          33.1470144797
+        ],
+        [
+          73.6367343878,
+          33.1470144797
+        ],
+        [
+          73.6369106516,
+          33.1475713174
+        ],
+        [
+          73.6371931542,
+          33.1482538878
+        ],
+        [
+          73.6374385848,
+          33.1489723773
+        ],
+        [
+          73.6376699417,
+          33.1495381836
+        ],
+        [
+          73.6375689376,
+          33.1497088229
+        ]
+      ],
+      "join": 194559103,
+      "elevation": 265.19723592708334,
+      "basis": "Photo-guided waterline inside the flared concrete walls, joined to the retained western receiving channel."
+    },
+    {
+      "id": 130277193,
+      "name": "Jhelum downstream of Mangla",
+      "elevation": 263.49723592708335,
+      "basis": "Representative tailwater at the modeled generating hall."
+    },
+    {
+      "id": 277675062,
+      "name": "Mangla powerhouse canal",
+      "elevation": 263.49723592708335,
+      "basis": "Same local level as the adjoining Jhelum tailrace."
+    },
+    {
+      "id": 35185335728243,
+      "name": "Buried Jhelum alignment at Mangla",
+      "hideLines": true,
+      "basis": "The map tags this river segment underground."
+    },
+    {
+      "id": 35185904800512,
+      "name": "Mangla buried waterway",
+      "hideLines": true,
+      "basis": "The retained map marks this alignment below the surface."
+    }
+  ],
+  "waterStageNotes": "Representative upstream reservoir, western stilling basin and separate Jhelum tailrace stages. Local water editing leaves the chute above the stilling basin dry.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

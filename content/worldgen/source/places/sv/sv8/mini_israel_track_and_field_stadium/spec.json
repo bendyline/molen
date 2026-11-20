@@ -1,0 +1,367 @@
+{
+  "id": "mini_israel_track_and_field_stadium",
+  "planId": "mini_israel_track_and_field_stadium",
+  "collectionId": "mini_israel",
+  "assetId": "molen.worldgen.structure.mini_israel_track_and_field_stadium",
+  "title": "Mini Israel · Track-and-field stadium exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.96860502698082,
+    "latitude": 31.8422112280135
+  },
+  "nativeAxes": "+Y up. +Z faces the nearer photographed bend and elevated visitor walk. +X points toward the grandstand.",
+  "visualBrief": "A low athletics miniature with a terracotta oval, sprint straight, pale lane stripes, turf, a single raked grandstand and four slim lamp standards.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_track_and_field_stadium/models/track-exhibit-model.mjs",
+    "export": "buildTrackExhibit"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25
+  },
+  "referencePages": [
+    "https://virtualglobetrotting.com/map/mini-israel-track-and-field-stadium/view/google/",
+    "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?cb_client=maps_sv.tactile&w=768&h=768&panoid=2ACobPdxmgqu6abOBtDqVA&yaw=242.13&pitch=-6.3&thumbfov=68",
+    "https://g-m-a.co.il/en/mini-israel"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      34.96860502698082,
+      31.8422112280135
+    ],
+    "heading": 2.1990743615509407,
+    "scale": [
+      0.95,
+      0.95,
+      0.95
+    ],
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 173.63,
+    "replaceFootprint": false,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dated bounded Terrarium grade checked with the track, both curves and retained PMTiles path. The module clears the independently placed Teddy Stadium.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4d43994bb90d47cbeb7421ad2edd38169349367a28faea3bf7073070a2484d10",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap.",
+    "source": "https://virtualglobetrotting.com/map/mini-israel-track-and-field-stadium/view/google/",
+    "notes": "The archive publication fixes the documented 2012 snapshot. The projected red oval and lane straights fix the signed axis and constrain the exhibit beside Teddy Stadium. Scale is estimated from the photographed miniature and the available space on the retained overhead image. Present display condition remains unresolved."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Limestone, concrete and painted-metal graphs are shared. The field and lane markings use linear vertex tints with no embedded images.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_track_and_field_stadium/models/track-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "track": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "steel": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.84
+      },
+      "field": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "name": "Miniature turf and lines",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.16,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "track": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Miniature turf and lines",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.045
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "track": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Miniature turf and lines",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.016
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "track": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84
+          },
+          "field": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Miniature turf and lines",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.005
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 0.26,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0.18,
+        0.4,
+        0
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "visitor-bend-and-stand",
+      "position": [
+        -0.55,
+        2.26,
+        5.9
+      ],
+      "lookAt": [
+        0.25,
+        0.3,
+        -0.4
+      ],
+      "fov": 58
+    },
+    {
+      "name": "lane-and-seating-detail",
+      "position": [
+        -2.4,
+        1.59,
+        2.6
+      ],
+      "lookAt": [
+        1.5,
+        0.55,
+        -0.44
+      ],
+      "fov": 50
+    },
+    {
+      "name": "track-plan",
+      "position": [
+        1.65,
+        11.5,
+        2.32
+      ],
+      "lookAt": [
+        0.16,
+        0.28,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "oval-skyline",
+      "position": [
+        -0.55,
+        2.26,
+        5.9
+      ],
+      "lookAt": [
+        0.25,
+        0.3,
+        -0.4
+      ],
+      "fov": 58,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "oval-district",
+      "position": [
+        -0.55,
+        2.26,
+        5.9
+      ],
+      "lookAt": [
+        0.25,
+        0.3,
+        -0.4
+      ],
+      "fov": 58,
+      "reviewLod": "district"
+    },
+    {
+      "name": "oval-street",
+      "position": [
+        -0.55,
+        2.26,
+        5.9
+      ],
+      "lookAt": [
+        0.25,
+        0.3,
+        -0.4
+      ],
+      "fov": 58,
+      "reviewLod": "street"
+    },
+    {
+      "name": "oval-closeup",
+      "position": [
+        -0.55,
+        2.26,
+        5.9
+      ],
+      "lookAt": [
+        0.25,
+        0.3,
+        -0.4
+      ],
+      "fov": 58,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Lane count, miniature dimensions and seat layout are approximate interpretations of the historical exhibit. Temporary display artifacts and signs are excluded.",
+    "Publication date is used for the isolated 2012 snapshot. The archive gives no installation or removal date and the current overhead image cannot verify the display condition."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.490000009536743,
+      -0.3100000023841858,
+      -3.2200000286102295
+    ],
+    "max": [
+      3.0399999618530273,
+      1.555999994277954,
+      3.240000009536743
+    ]
+  },
+  "size": [
+    5.5299999713897705,
+    1.86599999666214,
+    6.460000038146973
+  ],
+  "mesh": {
+    "triangles": 10124,
+    "vertices": 20130,
+    "materials": 5,
+    "bytes": 849480,
+    "sha256": "sha256:429c02cee5f4c82de6d929fe6dd9ae527d5c092eac4efb4b6ffda6ddb219a141"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2012-05-17",
+    "validFrom": "2012-05-17",
+    "validUntil": "2012-05-18"
+  }
+}

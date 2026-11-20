@@ -77,12 +77,12 @@ const spec = {
     status: 'preview-proposal',
     anchor: placement.anchor,
     heading: placement.heading,
-    elevationMode: 'terrain-contact',
+    elevationMode: placement.datum === 'sea-level' ? 'sea-level' : 'terrain-contact',
     orientationPolicy: 'approximate-visualization',
-    elevationMeters: 0,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis:
-      'The original pedestal has an explicit Y=0 base plane above its closed buried foundation. Host terrain supplies the relative ground datum;exact summit grades remain approximate. ' +
+      'The pedestal has an explicit Y=0 base plane above its closed buried foundation. ' +
       brief.heightPolicy,
     groundModelY: 0,
     replaceFootprint: false,

@@ -1,0 +1,292 @@
+{
+  "id": "summer_palace_jade_river_gallery",
+  "planId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_jade_river_gallery",
+  "title": "Summer Palace · Jade River Gallery",
+  "category": "palace",
+  "quality": "detailed",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.25916612004124,
+    "latitude": 39.99462595758815
+  },
+  "visualBrief": "Two covered gallery spans with pale plaster over gray brick and ochre-framed relief panels, dark green square posts, red lattice, painted transverse beams and dark ceramic roofs. The open pavilion at the west end has a rising ceramic roof edge.",
+  "nativeAxes": "+Y up. +X east and +Z south. Individual gallery bearings are baked into the mesh.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_jade_river_gallery/models/jade-river-gallery-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.sohu.com/a/356826141_216077",
+    "https://www.sohu.com/a/495036451_100157110",
+    "https://you.ctrip.com/travels/Beijing1/4076360.html",
+    "https://earth.google.com/web/@39.99435,116.25975,52a,300d,35y,0h,0t,0r/data=ChYqEAgBEgoyMDA5LTA2LTI4GAFCAggBQgIIAEoNCP___________wEQAA"
+  ],
+  "materialMethod": "Shared ceramic, stone, lime plaster, brick and painted timber graphs with metric UVs and vertex tint.",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "anchor": [
+      116.25916612004124,
+      39.99462595758815
+    ],
+    "bounds": [
+      116.25869307633427,
+      39.99455715507907,
+      116.25943071729323,
+      39.994672716675026
+    ],
+    "heading": 0,
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 57,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "orientationPolicy": "approximate-visualization",
+    "notes": "Align the north-bank roofs from dated imagery to Yanshang and Jade River Studio outlines in PMTiles. Gallery eaves meet the neighboring studio roofs. The shore and both footprints stay in the map.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5368a9e4241e85cbc112b866aebfad03bb1455a797c50f8b7bb33bdf2e5e4e6a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Local Terrarium grid and native PMTiles shoreline. The modeled plinth extends below the ground samples."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.72,
+    "focus": {
+      "center": [
+        -8.75,
+        0,
+        1.08
+      ]
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_jade_river_gallery/models/jade-river-gallery-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_longformat"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      }
+    },
+    "errorMeters": 0.32,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          }
+        },
+        "errorMeters": 0.075
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          }
+        },
+        "errorMeters": 0.019
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pond-elevation",
+      "position": [
+        -11,
+        9,
+        43
+      ],
+      "lookAt": [
+        -7,
+        1.8,
+        2
+      ],
+      "fov": 58
+    },
+    {
+      "name": "gallery-from-the-west",
+      "position": [
+        -30.1,
+        1.86,
+        4.585
+      ],
+      "lookAt": [
+        -13.8,
+        1.72,
+        1.8
+      ],
+      "fov": 67
+    },
+    {
+      "name": "roof-and-reliefs",
+      "position": [
+        15,
+        4,
+        9
+      ],
+      "lookAt": [
+        14,
+        1.7,
+        -2
+      ],
+      "fov": 59
+    },
+    {
+      "name": "pavilion-and-west-link",
+      "position": [
+        -39,
+        8.8,
+        13
+      ],
+      "lookAt": [
+        -25,
+        2.1,
+        5
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The covered passages on either side of Yanshang Studio and the west pavilion are included. The canopy hides much of the turn south to Chengxian Hall.",
+    "Aerial registration to two mapped roofs gives approximate dimensions and facing. Pavilion column count, roof curvature, and individual exhibit positions are estimates.",
+    "The panel shapes and restrained carved marks indicate the exhibit without reproducing the 48 historical compositions."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -40.106651306152344,
+      -1.1799999475479126,
+      -5.268387794494629
+    ],
+    "max": [
+      22.57831573486328,
+      5.150000095367432,
+      7.423652648925781
+    ]
+  },
+  "size": [
+    62.684967041015625,
+    6.330000042915344,
+    12.69204044342041
+  ],
+  "mesh": {
+    "triangles": 36144,
+    "vertices": 70516,
+    "materials": 5,
+    "bytes": 2975692,
+    "sha256": "sha256:019d6a3a1f1148a7d4f98c819422c05820e1a84f6dcd07af3dffdb7d773020ed"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

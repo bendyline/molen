@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Gateway to Ojúbọ Òṣogbo review",
+  "seed": "osun_grove_main_gateway",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "gateway",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_main_gateway",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e0e7d3",
+            "ground": "#b4a683",
+            "intensity": 1.02
+          },
+          "sun": {
+            "direction": [
+              -2,
+              4,
+              6
+            ],
+            "color": "#fff3d8",
+            "intensity": 1.64,
+            "castShadow": true
+          },
+          "background": "#aabba7",
+          "toneMapping": "agx",
+          "exposure": 1.07,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "review-earth",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.218,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              90,
+              0.35,
+              70
+            ]
+          },
+          "materialRef": "palette:#8b825f",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      5.1,
+      3.4,
+      13.7
+    ],
+    "lookAt": [
+      -0.13,
+      1.51,
+      0.16
+    ],
+    "fov": 53
+  }
+}

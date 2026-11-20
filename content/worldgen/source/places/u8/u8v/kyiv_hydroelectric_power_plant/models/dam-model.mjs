@@ -272,12 +272,34 @@ function gantry(out, d, { x, z, w, d: depth }) {
     rod(out, 'dark', p(x, h - 0.2, z), p(x, base + 3.4, z), 0.16, 0.17);
   }
 }
+// The reservoir-side promenade has a blue two-rail guard. Model thin members only
+// where they are visible at the selected distance.
+function upstreamWalkway(out, detail) {
+  if (detail === 0) return;
+  const runs = [
+    { first: -236.5, last: -103, z: -38.72, deck: 106.86 },
+    { first: -103, last: 185, z: -50.16, deck: 106.28 },
+    { first: 185, last: 204.5, z: -48.66, deck: 106.1 },
+  ];
+  for (const { first, last, z, deck } of runs) {
+    const top = deck + 1.04;
+    rod(out, 'blue', p(first, top, z), p(last, top, z), 0.078, 0.087);
+    if (detail < 2) continue;
+    rod(out, 'blue', p(first, deck + 0.57, z), p(last, deck + 0.57, z), 0.061, 0.07);
+    const segments = Math.ceil((last - first) / (detail > 2 ? 4.15 : 7.5));
+    for (let i = 0; i <= segments; i++) {
+      const x = first + ((last - first) * i) / segments;
+      rod(out, 'blue', p(x, deck, z), p(x, top, z), 0.079, 0.086);
+    }
+  }
+}
 function superstructure(out, d) {
   box(out, 'body', -237, -103, 91.9, 106.28, -39, 6.9);
   box(out, 'pale', -237, -103, 106.28, 106.86, -39, -8.4);
   box(out, 'asphalt', -237, -103, 106.28, crest, -8.4, 6.9);
   box(out, 'body', 185, 205, 91.2, 106.1, -49, 7.4);
   box(out, 'asphalt', 185, 205, 106.1, 107, -8.4, 7.4);
+  upstreamWalkway(out, d);
   for (const g of gantries) gantry(out, d, g);
   box(out, 'pale', -113.8, -93.4, 106.28, 120.25, -34.8, -11.8);
   box(out, 'roof', -114.15, -93.05, 120.25, 120.72, -35.1, -11.5);
@@ -327,6 +349,49 @@ function quays(out, d) {
       quad(out, 'pale', P(a, h), P(b, h), P(c, h), P(e, h), [0, 1, 0]);
   }
 }
+function lockLining(out, detail, side, edge, bottom, top) {
+  const x = edge - side * 0.017;
+  const point = (height, station) => lockPoint(p(x, height, station));
+  const row = (a, b, panel, count, tint) => {
+    const start = (panel * lockLength) / count;
+    const end = ((panel + 1) * lockLength) / count;
+    quad(
+      out,
+      'body',
+      point(a, start),
+      point(a, end),
+      point(b, end),
+      point(b, start),
+      [-side, 0, 0],
+      tint,
+    );
+  };
+  if (detail < 2) {
+    row(bottom, 96.2, 0, 1, [0.283, 0.294, 0.274]);
+    return;
+  }
+  // The photographed chamber walls lighten from damp lower concrete to the coping.
+  const bands = [
+    [bottom, 96.2, [0.23, 0.24, 0.22]],
+    [96.2, 100.2, [0.31, 0.32, 0.29]],
+    [100.2, 102.8, [0.39, 0.39, 0.35]],
+    [102.8, top, [0.48, 0.46, 0.41]],
+  ];
+  const count = detail === 2 ? 9 : 16;
+  for (let panel = 0; panel < count; panel++) {
+    const weathering = (1 + ((panel * 13 + (side + 1) * 5) % 17)) / 17;
+    for (const [low, high, tint] of bands) {
+      const variation = 0.91 + weathering * 0.18;
+      row(
+        low,
+        high,
+        panel,
+        count,
+        tint.map((channel) => channel * variation),
+      );
+    }
+  }
+}
 function lockWorks(out, d) {
   const P = (x, h, z) => lockPoint(p(x, h, z)),
     B = (m, a, b, h, H, u, v, rgb) => box(out, m, a, b, h, H, u, v, lockPoint, rgb);
@@ -337,17 +402,7 @@ function lockWorks(out, d) {
       b = s < 0 ? -half : half + wall,
       edge = s * half;
     B('body', a, b, bottom, top, -5, lockLength + 6);
-    const lining = edge - s * 0.017;
-    quad(
-      out,
-      'body',
-      P(lining, bottom, 0.04),
-      P(lining, bottom, lockLength),
-      P(lining, 96.2, lockLength),
-      P(lining, 96.2, 0.04),
-      [-s, 0, 0],
-      [0.283, 0.294, 0.274],
-    );
+    lockLining(out, d, s, edge, bottom, top);
     if (d > 0) B('pale', a - 0.06, b + 0.06, top, top + 0.27, -5, lockLength + 6);
     for (const z of [upstreamGate, downstreamGate]) {
       const x = s * (half + wall * 0.55);

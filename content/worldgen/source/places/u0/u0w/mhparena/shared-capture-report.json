@@ -1,14 +1,19 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.mhparena",
-  "inputHash": "sha256:e6bc4f54ca4506cdb1b56e64451e42683d3559758684093dd2ac55f142311a23",
-  "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
+  "inputHash": "sha256:bf7da1b6f642a72eae0f7994681d4c4573409737acdb375990bda4fdbf641e6d",
+  "sourceHash": "sha256:715b5669f39da90cc7d0668905f4c2bb61cf023d6753c2baf218ead78b9c4ff4",
+  "runtimeHash": "sha256:1feb6d30d3f5de6a90282c7fad930d1ae6930d248b3c7bce3b88b7ca84efd0f8",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:336223eacf575b8a8187075906299c8537ec7af326262fb9db87ee313b490dcd",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:785e7420548175a30513acfa551dcc94de8a39b0f6e48ea0ebe6713fd0e05882",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.membrane": {
       "path": "materials/membrane.matgraph.json",
-      "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -26,7 +31,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:33d583f2cef32edc64e8ab58be20dbda56c87ce1da5e0600b0db6da6b785ac10",
+      "hash": "sha256:a2b53e532aba6965c38ca03dbdd8495e701afbd4d127e482437c94bbd0ba3f39",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -42,24 +47,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -70,11 +76,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -82,12 +99,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:597f7f2fae5091721ee351616442bc138dea85303edaf4fb1eadf8ff5d9a20ef",
+      "hash": "sha256:e5ec3da42d068d394558e7eda7edd2692a359aed575008a26cca39ccf76984bb",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -103,24 +120,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -131,11 +149,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -143,12 +172,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:57847a91aacb946fb327ed6a73e1a0ac7fd5c35a48494d255487dca4d93cb69a",
+      "hash": "sha256:a20632f964e7a363d536d1ab249c891314633c28b5e9407749efa36d40c97fa4",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -164,24 +193,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -192,11 +222,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -204,12 +245,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:6f6c5179f37fd7be1ce0d7569bcc21535303ec35a2224d44d12fdbeee68a1e4b",
+      "hash": "sha256:f520128862eedfddc63c15ae619abc18dd0ebd35fdcaf99932c9641499461622",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -225,24 +266,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -253,11 +295,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -265,12 +318,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-upper-ring.png",
-      "hash": "sha256:9db8a154f17cbb8883e2599a1b0215608db39211f21abc6b9a4eed987b83b66a",
+      "hash": "sha256:5812e93c8a1ec585ad275cb9893d852e2a1a17b6310bcc587f18d9a90eb1a142",
       "camera": {
         "name": "near-upper-ring",
         "position": [
@@ -295,24 +348,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -323,11 +377,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -335,12 +400,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-membrane-fields.png",
-      "hash": "sha256:e8e1d9c50e15c1d0b5be16fc2f707c3669ad0ec95ea0e9f3438b600fe70aac11",
+      "hash": "sha256:a2c4d6e41dce770837194c2a1cd6c19b772d4b317767a96eec9367be66ac307a",
       "camera": {
         "name": "near-membrane-fields",
         "position": [
@@ -365,24 +430,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -393,11 +459,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -405,12 +482,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-floating-strut.png",
-      "hash": "sha256:c2b5fb2b7a5e035272f43322b6245a5676e1f4b402ebe3100a987ad3124e6685",
+      "hash": "sha256:273abb7a23836984500480c2806a782ae4922066293b5aadce6dbba90a2e59be",
       "camera": {
         "name": "near-floating-strut",
         "position": [
@@ -435,24 +512,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -463,11 +541,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -475,12 +564,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-inner-extension.png",
-      "hash": "sha256:014aa67c8e28886b4b6678782562aa283366f3f117d276a02b97beab4ba7c827",
+      "hash": "sha256:1d9b3107177d40b5534d81fa2a0f3a2cb859aa70a94006265150aef4383326dc",
       "camera": {
         "name": "near-inner-extension",
         "position": [
@@ -505,24 +594,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -533,11 +623,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -545,12 +646,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-catwalk.png",
-      "hash": "sha256:e9d479656d74c2f0c7d9afd9da637c65277922d5297f388915ed838ef88d80bd",
+      "hash": "sha256:a22334ec5ecc6d1f442ad82a83586e9a2962779c89b84291e8bd8cdb1a2f538c",
       "camera": {
         "name": "near-catwalk",
         "position": [
@@ -575,24 +676,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -603,11 +705,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -615,12 +728,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-main-stand.png",
-      "hash": "sha256:bd239e2b270ee202ad58aeec763f1866c86c6128a29486bdca614d5bed6299a2",
+      "hash": "sha256:71160c89eaaf2acfdd0a9024d11ee284b88e9a4824be97bde0e3b52305b3903e",
       "camera": {
         "name": "near-main-stand",
         "position": [
@@ -645,24 +758,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -673,11 +787,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -685,12 +810,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-stuttgart-seats.png",
-      "hash": "sha256:1415bfe91797f7598062ef85eedc561ef318abd483f0e325007d250a0aefb91b",
+      "hash": "sha256:747672ac21c35ffb264dc854dd3756d8f3e3dc0ea3bbf6725b797385fbcc98f5",
       "camera": {
         "name": "near-stuttgart-seats",
         "position": [
@@ -715,24 +840,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -743,11 +869,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -755,12 +892,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-standing-curve.png",
-      "hash": "sha256:68b1a624cfa37f68b52ccbeddf5c6402921a74dd110922a6fdd1119231b08c9a",
+      "hash": "sha256:75e7475a1929a2c24bef7a4fd248de12ae1fe8c72add08359da570894b6086e0",
       "camera": {
         "name": "near-standing-curve",
         "position": [
@@ -785,24 +922,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -813,11 +951,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -825,12 +974,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-facade-stairs.png",
-      "hash": "sha256:e65d712c6a3cacc9b68d449c517b598c0d55b9cccb905706a87a9cad2c42bde5",
+      "hash": "sha256:71e8802ccb6559fff1b87d190739f8fbe05b7292ba18006685ed3d3d99dac027",
       "camera": {
         "name": "near-facade-stairs",
         "position": [
@@ -855,24 +1004,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -883,11 +1033,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -895,12 +1056,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-scharrena.png",
-      "hash": "sha256:698d004f208fc760a215119ffbd948ab503e1e272878fcb2e5311b7460be32b6",
+      "hash": "sha256:a1e8daafe4e1e7e6d99873e7ba1cfd10d171c12dc3dc61bc98ae3a03f6413eff",
       "camera": {
         "name": "near-scharrena",
         "position": [
@@ -925,24 +1086,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -953,11 +1115,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -965,12 +1138,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/near-screen.png",
-      "hash": "sha256:f3fb04b1eb3410ff931d8bf427b9cc0629006e289500586b01b86a134c2235ee",
+      "hash": "sha256:8d84bc4d3c0045987ccbac71d6177222438ee08cd2ba4a0ccefefd40cbe0af38",
       "camera": {
         "name": "near-screen",
         "position": [
@@ -995,24 +1168,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -1023,11 +1197,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1035,12 +1220,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/far-roof-envelope.png",
-      "hash": "sha256:55df70a34fd7d8b74279caa32df833bf93797aff05049f1cba07ac8521bf5818",
+      "hash": "sha256:890debe3346fed407d705c7b8b355fc635008b881f39e06ca7f22288074f8035",
       "camera": {
         "name": "far-roof-envelope",
         "position": [
@@ -1065,24 +1250,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -1093,11 +1279,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1105,12 +1302,12 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 10,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:d73cb140fe4be6ff50be97aa7343ba20d485616081f1a0370cbcc4c868be73ad",
+      "hash": "sha256:14b558e41266baecd23deb54a482fa2e37e524d41ce370eabc5d48498044533b",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1126,24 +1323,25 @@
         ],
         "heading": -2.2536074994349145,
         "meshes": 8,
-        "triangles": 1283272,
+        "triangles": 1005216,
         "bounds": {
           "min": [
-            -183.1823923638009,
+            -136.33437384522801,
             -1.2999999523162842,
-            -178.74181108167747
+            -131.3859981014635
           ],
           "max": [
-            184.8415756554121,
+            142.60232416097296,
             47.64999771118164,
-            179.7224778607291
+            131.80641030637253
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.membrane": "02d4218f-7249-453b-b267-d9acb26cf28a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c55bc643-4115-4073-a1c7-035501083f80",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "c66c877f-7161-4266-8aa0-c5c73b8514b9",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "9f48c16e-9b80-466e-a8f0-0fcfb5895593"
+          "worldgen:matgraph:molen.worldgen.material.membrane": "bdbe70d9-482a-4429-ac65-1ab0dc819682",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fdc18f35-f7f4-4710-aa92-47e179cb2953",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "b2171ac0-91d4-41f9-914e-9661a322c4cf",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "149c54c2-be42-400e-85c0-161df1d1b26f"
         },
         "loads": [
           "molen.worldgen.structure.mhparena"
@@ -1154,11 +1352,22 @@
           9.233824183949293,
           48.7934029553877
         ],
+        "terrainSamples": [
+          {
+            "placementId": "mhparena",
+            "coordinate": [
+              9.2304285243068,
+              48.793137349807715
+            ],
+            "height": -0.35
+          }
+        ],
         "visibleStructures": [
           "mhparena"
         ],
         "groundCutoutActive": true,
         "groundCoversCutoutProbe": false,
+        "groundCutoutProbes": 1,
         "surfaceReads": {
           "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -1166,7 +1375,7 @@
           "molen.worldgen.material.gravel": 1
         },
         "draws": 11,
-        "renderedTriangles": 1283378
+        "renderedTriangles": 1005322
       }
     }
   ],
@@ -1178,25 +1387,10 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "specMetadataReconciliation": {
-    "kind": "non-render-metadata",
-    "date": "2026-10-02",
-    "previousSpecHash": "sha256:a6b60efbc523ad32dbae25237565d00cf15a6c0c75fbb0964850a722be968226",
-    "previousCaptureReportHash": "sha256:a0404859984c0eb6d971e1245f9615ca7b662b404e7672a0d43f3c849f3d8744",
-    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
-    "reviewedSpecPath": "content/worldgen/source/places/u0/u0w/mhparena/spec.json",
-    "reviewedSpecRecovery": "Exact recorded hash verified against repository revision.",
-    "changes": [
-      {
-        "path": "sourceLicense",
-        "previous": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence Â© OpenStreetMap contributors, ODbL 1.0.",
-        "current": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0."
-      }
-    ],
-    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization), a corrected copyright character, and reversible RGB alignment statistics may differ. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

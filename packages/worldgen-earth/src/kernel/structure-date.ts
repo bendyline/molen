@@ -1,12 +1,40 @@
-/** Calendar-only ISO date validation without a clock, timezone, or Date dependency. */
-export function isStructureViewingDate(value: unknown): value is string {
-  if (typeof value !== 'string' || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)) return false;
-  const year = Number(value.slice(0, 4));
-  const month = Number(value.slice(5, 7));
-  const day = Number(value.slice(8, 10));
+function calendarDateKey(value: unknown): number | undefined {
+  if (typeof value !== 'string') return undefined;
+  const match = /^([0-9]{4}|[+-][0-9]{6})-([0-9]{2})-([0-9]{2})$/.exec(value);
+  if (!match || match[0] !== value || match[1] === '-000000') return undefined;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
   const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
   const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  return year > 0 && month >= 1 && month <= 12 && day >= 1 && day <= (days[month - 1] ?? 0);
+  if (month < 1 || month > 12 || day < 1 || day > (days[month - 1] ?? 0)) return undefined;
+  return year * 10_000 + month * 100 + day;
+}
+
+/** Calendar-only ISO dates, including signed expanded years. */
+export function isStructureViewingDate(value: unknown): value is string {
+  return calendarDateKey(value) !== undefined;
+}
+
+/** Check that both bounds are calendar dates and that the interval has positive length. */
+export function isStructureViewingDateRange(validFrom: unknown, validUntil: unknown): boolean {
+  const from = calendarDateKey(validFrom);
+  const until = calendarDateKey(validUntil);
+  return from !== undefined && until !== undefined && from < until;
+}
+
+/** Select a date in the half-open interval [validFrom, validUntil). */
+export function isStructureViewingDateInRange(
+  date: unknown,
+  validFrom: unknown,
+  validUntil: unknown,
+): boolean {
+  const day = calendarDateKey(date);
+  const from = calendarDateKey(validFrom);
+  const until = calendarDateKey(validUntil);
+  return (
+    day !== undefined && from !== undefined && until !== undefined && day >= from && day < until
+  );
 }
 
 /** A dated reconstruction that is never eligible for the default current-world view. */
@@ -28,9 +56,7 @@ export function isHistoricalStructureAppearance(
   return (
     item.kind === 'historical' &&
     item.currentWorldEligible === false &&
-    isStructureViewingDate(item.validFrom) &&
-    isStructureViewingDate(item.validUntil) &&
-    item.validFrom < item.validUntil &&
+    isStructureViewingDateRange(item.validFrom, item.validUntil) &&
     (item.representedDate === undefined ||
       (typeof item.representedDate === 'string' && item.representedDate.trim().length > 0))
   );

@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Teddy Stadium exhibit review",
+  "seed": "mini_israel_teddy_stadium",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "display",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_teddy_stadium",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e0e8eb",
+            "ground": "#b3a17d",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -2,
+              4,
+              5
+            ],
+            "color": "#fff1d7",
+            "intensity": 1.53,
+            "castShadow": true
+          },
+          "background": "#b9cbbd",
+          "toneMapping": "agx",
+          "exposure": 1.07,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.255,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              65,
+              0.35,
+              70
+            ]
+          },
+          "materialRef": "palette:#8d8c62",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      9.1,
+      8.1,
+      10.3
+    ],
+    "lookAt": [
+      -0.7,
+      0.42,
+      0
+    ],
+    "fov": 42
+  }
+}

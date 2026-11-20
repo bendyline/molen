@@ -1,0 +1,47 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_iya_mopo",
+  "kind": "static-structure",
+  "title": "Ìyá Mọòpó",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_iya_mopo",
+        "output": "assets/places/s1/s17/osun_grove_iya_mopo/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:77978959ffdb449369ede051d69c9763a1f4fc69bbf22b6a27e27b046cc6bcc3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "iya-mopo-sculpture",
+        "path": "models/iya-mopo-model.mjs"
+      },
+      {
+        "id": "iya-mopo-master",
+        "path": "models/generate-iya-mopo.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "clearing-preview.webp",
+      "map-frame.json",
+      "placement-report.json"
+    ]
+  }
+}

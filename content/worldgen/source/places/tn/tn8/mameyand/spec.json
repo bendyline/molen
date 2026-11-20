@@ -10,28 +10,29 @@
     "longitude": 45.65361111,
     "latitude": 36.99166667
   },
-  "nativeAxes": "+X follows the deck and +Z faces the photographed elevation. Geographic heading remains unresolved.",
-  "visualBrief": "A compact three-vault brick bridge with a steep pointed central opening, two low side openings, pale squared-stone piers, a humped paved path and four tapered round marker towers.",
+  "nativeAxes": "The September 2026 aerial view aligns the three-arch masonry span with the eastern, hillside-side channel. The longer western bridge crosses the adjacent branch. A north-up aerial trace of the 23.03 m eastern deck gives the signed heading. +X follows the deck east by north toward the hillside. +Z faces south by east toward the older photograph. The rounded pier noses face north by west.",
+  "visualBrief": "A three-vault brick bridge with a pointed central opening, two lower side openings, rounded upstream ashlar pier noses, a humped paved deck and four round marker towers. Two masonry approaches meet the local road.",
   "size": [
-    23,
+    44.733999252319336,
     8.359999775886536,
-    8.739999771118164
+    13.341000080108643
   ],
   "actualBounds": {
     "min": [
-      -11.5,
+      -22.347999572753906,
       -0.6200000047683716,
-      -4.369999885559082
+      -8.329999923706055
     ],
     "max": [
-      11.5,
+      22.38599967956543,
       7.739999771118164,
-      4.369999885559082
+      5.011000156402588
     ]
   },
   "referencePages": [
     "https://commons.wikimedia.org/wiki/File:%D9%85%D9%85%DB%8C%D9%86%D8%AF.jpg",
-    "https://www.gunaz.tv/fa/post/57729"
+    "https://www.gunaz.tv/fa/post/57729",
+    "https://t.me/Furudabad_news/41302"
   ],
   "geometrySource": "Original deterministic geometry based on published overall dimensions and photo-based profiles.",
   "materialMethod": "Metric shared brick, ashlar, and rough stone with restrained vertex tint and no embedded images.",
@@ -64,7 +65,7 @@
   "runtimeLodOverlay": {
     "level": "skyline",
     "module": "content/worldgen/source/places/tn/tn8/mameyand/models/bridge-model.mjs",
-    "inputHash": "sha256:377328b2da6218f7c3426c84c7d3e3677aea530062f046fbae2b915bd611fae4",
+    "inputHash": "sha256:520e5407ae2fe8b366810fcd81bcf663b547bbb10262254fc87d62aa54a430c1",
     "export": "buildSkyline",
     "errorMeters": 0.36,
     "surfaces": {
@@ -173,9 +174,123 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "reviewStatus": "Visual and geographic evidence is tracked in qa.json.",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      45.642175555229215,
+      36.97608021855693
+    ],
+    "heading": 0.14131123158975065,
+    "elevationMode": "sea-level",
+    "elevationMeters": 1275.45,
+    "groundCutout": {
+      "outline": [
+        [
+          -8.99,
+          -4.8
+        ],
+        [
+          8.99,
+          -4.8
+        ],
+        [
+          8.99,
+          4.8
+        ],
+        [
+          -8.99,
+          4.8
+        ],
+        [
+          -8.99,
+          -4.8
+        ]
+      ],
+      "minHeight": 0,
+      "preservePaving": true,
+      "basis": "Cap the smoothed bed beneath the three masonry vaults while the historic span is visible."
+    },
+    "replaceRoads": {
+      "length": 44.734,
+      "width": 15,
+      "outline": [
+        [
+          -22.352,
+          -8
+        ],
+        [
+          22.39,
+          -8
+        ],
+        [
+          22.39,
+          7
+        ],
+        [
+          -22.352,
+          7
+        ],
+        [
+          -22.352,
+          -8
+        ]
+      ],
+      "deckHeights": [
+        2.945,
+        7.165
+      ],
+      "deckEndpoints": [
+        [
+          -22.348,
+          -4.48
+        ],
+        [
+          22.386,
+          1.161
+        ]
+      ],
+      "deckProfile": [
+        [
+          -22.348,
+          2.945,
+          -4.48
+        ],
+        [
+          -11.5,
+          5.3559600000000005,
+          0
+        ],
+        [
+          0.16,
+          7.035,
+          0
+        ],
+        [
+          11.5,
+          5.40204,
+          0
+        ],
+        [
+          22.386,
+          7.165,
+          1.161
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35185597046580
+      ],
+      "approachFeatureIds": [
+        35184852702370
+      ],
+      "includeConnectedApproaches": true
+    },
+    "minLevel": 15,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:39716d0b064253dfd264252dd9c3003a068430e84fdd412bcdf44050e28f896a"
+  },
   "limitations": [
-    "The arch stations, tapered tower courses and ramp profiles are photo-based approximations.",
-    "The candidate reference coordinate is the village. A matching crossing centerline, bearing and abutment grade are required for live placement."
+    "The detailed masonry courses, marker profiles and ramp slopes are photo-based interpretations.",
+    "The local ground profile and water elevation fit the standard terrain and photographed banks. They are approximate and do not model seasonal water levels."
   ],
   "mediumFiContext": {
     "groundY": -0.36,
@@ -190,15 +305,15 @@
   },
   "qaCameras": [
     {
-      "name": "opposite-elevation",
+      "name": "rounded-pier-noses",
       "position": [
         -5,
-        3.5,
-        -26
+        7.5,
+        -32
       ],
       "lookAt": [
         0,
-        3.7,
+        3.2,
         0
       ],
       "fov": 48
@@ -230,6 +345,20 @@
         0
       ],
       "fov": 57
+    },
+    {
+      "name": "bank-approaches",
+      "position": [
+        -10,
+        17,
+        -40
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "fov": 56
     }
   ],
   "qaLodCameras": [
@@ -298,10 +427,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 4852,
-    "vertices": 9848,
+    "triangles": 5132,
+    "vertices": 10444,
     "materials": 4,
-    "bytes": 415572,
-    "sha256": "sha256:48371215b079c3af61ba256c6daff115ec443cf1b3f5e4b0328aaec9ca108d61"
+    "bytes": 440420,
+    "sha256": "sha256:03e95d660085e39cb887e68e95608ac3a91a444c5cf201ba493787158898f7b1"
   }
 }

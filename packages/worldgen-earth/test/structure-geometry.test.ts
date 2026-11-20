@@ -88,6 +88,65 @@ const context = {
   }),
 } as TerrainPyramidTileLayerContext;
 
+it('clips an explicitly selected approach when its bridge is outside the tile', () => {
+  const tile = createEmptyTerrainSemanticTile();
+  const approach = {
+    id: 12,
+    class: 'major_road',
+    lines: [
+      [
+        [0.55, 0.5],
+        [0.95, 0.5],
+      ],
+    ] as [number, number][][],
+  };
+  const neighbor = {
+    ...approach,
+    id: 13,
+    lines: [
+      [
+        [0.55, 0.53],
+        [0.95, 0.53],
+      ],
+    ] as [number, number][][],
+  };
+  const tunnel = { ...approach, tunnel: true };
+  tile.transportation.push(approach, neighbor, tunnel);
+  const bridge: StructurePlacement = {
+    ...entry,
+    datum: 'sea-level',
+    replaceRoads: {
+      length: 100,
+      width: 20,
+      deckHeights: [4, 8],
+      outline: [
+        [-50, -10],
+        [50, -10],
+        [50, 10],
+        [-50, 10],
+      ],
+      deckProfile: [
+        [-50, 4, 0],
+        [50, 8, 0],
+      ],
+      approachFeatureIds: [12],
+    },
+  };
+  const result = withoutStructureRoads(tile, context, [bridge], 1);
+  const [kept, other, covered] = result.transportation;
+  expect(kept?.lines).toEqual([
+    [
+      [0.75, 0.5],
+      [0.95, 0.5],
+    ],
+  ]);
+  expect(kept?.bridgeConnections).toEqual([{ point: [0.75, 0.5], elevation: 8, radius: 20 }]);
+  expect(kept?.bridgeApproachProfile?.length).toBeGreaterThan(1);
+  expect(other).toBe(neighbor);
+  expect(covered).toBe(tunnel);
+  expect(tile.transportation[0]).toBe(approach);
+});
+
 it('suppresses only the paving area represented by a loaded bridge', () => {
   const tile = createEmptyTerrainSemanticTile();
   const polygons = [

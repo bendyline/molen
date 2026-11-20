@@ -8,7 +8,8 @@
   "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:5be132a3c5b2d714b83c584a32c5c8a742ddcbb3f8f3d61feac8d381275a8f00",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "legacy",
+  "clippingMode": "bounds",
+  "targetOnly": true,
   "placementHash": "sha256:55cc1ff8e56b68503dddb9961c071a2a44fa88d58d45111c4dd0e1f98f7d4c74",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick_flemish": {
@@ -35,7 +36,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:e0c82eebc199df05ba72898cb28abaee4bd061235c93825fd087010c60ec4e2d",
+      "hash": "sha256:0872912be47bc1bcf66f2b9d4af1bcda975b318d126f9e14edf63cb935ebc707",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -66,14 +67,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -90,13 +90,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -104,7 +102,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:c8d4ad0dbfb3c33a6aa2ddbd3216fe330eb2d9194ca33c6463fc26f68058781c",
+      "hash": "sha256:687773093f0c41eeabdb5f5aa39534ad7f6a7cd7310939519ffb0c5b4e9e783d",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -135,14 +133,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -159,13 +156,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -173,7 +168,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:acc3353ae4120f2fcbf9306a1a0e0f71c8f7974c441d100cfabb8ed9c269a6ea",
+      "hash": "sha256:79eccefeac9b91e88b641c13df261dbdf80dfe990be015e6828a75d4677ef252",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -204,14 +199,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -228,13 +222,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -242,7 +234,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:323b46b875adb1d6e9ea711e6d63fd41a12ead1c7bd18709bbfeb1900d2889ee",
+      "hash": "sha256:d2ef5d4e280f29b7c65e036079450328303556eabefb03a40a8e17926dea0aee",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -273,14 +265,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -297,13 +288,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -311,7 +300,7 @@
     },
     {
       "path": "shots/shared/crystal-facets.png",
-      "hash": "sha256:3e5e9f5c15af621fad092b617f35369e7e8db6c992fc35649af567383f84dcfc",
+      "hash": "sha256:fec204b4aaf18ac33cd886cb157206e81dfb5fed2980539b4282d09e2d0ad2b3",
       "camera": {
         "name": "crystal-facets",
         "position": [
@@ -351,14 +340,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -375,13 +363,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -389,7 +375,7 @@
     },
     {
       "path": "shots/shared/crown-screens.png",
-      "hash": "sha256:23e44761cf5269565f4312fdefda88b74403631133d4b0a61d5ab52bdf850aaf",
+      "hash": "sha256:6dba1dfa0db845f9b2ad57f860b1905af3a3b885c9dacba253af30503e6081fe",
       "camera": {
         "name": "crown-screens",
         "position": [
@@ -429,14 +415,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -453,13 +438,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -467,7 +450,7 @@
     },
     {
       "path": "shots/shared/spire.png",
-      "hash": "sha256:9abdfe2e717dd78877935c686613024bb8142b107d27b1034374452041ded979",
+      "hash": "sha256:ed72bc752245df8d4ce42535a6e990bfe82c3fd2d2afb9e87d73c47660ef6c63",
       "camera": {
         "name": "spire",
         "position": [
@@ -507,14 +490,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -531,13 +513,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -545,7 +525,7 @@
     },
     {
       "path": "shots/shared/terrace-and-lobby.png",
-      "hash": "sha256:7e582c73dba961f879aa3bfbdf358efb33fc9524c482ad45892a48f88964e4e6",
+      "hash": "sha256:64a12d52bb36311163e4d774f824317363472ddd993eccd2130eaea5198f06a1",
       "camera": {
         "name": "terrace-and-lobby",
         "position": [
@@ -585,14 +565,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -609,13 +588,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -623,7 +600,7 @@
     },
     {
       "path": "shots/shared/retained-theatre.png",
-      "hash": "sha256:c67204c0468826267bf49a87bcdaf84accc013bee6a22e042be0a86e94463589",
+      "hash": "sha256:66ffc70f8af05f93486b31c780ae5aa6b425d815fc7d0083aa9b9585db37e03e",
       "camera": {
         "name": "retained-theatre",
         "position": [
@@ -663,14 +640,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -687,13 +663,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -701,7 +675,7 @@
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:45cc15d001282275a5896480a9c01a4211e43cada0cb2c9aa3e76df24122f205",
+      "hash": "sha256:35a011b34708f8b9656f1e2ec962fa8849ae4e2c07761535ace0bf6b9357730c",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -741,14 +715,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -765,13 +738,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -779,7 +750,7 @@
     },
     {
       "path": "shots/shared/whole-reviewed-complex.png",
-      "hash": "sha256:26635cb3e4c19670b2d81947a32ae7d469110ab7252c631f317403f991e16268",
+      "hash": "sha256:0d6e3818b4c507edbc9bd7a2d35e3908ed36a67475daee7d704399f6c3fd19cd",
       "camera": {
         "name": "whole-reviewed-complex",
         "position": [
@@ -819,14 +790,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -843,13 +813,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -857,7 +825,7 @@
     },
     {
       "path": "shots/shared/bamboo-openings.png",
-      "hash": "sha256:88f9eb34823a87c4927fea6790a553eef5dbfe01637dbe3bf7662ba1f0672d3b",
+      "hash": "sha256:86305cd7c3fb54584ea625548ebe22517ca8d8eed6ba0c0c881ed84a330793a3",
       "camera": {
         "name": "bamboo-openings",
         "position": [
@@ -897,14 +865,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -921,13 +888,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -935,7 +900,7 @@
     },
     {
       "path": "shots/shared/low-planted-roof.png",
-      "hash": "sha256:aa756ee1e1aff35e2444dffc6baf22dac2eec102ca17fd5be3e35e5f4e07842f",
+      "hash": "sha256:bf2a4e76df0bad715a31c3243ecb3fe2f77752ceb2204e2a41e471dc99c36820",
       "camera": {
         "name": "low-planted-roof",
         "position": [
@@ -975,14 +940,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -999,13 +963,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 9,
         "renderedTriangles": 17263
@@ -1013,7 +975,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:28476e4fcdad016522ec4588d99b7e6cb293299fa78671ead45fdedc77ed9b7c",
+      "hash": "sha256:a18059a610000881923bbcc77bd91389dfd711d77e27e7ddcba45c02c486d9a0",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1044,14 +1006,13 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "f62d4d43-3625-4777-9223-5128fc55cb65",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "abff24e7-5006-4f2a-b67d-dbec60f28779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "3513f20d-2730-4707-b7b3-5754ff40f320",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d0080604-97ab-48ee-a019-21a22896b6e7",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "30533ce1-175c-4a45-bd23-79ccc5a09f74"
+          "worldgen:matgraph:molen.worldgen.material.brick_flemish": "12c5250c-82eb-421b-bbae-cf7e28c8e293",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7fb1ab50-7eac-44ec-ae60-d4db54e22fb0",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "d065a5f6-7ecf-4aeb-b4e4-d4dc4a3e79b1",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6f6014c5-f00a-4447-b176-c3ba1647617b",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "44fa22f3-a3e9-4deb-827d-b7dc7c0c74a3"
         },
         "loads": [
-          "molen.worldgen.structure.4_times_square",
           "molen.worldgen.structure.bank_of_america_tower"
         ],
         "selectionBounds": [
@@ -1068,13 +1029,11 @@
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.window_grid": 1,
           "molen.worldgen.material.brick_flemish": 1,
           "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1
         },
         "draws": 10,
         "renderedTriangles": 17263

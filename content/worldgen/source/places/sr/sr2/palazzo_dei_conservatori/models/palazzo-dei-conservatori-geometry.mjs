@@ -13,10 +13,105 @@ const earcut = createRequire(
   new URL('../../../../../../../../packages/worldgen/package.json', import.meta.url),
 )('earcut').default;
 
+function galleryFaces(face, gallery) {
+  const [low, high] = gallery.box;
+  const { origin, xAxis, zAxis, floorOffset } = gallery;
+  const local = ([x, y, z]) => {
+    const dx = x - origin[0];
+    const dz = z - origin[1];
+    return [dx * xAxis[0] + dz * xAxis[1], y - floorOffset, dx * zAxis[0] + dz * zAxis[1]];
+  };
+  const direction = ([x, y, z]) => [x * xAxis[0] + z * zAxis[0], y, x * xAxis[1] + z * zAxis[1]];
+  const world = (point) => {
+    const [x, y, z] = direction(point);
+    return [x + origin[0], y + floorOffset, z + origin[1]];
+  };
+
+  return {
+    inward: (role, points, normal) => face(role, points.map(world), direction(normal)),
+    outside: (role, points, normal) => {
+      let inside = points.map(local);
+      if (
+        low.some((v, axis) => inside.every((p) => p[axis] < v)) ||
+        high.some((v, axis) => inside.every((p) => p[axis] > v))
+      ) {
+        face(role, points, normal);
+        return;
+      }
+      // Retain the portion outside each plane. Only the final interior polygon is discarded.
+      for (const [axis, limit, sign] of [
+        [0, low[0], 1],
+        [0, high[0], -1],
+        [1, low[1], 1],
+        [1, high[1], -1],
+        [2, low[2], 1],
+        [2, high[2], -1],
+      ]) {
+        if (inside.length < 3) return;
+        if (inside.every((p) => (p[axis] - limit) * sign >= 0)) continue;
+        const next = [];
+        const outside = [];
+        for (let i = 0; i < inside.length; i++) {
+          const a = inside[i];
+          const b = inside[(i + 1) % inside.length];
+          const da = (a[axis] - limit) * sign;
+          const db = (b[axis] - limit) * sign;
+          if (da >= 0) next.push(a);
+          if (da <= 0) outside.push(a);
+          if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
+            const t = da / (da - db);
+            const q = a.map((value, j) => value + t * (b[j] - value));
+            q[axis] = limit;
+            next.push(q);
+            outside.push(q);
+          }
+        }
+        if (outside.length >= 3) face(role, outside.map(world), normal);
+        inside = next;
+      }
+    },
+  };
+}
+
+function buildGallery(face, detail, gallery) {
+  const [[x, , z], [X, top, Z]] = gallery.box;
+  const floor = 0.006;
+  const outline = [
+    [x, z],
+    [X, z],
+    [X, Z],
+    [x, Z],
+  ];
+  // The modern enclosure faces inward beneath the preserved palace roofs.
+  prism(
+    (role, ps, normal) =>
+      face(
+        normal[1] < 0 ? 'trim' : role,
+        ps,
+        normal.map((v) => -v),
+      ),
+    'galleryWall',
+    { outline },
+    floor,
+    top,
+  );
+  const { front, elevation } = gallery.promenade;
+  box(face, 'trim', (x + X) / 2, elevation - 0.2, (front + Z) / 2, X - x, 0.2, Z - front);
+  if (detail === 0) return;
+  box(face, 'galleryRail', (x + X) / 2, elevation + 1.0, front, X - x - 0.24, 0.045, 0.055);
+  box(face, 'galleryRail', (x + X) / 2, elevation + 0.15, front, X - x - 0.24, 0.03, 0.04);
+  for (let i = 0; i <= 10; i++) {
+    const station = x + 0.12 + (X - x - 0.24) * (i / 10);
+    box(face, 'galleryRail', station, elevation, front, 0.048, 1.04, 0.048);
+  }
+}
+
 export function buildConservatori(face, detail, r) {
   const Y = r.floorY;
   const P = ([x, y, z]) => [x * r.xAxis[0] + z * r.zAxis[0], y, x * r.xAxis[1] + z * r.zAxis[1]];
   const f = (role, ps, n) => face(role, ps.map(P), P(n));
+  const gallery = galleryFaces(f, r.gallery);
+  const rangeFaces = (part) => (r.gallery.hostParts.includes(part.id) ? gallery.outside : f);
   const B = (role, x, y, z, w, h, d) => box(f, role, x, Y + y, z, w, h, d);
   const cap = (role, p, height, down = false) => {
     const rings = [p.outline, ...p.holes],
@@ -125,7 +220,7 @@ export function buildConservatori(face, detail, r) {
   roof(r.main, Y + 17, 2.1);
   for (const part of r.parts) {
     for (const p of part.polygons)
-      prism(f, 'wall', p, part.foundationY, part.floorY + part.wallHeight);
+      prism(rangeFaces(part), 'wall', p, part.foundationY, part.floorY + part.wallHeight);
     roof(
       part.polygons,
       part.floorY + part.wallHeight,
@@ -133,6 +228,7 @@ export function buildConservatori(face, detail, r) {
       part.id === 35185558001176 ? 'glass' : 'roof',
     );
   }
+  buildGallery(gallery.inward, detail, r.gallery);
   for (const s of r.steps)
     for (const p of [s.outline]) prism(f, 'trim', { outline: p, holes: [] }, s.base, s.top);
 
@@ -272,7 +368,7 @@ export function buildConservatori(face, detail, r) {
                   c = [a[0] + t * dx + n[0] * 0.04, part.floorY + yy, a[1] + t * dz + n[2] * 0.04],
                   w = 1.6,
                   h = 2.6;
-                f(
+                rangeFaces(part)(
                   'glass',
                   [
                     [-w / 2, -h / 2],

@@ -1,17 +1,24 @@
 # Gezhouba Dam
 
-Reviewed 2026-11-03. **43 current catalog views and five standard-water comparison views inspected.**
-
 The 2.6065 km crossing has 27 main spillway bays, nine western silt sluices, six eastern silt sluices, two separately outlined powerhouse wings, red traveling gantries and three distinct locks.
 
-The PMTiles crest road gives the anchor at [111.27196732, 30.73910240] and heading −0.33975578 radians. Local +X runs east-southeast and +Z runs downstream. Both powerhouse roof outlines and all three lock axes follow the retained map. The fixed crest elevation is 70 m.
+The Earth viewer holds the Yangtze at 66 m upstream and 39 m downstream. The three authored lock chambers retain distinct illustrative surfaces at 48, 49 and 45 m. Local grading repairs invalid elevations near the forebay and lower banks. The placement replaces the native record covering both powerhouse wings, preserves the other 236 building records, and leaves all 372 road records in the focused fixture.
 
-Shared board-formed concrete, plain concrete, painted metal, standing seam roof and glazing graphs supply the finish. All six GLBs have zero embedded images. Viewer eviction releases the model geometry and restores native terrain.
+![Gezhouba Dam in the Earth viewer](site-preview.png)
 
-The design fixture uses 66 m upstream and 39 m downstream with illustrative lock chamber stages. Five comparison views use representative stages from eleven standard Terrarium tiles. The standard sampler gives 62.62 m upstream and 42.78 m downstream, and returns 48.92 m, 56.16 m and 58.39 m for the three lock windows.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-The detailed master contains 10,948 triangles. The four viewer tiers contain 980, 2996, 9400, 10912 triangles. Skyline plus district are 323,912 bytes and close-up is 857,784 bytes. Four focused checks verify byte pins, signed placement, 42 gate faces and upper apertures, both roofs, the widths and gate states of three chambers, and deterministic viewer tiers. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 980 | 83,616 | 6 |
+| district | 2,996 | 240,296 | 6 |
+| street | 9,400 | 739,844 | 6 |
+| closeup | 10,912 | 857,784 | 6 |
 
-The retained terrain contains 71 elevations below 10 m, including artifacts near the crossing. Terrain can distort native bank slopes and the sampled water stages differ from the design fixture. The placement remains a preview. Lock 3 represents the closed legacy chamber; temporary cofferdams and ongoing expansion are outside the model. Exact equipment spacing and approach grades are approximate.
+Skyline and district total 323,912 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Five shared material graphs bind in the viewer. The review covers 64 renders and 75 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-gezhouba-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=gezhouba_dam`.
+The water levels represent static conditions. The standard terrain approximates the bank and abutment shapes. Equipment spacing and approach grades are estimates.
+
+The model represents the principal crossing and the three mapped navigation chambers. Lock 3 is the closed legacy chamber. Temporary cofferdams, current expansion work and operating discharge are outside the modeled scope.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

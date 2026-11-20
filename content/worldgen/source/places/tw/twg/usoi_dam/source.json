@@ -1,0 +1,45 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.usoi_dam",
+  "kind": "static-structure",
+  "title": "Usoi Dam",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "models/landscape.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.usoi_dam",
+        "output": "assets/places/tw/twg/usoi_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c720048ab2cdd81054ccb0ad7872eb83fc2d44826a147faba394d9540200f39a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "usoi-landscape",
+        "path": "models/usoi-landscape-model.mjs"
+      },
+      {
+        "id": "usoi-landscape-master",
+        "path": "models/generate-usoi-dam.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "native-preview.webp"
+    ]
+  }
+}

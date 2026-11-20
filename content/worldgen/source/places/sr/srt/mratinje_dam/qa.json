@@ -1,15 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.mratinje_dam",
-  "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+  "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
   "sourceHash": "sha256:6567d58e3875c81f4eede5bec70a23bc01f12e5f61355ffd23ad67cbc9def387",
   "runtimeHash": "sha256:a11c4963980292ea4dea2b4f1a71c15fa4aac8e8c622e64936199fdc90fb59b7",
   "reviewedOn": "2026-11-16",
-  "captureReportHash": "sha256:3301a85fd98ca0bff4095bceb84d4164447ad1867953e4cf7d45688bef461243",
+  "captureReportHash": "sha256:2b931dc836279dbd6057ab10e1acd0c51ae5689a12292f8883bb776a039a18d0",
   "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "visualReview": {
     "status": "passed",
-    "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
     "notes": "The 220 m double-curvature arch retains the curved roadway, three crest spillways, five outlet mouths in the nearer tiers, inspection gallery and tunnel approaches. The fitted gorge includes the west road bench, retaining lattice and mapped service house.",
     "captureReportHash": "sha256:3301a85fd98ca0bff4095bceb84d4164447ad1867953e4cf7d45688bef461243",
     "inspectedFrames": [
@@ -64,9 +64,9 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
     "notes": "Six shared limestone, concrete, painted metal, seam roofing and glazing graphs bind in the viewer without embedded images.",
-    "captureReportHash": "sha256:446ee1e80f4d04a8b0b8ffd98b8bfc1b6c22a7e5fa6a88685810dd9e2e4d0748",
+    "captureReportHash": "sha256:c8b77ab5ce02630706b1b45dade508a80e7d59b1c62b0dcef7a453b4c9e38ab9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -145,7 +145,7 @@
   },
   "mediumFiReview": {
     "status": "passed",
-    "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
     "notes": "Viewed four detail levels with street, district and skyline distances, daytime and late light. A separate geographic fixture shows the actual gorge, both water stages, the two northern tunnel faces and the western road tie.",
     "captureReportHash": "sha256:ed28fdaf756be914d60e307398e47619275d261023f28f9e99852c618b2ed002",
     "inspectedFrames": [
@@ -281,12 +281,12 @@
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
     "notes": "The 220 m double-curvature arch retains the curved roadway, three crest spillways, five outlet mouths in the nearer tiers, inspection gallery and tunnel approaches. The fitted gorge includes the west road bench, retaining lattice and mapped service house. The gorge edge, roadway grades, portal recesses and service-house details are original visualization estimates from ordinary photographs and the standard native map. The outer M-3 road remains in the surrounding native terrain. The water elevations are representative sampled stages. Underground machinery, tunnel interiors and operating discharge are outside the exterior scope."
   },
   "geographicReview": {
     "status": "passed",
-    "inputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "inputHash": "sha256:2c1789cc20a55ba61b562523d179dcc3e4dffdd69339edab1b2f2fc7020947fa",
     "placementHash": "sha256:bc246d71559e6eea11c25694502a1c9b1490fc53728f8ecbd3cabfb230882848",
     "mapFrameHash": "sha256:7561367be5e008b33fa143b72452c4abd5f36878800b5e022792051e4710d07a",
     "notes": "The fitted west approach connects to the rendered M-3 pavement within 9 mm at the sampled points. The dry rock rim meets the retained terrain within 26 mm at 15 sampled rim controls. The road bench covers the remaining western control. Piva Lake and tailwater stay at their representative 651.65 m and 534.18 m stages.",
@@ -532,5 +532,12 @@
   "limitations": [
     "The gorge edge, roadway grades, portal recesses and service-house details are original visualization estimates from ordinary photographs and the standard native map. The outer M-3 road remains in the surrounding native terrain.",
     "The water elevations are representative sampled stages. Underground machinery, tunnel interiors and operating discharge are outside the exterior scope."
-  ]
+  ],
+  "inputBindingRefresh": {
+    "reviewedOn": "2026-11-18",
+    "previousInputHash": "sha256:9d17a5f02aae19c52b578ab0d1996f19f7acca27ca1ba62dfe929f08cd5e3313",
+    "sourceCheck": "node packages/worldgen/scripts/generate-mratinje-dam.mjs --check",
+    "detailLevelCheck": "node packages/tooling/scripts/check-landmark-lods.mjs --ids=mratinje_dam",
+    "notes": "The rebuilt master, runtime master, four detail levels, scene and cameras, shared graphs, map frame, signed placement and all 43 previously inspected images match their recorded hashes. The 33 original native views, gorge-fit terrain and four local water controls also match."
+  }
 }

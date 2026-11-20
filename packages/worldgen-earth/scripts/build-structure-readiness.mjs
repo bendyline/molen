@@ -22,6 +22,8 @@ import { readStructurePlacements } from './placement-sources.mjs';
 import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
+import { reviewedNativeWater } from './reviewed-native-water.mjs';
+import { reviewedProposalPlacement } from './reviewed-proposal-placement.mjs';
 import { nativePointSourcePath, reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 import { subterraneanIdentityResolved } from './reviewed-subterranean-placement.mjs';
 
@@ -33,6 +35,7 @@ const geographic = await readJson('content/earth/structures/georeferencing.json'
 const identityReview = await readJson('content/earth/structures/identity-review.json');
 const placements = await readStructurePlacements();
 const mapRules = await readJson('content/earth/structures/map-rules.json');
+const waterFeatures = await readJson('content/earth/hydrology/water-features.json');
 const project = await readJson('content/worldgen/project.json');
 const geoById = new Map(geographic.candidates.map((entry) => [entry.candidateId, entry]));
 const reviewedById = new Map(identityReview.reviews.map((entry) => [entry.candidateId, entry]));
@@ -167,8 +170,25 @@ async function modelReadiness(candidate, geo) {
       exampleBytes: await bytes(`${sourceDirectory}/map-example.json`),
       readImage: (path) => bytes(`${sourceDirectory}/${path}`),
     }));
+  const proposalMapPath = spec?.geographicProposal?.mapEvidence;
+  const proposalReviewed =
+    reviewMatches &&
+    placement?.status === 'proposal' &&
+    proposalMapPath === 'site-frame.json' &&
+    sourceManifest?.files?.definitions?.includes(proposalMapPath) &&
+    (await reviewedProposalPlacement({
+      placement,
+      placementHash,
+      inputHash,
+      sidecar,
+      qa,
+      reportBytes: await bytes(`${sourceDirectory}/placement-report.json`),
+      mapBytes: await bytes(`${sourceDirectory}/${proposalMapPath}`),
+      readImage: (path) => bytes(`${sourceDirectory}/${path}`),
+    }));
   const geographicReviewed =
     reviewMatches &&
+    (placement?.status !== 'proposal' || proposalReviewed) &&
     hasHistoricalPlacementCapture(placement, sharedCapture, placementHash) &&
     Boolean(placementHash) &&
     qa.geographicReview?.status === 'passed' &&
@@ -208,9 +228,29 @@ async function modelReadiness(candidate, geo) {
   const recommendation = reviewedById.get(candidate.id);
   const rejected =
     recommendation?.original.wikidataId === candidate.wikidataId ? recommendation : undefined;
+  const nativeMap =
+    spec?.geographicProposal?.status === 'native-terrain-and-hydrology'
+      ? 'models/landscape.json'
+      : 'models/lake-terrain.json';
+  const nativeWater =
+    reviewMatches &&
+    rejected?.reasonCode === 'natural-feature' &&
+    qa?.nativeWaterReview?.status === 'passed' &&
+    sourceManifest?.files?.definitions?.includes(nativeMap) &&
+    !hasUsableStructurePlacement(placement) &&
+    reviewedNativeWater({
+      spec,
+      qa,
+      anchor: geo.referenceAnchor,
+      waterFeatures: waterFeatures.features,
+      mapBytes: await bytes(`${sourceDirectory}/${nativeMap}`),
+      previewBytes: await bytes(`${sourceDirectory}/native-preview.webp`),
+    });
   const blockers = [];
   if (
     rejected &&
+    !nativeWater &&
+    !(rejected.reasonCode === 'unbuilt' && geographicReviewed && proposalReviewed) &&
     !(rejected.reasonCode === 'category' && category) &&
     !historicalIdentityResolved(rejected, placement, geographicReviewed) &&
     !subterraneanIdentityResolved({
@@ -231,10 +271,17 @@ async function modelReadiness(candidate, geo) {
   if (needsSharedReview && !sharedReviewed)
     blockers.push('shared-surface-review-missing-or-unbound');
   if (!fidelityReviewed) blockers.push(`${fidelityTarget}-fidelity-review-missing-or-unbound`);
-  if (geo.orientationStatus === 'unresolved' && !localFrame && !category)
+  if (
+    geo.orientationStatus === 'unresolved' &&
+    !localFrame &&
+    !category &&
+    !nativeWater &&
+    !proposalReviewed
+  )
     blockers.push('orientation-unresolved');
-  if (!geographicReviewed && !category) blockers.push('geographic-review-missing-or-unbound');
-  if (!hasUsableStructurePlacement(placement) && !category)
+  if (!geographicReviewed && !category && !nativeWater)
+    blockers.push('geographic-review-missing-or-unbound');
+  if (!hasUsableStructurePlacement(placement) && !category && !nativeWater && !proposalReviewed)
     blockers.push('runtime-placement-inactive');
   const assetRegistered = typeof project.assets?.[asset] === 'string';
   if (source && !assetRegistered) blockers.push('asset-registry-missing');
@@ -264,12 +311,18 @@ async function modelReadiness(candidate, geo) {
       assetRegistered,
     },
     geographic: {
-      disposition: geo.disposition,
-      orientationEvidence: category
-        ? 'reviewed-map-category-rule'
-        : localFrame
-          ? 'reviewed-source-frame'
-          : geo.orientationStatus,
+      disposition: nativeWater ? 'native-water' : geo.disposition,
+      orientationEvidence: proposalReviewed
+        ? 'reviewed-proposed-site-frame'
+        : nativeWater
+          ? nativeWater.landformFeatureId
+            ? 'reviewed-native-terrain-and-water'
+            : 'reviewed-native-water-polygon'
+          : category
+            ? 'reviewed-map-category-rule'
+            : localFrame
+              ? 'reviewed-source-frame'
+              : geo.orientationStatus,
       anchor: category ? null : (placement?.anchor ?? geo.anchor ?? geo.referenceAnchor),
       heading: placement?.heading ?? geo.heading ?? null,
       mappedFeatureIds: localFrame
@@ -284,7 +337,8 @@ async function modelReadiness(candidate, geo) {
             },
           }
         : {}),
-      verified: geographicReviewed || Boolean(category),
+      verified: geographicReviewed || Boolean(category || nativeWater),
+      ...(nativeWater ? { placementKind: 'native-water', nativeWater } : {}),
       ...(category
         ? {
             placementKind: 'map-category',
@@ -295,6 +349,9 @@ async function modelReadiness(candidate, geo) {
           }
         : {}),
       activePlacement: placement?.status === 'preview' ? placement.id : null,
+      ...(proposalReviewed
+        ? { proposalPlacement: placement.id, placementKind: 'opt-in-proposal' }
+        : {}),
       ...(placement?.status === 'historical'
         ? { historicalPlacement: placement.id, appearance: placement.appearance }
         : {}),
@@ -407,6 +464,8 @@ const counts = {
   placedAssets: individualRecords.filter((record) => record.geographic.activePlacement).length,
   activeCategoryModels: individualRecords.filter((record) => record.geographic.activeRules?.length)
     .length,
+  reviewedProposals: individualRecords.filter((record) => record.geographic.proposalPlacement)
+    .length,
   fidelityReviews: records.filter((record) => record.fidelityQa.hashBoundReviewPassed).length,
   ready: records.filter((record) => record.readiness === 'ready').length,
 };
@@ -414,7 +473,7 @@ const output = {
   format: 'molen/structure-readiness@1',
   title: 'structure catalog structure production and placement readiness',
   policy:
-    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity, visual and geographic review plus an active runtime placement, or a deliberately reusable type with hash-bound current map rules and inspected real-map integration including negative matches, all four LODs, failure and eviction. Reusable types never receive a fabricated unique anchor. New medium-fi reviews bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
+    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. Readiness requires hash-bound fidelity, visual and geographic review plus an active runtime placement, or a deliberately reusable type with hash-bound current map rules and inspected real-map integration including negative matches, all four LODs, failure and eviction. A proposed design needs native site captures in all four levels and checks for default exclusion and failed-load fallback. Reusable types never receive a fabricated unique anchor. New medium-fi reviews bind all four runtime LODs and the required context captures. Legacy maximum-fidelity reviews retain their original meaning.',
   counts,
   candidates: records,
 };
@@ -447,6 +506,7 @@ approvals retain their original scope and are not automatically medium-fi approv
 | Portable visual reviews passed | ${counts.visualReviews} |
 | Shared-material reviews passed | ${counts.sharedSurfaceReviews} |
 | Active geographic previews | ${counts.previewPlacements} |
+| Reviewed proposal placements | ${counts.reviewedProposals} |
 | Declared fidelity reviews passed | ${counts.fidelityReviews} |
 | Complete | ${counts.ready} |
 | Source models still to author | ${counts.candidates - counts.sourceModels} |

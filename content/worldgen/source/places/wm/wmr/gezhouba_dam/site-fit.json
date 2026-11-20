@@ -1,0 +1,162 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 62.58556,
+  "crestElevation": 70,
+  "sites": [
+    {
+      "name": "Gezhouba upstream terrain outliers",
+      "anchor": [
+        111.27196732487181,
+        30.73910240285595
+      ],
+      "heading": -0.3397557779909933,
+      "bounds": [
+        -970,
+        -245,
+        1475,
+        -26
+      ],
+      "elevation": 64,
+      "blend": 42,
+      "repairBelow": 10,
+      "basis": "Repair invalid Terrarium returns immediately beside the modeled forebay."
+    },
+    {
+      "name": "Gezhouba downstream terrain outliers",
+      "anchor": [
+        111.27196732487181,
+        30.73910240285595
+      ],
+      "heading": -0.3397557779909933,
+      "bounds": [
+        -970,
+        -21,
+        1475,
+        245
+      ],
+      "elevation": 37,
+      "blend": 42,
+      "repairBelow": 10,
+      "basis": "Repair invalid Terrarium returns without lowering the adjoining banks."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 23087843,
+      "name": "Yangtze above Gezhouba",
+      "elevation": 66,
+      "basis": "Representative upstream stage retained in the crossing model."
+    },
+    {
+      "id": 31516913,
+      "name": "Yangtze below Gezhouba",
+      "elevation": 39,
+      "basis": "Representative downstream stage from the existing model review."
+    },
+    {
+      "id": 4524174572,
+      "name": "Gezhouba western lock approaches",
+      "elevation": 39,
+      "basis": "The mapped water area around the open chamber follows the downstream stage."
+    },
+    {
+      "id": 4524174560,
+      "name": "Gezhouba eastern lock approaches",
+      "elevation": 39,
+      "basis": "The mapped approaches to locks 2 and 3 have the downstream stage. Chamber levels are set separately."
+    },
+    {
+      "id": 35184824506290,
+      "name": "Gezhouba lock 1 centerline",
+      "hideLines": true,
+      "basis": "The chamber and channel are drawn as water polygons, without the mapped line across the gates."
+    },
+    {
+      "id": 35184824506294,
+      "name": "Gezhouba lock 2 centerline",
+      "hideLines": true,
+      "basis": "The chamber and channel are drawn as water polygons, without the mapped line across the gates."
+    },
+    {
+      "id": 35184824507899,
+      "name": "Gezhouba lock 3 centerline",
+      "hideLines": true,
+      "basis": "The chamber and channel are drawn as water polygons, without the mapped line across the gates."
+    },
+    {
+      "id": -7,
+      "name": "Gezhouba ship lock 1",
+      "shoreline": [
+        [
+          111.2655368738,
+          30.7408623512
+        ],
+        [
+          111.2658699765,
+          30.7407612485
+        ],
+        [
+          111.2649163982,
+          30.7384403426
+        ],
+        [
+          111.2645832955,
+          30.7385414477
+        ]
+      ],
+      "elevation": 48,
+      "basis": "Illustrative fixed water surface inside the mapped chamber."
+    },
+    {
+      "id": -8,
+      "name": "Gezhouba ship lock 2",
+      "shoreline": [
+        [
+          111.2822896839,
+          30.7351993343
+        ],
+        [
+          111.2826370544,
+          30.7351441078
+        ],
+        [
+          111.2821162006,
+          30.7327236481
+        ],
+        [
+          111.28176883,
+          30.7327788759
+        ]
+      ],
+      "elevation": 49,
+      "basis": "Illustrative fixed water surface inside the mapped chamber."
+    },
+    {
+      "id": -9,
+      "name": "Gezhouba ship lock 3",
+      "shoreline": [
+        [
+          111.2847089807,
+          30.7347565136
+        ],
+        [
+          111.284885031,
+          30.7347048242
+        ],
+        [
+          111.2844998908,
+          30.7337356733
+        ],
+        [
+          111.2843238405,
+          30.7337873633
+        ]
+      ],
+      "elevation": 45,
+      "basis": "Illustrative fixed water surface inside the mapped chamber."
+    }
+  ],
+  "waterStageNotes": "Representative static Yangtze upstream and downstream stages and three illustrative chamber water surfaces. Local grades repair anomalous terrain returns near the dam.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

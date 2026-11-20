@@ -1,0 +1,444 @@
+{
+  "id": "mini_israel_dome_of_the_rock",
+  "planId": "mini_israel_dome_of_the_rock",
+  "collectionId": "mini_israel",
+  "assetId": "molen.worldgen.structure.mini_israel_dome_of_the_rock",
+  "title": "Mini Israel · Dome of the Rock exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.96952505694543,
+    "latitude": 31.84160448429497
+  },
+  "nativeAxes": "+Y up. Local +Z faces the main stairs and the historical camera position. +X runs right along the terrace when facing outward from the stairs.",
+  "visualBrief": "A miniature gold dome and blue octagonal shrine on a raised stone display terrace, with three stair arcades, recessed planters and the freestanding blue-roofed pavilion.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_dome_of_the_rock/models/dome-exhibit-model.mjs",
+    "export": "buildDomeExhibit"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25
+  },
+  "referencePages": [
+    "https://www.koshertripadviser.com/wp-content/uploads/2014/03/7077813041_904268b572_o-1024x768.jpg",
+    "https://www.qsl.net/hg5acx/Israel_2006/PICT1250.jpg",
+    "https://virtualglobetrotting.com/map/mini-israel-dome-of-the-rock/view/google/",
+    "https://www.israel-in-photos.com/wp-content/uploads/2014/05/25D7-259E-25D7-2599-25D7-25A0-25D7-2599-25D7-2599-25D7-25A9-25D7-25A8-25D7-2590-25D7-259C-Mini-Israel-16.jpg",
+    "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=444s",
+    "https://www.the7eye.org.il/460149"
+  ],
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      34.96952505694543,
+      31.84160448429497
+    ],
+    "heading": -2.506892182055045,
+    "scale": [
+      0.8749818408177812,
+      0.8749818408177812,
+      0.8749818408177812
+    ],
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 178.014,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:66efc71028dff6592ec321e4fd7bc10aed08d7c80d715c970b1aaa4c29ab6167",
+    "source": "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=444s",
+    "notes": "The park-wide photograph identifies the miniature’s terrace by its dome, the adjacent plaza and the enclosing walkways. The visible terrace edges set the signed northwest stair facing and a scale of 0.875. The fitted anchor sits 0.25 m behind the traced center to clear the drawn footway within the image measurement uncertainty. The browser placed all four model tiers and kept the surrounding paths and building. All three stair approaches cleared the pavement on the 1 m and 2 m terrain grids."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Existing limestone, floor tile, ceramic mosaic, standing-seam and painted-metal surfaces. Linear tints and metric UVs. No private or embedded images.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_dome_of_the_rock/models/dome-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "tile_flat",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "blue": {
+        "slot": "wall",
+        "graph": "tile_mosaic",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.76,
+        "metallic": 0.05
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.51,
+        "metallic": 0.25
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.19,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.05
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.51,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.065
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.05
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.51,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.02
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76,
+            "metallic": 0.05
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.51,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.007
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 0.26,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        0.65,
+        0
+      ]
+    },
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "cameraYaw": -0.52
+  },
+  "qaCameras": [
+    {
+      "name": "front-stairs-and-dome",
+      "position": [
+        0.6,
+        2.3,
+        6.6
+      ],
+      "lookAt": [
+        0.2,
+        0.92,
+        0.75
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-arcade",
+      "position": [
+        -5.5,
+        2.9,
+        5.9
+      ],
+      "lookAt": [
+        -0.55,
+        0.82,
+        0.55
+      ],
+      "fov": 48
+    },
+    {
+      "name": "mosaic-and-hood",
+      "position": [
+        1.7,
+        1.9,
+        2.8
+      ],
+      "lookAt": [
+        0,
+        1.19,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "terrace-overhead",
+      "position": [
+        2.7,
+        9.8,
+        4.9
+      ],
+      "lookAt": [
+        0,
+        0.42,
+        0.15
+      ],
+      "fov": 49
+    },
+    {
+      "name": "blue-pavilion-and-terrace",
+      "position": [
+        -4.6,
+        3.05,
+        3.48
+      ],
+      "lookAt": [
+        -1.17,
+        0.59,
+        -0.16
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Dimensions and individual tile motifs are approximate. The model covers the upper terrace, gold-domed building, stairs and small pavilions. The neighboring mosque and lower plaza are separate exhibits.",
+    "The 2022 footage documents the standing display. The historical view uses the publication date, 2022-07-01. The present display condition and exact installation dates are unverified.",
+    "The traced aerial controls and PMTiles path constrain position, orientation and scale. The 178.014 m base uses the retained viewer terrain datum."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -3.114000082015991,
+      -0.3199999928474426,
+      -2.6640000343322754
+    ],
+    "max": [
+      3.2820000648498535,
+      2.1440000534057617,
+      3.2799999713897705
+    ]
+  },
+  "size": [
+    6.396000146865845,
+    2.4640000462532043,
+    5.944000005722046
+  ],
+  "mesh": {
+    "triangles": 10616,
+    "vertices": 19412,
+    "materials": 6,
+    "bytes": 830108,
+    "sha256": "sha256:cc508972de79fa772505e8f6c01d40e17e061a1bd09dc8852fd9044b79bbfb4c"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "terrace-skyline",
+      "position": [
+        2.6,
+        4.9,
+        9.3
+      ],
+      "lookAt": [
+        0,
+        0.7,
+        0.15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "terrace-district",
+      "position": [
+        2.6,
+        4.9,
+        9.3
+      ],
+      "lookAt": [
+        0,
+        0.7,
+        0.15
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "terrace-street",
+      "position": [
+        2.6,
+        4.9,
+        9.3
+      ],
+      "lookAt": [
+        0,
+        0.7,
+        0.15
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "terrace-closeup",
+      "position": [
+        2.6,
+        4.9,
+        9.3
+      ],
+      "lookAt": [
+        0,
+        0.7,
+        0.15
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2022-07-01",
+    "validFrom": "2022-07-01",
+    "validUntil": "2022-07-02"
+  }
+}

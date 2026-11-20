@@ -286,6 +286,24 @@ Geographic placement data with authoring explanations omitted.
                   ]
                 }
               },
+              "approachFeatureIds": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                }
+              },
               "pavingAreaIds": {
                 "minItems": 1,
                 "maxItems": 64,
@@ -420,6 +438,24 @@ Geographic placement data with authoring explanations omitted.
                       "type": "boolean"
                     },
                     "bridgeFeatureIds": {
+                      "minItems": 1,
+                      "maxItems": 64,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        ]
+                      }
+                    },
+                    "approachFeatureIds": {
                       "minItems": 1,
                       "maxItems": 64,
                       "type": "array",
@@ -734,7 +770,8 @@ Geographic placement data with authoring explanations omitted.
             "enum": [
               "preview",
               "draft",
-              "historical"
+              "historical",
+              "proposal"
             ]
           },
           "appearance": {
@@ -766,6 +803,26 @@ Geographic placement data with authoring explanations omitted.
               "validUntil"
             ],
             "additionalProperties": false
+          },
+          "hiddenDuring": {
+            "type": "object",
+            "properties": {
+              "validFrom": {
+                "type": "string"
+              },
+              "validUntil": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "validFrom",
+              "validUntil"
+            ],
+            "additionalProperties": false
+          },
+          "hiddenByProposal": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
           },
           "source": {
             "type": "string",

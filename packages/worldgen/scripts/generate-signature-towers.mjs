@@ -239,8 +239,14 @@ for (let study of signatureTowers.filter(
   const dir = structureSourceDirectory(key);
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
   if (reviewScope) {
-    if (reviewScope.fidelityTarget !== 'medium-fi')
-      throw new Error(`${study.id}: review scope must use medium-fi`);
+    const originalFidelity = study.fidelityTarget ?? 'maximum';
+    if (
+      reviewScope.fidelityTarget !== 'medium-fi' &&
+      reviewScope.fidelityTarget !== originalFidelity
+    )
+      throw new Error(
+        `${study.id}: review scope must use medium-fi or retain the original fidelity target`,
+      );
     study = {
       ...study,
       ...Object.fromEntries(

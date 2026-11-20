@@ -300,6 +300,24 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                   ]
                 }
               },
+              "approachFeatureIds": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                }
+              },
               "pavingAreaIds": {
                 "minItems": 1,
                 "maxItems": 64,
@@ -434,6 +452,24 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                       "type": "boolean"
                     },
                     "bridgeFeatureIds": {
+                      "minItems": 1,
+                      "maxItems": 64,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        ]
+                      }
+                    },
+                    "approachFeatureIds": {
                       "minItems": 1,
                       "maxItems": 64,
                       "type": "array",
@@ -754,7 +790,8 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
             "enum": [
               "preview",
               "draft",
-              "historical"
+              "historical",
+              "proposal"
             ]
           },
           "appearance": {
@@ -786,6 +823,26 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
               "validUntil"
             ],
             "additionalProperties": false
+          },
+          "hiddenDuring": {
+            "type": "object",
+            "properties": {
+              "validFrom": {
+                "type": "string"
+              },
+              "validUntil": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "validFrom",
+              "validUntil"
+            ],
+            "additionalProperties": false
+          },
+          "hiddenByProposal": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
           },
           "source": {
             "type": "string",

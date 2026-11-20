@@ -1,15 +1,26 @@
-# Madrid-Chamartín Clara Campoamor railway station — complete passenger ensemble
+# Madrid-Chamartín Clara Campoamor
 
-Reviewed2026-11-02. **Geometry complete; native terrain fit pending. Not counted ready.**
+The geometric review covers the lower terminal, sixteen red barrel-vault roof groups and their recessed arched glazing, the supported terraces, the stepped hotel wing and eleven open platform canopy strips.
 
-All9 final portable views actually inspected. Complete permanent station ensemble:lower terminal andupper terraces,sixteen red barrel-roof groups witharched glazed ends,theattached47/50/53m stepped hotel slab,northern service ranges andeleven distinct long open platform-canopy strips. Street/neararched glazing isrecessed1.35m behind thecurved roofends,withactual overhang undersides. The lower facade haspale ribbed fascia andclosed recessed glazing;entrance doors areonly suggested onwest-facing lower walls. Terrace railings,window frames,arched screens,roof ribs andbranch brackets are geometry. Two upper halls have actual9m closed floors in terrace openings. Preserve independent hotels/office towers. Hidden openings andsome level/construction details are explicit original medium-fi approximations,not survey.
+The common station reference is about 732.43 m at the western forecourt. Local grades uncover the lower entrance and the railway-side canopy lead-in. The viewer keeps all 1,012 road and rail records and all 465 independent building records in the focused fixture. The mapped replacement removes 44 station feature records from this crop.
 
-Retained exact station way714623622/Q23081 supplies anchor[-3.682009851,40.472443263],heading1.26964826367:+X NNE alongtracks,+Z ESE,-Z WNW hotel/frontages. Facing uncertainty about10degrees. Production replaces exactly79of1106native components,withall1027independent components retained. Forty-eight unioned unique-family rings cover theactualsame79tile copies,within theindex64-ring budget. Physically attached HotelTheOne slab isincluded,corroborated bytheaerial andinside-parent POI. Independent HotelMadridChamartin,BarceloImagine,neighboring towers,roads,rails andwater remainnative. Layer2parent isnot aclosedgroundmask;native4.8/9m heightstacks and47/50/53m hotelsteps remain explicit.
+![Madrid-Chamartín Clara Campoamor in the Earth viewer](site-preview.png)
 
-All25 final native-field/context/lighting/silhouette/detail/four-tier views actually inspected. Two unchanged standardglobal Terrariumtiles supplythefield. One unioned occupiedmask coversactualclosed lowerterminal258 andclosedservice122,not thewholelayer2parent. Eleven openplatformroof strips have noartificialfloor ormask;all7opening probes findzero coveredterrain andoriginalsamples remainunchanged. A common datum andarchitectural sourcelevels preserve upper9m terraces andlower-6m tracks with5m-highcanopies. Themodel isrecognizable andsupported,withvisiblecorrectglazing/roofcurves,butcoarse terrainpartly buries thefirstplatformroof andsomeentrylevels. Flat/sourceviews establishgeometry;nativeviews retainthisunresolvedcontact problem. Synthetic surroundingblocks arenotliteralMadrid reconstruction. Reference2008/2017/2023pictures predateoroverlap major2020s works;currentconstruction-stage appearance isunverified. Nobespoke geographicresearch oroutsideflattening.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-All9 final shared-material andflat placement views actually inspected. Six existing shared256px graphs:concrete_plain,brick,stone_granite,metal_painted,window_grid andstorefront. Seven merged semanticgroups distinguish roofing fromstructural painted metal. Metric UVs,linear colors,zero embedded images andno private textures. Only actualglazing useswindow;roof/ribs/fascia/brick keepsemantic materials. Shared pane grids arefiner thantheordinary pictures. Unload disposes geometry andrestores original ground. Flat staging showslong foundation/support feet because ground isatY=-12m forcomplete geometry inspection;it doesnot establish native contact.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 931 | 82,892 | 1 |
+| district | 3,966 | 343,240 | 7 |
+| street | 13,608 | 1,209,408 | 7 |
+| closeup | 60,962 | 5,624,752 | 7 |
 
-Detailed source: 224134 triangles / 26900428 bytes. Four browser tiers: 931 / 3966 / 13608 / 60962 triangles. Initial skyline plus district: 426132 bytes; close-up: 5624752 bytes. Four focused tests and six GLBs without errors or warnings. All43 final current views actually inspected. Numerical LOD errors and physical-device timings remain unmeasured.
+Skyline and district total 426,132 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the viewer. The review covers 72 renders and 105 geographic samples.
 
-Rebuild: node packages/worldgen/scripts/generate-edinburgh-waverley-railway-station.mjs; append --check for exact bytes. Import/LOD/placement select --ids=madrid_chamartin_clara_campoamor_railway_station. GLBs remain ignored outputs.
+The model depicts the mapped permanent passenger ensemble. Areas affected by the 2020s works use the retained plan and cited photographs.
+
+The entrance thresholds and lower platform levels are approximate. Hidden façade details and roof fittings remain photo-based interpretations.
+
+Rebuild with node packages/worldgen/scripts/generate-madrid-chamartin-clara-campoamor-railway-station.mjs. Add --check to verify exact bytes.
+
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

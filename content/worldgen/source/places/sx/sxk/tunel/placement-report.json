@@ -1,8 +1,9 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.tunel",
-  "inputHash": "sha256:752f855e3b53cf291a4b12dbd4c5c2e9a6bb3db19bcc605442615c7662dbe820",
-  "placementHash": "sha256:8fac0612fec71dc6aefaa57f50bbd2d2e4173933183a8170dc168d6008c4669f",
+  "inputHash": "sha256:5e098d294a4228cd1f944369a5cf2291a46b14605bf99e462c2ac701ce6286a2",
+  "sourceHash": "sha256:cb315726a7f654a9aa792f122cead947dfcf2fdc821ee031544727eed461744a",
+  "runtimeHash": "sha256:cb45f39b56634e6dde42b6bcbfdaa09b819d460238655af66cb631a547637f91",
   "entry": {
     "id": "tunel",
     "title": "Tünel funicular system",
@@ -12,8 +13,8 @@
       41.025611774588604
     ],
     "heading": 1.5707963267948966,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 15.8102388,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q387264",
@@ -97,8 +98,8 @@
           ]
         ]
       ],
-      "minHeight": -8,
-      "basis": "Only the two closed terminal-host floor footprints. The buried route/passing loop receives no ground cutout, continuous plaza, road deletion or ownership of intervening buildings."
+      "basis": "Cut only the two enclosed terminal footprints under the modeled floors. Keep the mapped streets, paving and terrain over the buried railway.",
+      "preservePaving": true
     },
     "buildingCutout": {
       "outline": [
@@ -176,14 +177,6 @@
       "minimumCoverage": 0.98,
       "basis": "Systemscope:two complete endpoint-host exterior volumes plus mappedmainline/passingloop casing;preserve allinterveningindependentbuildings andShishane layer-2undergroundconcourse2518. Prior single-station-at-midpoint proposal remainsinvalid;current physicalscope mustpass actualsource/runtime/production/geographic review before replacing thatrecommendation."
     },
-    "terrainReference": {
-      "anchor": [
-        28.97392212437231,
-        41.02279106459647
-      ],
-      "modelHeight": 0,
-      "basis": "One unchanged standard global field sample just outside the lower southwest entrance [-314,-10]. The upper architectural grade is a fixed source offset of 53.33291019999999m from the north-front sample [315,0]. No per-part runtime terrain offsets, flattened map or surveyed-grade claim."
-    },
     "bounds": [
       28.973743520345263,
       41.022737165679416,
@@ -193,7 +186,143 @@
     "minLevel": 13,
     "status": "preview",
     "source": "https://build.protomaps.com/20261031.pmtiles",
-    "note": "ConnectedTünelfunicular system visualization:both mapped terminal-host exteriors andthecurrent undergroundmainline/passingloop envelope. Upper26m Metrohan house:classical pale/pink multistorey corner mass,arched lowerbays/pilasters,rectangular upperwindows,deepcornices andwraparound canopy. LowerKarakoy host:light two-level entrance mass,large recessed rectangular doorway,upper archedpanes andsteppedcornice. Preserve everyintervening independentbuilding andoriginal terrain outsideactualclosedterminalfloors. No copiedsigns,photobanners,logos,flags,anniversarydecorations,people,vehicles,train/interior operationalclaims orfutureworks. Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "The two terminal exteriors follow their mapped building footprints and face their respective streets. The shared local datum is 15.8102388 m. The short approach grades fit the photographed entrance sill heights against standard terrain. The buried casing and passing loop follow the mapped Tünel F2 route. Lining dimensions, rail levels and the lower host’s unpictured rear and roof are approximate."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "placementHash": "sha256:1fef4dde0d83670f3d8e320f90b06dc7d8807369c007e8500f0dc8e6c3e89d47",
+  "status": "passed",
+  "basis": "The two photographed public entrances meet their outside paving near floor level. The retained standard terrain supplies the common vertical datum and the surrounding slopes. Two small approach grades blend into the native hill within the terminal streets.",
+  "review": {
+    "status": "passed",
+    "inputHash": "sha256:5e098d294a4228cd1f944369a5cf2291a46b14605bf99e462c2ac701ce6286a2",
+    "placementHash": "sha256:1fef4dde0d83670f3d8e320f90b06dc7d8807369c007e8500f0dc8e6c3e89d47",
+    "mapFrameHash": "sha256:fe1014c2401dc5010af11eafd0fc58dc65173706a52509031704ad58f9b23296",
+    "scope": "Beyoğlu and Karaköy terminal exteriors and the modeled casing along the mapped F2 route and passing loop.",
+    "notes": "All four levels retained 1,377 neighboring building features, the 439 road records, and the native water. The terrain remains continuous above the buried route. Model failure restores both terminal footprints and model eviction restores the pre-load ground.",
+    "native": {
+      "fixtureHash": "sha256:a14c94d06cd15f072be5c7918adf936df236e9377cf638f3b407ad17e4fb20ca",
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "tunel-skyline-beyoglu-north-front.png",
+          "hash": "sha256:2872e10d484e9d9627eadbfd42a109233602b0815820f0fda0229ab5956c97a2"
+        },
+        {
+          "level": "skyline",
+          "file": "tunel-skyline-karakoy-south-front.png",
+          "hash": "sha256:ff7d5c43e35aa9a43ee83e564e7b39d7632aea32d617663dc5f30d9fd959d9ad"
+        },
+        {
+          "level": "skyline",
+          "file": "tunel-skyline-terminal-approaches-in-context.png",
+          "hash": "sha256:f4501ea30dcff4665cb4d9a8bf67802cb5d4f498dfca5d5ab14e9af22781e79f"
+        },
+        {
+          "level": "district",
+          "file": "tunel-district-beyoglu-north-front.png",
+          "hash": "sha256:8077d0e268e67040717fcfcc1018187eb10a3cba12a2a2896934cf8d01fb3443"
+        },
+        {
+          "level": "district",
+          "file": "tunel-district-karakoy-south-front.png",
+          "hash": "sha256:b1a10469f7f2c10a0d120fb1aae2807ee9b7b6ce35432fd69e3abb8ced1d9fce"
+        },
+        {
+          "level": "district",
+          "file": "tunel-district-terminal-approaches-in-context.png",
+          "hash": "sha256:302f2513f68338b26f55579fd9ee23d0540e75a1c30627e743299a99940ff7dd"
+        },
+        {
+          "level": "district",
+          "file": "tunel-district-mapped-buried-route-interior.png",
+          "hash": "sha256:33e4bf9b9dada0eb96cf08de21032db3dfa5ce297bd19946917f55b7264ab163"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-beyoglu-north-front.png",
+          "hash": "sha256:a02ee6966e805fdd42dd9341c0bc050251b3aaf9750980fafbcecae166c2f4e0"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-karakoy-south-front.png",
+          "hash": "sha256:a9a2cb9a9703a28b29b09b0578f25dbef2b12fca846e7ccf01cf84f439631585"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-beyoglu-canopy-and-entries.png",
+          "hash": "sha256:7599d7fee0a911c157f98b355cf8922d5277ad1f2e8e20302253af5748a5c08c"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-karakoy-sidewalk-and-entry.png",
+          "hash": "sha256:a10da07f40cc0ed70999b5f3308443a3a1c1a7fd7161a89f8d82b5c0f61f18f0"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-terminal-approaches-in-context.png",
+          "hash": "sha256:c83181864c0a83ff053ba66e559a708cba07e328d667b77a1a1bbc9cf09853a2"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-beyoglu-downhill-shoulder.png",
+          "hash": "sha256:67c1d394b01f9236e17d3b3b48392f8bb9400bbfa1bb3b08a69e07175096d669"
+        },
+        {
+          "level": "street",
+          "file": "tunel-street-mapped-buried-route-interior.png",
+          "hash": "sha256:b70d1bce251f00a83992dc99033c416f67e45196f05415a01b182de84644e184"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-beyoglu-north-front.png",
+          "hash": "sha256:fe9e725784dee623e4f37df2e57bc6c35b6bd4c8502cb0fa9f7e9dca83fca71b"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-karakoy-south-front.png",
+          "hash": "sha256:5fde28e8ba27800472612f8b67cbf088532564d01cfc2fc5dc45fa32772e73b7"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-beyoglu-canopy-and-entries.png",
+          "hash": "sha256:41d9e5a4db170da8f3588b0ae25ab02dfaf1d9673ea4faddfe5eb71ba50b4c6c"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-karakoy-sidewalk-and-entry.png",
+          "hash": "sha256:6a97b6a1b8739a7eeb2269b6595cad93d7595b7c74e398fd82d1ad6a1f8568e7"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-terminal-approaches-in-context.png",
+          "hash": "sha256:35dedb7f7a765287fabc0e7d0ae00493b167ebfdff065d47ee266f956fbb484e"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-beyoglu-downhill-shoulder.png",
+          "hash": "sha256:49b7539b13bc9b5a0eea26431d60482b73bc6fe520479fb205bae7b51077e4b3"
+        },
+        {
+          "level": "closeup",
+          "file": "tunel-closeup-mapped-buried-route-interior.png",
+          "hash": "sha256:1c7bbc3336634de342646e81e68d364c5e3ae59a98b33d3aa35ae272246d5b59"
+        },
+        {
+          "level": "failure",
+          "file": "tunel-failure-beyoglu-north-front.png",
+          "hash": "sha256:f4f63b4519eaee4e39a96f60ba87e0e657f13070d4d3dcaefe7a74f3760e5e76"
+        },
+        {
+          "level": "failure",
+          "file": "tunel-failure-karakoy-south-front.png",
+          "hash": "sha256:f423b84f060a8508f72c7e3d8d78863d98eed4ccaab773a32cb76ea261b1db0e"
+        }
+      ],
+      "maxThresholdDifferenceMeters": 0.0850003814208975,
+      "minSampledTunnelCoverMeters": 12.363388228011473,
+      "sitePreview": {
+        "path": "site-preview.png",
+        "hash": "sha256:33c5f1d369ea28487c5336d450b583dc7cca9be34bb28aa034ae895e32cd0e3e"
+      }
+    }
+  }
 }

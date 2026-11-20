@@ -837,6 +837,9 @@ only if it shares a covered endpoint with a mapped bridge and continues outward 
 axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, transverse paths
 and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
 endpoint; disconnected or generalized map geometry is left in place.
+When the authored deck covers parts of known grade roads, `replaceRoads.approachFeatureIds`
+selects them even in tiles that lack the shared bridge endpoint. Supply the exact deck outline
+and the deck profile to locate the cut and set the retained road height.
 For this opted-in mode, a retained mapped bridge tail up to 32 m can carry its deck height
 to the connected street, including through one covered gateway up to 8 m long. The gateway
 itself stays unchanged. Raised ground approaches receive retaining side and end faces down
@@ -915,6 +918,14 @@ at Y=0. A bridge authored from a riverbed or buried foundation needs a correspon
 a coarse elevation grid may contain the road surface or smooth the gorge across several pixels.
 Increasing tile zoom cannot recover relief absent from the source elevation data.
 
+For a bounded site with several mapped levels, an Earth pack can supply `elevationProfile`
+in its `site-grades` data. Supply two or more `[station, elevation]` pairs in increasing
+local Z order. The terrain grade interpolates between the elevations and keeps the endpoint
+levels outside the station range. The existing `bounds`, `blend` and `repairBelow` fields
+control where the profile applies.
+For a historical site grade, set `validFrom` and `validUntil` as calendar dates. The grade
+applies when `viewingDate` falls on or after the first date and before the second date.
+
 For a measured model origin, use `datum: 'sea-level'` and set `elevation` to its absolute height
 in the same vertical reference as the host terrain. This bypasses terrain sampling and gives every
 clipped portion of a long bridge the same vertical position. The name `sea-level` selects the
@@ -962,6 +973,23 @@ ID. Piva Lake and the downstream gorge at Mratinje use separate representative s
 the retained terrain. Hosts composing their own renderer can provide `waterFeatureStyle` to
 `createDefaultTerrainSemanticRenderer`. Its `elevation` is the final height in the terrain
 frame, in meters. Unmatched features use the terrain sampler.
+
+If a Protomaps feature spans a dam or several river branches, add `stageOutline` to its
+fixed-elevation entry. This ring of WGS84 `[longitude, latitude]` points limits the fixed
+stage to the part of the mapped water inside it. Water outside the ring uses the terrain
+sampler. Follow the dam or lock boundary where the ring crosses the water. Iron Gate II
+uses this to bound its upstream pool at both crossings.
+
+For an unmapped water area, the Earth pack can supply a local `shoreline` ring of WGS84
+`[longitude, latitude]` points with a negative feature ID and a fixed `elevation`. The viewer
+clips the ring at tile boundaries and uses the same water material as mapped rivers and lakes.
+To fill a narrow gap beside a mapped water body, set `join` to its Protomaps feature ID.
+The viewer joins the ring to polygons of that feature at the same fixed elevation, so their
+shared edges do not draw banks in open water.
+Set `exclude` on a water feature's entry to a local WGS84 ring. The viewer clips matched
+water polygons and waterway centerlines to the area outside the ring. Pair a local exclusion
+with a `shoreline` when the stock waterway ribbon overlaps the corrected water surface.
+Use a separate ring on each side of the antimeridian.
 
 If `replaceFootprint` is set, mapped buildings are suppressed only once the replacement model
 has loaded; failed models keep the procedural building. At any zoom a polygon goes when at least
@@ -1085,6 +1113,16 @@ The terrain stream queries only cells intersecting resident tiles. Chicago model
 while viewing Seattle; a structure model is released from CPU and GPU memory when the last tile
 using it leaves view. Returning to the area loads it again. Draft entries never fetch models.
 
+For announced designs, author a placement with `status: 'proposal'` and a title that identifies the
+design. Pass its placement ID as `structureProposal` to `mountEarthView` or `createEarthWorldgen`.
+The proposal uses the catalog's ordinary region streaming and detail levels. An overlapping
+construction snapshot can set `hiddenByProposal` to the same ID. The lower-level structure index
+accepts `{ proposalId }` in its query options. Remount to change the selection.
+
+With New York PMTiles and terrain loaded, World Explorer accepts `?proposal=2.world.trade.center`
+to show the announced design at 200 Greenwich Street. Use the usual region or camera parameters
+to navigate there.
+
 Historical reconstructions use `status: 'historical'` and an `appearance` record:
 
 ```json
@@ -1100,9 +1138,15 @@ Historical reconstructions use `status: 'historical'` and an `appearance` record
 They remain unloaded in the default view. A host explicitly passes `viewingDate: '1930-01-01'`
 to `mountEarthView`, `createEarthWorldgen`, or `createWorldgenSemanticRenderers` to include
 historical assets for that day. The lower-level index accepts
-`query(bounds, { viewingDate: '1930-01-01' })`. Dates must be valid `YYYY-MM-DD` calendar dates;
-the first bound is inclusive and the last is exclusive. Date selection is independent of the
-system clock and sky simulation. Remount the viewer to change it. Historical assets retain
+`query(bounds, { viewingDate: '1930-01-01' })`. Use ISO calendar dates in `YYYY-MM-DD` form
+or with a signed six-digit year. The viewer uses astronomical year numbering, where
+`0000` is 1 BCE and `-000574-01-01` falls in 575 BCE. The first bound is inclusive and
+the last is exclusive. Use `hiddenDuring: { validFrom, validUntil }` on a placement to hide it
+while a dated reconstruction occupies its site. Historical site grades and local water edits
+use the same date format. A water edit with a replacement `shoreline` can set
+`clearSurfaceRoads: true` to clip the grade-level parts of mapped roads that cross its water.
+Date selection is independent of the system clock and sky simulation.
+Remount the viewer to change it. Historical assets retain
 geographic tile filtering, deferred loading, fallback on failed loads, and eviction cleanup.
 
 This option selects dated landmark appearances. Hosts supply matching historical PMTiles and

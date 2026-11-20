@@ -1,5 +1,9 @@
 /** Normalize explicit authoring dates; older undated reconstructions remain catalog drafts. */
-import { isHistoricalStructureAppearance, isStructureViewingDate } from '../dist/kernel.mjs';
+import {
+  isHistoricalStructureAppearance,
+  isStructureViewingDate,
+  isStructureViewingDateInRange,
+} from '../dist/kernel.mjs';
 
 export function authoredHistoricalAppearance(spec) {
   const appearance = spec.appearance;
@@ -52,14 +56,17 @@ export function hasHistoricalPlacementCapture(placement, report, placementHash) 
   const appearance = placement.appearance;
   return (
     isHistoricalStructureAppearance(appearance) &&
-    isStructureViewingDate(report?.viewingDate) &&
-    report.viewingDate >= appearance.validFrom &&
-    report.viewingDate < appearance.validUntil &&
+    isStructureViewingDateInRange(
+      report?.viewingDate,
+      appearance.validFrom,
+      appearance.validUntil,
+    ) &&
     report.placementHash === placementHash &&
     report.frames?.length > 0 &&
     report.frames.every(
       (frame) =>
-        frame.state?.mode === 'geographic-flat-terrain' &&
+        (frame.state?.mode === 'geographic-flat-terrain' ||
+          frame.state?.mode === 'geographic-native-terrain') &&
         frame.state?.placementId === placement.id,
     ) &&
     report.eviction?.disposed === true &&

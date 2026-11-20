@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Osun Grove Festival Pavilion",
+  "seed": "osun_grove_festival_pavilion",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "pavilion",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_festival_pavilion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.14,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              64,
+              0.28,
+              64
+            ]
+          },
+          "materialRef": "palette:#8d8663",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dfebe7",
+            "ground": "#9a886d",
+            "intensity": 1.1
+          },
+          "sun": {
+            "direction": [
+              -3,
+              5,
+              7
+            ],
+            "color": "#fff5e4",
+            "intensity": 1.6,
+            "castShadow": true
+          },
+          "background": "#b3d0d9",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      3.38,
+      2.68,
+      13.25
+    ],
+    "lookAt": [
+      0.35,
+      1.78,
+      -2.64
+    ],
+    "fov": 57
+  }
+}

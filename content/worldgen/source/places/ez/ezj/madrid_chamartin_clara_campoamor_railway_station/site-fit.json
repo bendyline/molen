@@ -1,0 +1,94 @@
+{
+  "format": "molen/station-terrain-fit@1",
+  "terrainReferenceMeters": 732.42615292828,
+  "sites": [
+    {
+      "name": "Madrid-Chamartín west passenger frontage",
+      "anchor": [
+        -3.682009851,
+        40.472443263
+      ],
+      "heading": 1.26964826367,
+      "bounds": [
+        -178,
+        -111,
+        -124,
+        24
+      ],
+      "elevation": 732.84,
+      "blend": 15,
+      "basis": "Match the lower terminal doors and exposed steps to the retained west forecourt reference."
+    },
+    {
+      "name": "Madrid-Chamartín west entrance landing",
+      "anchor": [
+        -3.682009851,
+        40.472443263
+      ],
+      "heading": 1.26964826367,
+      "bounds": [
+        -190,
+        -12,
+        -173,
+        14
+      ],
+      "elevation": 732.86,
+      "blend": 14,
+      "basis": "Return the entrance landing to the adjacent sidewalk while leaving the coordinate used for the common station height outside the grade."
+    },
+    {
+      "name": "Madrid-Chamartín southwestern entrance apron",
+      "anchor": [
+        -3.682009851,
+        40.472443263
+      ],
+      "heading": 1.26964826367,
+      "bounds": [
+        -130,
+        -131,
+        -8,
+        -113
+      ],
+      "elevation": 732.91,
+      "blend": 17,
+      "basis": "Remove terrain returns at the western lower façade while keeping the upper terraces and supported hotel at their modeled levels."
+    },
+    {
+      "name": "Madrid-Chamartín lower platform and track corridor",
+      "anchor": [
+        -3.682009851,
+        40.472443263
+      ],
+      "heading": 1.26964826367,
+      "bounds": [
+        16,
+        -98,
+        376,
+        88
+      ],
+      "elevation": 726.38,
+      "blend": 31,
+      "basis": "Use the modeled lower platform level and the standard terrain controls further north to clear the eleven mapped canopy approaches."
+    },
+    {
+      "name": "Madrid-Chamartín long northeast platform ends",
+      "anchor": [
+        -3.682009851,
+        40.472443263
+      ],
+      "heading": 1.26964826367,
+      "bounds": [
+        376,
+        32,
+        619,
+        86
+      ],
+      "elevation": 726.38,
+      "blend": 25,
+      "basis": "Continue the existing lower track grade under the three longest mapped canopy strips."
+    }
+  ],
+  "notes": "Bounded grades expose the western thresholds and the eleven lower platform roofs while retaining the original forecourt height reference.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

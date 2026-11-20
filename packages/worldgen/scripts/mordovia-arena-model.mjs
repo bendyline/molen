@@ -493,6 +493,8 @@ function stairs(out) {
     }
   }
 }
+export const mordoviaSections = { angleAt, outer, roof, seat, skin, trussPoint };
+
 export function buildMordovia(out) {
   bowl(out);
   podium(out);

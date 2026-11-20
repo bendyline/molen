@@ -15,7 +15,7 @@
     129,
     129
   ],
-  "modelDatumElevationMeters": 529,
+  "modelDatumElevationMeters": 710,
   "elevationsMeters": [
     339.971289,
     342.879851,
@@ -16669,9 +16669,38 @@
       "y": 9265
     }
   ],
-  "method": "Unmodified standard viewer global Terrarium field; bilinear interpolation at pixel centers in the signed building frame. No flattening. Two-meter sampling oversamples the coarse mixed-source DEM.",
+  "method": "The retained elevationsMeters array is the original Mapzen evidence. The review heightfield applies the stock bounded Corcovado grade, sampled in the monument’s signed model frame.",
   "attribution": "Mapzen/Terrain Tiles; NASA/USGS and other open elevation sources",
   "attributionUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
   "limitations": "Approximate global viewer terrain; not surveyed urban foundation levels. Vegetation and urban surface returns can affect the field.",
-  "reviewHeightfieldHash": "sha256:b86610f49e91a6995a548f6cb357d52e281b50a3b144803d7dc416b5435aca5a"
+  "reviewHeightfieldHash": "sha256:51e1fe15d61360f8f79573ea29b8b97fc6292584902dc80d2256eaa758293c69",
+  "appliedSiteGrade": {
+    "path": "content/earth/terrain/site-grades.json",
+    "name": "Corcovado summit and restaurant terrace",
+    "anchor": [
+      -43.210459649562836,
+      -22.951917486936523
+    ],
+    "heading": 1.7453292519943295,
+    "bounds": [
+      -20,
+      -48,
+      24,
+      27
+    ],
+    "elevation": 710,
+    "elevationProfile": [
+      [
+        -25,
+        688
+      ],
+      [
+        -14,
+        710
+      ]
+    ],
+    "blend": 155,
+    "repairBelow": 665,
+    "basis": "The mapped Corcovado peak is 710 m at local Z −12.49 m. The mapped restaurant terrace is 688 m at local Z −29.64 m. The grade ties the mapped upper paths and statue pedestal to the peak and blends the lower terrace and surrounding slope back into the standard elevation field. Both levels are approximate visualization controls."
+  }
 }

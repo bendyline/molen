@@ -169,6 +169,8 @@ export interface WorldgenRendererOptions {
   structures?: StructureIndex;
   /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
   viewingDate?: string;
+  /** Placement ID of the proposal to display at its planned location. */
+  structureProposal?: string;
   /** Fine or cross-tile ground samples; undefined coverage leaves the procedural fallback. */
   sampleStructureTerrain?: StructureTerrainSampler;
   materials?: WorldgenMaterialSet;
@@ -368,9 +370,11 @@ export function createWorldgenSemanticRenderers(
   pack: ResolvedStylePack,
   options: WorldgenRendererOptions = {},
 ): WorldgenSemanticRenderers {
-  const viewingDate = options.viewingDate;
+  const { viewingDate, structureProposal: proposalId } = options;
   if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
-    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+    throw new Error('viewingDate must be a valid ISO calendar date');
+  const structureSelection =
+    viewingDate === undefined && proposalId === undefined ? false : { viewingDate, proposalId };
   const decorate =
     options.materialDecorator !== undefined ? { decorate: options.materialDecorator } : {};
   const materials = options.materials ?? createVertexColorMaterialSet(decorate);
@@ -780,10 +784,11 @@ export function createWorldgenSemanticRenderers(
     const candidates = options.structures.queryAsync
       ? options.structures.queryAsync(bounds, {
           viewingDate,
+          proposalId,
           signal: context.signal,
           level: context.address.level,
         })
-      : options.structures.query(bounds, viewingDate === undefined ? false : { viewingDate });
+      : options.structures.query(bounds, structureSelection);
     const rules = options.structures.rules;
     const select = (entries: StructurePlacement[]): StructurePlacement[] => {
       const geographic = orientMappedStructures(entries, tile, geometry).filter((entry) => {

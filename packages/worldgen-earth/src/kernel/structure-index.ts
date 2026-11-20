@@ -9,6 +9,8 @@ import {
   type HistoricalStructureAppearance,
   isHistoricalStructureAppearance,
   isStructureViewingDate,
+  isStructureViewingDateInRange,
+  isStructureViewingDateRange,
 } from './structure-date';
 
 const alphabet = '0123456789bcdefghjkmnpqrstuvwxyz';
@@ -31,6 +33,8 @@ export interface StructureRoadReplacement {
   includeConnectedApproaches?: boolean;
   /** When present, only replace bridge centerlines with these source tile feature IDs. */
   bridgeFeatureIds?: (number | string)[];
+  /** Explicit mapped grade-road approaches that can be clipped without the bridge in the tile. */
+  approachFeatureIds?: (number | string)[];
   /** IDs of mapped paving areas represented by the authored deck. */
   pavingAreaIds?: (number | string)[];
 }
@@ -95,9 +99,13 @@ export interface StructurePlacement {
   lengthAxis?: 'x' | 'z';
   /** The model enters adaptive terrain at this level. */
   minLevel?: number;
-  /** Draft records are never drawn; historical records require an explicit viewing date. */
-  status: 'preview' | 'draft' | 'historical';
+  /** Historical and proposal records require an explicit selection. Drafts are inspection only. */
+  status: 'preview' | 'draft' | 'historical' | 'proposal';
   appearance?: HistoricalStructureAppearance;
+  /** Omit this appearance during a competing dated reconstruction. */
+  hiddenDuring?: { validFrom: string; validUntil: string };
+  /** Proposal placement ID that replaces this appearance when explicitly selected. */
+  hiddenByProposal?: string;
   source: string;
   note?: string;
 }
@@ -163,10 +171,12 @@ export interface StructureIndex {
 }
 
 export interface StructureQueryOptions {
-  /** Inspection only: include every record regardless of status or date. */
+  /** Inspection only: include every record regardless of status, date or proposal selection. */
   includeDraft?: boolean;
   /** Explicit ISO calendar date for historical models. Omitted means current-world previews. */
   viewingDate?: string;
+  /** Exact placement ID of a proposal to show at its site. */
+  proposalId?: string;
 }
 
 /** Standard geohash, kept here so the Earth pack does not depend on Qualla. */
@@ -407,14 +417,30 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       throw new Error(
         `invalid building cutout ${entry.id}: a valid outline and bounds are required`,
       );
-    if (!entry.asset || !entry.source || !['preview', 'draft', 'historical'].includes(entry.status))
+    if (
+      !entry.asset ||
+      !entry.source ||
+      !['preview', 'draft', 'historical', 'proposal'].includes(entry.status)
+    )
       throw new Error(`invalid structure placement ${entry.id}`);
     if (
       (entry.appearance !== undefined && !isHistoricalStructureAppearance(entry.appearance)) ||
       (entry.status === 'historical' && !entry.appearance) ||
-      (entry.status === 'preview' && entry.appearance)
+      ((entry.status === 'preview' || entry.status === 'proposal') && entry.appearance)
     )
       throw new Error(`invalid historical structure appearance ${entry.id}`);
+    if (
+      entry.hiddenDuring !== undefined &&
+      !isStructureViewingDateRange(entry.hiddenDuring?.validFrom, entry.hiddenDuring?.validUntil)
+    )
+      throw new Error(`invalid structure date exclusion ${entry.id}`);
+    if (
+      entry.hiddenByProposal !== undefined &&
+      (entry.status === 'proposal' ||
+        entry.id === entry.hiddenByProposal ||
+        !/^[a-z0-9][a-z0-9.-]*$/.test(entry.hiddenByProposal))
+    )
+      throw new Error(`invalid proposal exclusion ${entry.id}`);
     encodeStructureGeohash(...entry.anchor);
     if (entry.elevation !== undefined && !Number.isFinite(entry.elevation))
       throw new Error(`invalid structure elevation ${entry.id}`);
@@ -500,7 +526,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
           !validGroundOutline(road.outline))
       )
         throw new Error(`invalid structure road outline ${entry.id}`);
-      for (const field of ['bridgeFeatureIds', 'pavingAreaIds'] as const) {
+      for (const field of ['bridgeFeatureIds', 'approachFeatureIds', 'pavingAreaIds'] as const) {
         const ids = road[field];
         if (
           ids !== undefined &&
@@ -511,6 +537,8 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         )
           throw new Error(`invalid structure road IDs (${field}) ${entry.id}`);
       }
+      if (road.approachFeatureIds && (!road.outline || !road.deckProfile))
+        throw new Error(`structure road approach IDs require an outline and profile ${entry.id}`);
       if (
         !Number.isFinite(road.length) ||
         road.length <= 0 ||
@@ -547,10 +575,13 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     cells,
     rules: doc.rules ?? [],
     query(bounds, options = false) {
-      const { includeDraft = false, viewingDate } =
-        typeof options === 'boolean' ? { includeDraft: options } : options;
+      const {
+        includeDraft = false,
+        viewingDate,
+        proposalId,
+      } = typeof options === 'boolean' ? { includeDraft: options } : options;
       if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
-        throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+        throw new Error('viewingDate must be a valid ISO calendar date');
       const spans: Array<readonly [number, number, number, number]> =
         bounds[0] <= bounds[2]
           ? [bounds]
@@ -568,12 +599,24 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         for (const entry of candidates) {
           if (
             (includeDraft ||
+              ((proposalId === undefined || entry.hiddenByProposal !== proposalId) &&
+                (entry.hiddenDuring === undefined ||
+                  !isStructureViewingDateInRange(
+                    viewingDate,
+                    entry.hiddenDuring.validFrom,
+                    entry.hiddenDuring.validUntil,
+                  )))) &&
+            (includeDraft ||
               entry.status === 'preview' ||
+              (entry.status === 'proposal' && entry.id === proposalId) ||
               (entry.status === 'historical' &&
                 viewingDate !== undefined &&
                 entry.appearance !== undefined &&
-                viewingDate >= entry.appearance.validFrom &&
-                viewingDate < entry.appearance.validUntil)) &&
+                isStructureViewingDateInRange(
+                  viewingDate,
+                  entry.appearance.validFrom,
+                  entry.appearance.validUntil,
+                ))) &&
             boxes
               .get(entry.id)
               ?.some(

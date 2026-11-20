@@ -1,0 +1,250 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-observations.json",
+    "review-scope.json",
+    "site-fit.json",
+    "pmtiles-map.json"
+  ],
+  "surfaceOverrides": {
+    "boards": {
+      "graph": "wood_vertical",
+      "slot": "wall",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.69,
+      "metallic": 0.2
+    },
+    "base": {
+      "graph": "stone_limestone_weathered",
+      "slot": "foundation",
+      "roughness": 0.93,
+      "metallic": 0
+    }
+  },
+  "camera": {
+    "position": [
+      7.8,
+      4,
+      10.5
+    ],
+    "lookAt": [
+      0,
+      1.4,
+      0
+    ],
+    "fov": 38
+  },
+  "qaCameras": [
+    {
+      "name": "facade-and-louvers",
+      "position": [
+        7.8,
+        4,
+        10.5
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "wall-boards-and-roof-profile",
+      "position": [
+        0,
+        2.85,
+        8.8
+      ],
+      "lookAt": [
+        0,
+        1.55,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "eaves-and-roof-seams",
+      "position": [
+        -6,
+        6.9,
+        -8
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "high-end-louver",
+      "position": [
+        6.7,
+        2.25,
+        2.65
+      ],
+      "lookAt": [
+        2.15,
+        1.3,
+        0.7
+      ],
+      "fov": 48
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 0.25,
+    "groundY": 0,
+    "cameraYaw": -0.44,
+    "focus": {
+      "center": [
+        0,
+        -1.2,
+        0
+      ]
+    },
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/woodshed_yasnaya_polyana/models/woodshed-model.mjs",
+    "export": "buildSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "boards": {
+        "graph": "wood_vertical",
+        "slot": "wall",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "graph": "metal_standing_seam",
+        "slot": "roof",
+        "roughness": 0.69,
+        "metallic": 0.2
+      },
+      "base": {
+        "graph": "stone_limestone_weathered",
+        "slot": "foundation",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "boards": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "base": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "boards": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "base": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "boards": {
+            "graph": "wood_vertical",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "base": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographicNote": "Two views in the museum exterior tour place the boarded shed beside the white garden wall, west of the White Kitchen. The high louver end faces northeast. The photo rays use two White Kitchen eave corners and the rear of Tolstoy House to align the photos to the aerial view. The native PMTiles lacks the shed outline and supplies independent path and building context. The stone sill is raised 0.17 m from the terrain-relative center sample. The foundation reaches below the archived standard terrain at all four corners. The model leaves the native terrain, path and nearby buildings intact.",
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.5258249,
+      54.07631053
+    ],
+    "heading": 0.8390156650672734,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 2.5
+    },
+    "bounds": [
+      37.52576035,
+      54.07626612,
+      37.52588986,
+      54.0763552
+    ],
+    "groundContactReviewed": true,
+    "source": "https://artsandculture.google.com/streetview/state-memorial-and-natural-preserve-leo-tolstoy-museum-estate-yasnaya-polyana-exterior/QgE4EprFLI_giw",
+    "groundContactBasis": "The stone sill is raised 0.17 m from the terrain-relative center sample. The foundation reaches below the archived standard terrain at all four corners. The model leaves the native terrain, path and nearby buildings intact.",
+    "notes": "Two views in the museum exterior tour place the boarded shed beside the white garden wall, west of the White Kitchen. The high louver end faces northeast. The photo rays use two White Kitchen eave corners and the rear of Tolstoy House to align the photos to the aerial view. The native PMTiles lacks the shed outline and supplies independent path and building context. The stone sill is raised 0.17 m from the terrain-relative center sample. The foundation reaches below the archived standard terrain at all four corners. The model leaves the native terrain, path and nearby buildings intact. Location and orientation come from an approximate photo reconstruction with partially obscured aerial context. The footprint, panels and heights are exterior estimates. The museum names the three courtyard buildings as a group. The assignment of this boarded building as the woodshed follows the contrasting kitchen and icehouse in the tour.",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "maxDistance": 2.5,
+    "terrainReference": {
+      "anchor": [
+        37.5258249,
+        54.07631053
+      ],
+      "modelHeight": -0.17,
+      "basis": "The stone sill is raised 0.17 m from the terrain-relative center sample. The foundation reaches below the archived standard terrain at all four corners. The model leaves the native terrain, path and nearby buildings intact."
+    }
+  }
+}

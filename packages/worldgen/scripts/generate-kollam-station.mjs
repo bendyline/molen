@@ -74,16 +74,17 @@ const spec = {
   nativeAxes: brief.nativeAxes,
   sourceFacts: brief.sourceFacts,
   referencePages: brief.references.map((r) => r.url),
+  ...(placement.appearance ? { appearance: placement.appearance } : {}),
   geographicProposal: {
-    status: 'preview-proposal',
+    status: placement.appearance ? 'historical-proposal' : 'preview-proposal',
     anchor: placement.anchor,
     heading: placement.heading,
-    elevationMode: 'terrain-contact',
+    elevationMode: placement.datum === 'sea-level' ? 'sea-level' : 'terrain-contact',
     orientationPolicy: 'approximate-visualization',
-    elevationMeters: 0,
+    elevationMeters: placement.elevation,
     groundContactReviewed: true,
     groundContactBasis:
-      'The connected passenger ensemble uses one standard host field datum outside its street facade. Exact threshold/platform grades remain approximate. ' +
+      'The connected passenger ensemble uses a common date-scoped forecourt and rail datum. ' +
       brief.heightPolicy,
     groundModelY: 0,
     replaceFootprint: true,

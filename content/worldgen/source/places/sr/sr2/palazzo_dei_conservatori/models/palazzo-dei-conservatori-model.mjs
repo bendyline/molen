@@ -14,7 +14,8 @@ const source = new URL('../', import.meta.url),
   r = frame.reconstruction,
   scope = read('review-scope.json'),
   means = read('surface-means.json'),
-  fit = read('pmtiles-fit.json');
+  fit = read('pmtiles-fit.json'),
+  gallery = read('gallery.json');
 const linear = (hex) =>
     hex.match(/../g).map((s) => {
       const v = parseInt(s, 16) / 255;
@@ -26,6 +27,8 @@ const linear = (hex) =>
     roof: linear('ad7458'),
     glass: linear('667b7c'),
     wood: linear('756957'),
+    galleryWall: linear('ebe8dd'),
+    galleryRail: linear('353a3c'),
   };
 
 function build(out, detail) {
@@ -96,7 +99,7 @@ function build(out, detail) {
       );
     }
   };
-  buildConservatori(emit, detail, { ...r, datumMeters: fit.datumMeters });
+  buildConservatori(emit, detail, { ...r, datumMeters: fit.datumMeters, gallery });
 }
 export const buildConservatoriSkyline = (o) => build(o, 0),
   buildConservatoriDistrict = (o) => build(o, 1),
@@ -137,7 +140,7 @@ export const conservatoriStudy = {
   mediumFiContext: scope.mediumFiContext,
   geographic: () => scope.geographic,
   geographicNote: r.terrainBasis,
-  limitations: [r.scope, r.identityBasis, r.heightBasis, r.terrainBasis],
+  limitations: [r.scope, r.identityBasis, r.heightBasis, r.terrainBasis, gallery.limits],
   camera: scope.camera,
   qaCameras: [],
 };

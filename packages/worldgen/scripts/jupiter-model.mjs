@@ -1,4 +1,4 @@
-/** Reproducible photographic foundation draft; geographic activation remains disabled. */
+/** Reproducible exposed foundation in the Capitoline Museums. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -20,15 +20,17 @@ const linear = (hex) =>
       const v = parseInt(s, 16) / 255;
       return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
     }),
-  palette = { tuff: linear('b5af9a') };
+  palette = { tuff: linear('9b948a') };
 function build(out, d) {
   buildJupiterFoundations(
-    (role, ps, target) => {
+    (role, ps, target, tone = 1) => {
       let p = ps.map((a) => a.map(Math.fround));
       if (normalFor(p[0], p[1], p[2]).reduce((n, v, i) => n + v * target[i], 0) < 0)
         p = p.toReversed();
       const color =
-        d === 0 ? palette[role].map((v, i) => v * (means[role]?.[i] ?? 1)) : palette[role];
+        d === 0
+          ? palette[role].map((v, i) => v * (means[role]?.[i] ?? 1))
+          : palette[role].map((v) => v * tone);
       for (let i = 1; i < p.length - 1; i++) {
         const t = [p[0], p[i], p[i + 1]];
         if (
@@ -85,7 +87,7 @@ export const jupiterStudy = {
   dataAttribution: '©OpenStreetMap contributors; Protomaps; Mapzen/USGS terrain.',
   geometrySource: r.scope,
   sourceNotice:
-    'Two registered recipes rebuild the photographic foundation draft. One reused256-square raw stone graph, metric UVs and linear tints; no embedded images or unique atlas.',
+    'Two registered recipes rebuild the exposed tufa masonry with a shared raw stone graph, metric UVs and linear stone tones.',
   importReason: r.scope,
   previewGround: true,
   previewTerrain: scope.previewTerrain,
@@ -97,7 +99,7 @@ export const jupiterStudy = {
     r.identityBasis,
     r.heightBasis,
     r.terrainBasis,
-    'Unfinished photographic foundation draft. Entire surviving scope, exact block courses, underground depth, location and orientation remain unverified. No geographic or fidelity acceptance exists. The modern museum is independent and automatic placement stays disabled.',
+    'The visitor plan constrains the orientation. The display floor, wall heights and the visible ancient masonry are approximate reconstructions.',
   ],
   camera: scope.camera,
   qaLodCameras: scope.qaLodCameras,

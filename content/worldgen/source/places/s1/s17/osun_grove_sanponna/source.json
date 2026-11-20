@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_sanponna",
+  "kind": "static-structure",
+  "title": "Sanponna sculpture at the Sacred Potter Field",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json",
+      "map-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_sanponna",
+        "output": "assets/places/s1/s17/osun_grove_sanponna/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:85094180db87f8af67536e7c2fdd30cbb47bd11d94fe7b1287f597a0fb0bd504"
+      }
+    ],
+    "generators": [
+      {
+        "id": "sanponna-mesh",
+        "path": "models/sanponna-model.mjs"
+      },
+      {
+        "id": "sanponna-master",
+        "path": "models/generate-sanponna.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "base-detail.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "map-frame.json",
+      "placement-report.json"
+    ]
+  }
+}

@@ -1,11 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.mordovia_arena",
-  "inputHash": "sha256:69627fc7def71ec15ed4dfed3d19b75cab2a1bc3f4a9c73198c3241efb3d87b0",
-  "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
+  "inputHash": "sha256:013ebd4506d00256bb785b4a3800d850e0b83b504bbb7df43102c177cf644a52",
+  "sourceHash": "sha256:6aafdb800f7ee0ef19cbfd35c6925fd0947952fee54693ee337874fb3287085b",
+  "runtimeHash": "sha256:ea3b85320ca393ed7086e126f1d34dd6544dfeeaf51e1f7a07518f95caa14906",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "legacy",
-  "placementHash": "sha256:a49c0a88ebf4b181edf31fd5e9151a71270290741a6c26af130f13aea93cb900",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:d8913c313626cb609b435be1f69df9295b2f3a3f51a1d31db10a2100f8382ac2",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.metal_perforated_square": {
       "path": "materials/metal_perforated_square.matgraph.json",
@@ -13,7 +17,7 @@
     },
     "matgraph:molen.worldgen.material.membrane": {
       "path": "materials/membrane.matgraph.json",
-      "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -27,7 +31,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:5d649b2a3f9576a82f18b57f76a9614120323a8ed4802adcfade196a58124f8e",
+      "hash": "sha256:5466d94f83ae2abc923fe2215e65a2f39e9f6faa243c1713cefb23de6ac92ae7",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -37,59 +41,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:fee54e54dde2f5fcca326c7e4d94d28f8412ae3a1f55c30f13b91a8e511c059c",
+      "hash": "sha256:50ea47f9a82be18ecf4320250a7fedfd30b78b5f31d7e87d993c80f47051d3f3",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -99,59 +126,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:8da11efdad2d35ecf4e1b494c4f25dace0eba76e2105586717e2c26c58f54126",
+      "hash": "sha256:f7a8e1fb7d20f4fa659a9c6843031e0d58cadf3bc8feb4e7725981095a576aa2",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -161,59 +211,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:fc471c39ffb3b91e38a14f31aca6f36c01686407b046c78f4d9b67368a89adf9",
+      "hash": "sha256:32988ae8f94bcbe9124fa8a8510483c563897a454bfaf6bbe42cc44aaa458f98",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -223,59 +296,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-perforated-shell.png",
-      "hash": "sha256:e457fc67199829e5b900fc54b02581d72c4e0a49badf2245a68f161b9af3c844",
+      "hash": "sha256:74a34eafc7f52245d7c5e59dd40c1564f360656be5b5e7276902471ae9cd5e46",
       "camera": {
         "name": "near-perforated-shell",
         "position": [
@@ -294,59 +390,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-cassette-folds.png",
-      "hash": "sha256:d3af9737241b32e4065fddaca476cb6207e7d55a758e686df4d5a6dc4a990799",
+      "hash": "sha256:a3b2e84fbcce9fde0faccc558b5d980a66d68c395b3dd0d471a1d75f3704bbfc",
       "camera": {
         "name": "near-cassette-folds",
         "position": [
@@ -365,59 +484,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-console-lattice.png",
-      "hash": "sha256:51fd78dc90799860dfa9d13c82f2ec5328567416961d8dc879d1ed69c838f46f",
+      "hash": "sha256:dadc2ddf195ec9625f49bdb20d3497216add74ba47ad2e9948e3fa4e0eb13620",
       "camera": {
         "name": "near-console-lattice",
         "position": [
@@ -436,59 +578,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 10,
-        "renderedTriangles": 1600294
+        "draws": 9,
+        "renderedTriangles": 1355470
       }
     },
     {
       "path": "shots/shared/near-roof-cantilevers.png",
-      "hash": "sha256:f1ae48ecd4ebf4eff9aa6f7adcba213b989ef2399b140d45961a7f890492ce43",
+      "hash": "sha256:8e749fa916c6b0dc624b849f61d1bad732215bf39b39613706af54c2d76f6621",
       "camera": {
         "name": "near-roof-cantilevers",
         "position": [
@@ -507,59 +672,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-podium.png",
-      "hash": "sha256:432b949b5c6bd918abf9a70a1c1cbf0f54926d14731110b3c14f9e0d4fe1126e",
+      "hash": "sha256:92eec4924845351299b809727c65663d5b16d82c8f334b3e9183d125df696436",
       "camera": {
         "name": "near-podium",
         "position": [
@@ -578,59 +766,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-entry-stairs.png",
-      "hash": "sha256:bbfc965d8f294fb1b5986bb14f949747ec695b4690137a87cc305f168d02b5f8",
+      "hash": "sha256:2ada90c8402e7c7c7884067b1f913161fe390dba18cf4c4714a870d02cf93a27",
       "camera": {
         "name": "near-entry-stairs",
         "position": [
@@ -649,59 +860,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-seating.png",
-      "hash": "sha256:f02c8c61eca9c0a1490f028f4e83cf33aa73c17594c7b51220467b26d827ccbe",
+      "hash": "sha256:e635cca496a9f6a3716c05b926ad5247b59fc47c2b573a7a5e63ef78eac3bf65",
       "camera": {
         "name": "near-seating",
         "position": [
@@ -720,59 +954,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-vomitory.png",
-      "hash": "sha256:e143cb75931958c05693e9a6bb5a298822212e56fbf38ba93a8aca06573f0bd6",
+      "hash": "sha256:97d461dec9f03972605af12e9e9ecd988229369527d2574f3cbc1ee231fc36ea",
       "camera": {
         "name": "near-vomitory",
         "position": [
@@ -791,59 +1048,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-north-screen.png",
-      "hash": "sha256:5c3a632334b967d396bb554b59d4d268eca34b77ce48fc963ca32472d3151151",
+      "hash": "sha256:16a8d394d75bf5fa643d5d40d0bc64ad3e9ffdb1b57b6f78c6d014d40e5ba4e0",
       "camera": {
         "name": "near-north-screen",
         "position": [
@@ -862,59 +1142,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/near-roof-panels.png",
-      "hash": "sha256:8abd9e320900d0d7ce1b7dac5eb452d3fb2974f12a3986a4a5f4da5bc89c404e",
+      "hash": "sha256:d0a38c3f6ac0c0c9d6ebb12b28de072ef77f72474d0fbb9d6ef118819a035acc",
       "camera": {
         "name": "near-roof-panels",
         "position": [
@@ -933,59 +1236,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/far-roof-envelope.png",
-      "hash": "sha256:ba7516adc3a1af46fff5b68877197cfedf17602085a8c18745b7a40c3d6e412d",
+      "hash": "sha256:441adfa323f10ad70851b9a6ea858a21f1c80c14b44fb8599e6aa05351220b5b",
       "camera": {
         "name": "far-roof-envelope",
         "position": [
@@ -1004,59 +1330,82 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:a059a2003603eed8b7c87b41fb4e0b0f3952691d0d84e147621ae0cc2897e4a0",
+      "hash": "sha256:14f954fa753ac0e1d26be0f9c36df362ce0fc5cd379ee4c42b762c60ea0c9262",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1066,54 +1415,77 @@
         "mode": "geographic-flat-terrain",
         "placementId": "mordovia.arena",
         "position": [
+          -156.81643515452743,
           0,
-          0,
-          0
+          -164.33448560070246
         ],
-        "heading": 3.1391830218009438,
+        "heading": 0,
         "meshes": 8,
-        "triangles": 1596068,
+        "triangles": 1351284,
         "bounds": {
           "min": [
-            -136.98391179347905,
+            -136.93918639048934,
             -0.6380603313446045,
-            -155.3615235122216
+            -154.73202855419368
           ],
           "max": [
-            136.6328651069194,
+            136.6258561052382,
             49.54648208618164,
-            139.38564039449312
+            138.9739555614069
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -136.93918637419,
+            -0.6380603313446045,
+            -154.732028351524
+          ],
+          "max": [
+            136.625851458582,
+            49.54648208618164,
+            138.9739512756249
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "c914ad90-040e-49f6-a923-d40aa2f54715",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "19b3402e-7214-4403-914c-5c40e7133182",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "a88fe232-2003-4fcb-962e-634d84f59ff6",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "f59537f9-e371-41c2-b1af-cac4af7e2c34"
+          "worldgen:matgraph:molen.worldgen.material.metal_perforated_square": "4b98d9a6-7d31-4eb6-8f66-562d765de235",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "8b3710bc-d426-4e55-99a5-a96703a69c76",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c4afc61c-eba1-4d24-b70f-6d2ee237abed",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "03b8cd4c-fbb7-4236-9e50-1cec9711ab9f"
         },
         "loads": [
           "molen.worldgen.structure.mordovia_arena"
         ],
         "selectionBounds": [
-          45.201761181023556,
-          54.180597040449385,
-          45.205690818976436,
-          54.18289672757686
+          45.2013188444718,
+          54.1804053833398,
+          45.206133710350734,
+          54.183223115450126
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "mordovia.arena",
+            "coordinate": [
+              45.20113183247648,
+              54.18175055818563
+            ],
+            "height": 0
+          }
         ],
         "visibleStructures": [
           "mordovia.arena"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.metal_perforated_round": 1,
-          "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_perforated_square": 1,
-          "molen.worldgen.material.membrane": 1
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 11,
-        "renderedTriangles": 1600294
+        "renderedTriangles": 1355510
       }
     }
   ],
@@ -1127,22 +1499,5 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "specMetadataReconciliation": {
-    "kind": "non-render-metadata",
-    "date": "2026-10-02",
-    "previousSpecHash": "sha256:82de00bec285c9270ca67c8419da78f62e270c3b52666a21cae002c176b147c4",
-    "previousCaptureReportHash": "sha256:614d7d6f503cab83ad897336abfba234c6fb15897558f7e8b61a4a1f61968de6",
-    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
-    "reviewedSpecPath": "content/worldgen/source/places/v1/v18/mordovia_arena/spec.json",
-    "reviewedSpecRecovery": "Exact recorded hash verified against repository revision.",
-    "changes": [
-      {
-        "path": "sourceLicense",
-        "previous": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence Â© OpenStreetMap contributors, ODbL 1.0.",
-        "current": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0."
-      }
-    ],
-    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization), a corrected copyright character, and reversible RGB alignment statistics may differ. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

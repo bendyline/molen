@@ -1,5 +1,5 @@
-# hekatompedon_temple — Hekatompedon temple: pending
+# Hekatompedon present-day site assessment
 
-The [Acropolis Museum](https://www.theacropolismuseum.gr/en/node/1408) describes surviving architectural fragments and pedimental sculptures of this destroyed predecessor of the Parthenon. The standard2026-10-14 PMTiles puts the named Parthenon point about7m from the candidate coordinate; the separate Old Parthenon point is about58m away. Neither establishes a standing Hekatompedon building.
+The surviving architectural fragments and pedimental sculptures are held by the Acropolis Museum. The October 2026 Protomaps extract places the named Classical Parthenon point about 7 m from the candidate coordinate and the separate Athena Polias site about 58 m away. [Acropolis Museum](https://www.theacropolismuseum.gr/en/node/1408) · [Reference map check](reference-review.json)
 
-No invented intact temple is placed over the Parthenon. No GLB/active placement or completion is claimed. A historical interpretation or correctly attached museum-fragment display remains to be scoped. This bounded check used the ordinary museum description and standard map, without a bespoke research campaign.
+The default viewer retains the present-day features. The temple reconstruction uses an explicit historical date and the southwest-site interpretation. [Dated reconstruction](README.md)

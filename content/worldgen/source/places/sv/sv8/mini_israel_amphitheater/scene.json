@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Outdoor amphitheater review",
+  "seed": "mini_israel_amphitheater",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "venue",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_amphitheater",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "light",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e0e5d8",
+            "ground": "#bcb18d",
+            "intensity": 1.05
+          },
+          "sun": {
+            "direction": [
+              -3,
+              6,
+              8
+            ],
+            "color": "#fff1d6",
+            "intensity": 1.45,
+            "castShadow": true
+          },
+          "background": "#afbfae",
+          "toneMapping": "agx",
+          "exposure": 1.06,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.37,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              135,
+              0.74,
+              115
+            ]
+          },
+          "materialRef": "palette:#918f6a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      36,
+      28,
+      53
+    ],
+    "lookAt": [
+      0,
+      2,
+      14
+    ],
+    "fov": 52
+  }
+}

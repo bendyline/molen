@@ -8,7 +8,11 @@
     "site-components.json",
     "surface-means.json",
     "pmtiles-fit.json",
-    "museum-placement.json"
+    "museum-placement.json",
+    "qa.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "site-preview.png"
   ],
   "surfaceOverrides": {
     "tuff": {
@@ -21,14 +25,14 @@
   "previewGround": true,
   "camera": {
     "position": [
-      -33,
-      23,
-      35
+      -16.5,
+      12,
+      21
     ],
     "lookAt": [
       0,
-      3.8,
-      -1.2
+      3.1,
+      0.8
     ],
     "fov": 44
   },
@@ -202,31 +206,33 @@
     "groundY": 0
   },
   "geographic": {
-    "status": "draft",
+    "status": "preview-proposal",
     "anchor": [
-      12.482268244687624,
-      41.892642123947745
+      12.482152876399208,
+      41.89246685633882
     ],
-    "heading": 0.45316101061196945,
+    "heading": 2.064347435686355,
     "elevationMode": "terrain-contact",
     "groundModelY": 0,
     "orientationPolicy": "approximate-visualization",
     "replaceFootprint": false,
-    "groundContactReviewed": false,
+    "groundContactReviewed": true,
     "terrainReference": {
       "anchor": [
-        12.482051027929765,
-        41.89276788808752
+        12.482840300013704,
+        41.89318844584958
       ],
-      "modelHeight": 8.982000160217286,
-      "basis": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled."
+      "modelHeight": 9.403,
+      "basis": "The retained museum datum establishes a common vertical reference for the authored visitor room and tufa foundation. The display floor is reconstructed from public views and the standard terrain."
     },
     "bounds": [
-      12.482070037106107,
-      41.892556415551134,
-      12.48243950738274,
-      41.8927690223023
+      12.482002432568807,
+      41.892346458989195,
+      12.482324575132624,
+      41.892595765336694
     ],
-    "notes": "Approximate current buried-foundation placement inside the mapped Esedra, not a reconstruction of the lost temple. The long wall follows the museum envelope axis; its exposed face points south-southeast toward the approximate2024 photographic camera location. Exact ancient wall coordinates and excavation levels are not mapped. The entire model envelope fits inside the retained museum part. The minimum native DEM vertex covering that envelope supplies a conservative overburden reference: modelY8.982m attaches there, leaving the highest modeled stone at least0.3m below the unchanged terrain. This preserves the modern surface and museum; it is an approximate burial envelope, not a measured excavation floor. SourceY0 is the displayed foundation base. No terrain/building/water removal. The normal above-ground world should not expose this basement wall; below-grade or isolated inspection is needed. Exact museum interior, excavation shape and buried masonry beyond the photographed visible remnants are not modeled."
-  }
+    "notes": "The visitor plan registers the exposed foundation in rooms 17 and 18 adjoining the Esedra. The separate Palazzo dei Conservatori model supplies the modern gallery and uses the same vertical terrain reference. Floor elevations remain approximate.",
+    "groundContactBasis": "The retained museum datum establishes a common vertical reference for the authored visitor room and tufa foundation. The display floor is reconstructed from public views and the standard terrain. Relative grades share the present-day museum heightfield."
+  },
+  "geographicNote": "The visitor plan registers the exposed foundation in rooms 17 and 18 adjoining the Esedra. The separate Palazzo dei Conservatori model supplies the modern gallery and uses the same vertical terrain reference. Floor elevations remain approximate. Map data © OpenStreetMap contributors, ODbL-1.0."
 }

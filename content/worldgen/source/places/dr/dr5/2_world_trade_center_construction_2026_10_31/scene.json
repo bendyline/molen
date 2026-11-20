@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "2 World Trade Center construction · October 31, 2026",
+  "seed": "2_world_trade_center_construction_2026_10_31",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "construction",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.2_world_trade_center_construction_2026_10_31",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e4ecf5",
+            "ground": "#ac9a89",
+            "intensity": 1.16
+          },
+          "sun": {
+            "direction": [
+              -3,
+              4,
+              2
+            ],
+            "color": "#fff4df",
+            "intensity": 1.65,
+            "castShadow": true
+          },
+          "background": "#b1c6d3",
+          "toneMapping": "agx",
+          "exposure": 1.03,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.35,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              180,
+              0.7,
+              140
+            ]
+          },
+          "materialRef": "palette:#777772",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -64,
+      3.4,
+      -34
+    ],
+    "lookAt": [
+      -30,
+      5.9,
+      -5
+    ],
+    "fov": 64
+  }
+}

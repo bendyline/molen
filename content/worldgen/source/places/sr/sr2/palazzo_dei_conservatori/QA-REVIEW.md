@@ -1,5 +1,13 @@
 # Palazzo dei Conservatori / Caffarelli museum ranges
 
+## Gallery update, 2026-11-18
+
+The museum now has an enclosed room beneath its existing roofs for the Temple of Jupiter foundation. The shared wall between the mapped ranges opens within the documented gallery. A lower floor, visitor platform and metal railing frame the exposed masonry.
+
+All four detail levels passed the three interior sightline checks. The original terrain and native map data recover on unload. The museum stays intact when the masonry fails to load. The current first two files total 389,268 bytes. [Current source and capture checks](qa.json)
+
+## Earlier exterior review
+
 Reviewed2026-10-24. **Completed medium-fi connected exterior; approximate native fit. Capitoline Museums remains a three-member collection, with this one member complete.**
 
 ![Native piazza view](site-preview.png)

@@ -1,0 +1,43 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.summer_palace_chengxian_hall",
+  "kind": "static-structure",
+  "title": "Summer Palace · Hall of Freshness and Clarity",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "layout.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.summer_palace_chengxian_hall",
+        "output": "assets/places/wx/wx4/summer_palace_chengxian_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ce3d8263674187713fd698b12d877191b43a633156f787f1c8887510734fe332"
+      }
+    ],
+    "generators": [
+      {
+        "id": "summer_palace_chengxian_hall",
+        "path": "models/generate-chengxian-hall.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "placement-report.json",
+      "shared-capture-report.json",
+      "map-frame.json",
+      "site-preview.png"
+    ]
+  }
+}

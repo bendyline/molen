@@ -45,19 +45,22 @@
     "models/spean-controls.json"
   ],
   "exportLabel": "Molen original Spean Thma",
-  "expectedDraftMasterHash": "sha256:61ded4d30c68f6c0ff0caafaaf0c3dd1bb16258a377782799aa91be6432b575e",
-  "visualBrief": "Surviving Angkor stone bridge ruin: squared stepped corbel passages, irregular sandstone courses, displaced roof slabs and eastern collapsed blocks, pale strangler roots and a second dark tree growing through the retained paving. Six visible passages and two broken channels; full ruin scope unverified. Provisional extent, not a restored intact road crossing.",
+  "expectedDraftMasterHash": "sha256:26cf524d2694107e57b1943ccf94db9d84326591c5aa8cc8f4c3b4916e6d629a",
+  "visualBrief": "Spean Thma ruin with stepped sandstone corbels, projecting moss-stained pier bases, displaced paving and a low broken eastern apron. Two intertwining trees retain the pale low fork and the rooted dark trunk.",
   "nativeAxes": "+X east-northeast; -X west-southwest; +Z south-southeast toward the nearby modern road; -Z north-northwest.",
   "sourceFacts": {
-    "identity": "Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.",
+    "identity": "The named Spean Thmor point and south-side photographs identify the ruin. Eight bays represent the central visible stretch. An additional broken paving apron interprets the continuation seen in the wider gallery photo. The exact surviving endpoints and bearing remain approximate.",
     "namedPoiId": 17592756541329,
     "approximateReconstruction": {
       "bays": 8,
       "pitchMeters": 2.1,
       "collapsedFromBay": 6,
-      "widthMeters": 6
+      "widthMeters": 6,
+      "brokenApronLengthMeters": 7,
+      "southPierAprons": "Six distinct stepped bases interpret the foreground stones in the 2025 south-side reference. The adjacent corbel passages stay open."
     },
-    "orientation": "+X east-northeast; -X west-southwest; +Z south-southeast toward the nearby modern road; -Z north-northwest."
+    "orientation": "+X east-northeast; -X west-southwest; +Z south-southeast toward the nearby modern road; -Z north-northwest.",
+    "orientationReview": "The ruin’s east–west axis follows the adjoining Petit Circuit approach as a local alignment proxy. The photographed corbel openings and two tree roots face toward the geotagged southwest viewpoint. The point location comes from the named PMTiles feature. The full surviving extent and the exact compass bearing remain approximate."
   },
   "references": [
     {
@@ -108,15 +111,17 @@
       "author": "Metadata not verified; no author inferred.",
       "license": "Metadata not verified; photograph viewed only and neither downloaded nor redistributed.",
       "use": "Inspected close view of three squared corbel passages, massive roots above the paving, irregular courses and broken outer masonry."
+    },
+    {
+      "url": "https://www.tourismcambodia.com/attractions/angkor/spean-thmar.htm",
+      "image": "https://www.tourismcambodia.com/img/pictures/speantmar.jpg",
+      "use": "Front photograph shows uneven pier heads, stepped sandstone courses, dark moss staining, and the two rooted trunks at different elevations. Ordinary view of the photographed central section."
     }
   ],
   "limitations": [
-    "Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.",
-    "Only the photographed visible remnant segment is interpreted: six passages with partial upper corbels/slabs and two broken eastern channels/pier stubs. The full surviving ruin footprint, total bay count and hidden masonry remain unverified. This source draft is not a completed unique-candidate model.",
-    "Two tree/root silhouettes are photo-led approximations, not botanical surveys. Portable GLBs use small opaque modeled leaf sprigs rather than alpha-card crowns; this avoids per-model atlases and unsupported portable shader bindings. Shared native scatter cards remain the standard for ordinary generated forest.",
-    "Stone blocks, irregular course heights, explicitly drawn creeping root paths and tree proportions are authored deterministically. The current model remains only a visible-remnant draft. No downloaded mesh or copied photo pixels. Native ground and both modern crossings must remain unchanged.",
-    "This is a photo-led surviving-ruin interpretation. No exact-QID outline, measured full bay schedule, complete hidden masonry, tree survey or verified full surviving footprint is available. Keep geographic/fidelity approval pending if the full extent and root-tree silhouette cannot be established in current inspection.",
-    "Two existing shared 256px stone_sandstone_raw and wood_plain graphs; muted linear vertex colors supply stone variation and leaves. Opaque modeled leaf sprigs are an explicit portable landmark-tree exception to native scatter-card foliage, not a claim to use that atlas. No private textures, embedded images, downloaded meshes or copied photo pixels. Physical-device timings remain unmeasured."
+    "The mapped Spean Thmor point and geotagged south-facing photographs establish the ruin’s vicinity. The exact axis and all surviving masonry beyond the known views remain unverified.",
+    "Six central passages are partially roofed. The broken eastern apron interprets the continuation visible in a wider photograph. Individual block positions, hidden foundations and the full surviving bay schedule remain estimates.",
+    "The two trees use photo-led root paths, irregular bark profiles and modeled foliage. Both mapped modern crossings are independent of the ruin."
   ],
   "cameras": [
     {
@@ -178,12 +183,12 @@
     {
       "name": "collapsed-eastern-courses",
       "position": [
-        18,
+        20,
         6,
-        12
+        13
       ],
       "lookAt": [
-        10,
+        11.4,
         1,
         0
       ],
@@ -351,5 +356,6 @@
         "errorMeters": 0.05
       }
     }
-  }
+  },
+  "orientationPolicy": "approximate-visualization"
 }
