@@ -4,8 +4,15 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readStructurePlacements } from '../../worldgen-earth/scripts/placement-sources.mjs';
 import { readStructureCollections } from './structure-collections.mjs';
-import { structurePlacementId, validateStructureCandidateIds } from './structure-identity.mjs';
+import {
+  structurePlacementId,
+  structureReleaseCandidates,
+  validateStructureCandidateIds,
+} from './structure-identity.mjs';
 import { knownSourceEntries, sourceRepositoryRoot as root } from './structure-source-paths.mjs';
+
+// This reviewed placement predates the uniform candidate naming convention.
+const retainedPlacementIds = new Map([['mameyand', 'mameyand.bridge']]);
 
 export async function validateStructureIdentities() {
   const json = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
@@ -15,8 +22,11 @@ export async function validateStructureIdentities() {
     resolve(root, 'content/worldgen/source/structure-catalog/collections.json'),
     catalog.candidates,
   );
-  const records = [...catalog.candidates, ...collections.flatMap((entry) => entry.members)];
+  const originalRecords = [...catalog.candidates, ...collections.flatMap((entry) => entry.members)];
+  const releaseReplacements = structureReleaseCandidates(catalog).filter((entry) => entry.replaces);
+  const records = [...originalRecords, ...releaseReplacements];
   const named = new Set(records.map((entry) => entry.id));
+  const originalIds = new Set(originalRecords.map((entry) => entry.id));
   const project = await json('content/worldgen/project.json');
   const sources = knownSourceEntries();
   const retired = /(?:next[-_ ]?1,?0{3}|(?:^|[./])n\d{4}(?:_|[./]|$))/i;
@@ -52,8 +62,15 @@ export async function validateStructureIdentities() {
     if (!project.assets[placement.asset] || retired.test(placement.id))
       throw new Error(`${placement.id}: invalid placement identity or asset`);
     const key = placement.asset.replace(/^molen\.worldgen\.structure\./, '');
-    if (named.has(key) && placement.id !== structurePlacementId(placement.asset))
-      throw new Error(`${placement.id}: expected ${structurePlacementId(placement.asset)}`);
+    if (!originalIds.has(key)) continue;
+    const expected = retainedPlacementIds.get(key) ?? structurePlacementId(placement.asset);
+    const appearanceDate = placement.appearance?.representedDate ?? placement.appearance?.validFrom;
+    const dated =
+      placement.status === 'historical' &&
+      /^\d{4}-\d{2}-\d{2}$/.test(appearanceDate ?? '') &&
+      placement.id === `${expected}.${appearanceDate.slice(0, 4)}`;
+    if (placement.id !== expected && !dated)
+      throw new Error(`${placement.id}: expected ${expected}`);
   }
   return {
     candidates: catalog.candidates.length,

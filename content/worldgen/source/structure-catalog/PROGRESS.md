@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 1240 authored assets, 1240 imported assets and 1201 active geographic asset previews.
+There are 1228 authored assets, 1228 imported assets and 1192 active geographic asset previews.
 There are 1 reviewed reusable map-category models; they have rule-based instances rather than a unique landmark anchor.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
@@ -15,10 +15,10 @@ approvals retain their original scope and are not automatically medium-fi approv
 | Runtime GLBs imported | 1000 |
 | Portable visual reviews passed | 1000 |
 | Shared-material reviews passed | 1000 |
-| Active geographic previews | 970 |
+| Active geographic previews | 972 |
 | Reviewed proposal placements | 2 |
-| Declared fidelity reviews passed | 999 |
-| Complete | 996 |
+| Declared fidelity reviews passed | 1000 |
+| Complete | 1000 |
 | Source models still to author | 0 |
 
 ## Authored models
@@ -797,12 +797,12 @@ for exact blockers, identity issues and all 1,000 candidates.
 | wurzburg_residence | [Würzburg Residence](../places/u0/u0z/wurzburg_residence/README.md) | 10080 | Passed | Passed | Passed | Passed | Yes |
 | capitoline_museums | [Capitoline Museums](collections.json) (3/3 members complete) | 15305 | Passed | Passed | Passed | Passed | Yes |
 | yasnaya_polyana | [Yasnaya Polyana](collections.json) (20/20 members complete) | 48397 | Passed | Passed | Passed | Passed | Yes |
-| catacombs_of_paris | [Catacombs of Paris](../places/u0/u09/catacombs_of_paris/README.md) | 114433 | Passed | Passed | Pending | Pending | Pending |
+| abbey_museum_of_art_and_archaeology | [Abbey Museum of Art and Archaeology](../places/r7/r7h/abbey_museum_of_art_and_archaeology/README.md) | 649 | Passed | Passed | Passed | Passed | Yes |
 | livadia_palace | [Livadia Palace](../places/sz/szb/livadia_palace/README.md) | 170573 | Passed | Passed | Passed | Passed | Yes |
 | royal_spanish_academy | [Royal Spanish Academy](../places/ez/ezj/royal_spanish_academy/README.md) | 25506 | Passed | Passed | Passed | Passed | Yes |
 | maulbronn_monastery | [Maulbronn Monastery](../places/u0/u0w/maulbronn_monastery/README.md) | 36816 | Passed | Passed | Passed | Passed | Yes |
 | royal_palace_of_madrid | [Royal Palace of Madrid](../places/ez/ezj/royal_palace_of_madrid/README.md) | 437360 | Passed | Passed | Passed | Passed | Yes |
-| mini_israel | [Mini Israel](collections.json) (11/11 members complete) | 176425 | Passed | Passed | Passed | Passed | Pending |
+| mini_israel | [Mini Israel](collections.json) (11/11 members complete) | 176425 | Passed | Passed | Passed | Passed | Yes |
 | brest_fortress | [Brest Fortress](../places/u9/u92/brest_fortress/README.md) | 20359 | Passed | Passed | Passed | Passed | Yes |
 | museum_of_fine_arts_boston | [Museum of Fine Arts Boston](../places/dr/drt/museum_of_fine_arts_boston/README.md) | 15704 | Passed | Passed | Passed | Passed | Yes |
 | abbey_and_altenmunster_of_lorsch | [Abbey and Altenmünster of Lorsch](collections.json) (2/2 members complete) | 22461 | Passed | Passed | Passed | Passed | Yes |
@@ -926,7 +926,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | winter_palace | [Winter Palace](../places/ud/udt/winter_palace/README.md) | 63729 | Passed | Passed | Passed | Passed | Yes |
 | uffizi_gallery | [Uffizi Gallery](../places/sr/srb/uffizi_gallery/README.md) | 111413 | Passed | Passed | Passed | Passed | Yes |
 | belvedere | [Belvedere](../places/u2/u2e/belvedere/README.md) | 82014 | Passed | Passed | Passed | Passed | Yes |
-| summer_palace | [Summer Palace](collections.json) (49/49 members complete) | 708883 | Passed | Passed | Passed | Passed | Pending |
+| summer_palace | [Summer Palace](collections.json) (49/49 members complete) | 709035 | Passed | Passed | Passed | Passed | Yes |
 | apostolic_palace | [Apostolic Palace](../places/sr/sr2/apostolic_palace/README.md) | 30375 | Passed | Passed | Passed | Passed | Yes |
 | doges_palace | [Doge's Palace](../places/u2/u20/doges_palace/README.md) | 240229 | Passed | Passed | Passed | Passed | Yes |
 | golestan_palace | [Golestan Palace](../places/tn/tnk/golestan_palace/README.md) | 27645 | Passed | Passed | Passed | Passed | Yes |
@@ -995,7 +995,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | victims_of_acts_of_terror_memorial | [Victims of Acts of Terror Memorial](../places/sv/sv9/victims_of_acts_of_terror_memorial/README.md) | 5965 | Passed | Passed | Passed | Passed | Yes |
 | kumsusan_palace_of_the_sun | [Kumsusan Palace of the Sun](../places/wy/wyc/kumsusan_palace_of_the_sun/README.md) | 51639 | Passed | Passed | Passed | Passed | Yes |
 | ho_chi_minh_mausoleum | [Ho Chi Minh Mausoleum](../places/w7/w7e/ho_chi_minh_mausoleum/README.md) | 11752 | Passed | Passed | Passed | Passed | Yes |
-| osun_osogbo_grove | [Osun-Osogbo Grove](collections.json) (12/13 members complete) | 353099 | Passed | Passed | Pending | Passed | Pending |
+| washington_monument_baltimore | [Washington Monument (Baltimore)](../places/dq/dqc/washington_monument_baltimore/README.md) | 62548 | Passed | Passed | Passed | Passed | Yes |
 | chiang_kai_shek_memorial_hall | [Chiang Kai-shek Memorial Hall](../places/ws/wsq/chiang_kai_shek_memorial_hall/README.md) | 46362 | Passed | Passed | Passed | Passed | Yes |
 | basilica_of_candelaria | [Basilica of Candelaria](../places/et/eth/basilica_of_candelaria/README.md) | 50163 | Passed | Passed | Passed | Passed | Yes |
 | padrao_dos_descobrimentos | [Padrão dos Descobrimentos](../places/ey/eyc/padrao_dos_descobrimentos/README.md) | 66441 | Passed | Passed | Passed | Passed | Yes |

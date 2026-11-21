@@ -6,6 +6,8 @@ All four levels use the shared painted metal and concrete graphs. The street and
 
 The recorded camera bearing places the apron west-southwest of the archive pin. A uniform 89% scale about that camera preserves the photographed view and gives the apron 2.77 m of clearance from the nearest mapped path. A shallow grade supports the apron in the 17 May 2012 view, the panorama’s publication date. The old platform dimensions and grade remain estimates. [Placement review](placement-report.json) · [Reference observations](reference-observations.json)
 
+A walk uploaded in January 2024 shows the grey apron, yellow freighter, raised aircraft and the neighboring service display. The two views show the layout from either side of the visitor sign. PMTiles gives the nearby path layout. The later platform's position, grade and present condition remain open. [Apron walk](https://www.youtube.com/watch?v=15fXr5yu1c8&t=2680s)
+
 ```powershell
 node content/worldgen/source/places/sv/sv8/mini_israel_ben_gurion_airport/models/generate-ben-gurion-exhibit.mjs
 node packages/worldgen/scripts/import-structure-models.mjs --ids=mini_israel_ben_gurion_airport

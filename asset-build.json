@@ -34,6 +34,13 @@
   },
   "generators": [
     {
+      "id": "worldgen-place-wx4-water-village-pavilion",
+      "command": [
+        "node",
+        "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/generate-water-village-pavilion.mjs"
+      ]
+    },
+    {
       "id": "worldgen-place-sv8-opera-tower-exhibit",
       "command": [
         "node",
@@ -10312,16 +10319,16 @@
         "node",
         "content/worldgen/source/places/wx/wx7/danbo_jingcheng_hall/models/generate-danbo-jingcheng-hall.mjs"
       ]
-    }
-  ],
-  "afterImport": [
+    },
     {
       "id": "worldgen-place-wx4-summer-palace-stele-2006",
       "command": [
         "node",
         "content/worldgen/source/places/wx/wx4/summer_palace_farming_stele_2006/models/generate-open-apron.mjs"
       ]
-    },
+    }
+  ],
+  "afterImport": [
     {
       "id": "worldgen-runtime-lods",
       "command": ["node", "packages/tooling/scripts/generate-landmark-lods.mjs"]

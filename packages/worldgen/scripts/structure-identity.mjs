@@ -28,3 +28,39 @@ export function validateStructureCandidateIds(candidates) {
     ids.add(candidate.id);
   }
 }
+
+/** Keep planning identities available to authoring while selecting the reviewed release roster. */
+export function structureReleaseCandidates(catalog) {
+  const candidates = new Map(catalog.candidates.map((candidate) => [candidate.id, candidate]));
+  const identities = new Set(catalog.candidates.map((candidate) => candidate.wikidataId));
+  const assets = new Set(
+    catalog.candidates.flatMap((candidate) => [
+      candidate.modelRef,
+      ...(candidate.modelRefs ?? []).map((member) => member.asset),
+    ]),
+  );
+  const replacements = new Map();
+  for (const replacement of catalog.releaseReplacements ?? []) {
+    const original = candidates.get(replacement.replaces);
+    if (
+      !original ||
+      replacements.has(original.id) ||
+      candidates.has(replacement.id) ||
+      !/^Q[1-9]\d*$/.test(replacement.wikidataId) ||
+      identities.has(replacement.wikidataId) ||
+      assets.has(replacement.modelRef) ||
+      replacement.modelRef !== `molen.worldgen.structure.${replacement.id}` ||
+      original.category !== replacement.category ||
+      !replacement.reason?.trim()
+    )
+      throw new Error(`Invalid structure release replacement ${replacement.id}`);
+    replacements.set(original.id, replacement);
+    identities.add(replacement.wikidataId);
+    assets.add(replacement.modelRef);
+  }
+  const release = catalog.candidates.map(
+    (candidate) => replacements.get(candidate.id) ?? candidate,
+  );
+  validateStructureCandidateIds(release);
+  return release;
+}

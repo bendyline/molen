@@ -92,13 +92,15 @@ function roofPoint(roof, side, u, v, lift = 0) {
   if (!adjoining) return [x, y + lift, z];
   const eave = roofSection(roof, side, 1, v);
   const opposite = roofSection(adjoining, -side, 1, v);
-  const opening = Math.max(0, (v - 0.62) / 0.38);
-  const separation = opening * opening;
+  const westValley = roof === roofs[0] || adjoining === roofs[0];
+  const openingStart = westValley ? 0.54 : 0.62;
+  const opening = Math.max(0, (v - openingStart) / (1 - openingStart));
+  const separation = westValley ? opening * (2 - opening) : opening * opening;
   const [joinX, joinY, joinZ] = eave.map((value, axis) => (value + opposite[axis]) * 0.5);
-  // The eaves share a valley behind the three front gables. They pull apart near the approach.
-  const edgeX = joinX - side * 0.39 * separation;
-  const edgeY = joinY + (eave[1] - joinY) * separation;
-  const edgeZ = joinZ + (eave[2] - joinZ) * separation;
+  // The eaves share a valley behind the gables and part around the approaches.
+  const edgeX = joinX - side * (westValley ? 1.46 : 0.39) * separation;
+  const edgeY = joinY + (eave[1] - joinY + (westValley ? 0.23 : 0)) * separation;
+  const edgeZ = joinZ + (eave[2] - joinZ - (westValley ? 0.28 : 0)) * separation;
   return [
     x + (edgeX - eave[0]) * u,
     y + lift + (edgeY - eave[1]) * u * (2 - u),
@@ -268,19 +270,19 @@ function roofShell(out, roof, level) {
 function valleyCovers(out, level) {
   if (level === 0) return;
   // Two raised sheets above the left valley read separately in the side photograph.
-  for (const [station, width, depth, rise] of [
-    [0.32, 1.24, 0.94, 0.38],
-    [0.68, 1.54, 1.02, 0.49],
+  for (const [station, rise] of [
+    [0.32, 0.32],
+    [0.59, 0.26],
   ]) {
-    const [x, y, z] = roofPoint(roofs[0], 1, 0.93, station, 0.1);
+    const mount = (u, v, lift) => roofPoint(roofs[0], 1, u, station + v, lift);
     const cap = [
-      [x - width * 0.5, y + 0.2, z - depth * 0.31],
-      [x - width * 0.42, y + 0.15, z + depth * 0.53],
-      [x + width * 0.16, y + rise, z + depth * 0.4],
-      [x + width * 0.52, y + rise + 0.08, z - depth * 0.49],
+      mount(0.68, -0.067, 0.13),
+      mount(0.68, 0.065, 0.13),
+      mount(0.97, 0.051, rise),
+      mount(0.97, -0.061, rise),
     ];
     face(out, 'roof', ...cap, [0.47, 0.437, 0.405]);
-    face(out, 'lining', ...cap.toReversed().map(([a, b, c]) => [a, b - 0.028, c]), bamboo);
+    face(out, 'lining', ...cap.toReversed().map(([x, y, z]) => [x, y - 0.028, z]), bamboo);
     if (level < 2) continue;
     for (const [a, b] of [
       [cap[0], cap[1]],
@@ -289,9 +291,8 @@ function valleyCovers(out, level) {
     ]) {
       beam(out, 'wood', [a[0], a[1] - 0.04, a[2]], [b[0], b[1] - 0.04, b[2]], 0.052, 0.045, wood);
     }
-    for (const amount of [0.2, 0.8]) {
-      const [a, b, c] = cap[2].map((value, i) => value + amount * (cap[3][i] - value));
-      beam(out, 'wood', [a - 0.38, y - 0.28, c], [a, b - 0.04, c], 0.058, 0.052, wood);
+    for (const v of [-0.039, 0.029]) {
+      beam(out, 'wood', mount(0.94, v, 0.03), mount(0.97, v, rise - 0.045), 0.058, 0.052, wood);
     }
   }
 }
@@ -469,7 +470,12 @@ function entranceWall(out, level) {
         const inner = side < 0 ? a : b;
         const x = inner + (-3.85 * Number(side < 0) + 3.97 * Number(side > 0) - inner) * t;
         const taper = Math.max(0, (Math.abs(x) - 0.85) / 3.13);
-        return [x, y * (1 - 0.51 * taper * taper), wallFront(x, y) - back];
+        const westShoulder = Math.max(0, (-x - 2.45) / 1.4);
+        return [
+          x,
+          y * (1 - 0.51 * taper * taper) * (1 - 0.52 * westShoulder),
+          wallFront(x, y) - 0.44 * westShoulder - back,
+        ];
       };
       for (let i = 0; i < slices; i++) {
         const u = i / slices,
@@ -591,6 +597,69 @@ function entranceGrille(out, level) {
   }
 }
 
+function westBay(out, level) {
+  // This low approach sits under the valley between the left and middle gables.
+  const opening = [
+    [0.3, -5.18, -4.31],
+    [0.54, -5.23, -4.22],
+    [0.84, -5.24, -4.21],
+    [1.1, -5.15, -4.27],
+    [1.34, -5.02, -4.36],
+    [1.43, -4.84, -4.54],
+    [1.49, -4.69, -4.69],
+  ];
+  const frontZ = 1.58;
+  const backZ = 0.99;
+  for (const [edge, end, tint] of [
+    [1, -5.95, oxide],
+    [2, -3.62, clay],
+  ]) {
+    const sill = opening[0][edge];
+    box(
+      out,
+      'earth',
+      [Math.min(end, sill), 0.035, frontZ - 0.29],
+      [Math.max(end, sill), 0.3, frontZ],
+      tint,
+    );
+    for (let i = 1; i < opening.length; i++) {
+      const low = opening[i - 1];
+      const high = opening[i];
+      const a = [low[edge], low[0], frontZ];
+      const b = [high[edge], high[0], frontZ];
+      const inner = [b, a, [a[0], a[1], backZ], [b[0], b[1], backZ]];
+      const wall = [[end, a[1], frontZ - 0.12], a, b, [end, b[1], frontZ - 0.12]];
+      if (edge === 2) {
+        inner.reverse();
+        wall.reverse();
+      }
+      face(out, 'earth', ...inner, oxide);
+      face(out, 'earth', ...wall, tint);
+    }
+  }
+  box(out, 'earth', [-5.95, 1.49, 1.34], [-3.62, 1.58, 1.58], clay);
+  box(out, 'earth', [-5.34, 0.28, 0.85], [-4.08, 1.57, backZ], [0.12, 0.072, 0.056]);
+  for (const [height, halfWidth, depth] of [
+    [0.13, 0.66, 2.5],
+    [0.22, 0.56, 2.2],
+    [0.3, 0.49, 1.88],
+  ]) {
+    box(out, 'earth', [-4.74 - halfWidth, 0.035, 1.15], [-4.74 + halfWidth, height, depth], accent);
+  }
+  branch(
+    out,
+    [
+      [-3.99, 0.25, 2.14],
+      [-3.8, 0.62, 1.98],
+      [-3.74, 1.03, 1.77],
+      [-3.91, 1.29, 1.62],
+    ],
+    [0.37, 0.32, 0.24, 0.12],
+    clay,
+    level,
+  );
+}
+
 function lobe(out, center, radii, shade, level) {
   sphere(
     out,
@@ -630,15 +699,15 @@ function branch(out, points, sizes, color, level) {
 }
 
 function reliefs(out, level) {
-  for (const [x, y, rx, ry] of [
-    [-3.01, 1.41, 0.8, 1.06],
-    [-2.51, 2.64, 0.71, 0.87],
+  for (const [x, y, rx, ry, recess = 0] of [
+    [-2.89, 1.19, 0.59, 0.78, 0.35],
+    [-2.51, 2.23, 0.52, 0.59, 0.22],
     [-1.85, 3.36, 0.47, 0.79],
     [1.66, 1.27, 0.68, 1.12],
     [2.44, 2.41, 0.76, 1.37],
     [3.28, 2.96, 0.56, 0.94],
   ])
-    lobe(out, [x, y, wallFront(x, y)], [rx, ry, 0.44], x < 0 ? accent : oxide, level);
+    lobe(out, [x, y, wallFront(x, y) - recess], [rx, ry, 0.44], x < 0 ? accent : oxide, level);
   // Left wing's rising vegetal relief. Nested lobes and curved arms keep the scooped form.
   for (const [x, y, z, rx, ry, rz] of [
     [-8.77, 1.55, 1.08, 1.19, 1.54, 0.71],
@@ -1124,6 +1193,7 @@ function build(out, level) {
   const sheltered = beneathRoof(out);
   entranceWall(sheltered, level);
   if (level >= 2) {
+    westBay(sheltered, level);
     entranceGrille(sheltered, level);
     interior(sheltered, level);
   }

@@ -4,7 +4,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { structureKeyFromTitle, validateStructureCandidateIds } from './structure-identity.mjs';
+import {
+  structureKeyFromTitle,
+  structureReleaseCandidates,
+  validateStructureCandidateIds,
+} from './structure-identity.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const output = resolve(root, 'content/worldgen/source/structure-catalog/candidates.json');
@@ -138,7 +142,9 @@ const catalog = {
   warning:
     'Coordinates are source reference points, not surveyed model anchors. Titles, feature identity, geometry, and rights require review before placement.',
   quotas: Object.fromEntries(groups.map(([category, , quota]) => [category, quota])),
+  ...(previous?.releaseReplacements ? { releaseReplacements: previous.releaseReplacements } : {}),
   candidates,
 };
+structureReleaseCandidates(catalog);
 await writeFile(output, `${JSON.stringify(catalog, null, 2)}\n`);
 console.log(`Wrote ${output}`);

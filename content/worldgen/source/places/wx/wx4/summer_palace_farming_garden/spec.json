@@ -11,7 +11,7 @@
   "title": "Summer Palace · Garden of Farming and Weaving",
   "category": "palace",
   "quality": "detailed",
-  "visualBrief": "Grey tiled halls, red timber frames, green lattice screens and pale stone thresholds surround the Water Training School courts. A sheltered southern gallery and separate waterside structures sit above the native pond. The Water Village court to the north has grey tiles, broad dark timber and glass doors, and low stone sills. The south range has a recessed veranda with irregular stone under the windows and a narrow central stair. A short walk and stone landing join the south-range approach to the veranda.",
+  "visualBrief": "Grey tiled halls, red timber frames, green lattice screens and pale stone thresholds surround the Water Training School courts. A sheltered southern gallery and separate waterside structures sit above the native pond. The Water Village court to the north has grey tiles, broad dark timber and glass doors, and low stone sills. The south range has a recessed veranda with irregular stone under the windows and a narrow central stair. A short walk and stone landing join the south-range approach to the veranda. Recessed masonry gables close the ends of the two rear ranges under the roofs.",
   "nativeAxes": "+X and +Z are mapped local axes. Building bearings are derived independently from their mapped outlines.",
   "actualBounds": {
     "min": [
@@ -68,7 +68,10 @@
     "https://g.udn.com.tw/upfiles/B_GE/ger0830/PSN_PHOTO/631/f_21127631_1.jpg",
     "https://yllhj.beijing.gov.cn/ztxx/bjhx/gssd/202605/t20260507_4639416.shtml",
     "https://www.thepaper.cn/newsDetail_forward_8235946",
-    "https://www.hkcd.com.hk/content/2018-05/31/content_1091159.html"
+    "https://www.hkcd.com.hk/content/2018-05/31/content_1091159.html",
+    "https://www.summerpalace.net.cn/noticelist/detail/1000685.html",
+    "https://nodai.repo.nii.ac.jp/record/261/files/KJ00004317765.pdf",
+    "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/11475/19/198491/431459"
   ],
   "geographicProposal": {
     "status": "preview-proposal",
@@ -377,12 +380,12 @@
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://build.protomaps.com/20261111.pmtiles",
     "wikidataId": "Q4132",
-    "notes": "Fourteen occupied PMTiles footprints establish the Water Training School courts, inland gallery, waterfront pavilions and the three northern ranges in the Water Village court. The native shoreline, ponds and public paths are retained. Individual room names, heights and courtyard paving are approximate. The small entry gate and fence lack a mapped footprint. The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. Its approach strip in the overhead view supports the south-facing trial. The tea-house attribution and the position of its separate gate remain provisional."
+    "notes": "Fourteen occupied PMTiles footprints establish the Water Training School courts, inland gallery, waterfront pavilions and the three northern ranges in the Water Village court. The native shoreline, ponds and public paths are retained. Individual room names, heights and courtyard paving are approximate. The small entry gate and fence lack a mapped footprint. The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. The park festival photograph shows that facade through the separate gate. The exact gate setback remains approximate. The two rear ranges use the ridge lines visible in the aerial photograph and masonry gables observed in the 2003 Water Village field photograph. This is a reconstruction of their roof ends. Current room uses and individual facades are unverified."
   },
   "sourceGeometry": {
     "module": "content/worldgen/source/places/wx/wx4/summer_palace_farming_garden/models/member-model.mjs",
     "export": "buildMaster",
-    "layoutHash": "sha256:40cf6badd677248dbb899eb0dba79423361f23685b860cddb5cfc8b710b8cec7"
+    "layoutHash": "sha256:1349a8f5555a7201351cd314b6e4b7ed52e4971e7d416fbc0199c2101af6de11"
   },
   "runtimeLodOverlay": {
     "level": "skyline",
@@ -411,7 +414,7 @@
         "graph": "window_grid"
       }
     },
-    "inputHash": "sha256:31e4e4a39aa70ed949bc3f4a4c9916e7636764ccbd64d7f740b7a7b8643935ef",
+    "inputHash": "sha256:cb7c2f5542f1aab62b83f71b241906b839839eb1ea076d79bc362137bd0b2eeb",
     "authoredLevels": {
       "district": {
         "export": "buildDistrict",
@@ -498,7 +501,8 @@
   "reviewStatus": "Visual and geographic acceptance is recorded in qa.json.",
   "limitations": [
     "Fourteen occupied PMTiles footprints establish the Water Training School courts, inland gallery, waterfront pavilions and the three northern ranges in the Water Village court. The native shoreline, ponds and public paths are retained. Individual room names, heights and courtyard paving are approximate. The small entry gate and fence lack a mapped footprint.",
-    "The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. Its approach strip in the overhead view supports the south-facing trial. The tea-house attribution and the position of its separate gate remain provisional."
+    "The south range has a recessed timber-and-glass front, an open veranda, irregular stone infill and a narrow central step. The park festival photograph shows that facade through the separate gate. The exact gate setback remains approximate.",
+    "The two rear ranges use the ridge lines visible in the aerial photograph and masonry gables observed in the 2003 Water Village field photograph. This is a reconstruction of their roof ends. Current room uses and individual facades are unverified."
   ],
   "qaCameras": [
     {
@@ -586,6 +590,20 @@
       "fov": 57
     },
     {
+      "name": "water-village-rear-gable",
+      "position": [
+        147.3,
+        2.29,
+        -109.1
+      ],
+      "lookAt": [
+        133.63,
+        1.45,
+        -116.65
+      ],
+      "fov": 65
+    },
+    {
       "name": "water-village-south-veranda",
       "position": [
         110.45444981285921,
@@ -604,10 +622,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 47416,
-    "vertices": 95056,
+    "triangles": 47568,
+    "vertices": 95360,
     "materials": 5,
-    "bytes": 3994432,
-    "sha256": "sha256:f621649d8c0b851ac0c0baeae90ed184d8e5bf9a118098f08468ec278df25ff9"
+    "bytes": 4007200,
+    "sha256": "sha256:692704d7da99fbadd5a74472514bdbd3c850b052318255af26614a39665582c5"
   }
 }

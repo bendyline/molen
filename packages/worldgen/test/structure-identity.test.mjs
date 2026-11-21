@@ -4,6 +4,7 @@ import { readStructurePlacements } from '../../worldgen-earth/scripts/placement-
 import {
   structureKeyFromTitle,
   structurePlacementId,
+  structureReleaseCandidates,
   validateStructureCandidateIds,
 } from '../scripts/structure-identity.mjs';
 import { knownSourceEntries, structureSourcePath } from '../scripts/structure-source-paths.mjs';
@@ -38,6 +39,27 @@ describe('stable named structure identities', () => {
         { id: 'aon_center_los_angeles' },
       ]),
     ).not.toThrow();
+  });
+  it('replaces one release slot without changing the planning inventory or counting an asset twice', () => {
+    const original = { id: 'original_museum', category: 'museum', wikidataId: 'Q1' };
+    const other = { id: 'other_museum', category: 'museum', wikidataId: 'Q2' };
+    const replacement = {
+      id: 'reviewed_museum',
+      wikidataId: 'Q3',
+      category: 'museum',
+      modelRef: 'molen.worldgen.structure.reviewed_museum',
+      replaces: original.id,
+      reason: 'Reviewed viewer placement.',
+    };
+    const catalog = { candidates: [original, other], releaseReplacements: [replacement] };
+    expect(structureReleaseCandidates(catalog)).toEqual([replacement, other]);
+    expect(catalog.candidates).toEqual([original, other]);
+    expect(() =>
+      structureReleaseCandidates({
+        ...catalog,
+        releaseReplacements: [replacement, { ...replacement, replaces: other.id }],
+      }),
+    ).toThrow('Invalid structure release replacement');
   });
   it('resolves every placement and named catalog model through the migrated registries', async () => {
     const entries = knownSourceEntries();

@@ -36,6 +36,7 @@ const cream = [0.68, 0.667, 0.591];
 const villageTimber = [0.266, 0.198, 0.132];
 const villagePanel = [0.31, 0.231, 0.157];
 const villageGlass = [0.156, 0.168, 0.131];
+const rearRangeHalfWidth = 0.485;
 const porchTimber = [0.135, 0.083, 0.066];
 const porchPanel = [0.172, 0.111, 0.084];
 const porchGlazing = [0.089, 0.11, 0.083];
@@ -52,18 +53,21 @@ function rangeRoof(out, { width, depth, height, rise, gable, roofColor, brickGab
   if (detail === 0) {
     const ridge = gable ? x * 0.96 : x * 0.77;
     for (const sign of [-1, 1]) {
-      face(
-        out,
-        'tile',
-        [
-          [-x, height, sign * z],
-          [x, height, sign * z],
-          [ridge, height + rise, 0],
-          [-ridge, height + rise, 0],
-        ],
-        roofColor,
-        up,
-      );
+      const slope = [
+        [-x, height, sign * z],
+        [x, height, sign * z],
+        [ridge, height + rise, 0],
+        [-ridge, height + rise, 0],
+      ];
+      face(out, 'tile', slope, roofColor, up);
+      if (brickGables)
+        face(
+          out,
+          'timber',
+          slope.map(([x, y, z]) => [x, y - 0.11, z]),
+          dark,
+          [0, -1, 0],
+        );
       if (!brickGables)
         face(
           out,
@@ -99,7 +103,15 @@ function rangeRoof(out, { width, depth, height, rise, gable, roofColor, brickGab
       const upper = rows[j];
       for (let i = 0; i < lower.length; i++) {
         if ((i + 1) % us.length === 0) continue;
-        face(out, 'tile', [lower[i], lower[i + 1], upper[i + 1], upper[i]], roofColor, up);
+        const slope = [lower[i], lower[i + 1], upper[i + 1], upper[i]];
+        face(out, 'tile', slope, roofColor, up);
+        face(
+          out,
+          'timber',
+          slope.map(([x, y, z]) => [x, y - 0.11, z]),
+          dark,
+          [0, -1, 0],
+        );
       }
     }
   } else loft(out, 'tile', rows, roofColor, { cap: false });
@@ -146,16 +158,22 @@ function brickGableEnds(out, width, depth, height, rise, detail) {
   const rim = depth * 0.43;
   const segments = detail < 2 ? 2 : 4;
   for (const side of [-1, 1]) {
-    const x = side * width * 0.44;
+    const x = side * width * rearRangeHalfWidth;
     const point = (z) => {
       const t = 1 - Math.abs(z) / eaveDepth;
       const roofRise = detail === 0 ? t : t * (0.73 + 0.27 * t);
-      return [x, height + 0.025 + rise * roofRise, z];
+      return [x, height + 0.065 + rise * roofRise, z];
     };
     for (let i = 0; i < segments; i++) {
       const a = (-1 + (2 * i) / segments) * rim;
       const b = (-1 + (2 * (i + 1)) / segments) * rim;
-      face(out, 'masonry', [[x, height - 0.05, a], [x, height - 0.05, b], point(b), point(a)], wall, [side, 0, 0]);
+      face(
+        out,
+        'masonry',
+        [[x, height - 0.05, a], [x, height - 0.05, b], point(b), point(a)],
+        wall,
+        [side, 0, 0],
+      );
     }
   }
 }
@@ -391,7 +409,15 @@ function teaHouseBay(out, x, half, z, height, entrance, detail) {
 
   const transom = top - 0.36;
   if (entrance) {
-    wallFace('glass', transom + 0.059, top, 0.028, [0.118, 0.132, 0.097], -half * 0.61, half * 0.61);
+    wallFace(
+      'glass',
+      transom + 0.059,
+      top,
+      0.028,
+      [0.118, 0.132, 0.097],
+      -half * 0.61,
+      half * 0.61,
+    );
     wallFace('timber', transom, transom + 0.059, 0.054, porchTimber);
   } else {
     // The lower sash next to the door is glazed, while the outside half has a closed panel.
@@ -407,7 +433,15 @@ function teaHouseBay(out, x, half, z, height, entrance, detail) {
     const u = x - half + (2 * half * i) / divisions;
     const jamb = i === 0 || i === divisions || i === divisions / 2;
     const bottom = jamb ? sill : divider;
-    beam(out, 'timber', [u, bottom, barZ], [u, sashTop, barZ], jamb ? 0.07 : 0.041, 0.057, porchTimber);
+    beam(
+      out,
+      'timber',
+      [u, bottom, barZ],
+      [u, sashTop, barZ],
+      jamb ? 0.07 : 0.041,
+      0.057,
+      porchTimber,
+    );
   }
   const rows = detail >= 3 ? 4 : 2;
   for (let i = 0; i <= rows; i++) {
@@ -426,21 +460,27 @@ function teaHouseBay(out, x, half, z, height, entrance, detail) {
   }
 }
 
-function facade(out, w, d, { height, bays, open, access, finish, recessedPorch }, detail) {
+function facade(
+  out,
+  w,
+  d,
+  { height, bays, open, access, finish, recessedPorch, brickGables },
+  detail,
+) {
   const village = finish === 'water-village';
   const post = recessedPorch ? porchTimber : village ? villageTimber : red;
+  const half = w * (brickGables ? rearRangeHalfWidth : 0.44);
   if (detail === 0) {
     const rise = Math.min(2.15, Math.max(0.83, d * 0.26));
     const front = recessedPorch ? 0.44 : open ? 0.08 : 0.39;
     const top = recessedPorch ? height + 0.055 + rise * (1 - front / (1.073 / 2)) : height;
-    box(out, 'masonry', [-w * 0.44, 0, -d * 0.44], [w * 0.44, top, d * front], wall);
+    box(out, 'masonry', [-half, 0, -d * 0.44], [half, top, d * front], wall);
     if (open)
       for (const x of [-w * 0.43, w * 0.43])
         beam(out, 'timber', [x, 0, d * 0.39], [x, height, d * 0.39], 0.19, 0.19, post);
     return;
   }
-  const half = w * 0.44,
-    depth = d * 0.43;
+  const depth = d * 0.43;
   box(out, 'masonry', [-half, 0, -depth], [half, height, -depth + 0.25], wall);
   for (const side of [-1, 1]) {
     const x = side * (half - 0.16);

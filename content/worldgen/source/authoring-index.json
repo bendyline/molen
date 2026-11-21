@@ -4,6 +4,33 @@
   "evidence": "Static dependency/identity cross-reference. The full assets:build hash comparison proves reconstruction; this index alone does not.",
   "generators": [
     {
+      "id": "worldgen-place-wx4-water-village-pavilion",
+      "command": [
+        "node",
+        "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/generate-water-village-pavilion.mjs"
+      ],
+      "implementation": [
+        "content/worldgen/source/places/wx/wx4/summer_palace/models/summer-palace-model.mjs",
+        "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/generate-water-village-pavilion.mjs",
+        "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/water-village-pavilion-model.mjs",
+        "packages/worldgen/scripts/architectural-surface-authoring.mjs",
+        "packages/worldgen/scripts/authored-structure-mesh.mjs",
+        "packages/worldgen/scripts/deterministic-math.mjs",
+        "packages/worldgen/scripts/deterministic-pow.mjs",
+        "packages/worldgen/scripts/evidence-text-hash.mjs",
+        "packages/worldgen/scripts/format-json.mjs",
+        "packages/worldgen/scripts/install-deterministic-math.mjs",
+        "packages/worldgen/scripts/joined-path.mjs",
+        "packages/worldgen/scripts/khmer-structure-geometry.mjs",
+        "packages/worldgen/scripts/standard-materials.mjs",
+        "packages/worldgen/scripts/structure-collections.mjs",
+        "packages/worldgen/scripts/structure-identity.mjs",
+        "packages/worldgen/scripts/structure-mesh.mjs",
+        "packages/worldgen/scripts/structure-model-files.mjs",
+        "packages/worldgen/scripts/structure-source-paths.mjs"
+      ]
+    },
+    {
       "id": "worldgen-place-sv8-opera-tower-exhibit",
       "command": [
         "node",
@@ -90297,7 +90324,7 @@
           "assetId": "molen.worldgen.structure.osun_grove_second_palace",
           "output": "assets/places/s1/s17/osun_grove_second_palace/asset.json",
           "pipeline": "import",
-          "sha256": "sha256:67171eac3846a88fd2bdc1cbb81a66ea6604040377ba79a711e2bbbd9f6508c7"
+          "sha256": "sha256:7983f7e1b8a97cf84614c3449a3d43032447b035beee1530d57a2764c51814eb"
         }
       ],
       "generatorCandidates": [
@@ -101007,7 +101034,7 @@
           "assetId": "molen.worldgen.structure.summer_palace_farming_garden",
           "output": "assets/places/wx/wx4/summer_palace_farming_garden/asset.json",
           "pipeline": "import",
-          "sha256": "sha256:f621649d8c0b851ac0c0baeae90ed184d8e5bf9a118098f08468ec278df25ff9"
+          "sha256": "sha256:692704d7da99fbadd5a74472514bdbd3c850b052318255af26614a39665582c5"
         }
       ],
       "generatorCandidates": [
@@ -101772,6 +101799,28 @@
       ],
       "recipes": [
         "content/worldgen/source/places/wx/wx4/summer_palace_water_village_gate/models/water-village-gate-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.summer_palace_water_village_pavilion",
+      "candidateId": "summer_palace_water_village_pavilion",
+      "title": "Summer Palace · Water Village lakeside pavilion",
+      "sourceBundle": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.summer_palace_water_village_pavilion",
+          "output": "assets/places/wx/wx4/summer_palace_water_village_pavilion/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:b83afa563b2b06f6b10311eb06cc5df6ca623f29b884b32c99e785170a9f04c8"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-place-wx4-water-village-pavilion",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/water-village-pavilion-model.mjs"
       ]
     },
     {

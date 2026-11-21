@@ -39,6 +39,16 @@ Ordinary spatial queries select nearby member assets independently, so selecting
 does not load the other six buildings. The gallery displays individual member previews when
 they become available.
 
+## Release roster
+
+The [readiness ledger](../../../earth/structures/readiness.json) and gallery use the release roster.
+The `releaseReplacements` records in [candidates.json](candidates.json) name the two replacements
+and the planning entries they occupy. Each replacement must pass the same asset and placement
+checks. The Catacombs of Paris and Osun-Osogbo Grove retain their planning entries, source models
+and placement records. The declared release collections cover 11 Mini Israel exhibits and 49
+Summer Palace structures. Mini Israel includes seven dated exhibits. The collection manifest
+records work outside the release scope.
+
 ## Selection method
 
 The pinned [Wikidata snapshot](wikidata-snapshot.json) contains only CC0 structured facts:

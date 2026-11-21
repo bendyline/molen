@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
 import { validateStructureCollections } from '../../worldgen/scripts/structure-collections.mjs';
+import { structureReleaseCandidates } from '../../worldgen/scripts/structure-identity.mjs';
 import { modelInputHash, writeIndex } from '../../worldgen/scripts/structure-model-files.mjs';
 import {
   knownSourceEntries,
@@ -30,6 +31,7 @@ import { subterraneanIdentityResolved } from './reviewed-subterranean-placement.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
 const catalog = await readJson('content/worldgen/source/structure-catalog/candidates.json');
+const releaseCandidates = structureReleaseCandidates(catalog);
 const details = await readJson('content/earth/structures/evidence/wikidata-details.json');
 const geographic = await readJson('content/earth/structures/georeferencing.json');
 const identityReview = await readJson('content/earth/structures/identity-review.json');
@@ -77,7 +79,7 @@ if (selectedArgument && process.argv.includes('--check'))
   throw new Error('--check always verifies the full ledger; omit --ids.');
 const refresh = selectedArgument
   ? readinessRefresh(
-      catalog.candidates,
+      releaseCandidates,
       await readJson('content/earth/structures/readiness.json'),
       selectedArgument.slice(6).split(','),
       { collections, hash: hash(collectionBytes) },
@@ -289,6 +291,9 @@ async function modelReadiness(candidate, geo) {
     candidateId: candidate.id,
     wikidataId: candidate.wikidataId,
     title: candidate.title,
+    ...(candidate.replaces
+      ? { replaces: candidate.replaces, replacementReason: candidate.reason }
+      : {}),
     asset,
     readiness: blockers.length ? 'incomplete' : 'ready',
     blockers,
@@ -391,14 +396,27 @@ async function modelReadiness(candidate, geo) {
   };
 }
 const records = [];
-for (const candidate of catalog.candidates) {
+for (const candidate of releaseCandidates) {
   if (refresh && !refresh.selected.has(candidate.id)) {
     records.push(refresh.records.get(candidate.id));
     continue;
   }
   const collection = collections.find((entry) => entry.id === candidate.id);
   if (!collection) {
-    records.push(await modelReadiness(candidate, geoById.get(candidate.id)));
+    const geo = candidate.replaces
+      ? {
+          wikidataId: candidate.wikidataId,
+          asset: candidate.modelRef,
+          disposition: 'reference-only',
+          orientationStatus: 'unresolved',
+          referenceAnchor: [
+            candidate.referenceCoordinate.longitude,
+            candidate.referenceCoordinate.latitude,
+          ],
+          facts: { height: [], width: [], length: [] },
+        }
+      : geoById.get(candidate.id);
+    records.push(await modelReadiness(candidate, geo));
     continue;
   }
   const members = [];
