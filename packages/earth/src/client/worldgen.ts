@@ -93,6 +93,8 @@ export interface CreateEarthWorldgenOptions {
   landmarkStreaming?: StructureStreamingOptions | false;
   /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
   viewingDate?: string;
+  /** Placement ID of the proposal to display at its planned location. */
+  structureProposal?: string;
   /** Explicit month (1..12) for regional deciduous foliage. Omitted means neutral leaf-on. */
   vegetationMonth?: number;
   /** Ground heights in this terrain's vertical reference; may retrieve neighboring tiles. */
@@ -204,7 +206,7 @@ const inThreadBaker: MaterialBaker = {
 /** Worldgen renderers for an Earth view's classification and human-feature layers. */
 export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthWorldgen {
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
-    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+    throw new Error('viewingDate must be a valid ISO calendar date');
   if (
     options.vegetationMonth !== undefined &&
     (!Number.isInteger(options.vegetationMonth) ||
@@ -432,6 +434,9 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     places,
     structures,
     ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+    ...(options.structureProposal !== undefined
+      ? { structureProposal: options.structureProposal }
+      : {}),
     ...(options.sampleStructureTerrain
       ? { sampleStructureTerrain: options.sampleStructureTerrain }
       : {}),

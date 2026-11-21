@@ -1,0 +1,686 @@
+{
+  "planId": "monastery_of_the_holy_spirit",
+  "id": "monastery_of_the_holy_spirit",
+  "assetId": "molen.worldgen.structure.monastery_of_the_holy_spirit",
+  "title": "Monastery of the Holy Spirit",
+  "wikidataId": "Q3538053",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.06596,
+    "latitude": 33.58647
+  },
+  "size": [
+    121.78912734985352,
+    32.148300647735596,
+    105.00652694702148
+  ],
+  "actualBounds": {
+    "min": [
+      -37.380001068115234,
+      -3.7813000679016113,
+      -56.36652755737305
+    ],
+    "max": [
+      84.40912628173828,
+      28.367000579833984,
+      48.63999938964844
+    ]
+  },
+  "visualBrief": "The poured-concrete Conyers Abbey Church with its tall plain gable, recessed arched door and the adjoining dormered monastery wings.",
+  "nativeAxes": {
+    "x": "south along the facade",
+    "y": "up",
+    "z": "west from the abbey church"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Church_facade,_Holy_Spirit_Monastery.jpg",
+    "https://commons.wikimedia.org/wiki/File:Holy_Spirit_Monastery_at_daybreak.jpg"
+  ],
+  "stories": [
+    {
+      "id": "monastery-of-the-holy-spirit-wp",
+      "url": "https://qualla.com/monastery-of-the-holy-spirit/"
+    }
+  ],
+  "referenceInputHash": "sha256:7a0ef6fc2cbf264613c3df6f074f9b7626e2766b8dd99ffc9f12553ae71fb3d4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/dju/monastery_of_the_holy_spirit/models/monastery-of-the-holy-spirit-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/dju/monastery_of_the_holy_spirit/models/monastery-of-the-holy-spirit-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.91,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89,
+        "metallic": 0.1
+      },
+      "window": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.57,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.57,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_ashlar",
+    "tile_flat",
+    "metal_painted",
+    "window_grid",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.3,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The western public steps set the independent field datum. The development is aligned with the two mapped adjoining footprints.",
+    "anchor": [
+      -84.06596,
+      33.58647
+    ],
+    "heading": -1.6608105419242385,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.06646326158372,
+        33.5863419691258
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground at the foot of the west-facing public abbey steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -38,
+          -34
+        ],
+        [
+          65,
+          -58
+        ],
+        [
+          86,
+          -58
+        ],
+        [
+          86,
+          50
+        ],
+        [
+          -38,
+          50
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -37.3173,
+            7.3441
+          ],
+          [
+            -20.099,
+            7.2798
+          ],
+          [
+            -20.1421,
+            -3.2287
+          ],
+          [
+            5.9491,
+            -3.3117
+          ],
+          [
+            6.0737,
+            38.8102
+          ],
+          [
+            10.2868,
+            38.8024
+          ],
+          [
+            10.2906,
+            42.3123
+          ],
+          [
+            21.8683,
+            42.2916
+          ],
+          [
+            26.8864,
+            42.2856
+          ],
+          [
+            26.8852,
+            37.0715
+          ],
+          [
+            30.8868,
+            37.0734
+          ],
+          [
+            30.8868,
+            -3.4209
+          ],
+          [
+            29.6236,
+            -5.2809
+          ],
+          [
+            29.4848,
+            -15.7342
+          ],
+          [
+            22.9983,
+            -15.6515
+          ],
+          [
+            22.8146,
+            -30.3187
+          ],
+          [
+            9.4391,
+            -30.1543
+          ],
+          [
+            9.5484,
+            -21.1416
+          ],
+          [
+            -3.8389,
+            -20.9854
+          ],
+          [
+            -3.7882,
+            -16.2134
+          ],
+          [
+            -15.4241,
+            -16.0943
+          ],
+          [
+            -15.4567,
+            -20.1696
+          ],
+          [
+            -20.0134,
+            -20.1308
+          ],
+          [
+            -20.1033,
+            -32.7673
+          ],
+          [
+            -32.8263,
+            -32.6804
+          ],
+          [
+            -32.6083,
+            0.0753
+          ],
+          [
+            -37.3458,
+            0.0932
+          ]
+        ],
+        [
+          [
+            23.1995,
+            48.0002
+          ],
+          [
+            83.2704,
+            48.5468
+          ],
+          [
+            83.509,
+            38.3109
+          ],
+          [
+            80.3575,
+            38.316
+          ],
+          [
+            80.383,
+            -4.6202
+          ],
+          [
+            84.2066,
+            -4.7325
+          ],
+          [
+            84.3325,
+            -14.4833
+          ],
+          [
+            81.8265,
+            -14.5086
+          ],
+          [
+            81.5846,
+            -55.9495
+          ],
+          [
+            71.8162,
+            -56.3155
+          ],
+          [
+            72.2345,
+            -15.6447
+          ],
+          [
+            34.4923,
+            -15.9813
+          ],
+          [
+            34.2996,
+            -20.964
+          ],
+          [
+            29.3663,
+            -20.2673
+          ],
+          [
+            29.4848,
+            -15.7342
+          ],
+          [
+            29.6236,
+            -5.2809
+          ],
+          [
+            30.8868,
+            -3.4209
+          ],
+          [
+            66.803,
+            -3.2548
+          ],
+          [
+            66.94,
+            36.5289
+          ],
+          [
+            30.8868,
+            37.0734
+          ],
+          [
+            26.8852,
+            37.0715
+          ],
+          [
+            26.8864,
+            42.2856
+          ],
+          [
+            21.8683,
+            42.2916
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The named abbey church and attached monastery building are each replaced within their mapped footprints."
+    },
+    "featureIds": [
+      "way/275860033",
+      "way/275860036"
+    ],
+    "source": "https://www.openstreetmap.org/way/275860033",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:74fb5621245ee44c4807696e02a843b32ebd84588fc1e13ab61d461cfd8da82c",
+    "notes": "NancyHeise’s exact April 2009 photographs show the high concrete gable, narrow slit windows, arched central door, slate-colored dormered wing and muted ensemble proportions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Heights, glazing detail and short roof projections are approximate. The church and adjoining monastery outlines come from the named OpenStreetMap building geometry.",
+    "The model covers the standing church and joined core cloister. The removed original monastery and distant visitor facilities fall outside its scope."
+  ],
+  "sourceLicense": "Original mesh under the repository license. NancyHeise’s photograph releases are public domain. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "conyers-skyline",
+      "position": [
+        -16,
+        39,
+        142
+      ],
+      "lookAt": [
+        23,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "conyers-district",
+      "position": [
+        -16,
+        39,
+        142
+      ],
+      "lookAt": [
+        23,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "conyers-street",
+      "position": [
+        -16,
+        39,
+        142
+      ],
+      "lookAt": [
+        23,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "conyers-closeup",
+      "position": [
+        -16,
+        39,
+        142
+      ],
+      "lookAt": [
+        23,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "abbey-gable-and-monastery-front",
+      "position": [
+        -6,
+        13,
+        105
+      ],
+      "lookAt": [
+        30,
+        10,
+        30
+      ]
+    },
+    {
+      "name": "concrete-window-and-entry-details",
+      "position": [
+        11,
+        9,
+        70
+      ],
+      "lookAt": [
+        18,
+        12,
+        42
+      ]
+    },
+    {
+      "name": "abbey-nave-and-open-cloister",
+      "position": [
+        97,
+        67,
+        -6
+      ],
+      "lookAt": [
+        33,
+        10,
+        11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3776,
+    "vertices": 11328,
+    "materials": 6,
+    "bytes": 658992,
+    "sha256": "sha256:dbbf647bbcc76343c25c9c4f75e4cd1a4689ea6d20b1a6a5b6cf5d11c30902dc"
+  }
+}

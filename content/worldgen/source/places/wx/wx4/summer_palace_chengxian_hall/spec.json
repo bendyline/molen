@@ -1,0 +1,303 @@
+{
+  "id": "summer_palace_chengxian_hall",
+  "planId": "summer_palace",
+  "assetId": "molen.worldgen.structure.summer_palace_chengxian_hall",
+  "title": "Summer Palace · Hall of Freshness and Clarity",
+  "category": "palace",
+  "quality": "detailed",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.25993490219116,
+    "latitude": 39.99357211656937
+  },
+  "visualBrief": "Grey ceramic roof over weathered red framing and green lattice windows. A blue and jade painted fascia carries the dark plaque with three gold characters. A round opening is visible through the open central bay.",
+  "nativeAxes": "+Y up. +Z faces the waterfront facade in the model.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_chengxian_hall/models/chengxian-hall-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.summerpalace.net.cn/hongsejiaoyujidi.html",
+    "https://summerpalace.net.cn/guide_map.html",
+    "https://www.sohu.com/a/495036451_100157110"
+  ],
+  "materialMethod": "Six shared material graphs with tinted geometry. The gold title uses a small geometric trace of the photographed strokes.",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "notes": "The approximate center is aligned to two PMTiles pavilion footprints, then moved 3.5 m inland to retain clearance from the mapped pond. The roof and quay establish a west-southwest-facing facade. Canopy and approximate water boundaries limit absolute positioning.",
+    "anchor": [
+      116.25975499313864,
+      39.994158336505926
+    ],
+    "heading": -1.423717971406494,
+    "bounds": [
+      116.25970104465159,
+      39.99409935322236,
+      116.25980708574762,
+      39.994217109100724
+    ],
+    "minLevel": 15,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0.1480330639739762,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The documented local Terrarium profile controls the footing depth and relative origin.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:00443ac4da4dfcd06400a48f443b49af8b1d8f5f74371cf29fc56bb0cc99563e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "orientationPolicy": "approximate-visualization"
+  },
+  "mediumFiContext": {
+    "groundY": 0
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_chengxian_hall/models/chengxian-hall-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_longformat"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 0.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.064
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.018
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "shore-facade",
+      "position": [
+        -10.5,
+        4.3,
+        13.7
+      ],
+      "lookAt": [
+        0,
+        2.4,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "plaque-and-moon-opening",
+      "position": [
+        0,
+        1.77,
+        9.4
+      ],
+      "lookAt": [
+        0,
+        2.26,
+        -0.58
+      ],
+      "fov": 56
+    },
+    {
+      "name": "gable-and-tile-courses",
+      "position": [
+        10.8,
+        7.1,
+        7.5
+      ],
+      "lookAt": [
+        1,
+        3.25,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "rear-moon-opening",
+      "position": [
+        -7.9,
+        3.2,
+        -10.6
+      ],
+      "lookAt": [
+        0,
+        1.6,
+        -2.2
+      ],
+      "fov": 49
+    }
+  ],
+  "limitations": [
+    "The photo establishes the name plaque, lattice doors and the circular opening seen along the center bay. Width, depth, roof height and unseen rear details are estimates.",
+    "The approximate center is aligned to two PMTiles pavilion footprints, then moved 3.5 m inland to retain clearance from the mapped pond. The roof and quay establish a west-southwest-facing facade. Canopy and approximate water boundaries limit absolute positioning."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6.0819902420043945,
+      -0.5199999809265137,
+      -3.5899999141693115
+    ],
+    "max": [
+      6.0819902420043945,
+      5.938000202178955,
+      3.75
+    ]
+  },
+  "size": [
+    12.163980484008789,
+    6.458000183105469,
+    7.3399999141693115
+  ],
+  "mesh": {
+    "triangles": 7684,
+    "vertices": 15368,
+    "materials": 6,
+    "bytes": 649280,
+    "sha256": "sha256:ce3d8263674187713fd698b12d877191b43a633156f787f1c8887510734fe332"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

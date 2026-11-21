@@ -351,10 +351,13 @@ it('uses the production viewer to replace the whole passenger building and prese
     });
     const landmark = root?.getObjectByName(`structure:${placed.id}`);
     expect(landmark).toBeDefined();
+    // The two terminals share one sea-level datum (the placement elevation); each terminal's
+    // floors sit at their own heights below it rather than on the terrain under the anchor.
+    expect(placed.datum).toBe('sea-level');
     expect(
       landmark.position.y,
-      'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(-314, -10), 2);
+      'production renderer uses the single shared sea-level datum',
+    ).toBeCloseTo(placed.elevation, 2);
     expect(seen.length).toBeGreaterThan(0);
     expect(seenContext.at(-1)).toEqual(originalContext);
     const remaining = new Set(seen.at(-1)),

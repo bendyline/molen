@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Track-and-field stadium exhibit review",
+  "seed": "mini_israel_track_and_field_stadium",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "display",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_track_and_field_stadium",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.16,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              34,
+              0.3,
+              34
+            ]
+          },
+          "materialRef": "palette:#8d8c72",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "lighting",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d6e3ea",
+            "ground": "#aba078",
+            "intensity": 1.2
+          },
+          "sun": {
+            "direction": [
+              -2,
+              5,
+              4
+            ],
+            "color": "#fff0d6",
+            "intensity": 1.74,
+            "castShadow": true
+          },
+          "background": "#bccec2",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -5.7,
+      7.1,
+      8.2
+    ],
+    "lookAt": [
+      0.26,
+      0.42,
+      0
+    ],
+    "fov": 43
+  }
+}

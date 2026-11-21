@@ -1,0 +1,297 @@
+{
+  "id": "mini_israel_amphitheater",
+  "planId": "mini_israel_amphitheater",
+  "collectionId": "mini_israel",
+  "assetId": "molen.worldgen.structure.mini_israel_amphitheater",
+  "title": "Mini Israel · Outdoor amphitheater",
+  "category": "amphitheater",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.96898353099823,
+    "latitude": 31.84135145215394
+  },
+  "nativeAxes": "+Y up. +Z faces the audience and northeast from the stage. +X runs northwest along the stage.",
+  "visualBrief": "Full-size open-air stage with a pale truss frame, dark backdrop and asymmetric stepped audience terraces. Two aisles separate the three seating sections.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_amphitheater/models/amphitheater-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.minisrael.co.il/",
+    "https://www.the7eye.org.il/460149"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      34.96898353099823,
+      31.84135145215394
+    ],
+    "heading": 2.657114724516929,
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 175.35,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "At this approximate datum the embedded foundations support the stage and terraces on the standard terrain. The basin and west path remain open.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b63120d244d61203e68d599ae221b10762d93deacf03fedc0d758c5e1269d71d",
+    "notes": "The oblique park photograph and north-up overhead image identify the full-size amphitheater at the southeast edge. Its stage faces northeast toward the stepped seats. The fitted footprint clears the surrounding PMTiles buildings and water, and the west side follows the visitor path."
+  },
+  "materialMethod": "Shared ashlar, concrete and painted-metal graphs. Local palettes distinguish the rails, stage cladding and seat rows.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exterior",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_amphitheater/models/amphitheater-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "retaining": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "terraces": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "platform": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.88
+      },
+      "rig": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.16
+      },
+      "seating": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.89
+      }
+    },
+    "errorMeters": 2.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "retaining": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "terraces": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "platform": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "rig": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.16
+          },
+          "seating": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 1.25
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "retaining": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "terraces": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "platform": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "rig": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.16
+          },
+          "seating": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "retaining": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "terraces": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "platform": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.88
+          },
+          "rig": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.16
+          },
+          "seating": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.16
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "stage-and-audience-terrace",
+      "position": [
+        20,
+        20,
+        44
+      ],
+      "lookAt": [
+        0,
+        2.9,
+        14
+      ],
+      "fov": 55
+    },
+    {
+      "name": "stage-from-central-aisle",
+      "position": [
+        0.65,
+        4.15,
+        20.5
+      ],
+      "lookAt": [
+        0,
+        4.05,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "terraces-from-stage",
+      "position": [
+        7.3,
+        2.73,
+        4.1
+      ],
+      "lookAt": [
+        0,
+        2.85,
+        23.3
+      ],
+      "fov": 58
+    },
+    {
+      "name": "west-wall-and-perimeter",
+      "position": [
+        41,
+        12.8,
+        17.5
+      ],
+      "lookAt": [
+        6.2,
+        2.65,
+        13.8
+      ],
+      "fov": 56
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.7
+  },
+  "limitations": [
+    "The model represents the full-size amphitheater with the stage, rear retaining walls and audience terraces. Temporary screens, show production equipment and access fixtures vary between visits.",
+    "Row pitch, seat color, stage height and some curved wall details are estimates based on oblique and overhead imagery.",
+    "The standard elevation grid supports the model at an approximate 175.35 m sea-level datum. Local ground heights can vary with terrain resolution."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -19.872499465942383,
+      -2.9000000953674316,
+      -4.300000190734863
+    ],
+    "max": [
+      22.26602554321289,
+      8.885000228881836,
+      33.022499084472656
+    ]
+  },
+  "size": [
+    42.13852500915527,
+    11.785000324249268,
+    37.32249927520752
+  ],
+  "mesh": {
+    "triangles": 46228,
+    "vertices": 92456,
+    "materials": 4,
+    "bytes": 3886092,
+    "sha256": "sha256:eb46effc6e606782e1d9bb4c8ee71780ef9c59488eaa57cd84b48e75b27bfdbb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

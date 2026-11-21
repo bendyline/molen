@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Palace of Whitehall around 1670",
+  "seed": "palace_of_whitehall",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "palace",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.palace_of_whitehall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d7e3f1",
+            "ground": "#c4b496",
+            "intensity": 1.08
+          },
+          "sun": {
+            "direction": [
+              0.71,
+              1,
+              0.78
+            ],
+            "color": "#fff0d8",
+            "intensity": 1.7,
+            "castShadow": true
+          },
+          "background": "#c3d1dc",
+          "toneMapping": "agx",
+          "exposure": 1.11,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "review-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.33,
+            -10
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              690,
+              0.46,
+              620
+            ]
+          },
+          "materialRef": "palette:#899078",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      255,
+      244,
+      -266
+    ],
+    "lookAt": [
+      8,
+      4,
+      -9
+    ],
+    "fov": 50
+  }
+}

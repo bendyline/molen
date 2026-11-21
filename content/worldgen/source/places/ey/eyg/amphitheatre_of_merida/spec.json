@@ -1,0 +1,888 @@
+{
+  "planId": "amphitheatre_of_merida",
+  "id": "amphitheatre_of_merida",
+  "assetId": "molen.worldgen.structure.amphitheatre_of_merida",
+  "title": "Amphitheatre of Mérida",
+  "wikidataId": "Q2360379",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.33793115,
+    "latitude": 38.9161711
+  },
+  "size": [
+    124.24594116210938,
+    7.630549788475037,
+    106.31100082397461
+  ],
+  "actualBounds": {
+    "min": [
+      -61.70000076293945,
+      -6.765999794006348,
+      -54.802669525146484
+    ],
+    "max": [
+      62.54594039916992,
+      0.864549994468689,
+      51.508331298828125
+    ]
+  },
+  "visualBrief": "Excavated Roman amphitheatre at Mérida with weathered lower granite terraces, a sunken central pit and vaulted axial entrances.",
+  "nativeAxes": {
+    "x": "northeast along the long axis",
+    "y": "up",
+    "z": "southeast toward the Roman theatre"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Anfiteatro_de_m%C3%A9rida.JPG"
+  ],
+  "stories": [
+    {
+      "id": "amphitheatre-of-merida-wp",
+      "url": "https://qualla.com/amphitheatre-of-merida/"
+    }
+  ],
+  "referenceInputHash": "sha256:0bd6f0a5fd7b02ac2e79cab1523ede65ab89560b3d094c17be950375c6fce330",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ey/eyg/amphitheatre_of_merida/models/amphitheatre-of-merida-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ey/eyg/amphitheatre_of_merida/models/amphitheatre-of-merida-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.72,
+    "surfaces": {
+      "podium": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "ruin": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "sand": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.81,
+        "surfaces": {
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.39,
+        "surfaces": {
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_granite",
+    "stone_limestone_weathered",
+    "gravel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.55,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original local relief fixes the approach grades and partly buried outer ring. The lower excavated arena and pit are represented in the opening.",
+    "anchor": [
+      -6.33793115,
+      38.9161711
+    ],
+    "heading": -0.6981317007977318,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.3385608256948,
+        38.91652356629207
+      ],
+      "modelHeight": 0,
+      "basis": "Original approach grade beyond the southwestern end of the amphitheatre’s long axis."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -25.827736,
+          -45.657632
+        ],
+        [
+          -26.726568,
+          -42.448184
+        ],
+        [
+          -28.567528,
+          -40.136160000000004
+        ],
+        [
+          -31.990112,
+          -37.45612
+        ],
+        [
+          -37.310152,
+          -34.322
+        ],
+        [
+          -42.429728,
+          -29.834352000000003
+        ],
+        [
+          -45.44628,
+          -26.753296
+        ],
+        [
+          -47.62164,
+          -24.53156
+        ],
+        [
+          -51.01052,
+          -18.657208
+        ],
+        [
+          -53.973216,
+          -10.697872
+        ],
+        [
+          -55.015840000000004,
+          -2.2526
+        ],
+        [
+          -54.455895999999996,
+          4.272512
+        ],
+        [
+          -52.47088,
+          12.057168
+        ],
+        [
+          -49.52024,
+          18.277096
+        ],
+        [
+          -46.585616,
+          23.576896
+        ],
+        [
+          -41.472024000000005,
+          28.544496
+        ],
+        [
+          -39.142312000000004,
+          30.502760000000002
+        ],
+        [
+          -35.725712,
+          33.364959999999996
+        ],
+        [
+          -29.679584,
+          37.179232
+        ],
+        [
+          -22.340912,
+          40.292584000000005
+        ],
+        [
+          -16.478704,
+          42.547672
+        ],
+        [
+          -9.6448,
+          44.383704
+        ],
+        [
+          -2.223144,
+          45.34308
+        ],
+        [
+          5.486272,
+          45.293624
+        ],
+        [
+          9.750664,
+          44.707719999999995
+        ],
+        [
+          15.48228,
+          43.91378400000001
+        ],
+        [
+          25.149872000000002,
+          41.466768
+        ],
+        [
+          32.544247999999996,
+          38.101032000000004
+        ],
+        [
+          39.499768,
+          33.773632000000006
+        ],
+        [
+          45.2298,
+          28.211064
+        ],
+        [
+          45.95668,
+          27.191936000000002
+        ],
+        [
+          50.027912,
+          21.537936000000002
+        ],
+        [
+          53.206208000000004,
+          13.384912
+        ],
+        [
+          54.787743999999996,
+          8.285488
+        ],
+        [
+          52.9848,
+          7.713928000000001
+        ],
+        [
+          53.561552,
+          3.444696
+        ],
+        [
+          55.081136,
+          3.6786
+        ],
+        [
+          54.627144,
+          -1.605536
+        ],
+        [
+          53.418023999999996,
+          -7.777768
+        ],
+        [
+          51.299776,
+          -15.258735999999999
+        ],
+        [
+          49.01996,
+          -19.778152
+        ],
+        [
+          45.592096,
+          -24.088568000000002
+        ],
+        [
+          43.151328,
+          -26.77204
+        ],
+        [
+          42.625792,
+          -27.635496000000003
+        ],
+        [
+          41.590736,
+          -28.442192
+        ],
+        [
+          40.266248,
+          -29.261736
+        ],
+        [
+          37.807704,
+          -30.958464
+        ],
+        [
+          36.218336,
+          -32.105632
+        ],
+        [
+          32.463376,
+          -35.00356
+        ],
+        [
+          27.948271999999996,
+          -37.455504000000005
+        ],
+        [
+          23.882759999999998,
+          -39.146512
+        ],
+        [
+          25.241832,
+          -42.933944
+        ],
+        [
+          13.5212,
+          -46.526544
+        ],
+        [
+          5.156888,
+          -47.257472
+        ],
+        [
+          4.69612,
+          -45.553703999999996
+        ],
+        [
+          -22.294272,
+          -48.430776
+        ],
+        [
+          -22.93192,
+          -45.81128
+        ]
+      ],
+      "minHeight": -7.196,
+      "basis": "Clearance is confined to the amphitheatre excavation so the preserved terrain outside remains visible."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -29.0497,
+          -51.9014
+        ],
+        [
+          -30.0711,
+          -48.2543
+        ],
+        [
+          -32.1631,
+          -45.627
+        ],
+        [
+          -36.0524,
+          -42.5815
+        ],
+        [
+          -42.0979,
+          -39.02
+        ],
+        [
+          -47.9156,
+          -33.9204
+        ],
+        [
+          -51.3435,
+          -30.4192
+        ],
+        [
+          -53.8155,
+          -27.8945
+        ],
+        [
+          -57.6665,
+          -21.2191
+        ],
+        [
+          -61.0332,
+          -12.1744
+        ],
+        [
+          -62.218,
+          -2.5775
+        ],
+        [
+          -61.5817,
+          4.8374
+        ],
+        [
+          -59.326,
+          13.6836
+        ],
+        [
+          -55.973,
+          20.7517
+        ],
+        [
+          -52.6382,
+          26.7742
+        ],
+        [
+          -46.8273,
+          32.4192
+        ],
+        [
+          -44.1799,
+          34.6445
+        ],
+        [
+          -40.2974,
+          37.897
+        ],
+        [
+          -33.4268,
+          42.2314
+        ],
+        [
+          -25.0874,
+          45.7693
+        ],
+        [
+          -18.4258,
+          48.3319
+        ],
+        [
+          -10.66,
+          50.4183
+        ],
+        [
+          -2.2263,
+          51.5085
+        ],
+        [
+          6.5344,
+          51.4523
+        ],
+        [
+          11.3803,
+          50.7865
+        ],
+        [
+          17.8935,
+          49.8843
+        ],
+        [
+          28.8794,
+          47.1036
+        ],
+        [
+          37.2821,
+          43.2789
+        ],
+        [
+          45.1861,
+          38.3614
+        ],
+        [
+          51.6975,
+          32.0403
+        ],
+        [
+          52.5235,
+          30.8822
+        ],
+        [
+          57.1499,
+          24.4572
+        ],
+        [
+          60.7616,
+          15.1924
+        ],
+        [
+          62.5588,
+          9.3976
+        ],
+        [
+          60.51,
+          8.7481
+        ],
+        [
+          61.1654,
+          3.8967
+        ],
+        [
+          62.8922,
+          4.1625
+        ],
+        [
+          62.3763,
+          -1.8422
+        ],
+        [
+          61.0023,
+          -8.8561
+        ],
+        [
+          58.5952,
+          -17.3572
+        ],
+        [
+          56.0045,
+          -22.4929
+        ],
+        [
+          52.1092,
+          -27.3911
+        ],
+        [
+          49.3356,
+          -30.4405
+        ],
+        [
+          48.7384,
+          -31.4217
+        ],
+        [
+          47.5622,
+          -32.3384
+        ],
+        [
+          46.0571,
+          -33.2697
+        ],
+        [
+          43.2633,
+          -35.1978
+        ],
+        [
+          41.4572,
+          -36.5014
+        ],
+        [
+          37.1902,
+          -39.7945
+        ],
+        [
+          32.0594,
+          -42.5808
+        ],
+        [
+          27.4395,
+          -44.5024
+        ],
+        [
+          28.9839,
+          -48.8063
+        ],
+        [
+          15.665,
+          -52.8888
+        ],
+        [
+          6.1601,
+          -53.7194
+        ],
+        [
+          5.6365,
+          -51.7833
+        ],
+        [
+          -25.0344,
+          -55.0527
+        ],
+        [
+          -25.759,
+          -52.076
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The named ruin’s own mapped perimeter bounds nearby building replacement."
+    },
+    "featureIds": [
+      "relation/1316311",
+      "way/89067885",
+      "way/1206491700",
+      "way/1206491716"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1316311",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cca1ec3ca89d3f315f71fc90754a0f9e30f9c0de28ff9507d6a9ac46cfaec87b",
+    "notes": "The municipal survey gives the ancient 126 by 102.65 metre ellipse, 16 passage openings and surviving lower seating arrangement. The site conservator identifies axial entrances, side rooms and the central exposed pit."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The outline and podium assembly retain the named archaeology’s mapped dimensions. The partially fallen upper masonry, exposed pit depth, gallery sections, modern repairs and worn stone texture are approximate.",
+    "The model represents the excavated remains, including only the visible portions of seating and masonry. The neighboring Roman theatre, circus and Amphitheatre House are separate sites.",
+    "The original bare terrain sampling is preserved. A local clearance exposes the arena and its pit where the coarse field cannot resolve the excavation."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "merida-skyline",
+      "position": [
+        129,
+        114,
+        93
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "merida-district",
+      "position": [
+        129,
+        114,
+        93
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "merida-street",
+      "position": [
+        129,
+        114,
+        93
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "merida-closeup",
+      "position": [
+        129,
+        114,
+        93
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-ruin-and-elliptical-arena",
+      "position": [
+        87,
+        81,
+        75
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        0
+      ]
+    },
+    {
+      "name": "arena-pit-and-axial-vaults",
+      "position": [
+        -30,
+        1.0339999999999998,
+        -4
+      ],
+      "lookAt": [
+        20,
+        -2.0660000000000003,
+        0
+      ]
+    },
+    {
+      "name": "lower-stone-seating",
+      "position": [
+        6,
+        4.834,
+        20.5
+      ],
+      "lookAt": [
+        -17,
+        -2.9160000000000004,
+        -13
+      ]
+    },
+    {
+      "name": "surviving-gate-and-outer-masonry",
+      "position": [
+        74,
+        12,
+        32
+      ],
+      "lookAt": [
+        36,
+        -1.1,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5273,
+    "vertices": 15819,
+    "materials": 5,
+    "bytes": 1105384,
+    "sha256": "sha256:fffaf917af50692d27310ace1d8bae5ed0ef076494bc00ba071998dea825a7de"
+  }
+}

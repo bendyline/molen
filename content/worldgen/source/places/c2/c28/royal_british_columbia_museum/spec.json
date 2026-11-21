@@ -1,0 +1,816 @@
+{
+  "planId": "royal_british_columbia_museum",
+  "id": "royal_british_columbia_museum",
+  "assetId": "molen.worldgen.structure.royal_british_columbia_museum",
+  "title": "Royal British Columbia Museum",
+  "wikidataId": "Q1542695",
+  "category": "museum-library",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -123.36791,
+    "latitude": 48.41988
+  },
+  "size": [
+    100.4635009765625,
+    43.587223917245865,
+    96.99340057373047
+  ],
+  "actualBounds": {
+    "min": [
+      -56.02000045776367,
+      -0.32152262330055237,
+      -28.067100524902344
+    ],
+    "max": [
+      44.44350051879883,
+      43.26570129394531,
+      68.92630004882812
+    ]
+  },
+  "visualBrief": "The standing Royal BC Museum with its limestone Fannin tower, folded-roof archives, tall glazed entry, IMAX and broad exhibition roof.",
+  "nativeAxes": {
+    "x": "along Belleville Street",
+    "y": "up",
+    "z": "from the public entrance toward the exhibition building"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.flickr.com/photos/dennissylvesterhurd/159601314/",
+    "https://www.flickr.com/photos/dennissylvesterhurd/39323978/"
+  ],
+  "stories": [
+    {
+      "id": "royal-british-columbia-museum-wp",
+      "url": "https://qualla.com/royal-british-columbia-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:aa93d7e46554c7045262de78441de4e44d2d9461e898c659e604c6c9013fa631",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c28/royal_british_columbia_museum/models/royal-british-columbia-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c28/royal_british_columbia_museum/models/royal-british-columbia-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.89,
+        "metallic": 0.1
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.78,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.096,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.89,
+            "metallic": 0.1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_limestone",
+    "concrete_plain",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Natural Resources Canada bare-earth terrain beside the Belleville Street entrance.",
+    "anchor": [
+      -123.36791,
+      48.41988
+    ],
+    "heading": 0.10175403598310802,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -123.36803543701406,
+        48.42002320073234
+      ],
+      "modelHeight": 0,
+      "basis": "Original NRCan bare-earth elevation on the main Belleville Street approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -55.3003,
+          21.8581
+        ],
+        [
+          -56.0285,
+          21.862
+        ],
+        [
+          -56.0308,
+          38.322
+        ],
+        [
+          -52.555,
+          38.3189
+        ],
+        [
+          -31.1674,
+          38.3207
+        ],
+        [
+          -31.1662,
+          31.3272
+        ],
+        [
+          -25.1949,
+          31.3214
+        ],
+        [
+          -25.1938,
+          54.5852
+        ],
+        [
+          3.695,
+          54.5808
+        ],
+        [
+          3.6955,
+          55.3753
+        ],
+        [
+          3.6904,
+          65.9716
+        ],
+        [
+          8.8075,
+          65.9682
+        ],
+        [
+          8.803,
+          68.7763
+        ],
+        [
+          44.2935,
+          68.7747
+        ],
+        [
+          44.291,
+          -14.0415
+        ],
+        [
+          44.2894,
+          -27.9171
+        ],
+        [
+          8.6728,
+          -27.9171
+        ],
+        [
+          8.6699,
+          -15.161
+        ],
+        [
+          3.5234,
+          -15.1605
+        ],
+        [
+          3.52,
+          -4.0718
+        ],
+        [
+          -3.335,
+          -4.0667
+        ],
+        [
+          -10.7837,
+          -4.0664
+        ],
+        [
+          -10.786,
+          2.0654
+        ],
+        [
+          -10.9335,
+          3.7288
+        ],
+        [
+          -11.2281,
+          5.0863
+        ],
+        [
+          -11.8268,
+          6.2224
+        ],
+        [
+          -12.8874,
+          7.3003
+        ],
+        [
+          -13.9413,
+          7.8753
+        ],
+        [
+          -15.2179,
+          8.3044
+        ],
+        [
+          -15.8906,
+          8.3476
+        ],
+        [
+          -16.6844,
+          8.412
+        ],
+        [
+          -16.6906,
+          8.9821
+        ],
+        [
+          -20.5826,
+          8.9875
+        ],
+        [
+          -20.5814,
+          9.8492
+        ],
+        [
+          -21.6771,
+          9.9612
+        ],
+        [
+          -22.5455,
+          10.4655
+        ],
+        [
+          -23.315,
+          11.0919
+        ],
+        [
+          -23.8662,
+          12.1994
+        ],
+        [
+          -23.9606,
+          13.1968
+        ],
+        [
+          -27.9334,
+          13.194
+        ],
+        [
+          -55.2997,
+          13.1972
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -55.3003,
+            21.8581
+          ],
+          [
+            -56.0285,
+            21.862
+          ],
+          [
+            -56.0308,
+            38.322
+          ],
+          [
+            -52.555,
+            38.3189
+          ],
+          [
+            -31.1674,
+            38.3207
+          ],
+          [
+            -31.1662,
+            31.3272
+          ],
+          [
+            -25.1949,
+            31.3214
+          ],
+          [
+            -25.1938,
+            54.5852
+          ],
+          [
+            3.695,
+            54.5808
+          ],
+          [
+            3.6955,
+            55.3753
+          ],
+          [
+            3.6904,
+            65.9716
+          ],
+          [
+            8.8075,
+            65.9682
+          ],
+          [
+            8.803,
+            68.7763
+          ],
+          [
+            44.2935,
+            68.7747
+          ],
+          [
+            44.291,
+            -14.0415
+          ],
+          [
+            44.2894,
+            -27.9171
+          ],
+          [
+            8.6728,
+            -27.9171
+          ],
+          [
+            8.6699,
+            -15.161
+          ],
+          [
+            3.5234,
+            -15.1605
+          ],
+          [
+            3.52,
+            -4.0718
+          ],
+          [
+            -3.335,
+            -4.0667
+          ],
+          [
+            -10.7837,
+            -4.0664
+          ],
+          [
+            -10.786,
+            2.0654
+          ],
+          [
+            -10.9335,
+            3.7288
+          ],
+          [
+            -11.2281,
+            5.0863
+          ],
+          [
+            -11.8268,
+            6.2224
+          ],
+          [
+            -12.8874,
+            7.3003
+          ],
+          [
+            -13.9413,
+            7.8753
+          ],
+          [
+            -15.2179,
+            8.3044
+          ],
+          [
+            -15.8906,
+            8.3476
+          ],
+          [
+            -16.6844,
+            8.412
+          ],
+          [
+            -16.6906,
+            8.9821
+          ],
+          [
+            -20.5826,
+            8.9875
+          ],
+          [
+            -20.5814,
+            9.8492
+          ],
+          [
+            -21.6771,
+            9.9612
+          ],
+          [
+            -22.5455,
+            10.4655
+          ],
+          [
+            -23.315,
+            11.0919
+          ],
+          [
+            -23.8662,
+            12.1994
+          ],
+          [
+            -23.9606,
+            13.1968
+          ],
+          [
+            -27.9334,
+            13.194
+          ],
+          [
+            -55.2997,
+            13.1972
+          ]
+        ],
+        [
+          [
+            -16.1472,
+            -16.05
+          ],
+          [
+            -16.1252,
+            -14.5931
+          ],
+          [
+            -15.981,
+            -4.004
+          ],
+          [
+            -15.885,
+            3.0554
+          ],
+          [
+            -53.3661,
+            3.57
+          ],
+          [
+            -53.7556,
+            -25.2724
+          ],
+          [
+            -43.6424,
+            -25.4035
+          ],
+          [
+            -23.4002,
+            -25.6753
+          ],
+          [
+            -16.2755,
+            -25.7759
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named mapped museum mass and separate original BC Archives outline."
+    },
+    "featureIds": [
+      "way/105518293",
+      "way/105561311",
+      "way/105561322",
+      "way/1378768996",
+      "way/1378768997",
+      "way/1378768998",
+      "way/1378768999",
+      "way/1378769000"
+    ],
+    "source": "https://www.openstreetmap.org/way/105518293",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7db8b09580790c91d7d0abcda8015609929b9007de5cac44dccc43cbcbf29ca6",
+    "notes": "Provincial engineers record the 94 m Exhibition Building and its long clerestory, the thirteen-storey Fannin tower, the 1997 glass lobby and IMAX, and the original archive wing. Two exact photographer-dedicated CC0 street photographs record the glass entrance, tall limestone-clad piers and low folded archive canopy."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Height bands use native roof samples and provincial engineering dimensions. Curtain wall panels, stone tones, stair widths and individual roof fixtures are approximate. The photograph-derived exterior features are matched to the building phase identified in the current operator records.",
+    "The scope includes the connected museum masses and the BC Archives wing at the entrance. The independently located carillon and historic precinct houses have their own identities. Interiors, exhibits, temporary signs and display pieces are outside the modeled exterior."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Natural Resources Canada open elevation data.",
+  "qaLodCameras": [
+    {
+      "name": "royal-british-columbia-museum-skyline",
+      "position": [
+        -135,
+        83,
+        -148
+      ],
+      "lookAt": [
+        -5,
+        16,
+        13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "royal-british-columbia-museum-district",
+      "position": [
+        -135,
+        83,
+        -148
+      ],
+      "lookAt": [
+        -5,
+        16,
+        13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "royal-british-columbia-museum-street",
+      "position": [
+        -135,
+        83,
+        -148
+      ],
+      "lookAt": [
+        -5,
+        16,
+        13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "royal-british-columbia-museum-closeup",
+      "position": [
+        -135,
+        83,
+        -148
+      ],
+      "lookAt": [
+        -5,
+        16,
+        13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "belleville-entrance-tower-and-archive",
+      "position": [
+        6,
+        12,
+        -81
+      ],
+      "lookAt": [
+        -20,
+        14,
+        4
+      ]
+    },
+    {
+      "name": "long-gallery-clerestory",
+      "position": [
+        94,
+        54,
+        68
+      ],
+      "lookAt": [
+        14,
+        16,
+        14
+      ]
+    },
+    {
+      "name": "folded-roof-and-tower-piers",
+      "position": [
+        -68,
+        16,
+        -44
+      ],
+      "lookAt": [
+        -32,
+        12,
+        9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4610,
+    "vertices": 13830,
+    "materials": 6,
+    "bytes": 740664,
+    "sha256": "sha256:a8a21ee1ea893f404d1f1a3b0cbc988be96736e023c0342f1e1fdf00215eb981"
+  }
+}

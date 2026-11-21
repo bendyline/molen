@@ -1,10 +1,16 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kyiv_metro_bridge",
-  "inputHash": "sha256:61ddcf7f36b16bf435a959d8cb17213f53a0ac9b254f5acfc3a9ce29924ea6bf",
-  "captureReportHash": "sha256:dff8df357cdf08c5e60816955530166965af46bb78722ccdfdbb226bd29bfb08",
+  "reviewedOn": "2026-11-18",
+  "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+  "sourceHash": "sha256:0156fb695a0fd578aa2e734d9ef7837f979fca272214d9ec67ae27d52cae4565",
+  "runtimeHash": "sha256:daba32df9b73957233e04e6243cc6a181a1ccc2f7d45e7f58f7b75357590c172",
+  "captureReportHash": "sha256:cf4602a2ab5c84092563281d383b1a6865a45d32de3fcc9cd579c6b63a94f865",
   "visualReview": {
     "status": "passed",
+    "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+    "captureReportHash": "sha256:cf4602a2ab5c84092563281d383b1a6865a45d32de3fcc9cd579c6b63a94f865",
+    "notes": "Six open arches carry separate road and metro decks, with paired rail tracks continuing around the eastern curve. The street and close-up models retain the arch ribs, spandrels, cutwater piers, barriers and tracks. The detailed master also preserves fine deck fittings, rail detail and the structural hinge assemblies.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -19,11 +25,62 @@
       "shots/east-rail-approach.png",
       "shots/far-crossing.png"
     ],
-    "notes": "Inspected all 12 current portable frames, including four turntable directions, whole-crossing view, arch and spandrels, cutwater pier and hinge, two road levels, third-rail tracks, underside, and curved eastern approach. Corrected arch winding gives four solid concrete ribs in each river span; the two short end spans now have one correctly connected girder system each."
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:c72a81e8aeb19ab3b9b646cbba2982548382e4188b36bd0fbaf83db2c984acd3"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:89fef7082e0d083e98cb3abba70472d7e5b6122b90f42bcaec7beaa159a4d111"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:ca82fb58d7c9f05348b9a23e5b968f6267355cfbf6ba2c5d1548aa3ee117f99a"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:db78043f514e17e31d0af03691752ac627cf0d32c507ebccd678d66762cf54df"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:8c1ff3b4d9d6a1b15a11c449da5c124e269263db855a5245e88951d59f0a1dc8"
+      },
+      {
+        "path": "shots/arch-and-spandrels.png",
+        "hash": "sha256:1498d79e354402b4f4aefdc6af568db839721f96e307f6efc05d4cd61b96aef3"
+      },
+      {
+        "path": "shots/pier-and-hinge.png",
+        "hash": "sha256:a4a9e0da127de15fb596c66b5718a02ecd674796e30ec3c678caf8130f8d3296"
+      },
+      {
+        "path": "shots/two-level-road.png",
+        "hash": "sha256:8d4391a88f461b36a6322a8f471b60ec062adf302e9eb4e626d043796449e3fc"
+      },
+      {
+        "path": "shots/rail-and-third-rail.png",
+        "hash": "sha256:ce669514b6d77bd719a6626c406273f5c1f93de612517a2f52fdd36e48d924f3"
+      },
+      {
+        "path": "shots/under-deck.png",
+        "hash": "sha256:f59839d550f85592d03220719fb11516561f78b3af9957fca4007bbd2ab62edf"
+      },
+      {
+        "path": "shots/east-rail-approach.png",
+        "hash": "sha256:a9f299e92dd9e4f58ad0a9241e5dda8be6060853755e5bcfb2f7cd28a0964f56"
+      },
+      {
+        "path": "shots/far-crossing.png",
+        "hash": "sha256:6249a57f7f3fdc4238f6ab4fd19270e9d2428e5f7194955280a7651d1cb6e178"
+      }
+    ]
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:0ff00a5ba234f6d3b8ab380005cd6820b1688c55507d842ab452ba88060632f2",
+    "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+    "captureReportHash": "sha256:af2ea1c55b3987a92dec0e01ab3fd1c06d19014ab357bd1592f32ecd9822da46",
+    "notes": "Concrete, granite, painted metal and steel use shared material graphs. All six GLBs contain zero embedded images.",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -38,16 +95,413 @@
       "shots/shared/far-crossing.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 12 current shared-material/sky-PMREM frames, including north-up placement. Canonical concrete, granite and painted/stainless metal retain the joint relief, rails, thin parapets and pier coursing. Model loading and unloading succeeds."
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:5ccf7f7620802a94a1e8e7d7e8032914e7321ed84f9daf0ef777ac1eee57d950"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:28b32f8e248cd82ca0813e98f35c55b330e9da96b7610df2171ff9ceb845f465"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:bd3c59d9b0754d6a5f54cab5c9757cea8ff9f35540960697fd6a83332bee379b"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:a696cef165362a0074e4648bb288bc0d821bb22651394149e96f5c56b4a7a600"
+      },
+      {
+        "path": "shots/shared/arch-and-spandrels.png",
+        "hash": "sha256:8876280db3fe705ab81e82d72df846957d9653516140a60aec1524f07804139e"
+      },
+      {
+        "path": "shots/shared/pier-and-hinge.png",
+        "hash": "sha256:202e9f574c1711ea812a28a5fa66081e78ecd5251960e8556767929ba2b68c09"
+      },
+      {
+        "path": "shots/shared/two-level-road.png",
+        "hash": "sha256:b45e70c84997314b464eb967d966b9cb84fd36193c434efe00aba3c311984315"
+      },
+      {
+        "path": "shots/shared/rail-and-third-rail.png",
+        "hash": "sha256:65fb995173f4c08acc184d82f9f39cc4b133b67f140df7073bdbe71f576e4ad2"
+      },
+      {
+        "path": "shots/shared/under-deck.png",
+        "hash": "sha256:806e9b10e158486a0e73d05e23ba1fcc0a09f195d055ad075f0781208eb0d0cd"
+      },
+      {
+        "path": "shots/shared/east-rail-approach.png",
+        "hash": "sha256:b8b8d2796740d9a94a6bfe4969ec6e74637992b0eda1165e992e3977ee78f32f"
+      },
+      {
+        "path": "shots/shared/far-crossing.png",
+        "hash": "sha256:9b38a2d920cd6808529adcf468ffab3ba11952c1aec1266717cde342bb4f6974"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:73a615e387d8dc034809d72a013d63a60b2adb49cf80e9eeae61db3b5143880a"
+      }
+    ],
+    "placementHash": "sha256:758770b41554c124366fa63684a19c47e2a3df0f064f16d8ed1012d09ced44a5",
+    "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_stainless": {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:f40dc0ac48b12178a909f60744b2757d94b375ba04e0f440cd93ed0cff673d9c",
-    "notes": "Exact Q2475012 bridge way887624269 and separate roadway/rail centerlines establish anchor[30.56443405,50.442658675], signed heading0.411477488755, native+XENE toward Hydropark and+ZSSE downstream. The 694.601m main road envelope contains the published 672m engineered span system with reconstructed abutment ends; the curving elevated rail approach continues separately to nativeX538.969. Plan fit inspected in the current north-up view. Sea-level91.5m is a provisional published Kaniv normal-pool reference, not a surveyed transformation of Baltic datum to host terrain; local water stage, longitudinal slope and shore grading remain host-dependent."
+    "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+    "placementHash": "sha256:758770b41554c124366fa63684a19c47e2a3df0f064f16d8ed1012d09ced44a5",
+    "notes": "The bridge sits over the Dnipro at a 90.65 m datum. Both carriageways meet the mapped road landings. The curved east railway meets both mapped track centerlines. The viewer clips the four bridge features to the covered spans and joins three connected approaches while keeping all 28 other buildings and independent transportation geometry in the fixture.",
+    "mapFrameHash": "sha256:376a8d85676d5fad8208e7f8719d8d240722ca5705dd60f00a9d048ae8ea76c8",
+    "native": {
+      "fixtureHash": "sha256:9d8af4a9a42179627723afb5ca7e8aa626b9c35b49de7231c408a8f0b4a22128",
+      "terrainReferenceMeters": 90.65,
+      "renderedWaterMeters": 90.64558410644531,
+      "replacedBridgeFeatureIds": [
+        35184395349610,
+        35184790219919,
+        35184790220613,
+        35184532772630
+      ],
+      "joinedApproachIds": [
+        35184395339460,
+        35184803678310,
+        35184395339450
+      ],
+      "independentBuildingCount": 28,
+      "eastRailSamples": {
+        "skyline": [
+          {
+            "modelMeters": 105.70061076374364,
+            "approachMeters": 105.51930886539071,
+            "nextMeters": 104.84765943888334
+          },
+          {
+            "modelMeters": 105.73104525897502,
+            "approachMeters": 105.46771044660522,
+            "nextMeters": 104.8824843806483
+          }
+        ],
+        "district": [
+          {
+            "modelMeters": 105.70061085594551,
+            "approachMeters": 105.51930886539071,
+            "nextMeters": 104.84765943888334
+          },
+          {
+            "modelMeters": 105.73104535092196,
+            "approachMeters": 105.46771044660522,
+            "nextMeters": 104.8824843806483
+          }
+        ],
+        "street": [
+          {
+            "modelMeters": 105.70061087505675,
+            "approachMeters": 105.51930886539071,
+            "nextMeters": 104.84765943888334
+          },
+          {
+            "modelMeters": 105.73104536998036,
+            "approachMeters": 105.46771044660522,
+            "nextMeters": 104.8824843806483
+          }
+        ],
+        "closeup": [
+          {
+            "modelMeters": 105.70061080045865,
+            "approachMeters": 105.51930886539071,
+            "nextMeters": 104.84765943888334
+          },
+          {
+            "modelMeters": 105.91104072640509,
+            "approachMeters": 105.46771044660522,
+            "nextMeters": 104.8824843806483
+          }
+        ]
+      },
+      "failedLoadKeepsNativeLayers": true,
+      "groundAndLandcoverRestoredOnUnload": true,
+      "frames": [
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-full-river-crossing.png",
+          "hash": "sha256:69880ca34393e4781ce296f10d4c2a82d652499b981d26de40531146e825f9f3"
+        },
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-six-open-arches.png",
+          "hash": "sha256:ef3f986796b372c10f0bb0c893f55a12ecbaca6bf57f99de9a37a5dc33b90eca"
+        },
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-road-and-rail-levels.png",
+          "hash": "sha256:622d6cef1228c7192dd64b2a99533e0457edeefbb1924b58ec63e28ede44147b"
+        },
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-east-rail-curve.png",
+          "hash": "sha256:ce87b6bea8ae2179d3b63d23d7391ceca4e470b01e2f1ff0fe55ba2fa5d390de"
+        },
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-east-rail-joint.png",
+          "hash": "sha256:a746a1e1e0768db33309d9c50e348780363936b7bea0ea2397cd5a89e9b20fc7"
+        },
+        {
+          "level": "skyline",
+          "file": "kyiv_metro_bridge-skyline-west-bank-road-joint.png",
+          "hash": "sha256:cdb95e9c566aa0cb6e9970654256d8897efe36c0107ae0fb1d63cd2492c9e150"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-full-river-crossing.png",
+          "hash": "sha256:e4d257090a574233fff24c5709a2f4bced98db8eff962738ca3e50d281f982b6"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-six-open-arches.png",
+          "hash": "sha256:bae48cf6055782a65e92c39049e72ad55a6eabc2dfacb0be5b0c76e95626f254"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-road-and-rail-levels.png",
+          "hash": "sha256:19028da7087b02c80e6f49379241ffcff4387bb9c023c19eb2d1cbe211a6aa60"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-east-rail-curve.png",
+          "hash": "sha256:7053cae8f49381191779ffd29f7fbed524723128d95c096b64ae21bfdc96fa43"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-east-rail-joint.png",
+          "hash": "sha256:d04b24c9b349c32abaa008938262ca3f2bb3040fe8d013b978e5c1608393d73f"
+        },
+        {
+          "level": "district",
+          "file": "kyiv_metro_bridge-district-west-bank-road-joint.png",
+          "hash": "sha256:473fd4847a47d88c75b8a579f78306f34752626474a7f3890b5d71fdd9618778"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-full-river-crossing.png",
+          "hash": "sha256:d6549ccebf9137004a44191ec2f98c9bc0dd5d4c67378a97c826c94b9b4e8689"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-six-open-arches.png",
+          "hash": "sha256:6c6563f82189739b5edc725d6fa5746ebe69ff146b6ab6a18c33c961df485cf8"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-road-and-rail-levels.png",
+          "hash": "sha256:f90720287c3653ce9134d7ba30a6ca1612bb897e640133d0d4d0d51be41afabf"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-east-rail-curve.png",
+          "hash": "sha256:d8feac18f37b2f8e1546b53594a52e96d27ebf16dbcf8cc1204e22522781d570"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-east-rail-joint.png",
+          "hash": "sha256:120cfe635ab25c20297e8b28800b6dbb98009d63b0e2655e25ad727f9ff83dc6"
+        },
+        {
+          "level": "street",
+          "file": "kyiv_metro_bridge-street-west-bank-road-joint.png",
+          "hash": "sha256:c3bfc0c3b3063864093561bf8aca782de1d6a2a8e5ba6b5e8f4ee48f68329062"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-full-river-crossing.png",
+          "hash": "sha256:e23e0dbe0f638d7f8765a8ddfe89a0824d43eefa9e51701bd4fa84625e74221d"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-six-open-arches.png",
+          "hash": "sha256:509c50e5a3198302d6ae3c7b46c9dee69ad77dc88937300db3b8e3f22421b62d"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-road-and-rail-levels.png",
+          "hash": "sha256:7a51acdd1a679c08e30ed0f6ac55cb93f43d1420d1eaff7e77caa3f724ffd703"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-east-rail-curve.png",
+          "hash": "sha256:1ad0cc6d7d2eaf15e25473f670d008d80a3e2ab8e9db2e5dfc2f3d6b6ed361fa"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-east-rail-joint.png",
+          "hash": "sha256:c6e5fe682352c31a0360e444bbde6dab86dc01b2e91d9f880150b0eb106cb0ec"
+        },
+        {
+          "level": "closeup",
+          "file": "kyiv_metro_bridge-closeup-west-bank-road-joint.png",
+          "hash": "sha256:af831ca65be9be16e525f2dd702779285b71b6cb564eae1f40107d20b1e5de50"
+        },
+        {
+          "level": "failure",
+          "file": "kyiv_metro_bridge-failure-six-open-arches.png",
+          "hash": "sha256:3ebe9c88ea79d658b1666e6df76b0debb9a785c43bf3fd7154fbf0efec6e08b7"
+        }
+      ]
+    }
   },
   "fidelityReview": {
     "target": "maximum",
     "status": "passed",
-    "notes": "500,220-triangle original detailed exterior of the permanent bridge form: published 40/80/99/117/117/99/80/40m span scheme, four concrete arch ribs with segment joints, open spandrels and hinge hardware, shaped coursed cutwater piers, separate lower roadways and upper central metro, sleepers and clips, 1520mm rails and covered third rail, footways, curbs, markings, open balusters, lamps, drains, and individually curved/graded eastern rail approach. Published dimensions and map plan constrain a photographic reconstruction of heights, rib sections, detailed fittings and support stations. Temporary support arches, piles, jacking frames and barges from the ongoing 2024–2026 works are explicitly omitted; this asset does not claim a completed future restoration, submerged foundations or engineered survey accuracy."
-  }
+    "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+    "notes": "Six open arches carry separate road and metro decks, with paired rail tracks continuing around the eastern curve. The street and close-up models retain the arch ribs, spandrels, cutwater piers, barriers and tracks. The detailed master also preserves fine deck fittings, rail detail and the structural hinge assemblies. The model depicts the permanent exterior and preserves the original detailed source master. Current repair equipment and temporary reinforcement are outside the modeled scope."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:8becbf186fcedca712ea7cf947a81aebb959e17f1725c3383e185eca5a2c228b",
+        "bytes": 72136,
+        "gzipBytes": 13305,
+        "triangles": 956,
+        "cpuBytes": 68448,
+        "gpuBytes": 68448,
+        "errorMeters": 4.5,
+        "drawCalls": 3
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:12af85b02fcfb833b0f4376041e8a0319a1bf9ccb3c2c657c255ba7032f7102f",
+        "bytes": 253308,
+        "gzipBytes": 44288,
+        "triangles": 3500,
+        "cpuBytes": 249600,
+        "gpuBytes": 249600,
+        "errorMeters": 2,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:849222cb7eb20f44ba27bf054b5e32566f38b46fa021260c51505755a66cacab",
+        "bytes": 1120460,
+        "gzipBytes": 187786,
+        "triangles": 15676,
+        "cpuBytes": 1113216,
+        "gpuBytes": 1113216,
+        "errorMeters": 1,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:cad336c6527f13937f6158ea1ded3b52ab3f4d4b017a53c788167c7d8644f76f",
+        "bytes": 4848272,
+        "gzipBytes": 791191,
+        "triangles": 62404,
+        "cpuBytes": 4840992,
+        "gpuBytes": 4840992,
+        "errorMeters": 0.55,
+        "drawCalls": 6
+      }
+    ],
+    "recipeHash": "sha256:71dddfebae14640941186a5dd091ee281d6725c2f52314bae3917eae117b3ae4",
+    "initialBytes": 325444
+  },
+  "geometryValidation": {
+    "glbs": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u8/u8v/kyiv_metro_bridge/models/source.glb",
+        "hash": "sha256:0156fb695a0fd578aa2e734d9ef7837f979fca272214d9ec67ae27d52cae4565",
+        "triangles": 499380,
+        "bytes": 41837920,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u8/u8v/kyiv_metro_bridge/model.glb",
+        "hash": "sha256:daba32df9b73957233e04e6243cc6a181a1ccc2f7d45e7f58f7b75357590c172",
+        "triangles": 499380,
+        "bytes": 41837328,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u8/u8v/kyiv_metro_bridge/model.skyline.glb",
+        "hash": "sha256:8becbf186fcedca712ea7cf947a81aebb959e17f1725c3383e185eca5a2c228b",
+        "triangles": 956,
+        "bytes": 72136,
+        "drawCalls": 3,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u8/u8v/kyiv_metro_bridge/model.district.glb",
+        "hash": "sha256:12af85b02fcfb833b0f4376041e8a0319a1bf9ccb3c2c657c255ba7032f7102f",
+        "triangles": 3500,
+        "bytes": 253308,
+        "drawCalls": 3,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u8/u8v/kyiv_metro_bridge/model.street.glb",
+        "hash": "sha256:849222cb7eb20f44ba27bf054b5e32566f38b46fa021260c51505755a66cacab",
+        "triangles": 15676,
+        "bytes": 1120460,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u8/u8v/kyiv_metro_bridge/model.closeup.glb",
+        "hash": "sha256:cad336c6527f13937f6158ea1ded3b52ab3f4d4b017a53c788167c7d8644f76f",
+        "triangles": 62404,
+        "bytes": 4848272,
+        "drawCalls": 6,
+        "images": 0,
+        "warnings": 0,
+        "errors": 0
+      }
+    ]
+  },
+  "limitations": [
+    "The viewer water surface and standard terrain tiles supply approximate elevations. The review samples at the east rail join differ in height by up to 0.44 m across 1.5 m, including sleeper geometry.",
+    "The model depicts the permanent exterior and preserves the original detailed source master. Current repair equipment and temporary reinforcement are outside the modeled scope."
+  ]
 }

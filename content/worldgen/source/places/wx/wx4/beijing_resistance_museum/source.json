@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.beijing_resistance_museum",
+  "kind": "static-structure",
+  "title": "Museum of the War of Chinese People's Resistance Against Japanese Aggression",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.beijing_resistance_museum",
+        "output": "assets/places/wx/wx4/beijing_resistance_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:11a482a3814e1122647f2a3b005a34f0fd5dcdfcffc31a064b7175fb0a8c36f2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-beijing-resistance-museum",
+        "path": "models/generate-beijing-resistance-museum.mjs"
+      },
+      {
+        "id": "beijing-resistance-museum-model",
+        "path": "models/beijing-resistance-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/beijing-resistance-museum-outline.json",
+      "reference-rights/beijing-resistance-museum-architectural-facts.json",
+      "reference-rights/exact-2025-cc0-exterior.json",
+      "reference-rights/image-screening.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26962-12423.png",
+      "terrain-sources/terrarium-15-26962-12422.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

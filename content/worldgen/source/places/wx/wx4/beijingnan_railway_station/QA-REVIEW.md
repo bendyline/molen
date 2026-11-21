@@ -1,15 +1,26 @@
-# Beijing South railway station
+# Beijing South Railway Station
 
-Reviewed2026-11-03. **Whole source geometry complete;native terrain contact pending. Not counted ready.**
+The oval roof, layered glazing, curved approach deck and thirteen separate platform islands with stairs remain visible at the expected detail levels. The train corridors stay open below the upper glazed shell.
 
-All ten final portable views inspected. Whole individual oval roof with broad curved bands and deep edge/soffit,curved northern/southern glazed entrance fronts,attached raised curved approach-deck sections and columns,two closed ground-level entrance crescents,raised transverse concourse,all thirteen whole mapped platform polygons and13connecting stairs. Track-end portals remain open below the upper curtain wall. Near tiers add facade mullions,fascia bands,roof trim/seams,platform edge bands,stairs/rails,columns and roof braces. The district trim was simplified to its visible bands and spaced mullions in this same pass;whole scope and silhouette remain in every tier. Roof profile,unseen elevations,exact dimensions,intermediate/internal floors,rail clearances and approach-road joins remain explicit picture/map-scale interpretations. No copied lettering,emblems,adverts,brands,people,trains,private images or navigable passenger interiors.
+The southern forecourt remains the common 45.72 m station datum. Local grades meet both passenger entrances and leave the thirteen platforms about one metre above the track bed. The viewer replaces the mapped station shell and keeps the other 44 buildings and all 236 road and rail records in the focused fixture.
 
-Anchor[116.372573,39.863546],heading0.7335683041041644:+X NE along the station tracks,-X SW,+Z SE toward the named southern frontage,-Z NW toward the northern forecourt. Current named Beijing South railway POIs,whole oval layer2 building35184415134069,and thirteen physically intersecting mapped platforms associate stationQ163962 with the physical terminal;no exact-Q-tagged building is claimed. Production replacement removes only that one of554native components,preserving all553independent components and their exact footprints,roads/rail input and water. Two actual closed entrance-floor crescents lie beyond the track/platform corridor (localZ<=-126 or>=157). The layer2 oval roof,raised concourse/decks,open platforms,stairs,rails and streets receive no blanket ground opening. Adjacent properties and public road networks remain separate.
+![Beijing South Railway Station in the Earth viewer](site-preview.png)
 
-All ten shared-material/signed-geographic views inspected. Five existing256px graphs: concrete_plain,stone_granite,metal_standing_seam,metal_painted,window_grid. Five merged near groups and one far palette group;metric UVs,linear colours and zero embedded/private images. Concrete supports,granite platform/floor surfaces,metal roof/soffit,painted steel and actual glazing retain semantic slots. Both signed axes and the complete source-local roof outline are retained. Shared graph documents load once;all model geometry disposes and original ground returns on unloading.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-All26 final terrain,lighting,silhouette,detail and four-tier views inspected. The model-specific default review distance was widened to show the actual exterior rather than place the street camera within its huge roof envelope. Two occupied-floor masks leave all15probes uncovered and preserve source field values. Procedural context is labelled synthetic. Individual roof/frontage/deck/platform/portal/stair scope remains;exposed plinths and local platform intersections are explicit. Native terrain contact remains pending. Three unchanged global Terrarium tiles use outside forecourt[25,250],45.720697m,as commonY=0. Terminal/platform floors+.9m are46.620697m absolute. North entrance-crescent perimeter field differences are -3.711..+.088m relative to the floor;south -5.767..+.775m. Front-center samples[20,175]and[20,-155]stand1.687mand2.494m above the field. All13platform boundaries include exposed plinths up to6.730m and local field intrusions up to3.333m. Exact ground/threshold/platform grades and surface returns are not surveyed. Source platforms and closed floors remain physically continuous,but these native intersections/contact discrepancies prevent geographic readiness. Retain the geometry and explicit limitations;do not count ready,flatten surrounding terrain or blanket-mask the railway corridor. No bespoke terrain or archive research was used.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 844 | 75,744 | 1 |
+| district | 3,252 | 296,480 | 5 |
+| street | 13,736 | 1,228,476 | 5 |
+| closeup | 23,848 | 2,224,308 | 5 |
 
-Master 60316triangles/7241316bytes. Four source-authored runtime tiers 844/3252/13736/23848 meet1k/4k/16k/64k caps with at most5near draws. Initial two levels 371720bytes;closeup 2223948bytes. Four focused tests pass: exact source/import/input pins,signed physical identity,13platforms and actual occupied floors;whole roof crest,raised concourse,closed floor crescents,open train corridor and complete13platform/stair connections in six GLBs;production one-component replacement preserving553exact independent footprints,roads/water and one off-origin terrain datum;isolated exact four-tier rebuild,existing shared graphs,zero images and separate GPU streams. Six Khronos-clean GLBs;285isolated draft probes also passed. Scene validation/30ticks pass,hashbc6475dd2f5646ac665aa87bf67b67500a6859d4680d9caded3d9df508c2c1fe. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.
+Skyline and district total 372,224 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Five shared material graphs bind in the viewer. The review covers 83 renders and 125 geographic samples.
 
-Rebuild: node packages/worldgen/scripts/generate-beijing-south-station.mjs;append --check for exact bytes. Import/LOD/placement select --ids=beijingnan_railway_station. GLBs remain ignored outputs. Canonical source is authoritative;ignored prep/integrators may predate final formatting/review framing.
+Entrance and platform elevations are approximate visual fits. Roof bands, hidden service geometry and approach deck details follow the retained plan and photographs.
+
+The model depicts the passenger exterior and visible concourse stairs. Independent streets, rail lines, water and neighboring buildings use the map.
+
+Rebuild with node packages/worldgen/scripts/generate-beijing-south-station.mjs. Add --check to verify exact bytes.
+
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

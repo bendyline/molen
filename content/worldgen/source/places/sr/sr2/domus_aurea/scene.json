@@ -1,0 +1,242 @@
+{
+  "format": "molen/scene@3",
+  "name": "Domus Aurea interior review",
+  "seed": "domus_aurea",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.domus_aurea",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#ece4d1",
+            "ground": "#a89a84",
+            "intensity": 1.28
+          },
+          "sun": {
+            "direction": [
+              -1,
+              5,
+              2
+            ],
+            "color": "#fff0db",
+            "intensity": 0.63,
+            "castShadow": false
+          },
+          "background": "#c7cad1",
+          "toneMapping": "agx",
+          "exposure": 1.06,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "oculus-glow",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            7.7,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#fff3dd",
+          "intensity": 48,
+          "range": 16
+        }
+      }
+    },
+    {
+      "id": "hall-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            2.6,
+            2.3,
+            -2.8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#f4d3ad",
+          "intensity": 11,
+          "range": 12
+        }
+      }
+    },
+    {
+      "id": "entry-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -169.48118868087533,
+            4.1,
+            14.823981125889437
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "range": 18,
+          "intensity": 49,
+          "color": "#ffe6ae"
+        }
+      }
+    },
+    {
+      "id": "portal-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -172.01536595950375,
+            3.8,
+            20.49626862922383
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "range": 11,
+          "intensity": 18,
+          "color": "#faf0dd"
+        }
+      }
+    },
+    {
+      "id": "west-paint-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -141.49226111775718,
+            3.1,
+            -8.545525100163605
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "range": 12,
+          "intensity": 25,
+          "color": "#ffd9a9"
+        }
+      }
+    },
+    {
+      "id": "gallery-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -23.84444444444444,
+            2.59,
+            -25.30864197530864
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "range": 17,
+          "intensity": 23,
+          "color": "#f5d1aa"
+        }
+      }
+    },
+    {
+      "id": "west-radial-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -10.7,
+            2.43,
+            -0.18
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "range": 10,
+          "intensity": 16,
+          "color": "#fae2bd"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      0.62,
+      1.65,
+      4.9
+    ],
+    "lookAt": [
+      0,
+      5.62,
+      -1.85
+    ],
+    "fov": 68
+  }
+}

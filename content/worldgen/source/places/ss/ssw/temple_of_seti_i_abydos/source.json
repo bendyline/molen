@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_seti_i_abydos",
+  "kind": "static-structure",
+  "title": "Temple of Seti I (Abydos)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_seti_i_abydos",
+        "output": "assets/places/ss/ssw/temple_of_seti_i_abydos/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:613c20115b4186ee781904c89c150cd91b3a87333322dfc27892e3c12a92be5c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-temple-of-seti-i-abydos",
+        "path": "models/generate-temple-of-seti-i-abydos.mjs"
+      },
+      {
+        "id": "temple-of-seti-i-abydos-model",
+        "path": "models/temple-of-seti-i-abydos-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/seti-i-archaeological-site-and-standing-temple.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/commons-chapultepec-seti-i-original.json",
+      "reference-originals/bell-1915-abydos-page-136.jpg",
+      "reference-originals/bell-1915-title-page.jpg",
+      "reference-rights/bell-1915-abydos-plan.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19289-13913.png",
+      "terrain-sources/terrarium-15-19289-13912.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

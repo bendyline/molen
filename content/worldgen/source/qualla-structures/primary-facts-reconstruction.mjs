@@ -19,8 +19,34 @@ import {
 import { inspectAcropolePrimaryFacts } from './primary-facts-acropole.mjs';
 import { inspectActPrimaryFacts } from './primary-facts-act.mjs';
 import { agaKhanPalaceCase, inspectAgaKhanPalaceFacts } from './primary-facts-aga-khan-palace.mjs';
+import {
+  airborneMuseumCase,
+  airborneMuseumModel,
+  inspectAirborneMuseumFacts,
+} from './primary-facts-airborne-museum.mjs';
+import { alAlamCase, alAlamModel, inspectAlAlamFacts } from './primary-facts-al-alam.mjs';
 import { inspectAndenesPrimaryFacts } from './primary-facts-andenes.mjs';
+import {
+  anpingTreeHouseCase,
+  anpingTreeHouseModel,
+  inspectAnpingTreeHouseFacts,
+} from './primary-facts-anping-tree-house.mjs';
+import {
+  antalyaMuseumCase,
+  antalyaMuseumModel,
+  inspectAntalyaMuseumFacts,
+} from './primary-facts-antalya-museum.mjs';
+import {
+  artHistoryBrusselsCase,
+  artHistoryBrusselsModel,
+  inspectArtHistoryBrusselsFacts,
+} from './primary-facts-art-history-brussels.mjs';
 import { inspectAthensPrimaryFacts } from './primary-facts-athens.mjs';
+import {
+  athensWarMuseumCase,
+  athensWarMuseumModel,
+  inspectAthensWarMuseumFacts,
+} from './primary-facts-athens-war-museum.mjs';
 import { augerCampusCases, inspectAugerCampusPrimaryFacts } from './primary-facts-auger-campus.mjs';
 import { inspectAugerClfPrimaryFacts } from './primary-facts-auger-clf.mjs';
 import { inspectAugerCrsPrimaryFacts } from './primary-facts-auger-crs.mjs';
@@ -42,10 +68,25 @@ import {
   birdsvilleHospitalModel,
   inspectBirdsvilleHospitalFacts,
 } from './primary-facts-birdsville.mjs';
+import {
+  blachernaeCase,
+  blachernaeModel,
+  inspectBlachernaeFacts,
+} from './primary-facts-blachernae.mjs';
 import { inspectBoljoonPrimaryFacts } from './primary-facts-boljoon.mjs';
+import {
+  borsseleCase,
+  borsseleModel,
+  inspectBorsseleFacts,
+} from './primary-facts-borssele-nuclear-power-station.mjs';
 import { inspectBosschaPrimaryFacts } from './primary-facts-bosscha.mjs';
 import { inspectBrisbanePrimaryFacts } from './primary-facts-brisbane.mjs';
 import { inspectBristolPrimaryFacts } from './primary-facts-bristol.mjs';
+import {
+  bcPenitentiaryCase,
+  bcPenitentiaryModel,
+  inspectBCPenitentiaryFacts,
+} from './primary-facts-british-columbia-penitentiary.mjs';
 import {
   brokenHillHospitalCase,
   brokenHillHospitalModel,
@@ -53,18 +94,34 @@ import {
 } from './primary-facts-broken-hill-hospital.mjs';
 import { inspectBruneiPrimaryFacts } from './primary-facts-brunei.mjs';
 import { inspectBujagaliPrimaryFacts } from './primary-facts-bujagali.mjs';
+import { butkaraCase, butkaraModel, inspectButkaraFacts } from './primary-facts-butkara-stupa.mjs';
 import {
   chandigarhMuseumCase,
   chandigarhMuseumModel,
   inspectChandigarhMuseumPrimaryFacts,
 } from './primary-facts-chandigarh-museum.mjs';
 import {
+  copticMuseumCase,
+  copticMuseumModel,
+  inspectCopticMuseumFacts,
+} from './primary-facts-coptic-museum.mjs';
+import {
   coquimboMosqueCase,
   coquimboMosqueModel,
   inspectCoquimboMosqueFacts,
 } from './primary-facts-coquimbo-mosque.mjs';
 import { daiichiCases, inspectDaiichiPrimaryFacts } from './primary-facts-daiichi.mjs';
+import {
+  danboJingchengCase,
+  danboJingchengModel,
+  inspectDanboJingchengFacts,
+} from './primary-facts-danbo-jingcheng.mjs';
 import { inspectDatongPrimaryFacts } from './primary-facts-datong.mjs';
+import {
+  ddrMuseumCase,
+  ddrMuseumModel,
+  inspectDdrMuseumFacts,
+} from './primary-facts-ddr-museum.mjs';
 import { inspectDucorPrimaryFacts } from './primary-facts-ducor.mjs';
 import {
   inspectFondukistanAnnexPrimaryFacts,
@@ -79,6 +136,11 @@ import {
   grandEgyptianMuseumModel,
   inspectGrandEgyptianMuseumFacts,
 } from './primary-facts-grand-egyptian-museum.mjs';
+import {
+  inspectTunisSynagogueFacts,
+  tunisSynagogueCase,
+  tunisSynagogueModel,
+} from './primary-facts-grand-synagogue-of-tunis.mjs';
 import { halidzorCase, halidzorModel, inspectHalidzorFacts } from './primary-facts-halidzor.mjs';
 import {
   herbertCottageCase,
@@ -86,16 +148,42 @@ import {
   inspectHerbertCottageFacts,
 } from './primary-facts-herbert-cottage.mjs';
 import { inspectHobartPrimaryFacts } from './primary-facts-hobart.mjs';
+import {
+  hongKongPoliceHeadquartersCase,
+  hongKongPoliceHeadquartersModel,
+  inspectHongKongPoliceHeadquartersFacts,
+} from './primary-facts-hong-kong-police-headquarters.mjs';
 import { hungLauCase, inspectHungLauPrimaryFacts } from './primary-facts-hung-lau.mjs';
 import { inspectIndependencePrimaryFacts } from './primary-facts-independence.mjs';
+import { inspectJamkaranFacts, jamkaranCase, jamkaranModel } from './primary-facts-jamkaran.mjs';
 import {
   inspectMilitaryMuseumFacts,
   militaryMuseumCase,
   militaryMuseumModel,
 } from './primary-facts-johannesburg-military-museum.mjs';
 import { inspectKaptaiPrimaryFacts } from './primary-facts-kaptai.mjs';
+import {
+  inspectKermaMuseumFacts,
+  kermaMuseumCase,
+  kermaMuseumModel,
+} from './primary-facts-kerma-museum.mjs';
+import {
+  inspectKilbegganDistilleryFacts,
+  kilbegganDistilleryCase,
+  kilbegganDistilleryModel,
+} from './primary-facts-kilbeggan-distillery.mjs';
 import { inspectLagosTheatrePrimaryFacts } from './primary-facts-lagos-theatre.mjs';
 import { inspectLasRaicesPrimaryFacts } from './primary-facts-las-raices.mjs';
+import {
+  inspectLeeTheatreFacts,
+  leeTheatreCase,
+  leeTheatreModel,
+} from './primary-facts-lee-theatre.mjs';
+import {
+  bruneiCouncilCase,
+  bruneiCouncilModel,
+  inspectBruneiCouncilFacts,
+} from './primary-facts-legislative-council-brunei.mjs';
 import { inspectLitoralPrimaryFacts, litoralCases } from './primary-facts-litoral.mjs';
 import {
   inspectLitoralEstimatedHallPrimaryFacts,
@@ -139,6 +227,27 @@ import { inspectMubarakPostOfficePrimaryFacts } from './primary-facts-mubarak-po
 import { inspectMubarakSouthwesternOuterPrimaryFacts } from './primary-facts-mubarak-southwestern-outer-hall.mjs';
 import { inspectMubarakUpperLinkPrimaryFacts } from './primary-facts-mubarak-upper-link.mjs';
 import {
+  inspectMuradiyeEdirneFacts,
+  muradiyeEdirneCase,
+  muradiyeEdirneModel,
+} from './primary-facts-muradiye-edirne.mjs';
+import { inspectNankaiFacts, nankaiCase, nankaiModel } from './primary-facts-nankai.mjs';
+import {
+  inspectNanyangHallFacts,
+  nanyangHallCase,
+  nanyangHallModel,
+} from './primary-facts-nanyang-hall.mjs';
+import {
+  inspectNationalMuseumKoreaFacts,
+  nationalMuseumKoreaCase,
+  nationalMuseumKoreaModel,
+} from './primary-facts-national-museum-korea.mjs';
+import {
+  inspectNormantonFacts,
+  normantonCase,
+  normantonModel,
+} from './primary-facts-normanton.mjs';
+import {
   inspectOlympicAipStackPrimaryFacts,
   olympicAipStackCase,
   olympicAipStackModel,
@@ -152,6 +261,7 @@ import {
   ouroPretoRosaryCase,
   ouroPretoRosaryModel,
 } from './primary-facts-ouro-preto-rosary.mjs';
+import { inspectPggmbFacts, pggmbCase, pggmbModel } from './primary-facts-pggmb-building.mjs';
 import { inspectPiratiniFacts, piratiniCase } from './primary-facts-piratini.mjs';
 import { inspectPlascoPrimaryFacts } from './primary-facts-plasco.mjs';
 import { inspectQingdaoPrimaryFacts } from './primary-facts-qingdao.mjs';
@@ -177,7 +287,22 @@ import {
   shenzhenStockExchangeCase,
   shenzhenStockExchangeModel,
 } from './primary-facts-shenzhen-stock-exchange.mjs';
+import {
+  inspectSolvaySchoolFacts,
+  solvaySchoolCase,
+  solvaySchoolModel,
+} from './primary-facts-solvay-school.mjs';
 import { inspectSorpePrimaryFacts } from './primary-facts-sorpe.mjs';
+import {
+  inspectStateLibraryQueenslandFacts,
+  stateLibraryQueenslandCase,
+  stateLibraryQueenslandModel,
+} from './primary-facts-state-library-queensland.mjs';
+import {
+  inspectSulaymaniyahMuseumFacts,
+  sulaymaniyahMuseumCase,
+  sulaymaniyahMuseumModel,
+} from './primary-facts-sulaymaniyah-museum.mjs';
 import {
   byewashValveCase,
   byewashValveModel,
@@ -230,6 +355,11 @@ import {
   thewalaiKhanetModel,
 } from './primary-facts-thewalai-khanet.mjs';
 import {
+  inspectTunisCathedralFacts,
+  tunisCathedralCase,
+  tunisCathedralModel,
+} from './primary-facts-tunis-cathedral.mjs';
+import {
   inspectTytuvenaiHouseFacts,
   tytuvenaiHouseCase,
   tytuvenaiHouseModel,
@@ -242,7 +372,32 @@ import {
   inspectTytuvenaiPerimeterFacts,
   tytuvenaiPerimeterCases,
 } from './primary-facts-tytuvenai-perimeter.mjs';
+import {
+  inspectUcSerefeliFacts,
+  ucSerefeliCase,
+  ucSerefeliModel,
+} from './primary-facts-uc-serefeli.mjs';
+import {
+  inspectUgandaMuseumFacts,
+  ugandaMuseumCase,
+  ugandaMuseumModel,
+} from './primary-facts-uganda-museum.mjs';
+import {
+  inspectVictoriaLawCourtsFacts,
+  victoriaLawCourtsCase,
+  victoriaLawCourtsModel,
+} from './primary-facts-victoria-law-courts.mjs';
+import {
+  inspectVillaWolfFacts,
+  villaWolfCase,
+  villaWolfModel,
+} from './primary-facts-villa-wolf.mjs';
 import { inspectXumaPrimaryFacts } from './primary-facts-xuma.mjs';
+import {
+  inspectYadagiriguttaFacts,
+  yadagiriguttaCase,
+  yadagiriguttaModel,
+} from './primary-facts-yadagirigutta-temple.mjs';
 import {
   inspectYahLehMonumentFacts,
   yahLehMonumentCase,
@@ -364,6 +519,10 @@ export function inspectPrimaryFactsReconstruction({
         'serpentine-government-construction-post-upgrade-2007': 'serpentine_dam_western_australia',
         'markar-historian-height-and-museum-clock-form-2026': 'markar_clock_tower',
         'brunei-renovation-designer-and-whole-customs-plan-2023': 'brunei_energy_hub',
+        [bruneiCouncilCase]: bruneiCouncilModel,
+        [villaWolfCase]: villaWolfModel,
+        [bcPenitentiaryCase]: bcPenitentiaryModel,
+        [ddrMuseumCase]: ddrMuseumModel,
         'xuma-official-single-storey-and-transmitted-heritage-house-2013': 'dr_xuma_house',
         'hobart-state-heritage-whole-theatre-and-flytower-2024': 'theatre_royal_hobart',
         'futai-taipei-restored-stone-arcade-and-mansard-2009': 'taipei_futai_street_mansion',
@@ -387,6 +546,15 @@ export function inspectPrimaryFactsReconstruction({
         [tePuawanangaCase]: tePuawanangaModel,
         [tartuArtMuseumCase]: tartuArtMuseumModel,
         [abbeyMuseumCase]: abbeyMuseumModel,
+        [blachernaeCase]: blachernaeModel,
+        [anpingTreeHouseCase]: anpingTreeHouseModel,
+        [leeTheatreCase]: leeTheatreModel,
+        [artHistoryBrusselsCase]: artHistoryBrusselsModel,
+        [muradiyeEdirneCase]: muradiyeEdirneModel,
+        [ucSerefeliCase]: ucSerefeliModel,
+        [hongKongPoliceHeadquartersCase]: hongKongPoliceHeadquartersModel,
+        [danboJingchengCase]: danboJingchengModel,
+        [nationalMuseumKoreaCase]: nationalMuseumKoreaModel,
         [militaryMuseumCase]: militaryMuseumModel,
         [ouroPretoRosaryCase]: ouroPretoRosaryModel,
         'lagos-national-arts-theatre-mapped-four-sector-saddle-1978': 'national_theatre_nigeria',
@@ -407,6 +575,16 @@ export function inspectPrimaryFactsReconstruction({
         [halidzorCase]: halidzorModel,
         [birdsvilleHospitalCase]: birdsvilleHospitalModel,
         'lyttelton-historic-concrete-courts-1903': 'lyttelton_gaol',
+        [nankaiCase]: nankaiModel,
+        [alAlamCase]: alAlamModel,
+        [stateLibraryQueenslandCase]: stateLibraryQueenslandModel,
+        [butkaraCase]: butkaraModel,
+        [pggmbCase]: pggmbModel,
+        [borsseleCase]: borsseleModel,
+        [sulaymaniyahMuseumCase]: sulaymaniyahMuseumModel,
+        [ugandaMuseumCase]: ugandaMuseumModel,
+        [kermaMuseumCase]: kermaMuseumModel,
+        [normantonCase]: normantonModel,
         [hungLauCase]: 'red_house_hong_kong',
         'qingdao-municipal-original-office-and-crenellated-tower-2021': 'qingdao_observatory',
         'bristol-restorer-owner-whole-courtyard-hotel-intact-2014': 'bristol_hotel_odesa',
@@ -421,6 +599,18 @@ export function inspectPrimaryFactsReconstruction({
           'church_of_la_compania_quito',
         'athens-owner-whole-sofokleous-sixstorey-office-and-ministry-entrance-2015':
           'athens_stock_exchange',
+        [athensWarMuseumCase]: athensWarMuseumModel,
+        [kilbegganDistilleryCase]: kilbegganDistilleryModel,
+        [victoriaLawCourtsCase]: victoriaLawCourtsModel,
+        [tunisCathedralCase]: tunisCathedralModel,
+        [nanyangHallCase]: nanyangHallModel,
+        [jamkaranCase]: jamkaranModel,
+        [copticMuseumCase]: copticMuseumModel,
+        [solvaySchoolCase]: solvaySchoolModel,
+        [tunisSynagogueCase]: tunisSynagogueModel,
+        [yadagiriguttaCase]: yadagiriguttaModel,
+        [airborneMuseumCase]: airborneMuseumModel,
+        [antalyaMuseumCase]: antalyaMuseumModel,
         'plasco-primary-engineering-whole-independent-original-tower-2016': 'plasco_building',
         'berlin-original-whole-sbahn-network-alkis-envelopes-and-engineer-operator-2021':
           'berlin_nord_sud_tunnel',
@@ -564,6 +754,29 @@ export function inspectPrimaryFactsReconstruction({
       return inspectBerlinPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'athens-owner-whole-sofokleous-sixstorey-office-and-ministry-entrance-2015')
       return inspectAthensPrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === tunisCathedralCase)
+      return inspectTunisCathedralFacts({ dir, controls, frame, proof });
+    if (proof.case === nanyangHallCase)
+      return inspectNanyangHallFacts({ dir, controls, frame, proof });
+    if (proof.case === jamkaranCase) return inspectJamkaranFacts({ dir, controls, frame, proof });
+    if (proof.case === copticMuseumCase)
+      return inspectCopticMuseumFacts({ dir, controls, frame, proof });
+    if (proof.case === solvaySchoolCase)
+      return inspectSolvaySchoolFacts({ dir, controls, frame, proof });
+    if (proof.case === tunisSynagogueCase)
+      return inspectTunisSynagogueFacts({ dir, controls, frame, proof });
+    if (proof.case === yadagiriguttaCase)
+      return inspectYadagiriguttaFacts({ dir, controls, frame, proof });
+    if (proof.case === airborneMuseumCase)
+      return inspectAirborneMuseumFacts({ dir, controls, frame, proof });
+    if (proof.case === victoriaLawCourtsCase)
+      return inspectVictoriaLawCourtsFacts({ dir, controls, frame, proof });
+    if (proof.case === kilbegganDistilleryCase)
+      return inspectKilbegganDistilleryFacts({ dir, controls, frame, proof });
+    if (proof.case === athensWarMuseumCase)
+      return inspectAthensWarMuseumFacts({ dir, proof, controls, frame });
+    if (proof.case === antalyaMuseumCase)
+      return inspectAntalyaMuseumFacts({ dir, proof, controls, frame });
     if (proof.case === 'maputo-katembe-engineering-2019')
       return inspectMaputoPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'xuma-official-single-storey-and-transmitted-heritage-house-2013')
@@ -593,6 +806,24 @@ export function inspectPrimaryFactsReconstruction({
       return inspectOuroPretoRosaryFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === abbeyMuseumCase)
       return inspectAbbeyMuseumFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === leeTheatreCase)
+      return inspectLeeTheatreFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === artHistoryBrusselsCase)
+      return inspectArtHistoryBrusselsFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === muradiyeEdirneCase)
+      return inspectMuradiyeEdirneFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === ucSerefeliCase)
+      return inspectUcSerefeliFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === hongKongPoliceHeadquartersCase)
+      return inspectHongKongPoliceHeadquartersFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === danboJingchengCase)
+      return inspectDanboJingchengFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === anpingTreeHouseCase)
+      return inspectAnpingTreeHouseFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === blachernaeCase)
+      return inspectBlachernaeFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === nationalMuseumKoreaCase)
+      return inspectNationalMuseumKoreaFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === militaryMuseumCase)
       return inspectMilitaryMuseumFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === tartuArtMuseumCase)
@@ -651,6 +882,22 @@ export function inspectPrimaryFactsReconstruction({
       return inspectHalidzorFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === 'lyttelton-historic-concrete-courts-1903')
       return inspectLytteltonPrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === nankaiCase)
+      return inspectNankaiFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === alAlamCase) return inspectAlAlamFacts({ dir, proof, controls, frame });
+    if (proof.case === butkaraCase) return inspectButkaraFacts({ dir, proof, controls, frame });
+    if (proof.case === pggmbCase) return inspectPggmbFacts({ dir, proof, controls, frame });
+    if (proof.case === borsseleCase) return inspectBorsseleFacts({ dir, proof, controls, frame });
+    if (proof.case === sulaymaniyahMuseumCase)
+      return inspectSulaymaniyahMuseumFacts({ dir, proof, controls, frame });
+    if (proof.case === ugandaMuseumCase)
+      return inspectUgandaMuseumFacts({ dir, proof, controls, frame });
+    if (proof.case === kermaMuseumCase)
+      return inspectKermaMuseumFacts({ dir, proof, controls, frame });
+    if (proof.case === stateLibraryQueenslandCase)
+      return inspectStateLibraryQueenslandFacts({ dir, proof, controls, frame });
+    if (proof.case === normantonCase)
+      return inspectNormantonFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === 'qingdao-municipal-original-office-and-crenellated-tower-2021')
       return inspectQingdaoPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'bristol-restorer-owner-whole-courtyard-hotel-intact-2014')
@@ -671,6 +918,14 @@ export function inspectPrimaryFactsReconstruction({
       return inspectBosschaPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'brunei-renovation-designer-and-whole-customs-plan-2023')
       return inspectBruneiPrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === bruneiCouncilCase)
+      return inspectBruneiCouncilFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === villaWolfCase)
+      return inspectVillaWolfFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === bcPenitentiaryCase)
+      return inspectBCPenitentiaryFacts({ dir, proof, controls, frame, inventory });
+    if (proof.case === ddrMuseumCase)
+      return inspectDdrMuseumFacts({ dir, proof, controls, frame, inventory });
     if (proof.case === 'markar-historian-height-and-museum-clock-form-2026')
       return inspectMarkarPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'serpentine-government-construction-post-upgrade-2007')

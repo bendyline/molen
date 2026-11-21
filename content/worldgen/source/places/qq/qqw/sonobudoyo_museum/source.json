@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sonobudoyo_museum",
+  "kind": "static-structure",
+  "title": "Sonobudoyo Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sonobudoyo_museum",
+        "output": "assets/places/qq/qqw/sonobudoyo_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e5f91d32d02696b58a32da550259aca2ca02d85c1c8c22299e6423921157f998"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sonobudoyo-museum",
+        "path": "models/generate-sonobudoyo-museum.mjs"
+      },
+      {
+        "id": "sonobudoyo-museum-model",
+        "path": "models/sonobudoyo-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/unit-i-karsten-and-kesenian.json",
+      "reference-rights/yogyakarta-heritage-written-facts.json",
+      "reference-rights/zhou-guanhuai-original-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26429-17096.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

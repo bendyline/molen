@@ -521,6 +521,8 @@ function facade(out) {
     stroke: 0.12,
   });
 }
+export const mhpSections = { ground, inner, oldY, outer, rimY, roofPoint, seat, seatColor, upperY };
+
 export function buildMhp(out) {
   bowl(out);
   facade(out);

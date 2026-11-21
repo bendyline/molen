@@ -21,7 +21,7 @@ Original authored geometry; primary photos and architect sections used as resear
 
 ## Authored geometry and materials
 
-1,609,286 triangles, 3,800,236 vertices, 10 surface groups; 156,125,056 source bytes. SHA-256: `sha256:8c819d9f36b2d935239af8c885e37e70f696a85f0520af1fb3bcfd51f349d315`. Actual bounds: -182.840, -10.500, -230.019 to 231.022, 50.350, 154.955 m.
+1,622,966 triangles, 3,827,596 vertices, 10 surface groups; 157,274,176 source bytes. SHA-256: `sha256:34f34cb025dcc263b137fb7f0d613555bc69d7dac4db07f0749bd9419ebdf868`. Actual bounds: -182.840, -10.500, -230.019 to 231.022, 50.350, 154.955 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m), `matgraph:molen.worldgen.material.gravel` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center at model Y0. +Z points north-northwest and +X west-southwest. The podium and stair grades follow standard terrain at their mapped locations."}.
 

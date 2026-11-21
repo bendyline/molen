@@ -40,7 +40,7 @@ export const stationSurfaces = {
   doorGlass: { slot: 'window', graph: 'window_grid', roughness: 0.43 },
 };
 const cfg = {
-  skyline: { round: 4, profile: 4, simplify: 3 },
+  skyline: { round: 4, profile: 4, simplify: 4.5 },
   district: { round: 5, profile: 6, simplify: 8, detail: true },
   street: { round: 8, profile: 8, simplify: 2, detail: true, recess: false, fine: true, post: 400 },
   closeup: {
@@ -1247,11 +1247,32 @@ export const controls = {
   ],
   referenceLocal: [0, -800],
   scope:
-    'Whole named Afsluitdijk causeway and both physical sluice/navigation-lock crossings;current map shoreline islands and actual control-house roof footprints. Preserve separate harbor/private buildings,wind turbines,boats,water,public approaches and unrelated structures. Static closed bridge/sluice appearance only;no navigable machinery,interiors,vehicles or copied lettering.',
+    'Mapped causeway, Stevin and Lorentz waterworks, and newer Den Oever exterior structures. Surrounding harbors, independent buildings, boats and transport remain native.',
   interpretation:
-    'Centerline from current standard A7 PMTiles;bank openings from actual bridge segments,gate houses from native polygons. Heights,embankment cross-section,gate machinery and current construction inventory are explicit picture-based estimates. Source length32500m is retained as a coarse fact;modeled extent follows the selected physical coast-to-coast road endpoints.2013/2024 references differ around Den Oever pumping works;do not invent an unseen completed2026 complex.',
+    'Standard PMTiles establishes the causeway alignment, gate-house outlines and new-works positions. Heights and transverse profiles are picture-based estimates. Both approaches taper to the standard terrain. The selected end-to-end extent is 31.729 km.',
 };
 export const stationPlans = [];
+
+const radius = 6378137;
+const latitude = (controls.anchor[1] * Math.PI) / 180;
+const cosHeading = Math.cos(controls.heading);
+const sinHeading = Math.sin(controls.heading);
+const mercatorNorth = (lat) => Math.log(Math.tan(Math.PI / 4 + lat / 2));
+const originNorth = mercatorNorth(latitude);
+const worldScale = Math.cos(latitude);
+
+/** Project the signed source controls into the viewer's metric Web Mercator frame. */
+export function projectMapPoint([x, z]) {
+  const east = x * cosHeading + z * sinHeading;
+  const south = -x * sinHeading + z * cosHeading;
+  const projectedSouth =
+    (originNorth - mercatorNorth(latitude - south / radius)) * radius * worldScale;
+  return [
+    east * cosHeading - projectedSouth * sinHeading,
+    east * sinHeading + projectedSouth * cosHeading,
+  ];
+}
+
 const cross = (a, b) => [
     a[1] * b[2] - a[2] * b[1],
     a[2] * b[0] - a[0] * b[2],
@@ -1259,7 +1280,10 @@ const cross = (a, b) => [
   ],
   sub = (a, b) => a.map((v, i) => v - b[i]);
 function T(o, c, p, s, col, N) {
-  p = p.map((p) => p.map(Math.fround));
+  p = p.map(([x, y, z]) => {
+    const [east, south] = projectMapPoint([x, z]);
+    return [east, y, south].map(Math.fround);
+  });
   let n = cross(sub(p[1], p[0]), sub(p[2], p[0])),
     d = Math.hypot(...n);
   if (d < 1e-8) return;
@@ -1655,8 +1679,38 @@ export function centerZ(x) {
       return p[i - 1][1] + ((p[i][1] - p[i - 1][1]) * (x - p[i - 1][0])) / (p[i][0] - p[i - 1][0]);
   return p.at(-1)[1];
 }
+
+// The motorway meets the unmodified viewer DEM at the selected mainland endpoints.
+const approaches = { west: { length: 240, height: 4.64 }, east: { length: 480, height: -0.54 } };
+const westEnd = controls.path[0][0];
+const eastEnd = controls.path.at(-1)[0];
+const approachBreaks = [westEnd + approaches.west.length, eastEnd - approaches.east.length];
+const approachWeight = (x) =>
+  Math.min(1, (x - westEnd) / approaches.west.length, (eastEnd - x) / approaches.east.length);
+
+export function roadHeightAt(x) {
+  const bank = x < approachBreaks[0] ? approaches.west.height : approaches.east.height;
+  return bank + (controls.roadHeight - bank) * approachWeight(x);
+}
+
+const crestWeight = (x) => Math.max(0.002, approachWeight(x));
+const bankZ = (x, z) => {
+  const edge = Math.max(-13, Math.min(14, z));
+  return edge + (z - edge) * crestWeight(x);
+};
+const bankY = (x, y) => roadHeightAt(x) + (y - controls.roadHeight) * crestWeight(x);
+const B = (x, z, y) => [x, bankY(x, y), centerZ(x) + bankZ(x, z)];
+
+// Position controls come from the named new-works points in the retained PMTiles.
+// Visible widths and concrete profiles are interpreted from the exterior photographs.
+export const newerSluices = [
+  { name: 'stevin-new-west', min: -15366, max: -15300, scope: 'den-oever' },
+  { name: 'stevin-new-east', min: -15189, max: -15123, scope: 'den-oever' },
+];
+export const newerPumpFronts = [-15545, -14983];
 const P = (x, z, y) => [x, y, centerZ(x) + z];
-const opening = (x) => controls.spans.some((s) => x > s.min && x < s.max);
+const openings = [...controls.spans, ...newerSluices];
+const opening = (x) => openings.some((s) => x > s.min && x < s.max);
 function reducedPath(t) {
   const a = controls.path.map((p) => [...p]);
   let change = true;
@@ -1692,7 +1746,13 @@ function corridor(o, c, a, b, z0, z1, y0, y1, s) {
 }
 function levee(o, c) {
   const p = reducedPath(c.simplify),
-    xs = [...new Set([...p.map((p) => p[0]), ...controls.spans.flatMap((s) => [s.min, s.max])])]
+    xs = [
+      ...new Set([
+        ...p.map((p) => p[0]),
+        ...approachBreaks,
+        ...openings.flatMap((s) => [s.min, s.max]),
+      ]),
+    ]
       .filter((x) => x >= p[0][0] && x <= p.at(-1)[0])
       .sort((a, b) => a - b),
     profile =
@@ -1735,7 +1795,7 @@ function levee(o, c) {
       Q(
         o,
         c,
-        [P(a, A[0], A[1]), P(b, A[0], A[1]), P(b, B[0], B[1]), P(a, B[0], B[1])],
+        [bankPoint(a, A), bankPoint(b, A), bankPoint(b, B), bankPoint(a, B)],
         s,
         C[s],
         [0, 1, 0],
@@ -1745,7 +1805,7 @@ function levee(o, c) {
     for (const x of [a, b])
       if (
         c !== cfg.skyline &&
-        (controls.spans.some((s) => Math.abs(x - s.min) < 0.01 || Math.abs(x - s.max) < 0.01) ||
+        (openings.some((s) => Math.abs(x - s.min) < 0.01 || Math.abs(x - s.max) < 0.01) ||
           x === xs[0] ||
           x === xs.at(-1))
       ) {
@@ -1755,22 +1815,22 @@ function levee(o, c) {
           T(
             o,
             c,
-            ix.slice(j, j + 3).map((k) => P(x, r[k][0], r[k][1])),
+            ix.slice(j, j + 3).map((k) => bankPoint(x, r[k])),
             'stone',
             C.stone,
             [x === a ? -1 : 1, 0, 0],
           );
       }
-    if (c !== cfg.skyline) {
+    if (c.fine) {
       for (const [z0, z1, N] of [
         [-65, -65, [0, 0, -1]],
         [55, 55, [0, 0, 1]],
       ])
-        Q(o, c, [P(a, z0, -12), P(b, z0, -12), P(b, z1, -2), P(a, z1, -2)], 'stone', C.stone, N);
+        Q(o, c, [B(a, z0, -12), B(b, z0, -12), B(b, z1, -2), B(a, z1, -2)], 'stone', C.stone, N);
       Q(
         o,
         c,
-        [P(a, -65, -12), P(b, -65, -12), P(b, 55, -12), P(a, 55, -12)],
+        [B(a, -65, -12), B(b, -65, -12), B(b, 55, -12), B(a, 55, -12)],
         'stone',
         C.stone,
         [0, -1, 0],
@@ -1780,7 +1840,7 @@ function levee(o, c) {
       Q(
         o,
         c,
-        [P(a, -42, 2.48), P(b, -42, 2.48), P(b, -39, 2.48), P(a, -39, 2.48)],
+        [B(a, -42, 1.43), B(b, -42, 1.43), B(b, -39, 2.79), B(a, -39, 2.79)],
         'path',
         C.path,
         [0, 1, 0],
@@ -1790,7 +1850,7 @@ function levee(o, c) {
           Q(
             o,
             c,
-            [P(a, z, 4.92), P(b, z, 4.92), P(b, z + 0.12, 4.92), P(a, z + 0.12, 4.92)],
+            [B(a, z, 4.92), B(b, z, 4.92), B(b, z + 0.12, 4.92), B(a, z + 0.12, 4.92)],
             'mark',
             C.mark,
             [0, 1, 0],
@@ -1805,9 +1865,9 @@ function levee(o, c) {
         const a = xs[i - 1],
           b = xs[i];
         if (opening((a + b) / 2)) continue;
-        if (c.near) beam(adapter(o, c), 'metal', P(a, z, 5.9), P(b, z, 5.9), 0.1, 0.17, C.metal);
+        if (c.near) beam(adapter(o, c), 'metal', B(a, z, 5.9), B(b, z, 5.9), 0.1, 0.17, C.metal);
         else
-          Q(o, c, [P(a, z, 5.4), P(b, z, 5.4), P(b, z, 5.8), P(a, z, 5.8)], 'metal', C.metal, [
+          Q(o, c, [B(a, z, 5.4), B(b, z, 5.4), B(b, z, 5.8), B(a, z, 5.8)], 'metal', C.metal, [
             0,
             0,
             z > 0 ? 1 : -1,
@@ -1815,10 +1875,12 @@ function levee(o, c) {
       }
   if (c.fine)
     for (let x = xs[0]; x < xs.at(-1); x += c.post)
-      if (!opening(x))
+      if (!opening(x) && approachWeight(x) > 0.15)
         for (const z of [-14.5, 14.5])
-          beam(adapter(o, c), 'metal', P(x, z, 4.9), P(x, z, 5.95), 0.12, 0.13, C.metal);
+          beam(adapter(o, c), 'metal', B(x, z, 4.9), B(x, z, 5.95), 0.12, 0.13, C.metal);
 }
+
+const bankPoint = (x, [z, y]) => B(x, z, y);
 function house(o, c, h) {
   for (const poly of h.polygons) {
     const flat = poly.flat(),
@@ -1832,6 +1894,10 @@ function house(o, c, h) {
     if (c.detail)
       ringEdges(poly, (e, k) => {
         if (k || e.L < 1.5) return;
+        if (!c.fine) {
+          wall(o, c, e.p, e.L, 4.9, 4.9 + high, [], 'wall');
+          return;
+        }
         const n = Math.max(1, Math.floor(e.L / 3)),
           holes = Array.from({ length: n }, (_, j) => ({
             kind: j === 0 && e.L > 6 ? 'doorGlass' : 'glass',
@@ -1944,6 +2010,88 @@ function bank(o, c, s) {
       }
   }
 }
+
+function newerSluice(o, c, { min: a, max: b }) {
+  if (c === cfg.skyline) {
+    Q(
+      o,
+      c,
+      [P(a, -25, 4.9), P(b, -25, 4.9), P(b, 25, 4.9), P(a, 25, 4.9)],
+      'base',
+      C.base,
+      [0, 1, 0],
+    );
+    return;
+  }
+  corridor(o, c, a, b, -25, 25, 4.4, 4.9, 'base');
+  const d = 5.2;
+  const wing = (x, side, offset) => {
+    const p = [x, centerZ(x) + offset];
+    const z = Math.sign(offset);
+    slab(
+      o,
+      c,
+      [p, [x + side * 14, p[1] + z * 19], [x + side * 19, p[1] + z * 19], [x + side * d, p[1]]],
+      -5,
+      4.2,
+      'wall',
+    );
+  };
+  for (const offset of [-26, 25]) {
+    const z = centerZ((a + b) / 2) + offset;
+    box(o, c, a, b, 4.1, 8.2, z - 1.25, z + 1.25, 'wall');
+    for (const [x, side] of [
+      [a, -1],
+      [b, 1],
+    ])
+      wing(x, side, offset);
+    for (const x of [a + d, (a + b) / 2, b - d]) {
+      box(o, c, x - 1.2, x + 1.2, -6, 8.35, z - 2.15, z + 1.9, 'wall');
+      if (c.fine) box(o, c, x - 1.34, x + 1.34, 8.35, 8.58, z - 2.28, z + 2.05, 'trim');
+    }
+    if (c.fine) {
+      const span = [a + 1.3, b - 1.3];
+      beam(adapter(o, c), 'metal', [span[0], 8.95, z], [span[1], 8.95, z], 0.08, 0.09, C.metal);
+      for (let x = a + 1.5; x < b - 1; x += c.near ? 2.6 : 10) {
+        beam(adapter(o, c), 'metal', [x, 8.2, z], [x, 8.98, z], 0.065, 0.065, C.metal);
+      }
+    }
+  }
+}
+
+function newerPumpFront(o, c, x) {
+  if (!c.detail) return;
+  const z = centerZ(x);
+  const apron = [
+    [x - 29, z - 49],
+    [x + 29, z - 49],
+    [x + 23, z - 25],
+    [x - 23, z - 25],
+  ];
+  slab(o, c, apron, -4, 3.1, 'base');
+  box(o, c, x - 22, x + 22, 3.1, 7.4, z - 46, z - 29, 'wall');
+  box(o, c, x - 22.5, x + 22.5, 7.4, 7.8, z - 46.5, z - 28.5, 'trim');
+  if (!c.fine) return;
+  for (const bay of [-14, 0, 14]) {
+    box(o, c, x + bay - 6.1, x + bay + 6.1, 3.45, 6.4, z - 46.68, z - 46.48, 'metal');
+    for (const dx of [-6.25, 6.25])
+      box(o, c, x + bay + dx - 0.27, x + bay + dx + 0.27, 3.1, 7, z - 47, z - 46.4, 'wall');
+    if (c.near)
+      for (let row = 0; row < 5; row++) {
+        const y = 3.65 + row * 0.52;
+        beam(
+          adapter(o, c),
+          'trim',
+          [x + bay - 6.05, y, z - 46.79],
+          [x + bay + 6.05, y, z - 46.79],
+          0.11,
+          0.1,
+          C.trim,
+        );
+      }
+  }
+}
+
 function lock(o, c, l) {
   let a, b;
   if (l.centerline) {
@@ -1994,6 +2142,8 @@ export function buildStationLevel(o, level = 'master') {
   if (!c) throw Error('Unknown Afsluitdijk tier ' + level);
   levee(o, c);
   for (const s of controls.spans) bank(o, c, s);
+  for (const s of newerSluices) newerSluice(o, c, s);
+  for (const x of newerPumpFronts) newerPumpFront(o, c, x);
   if (c.detail) for (const h of controls.houses) house(o, c, h);
   for (const l of controls.locks) lock(o, c, l);
 }

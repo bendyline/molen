@@ -52,6 +52,62 @@ const cfg = {
 export const controls = {
   anchor: [29.74833, 60.00639],
   heading: 0.78,
+  // Local S-1 paving follows the mapped shoreline next to each parked gate.
+  s1Aprons: [
+    [
+      [
+        [-3516.713, -816.022],
+        [-3512.29, -858.508],
+        [-3449.288, -911.341],
+        [-3431.839, -905.545],
+        [-3418.958, -879.859],
+        [-3419.839, -879.324],
+        [-3420.017, -873.201],
+        [-3414.515, -870.698],
+        [-3414.391, -870.753],
+        [-3396.425, -834.928],
+        [-3394.166, -814.807],
+        [-3462.108, -780.751],
+        [-3493.403, -769.539],
+        [-3516.713, -816.022],
+      ],
+    ],
+    [
+      [
+        [-3240.527, -1001.439],
+        [-3234.733, -1018.885],
+        [-3154.697, -1037.75],
+        [-3117.997, -1015.876],
+        [-3094.687, -969.393],
+        [-3122.395, -951.03],
+        [-3190.338, -916.974],
+        [-3205.113, -930.822],
+        [-3222.341, -965.176],
+        [-3220.824, -965.89],
+        [-3220.439, -972.647],
+        [-3226.157, -976.205],
+        [-3227.557, -975.576],
+        [-3240.527, -1001.439],
+      ],
+    ],
+  ],
+  // The two public portal fronts sit just ahead of the mapped buildings over the road.
+  s1Portals: [
+    {
+      approach: 6076.95634413858,
+      approachHeight: 6.5,
+      mouth: 6299.95634413858,
+      floor: -2.35,
+      roof: 4.2,
+    },
+    {
+      approach: 7646.631693255834,
+      approachHeight: 4.65,
+      mouth: 7425.631693255834,
+      floor: -5.12,
+      roof: 1.45,
+    },
+  ],
   stations: [
     {
       x: -9040.6091,
@@ -938,10 +994,12 @@ export const controls = {
       clear: 110,
       deck: 16,
       bridgeOrTunnelExtents: [4456.416967970275, 5182.536387230392],
-      center: [4819.4767, 1741.9038],
-      coordinate: [29.831912398368125, 60.02571362217764],
+      center: [4907.95823, 1802.07039],
+      coordinate: [29.833803117860526, 60.025882633153664],
       featureIds: [35184962348290],
-      middle: 16335.807976277589,
+      // The channel is offset along the mapped crossing. Its midpoint comes from the
+      // two shorelines at the road axis, while a and b continue to bound the approaches.
+      middle: 16442.80797627759,
       a: 15896.749170270625,
       b: 16774.93094473132,
       measuredSpan: 878.181774460696,
@@ -1171,8 +1229,8 @@ function panel(o, c, poly, y, s, N = [0, 1, 0]) {
       N,
     );
 }
-function solid(o, c, poly, lo, hi, s) {
-  panel(o, c, poly, hi, s);
+function solid(o, c, poly, lo, hi, s, top = s) {
+  panel(o, c, poly, hi, top);
   panel(o, c, poly, lo, s, [0, -1, 0]);
   for (let j = 0; j < poly.length; j++) {
     const r = c === cfg.skyline ? simplify(poly[j]) : openRing(poly[j]);
@@ -1396,7 +1454,7 @@ function bank(o, c, a, b) {
         for (const d of [-9, -5.2, 5.2, 9]) roadMark(o, c, s, s + 5.5, d, 0.085);
   }
 }
-function roadDeck(o, c, cuts, heights, width = 16) {
+function roadDeck(o, c, cuts, heights, width = 16, tint = C.paving) {
   for (let i = 1; i < cuts.length; i++) {
     const a = cuts[i - 1],
       b = cuts[i],
@@ -1407,7 +1465,7 @@ function roadDeck(o, c, cuts, heights, width = 16) {
       c,
       [at(a, -width, A), at(b, -width, B), at(b, width, B), at(a, width, A)],
       'paving',
-      C.paving,
+      tint,
       [0, 1, 0],
     );
     if (c !== cfg.skyline) {
@@ -1484,81 +1542,142 @@ function sluice(o, c, q) {
     for (const d of [-25, 25]) prism(o, c, a, b, d - 1, d + 1, -depth - 1, -depth - 0.1, 'base');
 }
 
-function tunnelPortal(o, c, s, sign) {
-  const near = s - sign * 145,
-    back = s - sign * 75;
-  const cuts = sign < 0 ? [s, back, near] : [near, back, s];
-  const ys = sign < 0 ? [6.5, 0.5, -5.4] : [-5.4, 0.5, 6.5];
-  roadDeck(o, c, cuts, ys, 13);
-  for (const d of [-16, 0, 16]) {
-    const a = Math.min(near, s),
-      b = Math.max(near, s);
-    prism(o, c, a, b, d - 0.65, d + 0.65, -7, 6.35, 'wall');
-  }
-  const a = Math.min(near, near - sign * 11),
-    b = Math.max(near, near - sign * 11);
-  prism(o, c, a, b, -17, 17, -0.1, 6.5, 'base');
-  if (c.detail)
-    for (const d of [-11, 11]) {
-      const face = near + sign * 0.04;
+function tunnelPortal(o, c, { approach, approachHeight, mouth, floor, roof }) {
+  const direction = Math.sign(mouth - approach);
+  const recess = mouth + direction * 8;
+  const profile = (s) => (s - approach) / (mouth - approach);
+  const road = (s) => lerp(approachHeight, floor, profile(s));
+  const cap = (s) => lerp(approachHeight + 0.35, roof, profile(s));
+  const cuts = lineSamples(Math.min(approach, mouth), Math.max(approach, mouth), c.tol);
+  const asphalt = lin('66706d');
+  roadDeck(o, c, cuts, cuts.map(road), 16, asphalt);
+  const yellow = lin('d6ae56');
+  for (let i = 1; i < cuts.length; i++) {
+    const [a, b] = cuts.slice(i - 1, i + 1);
+    const normal = station((a + b) * 0.5);
+    for (const sign of [-1, 1]) {
+      const inside = sign * 15.7;
+      const outside = sign * 16.5;
       Q(
         o,
         c,
         [
-          at(face, d - 5, -5.35),
-          at(face, d + 5, -5.35),
-          at(face, d + 5, -0.15),
-          at(face, d - 5, -0.15),
+          at(a, inside, road(a)),
+          at(b, inside, road(b)),
+          at(b, inside, cap(b)),
+          at(a, inside, cap(a)),
         ],
-        'dark',
-        C.dark,
-        [station(s).nz * sign, 0, -station(s).nx * sign],
+        'wall',
+        yellow,
+        [-normal.nx * sign, 0, -normal.nz * sign],
+      );
+      Q(
+        o,
+        c,
+        [
+          at(a, inside, cap(a)),
+          at(b, inside, cap(b)),
+          at(b, outside, cap(b)),
+          at(a, outside, cap(a)),
+        ],
+        'base',
+        C.base,
+        [0, 1, 0],
+      );
+      Q(
+        o,
+        c,
+        [at(a, outside, -8), at(b, outside, -8), at(b, outside, cap(b)), at(a, outside, cap(a))],
+        'wall',
+        C.wall,
+        [normal.nx * sign, 0, normal.nz * sign],
       );
     }
+  }
+  if (c.fine) {
+    const [start, end] = [cuts[0], cuts.at(-1)];
+    for (let a = start + 4; a + 5 < end; a += 11) {
+      const b = a + 5;
+      for (const d of [-10.4, -5.2, 5.2, 10.4]) {
+        Q(
+          o,
+          c,
+          [
+            at(a, d - 0.07, road(a) + 0.025),
+            at(b, d - 0.07, road(b) + 0.025),
+            at(b, d + 0.07, road(b) + 0.025),
+            at(a, d + 0.07, road(a) + 0.025),
+          ],
+          'wall',
+          C.metal,
+          [0, 1, 0],
+        );
+      }
+    }
+  }
+  const a = Math.min(mouth, recess),
+    b = Math.max(mouth, recess);
+  prism(o, c, a, b, -16.5, 16.5, roof - 1.15, roof, 'base');
+  prism(o, c, a, b, -0.65, 0.65, floor - 0.3, roof - 0.95, 'wall');
+  prism(o, c, a, b, -16.5, -15.45, floor - 0.3, roof - 0.95, 'wall');
+  prism(o, c, a, b, 15.45, 16.5, floor - 0.3, roof - 0.95, 'wall');
+  const front = mouth - direction * 0.04;
+  const normal = station(mouth);
+  Q(
+    o,
+    c,
+    [
+      at(front, -16.5, roof - 1.15),
+      at(front, 16.5, roof - 1.15),
+      at(front, 16.5, roof),
+      at(front, -16.5, roof),
+    ],
+    'wall',
+    yellow,
+    [-normal.nz * direction, 0, normal.nx * direction],
+  );
+  const shade = mouth + direction * 0.85;
+  Q(
+    o,
+    c,
+    [
+      at(shade, -15.6, floor - 0.35),
+      at(shade, 15.6, floor - 0.35),
+      at(shade, 15.6, roof - 1.1),
+      at(shade, -15.6, roof - 1.1),
+    ],
+    'dark',
+    lin('24292b'),
+    [-normal.nz * direction, 0, normal.nx * direction],
+  );
+  if (c.detail) roadDeck(o, c, [a, b], [floor, floor], 15.7, asphalt);
 }
 function s1Navigation(o, c, q) {
-  const half = q.span / 2;
   for (const sign of [-1, 1]) {
-    const shore = q.middle + sign * half,
-      outer = shore + sign * 215,
-      back = shore + sign * 350;
-    const L = Math.min(shore, outer),
-      R = Math.max(shore, outer);
-    const ring = [
-      at(shore, -49, 0),
-      at(shore, 49, 0),
-      at(outer, 94, 0),
-      at(back, 46, 0),
-      at(back, -55, 0),
-      at(outer, -85, 0),
-    ].map(xz);
-    solid(o, c, [ring], -12, 4.1, 'base');
-    const seat = shore + sign * 64;
-    const swing = [at(seat, -36, 5), at(seat + sign * 52, 24, 5), at(seat + sign * 119, -29, 5)];
+    const shore = q.middle + sign * (q.clear / 2);
+    const gatePoint = (along, across) => at(shore + sign * along, across, 5.6);
+    const apron = controls.s1Aprons[sign < 0 ? 0 : 1];
+    solid(o, c, apron, -12, 4.1, 'base', 'paving');
+    const swing = [gatePoint(20, -113), gatePoint(105, -71), gatePoint(18, -33)];
+    const gateTint = lin('d6d7cf');
     const n = c === cfg.skyline ? 3 : c.arc;
-    const arm = (i) =>
-      swing[0].map(
-        (v, k) => lerp(v, swing[2][k], i / n) + (k === 2 ? Math.sin((i * Math.PI) / n) * -15 : 0),
-      );
-    for (let i = 1; i <= n; i++) beam(adapter(o, c), 'wall', arm(i - 1), arm(i), 3.6, 4, C.wall);
-    beam(adapter(o, c), 'wall', swing[0], swing[1], 3.2, 4.2, C.wall);
-    beam(adapter(o, c), 'wall', swing[1], swing[2], 3.2, 4.2, C.wall);
+    const arm = (t) => gatePoint(lerp(20, 18, t) - 7 * Math.sin(Math.PI * t), lerp(-113, -33, t));
+    for (let i = 1; i <= n; i++)
+      beam(adapter(o, c), 'wall', arm((i - 1) / n), arm(i / n), 3.6, 4, gateTint);
+    beam(adapter(o, c), 'wall', swing[0], swing[1], 3.2, 4.2, gateTint);
+    beam(adapter(o, c), 'wall', swing[1], swing[2], 3.2, 4.2, gateTint);
     if (c.detail) {
-      for (const t of [0.28, 0.5, 0.72]) {
-        const p = swing[1].map((v, i) => lerp(v, swing[0][i], t)),
-          n = swing[1].map((v, i) => lerp(v, swing[2][i], t));
-        beam(adapter(o, c), 'wall', p, n, 1.9, 2.6, C.wall);
+      for (const t of [0.24, 0.52, 0.78]) {
+        const braceEnd = swing[0].map((v, i) => lerp(v, swing[1][i], t));
+        const otherEnd = swing[2].map((v, i) => lerp(v, swing[1][i], t));
+        beam(adapter(o, c), 'wall', braceEnd, otherEnd, 1.9, 2.6, gateTint);
       }
-      prism(o, c, Math.min(L + 27, R - 32), Math.min(L + 45, R - 12), -15, 7, 4.1, 11.2, 'wall');
-      prism(o, c, Math.min(L + 27, R - 32), Math.min(L + 45, R - 12), -15, 7, 11.2, 12.0, 'roof');
-      for (const d of [-63, 67]) {
-        const a = Math.min(outer, back),
-          b = Math.max(outer, back);
-        beam(adapter(o, c), 'stone', at(a, d, 0.6), at(b, d + 8, 0.6), 5.4, 3.3, C.stone);
-      }
+      const pivot = shore + sign * 103;
+      prism(o, c, pivot - 4.5, pivot + 4.5, -76, -65, 4.1, 7.9, 'base');
+      prism(o, c, pivot - 4.8, pivot + 4.8, -76.3, -64.7, 7.9, 8.24, 'roof');
     }
-    tunnelPortal(o, c, sign < 0 ? q.a : q.b, sign);
   }
+  for (const portal of controls.s1Portals) tunnelPortal(o, c, portal);
 }
 function s2Navigation(o, c, q) {
   const half = q.span / 2,
@@ -1592,7 +1711,13 @@ function s2Navigation(o, c, q) {
 export function buildDamLevel(o, level = 'master') {
   const c = cfg[level];
   if (!c) throw Error('Unknown Saint Petersburg barrier tier ' + level);
-  for (const [a, b] of controls.runs) bank(o, c, a, b);
+  const s1 = controls.crossings.find((crossing) => crossing.id === 'S1');
+  const [bronka, kotlin] = controls.s1Portals;
+  for (const [a, b] of controls.runs) {
+    const start = a === s1.b ? kotlin.approach : a;
+    const end = b === s1.a ? bronka.approach : b;
+    if (end > start) bank(o, c, start, end);
+  }
   for (const q of controls.crossings) {
     if (q.type === 'sluice') sluice(o, c, q);
     else if (q.id === 'S1') s1Navigation(o, c, q);

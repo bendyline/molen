@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_amphitheater",
+  "kind": "static-structure",
+  "title": "Mini Israel · Outdoor amphitheater",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_amphitheater",
+        "output": "assets/places/sv/sv8/mini_israel_amphitheater/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:eb46effc6e606782e1d9bb4c8ee71780ef9c59488eaa57cd84b48e75b27bfdbb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mini-israel-amphitheater-mesh",
+        "path": "models/amphitheater-model.mjs"
+      },
+      {
+        "id": "mini-israel-amphitheater-master",
+        "path": "models/generate-amphitheater.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "site-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

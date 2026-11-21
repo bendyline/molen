@@ -74,8 +74,9 @@ const spec = {
   nativeAxes: brief.nativeAxes,
   sourceFacts: brief.sourceFacts,
   referencePages: brief.references.map((r) => r.url),
+  appearance: placement.appearance,
   geographicProposal: {
-    status: 'preview-proposal',
+    status: 'historical-proposal',
     anchor: placement.anchor,
     heading: placement.heading,
     elevationMode: 'sea-level',

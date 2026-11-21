@@ -1,0 +1,548 @@
+{
+  "planId": "tsang_chiu_ho_building",
+  "id": "tsang_chiu_ho_building",
+  "assetId": "molen.worldgen.structure.tsang_chiu_ho_building",
+  "title": "Tsang Chiu Ho Building",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.15337480000001,
+    "latitude": 22.284238414285714
+  },
+  "size": [
+    19.977785110473633,
+    34.09999918937683,
+    28.775745391845703
+  ],
+  "actualBounds": {
+    "min": [
+      -13.09000015258789,
+      -3.049999952316284,
+      -17.270292282104492
+    ],
+    "max": [
+      6.887784957885742,
+      31.049999237060547,
+      11.505453109741211
+    ]
+  },
+  "visualBrief": "The nine-storey Tsang Chiu Ho Building with its late Lin Heung Tea House shopfront and projecting green signs on the Wellington and Aberdeen Street corner.",
+  "nativeAxes": {
+    "x": "across the Wellington Street frontage",
+    "y": "up",
+    "z": "southwest towards the uphill frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-05-18",
+    "validFrom": "2024-04-08",
+    "validUntil": "2026-05-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_%E4%B8%AD%E7%92%B0_Central_%E5%A8%81%E9%9D%88%E9%A0%93%E8%A1%97_Wellington_Street_%E9%B4%A8%E5%B7%B4%E7%94%B8%E8%A1%97_Aberdeen_Street_Lin_Heung_Restaurant_Saturday_morning_May_2024_R12S_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_%E4%B8%AD%E7%92%B0_Central_%E5%A8%81%E9%9D%88%E9%A0%93%E8%A1%97_Wellington_Street_%E9%B4%A8%E5%B7%B4%E7%94%B8%E8%A1%97_Aberdeen_Street_%E8%93%AE%E9%A6%99_Lin_Heung_Restaurant_Saturday_morning_May_2024_R12S_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lin-heung-tea-house-wp",
+      "url": "https://qualla.com/lin-heung-tea-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:22563de67b3b93cbe9eea6eeabee10c05abe476e21806105124381faff898aae",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/tsang_chiu_ho_building/models/tsang-chiu-ho-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/tsang_chiu_ho_building/models/tsang-chiu-ho-building-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "slab": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "tile_flat",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.62,
+        "metallic": 0.08
+      },
+      "panel": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.33
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.62,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.33
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.62,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.33
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.62,
+            "metallic": 0.08
+          },
+          "panel": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.33
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "concrete_panel",
+    "tile_flat",
+    "concrete_plain",
+    "storefront",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.88,
+    "focus": {
+      "center": [
+        -2.5,
+        13,
+        -1
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original photographs from the same 18 May 2024 series establish the glazed red shopfront, projecting green signs, first-floor dark bands, and orange and cream residential facade. Official native Hong Kong 1980 Grid ground elevations fix the neighborhood slope.",
+    "anchor": [
+      114.15337480000001,
+      22.284238414285714
+    ],
+    "heading": -1.0626815339228475,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15346386268196,
+        22.284365536571734
+      ],
+      "modelHeight": 0,
+      "basis": "Lands Department bare-earth class on the Wellington Street pavement immediately in front of the 2024 shop."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.20486,
+          11.37573
+        ],
+        [
+          6.77336,
+          8.54697
+        ],
+        [
+          5.41279,
+          4.24048
+        ],
+        [
+          2.77718,
+          5.08359
+        ],
+        [
+          0.86536,
+          -0.9329
+        ],
+        [
+          -3.33981,
+          -14.15693
+        ],
+        [
+          -10.28403,
+          -14.15693
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Selectively replaces coincident generated geometry at the seven-point original corner building in the 2024–2026 period."
+    },
+    "featureIds": [
+      "way/540389822"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/way/540389822/full",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:93feecf60dcd983e0c8ba894c29114e0e2220dc1f85cf47974a5ec103dbdf3dd",
+    "notes": "Original photographs from the same 18 May 2024 series establish the glazed red shopfront, projecting green signs, first-floor dark bands, and orange and cream residential facade. Official native Hong Kong 1980 Grid ground elevations fix the neighborhood slope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.storefront",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the Wellington Street premises in May 2024, after reopening and before the May 2026 relocation to Sheung Wan.",
+    "Ground-floor thresholds and exact upper floor and parapet heights are approximated. The side wall uses a simplified color treatment, and the rear and roof equipment are generalised.",
+    "The café interior and adjoining buildings are outside the model scope. The Hong Kong DTM is an independent 5 m grid and supplies approximate sidewalk grades."
+  ],
+  "sourceLicense": "Exterior geometry based on dated original CC0 photographs, mapped building footprint and original Lands Department terrain.",
+  "qaLodCameras": [
+    {
+      "name": "tsang-chiu-ho-building-skyline",
+      "position": [
+        -34,
+        27,
+        -39
+      ],
+      "lookAt": [
+        -2.5,
+        13,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tsang-chiu-ho-building-district",
+      "position": [
+        -34,
+        27,
+        -39
+      ],
+      "lookAt": [
+        -2.5,
+        13,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tsang-chiu-ho-building-street",
+      "position": [
+        -34,
+        27,
+        -39
+      ],
+      "lookAt": [
+        -2.5,
+        13,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tsang-chiu-ho-building-closeup",
+      "position": [
+        -34,
+        27,
+        -39
+      ],
+      "lookAt": [
+        -2.5,
+        13,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "wellington-and-aberdeen-street-corner",
+      "position": [
+        -23,
+        12,
+        -30
+      ],
+      "lookAt": [
+        -5,
+        11,
+        -6
+      ]
+    },
+    {
+      "name": "lin-heung-tea-house-shopfront-and-signs",
+      "position": [
+        -13,
+        5,
+        -23
+      ],
+      "lookAt": [
+        -7,
+        4,
+        -13
+      ]
+    },
+    {
+      "name": "stepped-aberdeen-street-elevation",
+      "position": [
+        -27,
+        11,
+        -4
+      ],
+      "lookAt": [
+        -5,
+        8,
+        -1
+      ]
+    },
+    {
+      "name": "apartment-courses-and-stepped-footprint",
+      "position": [
+        15,
+        37,
+        22
+      ],
+      "lookAt": [
+        -3,
+        13,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5199,
+    "vertices": 15597,
+    "materials": 7,
+    "bytes": 834496,
+    "sha256": "sha256:8b71f5c71a76cad48340923df9aa0edfee3a548b18f863ad2c179414c7753425"
+  }
+}

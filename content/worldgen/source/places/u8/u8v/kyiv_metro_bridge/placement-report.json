@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.kyiv_metro_bridge",
-  "inputHash": "sha256:61ddcf7f36b16bf435a959d8cb17213f53a0ac9b254f5acfc3a9ce29924ea6bf",
-  "placementHash": "sha256:f40dc0ac48b12178a909f60744b2757d94b375ba04e0f440cd93ed0cff673d9c",
+  "inputHash": "sha256:6e66683e50f239c5a6946032d0e319d489adace956687425e5f40d03113a3acc",
+  "placementHash": "sha256:758770b41554c124366fa63684a19c47e2a3df0f064f16d8ed1012d09ced44a5",
   "entry": {
     "id": "kyiv.metro.bridge",
     "title": "Kyiv Metro Bridge",
@@ -13,17 +13,245 @@
     ],
     "heading": 0.411477488755,
     "datum": "sea-level",
-    "elevation": 91.5,
+    "elevation": 90.65,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q2475012",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/887624269",
-    "note": "Exact-QID outline decomposed into694.601m main crossing plus narrow curving elevated rail approach.672m published span scheme centered inside the main road envelope; extra abutment ends are reconstructed. Native+X ENE,+Z downstream SSE.91.5m is the published Kaniv reservoir normal pool used as a provisional viewer water reference; local water-stage slope, Baltic-datum conversion, deck survey and shore fit remain host-dependent. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Two bounded masks replace the mapped road, footway and rail spans carried by the model. The curved east deck meets both mapped metro tracks, and the 90.65 m datum matches the local Earth viewer water level.",
+    "bounds": [
+      30.559381451273723,
+      50.44083061235071,
+      30.57191457153119,
+      50.44505358252965
+    ],
+    "replaceRoads": {
+      "length": 694.6,
+      "width": 31,
+      "outline": [
+        [
+          -347.3,
+          -15.5
+        ],
+        [
+          347.3,
+          -15.5
+        ],
+        [
+          347.3,
+          15.5
+        ],
+        [
+          -347.3,
+          15.5
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184395349610,
+        35184790219919,
+        35184790220613
+      ],
+      "deckHeight": 16.2,
+      "deckProfile": [
+        [
+          -347.3,
+          16.200000000000003,
+          0
+        ],
+        [
+          -260,
+          18.134018547423842,
+          0
+        ],
+        [
+          -175,
+          19.482830148148746,
+          0
+        ],
+        [
+          -87,
+          20.323890331145726,
+          0
+        ],
+        [
+          0,
+          20.6,
+          0
+        ],
+        [
+          87,
+          20.323890331145726,
+          0
+        ],
+        [
+          175,
+          19.482830148148746,
+          0
+        ],
+        [
+          260,
+          18.134018547423842,
+          0
+        ],
+        [
+          347.3,
+          16.200000000000003,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true,
+      "additionalDecks": [
+        {
+          "length": 886.991573,
+          "width": 11.8,
+          "outline": [
+            [
+              -347.3,
+              -5.9
+            ],
+            [
+              347.3,
+              -5.9
+            ],
+            [
+              372,
+              -6.068309040205121
+            ],
+            [
+              413.4,
+              -3.2355172232417573
+            ],
+            [
+              441.4,
+              1.5593322903872853
+            ],
+            [
+              471.6,
+              7.299019731121524
+            ],
+            [
+              541.2337690964964,
+              21.798108499999998
+            ],
+            [
+              538.1593769035037,
+              33.5981085
+            ],
+            [
+              471.6,
+              19.099019731121523
+            ],
+            [
+              441.4,
+              13.359332290387286
+            ],
+            [
+              413.4,
+              8.564482776758243
+            ],
+            [
+              372,
+              5.7316909597948795
+            ],
+            [
+              347.3,
+              5.9
+            ],
+            [
+              -347.3,
+              5.9
+            ]
+          ],
+          "bridgeFeatureIds": [
+            35184532772630
+          ],
+          "deckHeights": [
+            21.300000000000004,
+            14.951078091000003
+          ],
+          "deckEndpoints": [
+            [
+              -347.3,
+              0
+            ],
+            [
+              539.6915730000001,
+              27.6981085
+            ]
+          ],
+          "includeConnectedApproaches": true,
+          "deckProfile": [
+            [
+              -347.3,
+              21.300000000000004,
+              0
+            ],
+            [
+              -225,
+              23.853249836735678,
+              0
+            ],
+            [
+              -110,
+              25.258603911595095,
+              0
+            ],
+            [
+              0,
+              25.700000000000003,
+              0
+            ],
+            [
+              110,
+              25.258603911595095,
+              0
+            ],
+            [
+              225,
+              23.853249836735678,
+              0
+            ],
+            [
+              347.3,
+              21.300000000000004,
+              0
+            ],
+            [
+              372,
+              20.484900000000003,
+              -0.16830904020512094
+            ],
+            [
+              413.4,
+              19.118700000000004,
+              2.664482776758243
+            ],
+            [
+              441.4,
+              18.194700000000005,
+              7.459332290387286
+            ],
+            [
+              471.6,
+              17.198100000000004,
+              13.199019731121524
+            ],
+            [
+              539.6915730000001,
+              14.951078091000003,
+              27.6981085
+            ]
+          ]
+        }
+      ]
+    }
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The Earth viewer places the six-arch crossing over the Dnipro, retaining existing mapped terrain, water and independent buildings. Centerline controls match the shaped rail approach to both mapped rail continuations.",
+  "sourceHash": "sha256:0156fb695a0fd578aa2e734d9ef7837f979fca272214d9ec67ae27d52cae4565",
+  "runtimeHash": "sha256:daba32df9b73957233e04e6243cc6a181a1ccc2f7d45e7f58f7b75357590c172"
 }

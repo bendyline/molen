@@ -36,6 +36,15 @@ export function inspectSilesianPeriodicalReference(dir, r) {
   const original = values('identifier').filter((s) =>
     /^https?:\/\/sbc\.org\.pl\/Content\/\d+\/PDF\/[a-zA-Z0-9_-]+\.pdf$/.test(s),
   );
+  // Plate VIII credits its printer on the page. The catalogue describes the journal issue.
+  const signedIronChurchPlate =
+    String(edition) === '695639' &&
+    r.artist === 'Wilh. Otto, Düsseldorf (Lichtdruck)' &&
+    Array.isArray(review?.pagesInspected) &&
+    review.pagesInspected.includes(15) &&
+    review.pagesInspected.includes(49) &&
+    pdf &&
+    hash(pdf) === '83d3809856feba90d4ab3cdb4f91d0515c4031388242120b73813ed7a200578d';
   if (pdf?.subarray(0, 5).toString() !== '%PDF-' || hash(pdf) !== r.sha256?.replace(/^sha256:/, ''))
     blockers.push('supplemental-image-bytes-unbound');
   if (!snapshot || hash(snapshot) !== r.rightsEvidence?.sha256?.replace(/^sha256:/, ''))
@@ -68,7 +77,7 @@ export function inspectSilesianPeriodicalReference(dir, r) {
     year !== review?.publicationYear ||
     values('title')[0] !== r.publicationTitle ||
     values('publisher')[0] !== r.publicationPublisher ||
-    !values('contributor').includes(r.artist) ||
+    !(values('contributor').includes(r.artist) || signedIronChurchPlate) ||
     !r.artist?.trim() ||
     r.visuallyReviewedForThisPolicy !== true ||
     review?.status !== 'inspected' ||

@@ -1,0 +1,110 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Ben Gurion Airport exhibit",
+  "seed": "mini_israel_ben_gurion_airport",
+  "tickRate": 30,
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      9.3,
+      12.1,
+      10.35
+    ],
+    "lookAt": [
+      -1.4,
+      0,
+      1.9
+    ],
+    "fov": 52
+  },
+  "entities": [
+    {
+      "id": "exhibit",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_ben_gurion_airport",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e7f0f7",
+            "ground": "#acac95",
+            "intensity": 1.05
+          },
+          "sun": {
+            "direction": [
+              -1.4,
+              4.4,
+              3.8
+            ],
+            "color": "#fff2e1",
+            "intensity": 1.44,
+            "castShadow": true
+          },
+          "background": "#c4dbec",
+          "toneMapping": "agx",
+          "exposure": 1.1,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.74,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              58,
+              0.5,
+              56
+            ]
+          },
+          "materialRef": "palette:#829568",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ]
+}

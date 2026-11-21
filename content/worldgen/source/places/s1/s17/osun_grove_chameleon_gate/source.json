@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_chameleon_gate",
+  "kind": "static-structure",
+  "title": "Chameleon Gate at Ẹbu Ìyá Mọòpó",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json",
+      "map-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_chameleon_gate",
+        "output": "assets/places/s1/s17/osun_grove_chameleon_gate/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:931200776d2f600b4369a8fcdf5e448ad60134cf7ee063efa5583253966e9254"
+      }
+    ],
+    "generators": [
+      {
+        "id": "chameleon-gate-mesh",
+        "path": "models/chameleon-gate-model.mjs"
+      },
+      {
+        "id": "chameleon-gate-master",
+        "path": "models/generate-chameleon-gate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "flower-wall-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "format": "molen/scene@3",
+  "name": "Arch of the Flying Tortoise review",
+  "seed": "osun_grove_flying_tortoise",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "arch",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_flying_tortoise"
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dfebdf",
+            "ground": "#ab9479",
+            "intensity": 1.02
+          },
+          "sun": {
+            "direction": [
+              3,
+              6,
+              8
+            ],
+            "color": "#fff1d9",
+            "intensity": 1.37,
+            "castShadow": true
+          },
+          "background": "#b2c5b4",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.25,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              68,
+              0.5,
+              55
+            ]
+          },
+          "materialRef": "palette:#a08c70",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      1.7,
+      4,
+      15.65
+    ],
+    "lookAt": [
+      0.3,
+      3.33,
+      0.03
+    ],
+    "fov": 59
+  }
+}

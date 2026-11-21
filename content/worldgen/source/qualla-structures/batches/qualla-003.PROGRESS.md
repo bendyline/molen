@@ -1,8 +1,8 @@
 # Qualla compat — local 500 — completion progress
 
-**307 / 500 have current verified evidence.** 330 targets started.
+**500 / 500 recorded complete.** The current readiness ledger shows 475 local approvals and 3 catalog reuses. 22 previously accepted entries still have evidence flagged in this snapshot.
 
-310 targets have technical validation. 302 reference sets meet the public-domain Qualla imagery policy.
+480 targets have technical validation. 435 reference sets meet the public-domain Qualla imagery policy.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
 
@@ -275,222 +275,222 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 263 | [Douglas City Hall](https://qualla.com/douglas-city-hall-isle-of-man/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Complete | Modeled, placed and linked |
 | 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Complete | Modeled, placed and linked |
-| 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | Not started | source-model-missing |
-| 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Not started | source-model-missing |
-| 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Not started | source-model-missing |
+| 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | Complete | Modeled, placed and linked |
+| 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Complete | Modeled, placed and linked |
+| 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Complete | Modeled, placed and linked |
 | 269 | [Lyric Theatre, London](https://qualla.com/lyric-theatre-london/) | Complete | All required evidence current |
-| 270 | [Toronto CN Tower](https://qualla.com/toronto-cn-tower/) | Not started | source-model-missing |
-| 271 | [Normanton Gaol](https://qualla.com/normanton-gaol/) | Not started | source-model-missing |
-| 272 | [Sarvestan Palace](https://qualla.com/sarvestan-palace/) | Not started | source-model-missing |
-| 273 | [Outeniqua Transport Museum](https://qualla.com/outeniqua-transport-museum/) | Not started | source-model-missing |
-| 274 | [Tianjin Nankai High School](https://qualla.com/tianjin-nankai-high-school/) | Not started | source-model-missing |
-| 275 | [Häme Castle](https://qualla.com/hame-castle/) | Not started | source-model-missing |
+| 270 | [Toronto CN Tower](https://qualla.com/toronto-cn-tower/) | Complete | Modeled, placed and linked |
+| 271 | [Normanton Gaol](https://qualla.com/normanton-gaol/) | Complete | Modeled, placed and linked |
+| 272 | [Sarvestan Palace](https://qualla.com/sarvestan-palace/) | Complete | Modeled, placed and linked |
+| 273 | [Outeniqua Transport Museum](https://qualla.com/outeniqua-transport-museum/) | Complete | Modeled, placed and linked |
+| 274 | [Tianjin Nankai High School](https://qualla.com/tianjin-nankai-high-school/) | Complete | Modeled, placed and linked |
+| 275 | [Häme Castle](https://qualla.com/hame-castle/) | Complete | Modeled, placed and linked |
 | 276 | [Crossley telescope](https://qualla.com/crossley-telescope/) | Complete | All required evidence current |
-| 277 | [State Library of Queensland](https://qualla.com/state-library-of-queensland/) | Not started | source-model-missing |
-| 278 | [Sita Ramachandraswamy Temple, Bhadrachalam](https://qualla.com/sita-ramachandraswamy-temple-bhadrachalam/) | Not started | source-model-missing |
-| 279 | [Al Alam Palace](https://qualla.com/al-alam-palace/) | Not started | source-model-missing |
+| 277 | [State Library of Queensland](https://qualla.com/state-library-of-queensland/) | Complete | Modeled, placed and linked |
+| 278 | [Sita Ramachandraswamy Temple, Bhadrachalam](https://qualla.com/sita-ramachandraswamy-temple-bhadrachalam/) | Complete | Modeled, placed and linked |
+| 279 | [Al Alam Palace](https://qualla.com/al-alam-palace/) | Complete | Modeled, placed and linked |
 | 280 | [Kikumoto Department Store](https://qualla.com/kikumoto-department-store/) | Complete | All required evidence current |
 | 281 | [Zimmer Tower](https://qualla.com/zimmer-tower/) | Complete | All required evidence current |
-| 282 | [San Francisco Transbay Terminal](https://qualla.com/san-francisco-transbay-terminal/) | Not started | source-model-missing |
-| 283 | [Birdsville Courthouse](https://qualla.com/birdsville-courthouse/) | Not started | source-model-missing |
-| 284 | [Shivneri Fort](https://qualla.com/shivneri-fort/) | Not started | source-model-missing |
+| 282 | [San Francisco Transbay Terminal](https://qualla.com/san-francisco-transbay-terminal/) | Complete | Modeled, placed and linked |
+| 283 | [Birdsville Courthouse](https://qualla.com/birdsville-courthouse/) | Complete | Modeled, placed and linked |
+| 284 | [Shivneri Fort](https://qualla.com/shivneri-fort/) | Complete | Modeled, placed and linked |
 | 285 | [Mosque of the Three Doors](https://qualla.com/mosque-of-the-three-doors/) | Complete | All required evidence current |
 | 286 | [Okuma Auditorium](https://qualla.com/okuma-auditorium/) | Complete | All required evidence current |
 | 287 | [Army Museum in Białystok](https://qualla.com/army-museum-in-bia-ystok/) | Complete | All required evidence current |
-| 288 | [Fort Ville-Marie](https://qualla.com/fort-ville-marie/) | Not started | source-model-missing |
-| 289 | [Queensland Brewery Company Building](https://qualla.com/queensland-brewery-company-building/) | Not started | source-model-missing |
-| 290 | [Sepahsalar Mosque](https://qualla.com/sepahsalar-mosque/) | Not started | source-model-missing |
-| 291 | [Sulaymaniyah Museum](https://qualla.com/sulaymaniyah-museum/) | Not started | source-model-missing |
-| 292 | [Sonobudoyo Museum](https://qualla.com/sonobudoyo-museum/) | Not started | source-model-missing |
-| 293 | [Borssele Nuclear Power Station](https://qualla.com/borssele-nuclear-power-station/) | Not started | source-model-missing |
+| 288 | [Fort Ville-Marie](https://qualla.com/fort-ville-marie/) | Complete | Modeled, placed and linked |
+| 289 | [Queensland Brewery Company Building](https://qualla.com/queensland-brewery-company-building/) | Complete | Modeled, placed and linked |
+| 290 | [Sepahsalar Mosque](https://qualla.com/sepahsalar-mosque/) | Complete | Modeled, placed and linked |
+| 291 | [Sulaymaniyah Museum](https://qualla.com/sulaymaniyah-museum/) | Complete | Modeled, placed and linked |
+| 292 | [Sonobudoyo Museum](https://qualla.com/sonobudoyo-museum/) | Complete | Modeled, placed and linked |
+| 293 | [Borssele Nuclear Power Station](https://qualla.com/borssele-nuclear-power-station/) | Complete | Modeled, placed and linked |
 | 294 | [Foster Auditorium](https://qualla.com/foster-auditorium/) | Complete | All required evidence current |
-| 295 | [Cloncurry Courthouse](https://qualla.com/cloncurry-courthouse/) | Not started | source-model-missing |
-| 296 | [Butkara Stupa](https://qualla.com/butkara-stupa/) | Not started | source-model-missing |
+| 295 | [Cloncurry Courthouse](https://qualla.com/cloncurry-courthouse/) | Complete | Modeled, placed and linked |
+| 296 | [Butkara Stupa](https://qualla.com/butkara-stupa/) | Complete | Modeled, placed and linked |
 | 297 | [Fenari Isa Mosque](https://qualla.com/fenari-isa-mosque/) | Complete | All required evidence current |
-| 298 | [The Tallest Building in Brunei Town Was Built by Teachers](https://qualla.com/brunei-malay-teachers-association/) | Not started | source-model-missing |
-| 299 | [Mosque–Cathedral of Córdoba](https://qualla.com/mosque-cathedral-of-cordoba/) | Not started | source-model-missing |
+| 298 | [PGGMB Building](https://qualla.com/brunei-malay-teachers-association/) | Complete | Modeled, placed and linked |
+| 299 | [Mosque–Cathedral of Córdoba](https://qualla.com/mosque-cathedral-of-cordoba/) | Complete | Modeled, placed and linked |
 | 300 | [Kettle Falls Hotel](https://qualla.com/kettle-falls-hotel/) | Complete | All required evidence current |
-| 301 | [Cooktown Museum](https://qualla.com/cooktown-museum/) | Not started | source-model-missing |
+| 301 | [Cooktown Museum](https://qualla.com/cooktown-museum/) | Complete | Modeled, placed and linked |
 | 302 | [Naryn Castle, Meybod](https://qualla.com/naryn-castle-meybod/) | Complete | All required evidence current |
-| 303 | [Winter Palace Hotel](https://qualla.com/winter-palace-hotel/) | Not started | source-model-missing |
-| 304 | [Cipanas Palace](https://qualla.com/cipanas-palace/) | Not started | source-model-missing |
+| 303 | [Winter Palace Hotel](https://qualla.com/winter-palace-hotel/) | Complete | Modeled, placed and linked |
+| 304 | [Cipanas Palace](https://qualla.com/cipanas-palace/) | Complete | Modeled, placed and linked |
 | 305 | [Eurotunnel Calais Terminal](https://qualla.com/eurotunnel-calais-terminal/) | Complete | All required evidence current |
 | 306 | [Foundry United Methodist Church](https://qualla.com/foundry-united-methodist-church/) | Complete | All required evidence current |
-| 307 | [Red Fort](https://qualla.com/red-fort/) | Not started | source-model-missing |
-| 308 | [Uganda Museum](https://qualla.com/uganda-museum/) | Not started | source-model-missing |
-| 309 | [Linh Phước Temple](https://qualla.com/linh-phuoc-temple/) | Not started | source-model-missing |
+| 307 | [Red Fort](https://qualla.com/red-fort/) | Complete | Modeled, placed and linked |
+| 308 | [Uganda Museum](https://qualla.com/uganda-museum/) | Complete | Modeled, placed and linked |
+| 309 | [Linh Phước Temple](https://qualla.com/linh-phuoc-temple/) | Complete | Modeled, placed and linked |
 | 310 | [Stadium of Delphi](https://qualla.com/stadium-of-delphi/) | Complete | All required evidence current |
-| 311 | [Redpath Museum](https://qualla.com/redpath-museum/) | Not started | source-model-missing |
-| 312 | [Shah Mosque (Mashhad)](https://qualla.com/shah-mosque-mashhad/) | Not started | source-model-missing |
+| 311 | [Redpath Museum](https://qualla.com/redpath-museum/) | Complete | Modeled, placed and linked |
+| 312 | [Shah Mosque (Mashhad)](https://qualla.com/shah-mosque-mashhad/) | Complete | Modeled, placed and linked |
 | 313 | [St. George's Cathedral, Cape Town](https://qualla.com/st-george-s-cathedral-cape-town/) | Complete | All required evidence current |
 | 314 | [Nagoya TV Tower](https://qualla.com/nagoya-tv-tower/) | Complete | All required evidence current |
-| 315 | [Parliament of Romania](https://qualla.com/parliament-of-romania/) | Not started | source-model-missing |
+| 315 | [Parliament of Romania](https://qualla.com/parliament-of-romania/) | Existing catalog model | Other-device model linked |
 | 316 | [North Carolina Executive Mansion](https://qualla.com/north-carolina-executive-mansion/) | Complete | All required evidence current |
-| 317 | [Tughlaqabad Fort](https://qualla.com/tughlaqabad-fort/) | Not started | source-model-missing |
-| 318 | [Kerma Museum](https://qualla.com/kerma-museum/) | Not started | source-model-missing |
-| 319 | [Maryknoll House (Stanley)](https://qualla.com/maryknoll-house-stanley/) | Not started | source-model-missing |
-| 320 | [Sapieha Palace, Vilnius](https://qualla.com/sapieha-palace-vilnius/) | Not started | source-model-missing |
-| 321 | [Gibraltar Point Lighthouse](https://qualla.com/gibraltar-point-lighthouse/) | Not started | source-model-missing |
-| 322 | [Airavatesvara Temple](https://qualla.com/airavatesvara-temple/) | Not started | source-model-missing |
-| 323 | [Dura-Europos church](https://qualla.com/dura-europos-church/) | Not started | source-model-missing |
-| 324 | [White Swan Hotel](https://qualla.com/white-swan-hotel/) | Not started | source-model-missing |
-| 325 | [Mendelssohn House, Leipzig](https://qualla.com/mendelssohn-house-leipzig/) | Not started | source-model-missing |
-| 326 | [Roswell Mill](https://qualla.com/roswell-mill/) | Not started | source-model-missing |
-| 327 | [Shah Mosque (Tehran)](https://qualla.com/shah-mosque-tehran/) | Not started | source-model-missing |
-| 328 | [Carthage National Museum](https://qualla.com/carthage-national-museum/) | Not started | source-model-missing |
-| 329 | [Guling Street Avant-garde Theatre](https://qualla.com/guling-street-avant-garde-theatre/) | Not started | source-model-missing |
-| 330 | [St. Peter's Basilica](https://qualla.com/st-peter-s-basilica/) | Not started | source-model-missing |
+| 317 | [Tughlaqabad Fort](https://qualla.com/tughlaqabad-fort/) | Complete | Modeled, placed and linked |
+| 318 | [Kerma Museum](https://qualla.com/kerma-museum/) | Complete | Modeled, placed and linked |
+| 319 | [Maryknoll House (Stanley)](https://qualla.com/maryknoll-house-stanley/) | Complete | Modeled, placed and linked |
+| 320 | [Sapieha Palace, Vilnius](https://qualla.com/sapieha-palace-vilnius/) | Complete | Modeled, placed and linked |
+| 321 | [Gibraltar Point Lighthouse](https://qualla.com/gibraltar-point-lighthouse/) | Complete | Modeled, placed and linked |
+| 322 | [Airavatesvara Temple](https://qualla.com/airavatesvara-temple/) | Complete | Modeled, placed and linked |
+| 323 | [Dura-Europos church](https://qualla.com/dura-europos-church/) | Complete | Modeled, placed and linked |
+| 324 | [White Swan Hotel](https://qualla.com/white-swan-hotel/) | Complete | Modeled, placed and linked |
+| 325 | [Mendelssohn House, Leipzig](https://qualla.com/mendelssohn-house-leipzig/) | Complete | Modeled, placed and linked |
+| 326 | [Roswell Mill](https://qualla.com/roswell-mill/) | Complete | Modeled, placed and linked |
+| 327 | [Shah Mosque (Tehran)](https://qualla.com/shah-mosque-tehran/) | Complete | Modeled, placed and linked |
+| 328 | [Carthage National Museum](https://qualla.com/carthage-national-museum/) | Complete | Modeled, placed and linked |
+| 329 | [Guling Street Avant-garde Theatre](https://qualla.com/guling-street-avant-garde-theatre/) | Complete | Modeled, placed and linked |
+| 330 | [St. Peter's Basilica](https://qualla.com/st-peter-s-basilica/) | Complete | Modeled, placed and linked |
 | 331 | [Burton Cummings Theatre](https://qualla.com/burton-cummings-theatre/) | Complete | All required evidence current |
-| 332 | [Hari Parbat Fort](https://qualla.com/hari-parbat-fort/) | Not started | source-model-missing |
-| 333 | [Mihrimah Sultan Mosque, Edirnekapı](https://qualla.com/mihrimah-sultan-mosque-edirnekap/) | Not started | source-model-missing |
-| 334 | [Beijing Lu Xun Museum](https://qualla.com/beijing-lu-xun-museum/) | Not started | source-model-missing |
-| 335 | [Athens War Museum](https://qualla.com/athens-war-museum/) | Not started | source-model-missing |
+| 332 | [Hari Parbat Fort](https://qualla.com/hari-parbat-fort/) | Complete | Modeled, placed and linked |
+| 333 | [Mihrimah Sultan Mosque, Edirnekapı](https://qualla.com/mihrimah-sultan-mosque-edirnekap/) | Complete | Modeled, placed and linked |
+| 334 | [Beijing Lu Xun Museum](https://qualla.com/beijing-lu-xun-museum/) | Complete | Modeled, placed and linked |
+| 335 | [Athens War Museum](https://qualla.com/athens-war-museum/) | Complete | Modeled, placed and linked |
 | 336 | [Drayton Hall](https://qualla.com/drayton-hall/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 337 | [Bibi Shahrbanu Shrine](https://qualla.com/bibi-shahrbanu-shrine/) | Not started | source-model-missing |
-| 338 | [Antalya Museum](https://qualla.com/antalya-museum/) | Not started | source-model-missing |
-| 339 | [Tōkai Nuclear Power Plant](https://qualla.com/t-kai-nuclear-power-plant/) | Not started | source-model-missing |
-| 340 | [Kilbeggan Distillery](https://qualla.com/kilbeggan-distillery/) | Not started | source-model-missing |
-| 341 | [Maritime Museum of British Columbia](https://qualla.com/maritime-museum-of-british-columbia/) | Not started | source-model-missing |
-| 342 | [Asirgarh Fort](https://qualla.com/asirgarh-fort/) | Not started | source-model-missing |
-| 343 | [Cathedral of Saint Vincent de Paul](https://qualla.com/cathedral-of-saint-vincent-de-paul/) | Not started | source-model-missing |
-| 344 | [Sun Yat Sen Nanyang Memorial Hall](https://qualla.com/sun-yat-sen-nanyang-memorial-hall/) | Not started | source-model-missing |
-| 345 | [His Majesty's Theatre, London](https://qualla.com/his-majesty-s-theatre-london/) | Not started | source-model-missing |
-| 346 | [Fort Bragg](https://qualla.com/fort-bragg/) | Not started | source-model-missing |
-| 347 | [Imam Reza shrine](https://qualla.com/imam-reza-shrine/) | Not started | source-model-missing |
+| 337 | [Bibi Shahrbanu Shrine](https://qualla.com/bibi-shahrbanu-shrine/) | Complete | Modeled, placed and linked |
+| 338 | [Antalya Museum](https://qualla.com/antalya-museum/) | Complete | Modeled, placed and linked |
+| 339 | [Tōkai Nuclear Power Plant](https://qualla.com/t-kai-nuclear-power-plant/) | Complete | Modeled, placed and linked |
+| 340 | [Kilbeggan Distillery](https://qualla.com/kilbeggan-distillery/) | Complete | Modeled, placed and linked |
+| 341 | [Former Victoria Law Courts](https://qualla.com/maritime-museum-of-british-columbia/) | Complete | Modeled, placed and linked |
+| 342 | [Asirgarh Fort](https://qualla.com/asirgarh-fort/) | Complete | Modeled, placed and linked |
+| 343 | [Cathedral of Saint Vincent de Paul](https://qualla.com/cathedral-of-saint-vincent-de-paul/) | Complete | Modeled, placed and linked |
+| 344 | [Sun Yat Sen Nanyang Memorial Hall](https://qualla.com/sun-yat-sen-nanyang-memorial-hall/) | Complete | Modeled, placed and linked |
+| 345 | [His Majesty's Theatre, London](https://qualla.com/his-majesty-s-theatre-london/) | Complete | Modeled, placed and linked |
+| 346 | [82nd Airborne Division War Memorial Museum](https://qualla.com/82nd-airborne-division-war-memorial-museum/) | Complete | Modeled, placed and linked |
+| 347 | [Imam Reza shrine](https://qualla.com/imam-reza-shrine/) | Complete | Modeled, placed and linked |
 | 348 | [Bayraktar Mosque](https://qualla.com/bayraktar-mosque/) | Complete | All required evidence current |
 | 349 | [Kuala Lumpur Guan Di Temple](https://qualla.com/kuala-lumpur-guan-di-temple/) | Complete | All required evidence current |
-| 350 | [Hotel Esplanade Berlin](https://qualla.com/hotel-esplanade-berlin/) | Not started | source-model-missing |
-| 351 | [Mission Basilica San Juan Capistrano](https://qualla.com/mission-basilica-san-juan-capistrano/) | Not started | source-model-missing |
-| 352 | [Amarnath Temple](https://qualla.com/amarnath-temple/) | Not started | source-model-missing |
-| 353 | [Mevlâna Museum](https://qualla.com/mevlana-museum/) | Not started | source-model-missing |
-| 354 | [Lin Heung Tea House](https://qualla.com/lin-heung-tea-house/) | Not started | source-model-missing |
-| 355 | [Taganrog Fortress](https://qualla.com/taganrog-fortress/) | Not started | source-model-missing |
-| 356 | [South Carolina State House](https://qualla.com/south-carolina-state-house/) | Not started | source-model-missing |
-| 357 | [Jamkaran Mosque](https://qualla.com/jamkaran-mosque/) | Not started | source-model-missing |
+| 350 | [Hotel Esplanade Berlin](https://qualla.com/hotel-esplanade-berlin/) | Complete | Modeled, placed and linked |
+| 351 | [Mission Basilica San Juan Capistrano](https://qualla.com/mission-basilica-san-juan-capistrano/) | Complete | Modeled, placed and linked |
+| 352 | [Amarnath Temple](https://qualla.com/amarnath-temple/) | Complete | Modeled, placed and linked |
+| 353 | [Mevlâna Museum](https://qualla.com/mevlana-museum/) | Complete | Modeled, placed and linked |
+| 354 | [Lin Heung Tea House](https://qualla.com/lin-heung-tea-house/) | Complete | Modeled, placed and linked |
+| 355 | [Taganrog Fortress](https://qualla.com/taganrog-fortress/) | Complete | Modeled, placed and linked |
+| 356 | [South Carolina State House](https://qualla.com/south-carolina-state-house/) | Complete | Modeled, placed and linked |
+| 357 | [Jamkaran Mosque](https://qualla.com/jamkaran-mosque/) | Complete | Modeled, placed and linked |
 | 358 | [Mosque of the Andalusians](https://qualla.com/mosque-of-the-andalusians/) | Complete | All required evidence current |
 | 359 | [Matsuyama Castle (Iyo)](https://qualla.com/matsuyama-castle-iyo/) | Complete | All required evidence current |
 | 360 | [Pyynikki Observation Tower](https://qualla.com/pyynikki-observation-tower/) | Complete | All required evidence current |
 | 361 | [Toronto City Hall](https://qualla.com/toronto-city-hall/) | Complete | All required evidence current |
-| 362 | [Varaha Lakshmi Narasimha temple, Simhachalam](https://qualla.com/varaha-lakshmi-narasimha-temple-simhachalam/) | Not started | source-model-missing |
-| 363 | [Coptic Museum](https://qualla.com/coptic-museum/) | Not started | source-model-missing |
+| 362 | [Varaha Lakshmi Narasimha temple, Simhachalam](https://qualla.com/varaha-lakshmi-narasimha-temple-simhachalam/) | Complete | Modeled, placed and linked |
+| 363 | [Coptic Museum](https://qualla.com/coptic-museum/) | Complete | Modeled, placed and linked |
 | 364 | [National Taichung Theater](https://qualla.com/national-taichung-theater/) | Complete | All required evidence current |
-| 365 | [Solvay Brussels School of Economics and Management](https://qualla.com/solvay-brussels-school-of-economics-and-management/) | Not started | source-model-missing |
+| 365 | [Solvay Brussels School of Economics and Management](https://qualla.com/solvay-brussels-school-of-economics-and-management/) | Complete | Modeled, placed and linked |
 | 366 | [The Omni Homestead Resort](https://qualla.com/the-omni-homestead-resort/) | Complete | All required evidence current |
-| 367 | [Danteshwari Temple](https://qualla.com/danteshwari-temple/) | Not started | source-model-missing |
-| 368 | [Piyale Pasha Mosque](https://qualla.com/piyale-pasha-mosque/) | Not started | source-model-missing |
-| 369 | [Sule Pagoda](https://qualla.com/sule-pagoda/) | Not started | source-model-missing |
+| 367 | [Danteshwari Temple](https://qualla.com/danteshwari-temple/) | Complete | Modeled, placed and linked |
+| 368 | [Piyale Pasha Mosque](https://qualla.com/piyale-pasha-mosque/) | Complete | Modeled, placed and linked |
+| 369 | [Sule Pagoda](https://qualla.com/sule-pagoda/) | Complete | Modeled, placed and linked |
 | 370 | [Museum Collectie Brands](https://qualla.com/museum-collectie-brands/) | Complete | All required evidence current |
-| 371 | [Patrick Arena](https://qualla.com/patrick-arena/) | Not started | source-model-missing |
+| 371 | [Patrick Arena](https://qualla.com/patrick-arena/) | Complete | Modeled, placed and linked |
 | 372 | [Rajiv Lochan Temple](https://qualla.com/rajiv-lochan-temple/) | Complete | All required evidence current |
-| 373 | [The Library of Alexandria](https://qualla.com/library-alexandria/) | Not started | source-model-missing |
-| 374 | [National Museum of Cambodia](https://qualla.com/national-museum-of-cambodia/) | Not started | source-model-missing |
+| 373 | [Bourguiba Mausoleum](https://qualla.com/bourguiba-mausoleum/) | Complete | Modeled, placed and linked |
+| 374 | [National Museum of Cambodia](https://qualla.com/national-museum-of-cambodia/) | Complete | Modeled, placed and linked |
 | 375 | [Roskilde Cathedral](https://qualla.com/roskilde-cathedral/) | Complete | All required evidence current |
 | 376 | [Manitoba Museum](https://qualla.com/manitoba-museum/) | Complete | All required evidence current |
-| 377 | [Sri Lakshmi Narasimha Swamy Temple, Yadagirigutta](https://qualla.com/sri-lakshmi-narasimha-swamy-temple-yadagirigutta/) | Not started | source-model-missing |
-| 378 | [Grand Synagogue of Tunis](https://qualla.com/grand-synagogue-of-tunis/) | Not started | source-model-missing |
+| 377 | [Sri Lakshmi Narasimha Swamy Temple, Yadagirigutta](https://qualla.com/sri-lakshmi-narasimha-swamy-temple-yadagirigutta/) | Complete | Modeled, placed and linked |
+| 378 | [Grand Synagogue of Tunis](https://qualla.com/grand-synagogue-of-tunis/) | Complete | Modeled, placed and linked |
 | 379 | [Tung Wah Hospital](https://qualla.com/tung-wah-hospital/) | Complete | All required evidence current |
-| 380 | [Ambras Castle](https://qualla.com/ambras-castle/) | Not started | source-model-missing |
+| 380 | [Ambras Castle](https://qualla.com/ambras-castle/) | Complete | Modeled, placed and linked |
 | 381 | [Eiffel Tower (Paris, Tennessee)](https://qualla.com/eiffel-tower-paris-tennessee/) | Complete | All required evidence current |
 | 382 | [Tripura Sundari Temple](https://qualla.com/tripura-sundari-temple/) | Complete | All required evidence current |
 | 383 | [Panorama 1453 History Museum](https://qualla.com/panorama-1453-history-museum/) | Complete | All required evidence current |
-| 384 | [Old Summer Palace](https://qualla.com/old-summer-palace/) | Not started | source-model-missing |
-| 385 | [Chedworth Roman Villa](https://qualla.com/chedworth-roman-villa/) | Not started | source-model-missing |
-| 386 | [Fort Lennox](https://qualla.com/fort-lennox/) | Not started | source-model-missing |
+| 384 | [Old Summer Palace](https://qualla.com/old-summer-palace/) | Complete | Modeled, placed and linked |
+| 385 | [Chedworth Roman Villa](https://qualla.com/chedworth-roman-villa/) | Complete | Modeled, placed and linked |
+| 386 | [Fort Lennox](https://qualla.com/fort-lennox/) | Complete | Modeled, placed and linked |
 | 387 | [Umananda Temple](https://qualla.com/umananda-temple/) | Complete | All required evidence current |
-| 388 | [Temple of Dendur](https://qualla.com/temple-of-dendur/) | Not started | source-model-missing |
-| 389 | [Hotel K](https://qualla.com/kerobokan-prison/) | Not started | source-model-missing |
-| 390 | [Crimean Nuclear Power Station](https://qualla.com/crimean-atomic-energy-station/) | Not started | source-model-missing |
-| 391 | [Terminal Station (Macon, Georgia)](https://qualla.com/terminal-station-macon-georgia/) | Not started | source-model-missing |
-| 392 | [Vaishno Devi Temple](https://qualla.com/vaishno-devi-temple/) | Not started | source-model-missing |
-| 393 | [Dutch Reformed Church, Springbok](https://qualla.com/dutch-reformed-church-springbok/) | Not started | source-model-missing |
-| 394 | [Linh Sơn Temple](https://qualla.com/linh-son-temple/) | Not started | source-model-missing |
-| 395 | [Convent of the Capuchos (Sintra)](https://qualla.com/convent-of-the-capuchos-sintra/) | Not started | source-model-missing |
-| 396 | [Monastery of the Holy Spirit](https://qualla.com/monastery-of-the-holy-spirit/) | Not started | source-model-missing |
-| 397 | [Solomon's Temple, Aizawl](https://qualla.com/solomon-s-temple-aizawl/) | Not started | source-model-missing |
-| 398 | [Temple of Seti I (Abydos)](https://qualla.com/temple-of-seti-i-abydos/) | Not started | source-model-missing |
+| 388 | [Temple of Dendur](https://qualla.com/temple-of-dendur/) | Complete | Modeled, placed and linked |
+| 389 | [Kerobokan Prison](https://qualla.com/kerobokan-prison/) | Complete | Modeled, placed and linked |
+| 390 | [Crimean Nuclear Power Station](https://qualla.com/crimean-atomic-energy-station/) | Complete | Modeled, placed and linked |
+| 391 | [Terminal Station (Macon, Georgia)](https://qualla.com/terminal-station-macon-georgia/) | Complete | Modeled, placed and linked |
+| 392 | [Vaishno Devi Temple](https://qualla.com/vaishno-devi-temple/) | Complete | Modeled, placed and linked |
+| 393 | [Dutch Reformed Church, Springbok](https://qualla.com/dutch-reformed-church-springbok/) | Complete | Modeled, placed and linked |
+| 394 | [Linh Sơn Temple](https://qualla.com/linh-son-temple/) | Complete | Modeled, placed and linked |
+| 395 | [Convent of the Capuchos (Sintra)](https://qualla.com/convent-of-the-capuchos-sintra/) | Complete | Modeled, placed and linked |
+| 396 | [Monastery of the Holy Spirit](https://qualla.com/monastery-of-the-holy-spirit/) | Complete | Modeled, placed and linked |
+| 397 | [Solomon's Temple, Aizawl](https://qualla.com/solomon-s-temple-aizawl/) | Complete | Modeled, placed and linked |
+| 398 | [Temple of Seti I (Abydos)](https://qualla.com/temple-of-seti-i-abydos/) | Complete | Modeled, placed and linked |
 | 399 | [Singapore Art Museum](https://qualla.com/singapore-art-museum/) | Complete | All required evidence current |
-| 400 | [Franja Partisan Hospital](https://qualla.com/franja-partisan-hospital/) | Not started | source-model-missing |
-| 401 | [Thomas Wolfe House](https://qualla.com/thomas-wolfe-house/) | Not started | source-model-missing |
-| 402 | [Thousand Pillar Temple](https://qualla.com/thousand-pillar-temple/) | Not started | source-model-missing |
-| 403 | [Kara Ahmed Pasha Mosque](https://qualla.com/kara-ahmed-pasha-mosque/) | Not started | source-model-missing |
-| 404 | [The Parliament That Answers to One](https://qualla.com/legislative-council-of-brunei/) | Not started | source-model-missing |
-| 405 | [Ještěd Tower](https://qualla.com/jested-tower/) | Not started | source-model-missing |
-| 406 | [Beaverbrook Art Gallery](https://qualla.com/beaverbrook-art-gallery/) | Not started | source-model-missing |
-| 407 | [Shankaracharya Temple](https://qualla.com/shankaracharya-temple/) | Not started | source-model-missing |
+| 400 | [Franja Partisan Hospital](https://qualla.com/franja-partisan-hospital/) | Complete | Modeled, placed and linked |
+| 401 | [Thomas Wolfe House](https://qualla.com/thomas-wolfe-house/) | Complete | Modeled, placed and linked |
+| 402 | [Thousand Pillar Temple](https://qualla.com/thousand-pillar-temple/) | Complete | Modeled, placed and linked |
+| 403 | [Kara Ahmed Pasha Mosque](https://qualla.com/kara-ahmed-pasha-mosque/) | Complete | Modeled, placed and linked |
+| 404 | [Legislative Council Building, Brunei](https://qualla.com/legislative-council-of-brunei/) | Complete | Modeled, placed and linked |
+| 405 | [Ještěd Tower](https://qualla.com/jested-tower/) | Complete | Modeled, placed and linked |
+| 406 | [Beaverbrook Art Gallery](https://qualla.com/beaverbrook-art-gallery/) | Complete | Modeled, placed and linked |
+| 407 | [Shankaracharya Temple](https://qualla.com/shankaracharya-temple/) | Complete | Modeled, placed and linked |
 | 408 | [Auwal Mosque](https://qualla.com/auwal-mosque/) | Complete | All required evidence current |
-| 409 | [The Stadium That Sukarno Willed Into Being](https://qualla.com/gelora-bung-karno-stadium/) | Not started | source-model-missing |
-| 410 | [Amphitheatre of Mérida](https://qualla.com/amphitheatre-of-merida/) | Not started | source-model-missing |
-| 411 | [Disney's Polynesian Village Resort](https://qualla.com/disney-s-polynesian-village-resort/) | Not started | source-model-missing |
-| 412 | [Mahasu Devta Temple](https://qualla.com/mahasu-devta-temple/) | Not started | source-model-missing |
-| 413 | [Al-Hussein Mosque](https://qualla.com/al-hussein-mosque/) | Not started | source-model-missing |
-| 414 | [Edo Castle](https://qualla.com/edo-castle/) | Not started | source-model-missing |
-| 415 | [Villa Wolf](https://qualla.com/villa-wolf/) | Not started | source-model-missing |
-| 416 | [British Columbia Penitentiary](https://qualla.com/british-columbia-penitentiary/) | Not started | source-model-missing |
-| 417 | [Mimar Sinan Mosque](https://qualla.com/mimar-sinan-mosque/) | Not started | source-model-missing |
-| 418 | [Wat Phra Kaew, Chiang Rai](https://qualla.com/wat-phra-kaew-chiang-rai/) | Not started | source-model-missing |
-| 419 | [DDR Museum](https://qualla.com/ddr-museum/) | Not started | source-model-missing |
-| 420 | [Encina Power Station](https://qualla.com/encina-power-station/) | Not started | source-model-missing |
-| 421 | [Dutch Reformed Church, Wellington](https://qualla.com/dutch-reformed-church-wellington/) | Not started | source-model-missing |
-| 422 | [Old Tainan Magistrate Residence](https://qualla.com/old-tainan-magistrate-residence/) | Not started | source-model-missing |
-| 423 | [Lincoln's Inn](https://qualla.com/lincoln-s-inn/) | Not started | source-model-missing |
-| 424 | [Metropolitan Theatre (Winnipeg)](https://qualla.com/metropolitan-theatre-winnipeg/) | Not started | source-model-missing |
-| 425 | [Şehzade Mosque](https://qualla.com/sehzade-mosque/) | Not started | source-model-missing |
-| 426 | [China National Film Museum](https://qualla.com/china-national-film-museum/) | Not started | source-model-missing |
-| 427 | [Vadstena Abbey](https://qualla.com/vadstena-abbey/) | Not started | source-model-missing |
-| 428 | [Florence Y'all Water Tower](https://qualla.com/florence-y-all-water-tower/) | Not started | source-model-missing |
-| 429 | [Al-Hakim Mosque](https://qualla.com/al-hakim-mosque/) | Not started | source-model-missing |
-| 430 | [Fujiya Hotel](https://qualla.com/fujiya-hotel/) | Not started | source-model-missing |
-| 431 | [Ardgillan Castle](https://qualla.com/ardgillan-castle/) | Not started | source-model-missing |
-| 432 | [Canadian War Museum](https://qualla.com/canadian-war-museum/) | Not started | source-model-missing |
-| 433 | [Bulgarian St. Stephen Church](https://qualla.com/bulgarian-st-stephen-church/) | Not started | source-model-missing |
-| 434 | [Victoria Hospital, Hong Kong](https://qualla.com/victoria-hospital-hong-kong/) | Not started | source-model-missing |
-| 435 | [Tampere Hall](https://qualla.com/tampere-hall/) | Not started | source-model-missing |
-| 436 | [Old Point Loma Lighthouse](https://qualla.com/old-point-loma-lighthouse/) | Not started | source-model-missing |
-| 437 | [Laleli Mosque](https://qualla.com/laleli-mosque/) | Not started | source-model-missing |
-| 438 | [Quảng Trị Citadel](https://qualla.com/quang-tri-citadel/) | Not started | source-model-missing |
-| 439 | [Fram Museum](https://qualla.com/fram-museum/) | Not started | source-model-missing |
-| 440 | [Fort Custer (Montana)](https://qualla.com/fort-custer-montana/) | Not started | source-model-missing |
-| 441 | [Eyüp Sultan Mosque](https://qualla.com/eyup-sultan-mosque/) | Not started | source-model-missing |
-| 442 | [Phaung Daw U Pagoda](https://qualla.com/phaung-daw-u-pagoda/) | Not started | source-model-missing |
-| 443 | [Chernobyl Nuclear Power Plant](https://qualla.com/chernobyl-nuclear-power-plant/) | Not started | source-model-missing |
-| 444 | [Westminster Abbey (British Columbia)](https://qualla.com/westminster-abbey-british-columbia/) | Not started | source-model-missing |
-| 445 | [Church of St. Mary of Blachernae](https://qualla.com/church-of-st-mary-of-blachernae/) | Not started | source-model-missing |
-| 446 | [National Museum of Korea](https://qualla.com/national-museum-of-korea/) | Not started | source-model-missing |
-| 447 | [Kastelholm Castle](https://qualla.com/kastelholm-castle/) | Not started | source-model-missing |
-| 448 | [John Ross House (Rossville, Georgia)](https://qualla.com/john-ross-house-rossville-georgia/) | Not started | source-model-missing |
-| 449 | [Koca Mustafa Pasha Mosque](https://qualla.com/koca-mustafa-pasha-mosque/) | Not started | source-model-missing |
-| 450 | [Anping Tree House](https://qualla.com/anping-tree-house/) | Not started | source-model-missing |
-| 451 | [Taganrog Theatre](https://qualla.com/taganrog-theatre/) | Not started | source-model-missing |
-| 452 | [Royal British Columbia Museum](https://qualla.com/royal-british-columbia-museum/) | Not started | source-model-missing |
-| 453 | [Atik Mustafa Pasha Mosque](https://qualla.com/atik-mustafa-pasha-mosque/) | Not started | source-model-missing |
-| 454 | [Nikkō Kanaya Hotel](https://qualla.com/nikk-kanaya-hotel/) | Not started | source-model-missing |
+| 409 | [Gelora Bung Karno Stadium](https://qualla.com/gelora-bung-karno-stadium/) | Complete | Modeled, placed and linked |
+| 410 | [Amphitheatre of Mérida](https://qualla.com/amphitheatre-of-merida/) | Complete | Modeled, placed and linked |
+| 411 | [Disney's Polynesian Village Resort](https://qualla.com/disney-s-polynesian-village-resort/) | Complete | Modeled, placed and linked |
+| 412 | [Mahasu Devta Temple](https://qualla.com/mahasu-devta-temple/) | Complete | Modeled, placed and linked |
+| 413 | [Al-Hussein Mosque](https://qualla.com/al-hussein-mosque/) | Complete | Modeled, placed and linked |
+| 414 | [Edo Castle](https://qualla.com/edo-castle/) | Complete | Modeled, placed and linked |
+| 415 | [Villa Wolf](https://qualla.com/villa-wolf/) | Complete | Modeled, placed and linked |
+| 416 | [British Columbia Penitentiary](https://qualla.com/british-columbia-penitentiary/) | Complete | Modeled, placed and linked |
+| 417 | [Mimar Sinan Mosque](https://qualla.com/mimar-sinan-mosque/) | Complete | Modeled, placed and linked |
+| 418 | [Wat Phra Kaew, Chiang Rai](https://qualla.com/wat-phra-kaew-chiang-rai/) | Complete | Modeled, placed and linked |
+| 419 | [DDR Museum](https://qualla.com/ddr-museum/) | Complete | Modeled, placed and linked |
+| 420 | [Encina Power Station](https://qualla.com/encina-power-station/) | Complete | Modeled, placed and linked |
+| 421 | [Dutch Reformed Church, Wellington](https://qualla.com/dutch-reformed-church-wellington/) | Complete | Modeled, placed and linked |
+| 422 | [Old Tainan Magistrate Residence](https://qualla.com/old-tainan-magistrate-residence/) | Complete | Modeled, placed and linked |
+| 423 | [Lincoln's Inn](https://qualla.com/lincoln-s-inn/) | Complete | Modeled, placed and linked |
+| 424 | [Metropolitan Theatre (Winnipeg)](https://qualla.com/metropolitan-theatre-winnipeg/) | Complete | Modeled, placed and linked |
+| 425 | [Şehzade Mosque](https://qualla.com/sehzade-mosque/) | Complete | Modeled, placed and linked |
+| 426 | [China National Film Museum](https://qualla.com/china-national-film-museum/) | Complete | Modeled, placed and linked |
+| 427 | [Vadstena Abbey](https://qualla.com/vadstena-abbey/) | Complete | Modeled, placed and linked |
+| 428 | [Florence Y'all Water Tower](https://qualla.com/florence-y-all-water-tower/) | Complete | Modeled, placed and linked |
+| 429 | [Al-Hakim Mosque](https://qualla.com/al-hakim-mosque/) | Complete | Modeled, placed and linked |
+| 430 | [Fujiya Hotel](https://qualla.com/fujiya-hotel/) | Complete | Modeled, placed and linked |
+| 431 | [Ardgillan Castle](https://qualla.com/ardgillan-castle/) | Complete | Modeled, placed and linked |
+| 432 | [Canadian War Museum](https://qualla.com/canadian-war-museum/) | Complete | Modeled, placed and linked |
+| 433 | [Bulgarian St. Stephen Church](https://qualla.com/bulgarian-st-stephen-church/) | Complete | Modeled, placed and linked |
+| 434 | [Victoria Hospital, Hong Kong](https://qualla.com/victoria-hospital-hong-kong/) | Complete | Modeled, placed and linked |
+| 435 | [Tampere Hall](https://qualla.com/tampere-hall/) | Complete | Modeled, placed and linked |
+| 436 | [Old Point Loma Lighthouse](https://qualla.com/old-point-loma-lighthouse/) | Complete | Modeled, placed and linked |
+| 437 | [Laleli Mosque](https://qualla.com/laleli-mosque/) | Complete | Modeled, placed and linked |
+| 438 | [Quảng Trị Citadel](https://qualla.com/quang-tri-citadel/) | Complete | Modeled, placed and linked |
+| 439 | [Fram Museum](https://qualla.com/fram-museum/) | Complete | Modeled, placed and linked |
+| 440 | [Fort Custer (Montana)](https://qualla.com/fort-custer-montana/) | Complete | Modeled, placed and linked |
+| 441 | [Eyüp Sultan Mosque](https://qualla.com/eyup-sultan-mosque/) | Complete | Modeled, placed and linked |
+| 442 | [Phaung Daw U Pagoda](https://qualla.com/phaung-daw-u-pagoda/) | Complete | Modeled, placed and linked |
+| 443 | [Chernobyl Nuclear Power Plant](https://qualla.com/chernobyl-nuclear-power-plant/) | Complete | Modeled, placed and linked |
+| 444 | [Westminster Abbey (British Columbia)](https://qualla.com/westminster-abbey-british-columbia/) | Complete | Modeled, placed and linked |
+| 445 | [Church of St. Mary of Blachernae](https://qualla.com/church-of-st-mary-of-blachernae/) | Complete | Modeled, placed and linked |
+| 446 | [National Museum of Korea](https://qualla.com/national-museum-of-korea/) | Complete | Modeled, placed and linked |
+| 447 | [Kastelholm Castle](https://qualla.com/kastelholm-castle/) | Complete | Modeled, placed and linked |
+| 448 | [John Ross House (Rossville, Georgia)](https://qualla.com/john-ross-house-rossville-georgia/) | Complete | Modeled, placed and linked |
+| 449 | [Koca Mustafa Pasha Mosque](https://qualla.com/koca-mustafa-pasha-mosque/) | Complete | Modeled, placed and linked |
+| 450 | [Anping Tree House](https://qualla.com/anping-tree-house/) | Complete | Modeled, placed and linked |
+| 451 | [Taganrog Theatre](https://qualla.com/taganrog-theatre/) | Complete | Modeled, placed and linked |
+| 452 | [Royal British Columbia Museum](https://qualla.com/royal-british-columbia-museum/) | Complete | Modeled, placed and linked |
+| 453 | [Atik Mustafa Pasha Mosque](https://qualla.com/atik-mustafa-pasha-mosque/) | Complete | Modeled, placed and linked |
+| 454 | [Nikkō Kanaya Hotel](https://qualla.com/nikk-kanaya-hotel/) | Complete | Modeled, placed and linked |
 | 455 | [Holy Spirit Cathedral, Minsk](https://qualla.com/holy-spirit-cathedral-minsk/) | Complete | All required evidence current |
-| 456 | [The Varsity (restaurant)](https://qualla.com/the-varsity-restaurant/) | Not started | source-model-missing |
-| 457 | [Çamlıca Mosque](https://qualla.com/caml-ca-mosque/) | Not started | source-model-missing |
-| 458 | [Lee Theatre](https://qualla.com/lee-theatre/) | Not started | source-model-missing |
-| 459 | [Littlecote Roman Villa](https://qualla.com/littlecote-roman-villa/) | Not started | source-model-missing |
-| 460 | [Fort Garry Hotel](https://qualla.com/fort-garry-hotel/) | Not started | source-model-missing |
-| 461 | [Muradiye Mosque, Edirne](https://qualla.com/muradiye-mosque-edirne/) | Not started | source-model-missing |
-| 462 | [Museum of the War of Chinese People's Resistance Against Japanese Aggression](https://qualla.com/museum-of-the-war-of-chinese-people-s-resistance-against-japanese-aggression/) | Not started | source-model-missing |
-| 463 | [Art & History Museum](https://qualla.com/art-history-museum/) | Not started | source-model-missing |
-| 464 | [John E. Amos Power Plant](https://qualla.com/john-e-amos-power-plant/) | Not started | source-model-missing |
-| 465 | [Üç Şerefeli Mosque](https://qualla.com/uc-serefeli-mosque/) | Not started | source-model-missing |
-| 466 | [Church of Mount Bokor](https://qualla.com/church-of-mount-bokor/) | Not started | source-model-missing |
-| 467 | [Newall Telescope](https://qualla.com/newall-telescope/) | Not started | source-model-missing |
-| 468 | [Lunch atop a Skyscraper](https://qualla.com/lunch-atop-a-skyscraper/) | Not started | source-model-missing |
-| 469 | [Hong Kong Police Headquarters](https://qualla.com/hong-kong-police-headquarters/) | Not started | source-model-missing |
-| 470 | [Turaida Castle](https://qualla.com/turaida-castle/) | Not started | source-model-missing |
-| 471 | [The Presque Isle Lighthouse and the Lake Erie Mysteries](https://qualla.com/presque-isle-lighthouse/) | Not started | source-model-missing |
-| 472 | [Iwamura Castle](https://qualla.com/iwamura-castle/) | Not started | source-model-missing |
+| 456 | [The Varsity (restaurant)](https://qualla.com/the-varsity-restaurant/) | Complete | Modeled, placed and linked |
+| 457 | [Çamlıca Mosque](https://qualla.com/caml-ca-mosque/) | Complete | Modeled, placed and linked |
+| 458 | [Lee Theatre](https://qualla.com/lee-theatre/) | Complete | Modeled, placed and linked |
+| 459 | [Littlecote Roman Villa](https://qualla.com/littlecote-roman-villa/) | Complete | Modeled, placed and linked |
+| 460 | [Fort Garry Hotel](https://qualla.com/fort-garry-hotel/) | Complete | Modeled, placed and linked |
+| 461 | [Muradiye Mosque, Edirne](https://qualla.com/muradiye-mosque-edirne/) | Complete | Modeled, placed and linked |
+| 462 | [Museum of the War of Chinese People's Resistance Against Japanese Aggression](https://qualla.com/museum-of-the-war-of-chinese-people-s-resistance-against-japanese-aggression/) | Complete | Modeled, placed and linked |
+| 463 | [Art & History Museum](https://qualla.com/art-history-museum/) | Complete | Modeled, placed and linked |
+| 464 | [John E. Amos Power Plant](https://qualla.com/john-e-amos-power-plant/) | Complete | Modeled, placed and linked |
+| 465 | [Üç Şerefeli Mosque](https://qualla.com/uc-serefeli-mosque/) | Complete | Modeled, placed and linked |
+| 466 | [Church of Mount Bokor](https://qualla.com/church-of-mount-bokor/) | Complete | Modeled, placed and linked |
+| 467 | [Newall Telescope](https://qualla.com/newall-telescope/) | Complete | Modeled, placed and linked |
+| 468 | [Lunch atop a Skyscraper](https://qualla.com/lunch-atop-a-skyscraper/) | Existing catalog model | Other-device model linked |
+| 469 | [Hong Kong Police Headquarters](https://qualla.com/hong-kong-police-headquarters/) | Complete | Modeled, placed and linked |
+| 470 | [Turaida Castle](https://qualla.com/turaida-castle/) | Complete | Modeled, placed and linked |
+| 471 | [The Presque Isle Lighthouse and the Lake Erie Mysteries](https://qualla.com/presque-isle-lighthouse/) | Complete | Modeled, placed and linked |
+| 472 | [Iwamura Castle](https://qualla.com/iwamura-castle/) | Complete | Modeled, placed and linked |
 | 473 | [Hospital de Sant Pau](https://qualla.com/hospital-de-sant-pau/) | Complete | All required evidence current |
 | 474 | [Folsom State Prison](https://qualla.com/folsom-state-prison/) | Complete | All required evidence current |
 | 475 | [Wistaria Tea House](https://qualla.com/wistaria-tea-house/) | Complete | All required evidence current |
 | 476 | [Belfry of Bruges](https://qualla.com/belfry-of-bruges/) | Complete | All required evidence current |
-| 477 | [Library of Parliament](https://qualla.com/library-of-parliament/) | Not started | source-model-missing |
+| 477 | [Library of Parliament](https://qualla.com/library-of-parliament/) | Complete | Modeled, placed and linked |
 | 478 | [Kaba Aye Pagoda](https://qualla.com/kaba-aye-pagoda/) | Complete | All required evidence current |
 | 479 | [Monastery of the Holy Spirit, Vilnius](https://qualla.com/monastery-of-the-holy-spirit-vilnius/) | Complete | All required evidence current |
 | 480 | [Fox Tucson Theatre](https://qualla.com/fox-tucson-theatre/) | Complete | All required evidence current |
-| 481 | [Chengde Mountain Resort](https://qualla.com/chengde-mountain-resort/) | Not started | source-model-missing |
+| 481 | [Danbo Jingcheng Hall, Chengde Mountain Resort](https://qualla.com/chengde-mountain-resort/) | Complete | Modeled, placed and linked |
 | 482 | [Groninger Museum](https://qualla.com/groninger-museum/) | Complete | All required evidence current |
 | 483 | [Sacred Heart Church (Tombstone, Arizona)](https://qualla.com/sacred-heart-church-tombstone-arizona/) | Complete | All required evidence current |
 | 484 | [ArtScience Museum](https://qualla.com/artscience-museum/) | Complete | All required evidence current |

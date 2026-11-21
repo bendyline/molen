@@ -1,0 +1,554 @@
+{
+  "planId": "mission_basilica_san_juan_capistrano",
+  "id": "mission_basilica_san_juan_capistrano",
+  "assetId": "molen.worldgen.structure.mission_basilica_san_juan_capistrano",
+  "title": "Mission Basilica San Juan Capistrano",
+  "wikidataId": "Q6878524",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -117.66358762222222,
+    "latitude": 33.50424638888889
+  },
+  "size": [
+    41.07258224487305,
+    32.51136553287506,
+    64.89026832580566
+  ],
+  "actualBounds": {
+    "min": [
+      -17.136821746826172,
+      -0.6013656854629517,
+      -33.61000061035156
+    ],
+    "max": [
+      23.935760498046875,
+      31.90999984741211,
+      31.2802677154541
+    ]
+  },
+  "visualBrief": "The standing 1986 Mission Basilica, identified by its white Mission Revival frontage, stacked octagonal bell stages and terracotta central cupola.",
+  "nativeAxes": {
+    "x": "northeast along the front",
+    "y": "up",
+    "z": "southeast along the nave"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Mission_Basilica_in_San_Juan_Capistrano.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mission_Basilica_San_Juan_Capistrano_-_Bell_Tower.jpg"
+  ],
+  "stories": [
+    {
+      "id": "mission-basilica-san-juan-capistrano-wp",
+      "url": "https://qualla.com/mission-basilica-san-juan-capistrano/"
+    }
+  ],
+  "referenceInputHash": "sha256:296a6e331018f29d1f75e84e3556457776d0b6f5da00aa6d7ce0a0e53e6a96a4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9m/9mu/mission_basilica_san_juan_capistrano/models/mission-basilica-san-juan-capistrano-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9m/9mu/mission_basilica_san_juan_capistrano/models/mission-basilica-san-juan-capistrano-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.64,
+        "metallic": 0.03
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.24
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.64,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.24
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.64,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.24
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.64,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.24
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_ashlar",
+    "clay_fired",
+    "storefront",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.75,
+    "focus": {
+      "center": [
+        3,
+        12,
+        -1
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The parish confirms the 1986 completion. The architect’s contemporary description and published architectural survey support the long cross-shaped nave and cupola. Cleared Qualla images establish the white Mission Revival silhouette, ornate facade and two stacked octagonal belfries with terracotta roof.",
+    "anchor": [
+      -117.66358762222222,
+      33.50424638888889
+    ],
+    "heading": 0.7619837356008468,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -117.66381615097782,
+        33.504492929787965
+      ],
+      "modelHeight": 0,
+      "basis": "Unchanged bare-earth grade in the forecourt immediately northwest of the main portal."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.41822,
+          -30.86984
+        ],
+        [
+          -3.91711,
+          -30.42049
+        ],
+        [
+          -3.96574,
+          -32.35948
+        ],
+        [
+          12.98468,
+          -31.54096
+        ],
+        [
+          12.18846,
+          -3.46564
+        ],
+        [
+          17.15896,
+          -3.2156
+        ],
+        [
+          17.23038,
+          4.88453
+        ],
+        [
+          23.88276,
+          5.09308
+        ],
+        [
+          23.88276,
+          31.09698
+        ],
+        [
+          -2.7207,
+          31.23796
+        ],
+        [
+          -5.41012,
+          24.88643
+        ],
+        [
+          -12.30635,
+          24.6914
+        ],
+        [
+          -12.27601,
+          20.93516
+        ],
+        [
+          -17.11684,
+          20.56267
+        ],
+        [
+          -16.39162,
+          3.99056
+        ],
+        [
+          -4.57578,
+          4.44864
+        ],
+        [
+          -3.67267,
+          -19.78567
+        ],
+        [
+          -12.55684,
+          -20.16973
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Replaces only the high-overlap mapped footprint of the current basilica; nearby mission property stays visible."
+    },
+    "featureIds": [
+      "way/423728346"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/way/423728346/full",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ea3db45c0b6d847de2568a3a9d512de2cc10d9fed562af189638943101d5bf85",
+    "notes": "The parish confirms the 1986 completion. The architect’s contemporary description and published architectural survey support the long cross-shaped nave and cupola. Cleared Qualla images establish the white Mission Revival silhouette, ornate facade and two stacked octagonal belfries with terracotta roof."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.storefront",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The 18-point exterior perimeter, bell tower and principal cupola dominate the reconstruction. Internal room boundaries, roof junctions, masonry ornament and smaller rear roof heights are approximate.",
+    "Scope covers the 1986 basilica and adjoining rooms in its mapped footprint. The original ruined Great Stone Church and historic mission buildings are separate sites.",
+    "USGS bare-earth data supplies near-site grades. Entry stairs and wall contact are interpreted from the original photographs and elevation field."
+  ],
+  "sourceLicense": "Independent exterior reconstruction from public-domain Qualla references, mapped church outline and original USGS bare-earth elevations.",
+  "qaLodCameras": [
+    {
+      "name": "mission-basilica-san-juan-capistrano-skyline",
+      "position": [
+        -68,
+        53,
+        -85
+      ],
+      "lookAt": [
+        3,
+        12,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mission-basilica-san-juan-capistrano-district",
+      "position": [
+        -68,
+        53,
+        -85
+      ],
+      "lookAt": [
+        3,
+        12,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "mission-basilica-san-juan-capistrano-street",
+      "position": [
+        -68,
+        53,
+        -85
+      ],
+      "lookAt": [
+        3,
+        12,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "mission-basilica-san-juan-capistrano-closeup",
+      "position": [
+        -68,
+        53,
+        -85
+      ],
+      "lookAt": [
+        3,
+        12,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "mission-revival-front-and-belfry",
+      "position": [
+        -31,
+        15,
+        -61
+      ],
+      "lookAt": [
+        1,
+        13,
+        -27
+      ]
+    },
+    {
+      "name": "mission-parapet-rose-and-fan-portal",
+      "position": [
+        1.5,
+        8,
+        -49
+      ],
+      "lookAt": [
+        4.6,
+        8.9,
+        -31
+      ]
+    },
+    {
+      "name": "cupola-and-cross-shaped-wings",
+      "position": [
+        -34,
+        30,
+        41
+      ],
+      "lookAt": [
+        2,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "octagonal-terracotta-bell-tower",
+      "position": [
+        -22,
+        24,
+        -48
+      ],
+      "lookAt": [
+        -8,
+        22,
+        -24
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5272,
+    "vertices": 15816,
+    "materials": 6,
+    "bytes": 847452,
+    "sha256": "sha256:506c0f6e773fcdbd4a8fbabf0939699968d598f7245f688b7b0b64836d445b67"
+  }
+}

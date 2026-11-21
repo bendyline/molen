@@ -1,0 +1,207 @@
+{
+  "id": "summer_palace_water_village_pavilion",
+  "planId": "summer_palace",
+  "title": "Summer Palace · Water Village lakeside pavilion",
+  "assetId": "molen.worldgen.structure.summer_palace_water_village_pavilion",
+  "category": "pavilion",
+  "wikidataId": "Q4132",
+  "quality": "medium-fi",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-placement-study",
+  "referenceCoordinate": {
+    "longitude": 116.25980995595455,
+    "latitude": 39.995928343736075
+  },
+  "nativeAxes": "+Y points up. +Z points out of the open side toward the stone approach.",
+  "visualBrief": "Four round timber posts stand on a pale stone terrace. A low slate hip roof has lifted corners and a stepped finial. The open front faces a shallow step. Timber lattice fills the upper rail and benches line the other three sides.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/water-village-pavilion-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://cj.sina.com.cn/articles/view/7263825367/1b0f52dd700100qjrz?tj=none&tr=9",
+    "https://n.sinaimg.cn/sinakd10121/183/w1052h731/20201118/f260-kcysmrw7021108.jpg",
+    "https://blog.sina.com.cn/s/blog_bdbef0ce0102wege.html",
+    "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/11475/19/198492/431459"
+  ],
+  "materialMethod": "Shared slate, pale ashlar and unpainted timber graphs with metric UVs.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_pavilion/models/water-village-pavilion-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate"
+      }
+    },
+    "errorMeters": 0.12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.055
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.021
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.008
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "lakeside-entrance",
+      "position": [
+        3.6,
+        1.62,
+        6.1
+      ],
+      "lookAt": [
+        0,
+        1.69,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "hip-roof-and-finial",
+      "position": [
+        4.7,
+        5.9,
+        5.3
+      ],
+      "lookAt": [
+        0,
+        2.45,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "post-feet-lattice-and-benches",
+      "position": [
+        1.7,
+        1.52,
+        4.9
+      ],
+      "lookAt": [
+        0,
+        1.39,
+        -0.2
+      ],
+      "fov": 54
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.42,
+    "focus": {
+      "center": [
+        0,
+        1.55,
+        0
+      ]
+    }
+  },
+  "limitations": [
+    "The eave width, hidden joints and rear bench layout are reconstructed from the available ground view.",
+    "The aerial candidate is a square platform. PMTiles places it inside mapped water and about 16 m from the nearest mapped path. The dry approach and exact bearing remain unverified."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.196671485900879,
+      -0.18000000715255737,
+      -2.196671485900879
+    ],
+    "max": [
+      2.196671485900879,
+      4.033999919891357,
+      2.196671485900879
+    ]
+  },
+  "size": [
+    4.393342971801758,
+    4.213999927043915,
+    4.393342971801758
+  ],
+  "mesh": {
+    "triangles": 2766,
+    "vertices": 5470,
+    "materials": 3,
+    "bytes": 232564,
+    "sha256": "sha256:b83afa563b2b06f6b10311eb06cc5df6ca623f29b884b32c99e785170a9f04c8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -51,6 +51,17 @@ export function inspectExpiredUsBookReference(dir, reference) {
     text.includes(
       '|title = Municipal and official handbook of the City of Auckland, New Zealand\n',
     );
+  // The native Commons record leaves its publisher blank. Bind the one exact
+  // London edition, whose inspected title page supplies the imprint.
+  const hunterOrissaFirstVolume =
+    page?.title === 'File:Orissa. (IA Orissa).pdf' &&
+    reference.archiveIdentifier === 'Orissa' &&
+    reference.publicationTitle === 'Orissa.' &&
+    reference.publicationPublisher === 'London: Smith, Elder & Co.' &&
+    yearText === '1872' &&
+    info?.sha1 === '6a1eb26b67bb8866f11f591d4d786c79d9613f30' &&
+    text.includes('|author = W.W.Hunter\n') &&
+    text.includes('|publisher = \n');
   const year = Number(
     governmentBulletin ? yearText.slice(0, 4) : yearText?.match(/^\[?(\d{4})\??\]?$/)?.[1],
   );
@@ -71,10 +82,14 @@ export function inspectExpiredUsBookReference(dir, reference) {
     !text.includes('{{Book\n') ||
     !publicDomain ||
     !text.includes(`{{Internet Archive link|${reference.archiveIdentifier}}}`) ||
-    (!governmentBulletin && !/^[a-z0-9]+$/.test(reference.archiveIdentifier ?? '')) ||
+    (!governmentBulletin &&
+      !hunterOrissaFirstVolume &&
+      !/^[a-z0-9]+$/.test(reference.archiveIdentifier ?? '')) ||
     !text.includes(`|title = ${reference.publicationTitle}\n`) ||
-    !text.includes(`|publisher = ${reference.publicationPublisher}\n`) ||
+    (!hunterOrissaFirstVolume &&
+      !text.includes(`|publisher = ${reference.publicationPublisher}\n`)) ||
     (!aucklandMunicipalHandbook &&
+      !hunterOrissaFirstVolume &&
       !/Yellowstone National Park|United States|New York|Boston|Chicago|Philadelphia|Washington|Montana|Wyoming|Superintendent of Government Documents/i.test(
         reference.publicationPublisher ?? '',
       )) ||

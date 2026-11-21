@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Grand Inga Dam, 2014 proposal",
+  "seed": "grand_inga_dam",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "proposal",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.grand_inga_dam",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d4e6ed",
+            "ground": "#a9a677",
+            "intensity": 1.3
+          },
+          "sun": {
+            "direction": [
+              -4,
+              6,
+              3
+            ],
+            "color": "#fff0c9",
+            "intensity": 1.55,
+            "castShadow": true
+          },
+          "background": "#bacdd0",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            870,
+            -26,
+            -2210
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              27500,
+              86,
+              23300
+            ]
+          },
+          "materialRef": "palette:#858e71",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      6750,
+      6800,
+      7480
+    ],
+    "lookAt": [
+      500,
+      100,
+      -2050
+    ],
+    "fov": 56
+  }
+}

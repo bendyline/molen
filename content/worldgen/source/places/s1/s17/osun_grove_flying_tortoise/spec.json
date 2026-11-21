@@ -1,0 +1,249 @@
+{
+  "id": "osun_grove_flying_tortoise",
+  "planId": "osun_grove_flying_tortoise",
+  "assetId": "molen.worldgen.structure.osun_grove_flying_tortoise",
+  "title": "Arch of the Flying Tortoise",
+  "category": "gate",
+  "quality": "medium-fi",
+  "collectionId": "osun_osogbo_grove",
+  "wikidataId": "Q621498",
+  "referenceCoordinate": {
+    "longitude": 4.5496515,
+    "latitude": 7.7557705
+  },
+  "visualBrief": "The restored arch has an asymmetric swept wing with recessed dimples, a forked pedestal, an open passage and an upturned crest. Scalloped cement walls with a tilted opening and moss-colored footings flank the approach.",
+  "nativeAxes": "+Y up. +Z faces the approach shown in the Trust photograph. Origin sits at path grade beneath the arch.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_flying_tortoise/models/flying-tortoise-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/asset/arch-of-the-flying-tortoise-susanne-wenger-and-adebisi-akanji/8gHWUfjj4HU6cA",
+    "https://solajegede.wordpress.com/2016/07/31/osun-osogbo-groove-home-of-goddess-of-fertility/",
+    "https://file.scirp.org/Html/3-1620376_68142.htm#f1",
+    "https://whc.unesco.org/document/169248",
+    "https://www.ajlajournal.org/articles/culture-design-and-two-yoruba-landscapes",
+    "https://www.flickr.com/photos/jbdodane/10688214456/"
+  ],
+  "materialMethod": "Metric UVs with shared lime plaster and weathered limestone. Low-frequency vertex colors describe warm cement and moss.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exterior",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_flying_tortoise/models/flying-tortoise-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "cement": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.37,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "cement": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "cement": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "cement": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.035
+      }
+    }
+  },
+  "geographicProposal": {
+    "status": "preview",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "notes": "The 2016 grove-side photo shows the roofed entrance to the sacred path past the arch’s forked pier. A geotagged photo shows the same shelter, with a swept bamboo eave, recessed plaster opening and adjoining scalloped wall, near survey point 32. The tagged camera is southwest of the arch, on the outer side beside the fork. The model faces about 211° true across the nearby PMTiles branch. The 2 m shift east of the survey point clears both mapped roads. The exact crossing and bearing are estimated.",
+    "anchor": [
+      4.549669632173165,
+      7.755770499999994
+    ],
+    "bounds": [
+      4.54959882261037,
+      7.755719480397805,
+      4.549743554687012,
+      7.755817236090857
+    ],
+    "heading": -0.5414472491221184,
+    "elevationMeters": 321.4103,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Three supports meet sampled native terrain across the four viewer levels. No grading overlay is used.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9ebc3fe8cee058c0ebe3b5d80c73e8dadaded6ba8d88acf1f14c04d67927112f",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap."
+  },
+  "mediumFiContext": {
+    "groundY": 0
+  },
+  "qaCameras": [
+    {
+      "name": "visitor-approach",
+      "position": [
+        0.78,
+        2.6,
+        15.9
+      ],
+      "lookAt": [
+        0.38,
+        3.08,
+        0.2
+      ],
+      "fov": 62
+    },
+    {
+      "name": "grove-side",
+      "position": [
+        1.5,
+        2.7,
+        -14.1
+      ],
+      "lookAt": [
+        0.25,
+        3,
+        -0.01
+      ],
+      "fov": 66
+    },
+    {
+      "name": "wing-recesses",
+      "position": [
+        5.75,
+        4.55,
+        5.6
+      ],
+      "lookAt": [
+        3.23,
+        4.02,
+        0.45
+      ],
+      "fov": 49
+    },
+    {
+      "name": "forked-pedestal",
+      "position": [
+        -4.85,
+        2.18,
+        7.35
+      ],
+      "lookAt": [
+        -3.1,
+        3.32,
+        0.02
+      ],
+      "fov": 57
+    },
+    {
+      "name": "pierced-side-wall",
+      "position": [
+        8.83,
+        1.67,
+        4.17
+      ],
+      "lookAt": [
+        7.22,
+        0.79,
+        0.46
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "Approximate meter scale from visitors in the photographs. Sculpture depths, concealed joints and adjoining wall extents are estimated.",
+    "The mapped arch and photographed shelter guide the signed placement. The arch opening and its bearing are approximate.",
+    "The lower 0.84 m of the mesh allows the feet and flared wall bases to meet the trial terrain without a grading overlay. The footing extensions are estimates for viewer fit."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -8.34000015258789,
+      -0.8399999737739563,
+      -1.0553489923477173
+    ],
+    "max": [
+      8.880000114440918,
+      6.886606693267822,
+      1.2870206832885742
+    ]
+  },
+  "size": [
+    17.22000026702881,
+    7.726606667041779,
+    2.3423696756362915
+  ],
+  "mesh": {
+    "triangles": 23525,
+    "vertices": 70269,
+    "materials": 2,
+    "bytes": 2814012,
+    "sha256": "sha256:2df7f9859bf57646097ecf5c8499e695440e7984772bca69bc100371071ea475"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

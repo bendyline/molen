@@ -1,0 +1,481 @@
+{
+  "id": "catacombs_rene_coty_exit",
+  "planId": "catacombs_rene_coty_exit",
+  "assetId": "molen.worldgen.structure.catacombs_rene_coty_exit",
+  "title": "Catacombs of Paris · Avenue René-Coty exit",
+  "category": "museum",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 2.3344810977403414,
+    "latitude": 48.829515383006544
+  },
+  "visualBrief": "Recessed white Corian exit, glass canopy, stone flanking walls and a low roof set into the mapped street frontage.",
+  "nativeAxes": "+X follows the front wall to the right as viewed from the street. +Z points toward the public approach.",
+  "sourceFacts": {
+    "siteCandidateId": "catacombs_of_paris",
+    "mapFeatureIds": [
+      35184451715225
+    ],
+    "portalRole": "exit"
+  },
+  "referencePages": [
+    "https://catacombes.paris.fr/histoire-du-lieu",
+    "https://catacombes.paris.fr/visiter/informations-pratiques"
+  ],
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u0/u09/catacombs_rene_coty_exit/models/rene-coty-exit-model.mjs",
+    "export": "buildMaster"
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      2.3344810977403414,
+      48.829515383006544
+    ],
+    "heading": -1.3296982633,
+    "bounds": [
+      2.3343016075134275,
+      48.829341919837226,
+      2.3347590995788576,
+      48.82968905044944
+    ],
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 64.05502,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.1736,
+          4.4802
+        ],
+        [
+          -5.129,
+          -8.8234
+        ],
+        [
+          5.5846,
+          -12.0585
+        ],
+        [
+          6.1735,
+          4.4802
+        ],
+        [
+          1.6928,
+          4.5928
+        ],
+        [
+          1.9053,
+          -2.0339
+        ],
+        [
+          -1.909,
+          -2.1622
+        ],
+        [
+          -1.9306,
+          4.5115
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Match the independently identified building footprint. The nearby structures and public routes stay native."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:beff40d29e6f97b76e3436cfe85affe776b9060ff65ea32dd90b419ab189b73d",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap",
+    "notes": "The address and museum photograph identify the low stone bays and recessed white frame facing Avenue René-Coty. The signed direction follows the mapped front building line and the named avenue.",
+    "groundContactBasis": "The recessed exit floor was raised 0.43 m above the initial terrain datum to meet the viewer sidewalk. The foundation follows the retained ground and the street surface remains native."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "reviewed-medium-fi",
+  "materialMethod": "Existing shared limestone, ashlar, metal and glazing graphs. The entrance also uses shared slate. The clear canopy uses solid-tint transparent glazing with no texture image.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/catacombs_rene_coty_exit/models/rene-coty-exit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "rough": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.18
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.59,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "faceStone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "canopy": {
+        "slot": "roof",
+        "localRef": "palette:#e2f2f3",
+        "name": "clear canopy glazing",
+        "roughness": 0.34,
+        "metallic": 0,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.44
+        ]
+      }
+    },
+    "errorMeters": 0.36,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "faceStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#e2f2f3",
+            "name": "clear canopy glazing",
+            "roughness": 0.34,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.44
+            ]
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "faceStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#e2f2f3",
+            "name": "clear canopy glazing",
+            "roughness": 0.34,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.44
+            ]
+          }
+        },
+        "errorMeters": 0.083
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.59,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "faceStone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "localRef": "palette:#e2f2f3",
+            "name": "clear canopy glazing",
+            "roughness": 0.34,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.44
+            ]
+          }
+        },
+        "errorMeters": 0.025
+      }
+    }
+  },
+  "limitations": [
+    "Wall depth, small façade hardware and ground heights are reconstructed. The adjacent streets and other buildings stay in the standard map layers.",
+    "The public surface building is separate from the quarry galleries and underground visitor itinerary."
+  ],
+  "qaCameras": [
+    {
+      "name": "avenue-front",
+      "position": [
+        2.44,
+        3.27,
+        18.8
+      ],
+      "lookAt": [
+        0,
+        2.86,
+        2.19
+      ],
+      "fov": 53
+    },
+    {
+      "name": "recess-and-glass",
+      "position": [
+        -4.84,
+        2.4,
+        9.4
+      ],
+      "lookAt": [
+        0.03,
+        3.1,
+        0.13
+      ],
+      "fov": 57
+    },
+    {
+      "name": "stone-wing-roof",
+      "position": [
+        6.4,
+        10.7,
+        15.9
+      ],
+      "lookAt": [
+        0.54,
+        3.7,
+        -2.25
+      ],
+      "fov": 53
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6.2395501136779785,
+      -0.47999998927116394,
+      -10.682999610900879
+    ],
+    "max": [
+      6.2395501136779785,
+      5.809999942779541,
+      5.960000038146973
+    ]
+  },
+  "size": [
+    12.479100227355957,
+    6.289999932050705,
+    16.64299964904785
+  ],
+  "mesh": {
+    "triangles": 4365,
+    "vertices": 8739,
+    "materials": 7,
+    "bytes": 371240,
+    "sha256": "sha256:49f345b83a9882875cd478a9660e033165611873cbd501e165786ad2a3db6839"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.glass_frit_triangular",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

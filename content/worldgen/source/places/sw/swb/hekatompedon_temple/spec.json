@@ -1,0 +1,363 @@
+{
+  "planId": "hekatompedon_temple",
+  "id": "hekatompedon_temple",
+  "wikidataId": "Q1035075",
+  "assetId": "molen.worldgen.structure.hekatompedon_temple",
+  "title": "Hekatompedon temple",
+  "category": "temple",
+  "quality": "historical-reconstruction",
+  "referenceCoordinate": {
+    "longitude": 23.7267,
+    "latitude": 37.9715
+  },
+  "visualBrief": "Archaic Hekatompedon in poros limestone. Broad three-step platform and open heavy Doric peristyle, low gable with marble gutter, red and indigo frieze and three groups on the west pediment.",
+  "nativeAxes": "+X points toward the eastern entrance and +Z toward the southern flank. +Y is vertical from the local ground plane at the foot of the stylobate.",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "source": "https://build.protomaps.com/20261014.pmtiles",
+    "wikidataId": "Q1035075",
+    "anchor": [
+      23.7264999544281,
+      37.97144992336404
+    ],
+    "heading": 0.22570488956308155,
+    "notes": "The reconstruction sits in the southwest portion of the current Parthenon platform, following the southern-site interpretation. The Protomaps Parthenon outline fixes that platform and its long axis. The ancient temple is aligned approximately parallel, with a 47.2 × 24 m stair envelope inside the southwest portion of the mapped footprint. Approximately align the foot of the temple steps to the median level of the retained Acropolis terrace. The bounded dated grade lowers the visible surface 0.25 m below the building origin to accommodate the viewer’s land-cover lift.",
+    "elevationMode": "sea-level",
+    "elevationMeters": 144.9,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Approximately align the foot of the temple steps to the median level of the retained Acropolis terrace. The bounded dated grade lowers the visible surface 0.25 m below the building origin to accommodate the viewer’s land-cover lift.",
+    "orientationPolicy": "approximate-visualization",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1896ce2298e10974ed35380714b23abf3f1e15f5ae14f5f6dbe229aca8aab927",
+    "minLevel": 16,
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -25.6,
+          -21.15
+        ],
+        [
+          48.55,
+          -21.15
+        ],
+        [
+          48.55,
+          14.2
+        ],
+        [
+          -25.6,
+          14.2
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Remove the later Classical Parthenon’s mapped building and column parts only in this earlier view. The separate Old Temple of Athena and the Erechtheion lie beyond the cutout."
+    },
+    "bounds": [
+      23.72615,
+      37.97126,
+      23.72709,
+      37.97175
+    ]
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "circa 560 BCE",
+    "validFrom": "-000559-01-01",
+    "validUntil": "-000558-01-01"
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/hekatompedon_temple/models/hekatompedon-model.mjs",
+    "export": "buildHekatompedon"
+  },
+  "referencePages": [
+    "https://www.academia.edu/42150499/Constructing_Monumentality_at_the_Athenian_Acropolis_in_the_Early_6th_Century_B_C",
+    "https://www.theacropolismuseum.gr/en/node/16476",
+    "https://www.theacropolismuseum.gr/en/hekatompedon-doric-capital",
+    "https://www.theacropolismuseum.gr/en/hekatompedon-west-pediment",
+    "https://www.theacropolismuseum.gr/en/hekatompedon-east-pediment-lioness-and-calf",
+    "https://acropolismuseumkids.gr/en/dimiourgo1/117-be-devilish.html"
+  ],
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "reviewed",
+  "materialMethod": "Shared weathered and raw limestone, marble, roof tile, lime plaster and timber graphs with meter-scale UVs and hand-selected tints.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/swb/hekatompedon_temple/models/hekatompedon-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.77,
+        "metallic": 0
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.86,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.49
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "west-pediment",
+      "position": [
+        -32.25,
+        12.86,
+        0.15
+      ],
+      "lookAt": [
+        -23.4,
+        11.41,
+        0.15
+      ]
+    },
+    {
+      "name": "east-porch",
+      "position": [
+        31,
+        7.3,
+        -9.2
+      ],
+      "lookAt": [
+        16.1,
+        4.3,
+        0.9
+      ]
+    },
+    {
+      "name": "south-colonnade",
+      "position": [
+        -22,
+        4.2,
+        21.5
+      ],
+      "lookAt": [
+        1,
+        4,
+        8.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The location follows one published interpretation. The original temple foundations are unexposed and the precise anchor, original rotation, ancient terrace elevation and stair profiles are uncertain.",
+    "The 6 × 12 peristyle fits the published end and flank bay spacing and temple envelope. Column height, interior plan, roof pitch, paint distribution, roof ornaments and unpreserved figures are interpretations.",
+    "The reliefs are original modeled interpretations of the surviving groups. No museum mesh or photographic texture is embedded. The selected year represents the finished Archaic temple."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -23.89513397216797,
+      -0.6200000047683716,
+      -12.069999694824219
+    ],
+    "max": [
+      23.829999923706055,
+      14.460000038146973,
+      12.069999694824219
+    ]
+  },
+  "size": [
+    47.72513389587402,
+    15.080000042915344,
+    24.139999389648438
+  ],
+  "mesh": {
+    "triangles": 55530,
+    "vertices": 118194,
+    "materials": 6,
+    "bytes": 4925228,
+    "sha256": "sha256:9c5a861335469f1329635fd2dbfdfda86c4f3d130bda42aa545826a7527b7d1d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ]
+}

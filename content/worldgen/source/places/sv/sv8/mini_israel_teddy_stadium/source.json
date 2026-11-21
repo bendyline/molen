@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_teddy_stadium",
+  "kind": "static-structure",
+  "title": "Mini Israel · Teddy Stadium exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_teddy_stadium",
+        "output": "assets/places/sv/sv8/mini_israel_teddy_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:82c41972805a432bd199a839ea078ab832d972c85417a16136e0ba41f55d280d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "teddy-exhibit-model",
+        "path": "models/teddy-exhibit-model.mjs"
+      },
+      {
+        "id": "teddy-exhibit-master",
+        "path": "models/generate-teddy-exhibit.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "map-frame.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "exhibit-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-fit-review.json"
+    ]
+  }
+}

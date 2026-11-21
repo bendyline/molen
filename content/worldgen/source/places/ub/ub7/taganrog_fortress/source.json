@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.taganrog_fortress",
+  "kind": "static-structure",
+  "title": "Taganrog Fortress",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.taganrog_fortress",
+        "output": "assets/places/ub/ub7/taganrog_fortress/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c51b6c978284a0720223ae9822344f233a885956eb5c904727c6e08076afbf31"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taganrog-fortress",
+        "path": "models/generate-taganrog-fortress.mjs"
+      },
+      {
+        "id": "taganrog-fortress-model",
+        "path": "models/taganrog-fortress-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-taganrog-cape-controls.json",
+      "reference-rights/commons-lyall-1825.json",
+      "reference-originals/troitskoy-as-built-1704.jpg",
+      "reference-rights/rodina-2015-rgada-plan-plate.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "terrain-sources/copernicus-n47-e038-native-crop.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

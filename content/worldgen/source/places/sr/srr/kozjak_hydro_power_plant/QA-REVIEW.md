@@ -1,17 +1,24 @@
 # Kozjak Hydro Power Plant
 
-**Preview.** Reviewed 43 catalog renders and five standard-water comparison renders.
-
 The individual exterior includes a pale rockfill slope, continuous crest road and rails, open circular overflow, thick weir rim, bank retaining wall and service landing. A white tower with a red roof accompanies the gallery and slanted intake rails. The lower ochre powerhouse has a broad red gabled roof, two auxiliary buildings, outfall walls, transformers and a simplified switchyard.
 
-The signed geographic frame follows the retained crest road and straight reservoir edge. Native PMTiles places the circular underground-waterway start and the lower outfall point. No native powerhouse footprint is present; the hall and yard layouts approximate the photographs near that outfall.
+The native viewer separates the 459 m reservoir from the 361.58 m lower Treska pool. The circular overflow remains open inside its raised rim. The lower ground opening follows the powerhouse hall, and two small grades blend the switchyard and outfall landing into the canyon. The crest road and 12 other mapped road records remain.
 
-Eight shared material graphs supply raw limestone, gravel, board-formed and plain concrete, ochre stucco, painted steel, red standing-seam roofs and window grids. All six GLBs contain zero embedded images. Viewer eviction disposes the model and restores ground.
+![Kozjak Hydro Power Plant in the Earth viewer](site-preview.png)
 
-Nine unmodified standard Terrarium tiles provide the canyon. The reference operating-pool fixture uses 459 m; standard sampling gives 468.65 m upstream. Both use the sampled 361.58 m lower pool. The separately retained fixtures expose the difference.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-Skyline plus district total 188,276 bytes. The four tiers have 692, 1366, 2572, 3538 triangles and rebuild byte for byte. Six GLBs pass Khronos validation. Four focused checks cover signed placement, native water stages, open weir throat and rim, crest continuity, hall roof, shared graphs and independent GPU streams. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 692 | 65,884 | 8 |
+| district | 1,366 | 122,392 | 8 |
+| street | 2,572 | 218,360 | 8 |
+| closeup | 3,538 | 296,816 | 8 |
 
-The sampled reservoir is 9.65 m above the operator’s maximum operating pool and submerges the spillway rim. Coarse native shoreline-bank geometry also intersects part of the lower hall and service gallery. These site-fit issues keep geographic and medium-fi acceptance pending. Rockfill sections, foundations, intake rails, lower plant layout and equipment are exterior approximations. Gates and water are static; internal machinery and buried conduits are outside this model.
+Skyline and district total 188,276 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Eight shared material graphs bind in the viewer. The review covers 64 renders and 135 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-kozjak-hydro-power-plant.mjs`. Append `--check` to check exact source bytes. Select import, LOD generation and readiness with `--ids=kozjak_hydro_power_plant`.
+The grades and static pool elevations represent the appearance in the retained photographs and terrain tiles. The coarse terrain approximates the banks and hillside contact around the switchyard.
+
+The source describes the exterior and visible overflow. Buried conduits and operating discharge are outside its scope.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

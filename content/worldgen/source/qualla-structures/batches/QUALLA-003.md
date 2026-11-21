@@ -1,6 +1,6 @@
 # Qualla compat · next 500 buildings
 
-**330 of 500 recorded complete.** South Australian Museum is placed and linked. Jagannath Temple, Puri is next. [South Australian Museum model review](research/south-australian-museum-completion-2026-11-16.json).
+**500 of 500 recorded complete.** Danbo Jingcheng Hall at Chengde Mountain Resort is placed and linked. [Final model review](research/danbo-jingcheng-hall-completion-2026-11-19.json).
 
 The batch spans 100 countries and eight regions. Story locations are the starting points for site research. Each target has local published public-domain or CC0 candidate imagery. Each model’s precise building, footprint, era and original references are verified during authoring. Prior batches, existing catalog matches and other-device reservations are excluded.
 
@@ -273,222 +273,222 @@ The batch spans 100 countries and eight regions. Story locations are the startin
 | 263 | [Douglas City Hall](https://qualla.com/douglas-city-hall-isle-of-man/) | Isle of Man | civic-institutional | Complete |
 | 264 | [Victoria High School (British Columbia)](https://qualla.com/victoria-high-school-british-columbia/) | Canada | civic-institutional | Complete |
 | 265 | [South Australian Museum](https://qualla.com/south-australian-museum/) | Australia | museum-library | Complete |
-| 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | India | religious | Queued |
-| 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Ethiopia | palace-castle-fort | Queued |
-| 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Myanmar | religious | Queued |
+| 266 | [Jagannath Temple, Puri](https://qualla.com/jagannath-temple-puri/) | India | religious | Complete |
+| 267 | [Menelik Palace](https://qualla.com/menelik-palace/) | Ethiopia | palace-castle-fort | Complete |
+| 268 | [Koe-thaung Temple](https://qualla.com/koe-thaung-temple/) | Myanmar | religious | Complete |
 | 269 | [Lyric Theatre, London](https://qualla.com/lyric-theatre-london/) | United Kingdom | performance-sport | Complete |
-| 270 | [Toronto CN Tower](https://qualla.com/toronto-cn-tower/) | Canada | tower | Queued |
-| 271 | [Normanton Gaol](https://qualla.com/normanton-gaol/) | Australia | civic-institutional | Queued |
-| 272 | [Sarvestan Palace](https://qualla.com/sarvestan-palace/) | Iran | palace-castle-fort | Queued |
-| 273 | [Outeniqua Transport Museum](https://qualla.com/outeniqua-transport-museum/) | South Africa | museum-library | Queued |
-| 274 | [Tianjin Nankai High School](https://qualla.com/tianjin-nankai-high-school/) | People's Republic of China | civic-institutional | Queued |
-| 275 | [Häme Castle](https://qualla.com/hame-castle/) | Finland | palace-castle-fort | Queued |
+| 270 | [Toronto CN Tower](https://qualla.com/toronto-cn-tower/) | Canada | tower | Complete |
+| 271 | [Normanton Gaol](https://qualla.com/normanton-gaol/) | Australia | civic-institutional | Complete |
+| 272 | [Sarvestan Palace](https://qualla.com/sarvestan-palace/) | Iran | palace-castle-fort | Complete |
+| 273 | [Outeniqua Transport Museum](https://qualla.com/outeniqua-transport-museum/) | South Africa | museum-library | Complete |
+| 274 | [Tianjin Nankai High School](https://qualla.com/tianjin-nankai-high-school/) | People's Republic of China | civic-institutional | Complete |
+| 275 | [Häme Castle](https://qualla.com/hame-castle/) | Finland | palace-castle-fort | Complete |
 | 276 | [Crossley telescope](https://qualla.com/crossley-telescope/) | United States of America | industrial | Complete |
-| 277 | [State Library of Queensland](https://qualla.com/state-library-of-queensland/) | Australia | museum-library | Queued |
-| 278 | [Sita Ramachandraswamy Temple, Bhadrachalam](https://qualla.com/sita-ramachandraswamy-temple-bhadrachalam/) | India | religious | Queued |
-| 279 | [Al Alam Palace](https://qualla.com/al-alam-palace/) | Oman | palace-castle-fort | Queued |
+| 277 | [State Library of Queensland](https://qualla.com/state-library-of-queensland/) | Australia | museum-library | Complete |
+| 278 | [Sita Ramachandraswamy Temple, Bhadrachalam](https://qualla.com/sita-ramachandraswamy-temple-bhadrachalam/) | India | religious | Complete |
+| 279 | [Al Alam Palace](https://qualla.com/al-alam-palace/) | Oman | palace-castle-fort | Complete |
 | 280 | [Kikumoto Department Store](https://qualla.com/kikumoto-department-store/) | Taiwan | hotel-commercial | Complete |
 | 281 | [Zimmer Tower](https://qualla.com/zimmer-tower/) | Belgium | tower | Complete |
-| 282 | [San Francisco Transbay Terminal](https://qualla.com/san-francisco-transbay-terminal/) | United States of America | transport | Queued |
-| 283 | [Birdsville Courthouse](https://qualla.com/birdsville-courthouse/) | Australia | civic-institutional | Queued |
-| 284 | [Shivneri Fort](https://qualla.com/shivneri-fort/) | India | palace-castle-fort | Queued |
+| 282 | [San Francisco Transbay Terminal](https://qualla.com/san-francisco-transbay-terminal/) | United States of America | transport | Complete |
+| 283 | [Birdsville Courthouse](https://qualla.com/birdsville-courthouse/) | Australia | civic-institutional | Complete |
+| 284 | [Shivneri Fort](https://qualla.com/shivneri-fort/) | India | palace-castle-fort | Complete |
 | 285 | [Mosque of the Three Doors](https://qualla.com/mosque-of-the-three-doors/) | Tunisia | religious | Complete |
 | 286 | [Okuma Auditorium](https://qualla.com/okuma-auditorium/) | Japan | performance-sport | Complete |
 | 287 | [Army Museum in Białystok](https://qualla.com/army-museum-in-bia-ystok/) | Poland | museum-library | Complete |
-| 288 | [Fort Ville-Marie](https://qualla.com/fort-ville-marie/) | Canada | palace-castle-fort | Queued |
-| 289 | [Queensland Brewery Company Building](https://qualla.com/queensland-brewery-company-building/) | Australia | civic-institutional | Queued |
-| 290 | [Sepahsalar Mosque](https://qualla.com/sepahsalar-mosque/) | Iran | religious | Queued |
-| 291 | [Sulaymaniyah Museum](https://qualla.com/sulaymaniyah-museum/) | Iraq | museum-library | Queued |
-| 292 | [Sonobudoyo Museum](https://qualla.com/sonobudoyo-museum/) | Indonesia | museum-library | Queued |
-| 293 | [Borssele Nuclear Power Station](https://qualla.com/borssele-nuclear-power-station/) | Netherlands | industrial | Queued |
+| 288 | [Fort Ville-Marie](https://qualla.com/fort-ville-marie/) | Canada | palace-castle-fort | Complete |
+| 289 | [Queensland Brewery Company Building](https://qualla.com/queensland-brewery-company-building/) | Australia | civic-institutional | Complete |
+| 290 | [Sepahsalar Mosque](https://qualla.com/sepahsalar-mosque/) | Iran | religious | Complete |
+| 291 | [Sulaymaniyah Museum](https://qualla.com/sulaymaniyah-museum/) | Iraq | museum-library | Complete |
+| 292 | [Sonobudoyo Museum](https://qualla.com/sonobudoyo-museum/) | Indonesia | museum-library | Complete |
+| 293 | [Borssele Nuclear Power Station](https://qualla.com/borssele-nuclear-power-station/) | Netherlands | industrial | Complete |
 | 294 | [Foster Auditorium](https://qualla.com/foster-auditorium/) | United States of America | performance-sport | Complete |
-| 295 | [Cloncurry Courthouse](https://qualla.com/cloncurry-courthouse/) | Australia | civic-institutional | Queued |
-| 296 | [Butkara Stupa](https://qualla.com/butkara-stupa/) | Pakistan | religious | Queued |
+| 295 | [Cloncurry Courthouse](https://qualla.com/cloncurry-courthouse/) | Australia | civic-institutional | Complete |
+| 296 | [Butkara Stupa](https://qualla.com/butkara-stupa/) | Pakistan | religious | Complete |
 | 297 | [Fenari Isa Mosque](https://qualla.com/fenari-isa-mosque/) | Turkey | religious | Complete |
-| 298 | [The Tallest Building in Brunei Town Was Built by Teachers](https://qualla.com/brunei-malay-teachers-association/) | Brunei | civic-institutional | Queued |
-| 299 | [Mosque–Cathedral of Córdoba](https://qualla.com/mosque-cathedral-of-cordoba/) | Spain | religious | Queued |
+| 298 | [PGGMB Building](https://qualla.com/brunei-malay-teachers-association/) | Brunei | civic-institutional | Complete |
+| 299 | [Mosque–Cathedral of Córdoba](https://qualla.com/mosque-cathedral-of-cordoba/) | Spain | religious | Complete |
 | 300 | [Kettle Falls Hotel](https://qualla.com/kettle-falls-hotel/) | Canada | hotel-commercial | Complete |
-| 301 | [Cooktown Museum](https://qualla.com/cooktown-museum/) | Australia | museum-library | Queued |
+| 301 | [Cooktown Museum](https://qualla.com/cooktown-museum/) | Australia | museum-library | Complete |
 | 302 | [Naryn Castle, Meybod](https://qualla.com/naryn-castle-meybod/) | Iran | palace-castle-fort | Complete |
-| 303 | [Winter Palace Hotel](https://qualla.com/winter-palace-hotel/) | Egypt | palace-castle-fort | Queued |
-| 304 | [Cipanas Palace](https://qualla.com/cipanas-palace/) | Indonesia | palace-castle-fort | Queued |
+| 303 | [Winter Palace Hotel](https://qualla.com/winter-palace-hotel/) | Egypt | palace-castle-fort | Complete |
+| 304 | [Cipanas Palace](https://qualla.com/cipanas-palace/) | Indonesia | palace-castle-fort | Complete |
 | 305 | [Eurotunnel Calais Terminal](https://qualla.com/eurotunnel-calais-terminal/) | France | transport | Complete |
 | 306 | [Foundry United Methodist Church](https://qualla.com/foundry-united-methodist-church/) | United States of America | religious | Complete |
-| 307 | [Red Fort](https://qualla.com/red-fort/) | India | palace-castle-fort | Queued |
-| 308 | [Uganda Museum](https://qualla.com/uganda-museum/) | Uganda | museum-library | Queued |
-| 309 | [Linh Phước Temple](https://qualla.com/linh-phuoc-temple/) | Vietnam | religious | Queued |
+| 307 | [Red Fort](https://qualla.com/red-fort/) | India | palace-castle-fort | Complete |
+| 308 | [Uganda Museum](https://qualla.com/uganda-museum/) | Uganda | museum-library | Complete |
+| 309 | [Linh Phước Temple](https://qualla.com/linh-phuoc-temple/) | Vietnam | religious | Complete |
 | 310 | [Stadium of Delphi](https://qualla.com/stadium-of-delphi/) | Greece | performance-sport | Complete |
-| 311 | [Redpath Museum](https://qualla.com/redpath-museum/) | Canada | museum-library | Queued |
-| 312 | [Shah Mosque (Mashhad)](https://qualla.com/shah-mosque-mashhad/) | Iran | religious | Queued |
+| 311 | [Redpath Museum](https://qualla.com/redpath-museum/) | Canada | museum-library | Complete |
+| 312 | [Shah Mosque (Mashhad)](https://qualla.com/shah-mosque-mashhad/) | Iran | religious | Complete |
 | 313 | [St. George's Cathedral, Cape Town](https://qualla.com/st-george-s-cathedral-cape-town/) | South Africa | religious | Complete |
 | 314 | [Nagoya TV Tower](https://qualla.com/nagoya-tv-tower/) | Japan | tower | Complete |
-| 315 | [Parliament of Romania](https://qualla.com/parliament-of-romania/) | Romania | civic-institutional | Queued |
+| 315 | [Parliament of Romania](https://qualla.com/parliament-of-romania/) | Existing catalog model |
 | 316 | [North Carolina Executive Mansion](https://qualla.com/north-carolina-executive-mansion/) | United States of America | residence | Complete |
-| 317 | [Tughlaqabad Fort](https://qualla.com/tughlaqabad-fort/) | India | palace-castle-fort | Queued |
-| 318 | [Kerma Museum](https://qualla.com/kerma-museum/) | Sudan | museum-library | Queued |
-| 319 | [Maryknoll House (Stanley)](https://qualla.com/maryknoll-house-stanley/) | Hong Kong | residence | Queued |
-| 320 | [Sapieha Palace, Vilnius](https://qualla.com/sapieha-palace-vilnius/) | Lithuania | palace-castle-fort | Queued |
-| 321 | [Gibraltar Point Lighthouse](https://qualla.com/gibraltar-point-lighthouse/) | Canada | lighthouse | Queued |
-| 322 | [Airavatesvara Temple](https://qualla.com/airavatesvara-temple/) | India | religious | Queued |
-| 323 | [Dura-Europos church](https://qualla.com/dura-europos-church/) | Syria | religious | Queued |
-| 324 | [White Swan Hotel](https://qualla.com/white-swan-hotel/) | People's Republic of China | hotel-commercial | Queued |
-| 325 | [Mendelssohn House, Leipzig](https://qualla.com/mendelssohn-house-leipzig/) | Germany | residence | Queued |
-| 326 | [Roswell Mill](https://qualla.com/roswell-mill/) | United States of America | industrial | Queued |
-| 327 | [Shah Mosque (Tehran)](https://qualla.com/shah-mosque-tehran/) | Iran | religious | Queued |
-| 328 | [Carthage National Museum](https://qualla.com/carthage-national-museum/) | Tunisia | museum-library | Queued |
-| 329 | [Guling Street Avant-garde Theatre](https://qualla.com/guling-street-avant-garde-theatre/) | Taiwan | performance-sport | Queued |
-| 330 | [St. Peter's Basilica](https://qualla.com/st-peter-s-basilica/) | Italy | religious | Queued |
+| 317 | [Tughlaqabad Fort](https://qualla.com/tughlaqabad-fort/) | India | palace-castle-fort | Complete |
+| 318 | [Kerma Museum](https://qualla.com/kerma-museum/) | Sudan | museum-library | Complete |
+| 319 | [Maryknoll House (Stanley)](https://qualla.com/maryknoll-house-stanley/) | Hong Kong | residence | Complete |
+| 320 | [Sapieha Palace, Vilnius](https://qualla.com/sapieha-palace-vilnius/) | Lithuania | palace-castle-fort | Complete |
+| 321 | [Gibraltar Point Lighthouse](https://qualla.com/gibraltar-point-lighthouse/) | Canada | lighthouse | Complete |
+| 322 | [Airavatesvara Temple](https://qualla.com/airavatesvara-temple/) | India | religious | Complete |
+| 323 | [Dura-Europos church](https://qualla.com/dura-europos-church/) | Syria | religious | Complete |
+| 324 | [White Swan Hotel](https://qualla.com/white-swan-hotel/) | People's Republic of China | hotel-commercial | Complete |
+| 325 | [Mendelssohn House, Leipzig](https://qualla.com/mendelssohn-house-leipzig/) | Germany | residence | Complete |
+| 326 | [Roswell Mill](https://qualla.com/roswell-mill/) | United States of America | industrial | Complete |
+| 327 | [Shah Mosque (Tehran)](https://qualla.com/shah-mosque-tehran/) | Iran | religious | Complete |
+| 328 | [Carthage National Museum](https://qualla.com/carthage-national-museum/) | Tunisia | museum-library | Complete |
+| 329 | [Guling Street Avant-garde Theatre](https://qualla.com/guling-street-avant-garde-theatre/) | Taiwan | performance-sport | Complete |
+| 330 | [St. Peter's Basilica](https://qualla.com/st-peter-s-basilica/) | Italy | religious | Complete |
 | 331 | [Burton Cummings Theatre](https://qualla.com/burton-cummings-theatre/) | Canada | performance-sport | Complete |
-| 332 | [Hari Parbat Fort](https://qualla.com/hari-parbat-fort/) | India | palace-castle-fort | Queued |
-| 333 | [Mihrimah Sultan Mosque, Edirnekapı](https://qualla.com/mihrimah-sultan-mosque-edirnekap/) | Turkey | religious | Queued |
-| 334 | [Beijing Lu Xun Museum](https://qualla.com/beijing-lu-xun-museum/) | People's Republic of China | museum-library | Queued |
-| 335 | [Athens War Museum](https://qualla.com/athens-war-museum/) | Greece | museum-library | Queued |
+| 332 | [Hari Parbat Fort](https://qualla.com/hari-parbat-fort/) | India | palace-castle-fort | Complete |
+| 333 | [Mihrimah Sultan Mosque, Edirnekapı](https://qualla.com/mihrimah-sultan-mosque-edirnekap/) | Turkey | religious | Complete |
+| 334 | [Beijing Lu Xun Museum](https://qualla.com/beijing-lu-xun-museum/) | People's Republic of China | museum-library | Complete |
+| 335 | [Athens War Museum](https://qualla.com/athens-war-museum/) | Greece | museum-library | Complete |
 | 336 | [Drayton Hall](https://qualla.com/drayton-hall/) | United States of America | civic-institutional | Complete |
-| 337 | [Bibi Shahrbanu Shrine](https://qualla.com/bibi-shahrbanu-shrine/) | Iran | religious | Queued |
-| 338 | [Antalya Museum](https://qualla.com/antalya-museum/) | Turkey | museum-library | Queued |
-| 339 | [Tōkai Nuclear Power Plant](https://qualla.com/t-kai-nuclear-power-plant/) | Japan | industrial | Queued |
-| 340 | [Kilbeggan Distillery](https://qualla.com/kilbeggan-distillery/) | Ireland | industrial | Queued |
-| 341 | [Maritime Museum of British Columbia](https://qualla.com/maritime-museum-of-british-columbia/) | Canada | museum-library | Queued |
-| 342 | [Asirgarh Fort](https://qualla.com/asirgarh-fort/) | India | palace-castle-fort | Queued |
-| 343 | [Cathedral of Saint Vincent de Paul](https://qualla.com/cathedral-of-saint-vincent-de-paul/) | Tunisia | religious | Queued |
-| 344 | [Sun Yat Sen Nanyang Memorial Hall](https://qualla.com/sun-yat-sen-nanyang-memorial-hall/) | Singapore | civic-institutional | Queued |
-| 345 | [His Majesty's Theatre, London](https://qualla.com/his-majesty-s-theatre-london/) | United Kingdom | performance-sport | Queued |
-| 346 | [Fort Bragg](https://qualla.com/fort-bragg/) | United States of America | palace-castle-fort | Queued |
-| 347 | [Imam Reza shrine](https://qualla.com/imam-reza-shrine/) | Iran | religious | Queued |
+| 337 | [Bibi Shahrbanu Shrine](https://qualla.com/bibi-shahrbanu-shrine/) | Iran | religious | Complete |
+| 338 | [Antalya Museum](https://qualla.com/antalya-museum/) | Turkey | museum-library | Complete |
+| 339 | [Tōkai Nuclear Power Plant](https://qualla.com/t-kai-nuclear-power-plant/) | Japan | industrial | Complete |
+| 340 | [Kilbeggan Distillery](https://qualla.com/kilbeggan-distillery/) | Ireland | industrial | Complete |
+| 341 | [Former Victoria Law Courts](https://qualla.com/maritime-museum-of-british-columbia/) | Canada | government-courthouse | Complete |
+| 342 | [Asirgarh Fort](https://qualla.com/asirgarh-fort/) | India | palace-castle-fort | Complete |
+| 343 | [Cathedral of Saint Vincent de Paul](https://qualla.com/cathedral-of-saint-vincent-de-paul/) | Tunisia | religious | Complete |
+| 344 | [Sun Yat Sen Nanyang Memorial Hall](https://qualla.com/sun-yat-sen-nanyang-memorial-hall/) | Singapore | civic-institutional | Complete |
+| 345 | [His Majesty's Theatre, London](https://qualla.com/his-majesty-s-theatre-london/) | United Kingdom | performance-sport | Complete |
+| 346 | [82nd Airborne Division War Memorial Museum](https://qualla.com/82nd-airborne-division-war-memorial-museum/) | United States of America | museum-library | Complete |
+| 347 | [Imam Reza shrine](https://qualla.com/imam-reza-shrine/) | Iran | religious | Complete |
 | 348 | [Bayraktar Mosque](https://qualla.com/bayraktar-mosque/) | Turkish Republic of Northern Cyprus | religious | Complete |
 | 349 | [Kuala Lumpur Guan Di Temple](https://qualla.com/kuala-lumpur-guan-di-temple/) | Malaysia | religious | Complete |
-| 350 | [Hotel Esplanade Berlin](https://qualla.com/hotel-esplanade-berlin/) | Germany | hotel-commercial | Queued |
-| 351 | [Mission Basilica San Juan Capistrano](https://qualla.com/mission-basilica-san-juan-capistrano/) | United States of America | religious | Queued |
-| 352 | [Amarnath Temple](https://qualla.com/amarnath-temple/) | India | religious | Queued |
-| 353 | [Mevlâna Museum](https://qualla.com/mevlana-museum/) | Turkey | museum-library | Queued |
-| 354 | [Lin Heung Tea House](https://qualla.com/lin-heung-tea-house/) | Hong Kong | residence | Queued |
-| 355 | [Taganrog Fortress](https://qualla.com/taganrog-fortress/) | Russia | palace-castle-fort | Queued |
-| 356 | [South Carolina State House](https://qualla.com/south-carolina-state-house/) | United States of America | residence | Queued |
-| 357 | [Jamkaran Mosque](https://qualla.com/jamkaran-mosque/) | Iran | religious | Queued |
+| 350 | [Hotel Esplanade Berlin](https://qualla.com/hotel-esplanade-berlin/) | Germany | hotel-commercial | Complete |
+| 351 | [Mission Basilica San Juan Capistrano](https://qualla.com/mission-basilica-san-juan-capistrano/) | United States of America | religious | Complete |
+| 352 | [Amarnath Temple](https://qualla.com/amarnath-temple/) | India | religious | Complete |
+| 353 | [Mevlâna Museum](https://qualla.com/mevlana-museum/) | Turkey | museum-library | Complete |
+| 354 | [Lin Heung Tea House](https://qualla.com/lin-heung-tea-house/) | Hong Kong | residence | Complete |
+| 355 | [Taganrog Fortress](https://qualla.com/taganrog-fortress/) | Russia | palace-castle-fort | Complete |
+| 356 | [South Carolina State House](https://qualla.com/south-carolina-state-house/) | United States of America | residence | Complete |
+| 357 | [Jamkaran Mosque](https://qualla.com/jamkaran-mosque/) | Iran | religious | Complete |
 | 358 | [Mosque of the Andalusians](https://qualla.com/mosque-of-the-andalusians/) | Morocco | religious | Complete |
 | 359 | [Matsuyama Castle (Iyo)](https://qualla.com/matsuyama-castle-iyo/) | Japan | palace-castle-fort | Complete |
 | 360 | [Pyynikki Observation Tower](https://qualla.com/pyynikki-observation-tower/) | Finland | tower | Complete |
 | 361 | [Toronto City Hall](https://qualla.com/toronto-city-hall/) | Canada | civic-institutional | Complete |
-| 362 | [Varaha Lakshmi Narasimha temple, Simhachalam](https://qualla.com/varaha-lakshmi-narasimha-temple-simhachalam/) | India | religious | Queued |
-| 363 | [Coptic Museum](https://qualla.com/coptic-museum/) | Egypt | museum-library | Queued |
+| 362 | [Varaha Lakshmi Narasimha temple, Simhachalam](https://qualla.com/varaha-lakshmi-narasimha-temple-simhachalam/) | India | religious | Complete |
+| 363 | [Coptic Museum](https://qualla.com/coptic-museum/) | Egypt | museum-library | Complete |
 | 364 | [National Taichung Theater](https://qualla.com/national-taichung-theater/) | Taiwan | performance-sport | Complete |
-| 365 | [Solvay Brussels School of Economics and Management](https://qualla.com/solvay-brussels-school-of-economics-and-management/) | Belgium | civic-institutional | Queued |
+| 365 | [Solvay Brussels School of Economics and Management](https://qualla.com/solvay-brussels-school-of-economics-and-management/) | Belgium | civic-institutional | Complete |
 | 366 | [The Omni Homestead Resort](https://qualla.com/the-omni-homestead-resort/) | United States of America | hotel-commercial | Complete |
-| 367 | [Danteshwari Temple](https://qualla.com/danteshwari-temple/) | India | religious | Queued |
-| 368 | [Piyale Pasha Mosque](https://qualla.com/piyale-pasha-mosque/) | Turkey | religious | Queued |
-| 369 | [Sule Pagoda](https://qualla.com/sule-pagoda/) | Myanmar | religious | Queued |
+| 367 | [Danteshwari Temple](https://qualla.com/danteshwari-temple/) | India | religious | Complete |
+| 368 | [Piyale Pasha Mosque](https://qualla.com/piyale-pasha-mosque/) | Turkey | religious | Complete |
+| 369 | [Sule Pagoda](https://qualla.com/sule-pagoda/) | Myanmar | religious | Complete |
 | 370 | [Museum Collectie Brands](https://qualla.com/museum-collectie-brands/) | Netherlands | museum-library | Complete |
-| 371 | [Patrick Arena](https://qualla.com/patrick-arena/) | Canada | performance-sport | Queued |
+| 371 | [Patrick Arena](https://qualla.com/patrick-arena/) | Canada | performance-sport | Complete |
 | 372 | [Rajiv Lochan Temple](https://qualla.com/rajiv-lochan-temple/) | India | religious | Complete |
-| 373 | [The Library of Alexandria](https://qualla.com/library-alexandria/) | Egypt | museum-library | Queued |
-| 374 | [National Museum of Cambodia](https://qualla.com/national-museum-of-cambodia/) | Cambodia | museum-library | Queued |
+| 373 | [Bourguiba Mausoleum](https://qualla.com/bourguiba-mausoleum/) | Tunisia | monument | Complete |
+| 374 | [National Museum of Cambodia](https://qualla.com/national-museum-of-cambodia/) | Cambodia | museum-library | Complete |
 | 375 | [Roskilde Cathedral](https://qualla.com/roskilde-cathedral/) | Denmark | religious | Complete |
 | 376 | [Manitoba Museum](https://qualla.com/manitoba-museum/) | Canada | museum-library | Complete |
-| 377 | [Sri Lakshmi Narasimha Swamy Temple, Yadagirigutta](https://qualla.com/sri-lakshmi-narasimha-swamy-temple-yadagirigutta/) | India | religious | Queued |
-| 378 | [Grand Synagogue of Tunis](https://qualla.com/grand-synagogue-of-tunis/) | Tunisia | religious | Queued |
+| 377 | [Sri Lakshmi Narasimha Swamy Temple, Yadagirigutta](https://qualla.com/sri-lakshmi-narasimha-swamy-temple-yadagirigutta/) | India | religious | Complete |
+| 378 | [Grand Synagogue of Tunis](https://qualla.com/grand-synagogue-of-tunis/) | Tunisia | religious | Complete |
 | 379 | [Tung Wah Hospital](https://qualla.com/tung-wah-hospital/) | Hong Kong | civic-institutional | Complete |
-| 380 | [Ambras Castle](https://qualla.com/ambras-castle/) | Austria | palace-castle-fort | Queued |
+| 380 | [Ambras Castle](https://qualla.com/ambras-castle/) | Austria | palace-castle-fort | Complete |
 | 381 | [Eiffel Tower (Paris, Tennessee)](https://qualla.com/eiffel-tower-paris-tennessee/) | United States of America | tower | Complete |
 | 382 | [Tripura Sundari Temple](https://qualla.com/tripura-sundari-temple/) | India | religious | Complete |
 | 383 | [Panorama 1453 History Museum](https://qualla.com/panorama-1453-history-museum/) | Turkey | museum-library | Complete |
-| 384 | [Old Summer Palace](https://qualla.com/old-summer-palace/) | People's Republic of China | palace-castle-fort | Queued |
-| 385 | [Chedworth Roman Villa](https://qualla.com/chedworth-roman-villa/) | United Kingdom | residence | Queued |
-| 386 | [Fort Lennox](https://qualla.com/fort-lennox/) | Canada | palace-castle-fort | Queued |
+| 384 | [Old Summer Palace](https://qualla.com/old-summer-palace/) | People's Republic of China | palace-castle-fort | Complete |
+| 385 | [Chedworth Roman Villa](https://qualla.com/chedworth-roman-villa/) | United Kingdom | residence | Complete |
+| 386 | [Fort Lennox](https://qualla.com/fort-lennox/) | Canada | palace-castle-fort | Complete |
 | 387 | [Umananda Temple](https://qualla.com/umananda-temple/) | India | religious | Complete |
-| 388 | [Temple of Dendur](https://qualla.com/temple-of-dendur/) | Egypt | religious | Queued |
-| 389 | [Hotel K](https://qualla.com/kerobokan-prison/) | Indonesia | hotel-commercial | Queued |
-| 390 | [Crimean Nuclear Power Station](https://qualla.com/crimean-atomic-energy-station/) | Russia | industrial | Queued |
-| 391 | [Terminal Station (Macon, Georgia)](https://qualla.com/terminal-station-macon-georgia/) | United States of America | transport | Queued |
-| 392 | [Vaishno Devi Temple](https://qualla.com/vaishno-devi-temple/) | India | religious | Queued |
-| 393 | [Dutch Reformed Church, Springbok](https://qualla.com/dutch-reformed-church-springbok/) | South Africa | religious | Queued |
-| 394 | [Linh Sơn Temple](https://qualla.com/linh-son-temple/) | Vietnam | religious | Queued |
-| 395 | [Convent of the Capuchos (Sintra)](https://qualla.com/convent-of-the-capuchos-sintra/) | Portugal | religious | Queued |
-| 396 | [Monastery of the Holy Spirit](https://qualla.com/monastery-of-the-holy-spirit/) | United States of America | religious | Queued |
-| 397 | [Solomon's Temple, Aizawl](https://qualla.com/solomon-s-temple-aizawl/) | India | religious | Queued |
-| 398 | [Temple of Seti I (Abydos)](https://qualla.com/temple-of-seti-i-abydos/) | Egypt | religious | Queued |
+| 388 | [Temple of Dendur](https://qualla.com/temple-of-dendur/) | Egypt | religious | Complete |
+| 389 | [Kerobokan Prison](https://qualla.com/kerobokan-prison/) | Indonesia | civic-institutional | Complete |
+| 390 | [Crimean Nuclear Power Station](https://qualla.com/crimean-atomic-energy-station/) | Ukraine | industrial | Complete |
+| 391 | [Terminal Station (Macon, Georgia)](https://qualla.com/terminal-station-macon-georgia/) | United States of America | transport | Complete |
+| 392 | [Vaishno Devi Temple](https://qualla.com/vaishno-devi-temple/) | India | religious | Complete |
+| 393 | [Dutch Reformed Church, Springbok](https://qualla.com/dutch-reformed-church-springbok/) | South Africa | religious | Complete |
+| 394 | [Linh Sơn Temple](https://qualla.com/linh-son-temple/) | Vietnam | religious | Complete |
+| 395 | [Convent of the Capuchos (Sintra)](https://qualla.com/convent-of-the-capuchos-sintra/) | Portugal | religious | Complete |
+| 396 | [Monastery of the Holy Spirit](https://qualla.com/monastery-of-the-holy-spirit/) | United States of America | religious | Complete |
+| 397 | [Solomon's Temple, Aizawl](https://qualla.com/solomon-s-temple-aizawl/) | India | religious | Complete |
+| 398 | [Temple of Seti I (Abydos)](https://qualla.com/temple-of-seti-i-abydos/) | Egypt | religious | Complete |
 | 399 | [Singapore Art Museum](https://qualla.com/singapore-art-museum/) | Singapore | museum-library | Complete |
-| 400 | [Franja Partisan Hospital](https://qualla.com/franja-partisan-hospital/) | Slovenia | civic-institutional | Queued |
-| 401 | [Thomas Wolfe House](https://qualla.com/thomas-wolfe-house/) | United States of America | residence | Queued |
-| 402 | [Thousand Pillar Temple](https://qualla.com/thousand-pillar-temple/) | India | religious | Queued |
-| 403 | [Kara Ahmed Pasha Mosque](https://qualla.com/kara-ahmed-pasha-mosque/) | Turkey | religious | Queued |
-| 404 | [The Parliament That Answers to One](https://qualla.com/legislative-council-of-brunei/) | Brunei | civic-institutional | Queued |
-| 405 | [Ještěd Tower](https://qualla.com/jested-tower/) | Czech Republic | tower | Queued |
-| 406 | [Beaverbrook Art Gallery](https://qualla.com/beaverbrook-art-gallery/) | Canada | museum-library | Queued |
-| 407 | [Shankaracharya Temple](https://qualla.com/shankaracharya-temple/) | India | religious | Queued |
+| 400 | [Franja Partisan Hospital](https://qualla.com/franja-partisan-hospital/) | Slovenia | civic-institutional | Complete |
+| 401 | [Thomas Wolfe House](https://qualla.com/thomas-wolfe-house/) | United States of America | residence | Complete |
+| 402 | [Thousand Pillar Temple](https://qualla.com/thousand-pillar-temple/) | India | religious | Complete |
+| 403 | [Kara Ahmed Pasha Mosque](https://qualla.com/kara-ahmed-pasha-mosque/) | Turkey | religious | Complete |
+| 404 | [Legislative Council Building, Brunei](https://qualla.com/legislative-council-of-brunei/) | Brunei | civic-institutional | Complete |
+| 405 | [Ještěd Tower](https://qualla.com/jested-tower/) | Czech Republic | tower | Complete |
+| 406 | [Beaverbrook Art Gallery](https://qualla.com/beaverbrook-art-gallery/) | Canada | museum-library | Complete |
+| 407 | [Shankaracharya Temple](https://qualla.com/shankaracharya-temple/) | India | religious | Complete |
 | 408 | [Auwal Mosque](https://qualla.com/auwal-mosque/) | South Africa | religious | Complete |
-| 409 | [The Stadium That Sukarno Willed Into Being](https://qualla.com/gelora-bung-karno-stadium/) | Indonesia | performance-sport | Queued |
-| 410 | [Amphitheatre of Mérida](https://qualla.com/amphitheatre-of-merida/) | Spain | performance-sport | Queued |
-| 411 | [Disney's Polynesian Village Resort](https://qualla.com/disney-s-polynesian-village-resort/) | United States of America | hotel-commercial | Queued |
-| 412 | [Mahasu Devta Temple](https://qualla.com/mahasu-devta-temple/) | India | religious | Queued |
-| 413 | [Al-Hussein Mosque](https://qualla.com/al-hussein-mosque/) | Egypt | religious | Queued |
-| 414 | [Edo Castle](https://qualla.com/edo-castle/) | Japan | palace-castle-fort | Queued |
-| 415 | [Villa Wolf](https://qualla.com/villa-wolf/) | Poland | residence | Queued |
-| 416 | [British Columbia Penitentiary](https://qualla.com/british-columbia-penitentiary/) | Canada | civic-institutional | Queued |
-| 417 | [Mimar Sinan Mosque](https://qualla.com/mimar-sinan-mosque/) | Turkey | religious | Queued |
-| 418 | [Wat Phra Kaew, Chiang Rai](https://qualla.com/wat-phra-kaew-chiang-rai/) | Thailand | religious | Queued |
-| 419 | [DDR Museum](https://qualla.com/ddr-museum/) | Germany | museum-library | Queued |
-| 420 | [Encina Power Station](https://qualla.com/encina-power-station/) | United States of America | industrial | Queued |
-| 421 | [Dutch Reformed Church, Wellington](https://qualla.com/dutch-reformed-church-wellington/) | South Africa | religious | Queued |
-| 422 | [Old Tainan Magistrate Residence](https://qualla.com/old-tainan-magistrate-residence/) | Taiwan | residence | Queued |
-| 423 | [Lincoln's Inn](https://qualla.com/lincoln-s-inn/) | United Kingdom | hotel-commercial | Queued |
-| 424 | [Metropolitan Theatre (Winnipeg)](https://qualla.com/metropolitan-theatre-winnipeg/) | Canada | performance-sport | Queued |
-| 425 | [Şehzade Mosque](https://qualla.com/sehzade-mosque/) | Turkey | religious | Queued |
-| 426 | [China National Film Museum](https://qualla.com/china-national-film-museum/) | People's Republic of China | museum-library | Queued |
-| 427 | [Vadstena Abbey](https://qualla.com/vadstena-abbey/) | Sweden | religious | Queued |
-| 428 | [Florence Y'all Water Tower](https://qualla.com/florence-y-all-water-tower/) | United States of America | tower | Queued |
-| 429 | [Al-Hakim Mosque](https://qualla.com/al-hakim-mosque/) | Egypt | religious | Queued |
-| 430 | [Fujiya Hotel](https://qualla.com/fujiya-hotel/) | Japan | hotel-commercial | Queued |
-| 431 | [Ardgillan Castle](https://qualla.com/ardgillan-castle/) | Ireland | palace-castle-fort | Queued |
-| 432 | [Canadian War Museum](https://qualla.com/canadian-war-museum/) | Canada | museum-library | Queued |
-| 433 | [Bulgarian St. Stephen Church](https://qualla.com/bulgarian-st-stephen-church/) | Turkey | religious | Queued |
-| 434 | [Victoria Hospital, Hong Kong](https://qualla.com/victoria-hospital-hong-kong/) | Hong Kong | civic-institutional | Queued |
-| 435 | [Tampere Hall](https://qualla.com/tampere-hall/) | Finland | civic-institutional | Queued |
-| 436 | [Old Point Loma Lighthouse](https://qualla.com/old-point-loma-lighthouse/) | United States of America | lighthouse | Queued |
-| 437 | [Laleli Mosque](https://qualla.com/laleli-mosque/) | Turkey | religious | Queued |
-| 438 | [Quảng Trị Citadel](https://qualla.com/quang-tri-citadel/) | Vietnam | palace-castle-fort | Queued |
-| 439 | [Fram Museum](https://qualla.com/fram-museum/) | Norway | museum-library | Queued |
-| 440 | [Fort Custer (Montana)](https://qualla.com/fort-custer-montana/) | United States of America | palace-castle-fort | Queued |
-| 441 | [Eyüp Sultan Mosque](https://qualla.com/eyup-sultan-mosque/) | Turkey | religious | Queued |
-| 442 | [Phaung Daw U Pagoda](https://qualla.com/phaung-daw-u-pagoda/) | Myanmar | religious | Queued |
-| 443 | [Chernobyl Nuclear Power Plant](https://qualla.com/chernobyl-nuclear-power-plant/) | Ukraine | industrial | Queued |
-| 444 | [Westminster Abbey (British Columbia)](https://qualla.com/westminster-abbey-british-columbia/) | Canada | religious | Queued |
-| 445 | [Church of St. Mary of Blachernae](https://qualla.com/church-of-st-mary-of-blachernae/) | Turkey | religious | Queued |
-| 446 | [National Museum of Korea](https://qualla.com/national-museum-of-korea/) | South Korea | museum-library | Queued |
-| 447 | [Kastelholm Castle](https://qualla.com/kastelholm-castle/) | Åland | palace-castle-fort | Queued |
-| 448 | [John Ross House (Rossville, Georgia)](https://qualla.com/john-ross-house-rossville-georgia/) | United States of America | residence | Queued |
-| 449 | [Koca Mustafa Pasha Mosque](https://qualla.com/koca-mustafa-pasha-mosque/) | Turkey | religious | Queued |
-| 450 | [Anping Tree House](https://qualla.com/anping-tree-house/) | Taiwan | residence | Queued |
-| 451 | [Taganrog Theatre](https://qualla.com/taganrog-theatre/) | Russia | performance-sport | Queued |
-| 452 | [Royal British Columbia Museum](https://qualla.com/royal-british-columbia-museum/) | Canada | museum-library | Queued |
-| 453 | [Atik Mustafa Pasha Mosque](https://qualla.com/atik-mustafa-pasha-mosque/) | Turkey | religious | Queued |
-| 454 | [Nikkō Kanaya Hotel](https://qualla.com/nikk-kanaya-hotel/) | Japan | hotel-commercial | Queued |
+| 409 | [Gelora Bung Karno Stadium](https://qualla.com/gelora-bung-karno-stadium/) | Indonesia | performance-sport | Complete |
+| 410 | [Amphitheatre of Mérida](https://qualla.com/amphitheatre-of-merida/) | Spain | performance-sport | Complete |
+| 411 | [Disney's Polynesian Village Resort](https://qualla.com/disney-s-polynesian-village-resort/) | United States of America | hotel-commercial | Complete |
+| 412 | [Mahasu Devta Temple](https://qualla.com/mahasu-devta-temple/) | India | religious | Complete |
+| 413 | [Al-Hussein Mosque](https://qualla.com/al-hussein-mosque/) | Egypt | religious | Complete |
+| 414 | [Edo Castle](https://qualla.com/edo-castle/) | Japan | palace-castle-fort | Complete |
+| 415 | [Villa Wolf](https://qualla.com/villa-wolf/) | Poland | residence | Complete |
+| 416 | [British Columbia Penitentiary](https://qualla.com/british-columbia-penitentiary/) | Canada | civic-institutional | Complete |
+| 417 | [Mimar Sinan Mosque](https://qualla.com/mimar-sinan-mosque/) | Turkey | religious | Complete |
+| 418 | [Wat Phra Kaew, Chiang Rai](https://qualla.com/wat-phra-kaew-chiang-rai/) | Thailand | religious | Complete |
+| 419 | [DDR Museum](https://qualla.com/ddr-museum/) | Germany | museum-library | Complete |
+| 420 | [Encina Power Station](https://qualla.com/encina-power-station/) | United States of America | industrial | Complete |
+| 421 | [Dutch Reformed Church, Wellington](https://qualla.com/dutch-reformed-church-wellington/) | South Africa | religious | Complete |
+| 422 | [Old Tainan Magistrate Residence](https://qualla.com/old-tainan-magistrate-residence/) | Taiwan | residence | Complete |
+| 423 | [Lincoln's Inn](https://qualla.com/lincoln-s-inn/) | United Kingdom | hotel-commercial | Complete |
+| 424 | [Metropolitan Theatre (Winnipeg)](https://qualla.com/metropolitan-theatre-winnipeg/) | Canada | performance-sport | Complete |
+| 425 | [Şehzade Mosque](https://qualla.com/sehzade-mosque/) | Turkey | religious | Complete |
+| 426 | [China National Film Museum](https://qualla.com/china-national-film-museum/) | People's Republic of China | museum-library | Complete |
+| 427 | [Vadstena Abbey](https://qualla.com/vadstena-abbey/) | Sweden | religious | Complete |
+| 428 | [Florence Y'all Water Tower](https://qualla.com/florence-y-all-water-tower/) | United States of America | tower | Complete |
+| 429 | [Al-Hakim Mosque](https://qualla.com/al-hakim-mosque/) | Egypt | religious | Complete |
+| 430 | [Fujiya Hotel](https://qualla.com/fujiya-hotel/) | Japan | hotel-commercial | Complete |
+| 431 | [Ardgillan Castle](https://qualla.com/ardgillan-castle/) | Ireland | palace-castle-fort | Complete |
+| 432 | [Canadian War Museum](https://qualla.com/canadian-war-museum/) | Canada | museum-library | Complete |
+| 433 | [Bulgarian St. Stephen Church](https://qualla.com/bulgarian-st-stephen-church/) | Turkey | religious | Complete |
+| 434 | [Victoria Hospital, Hong Kong](https://qualla.com/victoria-hospital-hong-kong/) | Hong Kong | civic-institutional | Complete |
+| 435 | [Tampere Hall](https://qualla.com/tampere-hall/) | Finland | civic-institutional | Complete |
+| 436 | [Old Point Loma Lighthouse](https://qualla.com/old-point-loma-lighthouse/) | United States of America | lighthouse | Complete |
+| 437 | [Laleli Mosque](https://qualla.com/laleli-mosque/) | Turkey | religious | Complete |
+| 438 | [Quảng Trị Citadel](https://qualla.com/quang-tri-citadel/) | Vietnam | palace-castle-fort | Complete |
+| 439 | [Fram Museum](https://qualla.com/fram-museum/) | Norway | museum-library | Complete |
+| 440 | [Fort Custer (Montana)](https://qualla.com/fort-custer-montana/) | United States of America | palace-castle-fort | Complete |
+| 441 | [Eyüp Sultan Mosque](https://qualla.com/eyup-sultan-mosque/) | Turkey | religious | Complete |
+| 442 | [Phaung Daw U Pagoda](https://qualla.com/phaung-daw-u-pagoda/) | Myanmar | religious | Complete |
+| 443 | [Chernobyl Nuclear Power Plant](https://qualla.com/chernobyl-nuclear-power-plant/) | Ukraine | industrial | Complete |
+| 444 | [Westminster Abbey (British Columbia)](https://qualla.com/westminster-abbey-british-columbia/) | Canada | religious | Complete |
+| 445 | [Church of St. Mary of Blachernae](https://qualla.com/church-of-st-mary-of-blachernae/) | Turkey | religious | Complete |
+| 446 | [National Museum of Korea](https://qualla.com/national-museum-of-korea/) | South Korea | museum-library | Complete |
+| 447 | [Kastelholm Castle](https://qualla.com/kastelholm-castle/) | Åland | palace-castle-fort | Complete |
+| 448 | [John Ross House (Rossville, Georgia)](https://qualla.com/john-ross-house-rossville-georgia/) | United States of America | residence | Complete |
+| 449 | [Koca Mustafa Pasha Mosque](https://qualla.com/koca-mustafa-pasha-mosque/) | Turkey | religious | Complete |
+| 450 | [Anping Tree House](https://qualla.com/anping-tree-house/) | Taiwan | residence | Complete |
+| 451 | [Taganrog Theatre](https://qualla.com/taganrog-theatre/) | Russia | performance-sport | Complete |
+| 452 | [Royal British Columbia Museum](https://qualla.com/royal-british-columbia-museum/) | Canada | museum-library | Complete |
+| 453 | [Atik Mustafa Pasha Mosque](https://qualla.com/atik-mustafa-pasha-mosque/) | Turkey | religious | Complete |
+| 454 | [Nikkō Kanaya Hotel](https://qualla.com/nikk-kanaya-hotel/) | Japan | hotel-commercial | Complete |
 | 455 | [Holy Spirit Cathedral, Minsk](https://qualla.com/holy-spirit-cathedral-minsk/) | Belarus | religious | Complete |
-| 456 | [The Varsity (restaurant)](https://qualla.com/the-varsity-restaurant/) | United States of America | hotel-commercial | Queued |
-| 457 | [Çamlıca Mosque](https://qualla.com/caml-ca-mosque/) | Turkey | religious | Queued |
-| 458 | [Lee Theatre](https://qualla.com/lee-theatre/) | Hong Kong | performance-sport | Queued |
-| 459 | [Littlecote Roman Villa](https://qualla.com/littlecote-roman-villa/) | United Kingdom | residence | Queued |
-| 460 | [Fort Garry Hotel](https://qualla.com/fort-garry-hotel/) | Canada | palace-castle-fort | Queued |
-| 461 | [Muradiye Mosque, Edirne](https://qualla.com/muradiye-mosque-edirne/) | Turkey | religious | Queued |
-| 462 | [Museum of the War of Chinese People's Resistance Against Japanese Aggression](https://qualla.com/museum-of-the-war-of-chinese-people-s-resistance-against-japanese-aggression/) | People's Republic of China | museum-library | Queued |
-| 463 | [Art & History Museum](https://qualla.com/art-history-museum/) | Belgium | museum-library | Queued |
-| 464 | [John E. Amos Power Plant](https://qualla.com/john-e-amos-power-plant/) | United States of America | industrial | Queued |
-| 465 | [Üç Şerefeli Mosque](https://qualla.com/uc-serefeli-mosque/) | Turkey | religious | Queued |
-| 466 | [Church of Mount Bokor](https://qualla.com/church-of-mount-bokor/) | Cambodia | religious | Queued |
-| 467 | [Newall Telescope](https://qualla.com/newall-telescope/) | Greece | industrial | Queued |
-| 468 | [Lunch atop a Skyscraper](https://qualla.com/lunch-atop-a-skyscraper/) | United States of America | tower | Queued |
-| 469 | [Hong Kong Police Headquarters](https://qualla.com/hong-kong-police-headquarters/) | Hong Kong | civic-institutional | Queued |
-| 470 | [Turaida Castle](https://qualla.com/turaida-castle/) | Latvia | palace-castle-fort | Queued |
-| 471 | [The Presque Isle Lighthouse and the Lake Erie Mysteries](https://qualla.com/presque-isle-lighthouse/) | United States of America | lighthouse | Queued |
-| 472 | [Iwamura Castle](https://qualla.com/iwamura-castle/) | Japan | palace-castle-fort | Queued |
+| 456 | [The Varsity (restaurant)](https://qualla.com/the-varsity-restaurant/) | United States of America | hotel-commercial | Complete |
+| 457 | [Çamlıca Mosque](https://qualla.com/caml-ca-mosque/) | Turkey | religious | Complete |
+| 458 | [Lee Theatre](https://qualla.com/lee-theatre/) | Hong Kong | performance-sport | Complete |
+| 459 | [Littlecote Roman Villa](https://qualla.com/littlecote-roman-villa/) | United Kingdom | residence | Complete |
+| 460 | [Fort Garry Hotel](https://qualla.com/fort-garry-hotel/) | Canada | palace-castle-fort | Complete |
+| 461 | [Muradiye Mosque, Edirne](https://qualla.com/muradiye-mosque-edirne/) | Turkey | religious | Complete |
+| 462 | [Museum of the War of Chinese People's Resistance Against Japanese Aggression](https://qualla.com/museum-of-the-war-of-chinese-people-s-resistance-against-japanese-aggression/) | People's Republic of China | museum-library | Complete |
+| 463 | [Art & History Museum](https://qualla.com/art-history-museum/) | Belgium | museum-library | Complete |
+| 464 | [John E. Amos Power Plant](https://qualla.com/john-e-amos-power-plant/) | United States of America | industrial | Complete |
+| 465 | [Üç Şerefeli Mosque](https://qualla.com/uc-serefeli-mosque/) | Turkey | religious | Complete |
+| 466 | [Church of Mount Bokor](https://qualla.com/church-of-mount-bokor/) | Cambodia | religious | Complete |
+| 467 | [Newall Telescope](https://qualla.com/newall-telescope/) | Greece | industrial | Complete |
+| 468 | [Lunch atop a Skyscraper](https://qualla.com/lunch-atop-a-skyscraper/) | Existing catalog model |
+| 469 | [Hong Kong Police Headquarters](https://qualla.com/hong-kong-police-headquarters/) | Hong Kong | civic-institutional | Complete |
+| 470 | [Turaida Castle](https://qualla.com/turaida-castle/) | Latvia | palace-castle-fort | Complete |
+| 471 | [The Presque Isle Lighthouse and the Lake Erie Mysteries](https://qualla.com/presque-isle-lighthouse/) | United States of America | lighthouse | Complete |
+| 472 | [Iwamura Castle](https://qualla.com/iwamura-castle/) | Japan | palace-castle-fort | Complete |
 | 473 | [Hospital de Sant Pau](https://qualla.com/hospital-de-sant-pau/) | Spain | civic-institutional | Complete |
 | 474 | [Folsom State Prison](https://qualla.com/folsom-state-prison/) | United States of America | civic-institutional | Complete |
 | 475 | [Wistaria Tea House](https://qualla.com/wistaria-tea-house/) | Taiwan | residence | Complete |
 | 476 | [Belfry of Bruges](https://qualla.com/belfry-of-bruges/) | Belgium | tower | Complete |
-| 477 | [Library of Parliament](https://qualla.com/library-of-parliament/) | Canada | museum-library | Queued |
+| 477 | [Library of Parliament](https://qualla.com/library-of-parliament/) | Canada | museum-library | Complete |
 | 478 | [Kaba Aye Pagoda](https://qualla.com/kaba-aye-pagoda/) | Myanmar | religious | Complete |
 | 479 | [Monastery of the Holy Spirit, Vilnius](https://qualla.com/monastery-of-the-holy-spirit-vilnius/) | Lithuania | religious | Complete |
 | 480 | [Fox Tucson Theatre](https://qualla.com/fox-tucson-theatre/) | United States of America | performance-sport | Complete |
-| 481 | [Chengde Mountain Resort](https://qualla.com/chengde-mountain-resort/) | People's Republic of China | hotel-commercial | Queued |
+| 481 | [Danbo Jingcheng Hall, Chengde Mountain Resort](https://qualla.com/chengde-mountain-resort/) | People's Republic of China | hotel-commercial | Complete |
 | 482 | [Groninger Museum](https://qualla.com/groninger-museum/) | Netherlands | museum-library | Complete |
 | 483 | [Sacred Heart Church (Tombstone, Arizona)](https://qualla.com/sacred-heart-church-tombstone-arizona/) | United States of America | religious | Complete |
 | 484 | [ArtScience Museum](https://qualla.com/artscience-museum/) | Singapore | museum-library | Complete |

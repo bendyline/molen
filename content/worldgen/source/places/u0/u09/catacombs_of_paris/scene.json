@@ -1,0 +1,842 @@
+{
+  "format": "molen/scene@3",
+  "name": "Catacombs of Paris model review",
+  "seed": "catacombs_of_paris",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.catacombs_of_paris",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#eee3cf",
+            "ground": "#b2a590",
+            "intensity": 0.71
+          },
+          "sun": {
+            "direction": [
+              -1,
+              5,
+              2
+            ],
+            "color": "#fff2da",
+            "intensity": 0.95,
+            "castShadow": false
+          },
+          "background": "#c7d2d8",
+          "toneMapping": "agx",
+          "exposure": 1.04,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "lower-quarry-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            72.2,
+            -18.15,
+            338.2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 8,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "threshold-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            71.71249865767882,
+            -19.62,
+            347.84734044519524
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 8,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "hague-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            71.88665873327865,
+            -19.67,
+            353.9456736820779
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 7,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "crypt-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            117.82876063402473,
+            -18.97,
+            446.6219124455491
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 9,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "well-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            36.457786473944246,
+            -19.28,
+            401.2157693803684
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 6,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "review-paving-denfert-0",
+      "components": {
+        "transform": {
+          "pos": [
+            -37.519149999999996,
+            0.014999999999999986,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              56.9617,
+              0.36,
+              132
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-denfert-1",
+      "components": {
+        "transform": {
+          "pos": [
+            30.25085,
+            0.014999999999999986,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              71.4983,
+              0.36,
+              132
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-denfert-2",
+      "components": {
+        "transform": {
+          "pos": [
+            -7.2683,
+            0.014999999999999986,
+            -29.851399999999998
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              3.539999999999999,
+              0.36,
+              72.2972
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-denfert-3",
+      "components": {
+        "transform": {
+          "pos": [
+            -7.2683,
+            0.014999999999999986,
+            37.9186
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              3.539999999999999,
+              0.36,
+              56.162800000000004
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-rene-coty-0",
+      "components": {
+        "transform": {
+          "pos": [
+            119.4361,
+            -2.4334,
+            480.2365
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              65.65599999999998,
+              0.36,
+              132
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-rene-coty-1",
+      "components": {
+        "transform": {
+          "pos": [
+            187.2061,
+            -2.4334,
+            480.2365
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              62.804,
+              0.36,
+              132
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-rene-coty-2",
+      "components": {
+        "transform": {
+          "pos": [
+            154.0341,
+            -2.4334,
+            448.24604999999997
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              3.5400000000000205,
+              0.36,
+              68.01910000000004
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "review-paving-rene-coty-3",
+      "components": {
+        "transform": {
+          "pos": [
+            154.0341,
+            -2.4334,
+            516.01605
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              3.5400000000000205,
+              0.36,
+              60.4409
+            ]
+          },
+          "materialRef": "palette:#9d9d8e"
+        }
+      }
+    },
+    {
+      "id": "lamp-crypt-light",
+      "components": {
+        "transform": {
+          "pos": [
+            6.887831798162276,
+            -19.61,
+            401.29701898107436
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6c2",
+          "intensity": 8.5,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "quarry-workshop-lamp",
+      "components": {
+        "transform": {
+          "pos": [
+            4.637559,
+            -18.08,
+            277.668748
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe3b5",
+          "intensity": 7,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "montsouris-street-plaque-light",
+      "components": {
+        "transform": {
+          "pos": [
+            12.996608,
+            -18.14,
+            90.175275
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6c8",
+          "intensity": 4.1,
+          "range": 5
+        }
+      }
+    },
+    {
+      "id": "guillaumot-work-mark-light",
+      "components": {
+        "transform": {
+          "pos": [
+            32.846667,
+            -18.11,
+            174.721699
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6c8",
+          "intensity": 4.1,
+          "range": 5
+        }
+      }
+    },
+    {
+      "id": "arcueil-aqueduct-inscription-light",
+      "components": {
+        "transform": {
+          "pos": [
+            31.586498,
+            -18.15,
+            219.666525
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6c8",
+          "intensity": 4.1,
+          "range": 5
+        }
+      }
+    },
+    {
+      "id": "entry-depth-inscription-light",
+      "components": {
+        "transform": {
+          "pos": [
+            -7.687754,
+            -18.21,
+            21.131115
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 4,
+          "range": 4
+        }
+      }
+    },
+    {
+      "id": "rene-coty-side-room-light",
+      "components": {
+        "transform": {
+          "pos": [
+            153.85451152930625,
+            0.1766000000000001,
+            483.42100283397775
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#fff7e7",
+          "intensity": 7,
+          "range": 7
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-entry-light",
+      "components": {
+        "transform": {
+          "pos": [
+            63.9027,
+            -19.88,
+            391.775319
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-entry-far-light",
+      "components": {
+        "transform": {
+          "pos": [
+            66.750784,
+            -19.8,
+            395.946598
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-bend-light",
+      "components": {
+        "transform": {
+          "pos": [
+            113.54354,
+            -19.76,
+            425.141432
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-bend-far-light",
+      "components": {
+        "transform": {
+          "pos": [
+            114.194198,
+            -19.76,
+            430.572424
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-exit-light",
+      "components": {
+        "transform": {
+          "pos": [
+            112.785252,
+            -19.87,
+            447.346582
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "eastern-ossuary-exit-far-light",
+      "components": {
+        "transform": {
+          "pos": [
+            114.791942,
+            -19.83,
+            449.623507
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe4bf",
+          "intensity": 5,
+          "range": 8
+        }
+      }
+    },
+    {
+      "id": "rue-halle-plaque-light",
+      "components": {
+        "transform": {
+          "pos": [
+            73.85278,
+            -19.79,
+            345.388557
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6c8",
+          "intensity": 5.5,
+          "range": 5
+        }
+      }
+    },
+    {
+      "id": "return-entry-light",
+      "components": {
+        "transform": {
+          "pos": [
+            123.98,
+            -19.619999999999997,
+            458.17
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6cb",
+          "intensity": 6,
+          "range": 11
+        }
+      }
+    },
+    {
+      "id": "return-exit-light",
+      "components": {
+        "transform": {
+          "pos": [
+            133.35,
+            -19.599999999999998,
+            457.6
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6cb",
+          "intensity": 6,
+          "range": 11
+        }
+      }
+    },
+    {
+      "id": "fontis-junction-light",
+      "components": {
+        "transform": {
+          "pos": [
+            120.18,
+            -19.669999999999998,
+            457.56
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6cb",
+          "intensity": 6,
+          "range": 11
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -25.006018351389898,
+      5.3,
+      -4.26134324010066
+    ],
+    "lookAt": [
+      -5.175705326990163,
+      5.5,
+      -0.3769275370222471
+    ],
+    "fov": 59
+  }
+}

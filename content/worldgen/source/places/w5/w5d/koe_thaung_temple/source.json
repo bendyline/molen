@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.koe_thaung_temple",
+  "kind": "static-structure",
+  "title": "Koe-thaung Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.koe_thaung_temple",
+        "output": "assets/places/w5/w5d/koe_thaung_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4de74c0c86d2c5dfe567dbf4d601d9b971a59fe9257dbd5747af18230cc3fae5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-koe-thaung-temple",
+        "path": "models/generate-koe-thaung-temple.mjs"
+      },
+      {
+        "id": "koe-thaung-temple-model",
+        "path": "models/koe-thaung-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/temple-outline.json",
+      "reference-rights/profile-commons-first-upload.json",
+      "reference-rights/west-commons-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-24868-14467.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

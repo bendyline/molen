@@ -1,0 +1,544 @@
+{
+  "planId": "old_tainan_magistrate_residence",
+  "id": "old_tainan_magistrate_residence",
+  "assetId": "molen.worldgen.structure.old_tainan_magistrate_residence",
+  "title": "Old Tainan Magistrate Residence",
+  "wikidataId": "Q10911369",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.21343916296296,
+    "latitude": 22.99257801111111
+  },
+  "size": [
+    34.3552303314209,
+    11.908677637577057,
+    23.58346939086914
+  ],
+  "actualBounds": {
+    "min": [
+      -16.26258659362793,
+      -0.6286779046058655,
+      -12.605469703674316
+    ],
+    "max": [
+      18.09264373779297,
+      11.279999732971191,
+      10.977999687194824
+    ]
+  },
+  "visualBrief": "Restored west-facing Tainan governor’s residence with two levels of open red-brick arcades, three chamfered bays and a low triangular pediment.",
+  "nativeAxes": {
+    "x": "south across the main facade",
+    "y": "up",
+    "z": "west toward the public plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E5%8E%9F%E8%87%BA%E5%8D%97%E7%B8%A3%E7%9F%A5%E4%BA%8B%E5%AE%98%E9%82%B802.JPG"
+  ],
+  "stories": [
+    {
+      "id": "old-tainan-magistrate-residence-wp",
+      "url": "https://qualla.com/old-tainan-magistrate-residence/"
+    }
+  ],
+  "referenceInputHash": "sha256:96d8ae92b3173f058116a3b7d45a16c7d06a4d16317be553fda0e55eeca316aa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsj/old_tainan_magistrate_residence/models/old-tainan-magistrate-residence-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsj/old_tainan_magistrate_residence/models/old-tainan-magistrate-residence-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.03,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.02
+      },
+      "solid": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "solid": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "solid": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "solid": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stucco",
+    "tile_flat",
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Mapped public plaza and the original Tainan ground field set the restored mansion’s front access.",
+    "anchor": [
+      120.21343916296296,
+      22.99257801111111
+    ],
+    "heading": -1.66520937096223,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.21331434672027,
+        22.992593854357565
+      ],
+      "modelHeight": 0,
+      "basis": "Original composite terrain on the west plaza at the front of the mapped central arcade projection."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          11.1214,
+          -2.7759
+        ],
+        [
+          17.7522,
+          -2.7759
+        ],
+        [
+          17.9327,
+          -9.6073
+        ],
+        [
+          11.0288,
+          -9.5402
+        ],
+        [
+          6.0219,
+          -9.3955
+        ],
+        [
+          6.1074,
+          -6.367
+        ],
+        [
+          2.4974,
+          -6.2311
+        ],
+        [
+          0.7997,
+          -8.8084
+        ],
+        [
+          -2.409,
+          -8.803
+        ],
+        [
+          -4.5112,
+          -6.2056
+        ],
+        [
+          -8.6821,
+          -6.0886
+        ],
+        [
+          -8.8368,
+          -12.4455
+        ],
+        [
+          -16.1026,
+          -12.303
+        ],
+        [
+          -15.9515,
+          -0.7887
+        ],
+        [
+          -11.8842,
+          -0.9371
+        ],
+        [
+          -11.7811,
+          7.7099
+        ],
+        [
+          -9.8469,
+          9.5957
+        ],
+        [
+          -7.1231,
+          9.4304
+        ],
+        [
+          -5.9082,
+          7.8537
+        ],
+        [
+          -4.173,
+          7.8747
+        ],
+        [
+          -2.0384,
+          10.2253
+        ],
+        [
+          0.9481,
+          10.1175
+        ],
+        [
+          3.2638,
+          7.5307
+        ],
+        [
+          5.0678,
+          7.4525
+        ],
+        [
+          6.6742,
+          8.9474
+        ],
+        [
+          9.0401,
+          8.8983
+        ],
+        [
+          10.9927,
+          7.437
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Named two-storey building perimeter with the native forward projections and back wings."
+    },
+    "featureIds": [
+      "way/279037184",
+      "way/170492306",
+      "way/161156227"
+    ],
+    "source": "https://www.openstreetmap.org/way/279037184",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:502e33932c1f8910189ec29ff911b2a59d40543081a1fa89fa4abaaaa908a5f3",
+    "notes": "The owner records two storeys, arcades on four sides, three octagonal projections, and multiple generations of gable. The heritage ministry records the west-facing brick mansion. The 1908 original album view establishes the original arcade and cornice vocabulary."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The present restored mansion has the lower triangular third-generation pediment. The original high rounded clock-shaped gable is recorded as historic and is not installed on the contemporary roof.",
+    "Native walls and major projections are fixed within the 27-point outline. Opening sequence, cornice profiles, tile color and wall heights are estimated from the 1908 evidence and written current heritage details.",
+    "Only the Western residence and its front steps are represented. The vanished Japanese timber counterpart, garden contents, and separately mapped air-raid shelter are excluded."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "tainan-residence-skyline",
+      "position": [
+        37,
+        20,
+        48
+      ],
+      "lookAt": [
+        0,
+        4.25,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "tainan-residence-district",
+      "position": [
+        37,
+        20,
+        48
+      ],
+      "lookAt": [
+        0,
+        4.25,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tainan-residence-street",
+      "position": [
+        37,
+        20,
+        48
+      ],
+      "lookAt": [
+        0,
+        4.25,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "tainan-residence-closeup",
+      "position": [
+        37,
+        20,
+        48
+      ],
+      "lookAt": [
+        0,
+        4.25,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "two-storey-west-arcades",
+      "position": [
+        -1,
+        7.2,
+        39
+      ],
+      "lookAt": [
+        -0.55,
+        4.65,
+        7.2
+      ]
+    },
+    {
+      "name": "front-steps-and-pediment",
+      "position": [
+        12,
+        5.72,
+        24.6
+      ],
+      "lookAt": [
+        -0.55,
+        5.3,
+        8.38
+      ]
+    },
+    {
+      "name": "rear-wings-and-side-verandas",
+      "position": [
+        -32,
+        18,
+        -38
+      ],
+      "lookAt": [
+        0,
+        4.3,
+        -4.2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22398,
+    "vertices": 67194,
+    "materials": 6,
+    "bytes": 2892368,
+    "sha256": "sha256:631218c016a83cbeb4f8286a6e30821f9c0736c0ae02733d89301e54bdba5f6a"
+  }
+}

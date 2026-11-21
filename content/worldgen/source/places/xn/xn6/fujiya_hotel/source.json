@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fujiya_hotel",
+  "kind": "static-structure",
+  "title": "Fujiya Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fujiya_hotel",
+        "output": "assets/places/xn/xn6/fujiya_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7f44603a0ecfa0674f57d20720b66c4a7c28f40c8ebd696ef598a4252d2b3ab5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fujiya-hotel",
+        "path": "models/generate-fujiya-hotel.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/fujiya-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fujiya-hillside-hotel-buildings.json",
+      "reference-rights/standing-fujiya-buildings.json",
+      "reference-rights/kitlv-110647-public-domain-and-qualla-rendition.json",
+      "reference-images/rijks-rp-f-f01102-p-main-building.jpg",
+      "reference-rights/rijks-rp-f-f01102-p.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-dem5a-15-29041-12952.txt",
+      "terrain-sources/gsi-dem5a-15-29041-12951.txt",
+      "terrain-sources/gsi-dem-14-14520-6475.txt",
+      "terrain-sources/gsi-dem-14-14520-6476.txt",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

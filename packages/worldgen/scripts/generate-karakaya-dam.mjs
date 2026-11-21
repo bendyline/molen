@@ -88,6 +88,7 @@ const spec = {
     replaceFootprint: placement.replaceFootprint,
     buildingCutout: placement.buildingCutout,
     groundCutout: placement.groundCutout,
+    waterCutout: placement.waterCutout,
     terrainReference: placement.terrainReference,
     replaceRoads: placement.replaceRoads,
     bounds: placement.bounds,

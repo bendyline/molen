@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Catacombs of Paris · Avenue René-Coty exit review",
+  "seed": "catacombs_rene_coty_exit",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "portal",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.catacombs_rene_coty_exit",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "daylight",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e0e7dd",
+            "ground": "#b4a38b",
+            "intensity": 1.13
+          },
+          "sun": {
+            "direction": [
+              -2,
+              4,
+              5
+            ],
+            "color": "#fff1d8",
+            "intensity": 1.53,
+            "castShadow": true
+          },
+          "background": "#b8c7c3",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "plaza",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.218,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              90,
+              0.35,
+              90
+            ]
+          },
+          "materialRef": "palette:#91877a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      2.44,
+      3.27,
+      18.8
+    ],
+    "lookAt": [
+      0,
+      2.86,
+      2.19
+    ],
+    "fov": 53
+  }
+}

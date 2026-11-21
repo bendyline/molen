@@ -1,0 +1,285 @@
+{
+  "id": "usoi_dam",
+  "planId": "usoi_dam",
+  "assetId": "molen.worldgen.structure.usoi_dam",
+  "title": "Usoi Dam",
+  "category": "landslide-dam",
+  "quality": "medium-fi",
+  "wikidataId": "Q3377037",
+  "referenceCoordinate": {
+    "longitude": 72.6134,
+    "latitude": 38.281
+  },
+  "nativeAxes": "+X east, +Z south, +Y up. Local Y=0 is the illustrative 3264 m Lake Sarez stage.",
+  "visualBrief": "Relief of the natural Usoi rockslide, the western end of Lake Sarez, Lake Shadau and the neighboring Pamir ridges. The two lakes have separate planes.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tw/twg/usoi_dam/models/usoi-landscape-model.mjs",
+    "export": "buildMaster"
+  },
+  "sourceFacts": {
+    "formationYear": 1911,
+    "rockslideMapId": 52776575539942,
+    "glacierMapId": 35185520804910
+  },
+  "geographicProposal": {
+    "status": "native-terrain-and-hydrology",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      72.6134,
+      38.281
+    ],
+    "heading": 0,
+    "lakeIds": [
+      11648753,
+      174066933
+    ],
+    "notes": "Earth uses its native terrain and lake meshes. The standalone relief shows the mapped landslide and western basin without duplicating the live Earth terrain."
+  },
+  "referencePages": [
+    "https://science.nasa.gov/earth/earth-observatory/lake-sarez-tajikistan-2077/",
+    "https://www.usgs.gov/publications/usoi-landslide-dam-and-lake-sarez-pamir-mountains-tajikistan"
+  ],
+  "materialMethod": "Shared granite and gravel for bare rock and scree. Mapped glacial areas and the two water color accents use simple PBR colors.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "relief-review",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tw/twg/usoi_dam/models/usoi-landscape-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "scree": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "ice": {
+        "slot": "roof",
+        "localRef": "palette:#c3c9cc",
+        "name": "Mapped Pamir glaciers",
+        "roughness": 0.96
+      },
+      "sarez": {
+        "slot": "trim",
+        "localRef": "palette:#255777",
+        "name": "Lake Sarez water",
+        "roughness": 0.39
+      },
+      "shadau": {
+        "slot": "trim",
+        "localRef": "palette:#398f8e",
+        "name": "Lake Shadau water",
+        "roughness": 0.44
+      }
+    },
+    "errorMeters": 300,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "scree": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "ice": {
+            "slot": "roof",
+            "localRef": "palette:#c3c9cc",
+            "name": "Mapped Pamir glaciers",
+            "roughness": 0.96
+          },
+          "sarez": {
+            "slot": "trim",
+            "localRef": "palette:#255777",
+            "name": "Lake Sarez water",
+            "roughness": 0.39
+          },
+          "shadau": {
+            "slot": "trim",
+            "localRef": "palette:#398f8e",
+            "name": "Lake Shadau water",
+            "roughness": 0.44
+          }
+        },
+        "errorMeters": 130
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "scree": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "ice": {
+            "slot": "roof",
+            "localRef": "palette:#c3c9cc",
+            "name": "Mapped Pamir glaciers",
+            "roughness": 0.96
+          },
+          "sarez": {
+            "slot": "trim",
+            "localRef": "palette:#255777",
+            "name": "Lake Sarez water",
+            "roughness": 0.39
+          },
+          "shadau": {
+            "slot": "trim",
+            "localRef": "palette:#398f8e",
+            "name": "Lake Shadau water",
+            "roughness": 0.44
+          }
+        },
+        "errorMeters": 45
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "scree": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "ice": {
+            "slot": "roof",
+            "localRef": "palette:#c3c9cc",
+            "name": "Mapped Pamir glaciers",
+            "roughness": 0.96
+          },
+          "sarez": {
+            "slot": "trim",
+            "localRef": "palette:#255777",
+            "name": "Lake Sarez water",
+            "roughness": 0.39
+          },
+          "shadau": {
+            "slot": "trim",
+            "localRef": "palette:#398f8e",
+            "name": "Lake Shadau water",
+            "roughness": 0.44
+          }
+        },
+        "errorMeters": 18
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -655,
+    "scale": 132
+  },
+  "qaCameras": [
+    {
+      "name": "pamir-overview",
+      "position": [
+        -11220,
+        14100,
+        11660
+      ],
+      "lookAt": [
+        -20,
+        280,
+        920
+      ],
+      "fov": 43
+    },
+    {
+      "name": "sarez-shadau-and-slide",
+      "position": [
+        -1530,
+        9230,
+        5740
+      ],
+      "lookAt": [
+        -1170,
+        165,
+        1820
+      ],
+      "fov": 43
+    },
+    {
+      "name": "downstream-face",
+      "position": [
+        -7460,
+        3310,
+        -1920
+      ],
+      "lookAt": [
+        -1940,
+        30,
+        550
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "The relief covers the slide, Lake Shadau and the western portion of Lake Sarez. Its rectangular boundary is a display crop.",
+    "Dry terrain comes from the retained 48 m grid. Shorelines blend into representative static lake stages. The model has no bathymetry or hydrological simulation.",
+    "The glacier layer uses the mapped footprint. Rock and water colors are illustrative and no photograph is projected on the mesh."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6624,
+      -630.5499877929688,
+      -4512
+    ],
+    "max": [
+      6432,
+      2407.0400390625,
+      6720
+    ]
+  },
+  "size": [
+    13056,
+    3037.5900268554688,
+    11232
+  ],
+  "mesh": {
+    "triangles": 111920,
+    "vertices": 335760,
+    "materials": 5,
+    "bytes": 13433416,
+    "sha256": "sha256:c720048ab2cdd81054ccb0ad7872eb83fc2d44826a147faba394d9540200f39a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

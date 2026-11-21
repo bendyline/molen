@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_garry_hotel",
+  "kind": "static-structure",
+  "title": "Fort Garry Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_garry_hotel",
+        "output": "assets/places/cb/cbf/fort_garry_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:daf7cc358fae5e8bf77ab8f60ad022a7eb84127ecca5e9ae5d52dc990c96fa91"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-garry-hotel",
+        "path": "models/generate-fort-garry-hotel.mjs"
+      },
+      {
+        "id": "fort-garry-hotel-model",
+        "path": "models/fort-garry-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-garry-hotel-roofs-and-enclosure.json",
+      "reference-rights/winnipeg-fort-garry-heritage-evidence.json",
+      "reference-rights/magella-bureau-1913-qualla-original.json",
+      "reference-rights/qualla-image-screening.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/nrcan-hrdem-bare-earth.tif",
+      "terrain-sources/nrcan-hrdem-first-return.tif",
+      "terrain-sources/winnipeg-native-elevation.json",
+      "terrain-sources/nrcan-roof-heights.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

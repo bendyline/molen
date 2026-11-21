@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.terminal_station_macon_georgia",
+  "kind": "static-structure",
+  "title": "Terminal Station (Macon, Georgia)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.terminal_station_macon_georgia",
+        "output": "assets/places/dj/dju/terminal_station_macon_georgia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:075b5e89397214d0b65b00976f81d6cc43e5bd244b9e33067270966c6b0f152c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-terminal-station-macon-georgia",
+        "path": "models/generate-terminal-station-macon-georgia.mjs"
+      },
+      {
+        "id": "terminal-station-macon-georgia-model",
+        "path": "models/terminal-station-macon-georgia-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/osm-terminal-station-and-cherry-street.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/qualla-postcard-review.json",
+      "reference-images/terminal-station-macon-day-postcard.jpg",
+      "reference-rights/terminal-station-macon-dlg-175.json",
+      "reference-images/terminal-station-macon-early-postcard.jpg",
+      "reference-rights/terminal-station-macon-dlg-166.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-8772-13216.png",
+      "terrain-sources/terrarium-15-8772-13217.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_entrance",
+  "kind": "static-structure",
+  "title": "Mini Israel · Entrance and workshop",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_entrance",
+        "output": "assets/places/sv/sv8/mini_israel_entrance/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:79d5c28ddc4ccc0d25cd7941af78d09078475f8c81fb7535d718d3db517109b6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mini-israel-entrance-model",
+        "path": "models/entrance-model.mjs"
+      },
+      {
+        "id": "mini-israel-entrance-master",
+        "path": "models/generate-mini-israel-entrance.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "pmtiles-fit.json",
+      "reference-observations.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "site-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "planId": "osun_grove_main_gateway",
+  "id": "osun_grove_main_gateway",
+  "assetId": "molen.worldgen.structure.osun_grove_main_gateway",
+  "title": "Gateway to Ojúbọ Òṣogbo",
+  "category": "gate",
+  "quality": "photo-based-architectural-draft",
+  "referenceCoordinate": {
+    "longitude": 4.551620252417019,
+    "latitude": 7.755206068146858
+  },
+  "geographicProposal": {
+    "status": "preview",
+    "source": "https://artsandculture.google.com/streetview/gateway-to-oj%C3%BAb%E1%BB%8D-%C3%92%E1%B9%A3ogbo/5QEmYQylsItRCQ",
+    "anchor": [
+      4.551620252417019,
+      7.755206068146858
+    ],
+    "heading": 3.0363089698691335,
+    "elevationMeters": 0,
+    "bounds": [
+      4.55153513451938,
+      7.755173024774394,
+      4.551708810870082,
+      7.755254017323604
+    ],
+    "notes": "The 2022 panorama fixes the camera and the stair-side facing. Reconstructed side returns and carved piers follow the photographs. The stair approach uses terrain-relative height. Exact sculptural depths and slopes outside the platform remain estimates.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cf9d6ff4724bf09407fbed240d82ef206e5c4d92587e5a1fab775c3432a88076",
+    "elevationMode": "terrain",
+    "groundModelY": 0.04,
+    "groundContactReviewed": true
+  },
+  "nativeAxes": "+Y up, +Z is the broad stair side and +X is right as seen looking toward the stairs.",
+  "visualBrief": "The three curved openings and twin heads follow the photographed stair-side silhouette. Weathered clay crests and arch undersides roll into the wall faces. Solid low reliefs on the central piers carry different carved figures on each side. The five treads, pebble loop and the two stone figures remain independent forms.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_main_gateway/models/gateway-model.mjs",
+    "export": "buildGateway"
+  },
+  "sourceFacts": {
+    "groveCandidateId": "osun_osogbo_grove",
+    "mapReferenceBasis": "published First Palace stool coordinate, vicinity only"
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/story/BgURvVEBTRI0TA",
+    "https://artsandculture.google.com/streetview/gateway-to-oj%C3%BAb%E1%BB%8D-%C3%92%E1%B9%A3ogbo/5QEmYQylsItRCQ",
+    "https://artsandculture.google.com/asset/arugb%C3%A1-gate-the-entrance-to-the-sacred-groves-susanne-wenger-and-adebisi-akanji/eAEt7RAg2EKVqw",
+    "https://whc.unesco.org/uploads/nominations/1118.pdf"
+  ],
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "materialMethod": "Three existing shared material graphs for lime plaster, sandstone and weathered limestone. Relief, wear and moss tones use authored geometry and vertex colour.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_main_gateway/models/gateway-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "exposed": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.07
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "exposed": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.025
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -0.043
+  },
+  "qaCameras": [
+    {
+      "name": "twin-faced-arch",
+      "position": [
+        0.27,
+        2.55,
+        6.3
+      ],
+      "lookAt": [
+        0,
+        2.48,
+        0
+      ]
+    },
+    {
+      "name": "wall-bas-reliefs",
+      "position": [
+        4,
+        1.95,
+        4.75
+      ],
+      "lookAt": [
+        4.42,
+        1.87,
+        0
+      ]
+    },
+    {
+      "name": "rear-enclosure",
+      "position": [
+        -6.2,
+        2.6,
+        -11.72
+      ],
+      "lookAt": [
+        -0.42,
+        1.64,
+        0
+      ]
+    },
+    {
+      "name": "side-openings",
+      "position": [
+        -4.82,
+        2.25,
+        6.2
+      ],
+      "lookAt": [
+        -0.72,
+        1.55,
+        0
+      ]
+    },
+    {
+      "name": "portal-base-figures",
+      "position": [
+        0.16,
+        2.06,
+        -7.6
+      ],
+      "lookAt": [
+        -0.04,
+        2.08,
+        -0.61
+      ],
+      "fov": 61
+    },
+    {
+      "name": "pebble-landing",
+      "position": [
+        0.46,
+        2.52,
+        2.9
+      ],
+      "lookAt": [
+        -0.07,
+        0.78,
+        1.47
+      ],
+      "fov": 47
+    }
+  ],
+  "limitations": [
+    "The model represents the gateway, adjoining sculpted walls and the two small stone figures beside the central opening. The First Palace, Arugbá Gate, freestanding Èṣù sculpture and footbridge are separate structures.",
+    "The stairs, real-world dimensions, figures and rear-wall details are reconstructed from photographs.",
+    "The public tour provides the camera coordinate. The fit estimates the gate footprint, signed facing and scale from the panoramas. The immediate slope and enclosure beyond the three bays remain approximate."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -9.357535362243652,
+      -0.23999999463558197,
+      -2.7100000381469727
+    ],
+    "max": [
+      9.15451431274414,
+      4.182551860809326,
+      4.400000095367432
+    ]
+  },
+  "size": [
+    18.512049674987793,
+    4.422551855444908,
+    7.110000133514404
+  ],
+  "mesh": {
+    "triangles": 65605,
+    "vertices": 174471,
+    "materials": 3,
+    "bytes": 7070740,
+    "sha256": "sha256:efda559fa9f826fb078bf25d388ccdbff5ee7fe2bcb642b541d8667209613c73"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "wikidataId": "Q621498",
+  "collectionId": "osun_osogbo_grove"
+}

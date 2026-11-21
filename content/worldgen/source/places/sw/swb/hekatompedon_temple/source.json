@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "hekatompedon_temple",
+  "kind": "structure",
+  "title": "Hekatompedon temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hekatompedon_temple",
+        "output": "assets/places/sw/swb/hekatompedon_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9c5a861335469f1329635fd2dbfdfda86c4f3d130bda42aa545826a7527b7d1d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "hekatompedon-model",
+        "path": "models/hekatompedon-model.mjs"
+      },
+      {
+        "id": "hekatompedon-pediments",
+        "path": "models/hekatompedon-pediments.mjs"
+      },
+      {
+        "id": "generate-hekatompedon",
+        "path": "models/generate-hekatompedon.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "DRAFT-REVIEW.md",
+      "reference-review.json",
+      "reference-observations.json",
+      "pmtiles-fit.json",
+      "map-frame.json",
+      "candidate-grade.json",
+      "import-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "preview.png",
+      "site-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

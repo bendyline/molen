@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cipanas_palace",
+  "kind": "static-structure",
+  "title": "Cipanas Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cipanas_palace",
+        "output": "assets/places/qq/qqu/cipanas_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:07d83f01e33cbd552c1e348b8b85e550f3aa74d5a71e50bb51b38ec09d9592c8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cipanas-palace",
+        "path": "models/generate-cipanas-palace.mjs"
+      },
+      {
+        "id": "cipanas-palace-model",
+        "path": "models/cipanas-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/gedung-induk-standing-palace.json",
+      "reference-rights/cipanas-state-secretariat-written-facts.json",
+      "reference-rights/adrianus-bik-palace-study.jpg",
+      "reference-rights/rijksmuseum-rp-t-1999-85.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26127-16998.png",
+      "terrain-sources/terrarium-15-26126-16998.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

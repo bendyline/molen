@@ -1,0 +1,650 @@
+{
+  "planId": "imam_reza_shrine",
+  "id": "imam_reza_shrine",
+  "assetId": "molen.worldgen.structure.imam_reza_shrine",
+  "title": "Imam Reza Shrine",
+  "wikidataId": "Q1791841",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 59.61568737368421,
+    "latitude": 36.287989321052635
+  },
+  "size": [
+    140.7933692932129,
+    46.93365526199341,
+    133.8884334564209
+  ],
+  "actualBounds": {
+    "min": [
+      -58.61391067504883,
+      -4.822056293487549,
+      -23.329999923706055
+    ],
+    "max": [
+      82.17945861816406,
+      42.11159896850586,
+      110.55843353271484
+    ]
+  },
+  "visualBrief": "The historic Imam Reza Shrine in Mashhad, with the golden tomb dome, Old Court, paired gold minarets, four tiled iwans, clock and Naqqara Khana.",
+  "nativeAxes": {
+    "x": "toward the clock iwan",
+    "y": "up",
+    "z": "across the old courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://en.wikisource.org/wiki/Page:From_Constantinople_to_the_home_of_Omar_Khayyam.djvu/440",
+    "https://en.wikisource.org/wiki/Page:From_Constantinople_to_the_home_of_Omar_Khayyam.djvu/449"
+  ],
+  "stories": [
+    {
+      "id": "imam-reza-shrine-wp",
+      "url": "https://qualla.com/imam-reza-shrine/"
+    }
+  ],
+  "referenceInputHash": "sha256:221edb7da1333d28343de5de2e6e587956deaceabe22803a856f19e84af96ae0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tq/tq6/imam_reza_shrine/models/imam-reza-shrine-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tq/tq6/imam_reza_shrine/models/imam-reza-shrine-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_sandstone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.68,
+        "metallic": 0.045
+      },
+      "gold": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.59,
+        "metallic": 0.52
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0.045
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.52
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0.045
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.52
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.68,
+            "metallic": 0.045
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.59,
+            "metallic": 0.52
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_ashlar",
+    "stone_sandstone",
+    "tile_glazed",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.67,
+    "focus": {
+      "center": [
+        12,
+        13,
+        43
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bijan Saadat’s architectural survey, quoted by Seyyed Abdollah Anwar, records a 31.20 m apex and 16.40 m gold-covered zone. Early 1911 exterior plates establish the rounded gold silhouette, four iwans, arcaded walls, narrow golden minaret profile and multi-level kettle-drum pavilion. The publicly documented northwest clock and northeastern iwan establish the surviving court arrangement.",
+    "anchor": [
+      59.61568737368421,
+      36.287989321052635
+    ],
+    "heading": 2.276523042520415,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        59.61606909010365,
+        36.288251505934106
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation in the historic courtyard in front of the golden iwan."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -39.03541,
+          31.54308
+        ],
+        [
+          64.84849,
+          31.54308
+        ],
+        [
+          58.11,
+          -23.33
+        ],
+        [
+          -29.57,
+          -21.28
+        ],
+        [
+          -48.85,
+          -18.9
+        ],
+        [
+          -53.75,
+          31.76
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -39.03541,
+            31.54308
+          ],
+          [
+            64.84849,
+            31.54308
+          ],
+          [
+            58.11,
+            -23.33
+          ],
+          [
+            -29.57,
+            -21.28
+          ],
+          [
+            -48.85,
+            -18.9
+          ],
+          [
+            -53.75,
+            31.76
+          ]
+        ],
+        [
+          [
+            -58.55304,
+            101.81866
+          ],
+          [
+            -37.87339,
+            101.73354
+          ],
+          [
+            -38.09845,
+            93.50179
+          ],
+          [
+            -38.50519,
+            66.68934
+          ],
+          [
+            -39.03541,
+            31.54308
+          ],
+          [
+            -53.74602,
+            31.76328
+          ],
+          [
+            -58.38687,
+            31.73436
+          ],
+          [
+            -58.49482,
+            50.17437
+          ],
+          [
+            -58.5689,
+            66.30907
+          ],
+          [
+            -58.61391,
+            77.74121
+          ]
+        ],
+        [
+          [
+            64.84849,
+            31.54308
+          ],
+          [
+            82.17946,
+            31.45735
+          ],
+          [
+            82.06438,
+            45.90667
+          ],
+          [
+            81.90688,
+            64.79959
+          ],
+          [
+            81.77503,
+            80.77895
+          ],
+          [
+            81.70002,
+            108.65449
+          ],
+          [
+            65.06999,
+            108.91312
+          ],
+          [
+            64.85198,
+            94.16817
+          ],
+          [
+            64.86673,
+            65.33354
+          ]
+        ],
+        [
+          [
+            -38.09845,
+            93.50179
+          ],
+          [
+            64.85198,
+            94.16817
+          ],
+          [
+            64.94,
+            104.5
+          ],
+          [
+            24.64,
+            104.5
+          ],
+          [
+            24.59581,
+            110.34452
+          ],
+          [
+            5.04955,
+            110.55843
+          ],
+          [
+            5.1,
+            104.56
+          ],
+          [
+            -38.03,
+            103.83
+          ]
+        ]
+      ],
+      "basis": "Combined historic sanctuary outline and independently mapped sides of the Old Court."
+    },
+    "featureIds": [
+      "way/765638427",
+      "way/55915341",
+      "way/385252774",
+      "way/385252777",
+      "way/385252783"
+    ],
+    "source": "https://www.openstreetmap.org/way/765638427",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f5141abf409e8e67faeabfa95627e2592a51dc7884ba2bd45b309d29f732af59",
+    "notes": "Bijan Saadat’s architectural survey, quoted by Seyyed Abdollah Anwar, records a 31.20 m apex and 16.40 m gold-covered zone. Early 1911 exterior plates establish the rounded gold silhouette, four iwans, arcaded walls, narrow golden minaret profile and multi-level kettle-drum pavilion. The publicly documented northwest clock and northeastern iwan establish the surviving court arrangement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the standing golden dome and historic Old Court exterior. Adjacent courts, teaching buildings, interiors and the extended modern complex are outside this model.",
+    "The dome and court plan are dimensioned. Subdivisions within the selected shrine mass, minaret alignments and court gate heights are estimates. Tile bands are geometric interpretations and no inscriptions or figural artworks are reproduced."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "imam-reza-shrine-skyline",
+      "position": [
+        131,
+        94,
+        167
+      ],
+      "lookAt": [
+        12,
+        13,
+        43
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "imam-reza-shrine-district",
+      "position": [
+        131,
+        94,
+        167
+      ],
+      "lookAt": [
+        12,
+        13,
+        43
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "imam-reza-shrine-street",
+      "position": [
+        131,
+        94,
+        167
+      ],
+      "lookAt": [
+        12,
+        13,
+        43
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "imam-reza-shrine-closeup",
+      "position": [
+        131,
+        94,
+        167
+      ],
+      "lookAt": [
+        12,
+        13,
+        43
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "golden-dome-and-iwan",
+      "position": [
+        18,
+        13,
+        81
+      ],
+      "lookAt": [
+        1,
+        18,
+        18
+      ]
+    },
+    {
+      "name": "old-court-and-opposing-minarets",
+      "position": [
+        97,
+        78,
+        155
+      ],
+      "lookAt": [
+        11,
+        14.6,
+        51
+      ]
+    },
+    {
+      "name": "clock-iwan-and-gilded-fountain",
+      "position": [
+        -24,
+        8,
+        58
+      ],
+      "lookAt": [
+        35,
+        10,
+        62
+      ]
+    },
+    {
+      "name": "naqqara-khana-and-tiled-arcades",
+      "position": [
+        43,
+        13,
+        65
+      ],
+      "lookAt": [
+        -30,
+        12,
+        65
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18886,
+    "vertices": 56658,
+    "materials": 6,
+    "bytes": 2484852,
+    "sha256": "sha256:8fcf0322aaa9253d6276212e0a8b949af133ec30ce1622be8de6fe770d781118"
+  }
+}

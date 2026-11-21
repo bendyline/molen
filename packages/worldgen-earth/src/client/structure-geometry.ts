@@ -242,8 +242,8 @@ function coveredPoint(p: TerrainSemanticPoint, ring: TerrainSemanticPoint[]): bo
 }
 
 /** Exact segment/footprint subtraction: keep approach fragments, including lines whose
- * endpoints are both outside a long bridge. Grade approaches require an explicit opt-in
- * and a shared covered bridge endpoint; unrelated grade roads are never replaced. */
+ * endpoints are both outside a long bridge. Grade approaches require a selected feature ID
+ * or an opted-in shared bridge endpoint. */
 export function withoutStructureRoads(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
@@ -266,6 +266,8 @@ export function withoutStructureRoads(
       : undefined;
     const ownsBridge = (feature: (typeof transportation)[number]) =>
       !bridgeIds || (feature.id !== undefined && bridgeIds.has(feature.id));
+    const approachIds =
+      entry.replaceRoads.approachFeatureIds && new Set(entry.replaceRoads.approachFeatureIds);
     const [cx, cz] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
     const c = Math.cos(entry.heading ?? 0),
       s = Math.sin(entry.heading ?? 0);
@@ -551,6 +553,8 @@ export function withoutStructureRoads(
       if (feature.tunnel || (feature.bridge && !ownsBridge(feature))) return [feature];
       if (!feature.bridge && /steps/.test(`${feature.class} ${feature.subclass ?? ''}`))
         return [feature];
+      const selectedApproach =
+        !feature.bridge && feature.id !== undefined && approachIds?.has(feature.id);
       // A bridge sidewalk can turn along its bank immediately at the landing. Only a
       // shared endpoint of a covered bridge path authorizes that turn; nearby quay
       // walks, steps, road crossings and other layers are not proximity matches.
@@ -565,6 +569,7 @@ export function withoutStructureRoads(
           ),
         );
       const coveredApproach =
+        selectedApproach ||
         coveredFootway ||
         (!feature.bridge &&
           coveredBridgeEnds.size > 0 &&
@@ -623,6 +628,7 @@ export function withoutStructureRoads(
           [-hx, hz],
         ];
         const ownsLine =
+          selectedApproach ||
           (bridgeIds !== undefined && feature.bridge) ||
           line.slice(1).some((b, i) => {
             const p = localPoint(line[i] as TerrainSemanticPoint),
@@ -915,7 +921,13 @@ export function withoutStructureRoads(
     transportation === tile.transportation && landcover.length === tile.landcover.length
       ? tile
       : { ...tile, transportation, landcover };
-  if (decks.some((entry) => entry.replaceRoads?.includeConnectedApproaches))
+  if (
+    decks.some(
+      (entry) =>
+        entry.replaceRoads?.includeConnectedApproaches ||
+        entry.replaceRoads?.approachFeatureIds?.length,
+    )
+  )
     result = gradeStructureApproaches(result, context);
   if (result !== tile) {
     // Kept roads stay the base tile's: a surface worker gets the base packet and this edit,

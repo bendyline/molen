@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Opera Tower exhibit",
+  "seed": "mini_israel_opera_tower",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "exhibit",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_opera_tower",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.165,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              24,
+              0.3,
+              24
+            ]
+          },
+          "materialRef": "palette:#aca084",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "lighting",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#d6e3ea",
+            "ground": "#aba078",
+            "intensity": 1.2
+          },
+          "sun": {
+            "direction": [
+              -2,
+              5,
+              4
+            ],
+            "color": "#fff0d6",
+            "intensity": 1.74,
+            "castShadow": true
+          },
+          "background": "#bccec2",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -3.94,
+      3.28,
+      7.55
+    ],
+    "lookAt": [
+      -0.45,
+      2.03,
+      0
+    ],
+    "fov": 51
+  }
+}

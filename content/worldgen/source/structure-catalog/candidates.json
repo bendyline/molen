@@ -22,6 +22,34 @@
     "palace": 55,
     "monument": 55
   },
+  "releaseReplacements": [
+    {
+      "replaces": "catacombs_of_paris",
+      "id": "abbey_museum_of_art_and_archaeology",
+      "title": "Abbey Museum of Art and Archaeology",
+      "category": "museum",
+      "wikidataId": "Q17000681",
+      "source": "https://www.wikidata.org/wiki/Q17000681",
+      "referenceCoordinate": { "latitude": -27.070789261538458, "longitude": 153.02307275384618 },
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.abbey_museum_of_art_and_archaeology",
+      "modelQuality": "medium-fi-exterior",
+      "reason": "The museum has a reviewed World Viewer placement. The Catacombs' full underground route is still a draft."
+    },
+    {
+      "replaces": "osun_osogbo_grove",
+      "id": "washington_monument_baltimore",
+      "title": "Washington Monument (Baltimore)",
+      "category": "monument",
+      "wikidataId": "Q3683526",
+      "source": "https://www.wikidata.org/wiki/Q3683526",
+      "referenceCoordinate": { "latitude": 39.297523026346624, "longitude": -76.61565497517586 },
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.washington_monument_baltimore",
+      "modelQuality": "medium-fi-exterior",
+      "reason": "The monument has a reviewed World Viewer placement. The Grove's Second Palace location and bearing are still open."
+    }
+  ],
   "candidates": [
     {
       "id": "stari_most",
@@ -4067,9 +4095,10 @@
         "longitude": -74.011111111
       },
       "sitelinks": 31,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.2_world_trade_center",
+      "placementVerified": false,
+      "modelQuality": "planned-design"
     },
     {
       "id": "shimao_international_plaza",
@@ -8834,9 +8863,10 @@
         "longitude": 44.42138611
       },
       "sitelinks": 29,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.esagila",
+      "placementVerified": false,
+      "modelQuality": "historical-reconstruction"
     },
     {
       "id": "temple_of_peace",
@@ -9121,9 +9151,10 @@
         "longitude": 23.7267
       },
       "sitelinks": 20,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.hekatompedon_temple",
+      "placementVerified": false,
+      "modelQuality": "historical-reconstruction"
     },
     {
       "id": "quba_mere_diwane",
@@ -13239,6 +13270,11 @@
           "id": "icehouse_yasnaya_polyana",
           "wikidataId": "Q749556",
           "asset": "molen.worldgen.structure.icehouse_yasnaya_polyana"
+        },
+        {
+          "id": "woodshed_yasnaya_polyana",
+          "wikidataId": "Q749556",
+          "asset": "molen.worldgen.structure.woodshed_yasnaya_polyana"
         }
       ],
       "modelQuality": "independent-members"
@@ -13254,9 +13290,10 @@
         "longitude": 2.33245
       },
       "sitelinks": 46,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.catacombs_of_paris",
+      "placementVerified": false,
+      "modelQuality": "draft-surface-and-interior"
     },
     {
       "id": "livadia_palace",
@@ -13333,9 +13370,68 @@
         "longitude": 34.968367
       },
       "sitelinks": 45,
-      "status": "candidate",
+      "status": "modeled",
       "modelRef": null,
-      "placementVerified": false
+      "placementVerified": false,
+      "modelRefs": [
+        {
+          "id": "mini_israel_entrance",
+          "wikidataId": "Q456800",
+          "featureId": "way/292811379",
+          "asset": "molen.worldgen.structure.mini_israel_entrance"
+        },
+        {
+          "id": "mini_israel_azrieli_towers",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_azrieli_towers"
+        },
+        {
+          "id": "mini_israel_teddy_stadium",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_teddy_stadium"
+        },
+        {
+          "id": "mini_israel_dome_of_the_rock",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_dome_of_the_rock"
+        },
+        {
+          "id": "mini_israel_track_and_field_stadium",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_track_and_field_stadium"
+        },
+        {
+          "id": "mini_israel_amphitheater",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_amphitheater"
+        },
+        {
+          "id": "mini_israel_king_david_hotel",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_king_david_hotel"
+        },
+        {
+          "id": "mini_israel_ben_gurion_airport",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_ben_gurion_airport"
+        },
+        {
+          "id": "mini_israel_yad_eliyahu_arena",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_yad_eliyahu_arena"
+        },
+        {
+          "id": "mini_israel_orot_rabin_power_station",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_orot_rabin_power_station"
+        },
+        {
+          "id": "mini_israel_dizengoff_center",
+          "wikidataId": "Q456800",
+          "asset": "molen.worldgen.structure.mini_israel_dizengoff_center"
+        }
+      ],
+      "modelQuality": "independent-members"
     },
     {
       "id": "brest_fortress",
@@ -14962,9 +15058,10 @@
         "longitude": 13.55694444
       },
       "sitelinks": 16,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.grand_inga_dam",
+      "placementVerified": false,
+      "modelQuality": "medium-fi"
     },
     {
       "id": "usoi_dam",
@@ -14977,9 +15074,10 @@
         "longitude": 72.6134
       },
       "sitelinks": 16,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.usoi_dam",
+      "placementVerified": false,
+      "modelQuality": "medium-fi"
     },
     {
       "id": "vanderkloof_dam",
@@ -15551,6 +15649,31 @@
           "id": "summer_palace_farming_stele",
           "wikidataId": "Q4132",
           "asset": "molen.worldgen.structure.summer_palace_farming_stele"
+        },
+        {
+          "id": "summer_palace_chengxian_hall",
+          "wikidataId": "Q4132",
+          "asset": "molen.worldgen.structure.summer_palace_chengxian_hall"
+        },
+        {
+          "id": "summer_palace_jade_river_gallery",
+          "wikidataId": "Q4132",
+          "asset": "molen.worldgen.structure.summer_palace_jade_river_gallery"
+        },
+        {
+          "id": "summer_palace_chengxian_gallery",
+          "wikidataId": "Q4132",
+          "asset": "molen.worldgen.structure.summer_palace_chengxian_gallery"
+        },
+        {
+          "id": "summer_palace_water_village_bridge",
+          "wikidataId": "Q4132",
+          "asset": "molen.worldgen.structure.summer_palace_water_village_bridge"
+        },
+        {
+          "id": "summer_palace_water_village_gate",
+          "wikidataId": "Q4132",
+          "asset": "molen.worldgen.structure.summer_palace_water_village_gate"
         }
       ],
       "modelQuality": "independent-members"
@@ -15838,9 +15961,10 @@
         "longitude": -0.125555555
       },
       "sitelinks": 45,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.palace_of_whitehall",
+      "placementVerified": false,
+      "modelQuality": "historical-palace-reconstruction"
     },
     {
       "id": "gyeongbokgung",
@@ -16124,9 +16248,10 @@
         "longitude": 12.495277777
       },
       "sitelinks": 37,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.domus_aurea",
+      "placementVerified": false,
+      "modelQuality": "detailed"
     },
     {
       "id": "peles_castle",
@@ -16651,9 +16776,78 @@
         "longitude": 4.550625
       },
       "sitelinks": 34,
-      "status": "candidate",
+      "status": "modeled",
       "modelRef": null,
-      "placementVerified": false
+      "placementVerified": false,
+      "modelRefs": [
+        {
+          "id": "osun_grove_suspension_bridge",
+          "wikidataId": "Q621498",
+          "featureId": "way/425244615",
+          "asset": "molen.worldgen.structure.osun_grove_suspension_bridge"
+        },
+        {
+          "id": "osun_grove_first_palace",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_first_palace"
+        },
+        {
+          "id": "osun_grove_main_gateway",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_main_gateway"
+        },
+        {
+          "id": "osun_grove_arugba_gate",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_arugba_gate"
+        },
+        {
+          "id": "osun_grove_second_palace",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_second_palace"
+        },
+        {
+          "id": "osun_grove_iya_mopo",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_iya_mopo"
+        },
+        {
+          "id": "osun_grove_busanyin_shrine",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_busanyin_shrine"
+        },
+        {
+          "id": "osun_grove_chameleon_gate",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_chameleon_gate"
+        },
+        {
+          "id": "osun_grove_flying_tortoise",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_flying_tortoise"
+        },
+        {
+          "id": "osun_grove_ela",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_ela"
+        },
+        {
+          "id": "osun_grove_sanponna",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_sanponna"
+        },
+        {
+          "id": "osun_grove_road_gate",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_road_gate"
+        },
+        {
+          "id": "osun_grove_festival_pavilion",
+          "wikidataId": "Q621498",
+          "asset": "molen.worldgen.structure.osun_grove_festival_pavilion"
+        }
+      ],
+      "modelQuality": "independent-members"
     },
     {
       "id": "chiang_kai_shek_memorial_hall",
@@ -17130,9 +17324,10 @@
         "longitude": -6.71916667
       },
       "sitelinks": 25,
-      "status": "candidate",
-      "modelRef": null,
-      "placementVerified": false
+      "status": "modeled",
+      "modelRef": "molen.worldgen.structure.sanabria_lake",
+      "placementVerified": false,
+      "modelQuality": "medium-fi"
     },
     {
       "id": "monument_to_minin_and_pozharsky",

@@ -29,10 +29,12 @@ const selection = process.argv
 if (selection && !selection.includes(id)) throw new Error('Unknown Mameyand Bridge selection');
 
 const references = 'reference-observations.json';
-const [observations, input, previous] = await Promise.all([
+const [observations, input, previous, placement, frameBytes] = await Promise.all([
   readOptionalJson(resolve(directory, references)),
   readFile(resolve(directory, recipe)),
   readOptionalJson(resolve(directory, 'source.json')),
+  readOptionalJson(resolve(directory, 'placement-draft.json')),
+  readFile(resolve(directory, 'map-frame.json')),
 ]);
 const authoring = createArchitecturalSurfaceAuthoring(surfaces);
 const geometry = new MeshBufferBuilder();
@@ -54,9 +56,10 @@ mesh.positions.forEach((value, i) => {
 
 const main = { name: 'river-elevation', position: [7.2, 2.9, 27], lookAt: [0, 3.5, 0], fov: 48 };
 const cameras = [
-  { name: 'opposite-elevation', position: [-5, 3.5, -26], lookAt: [0, 3.7, 0], fov: 48 },
+  { name: 'rounded-pier-noses', position: [-5, 7.5, -32], lookAt: [0, 3.2, 0], fov: 48 },
   { name: 'deck-and-towers', position: [16, 11.7, 11], lookAt: [0, 5.3, 0], fov: 55 },
   { name: 'ashlar-and-arch-ring', position: [2.6, 2, 10.3], lookAt: [-1, 3, 0], fov: 57 },
+  { name: 'bank-approaches', position: [-10, 17, -40], lookAt: [0, 3.8, 0], fov: 56 },
 ];
 const levels = {
   skyline: { export: 'buildSkyline', errorMeters: 0.36, surfaces },
@@ -74,10 +77,9 @@ const spec = {
   quality: 'detailed',
   wikidataId: 'Q5794125',
   referenceCoordinate: observations.villageReference,
-  nativeAxes:
-    '+X follows the deck and +Z faces the photographed elevation. Geographic heading remains unresolved.',
+  nativeAxes: JSON.parse(frameBytes).axis,
   visualBrief:
-    'A compact three-vault brick bridge with a steep pointed central opening, two low side openings, pale squared-stone piers, a humped paved path and four tapered round marker towers.',
+    'A three-vault brick bridge with a pointed central opening, two lower side openings, rounded upstream ashlar pier noses, a humped paved deck and four round marker towers. Two masonry approaches meet the local road.',
   size: actualBounds.max.map((value, axis) => value - actualBounds.min[axis]),
   actualBounds,
   referencePages: observations.references.map(({ url }) => url),
@@ -99,9 +101,21 @@ const spec = {
   fidelityTarget: 'medium-fi',
   fidelityStatus: 'pending',
   reviewStatus: 'Visual and geographic evidence is tracked in qa.json.',
+  geographicProposal: {
+    status: 'preview-proposal',
+    anchor: placement.anchor,
+    heading: placement.heading,
+    elevationMode: placement.datum,
+    elevationMeters: placement.elevation,
+    groundCutout: placement.groundCutout,
+    replaceRoads: placement.replaceRoads,
+    minLevel: placement.minLevel,
+    mapGeometrySource: 'map-frame.json',
+    mapGeometryHash: hashEvidenceText(frameBytes),
+  },
   limitations: [
-    'The arch stations, tapered tower courses and ramp profiles are photo-based approximations.',
-    'The candidate reference coordinate is the village. A matching crossing centerline, bearing and abutment grade are required for live placement.',
+    'The detailed masonry courses, marker profiles and ramp slopes are photo-based interpretations.',
+    'The local ground profile and water elevation fit the standard terrain and photographed banks. They are approximate and do not model seasonal water levels.',
   ],
   mediumFiContext: { groundY: -0.36, scale: 1, focus: { center: [0, 3.7, 0] } },
   qaCameras: cameras,
@@ -181,7 +195,15 @@ const source = {
     scripts: [],
     textures: [],
     sounds: [],
-    documents: [...new Set([references, ...(previous?.files?.documents ?? [])])],
+    documents: [
+      ...new Set([
+        references,
+        'map-frame.json',
+        'pmtiles-fit.json',
+        'placement-draft.json',
+        ...(previous?.files?.documents ?? []),
+      ]),
+    ],
   },
 };
 

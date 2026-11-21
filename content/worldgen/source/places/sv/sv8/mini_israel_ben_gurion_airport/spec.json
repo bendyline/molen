@@ -1,0 +1,292 @@
+{
+  "id": "mini_israel_ben_gurion_airport",
+  "planId": "mini_israel_ben_gurion_airport",
+  "collectionId": "mini_israel",
+  "wikidataId": "Q456800",
+  "assetId": "molen.worldgen.structure.mini_israel_ben_gurion_airport",
+  "title": "Mini Israel · Ben Gurion Airport exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 34.96911592657312,
+    "latitude": 31.842230571006983
+  },
+  "visualBrief": "The 2012 airport display has seven miniature airliners, with a blue widebody at the visitor edge and a raised yellow DHL freighter. White apron circles, faded yellow guides, a dark track and a low safety rail cross the pale concrete.",
+  "nativeAxes": "+Y up, +X east and +Z south. Airframes turn individually along their photographed axes.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_ben_gurion_airport/models/ben-gurion-2012-model.mjs",
+    "export": "buildAirportExhibit"
+  },
+  "referencePages": [
+    "https://jr.co.il/pictures/israel/mini-israel/mi046.htm",
+    "https://jr.co.il/pictures/israel/mini-israel/mi047.htm",
+    "https://virtualglobetrotting.com/map/mini-israel-airplane-models/view/google/",
+    "https://www.youtube.com/watch?v=7Zerh5_QLVA&t=464s"
+  ],
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25,
+    "appearance": "2012 archive panorama",
+    "earlierRecipe": "models/ben-gurion-exhibit-model.mjs"
+  },
+  "materialMethod": "Uses shared painted metal and concrete graphs plus geometry and vertex colors for the printed markings and glazing.",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      34.96911592657312,
+      31.842230571006983
+    ],
+    "heading": 0,
+    "bounds": [
+      34.96899058957621,
+      31.842123247585143,
+      34.96919549790564,
+      31.842281481591236
+    ],
+    "source": "https://virtualglobetrotting.com/map/mini-israel-airplane-models/view/google/",
+    "minLevel": 16,
+    "orientationPolicy": "approximate-visualization",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7839f8bbcf1a016e9d1ab6d788bf002b4e7a1d47d474e033c39ef6ff08072203",
+    "groundContactReviewed": true,
+    "notes": "The 2012 panorama fixes the west-southwest camera and the signed aircraft poses. The reconstruction is scaled uniformly to 89% around that camera and clears the nearest mapped visitor path by 2.7706 m. A date-specific ground grade seats the deck at all tested detail levels. The historical grade and the original platform dimensions are estimates.",
+    "elevationMode": "sea-level",
+    "elevationMeters": 175.523,
+    "replaceFootprint": false,
+    "scale": [
+      0.89,
+      0.89,
+      0.89
+    ],
+    "groundModelY": 0,
+    "groundContactBasis": "The dated Terrarium grade seats the reconstructed apron at 61 points on 1 m and 2 m grids. The model remains clear of the nearby PMTiles paving, which changes by less than 8 mm at the sampled locations.",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exhibit",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_ben_gurion_airport/models/ben-gurion-2012-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.08
+      },
+      "apron": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "marking": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "name": "painted exhibit stripes",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 0.17,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "painted exhibit stripes",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.09
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "painted exhibit stripes",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.036
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "painted exhibit stripes",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.012
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -0.49
+  },
+  "qaCameras": [
+    {
+      "name": "archive-apron-camera",
+      "position": [
+        11.695779646281153,
+        2.6,
+        -5.432016636244953
+      ],
+      "lookAt": [
+        2.4350966977014696,
+        -2.495254494944288,
+        -1.6584571328204332
+      ],
+      "fov": 75
+    },
+    {
+      "name": "apron-overview",
+      "position": [
+        8.1,
+        14,
+        8.9
+      ],
+      "lookAt": [
+        -2,
+        0,
+        2
+      ],
+      "fov": 55
+    },
+    {
+      "name": "blue-twin-and-edge-rail",
+      "position": [
+        7.45,
+        0.84,
+        2.35
+      ],
+      "lookAt": [
+        5.7,
+        0.28,
+        -0.1
+      ],
+      "fov": 48
+    },
+    {
+      "name": "yellow-freighter-and-apron-markings",
+      "position": [
+        3.27,
+        1.2,
+        -3.2
+      ],
+      "lookAt": [
+        -0.12,
+        0.3,
+        -0.68
+      ],
+      "fov": 51
+    },
+    {
+      "name": "rear-airliners",
+      "position": [
+        -3.8,
+        2.3,
+        3.5
+      ],
+      "lookAt": [
+        -6.32,
+        0.2,
+        -0.02
+      ],
+      "fov": 55
+    }
+  ],
+  "limitations": [
+    "The layout depicts the apron in the Street View image published in May 2012. Camera height, three-dimensional airframe profiles and markings outside the camera view are estimated.",
+    "The common shared painted-metal graph supplies the airframes. The yellow DHL paint and red, blue and grey patterns distinguish the visible liveries. Exact aircraft makes and model numbers remain unresolved.",
+    "The 2003 two-aircraft recipe remains in the source bundle. The 2022 photographs and current overhead imagery show later changes.",
+    "The 2012 panorama fixes the west-southwest camera and the signed aircraft poses. The reconstruction is scaled uniformly to 89% around that camera and clears the nearest mapped visitor path by 2.7706 m. A date-specific ground grade seats the deck at all tested detail levels. The historical grade and the original platform dimensions are estimates."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -13.31760025024414,
+      -0.49000000953674316,
+      -6.367800235748291
+    ],
+    "max": [
+      8.45479965209961,
+      0.8111400008201599,
+      13.423800468444824
+    ]
+  },
+  "size": [
+    21.77239990234375,
+    1.301140010356903,
+    19.791600704193115
+  ],
+  "mesh": {
+    "triangles": 6776,
+    "vertices": 12378,
+    "materials": 3,
+    "bytes": 529300,
+    "sha256": "sha256:842329eecf27c8fe2357af35af3f2000ec419135609a1f39d080d44050548a66"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "reviewStatus": "Reviewed 2012 exhibit and date-filtered geographic placement.",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2012-05-17",
+    "validFrom": "2012-05-17",
+    "validUntil": "2012-05-18"
+  }
+}

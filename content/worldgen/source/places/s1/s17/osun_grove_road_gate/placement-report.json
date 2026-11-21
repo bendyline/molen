@@ -1,0 +1,2196 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.osun_grove_road_gate",
+  "sourceHash": "sha256:a86032d2f1f067b5afbbc165658131a8a7840a450ed272e424c8a6c43714e738",
+  "runtimeHash": "sha256:5e5dadc4616bfa206a450a1879b9b074fdc3876d37dd4ede5fe283cb8b0cd7be",
+  "inputHash": "sha256:beb47eff3ed78cff38d172b5d487363bbd3c800db463f07ecb439d4ea8112a2b",
+  "entry": {
+    "id": "osun.grove.road.gate",
+    "title": "Osun Grove road entrance gate",
+    "asset": "molen.worldgen.structure.osun_grove_road_gate",
+    "anchor": [
+      4.550513045339727,
+      7.7589503179338015
+    ],
+    "heading": 2.5596875354384965,
+    "datum": "terrain",
+    "elevation": 0,
+    "orientation": "fixed",
+    "replaceFootprint": false,
+    "minLevel": 16,
+    "status": "preview",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "note": "The vehicle opening follows the existing PMTiles approach. The town-facing angle follows the photographed facade. The mapped road location is 3.55 m northwest of the overhead trace, and the placement is an approximate visualization.",
+    "terrainReference": {
+      "anchor": [
+        4.550513045339727,
+        7.7589503179338015
+      ],
+      "modelHeight": 0,
+      "basis": "Terrarium sample at the mapped crossing on the road centerline."
+    }
+  },
+  "placementHash": "sha256:976fc1a81fc8ce37131a3035604ec174982375402fb195bf3bb34c66af5e7dcf",
+  "status": "reviewed-source-aligned-with-road-fallback",
+  "source": "https://build.protomaps.com/20261115.pmtiles",
+  "terrain": {
+    "tile": {
+      "z": 14,
+      "x": 8399,
+      "y": 7837,
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/14/8399/7837.png",
+      "hash": "sha256:202abe965750f77f9d2ee5d773534e677c1db910ea45e2f93dc1ad8478591937"
+    },
+    "coarseGroundDatumMeters": 311.63179,
+    "gradeChanged": false,
+    "terrainRelative": true,
+    "sampledCrossingMeters": 311.6317913379353
+  },
+  "roadFit": {
+    "featureId": 35184592490060,
+    "shiftMeters": 3.549,
+    "offsetEastSouthMeters": [
+      -2.964912412222475,
+      -1.9506002732086927
+    ],
+    "differenceBetweenPhotoAndRoadNormalDegrees": 13.62,
+    "roadPolylinesModified": false,
+    "minimumTestedClearanceWidthInGateFrameMeters": 5.1,
+    "notes": "The existing pavement passes through the open iron leaves. Eight sampled heights between 0.27 and 2.9 m clear the reported width in all four detail levels. The piers reach the native field outside the sampled road surface. The estimate follows PMTiles where it differs from the overhead trace.",
+    "comparedPoses": [
+      {
+        "name": "aerial",
+        "anchor": [
+          4.550539925694466,
+          7.7589327953937755
+        ],
+        "heading": 2.5596875354384965,
+        "datum": "sea-level",
+        "levels": [
+          {
+            "lod": "closeup",
+            "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+            "centerlineRayHit": [
+              3.4763,
+              1.1797,
+              0.3
+            ],
+            "clearLateralOffsetsMeters": [
+              0,
+              0
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.986,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.823,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4487,
+                "pavementAtPier": true
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3903,
+                "pavementAtPier": true
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:dd87d4d0d0d9130f6e9b01ddb212a563fd78a677a62a2153c10eab0e88f416da"
+              },
+              {
+                "camera": "overhead-opening",
+                "hash": "sha256:d89bd60ddc9d40a772dc61e9b5dd9b99da7f0d7d2c7f15cd453f1b9b420b56b7"
+              },
+              {
+                "camera": "approach-from-grove",
+                "hash": "sha256:8a3cc61b7d81dff16bebcf640f8f2f7bb00fbf3279da75172cbff4dd29c97e23"
+              },
+              {
+                "camera": "roadside-context",
+                "hash": "sha256:3a3979d4cb1118fc67d0155da9a7098b400074a4e4f91dac7e14535b00b7cc90"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          }
+        ]
+      },
+      {
+        "name": "mapped-opening-photo-bearing",
+        "anchor": [
+          4.550513045339727,
+          7.7589503179338015
+        ],
+        "heading": 2.5596875354384965,
+        "datum": "terrain",
+        "levels": [
+          {
+            "lod": "skyline",
+            "geometryHash": "sha256:223d90410977e4dd7d411cf510a871155741eaa9b8273737051440f66bfe2969",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:f1da17110f61a65787bee0206245dae8668bf285a8dfbf8cb9eaab683ee41ca0"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "district",
+            "geometryHash": "sha256:6100a7e8a5744519267c44cd3565406224a25b27f3cc22a6e8a30b411c0ebb9c",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:a71b9ac2959dc4582e3a8904a2e7bfad03e22b5d9e88c0fcb182e8b293c61f94"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "street",
+            "geometryHash": "sha256:624f1d721b67b168f272840d0d357b7b814f9b60c31defce1be071ab4b3defb5",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:9ae567d8b85b822a28d4bcdd1d3bc66012fa6b8eae5b50ab10612a610ff575d8"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "closeup",
+            "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:fa99da79c263b71216cf01a0623cbe5a657d4b8f845dbb5cb7f4779817fb55e5"
+              },
+              {
+                "camera": "overhead-opening",
+                "hash": "sha256:84709cdd5d43ee3b5a31f58e285645d75984bce1c8cd1e8c7cdf7f82badea5f8"
+              },
+              {
+                "camera": "approach-from-grove",
+                "hash": "sha256:b0daf15cb637df4528dff9b1ef9ed9b8b635e4584041256ba39a9389eae57cb0"
+              },
+              {
+                "camera": "roadside-context",
+                "hash": "sha256:1396cdf614424c3049558f66611fd64ce437c0f2964299385aec660e8d0b1875"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          }
+        ]
+      },
+      {
+        "name": "mapped-opening-road-bearing",
+        "anchor": [
+          4.550513045339727,
+          7.7589503179338015
+        ],
+        "heading": 2.3219071412606755,
+        "datum": "sea-level",
+        "levels": [
+          {
+            "lod": "closeup",
+            "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -2.7,
+              2.7
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.545,
+            "endPavementMeters": 312.3906,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 1.0208,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8476,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4007,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3303,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:1370ba1c97f5637c3c8f26eb4b15f228491a771c219a90869dcc67c02794d372"
+              },
+              {
+                "camera": "overhead-opening",
+                "hash": "sha256:f623db72e4226a8cfd834be70511500e6e6ef33b2b5bedf93a51e5f57e7d97d1"
+              },
+              {
+                "camera": "approach-from-grove",
+                "hash": "sha256:ea391414aecd779a91b548ffb0afad6903fb298c4e1a5b9c1d57f23f506ae394"
+              },
+              {
+                "camera": "roadside-context",
+                "hash": "sha256:4d287274878927341624a65fb8f6bb6025d02d5b75ff7f5a298c24a55156d57f"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "earlierAerialRoadTrial": {
+    "status": "passed-viewer-fit-at-aerial-trial",
+    "roadFeature": {
+      "id": 35184592490060,
+      "geometryHash": "sha256:b3f8de79e14a2a9e23e64c764269d4217ad3ed7b4665ab53aa1b2ae3e3021cb4",
+      "inputs": [
+        {
+          "source": "https://build.protomaps.com/20261115.pmtiles",
+          "tile": {
+            "z": 15,
+            "x": 16798,
+            "y": 15675,
+            "hash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049"
+          }
+        },
+        {
+          "source": "https://build.protomaps.com/20261118.pmtiles",
+          "tile": {
+            "z": 15,
+            "x": 16798,
+            "y": 15675,
+            "hash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049"
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "aerialCropHash": "sha256:0b972de86f78d707ab484c95d4b12287403f917535367505ffaae3b9776dcd1f",
+      "gateAnchor": [
+        4.550539925694466,
+        7.7589327953937755
+      ],
+      "facadeHeadingRadians": 2.5596875354384965,
+      "elevationMeters": 311.78181,
+      "unadjustedCenterOffsetInGateFrameMeters": 3.549
+    },
+    "trialSegment": {
+      "retainedEndpoints": [
+        [
+          4.5506036281585684,
+          7.759034118402914
+        ],
+        [
+          4.55007791519165,
+          7.7585477677363786
+        ]
+      ],
+      "retainedJunction": [
+        4.5506036281585684,
+        7.759034118402914
+      ],
+      "insertedPoints": [
+        [
+          4.550587877495289,
+          7.759009065926895
+        ],
+        [
+          4.550578287135125,
+          7.75899381182138
+        ],
+        [
+          4.550568696774961,
+          7.758978557715307
+        ],
+        [
+          4.550559106414795,
+          7.758963303608686
+        ],
+        [
+          4.55054951605463,
+          7.758948049501505
+        ],
+        [
+          4.550539925694466,
+          7.758932795393778
+        ],
+        [
+          4.550529988735114,
+          7.758917767223673
+        ],
+        [
+          4.550519383602598,
+          7.758903174616207
+        ],
+        [
+          4.550508147834726,
+          7.758888993101527
+        ],
+        [
+          4.550496318969312,
+          7.758875198209909
+        ],
+        [
+          4.550483934544167,
+          7.758861765471513
+        ],
+        [
+          4.550471032097101,
+          7.75884867041654
+        ],
+        [
+          4.550443823288457,
+          7.758823395477653
+        ],
+        [
+          4.550414992845871,
+          7.758799177634701
+        ],
+        [
+          4.550377131861984,
+          7.75877009364629
+        ],
+        [
+          4.550337792826009,
+          7.758741973156514
+        ],
+        [
+          4.550297562266251,
+          7.758714433824203
+        ],
+        [
+          4.550257026711011,
+          7.758687093308111
+        ],
+        [
+          4.5501929994066765,
+          7.758642807695996
+        ],
+        [
+          4.550132095246303,
+          7.758596486188681
+        ]
+      ],
+      "basis": "A straight approach connects the existing junction to the aerial gate centre. A cubic joins the gate to the next existing point inside the grove, with matched tangents at the gate and the far endpoint. Trees obscure most of the rear segment.",
+      "preservedNearbyRoads": 7
+    },
+    "viewer": {
+      "minimumClearanceWidthMeters": 5.4,
+      "levels": [
+        {
+          "lod": "street",
+          "geometryHash": "sha256:cc108f8d10e4a041aa1c8d062db869dd0d912d46693015996716fb6756ea8a8d",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -2.7,
+            2.7
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.7059,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:e603a7c7976f7651d0a46e481760079d6eaf70e8efeb18e14b484b3c0d717524"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "closeup",
+          "geometryHash": "sha256:8f17fcfab81b7369403ec742d8b97960bfe635b28811a6de0881f31373ee12d7",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -2.7,
+            2.7
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.7059,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:dd805cabf2687adac5c1b310d1080bd116dfa7a0c44ea68de65ed2a4f616ed06"
+            },
+            {
+              "camera": "overhead-opening",
+              "hash": "sha256:991f6f233a0a628ce3e845c466da444a7c171dea2f44eb81353279f5b61782b0"
+            },
+            {
+              "camera": "approach-from-grove",
+              "hash": "sha256:d03d5b392dde0bb9fcfe1658f76ff0ef5c89a97d59df900630ad9576f79ee40c"
+            },
+            {
+              "camera": "roadside-context",
+              "hash": "sha256:014074b2638e20df08b16bd0c4b716bfcca0c2880433945e59e574c9b4449525"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        }
+      ]
+    },
+    "limitation": "The November 15 and 18 PMTiles extracts have identical geometry for the approach. At the aerial gate coordinate, a trial centerline clears a 5.4 m band and preserves the existing junction and adjacent roads. The segment beyond the gate is interpolated under canopy. Its exact course and the gate anchor remain pending; this trial does not establish a production map correction."
+  },
+  "boundedAerialRoadTrial": {
+    "status": "passed-four-level-local-fit",
+    "placement": {
+      "anchor": [
+        4.550539925694466,
+        7.7589327953937755
+      ],
+      "heading": 2.5596875354384965,
+      "elevation": 311.78181,
+      "datum": "sea-level",
+      "bounds": [
+        4.550479244967786,
+        7.7588841020896755,
+        4.550589168786017,
+        7.758971024324758
+      ]
+    },
+    "feature": {
+      "id": 35184592490060,
+      "geometryHash": "sha256:b3f8de79e14a2a9e23e64c764269d4217ad3ed7b4665ab53aa1b2ae3e3021cb4",
+      "tiles": [
+        {
+          "source": "https://build.protomaps.com/20261115.pmtiles",
+          "z": 15,
+          "x": 16798,
+          "y": 15675,
+          "hash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049"
+        },
+        {
+          "source": "https://build.protomaps.com/20261118.pmtiles",
+          "z": 15,
+          "x": 16798,
+          "y": 15675,
+          "hash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049"
+        }
+      ],
+      "sourceSegmentEndpoints": [
+        [
+          4.5506036281585684,
+          7.759034118402914
+        ],
+        [
+          4.55007791519165,
+          7.7585477677363786
+        ]
+      ]
+    },
+    "controls": {
+      "aerialCropHash": "sha256:0b972de86f78d707ab484c95d4b12287403f917535367505ffaae3b9776dcd1f",
+      "originalCrossingOffsetMeters": 3.549,
+      "originalRoadLengthAffectedMeters": 30.133,
+      "startAtMappedJunction": [
+        4.5506036281585684,
+        7.759034118402914
+      ],
+      "rejoinAt": [
+        4.550403947913729,
+        7.758849389108683
+      ],
+      "interiorCenterline": [
+        [
+          4.550597467855454,
+          7.759024320031862
+        ],
+        [
+          4.550587877495289,
+          7.759009065926895
+        ],
+        [
+          4.550578287135125,
+          7.75899381182138
+        ],
+        [
+          4.550568696774961,
+          7.758978557715307
+        ],
+        [
+          4.550559106414795,
+          7.758963303608686
+        ],
+        [
+          4.55054951605463,
+          7.758948049501505
+        ],
+        [
+          4.550539925694466,
+          7.758932795393778
+        ],
+        [
+          4.5505282318460685,
+          7.7589189124898255
+        ],
+        [
+          4.550513003952882,
+          7.758907333329056
+        ],
+        [
+          4.550495251412416,
+          7.758897399914018
+        ],
+        [
+          4.550475983622178,
+          7.758888454247182
+        ],
+        [
+          4.550456209979681,
+          7.758879838330929
+        ],
+        [
+          4.5504369398824345,
+          7.75887089416758
+        ],
+        [
+          4.550419182727946,
+          7.758860963759438
+        ]
+      ],
+      "basis": "The straight town-side approach joins the mapped junction to the photographed opening. A cubic reconnects the crossing to the original line 16 m inside the grove. It matches the original exit tangent. Trees obscure the inner alignment, so the rejoin remains an estimate."
+    },
+    "fit": {
+      "minimumClearanceWidthMeters": 5.3,
+      "pavementChecksPerLevel": 9,
+      "unchangedOtherRoads": 7,
+      "retainedBuildings": 50,
+      "terrainUnchanged": true,
+      "levels": [
+        {
+          "lod": "skyline",
+          "geometryHash": "sha256:223d90410977e4dd7d411cf510a871155741eaa9b8273737051440f66bfe2969",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:9c27f980afb8db68f5d24cba272dccfb5d59a616bac6d3037fdda6f375bfbcce"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "district",
+          "geometryHash": "sha256:6100a7e8a5744519267c44cd3565406224a25b27f3cc22a6e8a30b411c0ebb9c",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:22b89ca91d2a2437f9302f33abe5d869e4e8b8c2a0f1271c684b9ccaa3c641be"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "street",
+          "geometryHash": "sha256:624f1d721b67b168f272840d0d357b7b814f9b60c31defce1be071ab4b3defb5",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:19c65a0e1dfaec2d42f851b4f6f527f483ec5a265bc53a57cce7902247c9fc7b"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "closeup",
+          "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:58e2490b846d1a8800e5f9e8494a630356144f9533d284ba466bf079d6f1240a"
+            },
+            {
+              "camera": "overhead-opening",
+              "hash": "sha256:bc0d3dcad3efbd84d426724daffb2d0eff49ce7d9f7c59a0efd297661cdb6168"
+            },
+            {
+              "camera": "approach-from-grove",
+              "hash": "sha256:5a898e8f4c1c3e24a05675e9e5f98215bf4defa2d5216c208e86bf96ebb56fa5"
+            },
+            {
+              "camera": "roadside-context",
+              "hash": "sha256:65bcea5c91e1dd39205d3732141fbf52d5f8b34b15031ad9528799e7d40109a3"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        }
+      ],
+      "inspectedFrames": [
+        {
+          "level": "skyline",
+          "camera": "approach-from-town",
+          "hash": "sha256:9c27f980afb8db68f5d24cba272dccfb5d59a616bac6d3037fdda6f375bfbcce"
+        },
+        {
+          "level": "district",
+          "camera": "approach-from-town",
+          "hash": "sha256:22b89ca91d2a2437f9302f33abe5d869e4e8b8c2a0f1271c684b9ccaa3c641be"
+        },
+        {
+          "level": "street",
+          "camera": "approach-from-town",
+          "hash": "sha256:19c65a0e1dfaec2d42f851b4f6f527f483ec5a265bc53a57cce7902247c9fc7b"
+        },
+        {
+          "level": "closeup",
+          "camera": "approach-from-town",
+          "hash": "sha256:58e2490b846d1a8800e5f9e8494a630356144f9533d284ba466bf079d6f1240a"
+        },
+        {
+          "level": "closeup",
+          "camera": "overhead-opening",
+          "hash": "sha256:bc0d3dcad3efbd84d426724daffb2d0eff49ce7d9f7c59a0efd297661cdb6168"
+        },
+        {
+          "level": "closeup",
+          "camera": "approach-from-grove",
+          "hash": "sha256:5a898e8f4c1c3e24a05675e9e5f98215bf4defa2d5216c208e86bf96ebb56fa5"
+        },
+        {
+          "level": "closeup",
+          "camera": "roadside-context",
+          "hash": "sha256:65bcea5c91e1dd39205d3732141fbf52d5f8b34b15031ad9528799e7d40109a3"
+        }
+      ]
+    },
+    "limitation": "This is a local fixture with one edited road. The shipped viewer still uses the mapped road and the road-centered preview. The short correction needs a source-matched runtime path before the gate can be moved to the aerial anchor."
+  },
+  "runtimeRoadAlignment": {
+    "status": "verified-on-matching-protomaps-source",
+    "correction": "content/earth/terrain/road-alignments.json",
+    "tile": {
+      "z": 15,
+      "x": 16798,
+      "y": 15675,
+      "hash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049"
+    },
+    "decodedTileHash": "sha256:81997c40855a83bb9582b01e8fd2f0ab2dd1e1c9b525e6f7b21f0ddb7e4fd049",
+    "packHash": "sha256:0fc0d1e5d9dcc688948645a5167686315f8545b7372f0c0700d668575b30650b",
+    "correctionDataHash": "sha256:cce1635bcab5c23e85bb1a99a8f6068dd37112897820022df74db7fdc7b4255f",
+    "resolvedPlacement": {
+      "id": "osun.grove.road.gate",
+      "title": "Osun Grove road entrance gate",
+      "asset": "molen.worldgen.structure.osun_grove_road_gate",
+      "anchor": [
+        4.550539925694466,
+        7.7589327953937755
+      ],
+      "heading": 2.5596875354384965,
+      "datum": "terrain",
+      "elevation": 0,
+      "orientation": "fixed",
+      "replaceFootprint": false,
+      "minLevel": 16,
+      "status": "preview",
+      "source": "https://build.protomaps.com/20261115.pmtiles",
+      "note": "The vehicle opening follows the existing PMTiles approach. The town-facing angle follows the photographed facade. The mapped road location is 3.55 m northwest of the overhead trace, and the placement is an approximate visualization.",
+      "terrainReference": {
+        "anchor": [
+          4.550539925694466,
+          7.7589327953937755
+        ],
+        "modelHeight": 0,
+        "basis": "Terrarium sample at the mapped crossing on the road centerline."
+      }
+    },
+    "correctedRoadMatchingReviewedFit": true,
+    "retainedRoadFeatures": 6,
+    "review": "Read the built Earth pack and decoded the hash-checked PMTiles source. The detailed feature layer uses the corrected road after overzoom. The terrain-relative gate uses the photographed anchor and the same signed heading.",
+    "fit": {
+      "minimumClearanceWidthMeters": 5.3,
+      "levels": [
+        {
+          "lod": "skyline",
+          "geometryHash": "sha256:223d90410977e4dd7d411cf510a871155741eaa9b8273737051440f66bfe2969",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:3f1e7c1417d27ddd10e94fa5eed99163385c3e518e08c20d0763a520d5d499ac"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "district",
+          "geometryHash": "sha256:6100a7e8a5744519267c44cd3565406224a25b27f3cc22a6e8a30b411c0ebb9c",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:88514105355b84298f19cc351b6c91d52fd9e2afc9c53d91b3b94a775dcbc930"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "street",
+          "geometryHash": "sha256:624f1d721b67b168f272840d0d357b7b814f9b60c31defce1be071ab4b3defb5",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:0de5d6f5d71f8bcf1f43b155b5041f731da42dcc08dbf6458a589b97b1dd53d9"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        },
+        {
+          "lod": "closeup",
+          "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+          "centerlineRayHit": null,
+          "clearLateralOffsetsMeters": [
+            -3,
+            2.3
+          ],
+          "probeHeightRangeMeters": [
+            0.27,
+            2.9
+          ],
+          "roadSurfaceAtCrossingMeters": 312.0978,
+          "startPavementMeters": 311.6161,
+          "endPavementMeters": 312.6267,
+          "footing": [
+            {
+              "pointXZ": [
+                -5.3,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.986,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                -3.46,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.823,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                3.58,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.4487,
+              "pavementAtPier": false
+            },
+            {
+              "pointXZ": [
+                5.4,
+                0
+              ],
+              "bottomBelowNativeTerrainMeters": 0.3903,
+              "pavementAtPier": false
+            }
+          ],
+          "roadsRetained": 8,
+          "buildingsRetained": 50,
+          "frames": [
+            {
+              "camera": "approach-from-town",
+              "hash": "sha256:faf13ee99b5f9c4d8321a88c4580a5b40284ff2b85767d905f76419231402438"
+            },
+            {
+              "camera": "overhead-opening",
+              "hash": "sha256:5da5985e24e05ea0e7a4ef437c04afd66177e69083df9827b82f917d03fbedfa"
+            },
+            {
+              "camera": "approach-from-grove",
+              "hash": "sha256:2f1c87e81bf5a107f260989d9a7ba127a0420a6f179b4dbf216d6c9e5e2471c9"
+            },
+            {
+              "camera": "roadside-context",
+              "hash": "sha256:95fad93abd0bf471dcad275f476c7321326141973972d766e42336bec47c3ec5"
+            }
+          ],
+          "unload": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "landcoverRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          }
+        }
+      ]
+    },
+    "limitation": "The short road section under tree cover remains interpolated. The road-centered preview stays active if the source lacks the expected segment or has finer native feature tiles."
+  },
+  "signedOrientation": {
+    "evidenceHash": "sha256:e9a5de342fd1585b76786aa9b189759bc2a9076848d7d7d75c24587e107e22e1",
+    "measuredHeadingRadians": 2.5596875354384965,
+    "bearingTrueDegrees": 33.34,
+    "traceDifferenceDegrees": 0.707,
+    "headingMarginDegrees": 3,
+    "townApproachProjectionMeters": 13.285,
+    "referenceImageHashes": [
+      "sha256:f64f3bb2a14d26ad09498dc41092a161dd648028fefacdc025ffbada0b676874",
+      "sha256:2f8d0122eb047fb702f8d60dd3de0319a161d4351296b22fcca1b138d3299dbb"
+    ]
+  },
+  "tileLocalTerrainTrial": {
+    "status": "passed",
+    "minimumFallbackClearanceWidthMeters": 5.1,
+    "customSampler": false,
+    "cases": [
+      {
+        "name": "mapped-opening-photo-bearing",
+        "entry": {
+          "id": "osun.grove.road.gate",
+          "title": "Osun Grove road entrance gate",
+          "asset": "molen.worldgen.structure.osun_grove_road_gate",
+          "anchor": [
+            4.550513045339727,
+            7.7589503179338015
+          ],
+          "heading": 2.5596875354384965,
+          "datum": "terrain",
+          "elevation": 0,
+          "orientation": "fixed",
+          "replaceFootprint": false,
+          "minLevel": 16,
+          "status": "preview",
+          "source": "https://build.protomaps.com/20261115.pmtiles",
+          "note": "The vehicle opening follows the existing PMTiles approach. The town-facing angle follows the photographed facade. The mapped road location is 3.55 m northwest of the overhead trace, and the placement is an approximate visualization.",
+          "terrainReference": {
+            "anchor": [
+              4.550513045339727,
+              7.7589503179338015
+            ],
+            "modelHeight": 0,
+            "basis": "Terrarium sample at the mapped crossing on the road centerline."
+          }
+        },
+        "records": [
+          {
+            "lod": "skyline",
+            "geometryHash": "sha256:223d90410977e4dd7d411cf510a871155741eaa9b8273737051440f66bfe2969",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:94bb73d4917325fc00992efef0fc330fc757c05f4ce1a93fe4a8c727fb43a0c7"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "district",
+            "geometryHash": "sha256:6100a7e8a5744519267c44cd3565406224a25b27f3cc22a6e8a30b411c0ebb9c",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:b0760e25e47c5db253473f8fce391132989c4b55bed4f8c0f7aa62e0475db74d"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "street",
+            "geometryHash": "sha256:624f1d721b67b168f272840d0d357b7b814f9b60c31defce1be071ab4b3defb5",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:0c372e78ffbc2b4447cdc37aafb4f58d97a7c94fa76bd0e3252e98119e0d4e14"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "closeup",
+            "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.1
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 311.9475,
+            "startPavementMeters": 311.5319,
+            "endPavementMeters": 312.4021,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.8496,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.7454,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.5042,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.476,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:cc79db326f76dda997913605f877b0cfecf9d6a4c29ce8589ee8cf9769768bb8"
+              },
+              {
+                "camera": "overhead-opening",
+                "hash": "sha256:f01eb8daa342a4bc2321a0b6207a28149f3c8b7442b4684798f58ade6d3ecd47"
+              },
+              {
+                "camera": "approach-from-grove",
+                "hash": "sha256:8c7dff84393f413e5f346a1b7f3f16670144392c54330a0fcff0464f47608ff9"
+              },
+              {
+                "camera": "roadside-context",
+                "hash": "sha256:ba0b3723450b7bcaa3146a92a91dacc3f592245adf0bf04080e69e52a14e2865"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          }
+        ]
+      },
+      {
+        "name": "runtime-aerial-road-fit",
+        "entry": {
+          "id": "osun.grove.road.gate",
+          "title": "Osun Grove road entrance gate",
+          "asset": "molen.worldgen.structure.osun_grove_road_gate",
+          "anchor": [
+            4.550539925694466,
+            7.7589327953937755
+          ],
+          "heading": 2.5596875354384965,
+          "datum": "terrain",
+          "elevation": 0,
+          "orientation": "fixed",
+          "replaceFootprint": false,
+          "minLevel": 16,
+          "status": "preview",
+          "source": "https://build.protomaps.com/20261115.pmtiles",
+          "note": "The vehicle opening follows the existing PMTiles approach. The town-facing angle follows the photographed facade. The mapped road location is 3.55 m northwest of the overhead trace, and the placement is an approximate visualization.",
+          "terrainReference": {
+            "anchor": [
+              4.550539925694466,
+              7.7589327953937755
+            ],
+            "modelHeight": 0,
+            "basis": "Terrarium sample at the mapped crossing on the road centerline."
+          }
+        },
+        "records": [
+          {
+            "lod": "skyline",
+            "geometryHash": "sha256:223d90410977e4dd7d411cf510a871155741eaa9b8273737051440f66bfe2969",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.3
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 312.0978,
+            "startPavementMeters": 311.6161,
+            "endPavementMeters": 312.6267,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.986,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.823,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4487,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3903,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:3f1e7c1417d27ddd10e94fa5eed99163385c3e518e08c20d0763a520d5d499ac"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "district",
+            "geometryHash": "sha256:6100a7e8a5744519267c44cd3565406224a25b27f3cc22a6e8a30b411c0ebb9c",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.3
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 312.0978,
+            "startPavementMeters": 311.6161,
+            "endPavementMeters": 312.6267,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.986,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.823,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4487,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3903,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:88514105355b84298f19cc351b6c91d52fd9e2afc9c53d91b3b94a775dcbc930"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "street",
+            "geometryHash": "sha256:624f1d721b67b168f272840d0d357b7b814f9b60c31defce1be071ab4b3defb5",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.3
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 312.0978,
+            "startPavementMeters": 311.6161,
+            "endPavementMeters": 312.6267,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.986,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.823,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4487,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3903,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:0de5d6f5d71f8bcf1f43b155b5041f731da42dcc08dbf6458a589b97b1dd53d9"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          },
+          {
+            "lod": "closeup",
+            "geometryHash": "sha256:331d6f6fb0ddf5cc69cc47160c470e95e8ce7cf09d65877651c105f28bd77f7d",
+            "centerlineRayHit": null,
+            "clearLateralOffsetsMeters": [
+              -3,
+              2.3
+            ],
+            "probeHeightRangeMeters": [
+              0.27,
+              2.9
+            ],
+            "roadSurfaceAtCrossingMeters": 312.0978,
+            "startPavementMeters": 311.6161,
+            "endPavementMeters": 312.6267,
+            "footing": [
+              {
+                "pointXZ": [
+                  -5.3,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.986,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  -3.46,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.823,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  3.58,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.4487,
+                "pavementAtPier": false
+              },
+              {
+                "pointXZ": [
+                  5.4,
+                  0
+                ],
+                "bottomBelowNativeTerrainMeters": 0.3903,
+                "pavementAtPier": false
+              }
+            ],
+            "roadsRetained": 8,
+            "buildingsRetained": 50,
+            "frames": [
+              {
+                "camera": "approach-from-town",
+                "hash": "sha256:faf13ee99b5f9c4d8321a88c4580a5b40284ff2b85767d905f76419231402438"
+              },
+              {
+                "camera": "overhead-opening",
+                "hash": "sha256:5da5985e24e05ea0e7a4ef437c04afd66177e69083df9827b82f917d03fbedfa"
+              },
+              {
+                "camera": "approach-from-grove",
+                "hash": "sha256:2f1c87e81bf5a107f260989d9a7ba127a0420a6f179b4dbf216d6c9e5e2471c9"
+              },
+              {
+                "camera": "roadside-context",
+                "hash": "sha256:95fad93abd0bf471dcad275f476c7321326141973972d766e42336bec47c3ec5"
+              }
+            ],
+            "unload": {
+              "groundRetained": true,
+              "waterRetained": true,
+              "landcoverRetained": true,
+              "liveGeometries": 0,
+              "liveSupportGeometries": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "review": "The town-facing facade matches the entrance photos and the overhead pier line. The shipped source correction uses the aerial anchor and clears 5.3 m across the gate. The road-centered fallback is 3.55 m northwest and clears 5.1 m on the retained baseline road. Both were rendered at all four levels using the owning tile’s terrain, with no host sampler. Terrain under the piers and other mapped features were retained. The short road curve under the canopy is estimated."
+}

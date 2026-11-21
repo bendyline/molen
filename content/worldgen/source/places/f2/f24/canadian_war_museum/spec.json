@@ -1,0 +1,856 @@
+{
+  "planId": "canadian_war_museum",
+  "id": "canadian_war_museum",
+  "assetId": "molen.worldgen.structure.canadian_war_museum",
+  "title": "Canadian War Museum",
+  "wikidataId": "Q1032442",
+  "category": "museum-library",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.71744,
+    "latitude": 45.41723
+  },
+  "size": [
+    302.82762145996094,
+    26.6075701713562,
+    184.42391967773438
+  ],
+  "actualBounds": {
+    "min": [
+      -137.05471801757812,
+      -2.107570171356201,
+      -71.19965362548828
+    ],
+    "max": [
+      165.7729034423828,
+      24.5,
+      113.2242660522461
+    ]
+  },
+  "visualBrief": "Ottawa’s Canadian War Museum with walkable grass slopes, canted concrete and glass, and a rising copper fin with bilingual Morse windows.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canadian_War_Museum_Under_Construction_31may2004.JPG"
+  ],
+  "stories": [
+    {
+      "id": "canadian-war-museum-wp",
+      "url": "https://qualla.com/canadian-war-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:bfd9a1f9179323cd3106a8a2eafd93ccb6eb94ccdf6c7ab2cbc238b6a9b0bed0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f24/canadian_war_museum/models/canadian-war-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f24/canadian_war_museum/models/canadian-war-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.12,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "grass": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.61,
+        "metallic": 0.31
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.52,
+        "metallic": 0.34
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      },
+      "reveal": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.85
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.61,
+            "metallic": 0.31
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.34
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          },
+          "reveal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.61,
+            "metallic": 0.31
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.34
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          },
+          "reveal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.067,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.61,
+            "metallic": 0.31
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.34
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          },
+          "reveal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_plain",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.2,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Natural Resources Canada bare-earth elevation at the mapped Vimy Place public approach.",
+    "anchor": [
+      -75.71744,
+      45.41723
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.71539878769097,
+        45.41710064319081
+      ],
+      "modelHeight": 0,
+      "basis": "Original NRCan bare-earth elevation at the museum’s eastern public approach."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          42.8126,
+          56.8175
+        ],
+        [
+          38.3977,
+          55.4705
+        ],
+        [
+          38.7572,
+          52.2311
+        ],
+        [
+          36.3114,
+          52.8545
+        ],
+        [
+          36.9287,
+          55.593
+        ],
+        [
+          20.4178,
+          61.4038
+        ],
+        [
+          20.746,
+          62.8399
+        ],
+        [
+          -52.8848,
+          89.1558
+        ],
+        [
+          -81.2025,
+          99.5642
+        ],
+        [
+          -118.3032,
+          113.2008
+        ],
+        [
+          -137.0332,
+          81.5638
+        ],
+        [
+          -70.7553,
+          59.4335
+        ],
+        [
+          -79.1631,
+          46.3423
+        ],
+        [
+          -75.9281,
+          34.2085
+        ],
+        [
+          -89.9385,
+          37.7262
+        ],
+        [
+          -72.6541,
+          21.3288
+        ],
+        [
+          -72.7713,
+          18.4902
+        ],
+        [
+          -45.7975,
+          17.6553
+        ],
+        [
+          -28.8022,
+          17.4326
+        ],
+        [
+          -29.2164,
+          5.4101
+        ],
+        [
+          -22.7151,
+          -3.1949
+        ],
+        [
+          -20.496,
+          -1.4472
+        ],
+        [
+          -14.2292,
+          -9.7405
+        ],
+        [
+          -8.4234,
+          -17.3881
+        ],
+        [
+          -11.1661,
+          -20.6275
+        ],
+        [
+          -17.597,
+          -30.958
+        ],
+        [
+          -21.965,
+          -33.2957
+        ],
+        [
+          47.5635,
+          -71.1777
+        ],
+        [
+          58.5655,
+          -58.1088
+        ],
+        [
+          68.7784,
+          -46.9991
+        ],
+        [
+          80.1164,
+          -51.886
+        ],
+        [
+          92.5797,
+          -38.5054
+        ],
+        [
+          100.7296,
+          -46.0195
+        ],
+        [
+          111.7238,
+          -50.8953
+        ],
+        [
+          107.4262,
+          -64.3427
+        ],
+        [
+          115.9902,
+          -64.6766
+        ],
+        [
+          122.7571,
+          -55.515
+        ],
+        [
+          131.6728,
+          -55.5373
+        ],
+        [
+          131.6963,
+          -55.5484
+        ],
+        [
+          132.9778,
+          -53.4779
+        ],
+        [
+          129.2974,
+          -51.6745
+        ],
+        [
+          151.6453,
+          -10.8203
+        ],
+        [
+          154.1067,
+          17.6553
+        ],
+        [
+          140.7761,
+          24.2343
+        ],
+        [
+          117.3577,
+          32.1602
+        ],
+        [
+          114.279,
+          35.2104
+        ],
+        [
+          115.3964,
+          39.6297
+        ]
+      ],
+      "basis": "The native footprint bounds the replacement of raster-returned roof surfaces by the built grass roofs, walls and terrace. The original elevation data is retained outside the footprint."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          42.8126,
+          56.8175
+        ],
+        [
+          38.3977,
+          55.4705
+        ],
+        [
+          38.7572,
+          52.2311
+        ],
+        [
+          36.3114,
+          52.8545
+        ],
+        [
+          36.9287,
+          55.593
+        ],
+        [
+          20.4178,
+          61.4038
+        ],
+        [
+          20.746,
+          62.8399
+        ],
+        [
+          -52.8848,
+          89.1558
+        ],
+        [
+          -81.2025,
+          99.5642
+        ],
+        [
+          -118.3032,
+          113.2008
+        ],
+        [
+          -137.0332,
+          81.5638
+        ],
+        [
+          -70.7553,
+          59.4335
+        ],
+        [
+          -79.1631,
+          46.3423
+        ],
+        [
+          -75.9281,
+          34.2085
+        ],
+        [
+          -89.9385,
+          37.7262
+        ],
+        [
+          -72.6541,
+          21.3288
+        ],
+        [
+          -72.7713,
+          18.4902
+        ],
+        [
+          -45.7975,
+          17.6553
+        ],
+        [
+          -28.8022,
+          17.4326
+        ],
+        [
+          -29.2164,
+          5.4101
+        ],
+        [
+          -22.7151,
+          -3.1949
+        ],
+        [
+          -20.496,
+          -1.4472
+        ],
+        [
+          -14.2292,
+          -9.7405
+        ],
+        [
+          -8.4234,
+          -17.3881
+        ],
+        [
+          -11.1661,
+          -20.6275
+        ],
+        [
+          -17.597,
+          -30.958
+        ],
+        [
+          -21.965,
+          -33.2957
+        ],
+        [
+          47.5635,
+          -71.1777
+        ],
+        [
+          58.5655,
+          -58.1088
+        ],
+        [
+          68.7784,
+          -46.9991
+        ],
+        [
+          80.1164,
+          -51.886
+        ],
+        [
+          92.5797,
+          -38.5054
+        ],
+        [
+          100.7296,
+          -46.0195
+        ],
+        [
+          111.7238,
+          -50.8953
+        ],
+        [
+          107.4262,
+          -64.3427
+        ],
+        [
+          115.9902,
+          -64.6766
+        ],
+        [
+          122.7571,
+          -55.515
+        ],
+        [
+          131.6728,
+          -55.5373
+        ],
+        [
+          131.6963,
+          -55.5484
+        ],
+        [
+          132.9778,
+          -53.4779
+        ],
+        [
+          129.2974,
+          -51.6745
+        ],
+        [
+          151.6453,
+          -10.8203
+        ],
+        [
+          154.1067,
+          17.6553
+        ],
+        [
+          140.7761,
+          24.2343
+        ],
+        [
+          117.3577,
+          32.1602
+        ],
+        [
+          114.279,
+          35.2104
+        ],
+        [
+          115.3964,
+          39.6297
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named museum and Vimy Place entry envelope, aligned to the verified terrain."
+    },
+    "featureIds": [
+      "way/103438401",
+      "way/103438390",
+      "way/634068958",
+      "way/634068959",
+      "way/1119765001",
+      "way/1119765002",
+      "way/1119765003",
+      "way/1119765004",
+      "way/1119765005",
+      "way/1119765006",
+      "way/1119765007",
+      "way/1119765008",
+      "way/1119765009",
+      "way/1119765010",
+      "way/1119765011",
+      "way/1119765012",
+      "way/1119765013",
+      "way/1119765014",
+      "way/1119765015",
+      "way/1119765016",
+      "way/1119765017"
+    ],
+    "source": "https://www.openstreetmap.org/way/103438401",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f036ce62f2e0c394ff2386faaa704d1578f8bd1f2d207e663e9391e1c6bc9d96",
+    "notes": "The museum’s architecture and engineering records identify exposed concrete, sod roofs, glowing copper, tilted glass and the tall Regeneration Hall. The original public-domain construction photograph establishes the permanent faceted volumes and the positions of the glazing and Morse-code apertures."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The 24.5 m peak is documented. Roof slopes use measured first-return samples, with localized interpretation at steps, narrow windows and parapets below the lidar resolution.",
+    "Curtain-wall subdivisions, concrete seams, copper panel widths and Morse aperture positions are approximated. The bilingual words encoded on the north fin are documented.",
+    "The exterior represents the standing museum with finished grass roofs and public terrace. The archive photo was taken during construction. Site hoardings, unfinished roof surfaces and current exhibition objects are outside the modeled scope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Natural Resources Canada elevation data under the Open Government Licence – Canada.",
+  "qaLodCameras": [
+    {
+      "name": "canadian-war-museum-skyline",
+      "position": [
+        271,
+        108,
+        174
+      ],
+      "lookAt": [
+        27,
+        6,
+        15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "canadian-war-museum-district",
+      "position": [
+        271,
+        108,
+        174
+      ],
+      "lookAt": [
+        27,
+        6,
+        15
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "canadian-war-museum-street",
+      "position": [
+        271,
+        108,
+        174
+      ],
+      "lookAt": [
+        27,
+        6,
+        15
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "canadian-war-museum-closeup",
+      "position": [
+        271,
+        108,
+        174
+      ],
+      "lookAt": [
+        27,
+        6,
+        15
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-peak-and-morse-apertures",
+      "position": [
+        162,
+        41,
+        -115
+      ],
+      "lookAt": [
+        91,
+        13,
+        -33
+      ]
+    },
+    {
+      "name": "tilted-vimy-place-curtain-wall",
+      "position": [
+        209,
+        22,
+        28
+      ],
+      "lookAt": [
+        121,
+        8,
+        -14
+      ]
+    },
+    {
+      "name": "broad-west-grass-roof",
+      "position": [
+        -185,
+        64,
+        110
+      ],
+      "lookAt": [
+        -37,
+        8,
+        25
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2078,
+    "vertices": 6234,
+    "materials": 7,
+    "bytes": 385400,
+    "sha256": "sha256:bfac3e5f015e76fd6e893a35c2b3647e381a6af715eb1159ba67299022883058"
+  }
+}

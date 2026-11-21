@@ -1,0 +1,549 @@
+{
+  "planId": "linh_phuoc_temple",
+  "id": "linh_phuoc_temple",
+  "assetId": "molen.worldgen.structure.linh_phuoc_temple",
+  "title": "Linh Phước Temple",
+  "wikidataId": "Q10748461",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 108.49945185789475,
+    "latitude": 11.944233489473682
+  },
+  "size": [
+    80.24128723144531,
+    47.94177722930908,
+    104.40577697753906
+  ],
+  "actualBounds": {
+    "min": [
+      -38.615570068359375,
+      -10.40502643585205,
+      -53.767940521240234
+    ],
+    "max": [
+      41.62571716308594,
+      37.53675079345703,
+      50.63783645629883
+    ]
+  },
+  "visualBrief": "Linh Phước Temple in Trại Mát. Dark blue upturned tile eaves, ceramic bands and relief-like color accents, a seven-tier bell tower, twin lower shrines, and attached temple ranges on the original steep terrain.",
+  "nativeAxes": {
+    "x": "along the roadside elevation",
+    "y": "up",
+    "z": "toward the temple courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Linh_Phuoc_Pagoda_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "linh-phuoc-temple-wp",
+      "url": "https://qualla.com/linh-phuoc-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:f722a83facd84e7f82507295d89d5e5a3cba678a52c42c025f1abb7329944ef0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w6/w6j/linh_phuoc_temple/models/linh-phuoc-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "chinese-roof-geometry.mjs": "sha256:27d266dd4b4e8e45bc27137f92ddd0df84f0a2cc211e74071eb09f6f00ea1c13",
+    "khmer-structure-geometry.mjs": "sha256:8ee551ed14bf036efe5a3c71b4ec1c8d8c8cdf1f4ba91cdb3667ff1492633ccd"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w6/w6j/linh_phuoc_temple/models/linh-phuoc-temple-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glaze": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.66,
+        "metallic": 0.04
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.58,
+        "metallic": 0.29
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0.04
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.29
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0.04
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.29
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0.04
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.29
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_ceramic",
+    "tile_glazed",
+    "stone_ashlar",
+    "wood_plain",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -0.64,
+    "focus": {
+      "center": [
+        4,
+        12,
+        1
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Diane Selwyn’s 2011 public-domain Qualla photograph establishes the historic dark upturned roofs, ornamented central bays, flanking lower roof towers and the stacked bell tower sequence. The 37 m height and seven levels follow the national tourism authority and provincial gazetteer.",
+    "anchor": [
+      108.49945185789475,
+      11.944233489473682
+    ],
+    "heading": -1.222960103984231,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        108.49955207514049,
+        11.944276683657025
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the roadside approach in front of Linh Tháp."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          1.31038,
+          -9.00606
+        ],
+        [
+          -1.59717,
+          -8.89022
+        ],
+        [
+          -4.34292,
+          -7.88161
+        ],
+        [
+          -6.62308,
+          -6.06703
+        ],
+        [
+          -8.22667,
+          -3.63643
+        ],
+        [
+          -8.99809,
+          -0.82301
+        ],
+        [
+          -8.84758,
+          2.09298
+        ],
+        [
+          -7.8079,
+          4.81006
+        ],
+        [
+          -5.96552,
+          7.07676
+        ],
+        [
+          -3.25798,
+          8.75354
+        ],
+        [
+          -0.14781,
+          9.41783
+        ],
+        [
+          3.01525,
+          8.98916
+        ],
+        [
+          5.83691,
+          7.50994
+        ],
+        [
+          7.97996,
+          5.15909
+        ],
+        [
+          9.21048,
+          2.22251
+        ],
+        [
+          9.37085,
+          -0.96307
+        ],
+        [
+          8.4395,
+          -4.01157
+        ],
+        [
+          6.53227,
+          -6.55665
+        ],
+        [
+          4.1191,
+          -8.1962
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Replacing the exact named mapped volume of Linh Tháp while preserving other site buildings."
+    },
+    "featureIds": [
+      "way/522159670",
+      "way/1048566814",
+      "way/1467651478",
+      "way/1467651479",
+      "way/1510347216"
+    ],
+    "source": "https://www.openstreetmap.org/way/522159670",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:19455233f0e26961157f4b93bd23e088d663eaa347038df11ba5c126a54cd614",
+    "notes": "Diane Selwyn’s 2011 public-domain Qualla photograph establishes the historic dark upturned roofs, ornamented central bays, flanking lower roof towers and the stacked bell tower sequence. The 37 m height and seven levels follow the national tourism authority and provincial gazetteer."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model includes the standing temple’s exterior volumes. Some courtyard, roof and window proportions and the exact massing of the adjacent ranges are approximate.",
+    "Ceramic materials, colors and trim are independently patterned. Distinctive figurative artwork, the bottle dragon sculpture, statuary, religious inscriptions and interiors are outside the model."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "linh-phuoc-temple-skyline",
+      "position": [
+        52,
+        30,
+        -77
+      ],
+      "lookAt": [
+        4,
+        12,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "linh-phuoc-temple-district",
+      "position": [
+        52,
+        30,
+        -77
+      ],
+      "lookAt": [
+        4,
+        12,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "linh-phuoc-temple-street",
+      "position": [
+        52,
+        30,
+        -77
+      ],
+      "lookAt": [
+        4,
+        12,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "linh-phuoc-temple-closeup",
+      "position": [
+        52,
+        30,
+        -77
+      ],
+      "lookAt": [
+        4,
+        12,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "three-portal-front-and-tower",
+      "position": [
+        14,
+        10.4,
+        -52
+      ],
+      "lookAt": [
+        0,
+        17.3,
+        0
+      ]
+    },
+    {
+      "name": "bell-storey-and-mosaic-eaves",
+      "position": [
+        28,
+        34,
+        -27
+      ],
+      "lookAt": [
+        0,
+        20,
+        1
+      ]
+    },
+    {
+      "name": "temple-and-south-ranges",
+      "position": [
+        55,
+        29,
+        66
+      ],
+      "lookAt": [
+        7,
+        8.5,
+        13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17706,
+    "vertices": 53118,
+    "materials": 6,
+    "bytes": 2288164,
+    "sha256": "sha256:d5cea800c89fcb70fba06d1305dcebe26fa7c1cf8b34dd67c261d41f29534490"
+  }
+}

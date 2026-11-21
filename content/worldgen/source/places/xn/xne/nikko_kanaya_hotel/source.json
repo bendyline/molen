@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nikko_kanaya_hotel",
+  "kind": "static-structure",
+  "title": "Nikkō Kanaya Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nikko_kanaya_hotel",
+        "output": "assets/places/xn/xne/nikko_kanaya_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ced7f91833f4fb701bcac92e191bab2a184b9c8f89b5ebafa270d5944ab82132"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-nikko-kanaya-hotel",
+        "path": "models/generate-nikko-kanaya-hotel.mjs"
+      },
+      {
+        "id": "nikko-kanaya-hotel-model",
+        "path": "models/nikko-kanaya-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/nikko-kanaya-hotel-building-outlines.json",
+      "reference-rights/standing-hotel-architecture.json",
+      "reference-rights/qualla-image-screening.json",
+      "reference-images/rijks-rp-f-f01102-bh-kanaya-hotel.jpg",
+      "reference-rights/rijks-rp-f-f01102-bh.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-dem5a-15-29091-12782.txt",
+      "terrain-sources/gsi-dem-14-14545-6391.txt",
+      "terrain-sources/gsi-dem5a-15-29090-12782.txt",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

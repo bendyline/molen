@@ -37,7 +37,7 @@ const viewingDate = process.argv
   .find((arg) => arg.startsWith('--viewing-date='))
   ?.slice('--viewing-date='.length);
 if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
-  throw new Error('--viewing-date needs a valid YYYY-MM-DD calendar date');
+  throw new Error('--viewing-date needs a valid ISO calendar date');
 if (outputIndex >= 0 && !outputDirectory) throw new Error('--out-dir needs a directory');
 const placements = await readOptionalJson(
   resolve(root, 'content/earth/structures/placements/authoring.json'),

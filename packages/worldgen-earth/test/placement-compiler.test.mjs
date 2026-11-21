@@ -8,6 +8,15 @@ import {
   readStructurePlacements,
 } from '../scripts/placement-sources.mjs';
 
+const withoutDocumentation = (value) =>
+  value === undefined
+    ? undefined
+    : JSON.parse(
+        JSON.stringify(value, (key, field) =>
+          key === 'basis' || key === 'note' ? undefined : field,
+        ),
+      );
+
 describe('placement compiler', () => {
   it('retains all source evidence and projects the full catalog without altering geometry', async () => {
     const source = await readStructurePlacements();
@@ -22,7 +31,8 @@ describe('placement compiler', () => {
         entry = built.document.entries[i];
       expect(entry).toEqual(runtimePlacement(original));
       expect(entry.anchor).toEqual(original.anchor);
-      expect(entry.appearance).toEqual(original.appearance);
+      // Documentation (basis/note) is dropped at any depth; appearance values are kept.
+      expect(entry.appearance).toEqual(withoutDocumentation(original.appearance));
       expect(entry.source).toBe(original.source);
     }
     const full = createStructureIndex(built.document);

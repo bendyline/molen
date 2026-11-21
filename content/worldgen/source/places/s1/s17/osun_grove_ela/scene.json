@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Ẹ̀là sculpture at Ẹbu Ìyá Mọòpó",
+  "seed": "osun_grove_ela",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "sculpture",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_ela",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.14,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              38,
+              0.28,
+              38
+            ]
+          },
+          "materialRef": "palette:#8d8663",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dfebe7",
+            "ground": "#9a886d",
+            "intensity": 1.1
+          },
+          "sun": {
+            "direction": [
+              -3,
+              5,
+              7
+            ],
+            "color": "#fff5e4",
+            "intensity": 1.6,
+            "castShadow": true
+          },
+          "background": "#b3d0d9",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      3.4,
+      2.38,
+      12.7
+    ],
+    "lookAt": [
+      0,
+      4.17,
+      0
+    ],
+    "fov": 50
+  }
+}

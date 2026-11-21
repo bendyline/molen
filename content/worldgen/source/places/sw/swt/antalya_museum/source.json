@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.antalya_museum",
+  "kind": "static-structure",
+  "title": "Antalya Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.antalya_museum",
+        "output": "assets/places/sw/swt/antalya_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f5ff174823d0f80d74229251b03c28a36ccd59808736aab8ed65e4709eccb568"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-antalya-museum",
+        "path": "models/generate-antalya-museum.mjs"
+      },
+      {
+        "id": "antalya-museum-model",
+        "path": "models/antalya-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/standing-museum-2024.json",
+      "reference-rights/primary-source-facts.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19176-12767.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

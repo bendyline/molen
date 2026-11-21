@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Ṣànpọ̀nná sculpture at Ẹbu Ìyá Mọòpó",
+  "seed": "osun_grove_sanponna",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "sculpture",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_sanponna",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.16,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              42,
+              0.32,
+              42
+            ]
+          },
+          "materialRef": "palette:#918572",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e4eee8",
+            "ground": "#968569",
+            "intensity": 1.02
+          },
+          "sun": {
+            "direction": [
+              -3,
+              5,
+              7
+            ],
+            "color": "#fff4db",
+            "intensity": 1.7,
+            "castShadow": true
+          },
+          "background": "#b3c7cc",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      0.1,
+      3.4,
+      14.5
+    ],
+    "lookAt": [
+      -0.42,
+      3.88,
+      0.25
+    ],
+    "fov": 45
+  }
+}

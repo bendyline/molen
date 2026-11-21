@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_first_palace",
+  "kind": "static-structure",
+  "title": "Ojúbọ Òṣogbo, First Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_first_palace",
+        "output": "assets/places/s1/s17/osun_grove_first_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3f4a9b1a083f4e01528e86fd4827937fa5a9bcceebd84b12448f5cce017fbba6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "first-palace-model",
+        "path": "models/first-palace-model.mjs"
+      },
+      {
+        "id": "first-palace-master",
+        "path": "models/generate-first-palace.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "courtyard-preview.webp",
+      "map-frame.json",
+      "placement-report.json"
+    ]
+  }
+}

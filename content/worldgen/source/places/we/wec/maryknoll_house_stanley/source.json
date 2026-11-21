@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.maryknoll_house_stanley",
+  "kind": "static-structure",
+  "title": "Maryknoll House, Stanley",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.maryknoll_house_stanley",
+        "output": "assets/places/we/wec/maryknoll_house_stanley/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b709cce5c97db87a3ff501af56e3446b0751408b1845162115e0e02b70ac8697"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-maryknoll-house-stanley",
+        "path": "models/generate-maryknoll-house-stanley.mjs"
+      },
+      {
+        "id": "maryknoll-house-stanley-model",
+        "path": "models/maryknoll-house-stanley-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/stanley-maryknoll-hilltop-envelopes.json",
+      "reference-rights/hong-kong-maryknoll-conservation-written-facts.json",
+      "reference-rights/chingleung-2010-native-photo.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26779-14308.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

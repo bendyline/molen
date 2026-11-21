@@ -1,0 +1,427 @@
+{
+  "planId": "patrick_arena",
+  "id": "patrick_arena",
+  "assetId": "molen.worldgen.structure.patrick_arena",
+  "title": "Patrick Arena",
+  "category": "performance-sport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -123.31917146544501,
+    "latitude": 48.433155146241006
+  },
+  "size": [
+    45.22200012207031,
+    20.779200434684753,
+    100.15639877319336
+  ],
+  "actualBounds": {
+    "min": [
+      -22.611000061035156,
+      -1.0091999769210815,
+      -49.72819900512695
+    ],
+    "max": [
+      22.611000061035156,
+      19.770000457763672,
+      50.428199768066406
+    ]
+  },
+  "visualBrief": "Oak Bay’s 1911 timber ice arena as it appeared for the 1925 Stanley Cup, with its barrel roof, four square corner towers, tall sash windows and street-facing entrance.",
+  "nativeAxes": {
+    "x": "across the former rink to the east",
+    "y": "up",
+    "z": "along the former rink towards Cadboro Bay Road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1925-03-30",
+    "validFrom": "1911-12-25",
+    "validUntil": "1929-11-11",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Patrick_Arena_Victoria_BC.jpg"
+  ],
+  "stories": [
+    {
+      "id": "patrick-arena-wp",
+      "url": "https://qualla.com/patrick-arena/"
+    }
+  ],
+  "referenceInputHash": "sha256:4fb2eeeafef625b6ff55eb328d40350fef3df07d3b32869ab2d5ac0306ebc43e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c2/c28/patrick_arena/models/patrick-arena-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/c2/c28/patrick_arena/models/patrick-arena-model.mjs",
+    "level": "skyline",
+    "export": "arenaSkyline",
+    "errorMeters": 1.9,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.11
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "arenaDistrict",
+        "errorMeters": 0.82,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "arenaStreet",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "arenaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "wood_painted_shingle",
+    "metal_painted",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent original DEM at the estimated front entrance line near Cadboro Bay Road.",
+    "anchor": [
+      -123.31917146544501,
+      48.433155146241006
+    ],
+    "heading": -0.028592675566507863,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -123.3191909736076,
+        48.43270258246659
+      ],
+      "modelHeight": 0,
+      "basis": "Independent modern terrain height at the estimated outer entrance line on the Cadboro Bay Road side."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/4418627",
+      "way/4291724"
+    ],
+    "source": "https://connect.oakbay.ca/archives/oak-bays-patrick-arena",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4976c51fd8aacf0d04f7167ca81616de3071072ff3099adb3a18612b7aab66f3",
+    "notes": "The January 1912 Dwyer photograph fixes the curved roof, corner towers, storefront entrance, tall paired and stepped window panels, and ARENA lettering. The contemporary construction report identifies the timber truss roof."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The arena is displayed as a historical structure from its public opening on December 25, 1911 through November 10, 1929. The appearance represents the 1925 Stanley Cup game, using an opening-era photograph.",
+    "The archive records the historical address and building dimensions. The absolute setback from the modern intersection and the elevation of the rink floor are estimates.",
+    "The source photograph is monochrome. Timber and roof colors, the far end wall, height, side window rhythm, and roof details are reconstructed from appearance, proportions, or period construction descriptions.",
+    "The exterior includes the rink hall. The separate engine house, rink interior, street furniture and later neighborhood buildings are outside the model scope."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The Dwyer photograph published on January 2, 1912 is public domain. Street survey controls © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "arena-skyline",
+      "position": [
+        -91,
+        49,
+        128
+      ],
+      "lookAt": [
+        -2,
+        7.7,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "arena-district",
+      "position": [
+        -91,
+        49,
+        128
+      ],
+      "lookAt": [
+        -2,
+        7.7,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "arena-street",
+      "position": [
+        -91,
+        49,
+        128
+      ],
+      "lookAt": [
+        -2,
+        7.7,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "arena-closeup",
+      "position": [
+        -91,
+        49,
+        128
+      ],
+      "lookAt": [
+        -2,
+        7.7,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "arena-from-cadboro",
+      "position": [
+        -53,
+        20,
+        117
+      ],
+      "lookAt": [
+        0,
+        8,
+        42
+      ]
+    },
+    {
+      "name": "west-tower-and-windows",
+      "position": [
+        -51,
+        12,
+        37
+      ],
+      "lookAt": [
+        -16,
+        7,
+        20
+      ]
+    },
+    {
+      "name": "north-and-east-roofs",
+      "position": [
+        85,
+        40,
+        -112
+      ],
+      "lookAt": [
+        1,
+        8,
+        -7
+      ]
+    },
+    {
+      "name": "front-print-geometry",
+      "position": [
+        -5,
+        7,
+        130
+      ],
+      "lookAt": [
+        0,
+        11,
+        47
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4050,
+    "vertices": 12150,
+    "materials": 5,
+    "bytes": 612376,
+    "sha256": "sha256:fcedac85654a11fd5677313d21132f0f0418e49a9484ff4bd2404e7ca0c0dbb9"
+  }
+}

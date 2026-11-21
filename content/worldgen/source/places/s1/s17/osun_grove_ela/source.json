@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_ela",
+  "kind": "static-structure",
+  "title": "Ela sculpture at the Sacred Potter Field",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_ela",
+        "output": "assets/places/s1/s17/osun_grove_ela/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:101338dd5c17a8a5cf4589a82e0334f425698fefaec48cdb6585d58217ccb012"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ela-mesh",
+        "path": "models/ela-model.mjs"
+      },
+      {
+        "id": "ela-master",
+        "path": "models/generate-ela.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.webp",
+      "preview.png"
+    ]
+  }
+}

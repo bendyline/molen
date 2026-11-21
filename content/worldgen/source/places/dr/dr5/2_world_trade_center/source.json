@@ -1,0 +1,47 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.2_world_trade_center",
+  "kind": "static-structure",
+  "title": "2 World Trade Center",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "site-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.2_world_trade_center",
+        "output": "assets/places/dr/dr5/2_world_trade_center/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c4ef30c54b36a81b834580618b18b2b1778141d74e9047a536d068d20c171f95"
+      }
+    ],
+    "generators": [
+      {
+        "id": "two-wtc-model",
+        "path": "models/two-wtc-model.mjs"
+      },
+      {
+        "id": "two-wtc-master",
+        "path": "models/generate-2-world-trade-center.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "garden-preview.webp",
+      "placement-report.json",
+      "preview.png"
+    ]
+  }
+}

@@ -76,9 +76,9 @@
     }
   },
   "exportLabel": "Molen original Afsluitdijk causeway and hydraulic structures",
-  "expectedDraftMasterHash": "sha256:9a4818e556492fac43597e509b48a938ea2be708963d709248e5c7b9ee747643",
-  "visualBrief": "Whole named Afsluitdijk causeway and both physical sluice/navigation-lock crossings;current map shoreline islands and actual control-house roof footprints. Preserve separate harbor/private buildings,wind turbines,boats,water,public approaches and unrelated structures. Static closed bridge/sluice appearance only;no navigable machinery,interiors,vehicles or copied lettering.",
-  "heightPolicy": "Centerline from current standard A7 PMTiles;bank openings from actual bridge segments,gate houses from native polygons. Heights,embankment cross-section,gate machinery and current construction inventory are explicit picture-based estimates. Source length32500m is retained as a coarse fact;modeled extent follows the selected physical coast-to-coast road endpoints.2013/2024 references differ around Den Oever pumping works;do not invent an unseen completed2026 complex.",
+  "expectedDraftMasterHash": "sha256:2205911572a4059239008b82303ce8b1ceb31fe01ed8fb62749b1e91f2f0900a",
+  "visualBrief": "Full mapped causeway, legacy Stevin and Lorentz sluices, three navigation lock chambers, fish passage, and the visible concrete fronts of the newer Den Oever works. Model elevations and proportions are approximate. The standard PMTiles supplies the road and structure locations. Photographs supply the exterior profiles. Exact tides, gate motion, interior works and future bridge replacements are outside this static model.",
+  "heightPolicy": "The road is +4.9 m across the waterworks, with lowered and narrowed approaches at the western and eastern map tie-ins. Heights at the tie-ins follow the retained standard terrain. The model uses a fixed sea-level datum.",
   "nativeAxes": "+X northeast from Den Oever to Zurich/Friesland;+Z southeast toward IJsselmeer;-Z northwest toward Wadden Sea;+Y up.",
   "sourceFacts": {
     "retainedLengthMeters": 32500,
@@ -101,10 +101,9 @@
   },
   "materialMethod": "Five existing shared256px graphs:stone_basalt,concrete_plain,metal_standing_seam,metal_painted,window_grid. Seven near groups including one untextured palette for broad grass landforms;one far palette group. Concrete aggregate is shared for paved road/path surfaces with separate tints. Metric UVs and linear colours;no embedded/private textures. No new common-library changes invalidate other model inputs.",
   "limitations": [
-    "Whole named Afsluitdijk causeway and both physical sluice/navigation-lock crossings;current map shoreline islands and actual control-house roof footprints. Preserve separate harbor/private buildings,wind turbines,boats,water,public approaches and unrelated structures. Static closed bridge/sluice appearance only;no navigable machinery,interiors,vehicles or copied lettering.",
-    "Centerline from current standard A7 PMTiles;bank openings from actual bridge segments,gate houses from native polygons. Heights,embankment cross-section,gate machinery and current construction inventory are explicit picture-based estimates. Source length32500m is retained as a coarse fact;modeled extent follows the selected physical coast-to-coast road endpoints.2013/2024 references differ around Den Oever pumping works;do not invent an unseen completed2026 complex.",
-    "Current standard PMTiles plus four ordinary aerial references. Native map road endpoints and bends are retained;32,500m historical source length and the31,728.943m selected mapped centerline extent are different controls,not claimed identical surveys. A7/A31/N31 mainland tie-ins are approximate. Heights,cross-section,gate machinery,lock-chamber dimensions and unseen services are explicit picture-scale estimates. Den Oever2013/2024 construction differs from current map;finished2026 pumping works are unverified and are not invented. Static bridge/gate configuration only. Physical-device/dense-city timing,numerical LOD errors and exact water/terrain contact remain unmeasured.",
-    "Five existing shared256px graphs:stone_basalt,concrete_plain,metal_standing_seam,metal_painted,window_grid. Seven near groups including one untextured palette for broad grass landforms;one far palette group. Concrete aggregate is shared for paved road/path surfaces with separate tints. Metric UVs and linear colours;no embedded/private textures. No new common-library changes invalidate other model inputs. Every tier keeps the continuous bent levee,all five sluice banks with five flow bays each,the two navigation crossings,fish passage and three open lock chambers. Near tiers retain the mapped gate-house polygons,window recesses,gate framing and source-authored rails;master keeps dense rail posts. Public harbor islands and independent service properties remain native terrain/map context."
+    "Housing footprints, ramps, service roads, harbors and shorelines remain native. Replacement trims only the identified A7/A31/N31 surfaces within the authored road corridor.",
+    "Den Oever includes picture-scale exterior concrete fronts at the four mapped new-works positions. The photographs and PMTiles provide approximate visible massing. Hidden services, tide, gate motion, exact heights and future bridge replacements are outside the model scope.",
+    "The nominal 32.5 km source length includes a different extent from the 31.729 km selected corridor. Approaches use the retained standard terrain."
   ],
   "references": [
     {
@@ -130,6 +129,14 @@
     {
       "url": "https://build.protomaps.com/20261031.pmtiles",
       "observed": "Whole named Afsluitdijk causeway and both physical sluice/navigation-lock crossings;current map shoreline islands and actual control-house roof footprints. Preserve separate harbor/private buildings,wind turbines,boats,water,public approaches and unrelated structures. Static closed bridge/sluice appearance only;no navigable machinery,interiors,vehicles or copied lettering. Centerline from current standard A7 PMTiles;bank openings from actual bridge segments,gate houses from native polygons. Heights,embankment cross-section,gate machinery and current construction inventory are explicit picture-based estimates. Source length32500m is retained as a coarse fact;modeled extent follows the selected physical coast-to-coast road endpoints.2013/2024 references differ around Den Oever pumping works;do not invent an unseen completed2026 complex."
+    },
+    {
+      "name": "Den Oever sluice works aerial",
+      "url": "https://www.cementonline.nl/nieuwe-spuisluizen-afsluitdijk-bij-den-oever-voor-het-eerst-geopend"
+    },
+    {
+      "name": "October 2026 commissioning",
+      "url": "https://www.rijkswaterstaat.nl/en/news/archive/2026/10/reinforcement-of-the-afsluitdijk-completed-pumping-station-and-new-drainage-sluices-officially-commissioned"
     }
   ],
   "cameras": [

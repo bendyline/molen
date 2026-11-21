@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_lennox",
+  "kind": "static-structure",
+  "title": "Fort Lennox",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_lennox",
+        "output": "assets/places/f2/f25/fort_lennox/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:359a029bc7b73f4884f1e9dfa707fc88532a5f730595468ee92ac623d0b1198b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-lennox",
+        "path": "models/generate-fort-lennox.mjs"
+      },
+      {
+        "id": "fort-lennox-model",
+        "path": "models/fort-lennox-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/fort-lennox-survey.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/local-image-selection.json",
+      "reference-rights/archives-ontario-i0017513.json",
+      "reference-images/archives-ontario-i0017513.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9714-11771.png",
+      "terrain-sources/terrarium-15-9715-11771.png",
+      "terrain-sources/terrarium-15-9715-11772.png",
+      "terrain-sources/terrarium-15-9714-11772.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

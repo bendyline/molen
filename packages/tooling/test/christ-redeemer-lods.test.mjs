@@ -4,11 +4,7 @@ import { resolve } from 'node:path';
 import { NodeIO } from '@gltf-transform/core';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
-import {
-  createEmptyTerrainSemanticTile,
-  heightfieldFromPng,
-  wgs84ToWorld,
-} from '../../terrain/dist/kernel.mjs';
+import { createEmptyTerrainSemanticTile, heightfieldFromPng } from '../../terrain/dist/kernel.mjs';
 import { StructureModelLibrary } from '../../worldgen/dist/client.mjs';
 import { emptyWorldgenStats } from '../../worldgen/dist/kernel.mjs';
 import { hashBytes, modelInputHash } from '../../worldgen/scripts/structure-model-files.mjs';
@@ -81,8 +77,9 @@ it('binds the individual monument to exact source/runtime pins and its named nat
   expect(p.inputHash).toBe(await modelInputHash(source, a.id));
   expect(frame.heading).toBeCloseTo(1.7453292519943295, 12);
   expect(frame.mappedIdentity.featureIds).toEqual([]);
-  expect(p.entry.elevation).toBe(0);
-  expect(p.entry.datum).toBe('terrain');
+  expect(p.entry.elevation).toBe(710);
+  expect(p.entry.datum).toBe('sea-level');
+  expect(p.entry.terrainReference).toBeUndefined();
   expect(p.entry.replaceFootprint).toBe(false);
   expect(p.entry.buildingCutout).toBeUndefined();
   expect(layout.nativeMap.ownedParts).toHaveLength(0);
@@ -223,7 +220,6 @@ it('uses the production viewer to retain every independent native building aroun
     seenPolygons = [],
     pack = await loadDefaultPack(),
     renderers = createWorldgenSemanticRenderers(pack, {
-      sampleStructureTerrain: (coordinate) => field.sampleHeight(...wgs84ToWorld(1, ...coordinate)),
       structures: createStructureIndex({
         format: 'molen/structure-placements@1',
         title: 'Christ the Redeemer actual map replacement',
@@ -231,18 +227,6 @@ it('uses the production viewer to retain every independent native building aroun
           {
             ...placed,
             anchor: [0, 0],
-            ...(placed.terrainReference
-              ? {
-                  terrainReference: {
-                    ...placed.terrainReference,
-                    anchor: [
-                      (placed.terrainReference.anchor[0] - frame.anchor[0]) *
-                        Math.cos((frame.anchor[1] * Math.PI) / 180),
-                      placed.terrainReference.anchor[1] - frame.anchor[1],
-                    ],
-                  },
-                }
-              : {}),
             bounds: placed.bounds.map((v, i) =>
               i % 2 === 0
                 ? (v - frame.anchor[0]) * Math.cos((frame.anchor[1] * Math.PI) / 180)
@@ -301,8 +285,9 @@ it('uses the production viewer to retain every independent native building aroun
     expect(landmark).toBeDefined();
     expect(
       landmark.position.y,
-      'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(0, 0), 2);
+      'production renderer places the monument at the fitted summit without a host sampler',
+    ).toBeCloseTo(placed.elevation, 2);
+    expect(field.sampleHeight(0, 0)).toBeCloseTo(0, 2);
     expect(seen.length).toBeGreaterThan(0);
     expect(
       seen.at(-1).sort(),

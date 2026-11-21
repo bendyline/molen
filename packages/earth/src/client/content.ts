@@ -65,6 +65,7 @@ import {
 import { createEarthAirports, type EarthAirportIndex, type EarthAirports } from './airports';
 import type { EarthFleetContent } from './fleet';
 import { withModelArchives } from './model-archives';
+import { type EarthRoadAlignments, readEarthRoadAlignments } from './road-alignments';
 import type { EarthRoadSignContent } from './road-signs';
 import { type EarthSiteGrades, readEarthSiteGrades } from './site-grades';
 import { type EarthWaterFeatures, readEarthWaterFeatures } from './water-features';
@@ -195,6 +196,8 @@ export interface EarthContent {
   /** Stable rendered water levels and line controls for selected mapped water features. */
   waterFeatures?: EarthWaterFeatures;
   siteGrades?: EarthSiteGrades;
+  /** Source-checked corrections to selected mapped approaches and their landmark origins. */
+  roadAlignments?: EarthRoadAlignments;
   /** Shared lettering faces loaded from the Earth pack, if available. */
   fonts?: FontLibrary;
   packs: PackSet;
@@ -718,6 +721,11 @@ export async function loadEarthContent(
     earthPack && gradePath
       ? earthPack.readJson(gradePath).then(readEarthSiteGrades)
       : Promise.resolve(undefined);
+  const alignmentsPath = earthPack?.manifest.provides['road-alignments']?.[0];
+  const roadAlignmentsRead =
+    earthPack && alignmentsPath
+      ? earthPack.readJson(alignmentsPath).then(readEarthRoadAlignments)
+      : Promise.resolve(undefined);
   const [
     typesResult,
     fontsResult,
@@ -727,6 +735,7 @@ export async function loadEarthContent(
     roadSignsResult,
     waterFeaturesResult,
     siteGradesResult,
+    roadAlignmentsResult,
   ] = await Promise.allSettled([
     typesRead,
     fontsRead,
@@ -736,6 +745,7 @@ export async function loadEarthContent(
     roadSignsRead,
     waterFeaturesRead,
     siteGradesRead,
+    roadAlignmentsRead,
   ]);
   const settled = [
     typesResult,
@@ -746,6 +756,7 @@ export async function loadEarthContent(
     roadSignsResult,
     waterFeaturesResult,
     siteGradesResult,
+    roadAlignmentsResult,
   ];
   const failed = settled.find((result) => result.status === 'rejected');
   if (failed !== undefined) {
@@ -766,6 +777,7 @@ export async function loadEarthContent(
   const roadSigns = value(roadSignsResult);
   const waterFeatures = value(waterFeaturesResult);
   const siteGrades = value(siteGradesResult);
+  const roadAlignments = value(roadAlignmentsResult);
   const styleIndex =
     worldgen === undefined ? {} : stylePackAssetIndex(worldgen.pack, `pack:${worldgen.styleId}/`);
   const closePacks = packs.close.bind(packs);
@@ -791,6 +803,7 @@ export async function loadEarthContent(
     ...(airports ? { airports } : {}),
     ...(waterFeatures ? { waterFeatures } : {}),
     ...(siteGrades ? { siteGrades } : {}),
+    ...(roadAlignments ? { roadAlignments } : {}),
     ...(fonts ? { fonts } : {}),
     ...(roadSigns ? { roadSigns } : {}),
     ...(types !== undefined ? { types } : {}),

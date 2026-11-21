@@ -1,0 +1,346 @@
+{
+  "planId": "esagila",
+  "id": "esagila",
+  "assetId": "molen.worldgen.structure.esagila",
+  "title": "Esagila",
+  "category": "temple",
+  "quality": "historical-reconstruction",
+  "referenceCoordinate": {
+    "longitude": 44.42138611,
+    "latitude": 32.53388889
+  },
+  "visualBrief": "Neo-Babylonian Marduk temple. Cream plastered main enclosure with open 31 × 36 m courtyard, linked eastern annex, broad projecting piers, recessed portals and flat roofs.",
+  "nativeAxes": "+X plan east, +Z plan south, +Y up. Y=0 at the represented Nebuchadnezzar floor.",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "wikidataId": "Q928707",
+    "anchor": [
+      44.42144747922255,
+      32.53351473222772
+    ],
+    "heading": 0.19739555984988078,
+    "elevationMode": "sea-level",
+    "elevationMeters": 29.85,
+    "minLevel": 17,
+    "replaceFootprint": false,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "A bounded terrain terrace places the surface 0.25 m below the represented floor to clear the viewer land-cover offset; the existing terrain returns across a 38 m shoulder. The graded field was reviewed with all four model levels, the adjoining mapped buildings and the current-world control.",
+    "orientationPolicy": "approximate-visualization",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c661478340070d3e1569fe11945c8ec60322a5412c34c3f35cdfe2d6643184ba",
+    "source": "https://build.protomaps.com/20261014.pmtiles",
+    "notes": "Reconstruction of the Esagila temple and eastern annex circa 575 BCE, anchored at the excavation pit. The 29.85 m floor uses two published excavated elevations. The dated local grade is illustrative and preserves the present-day surface in undated viewing."
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "circa 575 BCE",
+    "validFrom": "-000574-01-01",
+    "validUntil": "-000573-01-01"
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/svz/esagila/models/esagila-model.mjs",
+    "export": "buildEsagila"
+  },
+  "referencePages": [
+    "https://www.zaphon.de/WebRoot/Store28/Shops/83179382/MediaGallery/Pedersen-Babylon-Zaphon-2021-100dpi.pdf",
+    "https://www.cambridge.org/core/journals/iraq/article/tower-of-babylon-stele-found-in-babylon/A712F186B2FA1965854911081620467B",
+    "https://www.gutenberg.org/cache/epub/71398/pg71398-images.html",
+    "https://whc.unesco.org/document/166322"
+  ],
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "reviewed",
+  "materialMethod": "Shared lime plaster, fired brick, two stone surfaces, timber and painted metal. Vertex tints distinguish plaster, packed roofs, bitumen floors and the interpreted gilded sanctuary.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/svz/esagila/models/esagila-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "gilding": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.62
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.62
+          }
+        },
+        "errorMeters": 0.69
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.62
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.62
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "eastern-annex",
+      "position": [
+        165,
+        31,
+        27
+      ],
+      "lookAt": [
+        68,
+        4,
+        16
+      ]
+    },
+    {
+      "name": "main-courtyard",
+      "position": [
+        17.33,
+        4.01,
+        9.41
+      ],
+      "lookAt": [
+        -2.7,
+        3.1,
+        -4.77
+      ]
+    },
+    {
+      "name": "northern-entry",
+      "position": [
+        12.68,
+        5.1,
+        -54.1
+      ],
+      "lookAt": [
+        0.45,
+        4.12,
+        -40.7
+      ]
+    },
+    {
+      "name": "western-sanctuary-study",
+      "position": [
+        -10.8,
+        2.11,
+        3.1
+      ],
+      "lookAt": [
+        -29.7,
+        2.12,
+        -1.54
+      ]
+    }
+  ],
+  "limitations": [
+    "The perimeter and main courtyard follow excavation controls. Reconstructed door elevations, roof heights and western cella geometry are interpretive. The internal arrangement of the eastern annex is provisional.",
+    "The bearing comes from the printed plan and the terrain terrace is a visualization at the documented floor elevation. The ancient surroundings, exact doorway bearings, and original terrain slopes are uncertain.",
+    "The viewer uses one representative 575 BCE calendar year. The date interval defines the visualization snapshot; it does not date the temple construction or the end of its use."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -41.0099983215332,
+      -0.5899999737739563,
+      -44.2599983215332
+    ],
+    "max": [
+      130.4499969482422,
+      12.920000076293945,
+      73.67858123779297
+    ]
+  },
+  "size": [
+    171.4599952697754,
+    13.510000050067902,
+    117.93857955932617
+  ],
+  "mesh": {
+    "triangles": 13466,
+    "vertices": 26932,
+    "materials": 6,
+    "bytes": 1135000,
+    "sha256": "sha256:d3ebdaf6beaeb32b57351c585dfa764f84fa7310570e56c306d275864c1aad81"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "wikidataId": "Q928707"
+}

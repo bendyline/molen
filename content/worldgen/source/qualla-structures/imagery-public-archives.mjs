@@ -84,6 +84,50 @@ function banqMatches(reference, record) {
   );
 }
 
+export function rietbergSepahsalarMatches(dir, reference, image, page) {
+  const museum = readBound(dir, reference.museumEvidence)?.toString('utf8');
+  const info = page.imageinfo?.[0];
+  const revision = page.revisions?.[0];
+  const source = revision?.slots?.main?.['*'];
+  const construction = reference.accessionNumber === '2023.10.73';
+  const item = construction ? '73' : '34';
+  const objectId = construction ? '98705' : '98666';
+  const scanId = construction ? '140990' : '140951';
+  const titleSuffix = construction ? '-im-Bau-mit-Arbeitern' : '';
+  const caption = construction ? ' im Bau mit Arbeitern, 1879–1884' : ', um 1879–1884';
+  const alternatePrint = construction ? '33' : '36';
+  const museumUrl = `https://rietberg.ch/sammlungen/2023-10-${item}`;
+  const museumImage = `https://rietberg.ch/collection/Multimedia/${objectId}/_collectionEntryImageLightbox/2023.10.${item}_${scanId}.jpg`;
+  return (
+    page.title ===
+      `File:Antoin-Sevruguin-Sipahsalar-Moschee-in-Teheran${titleSuffix}-Museum-Rietberg-2023.00010.${item}.jpg` &&
+    reference.accessionNumber === `2023.10.${item}` &&
+    reference.artist === 'Antoin Sevruguin' &&
+    reference.museumEvidence?.sourceUrl === museumUrl &&
+    reference.museumEvidence?.imageUrl === museumImage &&
+    museum?.includes(`<link rel="canonical" href="${museumUrl}"/>`) &&
+    museum.includes(
+      `2023.10.${item}, Antoin Sevruguin (1851–1933), Sipahsalar-Moschee in Teheran${caption}`,
+    ) &&
+    museum.includes('1875–1896: Karl Emil Ludwig Alpiger sen. (1841–1905), angekauft in Iran') &&
+    museum.replaceAll('\\/', '/').includes(museumImage) &&
+    info?.descriptionurl === reference.sourceUrl &&
+    info?.url?.split('?')[0] === reference.downloadUrl &&
+    info?.sha1 === hash(image, 'sha1') &&
+    info.size === image.length &&
+    info.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    revision?.revid === reference.nativeRevision &&
+    source?.includes('{{PD-Art|PD-old-auto-expired|deathyear=1933}}') &&
+    source.includes(`Golestan Palace Album No. 163-${alternatePrint}.jpg`) &&
+    info.extmetadata?.Copyrighted?.value === 'False' &&
+    info.extmetadata?.AttributionRequired?.value === 'false' &&
+    !info.extmetadata?.Restrictions?.value &&
+    ['native-original', 'original-published-qualla-jpeg-byte-identical-to-native-file'].includes(
+      reference.originalReview?.rendition,
+    )
+  );
+}
+
 function tePapaPostcardMatches(dir, reference, record) {
   const item = /^https:\/\/collections\.tepapa\.govt\.nz\/object\/(\d+)$/.exec(reference.sourceUrl);
   const { production, recto, verso } = record;
@@ -228,6 +272,133 @@ function puertoRicoNaipMatches(reference, record) {
   );
 }
 
+function californiaNaip2009Matches(reference, record) {
+  const service =
+    'https://gis.wildlife.ca.gov/images/rest/services/Base_Remote_Sensing/NAIP_2009/ImageServer';
+  const federalRights =
+    'https://www.fgdc.gov/resources/whitepapers-reports/annual%20reports/2009/web-version/AppendixC.html';
+  let url;
+  let mosaic;
+  try {
+    url = new URL(reference.downloadUrl);
+    mosaic = JSON.parse(url.searchParams.get('mosaicRule'));
+  } catch {
+    return false;
+  }
+  const q = url.searchParams;
+  const item = record.item?.attributes;
+  const box = q.get('bbox')?.split(',').map(Number);
+  return (
+    reference.artist === 'USDA Farm Service Agency' &&
+    reference.sourceUrl === service &&
+    reference.rightsEvidence.sourceUrl === federalRights &&
+    record.licenseSource === federalRights &&
+    record.itemUrl === `${service}/6694?f=pjson` &&
+    item?.OBJECTID === 6694 &&
+    item.Name === 'm_3712213_se_10_1_20090619.tif' &&
+    item.Category === 1 &&
+    reference.dateCreated === '2009-06-19' &&
+    `${url.origin}${url.pathname}` === `${service}/exportImage` &&
+    mosaic?.mosaicMethod === 'esriMosaicLockRaster' &&
+    mosaic.lockRasterIds?.length === 1 &&
+    mosaic.lockRasterIds[0] === item.OBJECTID &&
+    q.get('f') === 'image' &&
+    q.get('bboxSR') === '4326' &&
+    q.get('imageSR') === '4326' &&
+    q.get('adjustAspectRatio') === 'false' &&
+    q.get('format') === 'jpg' &&
+    q.get('interpolation') === 'RSP_NearestNeighbor' &&
+    record.export?.width === reference.width &&
+    record.export?.height === reference.height &&
+    q.get('size') === `${reference.width},${reference.height}` &&
+    box?.length === 4 &&
+    box.every((value, i) => Number.isFinite(value) && value === record.export?.extent?.[i]) &&
+    box[0] < -122.396 &&
+    box[2] > -122.396 &&
+    box[1] < 37.7894 &&
+    box[3] > 37.7894 &&
+    reference.originalReview?.rendition === 'native-georeferenced-export'
+  );
+}
+
+function amosNaipMatches(reference, image, record) {
+  const service =
+    'https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer';
+  const extent = record.export?.extent;
+  const expected = [-81.8302, 38.4697, -81.8172, 38.4787];
+  return (
+    reference.sourceUrl === service &&
+    reference.rightsEvidence?.sourceUrl === service + '?f=pjson' &&
+    reference.downloadUrl ===
+      service +
+        '/exportImage?bbox=' +
+        expected.join(',') +
+        '&bboxSR=4326&imageSR=4326&size=1200,1000&adjustAspectRatio=false&format=jpg&f=image' &&
+    record.service === service &&
+    record.source?.copyrightText?.includes('The National Map') &&
+    /public domain, NAIP/i.test(record.source?.description ?? '') &&
+    record.licenseSource ===
+      'https://catalog.data.gov/dataset/national-agriculture-imagery-program-naip-imagery' &&
+    reference.artist === 'USDA and USGS The National Map' &&
+    reference.width === 1200 &&
+    reference.height === 1000 &&
+    record.export?.width === 1200 &&
+    record.export?.height === 1000 &&
+    extent?.spatialReference?.wkid === 4326 &&
+    [extent.xmin, extent.ymin, extent.xmax, extent.ymax].every(
+      (value, i) => Math.abs(value - expected[i]) < 0.000001,
+    ) &&
+    reference.originalReview?.rendition === 'native-georeferenced-export' &&
+    hash(image) === '2eec60ea24a58b32ab4ec30517c641667f42ff7976b0bee310b83cb3d2dd150a'
+  );
+}
+
+function encinaNaip2018Matches(reference, record) {
+  const service =
+    'https://gis.wildlife.ca.gov/images/rest/services/Base_Remote_Sensing/NAIP_2018/ImageServer';
+  const federalRights = 'https://www.fsa.usda.gov/Internet/FSA_Notice/ap_26.pdf';
+  let url;
+  let mosaic;
+  try {
+    url = new URL(reference.downloadUrl);
+    mosaic = JSON.parse(url.searchParams.get('mosaicRule'));
+  } catch {
+    return false;
+  }
+  const q = url.searchParams;
+  const item = record.item?.attributes;
+  const box = q.get('bbox')?.split(',').map(Number);
+  return (
+    reference.artist === 'USDA Farm Service Agency' &&
+    reference.sourceUrl === service &&
+    reference.rightsEvidence.sourceUrl === federalRights &&
+    record.licenseSource === federalRights &&
+    record.itemUrl === `${service}/913?f=pjson` &&
+    item?.OBJECTID === 913 &&
+    item.Name === 'm_3311754_sw_11_060_20180821_20190412' &&
+    item.Category === 1 &&
+    reference.dateCreated === '2018-08-21' &&
+    `${url.origin}${url.pathname}` === `${service}/exportImage` &&
+    mosaic?.mosaicMethod === 'esriMosaicLockRaster' &&
+    mosaic.lockRasterIds?.length === 1 &&
+    mosaic.lockRasterIds[0] === item.OBJECTID &&
+    q.get('bboxSR') === '4326' &&
+    q.get('imageSR') === '4326' &&
+    q.get('format') === 'jpg' &&
+    q.get('f') === 'image' &&
+    q.get('adjustAspectRatio') === 'false' &&
+    q.get('interpolation') === 'RSP_NearestNeighbor' &&
+    q.get('size') === `${reference.width},${reference.height}` &&
+    box?.length === 4 &&
+    box.every(Number.isFinite) &&
+    box[0] < -117.337 &&
+    box[2] > -117.336 &&
+    box[1] < 33.135 &&
+    box[3] > 33.137 &&
+    reference.originalReview?.rendition === 'native-georeferenced-export'
+  );
+}
+
 function salvadoranPresidencyMatches(reference, image, record) {
   const source = record.imageinfo?.[0];
   const revision = record.revisions?.[0];
@@ -351,6 +522,315 @@ function rijksmuseumMatches(reference, record) {
   );
 }
 
+function cordobaPhotochromMatches(reference, image, record) {
+  const item = record.item;
+  const scan = record.resources?.find((resource) => resource.id === 'ppmsca.52789');
+  return (
+    reference.sourceUrl === 'https://www.loc.gov/pictures/item/2017660370/' &&
+    reference.rightsEvidence?.sourceUrl === `${reference.sourceUrl}?fo=json` &&
+    item?.link === reference.sourceUrl &&
+    item.id === '2017660370' &&
+    item.rights_information === 'No known restrictions on publication.' &&
+    typeof item.created_published === 'string' &&
+    item.created_published.includes('Photoglob Company') &&
+    Array.isArray(item.notes) &&
+    item.notes.some(({ note }) => note.includes('Detroit Publishing Company, 1905')) &&
+    item.notes.some(({ note }) => note.includes('Detroit Publishing Company; 1906; 42865')) &&
+    reference.artist === 'Photoglob Company' &&
+    reference.dateCreated === '1890–1906' &&
+    scan?.large === reference.downloadUrl &&
+    scan.large === 'https://cdn.loc.gov/service/pnp/ppmsca/52700/52789v.jpg' &&
+    scan.note === 'digital file from original item' &&
+    scan.large_s === image.length &&
+    image.includes(Buffer.from('http://hdl.loc.gov/loc.pnp/ppmsca.52789')) &&
+    reference.originalReview?.rendition === 'native-archive-jpeg'
+  );
+}
+
+function matsonWinterPalaceMatches(reference, image, record) {
+  const item = record.catalog?.item;
+  const scan = record.catalog?.resources?.find((resource) => resource.id === 'matpc.00282');
+  return (
+    reference.sourceUrl === 'https://www.loc.gov/pictures/item/2019691542/' &&
+    reference.rightsEvidence?.sourceUrl === `${reference.sourceUrl}?fo=json` &&
+    record.collectionRightsUrl === 'https://wwws.loc.gov/rr/print/res/258_mats.html' &&
+    typeof record.collectionRights === 'string' &&
+    record.collectionRights.includes(
+      'In 2003, the Home dedicated the intellectual property and related rights to the collection to the American public',
+    ) &&
+    item?.link === reference.sourceUrl &&
+    item.id === '2019691542' &&
+    item.title === 'Egypt. Luxor. Winter Palace Hotel; from south west' &&
+    item.created_published === '[1936]' &&
+    reference.dateCreated === '1936' &&
+    item.mediums?.some(({ medium }) => medium.includes('negative : glass, dry plate')) &&
+    item.notes?.some(({ note }) => note === 'Gift; Episcopal Home; 1978.') &&
+    item.collections?.some(({ code }) => code === 'matpc') &&
+    item.rights_information?.startsWith('No known restrictions on publication.') &&
+    item.rights_information.endsWith('https://hdl.loc.gov/loc.pnp/res.258.mats') &&
+    reference.artist === 'American Colony (Jerusalem). Photo Department' &&
+    item.creators?.some(
+      ({ title, role }) => title === reference.artist && role === 'photographer',
+    ) &&
+    scan?.large === 'https://cdn.loc.gov/service/pnp/matpc/00200/00282v.jpg' &&
+    scan.large === reference.downloadUrl &&
+    scan.note === 'digital file from original' &&
+    scan.large_s === image.length &&
+    reference.originalReview?.rendition === 'native-archive-jpeg'
+  );
+}
+
+function tughlaqabadFanshawePlateMatches(dir, reference, image, record) {
+  const plates = {
+    431: {
+      caption: 'Ruined Walls of Tughlakabad.',
+      sha256: 'c0f3fa6ae59d53b8808684fe91bdd67ff74211d42ad342587e2d0e7cb2840207',
+    },
+    432: {
+      caption: 'Tomb of the Emperor Tughlak Shah, Tughlakabad.',
+      sha256: '5df4eac965354e0f05318f59746c8c04a2ae444a18e33ebec8a597cd928bd625',
+    },
+  };
+  const item = 'cu31924095603076';
+  const leaf = reference.originalReview?.leaf;
+  const plate = plates[leaf];
+  if (!plate) return false;
+  return (
+    path.basename(dir) === 'tughlaqabad_fort' &&
+    reference.sourceUrl === `https://archive.org/details/${item}/page/n${leaf}/mode/1up` &&
+    reference.downloadUrl === `https://archive.org/download/${item}/page/n${leaf}.jpg` &&
+    reference.rightsEvidence?.sourceUrl === `https://archive.org/metadata/${item}` &&
+    record.metadata?.identifier === item &&
+    record.metadata?.title === 'Delhi past and present' &&
+    record.metadata?.contributor === 'Cornell University Library' &&
+    record.metadata?.publisher === 'London, J. Murray' &&
+    record.metadata?.date === '1902' &&
+    reference.artist === 'Sultan Ahmad Khan' &&
+    reference.originalReview?.rendition === 'original-published-plate' &&
+    reference.originalReview?.caption === plate.caption &&
+    hash(image) === plate.sha256
+  );
+}
+
+function cooktownStateLibraryMatches(reference, record) {
+  const downloads = record.downloads?.FL9491;
+  const download =
+    Array.isArray(downloads) &&
+    downloads.find((item) => item?.ext === 'jpg' && item.term === reference.downloadUrl);
+  return (
+    reference.sourceUrl === 'https://hdl.handle.net/10462/deriv/69051' &&
+    reference.rightsEvidence?.sourceUrl === 'https://collections.slq.qld.gov.au/api/IE9151' &&
+    record.id === 'IE9151' &&
+    record.permalink === reference.sourceUrl &&
+    record.title === "St Mary's Convent at Cooktown" &&
+    record.type === 'image' &&
+    record.copyright === 'Out of copyright.' &&
+    record.contentPolicy === 'AR_EVERYONE' &&
+    typeof record.original === 'string' &&
+    record.original.includes('Negative number: 70851') &&
+    reference.archiveItem === '70851' &&
+    reference.artist === 'Unknown author' &&
+    reference.downloadUrl ===
+      'https://digital.slq.qld.gov.au/delivery/DeliveryManagerServlet?dps_func=download&dps_pid=FL9493' &&
+    typeof download?.text === 'string' &&
+    download.text.includes('70851.tif - Medium quality') &&
+    reference.originalReview?.rendition === 'native-archive-jpeg'
+  );
+}
+
+function efeoCambodiaMuseumPlateMatches(dir, reference, image, record) {
+  const booklet = 'https://angkordatabase.asia/books/lecole-francaise-dextreme-orient';
+  const pdf = 'https://cdn.angkordatabase.asia/libs/docs/efeo-booklet-1930.pdf';
+  const library = 'https://parismuseescollections.paris.fr/en/node/875532';
+  const review = reference.originalReview;
+  return (
+    path.basename(dir) === 'national_museum_of_cambodia' &&
+    reference.sourceUrl === booklet &&
+    reference.downloadUrl === pdf &&
+    reference.rightsEvidence?.sourceUrl === library &&
+    reference.artist === 'Uncredited photograph, Extrême-Asie' &&
+    review?.rendition === 'original-published-plate' &&
+    review.pdfPage === 69 &&
+    review.printedPlate === 'XV' &&
+    record.scanIdentifier === 'FRB060882104_ASE_8812_C1' &&
+    record.libraryCatalogUrl === library &&
+    record.libraryCatalogImprint === 'Hanoi : Imprimerie d’Extrême-Orient, 1930' &&
+    record.originalPublication === 'Extrême-Asie, mars 1930, p. 119' &&
+    record.pdfUrl === pdf &&
+    record.pdfSha256 === '9f6eccac3bee6fe2c079b19b7135f00ac4ef6e020fd88575d2537edcbe41a16b' &&
+    hash(image) === 'e775c38b7b27fafbfd2af15057db02086d411d08c3745837cdf312278050a3da'
+  );
+}
+
+function archivesOntarioHammondMatches(reference, image, record) {
+  const page = Object.values(record.native?.query?.pages ?? {})[0];
+  const info = page?.imageinfo?.[0];
+  const revision = page?.revisions?.[0];
+  const body = revision?.slots?.main?.['*'] ?? '';
+  const title = 'Fort Lennox, Ile aux noix, Quebec, looking southwest (I0017513).jpg';
+  return (
+    page?.title === 'File:' + title &&
+    record.archive === 'Archives of Ontario' &&
+    record.fonds === 'F 1075 M. O. Hammond fonds' &&
+    record.archiveProgram === 'https://www.archives.gov.on.ca/topic/digitized-records/' &&
+    reference.sourceUrl === info?.descriptionurl &&
+    reference.rightsEvidence?.sourceUrl?.startsWith('https://commons.wikimedia.org/w/api.php?') &&
+    info?.url?.split('?')[0] === reference.downloadUrl &&
+    info?.sha1 === hash(image, 'sha1') &&
+    info?.size === image.length &&
+    info.user === 'NeilAmagna' &&
+    info.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    info.extmetadata?.AttributionRequired?.value === 'false' &&
+    info.extmetadata?.Restrictions?.value === '' &&
+    revision?.parentid === 0 &&
+    revision.user === info.user &&
+    revision.revid === reference.nativeRevision &&
+    reference.dateCreated === '1923' &&
+    reference.accessionNumber === 'I0017513' &&
+    body.includes('|date = 1923\n') &&
+    body.includes('|accession number = I0017513\n') &&
+    body.includes('|institution = [https://www.wikidata.org/wiki/Q2860571 Archives of Ontario]') &&
+    body.includes('|source = [https://www.wikidata.org/wiki/Q102389236 M.O. Hammond fonds]') &&
+    body.includes('{{PD-US-expired |1=PD-Canada |country=CA |hide_us_warning=1}}') &&
+    reference.originalReview?.rendition === 'native-archive-jpeg'
+  );
+}
+
+function dendurGauPlateMatches(reference, image, record) {
+  const expected = {
+    23: ['15272266', '871c88220ef7f01665770868d7c4c9071a0265d44da728d6baac7efd3b7368f1'],
+    24: ['15272267', 'ab94d5ed9fde7992e2a706eb2a9765f8da6905da3a235ef52b996e5bc5648809'],
+    25: ['15272268', '43749dc5be5ac0c1c6c2fe29bff933ae4ab123b36f1ebd31f1ea5f4833a5d90e'],
+  };
+  const plate = expected[reference.plate];
+  if (!plate) return false;
+  const [id, digest] = plate;
+  const site = 'https://www.e-rara.ch';
+  const iiif = site + '/i3f/v20';
+  return (
+    reference.artist === 'Franz Christian Gau' &&
+    reference.sourceUrl === site + '/zut/content/pageview/' + id &&
+    reference.downloadUrl === iiif + '/' + id + '/full/2400,/0/default.jpg' &&
+    reference.rightsEvidence?.sourceUrl === site + '/zut/content/titleinfo/15272200' &&
+    record.holding === 'ETH-Bibliothek Zürich, Rar 9984' &&
+    record.doi === 'https://doi.org/10.3931/e-rara-56517' &&
+    record.published === 1822 &&
+    record.license === 'https://creativecommons.org/publicdomain/mark/1.0/' &&
+    record.manifest === iiif + '/15272200/manifest' &&
+    record.canvas?.['@id'] === iiif + '/15272200/canvas/' + id &&
+    record.canvas?.images?.[0]?.resource?.service?.['@id'] === iiif + '/' + id &&
+    reference.originalReview?.rendition === 'complete-iiif-page-2400px' &&
+    hash(image) === digest
+  );
+}
+
+function dendurMetPhotographMatches(reference, image, record) {
+  return (
+    reference.artist === 'Félix Teynard' &&
+    reference.sourceUrl === 'https://www.metmuseum.org/art/collection/search/261903' &&
+    reference.rightsEvidence?.sourceUrl ===
+      'https://collectionapi.metmuseum.org/public/collection/v1/objects/261903' &&
+    record.objectID === 261903 &&
+    record.isPublicDomain === true &&
+    record.title === 'Dandour, Vue Générale des Ruines' &&
+    record.artistDisplayName === reference.artist &&
+    record.objectDate === '1851–52, printed 1853–54' &&
+    record.primaryImage === reference.downloadUrl &&
+    reference.downloadUrl === 'https://images.metmuseum.org/CRDImages/ph/original/DP138593.jpg' &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    hash(image) === '73010e2c0ab523476e81dae7c13c3aeea709bad4182262e4ee10a0c4fdc7c7d3'
+  );
+}
+
+function alHakimMetDaguerreotypeMatches(reference, image, record) {
+  const item = '726474';
+  const objectUrl = `https://www.metmuseum.org/art/collection/search/${item}`;
+  const apiUrl = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${item}`;
+  return (
+    reference.artist === 'Joseph-Philibert Girault de Prangey' &&
+    reference.sourceUrl === objectUrl &&
+    reference.rightsEvidence?.sourceUrl === apiUrl &&
+    record.objectID === Number(item) &&
+    record.objectURL === objectUrl &&
+    record.isPublicDomain === true &&
+    record.accessionNumber === '2016.603' &&
+    record.artistDisplayName === reference.artist &&
+    record.objectDate === '1842–1843' &&
+    record.primaryImage === reference.downloadUrl &&
+    reference.downloadUrl ===
+      'https://images.metmuseum.org/CRDImages/ph/original/DP-13897-115.jpg' &&
+    reference.originalReview?.rendition === 'native-archive-jpeg' &&
+    hash(image) === '23a4f43155a1b4433899824d33350047bfd498b18bcd4b111b5f4111cb27fe2f'
+  );
+}
+
+function ottawaWarMuseumConstructionMatches(reference, image, record) {
+  const name = 'Canadian_War_Museum_Under_Construction_31may2004.JPG';
+  const source = `https://commons.wikimedia.org/wiki/File:${name}`;
+  const info = record.imageinfo?.[0];
+  const first = record.revisions?.[0];
+  const original = first?.slots?.main?.content ?? '';
+  return (
+    reference.artist === 'RealGrouchy' &&
+    reference.sourceUrl === source &&
+    reference.rightsEvidence?.sourceUrl === source &&
+    record.pageid === 6692347 &&
+    info?.descriptionurl === source &&
+    info?.url?.split('?')[0] === reference.downloadUrl &&
+    reference.downloadUrl === `https://upload.wikimedia.org/wikipedia/commons/e/ed/${name}` &&
+    info?.sha1 === hash(image, 'sha1') &&
+    info?.size === image.length &&
+    info?.width === 911 &&
+    info?.height === 309 &&
+    info?.extmetadata?.LicenseShortName?.value === 'Public domain' &&
+    info?.extmetadata?.Copyrighted?.value === 'False' &&
+    info?.extmetadata?.AttributionRequired?.value === 'false' &&
+    first?.revid === 20992272 &&
+    first?.parentid === 0 &&
+    original.includes('{{PD-user-w|en|wikipedia|RealGrouchy}}') &&
+    original.includes(
+      '2004-06-01 15:47 [[:en:User:RealGrouchy|RealGrouchy]] 911&times;309&times; (34789 bytes)',
+    ) &&
+    reference.originalReview?.rendition === 'native-original' &&
+    hash(image) === 'e79373b6ee80743e4c160780b8b79265d341de189ac4794638ba90ad533e47e0'
+  );
+}
+
+function maconTerminalPostcardMatches(reference, image, manifest) {
+  const cards = {
+    166: {
+      title: 'Terminal Station at Night, Macon, Ga',
+      sha256: '89cc170b6513a319ae4616564a15a66369368c3b5ae0a8338cbf3dae1d5cfdb2',
+    },
+    175: {
+      title: 'Terminal Station, Macon, Georgia',
+      sha256: 'fbf3dde07cbcd4613c262774f8ea6d53685b6194dc9b848db1628ddda404c82b',
+    },
+  };
+  const card = cards[reference.accessionNumber];
+  if (!card) return false;
+  const id = `zgz-odom_epogpc_mccls-pstcrd-${reference.accessionNumber}`;
+  const item = `https://dlg.usg.edu/record/${id}`;
+  const service = `https://dlg.usg.edu/images/iiif/2/dlg%2Fzgz-odom%2Fepogpc%2F${id}%2F${id}-00001.jp2`;
+  const metadata = (key) =>
+    manifest.metadata?.find((field) => field.label?.en?.[0] === key)?.value?.en?.[0];
+  return (
+    reference.title === card.title &&
+    reference.sourceUrl === item &&
+    reference.rightsEvidence?.sourceUrl === manifest.id &&
+    manifest.id === `${item}/presentation/manifest.json` &&
+    manifest.rights === 'http://rightsstatements.org/vocab/NoC-US/1.0/' &&
+    manifest.provider?.[0]?.label?.en?.[0] === 'Moultrie-Colquitt County Library System' &&
+    metadata('Title') === card.title &&
+    metadata('DLG record ID') === id &&
+    metadata('Creator') === reference.artist &&
+    manifest.items?.[0]?.items?.[0]?.items?.[0]?.body?.service?.[0]?.id === service &&
+    reference.downloadUrl === `${service}/full/1600,/0/default.jpg` &&
+    reference.originalReview?.rendition === 'full-postcard-iiif-1600px' &&
+    hash(image) === card.sha256
+  );
+}
+
 export function inspectPublicArchiveReference(dir, reference) {
   const image = readBound(dir, reference);
   const record = readRecord(dir, reference.rightsEvidence);
@@ -367,23 +847,73 @@ export function inspectPublicArchiveReference(dir, reference) {
     reference.license !== expectedLicense ||
     reference.visuallyReviewedForThisPolicy !== true ||
     reference.originalReview?.status !== 'inspected' ||
-    !(reference.origin === 'commons-mccord-public-domain'
-      ? mccordMatches(dir, reference, image, record)
-      : reference.origin === 'banq-public-domain-atlas'
-        ? banqMatches(reference, record)
-        : reference.origin === 'te-papa-expired-postcard'
-          ? tePapaPostcardMatches(dir, reference, record)
-          : reference.origin === 'rijksmuseum-public-domain'
-            ? rijksmuseumMatches(reference, record)
-            : reference.origin === 'commons-museu-paulista-expired-postcard'
-              ? museuPaulistaPostcardMatches(dir, reference, image, record)
-              : reference.origin === 'usgs-national-map-pr-naip'
-                ? puertoRicoNaipMatches(reference, record)
-                : reference.origin === 'commons-presidencia-sv-cc0'
-                  ? salvadoranPresidencyMatches(reference, image, record)
-                  : reference.origin === 'commons-nara-bureau-of-public-roads' &&
-                    reference.originalReview?.rendition === 'native-archive-jpeg' &&
-                    bureauOfPublicRoadsMatches(reference, image, record))
+    (!(
+      reference.origin === 'usgs-national-map-amos-naip' &&
+      amosNaipMatches(reference, image, record)
+    ) &&
+      !(reference.origin === 'dlg-macon-terminal-public-domain-postcard'
+        ? maconTerminalPostcardMatches(reference, image, record)
+        : reference.origin === 'loc-matson-winter-palace-public-domain'
+          ? matsonWinterPalaceMatches(reference, image, record)
+          : reference.origin === 'met-al-hakim-1842-daguerreotype'
+            ? alHakimMetDaguerreotypeMatches(reference, image, record)
+            : reference.origin === 'cornell-tughlaqabad-1902-plate'
+              ? tughlaqabadFanshawePlateMatches(dir, reference, image, record)
+              : reference.origin === 'commons-mccord-public-domain'
+                ? mccordMatches(dir, reference, image, record)
+                : reference.origin === 'commons-rietberg-sepahsalar-public-domain'
+                  ? rietbergSepahsalarMatches(dir, reference, image, record)
+                  : reference.origin === 'banq-public-domain-atlas'
+                    ? banqMatches(reference, record)
+                    : reference.origin === 'te-papa-expired-postcard'
+                      ? tePapaPostcardMatches(dir, reference, record)
+                      : reference.origin === 'rijksmuseum-public-domain'
+                        ? rijksmuseumMatches(reference, record)
+                        : reference.origin === 'loc-cordoba-photochrom-public-domain'
+                          ? cordobaPhotochromMatches(reference, image, record)
+                          : reference.origin === 'slq-cooktown-expired-original'
+                            ? cooktownStateLibraryMatches(reference, record)
+                            : reference.origin === 'commons-museu-paulista-expired-postcard'
+                              ? museuPaulistaPostcardMatches(dir, reference, image, record)
+                              : reference.origin === 'usgs-national-map-pr-naip'
+                                ? puertoRicoNaipMatches(reference, record)
+                                : reference.origin === 'usda-naip-california-2009'
+                                  ? californiaNaip2009Matches(reference, record)
+                                  : reference.origin === 'usda-naip-encina-2018'
+                                    ? encinaNaip2018Matches(reference, record)
+                                    : reference.origin === 'commons-presidencia-sv-cc0'
+                                      ? salvadoranPresidencyMatches(reference, image, record)
+                                      : reference.origin === 'efeo-cambodia-museum-1930-plate'
+                                        ? efeoCambodiaMuseumPlateMatches(
+                                            dir,
+                                            reference,
+                                            image,
+                                            record,
+                                          )
+                                        : reference.origin ===
+                                            'archives-ontario-hammond-expired-photograph'
+                                          ? archivesOntarioHammondMatches(reference, image, record)
+                                          : reference.origin === 'eth-gau-dendur-1822-survey'
+                                            ? dendurGauPlateMatches(reference, image, record)
+                                            : reference.origin ===
+                                                'met-teynard-dendur-1851-original'
+                                              ? dendurMetPhotographMatches(reference, image, record)
+                                              : reference.origin ===
+                                                  'commons-ottawa-war-museum-original-construction'
+                                                ? ottawaWarMuseumConstructionMatches(
+                                                    reference,
+                                                    image,
+                                                    record,
+                                                  )
+                                                : reference.origin ===
+                                                    'commons-nara-bureau-of-public-roads' &&
+                                                  reference.originalReview?.rendition ===
+                                                    'native-archive-jpeg' &&
+                                                  bureauOfPublicRoadsMatches(
+                                                    reference,
+                                                    image,
+                                                    record,
+                                                  )))
   )
     blockers.push('supplemental-archive-item-public-domain-unverified');
   return {
@@ -391,5 +921,55 @@ export function inspectPublicArchiveReference(dir, reference) {
     sourceUrl: reference.sourceUrl,
     blockers,
     eligible: blockers.length === 0,
+  };
+}
+
+/** Verify the Yale archive's original scale drawing of the house-church baptistery. */
+export function inspectYaleDuraBaptisteryPlan(dir, reference) {
+  const image = readBound(dir, reference);
+  const proof = readRecord(dir, reference.rightsEvidence);
+  const filename =
+    "Dura-Europos archival photograph, YUAG negative number 1938.5999.5275'49 -object-id-76.tif";
+  const page = proof?.commonsPage;
+  const native = page?.imageinfo?.[0];
+  const revision = page?.revisions?.[0];
+  const body = revision?.slots?.main?.['*'] ?? '';
+  const item = 'https://library.artstor.org/#/asset/SS7730479_7730479_10837877';
+  const eligible = Boolean(
+    image &&
+      reference.origin === 'yale-dura-archive-cc0-plan' &&
+      reference.license === 'CC0' &&
+      reference.artist === 'anonymous' &&
+      reference.sourceUrl ===
+        `https://commons.wikimedia.org/wiki/File:${filename.replaceAll(' ', '_')}` &&
+      reference.archiveIdentifier === "1938.5999.5275'49" &&
+      proof?.item === item &&
+      proof?.policyUrl === 'https://duraeuroposarchive.org/image-rights/' &&
+      proof?.grant === 'https://creativecommons.org/publicdomain/zero/1.0/' &&
+      proof?.institution === 'Yale University Art Gallery' &&
+      page?.title === `File:${filename}` &&
+      body.includes('{{Yale Digital Dura-Europos Archive}}') &&
+      /\{\{Cc-zero\}\}/i.test(body) &&
+      body.includes(item) &&
+      body.includes('Christian Church #8, elevation, section and plan') &&
+      revision?.revid === reference.nativeRevision &&
+      /^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/4\/42\//.test(
+        reference.downloadUrl,
+      ) &&
+      native?.url?.split('?')[0] === reference.downloadUrl &&
+      native?.sha1 === hash(image, 'sha1') &&
+      native?.size === image.length &&
+      native?.extmetadata?.LicenseShortName?.value === 'CC0' &&
+      native?.extmetadata?.AttributionRequired?.value === 'false' &&
+      native?.extmetadata?.Restrictions?.value === '' &&
+      reference.visuallyReviewedForThisPolicy === true &&
+      reference.originalReview?.status === 'inspected' &&
+      reference.originalReview?.rendition === 'native-archive-tiff',
+  );
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers: eligible ? [] : ['supplemental-yale-excavation-plan-unverified'],
+    eligible,
   };
 }

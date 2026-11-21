@@ -23,9 +23,9 @@ const linear = (h) =>
     const s = parseInt(v, 16) / 255;
     return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
   });
-const stone = linear('a9a48b'),
-  cap = linear('b9ae91'),
-  moss = linear('778066'),
+const stone = linear('918e7c'),
+  cap = linear('999482'),
+  moss = linear('596443'),
   leaf = linear('6e8259');
 const configs = {
   skyline: { course: 1, depth: 1, bevel: false, roots: 2, sides: 3, branch: 0, leaf: 0, rubble: 2 },
@@ -121,11 +121,12 @@ function writer(target, far) {
   return { addQuad: emit, addTriangle: emit, addConvexPolygon: emit };
 }
 function block(o, cfg, slot, c, size, seed = 0, tilt = 0) {
-  const tone = (hash(seed, 13) - 0.5) * 0.18,
+  const [x, y, z] = c,
+    tone = 0.79 + hash(seed, 13) * 0.33,
+    stain = (seed % 11 < 4 ? 0.57 : 0.14) * (slot === 'cap' || y < 0.8 ? 1 : 0.65),
     color = (slot === 'cap' ? cap : stone).map(
-      (v, i) => v * (1 + tone) + (seed % 7 === 0 ? moss[i] * 0.12 : 0),
+      (v, i) => (v * (1 - stain) + moss[i] * stain) * tone,
     ),
-    [x, y, z] = c,
     [w, h, d] = size;
   if (!cfg.bevel && !tilt) {
     box(o, slot, [x - w / 2, y, z - d / 2], [x + w / 2, y + h, z + d / 2], color);
@@ -147,14 +148,20 @@ function block(o, cfg, slot, c, size, seed = 0, tilt = 0) {
     return;
   }
   const ring = (yy, shrink) =>
-    chamferedRectangle(x, yy, z, w - shrink, d - shrink, Math.min(0.06, w * 0.1, d * 0.08)).map(
-      ([px, py, pz]) => {
+    chamferedRectangle(x, yy, z, w - shrink, d - shrink, Math.min(0.09, w * 0.13, d * 0.12)).map(
+      ([px, py, pz], i) => {
         const dx = px - x,
-          dz = pz - z;
+          dz = pz - z,
+          rise = (yy - y) / h,
+          edge = (hash(seed, i, 17) - 0.5) * 0.055;
         return [
-          x + dx * Math.cos(tilt) - dz * Math.sin(tilt),
-          py + (hash(seed, 31) - 0.5) * 0.025,
-          z + dx * Math.sin(tilt) + dz * Math.cos(tilt),
+          x +
+            dx * Math.cos(tilt) -
+            dz * Math.sin(tilt) +
+            edge +
+            rise * (hash(seed, 4) - 0.5) * 0.07,
+          py + (hash(seed, i, 31) - 0.5) * 0.035,
+          z + dx * Math.sin(tilt) + dz * Math.cos(tilt) + edge * 0.7,
         ];
       },
     );
@@ -168,9 +175,10 @@ function block(o, cfg, slot, c, size, seed = 0, tilt = 0) {
 function masonry(o, cfg) {
   const length = C.bays * C.pitch;
   for (let i = 0; i <= C.bays; i++) {
-    const x = (i - C.bays / 2) * C.pitch,
+    const [shift, head, projection, thickness] = C.pierWear[i];
+    const x = (i - C.bays / 2) * C.pitch + shift,
       collapsed = i > C.collapsedFromBay,
-      max = collapsed ? 0.65 + hash(i, 9) * 0.9 : C.courses * C.courseHeight,
+      max = head,
       n = collapsed ? Math.max(1, Math.round(cfg.course * 0.4)) : cfg.course;
     for (let j = 0; j < n; j++) {
       const cuts = [0, 0.34, 0.73, 1.06, 1.46, 1.82, 2.17, 2.49, 2.88],
@@ -182,8 +190,8 @@ function masonry(o, cfg) {
         y = cut(j / n),
         h = cut((j + 1) / n) - y - 0.015,
         corbel = collapsed ? 0 : Math.max(0, j / n - 0.45) * 0.67,
-        w = C.pitch - C.opening + 2 * corbel + (hash(i, j, 19) - 0.5) * 0.09,
-        front = C.frontZ + (hash(i, j, 7) - 0.5) * 0.22 + (j > n * 0.6 ? 0.12 : 0),
+        w = C.pitch - C.opening + thickness + 2 * corbel + (hash(i, j, 19) - 0.5) * 0.17,
+        front = C.frontZ + projection + (hash(i, j, 7) - 0.5) * 0.36 + (j > n * 0.6 ? 0.12 : 0),
         back = C.backZ;
       for (let k = 0; k < cfg.depth; k++) {
         const depth = (front - back) / cfg.depth,
@@ -192,19 +200,39 @@ function masonry(o, cfg) {
           o,
           cfg,
           'stone',
-          [x + (hash(i, j, k) - 0.5) * 0.035, y - 0.12, z],
+          [x + (hash(i, j, k) - 0.5) * 0.08 + (j / n) * shift * 0.3, y - 0.12, z],
           [w, h, depth - 0.018],
           i * 100 + j * 11 + k,
-          (hash(i, j + 9, k) - 0.5) * (cfg.bevel ? 0.022 : 0),
+          (hash(i, j + 9, k) - 0.5) * (cfg.bevel ? 0.042 : 0),
         );
       }
+    }
+  }
+  // Several exposed southern piers have stepped sandstone aprons visible below the corbels.
+  // Each stack recedes into its own pier, leaving the adjoining passage open.
+  for (const [i, [pier, reach, rise, width]] of C.frontAprons.entries()) {
+    const [shift, , projection] = C.pierWear[pier];
+    const x = (pier - C.bays / 2) * C.pitch + shift;
+    const front = C.frontZ + projection;
+    const courses = Math.min(3, cfg.course);
+    for (let j = 0; j < courses; j++) {
+      const depth = reach * (1 - (j / courses) * 0.83) + 0.31;
+      block(
+        o,
+        cfg,
+        'cap',
+        [x + (hash(i, j, 72) - 0.5) * 0.17, -0.09 + (j * rise) / courses, front - 0.31 + depth / 2],
+        [width - j * 0.055, rise / courses - 0.013, depth],
+        1850 + i * 11 + j,
+        (hash(i, j, 74) - 0.5) * 0.063,
+      );
     }
   }
   for (let i = 0; i < C.collapsedFromBay; i++) {
     const x = (i - (C.bays - 1) / 2) * C.pitch;
     for (let k = 0; k < cfg.depth; k++) {
       const z = C.backZ + ((k + 0.5) * (C.frontZ - C.backZ)) / cfg.depth,
-        y = 2.76 + (hash(i, 73, k) - 0.5) * 0.1;
+        y = Math.min(C.pierWear[i][1], C.pierWear[i + 1][1]) - 0.13 + (hash(i, 73, k) - 0.5) * 0.12;
       // Missing front slabs near the broken east edge remain missing.
       if (i >= C.collapsedFromBay - 2 && z > 1.2) continue;
       block(
@@ -215,6 +243,20 @@ function masonry(o, cfg) {
         [C.pitch + 0.16, 0.38, (C.frontZ - C.backZ) / cfg.depth - 0.025],
         600 + i * 10 + k,
         (hash(i, 98, k) - 0.5) * 0.035,
+      );
+    }
+  }
+  for (const [i, [x, z, width, depth, height, tilt]] of C.brokenPaving.entries()) {
+    const layers = cfg.depth > 2 && height > 0.5 ? 2 : 1;
+    for (let layer = 0; layer < layers; layer++) {
+      block(
+        o,
+        cfg,
+        layer ? 'cap' : 'stone',
+        [x - layer * 0.21, -0.11 + (layer * height) / layers, z + layer * 0.12],
+        [width - layer * 0.25, height / layers, depth - layer * 0.19],
+        1450 + i * 3 + layer,
+        tilt + layer * 0.1,
       );
     }
   }
@@ -249,7 +291,7 @@ function masonry(o, cfg) {
     );
   }
 }
-function tube(o, points, radii, sides, color, flatten = 1) {
+function tube(o, points, radii, sides, color, flatten = 1, fluting = 0) {
   let previousAcross = flatten === 1 ? undefined : [0, 0, 1];
   const rings = points.map((p, i) => {
     const a = points[Math.max(0, i - 1)],
@@ -266,8 +308,10 @@ function tube(o, points, radii, sides, color, flatten = 1) {
     previousAcross = across;
     return Array.from({ length: sides }, (_, j) => {
       const t = (j * Math.PI * 2) / sides;
+      const relief = 1 + fluting * (0.7 * Math.cos(3 * t + i * 0.23) + 0.3 * Math.sin(5 * t));
       return p.map(
-        (v, k) => v + radii[i] * (Math.cos(t) * across[k] * flatten + Math.sin(t) * other[k]),
+        (v, k) =>
+          v + radii[i] * relief * (Math.cos(t) * across[k] * flatten + Math.sin(t) * other[k]),
       );
     });
   });
@@ -344,62 +388,84 @@ function tree(o, cfg, t, index) {
       0.4,
     );
   }
+  const fork = t.forkHeight - base;
   const trunk = [
     [x, base, z],
-    [x + 0.18, base + 0.85, z + 0.06],
-    [x + t.lean[0] * 0.5, base + (t.forkHeight - base) * 0.67, z + t.lean[1] * 0.5],
+    [x + 0.13, base + fork * 0.17, z + 0.06],
+    [x + t.lean[0] * 0.32, base + fork * 0.43, z + t.lean[1] * 0.36],
+    [x + t.lean[0] * 0.56, base + fork * 0.68, z + t.lean[1] * 0.55],
     [x + t.lean[0], t.forkHeight, z + t.lean[1]],
   ];
-  tube(o, trunk, [t.radius, t.radius * 1.14, t.radius * 0.85, t.radius * 0.5], cfg.sides, bark);
-  if (index === 0 && cfg.branch)
-    for (let i = 0; i < (cfg.bevel ? 5 : 3); i++)
-      sphere(
-        o,
-        'bark',
-        [x + Math.cos(i * 2.1) * 0.7, base + 0.8 + (i % 3) * 0.56, z + Math.sin(i * 2.1) * 0.7],
-        [0.6, 0.75, 0.45],
-        bark.map((v) => v * (0.9 + 0.06 * (i % 3))),
-        cfg.sides,
-        3,
-      );
-  if (cfg.branch)
-    for (let i = 0; i < (index === 0 ? Math.min(3, cfg.branch) : cfg.branch); i++) {
-      const a = (i * Math.PI * 2) / (index === 0 ? 3 : cfg.branch) + 0.7 * index,
-        reach = t.spread * 0.65,
-        c = Math.cos(a),
-        s = Math.sin(a),
-        start = trunk.at(-1),
-        end = [x + c * reach, t.height - 1.2 + (i % 2) * 1.1, z + s * reach];
+  const trunkRadii = [1.24, 1.03, 0.94, 0.77, 0.51].map((factor) => t.radius * factor);
+  tube(o, trunk, trunkRadii, cfg.sides, bark, 1, cfg.branch ? 0.24 : 0);
+  if (index === 0 && cfg.branch) {
+    const flares = [
+      [-0.85, 0.87],
+      [0.92, 0.6],
+      [-0.7, -0.54],
+      [0.64, -0.52],
+    ];
+    for (const [i, [dx, dz]] of flares.entries()) {
       tube(
         o,
         [
-          start,
-          [
-            x + c * reach * 0.35,
-            t.forkHeight + (t.height - t.forkHeight) * 0.42,
-            z + s * reach * 0.35,
-          ],
-          [x + c * reach * 0.75, t.height * 0.82, z + s * reach * 0.75],
-          end,
+          [x + dx * 1.4, base + 0.11, z + dz * 1.34],
+          [x + dx * 0.83, base + 0.48, z + dz * 0.86],
+          [x + dx * 0.54 - 0.09, base + 1.16, z + dz * 0.51],
+          [x + dx * 0.27 - 0.15, base + 2.26 - i * 0.18, z + dz * 0.26],
         ],
-        [index === 0 ? 0.49 : 0.28, index === 0 ? 0.34 : 0.19, 0.15, 0.055],
+        [0.17, 0.36, 0.34, 0.12],
         cfg.sides,
-        bark,
+        bark.map((v) => v * (0.89 + 0.09 * i)),
+        0.68,
+        0.2,
       );
     }
-  const clumps = cfg.branch ? cfg.branch + 2 : 1;
-  for (let i = 0; i < clumps; i++) {
-    const a = (i * Math.PI * 2) / clumps + 0.35 * index,
-      reach = t.spread * 0.45,
-      center = [x + Math.cos(a) * reach, t.height - 1.5 + (i % 3) * 0.75, z + Math.sin(a) * reach],
-      radius = [t.spread * 0.52, 2.5, t.spread * 0.47],
+  }
+  // Each crown lobe is placed at the end of a continuous limb, including at skyline range.
+  const branchCount = index === 0 ? Math.min(3, Math.max(2, cfg.branch)) : Math.max(1, cfg.branch);
+  const shoulder = trunk.at(-2);
+  const forkTip = trunk.at(-1);
+  for (let i = 0; i < branchCount; i++) {
+    const a = (i * Math.PI * 2) / branchCount + 0.7 * index + 0.35,
+      reach = t.spread * (0.48 + hash(i, 691, index) * 0.18),
+      c = Math.cos(a),
+      s = Math.sin(a),
+      // Overlap the trunk below its top ring to keep angled limb bases joined.
+      inset = 0.18 + 0.05 * (i % 3),
+      start = forkTip.map((v, axis) => v + (shoulder[axis] - v) * inset),
+      end = [x + c * reach, t.height - 1.4 + hash(i, 683, index) * 1.55, z + s * reach];
+    tube(
+      o,
+      [
+        start,
+        [
+          x + c * reach * 0.29,
+          t.forkHeight + (t.height - t.forkHeight) * 0.43,
+          z + s * reach * 0.29,
+        ],
+        [x + c * reach * 0.71, end[1] - 1.2, z + s * reach * 0.73],
+        end,
+      ],
+      [index === 0 ? 0.49 : 0.29, index === 0 ? 0.33 : 0.22, 0.14, 0.055],
+      cfg.sides,
+      bark,
+      1,
+      0.12,
+    );
+    const center = [end[0], end[1] + 0.3, end[2]],
+      radius = [
+        t.spread * (0.41 + hash(i, 193) * 0.08),
+        1.77 + hash(i, 72) * 0.51,
+        t.spread * 0.43,
+      ],
       color = leaf.map((v) => v * (0.85 + 0.08 * (i % 4)));
-    sphere(o, 'leaf', center, radius, color, cfg.leaf ? 8 : 5, cfg.leaf ? 4 : 2);
+    sphere(o, 'leaf', center, radius, color, cfg.leaf ? 9 : 6, cfg.leaf ? 5 : 3);
     if (cfg.leaf)
       for (let j = 0; j < cfg.leaf * 8; j++) {
         const ang = j * 2.399963229728653,
-          dy = (hash(j, 67 + i) - 0.5) * 3.8,
-          rad = Math.sqrt(Math.max(0, 1 - Math.pow(dy / 2.5, 2))),
+          dy = (hash(j, 67 + i) - 0.5) * radius[1] * 1.7,
+          rad = Math.sqrt(Math.max(0, 1 - Math.pow(dy / radius[1], 2))),
           px = center[0] + Math.cos(ang) * radius[0] * rad,
           py = center[1] + dy,
           pz = center[2] + Math.sin(ang) * radius[2] * rad;
@@ -419,7 +485,7 @@ export function buildSpeanLevel(target, level = 'master') {
   if (!cfg) throw new Error(`Unknown Spean Thma level ${level}`);
   const o = writer(target, level === 'skyline');
   masonry(o, cfg);
-  for (const [t, i] of C.rootTrees.map((t, i) => [t, i])) tree(o, cfg, t, i);
+  for (const [i, rootTree] of C.rootTrees.entries()) tree(o, cfg, rootTree, i);
 }
 export const buildSpeanSkyline = (o) => buildSpeanLevel(o, 'skyline');
 export const buildSpeanDistrict = (o) => buildSpeanLevel(o, 'district');

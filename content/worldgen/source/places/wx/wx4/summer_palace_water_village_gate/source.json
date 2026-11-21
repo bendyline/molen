@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.summer_palace_water_village_gate",
+  "kind": "static-structure",
+  "title": "Summer Palace · Water Village gate and fence",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.summer_palace_water_village_gate",
+        "output": "assets/places/wx/wx4/summer_palace_water_village_gate/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c612076da4790e1ca0b7806e5fcb6a85398e2d3ac89b2bdd309a5f0a8e8e57b9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "summer_palace_water_village_gate",
+        "path": "models/generate-water-village-gate.mjs"
+      },
+      {
+        "id": "water-village-gate-mesh",
+        "path": "models/water-village-gate-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "preview.png",
+      "site-preview.webp",
+      "placement-report.json",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

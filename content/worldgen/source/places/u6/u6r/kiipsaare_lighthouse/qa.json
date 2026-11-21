@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kiipsaare_lighthouse",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:17ff4405d441a5d5cfeccdceabc21b359b55cd1113bd6257967e302a873e7aa9",
+  "inputHash": "sha256:5bf5329c3e65472519306028d0fe826e2bd5cc09b322fcee96b141718883724f",
   "sourceHash": "sha256:9c2753a05a758c658c153516c8f8e8ca6493ab8cf339bf0c523615a40350e35c",
   "runtimeHash": "sha256:041977f61fd994f201578ee325d48b2055fa83da37197b93eeca32312e199fb3",
-  "captureReportHash": "sha256:a485f56ed8fcff5993446dc835bbcd8901e94832c66ed436891264758a635ef3",
+  "captureReportHash": "sha256:88ca776d17d309d65e11f61392b0a5b667aa64e006e269c82fc88341c66398d7",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,7 +23,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8520695d645f1c46d79470feed133f28759f34ecf5ac0d3353d3c3e0aedc5ad5",
+    "captureReportHash": "sha256:62208e1b6ead8fc3f02df12f7148f1c29ae1a5c8c195ddf49722433bac39f8c2",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -282,5 +282,12 @@
     "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
     "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
     "The2-degree lean is a representative photo-proportioned pose, not a current survey; the authority says it varies. Diameter, gallery, lantern framing and irregular paint bands are photo estimates. Water level, seabed/submerged footing and door azimuth remain unresolved. No intact lens or active beacon is invented."
-  ]
+  ],
+  "inputBindingRefresh": {
+    "reviewedOn": "2026-11-18",
+    "previousInputHash": "sha256:17ff4405d441a5d5cfeccdceabc21b359b55cd1113bd6257967e302a873e7aa9",
+    "sourceCheck": "node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=kiipsaare_lighthouse --check",
+    "detailLevelCheck": "node packages/tooling/scripts/check-landmark-lods.mjs --ids=kiipsaare_lighthouse",
+    "notes": "The rebuilt master, runtime master, four detail levels, scene and cameras, shared graphs, mapped point, signed placement and all 42 previously inspected images match their recorded hashes. The existing inspection remains bound to these bytes."
+  }
 }

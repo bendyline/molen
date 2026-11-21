@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.roswell_mill",
+  "kind": "static-structure",
+  "title": "Roswell Mill",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.roswell_mill",
+        "output": "assets/places/dn/dnh/roswell_mill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:049462311493efc21a38677d3e202d3eb9b2c6f6febae48403f0e2c67d4cc7fe"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-roswell-mill",
+        "path": "models/generate-roswell-mill.mjs"
+      },
+      {
+        "id": "roswell-mill-model",
+        "path": "models/roswell-mill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/vickery-creek-mill-park-controls.json",
+      "reference-rights/roswell-city-and-national-park-written-records.json",
+      "reference-rights/thomson200-2021-original-cc0-2.json",
+      "reference-rights/thomson200-2021-original-cc0-3.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/usgs-3dep-roswell-original.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "format": "molen/structure-terrain-fit@1",
+  "site": "CCTV Headquarters",
+  "reference": {
+    "anchor": [
+      116.45931357773762,
+      39.91325452931163
+    ],
+    "modelHeight": 0,
+    "basis": "Retained outdoor terrain sample east of the southern tower, beyond the adjusted apron."
+  },
+  "grade": [
+    {
+      "name": "CCTV Headquarters northern tower and podium apron",
+      "anchor": [
+        116.457967576,
+        39.913812719
+      ],
+      "heading": 1.569603432704,
+      "bounds": [
+        22,
+        -81,
+        86,
+        81
+      ],
+      "blend": 17,
+      "elevation": 45.496,
+      "basis": "Match the northern tower foot and its adjoining podium apron to the retained outdoor reference."
+    },
+    {
+      "name": "CCTV Headquarters eastern podium and southern tower apron",
+      "anchor": [
+        116.457967576,
+        39.913812719
+      ],
+      "heading": 1.569603432704,
+      "bounds": [
+        -86,
+        25,
+        23,
+        81
+      ],
+      "blend": 16,
+      "elevation": 45.496,
+      "basis": "Keep the eastern wing and the southeastern tower at the common ground level."
+    },
+    {
+      "name": "CCTV Headquarters western entry apron",
+      "anchor": [
+        116.457967576,
+        39.913812719
+      ],
+      "heading": 1.569603432704,
+      "bounds": [
+        35,
+        -94,
+        70,
+        -80
+      ],
+      "blend": 13,
+      "elevation": 45.496,
+      "basis": "Carry the surrounding grade to the modeled northwest entrance and canopy."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "pmtiles-map.json",
+      "hash": "sha256:bc1b1d6fd74304baf3719a51ff60bf4c2b954b62876724d69d2b5b017d302836"
+    },
+    {
+      "path": "terrain-grid.json",
+      "hash": "sha256:0e82fc6a86e413bab6eddd1bc0961fbd73cbeffb3ec7b6e1278f7c2c246743d2"
+    }
+  ],
+  "scope": "Fit the two tower feet, lower L-shaped podium and west entrance without raising terrain below the suspended southwest connection."
+}

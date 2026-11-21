@@ -1,0 +1,45 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.summer_palace_water_village_pavilion",
+  "kind": "static-structure",
+  "title": "Summer Palace · Water Village lakeside pavilion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.summer_palace_water_village_pavilion",
+        "output": "assets/places/wx/wx4/summer_palace_water_village_pavilion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b83afa563b2b06f6b10311eb06cc5df6ca623f29b884b32c99e785170a9f04c8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "summer_palace_water_village_pavilion",
+        "path": "models/generate-water-village-pavilion.mjs"
+      },
+      {
+        "id": "water-village-pavilion-mesh",
+        "path": "models/water-village-pavilion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "preview.png"
+    ]
+  }
+}

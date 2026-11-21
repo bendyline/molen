@@ -108,7 +108,8 @@ it('pins the full passenger ensemble,signed street frame and conflicting native 
   expect(p.entry.groundCutout.minHeight).toBe(-3);
   expect(p.entry.groundCutout.outlines).toHaveLength(3);
   expect(p.entry.buildingCutout.outlines).toHaveLength(5);
-  expect(p.entry.terrainReference.anchor).toEqual([136.88328451368557, 35.171026852625374]);
+  expect(p.entry.terrainReference.anchor).toEqual([136.8839717472834, 35.17030992712935]);
+  expect(layout.terrainReferenceLocal).toEqual([-98, 66]);
   expect(
     reviewedSourceMapFrame({
       frameBytes: await readFile(`${source}/map-frame.json`),
@@ -343,7 +344,7 @@ it('uses the production viewer to replace the whole passenger building and prese
     expect(
       landmark.position.y,
       'production renderer uses the single shared native terrain datum',
-    ).toBeCloseTo(field.sampleHeight(0, 40), 2);
+    ).toBeCloseTo(field.sampleHeight(...layout.terrainReferenceLocal), 2);
     expect(seen.length).toBeGreaterThan(0);
     expect(
       seen.at(-1).sort(),

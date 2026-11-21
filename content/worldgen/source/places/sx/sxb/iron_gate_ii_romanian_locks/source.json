@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.iron_gate_ii_romanian_locks",
+  "kind": "static-structure",
+  "title": "Iron Gate II Romanian navigation locks",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.iron_gate_ii_romanian_locks",
+        "output": "assets/places/sx/sxb/iron_gate_ii_romanian_locks/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ec06bff8c9e660666e20281a048007ff4e85bb04a4a5cbfd8fb271e67b12820e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "romanian-lock-model",
+        "path": "models/romanian-lock-model.mjs"
+      },
+      {
+        "id": "romanian-locks-master",
+        "path": "models/generate-romanian-locks.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "placement-draft.json",
+      "reference-observations.json",
+      "import-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "site-preview.png",
+      "preview.png"
+    ]
+  }
+}

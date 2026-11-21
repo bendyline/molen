@@ -98,11 +98,11 @@
       41.025611774588604
     ],
     "heading": 1.5707963267948966,
-    "elevationMode": "terrain-contact",
+    "elevationMode": "sea-level",
     "orientationPolicy": "approximate-visualization",
-    "elevationMeters": 0,
+    "elevationMeters": 15.8102388,
     "groundContactReviewed": true,
-    "groundContactBasis": "Both terminal hosts and the approximate buried route share one common lower outside datum and fixed source grade offsets. Exact threshold and tunnel grades remain approximate. Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior.",
+    "groundContactBasis": "Both terminal hosts and the approximate buried route share one common lower outside datum and fixed source grade offsets. Exact threshold and tunnel grades remain approximate. The two photographed public entrances meet their outside paving near floor level. The retained standard terrain supplies the common vertical datum and the surrounding slopes. Two small approach grades blend into the native hill within the terminal streets.",
     "groundModelY": 0,
     "replaceFootprint": true,
     "buildingCutout": {
@@ -258,16 +258,8 @@
           ]
         ]
       ],
-      "minHeight": -8,
-      "basis": "Only the two closed terminal-host floor footprints. The buried route/passing loop receives no ground cutout, continuous plaza, road deletion or ownership of intervening buildings."
-    },
-    "terrainReference": {
-      "anchor": [
-        28.97392212437231,
-        41.02279106459647
-      ],
-      "modelHeight": 0,
-      "basis": "One unchanged standard global field sample just outside the lower southwest entrance [-314,-10]. The upper architectural grade is a fixed source offset of 53.33291019999999m from the north-front sample [315,0]. No per-part runtime terrain offsets, flattened map or surveyed-grade claim."
+      "basis": "Cut only the two enclosed terminal footprints under the modeled floors. Keep the mapped streets, paving and terrain over the buried railway.",
+      "preservePaving": true
     },
     "bounds": [
       28.973743520345263,
@@ -276,12 +268,12 @@
       41.028531299262006
     ],
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:adf0e198a64532c823c97452c94ae35764751ac79f04a536f87938cf3ed85578",
+    "mapGeometryHash": "sha256:fe1014c2401dc5010af11eafd0fc58dc65173706a52509031704ad58f9b23296",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors; Protomaps basemap",
     "source": "https://build.protomaps.com/20261031.pmtiles",
     "wikidataId": "Q387264",
-    "notes": "ConnectedTünelfunicular system visualization:both mapped terminal-host exteriors andthecurrent undergroundmainline/passingloop envelope. Upper26m Metrohan house:classical pale/pink multistorey corner mass,arched lowerbays/pilasters,rectangular upperwindows,deepcornices andwraparound canopy. LowerKarakoy host:light two-level entrance mass,large recessed rectangular doorway,upper archedpanes andsteppedcornice. Preserve everyintervening independentbuilding andoriginal terrain outsideactualclosedterminalfloors. No copiedsigns,photobanners,logos,flags,anniversarydecorations,people,vehicles,train/interior operationalclaims orfutureworks. Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior."
+    "notes": "The two terminal exteriors follow their mapped building footprints and face their respective streets. The shared local datum is 15.8102388 m. The short approach grades fit the photographed entrance sill heights against standard terrain. The buried casing and passing loop follow the mapped Tünel F2 route. Lining dimensions, rail levels and the lower host’s unpictured rear and roof are approximate."
   },
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
@@ -605,10 +597,9 @@
     }
   ],
   "limitations": [
-    "ConnectedTünelfunicular system visualization:both mapped terminal-host exteriors andthecurrent undergroundmainline/passingloop envelope. Upper26m Metrohan house:classical pale/pink multistorey corner mass,arched lowerbays/pilasters,rectangular upperwindows,deepcornices andwraparound canopy. LowerKarakoy host:light two-level entrance mass,large recessed rectangular doorway,upper archedpanes andsteppedcornice. Preserve everyintervening independentbuilding andoriginal terrain outsideactualclosedterminalfloors. No copiedsigns,photobanners,logos,flags,anniversarydecorations,people,vehicles,train/interior operationalclaims orfutureworks.",
-    "Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior.",
-    "The lower photograph only establishes the entrance portion, not the full host roof/height. Rear window inventory is regularized; exact terminal associations/orientation, hidden rooms, tunnel depth, section and junction geometry are approximate. The original subterranean-identity rejection remains a readiness blocker until the complete new scope is accepted. No operational or navigable underground interior. Physical laptop/phone timing and numerical LOD errors remain unmeasured.",
-    "Seven existing shared256px graphs:plaster_lime,stone_limestone,stone_granite,metal_standing_seam,metal_painted,window_grid andbrick; seven merged semantic groups. MetricUVs,linear colors; opaque walls/roof/casing and dedicated window panes. No private or embedded images; no lettering/photobanners. Skyline/district retain both complete terminal silhouettes and entry-canopy family; underground geometry is omitted while occluded. Street/closeup add mapped mainline and passing-loop casings/railbeds without deleting the city above; source master additionally retains denser arch facets, window trims and sleepers."
+    "The Karaköy photograph establishes the public front. Its 9 m host volume, hidden roof and rear elevations are approximate.",
+    "The mapped F2 route and passing loop determine the horizontal alignment. Casing section, rail bed and hidden construction are exterior-review approximations.",
+    "The two fitted approach grades use standard elevation data. The precise step, street and rail levels are unsurveyed."
   ],
   "qaCameras": [
     {
@@ -672,10 +663,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 70704,
-    "vertices": 212112,
+    "triangles": 76158,
+    "vertices": 228474,
     "materials": 7,
-    "bytes": 8488836,
-    "sha256": "sha256:a3dc4997a9d478f9b037a994d02b6c3ff9fa06f3805471a5ea82720fc60ee583"
+    "bytes": 9143320,
+    "sha256": "sha256:cb315726a7f654a9aa792f122cead947dfcf2fdc821ee031544727eed461744a"
   }
 }

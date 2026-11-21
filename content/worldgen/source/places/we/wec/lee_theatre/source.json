@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lee_theatre",
+  "kind": "static-structure",
+  "title": "Lee Theatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lee_theatre",
+        "output": "assets/places/we/wec/lee_theatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:29411c2b365ec97702b0482a7e75d1016e85d928fde5c9a675be126c6b3ddac0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lee-theatre",
+        "path": "models/generate-lee-theatre.mjs"
+      },
+      {
+        "id": "lee-theatre-model",
+        "path": "models/lee-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/lee-theatre-survey-controls.json",
+      "reference-rights/lee-theatre-written-evidence.json",
+      "reference-rights/qualla-image-screening.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/landsd-5m-site.asc",
+      "terrain-sources/landsd-5m-grid-provenance.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

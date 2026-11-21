@@ -1,0 +1,1859 @@
+{
+  "planId": "st_peter_s_basilica",
+  "id": "st_peter_s_basilica",
+  "assetId": "molen.worldgen.structure.st_peter_s_basilica",
+  "title": "St. Peter's Basilica",
+  "wikidataId": "Q12512",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 12.453382694736842,
+    "latitude": 41.90215650526316
+  },
+  "size": [
+    214.1181182861328,
+    138.25571012496948,
+    233.70799255371094
+  ],
+  "actualBounds": {
+    "min": [
+      -79.12184143066406,
+      -1.7557101249694824,
+      -152.47604370117188
+    ],
+    "max": [
+      134.99627685546875,
+      136.5,
+      81.23194885253906
+    ]
+  },
+  "visualBrief": "St. Peter’s Basilica and attached sacristy, including Maderno’s facade, the main ribbed dome and the smaller roof cupolas.",
+  "nativeAxes": {
+    "x": "along the eastern facade towards its south end",
+    "y": "up",
+    "z": "west towards the apse"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Vaticano,_dentro_y_fuera_de_la_Bas%C3%ADlica_de_San_Pedro_40.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aerial_view_from_airplane_in_2026.02.jpg",
+    "https://commons.wikimedia.org/wiki/File:View_from_the_dome_of_St._Peter%27s_Basilica_onto_the_former_church_of_Santa_Maria_della_Febbre,_as_part_of_the_sacristy.jpg",
+    "https://commons.wikimedia.org/wiki/File:Saint_Peter%E2%80%99s_square.jpg"
+  ],
+  "stories": [
+    {
+      "id": "st-peter-s-basilica-wp",
+      "url": "https://qualla.com/st-peter-s-basilica/"
+    }
+  ],
+  "referenceInputHash": "sha256:493210f85185d0874da1321e5cb0c399b529cbd7155d6a9b401643bc6bab8d83",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sr/sr2/st_peter_s_basilica/models/st-peter-s-basilica-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sr/sr2/st_peter_s_basilica/models/st-peter-s-basilica-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "carving": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.78,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.63,
+        "metallic": 0.24
+      },
+      "terracotta": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.63,
+        "metallic": 0.21
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.57,
+        "metallic": 0.04
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.24
+          },
+          "terracotta": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.21
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.24
+          },
+          "terracotta": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.21
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "carving": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.24
+          },
+          "terracotta": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.21
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.57,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_marble",
+    "metal_painted",
+    "tile_flat",
+    "stone_limestone_raw",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": -2.62,
+    "focus": {
+      "center": [
+        2,
+        43,
+        -30
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The official Vatican facade and dome descriptions establish dimensions, Corinthian order, loggia, attic statues and the lantern. Creator-released Qualla images establish the western apse from above, the portal materials and the attached sacristy roof. An exact independent contemporary CC0 photograph records the whole facade.",
+    "anchor": [
+      12.453382694736842,
+      41.90215650526316
+    ],
+    "heading": -1.5612332821734685,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        12.455193026258646,
+        41.90216939095153
+      ],
+      "modelHeight": 0,
+      "basis": "Native bare-earth TINITALY elevation at the center of the eastern stair approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -37.68081,
+          -117.77797
+        ],
+        [
+          -37.61835,
+          -106.84849
+        ],
+        [
+          -37.76263,
+          -98.74642
+        ],
+        [
+          -38.16797,
+          -74.9868
+        ],
+        [
+          -40.31942,
+          -74.68423
+        ],
+        [
+          -49.16971,
+          -74.68601
+        ],
+        [
+          -49.17145,
+          -74.50374
+        ],
+        [
+          -49.10916,
+          -51.91623
+        ],
+        [
+          -51.92747,
+          -51.72775
+        ],
+        [
+          -53.82124,
+          -51.59672
+        ],
+        [
+          -53.88431,
+          -42.67358
+        ],
+        [
+          -52.05828,
+          -42.70583
+        ],
+        [
+          -52.11984,
+          -40.92499
+        ],
+        [
+          -50.70662,
+          -40.86176
+        ],
+        [
+          -51.04521,
+          -32.23126
+        ],
+        [
+          -55.03434,
+          -30.67855
+        ],
+        [
+          -58.70546,
+          -25.12907
+        ],
+        [
+          -61.99855,
+          -20.69455
+        ],
+        [
+          -62.06169,
+          -18.748
+        ],
+        [
+          -65.46578,
+          -16.67598
+        ],
+        [
+          -68.37318,
+          -15.32007
+        ],
+        [
+          -70.92652,
+          -13.73705
+        ],
+        [
+          -73.30231,
+          -12.09434
+        ],
+        [
+          -75.38175,
+          -10.00965
+        ],
+        [
+          -77.05258,
+          -7.58133
+        ],
+        [
+          -78.46457,
+          -4.28054
+        ],
+        [
+          -79.12184,
+          -0.74053
+        ],
+        [
+          -79.00962,
+          2.65769
+        ],
+        [
+          -78.20622,
+          5.95481
+        ],
+        [
+          -76.87504,
+          8.77641
+        ],
+        [
+          -76.45656,
+          9.2527
+        ],
+        [
+          -75.93097,
+          10.16916
+        ],
+        [
+          -75.36101,
+          11.10261
+        ],
+        [
+          -74.79033,
+          11.9615
+        ],
+        [
+          -74.19732,
+          12.81231
+        ],
+        [
+          -73.51509,
+          13.64741
+        ],
+        [
+          -72.76616,
+          14.49143
+        ],
+        [
+          -71.96101,
+          15.27799
+        ],
+        [
+          -71.3487,
+          15.27556
+        ],
+        [
+          -70.24372,
+          16.13956
+        ],
+        [
+          -69.18255,
+          16.92857
+        ],
+        [
+          -67.86615,
+          17.80287
+        ],
+        [
+          -66.68126,
+          18.46049
+        ],
+        [
+          -65.38483,
+          19.09432
+        ],
+        [
+          -65.16751,
+          19.65154
+        ],
+        [
+          -64.0487,
+          20.23396
+        ],
+        [
+          -63.91726,
+          22.78722
+        ],
+        [
+          -58.54244,
+          29.9975
+        ],
+        [
+          -58.53694,
+          30.58584
+        ],
+        [
+          -56.9636,
+          32.53147
+        ],
+        [
+          -56.36251,
+          32.53721
+        ],
+        [
+          -55.23439,
+          33.31029
+        ],
+        [
+          -55.02099,
+          33.11347
+        ],
+        [
+          -54.17227,
+          33.99988
+        ],
+        [
+          -54.17734,
+          34.53012
+        ],
+        [
+          -53.8546,
+          34.54149
+        ],
+        [
+          -53.86919,
+          40.72251
+        ],
+        [
+          -54.33671,
+          40.71804
+        ],
+        [
+          -54.33778,
+          41.99403
+        ],
+        [
+          -55.59579,
+          41.99857
+        ],
+        [
+          -55.69646,
+          58.34537
+        ],
+        [
+          -42.35232,
+          58.72984
+        ],
+        [
+          -42.54349,
+          55.43858
+        ],
+        [
+          -34.99883,
+          55.76759
+        ],
+        [
+          -34.76836,
+          57.27779
+        ],
+        [
+          -32.76525,
+          57.35495
+        ],
+        [
+          -32.34963,
+          60.45779
+        ],
+        [
+          -23.1406,
+          67.18274
+        ],
+        [
+          -19.99393,
+          66.4174
+        ],
+        [
+          -18.9675,
+          69.67522
+        ],
+        [
+          -16.76716,
+          73.57399
+        ],
+        [
+          -13.28394,
+          77.19503
+        ],
+        [
+          -10.03078,
+          79.26443
+        ],
+        [
+          -6.42582,
+          80.63291
+        ],
+        [
+          -2.70218,
+          81.23195
+        ],
+        [
+          1.06207,
+          81.07737
+        ],
+        [
+          4.46524,
+          80.26477
+        ],
+        [
+          7.6627,
+          78.84535
+        ],
+        [
+          12.66686,
+          74.75862
+        ],
+        [
+          15.93566,
+          69.37101
+        ],
+        [
+          16.9863,
+          66.60534
+        ],
+        [
+          19.56784,
+          66.72945
+        ],
+        [
+          29.71762,
+          58.89707
+        ],
+        [
+          29.78877,
+          56.11374
+        ],
+        [
+          32.41567,
+          54.98715
+        ],
+        [
+          40.59557,
+          54.07937
+        ],
+        [
+          40.7183,
+          55.21569
+        ],
+        [
+          53.20801,
+          55.31028
+        ],
+        [
+          53.75607,
+          43.40063
+        ],
+        [
+          52.20357,
+          41.60435
+        ],
+        [
+          52.27409,
+          34.23072
+        ],
+        [
+          56.40754,
+          32.72081
+        ],
+        [
+          61.46459,
+          24.26801
+        ],
+        [
+          63.02525,
+          18.22606
+        ],
+        [
+          66.40727,
+          17.29726
+        ],
+        [
+          69.56162,
+          15.72828
+        ],
+        [
+          72.52172,
+          13.51943
+        ],
+        [
+          74.76318,
+          10.79001
+        ],
+        [
+          76.54124,
+          7.62529
+        ],
+        [
+          77.64306,
+          4.1641
+        ],
+        [
+          78.00109,
+          -0.67963
+        ],
+        [
+          77.05579,
+          -5.4364
+        ],
+        [
+          74.13448,
+          -10.77549
+        ],
+        [
+          70.60459,
+          -14.17326
+        ],
+        [
+          66.1742,
+          -16.53564
+        ],
+        [
+          63.02055,
+          -17.36951
+        ],
+        [
+          60.41323,
+          -22.94589
+        ],
+        [
+          67.36943,
+          -22.77994
+        ],
+        [
+          72.45578,
+          -22.65672
+        ],
+        [
+          72.34898,
+          -27.78662
+        ],
+        [
+          66.73668,
+          -27.62486
+        ],
+        [
+          57.64269,
+          -27.75326
+        ],
+        [
+          53.72221,
+          -32.21533
+        ],
+        [
+          51.85751,
+          -32.7966
+        ],
+        [
+          51.73859,
+          -36.65889
+        ],
+        [
+          51.6011,
+          -39.7425
+        ],
+        [
+          53.42309,
+          -41.68051
+        ],
+        [
+          53.24582,
+          -49.91823
+        ],
+        [
+          73.26704,
+          -50.44761
+        ],
+        [
+          73.23215,
+          -54.9471
+        ],
+        [
+          53.10254,
+          -54.72532
+        ],
+        [
+          52.16663,
+          -54.64313
+        ],
+        [
+          51.84374,
+          -61.62281
+        ],
+        [
+          50.39713,
+          -61.68636
+        ],
+        [
+          49.1451,
+          -63.47148
+        ],
+        [
+          49.15307,
+          -74.78143
+        ],
+        [
+          48.54108,
+          -74.81214
+        ],
+        [
+          48.66428,
+          -78.38212
+        ],
+        [
+          38.15707,
+          -78.57375
+        ],
+        [
+          37.91305,
+          -83.32381
+        ],
+        [
+          38.60019,
+          -85.33067
+        ],
+        [
+          38.51222,
+          -98.24898
+        ],
+        [
+          37.70006,
+          -99.46646
+        ],
+        [
+          37.56748,
+          -105.39203
+        ],
+        [
+          38.45926,
+          -107.84437
+        ],
+        [
+          38.42833,
+          -112.7581
+        ],
+        [
+          45.38595,
+          -112.74128
+        ],
+        [
+          55.86111,
+          -112.69082
+        ],
+        [
+          59.21564,
+          -117.72961
+        ],
+        [
+          58.83163,
+          -133.45132
+        ],
+        [
+          58.51702,
+          -135.47605
+        ],
+        [
+          -56.71505,
+          -135.47605
+        ],
+        [
+          -56.56829,
+          -119.39203
+        ],
+        [
+          -43.13106,
+          -119.42924
+        ],
+        [
+          -43.12456,
+          -117.78032
+        ],
+        [
+          -37.75873,
+          -117.77872
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -37.68081,
+            -117.77797
+          ],
+          [
+            -37.61835,
+            -106.84849
+          ],
+          [
+            -37.76263,
+            -98.74642
+          ],
+          [
+            -38.16797,
+            -74.9868
+          ],
+          [
+            -40.31942,
+            -74.68423
+          ],
+          [
+            -49.16971,
+            -74.68601
+          ],
+          [
+            -49.17145,
+            -74.50374
+          ],
+          [
+            -49.10916,
+            -51.91623
+          ],
+          [
+            -51.92747,
+            -51.72775
+          ],
+          [
+            -53.82124,
+            -51.59672
+          ],
+          [
+            -53.88431,
+            -42.67358
+          ],
+          [
+            -52.05828,
+            -42.70583
+          ],
+          [
+            -52.11984,
+            -40.92499
+          ],
+          [
+            -50.70662,
+            -40.86176
+          ],
+          [
+            -51.04521,
+            -32.23126
+          ],
+          [
+            -55.03434,
+            -30.67855
+          ],
+          [
+            -58.70546,
+            -25.12907
+          ],
+          [
+            -61.99855,
+            -20.69455
+          ],
+          [
+            -62.06169,
+            -18.748
+          ],
+          [
+            -65.46578,
+            -16.67598
+          ],
+          [
+            -68.37318,
+            -15.32007
+          ],
+          [
+            -70.92652,
+            -13.73705
+          ],
+          [
+            -73.30231,
+            -12.09434
+          ],
+          [
+            -75.38175,
+            -10.00965
+          ],
+          [
+            -77.05258,
+            -7.58133
+          ],
+          [
+            -78.46457,
+            -4.28054
+          ],
+          [
+            -79.12184,
+            -0.74053
+          ],
+          [
+            -79.00962,
+            2.65769
+          ],
+          [
+            -78.20622,
+            5.95481
+          ],
+          [
+            -76.87504,
+            8.77641
+          ],
+          [
+            -76.45656,
+            9.2527
+          ],
+          [
+            -75.93097,
+            10.16916
+          ],
+          [
+            -75.36101,
+            11.10261
+          ],
+          [
+            -74.79033,
+            11.9615
+          ],
+          [
+            -74.19732,
+            12.81231
+          ],
+          [
+            -73.51509,
+            13.64741
+          ],
+          [
+            -72.76616,
+            14.49143
+          ],
+          [
+            -71.96101,
+            15.27799
+          ],
+          [
+            -71.3487,
+            15.27556
+          ],
+          [
+            -70.24372,
+            16.13956
+          ],
+          [
+            -69.18255,
+            16.92857
+          ],
+          [
+            -67.86615,
+            17.80287
+          ],
+          [
+            -66.68126,
+            18.46049
+          ],
+          [
+            -65.38483,
+            19.09432
+          ],
+          [
+            -65.16751,
+            19.65154
+          ],
+          [
+            -64.0487,
+            20.23396
+          ],
+          [
+            -63.91726,
+            22.78722
+          ],
+          [
+            -58.54244,
+            29.9975
+          ],
+          [
+            -58.53694,
+            30.58584
+          ],
+          [
+            -56.9636,
+            32.53147
+          ],
+          [
+            -56.36251,
+            32.53721
+          ],
+          [
+            -55.23439,
+            33.31029
+          ],
+          [
+            -55.02099,
+            33.11347
+          ],
+          [
+            -54.17227,
+            33.99988
+          ],
+          [
+            -54.17734,
+            34.53012
+          ],
+          [
+            -53.8546,
+            34.54149
+          ],
+          [
+            -53.86919,
+            40.72251
+          ],
+          [
+            -54.33671,
+            40.71804
+          ],
+          [
+            -54.33778,
+            41.99403
+          ],
+          [
+            -55.59579,
+            41.99857
+          ],
+          [
+            -55.69646,
+            58.34537
+          ],
+          [
+            -42.35232,
+            58.72984
+          ],
+          [
+            -42.54349,
+            55.43858
+          ],
+          [
+            -34.99883,
+            55.76759
+          ],
+          [
+            -34.76836,
+            57.27779
+          ],
+          [
+            -32.76525,
+            57.35495
+          ],
+          [
+            -32.34963,
+            60.45779
+          ],
+          [
+            -23.1406,
+            67.18274
+          ],
+          [
+            -19.99393,
+            66.4174
+          ],
+          [
+            -18.9675,
+            69.67522
+          ],
+          [
+            -16.76716,
+            73.57399
+          ],
+          [
+            -13.28394,
+            77.19503
+          ],
+          [
+            -10.03078,
+            79.26443
+          ],
+          [
+            -6.42582,
+            80.63291
+          ],
+          [
+            -2.70218,
+            81.23195
+          ],
+          [
+            1.06207,
+            81.07737
+          ],
+          [
+            4.46524,
+            80.26477
+          ],
+          [
+            7.6627,
+            78.84535
+          ],
+          [
+            12.66686,
+            74.75862
+          ],
+          [
+            15.93566,
+            69.37101
+          ],
+          [
+            16.9863,
+            66.60534
+          ],
+          [
+            19.56784,
+            66.72945
+          ],
+          [
+            29.71762,
+            58.89707
+          ],
+          [
+            29.78877,
+            56.11374
+          ],
+          [
+            32.41567,
+            54.98715
+          ],
+          [
+            40.59557,
+            54.07937
+          ],
+          [
+            40.7183,
+            55.21569
+          ],
+          [
+            53.20801,
+            55.31028
+          ],
+          [
+            53.75607,
+            43.40063
+          ],
+          [
+            52.20357,
+            41.60435
+          ],
+          [
+            52.27409,
+            34.23072
+          ],
+          [
+            56.40754,
+            32.72081
+          ],
+          [
+            61.46459,
+            24.26801
+          ],
+          [
+            63.02525,
+            18.22606
+          ],
+          [
+            66.40727,
+            17.29726
+          ],
+          [
+            69.56162,
+            15.72828
+          ],
+          [
+            72.52172,
+            13.51943
+          ],
+          [
+            74.76318,
+            10.79001
+          ],
+          [
+            76.54124,
+            7.62529
+          ],
+          [
+            77.64306,
+            4.1641
+          ],
+          [
+            78.00109,
+            -0.67963
+          ],
+          [
+            77.05579,
+            -5.4364
+          ],
+          [
+            74.13448,
+            -10.77549
+          ],
+          [
+            70.60459,
+            -14.17326
+          ],
+          [
+            66.1742,
+            -16.53564
+          ],
+          [
+            63.02055,
+            -17.36951
+          ],
+          [
+            60.41323,
+            -22.94589
+          ],
+          [
+            67.36943,
+            -22.77994
+          ],
+          [
+            72.45578,
+            -22.65672
+          ],
+          [
+            72.34898,
+            -27.78662
+          ],
+          [
+            66.73668,
+            -27.62486
+          ],
+          [
+            57.64269,
+            -27.75326
+          ],
+          [
+            53.72221,
+            -32.21533
+          ],
+          [
+            51.85751,
+            -32.7966
+          ],
+          [
+            51.73859,
+            -36.65889
+          ],
+          [
+            51.6011,
+            -39.7425
+          ],
+          [
+            53.42309,
+            -41.68051
+          ],
+          [
+            53.24582,
+            -49.91823
+          ],
+          [
+            73.26704,
+            -50.44761
+          ],
+          [
+            73.23215,
+            -54.9471
+          ],
+          [
+            53.10254,
+            -54.72532
+          ],
+          [
+            52.16663,
+            -54.64313
+          ],
+          [
+            51.84374,
+            -61.62281
+          ],
+          [
+            50.39713,
+            -61.68636
+          ],
+          [
+            49.1451,
+            -63.47148
+          ],
+          [
+            49.15307,
+            -74.78143
+          ],
+          [
+            48.54108,
+            -74.81214
+          ],
+          [
+            48.66428,
+            -78.38212
+          ],
+          [
+            38.15707,
+            -78.57375
+          ],
+          [
+            37.91305,
+            -83.32381
+          ],
+          [
+            38.60019,
+            -85.33067
+          ],
+          [
+            38.51222,
+            -98.24898
+          ],
+          [
+            37.70006,
+            -99.46646
+          ],
+          [
+            37.56748,
+            -105.39203
+          ],
+          [
+            38.45926,
+            -107.84437
+          ],
+          [
+            38.42833,
+            -112.7581
+          ],
+          [
+            45.38595,
+            -112.74128
+          ],
+          [
+            55.86111,
+            -112.69082
+          ],
+          [
+            59.21564,
+            -117.72961
+          ],
+          [
+            58.83163,
+            -133.45132
+          ],
+          [
+            58.51702,
+            -135.47605
+          ],
+          [
+            -56.71505,
+            -135.47605
+          ],
+          [
+            -56.56829,
+            -119.39203
+          ],
+          [
+            -43.13106,
+            -119.42924
+          ],
+          [
+            -43.12456,
+            -117.78032
+          ],
+          [
+            -37.75873,
+            -117.77872
+          ]
+        ],
+        [
+          [
+            72.45578,
+            -22.65672
+          ],
+          [
+            72.34898,
+            -27.78662
+          ],
+          [
+            74.19035,
+            -28.25787
+          ],
+          [
+            74.95766,
+            -29.33596
+          ],
+          [
+            75.37068,
+            -30.6163
+          ],
+          [
+            69.78277,
+            -30.67802
+          ],
+          [
+            69.94211,
+            -47.33912
+          ],
+          [
+            75.54114,
+            -47.27729
+          ],
+          [
+            75.04732,
+            -49.18773
+          ],
+          [
+            73.26704,
+            -50.44761
+          ],
+          [
+            73.23215,
+            -54.9471
+          ],
+          [
+            81.02526,
+            -54.98858
+          ],
+          [
+            81.08287,
+            -61.01176
+          ],
+          [
+            83.23171,
+            -61.04092
+          ],
+          [
+            85.17702,
+            -63.06889
+          ],
+          [
+            85.35255,
+            -68.61866
+          ],
+          [
+            89.05774,
+            -68.41751
+          ],
+          [
+            101.46085,
+            -68.58061
+          ],
+          [
+            102.16102,
+            -61.47304
+          ],
+          [
+            134.92228,
+            -61.30887
+          ],
+          [
+            134.8701,
+            -50.03248
+          ],
+          [
+            134.86673,
+            -43.85964
+          ],
+          [
+            134.77684,
+            -33.29619
+          ],
+          [
+            134.8544,
+            -27.43743
+          ],
+          [
+            134.78721,
+            -22.74006
+          ],
+          [
+            134.74613,
+            -14.95186
+          ],
+          [
+            101.88469,
+            -15.11698
+          ],
+          [
+            101.69323,
+            -7.90193
+          ],
+          [
+            85.18459,
+            -7.98524
+          ],
+          [
+            85.21557,
+            -13.55296
+          ],
+          [
+            83.30295,
+            -16.10669
+          ],
+          [
+            81.48852,
+            -16.12404
+          ],
+          [
+            81.34766,
+            -22.34797
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Two mapped masks replace the standing basilica and attached sacristy while keeping the Apostolic Palace and square colonnades separate."
+    },
+    "featureIds": [
+      "way/44522478",
+      "way/117968816",
+      "way/117968821",
+      "way/149240100",
+      "way/244067213",
+      "way/244067214",
+      "way/244067215",
+      "way/244067216",
+      "way/244067217",
+      "way/244067218",
+      "way/244067225",
+      "way/244159210",
+      "way/244268552",
+      "way/244268554",
+      "way/388852951",
+      "way/388852953",
+      "way/422977134",
+      "way/422977135",
+      "way/629717144",
+      "way/1083232914",
+      "way/1083232915",
+      "way/1575937053",
+      "way/1580032975"
+    ],
+    "source": "https://www.openstreetmap.org/way/244159210",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:914eff56030489e2a12ab95ce9ba3a27d5babddcc0307befd4804e08cc34e709",
+    "notes": "The official Vatican facade and dome descriptions establish dimensions, Corinthian order, loggia, attic statues and the lantern. Creator-released Qualla images establish the western apse from above, the portal materials and the attached sacristy roof. An exact independent contemporary CC0 photograph records the whole facade."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The facade rhythm, two clocks, thirteen roof statues, dome ribs and lantern are modeled. Sculptures, inscriptions, lettering and fine decoration are represented at landmark scale.",
+    "Local rooftop fittings, stair risers, subsidiary dome profiles and some outer window details are approximate. St Peter’s Square, the separate colonnades, the Apostolic Palace and basilica interiors are outside the selected extent."
+  ],
+  "sourceLicense": "Original exterior geometry from mapped building elements, native bare-earth terrain, official architecture descriptions, and creator-dedicated public-domain photographs.",
+  "qaLodCameras": [
+    {
+      "name": "st-peter-s-basilica-skyline",
+      "position": [
+        -99,
+        96,
+        -276
+      ],
+      "lookAt": [
+        2,
+        43,
+        -30
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "st-peter-s-basilica-district",
+      "position": [
+        -99,
+        96,
+        -276
+      ],
+      "lookAt": [
+        2,
+        43,
+        -30
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "st-peter-s-basilica-street",
+      "position": [
+        -99,
+        96,
+        -276
+      ],
+      "lookAt": [
+        2,
+        43,
+        -30
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "st-peter-s-basilica-closeup",
+      "position": [
+        -99,
+        96,
+        -276
+      ],
+      "lookAt": [
+        2,
+        43,
+        -30
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "maderno-facade-and-clocks",
+      "position": [
+        -3,
+        28,
+        -269
+      ],
+      "lookAt": [
+        0,
+        32,
+        -111
+      ]
+    },
+    {
+      "name": "ribbed-dome-drum-and-lantern",
+      "position": [
+        96,
+        113,
+        11
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ]
+    },
+    {
+      "name": "western-apse-and-renaissance-roofline",
+      "position": [
+        -146,
+        101,
+        172
+      ],
+      "lookAt": [
+        -3,
+        46,
+        23
+      ]
+    },
+    {
+      "name": "connected-sacristy-and-southern-transept",
+      "position": [
+        196,
+        66,
+        -48
+      ],
+      "lookAt": [
+        66,
+        39,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28838,
+    "vertices": 86514,
+    "materials": 8,
+    "bytes": 3722216,
+    "sha256": "sha256:e6186762156295498c137159e2c85f9339eafc29be7f891ae4de6e5f9cedbcc0"
+  }
+}

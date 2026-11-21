@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Hekatompedon temple · Archaic Athens",
+  "seed": "hekatompedon_temple",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "hekatompedon_temple",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.hekatompedon_temple",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e2e8ef",
+            "ground": "#c9ae88",
+            "intensity": 0.94
+          },
+          "sun": {
+            "direction": [
+              -1.2,
+              1.55,
+              0.58
+            ],
+            "color": "#fff0dc",
+            "intensity": 1.89,
+            "castShadow": true
+          },
+          "background": "#c4d2dc",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "review-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.27,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              560,
+              0.44,
+              535
+            ]
+          },
+          "materialRef": "palette:#9c8c69",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -59,
+      31,
+      45
+    ],
+    "lookAt": [
+      0,
+      5.5,
+      0
+    ],
+    "fov": 41
+  }
+}

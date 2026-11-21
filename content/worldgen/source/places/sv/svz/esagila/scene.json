@@ -1,0 +1,131 @@
+{
+  "format": "molen/scene@3",
+  "name": "Esagila · Neo-Babylonian reconstruction study",
+  "seed": "esagila",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "esagila",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.esagila",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e2e8ef",
+            "ground": "#c9ae88",
+            "intensity": 0.94
+          },
+          "sun": {
+            "direction": [
+              -1.13,
+              1.8,
+              -0.81
+            ],
+            "color": "#fff0dc",
+            "intensity": 1.89,
+            "castShadow": true
+          },
+          "background": "#c4d2dc",
+          "toneMapping": "agx",
+          "exposure": 1.05,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "review-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            34,
+            -0.24,
+            10
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              560,
+              0.44,
+              535
+            ]
+          },
+          "materialRef": "palette:#9c8c69",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "sanctuary-fill",
+      "components": {
+        "transform": {
+          "pos": [
+            -22,
+            4,
+            0.12
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffe6b6",
+          "intensity": 44,
+          "range": 26
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      164,
+      111,
+      156
+    ],
+    "lookAt": [
+      33,
+      3,
+      10
+    ],
+    "fov": 53
+  }
+}

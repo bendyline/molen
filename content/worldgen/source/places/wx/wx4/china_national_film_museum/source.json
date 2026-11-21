@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.china_national_film_museum",
+  "kind": "static-structure",
+  "title": "China National Film Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.china_national_film_museum",
+        "output": "assets/places/wx/wx4/china_national_film_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:eb88575b0193348ae553449f4122a8d76271b1ac0763e34eee3a3b3507d08dce"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-china-national-film-museum",
+        "path": "models/generate-china-national-film-museum.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/china-national-film-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/film-museum-and-forecourt-osm.json",
+      "native-map/film-museum-overture-roofprint.json",
+      "reference-rights/museum-and-plaza-facts.json",
+      "reference-rights/photographers-original-cc0-and-account-rename.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26989-12405.png",
+      "terrain-sources/terrarium-15-26989-12406.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

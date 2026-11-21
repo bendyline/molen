@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_second_palace",
+  "kind": "static-structure",
+  "title": "Ilédì Oǹtótóo, Second Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_second_palace",
+        "output": "assets/places/s1/s17/osun_grove_second_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7983f7e1b8a97cf84614c3449a3d43032447b035beee1530d57a2764c51814eb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "second-palace-model",
+        "path": "models/second-palace-model.mjs"
+      },
+      {
+        "id": "second-palace-master",
+        "path": "models/generate-second-palace.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "portal-preview.webp",
+      "map-frame.json",
+      "placement-report.json",
+      "preview.png"
+    ]
+  }
+}

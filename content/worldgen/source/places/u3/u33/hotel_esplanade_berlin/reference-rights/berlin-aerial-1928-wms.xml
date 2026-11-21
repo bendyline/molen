@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" version="1.3.0" updateSequence="551130" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms https://gdi.berlin.de/services/schemas/wms/1.3.0/capabilities_1_3_0.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 https://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title>Luftbilder 1928, Maßstab 1:4 000</Title>
+    <Abstract>Senkrechtaufnahmen von Berlin, Fotoblätter ohne Überlappungen im Maßstab 1:4 000.</Abstract>
+    <KeywordList>
+      <Keyword>WMS</Keyword>
+      <Keyword>Berlin</Keyword>
+      <Keyword>Geodaten</Keyword>
+      <Keyword>GDI-BE</Keyword>
+      <Keyword>OGC</Keyword>
+      <Keyword>infoMapAccessService</Keyword>
+      <Keyword>opendata</Keyword>
+      <Keyword>open data</Keyword>
+      <Keyword>AdVMIS</Keyword>
+      <Keyword>Luftbilder</Keyword>
+      <Keyword>Luftbildpläne</Keyword>
+      <Keyword>Senkrechtaufnahmen</Keyword>
+      <Keyword>Luftbildplan</Keyword>
+      <Keyword>Luftbildmosaike</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="https://www.stadtentwicklung.berlin.de/geoinformation/gdi/"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson/>
+        <ContactOrganization>Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition>pointOfContact</ContactPosition>
+      <ContactAddress>
+        <AddressType>postal</AddressType>
+        <Address/>
+        <City/>
+        <StateOrProvince/>
+        <PostCode/>
+        <Country>Germany</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone/>
+      <ContactFacsimileTelephone/>
+      <ContactElectronicMailAddress>geoportal@senstadt.berlin.de</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.</Fees>
+    <AccessConstraints>Es gelten keine Zugriffsbeschränkungen.</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/tiff</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <inspire_vs:ExtendedCapabilities>
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>https://gdi.berlin.de/geonetwork/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputschema=http://www.isotc211.org/2005/gmd&amp;elementsetname=full&amp;id=bed1a566-7002-332a-bf87-f778b4f9fd5d</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.ogc.csw.GetRecordByIdResponse_xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>ger</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>ger</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+    <Layer>
+      <Title>Luftbilder 1928, Maßstab 1:4 000</Title>
+      <Abstract>Senkrechtaufnahmen von Berlin, Fotoblätter ohne Überlappungen im Maßstab 1:4 000.</Abstract>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:25833</CRS>
+      <CRS>EPSG:25832</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:4258</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>13.051915010585402</westBoundLongitude>
+        <eastBoundLongitude>416000.011747</eastBoundLongitude>
+        <southBoundLatitude>52.344457119641426</southBoundLatitude>
+        <northBoundLatitude>5838000.000000999</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="13.051915010585402" miny="52.344457119641426" maxx="416000.011747" maxy="5838000.000000999"/>
+      <BoundingBox CRS="EPSG:25833" minx="-1.0504447155272368E8" miny="-4.4400465349582875E8" maxx="2.0820025476899064E8" maxy="1.3750621529011917E8"/>
+      <BoundingBox CRS="EPSG:25832" minx="-1.9441424756087524E8" miny="-4.07526092833725E8" maxx="9.643860240770388E7" maxy="1.2931400478292407E8"/>
+      <BoundingBox CRS="EPSG:4326" minx="52.344457119641426" miny="13.051915010585402" maxx="5838000.000000999" maxy="416000.011747"/>
+      <BoundingBox CRS="EPSG:4258" minx="-60.00000102717471" miny="-166.9480849894146" maxx="90.0" maxy="168.85177500176317"/>
+      <BoundingBox CRS="EPSG:3857" minx="1452932.5328554509" miny="6862648.962379909" maxx="4.630890947767186E10" maxy="1.9971868880408563E7"/>
+      <AuthorityURL name="GDI-DE">
+        <OnlineResource xlink:type="simple" xlink:href="https://www.gdi-de.org"/>
+      </AuthorityURL>
+      <Identifier authority="GDI-DE">https://registry.gdi-de.org/id/de.be.csw/2ca8d68f-afc1-3111-82c2-a376d4141620</Identifier>
+      <Layer queryable="1" opaque="0">
+        <Name>a_lb_1928_04_pan_bildmitten</Name>
+        <Title>Bildmittelpunkt</Title>
+        <Abstract>Senkrechtaufnahmen von Berlin, Fotoblätter ohne Überlappungen im Maßstab 1:4 000.</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:25833</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.076861865007103</westBoundLongitude>
+          <eastBoundLongitude>13.746925234777343</eastBoundLongitude>
+          <southBoundLatitude>52.35939526463047</southBoundLatitude>
+          <northBoundLatitude>52.66808785086186</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.076861865007103" miny="52.35939526463047" maxx="13.746925234777343" maxy="52.66808785086186"/>
+        <BoundingBox CRS="EPSG:25833" minx="369929.96875" miny="5802729.5" maxx="414685.0" maxy="5836096.0"/>
+        <BoundingBox CRS="EPSG:25832" minx="775687.7457165401" miny="5808888.191758101" maxx="823104.5753674866" maxy="5845891.622773297"/>
+        <BoundingBox CRS="EPSG:4326" minx="52.35939526463047" miny="13.076861865007103" maxx="52.66808785086186" maxy="13.746925234777343"/>
+        <BoundingBox CRS="EPSG:4258" minx="52.359395227608125" miny="13.076861865007103" maxx="52.66808781416283" maxy="13.746925234777345"/>
+        <BoundingBox CRS="EPSG:3857" minx="1455709.6039865685" miny="6865371.4251513295" maxx="1530300.7171086166" maxy="6921837.600240867"/>
+        <AuthorityURL name="GDI-DE">
+          <OnlineResource xlink:type="simple" xlink:href="https://www.gdi-de.org"/>
+        </AuthorityURL>
+        <Identifier authority="GDI-DE">https://registry.gdi-de.org/id/de.be.csw/2ca8d68f-afc1-3111-82c2-a376d4141620</Identifier>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/geonetwork/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputschema=http://www.isotc211.org/2005/gmd&amp;elementsetname=full&amp;id=6b746499-7354-3a3a-aa70-60e1fb37f993"/>
+        </MetadataURL>
+        <Style>
+          <Name>lb_1928_04_bildmitten</Name>
+          <Title>lb_1928_04_bildmitten</Title>
+          <LegendURL width="380" height="61">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=380&amp;height=61&amp;layer=a_lb_1928_04_pan_bildmitten"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>b_lb_1928_04_pan_gebietsabdeckung</Name>
+        <Title>Abdeckung der Befliegung</Title>
+        <Abstract>Gebietsabdeckung der Befliegung von 1928 im Maßstab 1:4 000</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:25833</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.051915010585402</westBoundLongitude>
+          <eastBoundLongitude>13.76776132488015</eastBoundLongitude>
+          <southBoundLatitude>52.344457119641426</southBoundLatitude>
+          <northBoundLatitude>52.67904549856635</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.051915010585402" miny="52.344457119641426" maxx="13.76776132488015" maxy="52.67904549856635"/>
+        <BoundingBox CRS="EPSG:25833" minx="368273.96875" miny="5801111.0" maxx="416076.40625" maxy="5837291.0"/>
+        <BoundingBox CRS="EPSG:25832" minx="773936.8037872281" miny="5807136.753483336" maxx="824627.172347629" maxy="5847199.825469667"/>
+        <BoundingBox CRS="EPSG:4326" minx="52.344457119641426" miny="13.051915010585402" maxx="52.67904549856635" maxy="13.76776132488015"/>
+        <BoundingBox CRS="EPSG:4258" minx="52.34445708260371" miny="13.051915010585402" maxx="52.679045461879" maxy="13.76776132488015"/>
+        <BoundingBox CRS="EPSG:3857" minx="1452932.5328554509" miny="6862648.962379909" maxx="1532620.1800489838" maxy="6923849.291600846"/>
+        <AuthorityURL name="GDI-DE">
+          <OnlineResource xlink:type="simple" xlink:href="https://www.gdi-de.org"/>
+        </AuthorityURL>
+        <Identifier authority="GDI-DE">https://registry.gdi-de.org/id/de.be.csw/2ca8d68f-afc1-3111-82c2-a376d4141620</Identifier>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/geonetwork/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputschema=http://www.isotc211.org/2005/gmd&amp;elementsetname=full&amp;id=4893a516-4862-300f-9f6e-b0a60386c7f1"/>
+        </MetadataURL>
+        <Style>
+          <Name>lb_1928_04_abdeckung</Name>
+          <Title>lb_1928_04_abdeckung</Title>
+          <LegendURL width="331" height="54">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=331&amp;height=54&amp;layer=b_lb_1928_04_pan_gebietsabdeckung"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>c_luftbilder_1928_04_raster</Name>
+        <Title>Bildmosaik</Title>
+        <Abstract>Senkrechtaufnahmen von Berlin, Fotoblätter ohne Überlappung im Maßstab 1:4 000</Abstract>
+        <KeywordList>
+          <Keyword>luftbilder_1928</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:25833</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>367999.999999</westBoundLongitude>
+          <eastBoundLongitude>416000.011747</eastBoundLongitude>
+          <southBoundLatitude>5799999.988252999</southBoundLatitude>
+          <northBoundLatitude>5838000.000000999</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="367999.999999" miny="5799999.988252999" maxx="416000.011747" maxy="5838000.000000999"/>
+        <BoundingBox CRS="EPSG:25833" minx="367999.999999" miny="5799999.988252999" maxx="416000.011747" maxy="5838000.000000999"/>
+        <BoundingBox CRS="EPSG:25832" minx="773604.5520335742" miny="5806006.041772043" maxx="824643.1342228635" maxy="5847900.833863761"/>
+        <BoundingBox CRS="EPSG:4326" minx="52.33440848300281" miny="13.047581818413766" maxx="52.685406009956516" maxy="13.766917850869973"/>
+        <BoundingBox CRS="EPSG:4258" minx="52.334408445954786" miny="13.047581818413764" maxx="52.68540597327596" maxy="13.766917850869971"/>
+        <BoundingBox CRS="EPSG:3857" minx="1452450.164109395" miny="6860818.125334858" maxx="1532526.2849516736" maxy="6925017.235920619"/>
+        <Style>
+          <Name>raster</Name>
+          <Title>Opaque Raster</Title>
+          <Abstract>A sample style that draws a raster, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/luftbild_1928_04?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=c_luftbilder_1928_04_raster"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

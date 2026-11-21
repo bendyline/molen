@@ -8,39 +8,41 @@
   },
   "sourceHash": "sha256:c0eba833a1ac30e6934c77cec44c00276eca051367d54976a26351198c5e8b6c",
   "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
+  "fixtureHash": "sha256:0db81f2b7283257ef278f88ac793a1b6d1bb0aadff5fd9b4680d3dfd33f5ce34",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 6240,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
-      "bytes": 70844,
-      "gzipBytes": 12041,
+      "hash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
+      "bytes": 69820,
+      "gzipBytes": 13630,
       "triangles": 912,
-      "cpuBytes": 69408,
-      "gpuBytes": 69408,
+      "cpuBytes": 67104,
+      "gpuBytes": 67104,
       "errorMeters": 0.8,
-      "drawCalls": 1
+      "drawCalls": 2
     },
     {
       "name": "district",
@@ -95,7 +97,7 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:2ba5a35c677d96a02cf822cc459591af8939cb949318783a6beb3a12ff3ded48",
+      "hash": "sha256:1e30dd18f0fec001b1d4af3497930644f398bef5b93d4058530b68ada693bf93",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -131,13 +133,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:91969505de86a3a3665c0c221385a2bc7d842ed6863c226e815f7cb4a082758b",
+      "hash": "sha256:70b5b5a7db73ae2f9019c5da157aa8e404c67532ab3ce7bcc516e1a73154ae0f",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -173,13 +183,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:604557aef365400982d1f55b26ed1fac99eb902147368577a5fa82320e198583",
+      "hash": "sha256:1b81acc7d1ca5226113d70c9e3108a3c2b452a49a99d6d16ddc31ec6e073bbe6",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -215,13 +233,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:81f9e422d4c39dbf2a6ba9954cc575d45ce9de71a9d0f4b1ca68a99afd978319",
+      "hash": "sha256:7e21cf17b05d6b27dcfd2af536634e40ad543dd9433f145500ac88fa7826de93",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -257,13 +283,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:9c31575b9738ed8bb153efac653d9aa8eea74ffe9125c1f2d6a13b44ac90d9c8",
+      "hash": "sha256:606889e0d797f22a0872a277dbe30f5469a941c0d23bcaf809f954d3a6b35cfc",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -299,13 +333,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:3f3029d99356440b26e9ac6a553f5e4f35cf7b45f5711f42cbdaec25ffdadbf5",
+      "hash": "sha256:a4c6b42a486de1f488bc3f6a53b4fc81bfd8c395d298663453c2eab4e532ecdc",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -341,13 +383,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:4136687d21a561fa7754b353e13358b6ff4e97c2da7e250389590e92f376db46",
+      "hash": "sha256:65b9e34ce79e6defd5a7b375a43541529a05964693881543a4139daa73abeaf1",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -383,13 +433,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:f778decad5a4dc8bc400d852ce41537b796f59cf4f76fd7f3e5116843532b776",
+      "hash": "sha256:f178f4dd1dc2506376efe1f6c6d0c6fd043baa8c39914c2eaa2dc8275ad62329",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -425,22 +483,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:0a0b21d80542b79612b6cec732d87118921dd6fdf06d9f94863912bdafc49dff",
+      "hash": "sha256:1d3952c5e10ad14bc4430cfb9369a6e94e463f20b664c838939abee2ce597233",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 7,
+        "drawCalls": 8,
         "triangles": 39922,
         "groundY": -9,
         "terrainFixture": {
@@ -467,22 +533,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:14e781cd1516afb4c5d333d434c70b6854057a233034aa93ca2798e6b6625d0b",
+      "hash": "sha256:360686aecc42f62fbcfc4a7026eb6df78acc3e231aa6f0fd05c071fc9336fdf9",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 7,
+        "drawCalls": 8,
         "triangles": 39922,
         "groundY": -9,
         "terrainFixture": {
@@ -509,22 +583,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f0adcc29e88ac2b7f582643bb9932b2d48052308f791b73bb71c87f62372c064",
+      "hash": "sha256:0099ae306569d00659144ad0b3b69697a424aab74011ece32a750b910bf505da",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 7,
+        "drawCalls": 8,
         "triangles": 39922,
         "groundY": -9,
         "terrainFixture": {
@@ -551,22 +633,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:9772285f77f2164e0de498fcc7610166c968b9400d8c50ba2739a972f59c52f5",
+      "hash": "sha256:bfd5cad57bf3e2828d6214568e5593535d897379b7ea2c2d64343e85d147813c",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 7,
+        "drawCalls": 8,
         "triangles": 39922,
         "groundY": -9,
         "terrainFixture": {
@@ -593,22 +683,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:9f77788281f4919ae049d480496e4e51e9de5bf7b75efab033991d756b6b1f21",
+      "hash": "sha256:3b030cae3400e2101661397fb2fafd7d60ce15a4d571d8bc65bd77d41ddea346",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 3,
+        "drawCalls": 4,
         "triangles": 33682,
         "groundY": -9,
         "terrainFixture": {
@@ -635,13 +733,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:05b3110421941dd9c19cc4ee18de73b31beb28c6a2bb4c4500a4b35446ed713f",
+      "hash": "sha256:ada0aac59dd510976af4de984e985f7419a0ebe94cf8da874d6b40b47146dde7",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -677,13 +783,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front-detail.png",
-      "hash": "sha256:c52c68b9a059524c59e67560a6931aef88c83b32cc8067f91ecbea42e19efeed",
+      "hash": "sha256:bbdc458898093a583271a5d09455e0dcae33e88ea90275b14af4d064da4eeae0",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -719,13 +833,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:477c246613d358836935f1c919a0f937596b4ca9688ce6436475a8709228a5c2",
+      "hash": "sha256:53190db50e1632da59969aa448c3923386fdd5ba04768030496c9c521bbf4762",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -761,13 +883,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/base-detail.png",
-      "hash": "sha256:000b3b914e3174df6de17b24e937f8c640a644b28b5b9748ed46f47c926a9a7e",
+      "hash": "sha256:be8fcdea641a7b459e9291455f486e5cd961a11bf80526d6a395150d72ff7bad",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -803,13 +933,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ironwork-medallions.png",
-      "hash": "sha256:5980c0aef73162bb8b951785496bb9e1a4e5a81e8f6a21dfd7d4014403315fdb",
+      "hash": "sha256:809f11694938b3cefab7324189f9567bf05a7b32eb771c936dcd2796c3cc84d2",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -845,13 +983,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/ironwork-lattice.png",
-      "hash": "sha256:94205d1bd1f6e209da74e644c9e3e864a8fcef8452b0f7747521bb55191ae9b6",
+      "hash": "sha256:95d2d3b07ac75f4f069a0df3c886285ed7e709d81d3ffc8ee07d8452d60aab08",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -887,22 +1033,30 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:f92e5929a847af65e8bfa56c461cde65a71f269298a496c5104ff495966249f5",
+      "hash": "sha256:4257b66cb44c274f71f6b1ff987a8edf5bdb7767fa2705c046a55cb542d899a2",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
-        "lodHash": "sha256:21576200b23809111c50ee1097a2f4fdfb8f8997d5f07da306fb4d25b793cb22",
+        "lodHash": "sha256:c1af9206aa801926e1b7d249b09142bd7a2ad7000495912265c8aae7b8cd8114",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 7,
+        "drawCalls": 8,
         "triangles": 39922,
         "groundY": -9,
         "terrainFixture": {
@@ -929,13 +1083,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:3f3029d99356440b26e9ac6a553f5e4f35cf7b45f5711f42cbdaec25ffdadbf5",
+      "hash": "sha256:a4c6b42a486de1f488bc3f6a53b4fc81bfd8c395d298663453c2eab4e532ecdc",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -971,13 +1133,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:5e19288c94eac20fa40603036a4961217c6b76a271ce73d1f96a15e4adb1b488",
+      "hash": "sha256:7ffddc14d6f4f77a52a223325b1578301704119fe97315faaf275b920a9dfc84",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -1013,13 +1183,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:a80fef51f521461e72b7e9d285fff5e1de41deba810e2a52859b2672c3c6e55d",
+      "hash": "sha256:cab46c96a2d0303e50766c2b543adc8f6c808de795055a45b22708b3d3ceae08",
       "state": {
         "assetId": "molen.worldgen.structure.washington_monument_baltimore",
         "runtimeHash": "sha256:a6f1ee0f4ac7e49e16ef97f54d346ab69f8c7026235ebcd8a085b5bf01eea0ee",
@@ -1055,6 +1233,14 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 0.85,
+        "reviewCenter": [
+          0,
+          26.81,
+          0
+        ],
+        "cameraFar": 3000,
+        "cameraNear": 0.5,
+        "waterFixture": null,
         "cameraYaw": 0,
         "reflections": "none"
       }

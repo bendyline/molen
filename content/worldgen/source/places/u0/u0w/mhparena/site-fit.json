@@ -1,0 +1,94 @@
+{
+  "format": "molen/structure-terrain-fit@1",
+  "site": "MHPArena",
+  "reference": {
+    "anchor": [
+      9.2304285243068,
+      48.793137349807715
+    ],
+    "modelHeight": -0.35,
+    "basis": "Native north plaza sample just outside the apron, plus a 0.35 m low rise to stadium ground level."
+  },
+  "grade": [
+    {
+      "name": "MHPArena main grandstand apron",
+      "anchor": [
+        9.2320788,
+        48.792253125
+      ],
+      "heading": -2.2536074994349145,
+      "bounds": [
+        98,
+        -68,
+        111,
+        68
+      ],
+      "blend": 12,
+      "elevation": 223.411,
+      "basis": "Use the stadium apron level under the outer contact ring and blend to the adjacent public approach."
+    },
+    {
+      "name": "MHPArena opposite grandstand apron",
+      "anchor": [
+        9.2320788,
+        48.792253125
+      ],
+      "heading": -2.2536074994349145,
+      "bounds": [
+        -111,
+        -66,
+        -97,
+        66
+      ],
+      "blend": 12,
+      "elevation": 223.411,
+      "basis": "Use the stadium apron level under the outer contact ring and blend to the adjacent public approach."
+    },
+    {
+      "name": "MHPArena north approach",
+      "anchor": [
+        9.2320788,
+        48.792253125
+      ],
+      "heading": -2.2536074994349145,
+      "bounds": [
+        -46,
+        126,
+        46,
+        143
+      ],
+      "blend": 12,
+      "elevation": 223.411,
+      "basis": "Use the stadium apron level under the outer contact ring and blend to the adjacent public approach."
+    },
+    {
+      "name": "MHPArena south approach",
+      "anchor": [
+        9.2320788,
+        48.792253125
+      ],
+      "heading": -2.2536074994349145,
+      "bounds": [
+        -46,
+        -145,
+        46,
+        -127
+      ],
+      "blend": 12,
+      "elevation": 223.411,
+      "basis": "Use the stadium apron level under the outer contact ring and blend to the adjacent public approach."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "pmtiles-map.json",
+      "hash": "sha256:b07cd2b04a4e59e939e5e83191b3b2b3e5d28553129c16e1a42bcd37fe6e7803"
+    },
+    {
+      "path": "terrain-grid.json",
+      "hash": "sha256:0cfa1019f6bb36abeaba60fbe083f309338d1d4e612b95f05a41038d0d9aa9fe"
+    }
+  ],
+  "signedPitchHeading": -2.2536074994349145,
+  "scope": "Fit the perimeter ground ring to the north plaza reference, retain the source’s lowered pitch and preserve the independent approaches, roads and water."
+}

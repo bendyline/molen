@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_ben_gurion_airport",
+  "kind": "static-structure",
+  "title": "Mini Israel · Ben Gurion Airport exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json",
+      "archive-apron-layout.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_ben_gurion_airport",
+        "output": "assets/places/sv/sv8/mini_israel_ben_gurion_airport/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:842329eecf27c8fe2357af35af3f2000ec419135609a1f39d080d44050548a66"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ben-gurion-exhibit-mesh",
+        "path": "models/ben-gurion-exhibit-model.mjs"
+      },
+      {
+        "id": "ben-gurion-exhibit-master",
+        "path": "models/generate-ben-gurion-exhibit.mjs"
+      },
+      {
+        "id": "ben-gurion-2012-exhibit-mesh",
+        "path": "models/ben-gurion-2012-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "aircraft-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json"
+    ]
+  }
+}

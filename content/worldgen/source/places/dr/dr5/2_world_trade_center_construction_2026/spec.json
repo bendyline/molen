@@ -1,0 +1,356 @@
+{
+  "id": "2_world_trade_center_construction_2026",
+  "planId": "2_world_trade_center_construction_2026",
+  "assetId": "molen.worldgen.structure.2_world_trade_center_construction_2026",
+  "title": "2 World Trade Center construction · October 2026",
+  "category": "construction-site",
+  "quality": "medium-fi",
+  "wikidataId": "Q1127212",
+  "referenceCoordinate": {
+    "longitude": -74.0111516887352,
+    "latitude": 40.712166635679885
+  },
+  "nativeAxes": "+X faces Church Street and +Z faces Fulton Street. The lattice crane stands near the Vesey (−Z) side. +Y points up.",
+  "visualBrief": "The aerial dated October 6, 2026 shows the low core, two major open chambers, orange deck rails and a tall lattice crane. PMTiles street frontages and the planned envelope register the construction block. Construction equipment, exact heights and formwork are photo-based estimates.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dr/dr5/2_world_trade_center_construction_2026/models/construction-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://www.reddit.com/r/skyscrapers/comments/1xpoai5/2_world_trade_center_octoberearly_november/",
+    "https://commons.wikimedia.org/wiki/File:Construction_of_2_World_Trade_Center_on_October_31,_2026.jpg",
+    "https://newyorkyimby.com/2026/09/checking-in-on-the-world-trade-center-complex-redevelopment-25-years-later.html",
+    "https://www.explorewtc.com/en/local/learn-about-wtc/t2-construction.html"
+  ],
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2026-10-06",
+    "validFrom": "2026-10-06",
+    "validUntil": "2026-10-31"
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      -74.0111516887352,
+      40.712166635679885
+    ],
+    "heading": -0.388318718195356,
+    "minLevel": 14,
+    "bounds": [
+      -74.01178402915954,
+      40.7118043889912,
+      -74.01050703510285,
+      40.71254937918127
+    ],
+    "elevationMode": "terrain",
+    "elevationMeters": 0,
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          48.209,
+          -18.02
+        ],
+        [
+          47.637,
+          11.068
+        ],
+        [
+          48.561,
+          10.935
+        ],
+        [
+          48.209,
+          19.638
+        ],
+        [
+          -9.739,
+          26.226
+        ],
+        [
+          -18.271,
+          26.293
+        ],
+        [
+          -45.712,
+          21.38
+        ],
+        [
+          -42.665,
+          -24.371
+        ],
+        [
+          -17.004,
+          -26.799
+        ],
+        [
+          -6.873,
+          -26.542
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The contemporaneous map assigns a 373.7 m future building to this outline. For the October 6 construction view, suppress the mapped footprint when the construction mesh has loaded."
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e32523d20b0c2b00df9a358dea0264d2535a9a5b53a21043ebbf1cb62acf954e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap",
+    "source": "https://www.reddit.com/r/skyscrapers/comments/1xpoai5/2_world_trade_center_octoberearly_november/",
+    "notes": "The aerial dated October 6, 2026 shows the low core, two major open chambers, orange deck rails and a tall lattice crane. PMTiles street frontages and the planned envelope register the construction block. Construction equipment, exact heights and formwork are photo-based estimates.",
+    "terrainReference": {
+      "anchor": [
+        -74.0111516887352,
+        40.712166635679885
+      ],
+      "modelHeight": 0,
+      "basis": "Sampled viewer terrain at the placement anchor. Hoarding grades follow checked site samples and foundations extend into the terrain."
+    }
+  },
+  "materialMethod": "Shared concrete, painted steel, timber and standing-seam graphs. Layered decks, open chambers and latticework are modeled geometry.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/2_world_trade_center_construction_2026/models/construction-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.19
+      },
+      "duct": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.64,
+        "metallic": 0.23
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.19
+          },
+          "duct": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.23
+          }
+        },
+        "errorMeters": 0.85
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.19
+          },
+          "duct": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.23
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.19
+          },
+          "duct": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.23
+          }
+        },
+        "errorMeters": 0.07
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 3
+  },
+  "qaCameras": [
+    {
+      "name": "from-fulton-and-greenwich",
+      "position": [
+        -57,
+        3.1,
+        28
+      ],
+      "lookAt": [
+        -22,
+        9.3,
+        4
+      ],
+      "fov": 68
+    },
+    {
+      "name": "core-from-the-west",
+      "position": [
+        -45,
+        108,
+        2
+      ],
+      "lookAt": [
+        -1,
+        3,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "church-street-vents",
+      "position": [
+        52,
+        6,
+        24
+      ],
+      "lookAt": [
+        26,
+        4.1,
+        6.4
+      ],
+      "fov": 61
+    },
+    {
+      "name": "temporary-deck-and-scaffolding",
+      "position": [
+        -43,
+        15.5,
+        23
+      ],
+      "lookAt": [
+        -20,
+        5.25,
+        9.4
+      ],
+      "fov": 61
+    }
+  ],
+  "limitations": [
+    "This snapshot is limited to the date printed on the reference image. The site is changing during construction.",
+    "Dimensions of decks, crane and formwork are photo-based estimates. Below-deck cavities show their visible structure above the common map-ground plane. The model excludes underground services and unverified internal work.",
+    "The hoarding stays inside the mapped project envelope. Adjacent buildings, roads and public plazas are supplied by the map."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -43.32981491088867,
+      -2.299999952316284,
+      -24.92949104309082
+    ],
+    "max": [
+      46.566925048828125,
+      47.79487991333008,
+      24.530088424682617
+    ]
+  },
+  "size": [
+    89.8967399597168,
+    50.09487986564636,
+    49.45957946777344
+  ],
+  "mesh": {
+    "triangles": 34960,
+    "vertices": 69888,
+    "materials": 4,
+    "bytes": 2938452,
+    "sha256": "sha256:05e8f9af07aedeccd33f1749d1c91d50f0b0e10e46a10fb71499f47896b3f9c6"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Ọ̀ṣun Búsanyìn Shrine exterior review",
+  "seed": "osun_grove_busanyin_shrine",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "shrine",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_busanyin_shrine",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dde7db",
+            "ground": "#9b8862",
+            "intensity": 1.3
+          },
+          "sun": {
+            "direction": [
+              -3,
+              6,
+              8
+            ],
+            "color": "#fff1d4",
+            "intensity": 1.55,
+            "castShadow": true
+          },
+          "background": "#bdc8ab",
+          "toneMapping": "agx",
+          "exposure": 1.06,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.26,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              50,
+              0.5,
+              38
+            ]
+          },
+          "materialRef": "palette:#837957",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      16,
+      10.4,
+      27.8
+    ],
+    "lookAt": [
+      0,
+      3.8,
+      0.7
+    ],
+    "fov": 48
+  }
+}

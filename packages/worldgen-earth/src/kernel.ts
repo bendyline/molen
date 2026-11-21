@@ -150,6 +150,8 @@ export {
   type HistoricalStructureAppearance,
   isHistoricalStructureAppearance,
   isStructureViewingDate,
+  isStructureViewingDateInRange,
+  isStructureViewingDateRange,
 } from './kernel/structure-date';
 export type {
   StructureCatalogDoc,

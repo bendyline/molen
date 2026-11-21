@@ -1,0 +1,275 @@
+{
+  "id": "osun_grove_festival_pavilion",
+  "planId": "osun_grove_festival_pavilion",
+  "collectionId": "osun_osogbo_grove",
+  "assetId": "molen.worldgen.structure.osun_grove_festival_pavilion",
+  "wikidataId": "Q621498",
+  "referenceCoordinate": {
+    "longitude": 4.551817832015127,
+    "latitude": 7.75571884715855
+  },
+  "title": "Osun Grove Festival Pavilion",
+  "category": "amphitheater",
+  "quality": "medium-fi",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exterior",
+  "nativeAxes": "+Y is up. +Z follows the ramp from the raised stage toward the open courtyard and the First Palace. +X is to the right in the frontal photograph.",
+  "visualBrief": "An open concrete stage with a displaced access ramp and three stepped seating runs. Low corrugated shelters have timber fascia and diamond-shaped caps. Rust-colored figurative panels flank the entrance side.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_festival_pavilion/models/festival-pavilion-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://whc.unesco.org/document/224879#page=18",
+    "https://www.foluoyefeso.com/post/the-osun-osogbo-festival-osun-state",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/9d/e7/11/osun-osogbo-sacred-grove.jpg",
+    "https://repository.ui.edu.ng/server/api/core/bitstreams/ae627eab-e1c8-4863-aa3c-ea98e50c3bab/content"
+  ],
+  "materialMethod": "Shared concrete, sandstone, timber and corrugated metal graphs with metric UVs and muted tints.",
+  "geographicProposal": {
+    "status": "preview",
+    "anchor": [
+      4.551817832015127,
+      7.75571884715855
+    ],
+    "heading": -0.23621840206877343,
+    "bounds": [
+      4.55171693848774,
+      7.755645253716543,
+      4.551928648755146,
+      7.7558138298895605
+    ],
+    "source": "https://www.foluoyefeso.com/post/the-osun-osogbo-festival-osun-state",
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 315.0866,
+    "orientationPolicy": "approximate-visualization",
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8e6970b74abc857f1e197b25a1c2ecfeeca9cbf45d643a0e0948cfdfa4beb14e",
+    "notes": "The geotagged 2022 portrait shows the west relief and the stage edge. The selected photo fit faces about 194 degrees true. Its model center is shifted 4 m north from the fixed-scale fit, within the recorded 4.7 m GPS uncertainty. Both photographic bearings remain within one degree and the pavilion clears First Palace by about 6 m. The 2020 map marks the pavilion about 26 m away. That marker disagrees with the photographed approach when treated as a building center. Canopy obscures both roof positions in aerial imagery. The exact footing, bearing and hillside remain approximate."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_festival_pavilion/models/festival-pavilion-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated"
+      }
+    },
+    "errorMeters": 0.42,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated"
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated"
+          }
+        },
+        "errorMeters": 0.092
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated"
+          }
+        },
+        "errorMeters": 0.032
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0
+  },
+  "qaCameras": [
+    {
+      "name": "open-stage-and-ramp",
+      "position": [
+        3.38,
+        2.68,
+        13.25
+      ],
+      "lookAt": [
+        0.35,
+        1.78,
+        -2.64
+      ],
+      "fov": 57
+    },
+    {
+      "name": "step-banks-and-canopies",
+      "position": [
+        -13.6,
+        7.6,
+        12.75
+      ],
+      "lookAt": [
+        0.32,
+        1.2,
+        -1.45
+      ],
+      "fov": 54
+    },
+    {
+      "name": "rear-passage",
+      "position": [
+        1.25,
+        1.65,
+        -2.16
+      ],
+      "lookAt": [
+        1.25,
+        1.52,
+        -8.18
+      ],
+      "fov": 66
+    },
+    {
+      "name": "carved-front-panel",
+      "position": [
+        12.55,
+        1.42,
+        6.67
+      ],
+      "lookAt": [
+        9.65,
+        0.83,
+        3.3
+      ],
+      "fov": 56
+    },
+    {
+      "name": "west-relief-and-stage-corner",
+      "position": [
+        -9.75,
+        1.82,
+        8.1
+      ],
+      "lookAt": [
+        -7.65,
+        1.26,
+        2.86
+      ],
+      "fov": 51
+    }
+  ],
+  "limitations": [
+    "The photographed stage slab, off-center ramp, two shelter wings, rear terraces, timber roof caps and terracotta panels guide the reconstruction. Dimensions and unseen backs are approximate.",
+    "The management plan describes a passage under the rear terraces. The modeled opening is clear. Its farther connection to the ceremonial route remains unverified.",
+    "The geotagged 2022 portrait shows the west relief and the stage edge. The selected photo fit faces about 194 degrees true. Its model center is shifted 4 m north from the fixed-scale fit, within the recorded 4.7 m GPS uncertainty. Both photographic bearings remain within one degree and the pavilion clears First Palace by about 6 m. The 2020 map marks the pavilion about 26 m away. That marker disagrees with the photographed approach when treated as a building center. Canopy obscures both roof positions in aerial imagery. The exact footing, bearing and hillside remain approximate.",
+    "The September 2023 photograph shows the pavilion’s red-brown stage fascia, piers and tiered seating. Its pale ramp top, dark roof and raised east relief guide the reconstruction. Surface wear beyond the photographed scenes is estimated."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -10.232500076293945,
+      -0.28999999165534973,
+      -8.2124662399292
+    ],
+    "max": [
+      10.378000259399414,
+      3.950000047683716,
+      7.489999771118164
+    ]
+  },
+  "size": [
+    20.61050033569336,
+    4.2400000393390656,
+    15.702466011047363
+  ],
+  "mesh": {
+    "triangles": 4648,
+    "vertices": 9828,
+    "materials": 4,
+    "bytes": 412520,
+    "sha256": "sha256:be6e94959a7ce2be4ba2dc894599f42c49eecbb46350725430cc8257c4c0ad93"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

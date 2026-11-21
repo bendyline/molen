@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bourguiba_mausoleum",
+  "kind": "static-structure",
+  "title": "Bourguiba Mausoleum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bourguiba_mausoleum",
+        "output": "assets/places/sn/snr/bourguiba_mausoleum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:04582156cbd93f1de296005528b46ffe1f5eca0f371cdda75456cc3aa9431006"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bourguiba-mausoleum",
+        "path": "models/generate-bourguiba-mausoleum.mjs"
+      },
+      {
+        "id": "bourguiba-mausoleum-model",
+        "path": "models/bourguiba-mausoleum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/bourguiba-mausoleum-towers-and-approach.json",
+      "reference-rights/bourguiba-material-and-geometry-facts.json",
+      "reference-rights/runtinger-native-cc0-release.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/srtm-N35E010-provenance.json",
+      "terrain-sources/monastir-srtm-N35E010.hgt.gz",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,17 +1,24 @@
 # Merowe Dam
 
-Reviewed 2026-11-03. **49 current catalog views and seven runtime-stage views inspected.**
-
 The original geometry includes the curved 9.45 km embankment alignment, 154 m central spillway, twelve low-level recesses, two surface gate sections, ten domed turbine housings along the powerhouse, its service platform and rounded stair tower.
 
-The map frame uses anchor [32.050277777, 18.668888888] and heading 0. Local +X points east and +Z points downstream. The preview uses an absolute elevation datum that holds the modeled crest at 303 m. Its bounds span both banks. Three occupied concrete ground openings retain the native roads and buildings.
+The Earth viewer holds the reservoir at the representative 300 m design pool below the 303 m crest. The downstream Nile uses a continuous 259.67 m stage along the spillway and powerhouse. The buried intake line stays below the model. Both embankment ties, the spillway, and the lower powerhouse remain visible. The review fixture retains all 78 building and 63 road records.
 
-Six shared graphs supply board-formed and plain concrete, gravel, painted steel, standing-seam metal and glazing. All six GLBs have zero embedded images. Eviction releases the model geometry and restores the terrain.
+![Merowe Dam in the Earth viewer](site-preview.png)
 
-The 27 terrain views use 42 standard Terrarium tiles with unchanged elevations and five mapped water polygons. Seven installed-model views use three selected level 14 polygon pieces sampled with the production method. Level 14 and 15 probes near the crossing give 252.43–271.86 m for the reservoir and 250.22–255.31 m for the tailwater.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-The detailed master contains 10,302 triangles. Viewer tiers contain 994, 2478, 5942, 7822 triangles. Skyline plus district are 289,916 bytes and close-up is 624,776 bytes. Four focused checks verify exact source pins, absolute elevation and bounded ground openings, all twelve low sluices, both surface gate sections, ten turbine domes, and both embankment end ties, and byte-for-byte LOD reconstruction with separate GPU streams. All six GLBs pass Khronos validation. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 994 | 85,032 | 6 |
+| district | 2,478 | 204,884 | 7 |
+| street | 5,942 | 475,976 | 7 |
+| closeup | 7,822 | 624,776 | 7 |
 
-The sampled reservoir lies 28–48 m below the 300 m design pool and exposes substantially more of the upstream wall. The split sampled fixture covers the central crossing and shows a visible step in the tailwater. Outer banks use the full mapped design-pool fixture for review. Exact embankment profiles, gate settings and service machinery are exterior interpretations. Physical-device timing remains unmeasured.
+Skyline and district total 289,916 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the viewer. The review covers 78 renders and 80 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-merowe-dam.mjs`. Append `--check` to check exact source bytes. Select this structure for import, LOD generation and readiness with `--ids=merowe_dam`.
+The model shows static representative stages and approximate shore and embankment contact from standard map and terrain tiles. The native terrain partially covers low retaining slopes toward both bank ends.
+
+The exterior depicts the spillway and turbine hall architecture. Hidden machinery and operating discharge are outside its scope.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

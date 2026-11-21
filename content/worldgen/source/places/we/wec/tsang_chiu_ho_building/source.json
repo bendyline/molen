@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tsang_chiu_ho_building",
+  "kind": "static-structure",
+  "title": "Tsang Chiu Ho Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tsang_chiu_ho_building",
+        "output": "assets/places/we/wec/tsang_chiu_ho_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8b71f5c71a76cad48340923df9aa0edfee3a548b18f863ad2c179414c7753425"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tsang-chiu-ho-building",
+        "path": "models/generate-tsang-chiu-ho-building.mjs"
+      },
+      {
+        "id": "tsang-chiu-ho-building-model",
+        "path": "models/tsang-chiu-ho-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/tsang-chiu-ho-building-footprint.json",
+      "reference-rights/tsang-chiu-ho-building-history.json",
+      "reference-rights/aberdeen-street-elevation.jpg",
+      "reference-rights/aberdeen-street-elevation-original-cc0.json",
+      "reference-rights/wellington-street-shopfront.jpg",
+      "reference-rights/wellington-street-shopfront-original-cc0.json",
+      "reference-rights/qualla-interior-photo-review.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/wellington-landsd-dtm.asc",
+      "terrain-sources/wellington-landsd-dtm.json",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

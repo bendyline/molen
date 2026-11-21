@@ -1,0 +1,236 @@
+{
+  "id": "osun_grove_chameleon_gate",
+  "planId": "osun_grove_chameleon_gate",
+  "assetId": "molen.worldgen.structure.osun_grove_chameleon_gate",
+  "title": "Chameleon Gate at Ẹbu Ìyá Mọòpó",
+  "category": "gate",
+  "quality": "medium-fi",
+  "collectionId": "osun_osogbo_grove",
+  "wikidataId": "Q621498",
+  "referenceCoordinate": {
+    "longitude": 4.549444,
+    "latitude": 7.754167
+  },
+  "visualBrief": "Sculpted terracotta gateway with a leaning tail, open arch, roots, carved flower walls, stepped approach and large hollow petals.",
+  "nativeAxes": "+Y up, +Z faces the entrance approach, and +X points toward the larger flower from the front.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_chameleon_gate/models/chameleon-gate-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/story/rgXhbJXdFehtIA",
+    "https://commons.wikimedia.org/wiki/File:Osun-Osogbo_Sacred_Grove_Camelon_entrance.jpg",
+    "https://artsandculture.google.com/asset/qwHLrI9Y-gFiKg",
+    "https://www.flickr.com/photos/jbdodane/10688988383/"
+  ],
+  "materialMethod": "Shared plaster and limestone graphs with metric UVs and sculpted silhouettes, concave petals and subdued vertex colors.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "photo-based-exterior",
+  "geographicProposal": {
+    "status": "preview",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      4.549405610592224,
+      7.753932487072449
+    ],
+    "heading": 1.5219919246619096,
+    "bounds": [
+      4.549385464402288,
+      7.753871667651469,
+      4.549433017278597,
+      7.754006176076133
+    ],
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "sea-level",
+    "elevationMeters": 313.2564,
+    "minLevel": 16,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "notes": "The geotagged rear photo shows the paved access road directly through the arch, with the larger flower wall on the left. The photograph places the gate west of the mapped road. The preview uses the road station nearest the tagged camera and faces across the road at 93° true. The 8.1 m setback from the PMTiles centerline follows the visible approach and modeled steps. The GPS tag is a camera position, and the exact threshold position and facing are estimated.",
+    "groundContactBasis": "At the preview pose, the extended foundations contact native terrain and the three entrance steps remain exposed. The model and its approach clear the rendered road in all four viewer detail levels.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d02c4ee9efe3828adcc747f93d32991d8a8638cfdc0aff6a44ea3df0c5b15cd2",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_chameleon_gate/models/chameleon-gate-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "clay": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "steps": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.38,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.19
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.084
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "clay": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.041
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -0.23
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-tail-and-walls",
+      "position": [
+        1.4,
+        3.06,
+        12.6
+      ],
+      "lookAt": [
+        0.38,
+        2.66,
+        0.13
+      ],
+      "fov": 58
+    },
+    {
+      "name": "clear-walk-through",
+      "position": [
+        -0.24,
+        1.36,
+        4.28
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        -0.09
+      ],
+      "fov": 58
+    },
+    {
+      "name": "hollow-flower-and-open-wing",
+      "position": [
+        7.52,
+        2.71,
+        5.98
+      ],
+      "lookAt": [
+        4.94,
+        1.62,
+        -0.19
+      ],
+      "fov": 55
+    },
+    {
+      "name": "courtyard-face-and-roots",
+      "position": [
+        -4.8,
+        3.66,
+        -9.88
+      ],
+      "lookAt": [
+        0.54,
+        2.12,
+        0.09
+      ],
+      "fov": 58
+    }
+  ],
+  "limitations": [
+    "The source depicts the restored entrance and the nearest flower walls. The complete enclosure, exact dimensions and small sculpture details remain unverified.",
+    "The 2013 photo identifies the roadside and outward side. The threshold setback, bearing and ground elevations are interpreted from that photograph, PMTiles and terrain samples."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -6.132387638092041,
+      -0.7400000095367432,
+      -1.0778011083602905
+    ],
+    "max": [
+      7.761580944061279,
+      6.484950065612793,
+      2.569999933242798
+    ]
+  },
+  "size": [
+    13.89396858215332,
+    7.224950075149536,
+    3.6478010416030884
+  ],
+  "mesh": {
+    "triangles": 15738,
+    "vertices": 47114,
+    "materials": 2,
+    "bytes": 1886984,
+    "sha256": "sha256:931200776d2f600b4369a8fcdf5e448ad60134cf7ee063efa5583253966e9254"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

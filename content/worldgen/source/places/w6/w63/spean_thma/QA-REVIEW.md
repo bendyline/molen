@@ -1,37 +1,24 @@
 # Spean Thma
 
-Reviewed2026-10-27. **Incomplete source draft; canonical placement disabled.**
+Reviewed 2026-11-18. **The photographed ruin is available in the world viewer.**
 
-![Current provisional remnant](preview.png)
+![Current exterior review](preview.png)
 
-Inspected59 current frames:11 portable,10 shared-material,23 medium-fi and15 native fixture. Replaced the regular radial root armature with editable creeping/branching paths and flattened curved buttresses; added a grounded knotted pale stump with a low three-way fork, a taller dark tree, and uneven stone-course heights. The first far silhouette probes mistakenly treated expected root occluders as masonry; their current checks isolate internal passages and find pier faces behind those roots. All166 geometry probes pass. The wider ordinary photographs show a collapsed extension beyond this partial source. The central/pier masonry remains too regular and the pale stump is still coarse; crown/scatter style, complete extant footprint and signed axis need work. No full unique-candidate completion is claimed.
+The south-side pier bases now step down over several moss-stained sandstone blocks. The adjoining corbel passages remain open, and the displaced paving and broken eastern apron remain visible. The pale tree has a continuous fork and the darker trunk is rooted on the retained paving. Both crowns stay attached at distance. The foliage is stylized and the modeled apron remains a photographic approximation. The shared material views show sandstone and bark under the same lighting as the other landmarks. The medium-fi distance views retain the two-tree silhouette and the low masonry. Sandstone and bark use the existing shared stone_sandstone_raw and wood_plain graphs.
 
-Two existing shared 256px stone_sandstone_raw and wood_plain graphs, metric UVs and muted linear vertex tints. Three runtime semantic material groups; skyline is one tinted group. No embedded/private images or copied photo pixels. Each graph reads once per native scenario, and all geometry disposes. Opaque modeled leaf sprigs are a declared landmark-tree approximation; they do not use the standard native scatter-card atlas and still need style review.
-
-| Level | Triangles | Bytes | Draws |
+| Detail level | Triangles | Bytes | Draws |
 | --- | ---: | ---: | ---: |
-| skyline | 530 | 57452 | 1 |
-| district | 2408 | 259772 | 3 |
-| street | 10872 | 1205396 | 3 |
-| closeup | 43104 | 5010160 | 3 |
+| skyline | 870 | 92,180 | 1 |
+| district | 2,888 | 308,948 | 3 |
+| street | 9,348 | 1,022,076 | 3 |
+| closeup | 39,196 | 4,619,148 | 3 |
 
-Source master 63652 triangles / 7640608 bytes. Runtime triangles 530 / 2408 / 10872 / 43104, bytes 57452 / 259772 / 1205396 / 5010160, draws 1 / 3 / 3 / 3. Initial skyline plus district 317224 bytes. All actual triangle budgets and separate GPU attribute streams pass. Physical-device timings are unmeasured. Passing budgets alone does not grant medium-fi approval.
+The master rebuilds byte for byte at 55,144 triangles. Skyline and district together use 401,128 bytes. Six GLBs passed validation with zero embedded images. All 202 geometry probes passed. The review covered 44 exterior and distance views and 15 native scene views.
 
-Named PMTiles Spean Thmor bridge point 17592756541329 is about280m northeast of the old catalog coordinate and agrees with the recent photo location. Anchor[103.87960016727448,13.446213881078847], heading0.1342; +X ENE, +Z SSE. Only the point is map evidence; no outline, exact-QID match or measured ruin axis is claimed. Eight bays over16.8m, with six partially roofed passages and two broken channels, are provisional visible-remnant controls. The full surviving ruin extent and orientation remain unresolved. The isolated fixture explicitly enables the draft only for review; canonical default queries exclude it. No neighboring modern road/cycle bridge is replaced.
+The ruin’s east–west axis follows the adjoining Petit Circuit approach as a local alignment proxy. The photographed corbel openings and two tree roots face toward the geotagged southwest viewpoint. The point location comes from the named PMTiles feature. The full surviving extent and the exact compass bearing remain approximate.
 
-All23 resident buildings,24 road records, standard DEM, displayed ground and three input water features are retained across four loaded levels and load failure. The modern Petit Circuit road bridge35184391923932 and separate cycle bridge35185724126966 remain independent map features. Nine inset masonry-base samples per loaded level are supported within0.32m of the coarse ground; samples are inset from intentional depth joints and do not establish a surveyed footprint or road joins. No ground/building cutout, authored approach grade or support geometry. Unload disposes all model geometry.
+All 23 buildings, 24 road records, ground and water remained in the PMTiles and standard terrain fixture through four detail levels and simulated model failure. The two mapped modern crossings and their procedural support geometry were retained. Fifteen masonry base samples per loaded level were within 0.18 m of the terrain. Model and support geometry released on unload.
 
-![Independent modern crossings remain](site-preview.png)
+![Spean Thma and the two nearby crossings in the local fixture](site-preview.png)
 
-## Remaining work
-
-Root paths now creep and branch, and the forked stump is grounded. Further reduce the coarse stump and repeated pier regularity, resolve crown/scatter style, and extend the source to cover the complete extant collapsed remnant shown by the wider ordinary photographs. Establish the signed axis from the map/photo context. Preserve the reviewed source and runtime results; repeat only affected checks after changes. No bespoke terrain research is needed.
-
-## Reconstruction limits
-
-- Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.
-- Only the photographed visible remnant segment is interpreted: six passages with partial upper corbels/slabs and two broken eastern channels/pier stubs. The full surviving ruin footprint, total bay count and hidden masonry remain unverified. This source draft is not a completed unique-candidate model.
-- Two tree/root silhouettes are photo-led approximations, not botanical surveys. Portable GLBs use small opaque modeled leaf sprigs rather than alpha-card crowns; this avoids per-model atlases and unsupported portable shader bindings. Shared native scatter cards remain the standard for ordinary generated forest.
-- Stone blocks, irregular course heights, explicitly drawn creeping root paths and tree proportions are authored deterministically. The current model remains only a visible-remnant draft. No downloaded mesh or copied photo pixels. Native ground and both modern crossings must remain unchanged.
-- This is a photo-led surviving-ruin interpretation. No exact-QID outline, measured full bay schedule, complete hidden masonry, tree survey or verified full surviving footprint is available. Keep geographic/fidelity approval pending if the full extent and root-tree silhouette cannot be established in current inspection.
-- Two existing shared 256px stone_sandstone_raw and wood_plain graphs; muted linear vertex colors supply stone variation and leaves. Opaque modeled leaf sprigs are an explicit portable landmark-tree exception to native scatter-card foliage, not a claim to use that atlas. No private textures, embedded images, downloaded meshes or copied photo pixels. Physical-device timings remain unmeasured.
+[2025 south-side photo](https://commons.wikimedia.org/wiki/File:Spean_Thma_-_Angkor_Archaeological_Park_2025_(1).jpg) · [Wider photo gallery](https://helloangkor.com/attractions/spean-thma-10/) · [QA](qa.json) · [Placement evidence](placement-report.json)

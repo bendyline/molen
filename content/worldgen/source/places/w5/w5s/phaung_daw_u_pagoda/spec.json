@@ -1,0 +1,544 @@
+{
+  "planId": "phaung_daw_u_pagoda",
+  "id": "phaung_daw_u_pagoda",
+  "assetId": "molen.worldgen.structure.phaung_daw_u_pagoda",
+  "title": "Phaung Daw U Pagoda",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 96.8902414,
+    "latitude": 20.474365499999998
+  },
+  "size": [
+    72.80218887329102,
+    37.879998445510864,
+    101.16569137573242
+  ],
+  "actualBounds": {
+    "min": [
+      -38.37189865112305,
+      -1.7799999713897705,
+      -59.720001220703125
+    ],
+    "max": [
+      34.43029022216797,
+      36.099998474121094,
+      41.4456901550293
+    ]
+  },
+  "visualBrief": "Phaung Daw U Pagoda in Inle Lake, with red tiered roofs, gilded stupa and the covered waterfront arrival hall.",
+  "nativeAxes": {
+    "x": "along the waterfront façade",
+    "y": "up",
+    "z": "from the water towards the shrine"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Phaung_Daw_Oo_Pagoda_at_Inle.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hpaung_Daw_U_Pagoda.jpg"
+  ],
+  "stories": [
+    {
+      "id": "phaung-daw-u-pagoda-wp",
+      "url": "https://qualla.com/phaung-daw-u-pagoda/"
+    }
+  ],
+  "referenceInputHash": "sha256:279b83d2d007379506e73167611084a1c8a62074a403fd64b65fe227a95183b0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w5/w5s/phaung_daw_u_pagoda/models/phaung-daw-u-pagoda-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w5/w5s/phaung_daw_u_pagoda/models/phaung-daw-u-pagoda-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0.08
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.63,
+        "metallic": 0.35
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.46
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "plaster_lime",
+    "metal_standing_seam",
+    "metal_bronze_cast",
+    "wood_painted_lap"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.89,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original terrain reference at the mapped public landing. The terrace bounds replacement of roof returns.",
+    "anchor": [
+      96.8902414,
+      20.474365499999998
+    ],
+    "heading": 0.0143154237536423,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        96.89020916807861,
+        20.47487446233571
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation just north of the covered arrival hall, using the local landing datum."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -37.3891,
+          -45.2903
+        ],
+        [
+          -38.3489,
+          41.4227
+        ],
+        [
+          34.4073,
+          39.3805
+        ],
+        [
+          31.3513,
+          -59.6921
+        ],
+        [
+          -9.2411,
+          -51.7008
+        ]
+      ],
+      "basis": "The mapped visitor terrace bounds the replacement of radar returns from the shrine and arrival roofs."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.4405,
+          -19.7167
+        ],
+        [
+          -19.4418,
+          19.7167
+        ],
+        [
+          19.4405,
+          19.7167
+        ],
+        [
+          19.4418,
+          -19.7167
+        ],
+        [
+          4.8843,
+          -19.8917
+        ],
+        [
+          -9.6833,
+          -20.0891
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -19.4405,
+            -19.7167
+          ],
+          [
+            -19.4418,
+            19.7167
+          ],
+          [
+            19.4405,
+            19.7167
+          ],
+          [
+            19.4418,
+            -19.7167
+          ],
+          [
+            4.8843,
+            -19.8917
+          ],
+          [
+            -9.6833,
+            -20.0891
+          ]
+        ],
+        [
+          [
+            -9.2411,
+            -51.7008
+          ],
+          [
+            5.3265,
+            -51.5033
+          ],
+          [
+            4.8843,
+            -19.8917
+          ],
+          [
+            -9.6833,
+            -20.0891
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Native sanctuary and attached covered dock hall, preserving adjoining independently mapped buildings."
+    },
+    "featureIds": [
+      "way/227139747",
+      "way/227139756",
+      "way/227139751",
+      "way/55674169",
+      "way/208702116"
+    ],
+    "source": "https://www.openstreetmap.org/way/227139747",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:997b7bbf705ae21dbd388a756cc7feb8f7a0aef845db98bd162412a12002f436",
+    "notes": "The two exact Qualla originals show the gilded bell above red multi-tiered roofs, gold bargeboards and cresting, tall windowed and columned upper gallery, and the lower and taller tiers of the arrival pavilion. The contemporary national festival register and UNESCO establish the Inle Lake site."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Horizontal dimensions follow the standing named building, its attached arriving hall and the mapped pedestrian court. Roof-tier heights, decorative carving and exact landing-pavilion cross-sections are approximated from the photographs.",
+    "The independent local radar-derived raster contains roof returns over the shrine. A local cutout is bounded by the mapped pedestrian terrace. Canal water level, retaining wall and stairs are estimated from the visible waterfront and native local terrain. The raw terrain and unmasked field are retained.",
+    "The surrounding market, ceremonial boats and boathouse, temporary flags and the shrine’s interior statues are outside scope."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. Mapzen open terrain.",
+  "qaLodCameras": [
+    {
+      "name": "phaung-daw-u-pagoda-skyline",
+      "position": [
+        -111,
+        48,
+        -142
+      ],
+      "lookAt": [
+        0,
+        11,
+        -15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "phaung-daw-u-pagoda-district",
+      "position": [
+        -111,
+        48,
+        -142
+      ],
+      "lookAt": [
+        0,
+        11,
+        -15
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "phaung-daw-u-pagoda-street",
+      "position": [
+        -111,
+        48,
+        -142
+      ],
+      "lookAt": [
+        0,
+        11,
+        -15
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "phaung-daw-u-pagoda-closeup",
+      "position": [
+        -111,
+        48,
+        -142
+      ],
+      "lookAt": [
+        0,
+        11,
+        -15
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "waterside-pagoda-and-gold-bell",
+      "position": [
+        -52,
+        11,
+        -90
+      ],
+      "lookAt": [
+        2,
+        15,
+        -6
+      ]
+    },
+    {
+      "name": "landing-steps-and-colonnades",
+      "position": [
+        15,
+        7,
+        -77
+      ],
+      "lookAt": [
+        -3,
+        8,
+        -41
+      ]
+    },
+    {
+      "name": "two-storey-gallery-and-gabled-eaves",
+      "position": [
+        62,
+        13,
+        45
+      ],
+      "lookAt": [
+        4,
+        12,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12963,
+    "vertices": 38889,
+    "materials": 6,
+    "bytes": 1707868,
+    "sha256": "sha256:f003ea5e672f84dab4c115579c5bd3726497608b2b76c90288912aeeea98bae9"
+  }
+}

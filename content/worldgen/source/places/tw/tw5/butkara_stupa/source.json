@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.butkara_stupa",
+  "kind": "static-structure",
+  "title": "Butkara Stupa",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.butkara_stupa",
+        "output": "assets/places/tw/tw5/butkara_stupa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:01fffa1bd277e86ebd21ddd6c3348225ce70e8823199ea03fd966d01f9596959"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-butkara-stupa",
+        "path": "models/generate-butkara-stupa.mjs"
+      },
+      {
+        "id": "butkara-stupa-model",
+        "path": "models/butkara-stupa-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/butkara-and-saidu-identities.json",
+      "reference-rights/butkara-excavation-written-facts.json",
+      "reference-rights/article-image-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-22971-13005.png",
+      "terrain-sources/terrarium-15-22970-13005.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

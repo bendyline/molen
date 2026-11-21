@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.airavatesvara_temple",
+  "kind": "static-structure",
+  "title": "Airavatesvara Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.airavatesvara_temple",
+        "output": "assets/places/tc/tcb/airavatesvara_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0f957eb14cce2bf9aa64b9a98443458a05bea94ec89df77466f37b280c45ea48"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-airavatesvara-temple",
+        "path": "models/generate-airavatesvara-temple.mjs"
+      },
+      {
+        "id": "airavatesvara-temple-model",
+        "path": "models/airavatesvara-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/darasuram-standing-temple-complex.json",
+      "reference-rights/darasuram-written-architectural-records.json",
+      "reference-rights/anandbora-native-cc0-mandapa.json",
+      "reference-rights/neozoon-native-cc0-vimana.json",
+      "reference-originals/neozoon-vimana-2017.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23607-15381.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

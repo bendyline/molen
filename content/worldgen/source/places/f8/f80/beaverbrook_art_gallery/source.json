@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.beaverbrook_art_gallery",
+  "kind": "static-structure",
+  "title": "Beaverbrook Art Gallery",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.beaverbrook_art_gallery",
+        "output": "assets/places/f8/f80/beaverbrook_art_gallery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cf1ef2160f74e149eafd2827a1ced71f3233d5b315425d61886882407d70df89"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-beaverbrook-art-gallery",
+        "path": "models/generate-beaverbrook-art-gallery.mjs"
+      },
+      {
+        "id": "beaverbrook-art-gallery-model",
+        "path": "models/beaverbrook-art-gallery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/council-gallery-and-queen-street.json",
+      "reference-rights/architectural-evidence.json",
+      "reference-rights/commons-vascobattuta-first-upload.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-10318-11662.png",
+      "terrain-sources/terrarium-15-10319-11662.png",
+      "terrain-sources/terrarium-15-10318-11663.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

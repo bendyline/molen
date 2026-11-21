@@ -216,8 +216,8 @@ for (const originalAsset of studies.filter((study) => !selected || selected.incl
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
   const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
   if (reviewScope) {
-    if (reviewScope.fidelityTarget !== 'medium-fi')
-      throw new Error(`${asset.id}: review scope must declare medium-fi`);
+    if (!['medium-fi', 'maximum'].includes(reviewScope.fidelityTarget))
+      throw new Error(`${asset.id}: review scope must declare medium-fi or maximum`);
     for (const field of [
       'fidelityTarget',
       'appearance',

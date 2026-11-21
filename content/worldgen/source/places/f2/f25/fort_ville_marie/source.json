@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_ville_marie",
+  "kind": "static-structure",
+  "title": "Fort Ville-Marie",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_ville_marie",
+        "output": "assets/places/f2/f25/fort_ville_marie/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c3c8bb939a53540d8a2bf1c2a55d29454fde0ac82898ff8d5463dc316629e032"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort-ville-marie",
+        "path": "models/generate-fort-ville-marie.mjs"
+      },
+      {
+        "id": "fort-ville-marie-model",
+        "path": "models/fort-ville-marie-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/archaeological-site-and-river-axis.json",
+      "reference-rights/archaeology-and-archive-context.json",
+      "reference-rights/morin-commons-and-archive.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9688-11722.png",
+      "terrain-sources/terrarium-15-9689-11722.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,465 @@
+{
+  "id": "osun_grove_second_palace",
+  "planId": "osun_grove_second_palace",
+  "assetId": "molen.worldgen.structure.osun_grove_second_palace",
+  "title": "Ilédì Oǹtótóo, Second Palace",
+  "category": "shrine",
+  "quality": "detailed",
+  "collectionId": "osun_osogbo_grove",
+  "wikidataId": "Q621498",
+  "referenceCoordinate": {
+    "longitude": 4.5491085,
+    "latitude": 7.757122
+  },
+  "visualBrief": "Three swept corrugated roofs with raised valley sheets and sheet laps. Diagonal palm-rib panels frame the staggered rows of carved leaning posts, red iron-oxide cement sculptures, recessed scroll grille and stone forecourt relief. Painted sculpted plaster and carved posts are visible behind the central grille at close range. The elephant wing has a projecting crowned figure with extended arms above the upturned trunk and pale tusks. The left gable shelters two converging carved forearms with stacked fists and rounded finger bands. A recessed spiral waterlily sits to the left of the greeting relief. Three shallow treads rise to a recessed opening under the valley between the left and middle gables.",
+  "nativeAxes": "+Z faces the forecourt, +X runs to the right wing and +Y is up.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_second_palace/models/second-palace-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://artsandculture.google.com/story/NQURHd6Wqbgz_A",
+    "https://whc.unesco.org/uploads/nominations/1118.pdf",
+    "https://artsandculture.google.com/asset/3wE9hKQocA2Z0Q?hl=en",
+    "https://artsandculture.google.com/asset/7AHT2sMs59Kp_g?hl=en",
+    "https://artsandculture.google.com/asset/SQFguCYvJDqtrw?hl=en",
+    "https://artsandculture.google.com/asset/QAGiFS7h99TPWw?hl=en",
+    "https://artsandculture.google.com/asset/1gFx1zn1n0VNZA?hl=en",
+    "https://www.youtube.com/watch?v=YdqZ-3SxZl8",
+    "https://openheritage3d.org/project.php?id=4qq4-8d77",
+    "https://doi.org/10.4236/ojf.2016.64020",
+    "https://artsandculture.google.com/streetview/IAHtJvQAPXqLVA?sv_pid=CAISFkFGc0NtLWNuY29JQUFBUkdrZWFyLUE",
+    "https://artsandculture.google.com/story/ZAUBPwpovR_cfQ",
+    "https://artsandculture.google.com/streetview?sv_pid=CAoSF0NJSE0wb2dLRUlDQWdJRHFoYmZEOWdF&sv_h=4.88395049776828&sv_p=11.812893285272793",
+    "https://artsandculture.google.com/asset/XgHSbt1bZ2e7Vw",
+    "https://springs-rcc.org/yoruba-architectural-sites-in-nigeria/",
+    "https://www.youtube.com/watch?v=Ln8aazP2cFk"
+  ],
+  "materialMethod": "Six existing Worldgen materials supply the corrugated roof, painted iron grille, bamboo, timber, concrete and sandstone. The cement tint follows the iron-oxide finish recorded by the shrine Trust.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "exterior-review",
+  "geographicProposal": {
+    "status": "draft-proposal",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "notes": "The draft centers on the published scan coverage and faces approximately south, 173.7° true, following the best exterior panorama fit. The panorama pin differs from the archive center by about 167 m, and the interior panorama supports a different direction. The model envelope clears the mapped road and river at this trial position. The actual footprint, ground datum and bearing remain unresolved.",
+    "anchor": [
+      4.5491085,
+      7.757122
+    ],
+    "heading": 0.10995574287564297,
+    "bounds": [
+      4.548980974520456,
+      7.7570606454887425,
+      4.549237898764371,
+      7.75718254815761
+    ],
+    "minLevel": 16,
+    "elevationMode": "terrain",
+    "elevationMeters": 0,
+    "terrainReference": {
+      "anchor": [
+        4.5491085,
+        7.757122
+      ],
+      "modelHeight": 0,
+      "basis": "Native terrain at the approximate center of the published aerial scan area."
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9170460d25d24c30ae474e3c54398ac8e6d1caf76f0ef6546efb9a75fbf5ebf4",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s17/osun_grove_second_palace/models/second-palace-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.82,
+        "metallic": 0.14
+      },
+      "lining": {
+        "slot": "wall",
+        "graph": "bamboo",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.58,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "lining": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "lining": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "grille": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.19
+          }
+        },
+        "errorMeters": 0.13
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "lining": {
+            "slot": "wall",
+            "graph": "bamboo",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "grille": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.19
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.43
+  },
+  "qaCameras": [
+    {
+      "name": "diagonal-soffit-panels",
+      "position": [
+        0.39,
+        1.42,
+        3.3
+      ],
+      "lookAt": [
+        0.58,
+        4.6,
+        2.55
+      ],
+      "fov": 67
+    },
+    {
+      "name": "left-wing-roof-sweep",
+      "position": [
+        -17.5,
+        4.5,
+        12.7
+      ],
+      "lookAt": [
+        -6.3,
+        2.4,
+        0.4
+      ],
+      "fov": 49
+    },
+    {
+      "name": "central-portal-and-carved-posts",
+      "position": [
+        0.4,
+        2.4,
+        9.1
+      ],
+      "lookAt": [
+        0.2,
+        1.9,
+        1.1
+      ],
+      "fov": 49
+    },
+    {
+      "name": "right-wing-sculptural-canopy",
+      "position": [
+        13.2,
+        3.2,
+        10.1
+      ],
+      "lookAt": [
+        8.2,
+        2.36,
+        2.3
+      ],
+      "fov": 49
+    },
+    {
+      "name": "three-ridgelines",
+      "position": [
+        -12.6,
+        19.2,
+        -18.6
+      ],
+      "lookAt": [
+        0,
+        2.3,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "painted-inner-room",
+      "position": [
+        2.56,
+        1.69,
+        0.55
+      ],
+      "lookAt": [
+        -0.62,
+        1.65,
+        -3.24
+      ],
+      "fov": 67
+    },
+    {
+      "name": "elephant-and-rising-figure",
+      "position": [
+        5.48,
+        3.22,
+        7.98
+      ],
+      "lookAt": [
+        8.56,
+        3.5,
+        3.83
+      ],
+      "fov": 50
+    },
+    {
+      "name": "elephant-tusks-and-trunk",
+      "position": [
+        12.27,
+        2.59,
+        7.74
+      ],
+      "lookAt": [
+        8.81,
+        3.12,
+        3.67
+      ],
+      "fov": 59
+    },
+    {
+      "name": "left-wing-greeting",
+      "position": [
+        -10.33,
+        2.1,
+        8.72
+      ],
+      "lookAt": [
+        -8.43,
+        2.68,
+        3.38
+      ],
+      "fov": 57
+    },
+    {
+      "name": "left-gable-waterlily",
+      "position": [
+        -9.32,
+        1.71,
+        4.64
+      ],
+      "lookAt": [
+        -10.15,
+        1.6,
+        2.36
+      ],
+      "fov": 52
+    },
+    {
+      "name": "left-valley-stairs",
+      "position": [
+        -5.35,
+        1.53,
+        5.65
+      ],
+      "lookAt": [
+        -4.67,
+        0.88,
+        1.56
+      ],
+      "fov": 45
+    }
+  ],
+  "limitations": [
+    "Particular roof heights, bay widths, and floor and rear-wall geometry are interpreted from the visible exterior.",
+    "Sculptural forms are approximate. The model includes a photographed painted panel and posts seen through the grille.",
+    "The archive metadata and gridded Iledi symbol define an approximate search area. Forest canopy hides the exact roof perimeter.",
+    "The raised sheets, corrugated laps and alternating bamboo panels follow the side and porch photographs. Exact sheet laps, slat angles and the covered joints are reconstructed.",
+    "The draft centers on the published scan coverage and faces approximately south, 173.7° true, following the best exterior panorama fit. The panorama pin differs from the archive center by about 167 m, and the interior panorama supports a different direction. The model envelope clears the mapped road and river at this trial position. The actual footprint, ground datum and bearing remain unresolved.",
+    "The 2019 panorama informs the modeled inner room. Painted markings, rear wall form and post positions are interpreted. The panorama pin and scan coverage disagree by about 96 m.",
+    "The projecting right-wing carving follows the Trust’s photographs. Its dimensions, hidden attachments and exact surface details are interpreted.",
+    "The exterior panorama supports a roughly south-facing forecourt. Its camera pin is about 167 m from the scan-coverage center. The trial footprint and signed bearing still need geographic confirmation.",
+    "The Trust close-up shows a left-gable waterlily with a deep asymmetric spiral, raised terracotta lips and a recessed center beside the joined hands. The wider left-wing photograph fixes the relative position. The spiral section and depth are reconstructed."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -13.570771217346191,
+      -0.18000000715255737,
+      -5.26132869720459
+    ],
+    "max": [
+      13.766298294067383,
+      8.244999885559082,
+      5.373222351074219
+    ]
+  },
+  "size": [
+    27.337069511413574,
+    8.42499989271164,
+    10.634551048278809
+  ],
+  "mesh": {
+    "triangles": 22228,
+    "vertices": 58774,
+    "materials": 6,
+    "bytes": 2386468,
+    "sha256": "sha256:7983f7e1b8a97cf84614c3449a3d43032447b035beee1530d57a2764c51814eb"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.bamboo",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

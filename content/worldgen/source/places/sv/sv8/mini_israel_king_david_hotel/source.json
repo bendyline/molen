@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_king_david_hotel",
+  "kind": "static-structure",
+  "title": "Mini Israel · King David Hotel exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_king_david_hotel",
+        "output": "assets/places/sv/sv8/mini_israel_king_david_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f3eb7da8d53e5c2df316ef90b089cc347f9009fca72840160f76a82ea61829ad"
+      }
+    ],
+    "generators": [
+      {
+        "id": "king-david-exhibit-mesh",
+        "path": "models/king-david-exhibit-model.mjs"
+      },
+      {
+        "id": "king-david-exhibit-master",
+        "path": "models/generate-king-david-exhibit.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "garden-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "map-frame.json",
+      "placement-report.json"
+    ]
+  }
+}

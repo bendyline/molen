@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_festival_pavilion",
+  "kind": "static-structure",
+  "title": "Osun Grove Festival Pavilion",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_festival_pavilion",
+        "output": "assets/places/s1/s17/osun_grove_festival_pavilion/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:be6e94959a7ce2be4ba2dc894599f42c49eecbb46350725430cc8257c4c0ad93"
+      }
+    ],
+    "generators": [
+      {
+        "id": "festival-pavilion-mesh",
+        "path": "models/festival-pavilion-model.mjs"
+      },
+      {
+        "id": "festival-pavilion-master",
+        "path": "models/generate-festival-pavilion.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "placement-report.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "site-preview.webp"
+    ]
+  }
+}

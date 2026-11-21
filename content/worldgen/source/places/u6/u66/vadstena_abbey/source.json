@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.vadstena_abbey",
+  "kind": "static-structure",
+  "title": "Vadstena Abbey",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.vadstena_abbey",
+        "output": "assets/places/u6/u66/vadstena_abbey/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e71af3efc4e90594a57c395ecd670b8c52c4d14bf79ceb64fb2608ebc15ac763"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-vadstena-abbey",
+        "path": "models/generate-vadstena-abbey.mjs"
+      },
+      {
+        "id": "villa-wolf-model",
+        "path": "models/vadstena-abbey-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/vadstena-abbey-surviving-buildings.json",
+      "reference-rights/abbey-and-state-buildings-facts.json",
+      "reference-rights/artifex-church-public-domain-and-file-history.json",
+      "reference-rights/artifex-brothers-public-domain-and-file-history.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-17739-9791.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

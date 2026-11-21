@@ -1,0 +1,46 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sanabria_lake",
+  "kind": "static-structure",
+  "title": "Sanabria Lake",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "models/lake-terrain.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sanabria_lake",
+        "output": "assets/places/ez/ez7/sanabria_lake/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1f9145441bf7223493722ee7df59038975025dbef19cb30825aefc283f106c9f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "sanabria-lake-model",
+        "path": "models/sanabria-lake-model.mjs"
+      },
+      {
+        "id": "sanabria-lake-master",
+        "path": "models/generate-sanabria-lake.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "native-preview.webp",
+      "preview.png"
+    ]
+  }
+}

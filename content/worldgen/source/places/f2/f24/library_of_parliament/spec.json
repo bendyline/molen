@@ -1,0 +1,483 @@
+{
+  "planId": "library_of_parliament",
+  "id": "library_of_parliament",
+  "assetId": "molen.worldgen.structure.library_of_parliament",
+  "title": "Library of Parliament",
+  "wikidataId": "Q1125633",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.70024101111112,
+    "latitude": 45.42550025
+  },
+  "size": [
+    40.102190017700195,
+    60.83629608154297,
+    42.823503494262695
+  ],
+  "actualBounds": {
+    "min": [
+      -20.09383201599121,
+      -0.6082115173339844,
+      -22.573503494262695
+    ],
+    "max": [
+      20.008358001708984,
+      60.228084564208984,
+      20.25
+    ]
+  },
+  "visualBrief": "Ottawa’s Victorian Gothic Library of Parliament, with 16 flying buttresses, pointed sandstone windows, radiating copper roof, ornamented lantern and spire.",
+  "nativeAxes": {
+    "x": "across the bluff",
+    "y": "up",
+    "z": "toward Centre Block"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.canadiana.ca/view/oocihm.8_06230_382/2"
+  ],
+  "stories": [
+    {
+      "id": "library-of-parliament-wp",
+      "url": "https://qualla.com/library-of-parliament/"
+    }
+  ],
+  "referenceInputHash": "sha256:a576db5686fd68fc371c967b64f65a364fb6cfe52da1c9132298df16c412e351",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f24/library_of_parliament/models/library-of-parliament-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "tytuvenai-ensemble-geometry.mjs": "sha256:1232944a27b0bded06843cf2786f815449e7ee61f327be239c40ad48a8e1de12",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f24/library_of_parliament/models/library-of-parliament-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.78,
+        "metallic": 0.26
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.51
+      },
+      "iron": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.29
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.79,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.26
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.29
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.26
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.29
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.105,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.26
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51
+          },
+          "iron": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.29
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_ashlar",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Natural Resources Canada bare-earth elevation on the Ottawa River bluff and matching Centre Block frame.",
+    "anchor": [
+      -75.70024101111112,
+      45.42550025
+    ],
+    "heading": 0.5393621532787986,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.7001029644373,
+        45.425338385416964
+      ],
+      "modelHeight": 0,
+      "basis": "Original Natural Resources Canada elevation near the interface with the existing Centre Block placement."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.6375,
+          17.3389
+        ],
+        [
+          11.8958,
+          13.99
+        ],
+        [
+          17.214,
+          8.2084
+        ],
+        [
+          19.9292,
+          0.8428
+        ],
+        [
+          19.6479,
+          -6.9931
+        ],
+        [
+          16.4099,
+          -14.1336
+        ],
+        [
+          10.7104,
+          -19.5042
+        ],
+        [
+          3.3953,
+          -22.3129
+        ],
+        [
+          -4.4266,
+          -22.1297
+        ],
+        [
+          -11.5984,
+          -19.0015
+        ],
+        [
+          -17.0566,
+          -13.3815
+        ],
+        [
+          -19.9642,
+          -6.1052
+        ],
+        [
+          -19.9,
+          1.7435
+        ],
+        [
+          -16.8541,
+          8.9767
+        ],
+        [
+          -11.2842,
+          14.5032
+        ],
+        [
+          -3.673,
+          17.5929
+        ],
+        [
+          -3.7161,
+          20.1749
+        ],
+        [
+          4.6333,
+          20.1906
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Independently named Library of Parliament footprint with its short connector."
+    },
+    "featureIds": [
+      "way/128127770"
+    ],
+    "source": "https://www.openstreetmap.org/way/128127770",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:15456c9124ff57287f7bc8f21476e69e40187393d2d59187d68088a16f2849bf",
+    "notes": "The published 1877 Canadiana cover engraving establishes its tiered Gothic profile, windows, buttress arrangement and crowns. The government building operator confirms 16 flying buttresses, three sandstone finishes, steep copper roofing and iron cresting."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The original library rotunda and its immediately attached connector are modeled as their own exterior. Centre Block, Peace Tower and temporary rehabilitation equipment remain outside this scope.",
+    "The native outline controls location and width. The height to the finial uses the OSM survey tag as an estimate. Carved tracery, individual sculptures and secondary roof dimensions are simplified.",
+    "The 1877 engraving informs the surviving masonry details. The modeled roof is modern copper with green patina, following the federal heritage description."
+  ],
+  "sourceLicense": "Original mesh under the project license. © OpenStreetMap contributors. Natural Resources Canada terrain. Canadiana archive scan of an 1877 printed engraving.",
+  "qaLodCameras": [
+    {
+      "name": "library-of-parliament-skyline",
+      "position": [
+        95,
+        52,
+        -119
+      ],
+      "lookAt": [
+        0,
+        23,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "library-of-parliament-district",
+      "position": [
+        95,
+        52,
+        -119
+      ],
+      "lookAt": [
+        0,
+        23,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "library-of-parliament-street",
+      "position": [
+        95,
+        52,
+        -119
+      ],
+      "lookAt": [
+        0,
+        23,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "library-of-parliament-closeup",
+      "position": [
+        95,
+        52,
+        -119
+      ],
+      "lookAt": [
+        0,
+        23,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "library-from-the-ottawa-river-bluff",
+      "position": [
+        45,
+        24,
+        -72
+      ],
+      "lookAt": [
+        0,
+        20,
+        -7
+      ]
+    },
+    {
+      "name": "sandstone-lancets-and-flying-buttresses",
+      "position": [
+        27,
+        17,
+        -39
+      ],
+      "lookAt": [
+        0,
+        15,
+        -11
+      ]
+    },
+    {
+      "name": "copper-roof-and-lantern",
+      "position": [
+        -20,
+        55,
+        -60
+      ],
+      "lookAt": [
+        0,
+        40,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10643,
+    "vertices": 31929,
+    "materials": 5,
+    "bytes": 1453024,
+    "sha256": "sha256:854129e29ba17a4d665e1ccc1a6fd8c597b7f417f0bc98b073b75d7a9ce3e11a"
+  }
+}

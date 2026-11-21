@@ -1,0 +1,265 @@
+{
+  "id": "summer_palace_farming_stele_2006",
+  "planId": "summer_palace_farming_stele",
+  "assetId": "molen.worldgen.structure.summer_palace_farming_stele_2006",
+  "title": "Summer Palace · Farming and Weaving Stele (2006)",
+  "category": "monument",
+  "quality": "medium-fi",
+  "wikidataId": "Q4132",
+  "referenceCoordinate": {
+    "longitude": 116.25778796313595,
+    "latitude": 39.99466794232615
+  },
+  "visualBrief": "A rounded grey carved stele on a wave plinth with planter pockets stands inside double bronze rails with round metal feet. A dark interpretation plate backs the open stone apron. The freestanding panel carries a five-character Chinese heading and two blocks of light lettering in the close-up and master.",
+  "nativeAxes": "+Y up. +Z faces the inscribed south face.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_farming_stele_2006/models/open-apron-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Yiheyuan_stele.jpg",
+    "https://xinwen.bjd.com.cn/content/s6216c030e4b02e91172650c8.html",
+    "https://summerpalace.net.cn/guide_map.html"
+  ],
+  "historicalObservation": {
+    "date": "2006-03-29",
+    "assetOf": "molen.worldgen.structure.summer_palace_farming_stele"
+  },
+  "materialMethod": "Reuses shared marble, limestone, ashlar and painted metal. Surface variation comes from mesh relief and tints.",
+  "geographicProposal": {
+    "status": "research-only",
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "notes": "The historic camera view shows the open garden paths and a tiled white wall. The immediate path junction has no independent PMTiles feature. The exact historical and current map anchors remain provisional."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "dated-photo-reconstruction",
+  "mediumFiContext": {
+    "groundY": -0.06
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_farming_stele_2006/models/open-apron-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered"
+      },
+      "tablet": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      }
+    },
+    "errorMeters": 0.22,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "tablet": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.125
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "tablet": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.043
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered"
+          },
+          "tablet": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.014
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "archive-southwest",
+      "position": [
+        -4.15,
+        2.33,
+        4.4
+      ],
+      "lookAt": [
+        0,
+        1.41,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "bronze-rail-and-post-feet",
+      "position": [
+        2.92,
+        1.71,
+        2.65
+      ],
+      "lookAt": [
+        1.13,
+        0.72,
+        0.37
+      ],
+      "fov": 47
+    },
+    {
+      "name": "stone-relief-and-title",
+      "position": [
+        0.32,
+        2.46,
+        3.75
+      ],
+      "lookAt": [
+        0,
+        1.44,
+        0.2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "plan-and-rear",
+      "position": [
+        3.76,
+        6.7,
+        -5.97
+      ],
+      "lookAt": [
+        0,
+        0.32,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "archive-panel-lettering",
+      "position": [
+        -2.32,
+        1.36,
+        0.13
+      ],
+      "lookAt": [
+        -1.86,
+        0.99,
+        -1.59
+      ],
+      "fov": 41
+    }
+  ],
+  "limitations": [
+    "The model depicts the photographed appearance on 29 March 2006. It estimates the rail, sign and pavement dimensions from the picture.",
+    "The photograph guides the Chinese title and the line layout of the bilingual panel. The small Chinese and English body copy is unresolved, so only its spacing, contrast and line lengths are represented. Modern close photographs supply the surviving tablet and plinth detail.",
+    "The historic camera view shows the open garden paths and a tiled white wall. The immediate path junction has no independent PMTiles feature. The exact historical and current map anchors remain provisional."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.4600000381469727,
+      -0.20999999344348907,
+      -1.9299999475479126
+    ],
+    "max": [
+      2.4600000381469727,
+      2.8399999141693115,
+      1.9299999475479126
+    ]
+  },
+  "size": [
+    4.920000076293945,
+    3.0499999076128006,
+    3.859999895095825
+  ],
+  "mesh": {
+    "triangles": 5860,
+    "vertices": 12202,
+    "materials": 4,
+    "bytes": 512560,
+    "sha256": "sha256:bb8830afac7867d76b969299af9535710ab0aa71d1ca81b2cc454e2f8c10041f"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -1,0 +1,499 @@
+{
+  "planId": "ddr_museum",
+  "id": "ddr_museum",
+  "assetId": "molen.worldgen.structure.ddr_museum",
+  "title": "DDR Museum",
+  "wikidataId": "Q573322",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.4021981,
+    "latitude": 52.519359
+  },
+  "size": [
+    77.00255584716797,
+    35.63956141471863,
+    86.73633241653442
+  ],
+  "actualBounds": {
+    "min": [
+      -44.02395248413086,
+      -2.140000104904175,
+      -81.99935913085938
+    ],
+    "max": [
+      32.97860336303711,
+      33.49956130981445,
+      4.736973285675049
+    ]
+  },
+  "visualBrief": "Berlin’s DDR Museum at Vera-Brittain-Ufer, with the stair from Karl-Liebknecht Bridge and the stone-and-glass DomAquarée hotel wing above.",
+  "nativeAxes": {
+    "x": "southeast along the Spree promenade",
+    "y": "up",
+    "z": "southwest toward the Spree"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "ddr-museum-wp",
+      "url": "https://qualla.com/ddr-museum/"
+    }
+  ],
+  "referenceInputHash": "sha256:8b8ea49a835ae6097f441ad86b4bb87bcda2665cea73828ca24b29e3b7da3639",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u33/ddr_museum/models/ddr-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u33/ddr_museum/models/ddr-museum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.19,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0.13
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.24
+      },
+      "foil": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.66,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "foil": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "foil": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.069,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.13
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "foil": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_ashlar",
+    "metal_painted",
+    "membrane"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.3,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original Berlin ATKIS DGM1 sets the lower water-facing entrance, the adjacent quay and the higher Karl-Liebknecht approach.",
+    "anchor": [
+      13.4021981,
+      52.519359
+    ],
+    "heading": -1.0099026784008076,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.402168800118544,
+        52.51934780004531
+      ],
+      "modelHeight": 0,
+      "basis": "Berlin 1 m DGM sample immediately outside the museum entrance on Vera-Brittain-Ufer."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -20.99,
+          -0.88
+        ],
+        [
+          13.02,
+          -0.17
+        ],
+        [
+          13.46,
+          1.77
+        ],
+        [
+          -21.1,
+          1.58
+        ]
+      ],
+      "minHeight": 0.0050000000000000044,
+      "basis": "The narrow public approach in front of the below-street museum must remain open beside the terrace."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -43.84571,
+          -81.81946
+        ],
+        [
+          12.74618,
+          -79.89012
+        ],
+        [
+          23.17039,
+          -79.5332
+        ],
+        [
+          32.80045,
+          -12.80833
+        ],
+        [
+          13.44266,
+          -13.42569
+        ],
+        [
+          -20.60084,
+          -14.50122
+        ],
+        [
+          -34.4302,
+          -14.9414
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named native upper host building perimeter, with the museum at its riverfront level."
+    },
+    "featureIds": [
+      "relation/12706358",
+      "way/175149971",
+      "way/942602863",
+      "node/4237857593",
+      "way/48095488"
+    ],
+    "source": "https://www.openstreetmap.org/way/175149971",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e4f15b9a729d861e977ad03bb06b7679d71d4ac239c2028f55a7ead58c6b30ae",
+    "notes": "The museum places its entrance on Vera-Brittain-Ufer about 20 metres from the bridge access; the facade consultant documents a roughly 30 m stone-clad, glazed building, with an inclined glass and foil roof for the upper atrium."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior includes the museum entrance and the hotel wing that contains it. The exhibits, other DomAquarée blocks, bridge carriageway and aquarium are outside the scope.",
+    "The seven storeys and basement are mapped. Minor walls, materials, window bays, roof sections and museum entrance joinery are approximated from written records and mapped controls.",
+    "The city’s source terrain sets the lower promenade and terrace. The precise slender retaining edge along the façade needs bounded rendering clearance to show the lower entrance."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "ddr-museum-skyline",
+      "position": [
+        105,
+        62,
+        109
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -33
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ddr-museum-district",
+      "position": [
+        105,
+        62,
+        109
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -33
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ddr-museum-street",
+      "position": [
+        105,
+        62,
+        109
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -33
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ddr-museum-closeup",
+      "position": [
+        105,
+        62,
+        109
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -33
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "dom-aquaree-museum-and-spree-approach",
+      "position": [
+        69,
+        38,
+        83
+      ],
+      "lookAt": [
+        -4,
+        11,
+        -21
+      ]
+    },
+    {
+      "name": "museum-entry-at-promenade-level",
+      "position": [
+        7,
+        5.4,
+        18
+      ],
+      "lookAt": [
+        -2,
+        2.91,
+        -0.25
+      ]
+    },
+    {
+      "name": "stair-from-karl-liebknecht-bridge",
+      "position": [
+        44,
+        14,
+        17
+      ],
+      "lookAt": [
+        16,
+        1.85,
+        0.25
+      ]
+    },
+    {
+      "name": "inclined-glazed-atrium",
+      "position": [
+        62,
+        64,
+        -89
+      ],
+      "lookAt": [
+        -9,
+        22,
+        -43
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9919,
+    "vertices": 29757,
+    "materials": 6,
+    "bytes": 1417420,
+    "sha256": "sha256:1e0cad274666820d5e5c3fe0563720a810c6b5c2d25518f46e54e1fb8f5eaada"
+  }
+}

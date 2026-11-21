@@ -1,0 +1,89 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "sampledTerrainElevation": 681,
+  "crestElevation": 697,
+  "sites": [
+    {
+      "name": "Karakaya west concrete platform tie",
+      "anchor": [
+        39.13481220602989,
+        38.22573566468985
+      ],
+      "heading": -0.745454173118395,
+      "bounds": [
+        -81,
+        -12,
+        -55,
+        34
+      ],
+      "elevation": 566,
+      "blend": 23,
+      "basis": "Keep the measured terrace corridor below its modeled concrete platform."
+    },
+    {
+      "name": "Karakaya east powerhouse apron",
+      "anchor": [
+        39.13481220602989,
+        38.22573566468985
+      ],
+      "heading": -0.745454173118395,
+      "bounds": [
+        19,
+        28,
+        67,
+        61
+      ],
+      "elevation": 573,
+      "blend": 28,
+      "basis": "Blend the native rock shoulder below the concrete facilities beside the chutes."
+    },
+    {
+      "name": "Karakaya powerhouse back bank",
+      "anchor": [
+        39.13481220602989,
+        38.22573566468985
+      ],
+      "heading": -0.745454173118395,
+      "bounds": [
+        24,
+        -6,
+        60,
+        32
+      ],
+      "elevation": 577,
+      "blend": 18,
+      "basis": "Keep a continuous bank behind the occupied hall below the roof."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 3708290,
+      "name": "Karakaya Reservoir",
+      "split": {
+        "anchor": [
+          39.13481220602989,
+          38.22573566468985
+        ],
+        "heading": -0.745454173118395,
+        "negativeZ": 681,
+        "positiveZ": 561
+      },
+      "basis": "Native upstream and downstream polygons belong to opposite sides of the mapped arch."
+    },
+    {
+      "id": 11030563,
+      "name": "Karakaya upper reservoir reach",
+      "elevation": 681,
+      "basis": "This mapped reach joins the headwater above Karakaya."
+    },
+    {
+      "id": 35184455286390,
+      "name": "Karakaya buried Euphrates alignment",
+      "hideLines": true,
+      "basis": "The retained map marks this waterway underground."
+    }
+  ],
+  "waterStageNotes": "Representative static stages for the native Euphrates reservoir polygons on either side of the dam. The buried reach stays underground. A mask keeps the native river line off the occupied concrete apron.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

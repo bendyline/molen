@@ -1,0 +1,334 @@
+{
+  "id": "mini_israel_azrieli_towers",
+  "planId": "mini_israel_azrieli_towers",
+  "collectionId": "mini_israel",
+  "wikidataId": "Q456800",
+  "assetId": "molen.worldgen.structure.mini_israel_azrieli_towers",
+  "title": "Mini Israel · Azrieli Towers exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 34.9683044,
+    "latitude": 31.84227883
+  },
+  "visualBrief": "At roughly 1:25 scale, the round, triangular and square glass towers share stepped cream podiums and a gold-toned canopy beside a small railway.",
+  "nativeAxes": "+Y up. +Z faces the model railway and the photographed visitor side. +X runs toward the square tower from the triangular tower.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_azrieli_towers/models/azrieli-exhibit-model.mjs",
+    "export": "buildAzrieliExhibit"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "approximateExhibitScale": 25
+  },
+  "referencePages": [
+    "https://www.israel-in-photos.com/mini-israel.html",
+    "https://www.kikar.co.il/487/240739",
+    "https://www.the7eye.org.il/460149"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      34.9683044,
+      31.84227883
+    ],
+    "heading": 0.65,
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 170.76,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The leveled ground is 0.08 m below model origin, inside the plinth, and the deck stays above the ground at its inspected edges.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4624cd1db50eed877ccbbc27798fa1c466313e52b451e1f0f45bcf44784d7cfb",
+    "notes": "The 2022 drone footage fixes the approximate pad between the pool path and circular visitor plaza. The square tower is to the northeast of the triangular tower, with the model railway on the visitor-facing southeast side. Verified at all four detail levels in the Earth viewer fixture. The localized terrain grade supports the plinth and exposes the miniature railway. Nearby mapped paths, buildings, pools and land cover remain in the scene. The position and facing come from the drone frame, the north-up aerial view and PMTiles paths. The exhibit has no stand-alone mapped footprint. The current condition and operation of the miniature railway are unverified. A small scene grade levels the raised pad in the default Earth viewer. Hosts with a different elevation datum, terrain profile or a coarse grid may need to provide a level pad at this position."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Six shared textures. Metric UVs give the shared window grid the smaller repeat of the physical miniatures. Color accents and track details use vertex colors.",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_azrieli_towers/models/azrieli-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "panes": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.58,
+        "metallic": 0.08
+      },
+      "podium": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.16
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.08
+      },
+      "beds": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.11,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.58,
+            "metallic": 0.08
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "beds": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.048
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.58,
+            "metallic": 0.08
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "beds": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.019
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "panes": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.58,
+            "metallic": 0.08
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "beds": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.008
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "railway-and-towers",
+      "position": [
+        4.5,
+        2.05,
+        9.5
+      ],
+      "lookAt": [
+        -0.12,
+        3.18,
+        0.18
+      ],
+      "fov": 48
+    },
+    {
+      "name": "podium-and-platform",
+      "position": [
+        4.4,
+        2.49,
+        4.91
+      ],
+      "lookAt": [
+        0.52,
+        0.81,
+        1.15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "three-tower-plans",
+      "position": [
+        -4.4,
+        14.53,
+        -5.98
+      ],
+      "lookAt": [
+        -0.1,
+        3.12,
+        0.21
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "The model reconstructs the miniature installation in Latrun at about 1:25 scale. Exact roof and podium dimensions, small railway details and the as-built pad elevation are approximate.",
+    "The position and facing come from the drone frame, the north-up aerial view and PMTiles paths. The exhibit has no stand-alone mapped footprint. The current condition and operation of the miniature railway are unverified.",
+    "A small scene grade levels the raised pad in the default Earth viewer. Hosts with a different elevation datum, terrain profile or a coarse grid may need to provide a level pad at this position."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -3.7200000286102295,
+      -0.3100000023841858,
+      -2.2799999713897705
+    ],
+    "max": [
+      3.799999952316284,
+      7.835999965667725,
+      2.940000057220459
+    ]
+  },
+  "size": [
+    7.519999980926514,
+    8.14599996805191,
+    5.2200000286102295
+  ],
+  "mesh": {
+    "triangles": 2990,
+    "vertices": 5950,
+    "materials": 6,
+    "bytes": 253940,
+    "sha256": "sha256:cb6442f19db6a7ca4d707bdbe1015f27ac06a6a6a0b4139700345d7b9062c02a"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

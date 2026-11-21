@@ -1,0 +1,311 @@
+{
+  "id": "grand_inga_dam",
+  "planId": "grand_inga_dam",
+  "assetId": "molen.worldgen.structure.grand_inga_dam",
+  "title": "Grand Inga Dam, 2014 proposal",
+  "category": "dam-proposal",
+  "quality": "medium-fi",
+  "wikidataId": "Q2884957",
+  "referenceCoordinate": {
+    "longitude": 13.55694444,
+    "latitude": -5.54583333
+  },
+  "visualBrief": "A north-aligned terrain relief of the published Grand Inga layout, with the Bundi barrage, six Inga 3–8 station exteriors, and the Congo River beside a separate proposed reservoir.",
+  "nativeAxes": "+X east, +Z south and +Y up; placement is schematic inside the study.",
+  "appearance": {
+    "kind": "proposal",
+    "currentWorldEligible": false,
+    "publicationYear": 2014,
+    "notes": "This is a landscape model of the 2014 SNEL proposal as published by JICA. Present-day Earth retains the current terrain, river and built infrastructure."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/kr/kr1/grand_inga_dam/models/grand-inga-model.mjs",
+    "export": "buildMaster"
+  },
+  "referencePages": [
+    "https://openjicareport.jica.go.jp/pdf/12363990.pdf#page=72",
+    "https://www.kaowarsom.be/documents/PUBLICATIONS/SUSTAINABLE_ENERGY_AFRICA.pdf#page=83",
+    "https://www.worldbank.org/en/news/press-release/2025/06/03/new-inga-3-development-program-to-start-with-investments-in-local-afe-congolese-communities",
+    "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099091726135010776"
+  ],
+  "materialMethod": "The standalone relief uses shared sandstone, concrete and painted metal. The Earth levels reuse the concrete and metal and retain the host terrain and Congo River. Proposal water has a distinct local color.",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "proposal-relief-review",
+  "geographicProposal": {
+    "status": "planned-design",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "notes": "The model traces the six station groups and barrage from the 2014 concept. The shared map frame preserves the native terrain and mapped Congo River. Planned shapes, elevations and the rendered reservoir are schematic.",
+    "anchor": [
+      13.55694444,
+      -5.54583333
+    ],
+    "heading": 0,
+    "bounds": [
+      13.504506872689142,
+      -5.563046047439811,
+      13.585512654403628,
+      -5.461807949807873
+    ],
+    "mapEvidence": "site-frame.json"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/kr/kr1/grand_inga_dam/models/grand-inga-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "barrier": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.09
+      },
+      "river": {
+        "slot": "trim",
+        "localRef": "palette:#48667c",
+        "name": "Mapped Congo River",
+        "roughness": 0.57
+      },
+      "reservoir": {
+        "slot": "trim",
+        "localRef": "palette:#398488",
+        "name": "Proposed Bundi reservoir and channels",
+        "roughness": 0.56
+      }
+    },
+    "errorMeters": 860,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "barrier": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "river": {
+            "slot": "trim",
+            "localRef": "palette:#48667c",
+            "name": "Mapped Congo River",
+            "roughness": 0.57
+          },
+          "reservoir": {
+            "slot": "trim",
+            "localRef": "palette:#398488",
+            "name": "Proposed Bundi reservoir and channels",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 440
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "barrier": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "river": {
+            "slot": "trim",
+            "localRef": "palette:#48667c",
+            "name": "Mapped Congo River",
+            "roughness": 0.57
+          },
+          "reservoir": {
+            "slot": "trim",
+            "localRef": "palette:#398488",
+            "name": "Proposed Bundi reservoir and channels",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 165
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "barrier": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "river": {
+            "slot": "trim",
+            "localRef": "palette:#48667c",
+            "name": "Mapped Congo River",
+            "roughness": 0.57
+          },
+          "reservoir": {
+            "slot": "trim",
+            "localRef": "palette:#398488",
+            "name": "Proposed Bundi reservoir and channels",
+            "roughness": 0.56
+          }
+        },
+        "errorMeters": 55
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 20,
+    "scale": 200
+  },
+  "qaCameras": [
+    {
+      "name": "whole-site-overview",
+      "position": [
+        18900,
+        20000,
+        16900
+      ],
+      "lookAt": [
+        1200,
+        120,
+        -2800
+      ],
+      "fov": 45
+    },
+    {
+      "name": "bundi-barrage-and-central-stations",
+      "position": [
+        4600,
+        2340,
+        2350
+      ],
+      "lookAt": [
+        230,
+        155,
+        -1170
+      ],
+      "fov": 49
+    },
+    {
+      "name": "reservoir-and-inga-3-through-7",
+      "position": [
+        -3200,
+        3950,
+        -5300
+      ],
+      "lookAt": [
+        600,
+        148,
+        -1500
+      ],
+      "fov": 53
+    },
+    {
+      "name": "inga-8-separate-channel",
+      "position": [
+        -2250,
+        1750,
+        3940
+      ],
+      "lookAt": [
+        245,
+        122,
+        760
+      ],
+      "fov": 50
+    }
+  ],
+  "limitations": [
+    "This is a landscape model of the 2014 SNEL proposal as published by JICA. Present-day Earth retains the current terrain, river and built infrastructure.",
+    "The map frame uses meter-scaled east and south axes from PMTiles and terrain. The station traces preserve the arrangement in the printed plan, with schematic footprints and elevations.",
+    "The displayed reservoir is an illustrative contour restricted to the plan area. The model represents exterior masses and open channels for visualization.",
+    "The Earth levels show the published proposal over native terrain. The reservoir level, channel grading, station heights and placement within the project area are schematic."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -9750,
+      40,
+      -12600
+    ],
+    "max": [
+      12300,
+      490.79998779296875,
+      7200
+    ]
+  },
+  "size": [
+    22050,
+    450.79998779296875,
+    19800
+  ],
+  "mesh": {
+    "triangles": 40944,
+    "vertices": 122832,
+    "materials": 5,
+    "bytes": 4916432,
+    "sha256": "sha256:fdac6fe1d22dfc96688b2bf485c57437593ef93c4c28ba02270a870121d4d60e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

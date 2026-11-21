@@ -86,6 +86,37 @@ const model = () => ({
   state: 'ready',
 });
 const desired = () => ({ models: [model()] });
+test('a verified plan study upgrades in place only for the same asset, path and story', () => {
+  const upgraded = {
+    ...model(),
+    assetId: 'molen.worldgen.structure.b07_tower',
+    candidateId: 'b07_tower',
+    sourcePath: 'content/worldgen/source/places/aa/aaa/b07_tower',
+  };
+  const envelope = upsertCompletedModels(undefined, { models: [upgraded] });
+  const previous = {
+    ...envelope,
+    models: [{ ...upgraded, candidateId: 'B07', state: 'needs-review' }],
+  };
+  assert.deepEqual(upsertCompletedModels(previous, envelope), envelope);
+  assert.deepEqual(upsertCompletedModels(envelope, envelope), envelope);
+  for (const changed of [
+    { candidateId: 'B08' },
+    { storyContentHash: 'different' },
+    { structureId: 'QS-other' },
+    { sourcePath: 'different/b07_tower' },
+    { state: 'ready' },
+  ]) {
+    assert.throws(
+      () =>
+        upsertCompletedModels(
+          { ...previous, models: [{ ...previous.models[0], ...changed }] },
+          envelope,
+        ),
+      /identity differs/,
+    );
+  }
+});
 test('bounded completion preserves other associations byte-for-byte and is idempotent', () => {
   const other = {
     ...model(),

@@ -1,0 +1,1843 @@
+{
+  "denfertLandingRoom": {
+    "source": "https://www.artemis-architectes.com/projets/catacombes",
+    "image": "https://cdn.prod.website-files.com/68c154ce5a940cb52fb9cde1/69dfb77255cc8bdf1983ae3d_03Artemis-Paris-Catacombes.jpg",
+    "imageHash": "sha256:e6ef87a20716d34d4bb8816b5744fe0524eb221ea6e07e30ce6d493e6165f7cd",
+    "observation": "The Denfert axonometric section shows a turn from the visitor corridor through a walled approach room to the head of the spiral.",
+    "model": "The model adds plaster partition walls and a framed doorway inside the fitted annex at the upper landing datum.",
+    "limitations": "The Denfert stair approach uses a short enclosed room and open doorway, based on the architect’s cutaway. The door, shaft and partition positions within the footprint remain approximate.",
+    "geometry": [
+      {
+        "tier": "source",
+        "hash": "sha256:2acbe6d35b4d166ef4fa3abc02406744b11470b6194a9f5138b44d0f1f7a5cc6",
+        "clearDoorSamples": 9,
+        "wallAndLintelSamples": 3
+      },
+      {
+        "tier": "master",
+        "hash": "sha256:19c22f3f21065dfef58153bb55fbcafb4b9fbc2784928f2a1241ed7c356db979",
+        "clearDoorSamples": 9,
+        "wallAndLintelSamples": 3
+      },
+      {
+        "tier": "street",
+        "hash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e",
+        "clearDoorSamples": 9,
+        "wallAndLintelSamples": 3
+      },
+      {
+        "tier": "closeup",
+        "hash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+        "clearDoorSamples": 9,
+        "wallAndLintelSamples": 3
+      }
+    ],
+    "captures": [
+      {
+        "scenario": "draft-closeup",
+        "camera": "denfert-vestibule-upper-landing",
+        "hash": "sha256:7862a4912912bf0a61a9fe91e1fa914db488cdf5462cf28deb32dc5fe1478079"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "denfert-vestibule-upper-landing",
+        "hash": "sha256:2802e34533e034b8de8447202e883453decd2a08e2b62f7cd26c6d641368f03e"
+      }
+    ]
+  },
+  "renovatedHague": {
+    "reference": "https://www.catacombes.paris.fr/sites/default/files/2022-09/D%C3%A9pliant_catacombes_ENG.pdf",
+    "guideStop": 8,
+    "geometry": [
+      {
+        "detail": "street",
+        "hash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e",
+        "footingBlocks": 5,
+        "openJoints": 4,
+        "continuousFloorProbes": 7,
+        "wallReliefSampleCount": 91,
+        "measuredFaceProjectionMeters": [
+          -0.007,
+          0.025
+        ]
+      },
+      {
+        "detail": "closeup",
+        "hash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+        "footingBlocks": 5,
+        "openJoints": 4,
+        "continuousFloorProbes": 7,
+        "wallReliefSampleCount": 91,
+        "measuredFaceProjectionMeters": [
+          -0.007,
+          0.044
+        ]
+      }
+    ]
+  },
+  "format": "molen/catacombs-native-landing-fit@1",
+  "status": "passed-isolated-skyline-district-street-closeup-trials",
+  "asset": "molen.worldgen.structure.catacombs_of_paris",
+  "runtimeHash": "sha256:19c22f3f21065dfef58153bb55fbcafb4b9fbc2784928f2a1241ed7c356db979",
+  "closeupHash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+  "context": {
+    "mapSource": "https://build.protomaps.com/20261115.pmtiles",
+    "mapZoom": 15,
+    "attribution": "© OpenStreetMap contributors;Protomaps basemap",
+    "license": "ODbL-1.0",
+    "reviewedTerrain": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/14/8298/5638.png",
+    "terrainHash": "sha256:02d59030716864241e9024905d4c5978ea499c422c1ff3b6f007cb4cd2315460",
+    "resamplingMeters": 4,
+    "tileOriginXZ": [
+      -168,
+      -22
+    ],
+    "tileSizeMeters": 520
+  },
+  "placementTrial": {
+    "anchor": [
+      2.3323984359767334,
+      48.833829420885976
+    ],
+    "heading": 0,
+    "elevation": 66.29842,
+    "terrainMasksXZ": [
+      [
+        [
+          -11.26747,
+          9.42649
+        ],
+        [
+          -8.77654,
+          5.13664
+        ],
+        [
+          -4.81729,
+          7.35383
+        ],
+        [
+          -7.24076,
+          11.68145
+        ]
+      ],
+      [
+        [
+          154.27855,
+          477.97215
+        ],
+        [
+          158.59713,
+          476.9103
+        ],
+        [
+          159.4567,
+          480.40617
+        ],
+        [
+          155.02053,
+          481.49694
+        ]
+      ]
+    ],
+    "maskBasis": "Local landing pads inset 1 cm and clipped to the independent portal replacement footprints. Sub-0.1 square metre fragments are omitted.",
+    "replacedBuildingFeatureIds": [
+      35184451715225,
+      35184451717376,
+      35185064145404
+    ],
+    "preservePaving": true
+  },
+  "probes": [
+    {
+      "label": "denfert-landing-pad",
+      "pointXZ": [
+        -5.14395,
+        7.44596
+      ],
+      "nativeTerrainElevation": 66.3796,
+      "cutTerrainElevation": null,
+      "modelSurfaceElevation": 66.50342,
+      "pavingElevation": null
+    },
+    {
+      "label": "denfert-shaft",
+      "pointXZ": [
+        -6.6883,
+        8.3172
+      ],
+      "nativeTerrainElevation": 66.41269,
+      "cutTerrainElevation": null,
+      "modelSurfaceElevation": 65.26953,
+      "pavingElevation": null
+    },
+    {
+      "label": "denfert-adjacent-ground",
+      "pointXZ": [
+        -4.04459,
+        5.48282
+      ],
+      "nativeTerrainElevation": 66.3602,
+      "cutTerrainElevation": 66.3602,
+      "modelSurfaceElevation": null,
+      "pavingElevation": null
+    },
+    {
+      "label": "pillars-floor",
+      "pointXZ": [
+        62.101,
+        305.2621
+      ],
+      "nativeTerrainElevation": 61.90896,
+      "cutTerrainElevation": 61.90896,
+      "modelSurfaceElevation": 46.29842,
+      "pavingElevation": null
+    },
+    {
+      "label": "vestibule-floor",
+      "pointXZ": [
+        72.27696,
+        346.54919
+      ],
+      "nativeTerrainElevation": 63.20213,
+      "cutTerrainElevation": 63.20213,
+      "modelSurfaceElevation": 44.64842,
+      "pavingElevation": 63.52213
+    },
+    {
+      "label": "entrance-road",
+      "pointXZ": [
+        -15.32071,
+        25.892
+      ],
+      "nativeTerrainElevation": 66.74893,
+      "cutTerrainElevation": 66.74893,
+      "modelSurfaceElevation": null,
+      "pavingElevation": 67.06893
+    },
+    {
+      "label": "exit-road",
+      "pointXZ": [
+        141.74131,
+        482.94659
+      ],
+      "nativeTerrainElevation": 63.7219,
+      "cutTerrainElevation": 63.7219,
+      "modelSurfaceElevation": null,
+      "pavingElevation": 64.0399
+    },
+    {
+      "label": "restored-hague-floor",
+      "pointXZ": [
+        52.91433,
+        392.61591
+      ],
+      "nativeTerrainElevation": 64.7333,
+      "cutTerrainElevation": 64.7333,
+      "modelSurfaceElevation": 44.64842,
+      "pavingElevation": null
+    },
+    {
+      "label": "passion-aisle-floor",
+      "pointXZ": [
+        118.69864,
+        446.67203
+      ],
+      "nativeTerrainElevation": 63.43801,
+      "cutTerrainElevation": 63.43801,
+      "modelSurfaceElevation": 44.64842,
+      "pavingElevation": 63.86401
+    },
+    {
+      "label": "rene-coty-landing-pad",
+      "pointXZ": [
+        153.59951,
+        482.25826
+      ],
+      "nativeTerrainElevation": 63.60082,
+      "cutTerrainElevation": null,
+      "modelSurfaceElevation": 64.05502,
+      "pavingElevation": null
+    },
+    {
+      "label": "rene-coty-shaft",
+      "pointXZ": [
+        154.22989,
+        484.82188
+      ],
+      "nativeTerrainElevation": 63.64314,
+      "cutTerrainElevation": null,
+      "modelSurfaceElevation": 62.66883,
+      "pavingElevation": null
+    },
+    {
+      "label": "rene-coty-adjacent-ground",
+      "pointXZ": [
+        154.64048,
+        481.50801
+      ],
+      "nativeTerrainElevation": 63.58308,
+      "cutTerrainElevation": 63.58308,
+      "modelSurfaceElevation": 64.05502,
+      "pavingElevation": null
+    },
+    {
+      "label": "rene-coty-passage-floor",
+      "pointXZ": [
+        153.47535,
+        481.7533
+      ],
+      "nativeTerrainElevation": 63.59283,
+      "cutTerrainElevation": 63.59283,
+      "modelSurfaceElevation": 64.05502,
+      "pavingElevation": null
+    },
+    {
+      "label": "fontis-top-landing",
+      "pointXZ": [
+        -128.18633,
+        449.24583
+      ],
+      "nativeTerrainElevation": 69.68071,
+      "cutTerrainElevation": 69.68071,
+      "modelSurfaceElevation": 69.68558,
+      "pavingElevation": null
+    },
+    {
+      "label": "fontis-frontage",
+      "pointXZ": [
+        -127.35,
+        456.7
+      ],
+      "nativeTerrainElevation": 69.66129,
+      "cutTerrainElevation": 69.66129,
+      "modelSurfaceElevation": 73.66556,
+      "pavingElevation": null
+    }
+  ],
+  "checks": {
+    "retainedBuildingFeatures": 539,
+    "retainedRoadFeatureLines": 356,
+    "sourceGridUnchanged": true,
+    "pavingPreservedAtBothRoadSamples": true,
+    "missingAssetRetainedOriginalTile": true,
+    "unloadRestoredGroundLandcoverAndWater": true,
+    "liveModelGeometriesAfterUnload": 0
+  },
+  "frames": [
+    {
+      "condition": "registered-default",
+      "camera": "plaza-front",
+      "hash": "sha256:45057a623820efedea1fb20ddbfc011ec7689b0ff6517be1634db66070ffd7c4"
+    },
+    {
+      "condition": "registered-default",
+      "camera": "avenue-front",
+      "hash": "sha256:4977bfeaa83b20020b7d994c9ded0324f9f43185d63d9d66a996e5c32ac19a60"
+    },
+    {
+      "condition": "draft-skyline",
+      "camera": "denfert-upper-landing",
+      "hash": "sha256:69fa6aab4c6c73e0fda42dd5f065f79e3127ce1617b0ac7a3b583cc29b9c3965"
+    },
+    {
+      "condition": "draft-skyline",
+      "camera": "rene-coty-upper-landing",
+      "hash": "sha256:b8aa0dfb7449555568d02d6327e78bb3fe735e56370f75d0ac27ee52aef6f845"
+    },
+    {
+      "condition": "draft-skyline",
+      "camera": "fontis-street-frontage",
+      "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "denfert-upper-landing",
+      "hash": "sha256:ac31a474872247e9a7d3a6355aff8d1c496c6ae12e319fc1f858dd38eedd915b"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "passion-crypt",
+      "hash": "sha256:f203f92c0ba659645f4f9c26dba7276534c1d20893599980fbfdab7d75aa1cf7"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "rene-coty-upper-landing",
+      "hash": "sha256:07f8f81ced149cfe5a43ca322f0ac34c7ac001866f36df82e436bf63cffa7208"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-gallery",
+      "hash": "sha256:89506480f7a469e3fb5789a9734198009aa170a25706caec1639a5a8cbd4aeeb"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "salle-des-fontis",
+      "hash": "sha256:67ef42d2cb75ee675ad0d0668fea2dbc4a67d59854f95b00908265c1c2db2fe1"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-vestibule-stair",
+      "hash": "sha256:fbd3831c1d5b4532aa036a2c86b2f7b7521a379ff32ba9ec40382c6fc833f282"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-lower-spiral",
+      "hash": "sha256:74748efac4da3e1f54bbbdebc113b91e8a71006d8dce4926d7a3b6dbd239310f"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-upper-spiral",
+      "hash": "sha256:556aa5f32cfbdd4a9f8749846eb1c1742d9d827c8b038a9e63d1e694e11e2939"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-street-frontage",
+      "hash": "sha256:54a5ad3c8daa9502c0976ffc4145c27a2fe9cc0bfab0431fff0a275db253964a"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "denfert-vestibule-upper-landing",
+      "hash": "sha256:7862a4912912bf0a61a9fe91e1fa914db488cdf5462cf28deb32dc5fe1478079"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "rene-coty-gallery-return",
+      "hash": "sha256:6f6b5e9322b84f14b266449c2cc348687a3ff4928fa2cdccabfb627f3ca22f0d"
+    },
+    {
+      "condition": "draft-closeup",
+      "camera": "fontis-branch-junction",
+      "hash": "sha256:df17feaf72c3d68d78356c0eea2c82a272dd0e7630e87f554990b78072c42d77"
+    },
+    {
+      "condition": "draft-district",
+      "camera": "denfert-upper-landing",
+      "hash": "sha256:7261cae50f0bd34c86dfd8cc178c4c6f29d48503bcc0c7bad470429c828c9b4a"
+    },
+    {
+      "condition": "draft-district",
+      "camera": "rene-coty-upper-landing",
+      "hash": "sha256:84b36fb547fa6e1aa6797936f05231d390880c6d33ad4de81d2782714ccb36d6"
+    },
+    {
+      "condition": "draft-district",
+      "camera": "fontis-street-frontage",
+      "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "denfert-upper-landing",
+      "hash": "sha256:bd0e1ff8db5d9975f2c898dff15c5a648630a8e89a044df1cb5c266e1b8684fd"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "rene-coty-upper-landing",
+      "hash": "sha256:b74db881b732c4f2a5062160975cee1d4a0f25a4631bde898f35debecc130dbf"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "fontis-upper-spiral",
+      "hash": "sha256:ff6cf1ba326bd776eb1fd8695fd18b9b0fe7f68828e0539962f42ced560d077a"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "fontis-street-frontage",
+      "hash": "sha256:9748b84712b38a68af91453d50bf0d104bf88d87a00b9796bcfe93a43d3efced"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "denfert-vestibule-upper-landing",
+      "hash": "sha256:2802e34533e034b8de8447202e883453decd2a08e2b62f7cd26c6d641368f03e"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "rene-coty-gallery-return",
+      "hash": "sha256:7f5fdcb8aa23b03e817f869a3c92b22db3617798fc7149bb18694df03c44d9e5"
+    },
+    {
+      "condition": "draft-street",
+      "camera": "fontis-branch-junction",
+      "hash": "sha256:63eff17636c8269e86cad34803e50d2971e6d4bad93a7576ddb7697700f684b7"
+    },
+    {
+      "condition": "baseline",
+      "camera": "denfert-upper-landing",
+      "hash": "sha256:98f23eebf94d0d8dc9204b38bc7ffa278c3f021821827011c0b1da73645f0b80"
+    },
+    {
+      "condition": "baseline",
+      "camera": "rene-coty-upper-landing",
+      "hash": "sha256:a91307d24f77171db8005b8fb3e9cddbfec165ee2c2db0bf46df4ec6014725f0"
+    },
+    {
+      "condition": "baseline",
+      "camera": "fontis-street-frontage",
+      "hash": "sha256:453ab916e47ef1c5899b83ca160195b49ca8fc399fef3fb178d2f94686a9554f"
+    },
+    {
+      "condition": "baseline",
+      "camera": "denfert-vestibule-upper-landing",
+      "hash": "sha256:ee772d7fcbc0a0f9d955e830893aba9111e16bb4f9f0eee550e0a174975611fc"
+    }
+  ],
+  "scope": "All four draft levels retain the two public portal placements and fit the former Fontis street front to its mapped footprint. Street and close-up show the route return and Fontis junction. The full public route and the passage beyond the Fontis upper landing remain provisional.",
+  "levels": [
+    {
+      "scenario": "draft-skyline",
+      "level": "skyline",
+      "modelHash": "sha256:6b701ac3cf4b79eedfdcfc1535e5dd56d91144d9bb96a95da5a227c795f08ec9",
+      "assetsLoaded": [
+        "molen.worldgen.structure.catacombs_of_paris"
+      ],
+      "cutoutsApplied": true,
+      "retainedMappedRoads": 356,
+      "retainedBuildings": 539,
+      "retainedFormerFrontage": false,
+      "formerFrontage": {
+        "grade": 69.66129,
+        "eave": 73.66556
+      },
+      "fontisUpperLanding": {
+        "grade": 69.68071,
+        "modelElevation": null,
+        "gradeDifferenceMeters": null
+      },
+      "probes": [
+        {
+          "label": "denfert-landing-pad",
+          "pointXZ": [
+            -5.14395,
+            7.44596
+          ],
+          "nativeTerrainElevation": 66.3796,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 66.50342,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-shaft",
+          "pointXZ": [
+            -6.6883,
+            8.3172
+          ],
+          "nativeTerrainElevation": 66.41269,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 66.50342,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-adjacent-ground",
+          "pointXZ": [
+            -4.04459,
+            5.48282
+          ],
+          "nativeTerrainElevation": 66.3602,
+          "cutTerrainElevation": 66.3602,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "pillars-floor",
+          "pointXZ": [
+            62.101,
+            305.2621
+          ],
+          "nativeTerrainElevation": 61.90896,
+          "cutTerrainElevation": 61.90896,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "vestibule-floor",
+          "pointXZ": [
+            72.27696,
+            346.54919
+          ],
+          "nativeTerrainElevation": 63.20213,
+          "cutTerrainElevation": 63.20213,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 63.52213
+        },
+        {
+          "label": "entrance-road",
+          "pointXZ": [
+            -15.32071,
+            25.892
+          ],
+          "nativeTerrainElevation": 66.74893,
+          "cutTerrainElevation": 66.74893,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 67.06893
+        },
+        {
+          "label": "exit-road",
+          "pointXZ": [
+            141.74131,
+            482.94659
+          ],
+          "nativeTerrainElevation": 63.7219,
+          "cutTerrainElevation": 63.7219,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 64.0399
+        },
+        {
+          "label": "restored-hague-floor",
+          "pointXZ": [
+            52.91433,
+            392.61591
+          ],
+          "nativeTerrainElevation": 64.7333,
+          "cutTerrainElevation": 64.7333,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "passion-aisle-floor",
+          "pointXZ": [
+            118.69864,
+            446.67203
+          ],
+          "nativeTerrainElevation": 63.43801,
+          "cutTerrainElevation": 63.43801,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 63.86401
+        },
+        {
+          "label": "rene-coty-landing-pad",
+          "pointXZ": [
+            153.59951,
+            482.25826
+          ],
+          "nativeTerrainElevation": 63.60082,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-shaft",
+          "pointXZ": [
+            154.22989,
+            484.82188
+          ],
+          "nativeTerrainElevation": 63.64314,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-adjacent-ground",
+          "pointXZ": [
+            154.64048,
+            481.50801
+          ],
+          "nativeTerrainElevation": 63.58308,
+          "cutTerrainElevation": 63.58308,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-passage-floor",
+          "pointXZ": [
+            153.47535,
+            481.7533
+          ],
+          "nativeTerrainElevation": 63.59283,
+          "cutTerrainElevation": 63.59283,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-top-landing",
+          "pointXZ": [
+            -128.18633,
+            449.24583
+          ],
+          "nativeTerrainElevation": 69.68071,
+          "cutTerrainElevation": 69.68071,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-frontage",
+          "pointXZ": [
+            -127.35,
+            456.7
+          ],
+          "nativeTerrainElevation": 69.66129,
+          "cutTerrainElevation": 69.66129,
+          "modelSurfaceElevation": 73.66556,
+          "pavingElevation": null
+        }
+      ],
+      "restoredOnUnload": true,
+      "frames": [
+        {
+          "camera": "denfert-upper-landing",
+          "hash": "sha256:69fa6aab4c6c73e0fda42dd5f065f79e3127ce1617b0ac7a3b583cc29b9c3965"
+        },
+        {
+          "camera": "rene-coty-upper-landing",
+          "hash": "sha256:b8aa0dfb7449555568d02d6327e78bb3fe735e56370f75d0ac27ee52aef6f845"
+        },
+        {
+          "camera": "fontis-street-frontage",
+          "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+        }
+      ],
+      "lodHash": "sha256:6b701ac3cf4b79eedfdcfc1535e5dd56d91144d9bb96a95da5a227c795f08ec9"
+    },
+    {
+      "scenario": "draft-closeup",
+      "level": "closeup",
+      "modelHash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+      "assetsLoaded": [
+        "molen.worldgen.structure.catacombs_of_paris"
+      ],
+      "cutoutsApplied": true,
+      "retainedMappedRoads": 356,
+      "retainedBuildings": 539,
+      "retainedFormerFrontage": false,
+      "formerFrontage": {
+        "grade": 69.66129,
+        "eave": 73.66556
+      },
+      "fontisUpperLanding": {
+        "grade": 69.68071,
+        "modelElevation": 69.68558,
+        "gradeDifferenceMeters": 0.00487
+      },
+      "probes": [
+        {
+          "label": "denfert-landing-pad",
+          "pointXZ": [
+            -5.14395,
+            7.44596
+          ],
+          "nativeTerrainElevation": 66.3796,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 66.50342,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-shaft",
+          "pointXZ": [
+            -6.6883,
+            8.3172
+          ],
+          "nativeTerrainElevation": 66.41269,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 65.26953,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-adjacent-ground",
+          "pointXZ": [
+            -4.04459,
+            5.48282
+          ],
+          "nativeTerrainElevation": 66.3602,
+          "cutTerrainElevation": 66.3602,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "pillars-floor",
+          "pointXZ": [
+            62.101,
+            305.2621
+          ],
+          "nativeTerrainElevation": 61.90896,
+          "cutTerrainElevation": 61.90896,
+          "modelSurfaceElevation": 46.29842,
+          "pavingElevation": null
+        },
+        {
+          "label": "vestibule-floor",
+          "pointXZ": [
+            72.27696,
+            346.54919
+          ],
+          "nativeTerrainElevation": 63.20213,
+          "cutTerrainElevation": 63.20213,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.52213
+        },
+        {
+          "label": "entrance-road",
+          "pointXZ": [
+            -15.32071,
+            25.892
+          ],
+          "nativeTerrainElevation": 66.74893,
+          "cutTerrainElevation": 66.74893,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 67.06893
+        },
+        {
+          "label": "exit-road",
+          "pointXZ": [
+            141.74131,
+            482.94659
+          ],
+          "nativeTerrainElevation": 63.7219,
+          "cutTerrainElevation": 63.7219,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 64.0399
+        },
+        {
+          "label": "restored-hague-floor",
+          "pointXZ": [
+            52.91433,
+            392.61591
+          ],
+          "nativeTerrainElevation": 64.7333,
+          "cutTerrainElevation": 64.7333,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": null
+        },
+        {
+          "label": "passion-aisle-floor",
+          "pointXZ": [
+            118.69864,
+            446.67203
+          ],
+          "nativeTerrainElevation": 63.43801,
+          "cutTerrainElevation": 63.43801,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.86401
+        },
+        {
+          "label": "rene-coty-landing-pad",
+          "pointXZ": [
+            153.59951,
+            482.25826
+          ],
+          "nativeTerrainElevation": 63.60082,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-shaft",
+          "pointXZ": [
+            154.22989,
+            484.82188
+          ],
+          "nativeTerrainElevation": 63.64314,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 62.66883,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-adjacent-ground",
+          "pointXZ": [
+            154.64048,
+            481.50801
+          ],
+          "nativeTerrainElevation": 63.58308,
+          "cutTerrainElevation": 63.58308,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-passage-floor",
+          "pointXZ": [
+            153.47535,
+            481.7533
+          ],
+          "nativeTerrainElevation": 63.59283,
+          "cutTerrainElevation": 63.59283,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-top-landing",
+          "pointXZ": [
+            -128.18633,
+            449.24583
+          ],
+          "nativeTerrainElevation": 69.68071,
+          "cutTerrainElevation": 69.68071,
+          "modelSurfaceElevation": 69.68558,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-frontage",
+          "pointXZ": [
+            -127.35,
+            456.7
+          ],
+          "nativeTerrainElevation": 69.66129,
+          "cutTerrainElevation": 69.66129,
+          "modelSurfaceElevation": 73.66556,
+          "pavingElevation": null
+        }
+      ],
+      "restoredOnUnload": true,
+      "frames": [
+        {
+          "camera": "denfert-upper-landing",
+          "hash": "sha256:ac31a474872247e9a7d3a6355aff8d1c496c6ae12e319fc1f858dd38eedd915b"
+        },
+        {
+          "camera": "passion-crypt",
+          "hash": "sha256:f203f92c0ba659645f4f9c26dba7276534c1d20893599980fbfdab7d75aa1cf7"
+        },
+        {
+          "camera": "rene-coty-upper-landing",
+          "hash": "sha256:07f8f81ced149cfe5a43ca322f0ac34c7ac001866f36df82e436bf63cffa7208"
+        },
+        {
+          "camera": "fontis-gallery",
+          "hash": "sha256:89506480f7a469e3fb5789a9734198009aa170a25706caec1639a5a8cbd4aeeb"
+        },
+        {
+          "camera": "salle-des-fontis",
+          "hash": "sha256:67ef42d2cb75ee675ad0d0668fea2dbc4a67d59854f95b00908265c1c2db2fe1"
+        },
+        {
+          "camera": "fontis-vestibule-stair",
+          "hash": "sha256:fbd3831c1d5b4532aa036a2c86b2f7b7521a379ff32ba9ec40382c6fc833f282"
+        },
+        {
+          "camera": "fontis-lower-spiral",
+          "hash": "sha256:74748efac4da3e1f54bbbdebc113b91e8a71006d8dce4926d7a3b6dbd239310f"
+        },
+        {
+          "camera": "fontis-upper-spiral",
+          "hash": "sha256:556aa5f32cfbdd4a9f8749846eb1c1742d9d827c8b038a9e63d1e694e11e2939"
+        },
+        {
+          "camera": "fontis-street-frontage",
+          "hash": "sha256:54a5ad3c8daa9502c0976ffc4145c27a2fe9cc0bfab0431fff0a275db253964a"
+        },
+        {
+          "camera": "denfert-vestibule-upper-landing",
+          "hash": "sha256:7862a4912912bf0a61a9fe91e1fa914db488cdf5462cf28deb32dc5fe1478079"
+        },
+        {
+          "camera": "rene-coty-gallery-return",
+          "hash": "sha256:6f6b5e9322b84f14b266449c2cc348687a3ff4928fa2cdccabfb627f3ca22f0d"
+        },
+        {
+          "camera": "fontis-branch-junction",
+          "hash": "sha256:df17feaf72c3d68d78356c0eea2c82a272dd0e7630e87f554990b78072c42d77"
+        }
+      ],
+      "lodHash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2"
+    },
+    {
+      "scenario": "draft-district",
+      "level": "district",
+      "modelHash": "sha256:e2ea73f7d78d4f19f9b25cda0cb170e01eb2abd3ad12556f3ab8be97f96e86e2",
+      "assetsLoaded": [
+        "molen.worldgen.structure.catacombs_of_paris"
+      ],
+      "cutoutsApplied": true,
+      "retainedMappedRoads": 356,
+      "retainedBuildings": 539,
+      "retainedFormerFrontage": false,
+      "formerFrontage": {
+        "grade": 69.66129,
+        "eave": 73.66556
+      },
+      "fontisUpperLanding": {
+        "grade": 69.68071,
+        "modelElevation": null,
+        "gradeDifferenceMeters": null
+      },
+      "probes": [
+        {
+          "label": "denfert-landing-pad",
+          "pointXZ": [
+            -5.14395,
+            7.44596
+          ],
+          "nativeTerrainElevation": 66.3796,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 66.50342,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-shaft",
+          "pointXZ": [
+            -6.6883,
+            8.3172
+          ],
+          "nativeTerrainElevation": 66.41269,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 63.57292,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-adjacent-ground",
+          "pointXZ": [
+            -4.04459,
+            5.48282
+          ],
+          "nativeTerrainElevation": 66.3602,
+          "cutTerrainElevation": 66.3602,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "pillars-floor",
+          "pointXZ": [
+            62.101,
+            305.2621
+          ],
+          "nativeTerrainElevation": 61.90896,
+          "cutTerrainElevation": 61.90896,
+          "modelSurfaceElevation": 46.29842,
+          "pavingElevation": null
+        },
+        {
+          "label": "vestibule-floor",
+          "pointXZ": [
+            72.27696,
+            346.54919
+          ],
+          "nativeTerrainElevation": 63.20213,
+          "cutTerrainElevation": 63.20213,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.52213
+        },
+        {
+          "label": "entrance-road",
+          "pointXZ": [
+            -15.32071,
+            25.892
+          ],
+          "nativeTerrainElevation": 66.74893,
+          "cutTerrainElevation": 66.74893,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 67.06893
+        },
+        {
+          "label": "exit-road",
+          "pointXZ": [
+            141.74131,
+            482.94659
+          ],
+          "nativeTerrainElevation": 63.7219,
+          "cutTerrainElevation": 63.7219,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 64.0399
+        },
+        {
+          "label": "restored-hague-floor",
+          "pointXZ": [
+            52.91433,
+            392.61591
+          ],
+          "nativeTerrainElevation": 64.7333,
+          "cutTerrainElevation": 64.7333,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": null
+        },
+        {
+          "label": "passion-aisle-floor",
+          "pointXZ": [
+            118.69864,
+            446.67203
+          ],
+          "nativeTerrainElevation": 63.43801,
+          "cutTerrainElevation": 63.43801,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.86401
+        },
+        {
+          "label": "rene-coty-landing-pad",
+          "pointXZ": [
+            153.59951,
+            482.25826
+          ],
+          "nativeTerrainElevation": 63.60082,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-shaft",
+          "pointXZ": [
+            154.22989,
+            484.82188
+          ],
+          "nativeTerrainElevation": 63.64314,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 62.84211,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-adjacent-ground",
+          "pointXZ": [
+            154.64048,
+            481.50801
+          ],
+          "nativeTerrainElevation": 63.58308,
+          "cutTerrainElevation": 63.58308,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-passage-floor",
+          "pointXZ": [
+            153.47535,
+            481.7533
+          ],
+          "nativeTerrainElevation": 63.59283,
+          "cutTerrainElevation": 63.59283,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-top-landing",
+          "pointXZ": [
+            -128.18633,
+            449.24583
+          ],
+          "nativeTerrainElevation": 69.68071,
+          "cutTerrainElevation": 69.68071,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-frontage",
+          "pointXZ": [
+            -127.35,
+            456.7
+          ],
+          "nativeTerrainElevation": 69.66129,
+          "cutTerrainElevation": 69.66129,
+          "modelSurfaceElevation": 73.66556,
+          "pavingElevation": null
+        }
+      ],
+      "restoredOnUnload": true,
+      "frames": [
+        {
+          "camera": "denfert-upper-landing",
+          "hash": "sha256:7261cae50f0bd34c86dfd8cc178c4c6f29d48503bcc0c7bad470429c828c9b4a"
+        },
+        {
+          "camera": "rene-coty-upper-landing",
+          "hash": "sha256:84b36fb547fa6e1aa6797936f05231d390880c6d33ad4de81d2782714ccb36d6"
+        },
+        {
+          "camera": "fontis-street-frontage",
+          "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+        }
+      ],
+      "lodHash": "sha256:e2ea73f7d78d4f19f9b25cda0cb170e01eb2abd3ad12556f3ab8be97f96e86e2"
+    },
+    {
+      "scenario": "draft-street",
+      "level": "street",
+      "modelHash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e",
+      "assetsLoaded": [
+        "molen.worldgen.structure.catacombs_of_paris"
+      ],
+      "cutoutsApplied": true,
+      "retainedMappedRoads": 356,
+      "retainedBuildings": 539,
+      "retainedFormerFrontage": false,
+      "formerFrontage": {
+        "grade": 69.66129,
+        "eave": 73.66556
+      },
+      "fontisUpperLanding": {
+        "grade": 69.68071,
+        "modelElevation": 69.68558,
+        "gradeDifferenceMeters": 0.00487
+      },
+      "probes": [
+        {
+          "label": "denfert-landing-pad",
+          "pointXZ": [
+            -5.14395,
+            7.44596
+          ],
+          "nativeTerrainElevation": 66.3796,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 66.50342,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-shaft",
+          "pointXZ": [
+            -6.6883,
+            8.3172
+          ],
+          "nativeTerrainElevation": 66.41269,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 65.26953,
+          "pavingElevation": null
+        },
+        {
+          "label": "denfert-adjacent-ground",
+          "pointXZ": [
+            -4.04459,
+            5.48282
+          ],
+          "nativeTerrainElevation": 66.3602,
+          "cutTerrainElevation": 66.3602,
+          "modelSurfaceElevation": null,
+          "pavingElevation": null
+        },
+        {
+          "label": "pillars-floor",
+          "pointXZ": [
+            62.101,
+            305.2621
+          ],
+          "nativeTerrainElevation": 61.90896,
+          "cutTerrainElevation": 61.90896,
+          "modelSurfaceElevation": 46.29842,
+          "pavingElevation": null
+        },
+        {
+          "label": "vestibule-floor",
+          "pointXZ": [
+            72.27696,
+            346.54919
+          ],
+          "nativeTerrainElevation": 63.20213,
+          "cutTerrainElevation": 63.20213,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.52213
+        },
+        {
+          "label": "entrance-road",
+          "pointXZ": [
+            -15.32071,
+            25.892
+          ],
+          "nativeTerrainElevation": 66.74893,
+          "cutTerrainElevation": 66.74893,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 67.06893
+        },
+        {
+          "label": "exit-road",
+          "pointXZ": [
+            141.74131,
+            482.94659
+          ],
+          "nativeTerrainElevation": 63.7219,
+          "cutTerrainElevation": 63.7219,
+          "modelSurfaceElevation": null,
+          "pavingElevation": 64.0399
+        },
+        {
+          "label": "restored-hague-floor",
+          "pointXZ": [
+            52.91433,
+            392.61591
+          ],
+          "nativeTerrainElevation": 64.7333,
+          "cutTerrainElevation": 64.7333,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": null
+        },
+        {
+          "label": "passion-aisle-floor",
+          "pointXZ": [
+            118.69864,
+            446.67203
+          ],
+          "nativeTerrainElevation": 63.43801,
+          "cutTerrainElevation": 63.43801,
+          "modelSurfaceElevation": 44.64842,
+          "pavingElevation": 63.86401
+        },
+        {
+          "label": "rene-coty-landing-pad",
+          "pointXZ": [
+            153.59951,
+            482.25826
+          ],
+          "nativeTerrainElevation": 63.60082,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-shaft",
+          "pointXZ": [
+            154.22989,
+            484.82188
+          ],
+          "nativeTerrainElevation": 63.64314,
+          "cutTerrainElevation": null,
+          "modelSurfaceElevation": 62.66883,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-adjacent-ground",
+          "pointXZ": [
+            154.64048,
+            481.50801
+          ],
+          "nativeTerrainElevation": 63.58308,
+          "cutTerrainElevation": 63.58308,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "rene-coty-passage-floor",
+          "pointXZ": [
+            153.47535,
+            481.7533
+          ],
+          "nativeTerrainElevation": 63.59283,
+          "cutTerrainElevation": 63.59283,
+          "modelSurfaceElevation": 64.05502,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-top-landing",
+          "pointXZ": [
+            -128.18633,
+            449.24583
+          ],
+          "nativeTerrainElevation": 69.68071,
+          "cutTerrainElevation": 69.68071,
+          "modelSurfaceElevation": 69.68558,
+          "pavingElevation": null
+        },
+        {
+          "label": "fontis-frontage",
+          "pointXZ": [
+            -127.35,
+            456.7
+          ],
+          "nativeTerrainElevation": 69.66129,
+          "cutTerrainElevation": 69.66129,
+          "modelSurfaceElevation": 73.66556,
+          "pavingElevation": null
+        }
+      ],
+      "restoredOnUnload": true,
+      "frames": [
+        {
+          "camera": "denfert-upper-landing",
+          "hash": "sha256:bd0e1ff8db5d9975f2c898dff15c5a648630a8e89a044df1cb5c266e1b8684fd"
+        },
+        {
+          "camera": "rene-coty-upper-landing",
+          "hash": "sha256:b74db881b732c4f2a5062160975cee1d4a0f25a4631bde898f35debecc130dbf"
+        },
+        {
+          "camera": "fontis-upper-spiral",
+          "hash": "sha256:ff6cf1ba326bd776eb1fd8695fd18b9b0fe7f68828e0539962f42ced560d077a"
+        },
+        {
+          "camera": "fontis-street-frontage",
+          "hash": "sha256:9748b84712b38a68af91453d50bf0d104bf88d87a00b9796bcfe93a43d3efced"
+        },
+        {
+          "camera": "denfert-vestibule-upper-landing",
+          "hash": "sha256:2802e34533e034b8de8447202e883453decd2a08e2b62f7cd26c6d641368f03e"
+        },
+        {
+          "camera": "rene-coty-gallery-return",
+          "hash": "sha256:7f5fdcb8aa23b03e817f869a3c92b22db3617798fc7149bb18694df03c44d9e5"
+        },
+        {
+          "camera": "fontis-branch-junction",
+          "hash": "sha256:63eff17636c8269e86cad34803e50d2971e6d4bad93a7576ddb7697700f684b7"
+        }
+      ],
+      "lodHash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e"
+    }
+  ],
+  "fontisLowerStair": {
+    "pmtilesBuildingId": 35184451718102,
+    "shaftCenterXZ": [
+      -128.37,
+      448.56
+    ],
+    "footprintSamplesContained": 64,
+    "modeledApproachTreads": 5,
+    "modeledSpiralTreads": 83,
+    "topTreadElevation": 69.68558,
+    "terrainAtShaftCenter": 69.68071,
+    "depthFromSurfaceToHighestTread": -0.00487,
+    "sealedCeilingElevation": 71.68558,
+    "depthFromSurfaceToCeiling": -2.00487,
+    "surfaceOpening": false,
+    "frames": [
+      {
+        "camera": "fontis-vestibule-stair",
+        "hash": "sha256:fbd3831c1d5b4532aa036a2c86b2f7b7521a379ff32ba9ec40382c6fc833f282"
+      },
+      {
+        "camera": "fontis-lower-spiral",
+        "hash": "sha256:74748efac4da3e1f54bbbdebc113b91e8a71006d8dce4926d7a3b6dbd239310f"
+      },
+      {
+        "camera": "fontis-upper-spiral",
+        "hash": "sha256:556aa5f32cfbdd4a9f8749846eb1c1742d9d827c8b038a9e63d1e694e11e2939"
+      }
+    ]
+  },
+  "passionCrypt": {
+    "reference": "https://www.catacombes.paris.fr/sites/default/files/2022-09/D%C3%A9pliant_catacombes_ENG.pdf",
+    "stop": 11,
+    "frame": {
+      "camera": "passion-crypt",
+      "hash": "sha256:f203f92c0ba659645f4f9c26dba7276534c1d20893599980fbfdab7d75aa1cf7"
+    },
+    "geometry": [
+      {
+        "tier": "source",
+        "hash": "sha256:2acbe6d35b4d166ef4fa3abc02406744b11470b6194a9f5138b44d0f1f7a5cc6",
+        "radiiAtBaseBellyCapMeters": [
+          0.8747,
+          1.1947,
+          0.8536
+        ],
+        "bandReliefRadiiMeters": [
+          1.0947,
+          1.2425,
+          1.0986
+        ],
+        "aisleFloorY": -21.65
+      },
+      {
+        "tier": "master",
+        "hash": "sha256:19c22f3f21065dfef58153bb55fbcafb4b9fbc2784928f2a1241ed7c356db979",
+        "radiiAtBaseBellyCapMeters": [
+          0.8747,
+          1.1947,
+          0.8536
+        ],
+        "bandReliefRadiiMeters": [
+          1.0947,
+          1.2425,
+          1.0986
+        ],
+        "aisleFloorY": -21.65
+      },
+      {
+        "tier": "district",
+        "hash": "sha256:e2ea73f7d78d4f19f9b25cda0cb170e01eb2abd3ad12556f3ab8be97f96e86e2",
+        "radiiAtBaseBellyCapMeters": [
+          0.8272,
+          1.1227,
+          0.8253
+        ],
+        "bandReliefRadiiMeters": [
+          1.0096,
+          1.1581,
+          1.0145
+        ],
+        "aisleFloorY": -21.65
+      },
+      {
+        "tier": "street",
+        "hash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e",
+        "radiiAtBaseBellyCapMeters": [
+          0.8272,
+          1.1227,
+          0.8253
+        ],
+        "bandReliefRadiiMeters": [
+          1.0096,
+          1.1581,
+          1.0145
+        ],
+        "aisleFloorY": -21.65
+      },
+      {
+        "tier": "closeup",
+        "hash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+        "radiiAtBaseBellyCapMeters": [
+          0.8704,
+          1.1947,
+          0.8536
+        ],
+        "bandReliefRadiiMeters": [
+          1.0947,
+          1.2425,
+          1.0986
+        ],
+        "aisleFloorY": -21.65
+      }
+    ]
+  },
+  "inscribedOssuaryPlaque": {
+    "reference": "https://www.catacombes.paris.fr/sites/default/files/2022-09/D%C3%A9pliant_catacombes_ENG.pdf",
+    "guideStop": 7,
+    "frames": [
+      {
+        "camera": "inscribed-ossuary-plaque",
+        "condition": "street-cutout",
+        "hash": "sha256:261f6a308a1180b4cee6e184055fb5e559be75f6ea6096a65c518877a883a655",
+        "level": "street",
+        "lodHash": "sha256:ce8faf1e9124f55ba5721a195cedc63d7f5aab81c81a92688dd6e2d043437968"
+      },
+      {
+        "camera": "inscribed-ossuary-plaque",
+        "condition": "with-cutout",
+        "hash": "sha256:ab1da4a353b54146786d6f8365a25d608531cd99f56f7b3355da432be1d84b8b",
+        "level": "closeup",
+        "lodHash": "sha256:d69b310a05f5f1f06b4a99e19354d9ac2839b353d8d1267f7797ab09dca41e27"
+      }
+    ],
+    "geometry": [
+      {
+        "tier": "source",
+        "hash": "sha256:b20718b412bc6ce9543920484df11a897d36e8516e710a43fcdcc647219697d4",
+        "tabletProjectionMeters": 0.2270007318276216,
+        "pedestalProjectionMeters": 0.16999967411939754,
+        "clearWalk": true
+      },
+      {
+        "tier": "master",
+        "hash": "sha256:174691a22a9270d82f3f63b5d88b5cba5055e0ca508ee904ef23bfebc64588e9",
+        "tabletProjectionMeters": 0.2270007318276216,
+        "pedestalProjectionMeters": 0.16999967411939754,
+        "clearWalk": true
+      },
+      {
+        "tier": "street",
+        "hash": "sha256:ce8faf1e9124f55ba5721a195cedc63d7f5aab81c81a92688dd6e2d043437968",
+        "tabletProjectionMeters": 0.2270003052255095,
+        "pedestalProjectionMeters": 0.16999967411939754,
+        "clearWalk": true
+      },
+      {
+        "tier": "closeup",
+        "hash": "sha256:d69b310a05f5f1f06b4a99e19354d9ac2839b353d8d1267f7797ab09dca41e27",
+        "tabletProjectionMeters": 0.2270007318276216,
+        "pedestalProjectionMeters": 0.16999967411939754,
+        "clearWalk": true
+      }
+    ]
+  },
+  "fontisFrontage": {
+    "visualReference": "https://www.flickr.com/photos/47983324@N00/2154318282/",
+    "replacedPmtilesId": 35184451717656,
+    "retainedRearPmtilesId": 35184451718102,
+    "spiralTreads": 83,
+    "spiralRiseMeters": 0.20633,
+    "galleryRiseMeters": 7.03716,
+    "testedLandingGapMeters": 0.00487,
+    "independentSurfaceConnection": "unresolved",
+    "failedDownloadRestoredFootprint": true,
+    "frames": [
+      {
+        "scenario": "draft-skyline",
+        "camera": "fontis-street-frontage",
+        "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-gallery",
+        "hash": "sha256:89506480f7a469e3fb5789a9734198009aa170a25706caec1639a5a8cbd4aeeb"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-vestibule-stair",
+        "hash": "sha256:fbd3831c1d5b4532aa036a2c86b2f7b7521a379ff32ba9ec40382c6fc833f282"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-lower-spiral",
+        "hash": "sha256:74748efac4da3e1f54bbbdebc113b91e8a71006d8dce4926d7a3b6dbd239310f"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-upper-spiral",
+        "hash": "sha256:556aa5f32cfbdd4a9f8749846eb1c1742d9d827c8b038a9e63d1e694e11e2939"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-street-frontage",
+        "hash": "sha256:54a5ad3c8daa9502c0976ffc4145c27a2fe9cc0bfab0431fff0a275db253964a"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-branch-junction",
+        "hash": "sha256:df17feaf72c3d68d78356c0eea2c82a272dd0e7630e87f554990b78072c42d77"
+      },
+      {
+        "scenario": "draft-district",
+        "camera": "fontis-street-frontage",
+        "hash": "sha256:a8f63f00da57ed24db7f3a6d07dc8edd383c360aa02498737412ebfd2684afa1"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "fontis-upper-spiral",
+        "hash": "sha256:ff6cf1ba326bd776eb1fd8695fd18b9b0fe7f68828e0539962f42ced560d077a"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "fontis-street-frontage",
+        "hash": "sha256:9748b84712b38a68af91453d50bf0d104bf88d87a00b9796bcfe93a43d3efced"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "fontis-branch-junction",
+        "hash": "sha256:63eff17636c8269e86cad34803e50d2971e6d4bad93a7576ddb7697700f684b7"
+      }
+    ]
+  },
+  "reneCotyGalleryReturn": {
+    "source": "https://marches-publics.com/appel-offre/ile-de-france/paris/paris/2251131",
+    "attachment": "Annexe 10 · Plan général SS Parcours",
+    "planningPreviewHash": "sha256:a85c3deb626c2db9b4322348f5a86c32e3e6045f946585aaff0d569ece6a4a81",
+    "comparisonAttachment": "Annexe 6 · Plan des galeries, scénario parcours, option 2",
+    "comparisonPreviewHash": "sha256:c69405605ce914e2392cd048a692b46a3848abe1bee48dba97f7a5638bd11f45",
+    "planningSourceType": "Public preview of a Paris Musées route planning attachment",
+    "geometryBasis": "The Paris Musées planning diagram marks the bends toward René-Coty and a separate guided branch toward the former Fontis exit. The revised draft follows the exit-side return and joins the Fontis gallery there. Registration uses both public portals and the Fontis address. Exact junction geometry and final as-built underground positions remain estimates.",
+    "oldThroughCenterlineMeters": 762.125,
+    "revisedThroughCenterlineMeters": 775.247,
+    "modeledPassionToReneCotyMeters": 66.43,
+    "controlTiepoints": [
+      {
+        "name": "Pavillon Ledoux upper shaft",
+        "pixel": [
+          29,
+          448
+        ],
+        "local": [
+          -7.2683,
+          8.0672
+        ]
+      },
+      {
+        "name": "Pavillon Coty upper shaft",
+        "pixel": [
+          449,
+          8
+        ],
+        "local": [
+          154.0341,
+          484.0256
+        ]
+      },
+      {
+        "name": "Fontis former exit at 36 rue Rémy-Dumoncel",
+        "pixel": [
+          585,
+          324
+        ],
+        "local": [
+          -127.19366711529437,
+          450.3303367225453
+        ]
+      }
+    ],
+    "unconstrainedFontisResidualMeters": 12.46,
+    "planScaledTraceMeters": {
+      "twoControls": {
+        "entranceToOssuary": 507.57,
+        "redLoop": 140.11,
+        "exitLeg": 144.71,
+        "formerOutlet": 257.12
+      },
+      "threeControls": {
+        "entranceToOssuary": 501.01,
+        "redLoop": 138.76,
+        "exitLeg": 144.92,
+        "formerOutlet": 255.2
+      }
+    },
+    "plannedExitLeg": [
+      [
+        405,
+        146
+      ],
+      [
+        407,
+        139
+      ],
+      [
+        405,
+        130
+      ],
+      [
+        405,
+        117
+      ],
+      [
+        407,
+        101
+      ],
+      [
+        409,
+        89
+      ],
+      [
+        408,
+        75
+      ],
+      [
+        417,
+        65
+      ],
+      [
+        431,
+        59
+      ],
+      [
+        440,
+        54
+      ],
+      [
+        438,
+        49
+      ],
+      [
+        433,
+        45
+      ],
+      [
+        428,
+        47
+      ],
+      [
+        429,
+        35
+      ],
+      [
+        431,
+        31
+      ],
+      [
+        440,
+        25
+      ],
+      [
+        442,
+        16
+      ],
+      [
+        449,
+        8
+      ]
+    ],
+    "modeledExitLeg": [
+      [
+        118.8094,
+        446.1742
+      ],
+      [
+        126.1909,
+        447.8165
+      ],
+      [
+        124.21,
+        454.85
+      ],
+      [
+        123.978,
+        458.845
+      ],
+      [
+        128.371,
+        459.485
+      ],
+      [
+        133.17,
+        457.603
+      ],
+      [
+        141.954,
+        458.884
+      ],
+      [
+        144.108,
+        461.93
+      ],
+      [
+        145.071,
+        470.725
+      ],
+      [
+        150.861,
+        475.82
+      ],
+      [
+        154.0341,
+        484.0256
+      ]
+    ],
+    "fontisOpening": [
+      [
+        122.87397,
+        -21.65,
+        455.87431
+      ],
+      [
+        122.80976,
+        -21.65,
+        458.88079
+      ]
+    ],
+    "listedVisitMeters": 1500,
+    "listedVisitSource": "https://catacombes.paris.fr/visiter/informations-pratiques",
+    "limitation": "The draft public centerline measures 775.2 m. The Paris Musées planning trace measures about 785 m when fitted to the two public portals and former Fontis address. The museum lists a 1.5 km visit. The difference remains unresolved.",
+    "geometry": [
+      {
+        "tier": "source",
+        "hash": "sha256:2acbe6d35b4d166ef4fa3abc02406744b11470b6194a9f5138b44d0f1f7a5cc6",
+        "aisleProbeCount": 24,
+        "minimumHeadroomMeters": 2.2199988717314874,
+        "openFontisMouthRays": 4
+      },
+      {
+        "tier": "master",
+        "hash": "sha256:19c22f3f21065dfef58153bb55fbcafb4b9fbc2784928f2a1241ed7c356db979",
+        "aisleProbeCount": 24,
+        "minimumHeadroomMeters": 2.2199988717314874,
+        "openFontisMouthRays": 4
+      },
+      {
+        "tier": "district",
+        "hash": "sha256:e2ea73f7d78d4f19f9b25cda0cb170e01eb2abd3ad12556f3ab8be97f96e86e2",
+        "aisleProbeCount": 24,
+        "minimumHeadroomMeters": 2.219996331579601,
+        "openFontisMouthRays": 4
+      },
+      {
+        "tier": "street",
+        "hash": "sha256:2a7126f3fbc42749e1b184678da736945ccd2d90b3d6c03f595d231c451cec9e",
+        "aisleProbeCount": 24,
+        "minimumHeadroomMeters": 2.1757892608642564,
+        "openFontisMouthRays": 4
+      },
+      {
+        "tier": "closeup",
+        "hash": "sha256:22958de71072a77a46f360321f5f5b404deca068247d54c0540e105cff4f92c2",
+        "aisleProbeCount": 24,
+        "minimumHeadroomMeters": 2.2117256164550767,
+        "openFontisMouthRays": 4
+      }
+    ],
+    "captures": [
+      {
+        "scenario": "draft-closeup",
+        "camera": "rene-coty-gallery-return",
+        "hash": "sha256:6f6b5e9322b84f14b266449c2cc348687a3ff4928fa2cdccabfb627f3ca22f0d"
+      },
+      {
+        "scenario": "draft-closeup",
+        "camera": "fontis-branch-junction",
+        "hash": "sha256:df17feaf72c3d68d78356c0eea2c82a272dd0e7630e87f554990b78072c42d77"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "rene-coty-gallery-return",
+        "hash": "sha256:7f5fdcb8aa23b03e817f869a3c92b22db3617798fc7149bb18694df03c44d9e5"
+      },
+      {
+        "scenario": "draft-street",
+        "camera": "fontis-branch-junction",
+        "hash": "sha256:63eff17636c8269e86cad34803e50d2971e6d4bad93a7576ddb7697700f684b7"
+      }
+    ]
+  }
+}

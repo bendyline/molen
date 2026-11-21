@@ -1,0 +1,74 @@
+{
+  "format": "molen/scene@3",
+  "name": "Usoi Dam relief review",
+  "seed": "usoi_dam",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "relief",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.usoi_dam",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce8f4",
+            "ground": "#a1977c",
+            "intensity": 1.2
+          },
+          "sun": {
+            "direction": [
+              -4,
+              4,
+              3
+            ],
+            "color": "#fff7e7",
+            "intensity": 1.7,
+            "castShadow": true
+          },
+          "background": "#b7c8d6",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -11220,
+      14100,
+      11660
+    ],
+    "lookAt": [
+      -20,
+      280,
+      920
+    ],
+    "fov": 43
+  }
+}

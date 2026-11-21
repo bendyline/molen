@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.red_fort",
+  "kind": "static-structure",
+  "title": "Red Fort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.red_fort",
+        "output": "assets/places/tt/ttn/red_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a649e1f07f8ee4e6da935018b7b31480d8f4c9cefa4131f11a70fef77c74ed2c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-red-fort",
+        "path": "models/generate-red-fort.mjs"
+      },
+      {
+        "id": "red-fort-model",
+        "path": "models/red-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/standing-wall-circuit-and-palaces.json",
+      "reference-rights/asi-unesco-public-monument-facts.json",
+      "reference-rights/murray-1911-leaf-356.jpg",
+      "reference-rights/murray-1911-title.jpg",
+      "reference-rights/murray-1911-original-archive.json",
+      "reference-rights/bourne-lahore-gate-albumen.jpg",
+      "reference-rights/rijksmuseum-rp-f-f02476.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23414-13659.png",
+      "terrain-sources/terrarium-15-23415-13659.png",
+      "terrain-sources/terrarium-15-23414-13660.png",
+      "terrain-sources/terrarium-15-23415-13660.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

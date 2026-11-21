@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mevlana_museum",
+  "kind": "static-structure",
+  "title": "Mevlâna Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mevlana_museum",
+        "output": "assets/places/sw/swx/mevlana_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:009aca5fa3bd64eda963fd6a501d531ae0a68392e35bfa9afc5a40c4976154ff"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mevlana-museum",
+        "path": "models/generate-mevlana-museum.mjs"
+      },
+      {
+        "id": "mevlana-museum-model",
+        "path": "models/mevlana-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/mevlana-surveyed-rooflines.json",
+      "reference-rights/mevlana-museum-architecture.json",
+      "reference-rights/molavi1-creator-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-19342-12654.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

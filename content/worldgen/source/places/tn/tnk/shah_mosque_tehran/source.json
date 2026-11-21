@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shah_mosque_tehran",
+  "kind": "static-structure",
+  "title": "Shah Mosque, Tehran",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shah_mosque_tehran",
+        "output": "assets/places/tn/tnk/shah_mosque_tehran/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:43e0a28f85b7d864393a9a7a632fdadaec0c0d9a70736d4f9cf8b6e66dbb27c1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shah-mosque-tehran",
+        "path": "models/generate-shah-mosque-tehran.mjs"
+      },
+      {
+        "id": "shah-mosque-tehran-model",
+        "path": "models/shah-mosque-tehran-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/grand-bazaar-shah-mosque-multipolygon.json",
+      "reference-rights/tehran-architecture-written-facts.json",
+      "reference-rights/flandin-1851-publication.json",
+      "reference-rights/flandin-nypl-1851-plate.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-21064-12903.png",
+      "terrain-sources/terrarium-15-21064-12904.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

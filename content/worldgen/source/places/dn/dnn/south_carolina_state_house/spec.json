@@ -1,0 +1,536 @@
+{
+  "planId": "south_carolina_state_house",
+  "id": "south_carolina_state_house",
+  "assetId": "molen.worldgen.structure.south_carolina_state_house",
+  "title": "South Carolina State House",
+  "wikidataId": "Q2915276",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.033125225,
+    "latitude": 34.0003043
+  },
+  "size": [
+    83.19000244140625,
+    57.260000705718994,
+    108.36000061035156
+  ],
+  "actualBounds": {
+    "min": [
+      -41.595001220703125,
+      -2.4000000953674316,
+      -53.81999969482422
+    ],
+    "max": [
+      41.595001220703125,
+      54.86000061035156,
+      54.540000915527344
+    ]
+  },
+  "visualBrief": "Columbia State House with its two ten-column granite porticoes, matching double stairs, rusticated basement, balustrade and dark copper dome.",
+  "nativeAxes": {
+    "x": "east-northeast along the long facades",
+    "y": "up",
+    "z": "south-southeast toward the south approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20180522-z-vn137-1002-FINAL_(42385727752).jpg",
+    "https://commons.wikimedia.org/wiki/File:SC_State_House_at_evening.jpg"
+  ],
+  "stories": [
+    {
+      "id": "south-carolina-state-house-wp",
+      "url": "https://qualla.com/south-carolina-state-house/"
+    }
+  ],
+  "referenceInputHash": "299756c61d885c742d7c3b753f1e071d341f34d58fe63d8dee30611542176dae",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnn/south_carolina_state_house/models/south-carolina-state-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dn/dnn/south_carolina_state_house/models/south-carolina-state-house-model.mjs",
+    "level": "skyline",
+    "export": "stateHouseSkyline",
+    "errorMeters": 1.62,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.75,
+        "metallic": 0.31
+      },
+      "roofShade": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stateHouseDistrict",
+        "errorMeters": 0.76,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.31
+          },
+          "roofShade": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "stateHouseStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.31
+          },
+          "roofShade": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "stateHouseCloseup",
+        "errorMeters": 0.081,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.31
+          },
+          "roofShade": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stone_ashlar",
+    "stone_ashlar",
+    "metal_copper",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-exterior",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "USGS 3DEP bare-earth surface along the west foundation, independently sampled in the native survey frame.",
+    "anchor": [
+      -81.033125225,
+      34.0003043
+    ],
+    "heading": 0.354654675546365,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.03354244121498,
+        34.000157055346634
+      ],
+      "modelHeight": 0,
+      "basis": "Bare-earth grade immediately outside the west wall near the basement sill."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          15.08875,
+          23.89218
+        ],
+        [
+          0.61463,
+          23.88592
+        ],
+        [
+          -15.04972,
+          23.87812
+        ],
+        [
+          -15.04034,
+          13.9933
+        ],
+        [
+          -17.13501,
+          13.98921
+        ],
+        [
+          -41.1261,
+          13.9843
+        ],
+        [
+          -41.10444,
+          -14.05815
+        ],
+        [
+          -15.7692,
+          -14.04219
+        ],
+        [
+          -15.76754,
+          -18.00639
+        ],
+        [
+          -15.76417,
+          -27.15745
+        ],
+        [
+          -9.01542,
+          -27.15116
+        ],
+        [
+          0.02814,
+          -27.14975
+        ],
+        [
+          10.19361,
+          -27.14836
+        ],
+        [
+          15.75601,
+          -27.15404
+        ],
+        [
+          15.75227,
+          -16.00884
+        ],
+        [
+          15.75872,
+          -14.05965
+        ],
+        [
+          41.119,
+          -14.05815
+        ],
+        [
+          41.11153,
+          14.13201
+        ],
+        [
+          18.15286,
+          14.12955
+        ],
+        [
+          15.09022,
+          14.135
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The exact mapped named State House outline, bounded to the wall and portico footprint."
+    },
+    "featureIds": [
+      "way/51731354",
+      "way/292603795",
+      "way/510242096",
+      "way/510242099",
+      "way/510242100"
+    ],
+    "source": "https://www.openstreetmap.org/way/51731354",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3b2d60213bbf74491f99fcd2eefed761a50f8f5bcfc3a8fcda3f4ef3cd185247",
+    "notes": "Named way 51731354 and its twenty outline vertices fix the main rectangle, offsets and north and south porticoes. Four OpenStreetMap stair ways and the HABS documentation fix both granite stair approaches."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Roof details, lantern and window surrounds are simplified. The upper dome, drum and flagstaff heights are estimated within the documented overall height.",
+    "The stair centerlines follow mapped approaches. Individual step risers, granite balusters and rear thresholds are simplified. Native ground levels are recent USGS bare-earth values.",
+    "The model covers the building and its connected stairs. Independent monuments, scattered lamps, the visitor underground entrance and interiors are outside the model scope."
+  ],
+  "sourceLicense": "Original Molen model geometry under repository license. Verified Qualla photographic references are public domain. OpenStreetMap controls are ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "state-house-skyline",
+      "position": [
+        95,
+        60,
+        -125
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "state-house-district",
+      "position": [
+        95,
+        60,
+        -125
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "state-house-street",
+      "position": [
+        95,
+        60,
+        -125
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "state-house-closeup",
+      "position": [
+        95,
+        60,
+        -125
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "main-stair-and-north-portico",
+      "position": [
+        7,
+        17,
+        -76
+      ],
+      "lookAt": [
+        0,
+        15,
+        -18
+      ]
+    },
+    {
+      "name": "south-stairs-and-east-wing",
+      "position": [
+        69,
+        30,
+        67
+      ],
+      "lookAt": [
+        2,
+        16,
+        10
+      ]
+    },
+    {
+      "name": "copper-dome-and-drum",
+      "position": [
+        24,
+        43,
+        -48
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "rusticated-basement-and-three-sash-tiers",
+      "position": [
+        -71,
+        13,
+        -29
+      ],
+      "lookAt": [
+        -27,
+        10,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20318,
+    "vertices": 60954,
+    "materials": 6,
+    "bytes": 2800320,
+    "sha256": "sha256:8594fdf4f6ab3a224992b97cdb3a6c7a78e19c169f50400479578a18f069fca8"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_opera_tower",
+  "kind": "static-structure",
+  "title": "Mini Israel · Opera Tower exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_opera_tower",
+        "output": "assets/places/sv/sv8/mini_israel_opera_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a2ce957f47dbeef725d8a1d22e6f325965e6a63afc427a52ff873c4dd38bc1b4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "mini_israel_opera_tower",
+        "path": "models/generate-opera-tower-exhibit.mjs"
+      },
+      {
+        "id": "opera-tower-exhibit-mesh",
+        "path": "models/opera-tower-exhibit-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "map-frame.json",
+      "medium-fi-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "placement-report.json",
+      "qa.json",
+      "preview.png",
+      "site-preview.webp"
+    ]
+  }
+}

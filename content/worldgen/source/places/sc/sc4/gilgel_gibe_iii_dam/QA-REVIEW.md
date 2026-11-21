@@ -1,17 +1,24 @@
 # Gilgel Gibe III Dam
 
-**Preview.** Reviewed 43 catalog renders and five standard-water comparison renders.
-
 The stepped RCC gravity wall carries seven continuous ski-jump chutes, two lower outlet portals, the crest crane, and open surge shafts. The generator hall follows the downstream right bank with ten modeled outfalls. The source and close-up have separate terrace and shaft detail.
 
-The signed frame follows the mapped dam outline and reservoir edge. Native PMTiles locates the 105 m spillway opening, Omo centerline and ten powerhouse outfall lines. The crest extends into both abutments to match the contractor’s 630 m exterior length.
+The Earth viewer renders the upstream reservoir at 889 m and the downstream Omo plunge pool and tailrace at 698.46 m. The local shoreline follows the retained river centerline and the photograph around the powerhouse and tapers back to the mapped river. The seven dry spillway chutes, lower outlets and two surge shafts remain visible. The separate bridge and all 17 mapped road records are retained.
 
-Six shared graphs supply board-formed and plain concrete, concrete panels, painted steel, roofing and window grids. All six GLBs contain zero embedded images. Viewer eviction disposes the model and restores ground.
+![Gilgel Gibe III Dam in the Earth viewer](site-preview.png)
 
-Nine standard Terrarium tiles provide the gorge. The normal-pool fixture uses 889 m; the sampled viewer fixture puts headwater at 704.09 m. Both use a 698.46 m sampled tailwater with a photo-guided bank polygon.
+The Earth fixture retains all three mapped service road records. The ground opening follows the upper central arch. Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-Skyline plus district total 204,960 bytes. The four browser tiers have 994, 1742, 3852, 4852 triangles and rebuild byte for byte. Six GLBs pass Khronos validation. Four focused checks cover signed placement, the water fixtures, chutes, outlet recesses, shaft wells and material streams. The scene validates and simulates 30 ticks.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 994 | 79,068 | 7 |
+| district | 1,742 | 125,892 | 7 |
+| street | 3,852 | 285,092 | 7 |
+| closeup | 4,852 | 359,424 | 7 |
 
-The 184.91 m upstream water discrepancy keeps native site acceptance pending. Shaft positions and heights, buried foundations, outfall openings and the bank terraces are approximate. The coarse terrain clips parts of the apron and has abrupt shore edges. The model shows the exterior with static gates and water.
+Skyline and district total 204,960 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Six shared material graphs bind in the viewer. The review covers 68 renders and 160 geographic samples.
 
-Rebuild with `node packages/worldgen/scripts/generate-gilgel-gibe-iii-dam.mjs`. Append `--check` to check exact source bytes. Select import, LOD generation and readiness with `--ids=gilgel_gibe_iii_dam`.
+The downstream bank widths, static water stages and river bed grade are representative. The source terrain leaves angular edges around the gorge and only approximates the apron tie-in. Shafts, outfall details and buried foundations are based on exterior photographs.
+
+This model depicts the static exterior. Operating discharge and underground equipment are outside its scope.
+
+[Mapped site frame](map-frame.json) · [Terrain and water fit](site-fit.json) · [QA evidence](qa.json)

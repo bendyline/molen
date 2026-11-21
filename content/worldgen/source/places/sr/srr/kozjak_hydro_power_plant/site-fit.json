@@ -1,0 +1,78 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "baseElevation": 468,
+  "crestElevation": 474.4,
+  "sites": [
+    {
+      "name": "Kozjak powerhouse and switchyard pad",
+      "anchor": [
+        21.19272217154503,
+        41.877985095930555
+      ],
+      "heading": 0.1384706325548526,
+      "bounds": [
+        -8,
+        -428,
+        94,
+        -344
+      ],
+      "elevation": 365.9,
+      "blend": 29,
+      "basis": "Blend the occupied powerhouse, auxiliary buildings and yard into their common platform."
+    },
+    {
+      "name": "Kozjak outfall landing bank",
+      "anchor": [
+        21.19272217154503,
+        41.877985095930555
+      ],
+      "heading": 0.1384706325548526,
+      "bounds": [
+        24,
+        -451,
+        92,
+        -426
+      ],
+      "elevation": 363.2,
+      "blend": 26,
+      "basis": "The native lower pool meets the outfall walls below the generating hall."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 111689693,
+      "name": "Kozjak Reservoir",
+      "elevation": 459,
+      "basis": "Representative maximum operating pool below the circular spillway rim."
+    },
+    {
+      "id": 111689690,
+      "name": "Treska pool below Kozjak",
+      "split": {
+        "anchor": [
+          21.19272217154503,
+          41.877985095930555
+        ],
+        "heading": 0.1384706325548526,
+        "negativeZ": 361.58,
+        "positiveZ": 459
+      },
+      "basis": "The map carries a small upstream fragment and the lower pool as different polygons of this feature."
+    },
+    {
+      "id": 35184602036742,
+      "name": "Kozjak buried Treska alignment",
+      "hideLines": true,
+      "basis": "The retained map tags this alignment as underground."
+    },
+    {
+      "id": 35185754090797,
+      "name": "Kozjak buried overflow conduit",
+      "hideLines": true,
+      "basis": "The conduit is tagged below the dam."
+    }
+  ],
+  "waterStageNotes": "Representative static stages for the PMTiles upstream reservoir and lower Treska pool. The map marks two underground alignments that are suppressed at the surface.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

@@ -1,10 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.lotte_world_tower",
-  "inputHash": "sha256:99a347e9acc476e07cdf93886b735c3a1aa34b5362942079c687e390abbfc331",
-  "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+  "inputHash": "sha256:e878657a07835ceb673c403d0dcd4d881814a74ada287f3b2f61c6ba035cce55",
+  "sourceHash": "sha256:87d958714b78fd2c9dd23ef27239e063e181dc237cb054e6a1190aab4eeb7892",
+  "runtimeHash": "sha256:1e8f89298745237fe7c1cf5be296849b584a9697901fcf51835055839e566f52",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
+  "footprintEvidenceHash": "sha256:299d447406be63818678f4c3721e73d2cb3555f8ad9d3d3aec2dfba17ac2a0a9",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:644466c2076d5c3e05f6726193d07a6bb0f78734f77294e7735bec5e2f461bfd",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:ca4496ce8e43e7493cea0364ed7ccaadee9eccdb8da7cbdb8084311f463667b4",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -22,7 +28,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:958ae7a94baf842973e30a368dc07278e05c5e03febd10203320f941a5933f96",
+      "hash": "sha256:440f24e4ed9b2cce50cedafa9a819fc5efbea51b15fa09757b02c15c22f0664c",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -32,29 +38,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -65,11 +84,22 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -81,7 +111,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:1656dd908a83ec6db2ea30886273521f2e20da7ef4ec6dc8f7e9952b9df096fa",
+      "hash": "sha256:7ed350d72c9b26bd871d35f5f7bf67c94c79b08a10892d596b5268e8adb0ff4d",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -91,29 +121,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -124,11 +167,22 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -140,7 +194,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:571bacf26905fce5d80a27c627bbbbf296a4824546cb413d11a210eb50791ec3",
+      "hash": "sha256:092a3d53f1c0c6430a7b1097553630b2587dbd8fd7562045feae67a62f8608af",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -150,29 +204,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -183,11 +250,22 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -199,7 +277,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:1bbfe4057d6172e071d3d1d702313e47243dd9a98472ab4836d3f74aa6bd11ba",
+      "hash": "sha256:0ede9e77286d05ba39513aa9c6a94945ce5799c885b3a61432effbccc8aee7c1",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -209,29 +287,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -242,11 +333,22 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -258,7 +360,7 @@
     },
     {
       "path": "shots/shared/split-crown.png",
-      "hash": "sha256:3d80ad1200504992f249dec2d55938635b7195140e36ccf414a627b36bce6cac",
+      "hash": "sha256:fddf86f3ccbe0741e2013fbf5bbdbf950383179583b0478e270decec06e6ff56",
       "camera": {
         "name": "split-crown",
         "position": [
@@ -277,29 +379,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -310,23 +425,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 6,
+        "renderedTriangles": 561909
       }
     },
     {
       "path": "shots/shared/sky-bridge.png",
-      "hash": "sha256:2b25de4d8b3d2a44617a7ea94abbdd2e563c256548c8a5fc7fcaaa886313d99e",
+      "hash": "sha256:3e57e39ccc7aa9edc3236c14a63d147dcafaba4f7e80e6b04c3c2b873cb31340",
       "camera": {
         "name": "sky-bridge",
         "position": [
@@ -345,29 +471,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -378,23 +517,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 5,
+        "renderedTriangles": 561517
       }
     },
     {
       "path": "shots/shared/open-diagrid.png",
-      "hash": "sha256:7fc536d1b7a327f0131b511642ada4fb1accdab5611c081404c7d1ccb2e4ff95",
+      "hash": "sha256:bc58743fdbb2994982267372347a555644b3889bb0ab8350b43a201f25ca4e0e",
       "camera": {
         "name": "open-diagrid",
         "position": [
@@ -413,29 +563,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -446,23 +609,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 5,
+        "renderedTriangles": 561517
       }
     },
     {
       "path": "shots/shared/crown-catwalks.png",
-      "hash": "sha256:42eed4ad21f046f196751b0e5dfdc730bd037c25aaed3269d65434005931820a",
+      "hash": "sha256:fb72d49bd52ec32b557816fe28fcade2be4d7a1c77e1ce99f7c666b5649c7441",
       "camera": {
         "name": "crown-catwalks",
         "position": [
@@ -481,29 +655,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -514,23 +701,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 5,
+        "renderedTriangles": 561517
       }
     },
     {
       "path": "shots/shared/white-fins.png",
-      "hash": "sha256:9315a492b3255151b026e75cd352336e10d980e8ff4dc89ece5832ccf3b53fa7",
+      "hash": "sha256:c82c93717a76c1b6d87bf42baaefa80a0f33373f0c7482d588fdc591181002ff",
       "camera": {
         "name": "white-fins",
         "position": [
@@ -549,29 +747,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -582,23 +793,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 6,
+        "renderedTriangles": 561909
       }
     },
     {
       "path": "shots/shared/mechanical-seam.png",
-      "hash": "sha256:6e25762f0fd885fe3871b69072d71219debb84b1a0ce230ba2a73f22757b1a60",
+      "hash": "sha256:e6a26df97c020b9d5335725d0e7cc6086d6f786d25c87c92efdcf70a0e37d983",
       "camera": {
         "name": "mechanical-seam",
         "position": [
@@ -617,29 +839,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -650,23 +885,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 6,
+        "renderedTriangles": 561909
       }
     },
     {
       "path": "shots/shared/curved-glass-base.png",
-      "hash": "sha256:cf6ed0db115a22baa9ecff8cf5da6260386a17fc6d0a8c53b0437ded85b9b1bf",
+      "hash": "sha256:e7cb5006421204c519b53d53f741b0f76998f078d939ac57e62c8817258bffa4",
       "camera": {
         "name": "curved-glass-base",
         "position": [
@@ -685,29 +931,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -718,23 +977,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 8,
+        "renderedTriangles": 563281
       }
     },
     {
       "path": "shots/shared/ground-entry.png",
-      "hash": "sha256:43dcb82fbf391ff989c51b0ee7a4bb5f2b9efda250bb23c0f3f4cf0d1bb613ff",
+      "hash": "sha256:7cd2f38ce7cac0126be76ff81ecbdfcfec1ed3978963484ec6aedff148582520",
       "camera": {
         "name": "ground-entry",
         "position": [
@@ -753,29 +1023,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -786,23 +1069,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 8,
+        "renderedTriangles": 563281
       }
     },
     {
       "path": "shots/shared/ear-tips.png",
-      "hash": "sha256:1ecf1573535e82b14560e1d8b3dab38a52870475f9128b2fdc11d1d48b774353",
+      "hash": "sha256:39123d810e8b4ff1e0d87946e2208795b7a77ee5909f63cb3a716fbda24a4344",
       "camera": {
         "name": "ear-tips",
         "position": [
@@ -821,29 +1115,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -854,23 +1161,34 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
-        "renderedTriangles": 563673
+        "draws": 6,
+        "renderedTriangles": 561909
       }
     },
     {
       "path": "shots/shared/far-seoul-seam.png",
-      "hash": "sha256:5b480983d38cac0d8580a7cfd1b7b39ab1c06929cd32b275de803c691d0c44c3",
+      "hash": "sha256:518cddd71b3627f424f88b78ecd8de03c62c7f5c55acc9a184df349030aaa335",
       "camera": {
         "name": "far-seoul-seam",
         "position": [
@@ -889,29 +1207,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -922,11 +1253,22 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
@@ -938,7 +1280,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:7064a806ae5e1dadba70d22f3649efec47d2743139956b9e43be684c83dc804a",
+      "hash": "sha256:3ab6f19e35a778327cb0606d91612d93a32a7a0789e6837bb0651d6cde19368d",
       "camera": {
         "name": "placement",
         "placement": true
@@ -948,29 +1290,42 @@
         "mode": "geographic-flat-terrain",
         "placementId": "lotte.world.tower",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 2.7509722771473926,
+        "heading": 0,
         "meshes": 7,
         "triangles": 563015,
         "bounds": {
           "min": [
-            -59.39038649108074,
+            -43.84992980957031,
             0,
-            -56.54655924166839
+            -40.162841796875
           ],
           "max": [
-            59.387159084627584,
+            43.94239807128906,
             555.7000122070312,
-            56.754357841886915
+            40.261322021484375
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -43.84993017370099,
+            0,
+            -40.162842887000465
+          ],
+          "max": [
+            43.94239959230484,
+            555.7000122070312,
+            40.261318836327
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "ba0d24f0-2a78-4a99-88ae-76955e619dc7",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "123462a4-a778-459e-943b-c3efda031f1d",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "81c5e4d6-fcee-4e20-9439-7f07d2753766"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "3c10fd9c-a427-4537-976a-946c128c5943",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d6c6b0d3-cd1e-4c07-ba93-8b985ff6dbd8",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "68a1fb2f-68f9-4fb1-a325-1e55705e10f0"
         },
         "loads": [
           "molen.worldgen.structure.lotte_world_tower"
@@ -981,17 +1336,28 @@
           127.1041091145962,
           37.51369108470631
         ],
+        "terrainSamples": [
+          {
+            "placementId": "lotte.world.tower",
+            "coordinate": [
+              127.10329584042599,
+              37.51213910866832
+            ],
+            "height": 0
+          }
+        ],
         "visibleStructures": [
           "lotte.world.tower"
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1
         },
-        "draws": 9,
+        "draws": 10,
         "renderedTriangles": 563673
       }
     }

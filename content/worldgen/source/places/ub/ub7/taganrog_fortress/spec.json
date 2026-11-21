@@ -1,0 +1,479 @@
+{
+  "planId": "taganrog_fortress",
+  "id": "taganrog_fortress",
+  "assetId": "molen.worldgen.structure.taganrog_fortress",
+  "title": "Taganrog Fortress",
+  "wikidataId": "Q7675155",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 38.939588309794686,
+    "latitude": 47.204214128712685
+  },
+  "size": [
+    1075.3818969726562,
+    59.608177185058594,
+    1122.9715270996094
+  ],
+  "actualBounds": {
+    "min": [
+      -553.0177612304688,
+      -43.39360046386719,
+      -428.4754943847656
+    ],
+    "max": [
+      522.3641357421875,
+      16.214576721191406,
+      694.4960327148438
+    ]
+  },
+  "visualBrief": "The 1704 Taganrog Fortress as shown by its as-built survey, with earth fronts, four ravelins, low town buildings, timber bridges and stone harbor moles.",
+  "nativeAxes": {
+    "x": "east-northeast, original plan right",
+    "y": "up",
+    "z": "south-southeast, original plan down"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1705-01-01",
+    "validFrom": "1704-12-26",
+    "validUntil": "1706-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Plan_of_Taganrdg._Robert_Lyall._Travels_in_Russia,_The_Krimea,_The_Caucasus,_and_Georgia._1825._Chap._XX._P.251.jpg",
+    "https://papacoma.narod.ru/maps/taganrog_planes_petr.htm"
+  ],
+  "stories": [
+    {
+      "id": "taganrog-fortress-wp",
+      "url": "https://qualla.com/taganrog-fortress/"
+    }
+  ],
+  "referenceInputHash": "2316c680af3012ac7f483dd2b4a3bd28f912a592e87df6b66bfab84a3db84004",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub7/taganrog_fortress/models/taganrog-fortress-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ub/ub7/taganrog_fortress/models/taganrog-fortress-model.mjs",
+    "level": "skyline",
+    "export": "fortSkyline",
+    "errorMeters": 4.2,
+    "surfaces": {
+      "soil": {
+        "slot": "wall",
+        "graph": "earth_rammed",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "path": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "fortDistrict",
+        "errorMeters": 2.2,
+        "surfaces": {
+          "soil": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "path": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "fortStreet",
+        "errorMeters": 0.72,
+        "surfaces": {
+          "soil": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "path": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "fortCloseup",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "soil": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "path": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "earth_rammed",
+    "gravel",
+    "wood_plain",
+    "wood_weatherboard",
+    "shingle_cedar",
+    "stone_drywall"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Cape-top ground and modern water level come from the original elevation field. The historic above-ground silhouette is aligned to the third-bastion site.",
+    "anchor": [
+      38.939588309794686,
+      47.204214128712685
+    ],
+    "heading": 0.51,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        38.939588309794686,
+        47.204214128712685
+      ],
+      "modelHeight": 0,
+      "basis": "Reference from independent terrain source near the central street blocks of the former fortress. Modern terrain approximates general slope and known cape grade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "RGADA-f9-op2-d66-no34",
+      "Petrovskaya-15",
+      "way/4528048",
+      "way/4529671",
+      "way/362605970",
+      "way/1467870562",
+      "way/1467870565",
+      "way/1467870569",
+      "way/1467870572"
+    ],
+    "source": "https://papacoma.narod.ru/maps/taganrog_planes_petr.htm",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:12cf04c19ba3a9d87a135c5d398863e1b9307ef90fe4abc02eff2c4b8e69a100",
+    "notes": "Engineering sheet RGADA fond 9, inventory 2, file 66, no. 34 shows the named cape, four fronts, three bastions, two half bastions, four ravelins, and the stone moles. The contour, directions and relative sizes follow the survey with its compass and scale. The third-bastion commemoration at Petrovskaya 15 constrains approximate geographic registration."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    }
+  ],
+  "limitations": [
+    "The representation centers on the December 1704 archival survey. Display dates cover the following year as an approximate appearance interval.",
+    "The absolute historical outline and elevations are approximate. Fit uses a known landward bastion site, the historic compass and Rute scale. Present-day port reclamation, roads and surviving cut slopes change the terrain around the cape.",
+    "The dry ditch is a shallow channel between modelled banks resting on independently sampled modern terrain. Harbor moles remain visible above the existing surface through reclaimed areas, where their present surface height is an estimate.",
+    "Townspeople’s buildings, gates, timber work and roof details are restrained reconstructions. The 1704 plan documents street blocks and some raised structures. The individual roof forms are estimates, and the church and permanent fort facilities that opened in later years are outside this appearance."
+  ],
+  "sourceLicense": "Original model geometry under the repository license. The 1704 RGADA engineering sheet and Robert Lyall’s 1825 plate are public domain. OpenStreetMap controls are ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "taganrog-skyline",
+      "position": [
+        503,
+        628,
+        820
+      ],
+      "lookAt": [
+        4,
+        -8,
+        75
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "taganrog-district",
+      "position": [
+        503,
+        628,
+        820
+      ],
+      "lookAt": [
+        4,
+        -8,
+        75
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "taganrog-street",
+      "position": [
+        503,
+        628,
+        820
+      ],
+      "lookAt": [
+        4,
+        -8,
+        75
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "taganrog-closeup",
+      "position": [
+        503,
+        628,
+        820
+      ],
+      "lookAt": [
+        4,
+        -8,
+        75
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "four-fronts-and-ravelins",
+      "position": [
+        1,
+        630,
+        -714
+      ],
+      "lookAt": [
+        -8,
+        -4,
+        -45
+      ]
+    },
+    {
+      "name": "dry-ditch-and-covered-way",
+      "position": [
+        147,
+        48,
+        -377
+      ],
+      "lookAt": [
+        88,
+        7,
+        -203
+      ]
+    },
+    {
+      "name": "landward-bridge",
+      "position": [
+        -342,
+        39,
+        -247
+      ],
+      "lookAt": [
+        -335,
+        0,
+        -207
+      ]
+    },
+    {
+      "name": "harbor-moles-and-quays",
+      "position": [
+        430,
+        331,
+        674
+      ],
+      "lookAt": [
+        19,
+        -36,
+        482
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9040,
+    "vertices": 27120,
+    "materials": 6,
+    "bytes": 1412840,
+    "sha256": "sha256:c51b6c978284a0720223ae9822344f233a885956eb5c904727c6e08076afbf31"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Osun Grove road entrance gate",
+  "seed": "osun_grove_road_gate",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "gate",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.osun_grove_road_gate",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.16,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              44,
+              0.32,
+              44
+            ]
+          },
+          "materialRef": "palette:#95836b",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e4eee8",
+            "ground": "#9b876c",
+            "intensity": 1.05
+          },
+          "sun": {
+            "direction": [
+              -3,
+              5,
+              7
+            ],
+            "color": "#fff4db",
+            "intensity": 1.6,
+            "castShadow": true
+          },
+          "background": "#b3c7cc",
+          "toneMapping": "agx",
+          "exposure": 1.02,
+          "shadows": "medium"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.36,
+      17.5
+    ],
+    "lookAt": [
+      0,
+      2.48,
+      -0.18
+    ],
+    "fov": 42
+  }
+}

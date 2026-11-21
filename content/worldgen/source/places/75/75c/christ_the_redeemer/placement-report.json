@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.christ_the_redeemer",
-  "inputHash": "sha256:eb2e651e4056c6aed4ae03353e9df9dd876b682399afc5403671319e5bf074b2",
-  "placementHash": "sha256:ddb1fde7ec955a497bca6a14ce815504fdd1109a220f29b5371f4123e01313d5",
+  "inputHash": "sha256:d73df6cfe0e036b4bb03f9b0bd0ba759c76edb791254a9758199fedb3a514c89",
+  "placementHash": "sha256:c334f65339e9a29c16f29774c0009f8f69cb58b5228afe5070e3ca7bc28fa18a",
   "entry": {
     "id": "christ.the.redeemer",
     "title": "Christ the Redeemer",
@@ -12,8 +12,8 @@
       -22.951917486936523
     ],
     "heading": 1.7453292519943295,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 710,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q79961",
@@ -56,15 +56,7 @@
         ]
       ],
       "minHeight": -6,
-      "basis": "Only the original occupied octagonal chapel pedestal and its closed buried foundation remove native terrain. The surrounding viewing terrace,paths,stairs andall16 independent mapped buildings stay native;no broad summit flattening is asserted."
-    },
-    "terrainReference": {
-      "anchor": [
-        -43.210459649562836,
-        -22.951917486936523
-      ],
-      "modelHeight": 0,
-      "basis": "Sample the current host terrain at the exact named PMTiles monument point once for the source Y=0 pedestal base. This shared reference keeps the bounded landmark at one relative vertical datum across terrain tiles;it does not assert a surveyed summit altitude."
+      "basis": "The opening follows the occupied octagonal chapel foundation. The mapped stairways, viewing paths and buildings retain their own geometry."
     },
     "bounds": [
       -43.210536280482195,
@@ -72,10 +64,812 @@
       -43.210383018643476,
       -22.95177518444733
     ],
-    "minLevel": 13,
+    "minLevel": 14,
     "status": "preview",
     "source": "https://build.protomaps.com/20261031.pmtiles",
-    "note": "Complete individual medium-fi Christ the Redeemer monument and integral octagonal chapel pedestal:long draped robe with lower vertical pleats and original asymmetric mantle/chest folds,closed head/face/neck and hair,extended closed sleeves,palms/fingers/thumbs,paired feet,beveled dark pedestal coping andclosed approximate rear chapel door. Surrounding viewing terraces,railings,stairs,lifts,station,restaurants andmountain remain native context;no copied inscription orinterior. Retained Wikidata facts give30.1m statue and8m pedestal;source top38.1m above the authored pedestal base. Arm span28.3m,depth,original face/folds/hands,hidden rear inventory andchapel door are picture-proportioned medium-fi approximations. Place the Y=0 base relative to the current host terrain,not at an asserted surveyed710m altitude. The standard global field center is528.95m andsmooths the sharp Corcovado summit;native peak POI710m remains a separate fact. No fabricated mountain orsite survey. +X NNW along the arms toward the statue left hand;+Z ENE across the front viewing terrace toward the bay;+Y up. Approximate signed picture/footway reconstruction,not surveyed azimuth. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "The signed PMTiles view axis and ordinary pictures orient the statue toward the bay. The stock Corcovado grade aligns the pedestal to the 710 m mapped upper terrace. The nearby 688 m terrace is a separate elevation control."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "The stock Earth renderer places the monument at the 710 m mapped summit level and retains the 688 m lower restaurant terrace. The bounded profile blends into the surrounding ridge and the terrain opening follows the occupied pedestal. The source interprets the original statue and chapel exterior in medium-fi geometry. The exact unmapped terrace and rock profile remain approximate.",
+  "localPlacementControls": {
+    "pmtilesEvidenceHash": "sha256:d53c4389567443a998170d0a89c2b8c42a16968dee226ea70d32217b4b4fd3a9",
+    "signedViewAxis": {
+      "footway": 35184646643450,
+      "segment": [
+        [
+          -43.21037381887436,
+          -22.951905137610723
+        ],
+        [
+          -43.209976851940155,
+          -22.951843390964868
+        ]
+      ],
+      "mapAzimuthDegrees": 80.41,
+      "modelAzimuthDegrees": 80,
+      "differenceDegrees": 0.41,
+      "scope": "Front viewing path. The segment establishes facing and provides an approximate bearing for the pedestal."
+    },
+    "terrain": {
+      "tiles": [
+        {
+          "z": 14,
+          "x": 6225,
+          "y": 9265,
+          "hash": "sha256:80813543763da937137b5e5c5b747c5eea9725a38817468d1773523d4aacbe23"
+        },
+        {
+          "z": 15,
+          "x": 12450,
+          "y": 18531,
+          "hash": "sha256:9200272219621527edc192689624bbcf65f6b4540d5bd20ce11eec7c28e9b96a"
+        }
+      ],
+      "pointSamples": [
+        {
+          "feature": 17597106031149,
+          "name": "Cristo Redentor",
+          "coordinate": [
+            -43.210459649562836,
+            -22.951917486936523
+          ],
+          "distanceFromStatueMeters": 0,
+          "mappedElevationMeters": null,
+          "nativeSamples": [
+            {
+              "zoom": 14,
+              "meters": 528.95
+            },
+            {
+              "zoom": 15,
+              "meters": 528.23
+            }
+          ]
+        },
+        {
+          "feature": 17593737194304,
+          "name": "Corcovado",
+          "coordinate": [
+            -43.21057766675949,
+            -22.951947125313822
+          ],
+          "distanceFromStatueMeters": 12.54,
+          "mappedElevationMeters": 710,
+          "nativeSamples": [
+            {
+              "zoom": 14,
+              "meters": 532.49
+            },
+            {
+              "zoom": 15,
+              "meters": 532.57
+            }
+          ]
+        },
+        {
+          "feature": 35184646643453,
+          "name": "Terraço Corcovado by J. Schweppe&CO.",
+          "coordinate": [
+            -43.210722506046295,
+            -22.95207802806921
+          ],
+          "distanceFromStatueMeters": 32.33,
+          "mappedElevationMeters": 688,
+          "nativeSamples": [
+            {
+              "zoom": 14,
+              "meters": 529.6
+            },
+            {
+              "zoom": 15,
+              "meters": 529.75
+            }
+          ]
+        }
+      ],
+      "mappedPeakToRestaurantMeters": 22,
+      "nativePeakToRestaurantMeters": [
+        {
+          "zoom": 14,
+          "meters": 2.89
+        },
+        {
+          "zoom": 15,
+          "meters": 2.82
+        }
+      ]
+    },
+    "sampledOn": "2026-11-18",
+    "terrainMethod": "Bilinear interpolation at pixel centers in the retained standard Terrarium tiles.",
+    "fitStatus": "passed-with-bounded-profile",
+    "interpretation": "The mapped summit and restaurant control the two levels. The existing bay-facing orientation agrees with the front viewing path to within 0.5 degrees."
+  },
+  "stockSiteReview": {
+    "status": "passed",
+    "grade": {
+      "name": "Corcovado summit and restaurant terrace",
+      "anchor": [
+        -43.210459649562836,
+        -22.951917486936523
+      ],
+      "heading": 1.7453292519943295,
+      "bounds": [
+        -20,
+        -48,
+        24,
+        27
+      ],
+      "elevation": 710,
+      "elevationProfile": [
+        [
+          -25,
+          688
+        ],
+        [
+          -14,
+          710
+        ]
+      ],
+      "blend": 155,
+      "repairBelow": 665,
+      "basis": "The mapped Corcovado peak is 710 m at local Z −12.49 m. The mapped restaurant terrace is 688 m at local Z −29.64 m. The grade ties the mapped upper paths and statue pedestal to the peak and blends the lower terrace and surrounding slope back into the standard elevation field. Both levels are approximate visualization controls."
+    },
+    "coarse": [
+      {
+        "tileStep": 2,
+        "phase": 0,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 2,
+        "phase": 0.25,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 2,
+        "phase": 0.5,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 2,
+        "phase": 0.75,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 4,
+        "phase": 0,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 4,
+        "phase": 0.25,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 4,
+        "phase": 0.5,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 4,
+        "phase": 0.75,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 8.8,
+        "phase": 0,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 8.8,
+        "phase": 0.25,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 8.8,
+        "phase": 0.5,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 8.8,
+        "phase": 0.75,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 17.6,
+        "phase": 0,
+        "pedestal": [
+          709.9999941397958,
+          709.7620858415698,
+          709.9999439870327,
+          709.9999941399368,
+          708.1320664594863
+        ]
+      },
+      {
+        "tileStep": 17.6,
+        "phase": 0.25,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9764876706961,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 17.6,
+        "phase": 0.5,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368
+        ]
+      },
+      {
+        "tileStep": 17.6,
+        "phase": 0.75,
+        "pedestal": [
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.9999941399368,
+          709.7096940983224
+        ]
+      }
+    ],
+    "controlPoints": [
+      {
+        "feature": 17597106031149,
+        "name": "Cristo Redentor",
+        "coordinate": [
+          -43.210459649562836,
+          -22.951917486936523
+        ],
+        "distanceFromStatueMeters": 0,
+        "mappedElevationMeters": null,
+        "nativeSamples": [
+          {
+            "zoom": 14,
+            "meters": 528.95
+          },
+          {
+            "zoom": 15,
+            "meters": 528.23
+          }
+        ]
+      },
+      {
+        "feature": 17593737194304,
+        "name": "Corcovado",
+        "coordinate": [
+          -43.21057766675949,
+          -22.951947125313822
+        ],
+        "distanceFromStatueMeters": 12.54,
+        "mappedElevationMeters": 710,
+        "nativeSamples": [
+          {
+            "zoom": 14,
+            "meters": 532.49
+          },
+          {
+            "zoom": 15,
+            "meters": 532.57
+          }
+        ]
+      },
+      {
+        "feature": 35184646643453,
+        "name": "Terraço Corcovado by J. Schweppe&CO.",
+        "coordinate": [
+          -43.210722506046295,
+          -22.95207802806921
+        ],
+        "distanceFromStatueMeters": 32.33,
+        "mappedElevationMeters": 688,
+        "nativeSamples": [
+          {
+            "zoom": 14,
+            "meters": 529.6
+          },
+          {
+            "zoom": 15,
+            "meters": 529.75
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "level": "master",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/master-bay-facing-summit.png",
+            "hash": "sha256:66ddee638a6b866b07b11e754e5c3400ecf551a048ce3798a3a6c169864e4aad"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/master-pedestal-and-face.png",
+            "hash": "sha256:5a120e4a8fe448d43c3879aa351ac2071b4318a36aa87467a864235bc48c33a6"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/master-side-terraces.png",
+            "hash": "sha256:0a227750e079632d4e215d3836a51b1927c34dbc8124c95313de3371070d25f7"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/master-steps-and-rear-approach.png",
+            "hash": "sha256:00b4aeac191bfcef404f6bfe151810514b19f9b1ccd95dd00d688df0c5f00db4"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/master-ridge-and-approach.png",
+            "hash": "sha256:05d01a3648689a55497111cc5f0b8fda513e17c132c454fbe4acccb63e33b542"
+          }
+        ],
+        "modelBase": 710,
+        "modelTop": 748.0999984741211,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 704,
+            "road": null,
+            "structure": 748.0999984741211
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/skyline-bay-facing-summit.png",
+            "hash": "sha256:1cceafdc756ca7504aeb1f75403bdc1c532f472625dd35f997b673ac03b13bd5"
+          }
+        ],
+        "modelBase": 710,
+        "modelTop": 748.0999984741211,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 704,
+            "road": null,
+            "structure": 748.0999984741211
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/district-bay-facing-summit.png",
+            "hash": "sha256:793ab4ac78c71e13b012b32c24d6b6ac446dd3cb969f690297f54c94cd816123"
+          }
+        ],
+        "modelBase": 710,
+        "modelTop": 748.0999984741211,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 704,
+            "road": null,
+            "structure": 748.0999984741211
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/street-bay-facing-summit.png",
+            "hash": "sha256:1123ea087d95fd8625c2716f3d9a3712d90c948f4ec7843517fb1df5d19f99e7"
+          }
+        ],
+        "modelBase": 710,
+        "modelTop": 748.0999984741211,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 704,
+            "road": null,
+            "structure": 748.0999984741211
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/closeup-bay-facing-summit.png",
+            "hash": "sha256:57320d11f81d8593da796ee145a4fa2d936f586100ad65014e0679326cacedf2"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/closeup-pedestal-and-face.png",
+            "hash": "sha256:2a8307dd52eb93635b0bd4fb4ea905b44017f259a613be1092a04f354f175447"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/closeup-side-terraces.png",
+            "hash": "sha256:3c33d9f4fc3fd2fb36d748ade24215853cd43eba0b6fbed203c3854bfc3ea553"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/closeup-steps-and-rear-approach.png",
+            "hash": "sha256:34564177416148b52d8a4e8963cca8d310e8d0406c28af43ec7d791b843b00a8"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/closeup-ridge-and-approach.png",
+            "hash": "sha256:9e51effc0bab95a37f7593c77342a9ff9ec253b666a00631581d7fc56bf4f4a0"
+          }
+        ],
+        "modelBase": 710,
+        "modelTop": 748.0999984741211,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 704,
+            "road": null,
+            "structure": 748.0999984741211
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "frames": [
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/failure-bay-facing-summit.png",
+            "hash": "sha256:4c8ab9a58dde0b39321e8c061afcacbafc04921dbea50ac993ef96522e7a900c"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/failure-pedestal-and-face.png",
+            "hash": "sha256:cbe029f118aa2eb72f28ce10e2cdf37a63cd7bbebed309cb7919b397b00e9c86"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/failure-side-terraces.png",
+            "hash": "sha256:4d5935233d9184983a3fa7c468f631ea0ef88f0e691acd4616432002a2117a14"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/failure-steps-and-rear-approach.png",
+            "hash": "sha256:8cd177c19effffdd99e385f4912bd3eaa0b5db14c09e5adbda31ae14355b66ad"
+          },
+          {
+            "path": ".artifacts/christ-redeemer-review/native/shots/failure-ridge-and-approach.png",
+            "hash": "sha256:651f1f9ce1f1a3c04431fced131ed44cc1556ddd9aa0cb4391a340e9109bd779"
+          }
+        ],
+        "modelBase": null,
+        "modelTop": null,
+        "controls": [
+          {
+            "id": 17597106031149,
+            "name": "Cristo Redentor",
+            "expected": null,
+            "point": [
+              0,
+              0
+            ],
+            "raw": 528.9486133930457,
+            "graded": 709.9999941399368,
+            "visible": 710,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 17593737194304,
+            "name": "Corcovado",
+            "expected": 710,
+            "point": [
+              -1.1484892121201256,
+              -12.486674951512343
+            ],
+            "raw": 532.4795577766449,
+            "graded": 709.9648570484687,
+            "visible": 709.9529945750228,
+            "road": null,
+            "structure": null
+          },
+          {
+            "id": 35184646643453,
+            "name": "Terraço Corcovado by J. Schweppe&CO.",
+            "expected": 688,
+            "point": [
+              -12.920994075657717,
+              -29.63850626050315
+            ],
+            "raw": 529.6254367824704,
+            "graded": 687.9999947228205,
+            "visible": 688,
+            "road": null,
+            "structure": null
+          }
+        ],
+        "roadsAndBuildingsRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        }
+      }
+    ],
+    "stockRequiredLevel": 14,
+    "rawTileHash": "sha256:80813543763da937137b5e5c5b747c5eea9725a38817468d1773523d4aacbe23",
+    "terrainFixtureHash": "sha256:51e1fe15d61360f8f79573ea29b8b97fc6292584902dc80d2256eaa758293c69",
+    "sourceGradeHash": "sha256:cdf246dfc876b00005dad81b349c8952d62d7cd72b231968f78f5d2003f3fc6a",
+    "preview": {
+      "path": "site-preview.png",
+      "hash": "sha256:cf425b6a4a8f595283eddb5cde0bef5c8f78f96896fbb8731282720cc1b86553"
+    }
+  }
 }

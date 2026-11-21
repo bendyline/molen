@@ -1,0 +1,395 @@
+{
+  "provider": "Natural Resources Canada HRDEM mosaic WCS",
+  "source": "https://datacube.services.geo.ca/ows/elevation",
+  "instructions": "https://download-telecharger.services.geo.ca/pub/elevation/dem_mne/HRDEMmosaic_mosaiqueMNEHR/HRDEM_Mosaic_WCS-WMS_instructions_EN.pdf",
+  "bareEarth": {
+    "url": "https://datacube.services.geo.ca/ows/elevation?SERVICE=WCS&VERSION=1.1.1&REQUEST=GetCoverage&FORMAT=image/geotiff&IDENTIFIER=dtm&BOUNDINGBOX=1508639,-171321,1509799,-170161,urn:ogc:def:crs:EPSG::3979&GRIDBASECRS=urn:ogc:def:crs:EPSG::3979&GRIDOFFSETS=1.0,-1.0&GRIDORIGIN=1508639,-170161",
+    "epsg": 3979,
+    "geoTiePoint": [
+      0,
+      0,
+      0,
+      1508638.5,
+      -170160.5,
+      0
+    ],
+    "resolution": [
+      1.0008620689655172,
+      1.0008620689655172,
+      0
+    ],
+    "size": [
+      1160,
+      1160
+    ],
+    "sha256": "sha256:cb565decc47b7384a17b0a7f264a6d75997d834ee1bf509a2619762c588b7581",
+    "path": "terrain-sources/nrcan-hrdem-bare-earth.tif"
+  },
+  "firstReturn": {
+    "url": "https://datacube.services.geo.ca/ows/elevation?SERVICE=WCS&VERSION=1.1.1&REQUEST=GetCoverage&FORMAT=image/geotiff&IDENTIFIER=dsm&BOUNDINGBOX=1508639,-171321,1509799,-170161,urn:ogc:def:crs:EPSG::3979&GRIDBASECRS=urn:ogc:def:crs:EPSG::3979&GRIDOFFSETS=1.0,-1.0&GRIDORIGIN=1508639,-170161",
+    "epsg": 3979,
+    "geoTiePoint": [
+      0,
+      0,
+      0,
+      1508638.5,
+      -170160.5,
+      0
+    ],
+    "resolution": [
+      1.0008620689655172,
+      1.0008620689655172,
+      0
+    ],
+    "size": [
+      1160,
+      1160
+    ],
+    "sha256": "sha256:0c57d9c764dc0b17b69a99503bbdbd7a4918c1374033aef3fa5a93414f47507b",
+    "path": "terrain-sources/nrcan-hrdem-first-return.tif"
+  },
+  "surfaceFits": {
+    "103438390": {
+      "rawRelativePercentiles": [
+        7.563,
+        7.75,
+        8.307,
+        9.345,
+        11.051,
+        12.405
+      ],
+      "affineYFromXZ1": [
+        0.026175,
+        -0.008986,
+        9.919405
+      ],
+      "fitSamples": 513,
+      "rawCount": 607,
+      "residualMeters": 0.158
+    },
+    "634068958": {
+      "rawRelativePercentiles": [
+        10.487,
+        11.1,
+        12.457,
+        13.082,
+        13.585,
+        13.767
+      ],
+      "affineYFromXZ1": [
+        0.037289,
+        -0.022184,
+        10.723325
+      ],
+      "fitSamples": 759,
+      "rawCount": 1068,
+      "residualMeters": 0.211
+    },
+    "634068959": {
+      "rawRelativePercentiles": [
+        10.385,
+        11.517,
+        12.844,
+        13.565,
+        14.014,
+        14.148
+      ],
+      "affineYFromXZ1": [
+        0.029894,
+        -0.025793,
+        10.662906
+      ],
+      "fitSamples": 818,
+      "rawCount": 830,
+      "residualMeters": 0.186
+    },
+    "1119765002": {
+      "rawRelativePercentiles": [
+        -0.342,
+        0.428,
+        2.04,
+        8.163,
+        9.925,
+        11.562
+      ],
+      "affineYFromXZ1": [
+        -0.068736,
+        -0.004379,
+        13.628784
+      ],
+      "fitSamples": 323,
+      "rawCount": 327,
+      "residualMeters": 3.697
+    },
+    "1119765003": {
+      "rawRelativePercentiles": [
+        2.514,
+        3.806,
+        5.422,
+        7.308,
+        9.347,
+        10.295
+      ],
+      "affineYFromXZ1": [
+        0.152251,
+        0.331046,
+        17.751358
+      ],
+      "fitSamples": 298,
+      "rawCount": 353,
+      "residualMeters": 0.229
+    },
+    "1119765004": {
+      "rawRelativePercentiles": [
+        2.539,
+        3.906,
+        5.477,
+        6.609,
+        7.488,
+        7.917
+      ],
+      "affineYFromXZ1": [
+        0.077224,
+        -0.008109,
+        13.298025
+      ],
+      "fitSamples": 513,
+      "rawCount": 608,
+      "residualMeters": 0.203
+    },
+    "1119765005": {
+      "rawRelativePercentiles": [
+        5.846,
+        7.533,
+        8.541,
+        9.873,
+        10.703,
+        10.819
+      ],
+      "affineYFromXZ1": [
+        0.092361,
+        1.476365,
+        -15.439894
+      ],
+      "fitSamples": 32,
+      "rawCount": 36,
+      "residualMeters": 0.21
+    },
+    "1119765006": {
+      "rawRelativePercentiles": [
+        9.506,
+        9.659,
+        9.855,
+        10.259,
+        10.869,
+        11.504
+      ],
+      "affineYFromXZ1": [
+        0.014833,
+        -0.017392,
+        10.439049
+      ],
+      "fitSamples": 193,
+      "rawCount": 240,
+      "residualMeters": 0.202
+    },
+    "1119765007": {
+      "rawRelativePercentiles": [
+        11.86,
+        11.94,
+        11.997,
+        12.243,
+        12.782,
+        12.925
+      ],
+      "affineYFromXZ1": [
+        0.003488,
+        -0.002069,
+        12.249963
+      ],
+      "fitSamples": 433,
+      "rawCount": 497,
+      "residualMeters": 0.174
+    },
+    "1119765008": {
+      "rawRelativePercentiles": [
+        7.816,
+        8.052,
+        8.297,
+        8.534,
+        9.614,
+        9.762
+      ],
+      "affineYFromXZ1": [
+        -0.080336,
+        -0.101153,
+        16.195938
+      ],
+      "fitSamples": 17,
+      "rawCount": 19,
+      "residualMeters": 0.058
+    },
+    "1119765009": {
+      "rawRelativePercentiles": [
+        3.722,
+        5.063,
+        6.891,
+        8.392,
+        9.999,
+        10.267
+      ],
+      "affineYFromXZ1": [
+        -0.11031,
+        -0.31644,
+        28.583152
+      ],
+      "fitSamples": 98,
+      "rawCount": 162,
+      "residualMeters": 0.27
+    },
+    "1119765010": {
+      "rawRelativePercentiles": [
+        10.278,
+        11.154,
+        11.818,
+        12.535,
+        15.578,
+        17.85
+      ],
+      "affineYFromXZ1": [
+        0.017936,
+        -0.005043,
+        10.309527
+      ],
+      "fitSamples": 308,
+      "rawCount": 438,
+      "residualMeters": 0.175
+    },
+    "1119765011": {
+      "rawRelativePercentiles": [
+        9.301,
+        10.508,
+        11.715,
+        12.936,
+        13.992,
+        15.605
+      ],
+      "affineYFromXZ1": [
+        -0.107961,
+        0.009773,
+        25.931706
+      ],
+      "fitSamples": 439,
+      "rawCount": 500,
+      "residualMeters": 0.861
+    },
+    "1119765012": {
+      "rawRelativePercentiles": [
+        9.382,
+        10.134,
+        10.797,
+        11.595,
+        12.685,
+        13.057
+      ],
+      "affineYFromXZ1": [
+        -0.062332,
+        -0.363993,
+        29.536912
+      ],
+      "fitSamples": 138,
+      "rawCount": 145,
+      "residualMeters": 0.129
+    },
+    "1119765013": {
+      "rawRelativePercentiles": [
+        9.035,
+        10.376,
+        11.618,
+        12.858,
+        13.642,
+        13.81
+      ],
+      "affineYFromXZ1": [
+        -0.134642,
+        -0.175634,
+        31.990447
+      ],
+      "fitSamples": 170,
+      "rawCount": 170,
+      "residualMeters": 0.088
+    },
+    "1119765014": {
+      "rawRelativePercentiles": [
+        9.41,
+        10.437,
+        11.785,
+        13.138,
+        14.036,
+        14.196
+      ],
+      "affineYFromXZ1": [
+        -0.1703,
+        0.043889,
+        35.056582
+      ],
+      "fitSamples": 225,
+      "rawCount": 234,
+      "residualMeters": 0.099
+    },
+    "1119765015": {
+      "rawRelativePercentiles": [
+        8.201,
+        9.218,
+        10.365,
+        11.923,
+        13.906,
+        18.663
+      ],
+      "affineYFromXZ1": [
+        -0.212991,
+        0.142929,
+        42.489125
+      ],
+      "fitSamples": 156,
+      "rawCount": 182,
+      "residualMeters": 0.085
+    },
+    "1119765016": {
+      "rawRelativePercentiles": [
+        3.128,
+        4.768,
+        5.477,
+        6.71,
+        11.992,
+        16.287
+      ],
+      "affineYFromXZ1": [
+        -0.09581,
+        0.370454,
+        38.153319
+      ],
+      "fitSamples": 21,
+      "rawCount": 32,
+      "residualMeters": 0.23
+    },
+    "1119765017": {
+      "rawRelativePercentiles": [
+        13.308,
+        15.503,
+        17.795,
+        19.914,
+        22.721,
+        24.057
+      ],
+      "affineYFromXZ1": [
+        0.199937,
+        0.109391,
+        3.210653
+      ],
+      "fitSamples": 92,
+      "rawCount": 146,
+      "residualMeters": 0.236
+    }
+  }
+}

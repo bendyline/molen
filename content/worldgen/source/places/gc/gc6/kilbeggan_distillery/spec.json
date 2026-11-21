@@ -1,0 +1,758 @@
+{
+  "planId": "kilbeggan_distillery",
+  "id": "kilbeggan_distillery",
+  "assetId": "molen.worldgen.structure.kilbeggan_distillery",
+  "title": "Kilbeggan Distillery",
+  "wikidataId": "Q1867525",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -7.50293,
+    "latitude": 53.369457
+  },
+  "size": [
+    103.63357543945312,
+    27.881330966949463,
+    77.80255126953125
+  ],
+  "actualBounds": {
+    "min": [
+      -52.90922164916992,
+      -1.2163300514221191,
+      -44.144676208496094
+    ],
+    "max": [
+      50.7243537902832,
+      26.665000915527344,
+      33.657875061035156
+    ]
+  },
+  "visualBrief": "Historic Kilbeggan Distillery with pale roughcast, slate ranges, open court, a red-brick chimney and the restored timber waterwheel on the River Brosna.",
+  "nativeAxes": {
+    "x": "across the distillery toward the Brosna",
+    "y": "up",
+    "z": "toward Bridge Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "kilbeggan-distillery-wp",
+      "url": "https://qualla.com/kilbeggan-distillery/"
+    }
+  ],
+  "referenceInputHash": "sha256:36f34277232de2114f169c3f8954a13014e87402b0893244f4a42eaa74b8cb10",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gc6/kilbeggan_distillery/models/kilbeggan-distillery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gc6/kilbeggan_distillery/models/kilbeggan-distillery-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.53,
+        "metallic": 0.04
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.04
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.04
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.53,
+            "metallic": 0.04
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_ashlar",
+    "slate",
+    "brick_flemish",
+    "storefront",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.72,
+    "focus": {
+      "center": [
+        -3.5,
+        5.5,
+        -2.5
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ireland’s National Inventory documents the three-storey courtyard ranges, white roughcast, natural slate, the street carriage arch and brick chimney. The county field survey locates the older mill on the east side of the complex. The surviving undershot wheel is 4.7 m in diameter and 3.4 m wide.",
+    "anchor": [
+      -7.50293,
+      53.369457
+    ],
+    "heading": -0.325,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -7.50293,
+        53.369457
+      ],
+      "modelHeight": 0,
+      "basis": "The original field at the historic distillery yard and model anchor."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.88819,
+          -41.76451
+        ],
+        [
+          33.60813,
+          -44.07452
+        ],
+        [
+          33.49191,
+          -41.2161
+        ],
+        [
+          37.66951,
+          -41.13188
+        ],
+        [
+          42.43351,
+          -41.0338
+        ],
+        [
+          39.65887,
+          -28.63393
+        ],
+        [
+          38.683,
+          -9.4396
+        ],
+        [
+          39.76082,
+          9.56785
+        ],
+        [
+          39.54461,
+          17.01775
+        ],
+        [
+          35.45647,
+          17.0326
+        ],
+        [
+          36.7706,
+          25.98732
+        ],
+        [
+          30.51976,
+          26.53119
+        ],
+        [
+          30.54629,
+          27.64995
+        ],
+        [
+          30.59511,
+          29.31331
+        ],
+        [
+          25.8674,
+          29.61414
+        ],
+        [
+          25.86879,
+          28.47422
+        ],
+        [
+          6.86481,
+          30.10833
+        ],
+        [
+          -5.28824,
+          31.14908
+        ],
+        [
+          -9.74862,
+          31.53605
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -9.88819,
+            -41.76451
+          ],
+          [
+            33.60813,
+            -44.07452
+          ],
+          [
+            33.49191,
+            -41.2161
+          ],
+          [
+            37.66951,
+            -41.13188
+          ],
+          [
+            42.43351,
+            -41.0338
+          ],
+          [
+            39.65887,
+            -28.63393
+          ],
+          [
+            38.683,
+            -9.4396
+          ],
+          [
+            39.76082,
+            9.56785
+          ],
+          [
+            39.54461,
+            17.01775
+          ],
+          [
+            35.45647,
+            17.0326
+          ],
+          [
+            36.7706,
+            25.98732
+          ],
+          [
+            30.51976,
+            26.53119
+          ],
+          [
+            30.54629,
+            27.64995
+          ],
+          [
+            30.59511,
+            29.31331
+          ],
+          [
+            25.8674,
+            29.61414
+          ],
+          [
+            25.86879,
+            28.47422
+          ],
+          [
+            6.86481,
+            30.10833
+          ],
+          [
+            -5.28824,
+            31.14908
+          ],
+          [
+            -9.74862,
+            31.53605
+          ]
+        ],
+        [
+          [
+            -13.56225,
+            32.38641
+          ],
+          [
+            -24.68683,
+            32.88092
+          ],
+          [
+            -26.74378,
+            32.97491
+          ],
+          [
+            -40.73009,
+            33.5879
+          ],
+          [
+            -44.77108,
+            20.70053
+          ],
+          [
+            -38.63586,
+            18.58629
+          ],
+          [
+            -37.10496,
+            23.1921
+          ],
+          [
+            -32.39673,
+            23.06229
+          ],
+          [
+            -32.28865,
+            14.70907
+          ],
+          [
+            -32.18555,
+            -23.82022
+          ],
+          [
+            -52.08881,
+            -22.8581
+          ],
+          [
+            -52.83811,
+            -34.04709
+          ],
+          [
+            -32.16333,
+            -34.52913
+          ],
+          [
+            -32.14416,
+            -40.87891
+          ],
+          [
+            -12.19928,
+            -40.92706
+          ]
+        ],
+        [
+          [
+            -46.66371,
+            9.77931
+          ],
+          [
+            -51.88262,
+            -8.72558
+          ],
+          [
+            -40.76474,
+            -11.86089
+          ],
+          [
+            -35.54584,
+            6.644
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "The surveyed east and west distillery ranges and the separate western store."
+    },
+    "featureIds": [
+      "way/472350093",
+      "way/472422293",
+      "way/1535202430",
+      "way/1535202431",
+      "way/686305016",
+      "way/472350089",
+      "way/472350091",
+      "node/4665596125",
+      "node/4666343048",
+      "node/13988053027",
+      "node/13988053028"
+    ],
+    "source": "https://www.openstreetmap.org/way/472350093",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f4ebc1f75421836f7b68b4ab911de047431305a8078b64377b33c4008bcec266",
+    "notes": "Ireland’s National Inventory documents the three-storey courtyard ranges, white roughcast, natural slate, the street carriage arch and brick chimney. The county field survey locates the older mill on the east side of the complex. The surviving undershot wheel is 4.7 m in diameter and 3.4 m wide."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.storefront",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped range boundaries and wheel centre follow native survey features. The internal courtyard footprint, individual roof divisions, chimney position and height, and façade bays are estimated.",
+    "The open elevation field describes the site and surrounding gradients at its available sampling resolution. Narrow race walls, water level and local retaining structures are approximate. The model represents the north-bank historic museum ranges, with exhibits and the far-side warehouse annexes outside its scope."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "kilbeggan-distillery-skyline",
+      "position": [
+        151,
+        111,
+        154
+      ],
+      "lookAt": [
+        -3.5,
+        5.5,
+        -2.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kilbeggan-distillery-district",
+      "position": [
+        151,
+        111,
+        154
+      ],
+      "lookAt": [
+        -3.5,
+        5.5,
+        -2.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kilbeggan-distillery-street",
+      "position": [
+        151,
+        111,
+        154
+      ],
+      "lookAt": [
+        -3.5,
+        5.5,
+        -2.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kilbeggan-distillery-closeup",
+      "position": [
+        151,
+        111,
+        154
+      ],
+      "lookAt": [
+        -3.5,
+        5.5,
+        -2.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "distillery-and-riverside-stack",
+      "position": [
+        143,
+        72,
+        119
+      ],
+      "lookAt": [
+        -7,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "bridge-street-and-carriage-arch",
+      "position": [
+        26,
+        14,
+        82
+      ],
+      "lookAt": [
+        4,
+        4,
+        25
+      ]
+    },
+    {
+      "name": "undershot-wheel-and-tailrace",
+      "position": [
+        66,
+        12,
+        21
+      ],
+      "lookAt": [
+        37.4,
+        1.8,
+        10
+      ]
+    },
+    {
+      "name": "open-court-and-slate-ranges",
+      "position": [
+        39,
+        73,
+        41
+      ],
+      "lookAt": [
+        -6,
+        3,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7957,
+    "vertices": 23871,
+    "materials": 7,
+    "bytes": 1212380,
+    "sha256": "sha256:c35f3ebc8e1e9475f09a49a69da4758efbe416cac798ef34f345cfade16f27d7"
+  }
+}

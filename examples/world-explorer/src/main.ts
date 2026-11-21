@@ -28,6 +28,7 @@ import {
   createEarthAdmissionGovernor,
   createEarthFleet,
   createEarthFog,
+  createEarthRoadAlignments,
   createEarthRoadSigns,
   createEarthSiteGrading,
   createEarthSky,
@@ -564,10 +565,12 @@ async function loadWorldgen(options: {
   buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
+  const structureProposal = params.get('proposal')?.trim();
   // Baked building materials persist across visits; ?materialCache=0 bakes every time.
   const materialStore =
     params.get('materialCache') !== '0' ? createIndexedDbMaterialStore() : undefined;
   const worldgen = createEarthWorldgen({
+    ...(structureProposal ? { structureProposal } : {}),
     buildingInfill:
       params.get('buildingInfill') === '0'
         ? false
@@ -844,6 +847,10 @@ async function main(): Promise<void> {
   const start = selectedStart();
   const cameraAngles = selectedCameraAngles();
   const params = new URLSearchParams(location.search);
+  if (params.get('proposal')?.trim()) {
+    for (const title of document.querySelectorAll('#hud-titlebar h1, #mobile-title'))
+      title.textContent = 'World explorer · Proposal view';
+  }
   // ?aerialOrtho=<meters> draws a north-up orthographic frame that many meters tall, centered
   // under the camera, for comparison with orthophotos (scripts/aerial-color). Streaming and LOD
   // still follow the ordinary pose, so pair it with ?pitch=-1.5 and an altitude near the height.
@@ -1024,6 +1031,7 @@ async function main(): Promise<void> {
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
+  const roadAlignments = createEarthRoadAlignments(content.roadAlignments, loaded.descriptor);
   // The package adapters pre-multiply the projected frame by cos(center latitude) so world XZ
   // is metric; camera positions, the status readout, and the region atlas use the same factor.
   const space = loaded.descriptor.coordinateSpace;
@@ -1063,7 +1071,12 @@ async function main(): Promise<void> {
             }
           : {}),
         // Without the landmarks an override clears, and with the models it places.
-        content: explorerOverrides.worldgenContent(content.worldgen),
+        content: explorerOverrides.worldgenContent({
+          ...content.worldgen,
+          structures:
+            roadAlignments?.withStructures(content.worldgen.structures) ??
+            content.worldgen.structures,
+        }),
         assets: content.assets,
         overrideAssets: explorerOverrides.assets(content.assets),
         metersPerUnit,
@@ -1142,6 +1155,7 @@ async function main(): Promise<void> {
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
+        ...(roadAlignments ? { transformFeatures: roadAlignments.transformFeatures } : {}),
         admission: viewer.renderer.admission,
         // Map tiles decode in a worker: on the main thread a town tile took 10-18 ms of a frame.
         ...(useWorker && params.get('semanticWorker') !== '0'

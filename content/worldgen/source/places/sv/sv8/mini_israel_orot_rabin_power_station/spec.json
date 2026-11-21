@@ -1,0 +1,293 @@
+{
+  "id": "mini_israel_orot_rabin_power_station",
+  "planId": "mini_israel_orot_rabin_power_station",
+  "collectionId": "mini_israel",
+  "assetId": "molen.worldgen.structure.mini_israel_orot_rabin_power_station",
+  "title": "Mini Israel · Orot Rabin Power Station exhibit",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.968412838318486,
+    "latitude": 31.84258931290298
+  },
+  "nativeAxes": "+Y is up. +X follows the coal retaining wall from the chimney toward the tanks. +Z faces the visitor apron.",
+  "visualBrief": "A tall tapering stack, twin cross-braced boiler houses, zinc ducts, a blue-striped service block, the inclined coal conveyor, yellow equipment, a long coal wall and the yellow-and-blue miniature entrance. The visitor-side display includes the 2003 bilingual placard and numbered badge. Four November 2011 panorama views constrain the chimney height, twin boiler roofs and slanted canal-side apron edge.",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_orot_rabin_power_station/models/power-station-model.mjs",
+    "export": "buildPowerStation"
+  },
+  "sourceFacts": {
+    "parkCandidateId": "mini_israel",
+    "exhibitNumber": 49,
+    "subject": "Orot Rabin Power Station"
+  },
+  "referencePages": [
+    "https://jr.co.il/pictures/israel/mini-israel/index2.htm",
+    "https://virtualglobetrotting.com/map/mini-israel-power-plant/view/google/"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_orot_rabin_power_station/models/power-station-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      },
+      "apron": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      }
+    },
+    "errorMeters": 0.15,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.06
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.02
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.006
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 0.46,
+    "groundY": 0,
+    "focus": {
+      "center": [
+        0,
+        1.3,
+        0
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "stack-boilers-and-coal-wall",
+      "position": [
+        -6.7,
+        4.3,
+        9.8
+      ],
+      "lookAt": [
+        -0.28,
+        2.25,
+        0
+      ],
+      "fov": 45
+    },
+    {
+      "name": "overhead-equipment-and-tanks",
+      "position": [
+        6.8,
+        8.4,
+        2.9
+      ],
+      "lookAt": [
+        0,
+        0.82,
+        -0.22
+      ],
+      "fov": 47
+    },
+    {
+      "name": "visitor-apron-and-bracing",
+      "position": [
+        2.65,
+        1.2,
+        4.4
+      ],
+      "lookAt": [
+        0.15,
+        0.87,
+        0.98
+      ],
+      "fov": 58
+    },
+    {
+      "name": "bilingual-exhibit-sign",
+      "position": [
+        -1.42,
+        0.9,
+        3.75
+      ],
+      "lookAt": [
+        -1.5,
+        0.69,
+        2.54
+      ],
+      "fov": 34
+    }
+  ],
+  "limitations": [
+    "The 2003 gallery and the archived panorama establish the major shapes, colors and relative arrangement. Dimensions, small equipment, frame spacing and paving details are estimates. The bilingual exhibit placard follows the 2003 photograph, with estimated post dimensions and position beside the miniature parking area.",
+    "The four November 2011 panoramas place the miniature beside the visitor plaza at an apron bearing of 262.1° true. The fitted apron clears the nearest PMTiles path by 1.21 m. Its retaining edge reaches the rendered canal surface. In the dated view the water mask follows the two dry apron outlines, with the rest of the canal and the path preserved. The exact capture day, original platform elevation and present exhibit condition remain unresolved.",
+    "The clearest archival view measures about 3.97 m from chimney foot to cap at the triangulated range. The model’s cap now sits 4.14 m above the model origin. The dates come from camera metadata. The archive listing was published in May 2012.",
+    "Two archive views put the tops of the main boiler roofs near 2.1 m above the modeled apron. The projection uses the corrected chimney scale and the approximate authored boiler plan.",
+    "The enclosed conveyor runs from the upper boiler gallery to the small quay headhouse. The near panorama and the farther reverse view constrain its slope. Its support spacing and connection geometry are approximate. The chamfered plinth follows the near view of the concrete canal rim."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -3.9100000858306885,
+      -1.350000023841858,
+      -2.625
+    ],
+    "max": [
+      3.9100000858306885,
+      4.139999866485596,
+      2.6449999809265137
+    ]
+  },
+  "size": [
+    7.820000171661377,
+    5.489999890327454,
+    5.269999980926514
+  ],
+  "mesh": {
+    "triangles": 15048,
+    "vertices": 34212,
+    "materials": 4,
+    "bytes": 1415068,
+    "sha256": "sha256:4fe6eb120307f9f408542bf53f7ab99cca43a6241e2e7dc00ba77c6770632e60"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "validFrom": "2011-11-01",
+    "validUntil": "2011-12-01"
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "anchor": [
+      34.968412838318486,
+      31.84258931290298
+    ],
+    "heading": -1.4326013343929995,
+    "bounds": [
+      34.9683794976097,
+      31.84255142844994,
+      34.968446027819596,
+      31.84262358241869
+    ],
+    "minLevel": 16,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "sea-level",
+    "elevationMeters": 173.3094106865762,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The apron includes a retaining foundation to close the bank against the modeled canal. The sampled terrain and visitor roads retain their original geometry.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6eb4c69d29f6af2ca1cb415e01aa75fedbe698e0698f4a68890fd2a4b21c66b0",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Protomaps basemap.",
+    "source": "https://virtualglobetrotting.com/map/mini-israel-power-plant/view/google/",
+    "notes": "The four November 2011 panoramas place the miniature beside the visitor plaza at an apron bearing of 262.1° true. The fitted apron clears the nearest PMTiles path by 1.21 m. Its retaining edge reaches the rendered canal surface. In the dated view the water mask follows the two dry apron outlines, with the rest of the canal and the path preserved. The exact capture day, original platform elevation and present exhibit condition remain unresolved."
+  },
+  "reviewStatus": "Dated viewer placement from the November 2011 panoramas."
+}

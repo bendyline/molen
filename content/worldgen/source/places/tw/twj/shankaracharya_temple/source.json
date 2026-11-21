@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shankaracharya_temple",
+  "kind": "static-structure",
+  "title": "Shankaracharya Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shankaracharya_temple",
+        "output": "assets/places/tw/twj/shankaracharya_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:94d8121497222891ee84ff0e893714309d05607bead80887a355943038ecc3bc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shankaracharya-temple",
+        "path": "models/generate-shankaracharya-temple.mjs"
+      },
+      {
+        "id": "shankaracharya-temple-model",
+        "path": "models/shankaracharya-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/named-shrine-precinct-and-roof.json",
+      "reference-rights/archaeological-evidence.json",
+      "reference-rights/commons-burke-first-publication.json",
+      "reference-rights/cole-1869-temple-plan-and-section.jpg",
+      "reference-rights/cole-1869-imprint.jpg",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-23196-13081.png",
+      "terrain-sources/terrarium-15-23196-13080.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

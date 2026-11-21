@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.queensland_brewery_company_building",
+  "kind": "static-structure",
+  "title": "Queensland Brewery Company Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.queensland_brewery_company_building",
+        "output": "assets/places/r7/r7h/queensland_brewery_company_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6085d0b1296fb572f1c8cd5f6da1d9e0c488628408cc4cffc0ea36042c9c602e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-queensland-brewery-company-building",
+        "path": "models/generate-queensland-brewery-company-building.mjs"
+      },
+      {
+        "id": "queensland-brewery-company-building-model",
+        "path": "models/queensland-brewery-company-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/501-ann-street-envelope.json",
+      "reference-rights/architectural-records.json",
+      "reference-rights/state-library-1942-archive-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/queensland-government-dem-fortitude-valley.tif",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -441,7 +441,7 @@ export const controls = {
   ],
   plantFeatureId: 35184617155299,
   gate: {
-    origin: [-879, -2505],
+    origin: [-799, -2505],
     span: 162,
     bays: 9,
     crest: 39,
@@ -462,7 +462,7 @@ export const controls = {
       [408, -95, 83, -76],
       [470, -103, 75, -76],
     ],
-    skew: -0.07,
+    skew: -0.136,
   },
   scope:
     'Mangla’s curved rock-fill embankment and crest road, the separate western main spillway with chute and stepped stilling basin, and the mapped lower powerhouse and outlet works.',

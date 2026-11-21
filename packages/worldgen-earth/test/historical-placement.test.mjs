@@ -73,6 +73,27 @@ describe('historical source registration', () => {
       authoredHistoricalAppearance({ ...spec, geographicProposal: { status: 'preview-proposal' } }),
     ).toBeUndefined();
   });
+  it('binds a dated capture to a BCE appearance interval', () => {
+    const appearance = authoredHistoricalAppearance({
+      ...spec,
+      appearance: { ...spec.appearance, validFrom: '-000580-01-01', validUntil: '-000560-01-01' },
+    });
+    const placement = { id: 'archive.temple', status: 'historical', appearance };
+    const report = {
+      viewingDate: '-000574-01-01',
+      placementHash: 'current',
+      frames: [{ state: { mode: 'geographic-native-terrain', placementId: placement.id } }],
+      eviction: { disposed: true, liveModelGeometries: 0 },
+    };
+    expect(hasHistoricalPlacementCapture(placement, report, 'current')).toBe(true);
+    expect(
+      hasHistoricalPlacementCapture(
+        placement,
+        { ...report, viewingDate: '-000560-01-01' },
+        'current',
+      ),
+    ).toBe(false);
+  });
   it('rejects invalid intervals and a historical proposal without explicit default exclusion', () => {
     for (const appearance of [
       { ...spec.appearance, currentWorldEligible: true },

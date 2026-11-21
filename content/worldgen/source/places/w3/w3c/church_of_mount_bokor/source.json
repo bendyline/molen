@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_mount_bokor",
+  "kind": "static-structure",
+  "title": "Church of Mount Bokor",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_mount_bokor",
+        "output": "assets/places/w3/w3c/church_of_mount_bokor/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:353fd889c65bdf35545cf79617fbea4acc9deda7b07cd87a8c30a89b15768405"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-church-of-mount-bokor",
+        "path": "models/generate-church-of-mount-bokor.mjs"
+      },
+      {
+        "id": "church-of-mount-bokor-model",
+        "path": "models/church-of-mount-bokor-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/bokor-chapel-footprint.json",
+      "reference-rights/bokor-chapel-owner-facts.json",
+      "reference-rights/granger-2020-bokor-4-cc0-original.json",
+      "reference-rights/granger-2020-bokor-1-cc0-original.json",
+      "reference-rights/granger-2020-bokor-2-cc0-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-25852-15411.png",
+      "terrain-sources/terrarium-15-25852-15410.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

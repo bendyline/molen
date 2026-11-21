@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.summer_palace_water_village_bridge",
+  "kind": "static-structure",
+  "title": "Summer Palace · Water Village Stone Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "layout.json",
+      "scene.json",
+      "reference-observations.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.summer_palace_water_village_bridge",
+        "output": "assets/places/wx/wx4/summer_palace_water_village_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a3ff322d8904a955bd45e8fdb68dbde7ea242dfb2536f3bbf9fdeefe846bb642"
+      }
+    ],
+    "generators": [
+      {
+        "id": "summer_palace_water_village_bridge",
+        "path": "models/generate-water-village-bridge.mjs"
+      },
+      {
+        "id": "water-village-bridge-mesh",
+        "path": "models/water-village-bridge-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "placement-report.json",
+      "QA-REVIEW.md",
+      "preview.png",
+      "site-preview.webp"
+    ]
+  }
+}

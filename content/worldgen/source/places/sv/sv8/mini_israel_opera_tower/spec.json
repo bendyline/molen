@@ -1,0 +1,268 @@
+{
+  "id": "mini_israel_opera_tower",
+  "planId": "mini_israel",
+  "title": "Mini Israel · Opera Tower exhibit",
+  "assetId": "molen.worldgen.structure.mini_israel_opera_tower",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "wikidataId": "Q456800",
+  "referenceCoordinate": {
+    "longitude": 34.9681238,
+    "latitude": 31.84233475
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_opera_tower/models/opera-tower-exhibit-model.mjs",
+    "export": "buildMaster"
+  },
+  "visualBrief": "The Opera Tower miniature has two unequal stepped wings around a dark recessed wall. Pink balcony edges, clear pointed openings in the podium arcade and an inset terrace with a glass roof pyramid identify the original exhibit.",
+  "nativeAxes": "+Y is up. +X goes toward the shorter wing. +Z faces the photographed visitor approach.",
+  "referencePages": [
+    "https://image5.slideserve.com/9466890/tel-aviv-hotel-and-shopping-center-at-the-former-l.jpg",
+    "https://jr.co.il/pictures/israel/mini-israel/mi024.htm",
+    "https://www.xplorer.co.il/magazine/articles/9/mini_israel",
+    "https://virtualglobetrotting.com/map/mini-israel-tel-aviv/view/google/"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Model height, glazing modules, atrium depth and platform dimensions are estimates from visitor photographs. The arcade and roof terrace follow the miniature at park scale.",
+    "The May 2012 photographs establish the display and visitor-facing side. The fitted terrace conflicts with the neighboring Dizengoff podium estimate. Their shared boundary and the present-day exhibit condition remain unverified."
+  ],
+  "qaCameras": [
+    {
+      "name": "stepped-street-front",
+      "position": [
+        -3.94,
+        3.28,
+        7.55
+      ],
+      "lookAt": [
+        -0.45,
+        2.03,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "pointed-arcade",
+      "position": [
+        -0.38,
+        1.1,
+        3.98
+      ],
+      "lookAt": [
+        -0.44,
+        0.53,
+        1.26
+      ],
+      "fov": 46
+    },
+    {
+      "name": "terrace-pyramid-and-basin",
+      "position": [
+        -2.9,
+        2.85,
+        3.85
+      ],
+      "lookAt": [
+        -0.79,
+        1.02,
+        0.84
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-and-rising-roof",
+      "position": [
+        2.8,
+        5.6,
+        -5.35
+      ],
+      "lookAt": [
+        -0.4,
+        2.16,
+        -0.51
+      ],
+      "fov": 48
+    }
+  ],
+  "materialMethod": "Four shared Molen materials cover the cast concrete, white limestone podium, blue and dark window panels and painted trims.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.27,
+    "focus": {
+      "center": [
+        -0.35,
+        0,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_opera_tower/models/opera-tower-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "shell": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_limestone"
+      },
+      "windows": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 0.12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.046
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.018
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.006
+      }
+    }
+  },
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -2.490000009536743,
+      -0.44999998807907104,
+      -1.5399999618530273
+    ],
+    "max": [
+      1.590000033378601,
+      4.364999771118164,
+      1.7519999742507935
+    ]
+  },
+  "size": [
+    4.080000042915344,
+    4.814999759197235,
+    3.291999936103821
+  ],
+  "mesh": {
+    "triangles": 10340,
+    "vertices": 20684,
+    "materials": 4,
+    "bytes": 871628,
+    "sha256": "sha256:a2ce957f47dbeef725d8a1d22e6f325965e6a63afc427a52ff873c4dd38bc1b4"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "geographicProposal": {
+    "status": "draft-proposal",
+    "source": "https://build.protomaps.com/20261115.pmtiles",
+    "anchor": [
+      34.9681238,
+      31.84233475
+    ],
+    "heading": 0.111,
+    "bounds": [
+      34.96809582738601,
+      31.842316737748106,
+      34.968142548321254,
+      31.842350081099827
+    ],
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 169.64,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:81130ae4fcd19fad43ea0c94325ba364433ad26019615afe5ff9db6ac2fe077a",
+    "notes": "The 2012 panorama locates the Opera Tower roof and shows the visitor-facing side. The reconstructed pad clears mapped buildings and water, and it intersects the approximate neighboring Dizengoff Center podium. The platform boundary and current display remain unresolved.",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_track_and_field_stadium",
+  "kind": "static-structure",
+  "title": "Mini Israel · Track-and-field stadium exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_track_and_field_stadium",
+        "output": "assets/places/sv/sv8/mini_israel_track_and_field_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:429c02cee5f4c82de6d929fe6dd9ae527d5c092eac4efb4b6ffda6ddb219a141"
+      }
+    ],
+    "generators": [
+      {
+        "id": "track-exhibit-model",
+        "path": "models/track-exhibit-model.mjs"
+      },
+      {
+        "id": "track-exhibit-master",
+        "path": "models/generate-track-exhibit.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "map-frame.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "exhibit-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json"
+    ]
+  }
+}

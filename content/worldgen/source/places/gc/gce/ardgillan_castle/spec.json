@@ -1,0 +1,1119 @@
+{
+  "planId": "ardgillan_castle",
+  "id": "ardgillan_castle",
+  "assetId": "molen.worldgen.structure.ardgillan_castle",
+  "title": "Ardgillan Castle",
+  "category": "castle-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.160215755172415,
+    "latitude": 53.58665625517241
+  },
+  "size": [
+    219.8865966796875,
+    18.12801504135132,
+    58.98690128326416
+  ],
+  "actualBounds": {
+    "min": [
+      -90.22160339355469,
+      -2.5180153846740723,
+      -45.73630142211914
+    ],
+    "max": [
+      129.6649932861328,
+      15.609999656677246,
+      13.25059986114502
+    ]
+  },
+  "visualBrief": "Ardgillan Castle’s battlemented Gothic fronts and round towers, open service courts and Victorian conservatory with a domed plant house.",
+  "nativeAxes": {
+    "x": "west along the castle front",
+    "y": "up",
+    "z": "north downslope toward the Irish Sea"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:North_side_of_Ardgillan_Castle,_Balbriggan,_County_Dublin,_Ireland_on_a_September_evening_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:South_side_of_Ardgillan_Castle,_Balbriggan,_County_Dublin,_Ireland_on_a_September_evening_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ardgillan_Castle_Greenhouse_Observatory.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ardgillan-castle-wp",
+      "url": "https://qualla.com/ardgillan-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:f058c024ba5ea9d8f79292d42c97e26a113deec0e42136c8dbd5c7a60f799fbf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gce/ardgillan_castle/models/ardgillan-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gce/ardgillan_castle/models/ardgillan-castle-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.98,
+    "surfaces": {
+      "render": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      },
+      "glasshouse": {
+        "slot": "window",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.33,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.53
+        ],
+        "doubleSided": true
+      },
+      "doors": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.49,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "glasshouse": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.33,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "glasshouse": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.33,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "render": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "glasshouse": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.33,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          },
+          "doors": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.2,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original coastal escarpment elevation in the exact mapped frame for the castellated house and separate rose-garden conservatory.",
+    "anchor": [
+      -6.160215755172415,
+      53.58665625517241
+    ],
+    "heading": 2.9913495344387813,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.160233538198743,
+        53.58670055487017
+      ],
+      "modelHeight": 0,
+      "basis": "Original northward terrace ground beneath the main castle approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          27.7513,
+          -9.3638
+        ],
+        [
+          28.2048,
+          -10.2093
+        ],
+        [
+          28.9284,
+          -10.8593
+        ],
+        [
+          29.8245,
+          -11.2089
+        ],
+        [
+          30.782,
+          -11.2412
+        ],
+        [
+          31.698,
+          -10.9296
+        ],
+        [
+          32.4564,
+          -10.3351
+        ],
+        [
+          32.9604,
+          -9.5219
+        ],
+        [
+          33.1576,
+          -8.5723
+        ],
+        [
+          33.0198,
+          -7.6282
+        ],
+        [
+          32.5615,
+          -6.7707
+        ],
+        [
+          31.8427,
+          -6.1327
+        ],
+        [
+          30.9483,
+          -5.7721
+        ],
+        [
+          29.9908,
+          -5.7398
+        ],
+        [
+          29.0699,
+          -6.0395
+        ],
+        [
+          28.3181,
+          -6.6349
+        ],
+        [
+          27.832,
+          -7.4621
+        ],
+        [
+          28.1535,
+          -0.3501
+        ],
+        [
+          21.7407,
+          0.0239
+        ],
+        [
+          21.8426,
+          1.3596
+        ],
+        [
+          13.291,
+          1.821
+        ],
+        [
+          13.2395,
+          0.4214
+        ],
+        [
+          8.9522,
+          0.6201
+        ],
+        [
+          9.007,
+          2.0417
+        ],
+        [
+          8.6995,
+          2.4823
+        ],
+        [
+          8.5337,
+          2.8001
+        ],
+        [
+          8.2408,
+          3.2047
+        ],
+        [
+          7.91,
+          3.5363
+        ],
+        [
+          7.0745,
+          3.933
+        ],
+        [
+          6.2182,
+          3.9275
+        ],
+        [
+          5.5065,
+          3.6412
+        ],
+        [
+          4.8773,
+          3.0609
+        ],
+        [
+          4.4126,
+          2.2868
+        ],
+        [
+          4.0717,
+          0.8298
+        ],
+        [
+          -1.663,
+          1.18
+        ],
+        [
+          -1.6152,
+          2.4225
+        ],
+        [
+          -16.2394,
+          3.3416
+        ],
+        [
+          -16.5444,
+          -0.3501
+        ],
+        [
+          -18.9334,
+          -0.3262
+        ],
+        [
+          -20.2301,
+          -1.7399
+        ],
+        [
+          -20.3311,
+          -3.3347
+        ],
+        [
+          -19.4875,
+          -4.8697
+        ],
+        [
+          -16.6133,
+          -4.9558
+        ],
+        [
+          -15.7174,
+          -4.247
+        ],
+        [
+          -16.1927,
+          -11.4482
+        ],
+        [
+          -18.2039,
+          -11.3127
+        ],
+        [
+          -21.0483,
+          -11.1185
+        ],
+        [
+          -21.3688,
+          -14.5602
+        ],
+        [
+          -40.0128,
+          -13.573
+        ],
+        [
+          -40.4853,
+          -20.9322
+        ],
+        [
+          -44.7283,
+          -20.6615
+        ],
+        [
+          -48.9778,
+          -20.3897
+        ],
+        [
+          -88.3267,
+          -17.4165
+        ],
+        [
+          -89.0169,
+          -24.9342
+        ],
+        [
+          -84.3672,
+          -25.2553
+        ],
+        [
+          -84.2069,
+          -22.9602
+        ],
+        [
+          -56.753,
+          -24.9096
+        ],
+        [
+          -57.6646,
+          -37.7305
+        ],
+        [
+          -84.465,
+          -35.835
+        ],
+        [
+          -84.1497,
+          -31.368
+        ],
+        [
+          -89.4464,
+          -30.994
+        ],
+        [
+          -90.2216,
+          -40.7505
+        ],
+        [
+          -20.6215,
+          -45.7363
+        ],
+        [
+          -19.0127,
+          -23.057
+        ],
+        [
+          -16.9411,
+          -22.0871
+        ],
+        [
+          -13.8587,
+          -22.4749
+        ],
+        [
+          -14.03,
+          -23.5185
+        ],
+        [
+          3.7068,
+          -25.1115
+        ],
+        [
+          4.4012,
+          -18.4501
+        ],
+        [
+          5.4203,
+          -18.6494
+        ],
+        [
+          5.751,
+          -13.3741
+        ],
+        [
+          15.3448,
+          -13.9707
+        ],
+        [
+          15.1213,
+          -17.2132
+        ],
+        [
+          24.2509,
+          -17.8297
+        ],
+        [
+          23.8353,
+          -25.2989
+        ],
+        [
+          49.3385,
+          -26.5364
+        ],
+        [
+          49.8043,
+          -19.2211
+        ],
+        [
+          27.205,
+          -17.9616
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            27.7513,
+            -9.3638
+          ],
+          [
+            28.2048,
+            -10.2093
+          ],
+          [
+            28.9284,
+            -10.8593
+          ],
+          [
+            29.8245,
+            -11.2089
+          ],
+          [
+            30.782,
+            -11.2412
+          ],
+          [
+            31.698,
+            -10.9296
+          ],
+          [
+            32.4564,
+            -10.3351
+          ],
+          [
+            32.9604,
+            -9.5219
+          ],
+          [
+            33.1576,
+            -8.5723
+          ],
+          [
+            33.0198,
+            -7.6282
+          ],
+          [
+            32.5615,
+            -6.7707
+          ],
+          [
+            31.8427,
+            -6.1327
+          ],
+          [
+            30.9483,
+            -5.7721
+          ],
+          [
+            29.9908,
+            -5.7398
+          ],
+          [
+            29.0699,
+            -6.0395
+          ],
+          [
+            28.3181,
+            -6.6349
+          ],
+          [
+            27.832,
+            -7.4621
+          ],
+          [
+            28.1535,
+            -0.3501
+          ],
+          [
+            21.7407,
+            0.0239
+          ],
+          [
+            21.8426,
+            1.3596
+          ],
+          [
+            13.291,
+            1.821
+          ],
+          [
+            13.2395,
+            0.4214
+          ],
+          [
+            8.9522,
+            0.6201
+          ],
+          [
+            9.007,
+            2.0417
+          ],
+          [
+            8.6995,
+            2.4823
+          ],
+          [
+            8.5337,
+            2.8001
+          ],
+          [
+            8.2408,
+            3.2047
+          ],
+          [
+            7.91,
+            3.5363
+          ],
+          [
+            7.0745,
+            3.933
+          ],
+          [
+            6.2182,
+            3.9275
+          ],
+          [
+            5.5065,
+            3.6412
+          ],
+          [
+            4.8773,
+            3.0609
+          ],
+          [
+            4.4126,
+            2.2868
+          ],
+          [
+            4.0717,
+            0.8298
+          ],
+          [
+            -1.663,
+            1.18
+          ],
+          [
+            -1.6152,
+            2.4225
+          ],
+          [
+            -16.2394,
+            3.3416
+          ],
+          [
+            -16.5444,
+            -0.3501
+          ],
+          [
+            -18.9334,
+            -0.3262
+          ],
+          [
+            -20.2301,
+            -1.7399
+          ],
+          [
+            -20.3311,
+            -3.3347
+          ],
+          [
+            -19.4875,
+            -4.8697
+          ],
+          [
+            -16.6133,
+            -4.9558
+          ],
+          [
+            -15.7174,
+            -4.247
+          ],
+          [
+            -16.1927,
+            -11.4482
+          ],
+          [
+            -18.2039,
+            -11.3127
+          ],
+          [
+            -21.0483,
+            -11.1185
+          ],
+          [
+            -21.3688,
+            -14.5602
+          ],
+          [
+            -40.0128,
+            -13.573
+          ],
+          [
+            -40.4853,
+            -20.9322
+          ],
+          [
+            -44.7283,
+            -20.6615
+          ],
+          [
+            -48.9778,
+            -20.3897
+          ],
+          [
+            -88.3267,
+            -17.4165
+          ],
+          [
+            -89.0169,
+            -24.9342
+          ],
+          [
+            -84.3672,
+            -25.2553
+          ],
+          [
+            -84.2069,
+            -22.9602
+          ],
+          [
+            -56.753,
+            -24.9096
+          ],
+          [
+            -57.6646,
+            -37.7305
+          ],
+          [
+            -84.465,
+            -35.835
+          ],
+          [
+            -84.1497,
+            -31.368
+          ],
+          [
+            -89.4464,
+            -30.994
+          ],
+          [
+            -90.2216,
+            -40.7505
+          ],
+          [
+            -20.6215,
+            -45.7363
+          ],
+          [
+            -19.0127,
+            -23.057
+          ],
+          [
+            -16.9411,
+            -22.0871
+          ],
+          [
+            -13.8587,
+            -22.4749
+          ],
+          [
+            -14.03,
+            -23.5185
+          ],
+          [
+            3.7068,
+            -25.1115
+          ],
+          [
+            4.4012,
+            -18.4501
+          ],
+          [
+            5.4203,
+            -18.6494
+          ],
+          [
+            5.751,
+            -13.3741
+          ],
+          [
+            15.3448,
+            -13.9707
+          ],
+          [
+            15.1213,
+            -17.2132
+          ],
+          [
+            24.2509,
+            -17.8297
+          ],
+          [
+            23.8353,
+            -25.2989
+          ],
+          [
+            49.3385,
+            -26.5364
+          ],
+          [
+            49.8043,
+            -19.2211
+          ],
+          [
+            27.205,
+            -17.9616
+          ]
+        ],
+        [
+          [
+            129.665,
+            7.7234
+          ],
+          [
+            128.6949,
+            1.7568
+          ],
+          [
+            127.6724,
+            -4.247
+          ],
+          [
+            115.0209,
+            -2.0841
+          ],
+          [
+            112.4141,
+            -4.4704
+          ],
+          [
+            108.2211,
+            -3.8694
+          ],
+          [
+            106.2892,
+            -0.6496
+          ],
+          [
+            98.4426,
+            0.6283
+          ],
+          [
+            98.689,
+            2.1672
+          ],
+          [
+            93.9327,
+            2.9323
+          ],
+          [
+            95.6083,
+            13.2506
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Two separately mapped standing structures, the house and Victorian conservatory."
+    },
+    "featureIds": [
+      "way/368742758",
+      "way/368742759",
+      "way/668551029",
+      "way/368767235"
+    ],
+    "source": "https://www.openstreetmap.org/relation/5479104",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:43eaaad224eb04a29c0cd7a55156b3f2912067a13739c8086837ff45e90cea7d",
+    "notes": "The castellation, stepped wings, round turrets and sash-window groupings follow the verified 2023 photo and the Irish architectural inventory. The greenhouse photo establishes the central curved glazed cupola, white mullions and pavilions, and the county documents the slope above the Irish Sea."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Standing country house and service ranges with the rose garden conservatory. The remote park outbuildings, garden planting, icehouse and interiors are outside the modeled footprint.",
+    "Roof heights, proportions of minor rear openings and the exact grey render finish are approximate. The 13-bay frontage and slate roof concealed by battlements follow the national inventory and photographs.",
+    "The conservatory uses its named footprint and the original photograph. Minor glazing divisions and the foundation bench are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. Geographic vectors © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "ardgillan-castle-skyline",
+      "position": [
+        111,
+        37,
+        116
+      ],
+      "lookAt": [
+        25,
+        6,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "ardgillan-castle-district",
+      "position": [
+        111,
+        37,
+        116
+      ],
+      "lookAt": [
+        25,
+        6,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "ardgillan-castle-street",
+      "position": [
+        111,
+        37,
+        116
+      ],
+      "lookAt": [
+        25,
+        6,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ardgillan-castle-closeup",
+      "position": [
+        111,
+        37,
+        116
+      ],
+      "lookAt": [
+        25,
+        6,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-battlements-and-sash-windows",
+      "position": [
+        -30,
+        9,
+        78
+      ],
+      "lookAt": [
+        4,
+        7,
+        -3
+      ]
+    },
+    {
+      "name": "rear-service-ranges-and-open-courts",
+      "position": [
+        -46,
+        28,
+        -86
+      ],
+      "lookAt": [
+        -31,
+        5,
+        -21
+      ]
+    },
+    {
+      "name": "victorian-conservatory-glazing-and-cupola",
+      "position": [
+        90,
+        13,
+        -30
+      ],
+      "lookAt": [
+        112,
+        4,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9039,
+    "vertices": 27117,
+    "materials": 7,
+    "bytes": 1145748,
+    "sha256": "sha256:67aa9b8400888e15af4821438754385a00a99918a87f9697bbfae7ec9716fee9"
+  }
+}

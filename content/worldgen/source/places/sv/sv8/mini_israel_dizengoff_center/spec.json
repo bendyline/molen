@@ -1,0 +1,278 @@
+{
+  "id": "mini_israel_dizengoff_center",
+  "planId": "mini_israel",
+  "collectionId": "mini_israel",
+  "wikidataId": "Q456800",
+  "title": "Mini Israel · Dizengoff Center exhibit",
+  "assetId": "molen.worldgen.structure.mini_israel_dizengoff_center",
+  "category": "museum-display",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 34.96815069286164,
+    "latitude": 31.842346826144567
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_dizengoff_center/models/dizengoff-exhibit-model.mjs",
+    "export": "buildMaster"
+  },
+  "visualBrief": "Two miniature towers above a pale shopping podium. The higher round gray tower has rows of projecting balconies. The rust tower has pale mullions and a broad blank center strip.",
+  "nativeAxes": "+Y up. +X follows the line from the round gray tower to the rust tower. +Z faces east toward the visitor side.",
+  "referencePages": [
+    "https://www.israel-in-photos.com/mini-israel.html",
+    "https://virtualglobetrotting.com/map/mini-israel-tel-aviv/view/google/",
+    "https://g-m-a.co.il/EN/mini-israel"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Four shared material graphs for podium limestone, concrete, glazing and painted metal. Facade color and balcony contrast use vertex tint.",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2012-05-17",
+    "validFrom": "2012-05-17",
+    "validUntil": "2012-05-18"
+  },
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "source": "https://virtualglobetrotting.com/map/mini-israel-tel-aviv/view/google/",
+    "anchor": [
+      34.96815069286164,
+      31.842346826144567
+    ],
+    "heading": 1.3984566925744926,
+    "minLevel": 16,
+    "elevationMode": "sea-level",
+    "elevationMeters": 170.2,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Terrarium samples bound footing depth and cap elevation across the podium.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fcc490ffce58a3716daff88107a08e5cfe9e101af779738e82314cd01ee6da70",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "orientationPolicy": "approximate-visualization",
+    "bounds": [
+      34.968127271930065,
+      31.84232656451201,
+      34.96818048873849,
+      31.84239690798957
+    ],
+    "notes": "Fits the two towers visible in the panorama published on 17 May 2012. Their relative position fixes the signed tower axis. The shared podium is an approximate exterior reconstruction. Both the exact historic platform and the current exhibit condition remain unverified."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.44,
+    "focus": {
+      "center": [
+        1.7,
+        0,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/sv8/mini_israel_dizengoff_center/models/dizengoff-exhibit-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone"
+      },
+      "windows": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "rails": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 0.17,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "rails": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.07
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "rails": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.023
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "windows": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "rails": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.009
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "pair-from-the-visitor-path",
+      "position": [
+        0.86,
+        3.05,
+        7.2
+      ],
+      "lookAt": [
+        1.6,
+        1.82,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "round-balconies-and-bracing",
+      "position": [
+        -2.6,
+        1.89,
+        4.1
+      ],
+      "lookAt": [
+        0.05,
+        2.3,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "rust-mullions-and-podium",
+      "position": [
+        6.12,
+        3.13,
+        3.85
+      ],
+      "lookAt": [
+        2.87,
+        1.87,
+        0.21
+      ],
+      "fov": 55
+    },
+    {
+      "name": "rooftop-and-linked-podium",
+      "position": [
+        4.9,
+        6.85,
+        -5
+      ],
+      "lookAt": [
+        1.65,
+        1.52,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "limitations": [
+    "Roof heights, facade finishes, window counts and podium contours use photo estimates. The nearby stepped tower and miniature street are independent exhibits.",
+    "The archive supplies the date and approximate outdoor position. Tree cover, camera registration and the obscured rust tower limit precision.",
+    "The date filter confines placement to the archival observation. A light roof or shade structure partly covers the fitted enclosure in the later aerial image. Its exact relationship to the exhibit and the current display remain unverified."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -1.4500999450683594,
+      -1.0299999713897705,
+      -1.5421500205993652
+    ],
+    "max": [
+      5.022181987762451,
+      4.085000038146973,
+      1.4593499898910522
+    ]
+  },
+  "size": [
+    6.4722819328308105,
+    5.115000009536743,
+    3.0015000104904175
+  ],
+  "mesh": {
+    "triangles": 10768,
+    "vertices": 21112,
+    "materials": 4,
+    "bytes": 892176,
+    "sha256": "sha256:56212c5296f4028c89c38e0c50b92bb55b38a62b72356854ec510a04b1647b8b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ]
+}

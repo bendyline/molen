@@ -3,7 +3,12 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { bureauOfPublicRoadsMatches } from './imagery-public-archives.mjs';
+import { printedAsirgadMapMatches } from './imagery-asirgad-gazetteer.mjs';
+import { matchesEsplanadeCourtyard } from './imagery-esplanade-archive.mjs';
+import {
+  bureauOfPublicRoadsMatches,
+  rietbergSepahsalarMatches,
+} from './imagery-public-archives.mjs';
 
 export const modelRightsRoot = fileURLToPath(new URL('../../../../', import.meta.url));
 const text = (s) =>
@@ -75,6 +80,56 @@ function nativeTransferredUploaderRelease(page, username, binding, original) {
     info.extmetadata?.Copyrighted?.value === 'False' &&
     info.extmetadata?.AttributionRequired?.value === 'false' &&
     !text(info.extmetadata?.Restrictions?.value)
+  );
+}
+
+/** A Commons transfer corroborated by the photographer's native PD-self upload log. */
+function nativeTransferredPdSelf(page, username, binding, original, nativeLog) {
+  const first = page.revisions?.[0],
+    info = page.imageinfo?.[0],
+    wiki = first?.slots?.main?.['*'] ?? '',
+    meta = info?.extmetadata,
+    account = `[[:en:User:${username}|${username}]]`,
+    upload = nativeLog?.query?.logevents?.[0];
+  if (
+    binding?.kind !== 'corroborated-english-wikipedia-pd-self-transfer' ||
+    !/^[A-Za-z0-9_-]+$/.test(username) ||
+    first?.revid !== binding.revision ||
+    binding.originalUploadLogUrl !==
+      `https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&list=logevents&letype=upload&letitle=${encodeURIComponent(page.title.replaceAll(' ', '_'))}&lelimit=20` ||
+    first.parentid !== 0 ||
+    first.user !== 'BotMultichillT' ||
+    page.imageinfo?.length !== 1 ||
+    info.user !== first.user ||
+    info.timestamp !== first.timestamp ||
+    info.size !== original.length ||
+    nativeLog?.query?.logevents?.length !== 1 ||
+    nativeLog.continue ||
+    upload?.type !== 'upload' ||
+    upload.action !== 'upload' ||
+    upload.title !== page.title ||
+    upload.user !== username ||
+    !Number.isFinite(Date.parse(upload.timestamp)) ||
+    Date.parse(upload.timestamp) >= Date.parse(info.timestamp) ||
+    !/\{\{pd-self\}\}\s*$/i.test(upload.comment) ||
+    /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(upload.comment + wiki) ||
+    !/\|source=\{\{Own\}\}<BR \/>Transferred from \[http:\/\/en\.wikipedia\.org en\.wikipedia\]/i.test(
+      wiki,
+    ) ||
+    !wiki.includes(`|author=${account} at [http://en.wikipedia.org en.wikipedia]`) ||
+    !wiki.includes(`{{PD-user-w|en|wikipedia|${username}}}`) ||
+    text(meta?.Artist?.value) !== `${username} at English Wikipedia` ||
+    text(meta?.Credit?.value) !== 'Own work' ||
+    meta?.Copyrighted?.value !== 'False' ||
+    meta?.AttributionRequired?.value !== 'false' ||
+    text(meta?.Restrictions?.value)
+  )
+    return false;
+  const timestamp = upload.timestamp.slice(0, 16).replace('T', ' ');
+  const accountInLog = account.replace('User:', 'user:');
+  const log = wiki.split('{{Original upload log}}')[1] ?? '';
+  return log.includes(
+    `* ${timestamp} ${accountInLog} ${info.width}×${info.height} (${info.size} bytes) ''<nowiki>${upload.comment}</nowiki>''`,
   );
 }
 
@@ -178,6 +233,50 @@ export function nativeExpiredNamedBookPhoto(page, publication, proof, artist) {
     metadata.description.includes(`photographs specifically taken by ${artist}`)
   );
 }
+function matchesRedpathCreatorRendition(file, record, proof, page, info, original) {
+  const rendition = record.publicDomainRendition;
+  const first = page.revisions[0];
+  const wiki = first.slots?.main?.['*'] ?? '';
+  const artist = 'D. Benjamin Miller';
+  if (
+    page.title !== 'File:Redpath Museum, August 1, 2022.jpg' ||
+    page.pageid !== 121339359 ||
+    first.revid !== 679762261 ||
+    first.parentid !== 0 ||
+    first.user !== artist ||
+    info.user !== artist ||
+    proof.photographer !== artist ||
+    first.timestamp !== info.timestamp ||
+    info.timestamp !== '2022-08-02T07:26:56Z' ||
+    info.sha1 !== '81d9e82030f5da22ccc14497af8b7910a42fbd49' ||
+    !wiki.includes('|Source={{own}}') ||
+    !wiki.includes(`|Author=[[User:${artist}|${artist}]]`) ||
+    !wiki.includes('|Permission={{pd-self}}{{cc-zero}}') ||
+    info.extmetadata?.Copyrighted?.value !== 'False' ||
+    info.extmetadata?.AttributionRequired?.value !== 'false' ||
+    text(info.extmetadata?.Restrictions?.value) ||
+    rendition?.sha1 !== info.sha1 ||
+    rendition.url !== info.url ||
+    rendition.size !== info.size ||
+    rendition.path !== 'reference-rights/dbm-2022-native-rendition.jpg' ||
+    !rendition.thumburl?.startsWith(
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Redpath_Museum%2C_August_1%2C_2022.jpg/1920px-',
+    ) ||
+    rendition.quallaRenditionSha256 !==
+      'sha256:6ce470ac21587b4e723bd3b8c31389fab953e9b81a177138930b190c101fb363' ||
+    rendition.normalizedGrayscaleCorrelation < 0.999 ||
+    !Number.isFinite(rendition.normalizedGrayscaleCorrelation)
+  )
+    return false;
+  const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+  const image = path.join(path.dirname(file), 'dbm-2022-native-rendition.jpg');
+  return (
+    hash(original) === rendition.quallaRenditionSha256 &&
+    fs.existsSync(image) &&
+    hash(fs.readFileSync(image)) === rendition.sha256
+  );
+}
+
 export function inspectQuallaPrimaryRights(reference, original, root = modelRightsRoot) {
   const proof = reference.publicDomainEvidence;
   if (!proof) return null;
@@ -194,10 +293,13 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-nasa-esrs-photo',
       'commons-native-reviewed-state-department-photo',
       'commons-native-state-department-staff-photo',
+      'commons-native-south-carolina-statehouse-photo',
       'commons-native-nps-photo',
       'commons-native-usaf-reference-series-photo',
       'commons-native-nara-bureau-of-public-roads',
       'commons-native-expired-publication',
+      'commons-native-expired-asirgad-gazetteer-map',
+      'commons-native-esplanade-1913-courtyard',
       'commons-native-expired-library-photo',
       'commons-native-lac-expired-photo',
       'commons-native-expired-periodical-photo',
@@ -205,9 +307,12 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-expired-us-book-photo',
       'commons-native-expired-named-book-photo',
       'commons-native-expired-historical-print',
+      'commons-native-sule-archival-prints',
       'commons-native-slq-archival-photo',
       'commons-native-qsa-government-plan',
+      'commons-native-rietberg-sepahsalar-photo',
       'commons-native-self-released-photo',
+      'commons-native-redpath-creator-rendition',
     ].includes(proof.kind) ||
     !/^content\/worldgen\/source\/places\/[a-z0-9_/-]+\/reference-rights\/[a-z0-9-]+\.json$/.test(
       proof.path ?? '',
@@ -257,24 +362,87 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     !page?.revisions?.[0]?.revid ||
     nativeUrl.origin !== 'https://upload.wikimedia.org' ||
     nativeUrl.pathname.includes('/thumb/') ||
-    info?.sha1 !== createHash('sha1').update(original).digest('hex') ||
+    (proof.kind !== 'commons-native-redpath-creator-rendition' &&
+      info?.sha1 !== createHash('sha1').update(original).digest('hex')) ||
     reference.license !== 'Public domain' ||
     info.extmetadata?.LicenseShortName?.value !== 'Public domain' ||
-    (!['commons-native-slq-archival-photo', 'commons-native-expired-us-book-photo'].includes(
-      proof.kind,
-    ) &&
+    (![
+      'commons-native-slq-archival-photo',
+      'commons-native-expired-us-book-photo',
+      'commons-native-esplanade-1913-courtyard',
+    ].includes(proof.kind) &&
       (!reference.artist?.trim() ||
         !text(info.extmetadata?.Artist?.value).includes(text(reference.artist))))
   )
     return failed;
   let basis, creatorAttribution;
-  if (proof.kind === 'commons-native-nara-bureau-of-public-roads') {
+  if (proof.kind === 'commons-native-redpath-creator-rendition') {
+    if (!matchesRedpathCreatorRendition(file, record, proof, page, info, original)) return failed;
+    basis =
+      'D. Benjamin Miller released the native photograph into the public domain at upload. The archived Commons rendition is matched to the published Qualla image.';
+  } else if (proof.kind === 'commons-native-esplanade-1913-courtyard') {
+    try {
+      if (!matchesEsplanadeCourtyard(file, record, page, info, original, reference)) return failed;
+    } catch {
+      return failed;
+    }
+    basis =
+      'The Qualla courtyard photograph matches the original anonymously published 18 October 1913 journal plate.';
+    creatorAttribution = 'unrecorded-archival';
+  } else if (proof.kind === 'commons-native-south-carolina-statehouse-photo') {
+    const agency =
+      title === 'File:20180522-z-vn137-1002-FINAL (42385727752).jpg' &&
+      info.sha1 === '34cbbb864170101fe005899d2fa5b59068ed21f2' &&
+      record.originalPublisher?.owner === '85045231@N04' &&
+      record.originalPublisher?.agency === 'S.C. Air National Guard' &&
+      record.originalPublisher?.url === 'https://www.flickr.com/photos/thescang/42385727752/' &&
+      record.originalPublisher?.download ===
+        'https://live.staticflickr.com/1743/42385727752_da52bf9aa4_o.jpg' &&
+      record.originalPublisher?.sha1 === info.sha1 &&
+      record.originalPublisher?.license === 10 &&
+      wiki.includes('{{PD-USGov-Military-Air National Guard}}') &&
+      wiki.includes('reviewlicense=Public Domain Mark');
+    const originalUpload = record.nativeUploadLog?.query?.logevents?.[0];
+    const creatorRelease =
+      title === 'File:SC State House at evening.jpg' &&
+      info.sha1 === '78142ab12d5e099036cb3b601a84901dde39c0eb' &&
+      wiki.includes('{{PD-user-en|Florencebballer}}') &&
+      wiki.includes('South Carolina State Capital, Christmas 2006, Brandon Davis') &&
+      originalUpload?.type === 'upload' &&
+      originalUpload?.title === 'File:Southcarolinastatecapital.jpg' &&
+      originalUpload?.user === 'Florencebballer' &&
+      originalUpload?.comment === 'South Carolina State Capital, Christmas 2006, Brandon Davis' &&
+      originalUpload?.timestamp === '2007-04-29T09:59:10Z';
+    if (
+      (!agency && !creatorRelease) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value)
+    )
+      return failed;
+    basis = agency
+      ? 'Exact official S.C. Air National Guard original preserved on both Flickr and Commons.'
+      : 'Exact Qualla photograph with a named creator’s public-domain release and corroborating original upload record.';
+  } else if (proof.kind === 'commons-native-expired-asirgad-gazetteer-map') {
+    if (!printedAsirgadMapMatches(file, record, page, info, original, reference)) return failed;
+    basis =
+      'Exact Qualla map matched to the 1880 government Gazetteer plate in the Wellcome Library scan, with the original Poona imprint and published plate bytes bound.';
+  } else if (proof.kind === 'commons-native-nara-bureau-of-public-roads') {
     if (
       reference.originalReview?.rendition !== 'exact-published-native-original' ||
       !bureauOfPublicRoadsMatches(reference, original, page)
     )
       return failed;
     basis = 'Bureau of Public Roads federal archive original with the native PD-USGov-DOC release.';
+  } else if (proof.kind === 'commons-native-rietberg-sepahsalar-photo') {
+    const modelDirectory = path.dirname(path.dirname(file));
+    if (
+      reference.accessionNumber !== '2023.10.73' ||
+      !rietbergSepahsalarMatches(modelDirectory, reference, original, page)
+    )
+      return failed;
+    basis =
+      'The original Qualla photo matches the public-domain file for Museum Rietberg accession 2023.10.73, with named photographer and documented nineteenth-century commercial print provenance.';
   } else if (proof.kind === 'commons-native-nasa-esrs-photo') {
     const field = (name) =>
       wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\r\\n]*)`, 'i'))?.[1]?.trim();
@@ -381,34 +549,66 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       /\.jpe?g$/i.test(nativeUrl.pathname) &&
       !record.continue?.iicontinue &&
       nativeTransferredNamedPhotograph(page, photographer, binding, original);
+    const verifiedNativePdSelf =
+      reference.artist === `${photographer} at English Wikipedia` &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      !record.continue?.iicontinue &&
+      nativeTransferredPdSelf(page, photographer, binding, original, record.nativeUploadLog);
+    const first = page?.revisions?.[0];
+    // Some original uploads use the account name in the signed release and the
+    // creator's real name in the displayed credit. Require both native records.
+    const creditedOwnPhoto =
+      binding?.kind === 'contemporaneous-credited-personal-photograph' &&
+      /^[A-Za-z0-9_-]+$/.test(photographer) &&
+      /^[\p{L}][\p{L} .'-]+$/u.test(binding.realName ?? '') &&
+      reference.artist === `Credits to ${binding.realName} / Wikimedia Commons` &&
+      text(info.extmetadata?.Artist?.value) === reference.artist &&
+      author?.trim() === nativeLink &&
+      first?.parentid === 0 &&
+      first.user === photographer &&
+      first.revid === binding.revision &&
+      info.user === photographer &&
+      page.imageinfo.length === 1 &&
+      !record.continue?.iicontinue &&
+      Number.isFinite(Date.parse(first.timestamp)) &&
+      Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+      sourceField?.trim() === 'Travail personnel (own work)' &&
+      text(info.extmetadata?.Credit?.value) === 'Own work' &&
+      /^\|\s*permission\s*=\s*Own work, all rights released \(Public domain\)\s*$/im.test(wiki) &&
+      /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
+      !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      info.size === original.length &&
+      info.extmetadata?.Copyrighted?.value === 'False' &&
+      info.extmetadata?.AttributionRequired?.value === 'false' &&
+      !text(info.extmetadata?.Restrictions?.value);
     // Early Japanese uploads say "the uploader themself" in both fields.
     // Bind that first-person claim to the original uploading account and time;
     // a later PD-self tag or a translated artist label alone is insufficient.
-    const first = page?.revisions?.[0],
-      japaneseUploaderSelf =
-        binding?.kind === 'contemporaneous-japanese-uploader-self-release' &&
-        /^[A-Za-z0-9_-]+$/.test(binding.username ?? '') &&
-        first?.parentid === 0 &&
-        first.user === binding.username &&
-        first.revid === binding.revision &&
-        page.imageinfo.length === 1 &&
-        !record.continue?.iicontinue &&
-        info.user === binding.username &&
-        Number.isFinite(Date.parse(first.timestamp)) &&
-        Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
-        photographer === '投稿者本人' &&
-        reference.artist === photographer &&
-        author?.trim() === photographer &&
-        sourceField?.trim() === photographer &&
-        text(info.extmetadata?.Artist?.value) === photographer &&
-        text(info.extmetadata?.Credit?.value) === photographer &&
-        /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
-        !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
-        /\.jpe?g$/i.test(nativeUrl.pathname) &&
-        info.size === original.length &&
-        info.extmetadata?.Copyrighted?.value === 'False' &&
-        info.extmetadata?.AttributionRequired?.value === 'false' &&
-        !text(info.extmetadata?.Restrictions?.value);
+    const japaneseUploaderSelf =
+      binding?.kind === 'contemporaneous-japanese-uploader-self-release' &&
+      /^[A-Za-z0-9_-]+$/.test(binding.username ?? '') &&
+      first?.parentid === 0 &&
+      first.user === binding.username &&
+      first.revid === binding.revision &&
+      page.imageinfo.length === 1 &&
+      !record.continue?.iicontinue &&
+      info.user === binding.username &&
+      Number.isFinite(Date.parse(first.timestamp)) &&
+      Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+      photographer === '投稿者本人' &&
+      reference.artist === photographer &&
+      author?.trim() === photographer &&
+      sourceField?.trim() === photographer &&
+      text(info.extmetadata?.Artist?.value) === photographer &&
+      text(info.extmetadata?.Credit?.value) === photographer &&
+      /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
+      !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      info.size === original.length &&
+      info.extmetadata?.Copyrighted?.value === 'False' &&
+      info.extmetadata?.AttributionRequired?.value === 'false' &&
+      !text(info.extmetadata?.Restrictions?.value);
     // Other early Japanese originals sign the source with the uploading account
     // and say "photographed by the uploader". Require the first native release,
     // same sole upload and minute-exact signature, including a retained wiki alias.
@@ -462,13 +662,16 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       !namedSelf &&
       !transferredSelf &&
       !transferredNamedPhotograph &&
+      !verifiedNativePdSelf &&
+      !creditedOwnPhoto &&
       !japaneseUploaderSelf &&
       !japaneseSignedPhotograph
     )
       return failed;
-    basis = transferredNamedPhotograph
-      ? `Original upload log and public-domain release by ${photographer}, preserved in the first Commons transfer.`
-      : `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
+    basis =
+      transferredNamedPhotograph || verifiedNativePdSelf
+        ? `Original upload log and public-domain release by ${photographer}, preserved in the first Commons transfer.`
+        : `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
   } else if (proof.kind === 'commons-native-lac-expired-photo') {
     const archive = record.archive;
     if (
@@ -538,13 +741,14 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       return failed;
     basis = `Exact native national-library photograph, ${proof.photoYear}; named creator ${reference.artist} (${born}-${died}), item ${proof.archiveItem}, explicit PD-old grant and original bytes bound`;
   } else if (proof.kind === 'commons-native-qsa-government-plan') {
-    // These two original Crown architectural drawings have an explicit native
+    // These original Crown architectural drawings have an explicit native
     // government-work release; do not infer one from an anonymous photo credit.
     const plans = {
-        'File:Ground Floor Plan of Government House, Brisbane, c 1940.jpg': '35295240095',
-        'File:First Floor Plan of Government House, Brisbane, c 1940.jpg': '35254984396',
+        'File:Ground Floor Plan of Government House, Brisbane, c 1940.jpg': ['35295240095', 1940],
+        'File:First Floor Plan of Government House, Brisbane, c 1940.jpg': ['35254984396', 1940],
+        'File:New Court House, Cloncurry, 1907.jpg': ['36954912363', 1907],
       },
-      item = plans[title],
+      [item, year] = plans[title] ?? [],
       sourceField = wiki.match(/\|\s*source\s*=([^\r\n]*)/i)?.[1] ?? '',
       dateField = wiki.match(/\|\s*date\s*=([^\r\n]*)/i)?.[1] ?? '',
       author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1]?.trim();
@@ -552,13 +756,16 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       !item ||
       proof.archive !== 'queensland-state-archives' ||
       proof.archiveItem !== item ||
-      proof.creationYear !== 1940 ||
+      proof.creationYear !== year ||
       reference.artist !== 'Unknown author' ||
       author !== '{{unknown|author}}' ||
       !sourceField.includes(`https://www.flickr.com/photos/queenslandstatearchives/${item}`) ||
       !sourceField.includes('published by Queensland State Archives') ||
       !sourceField.includes(title.slice(5, -4)) ||
-      !(dateField.includes('1940') || dateField.trim() === '2012-04-15 00:55:02') ||
+      !(
+        dateField.includes(String(year)) ||
+        (year === 1940 && dateField.trim() === '2012-04-15 00:55:02')
+      ) ||
       !/\{\{\s*PD-AustraliaGov\s*\}\}/i.test(wiki) ||
       !/\{\{\s*PDreview\|/i.test(wiki) ||
       /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
@@ -568,7 +775,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       !/\.jpe?g$/i.test(nativeUrl.pathname)
     )
       return failed;
-    basis = `Exact native circa1940 Crown architectural plan, Queensland State Archives item ${item}; explicit PD-AustraliaGov release and reviewed original bytes bound`;
+    basis = `Exact native ${year} Crown architectural plan, Queensland State Archives Flickr item ${item}; explicit PD-AustraliaGov release and reviewed original bytes bound`;
   } else if (proof.kind === 'commons-native-slq-archival-photo') {
     const author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1];
     if (
@@ -692,6 +899,44 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       return failed;
     basis = `Exact native photographic plate in ${proof.publicationTitle}, New York ${proof.publicationYear}; original library book/caption and NOT_IN_COPYRIGHT record, photographer unrecorded`;
     creatorAttribution = 'unrecorded-published-plate';
+  } else if (proof.kind === 'commons-native-sule-archival-prints') {
+    const archive = record.archive;
+    const rowe =
+      title === 'File:Sule Pagoda Rd.JPG' &&
+      info.sha1 === '723c14398490cb4db49d8377985f5b75c1fd6680' &&
+      text(reference.artist) === 'Rowe & Co.' &&
+      wiki.includes('|Author=Rowe & Co.') &&
+      wiki.includes('{{PD-old}}') &&
+      wiki.includes('cu31924023503299') &&
+      archive?.url === 'https://archive.org/details/cu31924023503299' &&
+      archive?.holding === 'Cornell University Library' &&
+      archive?.publicationYear === 1900 &&
+      archive?.title === 'Soolay Pagoda Road, Rangoon' &&
+      archive?.printedPage === 7;
+    const klier =
+      title === 'File:Fytche Square, Rangoon.jpg' &&
+      info.sha1 === '04ca92f4db04e8da8e8a49d2ab8fd93c31d2b8eb' &&
+      reference.artist === 'Philip Adolphe Klier' &&
+      wiki.includes('|artist={{Creator:Philip Adolphe Klier}}') &&
+      wiki.includes('{{PD-Art|PD-old-auto-1923|deathyear=1911}}') &&
+      wiki.includes('019pho000752s10u00020000.html') &&
+      archive?.url === 'https://searcharchives.bl.uk/catalog/041-003103851' &&
+      archive?.britishLibraryShelfmark === 'Photo 752/10(20)' &&
+      archive?.rijksmuseumObject === 'RP-F-F01101-E' &&
+      archive?.rijksmuseumPrintNumber === '380' &&
+      archive?.rijksmuseumRights === 'Public domain';
+    if (
+      (!rowe && !klier) ||
+      info.size !== original.length ||
+      page.revisions[0].revid !== reference.nativeRevision ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value)
+    )
+      return failed;
+    basis = rowe
+      ? 'Exact Qualla original matches the expired Rowe & Co. publication digitized by Cornell University Library.'
+      : 'Exact Qualla reproduction of Klier’s nineteenth-century print, matched to its British Library catalogue and the public-domain Rijksmuseum print numbered 380.';
   } else if (proof.kind === 'commons-native-expired-historical-print') {
     const field = (name) =>
         wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\n]+)`, 'i'))?.[1]?.trim() ?? '',
@@ -701,11 +946,13 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       originalDrawing = proof.recordClass === 'pedrero-1892-original-drawing',
       lessmannPhoto = proof.recordClass === 'lessmann-caracas-circa-1870-photo',
       garreaudAlbumPlate = proof.recordClass === 'garreaud-1900-republica-peruana-plate-21',
+      gurlittMosquePlan = proof.recordClass === 'gurlitt-1912-piyale-pasha-plan',
       year = originalDrawing || lessmannPhoto ? proof.creationYear : proof.publicationYear;
     if (
       !Number.isInteger(year) ||
       year < 1800 ||
-      year > (garreaudAlbumPlate ? 1900 : originalDrawing ? 1892 : 1875) ||
+      year >
+        (gurlittMosquePlan ? 1912 : garreaudAlbumPlate ? 1900 : originalDrawing ? 1892 : 1875) ||
       !proof.sourceCitation?.trim() ||
       sourceField !== proof.sourceCitation ||
       /unknown|anonymous|unidentified|unrecorded|assumed|probably/i.test(
@@ -986,6 +1233,49 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         !sourceField.includes('Bibliothèque nationale de France') ||
         !sourceField.includes('GE D-14364') ||
         /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki)
+      )
+        return failed;
+    } else if (gurlittMosquePlan) {
+      const archive = record.archive;
+      if (
+        title !==
+          'File:Cross sections and plan of the Piyale Pasha Mosque in Istanbul by Gurlitt 1912.jpg' ||
+        info.sha1 !== 'ed6ec3dcfff942fb6e92b9873c23b0b8002b5f12' ||
+        info.size !== original.length ||
+        page.revisions[0].revid !== reference.nativeRevision ||
+        authorField !== 'Cornelius Gurlitt (1850-1938)' ||
+        reference.artist !== authorField ||
+        year !== 1912 ||
+        dateField !== '1912' ||
+        proof.creatorDied !== 1938 ||
+        !sourceField.includes('[http://dome.mit.edu/handle/1721.3/65885 MIT libraries') ||
+        !wiki.includes('{{PD-old-auto-1923|1938}}') ||
+        archive?.url !== 'https://dome.mit.edu/handle/1721.3/65885' ||
+        archive?.rights !== 'In the Public Domain; no use restrictions' ||
+        archive?.plate !== '24c' ||
+        archive?.book !== 'Die Baukunst Konstantinopels' ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
+      basis =
+        'Exact Qualla reproduction of Gurlitt’s 1912 plate 24c, with the native copyright expiry record and the MIT Libraries public-domain source scan.';
+    } else if (proof.recordClass === 'lyall-1825-taganrog-map') {
+      if (
+        title !==
+          'File:Plan of Taganrdg. Robert Lyall. Travels in Russia, The Krimea, The Caucasus, and Georgia. 1825. Chap. XX. P.251.jpg' ||
+        authorField !== 'Robert Lyall' ||
+        reference.artist !== authorField ||
+        proof.creatorDied !== 1831 ||
+        year !== 1825 ||
+        dateField !== String(year) ||
+        info.sha1 !== 'd654a8b19357effb72268e8dd3bbb7072c9dfc62' ||
+        !sourceField.startsWith('[https://books.google.com/books?id=4QcEAAAAYAAJ Robert Lyall,') ||
+        !/\{\{PD-old-70-1923\}\}/.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
       )
         return failed;
     } else if (proof.recordClass === 'named-old-map') {

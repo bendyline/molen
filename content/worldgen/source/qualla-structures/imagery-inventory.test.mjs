@@ -782,7 +782,7 @@ test('Flickr CC0 needs the same creator/photo in the primary dedication, exact b
     reference.rightsEvidence = {
       path: 'primary.html',
       sha256: hash(primary),
-      sourceUrl: `https://www.flickr.com/photos/${account}/${id}/`,
+      sourceUrl: `https://www.flickr.com/photos/${reference.creatorDedication.account}/${id}/`,
     };
   };
   const inspect = () => {
@@ -882,6 +882,16 @@ test('Flickr CC0 needs the same creator/photo in the primary dedication, exact b
   assert.equal(inspect(), false);
   page.revisions[0].slots.main['*'] = commonsReview;
   photo.acquireLicensePage = `https://www.flickr.com/photos/${nsid}/999`;
+  assert.equal(inspect(), false);
+  // A photographer without a vanity URL must be bound by both creator icons.
+  reference.creatorDedication = { photoId: id, account: nsid, nsid, name };
+  photo.author.name = photo.creator.name = name;
+  photo.acquireLicensePage = `https://www.flickr.com/photos/${nsid}/${id}`;
+  meta.Artist.value = `<a href="https://www.flickr.com/people/${nsid}">${name}</a>`;
+  meta.Credit.value = `https://www.flickr.com/photos/${nsid}/${id}/`;
+  page.revisions[0].slots.main['*'] = displayNameReview;
+  assert.equal(inspect(), true);
+  photo.creator.image = 'https://farm66.staticflickr.com/65535/buddyicons/999@N01.jpg#999@N01';
   assert.equal(inspect(), false);
 });
 
@@ -1386,6 +1396,11 @@ test('legacy NPS records require an explicit staff photographer, agency publishe
     return inspectNpsReference(f.dir, f.reference).eligible;
   };
   assert.equal(check(html), true);
+  const trailsOffice = html
+    .replace('NPS staff', '<text>National Trails Office <i>US National Park Service</i></text>')
+    .replace('<div>National Park Service</div>', '<div>U.S. National Park Service</div>');
+  assert.equal(check(trailsOffice), true);
+  assert.equal(check(trailsOffice.replace('National Trails Office', 'Private donor')), false);
   for (const value of [
     html.replace('NPS staff', 'Private donor'),
     html.replace('NPS staff', 'NPS staff / Private donor'),
@@ -2583,8 +2598,31 @@ test('an old Abdullah print needs the collection PD tag, matching period, creato
     assert.equal(check(rights, c), false);
   }
   assert.equal(check(), true);
+  const directRightsUrl = 'https://wwws.loc.gov/rr/print/res/374_abdu.html';
+  const directRights =
+    '<title>Abdul Hamid II Collection - Rights and Restrictions Information</title>' +
+    '<p>There are no known restrictions on this collection.</p>' +
+    '<p><strong>Publication and other forms of distribution:</strong> Permitted.</p>';
+  const directCatalog = structuredClone(catalog);
+  directCatalog.item.rights = [
+    '<a href="https://www.loc.gov/rr/print/res/374_abdu.html">Collection rights</a>',
+  ];
+  reference.rightsEvidence.sourceUrl = directRightsUrl;
+  reference.downloadUrl = downloadUrl.replace('old-print.tif', '3b46533u.tif');
+  directCatalog.resources[0].files[0][0].url = reference.downloadUrl;
+  const checkDirect = (html, record = directCatalog) => {
+    check(rights, record);
+    fs.writeFileSync(path.join(f.dir, 'source.html'), html);
+    reference.rightsEvidence.sha256 = hash(html);
+    return inspectAbdulHamidReference(f.dir, reference).eligible;
+  };
+  assert.equal(checkDirect(directRights), true);
+  assert.equal(checkDirect(directRights.replace('Permitted.', 'Restricted.')), false);
+  const wrongCollection = structuredClone(directCatalog);
+  wrongCollection.item.rights = [];
+  assert.equal(checkDirect(directRights, wrongCollection), false);
   fs.writeFileSync(path.join(f.dir, reference.path), 'different bytes');
-  assert.equal(check(), false);
+  assert.equal(checkDirect(directRights), false);
 });
 
 test('NASA staff photos require the offered image, exact creator credit, civil-service report and copyright policy', (t) => {

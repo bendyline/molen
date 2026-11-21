@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.beijing_lu_xun_museum",
+  "kind": "static-structure",
+  "title": "Beijing Lu Xun Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.beijing_lu_xun_museum",
+        "output": "assets/places/wx/wx4/beijing_lu_xun_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:258bbff0c67ae4613d1231c5b87e73744ab2d534ad7a0f50ce95deafaa35d8cf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-beijing-lu-xun-museum",
+        "path": "models/generate-beijing-lu-xun-museum.mjs"
+      },
+      {
+        "id": "beijing-lu-xun-museum-model",
+        "path": "models/beijing-lu-xun-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/lu-xun-museum-site-and-building-roofprints.json",
+      "reference-rights/beijing-written-courtyard-heritage.json",
+      "reference-rights/shizhao-2007-original-number-21.json",
+      "reference-originals/editq-2023-pavilion-garden.jpg",
+      "reference-rights/editq-2023-pavilion-garden-cc0.json",
+      "reference-originals/editq-2023-exhibition-entrance.jpg",
+      "reference-rights/editq-2023-exhibition-entrance-cc0.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-26974-12414.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

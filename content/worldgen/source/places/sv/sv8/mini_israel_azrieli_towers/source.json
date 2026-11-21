@@ -1,0 +1,49 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_azrieli_towers",
+  "kind": "static-structure",
+  "title": "Mini Israel · Azrieli Towers exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_azrieli_towers",
+        "output": "assets/places/sv/sv8/mini_israel_azrieli_towers/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cb6442f19db6a7ca4d707bdbe1015f27ac06a6a6a0b4139700345d7b9062c02a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "azrieli-exhibit-model",
+        "path": "models/azrieli-exhibit-model.mjs"
+      },
+      {
+        "id": "azrieli-exhibit-master",
+        "path": "models/generate-azrieli-exhibit.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "exhibit-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md",
+      "map-frame.json",
+      "site-fit-review.json",
+      "placement-report.json"
+    ]
+  }
+}

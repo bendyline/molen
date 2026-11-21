@@ -1,0 +1,736 @@
+{
+  "planId": "chedworth_roman_villa",
+  "id": "chedworth_roman_villa",
+  "assetId": "molen.worldgen.structure.chedworth_roman_villa",
+  "title": "Chedworth Roman Villa",
+  "wikidataId": "Q5089233",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.92478,
+    "latitude": 51.8198
+  },
+  "size": [
+    112.81563568115234,
+    16.80708122253418,
+    81.20946884155273
+  ],
+  "actualBounds": {
+    "min": [
+      -35.52998352050781,
+      -5.911078453063965,
+      -45.91848373413086
+    ],
+    "max": [
+      77.28565216064453,
+      10.896002769470215,
+      35.290985107421875
+    ]
+  },
+  "visualBrief": "Chedworth Roman Villa’s surviving courtyard walls, bathhouse and West Range shelters, octagonal spring shrine, and Victorian half-timbered lodge and museum.",
+  "nativeAxes": {
+    "x": "toward the east end of the Roman court",
+    "y": "up",
+    "z": "along the West Range toward the south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa_2012_-_West_wing_corridor_mosaic_south_end.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa_2012_-_North_bath_house.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa_2012_-_West_bath_house_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa_2012_-_View_from_northeast.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa-_Custodian%27s_House_and_Museum.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chedworth_Roman_Villa,_the_Nympaeum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chedworth-roman-villa-wp",
+      "url": "https://qualla.com/chedworth-roman-villa/"
+    }
+  ],
+  "referenceInputHash": "sha256:48f7069407a7983b15ab0477c6fbeccaa6aacd1bba605bf2ccb3a73ee34ef5f9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcn/chedworth_roman_villa/models/chedworth-roman-villa-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "tytuvenai-ensemble-geometry.mjs": "sha256:1232944a27b0bded06843cf2786f815449e7ee61f327be239c40ad48a8e1de12",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcn/chedworth_roman_villa/models/chedworth-roman-villa-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.45,
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "render": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "shelter": {
+        "slot": "wall",
+        "graph": "wood_vertical",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "shelterRoof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.41,
+        "metallic": 0
+      },
+      "water": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.28,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.68,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "shelter": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shelterRoof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.41,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "shelter": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shelterRoof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.41,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "render": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "shelter": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "shelterRoof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.41,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_drywall",
+    "plaster_lime",
+    "wood_vertical",
+    "slate",
+    "metal_standing_seam",
+    "window_grid"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "exact-native-frame",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independently sampled terrain at the villa courtyard. The registered wall footings follow the site slope and the shelters use estimated site levels.",
+    "anchor": [
+      -1.92478,
+      51.8198
+    ],
+    "heading": 0.1825365632506796,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.9247519682693397,
+        51.81978036130834
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified ground at the established open courtyard, between the West Range and Victorian lodge."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -54.4316,
+          -51.1738
+        ],
+        [
+          90.3281,
+          -51.1738
+        ],
+        [
+          90.3281,
+          38.4565
+        ],
+        [
+          -54.4316,
+          38.4565
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            23.3073,
+            -7.312
+          ],
+          [
+            20.2986,
+            -7.3127
+          ],
+          [
+            20.3085,
+            -9.224
+          ],
+          [
+            17.63,
+            -9.2316
+          ],
+          [
+            17.6293,
+            -7.6356
+          ],
+          [
+            14.9575,
+            -7.6421
+          ],
+          [
+            14.9444,
+            -1.3166
+          ],
+          [
+            13.9289,
+            -1.3116
+          ],
+          [
+            13.9109,
+            4.0168
+          ],
+          [
+            13.3649,
+            4.0179
+          ],
+          [
+            13.3447,
+            9.8892
+          ],
+          [
+            22.814,
+            9.9166
+          ],
+          [
+            22.8235,
+            5.8091
+          ],
+          [
+            23.8303,
+            5.8139
+          ],
+          [
+            23.8459,
+            1.7868
+          ],
+          [
+            22.5855,
+            1.7919
+          ],
+          [
+            22.5953,
+            -2.7343
+          ],
+          [
+            23.3009,
+            -2.7286
+          ]
+        ],
+        [
+          [
+            -16.9229,
+            -37.6612
+          ],
+          [
+            -12.556,
+            -37.2853
+          ],
+          [
+            -12.237,
+            -40.9846
+          ],
+          [
+            -3.5255,
+            -40.2256
+          ],
+          [
+            -3.925,
+            -35.6354
+          ],
+          [
+            -11.3624,
+            -36.2838
+          ],
+          [
+            -12.0299,
+            -28.5736
+          ],
+          [
+            -12.0869,
+            -27.9615
+          ],
+          [
+            -17.2238,
+            -28.4117
+          ],
+          [
+            -17.7279,
+            -28.4481
+          ],
+          [
+            -17.5127,
+            -30.8649
+          ],
+          [
+            -17.0215,
+            -36.5587
+          ]
+        ],
+        [
+          [
+            -25.0275,
+            -19.4944
+          ],
+          [
+            -21.6054,
+            -19.4966
+          ],
+          [
+            -18.4215,
+            -19.4975
+          ],
+          [
+            -16.6238,
+            -19.494
+          ],
+          [
+            -15.1543,
+            -19.4944
+          ],
+          [
+            -15.1543,
+            19.2088
+          ],
+          [
+            -17.2327,
+            19.21
+          ],
+          [
+            -24.6703,
+            19.2068
+          ],
+          [
+            -25.0546,
+            19.2038
+          ],
+          [
+            -25.0441,
+            -12.4677
+          ],
+          [
+            -28.0973,
+            -13.9709
+          ],
+          [
+            -28.1043,
+            -16.7003
+          ],
+          [
+            -25.0325,
+            -18.1029
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Three individual surveyed polygons for the lodge, North Bath House and West Range shelter."
+    },
+    "featureIds": [
+      "way/111512316",
+      "way/231503725",
+      "way/231503730",
+      "way/993479397",
+      "way/231503739"
+    ],
+    "source": "https://www.openstreetmap.org/way/111512316",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3245c293ed58e94ecc157be69ca3c747bbe15db6962560e4022e22de25cc4d3d",
+    "notes": "Exact Qualla bathhouse and corridor photographs show low coursed stone. The supplemental creator releases show the surfaced ruins and capped walls, lodge and cistern. National Trust and the architect document the standing range and building materials."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the surviving site, with exposed foundations, standing shelters, and the Victorian lodge and museum. The Roman superstructure and interior mosaics have no rendered reconstruction.",
+    "The open Roman wall lines, octagonal spring basin and standing buildings use native map geometry. Wall heights, roof sections, floor levels, stone capping and fenestration are estimates. The modern shelter is generalized from its mapped footprint and written project facts.",
+    "The regional DEM anchors the site and the natural slope. Models of the wall and basin courses sit above this independent field. The adjoining reception, learning pavilion, gardens and buried archaeology remain outside the model."
+  ],
+  "sourceLicense": "Original mesh under the repository license. Pasicles’s photographs are CC0. Tony Grist released his two original photographs into the public domain. Native map data © OpenStreetMap contributors, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "chedworth-skyline",
+      "position": [
+        96,
+        66,
+        -96
+      ],
+      "lookAt": [
+        10,
+        1,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "chedworth-district",
+      "position": [
+        96,
+        66,
+        -96
+      ],
+      "lookAt": [
+        10,
+        1,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "chedworth-street",
+      "position": [
+        96,
+        66,
+        -96
+      ],
+      "lookAt": [
+        10,
+        1,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "chedworth-closeup",
+      "position": [
+        96,
+        66,
+        -96
+      ],
+      "lookAt": [
+        10,
+        1,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-range-rooms",
+      "position": [
+        51,
+        14,
+        -26
+      ],
+      "lookAt": [
+        35,
+        0,
+        -33
+      ]
+    },
+    {
+      "name": "museum-and-courtyard",
+      "position": [
+        -13,
+        7,
+        14
+      ],
+      "lookAt": [
+        17,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "spring-shrine",
+      "position": [
+        -23,
+        12,
+        -32
+      ],
+      "lookAt": [
+        -32,
+        9,
+        -40
+      ]
+    },
+    {
+      "name": "west-range-larch-shelter",
+      "position": [
+        9,
+        12,
+        29
+      ],
+      "lookAt": [
+        -19,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4368,
+    "vertices": 13104,
+    "materials": 8,
+    "bytes": 922708,
+    "sha256": "sha256:88a16c0c4b0a1b39c934fd9bf8cd79ff22f5e6e04f83ce67e6d950526e85c4b3"
+  }
+}

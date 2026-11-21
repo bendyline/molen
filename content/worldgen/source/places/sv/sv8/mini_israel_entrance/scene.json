@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · Entrance and workshop review",
+  "seed": "mini_israel_entrance",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "entrance",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_entrance",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e3e8d5",
+            "ground": "#ab9b77",
+            "intensity": 1.17
+          },
+          "sun": {
+            "direction": [
+              -2,
+              5,
+              6
+            ],
+            "color": "#fff1d5",
+            "intensity": 1.55,
+            "castShadow": true
+          },
+          "background": "#bdc9be",
+          "toneMapping": "agx",
+          "exposure": 1.06,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "yard",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              190,
+              0.35,
+              180
+            ]
+          },
+          "materialRef": "palette:#9d9069",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      40,
+      25,
+      78
+    ],
+    "lookAt": [
+      -1,
+      4,
+      10
+    ],
+    "fov": 56
+  }
+}

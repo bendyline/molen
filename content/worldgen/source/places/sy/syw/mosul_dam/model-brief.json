@@ -66,8 +66,8 @@
     }
   },
   "exportLabel": "Molen original Mosul Dam principal hydraulic complex",
-  "expectedDraftMasterHash": "sha256:be7d0afee9b7807deba22c344313c15ec60f23ef443914ed4fa8ba5181d7b526",
-  "visualBrief": "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater.",
+  "expectedDraftMasterHash": "sha256:68e6c4d0e3c3e9c1c647e2a0235d96259825485204f7d31deda32ef84dd9266d",
+  "visualBrief": "Mosul Dam exterior with the bent embankment and crest road, five-gate service spillway, powerhouse, outlet hall, four surge cylinders, and the eastern saddle dam and dry emergency spillway. The tailrace, neighboring buildings, substation and islands are native map context.",
   "heightPolicy": "One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir.",
   "nativeAxes": "+X east,+Z south,+Y up. Actual crest runs ESE;reservoir lies NNE of it,tailraces SSW. Heading0 preserves this geographic frame and the actual oblique crest shape.",
   "sourceFacts": {
@@ -89,13 +89,17 @@
       0,
       -700
     ],
-    "terrainDatum": 307.003906
+    "terrainDatum": 307.003906,
+    "eastSpillway": {
+      "visualForm": "Dry graded shoulder and bench along the eastern crest road",
+      "source": "https://cdn.logcluster.org/public/logistics_cluster_iraq_mosul_dam_mission_report_160817.pdf#page=2",
+      "appearance": "Aerial interpretation"
+    }
   },
   "materialMethod": "Six existing shared 256px graphs for gravel, basalt, concrete, standing-seam metal, painted metal and window grid. One far palette draw and at most seven near groups. Metric UVs, linear tint colors, and no embedded images.",
   "limitations": [
-    "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater.",
     "One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir.",
-    "Named map and two ordinary aerials identify the modeled principal core. The separate emergency spillway beyond the reviewed core is not claimed. Terrain/tailwater and section elevations are standard-tile and picture-scale estimates. No exact-Q OSM way claim. Nearby roads, independent buildings, and tailrace remain native. Physical-device and dense-scene timings remain unmeasured."
+    "The eastern dry spillway is an exterior interpretation of the aerial and retained PMTiles. Widths and elevations are estimated, the viewer water stages are illustrative, and the model contains no hydraulic or internal engineering detail."
   ],
   "references": [
     {
@@ -110,7 +114,11 @@
     },
     {
       "url": "https://build.protomaps.com/20261031.pmtiles",
-      "observed": "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater. One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir."
+      "observed": "The retained crest road and service bridge control the signed orientation and related embankment placement."
+    },
+    {
+      "url": "https://cdn.logcluster.org/public/logistics_cluster_iraq_mosul_dam_mission_report_160817.pdf#page=2",
+      "observed": "Figure 2 shows the dry emergency spillway as the pale graded section along the eastward crest road after the saddle dam. The map retains the road knots and junctions. The photograph guides the visible bench and shoulder, and the retained terrain controls the downstream toe."
     }
   ],
   "cameras": [
@@ -197,6 +205,34 @@
         660
       ],
       "fov": 50
+    },
+    {
+      "name": "east-emergency-spillway",
+      "position": [
+        1340,
+        330,
+        1070
+      ],
+      "lookAt": [
+        1540,
+        22,
+        735
+      ],
+      "fov": 55
+    },
+    {
+      "name": "east-saddle-dam",
+      "position": [
+        1150,
+        175,
+        838
+      ],
+      "lookAt": [
+        1265,
+        23,
+        640
+      ],
+      "fov": 55
     }
   ],
   "mediumFiContext": {
@@ -523,6 +559,51 @@
         -12,
         320
       ]
+    },
+    {
+      "name": "east-spillway-district",
+      "position": [
+        1340,
+        330,
+        1070
+      ],
+      "lookAt": [
+        1540,
+        22,
+        735
+      ],
+      "fov": 55,
+      "reviewLod": "district"
+    },
+    {
+      "name": "east-spillway-street",
+      "position": [
+        1340,
+        330,
+        1070
+      ],
+      "lookAt": [
+        1540,
+        22,
+        735
+      ],
+      "fov": 55,
+      "reviewLod": "street"
+    },
+    {
+      "name": "east-spillway-closeup",
+      "position": [
+        1340,
+        330,
+        1070
+      ],
+      "lookAt": [
+        1540,
+        22,
+        735
+      ],
+      "fov": 55,
+      "reviewLod": "closeup"
     }
   ]
 }

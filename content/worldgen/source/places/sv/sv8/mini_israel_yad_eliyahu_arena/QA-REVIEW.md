@@ -1,0 +1,7 @@
+# Mini Israel · Yad Eliyahu Arena exhibit
+
+The rebuilt miniature has a continuous upper lip, a narrower open slot, transverse roof fittings and blue-gray cut faces. All four detail levels preserve the oval bowl, opening and marked court. The street and close-up add stepped red seating, three recessed entrances, window grilles, blue gates and patterned paving. Feature dimensions and spectator positions are estimated. [Overview](preview.png) · [Bowl preview](arena-bowl-preview.webp)
+
+The renderer resolves three shared material graphs for concrete, limestone and painted metal. The court, shrubs and spectators use vertex colors. All six GLBs passed validation without embedded images, warnings or errors. Skyline and district downloads total 230,728 bytes. The viewer releases all model geometry on unload. [QA record](qa.json)
+
+Four November 2011 panoramas place the plinth below the railed wood terrace. The approximately 340-degree bearing points the cutaway toward the visitor path. Across the four terrain renders, the plinth top stands 6 to 8 cm above the grade, and its underside remains below the grade. The closest mapped path clears the fitted plinth by about 11 cm. The viewer preserves all seven transportation records, the terrain and mapped water if loading fails. The original platform elevations and the current display condition remain uncertain. [Photographic fit](map-frame.json) · [Placement review](placement-report.json)

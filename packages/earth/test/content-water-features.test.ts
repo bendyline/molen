@@ -37,6 +37,14 @@ it('rejects ambiguous or unusable entries', () => {
   const parse = (features: unknown[]) =>
     readEarthWaterFeatures({ format: 'molen/earth-water-features@1', features });
   expect(() => parse([{ id: 7, elevation: Infinity }])).toThrow(/invalid/i);
+  const stageOutline = [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [0, 1],
+  ];
+  expect(() => parse([{ id: 7, hideLines: true, stageOutline }])).toThrow(/invalid/i);
+  expect(() => parse([{ id: -7, elevation: 40, stageOutline }])).toThrow(/invalid/i);
   expect(() =>
     parse([
       { id: 7, elevation: 10 },

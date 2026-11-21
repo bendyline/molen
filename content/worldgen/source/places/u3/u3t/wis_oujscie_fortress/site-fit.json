@@ -1,0 +1,39 @@
+{
+  "format": "molen/structure-terrain-fit@1",
+  "site": "Wisłoujście Fortress",
+  "reference": {
+    "datum": "sea-level",
+    "elevation": 3.75
+  },
+  "grade": [
+    {
+      "name": "Wisłoujście Fortress eastern landing",
+      "anchor": [
+        18.680707700590755,
+        54.39526289543161
+      ],
+      "heading": -0.4418139599319532,
+      "bounds": [
+        -3.5,
+        -3.5,
+        3.5,
+        3.5
+      ],
+      "blend": 13,
+      "elevation": 3.467,
+      "basis": "Tie the inner end of the existing mapped service road to the cobblestone causeway after accounting for the road renderer’s approximately 0.32 m surface offset."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "pmtiles-map.json",
+      "hash": "sha256:15cf0a59b4d1220086bd6b377dfdfbd63146f15d678e733c4ef0d7c485725131"
+    },
+    {
+      "path": "terrain-grid.json",
+      "hash": "sha256:33b403bc51dc17f3d61242b14a1b2f7fccf272ab305087da7d6bb1657dd6b495"
+    }
+  ],
+  "headingRadians": 0,
+  "scope": "Place the fort above the retained moat and blend the eastern road landing to the cobblestone approach. The native moat geometry and water level remain active."
+}

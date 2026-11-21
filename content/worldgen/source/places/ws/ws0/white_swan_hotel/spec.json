@@ -1,0 +1,650 @@
+{
+  "planId": "white_swan_hotel",
+  "id": "white_swan_hotel",
+  "assetId": "molen.worldgen.structure.white_swan_hotel",
+  "title": "White Swan Hotel",
+  "wikidataId": "Q986382",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.23739,
+    "latitude": 23.10852
+  },
+  "size": [
+    207.76607513427734,
+    125.39877319335938,
+    96.78446578979492
+  ],
+  "actualBounds": {
+    "min": [
+      -102.03385925292969,
+      -5.398773193359375,
+      -47.95365524291992
+    ],
+    "max": [
+      105.73221588134766,
+      120,
+      48.830810546875
+    ]
+  },
+  "visualBrief": "The White Swan Hotel on Shamian Island, with the riverfront podium, angular pale tower, repeating oblique guestroom bays, stepped roof equipment and antenna.",
+  "nativeAxes": {
+    "x": "along the podium shoreline",
+    "y": "up",
+    "z": "towards the Pearl River"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bai_e_tan.jpg"
+  ],
+  "stories": [
+    {
+      "id": "white-swan-hotel-wp",
+      "url": "https://qualla.com/white-swan-hotel/"
+    }
+  ],
+  "referenceInputHash": "sha256:9efed5639a98fc933b90d9efaef57708b3ad9392a572ce02d1ed84403ef8a75c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws0/white_swan_hotel/models/white-swan-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "generate-motat-building.mjs": "sha256:5220db2fd0851d4e10d3f4c58eb15835e9158b9c2da7c7a95880486444381235",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/ws0/white_swan_hotel/models/white-swan-hotel-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "facing": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "mullion": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43,
+        "metallic": 0.17
+      },
+      "door": {
+        "slot": "door",
+        "graph": "window_punched",
+        "roughness": 0.5,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "facing": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "mullion": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0.17
+          },
+          "door": {
+            "slot": "door",
+            "graph": "window_punched",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "facing": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "mullion": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0.17
+          },
+          "door": {
+            "slot": "door",
+            "graph": "window_punched",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "facing": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "mullion": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43,
+            "metallic": 0.17
+          },
+          "door": {
+            "slot": "door",
+            "graph": "window_punched",
+            "roughness": 0.5,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted",
+    "stone_granite",
+    "window_grid",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "cameraYaw": 0.55,
+    "focus": {
+      "center": [
+        0,
+        37,
+        3
+      ]
+    },
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The mapped tower wall roof is 90 m with a broad crown at 99.9 m, similar to the CTBUH’s 100 m architectural height. The primary architectural study and author-released Qualla image establish the angular tower and shallow oblique façade modules. The small upper fitting and slender mast are mapped at 102.8 m and 120 m respectively.",
+    "anchor": [
+      113.23739,
+      23.10852
+    ],
+    "heading": -0.3236385469722409,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.2375297704732,
+        23.10890325373461
+      ],
+      "modelHeight": 0,
+      "basis": "Unaltered provider elevation on the inland approach just outside the raised hotel entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          6.17823,
+          -25.23839
+        ],
+        [
+          6.17569,
+          -34.19631
+        ],
+        [
+          -2.71254,
+          -34.19725
+        ],
+        [
+          -2.71,
+          -25.23933
+        ],
+        [
+          -10.36771,
+          -25.24208
+        ],
+        [
+          -10.36643,
+          -27.8139
+        ],
+        [
+          -18.21656,
+          -27.81081
+        ],
+        [
+          -18.21542,
+          -28.51569
+        ],
+        [
+          -34.09841,
+          -28.50692
+        ],
+        [
+          -34.1008,
+          -29.22235
+        ],
+        [
+          -42.14337,
+          -29.21342
+        ],
+        [
+          -42.13879,
+          -30.03686
+        ],
+        [
+          -54.31079,
+          -30.04003
+        ],
+        [
+          -54.31158,
+          -30.94386
+        ],
+        [
+          -64.76313,
+          -30.93704
+        ],
+        [
+          -64.75873,
+          -24.90338
+        ],
+        [
+          -69.43633,
+          -24.90772
+        ],
+        [
+          -69.43519,
+          -13.50709
+        ],
+        [
+          -79.20792,
+          -13.50489
+        ],
+        [
+          -79.20815,
+          -0.65959
+        ],
+        [
+          -79.21118,
+          5.96364
+        ],
+        [
+          -87.23434,
+          5.96606
+        ],
+        [
+          -87.23552,
+          21.77053
+        ],
+        [
+          -79.20266,
+          21.76486
+        ],
+        [
+          -79.21137,
+          25.92428
+        ],
+        [
+          -101.41386,
+          25.92759
+        ],
+        [
+          -101.40698,
+          46.90737
+        ],
+        [
+          -42.075,
+          46.90737
+        ],
+        [
+          -42.07033,
+          48.20911
+        ],
+        [
+          30.2431,
+          48.21081
+        ],
+        [
+          30.24485,
+          45.15743
+        ],
+        [
+          69.80273,
+          45.15635
+        ],
+        [
+          69.80904,
+          42.27756
+        ],
+        [
+          86.22433,
+          42.27811
+        ],
+        [
+          86.21817,
+          -6.13009
+        ],
+        [
+          87.85346,
+          -9.62574
+        ],
+        [
+          91.42846,
+          -11.71727
+        ],
+        [
+          105.4364,
+          -13.9033
+        ],
+        [
+          94.85909,
+          -47.65812
+        ],
+        [
+          64.19529,
+          -37.94782
+        ],
+        [
+          61.19175,
+          -47.57815
+        ],
+        [
+          47.49374,
+          -43.27693
+        ],
+        [
+          48.66502,
+          -33.3138
+        ],
+        [
+          42.13093,
+          -31.41559
+        ],
+        [
+          41.79662,
+          -27.09999
+        ],
+        [
+          29.51693,
+          -27.10225
+        ],
+        [
+          29.51679,
+          -25.23531
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Replace the named White Swan podium and overlapping hotel tower footprints only."
+    },
+    "featureIds": [
+      "way/352610333",
+      "way/791257923",
+      "way/1562480631",
+      "way/1562480632",
+      "way/1562480633",
+      "way/1562480634"
+    ],
+    "source": "https://www.openstreetmap.org/way/791257923",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a1d8d9b5e31a9a7437608ad92aa1166265f2ce05895ffb50ce7922172814d7ee",
+    "notes": "The mapped tower wall roof is 90 m with a broad crown at 99.9 m, similar to the CTBUH’s 100 m architectural height. The primary architectural study and author-released Qualla image establish the angular tower and shallow oblique façade modules. The small upper fitting and slender mast are mapped at 102.8 m and 120 m respectively."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "The podium bay rhythm, white facing materials, and balcony dimensions are reconstructed from the published photograph, official written context and outlines. Glazing and panel patterns on faces beyond the photograph are approximate.",
+    "Shamian’s public embankment, waterfront landscaping, detached structures, hotel interior and approach viaduct beyond the attached entrance are outside the selected scope."
+  ],
+  "sourceLicense": "Independent geometric reconstruction from original OpenStreetMap outlines, Terrarium terrain and the documented appearance sources.",
+  "qaLodCameras": [
+    {
+      "name": "white-swan-hotel-skyline",
+      "position": [
+        182,
+        106,
+        240
+      ],
+      "lookAt": [
+        0,
+        37,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "white-swan-hotel-district",
+      "position": [
+        182,
+        106,
+        240
+      ],
+      "lookAt": [
+        0,
+        37,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "white-swan-hotel-street",
+      "position": [
+        182,
+        106,
+        240
+      ],
+      "lookAt": [
+        0,
+        37,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "white-swan-hotel-closeup",
+      "position": [
+        182,
+        106,
+        240
+      ],
+      "lookAt": [
+        0,
+        37,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "pearl-river-podium-and-angular-tower",
+      "position": [
+        130,
+        52,
+        212
+      ],
+      "lookAt": [
+        0,
+        39,
+        10
+      ]
+    },
+    {
+      "name": "raised-entrance-and-glass-skylight",
+      "position": [
+        -12,
+        20,
+        -71
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ]
+    },
+    {
+      "name": "oblique-bays-and-stepped-crown",
+      "position": [
+        -108,
+        119,
+        109
+      ],
+      "lookAt": [
+        0,
+        76,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15852,
+    "vertices": 47556,
+    "materials": 6,
+    "bytes": 2148364,
+    "sha256": "sha256:0d3b6ee7422672d6f3319882a740447890780e5d9ad7eb454150c0a390813ff3"
+  }
+}

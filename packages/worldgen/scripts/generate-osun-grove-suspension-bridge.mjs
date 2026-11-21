@@ -67,6 +67,8 @@ const spec = {
   category: 'bridge',
   quality: 'detailed',
   wikidataId: brief.wikidataId,
+  collectionId: brief.collectionId,
+  mapFeatureId: brief.mapFeatureId,
   referenceCoordinate: brief.referenceCoordinate,
   visualBrief: brief.visualBrief,
   size,

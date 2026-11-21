@@ -1450,17 +1450,17 @@
           5182.536387230392
         ],
         "center": [
-          4819.4767,
-          1741.9038
+          4907.95823,
+          1802.07039
         ],
         "coordinate": [
-          29.831912398368125,
-          60.02571362217764
+          29.833803117860526,
+          60.025882633153664
         ],
         "featureIds": [
           35184962348290
         ],
-        "middle": 16335.807976277589,
+        "middle": 16442.80797627759,
         "a": 15896.749170270625,
         "b": 16774.93094473132,
         "measuredSpan": 878.181774460696
@@ -1548,7 +1548,42 @@
       }
     ],
     "method": "Matched the two retained A-118 carriageways at each native route vertex, deduplicating buffered records and taking the midpoint of the selected adjacent carriageways. Selected south and north endpoints bound the maritime corridor. Engineering spans use the operator dimensions and the mapped bridge/tunnel associations.",
-    "replacementOutlines": []
+    "replacementOutlines": [],
+    "passagePlacementEvidence": {
+      "s2": {
+        "method": "Intersect the retained z14 ocean polygon with the mapped A-118 axis through the lift bridge. Use the midpoint of the wet run at the road and cross-check both sides against the overhead photograph.",
+        "roadCrossingMidpoint": 16335.807976277589,
+        "mappedOceanSpanAtRoadRelativeMeters": [
+          53,
+          161
+        ],
+        "offsetAlongRoadMeters": 107,
+        "roadApproachExtents": [
+          15896.749170270625,
+          16774.93094473132
+        ]
+      },
+      "s1": {
+        "method": "Fit each curved gate against the clear channel on the paved, unoccupied side of the mapped port. The overhead photograph establishes the gate orientation. The modeled apron follows the local coast and stays clear of the independent mapped buildings.",
+        "portalBasis": "The two approach caps end immediately ahead of the mapped transverse roof footprints. Photo-observed warm-yellow retaining panels and two visible bores remain above ground. The terrain cuts end inside the modeled lips and leave adjacent footprints clear.",
+        "portalControls": [
+          {
+            "approach": 6076.95634413858,
+            "approachHeight": 6.5,
+            "mouth": 6299.95634413858,
+            "floor": -2.35,
+            "roof": 4.2
+          },
+          {
+            "approach": 7646.631693255834,
+            "approachHeight": 4.65,
+            "mouth": 7425.631693255834,
+            "floor": -5.12,
+            "roof": 1.45
+          }
+        ]
+      }
+    }
   },
   "geometryLicense": "ODbL-1.0",
   "geometryAttribution": "OpenStreetMap contributors and Protomaps basemap",

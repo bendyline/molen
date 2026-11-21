@@ -1,0 +1,443 @@
+{
+  "planId": "temple_of_dendur",
+  "id": "temple_of_dendur",
+  "assetId": "molen.worldgen.structure.temple_of_dendur",
+  "title": "Temple of Dendur, Nubia",
+  "wikidataId": "Q22350866",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.935,
+    "latitude": 23.386666666666667
+  },
+  "size": [
+    52,
+    9.750000193715096,
+    60
+  ],
+  "actualBounds": {
+    "min": [
+      -26,
+      -0.20000000298023224,
+      -30
+    ],
+    "max": [
+      26,
+      9.550000190734863,
+      30
+    ]
+  },
+  "visualBrief": "The Temple of Dendur at its original nineteenth-century Nubian site, with the sandstone temple, detached pylon gateway, paved terrace and original rock-cut shrine.",
+  "nativeAxes": {
+    "x": "north across the terrace",
+    "y": "up",
+    "z": "east toward the Nile"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1874-01-01",
+    "validFrom": "1851-01-01",
+    "validUntil": "1902-12-10",
+    "currentWorldEligible": false,
+    "basis": "The 1874 survey-era appearance is bounded to the photographic record before operation of the first Aswan reservoir."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_Temple_of_Dendur,_Showing_the_Pylon_and_Terrace_MET_DP228289.jpg",
+    "https://www.e-rara.ch/zut/content/pageview/15272266",
+    "https://www.e-rara.ch/zut/content/pageview/15272267",
+    "https://www.e-rara.ch/zut/content/pageview/15272268",
+    "https://www.metmuseum.org/art/collection/search/261903"
+  ],
+  "stories": [
+    {
+      "id": "temple-of-dendur-wp",
+      "url": "https://qualla.com/temple-of-dendur/"
+    }
+  ],
+  "referenceInputHash": "sha256:b4e2ca659fb79a273ffc612e95a5e048a89d2803a57d68d79ac2f421dc42dca1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ss/ssp/temple_of_dendur/models/temple-of-dendur-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ss/ssp/temple_of_dendur/models/temple-of-dendur-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "temple": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "terrace": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "cap": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "engraving": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "engraving": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "engraving": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "engraving": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_ashlar",
+    "stone_sandstone_raw",
+    "earth_rammed",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The independent DEM measures the present reservoir surface. The 1874 proposal uses estimated historical relative levels at the archaeological site.",
+    "anchor": [
+      32.935,
+      23.386666666666667
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.935,
+        23.386666666666667
+      ],
+      "modelHeight": 0,
+      "basis": "Current independent surface at the archaeological coordinate. The modern DEM cannot recover the inundated 1874 ground elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "gau-plate-23/temple",
+      "gau-plate-23/gateway",
+      "gau-plate-23/terrace"
+    ],
+    "source": "https://web.ujaen.es/investiga/egiptologia/journalarchitecture/downloads/JAEA1_Harrell.pdf",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0f5614e0cbc19edbdc3d7b52a026d03e6646455513a76d9e6d75a61c01e852a9",
+    "notes": "The measured Gau plates and the exact published 1874 Bridgman image establish the broad sandstone platform, east-facing gateway and the lowered rock bank. Teynard’s pre-dam photograph supplies the surviving stone silhouettes and slope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the documented nineteenth-century site. The nearby terrace and sloping rock are reconstructed relative to the temple. The modern terrain source reads 179 m across Lake Nasser. Its actual historic vertical datum is unavailable and the geographic viewer uses an approximate modern-surface reference.",
+    "The surveyed exterior includes the partially damaged entrance and retained columns, the free-standing gateway, sandstone terrace and off-center rock-cut shrine opening. Masonry joints, parts of the relief and the original Nile shoreline are estimated.",
+    "The historical placement is shown only for the documented pre-reservoir appearance. The present Metropolitan Museum installation, former missing pylon towers, surrounding village and inundation history are outside this model’s scope."
+  ],
+  "sourceLicense": "Original mesh under the repository license. The archival Gau and Teynard images are public domain. The Bridgman image is CC0 courtesy of The Metropolitan Museum of Art.",
+  "qaLodCameras": [
+    {
+      "name": "dendur-skyline",
+      "position": [
+        43,
+        28,
+        59
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "dendur-district",
+      "position": [
+        43,
+        28,
+        59
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "dendur-street",
+      "position": [
+        43,
+        28,
+        59
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "dendur-closeup",
+      "position": [
+        43,
+        28,
+        59
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "standing-temple-and-gateway",
+      "position": [
+        29,
+        13,
+        17
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "east-gateway-and-platform",
+      "position": [
+        6,
+        10,
+        31
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        9.8
+      ]
+    },
+    {
+      "name": "portico-and-papyrus-capitals",
+      "position": [
+        6.6,
+        8.8,
+        6.8
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        -0.63
+      ]
+    },
+    {
+      "name": "rock-cut-shrine-and-rear",
+      "position": [
+        12,
+        12,
+        -13
+      ],
+      "lookAt": [
+        0,
+        5.6,
+        -16.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11102,
+    "vertices": 33306,
+    "materials": 5,
+    "bytes": 1662932,
+    "sha256": "sha256:7cd36466d423e800e9eccecacfb3281d34df9ca588b6297c7ac8d567f725799e"
+  }
+}

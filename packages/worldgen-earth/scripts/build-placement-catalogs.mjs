@@ -111,8 +111,14 @@ export async function buildPlacementCatalogs({ check = false } = {}) {
   const project = JSON.parse(
     await readFile(resolve(earthRoot, '../worldgen/project.json'), 'utf8'),
   );
-  for (const entry of catalog.entries)
+  const proposals = new Set(
+    catalog.entries.filter((entry) => entry.status === 'proposal').map((entry) => entry.id),
+  );
+  for (const entry of catalog.entries) {
     if (!project.assets[entry.asset]) throw new Error(`${entry.id}: unknown asset ${entry.asset}`);
+    if (entry.hiddenByProposal && !proposals.has(entry.hiddenByProposal))
+      throw new Error(`${entry.id}: unknown proposal ${entry.hiddenByProposal}`);
+  }
   const { files, directory } = compilePlacementCatalog(catalog);
   const cellsRoot = resolve(earthRoot, 'structures/placements/cells');
   const oldFiles = await readdir(cellsRoot).catch((error) => {

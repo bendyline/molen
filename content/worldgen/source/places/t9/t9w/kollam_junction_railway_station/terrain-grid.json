@@ -66101,9 +66101,20 @@
       "y": 7786
     }
   ],
-  "method": "Unmodified standard viewer global Terrarium field; bilinear interpolation at pixel centers in the signed building frame. No flattening. 7.5-meter sampling oversamples the coarse mixed-source DEM.",
+  "method": "The elevationsMeters array preserves the raw Mapzen samples. The dated review PNG applies the bounded station grade in the signed model frame and encodes heights relative to the forecourt datum.",
   "attribution": "Mapzen/Terrain Tiles; NASA/USGS and other open elevation sources",
   "attributionUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
   "limitations": "Approximate global viewer terrain; not surveyed urban foundation levels. Vegetation and urban surface returns can affect the field.",
-  "reviewHeightfieldHash": "sha256:f107ec885e26426d6252b9c4b32333cdd0c1178b6c2dcc8d434b159ca306c50b"
+  "reviewHeightfieldHash": "sha256:7411d948f2595ebb6a6477dabaa5079d6cd59c0f4771bf280f73655a0d0e3daf",
+  "appliedSiteGrades": {
+    "path": "content/earth/terrain/site-grades.json",
+    "viewingDate": "2017-01-08",
+    "names": [
+      "Kollam Junction legacy passenger platforms and tracks",
+      "Kollam Junction legacy forecourt and annex",
+      "Kollam Junction legacy southern rail shed",
+      "Kollam Junction legacy western footbridge north landing",
+      "Kollam Junction legacy north service building"
+    ]
+  }
 }

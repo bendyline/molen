@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.iwamura_castle",
+  "kind": "static-structure",
+  "title": "Iwamura Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.iwamura_castle",
+        "output": "assets/places/xn/xn3/iwamura_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:79967abcd34dc0553adc1d2470ca4376aeb5ce3eab3d606d335cfd8f27c9bbcb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-iwamura-castle",
+        "path": "models/generate-iwamura-castle.mjs"
+      },
+      {
+        "id": "iwamura-castle-model",
+        "path": "models/iwamura-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/iwamura-upper-walls-and-steps.json",
+      "reference-rights/iwamura-heritage-architectural-facts.json",
+      "reference-rights/takami-torao-iwamurajo-17.json",
+      "reference-rights/takami-torao-iwamurajo-5.json",
+      "reference-rights/takami-torao-iwamurajo-6.json",
+      "reference-rights/takami-torao-iwamurajo-7.json",
+      "reference-rights/takami-torao-iwamurajo-8.json",
+      "reference-rights/takami-torao-iwamurajo-9.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/gsi-dem5a-15-28895-12939.txt",
+      "terrain-sources/gsi-dem5a-15-28894-12939.txt",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

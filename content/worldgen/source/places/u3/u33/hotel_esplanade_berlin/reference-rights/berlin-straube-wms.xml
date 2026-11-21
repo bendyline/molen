@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" version="1.3.0" updateSequence="551130" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms https://gdi.berlin.de/services/schemas/wms/1.3.0/capabilities_1_3_0.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 https://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title>Straubes Übersichtsplan von Berlin (Historische Mitte)</Title>
+    <Abstract>Jul. Straubes Übersichtsplan von Berlin (Mitte) in 44 Blättern.</Abstract>
+    <KeywordList>
+      <Keyword>WMS</Keyword>
+      <Keyword>Berlin</Keyword>
+      <Keyword>Geodaten</Keyword>
+      <Keyword>GDI-BE</Keyword>
+      <Keyword>OGC</Keyword>
+      <Keyword>infoMapAccessService</Keyword>
+      <Keyword>opendata</Keyword>
+      <Keyword>open data</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="https://www.stadtentwicklung.berlin.de/geoinformation/gdi/"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson/>
+        <ContactOrganization>Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition>pointOfContact</ContactPosition>
+      <ContactAddress>
+        <AddressType>postal</AddressType>
+        <Address/>
+        <City/>
+        <StateOrProvince/>
+        <PostCode/>
+        <Country>Germany</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone/>
+      <ContactFacsimileTelephone/>
+      <ContactElectronicMailAddress>geoportal@senstadt.berlin.de</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.</Fees>
+    <AccessConstraints>Es gelten keine Zugriffsbeschränkungen.</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/straubeplan?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/straubeplan?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/tiff</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/straubeplan?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/straubeplan?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <inspire_vs:ExtendedCapabilities>
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>https://gdi.berlin.de/geonetwork/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputschema=http://www.isotc211.org/2005/gmd&amp;elementsetname=full&amp;id=1aa30716-0cbc-35de-abe2-6e7c5221ed01</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.ogc.csw.GetRecordByIdResponse_xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>ger</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>ger</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+    <Layer>
+      <Title>Straubes Übersichtsplan von Berlin (Historische Mitte)</Title>
+      <Abstract>Jul. Straubes Übersichtsplan von Berlin (Mitte) in 44 Blättern.</Abstract>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:25833</CRS>
+      <CRS>EPSG:25832</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:4258</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>13.294071939515797</westBoundLongitude>
+        <eastBoundLongitude>13.498988361965194</eastBoundLongitude>
+        <southBoundLatitude>52.47441017851308</southBoundLatitude>
+        <northBoundLatitude>52.57914396844865</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="13.294071939515797" miny="52.47441017851308" maxx="13.498988361965194" maxy="52.57914396844865"/>
+      <BoundingBox CRS="EPSG:25833" minx="384133.5454619807" miny="5814864.800188211" maxx="398292.82263252744" maxy="5826822.268381635"/>
+      <BoundingBox CRS="EPSG:25832" minx="790899.8512848668" miny="5822478.573712066" maxx="805501.4100534164" maxy="5834967.10559826"/>
+      <BoundingBox CRS="EPSG:4326" minx="52.47441017851308" miny="13.294071939515797" maxx="52.57914396844865" maxy="13.498988361965194"/>
+      <BoundingBox CRS="EPSG:4258" minx="52.474410217238116" miny="13.294071939515797" maxx="52.57914400706201" maxy="13.498988361965196"/>
+      <BoundingBox CRS="EPSG:3857" minx="1479889.3188760453" miny="6886363.672452436" maxx="1502700.5106782916" maxy="6905527.21557207"/>
+      <AuthorityURL name="GDI-DE">
+        <OnlineResource xlink:type="simple" xlink:href="https://www.gdi-de.org"/>
+      </AuthorityURL>
+      <Layer queryable="0">
+        <Name>straubeplan</Name>
+        <Title>Straubeplan</Title>
+        <Abstract>Straubeplan</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:25833</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.294071939515797</westBoundLongitude>
+          <eastBoundLongitude>13.498988361965194</eastBoundLongitude>
+          <southBoundLatitude>52.47441017851308</southBoundLatitude>
+          <northBoundLatitude>52.57914396844865</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.294071939515797" miny="52.47441017851308" maxx="13.498988361965194" maxy="52.57914396844865"/>
+        <BoundingBox CRS="EPSG:25833" minx="384401.69410304585" miny="5815167.43545824" maxx="398056.8615713033" maxy="5826518.5083712265"/>
+        <BoundingBox CRS="EPSG:25832" minx="790917.9539554329" miny="5822494.531113643" maxx="805482.5377178361" maxy="5834952.368187351"/>
+        <BoundingBox CRS="EPSG:4326" minx="52.47441017851308" miny="13.294071939515797" maxx="52.57914396844865" maxy="13.498988361965194"/>
+        <BoundingBox CRS="EPSG:4258" minx="52.47441014160989" miny="13.294071939515797" maxx="52.57914393165531" maxy="13.498988361965193"/>
+        <BoundingBox CRS="EPSG:3857" minx="1479889.3188760453" miny="6886363.672452436" maxx="1502700.5106782916" maxy="6905527.21557207"/>
+        <AuthorityURL name="GDI-DE">
+          <OnlineResource xlink:type="simple" xlink:href="https://www.gdi-de.org"/>
+        </AuthorityURL>
+        <Identifier authority="GDI-DE">https://registry.gdi-de.org/id/de.be.csw/82d63ab7-3009-3086-b796-3afdd17e02d6</Identifier>
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xlink:type="simple" xlink:href="https://gdi.berlin.de/geonetwork/srv/ger/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputschema=http://www.isotc211.org/2005/gmd&amp;elementsetname=full&amp;id=9271450c-f95a-358a-9cff-093484cb73ae"/>
+        </MetadataURL>
+        <Style>
+          <Name>default-style-straubeplan</Name>
+          <Title>straubeplan style</Title>
+          <Abstract>Default style for straubeplan layer</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://gdi.berlin.de/services/wms/straubeplan?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=straubeplan"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>250000.0</MaxScaleDenominator>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

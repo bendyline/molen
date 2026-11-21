@@ -1,0 +1,1393 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.mameyand",
+  "inputHash": "sha256:a91572db78168ca8cfcec94d9d077d9cc295bb79cb3dedf48af19c15309b8396",
+  "placementHash": "sha256:d5e4c7c4fbf753d135089b811d70b0960c288b512fb5747217417ae153e79eff",
+  "entry": {
+    "id": "mameyand.bridge",
+    "title": "Mameyand Bridge",
+    "asset": "molen.worldgen.structure.mameyand",
+    "anchor": [
+      45.642175555229215,
+      36.97608021855693
+    ],
+    "heading": 0.14131123158975065,
+    "datum": "sea-level",
+    "elevation": 1275.45,
+    "orientation": "fixed",
+    "bounds": [
+      45.6418957055,
+      36.9759787048,
+      45.642455405,
+      36.9761817322
+    ],
+    "minLevel": 15,
+    "status": "preview",
+    "replaceFootprint": false,
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "replaceRoads": {
+      "length": 44.734,
+      "width": 15,
+      "outline": [
+        [
+          -22.352,
+          -8
+        ],
+        [
+          22.39,
+          -8
+        ],
+        [
+          22.39,
+          7
+        ],
+        [
+          -22.352,
+          7
+        ],
+        [
+          -22.352,
+          -8
+        ]
+      ],
+      "deckHeights": [
+        2.945,
+        7.165
+      ],
+      "deckEndpoints": [
+        [
+          -22.348,
+          -4.48
+        ],
+        [
+          22.386,
+          1.161
+        ]
+      ],
+      "deckProfile": [
+        [
+          -22.348,
+          2.945,
+          -4.48
+        ],
+        [
+          -11.5,
+          5.3559600000000005,
+          0
+        ],
+        [
+          0.16,
+          7.035,
+          0
+        ],
+        [
+          11.5,
+          5.40204,
+          0
+        ],
+        [
+          22.386,
+          7.165,
+          1.161
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35185597046580
+      ],
+      "approachFeatureIds": [
+        35184852702370
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -8.99,
+          -4.8
+        ],
+        [
+          8.99,
+          -4.8
+        ],
+        [
+          8.99,
+          4.8
+        ],
+        [
+          -8.99,
+          4.8
+        ],
+        [
+          -8.99,
+          -4.8
+        ]
+      ],
+      "minHeight": 0,
+      "preservePaving": true,
+      "basis": "Cap the smoothed bed beneath the three masonry vaults while the historic span is visible."
+    },
+    "note": "Retained Protomaps carries both crossings on one feature. Only the 23 m eastern masonry bearing is replaced. The longer modern western span and the overland route on either bank are retained."
+  },
+  "status": "passed",
+  "sourceMap": "pmtiles-fit.json",
+  "review": "The November 18 Protomaps multi-line feature contains two crossing segments. The north-up photo trace and September 2026 aerial photo identify the short eastern masonry crossing and its signed axis. The placement replaces only that segment. The western crossing retains its geometry, and model failure restores the eastern procedural crossing. The local grade and fixed water stage preserve three open vaults and both approach joints.",
+  "limits": "Stone courses, tower proportions and approach slopes follow photographs. The terrain-derived water stage is approximate and will vary in the real river. The viewer uses generalized terrain and waterway ribbons beyond the bridge site.",
+  "stockSiteReview": {
+    "preview": {
+      "path": "shared-preview.png",
+      "hash": "sha256:beba8f9f3c2025bd39cd193755225b5bd657104c87b3899b13013fe1dcffb371"
+    },
+    "terrain": {
+      "source": "Mapzen Terrarium",
+      "tiles": [
+        {
+          "filename": "terrain-15-20538-12756.png",
+          "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/20538/12756.png",
+          "hash": "sha256:b704dbeb0856324afbf5b927472592997122c46b93ee80361455af66fa10ac70"
+        },
+        {
+          "filename": "terrain-15-20538-12757.png",
+          "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/20538/12757.png",
+          "hash": "sha256:b16be22fbf8aaefc57c052bb9442964ff9ff3a6e1f1108fdd36cd1b4d2b470dd"
+        }
+      ],
+      "modeledWaterElevation": 1275.68,
+      "modelElevation": 1275.45,
+      "method": "Fit the east channel and the two landings against the standard terrain. The stage and local grade are approximate."
+    },
+    "environment": {
+      "gradePath": "content/earth/terrain/site-grades.json",
+      "gradeNames": [
+        "Mameyand Bridge crossing and bank approaches"
+      ],
+      "waterPath": "content/earth/hydrology/water-features.json",
+      "waterIds": [
+        -5794125,
+        35185333417632,
+        35185333417630
+      ]
+    },
+    "scenarios": [
+      {
+        "level": "master",
+        "modelBase": 1275.45,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": 1280.8553602041093,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": null,
+            "structure": 1280.9014398646568,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1282.4969601403138,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4457599914554,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4990398406983,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480766584744315
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047128850606,
+            "graded": 1278.2407018680558,
+            "visible": 1278.2520469105282,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480779727197662
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047126903475,
+            "graded": 1278.2407018013475,
+            "visible": 1278.252046772302,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              22.390000000000008,
+              1.1698187226469825
+            ],
+            "elevation": 1282.615,
+            "raw": 1285.0720078924994,
+            "graded": 1282.1314439820203,
+            "visible": 1282.1150903017447,
+            "road": 1282.614990234375,
+            "structure": null
+          }
+        ],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/master-north-vaults.png",
+            "hash": "sha256:345a976303d932b166d25f61d03ed5b37a1e5583d2d861ea156747d2d647358d"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/master-south-masonry.png",
+            "hash": "sha256:76b6a5bce1f6ac8a6c700f91cb88fc052d13845371115a1160a6a34447a296da"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/master-two-distinct-crossings.png",
+            "hash": "sha256:5ec8c99bef1cb01db3bbbe65d5d0f9779d5d2d3e20ee12cccc3f00c3b15cde22"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/master-west-approach.png",
+            "hash": "sha256:54559922e4a9d6d84e51a065922ffc7624c984db7e1080a3efa4cf1f448fe396"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/master-east-approach.png",
+            "hash": "sha256:1d0bfceb6527be05c54fe5f8b3934db6d159e1e4ffaab27cc06187f159f1043a"
+          }
+        ]
+      },
+      {
+        "level": "skyline",
+        "modelBase": 1275.45,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": 1280.8553602041093,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": null,
+            "structure": 1280.9014398646568,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1282.4969601391977,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4457599914554,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4990398406985,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480766584744315
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047128850606,
+            "graded": 1278.2407018680558,
+            "visible": 1278.2520469105282,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480779727197662
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047126903475,
+            "graded": 1278.2407018013475,
+            "visible": 1278.252046772302,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              22.390000000000008,
+              1.1698187226469825
+            ],
+            "elevation": 1282.615,
+            "raw": 1285.0720078924994,
+            "graded": 1282.1314439820203,
+            "visible": 1282.1150903017447,
+            "road": 1282.614990234375,
+            "structure": null
+          }
+        ],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/skyline-north-vaults.png",
+            "hash": "sha256:97b2f25b13995f464c2475f8f93c188f37447fab2670f93fb540236b6630f78b"
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "modelBase": 1275.45,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": 1280.8553602041093,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": null,
+            "structure": 1280.9014398646568,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1282.4969601391977,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4457599914554,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4990398406983,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480766584744315
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047128850606,
+            "graded": 1278.2407018680558,
+            "visible": 1278.2520469105282,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480779727197662
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047126903475,
+            "graded": 1278.2407018013475,
+            "visible": 1278.252046772302,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              22.390000000000008,
+              1.1698187226469825
+            ],
+            "elevation": 1282.615,
+            "raw": 1285.0720078924994,
+            "graded": 1282.1314439820203,
+            "visible": 1282.1150903017447,
+            "road": 1282.614990234375,
+            "structure": null
+          }
+        ],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/district-north-vaults.png",
+            "hash": "sha256:3a40175d5c396944e37a40f23e8045ea394f419fbac792a9771251d7a54fa50a"
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "modelBase": 1275.45,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": 1280.8553602041093,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": null,
+            "structure": 1280.9014398646568,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1282.4969601391977,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4457599914554,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4990398406983,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480766584744315
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047128850606,
+            "graded": 1278.2407018680558,
+            "visible": 1278.2520469105282,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480779727197662
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047126903475,
+            "graded": 1278.2407018013475,
+            "visible": 1278.252046772302,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              22.390000000000008,
+              1.1698187226469825
+            ],
+            "elevation": 1282.615,
+            "raw": 1285.0720078924994,
+            "graded": 1282.1314439820203,
+            "visible": 1282.1150903017447,
+            "road": 1282.614990234375,
+            "structure": null
+          }
+        ],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/street-north-vaults.png",
+            "hash": "sha256:5b7347a1251ff41471c9863bb45e23184f8b7ef57da1dc9fe60b6d5f45862408"
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "modelBase": 1275.45,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": 1280.8553602041093,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": null,
+            "structure": 1280.9014398646568,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.614990234375,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1278.39501953125,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1282.4969601391977,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.445759991455,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": 1281.4990398406983,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480766584744315
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047128850606,
+            "graded": 1278.2407018680558,
+            "visible": 1278.2520469105282,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              -22.351999999999997,
+              -4.480779727197662
+            ],
+            "elevation": 1278.395,
+            "raw": 1276.8047126903475,
+            "graded": 1278.2407018013475,
+            "visible": 1278.252046772302,
+            "road": 1278.39501953125,
+            "structure": null
+          },
+          {
+            "id": 35184852702370,
+            "point": [
+              22.390000000000008,
+              1.1698187226469825
+            ],
+            "elevation": 1282.615,
+            "raw": 1285.0720078924994,
+            "graded": 1282.1314439820203,
+            "visible": 1282.1150903017447,
+            "road": 1282.614990234375,
+            "structure": null
+          }
+        ],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/closeup-north-vaults.png",
+            "hash": "sha256:aad8536efbe0079ae0304441dea9c7e758161b1189551f2d953dc81b8b706a99"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/closeup-south-masonry.png",
+            "hash": "sha256:9f123c1701ac7af0365ab6d3a0a2255b94eae9316e62b958f97e47ce7ff55d8f"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/closeup-two-distinct-crossings.png",
+            "hash": "sha256:b1f73ea05c8643318ef4b3a021b99c0e80e925c105fa6dc315415f57c1a5a61d"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/closeup-west-approach.png",
+            "hash": "sha256:fec1f9fbae19190ea6155802c62d04a20e45074155bdf59bc5e5522fd2c1785c"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/closeup-east-approach.png",
+            "hash": "sha256:5c22fc808208c1cea19e9599fd595b5f3b1391e125a9d409c9cbdf270aa4dd3e"
+          }
+        ]
+      },
+      {
+        "level": "failure",
+        "modelBase": null,
+        "points": {
+          "westApproach": {
+            "point": [
+              -22.4,
+              -4.48
+            ],
+            "raw": 1276.8014202911895,
+            "graded": 1278.231555201134,
+            "visible": 1278.2424946472897,
+            "road": 1280.053888412618,
+            "structure": null,
+            "water": null
+          },
+          "eastApproach": {
+            "point": [
+              22.45,
+              1.17
+            ],
+            "raw": 1285.0952683286132,
+            "graded": 1282.1341960052252,
+            "visible": 1282.1183590973906,
+            "road": 1282.438339793058,
+            "structure": null,
+            "water": null
+          },
+          "westDeck": {
+            "point": [
+              -11.4,
+              0
+            ],
+            "raw": 1277.6398116031835,
+            "graded": 1279.5202466743758,
+            "visible": 1279.511325474011,
+            "road": null,
+            "structure": null,
+            "water": null
+          },
+          "eastDeck": {
+            "point": [
+              11.4,
+              0
+            ],
+            "raw": 1280.8773803675392,
+            "graded": 1279.7462335300968,
+            "visible": 1279.7529184696377,
+            "road": 1281.8133964763397,
+            "structure": null,
+            "water": null
+          },
+          "eastRoadTail": {
+            "point": [
+              24,
+              1.7
+            ],
+            "raw": 1285.760054304908,
+            "graded": 1282.2048657070252,
+            "visible": 1282.2048467453528,
+            "road": 1282.5248532100893,
+            "structure": null,
+            "water": null
+          },
+          "westRoadTail": {
+            "point": [
+              -24,
+              -4.8
+            ],
+            "raw": 1276.686471242599,
+            "graded": 1277.9531305569974,
+            "visible": 1277.9530843454054,
+            "road": 1279.6830522032822,
+            "structure": null,
+            "water": null
+          },
+          "center": {
+            "point": [
+              0,
+              0
+            ],
+            "raw": 1278.4361702136232,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": 1280.9998105064958,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westernSpan": {
+            "point": [
+              -76,
+              -22.5
+            ],
+            "raw": 1277.780159269279,
+            "graded": 1277.780159269279,
+            "visible": 1277.7791675013145,
+            "road": 1279.381363481707,
+            "structure": null,
+            "water": null
+          },
+          "waterNorth": {
+            "point": [
+              0,
+              -6
+            ],
+            "raw": 1278.4618110386996,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "waterSouth": {
+            "point": [
+              0,
+              6
+            ],
+            "raw": 1278.666993222827,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": null,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "westVault": {
+            "point": [
+              -7.3,
+              0.1
+            ],
+            "raw": 1277.8675817349322,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": 1280.762060546114,
+            "structure": null,
+            "water": 1275.6800537109375
+          },
+          "eastVault": {
+            "point": [
+              7.25,
+              0.1
+            ],
+            "raw": 1279.7135163752796,
+            "graded": 1275.3500000156369,
+            "visible": null,
+            "road": 1281.50015437822,
+            "structure": null,
+            "water": 1275.6800537109375
+          }
+        },
+        "joints": [],
+        "westernCrossingRetained": true,
+        "unloaded": {
+          "groundRestored": true,
+          "liveGeometries": 0
+        },
+        "frames": [
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/failure-north-vaults.png",
+            "hash": "sha256:e4a4aafe8ac94b4cd72fba362a69dfd2f8898f9e2353848293a886de431c5b18"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/failure-south-masonry.png",
+            "hash": "sha256:7765bbde2e56b7023acc68ef6fc1bd0fb70e56fd8d09d186efa9db172e1454a7"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/failure-two-distinct-crossings.png",
+            "hash": "sha256:33724d146902fcf2560ab4c4e152c382f4f9f0fbceb5009ec1f895d22aadab61"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/failure-west-approach.png",
+            "hash": "sha256:907bc01bb21465a3fecf6335aa00dec2a37c2f686da69da2a12e9d171d260808"
+          },
+          {
+            "path": ".artifacts/mameyand-bridge-review/native/shots/failure-east-approach.png",
+            "hash": "sha256:e4cb7448d4fcc86a5b705a49dcd9413940f366ced74b44549eef564ad0d7aa74"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,15 +1,24 @@
-# New Delhi railway station — complete passenger buildings and platform canopies
-
-Reviewed2026-11-02. **Geometry complete; native terrain fit pending. Not counted ready.**
+# New Delhi Railway Station
 
 All 9 current portable views actually inspected. Complete principal New Delhi passenger ensemble: the long orange Paharganj building with actual yellow Y braces, clock, recessed glazing, closed entrance doors, projecting supported canopy and roof-service bar; separate Ajmeri north and south colonnaded ranges with paired upper columns, recessed closed doors, end pavilions and closed roofs; and nine open-sided platform canopy groups following the mapped islands. No invented floors or walls fill the railway corridors. Hidden returns, opening inventory, roof services and support details are original medium-fi approximations. No copied murals, brands, emblems, lettering, display locomotive, street gantry or navigable interiors.
 
-Station Q2742296 supplies the site identity. Current standard PMTiles and two ordinary 2022 entrance photographs resolve the west Paharganj building, separate east Ajmeri ranges and seven roof identities across twenty above-ground native components. Anchor [77.22048908472061,28.642551573082763], heading -1.38731513209622: +X south-southeast toward the Paharganj clock, +Z west-southwest toward Paharganj street, -Z east-northeast toward Ajmeri Gate. Facing uncertainty is about ten degrees. Exactly 20 of 467 components are replaced; all 447 others remain, including underground parent33 and independent part51. Nine platform islands merge eighteen tile fragments for canopy plans only. Tracks, platform surfaces, mapped range gap and existing pedestrian overbridges remain native. Encoded tile IDs are not asserted as exact OSM IDs. Native layer-1/height5m is an underground parent, not an above-ground height. West parapet16m/service18.5m, east cornice13.5m/parapet14.25m and platform roofs9m are explicit photo-proportioned approximations.
+The viewer uses the same Paharganj terrain reference for the west headhouse, the two Ajmeri ranges and nine platform canopy groups. Local grades expose both Ajmeri entrances and preserve the open gap between the ranges. The focused fixture replaces ten mapped station records and retains the other 234 buildings and all 586 road and rail records.
 
-All 25 current standard-field, lighting, silhouette, detail and tier views actually inspected. One unchanged standard Terrarium tile supplies the native field. Three exact occupied passenger-building floors cut ground; the open range gap, railway corridors, platform areas, roads and independent buildings remain native. Opening probes report zero remaining coverage and unchanged source elevations. The native exterior contact still fails around Ajmeri. Whole-ensemble cameras were corrected to include the long canopy ends; twelve changed current frames were inspected again, while thirty-one exact pixel-hash-identical frames retain their prior actual inspection. Synthetic neighboring buildings are not literal New Delhi reconstruction. These renders document pending site fit, not geographic acceptance.
+![New Delhi Railway Station in the Earth viewer](site-preview.png)
 
-All 9 current shared-material and flat-map views actually inspected. Seven existing shared 256px limestone, lime plaster, painted metal, granite, window-grid, membrane and corrugated-metal graphs serve eight semantic groups. Metric UVs, linear vertex colors, no embedded images or private textures. Braces, columns, recesses, frames, clock and roof supports are geometry. Metal trim and doors use non-window slots; only glazing uses the window slot. Unload releases geometry and restores ground. Flat staging verifies the signed plan and facing, not native terrain grades.
+Failed loading preserves the native layers. Eviction restores the ground and releases model geometry.
 
-Detailed source: 144616 triangles / 17358756 bytes. Four browser tiers: 896 / 3972 / 14270 / 57924 triangles. Initial skyline plus district: 432212 bytes; close-up: 5510048 bytes. Four focused tests and six GLBs without errors or warnings. All43 final current views actually inspected. Numerical LOD errors and physical-device timings remain unmeasured.
+| Detail level | Triangles | Download bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 896 | 77,352 | 1 |
+| district | 3,972 | 354,860 | 8 |
+| street | 14,270 | 1,316,992 | 8 |
+| closeup | 57,924 | 5,510,048 | 8 |
 
-Rebuild: node packages/worldgen/scripts/generate-new-delhi-railway-station.mjs; append --check for exact bytes. Import/LOD/placement select --ids=new_delhi_railway_station. GLBs remain ignored outputs.
+Skyline and district total 432,212 bytes. Six GLBs pass Khronos validation and contain zero embedded images. Seven shared material graphs bind in the viewer. The review covers 76 renders and 80 geographic samples.
+
+The standard terrain yields approximate entrance and platform elevations. The mapped platforms retain the existing yard grade and their open sides.
+
+This model represents the principal passenger buildings and mapped canopies. Hidden facade openings and roof installations remain photo-based approximations.
+
+[Mapped site frame](map-frame.json) · [Terrain fit](site-fit.json) · [QA evidence](qa.json)

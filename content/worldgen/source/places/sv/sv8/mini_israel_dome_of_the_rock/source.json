@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mini_israel_dome_of_the_rock",
+  "kind": "static-structure",
+  "title": "Mini Israel · Dome of the Rock exhibit",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mini_israel_dome_of_the_rock",
+        "output": "assets/places/sv/sv8/mini_israel_dome_of_the_rock/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cc508972de79fa772505e8f6c01d40e17e061a1bd09dc8852fd9044b79bbfb4c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "dome-exhibit-model",
+        "path": "models/dome-exhibit-model.mjs"
+      },
+      {
+        "id": "dome-exhibit-master",
+        "path": "models/generate-dome-exhibit.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "reference-observations.json",
+      "map-frame.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "exhibit-preview.webp",
+      "qa.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

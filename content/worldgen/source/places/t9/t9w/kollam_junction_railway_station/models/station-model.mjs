@@ -429,8 +429,8 @@ export const controls = {
         [-4.827, -11.719],
       ],
       stairs: [
-        { bottom: [-5.497, 16.485], top: [-4.827, -11.719] },
-        { bottom: [-35.99, -112.59], top: [-4.532, -111.763] },
+        { bottom: [-5.497, 16.485], top: [-4.827, -11.719], bottomY: 0 },
+        { bottom: [-35.99, -112.59], top: [-4.532, -111.763], bottomY: 0 },
       ],
     },
     {
@@ -1106,7 +1106,7 @@ function terminal(o, c) {
         c,
         44.5,
         65.5,
-        0.2 + i * 0.18,
+        i === 0 ? 0 : 0.2 + i * 0.18,
         0.38 + i * 0.18,
         16.5 + (4 - i) * 0.3,
         16.5 + (5 - i) * 0.3,
@@ -1114,17 +1114,17 @@ function terminal(o, c) {
       );
     // Short accessible side ramp meets the porch at its top, with light railings.
     const ramp = [
-      [28, 0.2, 13.5],
+      [28, 0, 13.5],
       [44, 1.1, 13.5],
       [44, 1.1, 16],
-      [28, 0.2, 16],
+      [28, 0, 16],
     ];
     Q(o, c, ramp, 'base', C.base, [0, 1, 0]);
     for (const zz of [13.5, 16]) {
-      beam(adapter(o, c), 'metal', [28, 1.25, zz], [44, 2.15, zz], 0.06, 0.06, C.metal);
+      beam(adapter(o, c), 'metal', [28, 1.05, zz], [44, 2.15, zz], 0.06, 0.06, C.metal);
       if (c.fine)
         for (let x = 28; x <= 44; x += c.master ? 1.5 : 4) {
-          const y = 0.2 + ((x - 28) / 16) * 0.9;
+          const y = ((x - 28) / 16) * controls.floor;
           beam(adapter(o, c), 'metal', [x, y, zz], [x, y + 1.05, zz], 0.055, 0.055, C.metal);
         }
     }
@@ -1146,7 +1146,7 @@ function terminal(o, c) {
     hall(o, c, p, 5);
   }
 }
-function shed(o, c, poly, lo, hi) {
+function shed(o, c, poly, lo, hi, trackShed = false) {
   const b = bounds(poly),
     mid = (b[1] + b[3]) / 2;
   for (const sign of [-1, 1]) {
@@ -1166,12 +1166,35 @@ function shed(o, c, poly, lo, hi) {
   }
   if (c.detail) {
     for (let x = b[0] + 2; x < b[2] - 2; x += c.master ? 5 : c.near ? 10 : c.fine ? 20 : 55) {
-      const v = span(poly, x),
-        z = (v[0] + v[1]) / 2;
-      box(o, c, x - 0.13, x + 0.13, controls.platformFloor, hi - 0.3, z - 0.14, z + 0.14, 'metal');
-      if (c.fine)
-        for (const e of [v[0] + 0.3, v[1] - 0.3])
-          beam(adapter(o, c), 'metal', [x, hi - 1.7, z], [x, lo - 0.18, e], 0.13, 0.15, C.metal);
+      const v = span(poly, x);
+      // The open southern shed spans mapped rails near Z 12.5, 19.5 and 26.3 m.
+      const rows = trackShed ? [16, 23].filter((z) => z > v[0] && z < v[1]) : [(v[0] + v[1]) / 2];
+      for (const z of rows) {
+        box(
+          o,
+          c,
+          x - 0.13,
+          x + 0.13,
+          trackShed ? 0 : controls.platformFloor,
+          hi - 0.3,
+          z - 0.14,
+          z + 0.14,
+          'metal',
+        );
+        if (c.fine) {
+          const edges = [v[0] + 0.3, v[1] - 0.3];
+          for (const edge of edges)
+            beam(
+              adapter(o, c),
+              'metal',
+              [x, hi - 1.7, z],
+              [x, lo - 0.18, edge],
+              0.13,
+              0.15,
+              C.metal,
+            );
+        }
+      }
     }
     for (const r of poly)
       beamPath(
@@ -1248,9 +1271,8 @@ function rail(o, c, a, b, y0, y1, w) {
       );
   }
 }
-function stairs(o, c, a, b) {
-  const lo = controls.platformFloor,
-    hi = controls.bridgeFloor,
+function stairs(o, c, a, b, lo = controls.platformFloor) {
+  const hi = controls.bridgeFloor,
     w = 3.2,
     dx = b[0] - a[0],
     dz = b[1] - a[1],
@@ -1358,23 +1380,13 @@ function footbridges(o, c) {
         }
       }
     }
-    for (const s of b.stairs) stairs(o, c, s.bottom, s.top);
+    for (const s of b.stairs) stairs(o, c, s.bottom, s.top, s.bottomY);
     const supports =
       b.name === 'western-crossing'
         ? [b.line[0], b.line.at(-1), [-5.33, -30], [-5.18, -47]]
         : [b.line[0], b.line.at(-1), [120.69, -31.1]];
     for (const p of supports)
-      box(
-        o,
-        c,
-        p[0] - 0.25,
-        p[0] + 0.25,
-        controls.platformFloor,
-        6.82,
-        p[1] - 0.25,
-        p[1] + 0.25,
-        'base',
-      );
+      box(o, c, p[0] - 0.25, p[0] + 0.25, 0, 6.82, p[1] - 0.25, p[1] + 0.25, 'base');
   }
 }
 function platforms(o, c) {
@@ -1393,7 +1405,7 @@ function platforms(o, c) {
             true,
           );
     }
-  for (const p of controls.groups.southHall) shed(o, c, p, 5.6, 6.4);
+  for (const p of controls.groups.southHall) shed(o, c, p, 5.6, 6.4, true);
   for (const p of controls.groups.platformCanopy) shed(o, c, p, 5.2, 6.0);
 }
 export function buildStationLevel(o, level = 'master') {

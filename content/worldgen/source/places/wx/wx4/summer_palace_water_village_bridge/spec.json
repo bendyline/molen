@@ -1,0 +1,287 @@
+{
+  "id": "summer_palace_water_village_bridge",
+  "planId": "summer_palace",
+  "title": "Summer Palace · Water Village Stone Bridge",
+  "assetId": "molen.worldgen.structure.summer_palace_water_village_bridge",
+  "category": "bridge",
+  "wikidataId": "Q4132",
+  "quality": "medium-fi",
+  "referenceCoordinate": {
+    "longitude": 116.25997692346571,
+    "latitude": 39.99545676233474
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_bridge/models/water-village-bridge-model.mjs",
+    "export": "buildMaster"
+  },
+  "visualBrief": "The bridge photograph shows a level stone beam deck on two masonry piers, three rectangular water openings, solid paneled parapets and low scrolling end pieces.",
+  "nativeAxes": "+X follows the approach toward the Water Village court. +Z runs along the inlet.",
+  "referencePages": [
+    "https://www.china-qiao.com/ql01/bjql378.htm",
+    "https://earth.google.com/web/@39.995465,116.25997,52a,180d,35y,0h,0t,0r/data=ChYqEAgBEgoyMDIyLTAxLTE3GAFCAggBQgIIAEoNCP___________wEQAA"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "materialMethod": "Shared ashlar and dressed granite graphs with vertex tint for the masonry piers, panels and coping.",
+  "geographicProposal": {
+    "status": "preview",
+    "source": "https://build.protomaps.com/20261118.pmtiles",
+    "anchor": [
+      116.25997692346571,
+      39.99545676233474
+    ],
+    "heading": 1.314279714259091,
+    "minLevel": 15,
+    "elevationMode": "sea-level",
+    "elevationMeters": 56,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 14.42536,
+      "width": 2.86,
+      "deckEndpoints": [
+        [
+          -7.21268,
+          0
+        ],
+        [
+          7.21268,
+          0
+        ]
+      ],
+      "deckHeights": [
+        0.4905,
+        0.5293
+      ],
+      "deckProfile": [
+        [
+          -7.21268,
+          0.4905,
+          0
+        ],
+        [
+          -4.65,
+          0.61,
+          0
+        ],
+        [
+          4.65,
+          0.61,
+          0
+        ],
+        [
+          7.21268,
+          0.5293,
+          0
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184396576460
+      ],
+      "outline": [
+        [
+          -7.21268,
+          -1.573
+        ],
+        [
+          7.21268,
+          -1.573
+        ],
+        [
+          7.21268,
+          1.573
+        ],
+        [
+          -7.21268,
+          1.573
+        ]
+      ]
+    },
+    "bounds": [
+      116.25993762456672,
+      39.99539050496516,
+      116.2600162223647,
+      39.99552301964001
+    ],
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 14.4 m PMTiles footpath crossing fixes the north-northeast deck axis. The bridge replaces the matched crossing within its footprint. Its deck meets the sampled approach surfaces, with the mapped pond preserved below.",
+    "orientationPolicy": "approximate-visualization",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3d0a6e12d6fd5c2909ff32727e50c195b55ed0480048955a6cc6777021527cc6",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "notes": "The 14.4 m PMTiles footpath crossing fixes the north-northeast deck axis. The bridge replaces the matched crossing within its footprint. Its deck meets the sampled approach surfaces, with the mapped pond preserved below. Stone course dimensions, rail heights and the deck width are estimates."
+  },
+  "mediumFiContext": {
+    "groundY": -1.56,
+    "scale": 0.61,
+    "focus": {
+      "center": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/summer_palace_water_village_bridge/models/water-village-bridge-model.mjs",
+    "export": "buildSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_granite"
+      }
+    },
+    "errorMeters": 0.075,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 0.029
+      },
+      "street": {
+        "export": "buildStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 0.012
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 0.005
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "three-openings-and-parapets",
+      "position": [
+        0.3,
+        3.8,
+        14.3
+      ],
+      "lookAt": [
+        0,
+        0.15,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "piers-and-paneled-stone",
+      "position": [
+        -3,
+        1.28,
+        7.9
+      ],
+      "lookAt": [
+        -0.78,
+        -0.16,
+        0.38
+      ],
+      "fov": 51
+    },
+    {
+      "name": "north-approach-and-deck",
+      "position": [
+        9.5,
+        5.65,
+        6.3
+      ],
+      "lookAt": [
+        0.95,
+        0.6,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "south-parapet-scroll",
+      "position": [
+        -8.99,
+        2.34,
+        4.54
+      ],
+      "lookAt": [
+        -5.35,
+        0.93,
+        0.28
+      ],
+      "fov": 53
+    }
+  ],
+  "limitations": [
+    "The deck width, pier courses, parapet depth and relief border profiles use photo estimates.",
+    "A shallow deck grade meets the standard sampled footpath. The exact stone elevations and pond stage vary in the real site."
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "actualBounds": {
+    "min": [
+      -7.2149858474731445,
+      -2.119999885559082,
+      -1.5160000324249268
+    ],
+    "max": [
+      7.214238166809082,
+      1.3220000267028809,
+      1.5160000324249268
+    ]
+  },
+  "size": [
+    14.429224014282227,
+    3.441999912261963,
+    3.0320000648498535
+  ],
+  "mesh": {
+    "triangles": 3412,
+    "vertices": 6824,
+    "materials": 2,
+    "bytes": 288616,
+    "sha256": "sha256:a3ff322d8904a955bd45e8fdb68dbde7ea242dfb2536f3bbf9fdeefe846bb642"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ]
+}

@@ -218,6 +218,8 @@ function railSection(out, x0, x1, z) {
     railZ,
   );
 }
+export const kyivMetroSections = { cell, deckY, half, pierRing, profile, railEnd, railZ, stations };
+
 export const kyivMetroStudy = {
   id: 'kyiv_metro_bridge',
   mapFrameDocument: 'map-frame.json',

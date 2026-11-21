@@ -85,6 +85,26 @@ test('direct original binds primary creator, exact CC0 release, image bytes and 
   }
 });
 
+test('direct original binds a canonical Flickr alias to the immutable creator', () => {
+  const f = fixture();
+  try {
+    const owner = f.data.owner.data;
+    owner.pathAlias = 'photographer';
+    f.ref.sourceUrl = f.ref.sourceUrl.replace(owner.id, owner.pathAlias);
+    f.ref.rightsEvidence.sourceUrl = f.ref.sourceUrl;
+    f.record.acquireLicensePage = f.ref.sourceUrl.slice(0, -1);
+    f.record.author.url = f.record.author.url.replace(owner.id, owner.pathAlias);
+    f.record.creator.url = f.record.author.url;
+    f.save();
+    assert.equal(inspectFlickrOriginalReference(f.dir, f.ref).eligible, true);
+    owner.pathAlias = 'different-account';
+    f.save();
+    assert.equal(inspectFlickrOriginalReference(f.dir, f.ref).eligible, false);
+  } finally {
+    f.close();
+  }
+});
+
 test('direct original rejects changed licenses, owners, renditions, dimensions, inspection and bytes', () => {
   for (const mutate of [
     (f) => {

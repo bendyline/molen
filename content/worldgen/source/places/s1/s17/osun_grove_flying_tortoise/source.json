@@ -1,0 +1,48 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.osun_grove_flying_tortoise",
+  "kind": "static-structure",
+  "title": "Arch of the Flying Tortoise",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "reference-observations.json",
+      "map-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.osun_grove_flying_tortoise",
+        "output": "assets/places/s1/s17/osun_grove_flying_tortoise/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2df7f9859bf57646097ecf5c8499e695440e7984772bca69bc100371071ea475"
+      }
+    ],
+    "generators": [
+      {
+        "id": "flying-tortoise-mesh",
+        "path": "models/flying-tortoise-model.mjs"
+      },
+      {
+        "id": "flying-tortoise-master",
+        "path": "models/generate-flying-tortoise.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "preview.png",
+      "wing-detail.webp",
+      "placement-report.json",
+      "QA-REVIEW.md",
+      "qa.json"
+    ]
+  }
+}

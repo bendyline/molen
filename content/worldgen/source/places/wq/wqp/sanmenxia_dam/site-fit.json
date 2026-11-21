@@ -1,0 +1,203 @@
+{
+  "format": "molen/dam-terrain-fit@1",
+  "sampledTerrainElevation": 330.28,
+  "crestElevation": 353,
+  "sites": [
+    {
+      "name": "Sanmenxia western abutment and apron toe",
+      "anchor": [
+        111.344695197,
+        34.829672083
+      ],
+      "heading": 0.097144258939,
+      "bounds": [
+        -256,
+        14,
+        -211,
+        53
+      ],
+      "elevation": 299,
+      "blend": 45,
+      "basis": "Blend the coarse slope into the exposed west concrete toe and keep the higher native bank."
+    },
+    {
+      "name": "Sanmenxia left channel at the divider toe",
+      "anchor": [
+        111.344695197,
+        34.829672083
+      ],
+      "heading": 0.097144258939,
+      "bounds": [
+        84,
+        291,
+        109,
+        338
+      ],
+      "elevation": 280.25,
+      "blend": 32,
+      "basis": "Set the anomalous shore lip below water along the mapped channel west of the divider tip."
+    },
+    {
+      "name": "Sanmenxia invalid terrain samples at the forebay",
+      "anchor": [
+        111.344695197,
+        34.829672083
+      ],
+      "heading": 0.097144258939,
+      "bounds": [
+        -310,
+        -120,
+        180,
+        -27
+      ],
+      "elevation": 316,
+      "blend": 34,
+      "repairBelow": 150,
+      "basis": "Local rendering repair for impossible negative returns in the retained standard terrain tile."
+    }
+  ],
+  "waterStages": [
+    {
+      "id": 44882533,
+      "name": "Sanmenxia Reservoir",
+      "elevation": 316.96,
+      "basis": "Representative level from the standard reservoir tiles."
+    },
+    {
+      "id": 44882530,
+      "name": "Yellow River at Sanmenxia",
+      "split": {
+        "anchor": [
+          111.344695197,
+          34.829672083
+        ],
+        "heading": 0.097144258939,
+        "negativeZ": 316.96,
+        "positiveZ": 281.57
+      },
+      "basis": "Mapped polygons lie on both sides of the dam."
+    },
+    {
+      "id": -3,
+      "name": "Sanmenxia divider waterline",
+      "shoreline": [
+        [
+          111.3460132685,
+          34.8287576095
+        ],
+        [
+          111.3458942395,
+          34.828648804
+        ],
+        [
+          111.345936191,
+          34.8284806691
+        ],
+        [
+          111.3460123865,
+          34.8281167041
+        ],
+        [
+          111.3461236095,
+          34.8274576838
+        ],
+        [
+          111.3460784245,
+          34.827282576
+        ],
+        [
+          111.346008271,
+          34.8271325484
+        ],
+        [
+          111.3459644251,
+          34.827038781
+        ],
+        [
+          111.3459880545,
+          34.8269323592
+        ],
+        [
+          111.3460454215,
+          34.8268196101
+        ],
+        [
+          111.3460756972,
+          34.8267498239
+        ],
+        [
+          111.3461266956,
+          34.8266907213
+        ],
+        [
+          111.3462711993,
+          34.8265849425
+        ],
+        [
+          111.346652422,
+          34.8266154388
+        ],
+        [
+          111.346747544,
+          34.8267403866
+        ],
+        [
+          111.3466965456,
+          34.8267994892
+        ],
+        [
+          111.3465900253,
+          34.8268631761
+        ],
+        [
+          111.346499982,
+          34.8269733112
+        ],
+        [
+          111.3464545685,
+          34.8270779903
+        ],
+        [
+          111.3464221699,
+          34.8271656584
+        ],
+        [
+          111.3463834026,
+          34.8273069728
+        ],
+        [
+          111.3463196669,
+          34.8274733674
+        ],
+        [
+          111.3461866597,
+          34.828130645
+        ],
+        [
+          111.3460995722,
+          34.8284937386
+        ],
+        [
+          111.3461774334,
+          34.8286714578
+        ],
+        [
+          111.3461330813,
+          34.8287671938
+        ]
+      ],
+      "join": 44882530,
+      "elevation": 281.57,
+      "basis": "Fill the narrow unmapped shoreline margin against the modeled divider while retaining the separate road crossing."
+    },
+    {
+      "id": 120232213,
+      "name": "Yellow River downstream of Sanmenxia",
+      "elevation": 281.57,
+      "basis": "Continuation of the local downstream level below the separate crossing."
+    }
+  ],
+  "waterStageNotes": "Fixed map-derived stages on either side of the dam. The local patch joins the existing tailwater at a common elevation.",
+  "inputTerrain": "terrain-grid.json",
+  "inputMap": "pmtiles-map.json"
+}

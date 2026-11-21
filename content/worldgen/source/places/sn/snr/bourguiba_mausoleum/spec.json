@@ -1,0 +1,735 @@
+{
+  "planId": "bourguiba_mausoleum",
+  "id": "bourguiba_mausoleum",
+  "assetId": "molen.worldgen.structure.bourguiba_mausoleum",
+  "title": "Bourguiba Mausoleum",
+  "wikidataId": "Q3301839",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.8284963,
+    "latitude": 35.7777026
+  },
+  "size": [
+    56.697134017944336,
+    26.552937269210815,
+    68.13000106811523
+  ],
+  "actualBounds": {
+    "min": [
+      -28.891399383544922,
+      -1.1813151836395264,
+      -37.93000030517578
+    ],
+    "max": [
+      27.805734634399414,
+      25.37162208557129,
+      30.200000762939453
+    ]
+  },
+  "visualBrief": "The Bourguiba Mausoleum in Monastir, its ribbed gold dome and two green cupolas framed by white marble minarets and ornamental gate.",
+  "nativeAxes": {
+    "x": "along the entrance screen",
+    "y": "up",
+    "z": "towards the pedestrian approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Monastir,_Bourguiba-Mausoleum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bourguiba-mausoleum-wp",
+      "url": "https://qualla.com/bourguiba-mausoleum/"
+    }
+  ],
+  "referenceInputHash": "sha256:21484fab89531206663b42bc4038c3a0cafb7838cd07d7c89345250c87ac8dfc",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snr/bourguiba_mausoleum/models/bourguiba-mausoleum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "montreal-museum-pavilion-geometry.mjs": "sha256:daf2230a28eb7e9e238c763d94ae7dfe3cda97bab4a86919f013afe743175cd8",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snr/bourguiba_mausoleum/models/bourguiba-mausoleum-model.mjs",
+    "level": "skyline",
+    "export": "skyline",
+    "errorMeters": 1.24,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stucco": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.6,
+        "metallic": 0.32
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.17
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "district",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        }
+      },
+      "street": {
+        "export": "street",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        }
+      },
+      "closeup": {
+        "export": "closeup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.17
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_marble",
+    "stone_ashlar",
+    "plaster_lime",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "mapped-footprint",
+    "status": "active-geographic-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original SRTM relief at the mapped public approach near the main gate.",
+    "anchor": [
+      10.8284963,
+      35.7777026
+    ],
+    "heading": 0.8907277542384527,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.828767492337066,
+        35.777524656595446
+      ],
+      "modelHeight": 0,
+      "basis": "Original broad relief on the front approach just before the ornamental gate."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -28.8914,
+          -37.0678
+        ],
+        [
+          26.8205,
+          -37.93
+        ],
+        [
+          27.8042,
+          25.3678
+        ],
+        [
+          9.5193,
+          25.6486
+        ],
+        [
+          9.5089,
+          24.7859
+        ],
+        [
+          9.4706,
+          22.7029
+        ],
+        [
+          9.4601,
+          21.8402
+        ],
+        [
+          23.9687,
+          21.6168
+        ],
+        [
+          23.3073,
+          -21.2083
+        ],
+        [
+          10.5392,
+          -21.0103
+        ],
+        [
+          10.5763,
+          -18.4152
+        ],
+        [
+          10.6692,
+          -12.2994
+        ],
+        [
+          10.7714,
+          -5.5523
+        ],
+        [
+          5.4984,
+          -5.4691
+        ],
+        [
+          5.574,
+          -0.0827
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          -5.2443,
+          0.0832
+        ],
+        [
+          -5.3302,
+          -5.4575
+        ],
+        [
+          -12.3293,
+          -5.3489
+        ],
+        [
+          -12.5673,
+          -20.8139
+        ],
+        [
+          -24.8108,
+          -20.6221
+        ],
+        [
+          -24.1448,
+          22.3502
+        ],
+        [
+          -9.0885,
+          22.1136
+        ],
+        [
+          -9.0737,
+          23.1586
+        ],
+        [
+          -9.04,
+          25.0944
+        ],
+        [
+          -9.0233,
+          26.2656
+        ],
+        [
+          -27.9132,
+          26.5596
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -28.8914,
+            -37.0678
+          ],
+          [
+            26.8205,
+            -37.93
+          ],
+          [
+            27.8042,
+            25.3678
+          ],
+          [
+            9.5193,
+            25.6486
+          ],
+          [
+            9.5089,
+            24.7859
+          ],
+          [
+            9.4706,
+            22.7029
+          ],
+          [
+            9.4601,
+            21.8402
+          ],
+          [
+            23.9687,
+            21.6168
+          ],
+          [
+            23.3073,
+            -21.2083
+          ],
+          [
+            10.5392,
+            -21.0103
+          ],
+          [
+            10.5763,
+            -18.4152
+          ],
+          [
+            10.6692,
+            -12.2994
+          ],
+          [
+            10.7714,
+            -5.5523
+          ],
+          [
+            5.4984,
+            -5.4691
+          ],
+          [
+            5.574,
+            -0.0827
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -5.2443,
+            0.0832
+          ],
+          [
+            -5.3302,
+            -5.4575
+          ],
+          [
+            -12.3293,
+            -5.3489
+          ],
+          [
+            -12.5673,
+            -20.8139
+          ],
+          [
+            -24.8108,
+            -20.6221
+          ],
+          [
+            -24.1448,
+            22.3502
+          ],
+          [
+            -9.0885,
+            22.1136
+          ],
+          [
+            -9.0737,
+            23.1586
+          ],
+          [
+            -9.04,
+            25.0944
+          ],
+          [
+            -9.0233,
+            26.2656
+          ],
+          [
+            -27.9132,
+            26.5596
+          ]
+        ],
+        [
+          [
+            8.0102,
+            21.3751
+          ],
+          [
+            9.4706,
+            22.7029
+          ],
+          [
+            9.5089,
+            24.7859
+          ],
+          [
+            8.1329,
+            26.2356
+          ],
+          [
+            6.1569,
+            26.3238
+          ],
+          [
+            4.552,
+            24.7644
+          ],
+          [
+            4.5814,
+            22.8357
+          ],
+          [
+            6.1699,
+            21.3302
+          ]
+        ],
+        [
+          [
+            -5.6392,
+            21.705
+          ],
+          [
+            -4.2274,
+            23.0257
+          ],
+          [
+            -4.1405,
+            25.1158
+          ],
+          [
+            -5.5078,
+            26.5585
+          ],
+          [
+            -7.4925,
+            26.6537
+          ],
+          [
+            -9.04,
+            25.0944
+          ],
+          [
+            -9.0737,
+            23.1586
+          ],
+          [
+            -7.4794,
+            21.6602
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The mapped concave U perimeter and the two separate tower bases, preserving the court and adjacent streets."
+    },
+    "featureIds": [
+      "way/44739638",
+      "way/659119181",
+      "way/659119182",
+      "way/44719188"
+    ],
+    "source": "https://www.openstreetmap.org/way/44739638",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a0cf15e8f3f2fcb9edf7316aa02faa6dd03ca440c19a3a06edadb776cb0ac3c4",
+    "notes": "The exact Qualla photograph shows the ribbed gold central dome and green side cupolas, white marble minaret recesses and gallery balustrades, colored drum windows, and wrought-iron entrance screen. The stone supplier records the three domes and published tower height of 25 m."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The surveyed outlines and approach control horizontal location. The 25 m tower height is the published dimension. Main and side roof heights, cupola positions within the complex, deep rear elevations and the courtyard arcades are estimated.",
+    "The available exterior photograph looks along the approach. Fine gate lettering and decoration are expressed in simplified geometric forms. The surrounding cemetery is outside the model boundary.",
+    "Official regional elevation data support broad grades. Individual steps and local paving levels are estimated."
+  ],
+  "sourceLicense": "Original mesh under repository license. © OpenStreetMap contributors. NASA/NGA SRTM public-domain elevation.",
+  "qaLodCameras": [
+    {
+      "name": "bourguiba-mausoleum-skyline",
+      "position": [
+        64,
+        34,
+        92
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bourguiba-mausoleum-district",
+      "position": [
+        64,
+        34,
+        92
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bourguiba-mausoleum-street",
+      "position": [
+        64,
+        34,
+        92
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "bourguiba-mausoleum-closeup",
+      "position": [
+        64,
+        34,
+        92
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "paired-minarets-and-gold-dome",
+      "position": [
+        0,
+        7,
+        81
+      ],
+      "lookAt": [
+        0,
+        12,
+        1
+      ]
+    },
+    {
+      "name": "court-arcades-and-side-cupolas",
+      "position": [
+        41,
+        21,
+        46
+      ],
+      "lookAt": [
+        2,
+        7,
+        -9
+      ]
+    },
+    {
+      "name": "front-filigree-and-stairs",
+      "position": [
+        -4,
+        3.5,
+        37
+      ],
+      "lookAt": [
+        0,
+        2.6,
+        24
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12602,
+    "vertices": 37806,
+    "materials": 6,
+    "bytes": 1715424,
+    "sha256": "sha256:04582156cbd93f1de296005528b46ffe1f5eca0f371cdda75456cc3aa9431006"
+  }
+}

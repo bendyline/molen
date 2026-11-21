@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mini Israel · King David Hotel exhibit review",
+  "seed": "mini_israel_king_david_hotel",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "exhibit",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mini_israel_king_david_hotel",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e6edf1",
+            "ground": "#ada28d",
+            "intensity": 0.93
+          },
+          "sun": {
+            "direction": [
+              1.2,
+              4.3,
+              3.8
+            ],
+            "color": "#fff1d9",
+            "intensity": 1.44,
+            "castShadow": true
+          },
+          "background": "#c9d9e0",
+          "toneMapping": "agx",
+          "exposure": 1.025,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.385,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [
+              34,
+              0.5,
+              32
+            ]
+          },
+          "materialRef": "palette:#979274",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      4.43,
+      3.45,
+      6.53
+    ],
+    "lookAt": [
+      0,
+      1.16,
+      1.42
+    ],
+    "fov": 57
+  }
+}
