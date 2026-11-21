@@ -1,3 +1,17 @@
+## @bendyline/molen-ambient [0.0.20](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.19...@bendyline/molen-ambient@0.0.20) (2026-11-20)
+
+### Bug Fixes
+
+* Add vehicle console and world rendering polish ([747682f](https://github.com/bendyline/molen/commit/747682fcc1ac39527ffdb1ebc0c113f745ce718d))
+
+
+### Dependencies
+
+* **@bendyline/molen-figures:** upgraded to 0.0.18
+* **@bendyline/molen-kernel:** upgraded to 0.0.13
+* **@bendyline/molen-terrain:** upgraded to 0.0.19
+* **@bendyline/molen-client:** upgraded to 0.0.18
+
 ## @bendyline/molen-ambient [0.0.19](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.18...@bendyline/molen-ambient@0.0.19) (2026-11-18)
 
 ### Bug Fixes

@@ -1,3 +1,9 @@
+## @bendyline/molen-client [0.0.18](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.17...@bendyline/molen-client@0.0.18) (2026-11-20)
+
+### Bug Fixes
+
+* Add vehicle console and world rendering polish ([747682f](https://github.com/bendyline/molen/commit/747682fcc1ac39527ffdb1ebc0c113f745ce718d))
+
 ## @bendyline/molen-client [0.0.17](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.16...@bendyline/molen-client@0.0.17) (2026-11-18)
 
 ### Bug Fixes

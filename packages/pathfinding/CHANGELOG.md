@@ -1,3 +1,10 @@
+## @bendyline/molen-pathfinding [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-pathfinding@0.0.12...@bendyline/molen-pathfinding@0.0.13) (2026-11-20)
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.13
+
 ## @bendyline/molen-pathfinding [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-pathfinding@0.0.11...@bendyline/molen-pathfinding@0.0.12) (2026-11-16)
 
 

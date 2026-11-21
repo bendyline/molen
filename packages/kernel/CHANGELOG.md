@@ -1,3 +1,9 @@
+## @bendyline/molen-kernel [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.12...@bendyline/molen-kernel@0.0.13) (2026-11-20)
+
+### Bug Fixes
+
+* Add vehicle console and world rendering polish ([747682f](https://github.com/bendyline/molen/commit/747682fcc1ac39527ffdb1ebc0c113f745ce718d))
+
 ## @bendyline/molen-kernel [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.11...@bendyline/molen-kernel@0.0.12) (2026-11-16)
 
 ### Bug Fixes
