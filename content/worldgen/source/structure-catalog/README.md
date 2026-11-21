@@ -49,6 +49,12 @@ and placement records. The declared release collections cover 11 Mini Israel exh
 Summer Palace structures. Mini Israel includes seven dated exhibits. The collection manifest
 records work outside the release scope.
 
+## Important missing landmarks
+
+[IMPORTANT-LANDMARKS.json](IMPORTANT-LANDMARKS.json) is the shared 500-entry backlog for the
+next coverage pass. See [the authoring handoff](IMPORTANT-LANDMARKS.md) for the first targets,
+selection sources, and the cross-device claim workflow.
+
 ## Selection method
 
 The pinned [Wikidata snapshot](wikidata-snapshot.json) contains only CC0 structured facts:

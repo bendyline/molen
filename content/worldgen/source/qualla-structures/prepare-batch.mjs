@@ -9,7 +9,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inspectImageryPolicy, originalHeroPath, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
-import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
+import {
+  readImportantLandmarks,
+  structureCatalogEntries,
+  structureCatalogMatches,
+} from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -179,6 +183,7 @@ export function prepareBatch({
   const reserved = structureCatalogEntries(
     read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
     read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
+    readImportantLandmarks(repository),
   );
   const all = fs
     .readFileSync(path.join(output, 'structures.jsonl'), 'utf8')

@@ -1,10 +1,31 @@
 /** structure catalog production belongs to the other device, independently of readiness. */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { normalize } from './classify.mjs';
 
-export function structureCatalogEntries(candidates, collections) {
+export const importantLandmarksPath =
+  'content/worldgen/source/structure-catalog/IMPORTANT-LANDMARKS.json';
+
+export function readImportantLandmarks(repository) {
+  try {
+    const manifest = JSON.parse(readFileSync(join(repository, importantLandmarksPath), 'utf8'));
+    if (
+      manifest.format !== 'molen/important-landmark-backlog@1' ||
+      !Array.isArray(manifest.entries)
+    )
+      throw new Error(`Invalid landmark reservations at ${importantLandmarksPath}`);
+    return manifest;
+  } catch (error) {
+    if (error.code === 'ENOENT') return undefined;
+    throw error;
+  }
+}
+
+export function structureCatalogEntries(candidates, collections, importantLandmarks) {
   return [
     ...candidates.candidates.map((c) => ({ ...c, assetId: c.modelRef })),
     ...collections.collections.flatMap((c) => c.members),
+    ...(importantLandmarks?.entries ?? []),
   ];
 }
 
@@ -20,11 +41,17 @@ export function structureCatalogMatches(structure, entries, modelIdentity) {
       ...(structure.existing ?? []).flatMap((m) => [m.candidateId, m.assetId, m.collectionId]),
     ].filter(Boolean),
   );
+  const structureName = normalize(structure.name);
   return entries.filter((entry) => {
     if (wikidataIds.has(entry.wikidataId)) return true;
     if (identities.has(entry.id) || (entry.assetId && identities.has(entry.assetId))) return true;
     // Also catch an exact-name addition to the list since the last full story scan.
-    if (normalize(entry.title) !== normalize(structure.name) || !structure.coordinate) return false;
+    if (
+      !structure.coordinate ||
+      !structureName ||
+      ![entry.title, ...(entry.aliases ?? [])].some((name) => normalize(name) === structureName)
+    )
+      return false;
     const [lon, lat] = structure.coordinate;
     const p = entry.referenceCoordinate;
     return (

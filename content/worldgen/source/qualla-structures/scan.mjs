@@ -12,7 +12,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readPlacementSourcesSync } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
 import { categoryFor, classify, normalize, storyText } from './classify.mjs';
-import { structureCatalogEntries, workAssignment } from './work-ownership.mjs';
+import {
+  importantLandmarksPath,
+  readImportantLandmarks,
+  structureCatalogEntries,
+  workAssignment,
+} from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -82,6 +87,11 @@ export function loadCatalog(repository) {
   ];
   const documents = files.map((file) => read(path.join(repository, file)));
   const [index, planned, collections, project, stylepack, readiness] = documents;
+  const importantLandmarks = readImportantLandmarks(repository);
+  if (importantLandmarks) {
+    files.push(importantLandmarksPath);
+    documents.push(importantLandmarks);
+  }
   const { catalog: placements } = readPlacementSourcesSync(
     path.join(repository, 'content/earth/source/placements'),
   );
@@ -192,7 +202,7 @@ export function loadCatalog(repository) {
     model.names = [...new Set(model.names.filter(Boolean))];
   }
   return {
-    structureCatalog: structureCatalogEntries(planned, collections),
+    structureCatalog: structureCatalogEntries(planned, collections, importantLandmarks),
     models: [...models.values()].sort((a, b) =>
       order(a.assetId ?? a.candidateId, b.assetId ?? b.candidateId),
     ),

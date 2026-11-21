@@ -8,6 +8,10 @@ tracked in the completed [first 100](batches/QUALLA-001.md) and
 [second round of 300](batches/QUALLA-002.md). The active batch covers the
 [next 500 buildings](batches/QUALLA-003.md).
 
+The scanner and batch preparation reserve the separate
+[important-landmark backlog](../structure-catalog/IMPORTANT-LANDMARKS.json) for the structure
+catalog workstream. Its claim and review status travels with the repository.
+
 The core100 are complete, including the owner-accepted limitations recorded beside
 Hangar37, Humayun’s Tomb and the Taj Mahal Palace Hotel. Round two closed with
 two accepted existing catalog models whose original authoring provenance is
