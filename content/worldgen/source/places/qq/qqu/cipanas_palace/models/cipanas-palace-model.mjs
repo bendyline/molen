@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   areaSign,
@@ -20,6 +19,7 @@ import {
   trimBlock,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   walls: surface('wall', 'plaster_lime'),

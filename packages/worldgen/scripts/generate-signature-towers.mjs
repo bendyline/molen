@@ -317,9 +317,11 @@ for (let study of signatureTowers.filter(
   }
   const modelPath = resolve(dir, 'models/source.glb');
   let priorDocuments = [];
+  let priorGenerators = [];
   try {
     const source = JSON.parse(await readFile(resolve(dir, 'source.json'), 'utf8'));
     priorDocuments = source.files.documents ?? [];
+    priorGenerators = source.files.generators ?? [];
     if (hash(await readFile(modelPath)) !== source.files.models[0].sha256)
       throw new Error(
         `${study.id}: artist-edited source differs from its baseline; preserve before regeneration`,
@@ -578,6 +580,17 @@ for (let study of signatureTowers.filter(
       ].includes(name),
     )
     .sort();
+  // A study's own scripts come first; generators recorded beside the bundle since (such as a
+  // runtime LOD overlay) are kept rather than dropped on regeneration.
+  const generators = (study.sourceScripts ?? []).map((path) => ({
+    id: path
+      .split('/')
+      .at(-1)
+      .replace(/\.mjs$/, ''),
+    path,
+  }));
+  for (const prior of priorGenerators)
+    if (!generators.some((entry) => entry.path === prior.path)) generators.push(prior);
   const source = {
     format: 'molen/source-bundle@1',
     id: assetId,
@@ -594,17 +607,7 @@ for (let study of signatureTowers.filter(
           sha256: hash(glb),
         },
       ],
-      ...(study.sourceScripts?.length
-        ? {
-            generators: study.sourceScripts.map((path) => ({
-              id: path
-                .split('/')
-                .at(-1)
-                .replace(/\.mjs$/, ''),
-              path,
-            })),
-          }
-        : {}),
+      ...(generators.length ? { generators } : {}),
       scripts: [],
       textures: [],
       sounds: [],

@@ -1,5 +1,4 @@
 import { readFileSync } from 'node:fs';
-import { lettering } from '../../../../../../../../packages/worldgen/scripts/stadium-lettering.mjs';
 import {
   arch,
   areaSign,
@@ -21,6 +20,7 @@ import {
   trimBlock,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import { lettering } from '../../../../../../../../packages/worldgen/scripts/stadium-lettering.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL('../' + file, import.meta.url)));
 const plan = read('plan-controls.json');

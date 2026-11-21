@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   areaSign,
@@ -17,6 +16,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   stone: surface('wall', 'stone_sandstone_raw', 0.94),

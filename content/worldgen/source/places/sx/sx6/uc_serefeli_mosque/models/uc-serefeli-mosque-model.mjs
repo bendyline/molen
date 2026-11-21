@@ -13,9 +13,9 @@ import {
   face,
   floorSampler,
   mix,
+  pairs,
   palette,
   panel,
-  pairs,
   rect,
   shell,
   surface,
@@ -547,7 +547,9 @@ function minaret(out, type, level) {
 function build(out, level) {
   hall(out, level);
   courtyard(out, level);
-  d.towers.forEach((tower) => minaret(out, tower, level));
+  d.towers.forEach((tower) => {
+    minaret(out, tower, level);
+  });
 }
 export const skyline = (out) => build(out, 0);
 export const district = (out) => build(out, 1);

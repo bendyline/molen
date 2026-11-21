@@ -534,7 +534,8 @@ export const chedworthModel = {
     outline: read('map-frame.json').geometry.outline,
     outlines: [d.lodge, d.north, d.west],
     minimumCoverage: 0.92,
-    basis: 'Three individual surveyed polygons for the lodge, North Bath House and West Range shelter.',
+    basis:
+      'Three individual surveyed polygons for the lodge, North Bath House and West Range shelter.',
   },
   qaCameras: [
     { name: 'north-range-rooms', position: [51, 14, -26], lookAt: [35, 0, -33] },

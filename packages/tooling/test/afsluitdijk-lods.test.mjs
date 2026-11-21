@@ -11,8 +11,8 @@ import { NodeIO } from '@gltf-transform/core';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import {
-  controls,
   centerZ,
+  controls,
   newerSluices,
   projectMapPoint,
   roadHeightAt,

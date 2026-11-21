@@ -11,9 +11,9 @@ import {
   edge,
   floorSampler,
   mix,
+  pairs,
   palette,
   panel,
-  pairs,
   shell,
   surface,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
@@ -314,8 +314,12 @@ function buildings(out, level) {
 }
 
 function build(out, level) {
-  d.cooling.forEach((w) => tower(out, w, level));
-  d.chimneys.forEach((w) => chimney(out, w, level));
+  d.cooling.forEach((w) => {
+    tower(out, w, level);
+  });
+  d.chimneys.forEach((w) => {
+    chimney(out, w, level);
+  });
   buildings(out, level);
 }
 export const skyline = (out) => build(out, 0);

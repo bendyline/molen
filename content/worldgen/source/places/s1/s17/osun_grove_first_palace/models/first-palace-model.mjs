@@ -281,7 +281,10 @@ function entranceGrille(out, z, detail) {
   const near = detail.carvings > 6;
   const bands = near ? [0.53, 0.92, 1.31, 1.7, 2.09] : [0.61, 1.29, 1.98];
   const segments = near ? 16 : 6;
-  for (const [edge, side] of [[left, -1], [right, 1]]) {
+  for (const [edge, side] of [
+    [left, -1],
+    [right, 1],
+  ]) {
     const outer = edge + side * 0.248;
     bar([outer - 0.013, bottom], [outer + 0.013, top]);
     for (const y of [bottom + 0.011, top - 0.011]) {

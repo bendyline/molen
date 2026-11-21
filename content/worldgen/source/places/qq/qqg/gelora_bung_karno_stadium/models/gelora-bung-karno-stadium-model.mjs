@@ -161,7 +161,9 @@ function drawTrack(out, level, track, pitch) {
       );
     };
     const field = rect(x, z + d.fieldLength, x + d.fieldWidth, z);
-    field.forEach((p, i) => line(p, field[(i + 1) % 4]));
+    field.forEach((p, i) => {
+      line(p, field[(i + 1) % 4]);
+    });
     line([x, midZ], [x + d.fieldWidth, midZ]);
     for (const side of [-1, 1]) {
       const end = midZ + side * d.fieldLength * 0.5;
@@ -192,7 +194,9 @@ function drawTrack(out, level, track, pitch) {
     const circle = Array.from({ length: 24 }, (_, i) =>
       vector((i * fullTurn) / 24).map((p, axis) => p * 9.15 + d.pitchCenter[axis]),
     );
-    circle.forEach((p, i) => line(p, circle[(i + 1) % circle.length]));
+    circle.forEach((p, i) => {
+      line(p, circle[(i + 1) % circle.length]);
+    });
   }
   if (level > 1) {
     const innerLane = track.map((p) => scale(p, 0.851));

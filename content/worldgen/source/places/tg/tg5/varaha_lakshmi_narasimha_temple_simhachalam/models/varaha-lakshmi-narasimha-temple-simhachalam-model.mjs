@@ -454,7 +454,9 @@ function build(out, lod) {
   gopuram(out, lod);
   courtSteps(out, lod);
   templeAxis(out, lod);
-  d.halls.forEach((row) => range(out, row, lod));
+  d.halls.forEach((row) => {
+    range(out, row, lod);
+  });
   enclosure(out, lod);
 }
 export const skyline = (o) => build(o, 0);

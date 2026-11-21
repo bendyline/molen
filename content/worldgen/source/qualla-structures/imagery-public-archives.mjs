@@ -322,18 +322,23 @@ function californiaNaip2009Matches(reference, record) {
 }
 
 function amosNaipMatches(reference, image, record) {
-  const service = 'https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer';
+  const service =
+    'https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer';
   const extent = record.export?.extent;
   const expected = [-81.8302, 38.4697, -81.8172, 38.4787];
   return (
     reference.sourceUrl === service &&
     reference.rightsEvidence?.sourceUrl === service + '?f=pjson' &&
-    reference.downloadUrl === service + '/exportImage?bbox=' + expected.join(',') +
-      '&bboxSR=4326&imageSR=4326&size=1200,1000&adjustAspectRatio=false&format=jpg&f=image' &&
+    reference.downloadUrl ===
+      service +
+        '/exportImage?bbox=' +
+        expected.join(',') +
+        '&bboxSR=4326&imageSR=4326&size=1200,1000&adjustAspectRatio=false&format=jpg&f=image' &&
     record.service === service &&
     record.source?.copyrightText?.includes('The National Map') &&
     /public domain, NAIP/i.test(record.source?.description ?? '') &&
-    record.licenseSource === 'https://catalog.data.gov/dataset/national-agriculture-imagery-program-naip-imagery' &&
+    record.licenseSource ===
+      'https://catalog.data.gov/dataset/national-agriculture-imagery-program-naip-imagery' &&
     reference.artist === 'USDA and USGS The National Map' &&
     reference.width === 1200 &&
     reference.height === 1000 &&
@@ -842,69 +847,73 @@ export function inspectPublicArchiveReference(dir, reference) {
     reference.license !== expectedLicense ||
     reference.visuallyReviewedForThisPolicy !== true ||
     reference.originalReview?.status !== 'inspected' ||
-    (!(reference.origin === 'usgs-national-map-amos-naip' && amosNaipMatches(reference, image, record)) &&
+    (!(
+      reference.origin === 'usgs-national-map-amos-naip' &&
+      amosNaipMatches(reference, image, record)
+    ) &&
       !(reference.origin === 'dlg-macon-terminal-public-domain-postcard'
-      ? maconTerminalPostcardMatches(reference, image, record)
-      : reference.origin === 'loc-matson-winter-palace-public-domain'
-        ? matsonWinterPalaceMatches(reference, image, record)
-        : reference.origin === 'met-al-hakim-1842-daguerreotype'
-          ? alHakimMetDaguerreotypeMatches(reference, image, record)
-          : reference.origin === 'cornell-tughlaqabad-1902-plate'
-            ? tughlaqabadFanshawePlateMatches(dir, reference, image, record)
-            : reference.origin === 'commons-mccord-public-domain'
-              ? mccordMatches(dir, reference, image, record)
-              : reference.origin === 'commons-rietberg-sepahsalar-public-domain'
-                ? rietbergSepahsalarMatches(dir, reference, image, record)
-                : reference.origin === 'banq-public-domain-atlas'
-                  ? banqMatches(reference, record)
-                  : reference.origin === 'te-papa-expired-postcard'
-                    ? tePapaPostcardMatches(dir, reference, record)
-                    : reference.origin === 'rijksmuseum-public-domain'
-                      ? rijksmuseumMatches(reference, record)
-                      : reference.origin === 'loc-cordoba-photochrom-public-domain'
-                        ? cordobaPhotochromMatches(reference, image, record)
-                        : reference.origin === 'slq-cooktown-expired-original'
-                          ? cooktownStateLibraryMatches(reference, record)
-                          : reference.origin === 'commons-museu-paulista-expired-postcard'
-                            ? museuPaulistaPostcardMatches(dir, reference, image, record)
-                            : reference.origin === 'usgs-national-map-pr-naip'
-                              ? puertoRicoNaipMatches(reference, record)
-                              : reference.origin === 'usda-naip-california-2009'
-                                ? californiaNaip2009Matches(reference, record)
-                                : reference.origin === 'usda-naip-encina-2018'
-                                  ? encinaNaip2018Matches(reference, record)
-                                  : reference.origin === 'commons-presidencia-sv-cc0'
-                                    ? salvadoranPresidencyMatches(reference, image, record)
-                                    : reference.origin === 'efeo-cambodia-museum-1930-plate'
-                                      ? efeoCambodiaMuseumPlateMatches(
-                                          dir,
-                                          reference,
-                                          image,
-                                          record,
-                                        )
-                                      : reference.origin ===
-                                          'archives-ontario-hammond-expired-photograph'
-                                        ? archivesOntarioHammondMatches(reference, image, record)
-                                        : reference.origin === 'eth-gau-dendur-1822-survey'
-                                          ? dendurGauPlateMatches(reference, image, record)
-                                          : reference.origin === 'met-teynard-dendur-1851-original'
-                                            ? dendurMetPhotographMatches(reference, image, record)
+        ? maconTerminalPostcardMatches(reference, image, record)
+        : reference.origin === 'loc-matson-winter-palace-public-domain'
+          ? matsonWinterPalaceMatches(reference, image, record)
+          : reference.origin === 'met-al-hakim-1842-daguerreotype'
+            ? alHakimMetDaguerreotypeMatches(reference, image, record)
+            : reference.origin === 'cornell-tughlaqabad-1902-plate'
+              ? tughlaqabadFanshawePlateMatches(dir, reference, image, record)
+              : reference.origin === 'commons-mccord-public-domain'
+                ? mccordMatches(dir, reference, image, record)
+                : reference.origin === 'commons-rietberg-sepahsalar-public-domain'
+                  ? rietbergSepahsalarMatches(dir, reference, image, record)
+                  : reference.origin === 'banq-public-domain-atlas'
+                    ? banqMatches(reference, record)
+                    : reference.origin === 'te-papa-expired-postcard'
+                      ? tePapaPostcardMatches(dir, reference, record)
+                      : reference.origin === 'rijksmuseum-public-domain'
+                        ? rijksmuseumMatches(reference, record)
+                        : reference.origin === 'loc-cordoba-photochrom-public-domain'
+                          ? cordobaPhotochromMatches(reference, image, record)
+                          : reference.origin === 'slq-cooktown-expired-original'
+                            ? cooktownStateLibraryMatches(reference, record)
+                            : reference.origin === 'commons-museu-paulista-expired-postcard'
+                              ? museuPaulistaPostcardMatches(dir, reference, image, record)
+                              : reference.origin === 'usgs-national-map-pr-naip'
+                                ? puertoRicoNaipMatches(reference, record)
+                                : reference.origin === 'usda-naip-california-2009'
+                                  ? californiaNaip2009Matches(reference, record)
+                                  : reference.origin === 'usda-naip-encina-2018'
+                                    ? encinaNaip2018Matches(reference, record)
+                                    : reference.origin === 'commons-presidencia-sv-cc0'
+                                      ? salvadoranPresidencyMatches(reference, image, record)
+                                      : reference.origin === 'efeo-cambodia-museum-1930-plate'
+                                        ? efeoCambodiaMuseumPlateMatches(
+                                            dir,
+                                            reference,
+                                            image,
+                                            record,
+                                          )
+                                        : reference.origin ===
+                                            'archives-ontario-hammond-expired-photograph'
+                                          ? archivesOntarioHammondMatches(reference, image, record)
+                                          : reference.origin === 'eth-gau-dendur-1822-survey'
+                                            ? dendurGauPlateMatches(reference, image, record)
                                             : reference.origin ===
-                                                'commons-ottawa-war-museum-original-construction'
-                                              ? ottawaWarMuseumConstructionMatches(
-                                                  reference,
-                                                  image,
-                                                  record,
-                                                )
+                                                'met-teynard-dendur-1851-original'
+                                              ? dendurMetPhotographMatches(reference, image, record)
                                               : reference.origin ===
-                                                  'commons-nara-bureau-of-public-roads' &&
-                                                reference.originalReview?.rendition ===
-                                                  'native-archive-jpeg' &&
-                                                bureauOfPublicRoadsMatches(
-                                                  reference,
-                                                  image,
-                                                  record,
-                                                )))
+                                                  'commons-ottawa-war-museum-original-construction'
+                                                ? ottawaWarMuseumConstructionMatches(
+                                                    reference,
+                                                    image,
+                                                    record,
+                                                  )
+                                                : reference.origin ===
+                                                    'commons-nara-bureau-of-public-roads' &&
+                                                  reference.originalReview?.rendition ===
+                                                    'native-archive-jpeg' &&
+                                                  bureauOfPublicRoadsMatches(
+                                                    reference,
+                                                    image,
+                                                    record,
+                                                  )))
   )
     blockers.push('supplemental-archive-item-public-domain-unverified');
   return {

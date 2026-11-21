@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   arch,
@@ -7,8 +6,8 @@ import {
   closed,
   edge,
   face,
-  palette,
   pairs,
+  palette,
   panel,
   pavilion,
   rect,
@@ -17,6 +16,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   wall: surface('wall', 'stone_ashlar'),

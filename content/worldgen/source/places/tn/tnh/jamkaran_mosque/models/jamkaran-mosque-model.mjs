@@ -630,9 +630,15 @@ function court(out, lod) {
 
 function build(out, level) {
   const lod = levels[level];
-  d.halls.forEach((row) => hall(out, row, lod));
-  d.domes.forEach((row) => dome(out, row, lod));
-  d.towerSites.forEach((row) => minaret(out, row, lod));
+  d.halls.forEach((row) => {
+    hall(out, row, lod);
+  });
+  d.domes.forEach((row) => {
+    dome(out, row, lod);
+  });
+  d.towerSites.forEach((row) => {
+    minaret(out, row, lod);
+  });
   portal(out, [0, -23.9], 22, 9.4, 0.35, 27.5, lod);
   portal(out, [d.gateway[0], d.gateway[1] - 3], 22, 6.6, d.gateGrade, 16.6, lod, true);
   arcades(out, lod);

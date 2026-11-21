@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import {
   beamPath,
   loft,
@@ -12,8 +13,8 @@ import {
   edge,
   face,
   mix,
-  palette,
   pairs,
+  palette,
   panel,
   pavilion,
   rect,
@@ -23,7 +24,6 @@ import {
   up,
   xz,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
-import { readFileSync } from 'node:fs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const surfaces = {

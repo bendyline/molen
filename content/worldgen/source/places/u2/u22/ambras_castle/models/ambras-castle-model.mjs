@@ -1,5 +1,4 @@
 import { readFileSync } from 'node:fs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   areaSign,
   at,
@@ -11,8 +10,8 @@ import {
   floorSampler,
   mix,
   opening,
-  palette,
   pairs,
+  palette,
   panel,
   planarMid,
   plane,
@@ -23,6 +22,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (name) => JSON.parse(readFileSync(new URL('../' + name, import.meta.url)));
 const plan = read('plan-controls.json');

@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs';
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   arch,
   areaSign,
@@ -19,6 +18,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL('../' + file, import.meta.url)));
 const plan = read('plan-controls.json');

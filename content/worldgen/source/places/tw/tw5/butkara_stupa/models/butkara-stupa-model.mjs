@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import {
   block,
   cap,
@@ -10,6 +9,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   schist: surface('wall', 'stone_drywall', 0.96),
@@ -349,7 +349,8 @@ export const model = {
   buildingCutout: {
     outline: controls.dimensions.outline,
     minimumCoverage: 0.94,
-    basis: 'Suppresses the generic building mapped as the full Butkara I precinct while the stupa is placed.',
+    basis:
+      'Suppresses the generic building mapped as the full Butkara I precinct while the stupa is placed.',
   },
   sourceLicense:
     'Independent archaeological geometry from factual excavation notes, the government site register, the named mapped precinct and original elevations.',

@@ -5,18 +5,17 @@ import path from 'node:path';
 import { inspectArchivedAuthorReference } from './imagery-archived-author.mjs';
 import { inspectCarterExcavationReference } from './imagery-carter-excavation.mjs';
 import { inspectChileIlustradoReference } from './imagery-chile-ilustrado.mjs';
+import { inspectCommonsCreatorOriginal } from './imagery-commons-creator.mjs';
 import { inspectDanishFortDrawingReference } from './imagery-danish-fort-drawings.mjs';
-import { inspectTaganrogArchiveReference } from './imagery-taganrog-archive.mjs';
 import {
   inspectDhakaEmbassyReference,
   inspectNewZealandEmbassyReference,
 } from './imagery-embassy-flickr.mjs';
+import { inspectEsplanadeArchive } from './imagery-esplanade-archive.mjs';
 import { inspectExcavationPlanReference } from './imagery-excavation-plan.mjs';
 import { inspectExpiredUsBookReference } from './imagery-expired-us-book.mjs';
 import { inspectFlickrOriginalReference } from './imagery-flickr-original.mjs';
 import { inspectGettyReference } from './imagery-getty.mjs';
-import { inspectCommonsCreatorOriginal } from './imagery-commons-creator.mjs';
-import { inspectEsplanadeArchive } from './imagery-esplanade-archive.mjs';
 import { inspectJacksonShrinePlate } from './imagery-jackson-shrine.mjs';
 import { inspectCarpenterReference } from './imagery-loc-carpenter.mjs';
 import { inspectMoranCartagenaReference } from './imagery-moran-cartagena.mjs';
@@ -29,6 +28,7 @@ import {
   inspectYaleDuraBaptisteryPlan,
 } from './imagery-public-archives.mjs';
 import { inspectSilesianPeriodicalReference } from './imagery-silesian-periodical.mjs';
+import { inspectTaganrogArchiveReference } from './imagery-taganrog-archive.mjs';
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const plainHash = (value) => (typeof value === 'string' ? value.replace(/^sha256:/, '') : null);
@@ -56,21 +56,32 @@ function inspectCanadianaOttawaEngraving(dir, reference) {
   const review = reference.originalReview;
   const text = archive?.toString();
   const bound =
-    image && digest(image) === expectedHash && plainHash(reference.sha256) === expectedHash &&
-    archive && digest(archive) === plainHash(reference.rightsEvidence?.sha256);
+    image &&
+    digest(image) === expectedHash &&
+    plainHash(reference.sha256) === expectedHash &&
+    archive &&
+    digest(archive) === plainHash(reference.rightsEvidence?.sha256);
   const documented =
     reference.origin === 'canadiana-1877-library-engraving' &&
-    reference.sourceUrl === page && reference.rightsEvidence?.sourceUrl === page &&
-    reference.downloadUrl === imageUrl && reference.license === 'Public domain' &&
+    reference.sourceUrl === page &&
+    reference.rightsEvidence?.sourceUrl === page &&
+    reference.downloadUrl === imageUrl &&
+    reference.license === 'Public domain' &&
     reference.visuallyReviewedForThisPolicy === true &&
-    review?.status === 'inspected' && review?.publicationDate === '1877-03-10' &&
+    review?.status === 'inspected' &&
+    review?.publicationDate === '1877-03-10' &&
     review?.printedPage === 145 &&
     text?.includes('[Vol. 15, no. 10 (Mar. 10, 1877)]') &&
     text.includes(`href="${imageUrl}" target="_blank">p. 145</a>`);
   const blockers = [];
   if (!bound) blockers.push('supplemental-image-or-archive-bytes-unbound');
   if (!documented) blockers.push('supplemental-canadiana-original-publication-unverified');
-  return { path: reference.path, sourceUrl: reference.sourceUrl, blockers, eligible: !blockers.length };
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
 }
 function localBytes(dir, relative) {
   if (

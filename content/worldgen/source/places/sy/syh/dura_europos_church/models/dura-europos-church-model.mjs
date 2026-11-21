@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   areaSign,
@@ -19,6 +18,7 @@ import {
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   adobe: surface('wall', 'earth_adobe', 0.96),

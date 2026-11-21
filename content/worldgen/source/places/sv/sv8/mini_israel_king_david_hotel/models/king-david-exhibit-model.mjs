@@ -362,7 +362,12 @@ export function buildHotelExhibit(builder, tier) {
     },
     addConvexPolygon(slot, material, points, normal, uv, color) {
       builder.addConvexPolygon(
-        slot, material, points.map(stretchPoint), stretchNormal(normal), uv, color,
+        slot,
+        material,
+        points.map(stretchPoint),
+        stretchNormal(normal),
+        uv,
+        color,
       );
     },
   };

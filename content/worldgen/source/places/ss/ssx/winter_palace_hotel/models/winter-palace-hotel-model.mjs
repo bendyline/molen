@@ -1,5 +1,4 @@
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import controls from '../plan-controls.json' with { type: 'json' };
 import {
   arch,
   areaSign,
@@ -21,6 +20,7 @@ import {
   trimBlock,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   plaster: surface('wall', 'plaster_lime'),
@@ -589,5 +589,6 @@ model.category = 'landmark';
 model.buildingCutout = {
   outline: controls.dimensions.outline,
   minimumCoverage: 0.9,
-  basis: 'Suppress the generic mass within the exact mapped outline of the standing historic hotel.',
+  basis:
+    'Suppress the generic mass within the exact mapped outline of the standing historic hotel.',
 };

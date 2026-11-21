@@ -17,7 +17,11 @@ function boundDocument(dir, binding, expectedPath) {
 export function inspectSolvaySchoolFacts({ dir, controls, frame, proof }) {
   try {
     const map = boundDocument(dir, proof.nativeIdentity, 'native-map/solvay-r42.json');
-    const facts = boundDocument(dir, proof.primarySources, 'reference-rights/primary-source-facts.json');
+    const facts = boundDocument(
+      dir,
+      proof.primarySources,
+      'reference-rights/primary-source-facts.json',
+    );
     const sources = Object.fromEntries(facts.sources.map((source) => [source.key, source]));
     const [lon, lat] = frame.anchor;
     const scale = (6378137 * Math.PI) / 180;
@@ -33,14 +37,18 @@ export function inspectSolvaySchoolFacts({ dir, controls, frame, proof }) {
       proof.nativeIdentity.way !== 84491972 ||
       map.building.id !== proof.nativeIdentity.way ||
       Number(map.building.tags['building:levels']) !== 5 ||
-      map.school.id !== 12379370034 || map.school.tags.wikidata !== 'Q3247899' ||
-      map.entrance.id !== 981664995 || map.entrance.tags['addr:housenumber'] !== '42' ||
+      map.school.id !== 12379370034 ||
+      map.school.tags.wikidata !== 'Q3247899' ||
+      map.entrance.id !== 981664995 ||
+      map.entrance.tags['addr:housenumber'] !== '42' ||
       frame.mappedIdentity?.wikidataId !== map.school.tags.wikidata ||
       proof.nativeIdentity.sha256 !== frame.sourceHash ||
-      facts.model !== solvaySchoolModel || controls.model !== facts.model ||
+      facts.model !== solvaySchoolModel ||
+      controls.model !== facts.model ||
       proof.primarySources.use !== 'factual-text-only' ||
       !facts.sources.every((source) => source.use === 'factual-text-only') ||
-      sources.owner?.facts.wings !== 2 || sources.owner.facts.siteChangeMeters !== 12 ||
+      sources.owner?.facts.wings !== 2 ||
+      sources.owner.facts.siteChangeMeters !== 12 ||
       sources.owner.facts.roof !== 'rounded white overhang' ||
       sources.owner.facts.outerCladding !== 'turquoise-patinated copper' ||
       sources.engineer?.facts.aboveGroundLevels !== 5 ||
@@ -48,14 +56,16 @@ export function inspectSolvaySchoolFacts({ dir, controls, frame, proof }) {
       JSON.stringify(frame.geometry.outline) !== JSON.stringify(plan.outline) ||
       !map.building.coordinates.every((point, i) => samePoint(point, plan.outline[i])) ||
       !samePoint([map.entrance.lon, map.entrance.lat], plan.surveyedEntrance)
-    ) return { status: 'needs-review', reason: 'solvay-r42-control-mismatch' };
+    )
+      return { status: 'needs-review', reason: 'solvay-r42-control-mismatch' };
 
     return {
       status: 'passed',
       method: 'primary-facts-only',
       imageryUsed: false,
       evidenceHash: hash(readFileSync(join(dir, 'primary-facts-reconstruction.json'))),
-      notes: 'The surveyed number 42 entrance, five-storey shell footprint and named university establish the placement. ULB and the structural engineer substantiate the two wings, slope, copper cladding, five levels and rounded canopy.',
+      notes:
+        'The surveyed number 42 entrance, five-storey shell footprint and named university establish the placement. ULB and the structural engineer substantiate the two wings, slope, copper cladding, five levels and rounded canopy.',
     };
   } catch {
     return { status: 'needs-review', reason: 'solvay-r42-facts-invalid' };

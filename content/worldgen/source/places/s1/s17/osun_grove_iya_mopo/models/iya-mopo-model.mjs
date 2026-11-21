@@ -434,8 +434,20 @@ function court(out, detailed) {
     [],
   )) {
     const color = scaleColor(paving, 0.91 + 0.09 * Math.sin(indices[1] * 1.47));
-    face(out, 'mosaic', indices.map((i) => vertices[i]), color, [0, 1, 0]);
-    face(out, 'mosaic', indices.map((i) => base[i]), paving, [0, -1, 0]);
+    face(
+      out,
+      'mosaic',
+      indices.map((i) => vertices[i]),
+      color,
+      [0, 1, 0],
+    );
+    face(
+      out,
+      'mosaic',
+      indices.map((i) => base[i]),
+      paving,
+      [0, -1, 0],
+    );
   }
   for (let i = 0; i < vertices.length; i++) {
     const next = (i + 1) % vertices.length;

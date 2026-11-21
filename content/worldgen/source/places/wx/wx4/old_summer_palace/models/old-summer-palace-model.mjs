@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs';
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   block,
   face,
@@ -13,6 +12,7 @@ import {
   shell,
   surface,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const read = (name) => JSON.parse(readFileSync(new URL('../' + name, import.meta.url)));
 const plan = read('plan-controls.json');
@@ -207,7 +207,13 @@ function fountainGate(out, lod) {
       [3.11, 1.12],
       [2.35, 1.23],
     ].map(([x, h]) => [s * x, y + h]);
-    carvedPanel(out, lod === 0 ? curve.filter((_, i) => i % 2 === 0) : curve, z - 0.11, 0.78, color.gray);
+    carvedPanel(
+      out,
+      lod === 0 ? curve.filter((_, i) => i % 2 === 0) : curve,
+      z - 0.11,
+      0.78,
+      color.gray,
+    );
     if (lod > 0) {
       reliefStroke(
         out,
@@ -304,7 +310,17 @@ function remains(out, lod) {
     const pos = [x + xOffset, z + zOffset];
     const b = y + 0.91;
     if (lod === 0) {
-      ring(out, 'detail', pos, [[y + 0.63, r], [b + height, r * 0.88]], 5, color.marble);
+      ring(
+        out,
+        'detail',
+        pos,
+        [
+          [y + 0.63, r],
+          [b + height, r * 0.88],
+        ],
+        5,
+        color.marble,
+      );
       continue;
     }
     stoneBlank(

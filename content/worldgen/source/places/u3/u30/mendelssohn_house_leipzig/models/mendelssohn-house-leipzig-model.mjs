@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   areaSign,
@@ -17,6 +16,7 @@ import {
   trimBlock,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   wall: surface('wall', 'plaster_lime'),
@@ -371,6 +371,7 @@ const home = pavilion(
 
 export const { model, skyline, district, street: streetLod, closeup } = home;
 export { streetLod as street };
+
 model.category = 'historic-house';
 model.buildingCutout = {
   outline: controls.dimensions.outline,

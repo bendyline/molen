@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { encodeStructureGeohash } from '../../worldgen-earth/dist/kernel.mjs';
 import {
   encodeSourceGeohash,
@@ -13,6 +13,24 @@ import {
   structureSourcePath,
   structureSourceRoot,
 } from '../scripts/structure-source-paths.mjs';
+
+// Every catalog candidate now has a registered bundle, so reads of the catalog gain one
+// research-only candidate. Proposals for identities that are not yet authored stay covered.
+const unregistered = vi.hoisted(() => ({
+  id: 'unregistered_source_address_test',
+  referenceCoordinate: { longitude: 4.8897, latitude: 52.3731 },
+}));
+vi.mock('node:fs', async (importOriginal) => {
+  const fs = await importOriginal();
+  const readFileSync = (path, ...rest) => {
+    const text = fs.readFileSync(path, ...rest);
+    if (!String(path).replaceAll('\\', '/').endsWith('/structure-catalog/candidates.json'))
+      return text;
+    const catalog = JSON.parse(text);
+    return JSON.stringify({ ...catalog, candidates: [...catalog.candidates, unregistered] });
+  };
+  return { ...fs, readFileSync, default: { ...fs, readFileSync } };
+});
 
 const catalog = JSON.parse(
   readFileSync(resolve(structureSourceRoot, 'structure-catalog/candidates.json'), 'utf8'),

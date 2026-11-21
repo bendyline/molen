@@ -8,8 +8,8 @@ import {
   face,
   floorSampler,
   mix,
-  palette,
   pairs,
+  palette,
   surface,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
 

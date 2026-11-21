@@ -8,9 +8,9 @@ import {
   floorSampler,
   mix,
   opening,
+  pairs,
   palette,
   panel,
-  pairs,
   rect,
   shell,
   surface,
@@ -438,9 +438,13 @@ function surveyTrack(out, level) {
 }
 function build(out, level) {
   surveyTrack(out, level);
-  d.officers.forEach((row, i) => residence(out, row, i, level));
+  d.officers.forEach((row, i) => {
+    residence(out, row, i, level);
+  });
   hospital(out, level);
-  d.barracks.forEach((row, i) => barracks(out, row, i, level));
+  d.barracks.forEach((row, i) => {
+    barracks(out, row, i, level);
+  });
 }
 
 export const skyline = (out) => build(out, 0);

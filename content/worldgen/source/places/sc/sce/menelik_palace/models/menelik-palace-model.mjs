@@ -49,7 +49,9 @@ const C = palette({
 });
 
 const forWalls = (p, callback) =>
-  pairs(closed(p)).forEach(([a, b], i) => callback(edge(a, b, areaSign(p)), i));
+  pairs(closed(p)).forEach(([a, b], i) => {
+    callback(edge(a, b, areaSign(p)), i);
+  });
 const between = (points, i, j, t) => points[i].map((v, k) => mix(v, points[j][k], t));
 const scale = (points, center, n) => points.map((p) => p.map((v, i) => mix(center[i], v, n)));
 const foundation = (out, p, floor, grade) =>
@@ -406,7 +408,9 @@ function baeta(out, p, grade, lod) {
 }
 
 function draw(out, lod, { footprints }, grade) {
-  [quarter, throne, banquet, baeta].forEach((fn, i) => fn(out, footprints[i].points, grade, lod));
+  [quarter, throne, banquet, baeta].forEach((fn, i) => {
+    fn(out, footprints[i].points, grade, lod);
+  });
 }
 
 const palace = pavilion(

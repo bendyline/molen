@@ -57,10 +57,7 @@ const metrics = {
 };
 const [model] = manifest.files.models;
 if (process.argv.includes('--check')) {
-  assert(
-    prior?.equals(bytes),
-    'Mini Israel Yad Eliyahu Arena exhibit master is missing or stale',
-  );
+  assert(prior?.equals(bytes), 'Mini Israel Yad Eliyahu Arena exhibit master is missing or stale');
   assert.equal(model.sha256, hash);
   for (const [key, value] of Object.entries(metrics)) assert.deepEqual(spec[key], value);
 } else {

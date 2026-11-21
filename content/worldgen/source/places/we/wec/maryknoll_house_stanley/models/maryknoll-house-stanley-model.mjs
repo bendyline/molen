@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   areaSign,
@@ -6,9 +5,9 @@ import {
   edge,
   face,
   mix,
+  pairs,
   palette,
   panel,
-  pairs,
   pavilion,
   plane,
   rect,
@@ -17,6 +16,7 @@ import {
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   brick: surface('wall', 'brick_flemish'),

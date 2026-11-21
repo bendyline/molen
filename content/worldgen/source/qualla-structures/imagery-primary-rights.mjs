@@ -3,8 +3,8 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { matchesEsplanadeCourtyard } from './imagery-esplanade-archive.mjs';
 import { printedAsirgadMapMatches } from './imagery-asirgad-gazetteer.mjs';
+import { matchesEsplanadeCourtyard } from './imagery-esplanade-archive.mjs';
 import {
   bureauOfPublicRoadsMatches,
   rietbergSepahsalarMatches,
@@ -366,7 +366,11 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       info?.sha1 !== createHash('sha1').update(original).digest('hex')) ||
     reference.license !== 'Public domain' ||
     info.extmetadata?.LicenseShortName?.value !== 'Public domain' ||
-    (!['commons-native-slq-archival-photo', 'commons-native-expired-us-book-photo', 'commons-native-esplanade-1913-courtyard'].includes(proof.kind) &&
+    (![
+      'commons-native-slq-archival-photo',
+      'commons-native-expired-us-book-photo',
+      'commons-native-esplanade-1913-courtyard',
+    ].includes(proof.kind) &&
       (!reference.artist?.trim() ||
         !text(info.extmetadata?.Artist?.value).includes(text(reference.artist))))
   )
@@ -382,7 +386,8 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     } catch {
       return failed;
     }
-    basis = 'The Qualla courtyard photograph matches the original anonymously published 18 October 1913 journal plate.';
+    basis =
+      'The Qualla courtyard photograph matches the original anonymously published 18 October 1913 journal plate.';
     creatorAttribution = 'unrecorded-archival';
   } else if (proof.kind === 'commons-native-south-carolina-statehouse-photo') {
     const agency =
@@ -946,7 +951,8 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     if (
       !Number.isInteger(year) ||
       year < 1800 ||
-      year > (gurlittMosquePlan ? 1912 : garreaudAlbumPlate ? 1900 : originalDrawing ? 1892 : 1875) ||
+      year >
+        (gurlittMosquePlan ? 1912 : garreaudAlbumPlate ? 1900 : originalDrawing ? 1892 : 1875) ||
       !proof.sourceCitation?.trim() ||
       sourceField !== proof.sourceCitation ||
       /unknown|anonymous|unidentified|unrecorded|assumed|probably/i.test(
@@ -1232,13 +1238,16 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     } else if (gurlittMosquePlan) {
       const archive = record.archive;
       if (
-        title !== 'File:Cross sections and plan of the Piyale Pasha Mosque in Istanbul by Gurlitt 1912.jpg' ||
+        title !==
+          'File:Cross sections and plan of the Piyale Pasha Mosque in Istanbul by Gurlitt 1912.jpg' ||
         info.sha1 !== 'ed6ec3dcfff942fb6e92b9873c23b0b8002b5f12' ||
         info.size !== original.length ||
         page.revisions[0].revid !== reference.nativeRevision ||
         authorField !== 'Cornelius Gurlitt (1850-1938)' ||
         reference.artist !== authorField ||
-        year !== 1912 || dateField !== '1912' || proof.creatorDied !== 1938 ||
+        year !== 1912 ||
+        dateField !== '1912' ||
+        proof.creatorDied !== 1938 ||
         !sourceField.includes('[http://dome.mit.edu/handle/1721.3/65885 MIT libraries') ||
         !wiki.includes('{{PD-old-auto-1923|1938}}') ||
         archive?.url !== 'https://dome.mit.edu/handle/1721.3/65885' ||
@@ -1254,7 +1263,8 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         'Exact Qualla reproduction of Gurlitt’s 1912 plate 24c, with the native copyright expiry record and the MIT Libraries public-domain source scan.';
     } else if (proof.recordClass === 'lyall-1825-taganrog-map') {
       if (
-        title !== 'File:Plan of Taganrdg. Robert Lyall. Travels in Russia, The Krimea, The Caucasus, and Georgia. 1825. Chap. XX. P.251.jpg' ||
+        title !==
+          'File:Plan of Taganrdg. Robert Lyall. Travels in Russia, The Krimea, The Caucasus, and Georgia. 1825. Chap. XX. P.251.jpg' ||
         authorField !== 'Robert Lyall' ||
         reference.artist !== authorField ||
         proof.creatorDied !== 1831 ||

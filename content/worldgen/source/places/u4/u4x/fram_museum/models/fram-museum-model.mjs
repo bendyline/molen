@@ -8,9 +8,9 @@ import {
   floorSampler,
   mix,
   opening,
+  pairs,
   palette,
   panel,
-  pairs,
   surface,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
@@ -385,7 +385,9 @@ function entrance(out, level) {
   block(out, 'trim', h.start - 0.95, 3.28, -2.5, 1.01, 0.14, 6.2, colors.trim);
 }
 function build(out, level) {
-  dimensions.halls.forEach((h, i) => hall(out, h, dimensions.polygons[i], i, level));
+  dimensions.halls.forEach((h, i) => {
+    hall(out, h, dimensions.polygons[i], i, level);
+  });
   entrance(out, level);
 }
 export const skyline = (out) => build(out, 0);

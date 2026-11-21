@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs';
 import { beamPath } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 import {
   areaSign,
   at,
@@ -18,6 +17,7 @@ import {
   surface,
   trimBlock,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import earcut from '../../../../../../../../packages/worldgen/scripts/polygon-triangulation.mjs';
 
 const C = palette({
   clad: 'b5aa9e',

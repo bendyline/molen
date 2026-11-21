@@ -12,9 +12,9 @@ import {
   face,
   floorSampler,
   mix,
+  pairs,
   palette,
   panel,
-  pairs,
   plane,
   surface,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';

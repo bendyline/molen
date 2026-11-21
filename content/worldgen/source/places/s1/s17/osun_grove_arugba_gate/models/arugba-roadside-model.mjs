@@ -300,7 +300,10 @@ const clamp = (value) => Math.max(0, Math.min(1, value));
 // the cap, foot and jamb so the same outer shell closes all detail levels.
 function reliefPanel(out, [a, b, c, d], cavities, detail, rows, endFade = () => 1) {
   const spacing = detail === 3 ? 0.07 : 0.05;
-  const extent = Math.max(Math.hypot(b[0] - a[0], b[1] - a[1]), Math.hypot(c[0] - d[0], c[1] - d[1]));
+  const extent = Math.max(
+    Math.hypot(b[0] - a[0], b[1] - a[1]),
+    Math.hypot(c[0] - d[0], c[1] - d[1]),
+  );
   const columns = Math.ceil(extent / spacing);
   const sample = (u, v) => {
     const point = mix(mix(a, b, u), mix(d, c, u), v);

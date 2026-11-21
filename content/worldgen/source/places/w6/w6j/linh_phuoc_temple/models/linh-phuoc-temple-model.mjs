@@ -1,4 +1,3 @@
-import controls from '../plan-controls.json' with { type: 'json' };
 import { beam } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { buildChineseHipRoof } from '../../../../../../../../packages/worldgen/scripts/chinese-roof-geometry.mjs';
 import {
@@ -24,6 +23,7 @@ import {
   trimBlock,
   up,
 } from '../../../../../../../../packages/worldgen/scripts/montreal-museum-pavilion-geometry.mjs';
+import controls from '../plan-controls.json' with { type: 'json' };
 
 const surfaces = {
   wall: surface('wall', 'plaster_lime'),

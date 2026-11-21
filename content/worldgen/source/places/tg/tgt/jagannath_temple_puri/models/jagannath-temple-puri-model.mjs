@@ -9,8 +9,8 @@ import {
   mix,
   pairs,
   palette,
-  pavilion,
   panel,
+  pavilion,
   rect,
   shell,
   surface,
@@ -667,7 +667,9 @@ function draw(out, lod, dimensions, grade) {
     C.column,
   );
   shrine(out, dimensions.halls[0], grade, lod);
-  dimensions.halls.slice(1).forEach((h, i) => hall(out, h, i + 1, grade, lod));
+  dimensions.halls.slice(1).forEach((h, i) => {
+    hall(out, h, i + 1, grade, lod);
+  });
 }
 
 const temple = pavilion(

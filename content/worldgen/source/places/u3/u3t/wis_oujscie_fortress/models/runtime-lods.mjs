@@ -6,13 +6,13 @@ import {
 } from '../../../../../../../../packages/worldgen/scripts/lighthouse-models.mjs';
 import { face } from '../../../../../../../../packages/worldgen/scripts/stadium-models.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
+import plan from '../../../../../../../../packages/worldgen/scripts/wisloujscie-footprints.json' with {
+  type: 'json',
+};
 import {
   buildWisloujscie,
   wisloujscieSections,
 } from '../../../../../../../../packages/worldgen/scripts/wisloujscie-model.mjs';
-import plan from '../../../../../../../../packages/worldgen/scripts/wisloujscie-footprints.json' with {
-  type: 'json',
-};
 
 const { arch, cleanLoop, flatPolygon, profileArc, terrainRing, tower } = wisloujscieSections;
 const { features } = plan;

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import {
   beam,
-  normalize,
   normalFor,
+  normalize,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
@@ -320,7 +320,9 @@ function house(out, [x, z, w, d, angle], idx, detail) {
 function build(out, level) {
   const lod = levels[level];
   renderRampart(out, lod);
-  section.ravelins.forEach((shape) => ravelin(out, shape, 4.35));
+  section.ravelins.forEach((shape) => {
+    ravelin(out, shape, 4.35);
+  });
   ravelin(
     out,
     [
@@ -345,7 +347,9 @@ function build(out, level) {
   );
   moles(out, lod);
   bridges(out, lod);
-  section.surveyBuildings.forEach((room, i) => house(out, room, i, lod.houseDetails));
+  section.surveyBuildings.forEach((room, i) => {
+    house(out, room, i, lod.houseDetails);
+  });
   section.townBlocks.slice(0, lod.blocks).forEach(([x, z, w, d, angle], i) => {
     const count = level === 0 ? 1 : level === 1 ? 2 : 3;
     for (let j = 0; j < count; j++) {

@@ -13,9 +13,9 @@ import {
   face,
   floorSampler,
   mix,
+  pairs,
   palette,
   panel,
-  pairs,
   plane,
   rect,
   shell,
@@ -512,7 +512,9 @@ function screen(out, level) {
 function build(out, level) {
   surroundings(out, level);
   chamber(out, level);
-  d.polygons.slice(1).forEach((p) => tower(out, p, level));
+  d.polygons.slice(1).forEach((p) => {
+    tower(out, p, level);
+  });
   screen(out, level);
 }
 export const skyline = (out) => build(out, 0);
