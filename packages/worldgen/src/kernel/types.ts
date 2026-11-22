@@ -294,7 +294,14 @@ export interface ScatterRequest {
 }
 
 export interface WorldgenBudgets {
+  /** Buildings a batch gives real geometry (walls and a roof at least), largest first. */
   maxBuildings: number;
+  /**
+   * Buildings past `maxBuildings` still drawn, as stand-ins (instanced boxes; gabled for pitched
+   * roofs): default 0, which leaves them out. A stand-in costs no mesh and a few dozen bytes, so
+   * a dense batch can keep every footprint visible where the count budget once cut it off.
+   */
+  maxStandIns?: number;
   maxBuildingVertices: number;
   /** Buildings eligible for extra detail after reserving simplified roofs and facades for the batch. */
   detailedCount: number;

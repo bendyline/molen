@@ -8,6 +8,7 @@
 
 import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
+import { createBuiltUpTileEnricher } from './built-up-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
   createTerrainPackageCombinedSemanticSource,
@@ -292,10 +293,20 @@ export async function createTerrainPackageSemanticLayers(
       : featuresSource;
   // Enrich the completed joins, so retrieved cells cannot hide a separate mapped land-use
   // archive. Share the cache between visual layers and leave hydrology reads independent.
-  const enrich =
-    pkg.agriculture && pkg.coordinateSpace.kind === 'geospatial' && pkg.tileMatrix.scheme === 'xyz'
+  const geospatialXyz =
+    pkg.coordinateSpace.kind === 'geospatial' && pkg.tileMatrix.scheme === 'xyz';
+  const enrichAgriculture =
+    pkg.agriculture && geospatialXyz
       ? createAgricultureTileEnricher(pkg.agriculture, options.baseUrl)
       : (source: TerrainPackageSemanticSource) => source;
+  // Built-up evidence rides on the same tiles, so the classification and the human features
+  // agree on where buildings may be invented (built-up-grid.ts).
+  const enrichBuiltUp =
+    pkg.builtUp && geospatialXyz
+      ? createBuiltUpTileEnricher(pkg.builtUp, options.baseUrl)
+      : (source: TerrainPackageSemanticSource) => source;
+  const enrich = (source: TerrainPackageSemanticSource): TerrainPackageSemanticSource =>
+    enrichBuiltUp(enrichAgriculture(source));
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;

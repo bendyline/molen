@@ -345,7 +345,21 @@ export class Renderer {
    * attaches it (a tile's, several frames before) and may never be, and one its owner has let
    * go of must not be kept alive here.
    */
-  private readonly renderGroups = new Set<WeakRef<THREE.Object3D>>();
+  /**
+   * The render groups that have a parent now. Each joins as it is added to one and leaves as it
+   * is removed, so the walks below touch only groups in use. They used to walk a weak reference
+   * to every group ever made and dereference each one, every frame, to find the ones still
+   * there; and what a frame has dereferenced the browser does not collect in that frame, so a
+   * group taken out of the scene for good (an evicted terrain tile, with everything in it) was
+   * never collected while frames kept coming.
+   */
+  private readonly renderGroups = new Set<THREE.Object3D>();
+  private readonly groupAdded = (event: { target: THREE.Object3D }): void => {
+    this.renderGroups.add(event.target);
+  };
+  private readonly groupRemoved = (event: { target: THREE.Object3D }): void => {
+    this.renderGroups.delete(event.target);
+  };
   /** Groups left out of the scene walk under way, to show again when it ends. */
   private readonly culledGroups: THREE.Object3D[] = [];
   private cullGroups = false;
@@ -1354,7 +1368,10 @@ export class Renderer {
         meshes = new Map();
         this.materialMeshes.set(material, meshes);
       }
-      if (meshes.get(key)?.deref() === undefined) meshes.set(key, new WeakRef(mesh));
+      // The latest mesh of its kind, without asking after the one before: dereferencing that
+      // one for every mesh prepared kept it, and the tile it was in, from being collected (see
+      // `renderGroups`).
+      meshes.set(key, new WeakRef(mesh));
       let map = this.warmedPrograms.get(material);
       if (!map) {
         map = new Map();
@@ -2026,13 +2043,8 @@ export class Renderer {
     // As three's render will: the camera's world matrix and its inverse, current for this frame.
     if (camera.parent === null && camera.matrixWorldAutoUpdate) camera.updateMatrixWorld();
     viewProjection(camera, cullMatrix);
-    for (const ref of this.renderGroups) {
-      const group = ref.deref();
-      if (group === undefined) {
-        this.renderGroups.delete(ref);
-        continue;
-      }
-      // Not attached yet, or let go of.
+    for (const group of this.renderGroups) {
+      // Let go of without being removed (its parent was set by hand).
       const parent = group.parent;
       if (parent === null) continue;
       const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
@@ -2119,10 +2131,9 @@ export class Renderer {
       const changed: THREE.Object3D[] = [];
       const hidden = new Set(this.culledGroups);
       const now = performance.now();
-      for (const ref of this.renderGroups) {
-        const group = ref.deref();
-        const parent = group?.parent;
-        if (group === undefined || parent === null || parent === undefined) continue;
+      for (const group of this.renderGroups) {
+        const parent = group.parent;
+        if (parent === null) continue;
         const culled = hidden.has(group);
         if (!culled && !group.visible) continue;
         const bounds = group.userData[RENDER_BOUNDS] as THREE.Box3 | undefined;
@@ -2301,7 +2312,10 @@ export class Renderer {
     const optimized = this.optimizer?.createGroup();
     if (optimized !== undefined) return optimized;
     const group = new THREE.Group();
-    if (this.cullGroups) this.renderGroups.add(new WeakRef(group));
+    if (this.cullGroups) {
+      group.addEventListener('added', this.groupAdded);
+      group.addEventListener('removed', this.groupRemoved);
+    }
     return group;
   }
 

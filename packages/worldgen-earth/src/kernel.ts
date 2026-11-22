@@ -6,6 +6,13 @@ export {
 export type { AgricultureCrop, AgricultureProfile } from './kernel/agriculture-types';
 export type { BuildingInfillOptions } from './kernel/building-infill';
 export { inferBuildingFootprints } from './kernel/building-infill';
+export {
+  type BuiltUpGate,
+  type BuiltUpGateOptions,
+  createBuiltUpGate,
+  EVIDENCE_BLOCK,
+  EVIDENCE_DEFICIT,
+} from './kernel/built-up-gate';
 export type {
   BusinessCatalog,
   BusinessProfile,

@@ -89,7 +89,9 @@ function byLevel(table: readonly number[], levelBelowMax: number): number {
 /**
  * Per-tile budgets by quality and detail level. The finest level keeps every building: the
  * largest get full detail, the rest a simplified facade (a row of windows per floor), then walls
- * and roof alone, then an instanced stand-in once vertices run out. The level below it, which
+ * and roof alone, then an instanced stand-in once vertices or the building count run out
+ * (`maxStandIns`: a 1.2 km tile of central Bogotá holds 10,600 footprints against 6,000
+ * buildings at High, and the 4,600 smallest were simply missing). The level below it, which
  * covers four times the ground, draws a few hundred simplified buildings and stands in the rest
  * (pitched buildings as gabled boxes, so a neighbourhood seen from the air still reads as roofs).
  * Coarser levels carry no buildings at all (the human-feature layer is level-bounded). Scatter
@@ -129,6 +131,7 @@ export function worldgenTileBudgetForQuality(
     case 'economy':
       return {
         maxBuildings: finest ? 2500 : 12_000,
+        maxStandIns: finest ? 8000 : 24_000,
         maxBuildingVertices: finest ? 120_000 : 30_000,
         detailedCount: finest ? 250 : 300,
         ...scatter,
@@ -137,6 +140,7 @@ export function worldgenTileBudgetForQuality(
     case 'high':
       return {
         maxBuildings: finest ? 6000 : 40_000,
+        maxStandIns: finest ? 24_000 : 60_000,
         // Houses with shutters, dormers and chimneys run about twice the vertices of a plain box;
         // this keeps a dense suburban block fully detailed near the camera. Compact keeps under
         // half, for renderers that pay full price for every building in both the shadow and
@@ -158,6 +162,7 @@ export function worldgenTileBudgetForQuality(
     default:
       return {
         maxBuildings: finest ? 4000 : 30_000,
+        maxStandIns: finest ? 16_000 : 40_000,
         maxBuildingVertices: finest ? 280_000 : 90_000,
         detailedCount: finest ? 500 : 600,
         ...scatter,

@@ -140,6 +140,42 @@ const terrainPackageSchema = z.strictObject({
       'Optional global or regional agricultural retrieval dataset; missing tiles retain basemap/fallback crops. Include its license in attribution.',
     )
     .optional(),
+  builtUp: z
+    .strictObject({
+      urlTemplate: z
+        .string()
+        .min(1)
+        .refine(
+          (url) => ['{z}', '{x}', '{y}'].every((part) => url.includes(part)),
+          'Expected XYZ URL template',
+        )
+        .describe(
+          'Versioned built-up JSON tile URL, relative to this package or absolute; {z}/{x}/{y} placeholders.',
+        ),
+      level: z
+        .int()
+        .min(0)
+        .max(20)
+        .describe('Single stored XYZ level; finer tiles read the part of their ancestor grid.'),
+      source: z.string().min(1).describe('Pinned dataset identity, checked against every tile.'),
+      year: z.int().min(1900).max(2200).describe('Observation year.'),
+      maxTileBytes: z
+        .int()
+        .min(1024)
+        .max(1048576)
+        .describe('Uncompressed download bound; default 131072 bytes.')
+        .optional(),
+      bounds: z
+        .tuple([z.number(), z.number(), z.number(), z.number()])
+        .describe(
+          '[west, south, east, north] in degrees the dataset covers. Inside it a missing tile means nothing is built; outside it nothing is known. Default: the whole world.',
+        )
+        .optional(),
+    })
+    .describe(
+      'Optional built-up evidence: the share of the ground under buildings by a source other than the map footprints. Generators invent buildings only where it exceeds what the footprints cover. Include its license in attribution.',
+    )
+    .optional(),
   version: z.string().min(1).describe("Package version string, e.g. '2026.08'."),
   coordinateSpace: coordinateSpace.describe(
     'Coordinate space the package covers: local metric or geospatial.',

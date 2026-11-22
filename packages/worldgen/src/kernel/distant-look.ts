@@ -108,7 +108,20 @@ export interface DistantLook {
   wall: RGB;
   /** The roof, or the flat roof's covering. */
   roof: RGB;
+  /** The recipe's height above ground, metres: the style's guess where the request named none. */
+  height?: number;
+  /** Whether the roof is pitched (a stand-in then keeps a gabled roof). */
+  pitched?: boolean;
 }
+
+/** Roofs whose stand-in is the gabled box: from above, roofs are what a neighbourhood is. */
+export const PITCHED_STAND_IN: ReadonlySet<string> = new Set([
+  'gable',
+  'hip',
+  'pyramid',
+  'gambrel',
+  'mansard',
+]);
 
 function decode(c: number): number {
   return c <= 0.04045 ? c / 12.92 : dmath.pow((c + 0.055) / 1.055, 2.4);
@@ -181,6 +194,8 @@ export function recipeDistantLook(recipe: BuildingRecipe): DistantLook {
   return {
     wall: [mix(0), mix(1), mix(2)],
     roof: [encode(roof[0]), encode(roof[1]), encode(roof[2])],
+    height: recipe.minHeight + recipe.totalHeight,
+    pitched: PITCHED_STAND_IN.has(recipe.roof.type),
   };
 }
 

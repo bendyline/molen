@@ -8,7 +8,7 @@ import type { ArchStyleDoc } from './archstyle-types';
 import { buildBuildingAccess } from './building-access';
 import { buildYardFence } from './building-yard';
 import { buildCrowns } from './crowns';
-import { recipeDistantLook, standInTint } from './distant-look';
+import { PITCHED_STAND_IN, recipeDistantLook, standInTint } from './distant-look';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -68,14 +68,6 @@ export interface BoxPlacement {
 
 /** Eave of the unit `builtin:box.gable` model, as a fraction of its height. */
 export const GABLE_BOX_EAVE = 0.62;
-
-const PITCHED_STAND_IN: ReadonlySet<string> = new Set([
-  'gable',
-  'hip',
-  'pyramid',
-  'gambrel',
-  'mansard',
-]);
 
 export interface BuildingGenerateInput {
   request: BuildingRequest;

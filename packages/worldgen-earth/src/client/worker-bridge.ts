@@ -248,6 +248,13 @@ export function createWorldgenWorkerBridge(
  * queued in each worker in request order: by their turn it had flown on, and the nearest ground
  * waited a second or more behind ground it had passed. Each worker keeps a second tile posted,
  * so it starts that one as soon as it finishes the first.
+ *
+ * The pool also bounds the footprints it has in flight (`POOL_FOOTPRINTS_IN_FLIGHT`). A worker's
+ * heap grows with the footprints of the tile it is building, to about 500 MB for a 1.2 km tile
+ * of 10,000 or a 2.4 km tile of 35,000 (central Bogotá), and every isolate of a tab shares one
+ * 4 GB cage: five such tiles at once, with the page's and the other workers' heaps, ran the tab
+ * out of memory. Past the bound the most urgent tile waits for room; an ordinary town's tiles
+ * (a few thousand footprints each) never reach it.
  */
 export function createWorldgenWorkerPool(
   workers: readonly WorkerLike[],
@@ -267,6 +274,7 @@ export function createWorldgenWorkerPool(
   }
   const waiting: Waiting[] = [];
   let disposed = false;
+  let footprints = 0;
   const pump = (): void => {
     while (!disposed && waiting.length > 0) {
       let target = members[0] as (typeof members)[number];
@@ -281,15 +289,21 @@ export function createWorldgenWorkerPool(
           bestPriority = priority;
         }
       }
+      // The most urgent tile waits for room rather than be passed by lighter ones, which would
+      // keep a dense tile under the camera waiting behind the suburbs around it.
+      const weight = (waiting[best] as Waiting).request.tile.buildings.length;
+      if (footprints > 0 && footprints + weight > POOL_FOOTPRINTS_IN_FLIGHT) return;
       const job = waiting.splice(best, 1)[0] as Waiting;
       job.cleanup();
       const member = target;
       member.busy++;
+      footprints += weight;
       member.bridge
         .generate(job.request, job.signal)
         .then(job.resolve, job.reject)
         .finally(() => {
           member.busy--;
+          footprints -= weight;
           pump();
         });
     }
@@ -329,6 +343,12 @@ export function createWorldgenWorkerPool(
     },
   };
 }
+
+/**
+ * Footprints the pool has in flight at most, unless a single tile holds more (it then runs
+ * alone): three dense zoom-15 tiles, or one dense tile of the level behind them.
+ */
+export const POOL_FOOTPRINTS_IN_FLIGHT = 36_000;
 
 /** Tiles posted to one worker at a time: the one it is building and the next. */
 const POSTED_PER_WORKER = 2;

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
-import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
+import { describe, expect, it, vi } from 'vitest';
+import { createInstancedPlacementLod, PlacementSetGroup } from '../../src/client/instanced-lod';
 import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
 import {
   createScatterMaterialAsync,
@@ -433,6 +433,133 @@ describe('camera-distance instance LOD', () => {
       screenSpace: { viewportHeight: 900, maxPixelError: 2 },
     });
     expect(root.children).toHaveLength(4);
+    material.dispose();
+  });
+
+  it('leaves a set out of the scene walks while none of its batches can draw, drawing the same', () => {
+    const material = new THREE.MeshStandardMaterial();
+    const cover: PreparedModel = {
+      ref: 'fern',
+      geometry: new THREE.BoxGeometry(1, 1, 1),
+      material,
+      bounds: new THREE.Box3(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 1, 1)),
+      builtin: false,
+    };
+    // Near detail only: nothing to draw at its coarser levels.
+    const nothing: PreparedModel = {
+      ...cover,
+      geometry: new THREE.BufferGeometry().setAttribute(
+        'position',
+        new THREE.BufferAttribute(new Float32Array(0), 3),
+      ),
+    };
+    // Four patches 300 m apart, one to a batch.
+    const data = new Float32Array(4 * PLACEMENT_STRIDE);
+    for (let i = 0; i < 4; i++)
+      data.set(
+        [(i % 2) * 300, 0, Math.floor(i / 2) * 300, 0, 1, 1, 1, 1, 1, 1],
+        i * PLACEMENT_STRIDE,
+      );
+    const set: PlacementSet = { setId: 'ferns', modelRef: 'fern', count: 4, data };
+    const policy = { viewportHeight: 900, maxPixelError: 2 };
+    const make = (models: readonly [PreparedModel, PreparedModel, PreparedModel]) =>
+      createInstancedPlacementLod(set, models, {
+        cellSize: 150,
+        cellGrid: { cellsPerAxis: 2 },
+        screenSpace: policy,
+      });
+    const root = make([cover, nothing, nothing]) as THREE.LOD;
+    // The same set with every batch choosing for itself each frame, as before.
+    const twin = make([cover, nothing, nothing]);
+    const trees = make([cover, cover, cover]) as THREE.LOD;
+    // And in a group that settles its sets before three visits them, beside a set of trees.
+    const hosted = make([cover, nothing, nothing]);
+    const host = new PlacementSetGroup();
+    host.add(hosted, make([cover, cover, cover]));
+    expect(root.isLOD).toBe(true);
+    expect(root.children).toHaveLength(4);
+    for (const object of [root, twin, trees, host]) object.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    // As three gathers a frame: a level of detail is updated before its children are visited.
+    const walk = (objects: readonly THREE.Object3D[]): number => {
+      let visited = 0;
+      const visit = (object: THREE.Object3D): void => {
+        if (!object.visible) return;
+        visited++;
+        const lod = object as THREE.LOD;
+        if (lod.isLOD && lod.autoUpdate) lod.update(camera);
+        for (const child of object.children) visit(child);
+      };
+      for (const object of objects) visit(object);
+      return visited;
+    };
+    const drawn = (object: THREE.Object3D): boolean[] =>
+      object.children.map(
+        (cell) => object.visible && cell.visible && cell.children[0]?.visible === true,
+      );
+    const frame = (x: number, z = 150): { own: number; others: number; grouped: number } => {
+      camera.position.set(x, 2, z);
+      camera.updateMatrixWorld();
+      const own = walk([root]);
+      const others = walk(twin.children);
+      const grouped = walk([host]);
+      expect(drawn(root), `drawn from ${x}, ${z}`).toEqual(drawn(twin));
+      expect(drawn(hosted), `drawn in a group from ${x}, ${z}`).toEqual(drawn(twin));
+      return { own, others, grouped };
+    };
+    // At one patch every batch is in the walk, and that patch draws. (The group: itself, the
+    // set likewise, and the trees' set with its four batches and their meshes.)
+    expect(frame(0, 0)).toEqual({ own: 1 + 4 + 1, others: 4 + 1, grouped: 1 + 6 + 9 });
+    expect(drawn(root)).toEqual([true, false, false, false]);
+    // Past the reach of all four (0.65 of the first handover: about 114 m at this budget) only
+    // the set itself is visited, and in a group not even that; the batches on their own were
+    // each still visited.
+    expect(frame(-700)).toEqual({ own: 1, others: 4, grouped: 1 + 9 });
+    expect(drawn(root)).toEqual([false, false, false, false]);
+    expect(hosted.visible).toBe(false);
+    // In and out along several lines, with the budget swinging as a host's does with height: what
+    // draws is what the batches would have chosen at every step.
+    for (const z of [150, -40, 420]) {
+      for (let x = -700; x <= 1_000; x += 3) {
+        policy.maxPixelError = 2 + 1.5 * (1 + Math.sin(x / 130));
+        frame(x, z);
+      }
+      for (let x = 1_000; x >= -700; x -= 7) frame(x, z);
+    }
+    policy.maxPixelError = 2;
+    // A move of the whole set (a floating-origin rebase) while its batches are out of the walk
+    // reaches them when they return.
+    expect(frame(-700).own).toBe(1);
+    for (const object of [root, twin, host]) {
+      object.position.x = 5_000;
+      object.updateMatrixWorld();
+    }
+    for (const within of [root, hosted]) {
+      const cell = within.children[0] as THREE.Object3D;
+      expect(cell.matrixWorld.elements[12]).toBeCloseTo(cell.position.x, 6);
+    }
+    expect(frame(5_000, 0)).toEqual({ own: 1 + 4 + 1, others: 4 + 1, grouped: 1 + 6 + 9 });
+    for (const within of [root, hosted]) {
+      const cell = within.children[0] as THREE.Object3D;
+      expect(cell.matrixWorld.elements[12]).toBeCloseTo(5_000 + cell.position.x, 6);
+      expect(cell.children[0]?.matrixWorld.elements[12]).toBeCloseTo(5_000 + cell.position.x, 6);
+    }
+    // An orthographic view hides nothing by distance: the batches return to choose for it.
+    expect(frame(-700 + 5_000).own).toBe(1);
+    const ortho = new THREE.OrthographicCamera(-100, 100, 100, -100, 0.1, 10_000);
+    ortho.updateMatrixWorld();
+    const now = performance.now();
+    const clock = vi.spyOn(performance, 'now').mockReturnValue(now + 100);
+    root.update(ortho);
+    expect(root.children.every((child) => !child.visible)).toBe(true);
+    clock.mockReturnValue(now + 1_000);
+    root.update(ortho);
+    expect(root.children.every((child) => child.visible)).toBe(true);
+    clock.mockRestore();
+    // Trees draw at every distance: their set never leaves the walk.
+    camera.position.set(-50_000, 2, 150);
+    camera.updateMatrixWorld();
+    expect(walk([trees])).toBe(1 + 4 + 4);
     material.dispose();
   });
 

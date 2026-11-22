@@ -33,7 +33,9 @@ export {
   type TerrainArchiveSetArchiveOptions,
 } from './archive-set-client';
 export {
+  blurTerrainBuildingCoverage,
   sampleTerrainBuildingCoverage,
+  TERRAIN_BUILDING_COVERAGE_SIZE,
   type TerrainBuildingCoverage,
   terrainBuildingCoverage,
 } from './building-coverage';
@@ -344,6 +346,18 @@ export {
   type TerrainAgricultureGrid,
   type TerrainAgricultureSource,
 } from './agriculture-grid';
+export { createBuiltUpTileEnricher } from './built-up-client';
+export {
+  decodeBuiltUpGrid,
+  emptyTerrainBuiltUpCoverage,
+  sampleTerrainBuiltUp,
+  type TerrainBuiltUpCoverage,
+  type TerrainBuiltUpGrid,
+  type TerrainBuiltUpSource,
+  terrainBuiltUpCoverage,
+  terrainBuiltUpCovers,
+  withTerrainBuiltUp,
+} from './built-up-grid';
 export type {
   ElevationStageTiming,
   ElevationWorkerLike,
@@ -353,6 +367,7 @@ export {
   createTerrainElevationWorkerSource,
   installTerrainElevationWorker,
 } from './elevation-worker';
+export { retireTerrainObjects } from './retire';
 export {
   createTerrainRoadGrading,
   type TerrainRoadGrading,

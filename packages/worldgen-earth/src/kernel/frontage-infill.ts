@@ -20,6 +20,7 @@ import {
   unit01,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
+import { type BuiltUpGateOptions, createBuiltUpGate } from './built-up-gate';
 import { createFrontageYard } from './frontage-yard';
 import {
   around,
@@ -38,6 +39,12 @@ export interface BuildingInfillOptions {
   seed?: number;
   /** Stable keep fraction, 0..1. */
   density?: number;
+  /**
+   * How built-up evidence on the tile (`TerrainSemanticTile.builtUp`) limits invention. By
+   * default lots are laid out only in blocks where the evidence exceeds what the map's footprints
+   * cover (built-up-gate.ts); `false` ignores the evidence. A tile without evidence is not limited.
+   */
+  builtUp?: false | BuiltUpGateOptions;
 }
 export interface InferredBuildingFeature extends TerrainBuildingFeature {
   infill: {
@@ -229,6 +236,11 @@ export function inferBuildingFootprints(
     slots > (geom.levelBelowMax === 0 ? MAX_FINEST_SLOTS : MAX_SLOTS)
   )
     return [];
+  // Where the tile carries built-up evidence, lots go only where it exceeds the footprints. A tile
+  // the map already accounts for (most of a well-mapped city) lays out nothing and stops here.
+  const evidence =
+    options.builtUp === false ? undefined : createBuiltUpGate(tile, size, options.builtUp);
+  if (evidence !== undefined && !evidence.any) return [];
   // A tile larger than a zoom-14 one may hold as many lots for its area.
   const lotCap = Math.max(
     MAX_LOTS,
@@ -407,6 +419,10 @@ export function inferBuildingFootprints(
           center[0] > size + HALO ||
           center[1] > size + HALO
         )
+          continue;
+        // A lot past the tile's edge reads the nearest block: the neighbouring tile decides it,
+        // and assuming it stands where this tile's edge is open keeps the two from overlapping.
+        if (evidence !== undefined && !evidence.allows(center[0] / size, center[1] / size))
           continue;
         // Whatever is built here, its parcel holds at least this much ground: the lot's width,
         // from the approach back to the shallowest plan's rear. Where a mapped building, water or

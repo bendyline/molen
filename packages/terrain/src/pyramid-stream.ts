@@ -44,6 +44,7 @@ import {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from './pyramid-types';
+import { retireTerrainObjects } from './retire';
 import type { RoadEarthworksRequest } from './road-earthworks';
 import type { RoadSeparationRequest, RoadSeparationResult } from './road-separation';
 import type { TerrainQualityPreset, TerrainStreamStats, TerrainTileLayerCategory } from './stream';
@@ -1147,6 +1148,18 @@ const AHEAD_ROOM_FRACTION = 0.9;
  * so room judged when its ground arrived was gone by the time its buildings did.
  */
 const AHEAD_RESUME_FRACTION = 0.75;
+/**
+ * Detail already drawn stays over ground the camera has turned or flown away from (see
+ * `updateLayerVisibility`), so that a look back finds it. In flight that is a trail as long as
+ * the view distance, and nothing lets it go: across Osaka at High detail, 104 of the finest tiles
+ * out of view held 2.7 GiB of the 3.9 GiB on show against a 2 GiB budget, half as much again
+ * as a fresh view of the same place holds in all, and the stream stops preparing ground ahead
+ * once what is on show passes the budget. Past this share of `maxResidentBytes` on show, ground
+ * out of view gives that detail up, the farthest first, until this much is left
+ * (`RELIEF_TO`): its own selected tile takes over, bare until it is looked at.
+ */
+const RELIEF_ABOVE = 0.85;
+const RELIEF_TO = 0.7;
 /** A tile built again within this long of its eviction counts as thrashed (`thrashedTiles`), ms. */
 const THRASH_MS = 60_000;
 /** Evictions remembered for `thrashedTiles`, at most. */
@@ -1518,6 +1531,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly preparationTargets = new Set<string>();
   private preloadViews: readonly TerrainPyramidView[] = [];
   private preloadMemoryHold = false;
+  /** Selected tiles out of view taking over this pass from the finer detail kept over them. */
+  private relieved: ReadonlySet<string> = new Set<string>();
   private readonly rejectedPreloads = new Map<string, number>();
   private displayed = new Set<string>();
   /** Surface cut being prepared behind the currently displayed, complete tiles. */
@@ -2509,6 +2524,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     tile.object.remove(object);
     tile.layers.delete(id);
     this.layerById.get(id)?.disposeTile?.(object);
+    retireTerrainObjects(object);
     this.trackAllocations(tile);
     this.cutoutsDirty = true;
   }
@@ -3073,10 +3089,74 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.evictUnused();
   }
 
+  /**
+   * Under memory pressure (`RELIEF_ABOVE`), the selected tiles out of view that take over now from
+   * finer ground still on show over them, the farthest first. Only a tile that is resident, so the
+   * ground stays whole, and that the view and its guard band do not reach: everything finer over it
+   * is then out of view too. The tiles let go join the warm cache, which has its own limits.
+   */
+  private chooseRelief(): ReadonlySet<string> {
+    const relieved = new Set<string>();
+    const cap = this.budget.maxResidentBytes;
+    const view = this.view;
+    if (cap === undefined || view === undefined || this.displayedBytes <= cap * RELIEF_ABOVE)
+      return relieved;
+    const families = new Map<string, { bytes: number; distance: number } | undefined>();
+    const visit = (key: string): void => {
+      if (this.selected.has(key)) return;
+      const tile = this.resident.get(key);
+      if (tile === undefined) return;
+      for (let level = tile.address.level - 1; level >= this.descriptor.minLevel; level--) {
+        const leaf = terrainPyramidAncestor(tile.address, level);
+        const leafKey = terrainPyramidTileKey(leaf);
+        if (!this.selected.has(leafKey)) continue;
+        let family = families.get(leafKey);
+        if (family === undefined && !families.has(leafKey)) {
+          family =
+            this.resident.has(leafKey) && !this.wantsLayers(leaf)
+              ? {
+                  bytes: 0,
+                  distance: distanceToBounds(
+                    view.position,
+                    tileBounds(this.descriptor, leaf),
+                    this.descriptor.height,
+                  ),
+                }
+              : undefined;
+          families.set(leafKey, family);
+        }
+        if (family !== undefined) family.bytes += tile.geometryBytes + tile.decodedHeightBytes;
+        return;
+      }
+    };
+    const visited = new Set<string>();
+    for (const key of this.displayed) {
+      visited.add(key);
+      visit(key);
+    }
+    for (const keys of this.displayedLayers.values())
+      for (const key of keys) {
+        if (visited.has(key)) continue;
+        visited.add(key);
+        visit(key);
+      }
+    let excess = this.displayedBytes - cap * RELIEF_TO;
+    const farthest = [...families]
+      .filter((entry): entry is [string, { bytes: number; distance: number }] => !!entry[1])
+      .sort((a, b) => b[1].distance - a[1].distance);
+    for (const [key, family] of farthest) {
+      if (excess <= 0) break;
+      relieved.add(key);
+      excess -= family.bytes;
+    }
+    return relieved;
+  }
+
   private updateVisibility(): void {
     this.visibilityQueued = false;
     this.heightProbeTiles.clear();
     this.layerPriorities.clear();
+    this.relieved = this.chooseRelief();
     const previousDisplayed = this.displayed;
     const candidates = new Set<string>();
     const incompleteParents = new Set<string>();
@@ -3177,7 +3257,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const prepared = new Set<string>();
     for (const key of this.replacementTiles) {
       const tile = this.resident.get(key) as ResidentTile;
-      if (previousDisplayed.has(key) || this.layersReady(tile)) {
+      // Or taking over out of view, as it is, from detail memory can no longer hold.
+      if (previousDisplayed.has(key) || this.layersReady(tile) || this.relieved.has(key)) {
         prepared.add(key);
         continue;
       }
@@ -3475,6 +3556,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             // but never a coarser ancestor's, which would cover the view beside it. The same for a
             // tile whose layer has given up: the ancestor's, kept for it, would hide the layer on
             // every finished tile beneath that ancestor for as long as the failure lasts.
+            // Under memory pressure the farthest of it goes after all (see `chooseRelief`).
+            if (this.relieved.has(key)) continue;
             for (const { key: previousKey, tile: old } of previous) {
               if (
                 old.address.level >= tile.address.level &&
@@ -4305,6 +4388,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     }
     this.object.remove(tile.object);
     tile.object.parent = null;
+    // Nothing of it stays in a list that is walked while the view runs (see retireTerrainObjects).
+    retireTerrainObjects(tile.object);
     tile.surface.geometry.dispose();
     this.resident.delete(key);
     this.trackAllocations(tile, true);

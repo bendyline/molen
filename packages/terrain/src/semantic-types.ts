@@ -242,6 +242,30 @@ export interface TerrainSemanticTile {
    * 2^(buildingSourceLevel - tile level); tile-edge ownership rules should narrow theirs to match.
    */
   buildingSourceLevel?: number;
+  /**
+   * Share of the ground under footprints on a `size` x `size` grid, carried when `buildings`
+   * is only a selection of the tile's footprints (a coarse tile composed from building detail
+   * keeps the largest): what `terrainBuildingCoverage` answers for the tile, so ground and
+   * density priors still see every building.
+   */
+  buildingCoverage?: { size: number; cells: number[] };
+  /**
+   * How much of the ground is under buildings by a source other than the map's footprints, where
+   * a host supplies one (built-up-grid.ts). A generator compares it with what `buildings` cover.
+   */
+  builtUp?: TerrainBuiltUpCoverage;
+}
+
+/** Built-up evidence lying over one semantic tile: a small grid of built shares of the ground. */
+export interface TerrainBuiltUpCoverage {
+  source: string;
+  year: number;
+  columns: number;
+  rows: number;
+  /** Tile-unit box the cells cover, [u0, v0, u1, v1]; it may reach past the tile's unit square. */
+  box: [number, number, number, number];
+  /** Share of each cell's ground under buildings, 0..1, row-major north to south. */
+  values: number[];
 }
 
 function assertFinite(value: number, path: string): void {
@@ -589,6 +613,35 @@ function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
     (!Number.isSafeInteger(tile.buildingSourceLevel) || tile.buildingSourceLevel < 0)
   )
     throw new Error('buildingSourceLevel must be a whole level');
+  if (tile.buildingCoverage !== undefined) {
+    const { size, cells } = tile.buildingCoverage;
+    if (
+      !Number.isSafeInteger(size) ||
+      size < 1 ||
+      !Array.isArray(cells) ||
+      cells.length !== size * size ||
+      cells.some((value) => !(value >= 0 && value <= 1))
+    )
+      throw new Error('buildingCoverage must be a size x size grid of shares 0..1');
+  }
+  if (tile.builtUp !== undefined) {
+    const { columns, rows, box, values } = tile.builtUp;
+    if (
+      !Number.isSafeInteger(columns) ||
+      !Number.isSafeInteger(rows) ||
+      columns < 1 ||
+      rows < 1 ||
+      !Array.isArray(values) ||
+      values.length !== columns * rows ||
+      values.some((value) => !(value >= 0 && value <= 1)) ||
+      !Array.isArray(box) ||
+      box.length !== 4 ||
+      box.some((value) => !Number.isFinite(value)) ||
+      !(box[2] > box[0]) ||
+      !(box[3] > box[1])
+    )
+      throw new Error('builtUp must be a grid of shares 0..1 over a tile-unit box');
+  }
   for (let index = 0; index < tile.buildings.length; index++) {
     const feature = tile.buildings[index] as TerrainBuildingFeature;
     assertPolygons(feature.polygons, `/buildings/${index}/polygons`);

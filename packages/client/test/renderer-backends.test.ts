@@ -1221,6 +1221,30 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('keeps hold of a render group only while it has a parent', () => {
+    // The renderer walks its render groups every frame. Holding every group ever made, weakly,
+    // and dereferencing each to find the live ones kept the dead ones from being collected.
+    const renderer = new Renderer();
+    const held = (renderer as unknown as { renderGroups: Set<THREE.Object3D> }).renderGroups;
+    const parent = new THREE.Group();
+    renderer.scene.add(parent);
+    const group = renderer.createRenderGroup();
+    expect(held.has(group)).toBe(false);
+    parent.add(group);
+    expect(held.has(group)).toBe(true);
+    // As a terrain stream keeps a tile warm: out of the scene, its parent set back by hand.
+    parent.remove(group);
+    group.parent = parent;
+    expect(held.has(group)).toBe(false);
+    parent.add(group);
+    expect(held.has(group)).toBe(true);
+    expect(parent.children.filter((child) => child === group)).toHaveLength(1);
+    // And as it evicts one.
+    parent.remove(group);
+    expect(held.size).toBe(0);
+    renderer.dispose();
+  });
+
   it('leaves render groups out of the scene walk and the shadow maps they cannot reach', () => {
     // What a shadow map's own walk finds on show, as three's shadow pass would.
     const shadowWalks: boolean[][] = [];

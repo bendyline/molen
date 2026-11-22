@@ -21,6 +21,7 @@ export {
 export {
   createInstancedPlacementLod,
   type InstancedPlacementLodOptions,
+  PlacementSetGroup,
 } from './client/instanced-lod';
 export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';

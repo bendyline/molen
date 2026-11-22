@@ -482,6 +482,15 @@ function openSectionArchive(
 class DecodedSemanticTiles {
   private readonly recent = new Map<string, DecodedSemanticEntry>();
   private readonly older = new Map<string, WeakRef<TerrainSemanticTile>>();
+  /**
+   * Drops a tile's entry in `older` once the tile is collected. Looking through the entries for
+   * collected ones instead dereferences the live ones, and on every load past the first few
+   * hundred tiles that kept all of them: what a job dereferences the browser does not collect in
+   * that job (see `retireTerrainObjects`).
+   */
+  private readonly collected = new FinalizationRegistry<string>((key) => {
+    if (this.older.get(key)?.deref() === undefined) this.older.delete(key);
+  });
   constructor(private readonly size: number) {}
 
   load(
@@ -514,11 +523,11 @@ class DecodedSemanticTiles {
         DecodedSemanticEntry,
       ];
       this.recent.delete(oldest);
-      if (evicted.tile !== undefined) this.older.set(oldest, new WeakRef(evicted.tile));
+      if (evicted.tile !== undefined) {
+        this.older.set(oldest, new WeakRef(evicted.tile));
+        this.collected.register(evicted.tile, oldest);
+      }
     }
-    if (this.older.size > this.size * 8)
-      for (const [address, ref] of this.older)
-        if (ref.deref() === undefined) this.older.delete(address);
     return entry.request;
   }
 }

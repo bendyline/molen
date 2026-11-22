@@ -223,7 +223,7 @@ export {
   WorldgenBuilding,
 } from './kernel/components';
 export type { DistantLook } from './kernel/distant-look';
-export { distantBuildingLook } from './kernel/distant-look';
+export { distantBuildingLook, PITCHED_STAND_IN } from './kernel/distant-look';
 export type { FacadeBands, FacadeStats, FacadeWindows } from './kernel/facade';
 export type { GlbMaterialMeta, GlbSharedSurface } from './kernel/glb';
 export { encodeGlb } from './kernel/glb';
@@ -243,6 +243,7 @@ export type { BuildingRecipe, RecipePart, RecipeProp, RecipeRoof } from './kerne
 export { buildingMetrics, MAX_PARAPET_HEIGHT } from './kernel/recipe';
 export type { SignMeshBuffers, SignPlacement } from './kernel/sign-mesh';
 export { buildSignMesh, signMeshTransferables } from './kernel/sign-mesh';
+export { type StandInOptions, standInPlacement } from './kernel/stand-in';
 export type { ResolvedStylePack, StylePackDocumentReader } from './kernel/stylepack';
 export {
   packIdentity,

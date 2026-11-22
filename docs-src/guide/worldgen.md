@@ -476,6 +476,26 @@ Alicante and a third of those round Oviedo stood where under 1% of the ground is
 these streets still carries lots once the place qualifies, and mapped residential, commercial or
 retail land use qualifies a place as before.
 
+Streets alone cannot say whether a frontage is empty or only unmapped. Where a tile carries
+built-up evidence (`TerrainSemanticTile.builtUp`, from a terrain package's `builtUp` grid; see
+[terrain](terrain.md)), lots are invented only in blocks where the evidence exceeds what the
+tile's own footprints cover by 0.15 of the ground. Blocks are the 2^n evidence cells nearest
+480 m across (4 x 4 cells of a zoom-18 grid, a quarter of a zoom-15 tile), and a tile whose
+blocks are all closed lays out nothing, which is also the cheapest path. `buildingInfill:
+{ builtUp: { minDeficit } }` sets another margin and `{ builtUp: false }` ignores the evidence; a
+tile without evidence is not limited. `createBuiltUpGate` returns the blocks, their evidence and
+footprint shares for inspection.
+
+The margin is a difference over blocks because of how such evidence errs. Measured on zoom-15
+tiles against three cadastres with GHSL's 100 m built-up surface (November 2026), the layer reads
+villa suburbs and bare dry ground several points higher than the footprints there. On a map
+holding 98% of Alicante's real buildings, ungated infill invented 50,700 more, under 2% of them
+on a real building. Asking that footprints stay under half the evidence in each cell still left
+22,000; the block difference leaves 1,200, and 115 of 21,500 round Oviedo. On a map holding 15%
+of Bogotá's buildings it keeps 96% of the 77,600 invented there, of which 92% stand on a real
+building. Generating the two Spanish study areas takes a third less time. The price is that a
+sparse place with no footprints at all (evidence near 0.10) stays empty.
+
 A house in a yard is one street pattern among several. The regional house style's optional
 `lots` says how the lots it invents line a street: `rows` is the share of blocks built as rows,
 fronts wall to wall at the back of the footway; `units` how many fronts stand to each 16 m of
@@ -674,7 +694,26 @@ Stand-ins are instanced: `builtin:box` for flat-roofed buildings, and `builtin:b
 `buildings:box.gable`) for pitched ones, a box whose walls stop at the eave (`GABLE_BOX_EAVE` of
 its height) under a roof ridged along its longer side, the roof shaded darker than the walls. From
 the air a neighbourhood of stand-ins still reads as roofs. `buildingBoxGeometry(modelRef)` returns
-the shared geometry for either. Buildings beyond `maxBuildings` are still omitted. Quality and
+the shared geometry for either. Buildings beyond `maxBuildings` are stand-ins too, up to
+`maxStandIns` (default 0, which omits them; `worldgenTileBudgetForQuality` sets 8,000 to 24,000 on
+the finest level and 24,000 to 60,000 behind it): a 1.2 km tile of central Bogotá holds 10,600
+footprints against 6,000 buildings at High, and the 4,600 smallest were missing. Once 48
+buildings in a row have not fitted the vertex budget, the rest of a batch become stand-ins
+without their walls being built first and thrown away.
+
+A dense tile behind the finest level is mostly stand-ins: a 2.4 km tile there draws 3,800 of
+35,000 footprints as buildings at High. The Earth adapter therefore works up in full only as
+many footprints as the vertex budget could draw at all (`maxBuildingVertices / 24`, the largest
+first, and every building a host placed) and makes the rest stand-ins itself, from each outline
+and its style's look: `standInPlacement` boxes an outline along its longest edge, a
+`DistantLook` now carries the style's `height` and whether its roof is `pitched`, and
+`WorldgenBatchInput.standIns` takes the boxes as given (no style, analysis or record; counted in
+`buildingsIn` and `buildingsBoxed`). That tile fell from 3.9 s and 5.3 GB of allocation to 2.2 s
+and 2.7 GB, with the same buildings and boxes. The finest level is never split this way: a viewer
+may stand beside any of its buildings. A worker pool also bounds the footprints it has in flight
+(`POOL_FOOTPRINTS_IN_FLIGHT`, 36,000: three dense finest tiles or one tile of the level behind),
+because a worker's heap grows with its tile's footprints and every isolate of a tab shares one
+4 GB limit. The most urgent tile waits for room; ordinary towns never reach the bound. Quality and
 detail remain tile-based, not camera-distance updates per building. `worldgenBuildingCellSize`
 batches the finest level's buildings into 512 m cells and coarser levels' into 1024 m cells, since
 each cell is a draw.
@@ -776,7 +815,14 @@ are built by the time it gets there. With `vanishPixels` a batch stops drawing
 once its largest instance spans fewer pixels than that from the batch's nearest point (15%
 hysteresis): the semantic renderers pass 1.5 for street props and signs, which from a few
 kilometers were a draw each for a pixel or less, but not for plants, as a distant forest is the
-sum of its trees. Buildings retain their structural faces while distant materials and facade details
+sum of its trees. A set whose batches can draw nothing for the view camera (each too small to
+see, or a model that is near detail only and out of its reach, as most of a garden's species
+are) leaves the scene's walks altogether, where each batch used to be visited every frame to hide
+its mesh again: the object `createInstancedPlacementLod` returns decides that for its batches,
+and a `PlacementSetGroup` holding several sets decides for all of them before three visits any,
+so such a set costs a frame nothing. What is drawn is the same. From 1,400 m over a suburb two
+thirds of 1,970 plant sets were in that state, 4,700 of the 11,600 objects three walked, and a
+frame's render went from 16.3 ms to about 14. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain

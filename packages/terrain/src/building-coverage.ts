@@ -8,15 +8,21 @@ export interface TerrainBuildingCoverage {
   cells: Float32Array;
 }
 
+/** The default grid of terrainBuildingCoverage, and of the coverage a tile carries. */
+export const TERRAIN_BUILDING_COVERAGE_SIZE = 16;
+
 /**
  * Building coverage on a coarse grid (default 16 x 16), each footprint counted in the cell
  * holding its outline's mean point, then box-blurred over neighboring cells so a block's
- * coverage reaches the streets around it.
+ * coverage reaches the streets around it. A tile whose `buildings` are a selection carries the
+ * coverage of all of them (`buildingCoverage`); that is the answer when its grid is `size`.
  */
 export function terrainBuildingCoverage(
-  tile: TerrainSemanticTile,
-  size = 16,
+  tile: Pick<TerrainSemanticTile, 'buildings' | 'buildingCoverage'>,
+  size: number = TERRAIN_BUILDING_COVERAGE_SIZE,
 ): TerrainBuildingCoverage {
+  if (tile.buildingCoverage?.size === size)
+    return { size, cells: Float32Array.from(tile.buildingCoverage.cells) };
   const sums = new Float32Array(size * size);
   for (const feature of tile.buildings)
     for (const polygon of feature.polygons) {
@@ -34,6 +40,14 @@ export function terrainBuildingCoverage(
       sums[row * size + col] =
         (sums[row * size + col] as number) + polygonArea(polygon) * size * size;
     }
+  return { size, cells: blurTerrainBuildingCoverage(sums, size) };
+}
+
+/**
+ * Coverage cells from per-cell footprint sums (footprint area in cells): the 3 x 3 box blur and
+ * the cap at 1 that terrainBuildingCoverage applies. For a caller that sums footprints itself.
+ */
+export function blurTerrainBuildingCoverage(sums: Float32Array, size: number): Float32Array {
   const cells = new Float32Array(size * size);
   for (let row = 0; row < size; row++)
     for (let col = 0; col < size; col++) {
@@ -49,7 +63,7 @@ export function terrainBuildingCoverage(
         }
       cells[row * size + col] = Math.min(1, total / count);
     }
-  return { size, cells };
+  return cells;
 }
 
 /** Bilinear coverage at normalized tile coordinates, between cell centers. */

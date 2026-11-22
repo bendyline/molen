@@ -10,6 +10,7 @@ import {
   markTerrainSemanticTileChecked,
   setTerrainSemanticTileContentHash,
   type TerrainBuildingFeature,
+  type TerrainBuiltUpCoverage,
   type TerrainLandcoverFeature,
   type TerrainPoiFeature,
   type TerrainSemanticTile,
@@ -39,6 +40,8 @@ export interface TerrainSemanticTilePacket {
     to: TerrainPyramidTileAddress;
     buffer?: number;
   };
+  /** Built-up evidence attached after the tile was packed (see deriveBuiltUpTerrainSemanticTilePacket). */
+  builtUp?: TerrainBuiltUpCoverage;
 }
 
 /**
@@ -262,6 +265,7 @@ export function terrainSemanticTileFromPacket(
       );
     }
   }
+  if (packet.builtUp !== undefined) tile.builtUp = packet.builtUp;
   return tile;
 }
 
@@ -351,6 +355,26 @@ export function deriveOverzoomTerrainSemanticTilePacket(
       tile,
       `${hash}|overzoom:${from.level}/${from.x}/${from.z}>${to.level}/${to.x}/${to.z}:${buffer ?? ''}`,
     );
+}
+
+/**
+ * Remember a packet for `derived`, which is `base` with built-up evidence attached
+ * (`TerrainSemanticTile.builtUp`): `base`'s packet and the evidence, a few dozen numbers. Without
+ * it every tile of a package with a built-up grid would be cloned whole to each worker. Nothing is
+ * remembered when `base` has no packet or anything else differs.
+ */
+export function deriveBuiltUpTerrainSemanticTilePacket(
+  base: TerrainSemanticTile,
+  derived: TerrainSemanticTile,
+): void {
+  if (derived === base || derived.builtUp === undefined || packets.has(derived)) return;
+  const packet = packets.get(base);
+  if (packet === undefined) return;
+  const before = base as unknown as Record<string, unknown>;
+  const after = derived as unknown as Record<string, unknown>;
+  for (const key of new Set([...Object.keys(before), ...Object.keys(after)]))
+    if (key !== 'builtUp' && before[key] !== after[key]) return;
+  packets.set(derived, { ...packet, builtUp: derived.builtUp });
 }
 
 /** A feature's own arrays and objects, and one level within them (lines, polygons, rings). */

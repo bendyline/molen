@@ -91,6 +91,54 @@ describe('batch generation', () => {
     expect(detailed.records.some((record) => ['gable', 'hip'].includes(record.roof))).toBe(true);
   });
 
+  it('draws buildings past the count budget as stand-ins, up to maxStandIns', () => {
+    const kept = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3, maxStandIns: 100 },
+    });
+    expect(kept.stats.buildingsDropped).toBe(0);
+    expect(kept.stats.buildingsRendered).toBe(3);
+    expect(kept.stats.buildingsBoxed).toBe(5);
+    expect(kept.records).toHaveLength(8);
+    const boxes = kept.placements.filter(
+      (set) => set.setId === BOX_PLACEMENT_SET_ID || set.setId === GABLE_BOX_PLACEMENT_SET_ID,
+    );
+    expect(boxes.reduce((sum, set) => sum + set.count, 0)).toBe(5);
+    // The three with real geometry are the ones the count budget alone keeps.
+    const capped = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3 },
+    });
+    expect(kept.buildings?.positions).toEqual(capped.buildings?.positions);
+    const some = generateWorldgenBatch({
+      buildings: requests(),
+      pack,
+      budgets: { maxBuildings: 3, maxStandIns: 2 },
+    });
+    expect(some.stats.buildingsBoxed).toBe(2);
+    expect(some.stats.buildingsDropped).toBe(3);
+  });
+
+  it('stops building meshes it cannot keep once the vertex budget is spent', () => {
+    // 400 small houses and vertices for a few dozen: the rest are stand-ins, every one drawn.
+    const many: BuildingRequest[] = Array.from({ length: 400 }, (_, index) => ({
+      identity: `row:${index}`,
+      labels: ['house'],
+      outline: translate(SHAPES.box as Vec2[], (index % 20) * 30, Math.floor(index / 20) * 30),
+    }));
+    const budget = { maxBuildings: 1000, maxBuildingVertices: 600, detailedCount: 0 };
+    const batch = generateWorldgenBatch({ buildings: many, pack, budgets: budget });
+    expect(batch.stats.buildingsDropped).toBe(0);
+    expect(batch.stats.buildingsRendered + batch.stats.buildingsBoxed).toBe(400);
+    expect(batch.stats.buildingsRendered).toBeGreaterThan(0);
+    expect(batch.stats.buildingsRendered).toBeLessThan(60);
+    expect(batch.stats.vertices).toBeLessThanOrEqual(budget.maxBuildingVertices);
+    expect(batch.records).toHaveLength(400);
+    expect(generateWorldgenBatch({ buildings: many, pack, budgets: budget }).hash).toBe(batch.hash);
+  });
+
   it('reserves roofs and windows for small houses before embellishing the largest building', () => {
     const buildings = [
       {

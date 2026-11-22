@@ -56,6 +56,7 @@ import {
   type NearPlacementModel,
   type NearPlacementOptions,
   nearPlacementReach,
+  PlacementSetGroup,
   type ScreenSpaceLodPolicy,
   type StructureModelSource,
   TEXTURED_SURFACE_MEAN,
@@ -1869,7 +1870,9 @@ export function createWorldgenSemanticRenderers(
         meshOptions.renderLandcover !== false;
       if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
       if (scatter === undefined) return surface;
-      const group = new THREE.Group();
+      // Settles its plant sets before three visits them: most of a garden's species are ground
+      // cover that draws only near the camera, and each such set then leaves the scene's walk.
+      const group = new PlacementSetGroup();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
       if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;
       group.add(surface);

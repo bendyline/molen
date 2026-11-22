@@ -470,6 +470,31 @@ selection and the predicted views alike. Layer
 work for a tile the camera has left finishes into the warm cache rather than being cancelled: a
 cancelled request leaves its worker job running with nothing to show for it.
 
+Detail already drawn stays over ground the camera has left, and in a straight flight that is a
+trail as long as the view distance. Across Osaka at High (a 2 GiB budget) 104 of the finest tiles
+out of view held 2.7 GiB of the 3.9 GiB on show, where arriving at the same place fresh holds
+1.4 GiB in all, and with what is on show over the budget the stream had stopped preparing ground
+ahead. Past 85% of `maxResidentBytes` on show, ground out of view now gives up that detail, the
+farthest first, until 70% is left: the same flight ends with 1.9 GiB resident and 1.6 GiB on
+show, ground 2 to 5 km ahead finished for 69% of the flight instead of 59%, and a circle over
+the city looks the same, since the nearest ground behind is the last to go.
+
+An evicted tile must also leave every list that is walked while the view runs. `WeakRef.deref()`
+keeps its target alive until the current job ends, and a frame that renders for most of its job
+has the browser's collections finish inside it, so a target dereferenced every frame is never
+collected, however dead; and one object keeps its whole tile, through `parent`. The renderer
+walked a weak reference to every render group ever made each frame, and the ground cuts one to
+every ground mesh and opening on each pass. In that flight the page's typed arrays grew by what
+the stream evicted and nothing else, to 6.9 GiB after 150 s with 2 GiB resident, through
+eighteen major collections that freed none of it, and a collection forced from outside a frame
+freed all 4.4 GiB. The renderer now holds only render groups that have a parent, and disposed
+terrain content leaves the terrain's lists at once (`retireTerrainObjects`, which the stream
+calls for every tile it evicts and `disposeTerrainSemanticObject` for what it disposes): the
+same flight's typed arrays stay between 2.6 and 4.0 GiB, the browser collecting each evicted
+tile within a cycle or two. A host with a list of its own streamed objects should take them
+out when it disposes them, or prune it with a `FinalizationRegistry`, rather than dereference
+every entry each frame to find the dead ones.
+
 Earth's automatic render tiers retain at least four height and eight layer jobs, including at
 Minimum: serializing landcover, water and buildings behind one job could never keep up with a
 jet. Eight layer slots let a four-tile approach family prepare while current coverage advances.

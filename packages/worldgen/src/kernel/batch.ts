@@ -44,6 +44,12 @@ import {
 export interface WorldgenBatchInput {
   buildings: BuildingRequest[];
   /**
+   * Buildings the caller has already reduced to stand-ins (see `standInPlacement`): drawn as
+   * given with the batch's own, and counted in `buildingsIn` and `buildingsBoxed`. They have no
+   * style, analysis or record, and no budget applies to them.
+   */
+  standIns?: readonly BoxPlacement[];
+  /**
    * Hash the output (`WorldgenBatchOutput.hash`, default true). Streaming skips it, leaving the
    * hash empty: SHA-256 over every array was a fifth of a batch's generation, and nothing reads it
    * there. Compare outputs with `hashWorldgenOutput` instead.
@@ -121,6 +127,17 @@ const MAX_SIGNS = 1000;
  * the share goes to the rest's detail as before.
  */
 const FOCUS_DETAIL_SHARE = 0.5;
+
+/**
+ * Buildings in a row whose walls and roof did not fit what is left of the vertex budget, after
+ * which the rest of the batch go straight to stand-ins. The queue runs largest first, so once
+ * this many have failed the budget is spent, and trying each remaining building first built a
+ * mesh only to drop it: on a 2.4 km square of central Bogotá (35,000 footprints, a 200,000-vertex
+ * budget) that was 30,000 discarded meshes, most of the batch's five seconds and hundreds of
+ * megabytes of garbage in a worker. A building small enough to slip into the last crumbs after
+ * such a run now becomes a stand-in too.
+ */
+const BUDGET_SPENT_AFTER = 48;
 
 export const BOX_PLACEMENT_SET_ID: string = 'buildings:box';
 /** Stand-ins for pitched buildings: the `builtin:box.gable` model. */
@@ -319,7 +336,7 @@ export function* generateWorldgenBatchSteps(
   const named = input.glyphs !== undefined ? { namedSigns: true } : {};
   const signPlacements: SignPlacement[] = [];
   const stats = emptyWorldgenStats();
-  stats.buildingsIn = input.buildings.length;
+  stats.buildingsIn = input.buildings.length + (input.standIns?.length ?? 0);
   const queue = queueBuildings(input, stats);
   const out = new MeshBufferBuilder();
   const boxes: BoxPlacement[] = [];
@@ -363,11 +380,37 @@ export function* generateWorldgenBatchSteps(
     return keys.size <= budgets.maxMaterialGroups;
   };
   const simplifiedTiers: number[] = [];
+  // Stand-ins carry no mesh: they share one empty builder instead of allocating one each.
+  const noMesh = new MeshBufferBuilder();
+  const maxStandIns = budgets.maxStandIns ?? 0;
+  let standIns = 0;
+  let misses = 0;
   for (let index = 0; index < queue.length; index++) {
     const item = queue[index] as QueuedBuilding;
     const style = pack.archstyles[item.styleId];
-    if (style === undefined || index >= budgets.maxBuildings) {
+    const pastCount = index >= budgets.maxBuildings;
+    if (style === undefined || (pastCount && standIns >= maxStandIns)) {
       stats.buildingsDropped++;
+    } else if (pastCount || misses >= BUDGET_SPENT_AFTER) {
+      // A stand-in outright: past the count budget, or the vertex budget is spent.
+      if (pastCount) standIns++;
+      simplifiedTiers[index] = 99;
+      let mesh = new MeshBufferBuilder();
+      const result = generateBuilding(
+        {
+          request: item.request,
+          style,
+          pack: identity,
+          ...named,
+          ground,
+          tier: 99,
+          analysis: item.analysis,
+        },
+        mesh,
+      );
+      if (mesh.isEmpty()) mesh = noMesh;
+      reserve(mesh, 1);
+      baselines[index] = { mesh, result };
     } else {
       const structuralTier = Math.max(baseTier, style.lod.tiers.at(-1)?.minTier ?? 0);
       simplifiedTiers[index] = structuralTier;
@@ -387,7 +430,10 @@ export function* generateWorldgenBatchSteps(
       );
       if (result.skipped !== undefined) {
         mesh = new MeshBufferBuilder();
-      } else if (result.box === undefined && !fitsWith(mesh, undefined, vertexLimit(item))) {
+      } else if (result.box !== undefined || fitsWith(mesh, undefined, vertexLimit(item))) {
+        misses = 0;
+      } else {
+        misses++;
         mesh = new MeshBufferBuilder();
         result = generateBuilding(
           {
@@ -603,6 +649,10 @@ export function* generateWorldgenBatchSteps(
       list.push(prop);
       props.set(prop.model, list);
     }
+  }
+  if (input.standIns !== undefined) {
+    for (const box of input.standIns) boxes.push(box);
+    stats.buildingsBoxed += input.standIns.length;
   }
   const buildings = out.isEmpty() ? undefined : out.finalize();
   const placements: PlacementSet[] = [];

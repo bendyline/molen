@@ -16,12 +16,26 @@
  * Footprints without a source id cannot be matched across copies; each belongs to the descendant
  * holding its center. Descendants the sidecar lacks keep the coarse tile's own buildings in their
  * part of the tile, so coverage fades from detailed to generalized instead of leaving holes.
+ *
+ * A tile two or more levels coarser is drawn as distant massing, a few hundred shells, yet its 16
+ * detail tiles would hand it every footprint of 25 km2: 134,000 in central Bogotá, each one
+ * transformed, matched, cloned to the workers that paint and plant the tile, and held while it
+ * shows. Such a tile takes only the largest buildings of each detail tile (`coarseBuildingLimit`,
+ * by footprint x height, with every clipped copy of a chosen footprint) and carries the coverage
+ * of all of them as `buildingCoverage`, so its ground still paves over where the city is dense.
+ * One level coarser keeps every footprint: those tiles draw each building, as a stand-in at least.
  */
 
 import polygonClipping, { type MultiPolygon, type Polygon } from 'polygon-clipping';
-import { polygonBounds } from './polygon';
+import { blurTerrainBuildingCoverage, TERRAIN_BUILDING_COVERAGE_SIZE } from './building-coverage';
+import { polygonArea, polygonBounds } from './polygon';
 import type { TerrainPyramidTileAddress } from './pyramid-types';
 import { overzoomTerrainSemanticTile, type TerrainSemanticTileLoader } from './semantic-overzoom';
+import {
+  packTerrainSemanticTile,
+  rememberTerrainSemanticTilePacket,
+  terrainSemanticTilePacket,
+} from './semantic-packet';
 import {
   createEmptyTerrainSemanticTile,
   setTerrainSemanticTileContentHash,
@@ -44,6 +58,37 @@ export interface TerrainBuildingDetailOptions {
   maxDepth?: number;
   /** Recently loaded detail tiles kept for overlapping requests (default 48). */
   cacheSize?: number;
+  /**
+   * Most footprints those kept tiles hold between them (default 160,000), the newest always
+   * kept: 48 tiles of an ordinary town are a few megabytes, 48 of central Bogotá (10,000
+   * footprints each) were half a gigabyte of a page's heap.
+   */
+  cacheBuildings?: number;
+  /**
+   * Most buildings one detail tile gives a tile two or more levels coarser (default 256; the
+   * largest by footprint x height). `Infinity` keeps every footprint, as before.
+   */
+  coarseBuildingLimit?: number;
+}
+
+/**
+ * Footprints from which a composed tile is packed once (semantic-packet.ts). A composed tile is
+ * made on the page, so it had no packet: it was cloned whole to every worker it went to and kept
+ * whole by every layer that keeps tiles for rebuilds. For a 2.4 km tile of central Bogotá
+ * (36,700 footprints) a clone took 200 ms of the page's thread, three or four times over, and
+ * the tile stayed as 40 MB of objects while it showed. Packed (100-190 ms, once), it posts in
+ * 3 ms and is kept as 8 MB, most of it outside the JavaScript heap. Smaller tiles clone faster
+ * than they pack.
+ */
+const PACK_COMPOSED_FROM = 4000;
+
+/** How a coarse tile is composed (see composeTerrainBuildingDetail). */
+export interface ComposeTerrainBuildingDetailOptions {
+  /**
+   * Most buildings taken from each descendant, the largest by footprint x height; the composed
+   * tile then carries `buildingCoverage` for all of them. Default: every building.
+   */
+  limitPerChild?: number;
 }
 
 /** One descendant at the detail level and its tile, or undefined where the sidecar has none. */
@@ -144,6 +189,13 @@ function unionCopies(copies: readonly TerrainSemanticPolygon[][]): TerrainSemant
   }
 }
 
+/** A footprint's weight in distant massing: its area by its height (3 m at least). */
+function massing(feature: TerrainBuildingFeature): number {
+  let area = 0;
+  for (const polygon of feature.polygons) area += polygonArea(polygon);
+  return area * Math.max(3, feature.height ?? (feature.levels ?? 2) * 3.2);
+}
+
 /**
  * Compose `base`'s buildings and places from its descendants at `detailLevel`. `children` lists
  * every descendant of `address` at that level (missing tiles as `tile: undefined`). With no
@@ -154,6 +206,7 @@ export function composeTerrainBuildingDetail(
   address: TerrainPyramidTileAddress,
   detailLevel: number,
   children: readonly TerrainBuildingDetailChild[],
+  options: ComposeTerrainBuildingDetailOptions = {},
 ): TerrainSemanticTile | undefined {
   const depth = detailLevel - address.level;
   if (!Number.isSafeInteger(depth) || depth < 1) {
@@ -178,6 +231,55 @@ export function composeTerrainBuildingDetail(
     return !covered.has(oz * scale + ox);
   };
 
+  // With a limit, a descendant holding more gives only its largest. A chosen footprint keeps
+  // every clipped copy, whichever descendant holds it, so it is still whole after the union.
+  const limit = options.limitPerChild ?? Number.POSITIVE_INFINITY;
+  const limited = present.some(
+    (child) => (child.tile as TerrainSemanticTile).buildings.length > limit,
+  );
+  const chosen = new Set<TerrainBuildingFeature>();
+  const chosenIds = new Set<string>();
+  let coverage: Float32Array | undefined;
+  if (limited) {
+    const size = TERRAIN_BUILDING_COVERAGE_SIZE;
+    coverage = new Float32Array(size * size);
+    for (const child of present) {
+      const tile = child.tile as TerrainSemanticTile;
+      const ox = child.x - address.x * scale;
+      const oz = child.z - address.z * scale;
+      // Every footprint counts toward coverage, in the cell holding its outline's mean point.
+      for (const feature of tile.buildings)
+        for (const polygon of feature.polygons) {
+          const ring = polygon.outer;
+          if (ring.length < 3) continue;
+          let u = 0,
+            v = 0;
+          for (const point of ring) {
+            u += point[0];
+            v += point[1];
+          }
+          const col = Math.floor(((u / ring.length + ox) / scale) * size);
+          const row = Math.floor(((v / ring.length + oz) / scale) * size);
+          if (col < 0 || row < 0 || col >= size || row >= size) continue;
+          coverage[row * size + col] =
+            (coverage[row * size + col] as number) +
+            (polygonArea(polygon) / (scale * scale)) * size * size;
+        }
+      const kept =
+        tile.buildings.length > limit
+          ? tile.buildings
+              .map((feature, index) => ({ feature, index, weight: massing(feature) }))
+              .sort((a, b) => b.weight - a.weight || a.index - b.index)
+              .slice(0, Math.max(0, limit))
+              .map((entry) => entry.feature)
+          : tile.buildings;
+      for (const feature of kept) {
+        chosen.add(feature);
+        if (feature.id !== undefined) chosenIds.add(`${feature.class ?? ''}|${feature.id}`);
+      }
+    }
+  }
+
   const matched = new Map<
     string,
     { feature: TerrainBuildingFeature; copies: TerrainSemanticPolygon[][] }
@@ -192,6 +294,12 @@ export function composeTerrainBuildingDetail(
     for (const feature of tile.buildings) {
       const first = feature.polygons[0];
       if (first === undefined) continue;
+      if (
+        limited &&
+        !chosen.has(feature) &&
+        (feature.id === undefined || !chosenIds.has(`${feature.class ?? ''}|${feature.id}`))
+      )
+        continue;
       const polygons = feature.polygons.map((polygon) => transformPolygon(polygon, toParent));
       if (feature.id === undefined) {
         if (inUnitSquare(center(first))) buildings.push({ ...feature, polygons });
@@ -225,6 +333,16 @@ export function composeTerrainBuildingDetail(
     ...(pois.length > 0 || tile.pois !== undefined ? { pois } : {}),
     buildingsGeneralized: complete ? false : tile.buildingsGeneralized === true,
     buildingSourceLevel: detailLevel,
+    ...(coverage !== undefined
+      ? {
+          buildingCoverage: {
+            size: TERRAIN_BUILDING_COVERAGE_SIZE,
+            cells: Array.from(
+              blurTerrainBuildingCoverage(coverage, TERRAIN_BUILDING_COVERAGE_SIZE),
+            ),
+          },
+        }
+      : {}),
   };
 }
 
@@ -285,13 +403,28 @@ export function createBuildingDetailTerrainSemanticSource(
   const level = options.level;
   const maxDepth = options.maxDepth ?? 2;
   const cacheSize = options.cacheSize ?? 48;
+  const coarseLimit = options.coarseBuildingLimit ?? 256;
+  if (!(coarseLimit >= 0)) throw new RangeError('coarseBuildingLimit must not be negative');
   if (!Number.isSafeInteger(level) || level < 0)
     throw new RangeError('detail level must be a whole level');
   if (!Number.isSafeInteger(maxDepth) || maxDepth < 0)
     throw new RangeError('maxDepth must be a whole number of levels');
   // A detail tile serves every tile it lies under, so no single caller's signal may cancel it.
   const shared = new AbortController().signal;
+  const cacheBuildings = options.cacheBuildings ?? 160_000;
   const cache = new Map<string, Promise<TerrainSemanticTile | undefined>>();
+  // Footprints of each kept tile, once it has loaded, and their sum.
+  const weights = new Map<string, number>();
+  let kept = 0;
+  const evict = (key: string): void => {
+    cache.delete(key);
+    kept -= weights.get(key) ?? 0;
+    weights.delete(key);
+  };
+  const trim = (): void => {
+    while (cache.size > cacheSize || (kept > cacheBuildings && cache.size > 1))
+      evict(cache.keys().next().value as string);
+  };
   const detailTile = (x: number, z: number): Promise<TerrainSemanticTile | undefined> => {
     const key = `${x}/${z}`;
     let request = cache.get(key);
@@ -300,12 +433,24 @@ export function createBuildingDetailTerrainSemanticSource(
       cache.set(key, request);
       return request;
     }
-    request = detail.load({ level, x, z }, shared).catch((error: unknown) => {
-      cache.delete(key);
-      throw error;
-    });
+    const loading = detail.load({ level, x, z }, shared).then(
+      (tile) => {
+        // Still the kept request: count what it holds, and make room.
+        if (cache.get(key) === loading && tile !== undefined) {
+          weights.set(key, tile.buildings.length);
+          kept += tile.buildings.length;
+          trim();
+        }
+        return tile;
+      },
+      (error: unknown) => {
+        if (cache.get(key) === loading) evict(key);
+        throw error;
+      },
+    );
+    request = loading;
     cache.set(key, request);
-    while (cache.size > cacheSize) cache.delete(cache.keys().next().value as string);
+    trim();
     return request;
   };
   return {
@@ -339,14 +484,26 @@ export function createBuildingDetailTerrainSemanticSource(
         Promise.all(requests),
       ]);
       if (signal.aborted) return undefined;
-      const composed = composeTerrainBuildingDetail(tile, address, level, children);
-      if (composed !== undefined && composed !== tile)
+      const composed = composeTerrainBuildingDetail(
+        tile,
+        address,
+        level,
+        children,
+        depth >= 2 && Number.isFinite(coarseLimit) ? { limitPerChild: coarseLimit } : {},
+      );
+      if (composed !== undefined && composed !== tile) {
         hashDerived(
           composed,
           tile,
           children.map((child) => [`${level}/${child.x}/${child.z}`, child.tile]),
           address,
         );
+        if (
+          composed.buildings.length >= PACK_COMPOSED_FROM &&
+          terrainSemanticTilePacket(composed) === undefined
+        )
+          rememberTerrainSemanticTilePacket(composed, packTerrainSemanticTile(composed));
+      }
       return composed;
     },
   };
