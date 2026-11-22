@@ -185,7 +185,14 @@ function maxGrade(feature: TerrainTransportationFeature, kind: TransportKind): n
   return 0.08;
 }
 
-function eligible(feature: TerrainTransportationFeature): boolean {
+/**
+ * Whether a way takes part in grade separation at all: not a tunnel, a ferry or airside
+ * pavement, and not a way whose heights were surveyed or authored. Of a way that does, the
+ * grading reads its lines and `class`, `subclass`, `service`, `link`, `width`, `lanes`, `oneway`,
+ * `layer` and `bridge`, and nothing else: `RoadSeparationKind` (road-separation.ts) carries
+ * exactly those to wherever a tile is graded, so a property read here must be added there.
+ */
+export function gradeSeparationEligible(feature: TerrainTransportationFeature): boolean {
   return (
     !feature.tunnel &&
     feature.deckElevation === undefined &&
@@ -294,8 +301,8 @@ export function* gradeTransportSeparationSteps(
 ): Generator<undefined, readonly TerrainTransportationFeature[], undefined> {
   const context = options.context ?? [];
   if (
-    !features.some((f) => f.bridge && eligible(f)) &&
-    !context.some((f) => f.bridge && eligible(f))
+    !features.some((f) => f.bridge && gradeSeparationEligible(f)) &&
+    !context.some((f) => f.bridge && gradeSeparationEligible(f))
   )
     return features;
   const spacing = Math.max(1, options.spacing ?? 4);
@@ -306,7 +313,7 @@ export function* gradeTransportSeparationSteps(
     (Math.floor(x / BRIDGE_ZONE) + 32768) * 65536 + Math.floor(z / BRIDGE_ZONE) + 32768;
   for (const list of [features, context])
     for (const feature of list) {
-      if (!feature.bridge || !eligible(feature)) continue;
+      if (!feature.bridge || !gradeSeparationEligible(feature)) continue;
       for (const line of feature.lines)
         for (let i = 0; i + 1 < line.length; i++) {
           const a = line[i] as TerrainSemanticPoint,
@@ -330,7 +337,7 @@ export function* gradeTransportSeparationSteps(
     tangentZ: number[] = [],
     wayOf: number[] = [];
   const addWays = (feature: TerrainTransportationFeature, output: number): void => {
-    if (!eligible(feature)) return;
+    if (!gradeSeparationEligible(feature)) return;
     const kind = transportKind(feature);
     const family: TerrainGradeFamily = kind === 'rail' ? 'rail' : kind === 'path' ? 'path' : 'road';
     feature.lines.forEach((line, lineIndex) => {

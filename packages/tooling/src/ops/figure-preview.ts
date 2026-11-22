@@ -1,6 +1,7 @@
 /**
- * Render figures headlessly: resolve descriptors (presets, a molen/figure@1 document, or a
- * lineup), generate their bodies in Node for the stats, then draw them through the normal
+ * Render figures headlessly: resolve descriptors (presets, a molen/figure@1 document, a
+ * molen/figure-look@1 look, or a lineup), generate their bodies in Node for the stats, then draw
+ * them through the normal
  * capture page (the `figure` renderable kind) from turntable angles or the art-review set.
  */
 
@@ -21,6 +22,7 @@ import {
   resolveFigureDescriptor,
   strideRateFor,
 } from '@bendyline/molen-figures/kernel';
+import { FIGURE_LOOK_FORMAT, figureFromLook, figureLookPool } from '@bendyline/molen-figures/look';
 import { hashJson } from '@bendyline/molen-kernel/determinism';
 import { type Keyframe, validateByKind } from '@bendyline/molen-schema';
 import { startCaptureResources } from '../capture-server';
@@ -28,12 +30,13 @@ import { guardOp } from './errors';
 import { parseJson } from './parse';
 import type { RenderStats } from './screenshot';
 
-export type FigureLineup = 'humans' | 'bodies' | 'species' | 'all';
+/** `looks`: nine random people from the default figure-look catalogue, every presentation mixed. */
+export type FigureLineup = 'humans' | 'bodies' | 'species' | 'looks' | 'all';
 
 export interface FigurePreviewInput {
   /** Preset id(s) to render (default: human.adult). */
   preset?: string | string[];
-  /** A molen/figure@1 document path. */
+  /** A molen/figure@1 document or a molen/figure-look@1 look. */
   descriptorPath?: string;
   /** An inline descriptor (the `figure` component shape). */
   descriptor?: FigureDescriptor;
@@ -114,6 +117,8 @@ const LINEUPS: Record<FigureLineup, FigureDescriptor[]> = {
     { preset: 'cow' },
     { preset: 'horse' },
   ],
+  // A fixed pool, so a review sheet of random people is the same image on every run.
+  looks: figureLookPool('molen-figure-preview', { count: 9 }).map((look) => figureFromLook(look)),
   all: [],
 };
 LINEUPS.all = [...LINEUPS.humans, ...LINEUPS.species];
@@ -130,10 +135,18 @@ async function resolveDescriptors(input: FigurePreviewInput): Promise<FigureDesc
   }
   if (input.descriptorPath !== undefined) {
     const raw = parseJson(await readFile(input.descriptorPath, 'utf8'));
-    const v = validateByKind('figure', raw);
+    // A figure look (molen/figure-look@1) renders as the figure it describes.
+    const isLook =
+      typeof raw === 'object' &&
+      raw !== null &&
+      (raw as { format?: unknown }).format === FIGURE_LOOK_FORMAT;
+    const v = validateByKind(isLook ? 'figure-look' : 'figure', raw);
     if (!v.ok) throw new Error(v.formatted);
-    const { format: _format, ...descriptor } = v.value as FigureDescriptor & { format: string };
-    out.push(descriptor);
+    if (isLook) out.push(figureFromLook(v.value));
+    else {
+      const { format: _format, ...descriptor } = v.value as FigureDescriptor & { format: string };
+      out.push(descriptor);
+    }
   }
   if (input.descriptor !== undefined) out.push(input.descriptor);
   if (out.length === 0) out.push({ preset: 'human.adult' });

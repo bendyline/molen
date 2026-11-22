@@ -97,6 +97,7 @@ const GUIDE_ORDER = [
   'recognizable-places',
   'building-interiors',
   'figures',
+  'figure-looks',
   'vehicles',
   'boost-mode',
   'boats',

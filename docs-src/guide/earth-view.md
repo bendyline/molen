@@ -204,10 +204,23 @@ canvas cannot draw again, so show them later on a new one. The pieces are in
 `createAircraftInstrumentViews({ model, spec })` crops the instruments out of a loaded cockpit
 and `createAircraftInstrumentDisplay(canvas)` draws them.
 
+Driving, the same canvas shows the vehicle's speedometer, and a car's or boat's
+`vehicleStatus().instruments` lists it (`[{ kind: 'speed', unit }]` once the model has loaded). It
+is a dial of the console kit for every vehicle (a dashboard's own dial has no numerals, and a
+cycle or boat has none), numbered a little past the vehicle's top speed in the `speedUnit` the
+view was mounted with (`'km/h'` by default, or `'mph'`; a boat's reads knots), with the speed in
+digits under the hub. It draws in every view.
+
 ```ts
+const view = await mountEarthView({ canvas, speedUnit: 'mph' /* ...content, workers */ });
 const status = view.vehicleStatus();
-if (status?.kind === 'aircraft' && status.view === 'chase' && status.instruments.length > 0) {
-  gauges.style.aspectRatio = `${status.instruments.length} / 1`;
+// An aircraft's dials beside a chase view; a vehicle's speedometer in any view.
+const instruments =
+  status === undefined || (status.kind === 'aircraft' && status.view !== 'chase')
+    ? []
+    : status.instruments;
+if (instruments.length > 0) {
+  gauges.style.aspectRatio = `${instruments.length} / 1`;
   view.setInstrumentCanvas(gauges);
 }
 ```
@@ -270,8 +283,10 @@ view.walker.setAvatar(undefined); // no body (the default)
 ```
 
 The walker has no body by default, and the view is first person. `setAvatar` gives it one: a
-[figure](figures.md) descriptor, or `{ type }` naming an entity type from the content packs with a
-`figure` component. In the third-person view a chase camera sits 4.5 m behind the feet, pulled in
+[figure](figures.md) descriptor (for a player's own look, `figureFromLook` from
+[figure looks](figure-looks.md)), or `{ type }` naming an entity type from the content packs with a
+`figure` component. The mount options `avatar` and `walkView: 'third'` start with a body and behind
+it, and calling `setAvatar` again re-dresses the body on screen. In the third-person view a chase camera sits 4.5 m behind the feet, pulled in
 front of any wall between it and the walker. Mouse-look turns the walker's heading and the camera
 with it; vertical look tilts the camera and eases back. Movement stays relative to the camera, and
 the body faces the way it walks (the camera's heading while standing). The avatar is drawn on foot
@@ -404,6 +419,60 @@ leaves a vehicle as it always did (or explains why there is nothing to board), o
 door (away from the walker, so it never swings into them), takes a lift up a floor, and does
 nothing for an actor or a pedestrian. A door opens onto rooms that are built, waiting for them
 if need be; see [Doors](building-interiors.md#doors).
+
+### Where am I: streets and places
+
+```ts
+let shown = '';
+setInterval(() => {
+  const camera = view.getCamera();           // in drive and fly, the vehicle's own point
+  const here = view.locate({
+    latitude: camera.latitude,
+    longitude: camera.longitude,
+    heading: view.vehicleStatus()?.heading, // the road along it wins at a junction
+  });
+  // { street?: { name?, ref?, class, subclass?, distance },
+  //   locality?: { name, kind, population?, latitude, longitude, distance, extent, within },
+  //   district?: { …the same } }
+  const place = here.locality ? `${here.locality.within ? '' : 'Near '}${here.locality.name}` : '';
+  const text = [place, here.district?.name, here.street?.name ?? here.street?.ref].filter(Boolean).join(' · ');
+  if (text !== shown) hud.textContent = shown = text;   // "Seattle · Fremont · Aurora Avenue North"
+}, 1000);
+```
+
+`view.locate` says where a place is in words, from the map tiles the view streams, with no
+geocoding service behind it:
+
+- `street`: the nearest road with a name or a route number within `streetRadius` meters of its
+  edge (default 30; `distance` is 0 on the road). Railways, ferries, runways and tunnels are not
+  streets. Pass the viewer's `heading` and, at a junction, the road running that way wins over the
+  cross street, so a moving viewer's street holds steady past side streets. Pass `street: false`
+  where no street is wanted (an aircraft in the air): the lookup then loads nothing.
+- Basemaps drop minor streets' names below their last zoom: Protomaps' zoom 13 names main roads
+  only, so a package whose feature tiles end there cannot name a side street. Give the package a
+  `features.buildingDetail` level (see [Terrain](terrain.md)) and the street comes from that
+  level's roads. Where the view draws tiles at that level (a pyramid declared down to it, near
+  the camera), they carry those roads and answer directly. Elsewhere (a pyramid stopping short of
+  the detail level, or an orbit camera far up) `locate` loads the detail level's tiles around the
+  place, at most the 3 × 3 around it and 16 in all, keeping the most recently used. Those are the
+  tiles the view read for buildings, so the bytes usually come from the byte cache, and only the
+  roads are decoded, on the semantic worker. Until a tile arrives, or where the detail level has
+  no roads, the finest rendered feature tile holding the place answers. Ask again a moment later;
+  a HUD on a one-second timer picks the side street up on its next tick.
+- `locality`: the settlement the place is in, or else the one whose edge is nearest (within three of
+  its extents and 10 km), with `within` saying which. The map labels a settlement with a point, not an
+  outline, so `extent` is an estimate from its kind and population (`placeExtent`: 1.2 km for a
+  village, about 13 km for a city of 700,000). Inside more than one, the place belongs to the one it
+  is most central to for its size.
+- `district`: the suburb, quarter or neighbourhood whose label the place is within, when the map has
+  one.
+
+Labels come with the terrain package's `poi` features (see [Terrain](terrain.md)); a package
+without them gets streets only. Settlement labels seen earlier in the session are remembered after
+their tiles leave, so a city still names its outskirts once only finer tiles, which do not carry
+the city's label, are loaded. A lookup takes well under a millisecond in a dense city, but it reads
+map data: call it on a timer or a key press, not every frame. The view's frame changes on a
+re-anchor; the remembered labels start again with it.
 
 ### Overrides: replacing mapped places
 
@@ -725,6 +794,7 @@ on by default:
 ```ts
 const view = await mountEarthView({ canvas, terrain, content, camera, ambient: { density: 0.4 } });
 view.setAmbientEnabled(false);
+view.setAmbientDensity(1); // busier streets from now on (view.ambientDensity reads it)
 ```
 
 `density` runs from 0 to 1 (default 0.6). `cars`, `pedestrians`, `rail` and `aircraft` switch a
@@ -1323,6 +1393,23 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
   waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25
   applies it at once.
+- A fixed quality never adapts. `'economy'`, `'balanced'` and `'high'` hold a terrain preset's
+  budgets at the device's pixel ratio. `'ultra'` is `'high'` drawn sharper: models load their
+  finer levels sooner (the Ultra tier's object error, 1.5 px rather than 2), and the view
+  supersamples by up to 1.25× while that stays within the Ultra tier's pixel budget, never drawing
+  below the device's ratio (`earthFixedPixelRatio`: 1.25× on a 1080p screen, the device's own
+  ratio on 4K). `maxPixelRatio` still caps it. Use it for a quality setting's top choice on fast
+  graphics cards; it costs GPU time, not memory.
+- `view.setQuality(quality)` changes quality on the live view, so a settings menu need not
+  remount it: the camera, mode, the vehicle the viewer is in, owned vehicles, markers and the
+  streamed ground all stay. It makes the same swap an adaptive level change does (resolution,
+  terrain and building detail, surfaces, ambient budgets, shadows, clouds), a step per frame.
+  Back to `'auto'`, the view starts again from `earthInitialQualityLevel()` and calibrates as
+  it does after a mount. `view.quality` is the quality asked for; `memoryBudget` and
+  `maxPixelRatio` stay as mounted.
+  ```ts
+  qualityMenu.onchange = () => view.setQuality(qualityMenu.value as 'auto' | 'high');
+  ```
 - Ground 20° past each side of the view stays loaded as bare terrain (the stream's
   `peripheralDegrees`), so turning the camera reveals ground at once and its buildings and trees
   follow.

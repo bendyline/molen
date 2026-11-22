@@ -88,8 +88,9 @@ export interface ScatterRule {
    * appearance class to the brush (0..1) the ground paints it with, normally the class's
    * `surface.detail` brush; other classes get no crowns. Up close the painted crown gives way to
    * the plant, so the shrub seen from the air is the one walked up to. Crowns are kept whole:
-   * `keepByTier` only switches the rule off, and they stand outside their layer's instance cap
-   * (the rule's own cap bounds them).
+   * `keepByTier` only switches the rule off, and the plants come out apart from the rule's layer
+   * (`ScatterSample.near`, `WorldgenBatchOutput.near`) for a host to draw near its camera, outside
+   * every pool and cap but the batch's `maxNearInstances`.
    * Places nothing unless the host supplies the ground's crowns (`ScatterSampleInput.crowns`).
    */
   crowns?: Record<string, number>;

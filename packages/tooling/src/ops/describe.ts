@@ -668,14 +668,24 @@ export const OPS_CATALOG: OpDescriptor[] = [
   {
     name: 'figure_preview',
     summary:
-      'Render figure presets, a molen/figure@1 descriptor, or a built-in lineup headlessly from turntable angles or the art-review view set (PNGs).',
-    cli: 'molen figure preview [descriptor.figure.json] [--preset id[,id]] [--lineup humans|bodies|species|all] [--mode idle|walk|run|sit|jump|fall] [--tick N] [--tier 0|1|2] [--angles N|review] [--size WxH] --out <png>',
+      'Render figure presets, a molen/figure@1 descriptor, a molen/figure-look@1 look, or a built-in lineup headlessly from turntable angles or the art-review view set (PNGs).',
+    cli: 'molen figure preview [descriptor.figure.json | look.json] [--preset id[,id]] [--lineup humans|bodies|species|looks|all] [--mode idle|walk|run|sit|jump|fall] [--tick N] [--tier 0|1|2] [--angles N|review] [--size WxH] --out <png>',
     mcpTool: 'figure_preview',
     params: [
       p('preset', 'string|string[]', false, 'Preset id(s) to render (default human.adult).'),
-      p('descriptorPath', 'string', false, 'A molen/figure@1 document to render.'),
+      p(
+        'descriptorPath',
+        'string',
+        false,
+        'A molen/figure@1 document, or a molen/figure-look@1 look, to render.',
+      ),
       p('descriptor', 'object', false, 'An inline descriptor (the figure component shape).'),
-      p('lineup', "'humans'|'bodies'|'species'|'all'", false, 'A built-in lineup.'),
+      p(
+        'lineup',
+        "'humans'|'bodies'|'species'|'looks'|'all'",
+        false,
+        'A built-in lineup (looks: nine random people from the default look catalogue).',
+      ),
       p('mode', "'idle'|'walk'|'run'|'sit'|'jump'|'fall'", false, 'Pose mode (default idle).'),
       p('tick', 'int>=0', false, 'Simulation tick to pose at (default 15).'),
       p('tier', '0|1|2', false, 'Body detail tier (default 0 = near).'),

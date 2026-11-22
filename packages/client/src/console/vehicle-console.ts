@@ -17,8 +17,8 @@ import {
   type ConsoleButton,
   type ConsoleItem,
   type ConsoleSubject,
-  mountedButtons,
   onFootDeck,
+  subjectButtons,
   vehicleDeck,
 } from './deck';
 import { type ConsoleLayout, layoutConsole } from './layout';
@@ -38,6 +38,12 @@ export interface VehicleConsoleOptions {
   maxPixelRatio?: number;
   /** Prefix of the console's software devices in the input map (default `'vehicle-console'`). */
   source?: string;
+  /**
+   * Draw the subject's change-view and leave buttons in the top corner (default true). A host
+   * that offers them in its own toolbar passes false, reads `buttons` and presses each with
+   * `tap`. The "more controls" button a landscape phone needs stays in the corner either way.
+   */
+  cornerButtons?: boolean;
 }
 
 export interface VehicleConsole {
@@ -50,6 +56,17 @@ export interface VehicleConsole {
   readonly layout: ConsoleLayout | undefined;
   /** False once WebGL is unavailable: the controls still work, drawn as plain outlines. */
   readonly drawing: boolean;
+  /**
+   * The subject's top buttons (change the view, leave the vehicle), drawn in the corner unless
+   * `cornerButtons` is false; empty while there is no subject or the console is hidden.
+   */
+  readonly buttons: readonly ConsoleButton[];
+  /**
+   * Press and release a navigation action as a tap on a console button does (a host's own
+   * button for one of `buttons`). It refocuses `focusTarget` first: the input map takes actions
+   * only while that element has focus, and a click on the host's button moved it away.
+   */
+  tap(action: string): void;
   /**
    * What the viewer is in: an aircraft, a vehicle, on foot, or `undefined` for nothing (the
    * console hides). Call it whenever that may change; the same vehicle keeps its parts.
@@ -81,6 +98,16 @@ function subjectKey(subject: ConsoleSubject | undefined): unknown {
   if (subject === undefined) return undefined;
   if (subject.kind === 'aircraft' || subject.kind === 'vehicle') return subject.visual;
   return subject.kind;
+}
+
+/** Whether a subject shows its dials (an aircraft's in a chase view, a vehicle's speedometer). */
+function showsGauges(subject: ConsoleSubject | undefined): boolean {
+  return (subject?.kind === 'aircraft' || subject?.kind === 'vehicle') && subject.gauges === true;
+}
+
+/** The units a vehicle's speedometer reads in: a change needs a new face. */
+function speedUnitOf(subject: ConsoleSubject | undefined): string | undefined {
+  return subject?.kind === 'vehicle' ? subject.speedUnit : undefined;
 }
 
 /**
@@ -167,6 +194,14 @@ export function createVehicleConsole(
     for (const action of held) options.input.clearVirtual(`${source}:${action}`);
     held.clear();
   };
+  // One short press: a keyboard or assistive click on a button, or the host's `tap`. The input
+  // map takes actions only while its element has focus, which a click on a host's button took
+  // away, so focus comes back first.
+  const tapAction = (action: string): void => {
+    options.focusTarget?.focus({ preventScroll: true });
+    setAction(action, 1);
+    view?.setTimeout(() => setAction(action, 0), 120);
+  };
 
   // --- Buttons. ---
   const makeButton = (spec: ConsoleButton, size: number): HTMLButtonElement => {
@@ -217,9 +252,7 @@ export function createVehicleConsole(
     // A keyboard or assistive click: one short press.
     element.addEventListener('click', (event) => {
       if (event.detail !== 0 || !spec.action) return;
-      setAction(spec.action, 1);
-      view?.setTimeout(() => setAction(spec.action, 0), 120);
-      options.focusTarget?.focus({ preventScroll: true });
+      tapAction(spec.action);
     });
     return element;
   };
@@ -236,6 +269,7 @@ export function createVehicleConsole(
   let last: number | undefined;
   let lastGauges = Number.NEGATIVE_INFINITY;
   let size = { width: -1, height: -1 };
+  let buttons: readonly ConsoleButton[] = [];
   let topButtons: HTMLButtonElement[] = [];
   let drawerButton: HTMLButtonElement | undefined;
   let generation = 0;
@@ -260,6 +294,7 @@ export function createVehicleConsole(
       slot.part?.dispose();
     }
     slots = [];
+    buttons = [];
     for (const element of topButtons) element.remove();
     topButtons = [];
     drawerButton?.remove();
@@ -357,13 +392,8 @@ export function createVehicleConsole(
       }
       slots.push(slot);
     }
-    const mounted = next.kind === 'aircraft' || next.kind === 'vehicle';
-    const buttons = mounted
-      ? mountedButtons()
-      : next.kind === 'walk'
-        ? [mountedButtons()[0] as ConsoleButton]
-        : [];
-    topButtons = buttons.map((spec) => makeButton(spec, 44));
+    buttons = subjectButtons(next);
+    topButtons = options.cornerButtons === false ? [] : buttons.map((spec) => makeButton(spec, 44));
     top.replaceChildren(...topButtons);
     const stickSlot = slots.find((slot) => slot.item.zone?.kind === 'stick');
     joystick.setAppearance(stickSlot?.part && drawing ? 'none' : 'circles');
@@ -394,7 +424,7 @@ export function createVehicleConsole(
     size = { width, height };
     if (subject === undefined) return;
     const insets = readInsets();
-    const gauges = subject.kind === 'aircraft' && subject.gauges === true;
+    const gauges = showsGauges(subject);
     const items = slots
       .map((slot) => slot.item)
       .filter((item) => !item.gauge || gauges)
@@ -484,10 +514,17 @@ export function createVehicleConsole(
     get drawing() {
       return drawing;
     },
+    get buttons() {
+      return visible ? buttons : [];
+    },
+    tap(action) {
+      if (subject === undefined || !visible) return;
+      tapAction(action);
+    },
     setSubject(next) {
       const nextKey = subjectKey(next);
-      const gaugesBefore = subject?.kind === 'aircraft' && subject.gauges === true;
-      if (nextKey !== key) {
+      const gaugesBefore = showsGauges(subject);
+      if (nextKey !== key || speedUnitOf(next) !== speedUnitOf(subject)) {
         clearSlots();
         key = nextKey;
         subject = next;
@@ -497,8 +534,7 @@ export function createVehicleConsole(
         return;
       }
       subject = next;
-      const gaugesAfter = next?.kind === 'aircraft' && next.gauges === true;
-      if (gaugesAfter !== gaugesBefore) relayout();
+      if (showsGauges(next) !== gaugesBefore) relayout();
     },
     setVisible(next) {
       if (next === visible) return;

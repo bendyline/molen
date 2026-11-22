@@ -5,6 +5,9 @@ import {
   EARTH_BACKLOG_MS,
   earthAdmission,
   earthArrivalAdmission,
+  earthFixedObjectPixelError,
+  earthFixedPixelRatio,
+  earthFixedPreset,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -223,6 +226,51 @@ describe('earth device detail policy', () => {
     }
     for (const dpr of [0, -1, Number.NaN, Number.POSITIVE_INFINITY])
       expect(() => earthPixelRatio(2, 1280, 720, dpr)).toThrow();
+  });
+
+  it('builds ultra as the high preset with the Ultra tier’s finer model detail', () => {
+    expect(earthFixedPreset('ultra')).toBe('high');
+    for (const preset of ['economy', 'balanced', 'high'] as const) {
+      expect(earthFixedPreset(preset)).toBe(preset);
+      expect(earthFixedObjectPixelError(preset)).toBe(2);
+    }
+    expect(earthQualityLevel('ultra')).toBe(earthQualityLevel('high'));
+    expect(earthFixedObjectPixelError('ultra')).toBe(earthPerformanceTier(5).objectPixelError);
+    expect(earthFixedObjectPixelError('ultra')).toBeLessThan(earthFixedObjectPixelError('high'));
+  });
+
+  it.each([
+    [1280, 720, 1],
+    [1920, 1080, 1],
+    [2560, 1440, 1],
+    [1440, 900, 2],
+    [2560, 1440, 1.5],
+    [3840, 2160, 2],
+    [0, 0, 1],
+  ])('draws ultra at least as sharp as the presets at %sx%s DPR%s', (width, height, dpr) => {
+    const tier = earthPerformanceTier(5);
+    for (const preset of ['economy', 'balanced', 'high'] as const)
+      expect(earthFixedPixelRatio(preset, width, height, dpr)).toBe(dpr);
+    const ultra = earthFixedPixelRatio('ultra', width, height, dpr);
+    // Never below the device's ratio (a held Ultra tier would be, on large dense screens) ...
+    expect(ultra).toBeGreaterThanOrEqual(dpr);
+    expect(ultra).toBeLessThanOrEqual(dpr * tier.resolutionScale);
+    // ... and supersampled only within the tier's pixel budget.
+    if (ultra > dpr)
+      expect(width * height * ultra * ultra).toBeLessThanOrEqual(tier.maxPixels + 0.00001);
+  });
+
+  it('supersamples ultra where the pixel budget allows', () => {
+    expect(earthFixedPixelRatio('ultra', 1280, 720, 1)).toBe(1.25);
+    expect(earthFixedPixelRatio('ultra', 1920, 1080, 1)).toBe(1.25);
+    // 1440p at 1× has room for a little; 4K at its own 1.5 has none.
+    expect(earthFixedPixelRatio('ultra', 2560, 1440, 1)).toBeCloseTo(
+      Math.sqrt(4_000_000 / (2560 * 1440)),
+      6,
+    );
+    expect(earthFixedPixelRatio('ultra', 2560, 1440, 1.5)).toBe(1.5);
+    for (const dpr of [0, -1, Number.NaN])
+      expect(() => earthFixedPixelRatio('ultra', 1280, 720, dpr)).toThrow();
   });
 });
 

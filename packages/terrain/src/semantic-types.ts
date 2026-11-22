@@ -201,6 +201,30 @@ export interface TerrainPoiFeature extends TerrainStructureIdentity {
   tunnel?: boolean;
 }
 
+/**
+ * A named place the map labels at a point: a settlement (city, town, village, hamlet) or a
+ * district of one (suburb, quarter, neighbourhood). It says what a place is called, not where its
+ * edges are. Read from the source's place layer alongside its POIs (see
+ * `createTerrainMvtSemanticDecoder`).
+ */
+export interface TerrainPlaceFeature {
+  id?: string | number;
+  /**
+   * The source's kind: Protomaps' `locality`, `neighbourhood` or `macrohood`; OpenMapTiles' `city`,
+   * `town`, `village`, `hamlet`, `suburb`, `quarter`, `neighbourhood`, …
+   */
+  class: string;
+  /** Protomaps' finer kind (`city`, `town`, `village`, `hamlet`, `suburb`, `neighbourhood`, …). */
+  subclass?: string;
+  point: TerrainSemanticPoint;
+  /** The source's own name, in its local script and whole. */
+  name: string;
+  /** An English or Latin-script name, when the source has one besides `name`. */
+  nameLatin?: string;
+  /** Inhabitants, when the source knows (0 and absent both mean unknown). */
+  population?: number;
+}
+
 export interface TerrainSemanticTile {
   format: 'molen/terrain-semantics@1';
   landcover: TerrainLandcoverFeature[];
@@ -208,6 +232,8 @@ export interface TerrainSemanticTile {
   transportation: TerrainTransportationFeature[];
   buildings: TerrainBuildingFeature[];
   pois?: TerrainPoiFeature[];
+  /** Place labels (settlements and their districts); absent when the source has none. */
+  places?: TerrainPlaceFeature[];
   /** Source merged/generalized footprints cannot reliably identify individual premises. */
   buildingsGeneralized?: boolean;
   /**
@@ -381,6 +407,21 @@ function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
     for (const key of ['bridge', 'tunnel'] as const)
       if (feature[key] !== undefined && typeof feature[key] !== 'boolean')
         throw new Error(`${path}/${key} must be boolean`);
+  }
+  if (tile.places !== undefined && !Array.isArray(tile.places))
+    throw new Error('terrain semantic places must be an array');
+  for (const [index, feature] of (tile.places ?? []).entries()) {
+    const path = `/places/${index}`;
+    assertClass(feature.class, `${path}/class`);
+    assertClass(feature.name, `${path}/name`);
+    assertPoint(feature.point, `${path}/point`);
+    for (const key of ['subclass', 'nameLatin'] as const)
+      if (feature[key] !== undefined) assertClass(feature[key], `${path}/${key}`);
+    if (
+      feature.population !== undefined &&
+      (!Number.isFinite(feature.population) || feature.population < 0)
+    )
+      throw new Error(`${path}/population must be a finite non-negative number`);
   }
   for (let index = 0; index < tile.landcover.length; index++) {
     const feature = tile.landcover[index] as TerrainLandcoverFeature;

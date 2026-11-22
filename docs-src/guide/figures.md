@@ -4,6 +4,9 @@
 (`/kernel`: descriptors and presets, canonical rigs and sockets, deterministic gait and pose
 evaluation, locomotion state, attachments) and a **client half** (`/client`: the `figure`
 renderable kind that generates a skinned body from the descriptor and poses it every frame).
+Two host-side subpaths sit beside them: `/look`, a player's or character's look as named
+catalogue options, and `/designer`, the pieces of a character designer with a turntable preview
+(see [Figure looks and the character designer](figure-looks.md)).
 Humans use modeled facial relief (jaw, cheeks, nose, lips, eyelids and ears), shaped palms
 and fingers, fitted clothing with collars, pockets and buttons, and rounded shoes. The
 target is the readable polygonal realism of early open-world games. Surfaces share one
@@ -90,15 +93,18 @@ figure` prints the full shape (the `molen/figure@1` file format wraps the same f
 | `height` | meters; bipeds to the head top, quadrupeds to the withers |
 | `build` | -1 (slight) to 1 (heavy): limb and torso radii, shoulder width |
 | `age` | `child`, `adult`, `elder` (elder adds a stoop) |
-| `proportions` | multipliers: `legRatio`, `armRatio`, `torsoRatio`, `headScale`, `neckLength`, `neckPitch`, `shoulderWidth`, `hipWidth`, `bodyLength`, `tailLength`, `earSize`, `snoutLength` |
-| `features` | `form`, `hair`, `facialHair`, `hands`, `sleeves`, `legs`, `tail`, `ears`, `horns`, `feet`, `mane` (see [Appearance](#appearance)) |
-| `palette` | `#rrggbb`: `skin` (fur/hide for animals), `hair`, `eyes`, `top`, `bottom`, `shoes`, `accent`, `markings` |
+| `proportions` | multipliers: `legRatio`, `armRatio`, `torsoRatio`, `headScale`, `neckLength`, `neckPitch`, `shoulderWidth`, `hipWidth`, `bodyLength`, `tailLength`, `earSize`, `snoutLength`; humans also `waist` (0.7–1.3), `bust` (0–1.5, else the body form's), `belly` (0–1) and `seat` (hip, seat and thigh fullness, 0.8–1.3) |
+| `features` | `form`, `hair`, `hairTexture`, `facialHair`, `hands`, `sleeves`, `legs`, `top`, `footwear`, the [accessories](#accessories) (`headwear`, `eyewear`, `neckwear`, `backwear`, `earwear`, `wristwear`, `bag`), `tail`, `ears`, `horns`, `feet`, `mane` (see [Appearance](#appearance)) |
+| `palette` | `#rrggbb`: `skin` (fur/hide for animals), `hair`, `eyes`, `top`, `bottom`, `shoes`, `accent`, `markings`, `outer` (a jacket or coat; absent: `top`), and one per accessory under its name |
+| `head` | humans: a head `preset` (`01`–`12`) and/or shape parameters (see [Heads](#heads)) |
 | `seed` | detail jitter only (symmetry-safe) |
 
 Every rig stands with its feet at y = 0 and its reference point exactly at `height`, whatever
 the overrides. Bodies come in three detail tiers. The default human uses roughly 7,500 triangles
-near, 2,200 at medium distance and 1,100 for the rigid distant tier; long hair, a beard and a skirt
-together stay within 8,500, 2,600 and 1,200. The six animal presets use about 4,100–6,500 near,
+near, 2,200 at medium distance and 1,100 for the rigid distant tier; the most detailed styling
+(locs or braids, a beard, a coat or hoodie over a skirt, sandals) stays within 9,000, 2,600 and
+1,200, and with every accessory worn at once within 9,700, 3,000 and 1,300. The six animal
+presets use about 4,100–6,500 near,
 2,100–2,900 medium and 1,100–1,500 distant triangles. The client
 picks a tier by camera distance unless `lod` pins one. Near humans include separate fingers
 with the default `hands: "fingers"`; `hands: "mitten"` keeps a joined finger silhouette. Medium
@@ -126,13 +132,79 @@ larger head.
 | Feature | Values | Notes |
 |---|---|---|
 | `form` | `neutral`, `masculine`, `feminine` | Shoulder and hip width, waist, chest depth, neck and arm thickness, jaw, brow and lips. Feminine adults have a bust and plain shirt fronts. Ignored by quadrupeds. |
-| `hair` | `none`, `buzz`, `balding`, `cap`, `crop`, `bob`, `long`, `ponytail`, `bun`, `afro` | `cap` is the short default; `balding` keeps a fringe above and behind the ears; `long` falls down the back past the shoulder blades. |
+| `hair` | `none`, `buzz`, `balding`, `cap`, `crop`, `bob`, `long`, `ponytail`, `bun`, `afro`, `shoulder`, `fade`, `mohawk`, `topknot`, `puffs`, `braids`, `rows`, `locs` | `cap` is the short default; `balding` keeps a fringe above and behind the ears; `long` falls down the back past the shoulder blades; `shoulder` stops at the shoulders; `fade` blends close sides into a fuller top; `mohawk` is a ridge over buzzed sides; `topknot` and `puffs` gather hair on the crown; `braids` hang down the back; `rows` are close braided rows; `locs` hang as rope-like locks. Braids show at near and medium detail, locks at near detail. |
+| `hairTexture` | `straight` (default), `wavy`, `curly`, `coily` | Loose hair only: volume off the scalp, fuller ends on hanging lengths and a rougher silhouette near. Pulled-back styles (`buzz`, `ponytail`, `bun`, `braids`, `rows`, …) keep their shape; gathered ones (`bun`, `topknot`, `puffs`) swell a little. |
 | `facialHair` | `none`, `stubble`, `mustache`, `beard` | Drawn in `palette.hair`. Adults and elders only. |
-| `sleeves` | `none`, `short`, `long` | |
-| `legs` | `shorts`, `long`, `skirt` | A knee-length skirt in `palette.bottom` over bare legs. It sways with the stride; seated, it follows the thighs. |
+| `sleeves` | `none`, `short`, `long` | Sleeve length of any top. |
+| `top` | `shirt` (default), `tee`, `tank`, `polo`, `sweater`, `hoodie`, `jacket`, `coat`, `dress` | See [Garments](#garments). |
+| `legs` | `shorts`, `long`, `skirt`, `slim`, `wide`, `cropped` | A knee-length skirt in `palette.bottom` over bare legs. It sways with the stride; seated, it follows the thighs. `slim` trousers taper below the knee, `wide` ones flare to the ankle, `cropped` ones end at mid-calf. |
+| `footwear` | `shoe` (default), `sneaker`, `boot`, `sandal` | In `palette.shoes`. Sneakers have a thick pale sole; boots a darker sole and a shaft up the shin, over trousers or a bare leg; sandals a sole and straps under the bare foot (a band of color below near detail). |
 
-Hair that falls past the neck (long hair, a ponytail) blends from the head joint toward the
-chest, so it stays on the back when the head turns.
+Hair that falls past the neck (long hair, a ponytail, braids, locks) blends from the head joint
+toward the chest, so it stays on the back when the head turns.
+
+### Garments
+
+A top is drawn by the same lofted torso, so garments never add a second body: each changes the
+collar, the front, how loosely the torso and sleeves sit, and what hangs below the waist.
+
+| `top` | Collar and front | Below the waist |
+|---|---|---|
+| `shirt` (default) | Collar band and points, buttoned placket, breast pockets (near, without a bust) | Tucked in over the belt |
+| `tee`, `tank` | Crew neck (pair `tank` with `sleeves: "none"`) | Tucked in |
+| `polo` | Collar points, a short placket | Tucked in |
+| `sweater` | Crew neck, a little looser | A ribbed band over the belt |
+| `hoodie` | A hood lying folded behind the neck, drawstrings and a front pouch (near) | A ribbed band |
+| `jacket`, `coat` | Open in a V to the top button, showing the shirt in `palette.top`; lapels near | To the hip, or to mid-thigh following the thighs |
+| `dress` | Crew neck | A knee-length skirt in `palette.top` over bare legs, whatever `legs` says |
+
+Jackets and coats color their torso and sleeves with `palette.outer`. Hems below the waist
+continue the torso's own bottom ring and follow the thighs like the skirt, so they stay closed
+over trousers and skirts on every body shape. Omitting `top` and `footwear` draws exactly the
+bodies of earlier releases; naming `shoe` draws the same shoes.
+
+### Accessories
+
+Accessories are part of the same skinned mesh (the `gear` mesh group), each riding the joint it
+sits on, and absent unless named. Each takes its color from the palette key of its own name,
+with a default when that is absent.
+
+| Feature | Values | Notes |
+|---|---|---|
+| `headwear` | `cap`, `beanie`, `sunhat` | The hair tucks under the band, whatever the style: below it the hair shows as usual, above it only the hat; a topknot or puffs hide under the hat and a bun sits low at the nape. |
+| `eyewear` | `glasses`, `sunglasses` | Frames in `palette.eyewear`, the arms over the ears. Far off only sunglasses show. |
+| `neckwear` | `scarf` | A roll round the neck (over a hood too) with one end down the chest. |
+| `backwear` | `backpack` | Straps over the shoulders onto the chest. Long hair and braids fall over the pack. |
+| `earwear` | `headphones` | Cups over the hair at the ears and a band over the crown, clear of the hair and any hat. Under a sun hat's brim the band is left out. |
+| `wristwear` | `watch` | On the left wrist, over a long sleeve; near and medium detail. |
+| `bag` | `crossbody` | At the right hip, the strap across the chest and back over the left shoulder. |
+
+Without accessories a body is unchanged, byte for byte.
+
+### Heads
+
+Without a `head`, a human face follows its body form (a squarer jaw and stronger brow, or a
+narrower jaw and fuller lips), as it always has. A `head` sets the face itself, independent of the
+body form, from fourteen parameters, each -1 to 1 with 0 the reference head: `faceWidth`, `jaw`,
+`chin`, `cheeks`, `cheekbones`, `brow`, `noseBridge`, `noseWidth`, `noseTip`, `eyeSpacing`,
+`eyeSize`, `eyeTilt`, `lips` and `crown`. A head `preset` (`01`–`12`) starts from one of twelve
+shapes, and parameters given beside it override it:
+
+```json
+{ "preset": "human.adult", "head": { "preset": "05", "lips": 0.2 } }
+```
+
+`01` is the reference head. The others spread over the parameters so that no two move together (a
+broad nose does not come with full lips); they are numbered, not named, because they are shapes,
+not people. A head changes only where vertices sit, so every head has the same triangle count.
+
+### Seated riders
+
+A rider whose legs are too short for a cycle's pedals or footrests slides forward and down the
+saddle until they reach. The slide is fitted once, from every pedal position, so it does not
+change through a revolution, and a rider who already reaches stays where the saddle puts them.
+`cycleRiderPose` reports the contacts as `riding.reach`. Hands keep to the grips through the IK
+alone: very short riders (about 1.5 m) can leave a grip at full steering lock.
 
 Quadrupeds have species-shaped ribcages, tucked or full bellies, muscular shoulders and haunches,
 and shaped joints. Dogs and cats have rounded paws with separate near/medium toes; horses have

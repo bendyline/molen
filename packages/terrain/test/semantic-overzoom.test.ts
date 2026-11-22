@@ -46,6 +46,7 @@ function sample(): TerrainSemanticTile {
   // Straddles the quadrant border: its center (0.5, 0.2) belongs to the top-right child.
   tile.buildings.push({ polygons: [square(0.5, 0.2, 0.03)], height: 12 });
   tile.pois = [{ class: 'cafe', point: [0.8, 0.8], name: 'Corner' }];
+  tile.places = [{ class: 'locality', subclass: 'village', point: [0.2, 0.7], name: 'Buena' }];
   tile.buildingsGeneralized = true;
   return tile;
 }
@@ -74,6 +75,16 @@ describe('semantic overzoom', () => {
     expect(bottomRight.water[0]?.lines?.[0]?.[0]?.[0]).toBeCloseTo(0.8, 9);
     expect(bottomRight.pois?.[0]?.point[0]).toBeCloseTo(0.6, 9);
     expect(bottomRight.pois?.[0]?.point[1]).toBeCloseTo(0.6, 9);
+  });
+
+  it('gives a place label to the one descendant holding its point', () => {
+    expect(overzoomTerrainSemanticTile(sample(), parent, child(0, 0)).places).toBeUndefined();
+    expect(overzoomTerrainSemanticTile(sample(), parent, child(1, 1)).places).toBeUndefined();
+    const bottomLeft = overzoomTerrainSemanticTile(sample(), parent, child(0, 1), { buffer: 0 });
+    expect(bottomLeft.places).toHaveLength(1);
+    expect(bottomLeft.places?.[0]).toMatchObject({ name: 'Buena', subclass: 'village' });
+    expect(bottomLeft.places?.[0]?.point[0]).toBeCloseTo(0.4, 9);
+    expect(bottomLeft.places?.[0]?.point[1]).toBeCloseTo(0.4, 9);
   });
 
   it('transforms bridge connection points while retaining metric heights and blend radii', () => {

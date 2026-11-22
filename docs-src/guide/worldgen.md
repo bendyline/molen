@@ -465,6 +465,17 @@ edges: 650 meters of road in the full window, or 300 meters with explicit suitab
 Highways, paths, service roads, bridges and tunnels do not establish demand. Mapped buildings keep
 priority in the shared rendering budgets.
 
+Without a land-use label, the 650 meters are counted in local streets: `residential`,
+`living_street`, or a `minor_road` with no finer class. A meter of any other street (an
+`unclassified` lane, a `tertiary` or `secondary` road) counts as a third of a meter, so a
+network of lanes and through roads must be three times as dense as a network of residential
+streets before it reads as a neighborhood. A dense grid of collectors still does; lanes between
+fields do not. Counted alike, they lined the countryside with houses: checked against Spain's
+cadastre on the zoom-13 world package (November 2026), a fifth of the buildings invented round
+Alicante and a third of those round Oviedo stood where under 1% of the ground is built. Any of
+these streets still carries lots once the place qualifies, and mapped residential, commercial or
+retail land use qualifies a place as before.
+
 A house in a yard is one street pattern among several. The regional house style's optional
 `lots` says how the lots it invents line a street: `rows` is the share of blocks built as rows,
 fronts wall to wall at the back of the footway; `units` how many fronts stand to each 16 m of
@@ -497,8 +508,18 @@ and exclusion geometry participate in cache keys. Records carry the `inferred` l
 Changes to source data, styles, seed or algorithm version can change the result. The frontage-based
 v3 algorithm regenerates older layouts once; subsequent visits reproduce the new layout.
 
-Infill uses detailed footprints at the finest two terrain levels, skips generalized
-building data, and caps inferred lots at 3,072 per tile before shared rendering budgets.
+Infill uses detailed footprints at the finest two terrain levels and skips generalized
+building data. The level below the finest is filled only where its tiles are zoom 14 or finer;
+the finest level is filled down to zoom 13, so a package whose finest tiles are zoom 13 (a
+planet-wide release that keeps its detail levels few) still invents the houses of the streets
+around the camera. Inferred lots are capped at 3,072 per tile, and a tile larger than zoom 14 may
+hold as many for each zoom-14 tile's area (12,288 at zoom 13), before shared rendering budgets.
+A zoom-13 tile is costly to fill: a dense town tile lays out about 6,300 buildings in 0.6 s of
+worker time and takes about three times as long to generate as it does without infill. The batch
+draws at most `maxBuildings` (4,000 on the finest level at Balanced), mapped buildings first and
+then invented ones largest first, so a tile that invents more loses its smallest garages and row
+units. Where mapped footprints alone fill that budget, as in a downtown, a request that draws
+buildings invents none; scatter-only requests still lay out every lot, so plants keep off them.
 Entire parcels stay inside their owner tile, leaving a small margin at tile edges. A neighboring
 halo participates in corner-lot conflict resolution. Coverage depends on the roads and exclusions
 available in that tile. These are synthetic lots, not surveyed parcels or zoning; missing land-use
@@ -509,10 +530,17 @@ source supplies matching semantic layers.
 ### Inferred trees around homes
 
 Atlas region bindings and the worldwide default accept `treeFillFactor` from 0 to 1. The
-shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0 in
-the Southwest; Japan uses 0.3 and unclassified regions use 0. These are configurable visual priors,
-not measured canopy percentages or a global climate dataset. Fill is resolved at each home's
-location, including region edges.
+shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0.3 in
+the Southwest; South Asia uses 0.6, Japan 0.3, the Iberian Peninsula 0.35 and every other region
+0. These are configurable visual priors, not measured canopy percentages or a global climate
+dataset. Fill is resolved at each home's location, including region edges.
+
+Iberia's value is a floor that was checked, not a measurement. Against orthophotos of Alicante
+and Oviedo (November 2026) a fill of 0 left low-rise districts nearly treeless: tree crowns over
+0.5% of the unbuilt ground among Alicante's houses and villas, where 10% of it is green. At 0.35
+they cover 3.6% there and 12% among Oviedo's houses (70% green, most of it pasture), and no kind
+of neighbourhood in either city is planted more heavily than its photograph. The two cities
+differ too much for one number to be right in both.
 
 For complete low-rise footprints of 45–700 m², the Earth adapter adds an irregular yard patch
 roughly 18–26 meters beyond the home. Explicit house classifications qualify; small untyped
@@ -616,11 +644,16 @@ A batch spends its budget in priority order, largest footprints first. That suit
 air; for someone on the ground the buildings that matter are the nearest. `WorldgenBatchInput.focus`
 (`{ x, z, radius }` in the buildings' frame) queues the buildings within `radius` of a viewer
 nearest first, ahead of every other, so the same budget details and opens the doors of what the
-viewer can walk up to. The Earth renderers set it themselves: once the position passed to
-`updateInteriors` is down among the buildings and moving at a walk, the finest tiles within 90 m
-are regenerated round it, and again each 36 m it moves (never while it is inside a building, and
-the tile shown stays until its replacement is ready). In a dense Seattle tile of 1,091 buildings,
-where the largest 75 were detailed, that details the nearest 148, out to 140 m. First every building gets
+viewer can walk up to. The Earth renderers set it themselves, with or without interiors: once the
+position passed to `updateInteriors` is within 25 m of the ground and moving at a walk, the finest
+tiles within 90 m are regenerated round it, and again each 36 m it moves (never while it is inside
+a building, and the tile shown stays until its replacement is ready). In a dense Seattle tile of
+1,091 buildings, where the largest 75 were detailed, that details the nearest 148, out to 140 m.
+A focused batch also keeps half of `maxBuildingVertices` from the buildings outside its focus
+while the passes below reserve walls, roofs and simplified facades, so a batch with more
+buildings than its budget has walls for still details the nearest: in a 3 km tile of 11,558
+buildings, none of which had been detailed, 142 round a walker were. The rest of the tile then
+has more stand-ins. First every building gets
 walls and its roof shape (the style's coarsest tier); only when even that does not fit does a
 building become an instanced stand-in. Then buildings gain a simplified facade while it fits, then
 the largest (`detailedCount`) gain full detail. The simplified facade preserves the authored

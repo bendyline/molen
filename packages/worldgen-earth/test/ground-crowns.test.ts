@@ -4,7 +4,7 @@ import {
   TERRAIN_GROUND_CROWNS,
   terrainGroundCrown,
 } from '@bendyline/molen-terrain/kernel';
-import { FLAT_GROUND, PLACEMENT_STRIDE, samplePlacements } from '@bendyline/molen-worldgen/kernel';
+import { FLAT_GROUND, PLACEMENT_STRIDE, sampleScatter } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { batchGroundCrowns } from '../src/kernel/ground-crowns';
 import { projectWgs84 } from '../src/kernel/projection';
@@ -78,54 +78,102 @@ describe('shrubs on the painted crowns', () => {
     expect(crowns.open?.(450, 450, 'residential')).toBe(1);
   });
 
-  it("stands a desert shrub on every crown Yuma's open ground paints", () => {
-    const [x, z] = projectWgs84(-114.6459, 32.6875);
+  /**
+   * The crowns a square tile of open ground paints at a place, and how many of them carry a plant
+   * in the tile's near placements (and none among its placements).
+   */
+  function crownsAt(
+    longitude: number,
+    latitude: number,
+    size: number,
+    quality: 'economy' | 'balanced' | 'high',
+  ): { brush: number; painted: number; planted: number; layered: number } {
+    const [x, z] = projectWgs84(longitude, latitude);
     const geom = {
       level: 16,
       x: 0,
       z: 0,
       originX: x,
       originZ: z,
-      size: 200,
+      size,
       metersPerUnit: 1,
       levelBelowMax: 0,
     };
-    const scatter = environment.scatter([x, z, x + 200, z + 200]);
+    const scatter = environment.scatter([x, z, x + size, z + size]);
     if (!scatter) throw new Error('Missing habitat');
     const crownRule = scatter.doc.rules.find((rule) => rule.crowns !== undefined);
     const brush = crownRule?.crowns?.open_ground ?? 0;
-    expect(brush).toBeGreaterThan(0.3);
     const tile = createEmptyTerrainSemanticTile();
     tile.landcover = [{ class: 'open_ground', polygons: [{ outer: square }] }];
     const request = scatterRequestFromTile(tile, geom, scatter.doc.defaults.avoid, 1);
     const crowns = batchGroundCrowns(tile, geom);
-    const sets = samplePlacements({
+    const sample = sampleScatter({
       ...scatter,
       crowns,
       request,
       ground: FLAT_GROUND,
       tier: 0,
-      budget: worldgenTileBudgetForQuality('balanced', 0),
+      budget: worldgenTileBudgetForQuality(quality, 0),
     });
-    const placed = new Set<string>();
-    for (const set of sets)
+    // Plants by the crown cell they stand in (a crown keeps at least a meter inside its cell, so
+    // float32 positions cannot land in the next one), with their positions and reach bytes.
+    const { cell } = TERRAIN_GROUND_CROWNS;
+    const cellOf = (px: number, pz: number) =>
+      `${Math.floor((geom.originX + px) / cell)},${Math.floor((geom.originZ + pz) / cell)}`;
+    const placed = new Map<string, [number, number, number | undefined]>();
+    const near = sample.near;
+    for (let k = 0; k < (near?.count ?? 0); k++) {
+      const px = near?.data[k * PLACEMENT_STRIDE] as number,
+        pz = near?.data[k * PLACEMENT_STRIDE + 2] as number;
+      placed.set(cellOf(px, pz), [px, pz, near?.reach?.[k]]);
+    }
+    const layer = new Set<string>();
+    for (const set of sample.placements)
       for (let k = 0; k < set.count; k++) {
-        const at = k * PLACEMENT_STRIDE;
-        placed.add(
-          `${(set.data[at] as number).toFixed(2)},${(set.data[at + 2] as number).toFixed(2)}`,
-        );
+        const px = set.data[k * PLACEMENT_STRIDE] as number,
+          pz = set.data[k * PLACEMENT_STRIDE + 2] as number;
+        layer.add(`${px.toFixed(1)},${pz.toFixed(1)}`);
       }
-    const [i0, j0, i1, j1] = crowns.cells([0, 0, 200, 200]);
-    let painted = 0;
+    const [i0, j0, i1, j1] = crowns.cells([0, 0, size, size]);
+    let painted = 0,
+      planted = 0,
+      layered = 0;
     for (let j = j0; j <= j1; j++)
       for (let i = i0; i <= i1; i++) {
         const crown = crowns.crown(i, j);
-        if (crown.x < 0 || crown.z < 0 || crown.x >= 200 || crown.z >= 200) continue;
+        if (crown.x < 0 || crown.z < 0 || crown.x >= size || crown.z >= size) continue;
         if (crown.brush > brush) continue;
         painted++;
-        expect(placed.has(`${crown.x.toFixed(2)},${crown.z.toFixed(2)}`)).toBe(true);
+        const plant = placed.get(`${i},${j}`);
+        // On its crown, carrying the crown's reach byte: the ground paints the crown again
+        // exactly where a host stops drawing the plant.
+        if (
+          plant !== undefined &&
+          Math.hypot(plant[0] - crown.x, plant[1] - crown.z) < 0.01 &&
+          plant[2] === Math.round(crown.reach * 255)
+        )
+          planted++;
+        if (layer.has(`${crown.x.toFixed(1)},${crown.z.toFixed(1)}`)) layered++;
       }
+    return { brush, painted, planted, layered };
+  }
+
+  it("stands a desert shrub on every crown Yuma's open ground paints", () => {
+    const yuma = crownsAt(-114.6459, 32.6875, 200, 'balanced');
+    expect(yuma.brush).toBeGreaterThan(0.3);
     // About a third of the 625 cells hold a crown at the open ground's brush.
-    expect(painted).toBeGreaterThan(150);
+    expect(yuma.painted).toBeGreaterThan(150);
+    expect(yuma.planted).toBe(yuma.painted);
+    expect(yuma.layered).toBe(0);
+  });
+
+  it('plants every crown of a whole zoom-13 tile, past any scatter cap', () => {
+    // Buena, Washington, in the steppe: a zoom-13 tile there is about 3.4 km across. Its open
+    // ground paints about 42,000 crowns; the rule's own cap once planted 2,180 to 8,910 of them,
+    // and the rest faded from dark discs to bare ground as a driver reached them.
+    const buena = crownsAt(-120.3092, 46.4156, 3370, 'high');
+    expect(buena.painted).toBeGreaterThan(30_000);
+    expect(buena.planted).toBe(buena.painted);
+    expect(buena.layered).toBe(0);
   });
 });

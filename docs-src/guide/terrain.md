@@ -132,9 +132,17 @@ function frame(cameraPosition: [number, number, number]) {
 }
 ```
 
-`reverseDepthBuffer` preserves depth precision across a large view range. On WebGL devices without
-`EXT_clip_control`, Molen automatically uses logarithmic depth on the same canvas and context.
-Logarithmic depth costs early-fragment performance; devices supporting reversed depth keep it.
+`reverseDepthBuffer` preserves depth precision across a large view range. WebGPU reverses its
+floating-point depth buffer. WebGL renders into the canvas's own depth buffer, whose format the
+platform chooses: floating point on some (SwiftShader), 24-bit fixed point on others (Direct3D,
+OpenGL and Vulkan on desktop GPUs), with `DEPTH_BITS` reading 24 on both. Reversing fixed point
+gains nothing. A depth step there is about z² / near × 2⁻²⁴, 58 cm at 700 m behind a 5 cm near
+plane, so roads and their paint fought the ground in stripes. Molen therefore probes the canvas
+when it creates the renderer. It keeps reversed depth on a floating-point buffer and switches to
+logarithmic depth on a fixed-point one, which gives about a millimeter at a kilometer whatever
+the near plane. Logarithmic depth writes each fragment's depth, which gives up early depth
+rejection (hidden-surface removal on tile-based GPUs) and polygon offset. Overlays drawn on their
+surface's own triangles still pass the default less-or-equal test.
 
 The source interface returns decoded height tiles, so archive readers, procedural worlds, and tests
 do not change residency behavior. HTTP 404 is a stable missing tile; call `retryFailed()` only after
@@ -461,6 +469,14 @@ polygon holes, waterways, bridge/tunnel flags, and building height/level fallbac
 are never guessed. `createTerrainMvtSemanticDecoder` exposes source-layer/property mappings and
 per-tile feature/point limits for other MVT producers.
 
+A package whose features include `poi` also gets the map's place labels, in the tile's `places`
+(`TerrainPlaceFeature`): settlements (cities, towns, villages, hamlets) and their districts
+(suburbs, quarters, neighbourhoods), each a named point with its kind and, when the map knows it,
+its population. They come from Protomaps' `places` layer (OpenMapTiles' `place`; the `place`
+source-layer option names another); states, countries and unnamed labels are left out. A label
+says what a place is called, not where its edges are. The Earth view reads them for
+`view.locate` (see [Where am I](earth-view.md#where-am-i-streets-and-places)).
+
 `createTerrainSemanticPyramidLayer` joins any normalized source and renderer to adaptive residency.
 `createDefaultTerrainSemanticRenderer` is the initial scalable mesh policy: deterministic instanced
 trees inside forest polygons, combined terrain-draped road ribbons, combined footprint extrusions,
@@ -554,9 +570,32 @@ the composed tile tells renderers that narrower buffer, so tile-edge ownership s
 neighbours. Descendants the archive lacks keep the coarse tile's buildings in their part of the
 tile. `createBuildingDetailTerrainSemanticSource` wraps any feature source this way and keeps
 recently loaded detail tiles, since a tile and its children share them. Only the `building` and
-`poi` layers of detail tiles are decoded. The detail archive is optional: if it cannot be opened,
+`poi` layers of detail tiles are decoded for building detail. When the features declare
+`transportation`, the opened sidecar also carries `streets`, a source that decodes the detail
+level's roads alone. The detail archive is optional: if it cannot be opened,
 `openTerrainPackageSemantics` reports `buildingDetailError` and the feature tiles carry on alone.
 Hosts with their own transport pass `buildingDetailArchive`.
+
+**Road detail.** A basemap's regular zooms keep few roads: Protomaps' zoom 13 holds a city's main
+roads and drops nearly every residential street, footway and stair, which only its last zoom has.
+Where the package's pyramid reaches the detail level, tiles at that level (or finer) take their
+roads from it (`createRoadDetailTerrainSemanticSource`; `roadDetail: false` on
+`createTerrainPackageSemanticLayers` turns it off). It wraps the plain feature source, so road
+grading, tunnels, underpasses, building detail and the layers all read the same lines, and
+neighbouring tiles agree at their edges. Coarser tiles keep their own roads: merging 4 or 16 detail
+tiles' streets into one coarse tile overruns the per-tile budgets tuned for detail-sized tiles (a
+surface network finds at most 256 junctions a tile), and a coarse tile is drawn far enough off not
+to miss them. Host edits to the native feature tiles (`transformFeatures`) do not reach detail
+roads. `EarthView.locate` reads its street from these tiles, or from `streets` where no tile that
+fine is drawn (see [Where am I](earth-view.md#where-am-i-streets-and-places)).
+
+So a host whose basemap ships a zoom-15 detail tier should declare its pyramid down to that level
+(`tileMatrix.maxLevel`), even where its elevation ends sooner: elevation fills finer tiles from
+ancestors (below), and the view then draws zoom-15 tiles near the camera, each with its own
+buildings and streets. On a planet release with elevation to zoom 13 and detail at 15, declaring
+zoom 15 cut the time to a settled view of downtown Seattle from about 36 s to 22 s and worldgen CPU
+by about three quarters, with side streets and finer near detail; a pyramid stopping at zoom 13
+composes 16 detail tiles into each 3–5 km tile instead.
 
 The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightSource` walks to the
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into

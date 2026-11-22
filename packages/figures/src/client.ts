@@ -10,12 +10,13 @@ export type { CachedFigureGeometry } from './client/geometry-cache';
 export { FigureGeometryCache } from './client/geometry-cache';
 export type { FigureKindOptions } from './client/kind';
 export { figureKind } from './client/kind';
+export { createFigureMaterial } from './client/material';
 export type { FigureMesh } from './client/upload';
 export { applyPose, figureBodyToSkinnedMesh, figureGeometry } from './client/upload';
 // Pure, SES-free pose helpers for hosts that pose figures without the kernel figures systems
 // (a main-thread world, where importing the kernel half would load the script host).
 export type { FigureAnchor, FigureData, FigureMode, FigureStateData } from './kernel/components';
-export { resolveFigureDescriptor } from './kernel/descriptor';
+export { descriptorKey, resolveFigureDescriptor } from './kernel/descriptor';
 export { strideRateFor } from './kernel/gait';
 export type { FigurePose, PoseEvalOptions } from './kernel/pose';
 export { evaluatePose, worldToFigure } from './kernel/pose';

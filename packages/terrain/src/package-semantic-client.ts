@@ -39,6 +39,7 @@ import {
 } from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
 import { composeTerrainSemanticTile } from './semantic-packet';
+import { createRoadDetailTerrainSemanticSource } from './semantic-road-detail';
 import type { TerrainSemanticTile } from './semantic-types';
 import { withTerrainTunnels } from './tunnels';
 import { withTerrainUnderpasses } from './underpasses';
@@ -97,6 +98,14 @@ export interface CreateTerrainPackageSemanticLayersOptions
    * every tile's own, generalized footprints.
    */
   buildingDetail?: false | { maxDepth?: number };
+  /**
+   * Give tiles at the `features.buildingDetail` level, or finer, that level's roads (default true,
+   * with building detail on): every street a basemap keeps only at its last zoom, for drawing,
+   * grading, tunnels and every other reader alike. Coarser tiles keep their own roads. It only
+   * takes effect where the package's pyramid reaches the detail level. See
+   * semantic-road-detail.ts.
+   */
+  roadDetail?: boolean;
   /** Carry broad landcover and bounded building massing into distant terrain tiles.
    * Custom renderers must bound their work at these coarser levels. Default false. */
   distantCoverage?: boolean;
@@ -154,6 +163,7 @@ export async function createTerrainPackageSemanticLayers(
     roadGrading,
     overzoom = true,
     buildingDetail,
+    roadDetail = true,
     admission,
     distantCoverage = false,
     ...unadmitted
@@ -249,6 +259,24 @@ export async function createTerrainPackageSemanticLayers(
       featuresSource,
       semantics.features.maxLevel,
     );
+  }
+  // Tiles at the building-detail level or finer take their roads from it (the streets a basemap
+  // keeps only at its last zoom), for every reader of the plain road tiles alike: grading, tunnels,
+  // building detail and the layers. See semantic-road-detail.ts.
+  const detailStreets = semantics.buildingDetail?.streets;
+  if (
+    featuresSource !== undefined &&
+    semantics.buildingDetail !== undefined &&
+    detailStreets !== undefined &&
+    buildingDetail !== false &&
+    roadDetail &&
+    semantics.buildingDetail.level <= packageMaxLevel
+  ) {
+    const level = semantics.buildingDetail.level;
+    featuresSource = createRoadDetailTerrainSemanticSource(featuresSource, detailStreets, {
+      level,
+      tileSize: terrainPyramidTileSize(terrainPyramidDescriptorFromPackage(pkg), level),
+    });
   }
   // Share the detail reader across vegetation and buildings. Classification needs complete
   // homes for yard canopy and footprint exclusions, even if its coarse tile already has POIs.

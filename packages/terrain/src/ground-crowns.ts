@@ -57,14 +57,16 @@ export const TERRAIN_GROUND_CROWN_FULL: number =
     TERRAIN_GROUND_CROWNS.cell ** 2);
 
 /**
- * Lattice offsets, from a crown's cell, of the values that size it, place it in Z and decide
- * whether it shows (X uses the cell's own value). The shader reads exactly these cells.
+ * Lattice offsets, from a crown's cell, of the values that size it, place it in Z, decide
+ * whether it shows (X uses the cell's own value) and how far from the camera its plant stands
+ * (`reach`). The shader reads exactly these cells.
  */
 export const TERRAIN_GROUND_CROWN_OFFSETS: {
   readonly radius: readonly [number, number];
   readonly jitterZ: readonly [number, number];
   readonly shown: readonly [number, number];
-} = { radius: [57, 331], jitterZ: [211, 97], shown: [389, 23] };
+  readonly reach: readonly [number, number];
+} = { radius: [57, 331], jitterZ: [211, 97], shown: [389, 23], reach: [277, 163] };
 
 export interface TerrainGroundCrown {
   /** Center, in the ground's pattern frame (world X and Z meters). */
@@ -73,6 +75,12 @@ export interface TerrainGroundCrown {
   radius: number;
   /** The least ground brush (`landcoverDetail` x, 0..1) at which this crown is painted. */
   brush: number;
+  /**
+   * Where in a host's thinning band (0 at its near edge, 1 at its far one) this crown's plant
+   * stops standing and the ground paints the crown instead: see `setTerrainGroundCrownReach`.
+   * A lattice value (a byte over 255), so a host can carry it exactly in a byte.
+   */
+  reach: number;
 }
 
 /**
@@ -82,7 +90,7 @@ export interface TerrainGroundCrown {
  */
 export function terrainGroundCrown(i: number, j: number): TerrainGroundCrown {
   const { cell, radius: range, share } = TERRAIN_GROUND_CROWNS;
-  const { radius: sized, jitterZ, shown } = TERRAIN_GROUND_CROWN_OFFSETS;
+  const { radius: sized, jitterZ, shown, reach } = TERRAIN_GROUND_CROWN_OFFSETS;
   const radius = range[0] + (range[1] - range[0]) * terrainGroundCell(i + sized[0], j + sized[1]);
   const room = cell - 2 * radius;
   return {
@@ -90,5 +98,6 @@ export function terrainGroundCrown(i: number, j: number): TerrainGroundCrown {
     z: (j + 0.5) * cell + (terrainGroundCell(i + jitterZ[0], j + jitterZ[1]) - 0.5) * room,
     radius,
     brush: (terrainGroundCell(i + shown[0], j + shown[1]) * TERRAIN_GROUND_CROWN_FULL) / share,
+    reach: terrainGroundCell(i + reach[0], j + reach[1]),
   };
 }

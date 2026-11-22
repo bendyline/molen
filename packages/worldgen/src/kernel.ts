@@ -120,8 +120,18 @@ export {
   whenIssues,
   whenSchema,
 } from './kernel/rules';
-export type { ScatterBudget, ScatterGroundCrowns, ScatterSampleInput } from './kernel/scatter';
-export { samplePlacements, samplePlacementsSteps } from './kernel/scatter';
+export type {
+  ScatterBudget,
+  ScatterGroundCrowns,
+  ScatterSample,
+  ScatterSampleInput,
+} from './kernel/scatter';
+export {
+  samplePlacements,
+  samplePlacementsSteps,
+  sampleScatter,
+  sampleScatterSteps,
+} from './kernel/scatter';
 export { scatterSchema, validateScatter } from './kernel/scatter-schema';
 export type {
   ScatterAltitude,
@@ -165,6 +175,7 @@ export type {
   MeshBuffers,
   MeshGroup,
   ModelPlacementRequest,
+  NearPlacements,
   PlacementSet,
   RGB,
   ScatterExclusion,

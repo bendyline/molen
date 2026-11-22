@@ -108,6 +108,37 @@ export function appendTerrainSignalLenses(
   dark.computeBoundingSphere();
 }
 
+interface SignalLenses {
+  lit: THREE.InstancedMesh | undefined;
+  glow: THREE.InstancedMesh | undefined;
+}
+const LENSES = new WeakMap<THREE.Object3D, SignalLenses>();
+
+/** A surface object's lit lenses and their night glow, found once: they are made with it. */
+function signalLenses(object: THREE.Object3D): SignalLenses {
+  let lenses = LENSES.get(object);
+  if (lenses === undefined) {
+    lenses = {
+      lit: object.getObjectByName('surface:signal-lit') as THREE.InstancedMesh | undefined,
+      glow: object.getObjectByName('surface:night-signal-glow') as THREE.InstancedMesh | undefined,
+    };
+    // Not before they exist: a later call looks again.
+    if (lenses.lit !== undefined) LENSES.set(object, lenses);
+  }
+  return lenses;
+}
+
+/**
+ * Whether a surface object's signal lenses are drawn: it has signals, and they are within their
+ * draw distance (`TerrainSurfaceRenderer.updateDetail` hides them past it). A renderer advances
+ * only these; one coming back into range shows what it last showed until its next advance.
+ */
+export function terrainSignalLensesShown(object: THREE.Object3D): boolean {
+  const heads = object.userData.trafficSignalHeads as TerrainSignalHead[] | undefined;
+  if (!heads?.length) return false;
+  return signalLenses(object).lit?.visible !== false;
+}
+
 /** Advance a direct/static surface object with an absolute time in seconds. */
 export function updateTerrainSurfaceSignals(
   object: THREE.Object3D,
@@ -117,10 +148,8 @@ export function updateTerrainSurfaceSignals(
   if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');
   const heads = object.userData.trafficSignalHeads as TerrainSignalHead[] | undefined;
   if (!heads?.length) return;
-  const lit = object.getObjectByName('surface:signal-lit') as THREE.InstancedMesh;
-  const glow = object.getObjectByName('surface:night-signal-glow') as
-    | THREE.InstancedMesh
-    | undefined;
+  const { lit, glow } = signalLenses(object);
+  if (lit === undefined) return;
   const previous = STATES.get(object) ?? [];
   let changed = false;
   for (const [i, head] of heads.entries()) {

@@ -188,6 +188,10 @@ export {
   type TerrainSemanticTileLoader,
 } from './semantic-overzoom';
 export {
+  createRoadDetailTerrainSemanticSource,
+  type TerrainRoadDetailOptions,
+} from './semantic-road-detail';
+export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
   type TerrainAgricultureObservation,
@@ -195,6 +199,7 @@ export {
   type TerrainBuildingFeature,
   type TerrainCultivation,
   type TerrainLandcoverFeature,
+  type TerrainPlaceFeature,
   type TerrainPoiFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,

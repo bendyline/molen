@@ -164,6 +164,98 @@ copied to it, most of them near no bridge) and three's matrix walk of each in-vi
 content (about 4%). In memory, land cover carries crop-row attributes in a city with no fields,
 about 52 MiB of that view; dropping them needs a second material.
 
+### Kyoto and Osaka at High, 2026-11-21
+
+The Kyoto region opens at Osaka Itami, and at manual High it bogged down: slow frames standing
+still, and bare ground in flight. Measured on the NVIDIA laptop above (20 cores) in headless Edge
+on WebGL at 1440 x 900, with other sessions loading the machine throughout, so times are rough
+and counts are exact.
+
+What the start view is made of once it has settled (Itami from 1,400 m, High): 1,840 draws and
+16.6 million triangles a frame, 3.9 million of them the sun's shadow pass; 77,500 buildings and
+12,900 street lamps on show; land cover 6.8 million triangles, ground 4.1, buildings 3.9,
+sidewalks and curbs 3.6, roads 2.2, and plants 1.7 million in 1,665 instanced batches. A tile's
+buildings take a worker 1.2 to 1.5 s on average (about 0.5 s in the Seattle flights above), and
+the three generation workers ran 98% busy while every other pool idled.
+
+| The start view, held (daylight) | before | after |
+| --- | ---: | ---: |
+| First view finished | 120 s | 60 s |
+| Settled: frames a second | 16-19 | 29-33 |
+| Settled: main-thread work a frame | 43-58 ms | 32-34 ms |
+| Settled: GPU time a frame | 30 ms | 20 ms |
+| A tile's buildings, from request (mean / 95th) | 8.6 / 22 s | 4.4 / 11.7 s |
+| Frames over 100 ms in the first 130 s | 122 | 21 |
+
+| Itami to Osaka at 120 m/s and 300 m, at night | before | after |
+| --- | ---: | ---: |
+| Ground within 2 km finished | 9% | 91% |
+| 2 to 5 km finished | 0% | 37% |
+| Frames a second | 16.8 | 21.6 |
+| Triangles drawn | 2.9 M | 9.5 M |
+| Mean wait in the frame queue (95th) | 1.4 s (7.4 s) | 0.4 s (1.5 s) |
+| Roads and buildings layer, from request (95th) | 30 s (86 s) | 6.2 s (13.5 s) |
+| A cell of buildings assembled on the main thread | 20 ms | 3.4 ms |
+
+The night flight is the region's default for a visitor in the Americas: the explorer opens at
+noon in the visitor's own time zone, which is before dawn in Japan.
+
+What changed, with what each was measured to cost before:
+
+- The sun's focused shadow map stands between drawings while its texels are coarse, and all night
+  (`holdShadows`, `?shadowHold=0`). From 1,400 m it was drawn every frame over a 10 km square: a
+  frame's render took 48 ms of main thread with it and 24 ms without, GPU time 44 against 21 ms,
+  compared in two runs a few minutes apart. At night it was drawn for a sun below the horizon,
+  97 ms of each second of the flight.
+- Five generation workers from 20 logical cores instead of three: the first view finished in 64 s
+  instead of 93 s with nothing else changed, with fewer long frames.
+- Night street lights are chosen from the lamps within reach four times a second, not from every
+  lamp on show every frame (51 ms a second); traffic signal lenses advance ten times a second and
+  only where they are drawn (17 ms a second).
+- Lit window panes are grouped with integer arrays instead of a `Map` and a string per vertex
+  (44 ms a second of building assembly, day or night, and its garbage).
+- The terrain stream's visibility pass looks each displayed tile up once per pass instead of
+  once per selected tile (110 ms a second in the flight, 40 after, with three times the ground
+  on show).
+- A slot of an invented street frontage that a mapped building already stands on is told before
+  its street census (identical output on twelve Osaka and Kyoto tiles).
+
+Then, the same day, bridge and viaduct grading moved to the elevation worker
+(`TerrainPyramidHeightSource.gradeSeparations`). Osaka is full of both, and once the changes
+above let streaming keep up, working their heights out on the main thread took 139 ms of each
+second of the flight, in single steps of up to 260 ms. Now 8 ms a second is left there (cutting
+the roads to their tiles and packing them). The flight flown four times in turn with one build,
+the grading sent back to the main thread for the first of each pair:
+
+| | main thread | worker | main thread | worker |
+| --- | ---: | ---: | ---: | ---: |
+| Frames a second, in three stretches of flight | 23 / 21 / 20 | 25 / 24 / 24 | 22 / 23 / 21 | 24 / 23 / 24 |
+| Ground 2 to 5 km ahead finished | 46 / 48 / 32% | 51 / 54 / 39% | 36 / 32 / 12% | 50 / 58 / 39% |
+| Roads and buildings layer, from request | 5.8 s | 5.3 s | 5.8 s | 5.1 s |
+| Water layer, from request (waits for the ground) | 1.1 s | 1.1 s | 1.3 s | 1.1 s |
+
+The worker graded 270 to 300 tiles a flight at 70 ms each (210 ms at the 95th percentile),
+beside 260 tiles of earthworks at 60 to 70 ms: ground tiles came no later for it. On 54 tiles
+of Osaka and Kyoto interchanges the profiles are the same to the last bit as before, on the
+main thread and through the worker (276,223 samples), once the blend along tile edges sums the
+tiles around in a fixed order: it summed them in the order their gradings finished, which moved
+a height by a rounding error from one visit to the next.
+
+Measured and left, largest first:
+
+- Walking the scene is 12 ms of a settled 30 ms frame: three's `projectObject` (8.4 ms) and
+  `updateMatrixWorld` (3.4 ms) over every node in view, most of them static tile content.
+  Fewer nodes (merged batches) or tiles that skip the matrix walk until something in them moves.
+- WebGL draws with logarithmic depth where the canvas depth buffer is fixed point (an uncommitted
+  change the same week, for depth fighting on distant roads). On a 400 m view toward Osaka the
+  GPU's best frame was 32 and 46 ms with it and 27 and 28 ms with reversed depth, in two pairs of
+  runs: hidden fragments are no longer rejected before they are shaded.
+- Zoom-14 tiles here carry few mapped buildings (the basemap drops small ones), so street
+  frontage infill invents about 1,500 a tile, which the mapped ones replace on approach: a
+  second of worker time a tile.
+- Memory: the flight's peak on show was 3.3 GiB of buffers, and the settled start view holds a
+  2.1 GiB script heap.
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately

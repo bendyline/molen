@@ -1368,6 +1368,32 @@ describe('worldgen human-feature tile orchestration', () => {
     f.dispose();
   });
 
+  it('chooses the buildings round a walker on the ground again, without interiors, but not from above the roofs', async () => {
+    const f = fixture();
+    f.roads.resolve(f.group);
+    f.buildings.resolve(output());
+    await f.start();
+    expect(f.buildingGenerate).toHaveBeenCalledTimes(1);
+    let time = 1000;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => time);
+    try {
+      // The tile's ground is at 0 m. A camera 60 m up, drifting at 1 m/s, is not among the houses.
+      f.renderers.updateInteriors([100, 60, 100]);
+      time += 1000;
+      f.renderers.updateInteriors([101, 60, 100]);
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(f.buildingGenerate).toHaveBeenCalledTimes(1);
+      // A walker's eye is: the tile's buildings are generated again, queued round them.
+      time += 1000;
+      f.renderers.updateInteriors([102, 1.7, 100]);
+      await vi.waitFor(() => expect(f.buildingGenerate).toHaveBeenCalledTimes(2));
+      expect(f.buildingGenerate.mock.calls[1]?.[0]).toMatchObject({ focus: [102, 100] });
+    } finally {
+      clock.mockRestore();
+      f.dispose();
+    }
+  });
+
   it('starts building generation while the independent road job is still pending', async () => {
     const f = fixture();
     const done = vi.fn();

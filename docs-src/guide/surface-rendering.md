@@ -566,6 +566,16 @@ the road grading first; `composeEarthGroundGrading(roads, airports)` from
 `gradeRoadEarthworks`, `roadProfileHeight` and `gradeTransportSeparations` (kernel), which need
 neither three.js nor a tile stream.
 
+Both passes do their heavy part in the elevation worker when the stream has one: the ground by
+the source's `gradeEarthworks`, a tile's bridges by its `gradeSeparations`. The main thread
+gathers the roads of the tile and the eight around it, cuts them to their tiles and sends the ways
+that take part as arrays of points; the worker reads the reference ground from its own decoded
+tiles, works out the heights, and sends back each profile and every graded way. The blend along
+tile edges stays on the main thread. The stream hands its source to the grading with the first
+tile's ground (`transformHeightfield`), so a host that gives `roadGrading.heights` a stand-in
+which only loads, as above before the stream exists, needs nothing more. Without a worker, or
+where it fails, the same grading runs on the main thread in slices, to the same result.
+
 Without the option, each tile's bridges are still graded from that tile alone, with the same
 clearances. A bridge cut by a tile edge then cannot see what it crosses in the next tile and
 assumes a free clearance at the cut.

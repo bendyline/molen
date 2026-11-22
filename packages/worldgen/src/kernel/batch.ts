@@ -14,7 +14,7 @@ import { MeshBufferBuilder } from './mesh-buffers';
 import type { PropPlacement } from './props';
 import { buildingMetrics } from './recipe';
 import { type StyleRule, selectStyle } from './rules';
-import { type ScatterSampleInput, samplePlacementsSteps } from './scatter';
+import { type ScatterSampleInput, sampleScatterSteps } from './scatter';
 import { hashString } from './seed';
 import {
   buildSignMesh,
@@ -32,6 +32,7 @@ import {
   type HeightSampler,
   type MeshBuffers,
   type ModelPlacementRequest,
+  type NearPlacements,
   PLACEMENT_STRIDE,
   type PlacementSet,
   type ScatterRequest,
@@ -84,6 +85,11 @@ export interface WorldgenBatchInput {
 export interface WorldgenBatchOutput {
   buildings?: MeshBuffers;
   placements: PlacementSet[];
+  /**
+   * The plants `crowns` rules stand on the ground's painted crowns, every one of them, for a host
+   * to draw around its camera (`createNearPlacements`); absent when none were placed.
+   */
+  near?: NearPlacements;
   /** Named storefront signs as one mesh; drawn with the glyph atlas's texture. */
   signs?: SignMeshBuffers;
   records: BuildingRecord[];
@@ -105,18 +111,30 @@ export interface QueuedBuilding {
 /** Named signs per batch when the budgets do not say: more than a dense downtown block holds. */
 const MAX_SIGNS = 1000;
 
+/**
+ * Share of `maxBuildingVertices` that a batch with a `focus` keeps from the buildings outside it
+ * while every building's walls, roof and simplified facade are reserved, so the focused ones
+ * still have room for their detail. Without it a batch of thousands of buildings (one 3 km
+ * square of a Spanish town held 11,558) spent the whole budget on everyone's coarsest tier, and
+ * the houses beside a walker were as bare as those a kilometre off. Buildings outside the focus
+ * that no longer fit their coarsest tier become stand-ins; what the focused buildings leave of
+ * the share goes to the rest's detail as before.
+ */
+const FOCUS_DETAIL_SHARE = 0.5;
+
 export const BOX_PLACEMENT_SET_ID: string = 'buildings:box';
 /** Stand-ins for pitched buildings: the `builtin:box.gable` model. */
 export const GABLE_BOX_PLACEMENT_SET_ID: string = 'buildings:box.gable';
 
 /**
  * Hash every typed array of an output (positions, normals, uvs, colors, indices, placements,
- * and named signs when there are any).
+ * and named signs and near placements when there are any).
  */
 export function hashWorldgenOutput(
   buildings: MeshBuffers | undefined,
   placements: readonly PlacementSet[],
   signs?: SignMeshBuffers,
+  near?: NearPlacements,
 ): string {
   const parts: Uint8Array[] = [];
   if (buildings !== undefined) {
@@ -144,6 +162,15 @@ export function hashWorldgenOutput(
       signs.ink,
       signs.indices,
     ])
+      parts.push(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
+  }
+  if (near !== undefined) {
+    parts.push(
+      new TextEncoder().encode(
+        `near|${near.count}|${near.cell}|${near.originX}|${near.originZ}|${near.columns}|${near.rows}|${near.models.join(',')}`,
+      ),
+    );
+    for (const array of [near.data, near.model, near.start, ...(near.reach ? [near.reach] : [])])
       parts.push(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
   }
   let total = 0;
@@ -316,12 +343,18 @@ export function* generateWorldgenBatchSteps(
       else remainingMaterials.set(key, count);
     }
   };
-  const fitsWith = (add: MeshBufferBuilder, remove?: MeshBufferBuilder): boolean => {
-    if (
-      reservedVertices - (remove?.vertexCount() ?? 0) + add.vertexCount() >
-      budgets.maxBuildingVertices
-    )
-      return false;
+  // Kept from the buildings outside a focus while baselines and simplified facades are reserved.
+  const focusReserve = queue.some((item) => item.near !== undefined)
+    ? Math.floor(budgets.maxBuildingVertices * FOCUS_DETAIL_SHARE)
+    : 0;
+  const vertexLimit = (item: QueuedBuilding): number =>
+    budgets.maxBuildingVertices - (item.near === undefined ? focusReserve : 0);
+  const fitsWith = (
+    add: MeshBufferBuilder,
+    remove?: MeshBufferBuilder,
+    limit = budgets.maxBuildingVertices,
+  ): boolean => {
+    if (reservedVertices - (remove?.vertexCount() ?? 0) + add.vertexCount() > limit) return false;
     const keys = new Set(remainingMaterials.keys());
     if (remove !== undefined)
       for (const key of remove.materialKeys())
@@ -354,7 +387,7 @@ export function* generateWorldgenBatchSteps(
       );
       if (result.skipped !== undefined) {
         mesh = new MeshBufferBuilder();
-      } else if (result.box === undefined && !fitsWith(mesh)) {
+      } else if (result.box === undefined && !fitsWith(mesh, undefined, vertexLimit(item))) {
         mesh = new MeshBufferBuilder();
         result = generateBuilding(
           {
@@ -384,7 +417,7 @@ export function* generateWorldgenBatchSteps(
       (simplifiedTiers[index] as number) > baseTier &&
       baseline.result.box === undefined &&
       baseline.result.skipped === undefined &&
-      reservedVertices < budgets.maxBuildingVertices
+      reservedVertices < vertexLimit(item)
     ) {
       const mesh = new MeshBufferBuilder();
       const result = generateBuilding(
@@ -403,7 +436,7 @@ export function* generateWorldgenBatchSteps(
       if (
         result.skipped === undefined &&
         result.box === undefined &&
-        fitsWith(mesh, baseline.mesh)
+        fitsWith(mesh, baseline.mesh, vertexLimit(item))
       ) {
         reserve(baseline.mesh, -1);
         reserve(mesh, 1);
@@ -623,8 +656,9 @@ export function* generateWorldgenBatchSteps(
   const scatterDoc =
     input.scatterEnvironment?.doc ??
     (scatterId !== undefined ? pack.scatters[scatterId] : undefined);
+  let near: NearPlacements | undefined;
   if (input.scatter !== undefined && scatterDoc !== undefined) {
-    const scattered = yield* samplePlacementsSteps({
+    const scattered = yield* sampleScatterSteps({
       request: input.scatter,
       doc: scatterDoc,
       pack: input.scatterEnvironment?.pack ?? identity,
@@ -653,10 +687,14 @@ export function* generateWorldgenBatchSteps(
         maxAgricultureModels: budgets.maxAgricultureModels ?? 0,
         maxGardenInstances: budgets.maxGardenInstances ?? 0,
         maxGardenModels: budgets.maxGardenModels ?? 0,
+        ...(budgets.maxNearInstances !== undefined
+          ? { maxNearInstances: budgets.maxNearInstances }
+          : {}),
       },
       tier: baseTier,
     });
-    placements.push(...scattered);
+    placements.push(...scattered.placements);
+    near = scattered.near;
   }
   if (buildings !== undefined) {
     stats.vertices = buildings.vertexCount;
@@ -668,13 +706,22 @@ export function* generateWorldgenBatchSteps(
     stats.placementsByModel[set.modelRef] =
       (stats.placementsByModel[set.modelRef] ?? 0) + set.count;
   }
+  if (near !== undefined) {
+    stats.instanceBytes +=
+      near.data.byteLength +
+      near.model.byteLength +
+      near.start.byteLength +
+      (near.reach?.byteLength ?? 0);
+    stats.nearPlacements = near.count;
+  }
   return {
     ...(buildings !== undefined ? { buildings } : {}),
     placements,
+    ...(near !== undefined ? { near } : {}),
     ...(signs !== undefined ? { signs } : {}),
     records,
     stats,
-    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements, signs),
+    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements, signs, near),
   };
 }
 
@@ -704,6 +751,14 @@ export function worldgenTransferables(output: WorldgenBatchOutput): ArrayBuffer[
   for (const set of output.placements) {
     if (set.data.buffer instanceof ArrayBuffer) buffers.push(set.data.buffer);
   }
+  if (output.near !== undefined)
+    for (const array of [
+      output.near.data,
+      output.near.model,
+      output.near.start,
+      ...(output.near.reach ? [output.near.reach] : []),
+    ])
+      if (array.buffer instanceof ArrayBuffer) buffers.push(array.buffer);
   buffers.push(...signMeshTransferables(output.signs));
   return buffers;
 }

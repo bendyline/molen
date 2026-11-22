@@ -94,8 +94,12 @@ function handoverError(level: number, finer: PreparedModel, previous: number): n
  * on GPUs that defer shading (Apple's among them), so a distant forest drawn with the card material shaded every layer of
  * crowns behind the first: on an Apple M2 that was half of a residential view's frame time.
  * The twin keeps the shader hooks and shares one program across batches.
+ * @internal Shared with the near placements; not part of the package's surface.
  */
-function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry): THREE.Material {
+export function levelMaterial(
+  material: THREE.Material,
+  geometry: THREE.BufferGeometry,
+): THREE.Material {
   if (!(material.alphaTest > 0 || material.alphaToCoverage) || !withoutCards(geometry))
     return material;
   let twin = opaqueTwins.get(material);

@@ -3,6 +3,27 @@ import { expect, it } from 'vitest';
 import { worldgenTileBudgetForQuality } from '../src/kernel/tile-budgets';
 import { loadDefaultPack } from './helpers/pack';
 
+/** A `columns` by `columns` grid of equal two-storey houses, 20 m apart. */
+const suburb = (columns = 30) => {
+  const centre = (i: number): Vec2 => [(i % columns) * 20 + 6, Math.floor(i / columns) * 20 + 5];
+  const buildings = Array.from({ length: columns * columns }, (_, i) => {
+    const [x, z] = centre(i);
+    return {
+      identity: `focus-budget:${i}`,
+      labels: ['house'],
+      levels: 2,
+      style: 'molen.worldgen.pnw.house',
+      outline: [
+        [x - 6, z - 5],
+        [x + 6, z - 5],
+        [x + 6, z + 5],
+        [x - 6, z + 5],
+      ] as Vec2[],
+    };
+  });
+  return { centre, buildings };
+};
+
 it('keeps a dense neighborhood textured and enterable within the High tile budget', async () => {
   const pack = await loadDefaultPack();
   const buildings = Array.from({ length: 240 }, (_, i) => {
@@ -34,22 +55,7 @@ it('keeps a dense neighborhood textured and enterable within the High tile budge
 
 it('spends a crowded tile budget on the houses round a viewer on the ground', async () => {
   const pack = await loadDefaultPack();
-  const centre = (i: number): Vec2 => [(i % 30) * 20 + 6, Math.floor(i / 30) * 20 + 5];
-  const buildings = Array.from({ length: 900 }, (_, i) => {
-    const [x, z] = centre(i);
-    return {
-      identity: `focus-budget:${i}`,
-      labels: ['house'],
-      levels: 2,
-      style: 'molen.worldgen.pnw.house',
-      outline: [
-        [x - 6, z - 5],
-        [x + 6, z - 5],
-        [x + 6, z + 5],
-        [x - 6, z + 5],
-      ] as Vec2[],
-    };
-  });
+  const { centre, buildings } = suburb();
   // What a WebGL host gives a finest tile: far fewer vertices than 900 detailed houses need.
   const budgets = worldgenTileBudgetForQuality('high', 0, { compactBuildings: true });
   const enterable = (focus?: { x: number; z: number; radius: number }): Set<number> => {
@@ -93,3 +99,50 @@ it('spends a crowded tile budget on the houses round a viewer on the ground', as
   expect(nearest.filter((i) => unfocused.has(i)).length).toBeLessThan(nearest.length / 2);
   expect(enterable(viewer)).toEqual(focused);
 }, 60_000); // Generates 900 houses three times under full-suite load.
+
+it('keeps detail round a viewer when the coarsest tiers alone fill the tile budget', async () => {
+  const pack = await loadDefaultPack();
+  // A finest tile can hold more buildings than its budget has walls and roofs for: a 3 km tile
+  // of a Spanish town held 11,558. Here 2,500 houses share what 2,000 coarsest tiers fill.
+  const { centre, buildings } = suburb(50);
+  const budgets = {
+    ...worldgenTileBudgetForQuality('high', 0, { compactBuildings: true }),
+    maxBuildingVertices: 60_000,
+  };
+  const viewer = { x: 506, z: 505, radius: 140 };
+  const distance = (record: { identity: string }): number => {
+    const [x, z] = centre(Number(record.identity.split(':')[1]));
+    return Math.hypot(x - viewer.x, z - viewer.z);
+  };
+  const generate = (focus?: typeof viewer) => {
+    const result = generateWorldgenBatch({
+      buildings,
+      pack,
+      interiors: true,
+      budgets,
+      ...(focus ? { focus } : {}),
+    });
+    expect(result.stats.vertices).toBeLessThanOrEqual(budgets.maxBuildingVertices);
+    return result;
+  };
+  const near = (result: ReturnType<typeof generate>) =>
+    result.records.filter((record) => distance(record) <= 60);
+  const unfocused = generate();
+  // Everyone's walls and roofs spent the budget: the houses beside the viewer have no windows,
+  // and none has a door (observed: 500 stand-ins, 29 houses within 60 m all at tier 2 or boxes).
+  expect(unfocused.stats.buildingsBoxed).toBeGreaterThan(0);
+  expect(unfocused.records.filter((record) => record.interior)).toHaveLength(0);
+  expect(near(unfocused).every((record) => record.tier >= 2)).toBe(true);
+  const focused = generate(viewer);
+  // Half the budget waited for the viewer's surroundings (observed: the 17 nearest open, to 45 m;
+  // every house within 60 m at tier 0 or 1; no stand-in within 140 m).
+  const open = focused.records.filter((record) => record.interior);
+  expect(open.length).toBeGreaterThan(10);
+  expect(Math.max(...open.map(distance))).toBeLessThan(60);
+  expect(near(focused).length).toBeGreaterThan(20);
+  expect(near(focused).every((record) => record.tier <= 1)).toBe(true);
+  expect(
+    focused.records.filter((record) => record.roof === 'box' && distance(record) <= 140),
+  ).toHaveLength(0);
+  expect(generate(viewer).hash).toBe(focused.hash);
+}, 60_000); // Generates 2,500 houses three times under full-suite load.

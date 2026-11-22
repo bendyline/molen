@@ -150,4 +150,15 @@ describe('degenerate semantic rings', () => {
     });
     expect(() => assertTerrainSemanticTile(tiny)).not.toThrow();
   });
+  it('checks place labels: a kind, a name and a point, and a population that is a count', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.places = [{ class: 'locality', subclass: 'town', point: [0.5, 0.5], name: 'Zillah' }];
+    expect(() => assertTerrainSemanticTile(tile)).not.toThrow();
+    const unnamed = createEmptyTerrainSemanticTile();
+    unnamed.places = [{ class: 'locality', point: [0.5, 0.5], name: ' ' }];
+    expect(() => assertTerrainSemanticTile(unnamed)).toThrow('/places/0/name');
+    const negative = createEmptyTerrainSemanticTile();
+    negative.places = [{ class: 'locality', point: [0.5, 0.5], name: 'Buena', population: -1 }];
+    expect(() => assertTerrainSemanticTile(negative)).toThrow('/places/0/population');
+  });
 });

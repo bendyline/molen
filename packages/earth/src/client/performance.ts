@@ -405,7 +405,62 @@ export function earthPixelRatio(
   );
 }
 
-/** The performance level a fixed quality preset corresponds to. */
-export function earthQualityLevel(quality: TerrainQualityPreset): number {
-  return quality === 'economy' ? 1 : quality === 'high' ? 5 : 3;
+/**
+ * A fixed Earth view quality (`EarthViewOptions.quality` other than `'auto'`): one of the terrain
+ * presets, or `'ultra'`, the high preset drawn sharper (see `earthFixedPixelRatio` and
+ * `earthFixedObjectPixelError`).
+ */
+export type EarthFixedQuality = TerrainQualityPreset | 'ultra';
+
+/** The performance level a fixed quality corresponds to (`'ultra'`, like `'high'`, is the top). */
+export function earthQualityLevel(quality: EarthFixedQuality): number {
+  return quality === 'economy' ? 1 : quality === 'high' || quality === 'ultra' ? 5 : 3;
+}
+
+/** The terrain preset a fixed quality streams and builds with: `'ultra'` builds as `'high'`. */
+export function earthFixedPreset(quality: EarthFixedQuality): TerrainQualityPreset {
+  return quality === 'ultra' ? 'high' : quality;
+}
+
+/** Screen error, px, a model may show before a finer level loads at the presets' fixed quality. */
+const FIXED_OBJECT_PIXEL_ERROR = 2;
+
+/**
+ * Screen error, px, a fixed quality draws models with before loading a finer level: 2 at the
+ * terrain presets, and the Ultra tier's finer error at `'ultra'`.
+ */
+export function earthFixedObjectPixelError(quality: EarthFixedQuality): number {
+  return quality === 'ultra' ? earthPerformanceTier(5).objectPixelError : FIXED_OBJECT_PIXEL_ERROR;
+}
+
+/**
+ * Pixel ratio for a fixed quality, before the view's `maxPixelRatio`. The terrain presets draw at
+ * the device's ratio. `'ultra'` supersamples by the Ultra tier's resolution scale (1.25×) as far as
+ * the tier's pixel budget allows, and never draws below the device's ratio: a 1080p screen renders
+ * at 1.25×, a 4K screen at its own ratio. (The adaptive tiers' pixel cap, `earthPixelRatio`, goes
+ * below the device's ratio on large high-density screens, so holding the Ultra tier would draw a
+ * 4K screen blurrier than the high preset.)
+ */
+export function earthFixedPixelRatio(
+  quality: EarthFixedQuality,
+  width: number,
+  height: number,
+  deviceRatio: number,
+): number {
+  if (quality !== 'ultra') return deviceRatio;
+  if (
+    !Number.isFinite(width) ||
+    width < 0 ||
+    !Number.isFinite(height) ||
+    height < 0 ||
+    !Number.isFinite(deviceRatio) ||
+    deviceRatio <= 0
+  ) {
+    throw new RangeError(
+      'Viewport dimensions must be finite and nonnegative, and pixel ratio positive',
+    );
+  }
+  const tier = earthPerformanceTier(5);
+  const budget = Math.sqrt(tier.maxPixels / Math.max(1, width * height));
+  return Math.max(deviceRatio, Math.min(deviceRatio * tier.resolutionScale, budget));
 }

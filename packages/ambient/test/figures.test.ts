@@ -40,6 +40,13 @@ function draw(figures: AmbientFigures, walkers: WalkerView[]): THREE.SkinnedMesh
   return found;
 }
 
+/** Whether a body is still in the figures group (a disposed body is detached from it). */
+function inGroup(figures: AmbientFigures, object: THREE.Object3D): boolean {
+  for (let o: THREE.Object3D | null = object; o !== null; o = o.parent)
+    if (o === figures.group) return true;
+  return false;
+}
+
 function joint(mesh: THREE.SkinnedMesh, name: string): THREE.Vector3 {
   const bone = mesh.skeleton.bones[RIG.index[name] as number] as THREE.Bone;
   return bone.getWorldPosition(new THREE.Vector3());
@@ -108,6 +115,73 @@ describe('AmbientFigures for host characters', () => {
     expect(far.count).toBe(1);
     far.update([walker({ id: 'a', mode: 'sit', anchor: 'eye' })], CAMERA, 31, 30);
     expect(far.count).toBe(0);
+  });
+
+  it('rebuilds a visible walker whose figure changes (a host changing a look)', () => {
+    const figures = new AmbientFigures();
+    const before = draw(figures, [walker()]);
+    if (before === undefined) throw new Error('no figure drawn');
+    const restyled: FigureData = { ...FIGURE, features: { hair: 'bun', legs: 'skirt' } };
+    const after = draw(figures, [walker({ figure: restyled })]);
+    if (after === undefined) throw new Error('no figure drawn');
+    expect(after).not.toBe(before);
+    expect(after.geometry).not.toBe(before.geometry);
+    expect(figures.count).toBe(1);
+    // The old body is disposed, not left in the group or the pool.
+    expect(inGroup(figures, before)).toBe(false);
+    let bodies = 0;
+    figures.group.traverse((object) => {
+      if ((object as THREE.SkinnedMesh).isSkinnedMesh) bodies++;
+    });
+    expect(bodies).toBe(1);
+  });
+
+  it('keeps the same body for an equal figure under a new object', () => {
+    const figures = new AmbientFigures();
+    const before = draw(figures, [walker()]);
+    const after = draw(figures, [walker({ figure: { ...FIGURE } })]);
+    expect(after).toBe(before);
+  });
+
+  it('shows the old body until the new one is ready, so a change never blinks', async () => {
+    const pending: (() => void)[] = [];
+    const figures = new AmbientFigures(
+      () =>
+        new Promise<void>((resolve) => {
+          pending.push(resolve);
+        }),
+    );
+    const settle = async (): Promise<void> => {
+      for (const resolve of pending.splice(0)) resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+    };
+    figures.update([walker()], CAMERA, 30, 30);
+    await settle();
+    const first = draw(figures, [walker()]);
+    if (first === undefined) throw new Error('no figure drawn');
+    // A new look: its shaders are still building, so the old body is what shows.
+    const restyled: FigureData = { ...FIGURE, palette: { top: '#aa2222' } };
+    expect(draw(figures, [walker({ figure: restyled })])).toBe(first);
+    await settle();
+    const second = draw(figures, [walker({ figure: restyled })]);
+    if (second === undefined) throw new Error('no figure drawn');
+    expect(second).not.toBe(first);
+    expect(inGroup(figures, first)).toBe(false);
+  });
+
+  it('drops the rig of a descriptor nobody draws any more', () => {
+    const cache = new FigureGeometryCache();
+    const a = resolveFigureDescriptor(FIGURE);
+    const b = resolveFigureDescriptor({ ...FIGURE, height: 1.6 });
+    const keys = [cache.acquire(a, 0).key, cache.acquire(a, 1).key, cache.acquire(b, 0).key];
+    expect(cache.rigCount).toBe(2);
+    cache.release(keys[0] as string);
+    expect(cache.rigCount).toBe(2);
+    cache.release(keys[1] as string);
+    expect(cache.rigCount).toBe(1);
+    cache.release(keys[2] as string);
+    expect(cache.rigCount).toBe(0);
   });
 
   it('turns the head toward a look target on either side', () => {

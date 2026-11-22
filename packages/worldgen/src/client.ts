@@ -39,6 +39,14 @@ export {
   TEXTURED_SURFACE_MEAN,
 } from './client/materials';
 export {
+  createNearPlacements,
+  isNearPlacementObject,
+  type NearPlacementModel,
+  NearPlacementObject,
+  type NearPlacementOptions,
+  nearPlacementReach,
+} from './client/near-placements';
+export {
   type ModelNightLight,
   NightWindowLighting,
   type NightWindowRange,

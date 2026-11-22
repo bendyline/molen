@@ -7,6 +7,7 @@
 import {
   landcoverAppearance,
   polygonArea,
+  polygonBounds,
   roadWidth,
   type TerrainBuildingFeature,
   type TerrainSemanticPolygon,
@@ -14,7 +15,9 @@ import {
   waterwayWidth,
 } from '@bendyline/molen-terrain/kernel';
 import {
+  type ArchStyleDoc,
   analyzeFootprint,
+  type BuildingMetrics,
   type BuildingRequest,
   buildingMetrics,
   type HeightSampler,
@@ -34,6 +37,7 @@ import { identityFor } from './building-identity';
 import {
   type BuildingInfillOptions,
   type InferredBuildingFeature,
+  type InfillStyleAt,
   inferBuildingFootprints,
 } from './building-infill';
 import { type BuildingPiece, buildingPieces } from './building-parts';
@@ -65,7 +69,7 @@ import { applyParkingStructure, associateParkingStructures } from './parking-str
 import { associatePartyWalls, isAttached, type PartyWalls } from './party-walls';
 import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
-import type { RegionAtlasDoc } from './region-atlas-types';
+import type { AtlasRegion, RegionAtlasDoc } from './region-atlas-types';
 import type { RegionalEnvironment } from './regional-environment';
 import { residentialTreePolygons } from './residential-trees';
 import {
@@ -320,6 +324,89 @@ function regionalGuessStoreys(options: SemanticAdapterOptions, x: number, z: num
   return guess !== undefined && guess >= 1 ? Math.round(guess) : DEFAULT_GUESS_STOREYS;
 }
 
+/**
+ * About how many mapped footprints a tile's batch holds: those whose bounds are centered in it.
+ * Tile-edge ownership and building parts make the real count differ a little; it only says
+ * whether the map leaves the batch any room for invented buildings.
+ */
+function ownedFootprints(tile: TerrainSemanticTile): number {
+  let count = 0;
+  for (const feature of tile.buildings)
+    for (const polygon of feature.polygons) {
+      const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+      const u = (minU + maxU) / 2,
+        v = (minV + maxV) / 2;
+      if (u >= 0 && u < 1 && v >= 0 && v < 1) count++;
+    }
+  return count;
+}
+
+/** The outline an invented lot's style is chosen for: a 14 x 16 m house. */
+const INFILL_STYLE_OUTLINE: Vec2[] = [
+  [-7, 0],
+  [7, 0],
+  [7, 16],
+  [-7, 16],
+];
+
+/**
+ * The style of an invented lot, as a mapped building of its use would be styled where it stands.
+ * The infill asks once per lot and once per block for every frontage slot, tens of thousands of
+ * times on a zoom-13 tile, but the answer only depends on the region, the regional profile's
+ * rules, the use and the block: one tile remembers it by those, and measures the fixed outline
+ * once per use (measuring it was most of each answer).
+ */
+function infillStyleLookup(geom: TileGeometry, options: SemanticAdapterOptions): InfillStyleAt {
+  const metrics = new Map<string, BuildingMetrics>();
+  const chosen = new Map<
+    AtlasRegion | undefined,
+    Map<readonly StyleRule[] | undefined, Map<string, ArchStyleDoc | undefined>>
+  >();
+  return (point, use, identity) => {
+    const world: Vec2 = [geom.originX + point[0], geom.originZ + point[1]];
+    const region = options.regions?.resolve(...world);
+    const regional = options.environment?.at(...world).buildings;
+    let byRules = chosen.get(region);
+    if (byRules === undefined) {
+      byRules = new Map();
+      chosen.set(region, byRules);
+    }
+    let styles = byRules.get(regional);
+    if (styles === undefined) {
+      styles = new Map();
+      byRules.set(regional, styles);
+    }
+    const key = `${use}|${identity}`;
+    if (styles.has(key)) return styles.get(key);
+    let measured = metrics.get(use);
+    if (measured === undefined) {
+      const request: BuildingRequest = {
+        identity: '',
+        labels: [use],
+        context: use === 'commercial' ? 'commercial' : 'residential',
+        outline: INFILL_STYLE_OUTLINE,
+        levels: 1,
+      };
+      measured = buildingMetrics(request, analyzeFootprint(request.outline));
+      metrics.set(use, measured);
+    }
+    const rules = [
+      ...(regional ?? []),
+      ...(options.atlas ? regionStyleRules(options.atlas, region) : []),
+      ...options.pack.root.defaults.rules,
+    ];
+    const selected = selectStyle(
+      rules,
+      measured,
+      options.pack.root.defaults.style,
+      `f:${identity}`,
+    );
+    const style = options.pack.archstyles[selected.style];
+    styles.set(key, style);
+    return style;
+  };
+}
+
 /** Turn a semantic tile into a batch input (without ground; the caller supplies the sampler). */
 export function semanticTileToBatch(
   tile: TerrainSemanticTile,
@@ -330,41 +417,23 @@ export function semanticTileToBatch(
   const agriculture = prepareAgricultureTile(tile, geom, options.environment);
   tile = prepareLandSites(agriculture.tile, geom);
   let inferred: InferredBuildingFeature[] = [];
-  if (options.buildingInfill) {
+  // The batch draws at most `maxBuildings`: every mapped building, then invented ones largest
+  // first. Where the map alone fills that (a zoom-13 downtown tile holds 10,000 footprints
+  // against 4,000), a request that draws buildings invents none: laying them out cost 1.7 s of
+  // the tile's 4.4 s, for nothing drawn. A scatter-only request still invents every lot, so its
+  // tree exclusions hold whatever the building request draws.
+  const full =
+    options.features?.buildings !== false &&
+    options.budgets?.maxBuildings !== undefined &&
+    ownedFootprints(tile) >= options.budgets.maxBuildings;
+  if (options.buildingInfill && !full) {
     inferred = inferBuildingFootprints(
       tile,
       geom,
       options.buildingInfill,
       ground,
       options.buildingInfillExclusions,
-      (point, use, identity) => {
-        const world: Vec2 = [geom.originX + point[0], geom.originZ + point[1]];
-        const region = options.regions?.resolve(...world);
-        const request: BuildingRequest = {
-          identity: `f:${identity}`,
-          labels: [use],
-          context: use === 'commercial' ? 'commercial' : 'residential',
-          outline: [
-            [-7, 0],
-            [7, 0],
-            [7, 16],
-            [-7, 16],
-          ],
-          levels: 1,
-        };
-        const rules = [
-          ...(options.environment?.at(...world).buildings ?? []),
-          ...(options.atlas ? regionStyleRules(options.atlas, region) : []),
-          ...options.pack.root.defaults.rules,
-        ];
-        const selected = selectStyle(
-          rules,
-          buildingMetrics(request, analyzeFootprint(request.outline)),
-          options.pack.root.defaults.style,
-          request.identity,
-        );
-        return options.pack.archstyles[selected.style];
-      },
+      infillStyleLookup(geom, options),
     );
     tile = { ...tile, buildings: [...tile.buildings, ...inferred] };
   }

@@ -128,10 +128,13 @@ slowly while a town streamed in; two land cover and two surface workers beside g
 slowed some frames threefold over a dense city, while one of each streamed a low flight just as
 fast and loaded the first view about a fifth later. A workstation has cores to spare, and there
 one land cover worker is the bottleneck: from 16 logical cores the pools are three generation and
-two of each surface kind, from 24 four and three. On 32 cores that cut a tile's land cover from
-1.7 s to 0.5 s on average, finished the first view in 13 s instead of 23 s, and missed fewer
-frames. New kinds of ambient proxy batch stay hidden until
-their shaders are built, as figures and aircraft do.
+two of each surface kind, from 24 three of each surface kind. On 32 cores that cut a tile's land
+cover from 1.7 s to 0.5 s on average, finished the first view in 13 s instead of 23 s, and missed
+fewer frames. From 20 logical cores generation has five workers: a dense city's tiles take far
+longer to generate than a suburb's (1.2-1.5 s of a worker each over Osaka at High, against 0.5 s
+over Seattle), three workers ran flat out there with half of a 20-core laptop's cores free, and
+five finished the first view in 64 s instead of 93 s with fewer long frames. New kinds of ambient
+proxy batch stay hidden until their shaders are built, as figures and aircraft do.
 
 A tile observer (`observeSemanticTiles`) is handed each decoded tile, and what it keeps stays on
 the main heap that every garbage collection walks, in pauses that land on frames. Keep the fields
@@ -162,6 +165,20 @@ measured it again. The terrain stream does all of this for its tiles. Over Seatt
 half of the tiles on show lay outside the view of a low flight, and leaving them out took the
 main thread's time in a frame's render from 17-22 ms to 12-13 ms with the same draws.
 `cullRenderGroups: false` turns it off (`?cull=0` in World Explorer).
+
+The sun's focused shadow map is a second walk and a second set of draws, and from high up or at
+night it need not be made every frame: see [sky](sky.md) for when it stands instead
+(`holdShadows`, `?shadowHold=0` in World Explorer). Held over Osaka from 1,400 m at High, a
+frame's render took 24 ms of main thread instead of 48 ms and about half the GPU time, the map
+drawn in one frame of eight.
+
+Work that follows a city's size rather than the view is kept off the frame. At night the Earth
+hosts' street lights (sixteen real lights on the nearest lamps) are chosen four times a second
+and whenever the camera has moved 8 m, from the tiles within reach, not from every lamp on show
+every frame: `TerrainSurfaceRenderer.visitStreetLights` takes a second callback that refuses a
+tile's lamps whole. Traffic signal lenses are advanced ten times a second of signal time, and
+only on tiles whose lenses are within their draw distance (`updateSignals`). Over Osaka at night
+those two were 51 and 17 ms of each second of a flight.
 
 An instanced detail switch (the level-of-detail batch for plants and props) chooses its level
 again only once the camera could have reached a handover: each choice keeps how far the
@@ -277,7 +294,7 @@ const terrain = await createTerrainPackagePyramidStream(packageDescriptor, {
   prepareObject: (object, signal, parent) =>
     viewer.renderer.prepareObject(object, signal, parent),
   elevationWorker: new Worker(new URL('./elevation-worker.ts', import.meta.url), { type: 'module' }),
-  onElevationTiming: sample => { /* decode, resample, mesh; milliseconds */ },
+  onElevationTiming: sample => { /* decode, resample, mesh, earthworks, separations, cut; milliseconds */ },
 });
 ```
 
@@ -293,9 +310,22 @@ that reach it; the worker reads the reference ground from its own decoded tiles,
 meshes the result in the same trip, about 30 ms a town tile. On the main thread that was 2 ms
 slices between frames, outside the frame queue, and 4 to 9% of the thread in a low flight over a
 city. A reference tile is read as samples (`load`), without the full-resolution mesh
-`loadPrepared` builds for a tile to be drawn. Bridge profiles (`gradeTile`) are still worked out
-on the main thread, about 3% of it in that flight: a worker would need the tile's roads and its
-neighbors' copied across, most of which no bridge is near.
+`loadPrepared` builds for a tile to be drawn.
+
+Bridge profiles (`gradeTile`) are worked out in the worker as well, where the source has
+`gradeSeparations`. Over Seattle they were about 3% of the main thread; over Osaka, which is
+full of viaducts, 139 ms of each second of a flight once the rest of streaming kept up, in
+single steps of up to a quarter of a second that no slicing could shorten. The host cuts the
+roads of the tile and its neighbors to their tiles and sends the ways that take part (tunnels,
+ferries and surveyed decks stay behind) as one array of points and a short list of kinds, handed
+over rather than copied; the worker grades them over its own reference ground, a tile at a time
+in the order asked, pausing every 4 ms for a ground tile or earthworks asked for meanwhile, and
+hands back the profiles and the graded ways as arrays. That leaves 8 ms a second on the main
+thread. The same flight flown four times in turn, twice each way, ran at 24 frames a second
+instead of 21 and finished half of the ground 2 to 5 km ahead instead of a third, with ground
+tiles arriving no later (the worker's earthworks, 60 ms a tile, already ran longer than most
+gradings, 70 ms). A tile with no bridge in it or around it is told before its roads are cut,
+and sends nothing.
 
 The worker entry calls `installTerrainElevationWorker(self)`, exported from
 `@bendyline/molen-terrain/client` (use the worker-scope type cast shown by World Explorer when

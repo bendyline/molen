@@ -6,12 +6,26 @@
 import { hashJson } from '@bendyline/molen-kernel/determinism';
 import type { JsonObject, JsonValue } from '@bendyline/molen-schema';
 import { z } from 'zod';
+import { resolveFigureHead } from './head-presets';
 import { FIGURE_PRESETS } from './presets';
 import {
+  FIGURE_BACKWEAR_STYLES,
+  FIGURE_BAG_STYLES,
+  FIGURE_EARWEAR_STYLES,
+  FIGURE_EYEWEAR_STYLES,
+  FIGURE_FOOTWEAR_STYLES,
   FIGURE_HAIR_STYLES,
+  FIGURE_HAIR_TEXTURES,
+  FIGURE_HEAD_PRESET_IDS,
+  FIGURE_HEADWEAR_STYLES,
+  FIGURE_LEGWEAR_STYLES,
+  FIGURE_NECKWEAR_STYLES,
   FIGURE_PRESET_IDS,
+  FIGURE_TOP_STYLES,
+  FIGURE_WRISTWEAR_STYLES,
   type FigureDescriptor,
   type FigureFeatures,
+  type FigureHeadInput,
   type FigurePalette,
   type FigureProportions,
   type ResolvedFigureDescriptor,
@@ -57,8 +71,53 @@ const proportionsSchema = z
       .max(1.5)
       .describe('Snout length as a multiple of the head unit (0 = flat face).')
       .optional(),
+    waist: z
+      .number()
+      .min(0.7)
+      .max(1.3)
+      .describe('Human waist width multiplier (absent = the body form’s).')
+      .optional(),
+    bust: z
+      .number()
+      .min(0)
+      .max(1.5)
+      .describe('Human bust or pectoral swell (absent = the body form’s: 1 feminine, 0.25 else).')
+      .optional(),
+    belly: z.number().min(0).max(1).describe('Human belly fullness (absent = 0).').optional(),
+    seat: z
+      .number()
+      .min(0.8)
+      .max(1.3)
+      .describe('Human hip, seat and thigh fullness multiplier (absent = 1).')
+      .optional(),
   })
   .describe('Proportion multipliers over the preset.');
+
+const headParam = z.number().min(-1).max(1);
+const headSchema = z
+  .strictObject({
+    preset: z
+      .enum(FIGURE_HEAD_PRESET_IDS)
+      .describe("Head preset '01'..'12' ('01' is the reference head).")
+      .optional(),
+    faceWidth: headParam.describe('Narrow (-1) to wide (1).').optional(),
+    jaw: headParam.describe('Tapered (-1) to square (1).').optional(),
+    chin: headParam.describe('Soft (-1) to prominent (1).').optional(),
+    cheeks: headParam.describe('Lean (-1) to full (1).').optional(),
+    cheekbones: headParam.describe('Flat (-1) to high and wide (1).').optional(),
+    brow: headParam.describe('Smooth (-1) to a strong ridge (1).').optional(),
+    noseBridge: headParam.describe('Low (-1) to high (1).').optional(),
+    noseWidth: headParam.describe('Narrow (-1) to broad (1).').optional(),
+    noseTip: headParam.describe('Small (-1) to full (1).').optional(),
+    eyeSpacing: headParam.describe('Close (-1) to wide (1).').optional(),
+    eyeSize: headParam.describe('Small (-1) to large (1).').optional(),
+    eyeTilt: headParam.describe('Outer corners down (-1) to up (1).').optional(),
+    lips: headParam.describe('Thin (-1) to full (1).').optional(),
+    crown: headParam.describe('Flat (-1) to rounded (1) skull top.').optional(),
+  })
+  .describe(
+    'Human head shape: a preset and/or parameters, each -1..1 with 0 the reference head. Absent, the face follows the body form.',
+  );
 
 const featuresSchema = z
   .strictObject({
@@ -69,8 +128,12 @@ const featuresSchema = z
     hair: z
       .enum(FIGURE_HAIR_STYLES)
       .describe(
-        'Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro.',
+        'Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro, shoulder, fade, mohawk, topknot, puffs, braids, rows, locs.',
       )
+      .optional(),
+    hairTexture: z
+      .enum(FIGURE_HAIR_TEXTURES)
+      .describe('How hair lies: straight (default), wavy, curly or coily (volume and ripple).')
       .optional(),
     facialHair: z
       .enum(['none', 'stubble', 'mustache', 'beard'])
@@ -85,8 +148,42 @@ const featuresSchema = z
       .describe('Sleeve length (top color extent).')
       .optional(),
     legs: z
-      .enum(['shorts', 'long', 'skirt'])
-      .describe('Legwear: shorts, long trousers, or a knee-length skirt (bottom color).')
+      .enum(FIGURE_LEGWEAR_STYLES)
+      .describe(
+        'Legwear (bottom color): shorts, long trousers, a knee-length skirt, slim or wide trousers, or cropped trousers.',
+      )
+      .optional(),
+    top: z
+      .enum(FIGURE_TOP_STYLES)
+      .describe(
+        'Top: shirt (default), tee, tank, polo, sweater, hoodie, jacket or coat (an open outer layer in palette.outer), or dress (to the knee in palette.top).',
+      )
+      .optional(),
+    footwear: z
+      .enum(FIGURE_FOOTWEAR_STYLES)
+      .describe('Footwear: shoe (default), sneaker, boot or sandal (palette.shoes).')
+      .optional(),
+    headwear: z
+      .enum(FIGURE_HEADWEAR_STYLES)
+      .describe('Hat (humans): cap, beanie or sunhat, over tucked-in hair (palette.headwear).')
+      .optional(),
+    eyewear: z
+      .enum(FIGURE_EYEWEAR_STYLES)
+      .describe('Glasses or sunglasses (humans; palette.eyewear frames).')
+      .optional(),
+    neckwear: z.enum(FIGURE_NECKWEAR_STYLES).describe('A scarf (palette.neckwear).').optional(),
+    backwear: z.enum(FIGURE_BACKWEAR_STYLES).describe('A backpack (palette.backwear).').optional(),
+    earwear: z
+      .enum(FIGURE_EARWEAR_STYLES)
+      .describe('Headphones over the hair and any hat (palette.earwear).')
+      .optional(),
+    wristwear: z
+      .enum(FIGURE_WRISTWEAR_STYLES)
+      .describe('A watch on the left wrist (palette.wristwear strap).')
+      .optional(),
+    bag: z
+      .enum(FIGURE_BAG_STYLES)
+      .describe('A crossbody bag at the right hip, its strap over the left shoulder (palette.bag).')
       .optional(),
     tail: z.enum(['none', 'short', 'long', 'bushy']).describe('Tail style.').optional(),
     ears: z.enum(['none', 'round', 'pointed', 'floppy']).describe('Ear style.').optional(),
@@ -109,6 +206,14 @@ const paletteSchema = z
     shoes: colorHex.describe('Shoes, paws, or hooves.').optional(),
     accent: colorHex.describe('Belt, collar, or saddle strip.').optional(),
     markings: colorHex.describe('Secondary fur markings (animals).').optional(),
+    outer: colorHex.describe('Outer layer of a jacket or coat (absent: the top color).').optional(),
+    headwear: colorHex.describe('Hat.').optional(),
+    eyewear: colorHex.describe('Glasses frames.').optional(),
+    neckwear: colorHex.describe('Scarf.').optional(),
+    backwear: colorHex.describe('Backpack.').optional(),
+    earwear: colorHex.describe('Headphones.').optional(),
+    wristwear: colorHex.describe('Watch strap.').optional(),
+    bag: colorHex.describe('Bag and its strap.').optional(),
   })
   .describe('Color blocks over the preset ("#rrggbb").');
 
@@ -122,6 +227,7 @@ export const figureDescriptorFields: {
   features: z.ZodType<Partial<FigureFeatures> | undefined>;
   palette: z.ZodType<Partial<FigurePalette> | undefined>;
   seed: z.ZodType<string | undefined>;
+  head: z.ZodType<FigureHeadInput | undefined>;
 } = {
   preset: z
     .enum(FIGURE_PRESET_IDS)
@@ -147,6 +253,7 @@ export const figureDescriptorFields: {
     .min(1)
     .describe('Detail jitter seed (symmetry-safe details only; default none).')
     .optional(),
+  head: headSchema.optional() as unknown as z.ZodType<FigureHeadInput | undefined>,
 };
 
 export const figureDescriptorSchema: z.ZodType<FigureDescriptor> = z
@@ -179,6 +286,11 @@ export function resolveFigureDescriptor(descriptor: FigureDescriptor): ResolvedF
     features: { ...preset.features, ...definedEntries(descriptor.features) },
     palette: { ...preset.palette, ...definedEntries(descriptor.palette) },
     seed: descriptor.seed ?? '',
+    // Only an authored head enters the resolved descriptor, so bodies (and their keys) written
+    // before heads existed are unchanged.
+    ...(descriptor.head !== undefined && preset.archetype === 'biped'
+      ? { head: resolveFigureHead(descriptor.head) }
+      : {}),
   };
 }
 

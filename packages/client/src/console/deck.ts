@@ -10,6 +10,7 @@ import { type AircraftCockpitControl, aircraftControlValue } from '../aircraft-c
 import { createAircraftInstrumentViews } from '../aircraft-instruments';
 import type { ModelSignals } from '../model-signals';
 import { NAVIGATION_ACTIONS } from '../navigation/input-source';
+import { createSpeedometerView, type SpeedometerUnit } from '../speedometer';
 import type { VehicleVisual } from '../vehicles';
 import {
   type ConsoleView,
@@ -66,6 +67,13 @@ export interface ConsoleVehicleSubject {
   boat?: boolean;
   /** Entity type id, e.g. `molen.entities.vehicle.toyota_corolla_2025`. */
   type?: string;
+  /**
+   * Show its speedometer, a dial of the console kit (`createSpeedometerView`), in every view: a
+   * dashboard's own dial carries no numerals, and a cycle, board or boat has none.
+   */
+  gauges?: boolean;
+  /** The speedometer's units (default km/h, knots on a boat). A change rebuilds the console. */
+  speedUnit?: SpeedometerUnit;
 }
 
 /** On foot (`walk`), or a free camera that flies up and down (`free`). */
@@ -167,6 +175,15 @@ const button = (
 /** The buttons shown at the top for a mounted vehicle: the view, and leaving it. */
 export function mountedButtons(): ConsoleButton[] {
   return [button('Change view', 'view', A.view, 'tap'), button('Leave', 'exit', A.interact, 'tap')];
+}
+
+/**
+ * The buttons a subject shows at the top corner: the view and leaving it when mounted, the view
+ * on foot, none for a free camera.
+ */
+export function subjectButtons(subject: ConsoleSubject): ConsoleButton[] {
+  if (subject.kind === 'aircraft' || subject.kind === 'vehicle') return mountedButtons();
+  return subject.kind === 'walk' ? mountedButtons().slice(0, 1) : [];
 }
 
 /** Triangles below which a modeled control is a placeholder, drawn from the kit instead. */
@@ -750,6 +767,9 @@ export function aircraftDeck(subject: ConsoleAircraftSubject, context: DeckConte
   return items;
 }
 
+/** A vehicle's top speed when its spec names none, m/s (about 140 km/h). */
+const DEFAULT_TOP_SPEED = 40;
+
 /** The console's items for a car, cycle, snow vehicle or boat. */
 export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext): ConsoleItem[] {
   const { visual, data } = subject;
@@ -848,6 +868,23 @@ export function vehicleDeck(subject: ConsoleVehicleSubject, context: DeckContext
       part: () => kitPart('handbrake', kitHandbrake(), deck, [{}]),
     });
   }
+  // The speedometer, between the stick and the brakes, numbered past the vehicle's top speed.
+  items.push({
+    id: 'speed',
+    side: 'middle',
+    size: [84, 84],
+    priority: 5,
+    gauge: true,
+    part: () =>
+      createGaugePart(
+        'speed',
+        createSpeedometerView({
+          maxSpeed: spec.maxSpeed ?? DEFAULT_TOP_SPEED,
+          unit: subject.speedUnit ?? (subject.boat ? 'kt' : 'km/h'),
+          speed: () => visual.signals.speed,
+        }),
+      ),
+  });
   return items;
 }
 

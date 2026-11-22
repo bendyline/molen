@@ -72,6 +72,16 @@ const SCATTER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
   high: [6, 4, 3],
 };
 
+/**
+ * Plants on the ground's painted crowns a finest tile keeps for the near layer
+ * (`WorldgenBatchOutput.near`), the same at every quality: only those around the camera are drawn,
+ * and the ground paints its crowns at every quality. A zoom-13 tile of the densest scrub, 4.9 km
+ * across at the equator, paints about 190,000, 42 bytes each (about 8 MB); a larger tile keeps a
+ * uniform subset. Coarser tiles keep none: the camera stands in a finest one wherever the crowns
+ * resolve.
+ */
+const NEAR_INSTANCES = 250_000;
+
 function byLevel(table: readonly number[], levelBelowMax: number): number {
   return table[Math.max(0, levelBelowMax)] ?? 0;
 }
@@ -113,6 +123,7 @@ export function worldgenTileBudgetForQuality(
       quality === 'economy' ? [2, 1] : quality === 'balanced' ? [5, 3] : [8, 4],
       levelBelowMax,
     ),
+    maxNearInstances: finest ? NEAR_INSTANCES : 0,
   };
   switch (quality) {
     case 'economy':

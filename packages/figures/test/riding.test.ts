@@ -10,6 +10,13 @@ import {
   resolveFigureDescriptor,
 } from '../src/kernel';
 import { cycleRiderPose } from '../src/kernel/riding';
+import {
+  DEFAULT_FIGURE_LOOK_CATALOG,
+  figureFromLook,
+  randomFigureLook,
+  setFigureLookHeight,
+  setFigureLookOption,
+} from '../src/look';
 
 const rig = deriveRig(resolveFigureDescriptor({ preset: 'human.adult' }));
 const slugs = [
@@ -152,6 +159,90 @@ describe('standing, sideways and handlebar riders', () => {
     }
     expect(passenger?.role).toBe('passenger');
     expect(cycleRiderPose(components.vehicle, undefined, passenger)).toBeUndefined();
+  });
+});
+
+describe('seated riders of every body', () => {
+  // Every body shape the figure-look catalogue offers, at its shortest, middle and tallest
+  // heights: a rider with short legs slides forward and down the saddle to reach the pedals, by
+  // one amount through the whole revolution.
+  const shapes = DEFAULT_FIGURE_LOOK_CATALOG.categories.find((c) => c.id === 'body')?.options ?? [];
+  const riders = (height: number) =>
+    shapes.map((option) => ({
+      name: `${option.id} ${height} m`,
+      rig: deriveRig(
+        resolveFigureDescriptor(
+          figureFromLook(
+            setFigureLookHeight(
+              setFigureLookOption(randomFigureLook('r'), 'body', option.id),
+              height,
+            ),
+          ),
+        ),
+      ),
+    }));
+  const pose = (body: ReturnType<typeof deriveRig>, riding: ReturnType<typeof cycleRiderPose>) =>
+    poseModelSpace(
+      evaluatePose(
+        body,
+        { mode: 'sit', speed: 0, strideRate: 0, phaseAt: 0, phaseAtTick: 0, modeAtTick: 0 },
+        100,
+        { tickRate: 60, anchor: 'pelvis', riding },
+      ),
+    );
+
+  it.each(slugs)('%s keeps every rider still on the saddle through a revolution', (slug) => {
+    const components = riderComponents('cycles', slug);
+    for (const { name, rig: body } of [...riders(1.5), ...riders(1.95)]) {
+      let first: number[] | undefined;
+      for (let i = 0; i < 8; i++) {
+        const riding = cycleRiderPose(
+          components.vehicle,
+          { pedalAngle: (i * Math.PI) / 4, steer: 0 } as VehicleStateData,
+          components.mountable.seats[0],
+        );
+        const hips = [...jointTransform(pose(body, riding), body.index.hips as number).pos];
+        first ??= hips;
+        for (const [axis, v] of hips.entries())
+          expect(v, `${slug} ${name} crank ${i}`).toBeCloseTo(first[axis] as number, 6);
+      }
+    }
+  });
+
+  it.each(slugs)('%s puts the feet of every body from 1.6 m on the pedals', (slug) => {
+    const components = riderComponents('cycles', slug);
+    for (const { name, rig: body } of [...riders(1.6), ...riders(1.75), ...riders(1.95)])
+      for (let i = 0; i < 8; i++) {
+        const riding = cycleRiderPose(
+          components.vehicle,
+          { pedalAngle: (i * Math.PI) / 4, steer: 0 } as VehicleStateData,
+          components.mountable.seats[0],
+        );
+        if (!riding) throw new Error(`No rider pose for ${slug}`);
+        const model = pose(body, riding);
+        for (const effector of ['foot.l', 'foot.r'] as const) {
+          const actual = jointTransform(model, body.index[effector] as number).pos;
+          const goal = riding.ik[effector] as number[];
+          // Observed at most 0.07 (a 1.6 m rider at a road bicycle's lowest pedal); allow 0.08.
+          expect(
+            Math.hypot(...actual.map((v, axis) => v - (goal[axis] as number))),
+            `${slug} ${name} ${effector} crank ${i}`,
+          ).toBeLessThan(0.08);
+        }
+      }
+  });
+
+  it('leaves an average adult where the saddle puts them', () => {
+    for (const slug of slugs) {
+      const components = riderComponents('cycles', slug);
+      const riding = cycleRiderPose(
+        components.vehicle,
+        { steer: 0 } as VehicleStateData,
+        components.mountable.seats[0],
+      );
+      const hips = jointTransform(pose(rig, riding), rig.index.hips as number).pos;
+      expect(Math.hypot(...hips), slug).toBeLessThan(0.01);
+    }
   });
 });
 

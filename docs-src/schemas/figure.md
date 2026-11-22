@@ -138,6 +138,30 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
           "minimum": 0,
           "maximum": 1.5,
           "description": "Snout length as a multiple of the head unit (0 = flat face)."
+        },
+        "waist": {
+          "type": "number",
+          "minimum": 0.7,
+          "maximum": 1.3,
+          "description": "Human waist width multiplier (absent = the body form’s)."
+        },
+        "bust": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1.5,
+          "description": "Human bust or pectoral swell (absent = the body form’s: 1 feminine, 0.25 else)."
+        },
+        "belly": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Human belly fullness (absent = 0)."
+        },
+        "seat": {
+          "type": "number",
+          "minimum": 0.8,
+          "maximum": 1.3,
+          "description": "Human hip, seat and thigh fullness multiplier (absent = 1)."
         }
       },
       "additionalProperties": false,
@@ -167,9 +191,27 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
             "long",
             "ponytail",
             "bun",
-            "afro"
+            "afro",
+            "shoulder",
+            "fade",
+            "mohawk",
+            "topknot",
+            "puffs",
+            "braids",
+            "rows",
+            "locs"
           ],
-          "description": "Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro."
+          "description": "Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro, shoulder, fade, mohawk, topknot, puffs, braids, rows, locs."
+        },
+        "hairTexture": {
+          "type": "string",
+          "enum": [
+            "straight",
+            "wavy",
+            "curly",
+            "coily"
+          ],
+          "description": "How hair lies: straight (default), wavy, curly or coily (volume and ripple)."
         },
         "facialHair": {
           "type": "string",
@@ -203,9 +245,89 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
           "enum": [
             "shorts",
             "long",
-            "skirt"
+            "skirt",
+            "slim",
+            "wide",
+            "cropped"
           ],
-          "description": "Legwear: shorts, long trousers, or a knee-length skirt (bottom color)."
+          "description": "Legwear (bottom color): shorts, long trousers, a knee-length skirt, slim or wide trousers, or cropped trousers."
+        },
+        "top": {
+          "type": "string",
+          "enum": [
+            "shirt",
+            "tee",
+            "tank",
+            "polo",
+            "sweater",
+            "hoodie",
+            "jacket",
+            "coat",
+            "dress"
+          ],
+          "description": "Top: shirt (default), tee, tank, polo, sweater, hoodie, jacket or coat (an open outer layer in palette.outer), or dress (to the knee in palette.top)."
+        },
+        "footwear": {
+          "type": "string",
+          "enum": [
+            "shoe",
+            "sneaker",
+            "boot",
+            "sandal"
+          ],
+          "description": "Footwear: shoe (default), sneaker, boot or sandal (palette.shoes)."
+        },
+        "headwear": {
+          "type": "string",
+          "enum": [
+            "cap",
+            "beanie",
+            "sunhat"
+          ],
+          "description": "Hat (humans): cap, beanie or sunhat, over tucked-in hair (palette.headwear)."
+        },
+        "eyewear": {
+          "type": "string",
+          "enum": [
+            "glasses",
+            "sunglasses"
+          ],
+          "description": "Glasses or sunglasses (humans; palette.eyewear frames)."
+        },
+        "neckwear": {
+          "type": "string",
+          "enum": [
+            "scarf"
+          ],
+          "description": "A scarf (palette.neckwear)."
+        },
+        "backwear": {
+          "type": "string",
+          "enum": [
+            "backpack"
+          ],
+          "description": "A backpack (palette.backwear)."
+        },
+        "earwear": {
+          "type": "string",
+          "enum": [
+            "headphones"
+          ],
+          "description": "Headphones over the hair and any hat (palette.earwear)."
+        },
+        "wristwear": {
+          "type": "string",
+          "enum": [
+            "watch"
+          ],
+          "description": "A watch on the left wrist (palette.wristwear strap)."
+        },
+        "bag": {
+          "type": "string",
+          "enum": [
+            "crossbody"
+          ],
+          "description": "A crossbody bag at the right hip, its strap over the left shoulder (palette.bag)."
         },
         "tail": {
           "type": "string",
@@ -296,6 +418,46 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
           "type": "string",
           "pattern": "^#[0-9a-fA-F]{6}$",
           "description": "Secondary fur markings (animals)."
+        },
+        "outer": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Outer layer of a jacket or coat (absent: the top color)."
+        },
+        "headwear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Hat."
+        },
+        "eyewear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Glasses frames."
+        },
+        "neckwear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Scarf."
+        },
+        "backwear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Backpack."
+        },
+        "earwear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Headphones."
+        },
+        "wristwear": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Watch strap."
+        },
+        "bag": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Bag and its strap."
         }
       },
       "additionalProperties": false,
@@ -305,6 +467,115 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
       "type": "string",
       "minLength": 1,
       "description": "Detail jitter seed (symmetry-safe details only; default none)."
+    },
+    "head": {
+      "type": "object",
+      "properties": {
+        "preset": {
+          "type": "string",
+          "enum": [
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09"
+          ],
+          "description": "Head preset '01'..'12' ('01' is the reference head)."
+        },
+        "faceWidth": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Narrow (-1) to wide (1)."
+        },
+        "jaw": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Tapered (-1) to square (1)."
+        },
+        "chin": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Soft (-1) to prominent (1)."
+        },
+        "cheeks": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Lean (-1) to full (1)."
+        },
+        "cheekbones": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Flat (-1) to high and wide (1)."
+        },
+        "brow": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Smooth (-1) to a strong ridge (1)."
+        },
+        "noseBridge": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Low (-1) to high (1)."
+        },
+        "noseWidth": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Narrow (-1) to broad (1)."
+        },
+        "noseTip": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Small (-1) to full (1)."
+        },
+        "eyeSpacing": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Close (-1) to wide (1)."
+        },
+        "eyeSize": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Small (-1) to large (1)."
+        },
+        "eyeTilt": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Outer corners down (-1) to up (1)."
+        },
+        "lips": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Thin (-1) to full (1)."
+        },
+        "crown": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Flat (-1) to rounded (1) skull top."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Human head shape: a preset and/or parameters, each -1..1 with 0 the reference head. Absent, the face follows the body form."
     }
   },
   "required": [

@@ -13,9 +13,11 @@ npm i @bendyline/molen-figures
 ```
 
 Node >= 22.13, ESM only. There is deliberately **no `.` export**: import
-`@bendyline/molen-figures/kernel` or `@bendyline/molen-figures/client`. The client half needs the
-optional peers `three` (`>=0.184.0 <0.187.0`) and `@bendyline/molen-client`; the kernel
-half needs neither, and runs in a Worker and in Node.
+`@bendyline/molen-figures/kernel` or `@bendyline/molen-figures/client`, or one of the host-side
+subpaths `/look` and `/designer`. The client half needs the optional peers `three`
+(`>=0.184.0 <0.187.0`) and `@bendyline/molen-client`; the kernel half needs neither, and runs in a
+Worker and in Node. `/look` is plain data (no three.js, no zod, no kernel runtime); `/designer`
+needs `three` but no kernel runtime, so neither loads SES on a host page.
 
 ## Use
 
@@ -63,7 +65,9 @@ and `molen shot` work on it with no extra wiring.
 | Entry point | For |
 | --- | --- |
 | `./kernel` | Descriptors and the nine presets (`human.adult`, `dog`, `horse`, …), canonical biped and quadruped rigs, the pure pose function `evaluatePose`, Froude-number gait selection, the `figure` / `figureIntent` / `figureState` / `figureAttachment` components, sockets, riders, and `molen.figures.*` for scripts. |
-| `./client` | The `figure` renderable kind (`figureKind()`), the three-tier body geometry cache, `figureGeometry` / `figureBodyToSkinnedMesh`, and `applyPose`. |
+| `./client` | The `figure` renderable kind (`figureKind()`), the three-tier body geometry cache, `figureGeometry` / `figureBodyToSkinnedMesh`, `createFigureMaterial`, and `applyPose`. |
+| `./look` | Figure looks (`molen/figure-look@1`): a person and outfit as named catalogue options, `randomFigureLook`, `normalizeFigureLook`, `figureFromLook`, and the default people catalogue. |
+| `./designer` | A character designer's framework-free parts: `createFigureDesignerModel` (undo, transient drags), every string behind a key, `describeFigureLook`, and `mountFigurePreview` (a turntable plus option thumbnails through one WebGL context). `@bendyline/molen-figures-react` builds the shipped designer on it. |
 
 Rigs, meshes and poses are derived; only `figureState` and attachment transforms enter the state
 hash, and speed is quantized so a steadily walking figure sends no deltas.
@@ -77,10 +81,13 @@ arms hang beside the thighs with a slight elbow bend at idle. Forearms turn the 
 hands diagonally forward, with soft wrist flexion, gently curled fingers and tucked thumbs.
 The rigid distant tier retains the turned forearm and cupped hand silhouette.
 Human proportions follow adult anthropometric means (about 7.5 heads tall, a short neck under a
-sloped shoulder line). Bodies come in neutral, masculine and feminine forms, with ten hair styles,
-stubble, a mustache or a beard, and trousers, shorts or a skirt. The default near/medium/distant
-human bodies use roughly 7,500/2,200/1,100 triangles with one shared vertex-color material; styled
-variants stay within 8,500/2,600/1,200. Quadrupeds have species-shaped bodies, muscular limb profiles, modeled
+sloped shoulder line). Bodies come in neutral, masculine and feminine forms, with eighteen hair
+styles, stubble, a mustache or a beard, and garments drawn by the same lofted body: shirts, tees,
+polos, sweaters, hoodies, open jackets and coats, dresses; trousers in four cuts, shorts or a
+skirt; shoes, sneakers, boots or sandals. The default near/medium/distant human bodies use roughly
+7,500/2,200/1,100 triangles with one shared vertex-color material; the most styled variants stay
+within 9,000/2,600/1,200, and with hats, glasses, headphones, a scarf, a backpack, a
+shoulder bag and a watch all worn at once within 9,700/3,000/1,300. Quadrupeds have species-shaped bodies, muscular limb profiles, modeled
 faces and ears, rounded paws or single/split hooves, coat markings and curved tails. Animal
 presets use about 4,100–6,500/2,100–2,900/1,100–1,500 triangles across the three tiers and retain
 the existing 27-joint rigs. Fingers share the hand joint; facial expressions, cloth simulation, foot
@@ -95,6 +102,7 @@ a public bake API.
 ## Docs
 
 - [Figures: humans, bipeds and quadrupeds](https://molen.dev/guide/figures)
+- [Figure looks and the character designer](https://molen.dev/guide/figure-looks)
 - [3D art guidelines](https://molen.dev/guide/3d-art-guidelines)
 - [Examples gallery](https://molen.dev/guide/examples)
 

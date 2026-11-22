@@ -1,6 +1,6 @@
-/** PNG decoding, ancestor resampling, terrain meshing, road earthworks and ground cuts behind a
- * transferable worker boundary. Archive I/O stays on the host, including synthetic/native
- * archives; decoded caches stay here.
+/** PNG decoding, ancestor resampling, terrain meshing, road earthworks, bridge grading and ground
+ * cuts behind a transferable worker boundary. Archive I/O stays on the host, including
+ * synthetic/native archives; decoded caches stay here.
  */
 import {
   cutTerrainGroundRequest,
@@ -17,7 +17,21 @@ import type { TerrainPackageDescriptor, TerrainTileArchive } from './package-typ
 import { surfaceDescriptor, type TerrainPyramidHeightSource } from './pyramid-stream';
 import type { TerrainPyramidDescriptor, TerrainPyramidTileAddress } from './pyramid-types';
 import { gradeRoadEarthworksRequest } from './road-earthworks';
+import {
+  breathe,
+  gradeRoadSeparationRequest,
+  type RoadSeparationRequest,
+  type RoadSeparationResult,
+  roadSeparationRequestTransfer,
+  roadSeparationTransfer,
+} from './road-separation';
 import type { TerrainSemanticPolygon } from './semantic-types';
+
+/**
+ * Milliseconds of bridge grading before the worker lets its other work have a turn: a tile's
+ * ground waits behind nothing longer than this, bar a single step of the grading.
+ */
+const SEPARATION_SLICE_MS = 4;
 
 export interface ElevationWorkerLike {
   postMessage(message: unknown, transfer?: Transferable[]): void;
@@ -32,7 +46,8 @@ export interface ElevationWorkerLike {
   terminate?(): void;
 }
 export interface ElevationStageTiming {
-  stage: 'decode' | 'resample' | 'mesh' | 'earthworks' | 'cut';
+  /** `separations`: a tile's bridges graded, the worker's own time on it without its waits. */
+  stage: 'decode' | 'resample' | 'mesh' | 'earthworks' | 'separations' | 'cut';
   milliseconds: number;
 }
 export interface ElevationWorkerOptions {
@@ -94,6 +109,7 @@ type Request =
       field: FieldMessage;
     }
   | { kind: 'cut'; id: number; cut: TerrainGroundCutRequest }
+  | { kind: 'separations'; id: number; separations: RoadSeparationRequest }
   | { kind: 'cancel'; id: number }
   | { kind: 'archive-result'; id: number; data?: ArrayBuffer; error?: string };
 interface CutReply {
@@ -102,9 +118,17 @@ interface CutReply {
   error?: string;
   result?: TerrainGroundCutResult;
 }
+/** A tile's bridges graded: the result, null without a reference ground, absent when cancelled. */
+interface SeparatedReply {
+  kind: 'separated';
+  id: number;
+  error?: string;
+  result?: RoadSeparationResult | null;
+}
 type Reply =
   | PreparedReply
   | CutReply
+  | SeparatedReply
   | { kind: 'archive'; id: number; level: number; x: number; y: number }
   | { kind: 'timing'; timing: ElevationStageTiming }
   | { kind: 'fallback'; event: TerrainParentFallbackEvent };
@@ -118,6 +142,8 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
     { resolve: (data: { data: ArrayBuffer } | undefined) => void; reject: (error: Error) => void }
   >();
   const requests = new Map<number, AbortController>();
+  /** Bridge gradings, one at a time in the order asked: taken together, each would finish late. */
+  let separating: Promise<void> = Promise.resolve();
   const send = (message: Reply, transfer?: Transferable[]): void =>
     port.postMessage(message, transfer);
   const mesh = (
@@ -307,6 +333,48 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
           send({ kind: 'cut', id: request.id, error: String(error) });
         }
       }, 0);
+    } else if (request.kind === 'separations') {
+      // A tile's bridges graded with the roads around it (see road-separation.ts): hundreds of
+      // milliseconds for an interchange, which the host otherwise spends between its frames.
+      // Taken in slices, so a tile's ground and earthworks asked for meanwhile have their turn.
+      const controller = new AbortController();
+      requests.set(request.id, controller);
+      const grade = async (): Promise<void> => {
+        const pyramid = descriptor;
+        const elevation = source;
+        if (!elevation || !pyramid) throw new Error('Elevation worker is not configured');
+        // Called off while it waited its turn: not graded at all.
+        if (controller.signal.aborted) {
+          send({ kind: 'separated', id: request.id });
+          return;
+        }
+        const result = await gradeRoadSeparationRequest(
+          pyramid,
+          (address) => elevation.load(address, controller.signal),
+          request.separations,
+          {
+            sliceMs: SEPARATION_SLICE_MS,
+            pause: async () => {
+              await breathe();
+              return !controller.signal.aborted;
+            },
+            onWork: (milliseconds) =>
+              send({ kind: 'timing', timing: { stage: 'separations', milliseconds } }),
+          },
+        );
+        if (result === undefined || controller.signal.aborted) {
+          send({ kind: 'separated', id: request.id });
+          return;
+        }
+        send(
+          { kind: 'separated', id: request.id, result },
+          result === null ? [] : roadSeparationTransfer(result),
+        );
+      };
+      separating = separating
+        .then(grade)
+        .catch((error) => send({ kind: 'separated', id: request.id, error: String(error) }))
+        .finally(() => requests.delete(request.id));
     } else if (request.kind === 'mesh') {
       // A field the host changed (see TerrainPyramidHeightSource.meshPrepared): meshed as above.
       try {
@@ -341,12 +409,24 @@ export function createTerrainElevationWorkerSource(
       reject: (error: Error) => void;
     }
   >();
+  const separations = new Map<
+    number,
+    {
+      resolve: (result: RoadSeparationResult | null | undefined) => void;
+      reject: (error: Error) => void;
+    }
+  >();
   const listener = ({ data }: { data?: unknown }): void => {
     const reply = data as Reply;
     if (disposed) return;
     if (reply.kind === 'cut') {
       const waiter = cuts.get(reply.id);
       cuts.delete(reply.id);
+      if (reply.error) waiter?.reject(new Error(reply.error));
+      else waiter?.resolve(reply.result);
+    } else if (reply.kind === 'separated') {
+      const waiter = separations.get(reply.id);
+      separations.delete(reply.id);
       if (reply.error) waiter?.reject(new Error(reply.error));
       else waiter?.resolve(reply.result);
     } else if (reply.kind === 'prepared') {
@@ -380,6 +460,8 @@ export function createTerrainElevationWorkerSource(
     pending.clear();
     for (const waiter of cuts.values()) waiter.reject(failure);
     cuts.clear();
+    for (const waiter of separations.values()) waiter.reject(failure);
+    separations.clear();
   };
   worker.addEventListener('error', onError);
   worker.postMessage({
@@ -456,6 +538,37 @@ export function createTerrainElevationWorkerSource(
       });
       // No transfer list: the mesh's arrays are copied across, and the mesh stays as it is.
       worker.postMessage({ kind: 'cut', id, cut } satisfies Request);
+    });
+  };
+  const gradeSeparations: NonNullable<TerrainPyramidHeightSource['gradeSeparations']> = (
+    separation,
+    signal,
+  ) => {
+    if (disposed || signal.aborted) return Promise.resolve(undefined);
+    if (failure) return Promise.reject(failure);
+    const id = ++nextId;
+    return new Promise((resolve, reject) => {
+      const abort = (): void => {
+        worker.postMessage({ kind: 'cancel', id });
+        separations.delete(id);
+        resolve(undefined);
+      };
+      signal.addEventListener('abort', abort, { once: true });
+      separations.set(id, {
+        resolve: (result) => {
+          signal.removeEventListener('abort', abort);
+          resolve(result);
+        },
+        reject: (error) => {
+          signal.removeEventListener('abort', abort);
+          reject(error);
+        },
+      });
+      // The ways cross as their arrays, handed over: the caller has no further use for them.
+      worker.postMessage(
+        { kind: 'separations', id, separations: separation } satisfies Request,
+        roadSeparationRequestTransfer(separation),
+      );
     });
   };
   /** The mesh the worker made of each field it graded, until the stream asks for it. */
@@ -545,6 +658,7 @@ export function createTerrainElevationWorkerSource(
     loadPrepared,
     meshPrepared,
     gradeEarthworks,
+    gradeSeparations,
     cutGround,
     // The field alone: meshed too, as it once was, each reference tile a road grading read cost
     // the worker a full-resolution mesh that nobody drew, about as many as the tiles on show.
@@ -563,6 +677,8 @@ export function createTerrainElevationWorkerSource(
       pending.clear();
       for (const waiter of cuts.values()) waiter.resolve(undefined);
       cuts.clear();
+      for (const waiter of separations.values()) waiter.resolve(undefined);
+      separations.clear();
       if (options.ownsWorker !== false) worker.terminate?.();
     },
   };

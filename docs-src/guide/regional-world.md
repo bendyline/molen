@@ -196,25 +196,47 @@ land use, so a yard mapped as nothing in particular gets verge grass, not a gard
 Dry ground paints its own shrubs. A scatter document's `surface.detail` gives each land class a
 brush level, and the terrain ground material paints round shrub crowns at that level: one
 candidate per 8 m cell, 2 to 5 m across, covering a tenth of the ground at full brush. Desert and
-scrubland keep their speckle to the horizon without a model per shrub. Each crown is shaded as a
-low dome, lit on the sun's side, with a leafy outline that resolves as the camera nears.
+scrubland keep their brush tone to the horizon without a model per shrub. Each crown is drawn on
+its own only while it is large on screen (under about 0.25 to 0.75 m per pixel; flat and smaller
+than that, it read as a splotch painted on the ground), shaded as a low grey-green dome lit on
+the sun's side, with a leafy outline; farther out the ground takes the crowns' mean color.
 
 A rule with `crowns` stands a plant on each of those crowns. The plant sits at the crown's
 center and is fitted to its width by the population's `width` (the model's crown width in meters
-at scale 1); a wider crown also stands taller. Within about 25 to 60 m of the camera the painted
-crown gives way to the plant, so the crown seen from the air is the shrub walked up to. The
-regional catalog gives every habitat with ground detail a `ground_crowns` rule: creosote-like
-resin bush, dryland shrubs and thorn thickets in deserts, and the habitat's own brush elsewhere.
+at scale 1); a wider crown also stands taller. The ground hands each crown to its plant: given a
+host's plant reach (`setTerrainGroundCrownReach` in `@bendyline/molen-terrain/client`), it paints
+a crown exactly where its plant is not drawn, crossfading as the plant shrinks away, so a shrub
+never stands on its own painted disc. Without one, the painted crowns give way within about 25 to
+60 m of the camera. The regional catalog gives every habitat with ground detail a `ground_crowns`
+rule: creosote-like resin bush, dryland shrubs and thorn thickets in deserts, and the habitat's
+own brush elsewhere.
 
-Crowns are kept whole, because a crown left without its plant would vanish as it was reached.
-`keepByTier` only switches the rule off (the catalog runs it on the finest tiles alone), a host's
-quality keep does not thin it, and its plants sit outside their layer's instance cap, bounded by
-the rule's own cap. A tile of open desert at Yuma, about a kilometer across, carries about 3,000.
+Crowns are kept whole, because a crown left without its plant would fade to bare ground as it
+was reached. `keepByTier` only switches the rule off (the catalog runs it on the finest tiles
+alone), and a host's quality keep does not thin it. The plants come out apart from the rest of
+the scatter, as the batch's `near` placements (`WorldgenBatchOutput.near`), bounded only by the
+batch's `maxNearInstances`: a tile of steppe or desert a few kilometers across paints tens of
+thousands of crowns, more than any instance cap holds. Capped with the rest of their layer, a
+zoom-13 tile of open steppe (about 42,000 crowns) planted between one crown in twenty and one in
+five, and the others faded from dark discs to bare ground in front of a driver.
+
+A host draws only the plants around its camera. `createNearPlacements` (from
+`@bendyline/molen-worldgen/client`) makes a `THREE.LOD` that a renderer hands the view camera
+each frame: every plant within 120 m stands, they thin out to 300 m, and each shrinks over its
+last 12 m. Each plant stops at its own distance in that band, its crown's `reach` byte
+(`NearPlacements.reach`, from the ground's lattice), so the same plants go and come back and the
+ground paints each crown again exactly there (`nearPlacementReach` gives the ground the same
+numbers). Plants within 50 m draw at their near level and the rest at their medium level, a few
+hundred to a thousand in view. The Earth view does this for each finest tile and hands the
+ground the reach (the worldgen renderers' `nearPlants` option sets the distances, or `false`
+turns it off), and its tiles keep up to 250,000 plants each, about 43 bytes apiece.
+
 The crown pattern is a host input (`ScatterSampleInput.crowns`): Earth tiles supply it, and
 without it a `crowns` rule places nothing. Limits: the brush is matched by land class and
 building coverage, so where two mapped land classes overlap and the ground and scatter pick
 different ones, a crown at that edge can have no plant. Economy, which skips the finest
-vegetation tier, shows the painted crowns only.
+vegetation tier, shows the painted crowns only. From a camera well above the ground (a few
+hundred meters), the plants are gone and the brush is the ground's tone.
 
 The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
 is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed

@@ -354,6 +354,94 @@ describe('building detail in a terrain package', () => {
     );
   });
 
+  it('opens a roads-only street source on the detail level, when the features carry roads', async () => {
+    const contexts: string[] = [];
+    const decoder = {
+      decode(data: Uint8Array, context: { address: { level: number }; layers: readonly string[] }) {
+        contexts.push(
+          `${new TextDecoder().decode(data)}@${context.address.level}:${context.layers}`,
+        );
+        return tileWith([]);
+      },
+    };
+    const opened = await createTerrainPackageSemanticLayers(descriptor(), {
+      featuresArchive: archive(0, 9, 'coarse'),
+      buildingDetailArchive: archive(11, 11, 'detail'),
+      decoder,
+    });
+    const streets = opened.semantics.buildingDetail?.streets;
+    expect(streets).toBeDefined();
+    const signal = new AbortController().signal;
+    expect(await streets?.load({ level: 11, x: 5, z: 6 }, signal)).toBeDefined();
+    // Only its one level: coarser tiles are the feature tiles' business.
+    expect(await streets?.load({ level: 10, x: 2, z: 3 }, signal)).toBeUndefined();
+    expect(contexts).toEqual(['detail@11:transportation']);
+    // A package whose features have no roads has no street source.
+    const buildingsOnly = descriptor();
+    if (!buildingsOnly.features) throw new Error('fixture needs features');
+    buildingsOnly.features.layers = ['building'];
+    const without = await createTerrainPackageSemanticLayers(buildingsOnly, {
+      featuresArchive: archive(0, 9, 'coarse'),
+      buildingDetailArchive: archive(11, 11, 'detail'),
+      decoder,
+    });
+    expect(without.semantics.buildingDetail?.level).toBe(11);
+    expect(without.semantics.buildingDetail?.streets).toBeUndefined();
+  });
+
+  it('draws the detail level’s roads where the pyramid reaches it, and the coarse roads above', async () => {
+    const render = async (maxLevel: number, level: number) => {
+      const pkg = descriptor();
+      pkg.tileMatrix.maxLevel = maxLevel;
+      let rendered: TerrainSemanticTile | undefined;
+      const opened = await createTerrainPackageSemanticLayers(pkg, {
+        featuresArchive: archive(0, 9, 'coarse'),
+        buildingDetailArchive: archive(11, 11, 'detail'),
+        decoder: {
+          decode(data, context) {
+            const tile = tileWith([]);
+            const detail = new TextDecoder().decode(data) === 'detail';
+            if (context.layers.includes('transportation'))
+              tile.transportation = [
+                {
+                  class: detail ? 'minor_road' : 'major_road',
+                  name: detail ? 'Side Street' : 'Main Road',
+                  lines: [
+                    [
+                      [0.5, 0],
+                      [0.5, 1],
+                    ],
+                  ],
+                },
+              ];
+            return tile;
+          },
+        },
+        featuresLayer: {
+          renderer: {
+            createTile(tile) {
+              rendered = tile;
+              return undefined;
+            },
+          },
+        },
+      });
+      await opened.layers
+        .find((layer) => layer.category === 'human-feature')
+        ?.createTile({
+          address: { level, x: 6, z: 6 },
+          signal: new AbortController().signal,
+        } as TerrainPyramidTileLayerContext);
+      return rendered?.transportation.map((road) => road.name);
+    };
+    // The pyramid reaches the detail level (11): its tiles there draw the detail roads.
+    expect(await render(11, 11)).toEqual(['Side Street']);
+    // A coarser tile keeps its own.
+    expect(await render(11, 10)).toEqual(['Main Road']);
+    // A pyramid that stops short of the detail level never asks for detail roads.
+    expect(await render(10, 10)).toEqual(['Main Road']);
+  });
+
   it.each([
     'shared',
     'separate',

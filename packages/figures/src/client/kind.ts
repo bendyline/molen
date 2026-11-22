@@ -36,6 +36,7 @@ import { figureSeed } from '../kernel/seed';
 import type { FigureTier } from '../kernel/skinned-mesh-builder';
 import type { ResolvedFigureDescriptor } from '../kernel/types';
 import { type CachedFigureGeometry, FigureGeometryCache } from './geometry-cache';
+import { createFigureMaterial } from './material';
 import { applyPose, type FigureMesh, figureBodyToSkinnedMesh } from './upload';
 
 export interface FigureKindOptions {
@@ -279,9 +280,7 @@ class FigureHandle implements KindHandle {
 /** The `figure` renderable kind for `ClientOptions.kinds`. */
 export function figureKind(options: FigureKindOptions = {}): RenderableKind {
   const cache = new FigureGeometryCache();
-  const material =
-    options.material ??
-    new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.75, metalness: 0 });
+  const material = options.material ?? createFigureMaterial();
   return {
     kind: 'figure',
     identity: (renderable) => `${renderable.ref}|${String(lodOf(renderable))}`,

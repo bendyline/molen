@@ -37,11 +37,12 @@ Two things need your attention in particular:
 ## §1 Geospatial data — regional terrain packages
 
 The World explorer also bundles packages under `examples/world-explorer/public/terrain/` for
-`seattle-bellevue-sammamish`, `sydney`, `kyoto`, `yuma`, and `new-delhi`. Each directory carries
-`LICENSES.md`, `SOURCES.json`, and a hashed `terrain-package.json`; those sidecars record its
-snapshot, bounds, files, and credits. The vector data terms below apply to all these packages.
-The four new packages use the 2026-10-23 Protomaps build and Mapzen elevation
-accessed on 2026-10-23. Elevation credits include the global USGS and NOAA ETOPO1 sources;
+`seattle-bellevue-sammamish`, `sydney`, `kyoto`, `yuma`, `new-delhi`, and `oahu`. Each directory
+carries `LICENSES.md`, `SOURCES.json`, and a hashed `terrain-package.json`; those sidecars record
+its snapshot, bounds, files, and credits. The vector data terms below apply to all these packages.
+Sydney, Kyoto, Yuma, and New Delhi use the 2026-10-23 Protomaps build and Mapzen elevation
+accessed on 2026-10-23; Oʻahu uses the 2026-11-21 Protomaps build and Mapzen elevation accessed on
+2026-11-21. Elevation credits include the global USGS and NOAA ETOPO1 sources;
 Sydney also credits Geoscience Australia (CC BY 4.0), and Yuma's cross-border coverage credits
 INEGI Continental relief 2016 under its free-use terms. See the
 [upstream terrain attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md).

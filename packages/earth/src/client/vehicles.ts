@@ -6,7 +6,10 @@ import {
 import type { ConsoleVehicleSubject } from '@bendyline/molen-client/console';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
+  createSpeedometerView,
   createVehicleVisual,
+  type SpeedometerUnit,
+  type SpeedometerView,
   setParkedVehicleHidden,
   type VehicleCameraPose,
   type VehicleVisual,
@@ -228,6 +231,10 @@ export class EarthVehicles {
    */
   shadowTexel: number | undefined = undefined;
   private readonly shadowSubjects = new WeakMap<VehicleVisual, ShadowSubject>();
+  /** The driven vehicle's speedometer for a host canvas, kept while the vehicle and units stay. */
+  private speedometer:
+    | { visual: VehicleVisual; unit: SpeedometerUnit; views: SpeedometerView[] }
+    | undefined;
   /** A short explanation when entering or leaving a vehicle did not work. */
   message: string = '';
   private accumulator = 0;
@@ -399,14 +406,53 @@ export class EarthVehicles {
   }
   /**
    * The driven vehicle or boat for the vehicle console (`@bendyline/molen-client/console`): its
-   * loaded model and data. Undefined on foot and while the model loads.
+   * loaded model and data, and whether it shows its speedometer, read in `speedUnit` (a boat's in
+   * knots). Undefined on foot and while the model loads.
    */
-  consoleSubject(): ConsoleVehicleSubject | undefined {
+  consoleSubject(
+    options: { gauges?: boolean; speedUnit?: SpeedometerUnit } = {},
+  ): ConsoleVehicleSubject | undefined {
     const id = this.mountedId;
     const visual = id === undefined ? undefined : this.active.get(id);
     const data = id === undefined ? undefined : this.data(id);
     if (id === undefined || visual === undefined || data === undefined) return undefined;
-    return { kind: 'vehicle', visual, data, boat: this.isBoat(id), type: data.kind };
+    const boat = this.isBoat(id);
+    return {
+      kind: 'vehicle',
+      visual,
+      data,
+      boat,
+      type: data.kind,
+      ...(options.gauges !== undefined ? { gauges: options.gauges } : {}),
+      ...(boat
+        ? { speedUnit: 'kt' as const }
+        : options.speedUnit !== undefined
+          ? { speedUnit: options.speedUnit }
+          : {}),
+    };
+  }
+  /**
+   * The driven vehicle's speedometer (`createSpeedometerView`, read in `unit`, a boat's in knots)
+   * for `createAircraftInstrumentDisplay`: the same array while the vehicle and units stay, so a
+   * display builds it once. Undefined on foot and while the model loads.
+   */
+  mountedInstruments(unit: SpeedometerUnit): SpeedometerView[] | undefined {
+    const id = this.mountedId;
+    const visual = id === undefined ? undefined : this.active.get(id);
+    if (id === undefined || visual === undefined) return undefined;
+    const shown: SpeedometerUnit = this.isBoat(id) ? 'kt' : unit;
+    const kept = this.speedometer;
+    if (kept?.visual === visual && kept.unit === shown) return kept.views;
+    for (const view of kept?.views ?? []) view.dispose();
+    const views = [
+      createSpeedometerView({
+        maxSpeed: this.data(id)?.spec.maxSpeed ?? 40,
+        unit: shown,
+        speed: () => visual.signals.speed,
+      }),
+    ];
+    this.speedometer = { visual, unit: shown, views };
+    return views;
   }
   /**
    * The mounted vehicle's model, for `Renderer.setShadowSubject` each frame: a sun shadow map of
@@ -1697,6 +1743,8 @@ export class EarthVehicles {
     for (const controller of this.loading.values()) controller.abort();
     for (const v of this.active.values()) v.dispose();
     this.active.clear();
+    for (const view of this.speedometer?.views ?? []) view.dispose();
+    this.speedometer = undefined;
     this.object.removeFromParent();
     this.collision.clear();
   }

@@ -12,6 +12,7 @@ import {
   createEmptyTerrainSemanticTile,
   type TerrainBuildingFeature,
   type TerrainLandcoverFeature,
+  type TerrainPlaceFeature,
   type TerrainPoiFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,
@@ -35,6 +36,11 @@ export interface TerrainMvtSemanticLayerNames {
   transportation: readonly string[];
   building: readonly string[];
   poi: readonly string[];
+  /**
+   * Place labels (settlements and districts), read whenever `poi` is requested, into the tile's
+   * `places`. Absent or empty reads none.
+   */
+  place?: readonly string[];
 }
 
 export interface TerrainMvtSemanticPropertyNames {
@@ -84,6 +90,7 @@ const DEFAULT_LAYERS: TerrainMvtSemanticLayerNames = {
   transportation: ['transportation', 'aeroway'],
   building: ['building'],
   poi: ['poi'],
+  place: ['place'],
 };
 
 const PROTOMAPS_LAYERS: TerrainMvtSemanticLayerNames = {
@@ -92,6 +99,7 @@ const PROTOMAPS_LAYERS: TerrainMvtSemanticLayerNames = {
   transportation: ['roads'],
   building: ['buildings'],
   poi: ['pois'],
+  place: ['places'],
 };
 
 const DEFAULT_PROPERTIES: TerrainMvtSemanticPropertyNames = {
@@ -614,6 +622,59 @@ function decodePois(
   if (pois.length > 0) result.pois = pois;
 }
 
+/**
+ * Kinds of place label kept: settlements and their districts. Countries, states, counties and
+ * other administrative labels name too much ground to say where a viewer is, and seas, islands
+ * and the like are not places people live.
+ */
+const PLACE_KINDS: ReadonlySet<string> = new Set([
+  // Protomaps' kinds (the finer `kind_detail` comes along as the subclass).
+  'locality',
+  'neighbourhood',
+  'macrohood',
+  // OpenMapTiles' classes.
+  'city',
+  'town',
+  'village',
+  'hamlet',
+  'isolated_dwelling',
+  'suburb',
+  'quarter',
+  'borough',
+]);
+
+function decodePlaces(
+  vectorTile: VectorTile,
+  result: TerrainSemanticTile,
+  layers: TerrainMvtSemanticLayerNames,
+  budget: DecodeBudget,
+): void {
+  const places: TerrainPlaceFeature[] = [];
+  forEachFeature(vectorTile, layers.place ?? [], budget, (feature) => {
+    if (feature.type !== 1) return;
+    const properties = feature.properties;
+    const kind = optionalStringProperty(properties, ['kind', 'class', 'place']);
+    if (kind === undefined || !PLACE_KINDS.has(kind)) return;
+    const name = poiName(properties);
+    if (name === undefined) return;
+    const subclass = optionalStringProperty(properties, ['kind_detail', 'subclass']);
+    const latin = optionalStringProperty(properties, ['name:en', 'name:latin']);
+    const population = numberProperty(properties, ['population']);
+    for (const line of feature.loadGeometry())
+      for (const point of normalizeLine(line, feature.extent, budget))
+        places.push({
+          ...(featureId(feature) !== undefined ? { id: featureId(feature) } : {}),
+          class: kind,
+          ...(subclass !== undefined && subclass !== kind ? { subclass } : {}),
+          point,
+          name,
+          ...(latin !== undefined && latin !== name ? { nameLatin: latin } : {}),
+          ...(population !== undefined && population > 0 ? { population } : {}),
+        });
+  });
+  if (places.length > 0) result.places = places;
+}
+
 /** Decode configured MVT source layers into renderer-neutral tile-local semantic geometry. */
 export function createTerrainMvtSemanticDecoder(
   options: TerrainMvtSemanticDecoderOptions = {},
@@ -651,7 +712,10 @@ export function createTerrainMvtSemanticDecoder(
       if (requested.has('transportation')) {
         decodeTransportation(vectorTile, result, layers, properties, linearUnitScale, budget);
       }
-      if (requested.has('poi')) decodePois(vectorTile, result, layers, linearUnitScale, budget);
+      if (requested.has('poi')) {
+        decodePois(vectorTile, result, layers, linearUnitScale, budget);
+        decodePlaces(vectorTile, result, layers, budget);
+      }
       if (requested.has('building')) {
         decodeBuildings(vectorTile, result, layers, properties, linearUnitScale, budget);
       }

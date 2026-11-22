@@ -193,12 +193,23 @@ export interface OpenTerrainPackageSemanticSidecar {
   source: TerrainPackageSemanticSource;
 }
 
-/** The building-detail sidecar: one finer level, read only for buildings and places. */
+/**
+ * The building-detail sidecar: one finer level, drawn only for its buildings and places (roads,
+ * water and land use stay the feature tiles' own).
+ */
 export interface OpenTerrainPackageBuildingDetail {
   archive: TerrainTileArchive;
   level: number;
-  /** Loads tiles at `level` (other levels resolve to undefined). */
+  /** Loads tiles at `level`, buildings and POIs only (other levels resolve to undefined). */
   source: TerrainPackageSemanticSource;
+  /**
+   * Loads the same tiles' roads alone, when the package's features declare `transportation`: the
+   * finest road names for lookups (the street under a point, `EarthView.locate`), not for drawing.
+   * Basemaps drop minor streets' names below their last zoom (Protomaps keeps only main roads' at
+   * zoom 13), so the detail level names the side street where the feature tiles cannot. A detail
+   * archive whose tiles carry no roads decodes empty road lists.
+   */
+  streets?: TerrainPackageSemanticSource;
 }
 
 export interface OpenTerrainPackageSemantics {
@@ -752,6 +763,10 @@ export async function openTerrainPackageSemantics(
           throw new Error(`building detail archive tile type must be mvt, got ${header.tileType}`);
         }
       }
+      const declared = pkg.features?.layers ?? [];
+      const detailLayers = (wanted: readonly string[]) =>
+        declared.filter((layer) => wanted.includes(layer));
+      const streetLayers = detailLayers(['transportation']);
       buildingDetail = {
         archive,
         level: detail.level,
@@ -760,7 +775,19 @@ export async function openTerrainPackageSemantics(
           archive,
           options.decoder,
           detail.level,
+          detailLayers(['building', 'poi']),
         ),
+        ...(streetLayers.length > 0
+          ? {
+              streets: createTerrainPackageBuildingDetailSource(
+                pkg,
+                archive,
+                options.decoder,
+                detail.level,
+                streetLayers,
+              ),
+            }
+          : {}),
       };
     } catch (error) {
       buildingDetailError = error instanceof Error ? error : new Error(String(error));
@@ -775,16 +802,14 @@ export async function openTerrainPackageSemantics(
   };
 }
 
-/** Decode only buildings and places from a building-detail archive, at its one level. */
+/** Decode only `layers` from a building-detail archive, at its one level. */
 function createTerrainPackageBuildingDetailSource(
   pkg: TerrainPackageDescriptor,
   archive: TerrainTileArchive,
   decoder: TerrainSemanticTileDecoder,
   level: number,
+  layers: NonNullable<TerrainPackageDescriptor['features']>['layers'],
 ): TerrainPackageSemanticSource {
-  const layers = (pkg.features?.layers ?? []).filter(
-    (layer) => layer === 'building' || layer === 'poi',
-  );
   return {
     async load(
       address: TerrainPyramidTileAddress,

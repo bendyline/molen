@@ -27,6 +27,7 @@ import {
 } from '../src/pyramid-types';
 import { renderedGroundSampler } from '../src/rendered-ground';
 import { createTerrainRoadGrading, withTerrainRoadGrading } from '../src/road-grading';
+import { gradeRoadSeparationRequest, RoadSeparationPacker } from '../src/road-separation';
 import type { TerrainSemanticTileSource } from '../src/semantic-client';
 import {
   createEmptyTerrainSemanticTile,
@@ -237,6 +238,235 @@ describe('road grading across tiles', () => {
     expect(await pending).toBe(workerContext.heightfield);
     onMain.dispose();
     inWorker.dispose();
+    worker.dispose?.();
+  });
+
+  it('grades bridges in the elevation worker to the profiles the main thread makes', async () => {
+    // Flat ground that climbs 20 m to a bank in the easternmost tile, as an elevation archive,
+    // so the worker and the main thread read the same stored heights.
+    const ground = (x: number): number => Math.max(0, Math.min(1, (x - 1700) / 300)) * 20;
+    const side = pyramid.tileResolution;
+    const archive = {
+      // The same at every northing: the bank runs north to south.
+      async getZxy(level: number, x: number) {
+        const size = terrainPyramidTileSize(pyramid, level);
+        const data = new Float32Array(side * side);
+        for (let row = 0; row < side; row++)
+          for (let column = 0; column < side; column++)
+            data[row * side + column] =
+              (ground((x + column / (side - 1)) * size) - RANGE.min) / (RANGE.max - RANGE.min);
+        return { data: encodePng16({ width: side, height: side, data }).slice().buffer };
+      },
+    };
+    const pkg = { tileMatrix: { scheme: 'xyz' } } as TerrainPackageDescriptor;
+    const direct = createTerrainPackagePyramidHeightSource(pkg, pyramid, archive);
+    const [host, thread] = ports();
+    installTerrainElevationWorker(thread);
+    const timings: ElevationStageTiming[] = [];
+    const worker = createTerrainElevationWorkerSource(host, pkg, pyramid, archive, {
+      onTiming: (timing) => timings.push(timing),
+    });
+    const separations = (): number =>
+      timings.filter((timing) => timing.stage === 'separations').length;
+    // A viaduct from the middle of tile 3 to the bank in tile 5, over a motorway and a street in
+    // tile 4, with a ramp leaving its deck there: each tile grades it with what it can read, and
+    // the blend along the edges reads the tiles beside it.
+    const buffer = 1 / 64;
+    const deck = { bridge: true as const };
+    const tiles = {
+      '3/3': [
+        way([
+          [0.2, 0.5],
+          [0.5, 0.5],
+        ]),
+        way(
+          [
+            [0.5, 0.5],
+            [1 + buffer, 0.5],
+          ],
+          deck,
+        ),
+        way([
+          [0.9, 0.1],
+          [0.9, 0.9],
+        ]),
+      ],
+      '4/3': [
+        way(
+          [
+            [-buffer, 0.5],
+            [1 + buffer, 0.5],
+          ],
+          deck,
+        ),
+        way(
+          [
+            [0.3, 0],
+            [0.3, 1],
+          ],
+          { class: 'highway', subclass: 'motorway', oneway: true },
+        ),
+        way(
+          [
+            [0.6, 0.5],
+            [0.7, 0.6],
+            [0.7, 0.8],
+          ],
+          { class: 'highway', subclass: 'motorway_link', link: true, bridge: true, layer: 2 },
+        ),
+        way([
+          [0.7, 0.8],
+          [0.7, 1 + buffer],
+        ]),
+      ],
+      '5/3': [
+        way(
+          [
+            [-buffer, 0.5],
+            [0.25, 0.5],
+          ],
+          deck,
+        ),
+        way([
+          [0.25, 0.5],
+          [0.8, 0.5],
+        ]),
+      ],
+    };
+    const gradeAll = async (
+      heights: TerrainPyramidHeightSource,
+    ): Promise<TerrainTransportationFeature[][]> => {
+      const grading = createTerrainRoadGrading({ features: featuresFor(tiles), heights });
+      const graded: TerrainTransportationFeature[][] = [];
+      for (const x of [3, 4, 5]) {
+        const tile = tileOf(tiles[`${x}/3` as keyof typeof tiles]);
+        const result = await grading.gradeTile(tile, {
+          address: { level: 3, x, z: 3 },
+          pyramid,
+          signal: new AbortController().signal,
+        });
+        expect(result).not.toBe(tile);
+        graded.push(result.transportation);
+      }
+      grading.dispose();
+      return graded;
+    };
+    const onMain = await gradeAll(direct);
+    expect(separations()).toBe(0);
+    // The blend's reading of the ground, which the worker's grading leaves to be read here.
+    const reads: string[] = [];
+    const inWorker = await gradeAll({
+      ...worker,
+      load: (address, signal) => {
+        reads.push(`${address.level}/${address.x}/${address.z}`);
+        return worker.load(address, signal);
+      },
+    });
+    expect(inWorker).toStrictEqual(onMain);
+    // A deck in every tile, and in the middle one the ramp and what climbs to it besides.
+    const profiled = onMain.map((tile) => tile.filter((f) => f.bridgeApproachProfile?.length));
+    for (const tile of profiled) expect(tile.some((f) => f.bridge)).toBe(true);
+    expect(profiled[1]?.length).toBeGreaterThanOrEqual(2);
+    // Every tile and the tiles around it that hold a bridge, each graded once in the worker.
+    expect(separations()).toBeGreaterThanOrEqual(3);
+    expect(reads.every((key) => key.startsWith('1/'))).toBe(true);
+
+    // A host hands the grading a stand-in for the stream's source that only loads. Until the
+    // stream has handed its own source over (with a tile's ground), bridges are graded here.
+    const standIn: TerrainPyramidHeightSource = { load: (a, signal) => worker.load(a, signal) };
+    const hosted = createTerrainRoadGrading({
+      features: featuresFor(tiles),
+      heights: standIn,
+      earthworks: false,
+    });
+    const gradeWith = async (
+      grading: ReturnType<typeof createTerrainRoadGrading>,
+      x: number,
+      signal: AbortSignal = new AbortController().signal,
+    ): Promise<TerrainSemanticTile> =>
+      grading.gradeTile(tileOf(tiles[`${x}/3` as keyof typeof tiles]), {
+        address: { level: 3, x, z: 3 },
+        pyramid,
+        signal,
+      });
+    let before = separations();
+    expect((await gradeWith(hosted, 3)).transportation).toStrictEqual(onMain[0]);
+    expect(separations()).toBe(before);
+    const address = { level: 3, x: 6, z: 6 };
+    const tileContext = await context(worker, address);
+    expect(await hosted.transformHeightfield(tileContext, worker)).toBe(tileContext.heightfield);
+    hosted.dispose();
+    const handed = createTerrainRoadGrading({
+      features: featuresFor(tiles),
+      heights: standIn,
+      earthworks: false,
+    });
+    await handed.transformHeightfield(tileContext, worker);
+    expect((await gradeWith(handed, 4)).transportation).toStrictEqual(onMain[1]);
+    expect(separations()).toBeGreaterThan(before);
+    handed.dispose();
+
+    // Called off: the tile as it came, and asked again it is graded.
+    const cancelling = createTerrainRoadGrading({ features: featuresFor(tiles), heights: worker });
+    const cancelled = new AbortController();
+    const pending = gradeWith(cancelling, 4, cancelled.signal);
+    cancelled.abort();
+    expect((await pending).transportation).toBe(tiles['4/3']);
+    expect((await gradeWith(cancelling, 4)).transportation).toStrictEqual(onMain[1]);
+    cancelling.dispose();
+    // The worker itself, asked directly: the grading done where the ground is, to the result
+    // the same request comes to here, and nothing once it has been called off.
+    const ways = (): RoadSeparationPacker => {
+      const packer = new RoadSeparationPacker();
+      for (const feature of tiles['4/3'])
+        packer.add(feature, feature.lines[0] as TerrainSemanticPoint[]);
+      return packer;
+    };
+    const asked = (packer: RoadSeparationPacker) =>
+      packer.request({
+        address: { level: 3, x: 4, z: 3 },
+        extend: 6,
+        referenceLevel: 1,
+        reach: 500,
+      });
+    const here = await gradeRoadSeparationRequest(
+      pyramid,
+      (at) => direct.load(at, new AbortController().signal),
+      asked(ways()),
+    );
+    expect(here?.profiled.length).toBeGreaterThanOrEqual(2);
+    const sent = asked(ways());
+    expect(await worker.gradeSeparations?.(sent, new AbortController().signal)).toStrictEqual(here);
+    // Its arrays went with it.
+    expect(sent.points.byteLength).toBe(0);
+    const stopped = new AbortController();
+    const calledOff = worker.gradeSeparations?.(asked(ways()), stopped.signal);
+    stopped.abort();
+    expect(await calledOff).toBeUndefined();
+    stopped.abort();
+    expect(await worker.gradeSeparations?.(asked(ways()), stopped.signal)).toBeUndefined();
+
+    // A source that cannot grade after all: graded here instead, to the same profiles.
+    before = separations();
+    const failing = createTerrainRoadGrading({
+      features: featuresFor(tiles),
+      heights: {
+        load: (a, signal) => direct.load(a, signal),
+        gradeSeparations: async () => {
+          throw new Error('worker failed');
+        },
+      },
+    });
+    expect((await gradeWith(failing, 5)).transportation).toStrictEqual(onMain[2]);
+    expect(separations()).toBe(before);
+    failing.dispose();
+    // No reference ground where it is graded: left for the next caller to ask again.
+    const groundless = createTerrainRoadGrading({
+      features: featuresFor(tiles),
+      heights: { load: (a, signal) => direct.load(a, signal), gradeSeparations: async () => null },
+    });
+    expect((await gradeWith(groundless, 5)).transportation).toBe(tiles['5/3']);
+    groundless.dispose();
     worker.dispose?.();
   });
 

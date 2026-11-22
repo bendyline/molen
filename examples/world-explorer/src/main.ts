@@ -132,6 +132,7 @@ import {
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
+import { drawFrameGraph, FrameMeter, frameRateHealth } from './frame-meter.js';
 import { formatCameraLocation } from './location-readout.js';
 import { createExplorerOverrides } from './override-controls.js';
 import { createPilotVision } from './pilot-vision.js';
@@ -949,6 +950,8 @@ async function main(): Promise<void> {
     optimizeWebGpu: params.get('gpuOptimizations') !== '0',
     // `?cull=0` walks every tile on show every frame, in view or not, for comparison (WebGL).
     cullRenderGroups: params.get('cull') !== '0',
+    // `?shadowHold=0` draws the sun's shadow map every frame, however coarse or dark (WebGL).
+    holdShadows: params.get('shadowHold') !== '0',
     // Keep silhouette and surface-marking edges smooth when adaptive quality renders below the
     // display resolution. Three uses 4x MSAA on WebGPU and requests context MSAA on WebGL.
     antialias: selectedAntialias(params),
@@ -2419,7 +2422,28 @@ async function main(): Promise<void> {
   let pageActive = true;
   let frameHandle = 0;
   let frameDisposed = false;
+  // The panel's frame rate: `#fps` in its title bar, and the graph and figures under Performance.
+  const frameMeter = new FrameMeter();
+  const fpsBadge = document.getElementById('fps') as HTMLOutputElement;
+  const performancePanel = document.getElementById('performance') as HTMLDetailsElement;
+  const frameGraph = document.getElementById('frame-graph') as HTMLCanvasElement;
+  const frameGraphContext = frameGraph.getContext('2d');
+  const PERFORMANCE_OPEN_KEY = 'molen.world-explorer.performance-open';
+  try {
+    const stored = localStorage.getItem(PERFORMANCE_OPEN_KEY);
+    if (stored !== null) performancePanel.open = stored === '1';
+  } catch {
+    // Private windows may refuse storage; the section starts open.
+  }
+  performancePanel.addEventListener('toggle', () => {
+    try {
+      localStorage.setItem(PERFORMANCE_OPEN_KEY, performancePanel.open ? '1' : '0');
+    } catch {
+      // The choice just does not persist.
+    }
+  });
   const resetFrameTiming = (): void => {
+    frameMeter.reset();
     qualityController.sample(0, { active: false });
     lastGpuMs = undefined;
     previousCpuMs = 0;
@@ -2437,6 +2461,8 @@ async function main(): Promise<void> {
     if (deviceLost) return;
     const cpuStarted = performance.now();
     const frameMs = now - lastTime;
+    // Not the first frame, whose interval runs from page load.
+    if (!firstFrame) frameMeter.add(frameMs);
     const completedGpuMs = gpuTimer?.poll();
     if (completedGpuMs !== undefined) {
       lastGpuMs = completedGpuMs;
@@ -3308,19 +3334,48 @@ async function main(): Promise<void> {
       ].join('\n');
       const control = qualityController.getStats();
       const pressure = pyramidEarth?.stream.pressure();
+      // Frame rate: in the title bar (it shows with the panel folded, and in every mode), and
+      // with the frame graph under Performance.
+      const frameStats = frameMeter.stats();
+      const fpsText = frameStats.frames === 0 ? '' : `${frameStats.fps.toFixed(0)} fps`;
+      if (fpsBadge.textContent !== fpsText) fpsBadge.textContent = fpsText;
+      fpsBadge.dataset.health = frameRateHealth(frameStats.fps);
+      performanceStatus.dataset.fps = frameStats.fps.toFixed(1);
+      performanceStatus.dataset.lowFps = frameStats.lowFps.toFixed(1);
+      if (performancePanel.open && frameGraphContext !== null && frameGraph.clientWidth > 0) {
+        const ratio = Math.min(2, window.devicePixelRatio || 1);
+        const width = Math.round(frameGraph.clientWidth * ratio);
+        const height = Math.round(frameGraph.clientHeight * ratio);
+        if (frameGraph.width !== width || frameGraph.height !== height) {
+          frameGraph.width = width;
+          frameGraph.height = height;
+        }
+        drawFrameGraph(frameGraphContext, frameMeter, width, height);
+      }
+      // What streaming is waiting for: a frame's turn (the queue), or the workers (buildings).
+      const queueWait = graphics.recentMean('admission-wait', 64);
+      const buildingMs = graphics.recentMean('worldgen-generation', 16);
+      const heap = (performance as Performance & { memory?: { usedJSHeapSize: number } }).memory;
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
           ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, back when calm`}`
           : `Manual · ${quality}`,
+        `${frameStats.fps.toFixed(0)} fps · slowest 1% ${frameStats.lowFps.toFixed(0)} fps · ${frameStats.longFrames} of last ${frameStats.frames} frames over 33ms`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,
         `CPU ${previousCpuMs.toFixed(1)}ms · GPU ${lastGpuMs?.toFixed(1) ?? 'unavailable'}ms · resolution ${canvas.width}×${canvas.height}`,
         `rendered ${rendered.drawCalls} draws / ${(rendered.triangles / 1_000).toFixed(0)}k triangles`,
+        `streaming ${stats.loading} tiles · ${stats.loadingLayers} layers${
+          stats.loading + stats.loadingLayers > 0 && queueWait !== undefined
+            ? ` · ${queueWait < 1000 ? `${queueWait.toFixed(0)}ms` : `${(queueWait / 1000).toFixed(1)}s`} in the frame queue`
+            : ''
+        }${buildingMs === undefined ? '' : ` · buildings ${(buildingMs / 1000).toFixed(1)}s a tile`}`,
         ...(pressure
           ? [
               `resident buffers ${(pressure.residentBytes / 1_048_576).toFixed(1)}MiB${automaticQuality ? ` / ${((pressure.maxResidentBytes ?? 0) / 1_048_576).toFixed(0)}MiB` : ''} · shown ${(pressure.displayedBytes / 1_048_576).toFixed(0)}MiB`,
             ]
           : []),
+        ...(heap ? [`script heap ${(heap.usedJSHeapSize / 1_048_576).toFixed(0)}MiB`] : []),
       ].join('\n');
       frameTotal = 0;
       // The distributions sort every stage's samples: a few milliseconds, so every two seconds.

@@ -11,8 +11,10 @@ import {
   aircraftDeck,
   type ConsoleItem,
   type ConsoleLayoutItem,
+  type ConsoleSubject,
   layoutConsole,
   onFootDeck,
+  subjectButtons,
 } from '../src/console';
 import { TouchLever } from '../src/navigation';
 
@@ -353,5 +355,12 @@ describe('on foot', () => {
     expect(onFootDeck({ kind: 'walk' }).map((entry) => entry.id)).toEqual(['stick', 'jump', 'use']);
     expect(onFootDeck({ kind: 'free' }).map((entry) => entry.id)).toEqual(['stick', 'up', 'down']);
     expect(onFootDeck({ kind: 'walk' })[0]?.part).toBeUndefined();
+  });
+  it('offers the view and leaving at the top when mounted, the view on foot, nothing when free', () => {
+    const actions = (subject: ConsoleSubject) => subjectButtons(subject).map((b) => b.action);
+    expect(actions({ kind: 'vehicle' } as ConsoleSubject)).toEqual(['nav-view', 'nav-interact']);
+    expect(actions({ kind: 'aircraft' } as ConsoleSubject)).toEqual(['nav-view', 'nav-interact']);
+    expect(actions({ kind: 'walk' })).toEqual(['nav-view']);
+    expect(actions({ kind: 'free' })).toEqual([]);
   });
 });

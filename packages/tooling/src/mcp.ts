@@ -511,12 +511,12 @@ export function createMcpServer(): McpServer {
     {
       title: 'Preview figures',
       description:
-        'Render figure presets, an inline molen/figure@1 descriptor, or a built-in lineup headlessly from turntable angles or the art-review view set. Returns the frames as images.',
+        'Render figure presets, an inline molen/figure@1 descriptor, a molen/figure-look@1 look file, or a built-in lineup (looks: nine random people) headlessly from turntable angles or the art-review view set. Returns the frames as images.',
       inputSchema: {
         preset: z.union([z.string(), z.array(z.string())]).optional(),
         descriptor: z.record(z.string(), z.unknown()).optional(),
         descriptorPath: z.string().optional(),
-        lineup: z.enum(['humans', 'bodies', 'species', 'all']).optional(),
+        lineup: z.enum(['humans', 'bodies', 'species', 'looks', 'all']).optional(),
         mode: z.enum(['idle', 'walk', 'run', 'sit', 'jump', 'fall']).optional(),
         tick: z.number().int().nonnegative().optional(),
         tier: z.union([z.literal(0), z.literal(1), z.literal(2)]).optional(),
