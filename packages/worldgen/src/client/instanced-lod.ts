@@ -94,8 +94,12 @@ function handoverError(level: number, finer: PreparedModel, previous: number): n
  * on GPUs that defer shading (Apple's among them), so a distant forest drawn with the card material shaded every layer of
  * crowns behind the first: on an Apple M2 that was half of a residential view's frame time.
  * The twin keeps the shader hooks and shares one program across batches.
+ * @internal Shared with the near placements; not part of the package's surface.
  */
-function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry): THREE.Material {
+export function levelMaterial(
+  material: THREE.Material,
+  geometry: THREE.BufferGeometry,
+): THREE.Material {
   if (!(material.alphaTest > 0 || material.alphaToCoverage) || !withoutCards(geometry))
     return material;
   let twin = opaqueTwins.get(material);
@@ -199,6 +203,29 @@ class InstancedDetailSwitch extends THREE.LOD {
 
   override getCurrentLevel(): number {
     return this.selected;
+  }
+
+  /**
+   * How far the batch draws anything, as a distance from its bounds in local meters per pixel of
+   * focal length (`update` compares against it times the focal length and the camera's zoom):
+   * where its largest instance is too small to see (`vanishPixels`), or where a model that is
+   * near detail only gives way to nothing. Infinite for a batch drawn at every distance.
+   */
+  reach(error: number, horizonError: number): number {
+    let reach = Number.POSITIVE_INFINITY;
+    if (this.vanishPixels > 0) reach = this.vanishSize / this.vanishPixels;
+    const last = this.geometries.length - 1;
+    if (last > 0 && this.geometries[last] === undefined) {
+      // The level without geometry is chosen once every handover up to it has been passed.
+      let handover = 0;
+      for (let i = 1; i <= last; i++)
+        handover = Math.max(
+          handover,
+          (this.errors[i] ?? 0) / (i === this.horizonLevel ? horizonError : error),
+        );
+      reach = Math.min(reach, handover);
+    }
+    return reach;
   }
 
   override update(camera: THREE.Camera): void {
@@ -389,6 +416,193 @@ class InstancedDetailSwitch extends THREE.LOD {
     return true;
   }
 }
+/**
+ * A set's batches, left out of the scene's walks while none of them can draw anything for the
+ * view camera: each one too small to see (`vanishPixels`), or a model that is near detail only
+ * and past its reach (ground cover, most of a garden's species). Such a batch hid its own mesh,
+ * but three still visited it and the mesh every frame, to bring their world matrices up to date
+ * and to choose the level that hid the mesh again. From 1,400 m over a suburb that was two thirds
+ * of a view's 1,970 plant sets, 4,800 of the 11,600 objects in the walk, and 3.3 ms of a 17 ms
+ * render.
+ *
+ * The set stays in the walk and decides before three reaches its batches. It measures to the
+ * bounds of the whole set, never farther than to any one batch, against the longest reach among
+ * them: hidden only once every batch would have hidden itself, and shown again (at the batches'
+ * own 15% hysteresis) before any of them would draw. What is drawn is the same either way.
+ */
+class InstancedSetSwitch extends THREE.LOD {
+  private readonly cells: InstancedDetailSwitch[] = [];
+  /** Every batch's bounds, in the set's own frame. */
+  private readonly bounds = new THREE.Box3();
+  private pruned = false;
+  /** What this switch hid (batches, and the set in a group); anything else is its owner's to show. */
+  private readonly hidden: THREE.Object3D[] = [];
+  /** The group that last settled the set (see `settle`). */
+  private host: THREE.Object3D | null = null;
+  /** A walk that moved the set (a floating-origin rebase) passed over its hidden batches. */
+  private behind = false;
+  private perspectiveAt = Number.NEGATIVE_INFINITY;
+  /** The longest reach among the batches (see `InstancedDetailSwitch.reach`), and its budgets. */
+  private reach = Number.POSITIVE_INFINITY;
+  private error = Number.NaN;
+  private horizonError = Number.NaN;
+  /** The inverse of the world matrix it was last worked out for. */
+  private readonly inverse = new THREE.Matrix4();
+  private readonly inverseOf = new Float64Array(16).fill(Number.NaN);
+
+  constructor(readonly policy: ScreenSpaceLodPolicy) {
+    super();
+  }
+
+  /** Add a batch, already placed in the set's frame. */
+  addCell(cell: InstancedDetailSwitch): void {
+    this.add(cell);
+    this.cells.push(cell);
+    this.bounds.union(setBox.copy(cell.bounds).translate(cell.position));
+    this.error = Number.NaN;
+  }
+
+  override update(camera: THREE.Camera): void {
+    // Settled already, before three came to it, by the group it is in (`PlacementSetGroup`).
+    if (this.host !== null && this.host === this.parent) return;
+    this.host = null;
+    this.settle(camera);
+  }
+
+  /**
+   * Decide for `camera` whether the set's batches are in the walk. With `host`, the group that
+   * calls this for its sets before three visits them, the set leaves the walk too.
+   */
+  settle(camera: THREE.Camera, host?: THREE.Object3D): void {
+    if (host !== undefined) this.host = host;
+    const perspective = camera as THREE.PerspectiveCamera;
+    if (!perspective.isPerspectiveCamera) {
+      // An orthographic view hides nothing by distance, so its batches choose for themselves. A
+      // sun-shadow projection between two frames of the view (WebGPU) is not the view.
+      if (this.pruned && performance.now() - this.perspectiveAt >= 250) this.restore();
+      return;
+    }
+    if (this.pruned) this.perspectiveAt = performance.now();
+    const error = Math.max(0.1, this.policy.maxPixelError);
+    const horizonError = Math.max(0.1, this.policy.horizonPixelError ?? this.policy.maxPixelError);
+    if (error !== this.error || horizonError !== this.horizonError) {
+      let reach = 0;
+      for (const cell of this.cells) reach = Math.max(reach, cell.reach(error, horizonError));
+      this.reach = this.cells.length > 0 ? reach : Number.POSITIVE_INFINITY;
+      this.error = error;
+      this.horizonError = horizonError;
+    }
+    // Trees and the like draw at every distance.
+    if (this.reach === Number.POSITIVE_INFINITY) {
+      if (this.pruned) this.restore();
+      return;
+    }
+    const own = this.matrixWorld.elements,
+      of = this.inverseOf;
+    let same = true;
+    for (let i = 0; same && i < 16; i++) same = of[i] === own[i];
+    if (!same) {
+      this.inverse.copy(this.matrixWorld).invert();
+      of.set(own);
+    }
+    const view = camera.matrixWorld.elements;
+    const distance = this.bounds.distanceToPoint(
+      cameraPosition
+        .set(view[12] as number, view[13] as number, view[14] as number)
+        .applyMatrix4(this.inverse),
+    );
+    // The batches compare the same local distance, each to its own bounds, against their reach
+    // times this: their world scale is on both sides of their comparison.
+    const limit =
+      this.reach *
+      focalLength(perspective.fov, Math.max(1, this.policy.viewportHeight)) *
+      perspective.zoom;
+    // Shown a little before a batch's own hysteresis (15%) would let it draw again.
+    if (this.pruned) {
+      if (distance < limit * 0.86) this.restore();
+    } else if (distance >= limit) this.prune(camera);
+  }
+
+  /** While its batches are hidden, the walk that brings world matrices up to date stops here. */
+  override updateMatrixWorld(force?: boolean): void {
+    if (!this.pruned) {
+      super.updateMatrixWorld(force);
+      return;
+    }
+    if (this.matrixAutoUpdate) this.updateMatrix();
+    if (this.matrixWorldNeedsUpdate || force === true) {
+      if (this.matrixWorldAutoUpdate) {
+        if (this.parent === null) this.matrixWorld.copy(this.matrix);
+        else this.matrixWorld.multiplyMatrices(this.parent.matrixWorld, this.matrix);
+      }
+      this.matrixWorldNeedsUpdate = false;
+      this.behind = true;
+    }
+  }
+
+  private prune(camera: THREE.Camera): void {
+    // Each batch chooses once more from here, so that it comes back with the hysteresis it would
+    // have had; and the set is hidden only if every one of them hid its mesh.
+    for (const cell of this.cells) {
+      cell.update(camera);
+      if (cell.mesh.visible) return;
+    }
+    for (const cell of this.cells) {
+      if (!cell.visible) continue;
+      cell.visible = false;
+      this.hidden.push(cell);
+    }
+    // In a group that settles it, the set itself: three then visits nothing of it.
+    if (this.host !== null && this.visible) {
+      this.visible = false;
+      this.hidden.push(this);
+    }
+    this.pruned = true;
+    this.perspectiveAt = performance.now();
+  }
+
+  private restore(): void {
+    this.pruned = false;
+    for (const object of this.hidden) object.visible = true;
+    this.hidden.length = 0;
+    // The set's own world matrix is current wherever a level of detail is updated, as for
+    // THREE.LOD; a walk that moved the set while its batches were hidden did not reach them.
+    for (const child of this.children) child.updateMatrixWorld(this.behind);
+    this.behind = false;
+  }
+}
+
+/**
+ * A group for placement sets (`createInstancedPlacementLod` with `screenSpace`) and whatever else
+ * stands with them. Each frame it settles its sets before three visits any of them, so a set that
+ * can draw nothing for the view camera is hidden itself and is not in the scene's walk at all: a
+ * set on its own stays in the walk to decide (see `InstancedSetSwitch`), which in the view
+ * described there was still 1,250 objects visited a frame to find that out. Sets are found among
+ * the group's own children.
+ */
+export class PlacementSetGroup extends THREE.LOD {
+  override update(camera: THREE.Camera): void {
+    const children = this.children;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child instanceof InstancedSetSwitch) child.settle(camera, this);
+    }
+  }
+}
+const setBox = new THREE.Box3();
+let focalFov = Number.NaN,
+  focalHeight = Number.NaN,
+  focal = 0;
+/** Pixels per unit of tangent for a vertical field of view (degrees) on a view `height` px tall. */
+function focalLength(fov: number, height: number): number {
+  if (fov !== focalFov || height !== focalHeight) {
+    focalFov = fov;
+    focalHeight = height;
+    focal = height / (2 * Math.tan((fov * Math.PI) / 360));
+  }
+  return focal;
+}
+
 /** How far past a handover (as a factor of its distance) a batch asks for the level across it. */
 const APPROACH = 1.25;
 /** An upper bound on how far apart two positive values are, as the logarithm of their ratio. */
@@ -408,7 +622,7 @@ export function createInstancedPlacementLod(
     | readonly [PreparedModel, PreparedModel, PreparedModel, PreparedModel],
   options: InstancedPlacementLodOptions = {},
   name = `worldgen:${set.setId}`,
-): THREE.Group {
+): THREE.Object3D {
   const size = options.cellSize ?? 512;
   const distances = options.distances ?? [180, 650];
   if (
@@ -440,7 +654,10 @@ export function createInstancedPlacementLod(
     cell.push(i);
     cells.set(key, cell);
   }
-  const group = new THREE.Group();
+  // With a projected-detail policy the set itself leaves its batches out of the scene's walks
+  // while none of them can draw (see `InstancedSetSwitch`).
+  const switched = options.screenSpace ? new InstancedSetSwitch(options.screenSpace) : undefined;
+  const group: THREE.Object3D = switched ?? new THREE.Group();
   group.name = name;
   // A model that is near detail only (ground cover) draws nothing at its later levels.
   const drawn = (model: PreparedModel): boolean =>
@@ -542,7 +759,8 @@ export function createInstancedPlacementLod(
       );
       lod.name = `${name}:${key}`;
       lod.position.copy(center);
-      group.add(lod);
+      if (switched !== undefined) switched.addCell(lod);
+      else group.add(lod);
       lod.traverse((object) => {
         object.updateMatrix();
         object.matrixAutoUpdate = false;

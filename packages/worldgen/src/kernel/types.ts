@@ -76,6 +76,41 @@ export interface PlacementSet {
   data: Float32Array;
 }
 
+/**
+ * Placements a host draws only around its camera, and there every one: the plants `crowns` rules
+ * stand on the shrub crowns the ground paints. Farther out the ground's paint carries them, so a
+ * batch keeps them all (a few square kilometers of scrub paint tens of thousands of crowns) while
+ * a host draws the few hundred within reach (`createNearPlacements` in the client half). They are
+ * bucketed into square cells of `cell` meters, so the ones near a point are found without a scan.
+ */
+export interface NearPlacements {
+  /** Model refs, indexed by `model`. */
+  models: string[];
+  count: number;
+  /** `PLACEMENT_STRIDE` floats per instance, as `PlacementSet.data`. */
+  data: Float32Array;
+  /** Each instance's index into `models`. */
+  model: Uint16Array;
+  /**
+   * Each instance's place in a host's thinning band, as a byte (0 the band's near edge, 255 its
+   * far one): its crown's own value (`ScatterGroundCrowns.crown`), so a ground that paints the
+   * crowns can hand each one back exactly where its plant stops. Absent, a host thins by its own.
+   */
+  reach?: Uint8Array;
+  /** Cell edge, local meters. */
+  cell: number;
+  /** Local corner of cell (0, 0), and the cells across and down from it. */
+  originX: number;
+  originZ: number;
+  columns: number;
+  rows: number;
+  /**
+   * The instances of the cell in column `c` and row `r` are `[start[k], start[k + 1])`, with
+   * `k = r * columns + c`: they are stored cell by cell, `columns * rows + 1` offsets.
+   */
+  start: Uint32Array;
+}
+
 export interface BuildingAppearance {
   wall?: string;
   trim?: string;
@@ -259,7 +294,14 @@ export interface ScatterRequest {
 }
 
 export interface WorldgenBudgets {
+  /** Buildings a batch gives real geometry (walls and a roof at least), largest first. */
   maxBuildings: number;
+  /**
+   * Buildings past `maxBuildings` still drawn, as stand-ins (instanced boxes; gabled for pitched
+   * roofs): default 0, which leaves them out. A stand-in costs no mesh and a few dozen bytes, so
+   * a dense batch can keep every footprint visible where the count budget once cut it off.
+   */
+  maxStandIns?: number;
   maxBuildingVertices: number;
   /** Buildings eligible for extra detail after reserving simplified roofs and facades for the batch. */
   detailedCount: number;
@@ -289,6 +331,12 @@ export interface WorldgenBudgets {
   /** Planted ornamental vegetation (the `garden` layer); omitted or zero disables it. */
   maxGardenInstances?: number;
   maxGardenModels?: number;
+  /**
+   * Plants `crowns` rules may stand on the ground's painted crowns per batch, for
+   * `WorldgenBatchOutput.near` (default: every one). A host bounds it to the memory a batch may
+   * hold; past it, a uniform subset by acceptance draw stays.
+   */
+  maxNearInstances?: number;
   maxMaterialGroups: number;
 }
 
@@ -316,8 +364,11 @@ export interface WorldgenStats {
   vertices: number;
   triangles: number;
   meshBytes: number;
+  /** Bytes of every placement, `near` included. */
   instanceBytes: number;
   placementsByModel: Record<string, number>;
+  /** Plants in `WorldgenBatchOutput.near`, which `placementsByModel` does not count. */
+  nearPlacements: number;
   styles: Record<string, number>;
   footprintKinds: Record<string, number>;
   roofs: Record<string, number>;
@@ -343,6 +394,7 @@ export function emptyWorldgenStats(): WorldgenStats {
     meshBytes: 0,
     instanceBytes: 0,
     placementsByModel: {},
+    nearPlacements: 0,
     styles: {},
     footprintKinds: {},
     roofs: {},

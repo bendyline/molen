@@ -31,6 +31,22 @@ interface TunnelSegment extends TerrainTunnelClearance {
 const segments = new WeakMap<THREE.Object3D, TunnelSegment[]>();
 const tileSizes = new WeakMap<THREE.Object3D, number>();
 const objects = new Set<WeakRef<THREE.Object3D>>();
+/** Each registered bore's own entry in that set, for `forgetTerrainTunnel`. */
+const objectRefs = new WeakMap<THREE.Object3D, WeakRef<THREE.Object3D>>();
+
+/**
+ * A bore that is being disposed leaves the list now, rather than when it is collected: each new
+ * bore has the list gathered again, which dereferences every entry (see
+ * `forgetTerrainGroundCutout` for what that keeps).
+ * @internal
+ */
+export function forgetTerrainTunnel(object: THREE.Object3D): void {
+  const ref = objectRefs.get(object);
+  if (ref === undefined) return;
+  objects.delete(ref);
+  objectRefs.delete(object);
+  objectsVersion++;
+}
 /** Changes whenever a bore is registered, so each root's list of them is gathered again. */
 let objectsVersion = 0;
 const surfacePassageIds = new WeakMap<THREE.Object3D, ReadonlySet<number>>();
@@ -283,7 +299,9 @@ export function createTerrainTunnelObject(
     group.add(mesh);
     segments.set(group, records);
     tileSizes.set(group, context.tileSize);
-    objects.add(new WeakRef(group));
+    const ref = new WeakRef<THREE.Object3D>(group);
+    objects.add(ref);
+    objectRefs.set(group, ref);
     objectsVersion++;
   }
   return group;

@@ -6,7 +6,7 @@ export const ucSerefeliCase = 'uc-serefeli-edirne-two-native-outlines-and-tdv-di
 export const ucSerefeliModel = 'uc_serefeli_mosque';
 export const ucSerefeliSurvey = 'https://islamansiklopedisi.org.tr/uc-serefeli-cami-ve-kulliyesi';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function inspectUcSerefeliFacts({ dir, proof, controls, frame, inventory }) {

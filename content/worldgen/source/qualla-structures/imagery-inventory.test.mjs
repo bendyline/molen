@@ -172,10 +172,13 @@ test('Navy DVIDS releases bind the enlisted staff credit, naval VIRIN and offere
       }).eligible;
     };
   assert.equal(check(), true);
+  // Navy captions may end at the photographer's name (the 2026 Lalbagh Fort release has no
+  // "/Released"), but the credit must still close the caption.
+  assert.equal(check(html.replace('/Released)', ')')), true);
   for (const s of [
     html.replace('Seaman Michael Ray', 'Private contributor'),
     html.replace('-N-ZQ784-', '-G-ZQ784-'),
-    html.replace('/Released)', ')'),
+    html.replace('/Released)', '/Released) Edited for the museum.'),
     html.replace('PUBLIC DOMAIN', 'COPYRIGHT'),
     html.replace('Airshow.', 'Photo courtesy of the museum.'),
   ])

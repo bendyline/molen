@@ -21,6 +21,7 @@ import {
 import type { TerrainPackageDescriptor } from '@bendyline/molen-terrain/kernel';
 import dioramaCatalog from '../../../content/dioramas/placements.json';
 import { loadDiorama } from './load-diorama.js';
+import { SAMMAMISH_TERRAIN, SEATTLE_TERRAIN } from './terrain-regions.js';
 
 declare global {
   interface Window {
@@ -150,8 +151,8 @@ async function main(): Promise<void> {
         fixedManifest !== undefined
           ? 'package'
           : longitude < -122.15
-            ? 'seattle-bellevue-sammamish'
-            : 'sammamish';
+            ? SEATTLE_TERRAIN
+            : SAMMAMISH_TERRAIN;
       const manifestUrl =
         fixedManifest ?? new URL(`terrain/${region}/terrain-package.json`, location.href);
       let terrain = manifests.get(region);

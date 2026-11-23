@@ -30,6 +30,16 @@ import {
 import { enableSnowCover } from './weather/snow-cover';
 
 export { type RailVehicleProxyDimensions, railVehicleProxyGeometry } from './rail-proxy';
+export {
+  createSpeedometerView,
+  SPEEDOMETER_SWEEP,
+  type SpeedometerOptions,
+  type SpeedometerScale,
+  type SpeedometerUnit,
+  type SpeedometerView,
+  speedometerAngle,
+  speedometerScale,
+} from './speedometer';
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 export { vehicleCameraPose } from './vehicle-camera';
 export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-interior';

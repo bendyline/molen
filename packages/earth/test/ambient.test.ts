@@ -213,6 +213,39 @@ describe('earth ambient life', () => {
     expect(parent.children).toEqual([]);
   });
 
+  it('spawns at the density it is given while running', () => {
+    const parent = new THREE.Group();
+    const layer = new THREE.Group();
+    parent.add(layer);
+    const ambient = new EarthAmbient({
+      parent,
+      settings: { density: 1, pedestrians: true, rail: false, aircraft: false },
+    });
+    ambient.setBudget(earthPerformanceTier(3).ambient);
+    ambient.added(layer, tile(), context());
+    const observer = {
+      position: [ORIGIN[0] + SIZE / 2, 2, ORIGIN[1] + SIZE / 2] as [number, number, number],
+      direction: [0, 0, 1] as [number, number, number],
+    };
+    let now = 0;
+    const run = (frames: number) => {
+      for (let i = 0; i < frames; i++) {
+        now += 1000 / 60;
+        ambient.sync(now, observer);
+        ambient.update(1 / 60);
+      }
+    };
+    // Empty streets stay empty at density 0.
+    ambient.setDensity(0);
+    run(90);
+    expect(agents(ambient.world)).toBe(0);
+    // Raised, traffic fills in.
+    ambient.setDensity(1);
+    run(90);
+    expect(agents(ambient.world)).toBeGreaterThan(0);
+    ambient.dispose();
+  });
+
   it('never registers a tile and its parent together, and turns off cleanly', () => {
     const parent = new THREE.Group();
     const ambient = new EarthAmbient({ parent, settings: {} });
@@ -240,6 +273,62 @@ describe('earth ambient life', () => {
     expect(tiles()[0]).not.toBe(first);
     ambient.setEnabled(false);
     expect(ambient.isEnabled).toBe(false);
+    ambient.dispose();
+  });
+
+  it('registers a package’s finest tiles whatever their size, and no coarser large tile', () => {
+    // A basemap ending at zoom 13 has nothing finer than 3–5 km tiles: they carry the traffic.
+    const at = {
+      position: [ORIGIN[0] + SIZE / 2, 0, ORIGIN[1] + SIZE / 2] as [number, number, number],
+      direction: [0, 0, 1] as [number, number, number],
+    };
+    const registered = (level: number) => {
+      const parent = new THREE.Group();
+      const ambient = new EarthAmbient({ parent, settings: {} });
+      const object = new THREE.Group();
+      parent.add(object);
+      ambient.added(object, tile(), { ...context(level), tileSize: SIZE * 10 });
+      ambient.sync(1000, at);
+      ambient.update(1 / 60);
+      const keys = ambient.handle.network.tileKeys();
+      ambient.dispose();
+      return keys;
+    };
+    expect(registered(15).length).toBeGreaterThan(0);
+    expect(registered(14)).toEqual([]);
+  });
+
+  it('joins only the parts of a 4 km tile within reach, and trades them as the observer crosses it', () => {
+    const parent = new THREE.Group();
+    const ambient = new EarthAmbient({ parent, settings: {} });
+    const object = new THREE.Group();
+    parent.add(object);
+    // A zoom-13 tile of a basemap ending there: 32 × 32 parts of 125 m.
+    ambient.added(object, tile(), { ...context(15), tileSize: SIZE * 10 });
+    let now = 1000;
+    const walk = (x: number, z: number, frames: number) => {
+      for (let frame = 0; frame < frames; frame++) {
+        now += 16;
+        ambient.sync(now, { position: [ORIGIN[0] + x, 0, ORIGIN[1] + z], direction: [0, 0, 1] });
+        ambient.update(1 / 60);
+      }
+    };
+    const parts = () => ambient.handle.network.tileKeys().filter((k) => k.startsWith('15/1/2:'));
+    walk(200, 200, 600);
+    const near = parts();
+    // Only the parts within reach (850 m by default) of the corner: a fraction of the 1,024.
+    expect(near.length).toBeGreaterThan(20);
+    expect(near.length).toBeLessThan(250);
+    expect(near).toContain('15/1/2:1,1');
+    expect(near).not.toContain('15/1/2:31,31');
+    // Across the tile (staying slow enough to register), the far corner's parts join and the
+    // first corner's leave.
+    for (let step = 1; step <= 18; step++) walk(200 + step * 200, 200 + step * 200, 60);
+    walk(3800, 3800, 600);
+    const far = parts();
+    expect(far).toContain('15/1/2:30,30');
+    expect(far).not.toContain('15/1/2:1,1');
+    expect(far.length).toBeLessThan(250);
     ambient.dispose();
   });
 

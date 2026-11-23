@@ -1,12 +1,21 @@
 import {
   createEmptyTerrainSemanticTile,
+  pointInPolygon,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import { emptyWorldgenStats, queueBuildings } from '@bendyline/molen-worldgen/kernel';
+import { emptyWorldgenStats, queueBuildings, type Vec2 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { inferBuildingFootprints } from '../src/kernel/building-infill';
-import { corridor, distance, InfillBins, polygonsNear } from '../src/kernel/infill-geometry';
+import {
+  corridor,
+  distance,
+  InfillBins,
+  lineNearPolygon,
+  polygonsNear,
+  segmentDistance,
+  segmentsWithin,
+} from '../src/kernel/infill-geometry';
 import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
 import { loadDefaultPack } from './helpers/pack';
 
@@ -214,6 +223,47 @@ describe('seeded building infill', () => {
     expect(infer(tile).length).toBeGreaterThan(30);
     tile.transportation = [required(tile.transportation[2])];
     expect(infer(tile)).toEqual([]);
+  });
+
+  it('asks lanes and through roads for a denser network than local streets, unless land use is mapped', () => {
+    // Four roads across a 480 m tile, 240 m apart: about 1.7 km within 240 m of its middle.
+    const sparse = (subclass: string, roadClass = 'minor_road'): TerrainSemanticTile => {
+      const tile = createEmptyTerrainSemanticTile();
+      for (const n of [0.25, 0.75]) {
+        tile.transportation.push({
+          class: roadClass,
+          subclass,
+          lines: [
+            [
+              [0, n],
+              [1, n],
+            ],
+            [
+              [n, 0],
+              [n, 1],
+            ],
+          ],
+        });
+      }
+      return tile;
+    };
+    expect(infer(sparse('residential')).length).toBeGreaterThan(10);
+    expect(infer(sparse('living_street')).length).toBeGreaterThan(10);
+    // The same roads as country lanes or roads through: no neighbourhood.
+    expect(infer(sparse('unclassified'))).toEqual([]);
+    expect(infer(sparse('tertiary', 'major_road'))).toEqual([]);
+    expect(infer(sparse('secondary', 'major_road'))).toEqual([]);
+    // Mapped residential land is evidence enough for them.
+    const settled = sparse('unclassified');
+    settled.landcover.push({ class: 'residential', polygons: [rectangle(0, 0, 1, 1)] });
+    expect(infer(settled).length).toBeGreaterThan(10);
+    // A lane mapped a second time as a residential street counts as one, in either order.
+    const twice = sparse('unclassified');
+    twice.transportation.push(...structuredClone(sparse('residential').transportation));
+    const forward = infer(twice);
+    expect(forward.length).toBeGreaterThan(10);
+    twice.transportation.reverse();
+    expect(infer(twice)).toEqual(forward);
   });
 
   it('reproduces a visit exactly, independent of map ordering, line direction and duplicate roads', () => {
@@ -506,6 +556,55 @@ describe('seeded building infill', () => {
     expect(compared).toBeGreaterThan(20);
   });
 
+  it('fills the finest tile of a zoom-13 package with the same lots, but not the level below it', () => {
+    // A zoom-13 tile is 306 frontage slots across (4,896 m here). The fixture's streets sit in its
+    // middle, at the world coordinates the 480 m tile has them.
+    const size = 4896,
+      offset = 0.45;
+    const placed = (): TerrainSemanticTile => {
+      const tile = streets();
+      for (const road of tile.transportation)
+        road.lines = road.lines.map((line) =>
+          line.map(([x, z]) => [offset + (x * 480) / size, offset + (z * 480) / size]),
+        );
+      return tile;
+    };
+    const zoom13: TileGeometry = {
+      ...geom,
+      level: 13,
+      size,
+      originX: -offset * size,
+      originZ: -offset * size,
+    };
+    const full = infer(streets());
+    const wide = inferBuildingFootprints(placed(), zoom13, settings, flat);
+    let compared = 0;
+    for (const feature of wide) {
+      // The small tile keeps only lots wholly inside it, and its edges see half a neighborhood.
+      const original = full.find((f) => f.id === feature.id);
+      if (!original) continue;
+      required(feature.polygons[0]).outer.forEach(([x, z], i) => {
+        const p = required(required(original.polygons[0]).outer[i]);
+        expect(x * size - offset * size).toBeCloseTo(p[0] * 480, 6);
+        expect(z * size - offset * size).toBeCloseTo(p[1] * 480, 6);
+      });
+      compared++;
+    }
+    expect(compared).toBeGreaterThan(30);
+    // One level below the finest, a tile that coarse invents nothing, nor does a coarser finest one.
+    expect(
+      inferBuildingFootprints(placed(), { ...zoom13, levelBelowMax: 1 }, settings, flat),
+    ).toEqual([]);
+    expect(
+      inferBuildingFootprints(
+        placed(),
+        { ...zoom13, size: 5400, originX: -offset * 5400, originZ: -offset * 5400 },
+        settings,
+        flat,
+      ),
+    ).toEqual([]);
+  });
+
   it('routes inferred homes through regional architecture, prioritizes mapped buildings, and excludes scatter', () => {
     const tile = streets();
     tile.buildings.push({
@@ -537,6 +636,44 @@ describe('seeded building infill', () => {
     expect(
       semanticTileToBatch(tile, geom, { pack, buildingInfill: false }, flat).buildings,
     ).toHaveLength(1);
+  });
+
+  it('invents nothing to draw where the map fills the building budget, but keeps every tree exclusion', () => {
+    const tile = streets();
+    tile.buildings.push(
+      { id: 'mapped-shed', class: 'building', polygons: [rectangle(0.01, 0.01, 0.02, 0.02)] },
+      { id: 'mapped-barn', class: 'building', polygons: [rectangle(0.03, 0.01, 0.04, 0.02)] },
+    );
+    const inferredOf = (batch: ReturnType<typeof semanticTileToBatch>) =>
+      batch.buildings.filter((b) => b.labels.includes('inferred'));
+    const all = inferredOf(
+      semanticTileToBatch(tile, geom, { pack, buildingInfill: settings }, flat),
+    );
+    expect(all.length).toBeGreaterThan(30);
+    // Room for one more than the map holds: every lot is invented, and the batch picks.
+    expect(
+      inferredOf(
+        semanticTileToBatch(
+          tile,
+          geom,
+          { pack, buildingInfill: settings, budgets: { maxBuildings: 3 } },
+          flat,
+        ),
+      ),
+    ).toEqual(all);
+    // No room: nothing invented to draw, yet plants still keep off every lot.
+    const full = { pack, buildingInfill: settings, budgets: { maxBuildings: 2 } };
+    expect(inferredOf(semanticTileToBatch(tile, geom, full, flat))).toEqual([]);
+    const scatterOnly = semanticTileToBatch(
+      tile,
+      geom,
+      { ...full, features: { buildings: false } },
+      flat,
+    );
+    expect(
+      scatterOnly.scatter?.exclusions.filter((e) => e.kind === 'buildings' && e.ring !== undefined)
+        .length,
+    ).toBe(all.length + 2);
   });
 
   it('builds the blocks a style lays out as rows, wall to wall at the street', () => {
@@ -610,6 +747,59 @@ describe('seeded building infill', () => {
     }));
     const plans = new Set(mixed.map((f) => f.tags?.['molen:lot-plan'] === 'row'));
     expect(plans).toEqual(new Set([true, false]));
+  });
+});
+
+describe('infill proximity tests', () => {
+  it('answer as the full tests without bounds did, also within a hair of the padding', () => {
+    // The tests' previous form: no bounds comparison first.
+    const lineNear = (a: Vec2, b: Vec2, polygon: TerrainSemanticPolygon, padding: number) =>
+      pointInPolygon(a, polygon) ||
+      pointInPolygon(b, polygon) ||
+      [polygon.outer, ...(polygon.holes ?? [])].some((r) =>
+        r.some((p, i) => segmentDistance(a, b, p, required(r[(i + 1) % r.length])) <= padding),
+      );
+    const near = (a: TerrainSemanticPolygon, b: TerrainSemanticPolygon, padding: number) =>
+      a.outer.some((p) => pointInPolygon(p, b)) ||
+      b.outer.some((p) => pointInPolygon(p, a)) ||
+      [a.outer, ...(a.holes ?? [])].some((r) =>
+        r.some((p, i) => lineNear(p, required(r[(i + 1) % r.length]), b, padding)),
+      );
+    let state = 11;
+    const next = (): number => {
+      state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+      return state / 2 ** 32;
+    };
+    const point = (): Vec2 => [next() * 60, next() * 60];
+    const shape = (): TerrainSemanticPolygon => {
+      const [x, z] = point(),
+        w = 1 + next() * 12,
+        d = 1 + next() * 12;
+      const outer = rectangle(x, z, x + w, z + d).outer;
+      // Some carry a hole, one of them reaching outside the outer ring.
+      return next() < 0.2
+        ? { outer, holes: [rectangle(x + w * 0.3, z + d * 0.3, x + w * 1.6, z + d * 0.6).outer] }
+        : { outer };
+    };
+    const outcomes = new Set<string>();
+    for (let i = 0; i < 4000; i++) {
+      const a = shape(),
+        b = shape(),
+        p = point(),
+        q = point();
+      const padding = [0, 0.15, 0.6, 2, 9][i % 5] as number;
+      expect(polygonsNear(a, b, padding)).toBe(near(a, b, padding));
+      expect(lineNearPolygon(p, q, b, padding)).toBe(lineNear(p, q, b, padding));
+      const [c, d] = [point(), point()];
+      expect(segmentsWithin(p, q, c, d, padding)).toBe(segmentDistance(p, q, c, d) < padding);
+      outcomes.add(`${polygonsNear(a, b, padding)}:${lineNearPolygon(p, q, b, padding)}`);
+      // Exactly the padding apart, along each axis: the bounds alone never decide that.
+      const gap = padding + 1e-9;
+      const touching = { outer: rectangle(13 + gap, 0, 20, 5).outer };
+      const base = { outer: rectangle(0, 0, 13, 5).outer };
+      expect(polygonsNear(base, touching, padding)).toBe(near(base, touching, padding));
+    }
+    expect(outcomes.size).toBe(4);
   });
 });
 

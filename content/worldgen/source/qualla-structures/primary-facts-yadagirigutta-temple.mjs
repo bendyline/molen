@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const yadagiriguttaCase = 'yadagirigutta-hilltop-engineered-main-gate-and-stone-hall';
 export const yadagiriguttaModel = 'sri_lakshmi_narasimha_swamy_temple_yadagirigutta';
 
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function boundDocument(dir, binding, expectedPath) {
   if (binding?.path !== expectedPath) throw Error('Unexpected Yadagirigutta source path');

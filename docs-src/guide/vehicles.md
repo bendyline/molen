@@ -630,7 +630,10 @@ than tile IDs. Instance meshes retain `userData.vehicleIds` for promotion and du
 The worker transports the same placement records as synchronous generation. Surface objects with
 parked cars are tagged `'parked-vehicles'` and water surfaces `'water'` (`tagTerrainObject`), and
 Earth view's vehicles visit `taggedTerrainObjects(tag)` shown under their root instead of walking
-the whole scene five times a second; a host building its own such objects tags them the same way.
+the whole scene five times a second; a host building its own such objects tags them the same way,
+and calls `retireTerrainObjects(root)` when it disposes them outside a terrain stream's tiles, so
+that they leave the tag at once: a tag visited every frame otherwise keeps the browser from ever
+collecting what is under it (see [graphics performance](graphics-performance.md)).
 
 For repeatable visual review open
 [World Explorer with `?synthetic=1&parking=1`](https://molen.dev/play/world-explorer/?synthetic=1&parking=1).

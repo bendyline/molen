@@ -898,7 +898,7 @@ Composable ecological and architectural channels with explicit dependency versio
                     "minimum": 0,
                     "maximum": 1
                   },
-                  "description": "Stand one plant on each shrub crown the ground paints (see surface.detail), at its center and fitted to its width, in place of densityPerHectare. Maps a ground appearance class to the brush (0..1) the ground paints it with, normally that class's surface.detail brush. Up close the painted crown gives way to the plant. Crowns are kept whole: keepByTier only switches the rule off, and they stand outside their layer's instance cap (the rule's own cap bounds them). Needs a host that supplies the ground's crowns; populations should give their width."
+                  "description": "Stand one plant on each shrub crown the ground paints (see surface.detail), at its center and fitted to its width, in place of densityPerHectare. Maps a ground appearance class to the brush (0..1) the ground paints it with, normally that class's surface.detail brush. Up close the painted crown gives way to the plant. Crowns are kept whole: keepByTier only switches the rule off, and the plants come out apart from the rule's layer, for a host to draw near its camera (WorldgenBatchOutput.near), bounded only by the batch's maxNearInstances. Needs a host that supplies the ground's crowns; populations should give their width."
                 },
                 "lod": {
                   "type": "object",

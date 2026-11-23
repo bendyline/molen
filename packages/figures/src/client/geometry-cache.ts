@@ -20,13 +20,23 @@ interface Entry extends CachedFigureGeometry {
   refs: number;
 }
 
+/** The descriptor part of a body key (`<descriptor>|<tier>`): what a rig is cached by. */
+function rigKeyOf(bodyKey: string): string {
+  return bodyKey.split('|')[0] as string;
+}
+
 export class FigureGeometryCache {
   private readonly entries = new Map<string, Entry>();
   private readonly rigs = new Map<string, FigureRig>();
+  /** Live geometry entries per rig key: a rig is dropped with its descriptor's last entry. */
+  private readonly rigEntries = new Map<string, number>();
 
-  /** The rig of a descriptor (cached by descriptor key). */
+  /**
+   * The rig of a descriptor (cached by descriptor key). A rig is kept while any tier of its
+   * descriptor is acquired; one asked for without acquiring geometry stays until `dispose`.
+   */
   rigFor(descriptor: ResolvedFigureDescriptor): FigureRig {
-    const key = figureBodyKey(descriptor, 0).split('|')[0] as string;
+    const key = rigKeyOf(figureBodyKey(descriptor, 0));
     let rig = this.rigs.get(key);
     if (rig === undefined) {
       rig = deriveRig(descriptor);
@@ -43,6 +53,8 @@ export class FigureGeometryCache {
       const body = generateFigureBody(descriptor, tier, this.rigFor(descriptor));
       entry = { key, body, geometry: figureGeometry(body.buffers), refs: 0 };
       this.entries.set(key, entry);
+      const rigKey = rigKeyOf(key);
+      this.rigEntries.set(rigKey, (this.rigEntries.get(rigKey) ?? 0) + 1);
     }
     entry.refs++;
     return entry;
@@ -55,6 +67,14 @@ export class FigureGeometryCache {
     if (entry.refs <= 0) {
       entry.geometry.dispose();
       this.entries.delete(key);
+      // A host that changes a character's look leaves old descriptors behind: drop their rigs.
+      const rigKey = rigKeyOf(key);
+      const left = (this.rigEntries.get(rigKey) ?? 1) - 1;
+      if (left > 0) this.rigEntries.set(rigKey, left);
+      else {
+        this.rigEntries.delete(rigKey);
+        this.rigs.delete(rigKey);
+      }
     }
   }
 
@@ -62,9 +82,15 @@ export class FigureGeometryCache {
     return this.entries.size;
   }
 
+  /** Cached rigs (diagnostics: a rig per descriptor in use). */
+  get rigCount(): number {
+    return this.rigs.size;
+  }
+
   dispose(): void {
     for (const entry of this.entries.values()) entry.geometry.dispose();
     this.entries.clear();
     this.rigs.clear();
+    this.rigEntries.clear();
   }
 }

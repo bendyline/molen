@@ -22,6 +22,7 @@ export {
   type ConsoleZone,
   type DeckContext,
   onFootDeck,
+  subjectButtons,
   vehicleDeck,
 } from './console/deck';
 export {

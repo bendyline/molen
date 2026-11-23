@@ -12,7 +12,9 @@ import {
   createTerrainSemanticObjectSliced,
   deriveTerrainSemanticTilePacket,
   disposeTerrainSemanticObject,
+  isTerrainGroundMaterial,
   keepTerrainSemanticTile,
+  setTerrainGroundCrownReach,
   setTerrainGroundCutouts,
   setTerrainSurfacePassages,
   setTerrainWaterCutout,
@@ -40,6 +42,7 @@ import {
   createBuildingDetailLod,
   createInstancedPlacementLod,
   createInstancedPlacements,
+  createNearPlacements,
   createSignMeshObject,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
@@ -50,6 +53,10 @@ import {
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
   type ModelLibrary,
+  type NearPlacementModel,
+  type NearPlacementOptions,
+  nearPlacementReach,
+  PlacementSetGroup,
   type ScreenSpaceLodPolicy,
   type StructureModelSource,
   TEXTURED_SURFACE_MEAN,
@@ -57,6 +64,7 @@ import {
 } from '@bendyline/molen-worldgen/client';
 import type {
   DistantLook,
+  NearPlacements,
   PlacementSet,
   ResolvedStylePack,
   WorldgenBudgets,
@@ -120,6 +128,11 @@ const FOCUS_STEP = 36;
 const FOCUS_REACH = 90;
 /** Faster than this (a car, an aircraft) and the viewer is passing through, m/s. */
 const FOCUS_MAX_SPEED = 10;
+/**
+ * Meters above the ground within which a viewer is down among the buildings: a walker's eye, a
+ * third-person camera behind them, a drone at a house's height; not a camera above the roofs.
+ */
+const FOCUS_GROUND_REACH = 25;
 const FOOTPRINT_SLACK = 12;
 /**
  * Distant shells take a roof and a wall each, so a city seen from an airplane is not one beige
@@ -210,16 +223,24 @@ export interface WorldgenRendererOptions {
   /** Camera-distance vegetation LOD and spatial culling (default true). */
   propLod?: boolean;
   /**
+   * How the plants on the ground's painted crowns (the scatter's `crowns` rules) stand around the
+   * view camera: every one within `full` meters, thinning out to `radius` (see
+   * `NearPlacementOptions`). Defaults suit a camera at eye or car height; `false` draws none, which
+   * leaves the painted crowns to fade to bare ground as the camera reaches them.
+   */
+  nearPlants?: NearPlacementOptions | false;
+  /**
    * Real openings and bounded lazy interiors, including residential upstairs (opt in). They are
    * laid out by the style pack's interior catalog; a pack without one generates no interiors.
    */
   interiors?: boolean | Omit<InteriorStreamingOptions, 'catalog'>;
   /**
-   * With `interiors`: once the position passed to `updateInteriors` is down among the buildings
-   * and moving at a walk, regenerate the finest tiles round it with their buildings queued
-   * nearest first, so the ones a walker can reach are the detailed, enterable ones (default
-   * true). A tile is replaced some seconds after the viewer arrives: turn it off where a frame
-   * must not change under a still camera, as in a render test.
+   * Once the position passed to `updateInteriors` is down among the buildings (near the ground,
+   * or among registered interiors) and moving at a walk, regenerate the finest tiles round it
+   * with their buildings queued nearest first, so the ones a walker can reach are the detailed
+   * (with `interiors`, enterable) ones (default true). A tile is replaced some seconds after the
+   * viewer arrives: turn it off where a frame must not change under a still camera, as in a
+   * render test.
    */
   viewerFocus?: boolean;
   /** Shared screen-space policy for resident building and vegetation LODs. */
@@ -440,6 +461,21 @@ export function createWorldgenSemanticRenderers(
   const structureModels = options.structureModels ?? models;
   const structureObjects = options.structureObjects;
   const warnedModels = new Set<string>();
+  // The ground paints each shrub crown exactly where the plant on it is not drawn (`nearPlants`),
+  // so it takes the plants' reach whenever these renderers stand them: not without models or
+  // with `nearPlants: false`, nor at Economy, which skips the crowns' scatter tier and leaves the
+  // ground its own near fade.
+  const crownGround = options.landcover?.materials?.landcover;
+  const handCrownsToPlants = (): void => {
+    if (crownGround === undefined || !isTerrainGroundMaterial(crownGround)) return;
+    setTerrainGroundCrownReach(
+      crownGround,
+      models !== undefined && options.nearPlants !== false && quality !== 'economy'
+        ? nearPlacementReach(options.nearPlants || {})
+        : undefined,
+    );
+  };
+  handCrownsToPlants();
   const stats: WorldgenRenderStats = {
     tiles: 0,
     buildings: 0,
@@ -516,6 +552,10 @@ export function createWorldgenSemanticRenderers(
               environment: environmentHash,
               semantics: tileHash(request.tile),
               geometry: request.geom,
+              // The drawn mesh the buildings stand on (see `surfaceResolution`).
+              ...(request.surfaceResolution !== undefined
+                ? { surface: request.surfaceResolution }
+                : {}),
             }),
             level: request.geom.level,
             x: request.geom.x,
@@ -548,6 +588,10 @@ export function createWorldgenSemanticRenderers(
       ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
       ground: context.heightfield,
       resolution: context.pyramid.tileResolution,
+      // Stand on the ground as drawn: a lower quality tier meshes it coarser than the heightfield.
+      ...(context.surfaceResolution !== undefined
+        ? { surfaceResolution: context.surfaceResolution }
+        : {}),
       renderCellsOnly: options.lodPolicy !== undefined,
       budgets: {
         ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
@@ -670,6 +714,46 @@ export function createWorldgenSemanticRenderers(
     return objects;
   }
 
+  /**
+   * The plants on a tile's painted crowns, drawn around the view camera (`createNearPlacements`):
+   * each model at its near level, and its medium level farther out. A model that fails to load is
+   * left out, as `instancedProps` leaves it.
+   */
+  async function nearPlants(
+    near: NearPlacements,
+    context: TerrainPyramidTileLayerContext,
+    name: string,
+  ): Promise<THREE.Object3D | undefined> {
+    if (models === undefined || options.nearPlants === false || near.count === 0) return undefined;
+    const levels = new Map<string, NearPlacementModel>();
+    for (const ref of near.models) {
+      try {
+        const prepared = await models.prepare(ref, false);
+        const medium = options.propLod !== false ? await models.prepare(ref, true) : prepared;
+        levels.set(ref, { near: prepared, medium });
+      } catch (error) {
+        if (context.signal.aborted) return undefined;
+        if (!warnedModels.has(ref)) {
+          warnedModels.add(ref);
+          console.warn(`[molen] worldgen model "${ref}": ${(error as Error).message}`);
+        }
+      }
+      if (context.signal.aborted) return undefined;
+    }
+    const build = (): THREE.Object3D =>
+      createNearPlacements(near, levels, options.nearPlants || {}, `${name}:near`);
+    const object = context.admission
+      ? await context.admission.run(build, {
+          signal: context.signal,
+          label: 'prop-assembly',
+          bytes: near.data.byteLength,
+        })
+      : build();
+    // Held, not drawn (a few hundred of them are): bytes only, not `props`.
+    stats.geometryBytes += near.data.byteLength + near.model.byteLength + near.start.byteLength;
+    return object;
+  }
+
   async function assembleBuildings(
     output: WorldgenTileOutput,
     context: TerrainPyramidTileLayerContext,
@@ -744,7 +828,7 @@ export function createWorldgenSemanticRenderers(
         set,
         geometry,
         (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
-        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
+        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : set.modelRef === 'builtin:roof.gable' ? 'box-roofs' : 'gable-boxes'}`,
       );
       // Stand-ins scale a one-meter box to each building, so a host judging casters by the
       // shared shape's height (the terrain stream's shadowCasterHeight) dropped every one: an
@@ -1272,7 +1356,7 @@ export function createWorldgenSemanticRenderers(
   function focusFor(
     context: TerrainPyramidTileLayerContext,
   ): readonly [number, number] | undefined {
-    if (focus === undefined || interiors === undefined) return undefined;
+    if (focus === undefined) return undefined;
     if (context.address.level < context.pyramid.maxLevel) return undefined;
     const reach = FOCUS_REACH / metersPerUnit;
     const [x, z] = context.origin;
@@ -1294,7 +1378,7 @@ export function createWorldgenSemanticRenderers(
    * The tile shown stays until its replacement is ready (see rebuildResidents).
    */
   function refocus(position: readonly [number, number, number]): void {
-    if (interiors === undefined || options.viewerFocus === false || disposed) return;
+    if (options.viewerFocus === false || disposed) return;
     if (!position.every(Number.isFinite)) return;
     const at = now();
     const last = focusSample;
@@ -1308,7 +1392,10 @@ export function createWorldgenSemanticRenderers(
     )
       return;
     // Not from the air, and not from inside: the swap republishes the room a viewer stands in.
-    if (!interiors.among(position) || interiors.occupied(position)) return;
+    // On the ground is enough: a tile whose budget went to its largest buildings has opened none
+    // of the walker's houses, so there is no interior round them to be among.
+    if (!(interiors?.among(position) === true || nearGround(position))) return;
+    if (interiors?.occupied(position) === true) return;
     focus = [position[0], position[2]];
     let marked = false;
     for (const [root, resident] of residents) {
@@ -1320,6 +1407,29 @@ export function createWorldgenSemanticRenderers(
       marked = true;
     }
     if (marked) void rebuildResidents();
+  }
+
+  /**
+   * Whether `position` is within `FOCUS_GROUND_REACH` of the ground, read from the finest
+   * building tile under it. A camera above the roofs, or a tile not refined yet, is not.
+   */
+  function nearGround(position: readonly [number, number, number]): boolean {
+    for (const [root, resident] of residents) {
+      if (resident.generalized || superseded.has(root)) continue;
+      const { context } = resident;
+      if (context.address.level < context.pyramid.maxLevel) continue;
+      const [x, z] = context.origin;
+      if (
+        position[0] < x ||
+        position[0] > x + context.tileSize ||
+        position[2] < z ||
+        position[2] > z + context.tileSize
+      )
+        continue;
+      const ground = context.heightfield.sampleHeight(position[0], position[2]);
+      return Number.isFinite(ground) && position[1] - ground <= FOCUS_GROUND_REACH;
+    }
+    return false;
   }
 
   // One replacement at a time bounds extra memory and worker pressure. Quality changes and
@@ -1768,7 +1878,9 @@ export function createWorldgenSemanticRenderers(
         meshOptions.renderLandcover !== false;
       if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
       if (scatter === undefined) return surface;
-      const group = new THREE.Group();
+      // Settles its plant sets before three visits them: most of a garden's species are ground
+      // cover that draws only near the camera, and each such set then leaves the scene's walk.
+      const group = new PlacementSetGroup();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
       if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;
       group.add(surface);
@@ -1782,6 +1894,14 @@ export function createWorldgenSemanticRenderers(
           )) {
             group.add(object);
           }
+          // The plants on the painted crowns stand only around the camera; they choose
+          // themselves each frame the tile is drawn (a THREE.LOD's update).
+          const near = generated.output.near;
+          const plants =
+            near !== undefined && !context.signal.aborted
+              ? await nearPlants(near, context, group.name)
+              : undefined;
+          if (plants !== undefined) group.add(plants);
           if (!context.signal.aborted) return group;
         }
         disposeTerrainSemanticObject(group);
@@ -1813,6 +1933,7 @@ export function createWorldgenSemanticRenderers(
     setQuality(next): void {
       if (quality === next) return;
       quality = next;
+      handCrownsToPlants();
       for (const resident of residents.values()) resident.pending?.abort();
       void rebuildResidents();
     },

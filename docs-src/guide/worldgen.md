@@ -465,6 +465,37 @@ edges: 650 meters of road in the full window, or 300 meters with explicit suitab
 Highways, paths, service roads, bridges and tunnels do not establish demand. Mapped buildings keep
 priority in the shared rendering budgets.
 
+Without a land-use label, the 650 meters are counted in local streets: `residential`,
+`living_street`, or a `minor_road` with no finer class. A meter of any other street (an
+`unclassified` lane, a `tertiary` or `secondary` road) counts as a third of a meter, so a
+network of lanes and through roads must be three times as dense as a network of residential
+streets before it reads as a neighborhood. A dense grid of collectors still does; lanes between
+fields do not. Counted alike, they lined the countryside with houses: checked against Spain's
+cadastre on the zoom-13 world package (November 2026), a fifth of the buildings invented round
+Alicante and a third of those round Oviedo stood where under 1% of the ground is built. Any of
+these streets still carries lots once the place qualifies, and mapped residential, commercial or
+retail land use qualifies a place as before.
+
+Streets alone cannot say whether a frontage is empty or only unmapped. Where a tile carries
+built-up evidence (`TerrainSemanticTile.builtUp`, from a terrain package's `builtUp` grid; see
+[terrain](terrain.md)), lots are invented only in blocks where the evidence exceeds what the
+tile's own footprints cover by 0.15 of the ground. Blocks are the 2^n evidence cells nearest
+480 m across (4 x 4 cells of a zoom-18 grid, a quarter of a zoom-15 tile), and a tile whose
+blocks are all closed lays out nothing, which is also the cheapest path. `buildingInfill:
+{ builtUp: { minDeficit } }` sets another margin and `{ builtUp: false }` ignores the evidence; a
+tile without evidence is not limited. `createBuiltUpGate` returns the blocks, their evidence and
+footprint shares for inspection.
+
+The margin is a difference over blocks because of how such evidence errs. Measured on zoom-15
+tiles against three cadastres with GHSL's 100 m built-up surface (November 2026), the layer reads
+villa suburbs and bare dry ground several points higher than the footprints there. On a map
+holding 98% of Alicante's real buildings, ungated infill invented 50,700 more, under 2% of them
+on a real building. Asking that footprints stay under half the evidence in each cell still left
+22,000; the block difference leaves 1,200, and 115 of 21,500 round Oviedo. On a map holding 15%
+of Bogotá's buildings it keeps 96% of the 77,600 invented there, of which 92% stand on a real
+building. Generating the two Spanish study areas takes a third less time. The price is that a
+sparse place with no footprints at all (evidence near 0.10) stays empty.
+
 A house in a yard is one street pattern among several. The regional house style's optional
 `lots` says how the lots it invents line a street: `rows` is the share of blocks built as rows,
 fronts wall to wall at the back of the footway; `units` how many fronts stand to each 16 m of
@@ -497,8 +528,18 @@ and exclusion geometry participate in cache keys. Records carry the `inferred` l
 Changes to source data, styles, seed or algorithm version can change the result. The frontage-based
 v3 algorithm regenerates older layouts once; subsequent visits reproduce the new layout.
 
-Infill uses detailed footprints at the finest two terrain levels, skips generalized
-building data, and caps inferred lots at 3,072 per tile before shared rendering budgets.
+Infill uses detailed footprints at the finest two terrain levels and skips generalized
+building data. The level below the finest is filled only where its tiles are zoom 14 or finer;
+the finest level is filled down to zoom 13, so a package whose finest tiles are zoom 13 (a
+planet-wide release that keeps its detail levels few) still invents the houses of the streets
+around the camera. Inferred lots are capped at 3,072 per tile, and a tile larger than zoom 14 may
+hold as many for each zoom-14 tile's area (12,288 at zoom 13), before shared rendering budgets.
+A zoom-13 tile is costly to fill: a dense town tile lays out about 6,300 buildings in 0.6 s of
+worker time and takes about three times as long to generate as it does without infill. The batch
+draws at most `maxBuildings` (4,000 on the finest level at Balanced), mapped buildings first and
+then invented ones largest first, so a tile that invents more loses its smallest garages and row
+units. Where mapped footprints alone fill that budget, as in a downtown, a request that draws
+buildings invents none; scatter-only requests still lay out every lot, so plants keep off them.
 Entire parcels stay inside their owner tile, leaving a small margin at tile edges. A neighboring
 halo participates in corner-lot conflict resolution. Coverage depends on the roads and exclusions
 available in that tile. These are synthetic lots, not surveyed parcels or zoning; missing land-use
@@ -509,10 +550,17 @@ source supplies matching semantic layers.
 ### Inferred trees around homes
 
 Atlas region bindings and the worldwide default accept `treeFillFactor` from 0 to 1. The
-shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0 in
-the Southwest; Japan uses 0.3 and unclassified regions use 0. These are configurable visual priors,
-not measured canopy percentages or a global climate dataset. Fill is resolved at each home's
-location, including region edges.
+shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0.3 in
+the Southwest; South Asia uses 0.6, Japan 0.3, the Iberian Peninsula 0.35 and every other region
+0. These are configurable visual priors, not measured canopy percentages or a global climate
+dataset. Fill is resolved at each home's location, including region edges.
+
+Iberia's value is a floor that was checked, not a measurement. Against orthophotos of Alicante
+and Oviedo (November 2026) a fill of 0 left low-rise districts nearly treeless: tree crowns over
+0.5% of the unbuilt ground among Alicante's houses and villas, where 10% of it is green. At 0.35
+they cover 3.6% there and 12% among Oviedo's houses (70% green, most of it pasture), and no kind
+of neighbourhood in either city is planted more heavily than its photograph. The two cities
+differ too much for one number to be right in both.
 
 For complete low-rise footprints of 45–700 m², the Earth adapter adds an irregular yard patch
 roughly 18–26 meters beyond the home. Explicit house classifications qualify; small untyped
@@ -616,11 +664,16 @@ A batch spends its budget in priority order, largest footprints first. That suit
 air; for someone on the ground the buildings that matter are the nearest. `WorldgenBatchInput.focus`
 (`{ x, z, radius }` in the buildings' frame) queues the buildings within `radius` of a viewer
 nearest first, ahead of every other, so the same budget details and opens the doors of what the
-viewer can walk up to. The Earth renderers set it themselves: once the position passed to
-`updateInteriors` is down among the buildings and moving at a walk, the finest tiles within 90 m
-are regenerated round it, and again each 36 m it moves (never while it is inside a building, and
-the tile shown stays until its replacement is ready). In a dense Seattle tile of 1,091 buildings,
-where the largest 75 were detailed, that details the nearest 148, out to 140 m. First every building gets
+viewer can walk up to. The Earth renderers set it themselves, with or without interiors: once the
+position passed to `updateInteriors` is within 25 m of the ground and moving at a walk, the finest
+tiles within 90 m are regenerated round it, and again each 36 m it moves (never while it is inside
+a building, and the tile shown stays until its replacement is ready). In a dense Seattle tile of
+1,091 buildings, where the largest 75 were detailed, that details the nearest 148, out to 140 m.
+A focused batch also keeps half of `maxBuildingVertices` from the buildings outside its focus
+while the passes below reserve walls, roofs and simplified facades, so a batch with more
+buildings than its budget has walls for still details the nearest: in a 3 km tile of 11,558
+buildings, none of which had been detailed, 142 round a walker were. The rest of the tile then
+has more stand-ins. First every building gets
 walls and its roof shape (the style's coarsest tier); only when even that does not fit does a
 building become an instanced stand-in. Then buildings gain a simplified facade while it fits, then
 the largest (`detailedCount`) gain full detail. The simplified facade preserves the authored
@@ -637,11 +690,38 @@ lowest sampled ground, keeping roofs and windows level without gaps on downhill 
 vertices and draw calls. Stand-ins do the same; intentionally elevated `minHeight` parts retain
 their clearance.
 
-Stand-ins are instanced: `builtin:box` for flat-roofed buildings, and `builtin:box.gable` (set
-`buildings:box.gable`) for pitched ones, a box whose walls stop at the eave (`GABLE_BOX_EAVE` of
-its height) under a roof ridged along its longer side, the roof shaded darker than the walls. From
-the air a neighbourhood of stand-ins still reads as roofs. `buildingBoxGeometry(modelRef)` returns
-the shared geometry for either. Buildings beyond `maxBuildings` are still omitted. Quality and
+Stand-ins are instanced: one `builtin:box` each (set `buildings:box`), and for a pitched building
+a `builtin:roof.gable` on top of it (set `buildings:roof.gable`), ridged along the longer side.
+The box is then the walls, in the wall color, and the roof has the roof's. The roof is a second
+instance so that it can stand as high as the building's own roof would: the style's slope times
+half the plan's depth (`distantRoofHeight`: the two slopes of a gambrel, a mansard's low skirt, a
+deck on a plan too deep for a ridge, nothing where the style leaves such plans flat), and at most
+0.4 of a mapped height, which is ground to ridge. A single shape whose roof was a fixed share of
+its height drew a two-storey house at 45 degrees and a six-storey block at 60 in a region whose
+styles ask for 17 to 26, and drew its walls in the roof's color. From the air a neighbourhood of
+stand-ins reads as its roofs. `buildingBoxGeometry(modelRef)` returns the shared geometry for
+either; `builtin:box.gable`, the old single shape, remains as a prop model. A host that makes
+stand-ins itself calls `roofStandIn(box, look, height, measured)` for the same roof, or
+`standInPlacement`, which does. Buildings beyond `maxBuildings` are stand-ins too, up to
+`maxStandIns` (default 0, which omits them; `worldgenTileBudgetForQuality` sets 8,000 to 24,000 on
+the finest level and 24,000 to 60,000 behind it): a 1.2 km tile of central Bogotá holds 10,600
+footprints against 6,000 buildings at High, and the 4,600 smallest were missing. Once 48
+buildings in a row have not fitted the vertex budget, the rest of a batch become stand-ins
+without their walls being built first and thrown away.
+
+A dense tile behind the finest level is mostly stand-ins: a 2.4 km tile there draws 3,800 of
+35,000 footprints as buildings at High. The Earth adapter therefore works up in full only as
+many footprints as the vertex budget could draw at all (`maxBuildingVertices / 24`, the largest
+first, and every building a host placed) and makes the rest stand-ins itself, from each outline
+and its style's look: `standInPlacement` boxes an outline along its longest edge, a
+`DistantLook` now carries the style's `height` and whether its roof is `pitched`, and
+`WorldgenBatchInput.standIns` takes the boxes as given (no style, analysis or record; counted in
+`buildingsIn` and `buildingsBoxed`). That tile fell from 3.9 s and 5.3 GB of allocation to 2.2 s
+and 2.7 GB, with the same buildings and boxes. The finest level is never split this way: a viewer
+may stand beside any of its buildings. A worker pool also bounds the footprints it has in flight
+(`POOL_FOOTPRINTS_IN_FLIGHT`, 36,000: three dense finest tiles or one tile of the level behind),
+because a worker's heap grows with its tile's footprints and every isolate of a tab shares one
+4 GB limit. The most urgent tile waits for room; ordinary towns never reach the bound. Quality and
 detail remain tile-based, not camera-distance updates per building. `worldgenBuildingCellSize`
 batches the finest level's buildings into 512 m cells and coarser levels' into 1024 m cells, since
 each cell is a draw.
@@ -743,7 +823,14 @@ are built by the time it gets there. With `vanishPixels` a batch stops drawing
 once its largest instance spans fewer pixels than that from the batch's nearest point (15%
 hysteresis): the semantic renderers pass 1.5 for street props and signs, which from a few
 kilometers were a draw each for a pixel or less, but not for plants, as a distant forest is the
-sum of its trees. Buildings retain their structural faces while distant materials and facade details
+sum of its trees. A set whose batches can draw nothing for the view camera (each too small to
+see, or a model that is near detail only and out of its reach, as most of a garden's species
+are) leaves the scene's walks altogether, where each batch used to be visited every frame to hide
+its mesh again: the object `createInstancedPlacementLod` returns decides that for its batches,
+and a `PlacementSetGroup` holding several sets decides for all of them before three visits any,
+so such a set costs a frame nothing. What is drawn is the same. From 1,400 m over a suburb two
+thirds of 1,970 plant sets were in that state, 4,700 of the 11,600 objects three walked, and a
+frame's render went from 16.3 ms to about 14. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain

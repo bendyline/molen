@@ -36,12 +36,9 @@ export function inspectCommonsCreatorOriginal(dir, reference) {
     const image = localBytes(dir, reference.path);
     const text = first.slots.main['*'] ?? first.slots.main.content;
     const field = (name) => {
-      const row = text.split(/\r?\n/).find((line) =>
-        line
-          .toLowerCase()
-          .trimStart()
-          .startsWith('|' + name + '='),
-      );
+      const row = text
+        .split(/\r?\n/)
+        .find((line) => line.toLowerCase().trimStart().startsWith(`|${name}=`));
       return row?.slice(row.indexOf('=') + 1).trim();
     };
     const nickname = reference.artist;

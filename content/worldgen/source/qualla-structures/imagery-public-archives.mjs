@@ -328,7 +328,7 @@ function amosNaipMatches(reference, image, record) {
   const expected = [-81.8302, 38.4697, -81.8172, 38.4787];
   return (
     reference.sourceUrl === service &&
-    reference.rightsEvidence?.sourceUrl === service + '?f=pjson' &&
+    reference.rightsEvidence?.sourceUrl === `${service}?f=pjson` &&
     reference.downloadUrl ===
       service +
         '/exportImage?bbox=' +
@@ -669,7 +669,7 @@ function archivesOntarioHammondMatches(reference, image, record) {
   const body = revision?.slots?.main?.['*'] ?? '';
   const title = 'Fort Lennox, Ile aux noix, Quebec, looking southwest (I0017513).jpg';
   return (
-    page?.title === 'File:' + title &&
+    page?.title === `File:${title}` &&
     record.archive === 'Archives of Ontario' &&
     record.fonds === 'F 1075 M. O. Hammond fonds' &&
     record.archiveProgram === 'https://www.archives.gov.on.ca/topic/digitized-records/' &&
@@ -706,19 +706,19 @@ function dendurGauPlateMatches(reference, image, record) {
   if (!plate) return false;
   const [id, digest] = plate;
   const site = 'https://www.e-rara.ch';
-  const iiif = site + '/i3f/v20';
+  const iiif = `${site}/i3f/v20`;
   return (
     reference.artist === 'Franz Christian Gau' &&
-    reference.sourceUrl === site + '/zut/content/pageview/' + id &&
-    reference.downloadUrl === iiif + '/' + id + '/full/2400,/0/default.jpg' &&
-    reference.rightsEvidence?.sourceUrl === site + '/zut/content/titleinfo/15272200' &&
+    reference.sourceUrl === `${site}/zut/content/pageview/${id}` &&
+    reference.downloadUrl === `${iiif}/${id}/full/2400,/0/default.jpg` &&
+    reference.rightsEvidence?.sourceUrl === `${site}/zut/content/titleinfo/15272200` &&
     record.holding === 'ETH-Bibliothek Zürich, Rar 9984' &&
     record.doi === 'https://doi.org/10.3931/e-rara-56517' &&
     record.published === 1822 &&
     record.license === 'https://creativecommons.org/publicdomain/mark/1.0/' &&
-    record.manifest === iiif + '/15272200/manifest' &&
-    record.canvas?.['@id'] === iiif + '/15272200/canvas/' + id &&
-    record.canvas?.images?.[0]?.resource?.service?.['@id'] === iiif + '/' + id &&
+    record.manifest === `${iiif}/15272200/manifest` &&
+    record.canvas?.['@id'] === `${iiif}/15272200/canvas/${id}` &&
+    record.canvas?.images?.[0]?.resource?.service?.['@id'] === `${iiif}/${id}` &&
     reference.originalReview?.rendition === 'complete-iiif-page-2400px' &&
     hash(image) === digest
   );

@@ -10,7 +10,12 @@ import {
   terrainGroundCrown,
   terrainGroundLattice,
 } from '../src/ground-crowns';
-import { createTerrainGroundMaterial } from '../src/ground-material';
+import {
+  cloneTerrainGroundMaterial,
+  createTerrainGroundMaterial,
+  createTerrainPavementMaterial,
+  setTerrainGroundCrownReach,
+} from '../src/ground-material';
 
 function landcoverShader(): THREE.WebGLProgramParametersWithUniforms {
   const shader = {
@@ -38,7 +43,9 @@ describe('painted shrub crowns', () => {
     expect(shader.fragmentShader).toContain(
       `vec2 cell = floor(p / ${TERRAIN_GROUND_CROWNS.cell.toFixed(1)});`,
     );
-    expect(shader.fragmentShader).toContain(`share / ${TERRAIN_GROUND_CROWN_FULL.toFixed(4)}`);
+    expect(shader.fragmentShader).toContain(
+      `(handoff ? brushShare : share) / ${TERRAIN_GROUND_CROWN_FULL.toFixed(4)}`,
+    );
     // The dome the crown paints feeds the relief the light models.
     expect(shader.fragmentShader).toContain('terrainGroundRelief += terrainGroundCrownHeight;');
   });
@@ -87,6 +94,50 @@ describe('painted shrub crowns', () => {
     const covered = area / (cells * cells * TERRAIN_GROUND_CROWNS.cell ** 2);
     expect(covered).toBeGreaterThan(TERRAIN_GROUND_CROWNS.share * 0.95);
     expect(covered).toBeLessThan(TERRAIN_GROUND_CROWNS.share * 1.05);
+  });
+
+  it("hands each crown to its plant at the host's reach, without rebuilding a shader", () => {
+    // Each crown's place in the thinning band is a lattice byte, which a host carries exactly.
+    const { reach } = TERRAIN_GROUND_CROWN_OFFSETS;
+    for (const [i, j] of [
+      [0, 0],
+      [12, -7],
+      [-1_337_000, 412_345],
+    ] as const) {
+      const crown = terrainGroundCrown(i, j);
+      expect(crown.reach).toBe(terrainGroundCell(i + reach[0], j + reach[1]));
+      expect(Math.abs(crown.reach * 255 - Math.round(crown.reach * 255))).toBeLessThan(1e-9);
+    }
+    const material = createTerrainGroundMaterial({ agriculture: true });
+    const shader = {
+      uniforms: {},
+      vertexShader: '#include <begin_vertex>',
+      fragmentShader: '#include <color_fragment>\n#include <normal_fragment_maps>',
+    } as THREE.WebGLProgramParametersWithUniforms;
+    material.onBeforeCompile(shader, {} as THREE.WebGLRenderer);
+    const uniform = shader.uniforms.terrainGroundCrownReach?.value as THREE.Vector4;
+    // Off by default: the crowns give way near the camera on their own.
+    expect(uniform.toArray()).toEqual([0, 0, 0, 0]);
+    setTerrainGroundCrownReach(material, { full: 120, radius: 300, shrink: 12 });
+    expect(uniform.toArray()).toEqual([120, 300, 12, 1]);
+    // Copies drive the same uniform; a radius inside `full` is `full`.
+    setTerrainGroundCrownReach(cloneTerrainGroundMaterial(material), {
+      full: 80,
+      radius: 40,
+      shrink: 5,
+    });
+    expect(uniform.toArray()).toEqual([80, 80, 5, 1]);
+    setTerrainGroundCrownReach(material, undefined);
+    expect(uniform.toArray()).toEqual([0, 0, 0, 0]);
+    expect(shader.fragmentShader).toContain('uniform vec4 terrainGroundCrownReach;');
+    // Pavement paints no crowns and ignores it.
+    expect(() =>
+      setTerrainGroundCrownReach(createTerrainPavementMaterial(), {
+        full: 1,
+        radius: 2,
+        shrink: 1,
+      }),
+    ).not.toThrow();
   });
 
   it('paves built-up ground over between the default coverages', () => {

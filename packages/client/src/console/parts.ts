@@ -116,8 +116,10 @@ export function createControlPart(options: {
 }
 
 /**
- * A dial cropped from the cockpit (`createAircraftInstrumentViews`): its copies follow the live
- * needles, so it needs the model's world matrices current before `pose`.
+ * A dial: one cropped from the cockpit (`createAircraftInstrumentViews`), whose copies follow the
+ * live needles, so it needs the model's world matrices current before `pose`, or one of the kit
+ * (`createSpeedometerView`), which reads its own source. Disposing the part disposes a view that
+ * owns its resources.
  */
 export function createGaugePart(id: string, view: AircraftInstrumentView): ConsolePart {
   view.scene.background = null;
@@ -136,6 +138,8 @@ export function createGaugePart(id: string, view: AircraftInstrumentView): Conso
       return changed();
     },
     fit() {},
-    dispose() {},
+    dispose() {
+      view.dispose?.();
+    },
   };
 }

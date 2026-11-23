@@ -151,6 +151,7 @@ export function worldgenPreviewBounds(
     const points =
       set.modelRef === 'builtin:box' ||
       set.modelRef === 'builtin:box.gable' ||
+      set.modelRef === 'builtin:roof.gable' ||
       set.modelRef.startsWith('builtin:tree.mapped.')
         ? [-0.5, 0, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 0, -0.5]
         : model?.positions;

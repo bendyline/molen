@@ -2,7 +2,15 @@
 import { dmath, type Quat, quatRotateVec3, type Vec3 } from '@bendyline/molen-kernel/determinism';
 import { tint } from './body-human-head';
 import type { RGB } from './color';
-import type { FigureTier, RingRef, Skin, SkinnedMeshBuilder } from './skinned-mesh-builder';
+import {
+  blend,
+  type FigureRegion,
+  type FigureTier,
+  type RingRef,
+  type Skin,
+  type SkinnedMeshBuilder,
+} from './skinned-mesh-builder';
+import type { FigureFootwearStyle } from './types';
 
 export function buildHumanHand(
   b: SkinnedMeshBuilder,
@@ -131,6 +139,29 @@ export function buildHumanHand(
   );
 }
 
+/** A footwear variant over the reference shoe (see buildHumanShoe). */
+export interface HumanShoeStyle {
+  style: FigureFootwearStyle;
+  /** Skin weights of the shin, which a boot's shaft top follows. */
+  shaft: Skin;
+  /** The leg's radius at a boot's shaft top (the shaft clears it). */
+  legRadius: number;
+  /** Skin color (a sandal's bare foot). */
+  skin: RGB;
+  /**
+   * Trousers fall over a boot's shaft (wide trousers): the boot stops at the ankle, inside them,
+   * so their hem crosses it on one clean line.
+   */
+  covered?: boolean;
+}
+
+/** One lofted footwear section: height, half-width and half-length (of the foot length), z offset. */
+type FootSection = readonly [y: number, w: number, depth: number, z: number];
+
+/**
+ * A shoe on the foot joint. Without a style (or `shoe`) it is the reference shoe, unchanged;
+ * `sneaker`, `boot` and `sandal` are other section stacks over the same foot.
+ */
 export function buildHumanShoe(
   b: SkinnedMeshBuilder,
   ankle: Vec3,
@@ -139,7 +170,12 @@ export function buildHumanShoe(
   s: Skin,
   color: RGB,
   tier: FigureTier,
+  style?: HumanShoeStyle,
 ): void {
+  if (style !== undefined && style.style !== 'shoe') {
+    buildFootwear(b, ankle, length, height, s, color, tier, style);
+    return;
+  }
   const sides = tier === 0 ? 16 : 8;
   const sole = tint(color, 0.52);
   const sections: readonly [number, number, number, number][] = [
@@ -178,6 +214,177 @@ export function buildHumanShoe(
         [ankle[0] + 0.12 * length, y + 0.0015 * height, z + 0.012 * length],
         s,
         tint(color, 1.5),
+      );
+    }
+  }
+}
+
+/** A footwear ring: its section, color and region (and skin, when not the foot's). */
+interface FootRing {
+  at: FootSection;
+  color: RGB;
+  region: FigureRegion;
+  s?: Skin;
+}
+
+const PALE: RGB = [0.93, 0.92, 0.89];
+const mixRgb = (a: RGB, b: RGB, t: number): RGB => [
+  dmath.lerp(a[0], b[0], t),
+  dmath.lerp(a[1], b[1], t),
+  dmath.lerp(a[2], b[2], t),
+];
+
+/**
+ * Sneakers, boots and sandals: section stacks lofted like the reference shoe, no more rings than
+ * it below near detail. Near, sole edges are doubled rings, so a sole color ends on a line
+ * instead of fading up the upper. A boot's shaft top follows the shin; a sandal is a sole under
+ * the bare foot with arched straps over it (near) or a band of its color (further away).
+ */
+function buildFootwear(
+  b: SkinnedMeshBuilder,
+  ankle: Vec3,
+  length: number,
+  H: number,
+  s: Skin,
+  color: RGB,
+  tier: FigureTier,
+  style: HumanShoeStyle,
+): void {
+  const sides = tier === 0 ? 16 : 8;
+  const near = tier === 0;
+  /** A ring; `nearOnly` rings (crisp edges, toe shaping) are left out below near detail. */
+  const ring = (
+    at: FootSection,
+    c: RGB,
+    options: { region?: FigureRegion; s?: Skin; nearOnly?: boolean } = {},
+  ): FootRing | undefined =>
+    options.nearOnly && !near
+      ? undefined
+      : { at, color: c, region: options.region ?? 'shoes', ...(options.s ? { s: options.s } : {}) };
+  let all: (FootRing | undefined)[];
+  let opening = color;
+  if (style.style === 'sneaker') {
+    // A thick pale sole with a crisp edge (near) under a slightly fuller upper.
+    const sole = mixRgb(color, PALE, 0.85);
+    all = [
+      ring([0, 0.235, 0.575, 0.2], sole),
+      ring([0.021 * H, 0.245, 0.58, 0.2], sole),
+      ring([0.0215 * H, 0.232, 0.555, 0.2], color, { nearOnly: true }),
+      ring([0.033 * H, 0.226, 0.535, 0.2], color),
+      ring([0.046 * H, 0.206, 0.445, 0.14], color),
+      ring([ankle[1] + 0.03 * H, 0.178, 0.27, 0.035], color),
+    ];
+  } else if (style.style === 'boot') {
+    // A heel-and-sole block and a shaft up the shin, wide enough to clear the leg.
+    const sole = tint(color, 0.45);
+    const shaftW = dmath.max(0.19, (style.legRadius * 1.14) / length);
+    const shaftD = dmath.max(0.25, (style.legRadius * 1.2) / length);
+    all = [
+      ring([0, 0.23, 0.56, 0.2], sole),
+      ring([0.016 * H, 0.242, 0.57, 0.2], sole),
+      ring([0.0165 * H, 0.232, 0.55, 0.2], color),
+      ring([0.028 * H, 0.228, 0.53, 0.2], color, { nearOnly: true }),
+      ring([0.042 * H, 0.212, 0.45, 0.13], color),
+      style.covered
+        ? ring([ankle[1] + 0.03 * H, 0.16, 0.24, 0.03], color)
+        : ring([ankle[1] + 0.03 * H, 0.19, 0.29, 0.03], color, {
+            s: blend(s[0], 0.6, style.shaft[0], 0.4),
+            nearOnly: true,
+          }),
+      style.covered
+        ? undefined
+        : ring([ankle[1] + 0.09 * H, shaftW, shaftD, 0.01], color, { s: style.shaft }),
+    ];
+    opening = tint(color, 0.5);
+  } else {
+    // A sandal: a sole slab under the bare foot. Below near detail the straps are a band of
+    // the sandal's color over the instep.
+    const sole = tint(color, 0.72);
+    const skinRing = { region: 'skin' as const };
+    all = [
+      ring([0, 0.225, 0.555, 0.2], sole),
+      ring([0.011 * H, 0.238, 0.565, 0.2], sole),
+      ring([0.0115 * H, 0.222, 0.54, 0.2], style.skin, skinRing),
+      ring([0.021 * H, 0.212, 0.51, 0.2], style.skin, { ...skinRing, nearOnly: true }),
+      ring([0.033 * H, 0.188, 0.41, 0.14], near ? style.skin : color, skinRing),
+      ring([ankle[1] + 0.025 * H, 0.16, 0.245, 0.035], style.skin, skinRing),
+    ];
+    opening = style.skin;
+  }
+  const rings = all.filter((r): r is FootRing => r !== undefined);
+  let last: RingRef | undefined;
+  let lastRegion: FigureRegion = 'shoes';
+  for (const r of rings) {
+    const [y, w, depth, z] = r.at;
+    const next = b.ring(
+      r.region,
+      [ankle[0], y, ankle[2] + z * length],
+      [0, 1, 0],
+      w * length,
+      depth * length,
+      sides,
+      r.s ?? s,
+      r.color,
+    );
+    if (last) b.loft(r.region, last, next);
+    else b.cap(r.region, next, s, r.color, undefined, false);
+    last = next;
+    lastRegion = r.region;
+  }
+  const top = rings[rings.length - 1] as FootRing;
+  if (last) b.cap(lastRegion, last, top.s ?? s, opening);
+  if (style.style === 'sneaker' && tier === 0) {
+    const laces = mixRgb(color, PALE, 0.7);
+    for (let i = 0; i < 3; i++) {
+      const z = ankle[2] + (0.17 + 0.07 * i) * length;
+      const y = ankle[1] + (0.023 - 0.0045 * i) * H;
+      b.box(
+        'shoes',
+        [ankle[0] - 0.12 * length, y, z],
+        [ankle[0] + 0.12 * length, y + 0.0015 * H, z + 0.012 * length],
+        s,
+        laces,
+      );
+    }
+  }
+  if (style.style === 'sandal' && near) {
+    // Straps are thin domes standing on the sole, arched over the foot where they cross it.
+    const foot = rings.filter((r) => r.region === 'skin').map((r) => r.at);
+    const soleTop = 0.011 * H;
+    /** The foot's top at a forward offset (in foot lengths): along the lofted front profile. */
+    const topAt = (z: number): number => {
+      for (let i = foot.length - 1; i > 0; i--) {
+        const [y1, , d1, z1] = foot[i] as FootSection;
+        const [y0, , d0, z0] = foot[i - 1] as FootSection;
+        const f1 = z1 + d1,
+          f0 = z0 + d0;
+        if (z <= f1) return y1;
+        if (z <= f0) return dmath.lerp(y1, y0, (z - f1) / (f0 - f1));
+      }
+      return soleTop;
+    };
+    const halfAt = (z: number): number => {
+      let half = 0;
+      for (const [, w, d, zc] of foot) {
+        const k = (z - zc) / d;
+        if (k * k < 1) half = dmath.max(half, w * dmath.sqrt(1 - k * k));
+      }
+      return half * length;
+    };
+    // A dome narrows toward its top while the foot stays broad, so it stands well clear.
+    for (const z of [0.1, 0.4]) {
+      const rise = (topAt(z) - soleTop) * 1.3 + 0.004 * H;
+      b.ellipsoid(
+        'shoes',
+        [ankle[0], soleTop - 0.002 * H, ankle[2] + z * length],
+        [0, 1, 0],
+        [halfAt(z) * 1.22 + 0.003 * H, 0.07 * length, rise],
+        8,
+        2,
+        s,
+        color,
+        0,
+        1,
       );
     }
   }

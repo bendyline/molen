@@ -44,7 +44,9 @@ import {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from './pyramid-types';
+import { retireTerrainObjects } from './retire';
 import type { RoadEarthworksRequest } from './road-earthworks';
+import type { RoadSeparationRequest, RoadSeparationResult } from './road-separation';
 import type { TerrainQualityPreset, TerrainStreamStats, TerrainTileLayerCategory } from './stream';
 import {
   applySurfaceHeightMorph,
@@ -156,6 +158,17 @@ export interface TerrainPyramidHeightSource {
     request: RoadEarthworksRequest,
     signal: AbortSignal,
   ): Promise<Heightfield | undefined>;
+  /**
+   * Grade a tile's bridges, and the roads that climb to them, where it does not hold the main
+   * thread (see `gradeRoadSeparationRequest`): the elevation worker's source does it there, over
+   * the reference ground it reads from its own decoded tiles. Resolves to the result, to null
+   * where that ground cannot be read, and to undefined when cancelled. The request's arrays are
+   * handed over with it. Undefined leaves the road grading to do it itself, a slice at a time.
+   */
+  gradeSeparations?(
+    request: RoadSeparationRequest,
+    signal: AbortSignal,
+  ): Promise<RoadSeparationResult | null | undefined>;
   /**
    * Cut openings from ground meshes off the main thread (a `TerrainGroundCutter`): the stream
    * hands it to its cutout controller. Undefined leaves each cut to be made in slices between
@@ -1135,6 +1148,18 @@ const AHEAD_ROOM_FRACTION = 0.9;
  * so room judged when its ground arrived was gone by the time its buildings did.
  */
 const AHEAD_RESUME_FRACTION = 0.75;
+/**
+ * Detail already drawn stays over ground the camera has turned or flown away from (see
+ * `updateLayerVisibility`), so that a look back finds it. In flight that is a trail as long as
+ * the view distance, and nothing lets it go: across Osaka at High detail, 104 of the finest tiles
+ * out of view held 2.7 GiB of the 3.9 GiB on show against a 2 GiB budget, half as much again
+ * as a fresh view of the same place holds in all, and the stream stops preparing ground ahead
+ * once what is on show passes the budget. Past this share of `maxResidentBytes` on show, ground
+ * out of view gives that detail up, the farthest first, until this much is left
+ * (`RELIEF_TO`): its own selected tile takes over, bare until it is looked at.
+ */
+const RELIEF_ABOVE = 0.85;
+const RELIEF_TO = 0.7;
 /** A tile built again within this long of its eviction counts as thrashed (`thrashedTiles`), ms. */
 const THRASH_MS = 60_000;
 /** Evictions remembered for `thrashedTiles`, at most. */
@@ -1506,6 +1531,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly preparationTargets = new Set<string>();
   private preloadViews: readonly TerrainPyramidView[] = [];
   private preloadMemoryHold = false;
+  /** Selected tiles out of view taking over this pass from the finer detail kept over them. */
+  private relieved: ReadonlySet<string> = new Set<string>();
   private readonly rejectedPreloads = new Map<string, number>();
   private displayed = new Set<string>();
   /** Surface cut being prepared behind the currently displayed, complete tiles. */
@@ -2497,6 +2524,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     tile.object.remove(object);
     tile.layers.delete(id);
     this.layerById.get(id)?.disposeTile?.(object);
+    retireTerrainObjects(object);
     this.trackAllocations(tile);
     this.cutoutsDirty = true;
   }
@@ -3061,10 +3089,74 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.evictUnused();
   }
 
+  /**
+   * Under memory pressure (`RELIEF_ABOVE`), the selected tiles out of view that take over now from
+   * finer ground still on show over them, the farthest first. Only a tile that is resident, so the
+   * ground stays whole, and that the view and its guard band do not reach: everything finer over it
+   * is then out of view too. The tiles let go join the warm cache, which has its own limits.
+   */
+  private chooseRelief(): ReadonlySet<string> {
+    const relieved = new Set<string>();
+    const cap = this.budget.maxResidentBytes;
+    const view = this.view;
+    if (cap === undefined || view === undefined || this.displayedBytes <= cap * RELIEF_ABOVE)
+      return relieved;
+    const families = new Map<string, { bytes: number; distance: number } | undefined>();
+    const visit = (key: string): void => {
+      if (this.selected.has(key)) return;
+      const tile = this.resident.get(key);
+      if (tile === undefined) return;
+      for (let level = tile.address.level - 1; level >= this.descriptor.minLevel; level--) {
+        const leaf = terrainPyramidAncestor(tile.address, level);
+        const leafKey = terrainPyramidTileKey(leaf);
+        if (!this.selected.has(leafKey)) continue;
+        let family = families.get(leafKey);
+        if (family === undefined && !families.has(leafKey)) {
+          family =
+            this.resident.has(leafKey) && !this.wantsLayers(leaf)
+              ? {
+                  bytes: 0,
+                  distance: distanceToBounds(
+                    view.position,
+                    tileBounds(this.descriptor, leaf),
+                    this.descriptor.height,
+                  ),
+                }
+              : undefined;
+          families.set(leafKey, family);
+        }
+        if (family !== undefined) family.bytes += tile.geometryBytes + tile.decodedHeightBytes;
+        return;
+      }
+    };
+    const visited = new Set<string>();
+    for (const key of this.displayed) {
+      visited.add(key);
+      visit(key);
+    }
+    for (const keys of this.displayedLayers.values())
+      for (const key of keys) {
+        if (visited.has(key)) continue;
+        visited.add(key);
+        visit(key);
+      }
+    let excess = this.displayedBytes - cap * RELIEF_TO;
+    const farthest = [...families]
+      .filter((entry): entry is [string, { bytes: number; distance: number }] => !!entry[1])
+      .sort((a, b) => b[1].distance - a[1].distance);
+    for (const [key, family] of farthest) {
+      if (excess <= 0) break;
+      relieved.add(key);
+      excess -= family.bytes;
+    }
+    return relieved;
+  }
+
   private updateVisibility(): void {
     this.visibilityQueued = false;
     this.heightProbeTiles.clear();
     this.layerPriorities.clear();
+    this.relieved = this.chooseRelief();
     const previousDisplayed = this.displayed;
     const candidates = new Set<string>();
     const incompleteParents = new Set<string>();
@@ -3074,41 +3166,49 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       for (let level = leaf.level - 1; level >= this.descriptor.minLevel; level--)
         incompleteParents.add(terrainPyramidTileKey(terrainPyramidAncestor(leaf, level)));
     }
+    // The tiles on show before this pass, looked up once, in their order. The loops below visit
+    // them for every selected leaf: looking each up by key again there, a few hundred times a
+    // few hundred, was most of what a pass cost over a city.
+    const previousTiles: Array<{ key: string; address: TerrainPyramidTileAddress }> = [];
+    for (const key of previousDisplayed) {
+      const address = this.resident.get(key)?.address;
+      if (address !== undefined) previousTiles.push({ key, address });
+    }
     // Displayed tiles standing in for ground far finer than themselves (PLACEHOLDER_LEVELS).
     const placeholders = new Set<string>();
     for (const leaf of this.selected.values())
-      for (const previousKey of previousDisplayed) {
-        const previous = this.resident.get(previousKey);
+      for (const previous of previousTiles) {
         if (
-          previous !== undefined &&
           leaf.level - previous.address.level > PLACEHOLDER_LEVELS &&
           pyramidAddressesOverlap(previous.address, leaf)
         )
-          placeholders.add(previousKey);
+          placeholders.add(previous.key);
       }
     // Tiles any layer currently displays, gathered once rather than per leaf and candidate.
     const layered = new Set<string>();
     for (const keys of this.displayedLayers.values()) for (const key of keys) layered.add(key);
+    // Those of them a selected leaf could be handed over from, one generation at a time: what
+    // does not depend on the leaf is settled here, once.
+    const handoffParents = previousTiles.filter(
+      ({ key }) => incompleteParents.has(key) && !placeholders.has(key) && layered.has(key),
+    );
     for (const leaf of this.selected.values()) {
       // Refine an already detailed tile one generation at a time. Jumping straight from a
       // large parent to dozens of leaves hides every finished leaf behind the slowest one.
       // Intermediate families keep the handoff atomic while allowing nearby families to
       // finish independently. Missing/evicted intermediates do not block resident leaves.
       let replacementLevel = leaf.level;
-      for (const previousKey of previousDisplayed) {
-        const previous = this.resident.get(previousKey);
+      for (const previous of handoffParents) {
         if (
-          previous &&
-          incompleteParents.has(previousKey) &&
           previous.address.level < leaf.level &&
-          !placeholders.has(previousKey) &&
+          // Only a coarser generation than the one already found can lower it further.
+          previous.address.level + 1 < replacementLevel &&
           pyramidAddressesOverlap(previous.address, leaf) &&
-          layered.has(previousKey) &&
           this.resident.has(
             terrainPyramidTileKey(terrainPyramidAncestor(leaf, previous.address.level + 1)),
           )
         )
-          replacementLevel = Math.min(replacementLevel, previous.address.level + 1);
+          replacementLevel = previous.address.level + 1;
       }
       // The nearest resident stand-in: the leaf itself or its closest cached ancestor.
       let standIn: TerrainPyramidTileAddress | undefined;
@@ -3128,13 +3228,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // has lost the intermediate levels.
       const floor = standIn?.level ?? Number.NEGATIVE_INFINITY;
       let retained = false;
-      for (const key of previousDisplayed) {
-        const address = this.resident.get(key)?.address;
-        if (
-          address !== undefined &&
-          address.level > floor &&
-          pyramidAddressesOverlap(address, leaf)
-        ) {
+      for (const { key, address } of previousTiles) {
+        if (address.level > floor && pyramidAddressesOverlap(address, leaf)) {
           candidates.add(key);
           retained = true;
         }
@@ -3144,10 +3239,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // elsewhere, leave this leaf's patch briefly empty rather than blank that whole area.
       const coarse = standIn;
       let hidesDetail = false;
-      for (const key of previousDisplayed) {
-        const address = this.resident.get(key)?.address;
+      for (const { address } of previousTiles) {
         if (
-          address !== undefined &&
           address.level > coarse.level &&
           pyramidAddressesOverlap(address, coarse) &&
           !pyramidAddressesOverlap(address, leaf)
@@ -3164,16 +3257,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const prepared = new Set<string>();
     for (const key of this.replacementTiles) {
       const tile = this.resident.get(key) as ResidentTile;
-      if (previousDisplayed.has(key) || this.layersReady(tile)) {
+      // Or taking over out of view, as it is, from detail memory can no longer hold.
+      if (previousDisplayed.has(key) || this.layersReady(tile) || this.relieved.has(key)) {
         prepared.add(key);
         continue;
       }
       // Nothing left to wait for but layers that have given up (their retries are spent).
       const settled = this.layersReady(tile, true);
       let retained = false;
-      for (const previousKey of previousDisplayed) {
-        const previousTile = this.resident.get(previousKey);
-        if (previousTile && pyramidAddressesOverlap(tile.address, previousTile.address)) {
+      for (const { key: previousKey, address: previousAddress } of previousTiles) {
+        if (pyramidAddressesOverlap(tile.address, previousAddress)) {
           // A bare ancestor has no detail to preserve. Do not pin an entire region to it
           // while new building layers finish; only wait for layers it actually displays.
           if (!this.losesVisibleLayers(previousKey, tile)) continue;
@@ -3184,7 +3277,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           // lasted (one land-cover tile that threw froze a neighborhood at four levels too
           // coarse). The replacement shows without that layer until a later attempt builds it.
           // Finer ground on screen still stays, since it shows more than the replacement can.
-          if (settled && previousTile.address.level < tile.address.level) continue;
+          if (settled && previousAddress.level < tile.address.level) continue;
           prepared.add(previousKey);
           retained = true;
         }
@@ -3395,11 +3488,22 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       }
       return result;
     };
+    // The tiles each layer shows before this pass, looked up once, in their order: the loops
+    // below visit them for every displayed tile (see updateVisibility's previousTiles).
+    const shownTiles = new Map<string, Array<{ key: string; tile: ResidentTile }>>();
+    for (const [id, keys] of this.displayedLayers) {
+      const tiles: Array<{ key: string; tile: ResidentTile }> = [];
+      for (const key of keys) {
+        const tile = this.resident.get(key);
+        if (tile !== undefined) tiles.push({ key, tile });
+      }
+      shownTiles.set(id, tiles);
+    }
     for (const key of this.displayed) {
       const tile = this.resident.get(key);
       if (tile === undefined || ready(tile)) continue;
       const inherited = new Set<string>();
-      for (const [id, previous] of this.displayedLayers) {
+      for (const [id, previous] of shownTiles) {
         const layer = this.layerById.get(id);
         if (
           !layer ||
@@ -3407,9 +3511,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           !this.layerEligible(layer, tile.address.level)
         )
           continue;
-        for (const previousKey of previous) {
-          const old = this.resident.get(previousKey);
-          if (old?.layers.has(id) && pyramidAddressesOverlap(tile.address, old.address)) {
+        for (const { tile: old } of previous) {
+          if (old.layers.has(id) && pyramidAddressesOverlap(tile.address, old.address)) {
             inherited.add(id);
             break;
           }
@@ -3419,7 +3522,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         inheritedReady.set(key, inherited);
     }
     for (const layer of this.layerById.values()) {
-      const previous = this.displayedLayers.get(layer.id) ?? new Set<string>();
+      const previous = shownTiles.get(layer.id) ?? [];
       const candidates = new Set<string>();
       if (this.layerVisibility.get(layer.id) === true) {
         for (const key of this.displayed) {
@@ -3430,10 +3533,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           // and layer toggles still retire that detail.
           if (!this.layerEligible(layer, tile.address.level)) {
             if (!this.selected.has(key)) {
-              for (const previousKey of previous) {
-                const old = this.resident.get(previousKey);
-                if (old && pyramidAddressesOverlap(tile.address, old.address))
-                  candidates.add(previousKey);
+              for (const { key: previousKey, tile: old } of previous) {
+                if (pyramidAddressesOverlap(tile.address, old.address)) candidates.add(previousKey);
               }
             }
             continue;
@@ -3455,10 +3556,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             // but never a coarser ancestor's, which would cover the view beside it. The same for a
             // tile whose layer has given up: the ancestor's, kept for it, would hide the layer on
             // every finished tile beneath that ancestor for as long as the failure lasts.
-            for (const previousKey of previous) {
-              const old = this.resident.get(previousKey);
+            // Under memory pressure the farthest of it goes after all (see `chooseRelief`).
+            if (this.relieved.has(key)) continue;
+            for (const { key: previousKey, tile: old } of previous) {
               if (
-                old !== undefined &&
                 old.address.level >= tile.address.level &&
                 pyramidAddressesOverlap(tile.address, old.address)
               )
@@ -3466,10 +3567,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             }
             continue;
           }
-          for (const previousKey of previous) {
-            const previousTile = this.resident.get(previousKey);
+          for (const { key: previousKey, tile: previousTile } of previous) {
             if (
-              previousTile !== undefined &&
               pyramidAddressesOverlap(tile.address, previousTile.address) &&
               // Not a placeholder's, as for its surface: kept for any unfinished tile beneath
               // it, it covered every finished one. A first view of Rome showed no roads or
@@ -4289,6 +4388,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     }
     this.object.remove(tile.object);
     tile.object.parent = null;
+    // Nothing of it stays in a list that is walked while the view runs (see retireTerrainObjects).
+    retireTerrainObjects(tile.object);
     tile.surface.geometry.dispose();
     this.resident.delete(key);
     this.trackAllocations(tile, true);

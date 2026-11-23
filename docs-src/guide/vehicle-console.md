@@ -4,8 +4,8 @@ The vehicle console gives phones and tablets on-screen controls drawn as the veh
 a P-51, the stick under your left thumb is the P-51's stick, copied out of its cockpit model and
 tilting as you push; its rudder pedals sit beside it, its throttle at the right edge with a gear
 handle and a flap lever beside that, and its own airspeed and altitude dials between. A car shows
-its steering wheel and pedals, a motorcycle its handlebars, a boat its helm. On foot the console is
-the plain two-circle stick with jump and use buttons.
+its steering wheel and pedals, a motorcycle its handlebars, a boat its helm, each with a
+speedometer between. On foot the console is the plain two-circle stick with jump and use buttons.
 
 Every part is drawn see-through at rest so the view stays clear, and goes solid under a thumb. The
 controls work through the same navigation actions as keys and gamepads, and through the aircraft's
@@ -29,8 +29,10 @@ view.console?.layout; // where everything went
 ```
 
 Where the console shows, it takes the place of `touchJoystickContainer`'s plain stick. The flown
-aircraft's dials appear in the chase view only, since the cockpit view has its own; pass
-`gauges: false` to leave them out. `handed: 'left'` mirrors the console, stick on the right.
+aircraft's dials appear in the chase view only, since the cockpit view has its own; a driven
+vehicle's speedometer shows in every view, read in the view's `speedUnit` (`'km/h'` by default,
+or `'mph'`; a boat's reads knots). Pass `gauges: false` to leave the dials out. `handed: 'left'`
+mirrors the console, stick on the right.
 
 ## Use it with your own renderer
 
@@ -57,7 +59,8 @@ function frame(now: number) {
 ```
 
 The subject is an aircraft (`visual`, `spec`, a `session` that applies `applyAircraftControl`), a
-vehicle (`visual` from `createVehicleVisual` and the vehicle's or boat's data), `{ kind: 'walk' }`
+vehicle (`visual` from `createVehicleVisual` and the vehicle's or boat's data; `gauges: true` shows
+its speedometer, in `speedUnit`), `{ kind: 'walk' }`
 or `{ kind: 'free' }` (a free camera with up and down buttons), or `undefined` to hide it. Calling
 `setSubject` every frame is cheap: the same vehicle keeps its parts.
 
@@ -73,19 +76,40 @@ Each control is drawn from the best source the vehicle has:
 2. **A kit part.** Where the model has no part of its own, or only a placeholder from the bolted-on
    control module, the console draws a generic one: a gear handle with a wheel for a knob and
    gear lamps, a flap lever with a wing-shaped knob and notches, a throttle lever, an engine
-   switch, a parking brake, car pedals and a handbrake.
+   switch, a parking brake, car pedals and a handbrake, and a speedometer for every driven
+   vehicle: a car's dashboard dial has no numerals, and a cycle or boat has none. Its face is
+   numbered in the host's units a little past the vehicle's top speed (`speedometerScale`), with
+   the speed in digits under the hub; `createSpeedometerView` in
+   `@bendyline/molen-client/vehicles` builds one for any host.
 3. **The plain stick and buttons.** On foot, on boards and skis, and for anything without a lever.
 
 | Vehicle | Left | Right | Middle |
 | --- | --- | --- | --- |
 | Airplane | stick or yoke, rudder pedals | throttle, gear, flaps, engine, brakes, parking brake; mixture, propeller, speed brake and nozzle behind the drawer on a phone | airspeed and altitude dials in a chase view |
 | Helicopter | cyclic, pedals | collective, engine | dials in a chase view |
-| Car | steering wheel, pedals | handbrake | |
-| Motorcycle, bicycle, snowmobile | handlebars | brake | |
-| Boat | helm | anchor | |
+| Car | steering wheel, pedals | handbrake | speedometer |
+| Motorcycle, bicycle, snowmobile | handlebars | brake | speedometer |
+| Boat | helm | anchor | speedometer (knots) |
 | On foot | plain stick | jump, use | |
 
-Mounted, two buttons at the top corner change the view and leave the vehicle.
+Mounted, two buttons at the top corner change the view and leave the vehicle; on foot, one changes
+the view.
+
+### Your own toolbar
+
+A page with a toolbar of its own can offer those buttons there instead. Pass
+`cornerButtons: false` (in `console` for an Earth view), then draw `view.console.buttons` (each has
+a `label`, an SVG `icon` for a 24 x 24 view box and an `action`) and call `tap(action)` when one is
+pressed, which presses and releases the action as the corner button would. The list follows the
+subject, so read it again when the mode changes. A landscape phone's "more controls" button stays
+in the corner.
+
+```ts
+const view = await mountEarthView({ canvas, console: { container: stage, cornerButtons: false } });
+for (const button of view.console?.buttons ?? []) {
+  toolbar.append(iconButton(button.label, button.icon, () => view.console?.tap(button.action)));
+}
+```
 
 ## Controls
 

@@ -77,6 +77,13 @@ export interface PoseEvalOptions {
      * vertical while the feet follow the skis.
      */
     level?: number;
+    /**
+     * Seated riders: every point their feet must reach whatever the crank (saddle-relative: the
+     * footrests, or the pedal circle). A rider with legs too short for them slides forward and
+     * down the saddle by the one amount that reaches all of them, so the body does not shift
+     * through a revolution; a rider who already reaches them does not move.
+     */
+    reach?: { effector: FigureIkEffector; point: Vec3 }[];
   };
 }
 
@@ -386,11 +393,14 @@ export function evaluatePose(
   const model = scratchModel(jointCount);
   // How far an upright rider's hips sit below the seat, which is an adult's hip position.
   let drop = 0;
+  // How far a small seated rider slides forward and down the saddle to reach everything.
+  let slide: Vec3 = [0, 0, 0];
   if (riding !== undefined) {
     poseModelSpace(pose, model);
     const hips = rig.index.hips;
     const origin = hips === undefined ? [0, 0, 0] : readTransform(model, hips).pos;
     if (upright) drop = fitHips(rig, model, origin, riding.ik, stance, push);
+    else if (riding.reach !== undefined) slide = fitSeat(rig, model, origin, riding.reach);
     for (const effector of ['hand.l', 'hand.r', 'foot.l', 'foot.r'] as const) {
       const target = riding.ik[effector];
       if (target === undefined) continue;
@@ -403,9 +413,9 @@ export function evaluatePose(
         model,
         effector,
         [
-          target[0] + (origin[0] ?? 0),
-          target[1] + (origin[1] ?? 0) + (free ? 0 : drop),
-          target[2] + (origin[2] ?? 0),
+          target[0] + (origin[0] ?? 0) - slide[0],
+          target[1] + (origin[1] ?? 0) + (free ? 0 : drop) - slide[1],
+          target[2] + (origin[2] ?? 0) - slide[2],
         ],
         bodyYaw,
       );
@@ -454,9 +464,11 @@ export function evaluatePose(
       p = socketTransform(rig, pose, 'eye', model)?.pos;
     }
     if (p !== undefined) {
-      pose.local[0] = (pose.local[0] as number) - p[0];
-      pose.local[1] = (pose.local[1] as number) - p[1] - (opts.anchor === 'pelvis' ? drop : 0);
-      pose.local[2] = (pose.local[2] as number) - p[2];
+      const pelvis = opts.anchor === 'pelvis';
+      pose.local[0] = (pose.local[0] as number) - p[0] + (pelvis ? slide[0] : 0);
+      pose.local[1] =
+        (pose.local[1] as number) - p[1] - (pelvis ? drop : 0) + (pelvis ? slide[1] : 0);
+      pose.local[2] = (pose.local[2] as number) - p[2] + (pelvis ? slide[2] : 0);
     }
   }
   return pose;
@@ -498,6 +510,86 @@ function fitHips(
     drop = dmath.max(drop, below - vertical);
   }
   return Number.isFinite(drop) ? drop : 0;
+}
+
+/** Forward and down the saddle: the way a small rider slides toward the bars and pedals. */
+const SEAT_SLIDE: Vec3 = [0, -0.6, 0.8];
+/** How much of a limb's length may reach a contact, legs then arms (the IK reaches full length). */
+const SEAT_LEG_EXTENSION = 1;
+const SEAT_ARM_EXTENSION = 1;
+const SEAT_SLIDE_STEP = 0.005;
+/**
+ * A foot this close to its farthest pedal point already reads as on it (the IK has always left
+ * an average adult a few centimetres short at the bottom of a tall bicycle's stroke): only a
+ * rider short by more than this slides.
+ */
+const SEAT_TOLERANCE = 0.05;
+const SEAT_SLIDE_MAX = 0.12;
+
+/**
+ * The slide (saddle-relative, meters) that brings every contact a seated rider must reach within
+ * this body's reach: zero when they already reach all of them, else the smallest step along
+ * SEAT_SLIDE that does, up to SEAT_SLIDE_MAX. It depends only on the body and the vehicle, never
+ * on the crank angle or the steering, so the rider does not move through a revolution.
+ */
+function fitSeat(
+  rig: FigureRig,
+  model: Float32Array,
+  origin: readonly number[],
+  reach: readonly { effector: FigureIkEffector; point: Vec3 }[],
+): Vec3 {
+  const items: { root: readonly number[]; target: Vec3; length: number }[] = [];
+  for (const { effector, point } of reach) {
+    const { chain } = IK_CHAINS[effector];
+    const u = rig.index[chain[0]],
+      l = rig.index[chain[1]],
+      e = rig.index[chain[2]];
+    if (u === undefined || l === undefined || e === undefined) continue;
+    const lower = rig.joints[l] as FigureJoint,
+      end = rig.joints[e] as FigureJoint;
+    const extension = effector.startsWith('foot') ? SEAT_LEG_EXTENSION : SEAT_ARM_EXTENSION;
+    items.push({
+      root: readTransform(model, u).pos,
+      target: [
+        point[0] + (origin[0] ?? 0),
+        point[1] + (origin[1] ?? 0),
+        point[2] + (origin[2] ?? 0),
+      ],
+      length:
+        extension *
+        (dmath.hypot(lower.bindPos[0], lower.bindPos[1], lower.bindPos[2]) +
+          dmath.hypot(end.bindPos[0], end.bindPos[1], end.bindPos[2])),
+    });
+  }
+  /** The worst shortfall of any contact at a slide (≤ 0: everything is in reach). */
+  const shortfall = (s: number): number => {
+    let worst = Number.NEGATIVE_INFINITY;
+    for (const { root, target, length } of items)
+      worst = dmath.max(
+        worst,
+        dmath.hypot(
+          target[0] - (root[0] ?? 0) - s * SEAT_SLIDE[0],
+          target[1] - (root[1] ?? 0) - s * SEAT_SLIDE[1],
+          target[2] - (root[2] ?? 0) - s * SEAT_SLIDE[2],
+        ) - length,
+      );
+    return worst;
+  };
+  if (items.length === 0 || shortfall(0) <= SEAT_TOLERANCE) return [0, 0, 0];
+  // The smallest slide that reaches everything, or failing that the one that leaves the worst
+  // contact least short: sliding never goes on past where it stops helping (a grip out to the
+  // side is no nearer for sliding forward).
+  let best = 0;
+  let bestShort = shortfall(0);
+  for (let s = SEAT_SLIDE_STEP; s <= SEAT_SLIDE_MAX + 1e-9; s += SEAT_SLIDE_STEP) {
+    const short = shortfall(s);
+    if (short < bestShort - 0.002) {
+      best = s;
+      bestShort = short;
+    }
+    if (short <= SEAT_TOLERANCE) break;
+  }
+  return [best * SEAT_SLIDE[0], best * SEAT_SLIDE[1], best * SEAT_SLIDE[2]];
 }
 
 /**

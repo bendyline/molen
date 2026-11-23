@@ -6,6 +6,7 @@
  */
 
 import {
+  renderedGroundSampler,
   type TerrainSemanticTile,
   terrainSemanticTilePacket,
 } from '@bendyline/molen-terrain/kernel';
@@ -39,6 +40,15 @@ export interface WorldgenGenerateRequest {
   ground: HeightSampler;
   /** Samples per tile edge for the transferable height grid (the terrain tile resolution). */
   resolution: number;
+  /**
+   * Vertices per edge of the ground the host draws for this tile (the terrain layer context's
+   * `surfaceResolution`), when it draws `ground` as a coarser triangle mesh. Buildings, plants and
+   * props then stand on those triangles, as everything else on the drawn ground does
+   * (`renderedGroundSampler`). Fitted to `ground` itself, a hillside's buildings floated over a
+   * coarse mesh or sank into it: 17 vertices across a 3.8 km tile left them up to 10 m in the
+   * air over Alicante's hills, after a flight had lowered the quality tier.
+   */
+  surfaceResolution?: number;
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
@@ -97,15 +107,40 @@ const RECENT_GRIDS = 8;
 
 /**
  * Sample a tile's ground into the grid both generation paths use. Each call returns its own
- * heights, which the worker bridge transfers away; a recent tile's samples are reused.
+ * heights, which the worker bridge transfers away; a recent tile's samples are reused. With
+ * `surfaceResolution`, the grid follows the drawn triangle mesh of that many vertices per edge
+ * (see `WorldgenGenerateRequest.surfaceResolution`) rather than `ground` between its vertices.
  */
 export function tileHeightGrid(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): HeightGrid {
-  const grid = sampledTileGround(ground, geom, resolution);
+  const grid = sampledTileGround(ground, geom, resolution, surfaceResolution);
   return { ...grid, heights: grid.heights.slice() };
+}
+
+/**
+ * The ground a host draws as a mesh of `surfaceResolution` vertices per edge over the tile,
+ * triangles split as the terrain mesh splits them. Only heights are read from it (the grid).
+ */
+function drawnTileGround(
+  ground: HeightSampler,
+  geom: TileGeometry,
+  surfaceResolution: number,
+): HeightSampler {
+  const sampleHeight = renderedGroundSampler(
+    { cols: surfaceResolution, sampleHeight: (x, z) => ground.sampleHeight(x, z) },
+    [geom.originX, geom.originZ],
+    geom.size,
+    surfaceResolution,
+  );
+  return {
+    sampleHeight,
+    slopeAt: (x, z) => ground.slopeAt(x, z),
+    normalAt: (x, z) => ground.normalAt(x, z),
+  };
 }
 
 /** The shared grid behind `tileHeightGrid`: sampled once for a recent tile, never transferred. */
@@ -113,13 +148,18 @@ function sampledTileGround(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): HeightGrid {
   const samples = Math.max(2, Math.min(1025, Math.floor(resolution)));
-  const key = `${geom.originX},${geom.originZ},${geom.size},${samples}`;
+  const surface =
+    surfaceResolution !== undefined && surfaceResolution >= 2
+      ? Math.floor(surfaceResolution)
+      : undefined;
+  const key = `${geom.originX},${geom.originZ},${geom.size},${samples},${surface ?? '-'}`;
   let index = recentGrids.findIndex((entry) => entry.ground === ground && entry.key === key);
   if (index < 0) {
     const grid = heightGridFromSampler(
-      ground,
+      surface === undefined ? ground : drawnTileGround(ground, geom, surface),
       geom.originX,
       geom.originZ,
       geom.size,
@@ -139,8 +179,9 @@ export function prepareTileHeightGrid(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
+  surfaceResolution?: number,
 ): void {
-  sampledTileGround(ground, geom, resolution);
+  sampledTileGround(ground, geom, resolution, surfaceResolution);
 }
 
 export function createWorldgenWorkerBridge(
@@ -175,13 +216,24 @@ export function createWorldgenWorkerBridge(
 
   return {
     prepare(request): void {
-      if (!disposed) prepareTileHeightGrid(request.ground, request.geom, request.resolution);
+      if (!disposed)
+        prepareTileHeightGrid(
+          request.ground,
+          request.geom,
+          request.resolution,
+          request.surfaceResolution,
+        );
     },
     generate(request, signal): Promise<WorldgenTileOutput | undefined> {
       if (disposed) return Promise.resolve(undefined);
       if (signal.aborted) return Promise.resolve(undefined);
       const id = nextId++;
-      const ground = tileHeightGrid(request.ground, request.geom, request.resolution);
+      const ground = tileHeightGrid(
+        request.ground,
+        request.geom,
+        request.resolution,
+        request.surfaceResolution,
+      );
       const exclusions =
         request.buildingInfillExclusions !== undefined
           ? packPolygons(request.buildingInfillExclusions)
@@ -248,6 +300,13 @@ export function createWorldgenWorkerBridge(
  * queued in each worker in request order: by their turn it had flown on, and the nearest ground
  * waited a second or more behind ground it had passed. Each worker keeps a second tile posted,
  * so it starts that one as soon as it finishes the first.
+ *
+ * The pool also bounds the footprints it has in flight (`POOL_FOOTPRINTS_IN_FLIGHT`). A worker's
+ * heap grows with the footprints of the tile it is building, to about 500 MB for a 1.2 km tile
+ * of 10,000 or a 2.4 km tile of 35,000 (central Bogotá), and every isolate of a tab shares one
+ * 4 GB cage: five such tiles at once, with the page's and the other workers' heaps, ran the tab
+ * out of memory. Past the bound the most urgent tile waits for room; an ordinary town's tiles
+ * (a few thousand footprints each) never reach it.
  */
 export function createWorldgenWorkerPool(
   workers: readonly WorkerLike[],
@@ -267,6 +326,7 @@ export function createWorldgenWorkerPool(
   }
   const waiting: Waiting[] = [];
   let disposed = false;
+  let footprints = 0;
   const pump = (): void => {
     while (!disposed && waiting.length > 0) {
       let target = members[0] as (typeof members)[number];
@@ -281,15 +341,21 @@ export function createWorldgenWorkerPool(
           bestPriority = priority;
         }
       }
+      // The most urgent tile waits for room rather than be passed by lighter ones, which would
+      // keep a dense tile under the camera waiting behind the suburbs around it.
+      const weight = (waiting[best] as Waiting).request.tile.buildings.length;
+      if (footprints > 0 && footprints + weight > POOL_FOOTPRINTS_IN_FLIGHT) return;
       const job = waiting.splice(best, 1)[0] as Waiting;
       job.cleanup();
       const member = target;
       member.busy++;
+      footprints += weight;
       member.bridge
         .generate(job.request, job.signal)
         .then(job.resolve, job.reject)
         .finally(() => {
           member.busy--;
+          footprints -= weight;
           pump();
         });
     }
@@ -329,6 +395,12 @@ export function createWorldgenWorkerPool(
     },
   };
 }
+
+/**
+ * Footprints the pool has in flight at most, unless a single tile holds more (it then runs
+ * alone): three dense zoom-15 tiles, or one dense tile of the level behind them.
+ */
+export const POOL_FOOTPRINTS_IN_FLIGHT = 36_000;
 
 /** Tiles posted to one worker at a time: the one it is building and the next. */
 const POSTED_PER_WORKER = 2;

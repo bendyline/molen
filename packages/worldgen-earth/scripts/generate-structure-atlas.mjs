@@ -286,8 +286,10 @@ atlas.version = 4;
 atlas.fallbackDistanceMeters = 15000;
 // Conservative residential priors: ordinary North American yards get modest canopy;
 // denser PNW overrides still win. Matched orthophotos show Southwest yards irrigated under
-// mesquite, palm and citrus, and Delhi's compounds under heavy canopy. Unconfigured regions
-// remain unplanted.
+// mesquite, palm and citrus, and Delhi's compounds under heavy canopy. Iberia's is a checked
+// floor: at 0 Alicante's low-rise districts were nearly treeless against their orthophotos, and
+// at 0.35 neither Alicante nor Oviedo is planted more heavily than its photograph. Unconfigured
+// regions remain unplanted.
 atlas.default.treeFillFactor = 0;
 for (const region of atlas.regions) {
   const fill = {
@@ -295,6 +297,7 @@ for (const region of atlas.regions) {
     'us.pnw': 0.9,
     'us.southwest': 0.3,
     'us.northeast': 0.35,
+    'library.iberia': 0.35,
     'library.south_asia': 0.6,
     jp: 0.3,
   }[region.id];

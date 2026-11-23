@@ -23,6 +23,8 @@ export {
   FIGURE_EXAMPLE,
   FIGURE_FILE_EXAMPLE,
   FIGURE_FORMAT,
+  FIGURE_LOOK_FILE_EXAMPLE,
+  FIGURE_LOOK_FILE_FORMAT,
   FIGURE_MODES,
   Figure,
   FigureAttachment,
@@ -44,6 +46,7 @@ export {
   quadrupedGaitFor,
   strideRateFor,
 } from './kernel/gait';
+export { FIGURE_HEAD_PARAMS, FIGURE_HEAD_PRESETS, resolveFigureHead } from './kernel/head-presets';
 export type { TwoBoneSolution } from './kernel/ik';
 export { solveTwoBoneIk } from './kernel/ik';
 export type { FiguresHandle, FiguresOptions } from './kernel/install';
@@ -106,7 +109,11 @@ export type {
   FigureFootStyle,
   FigureForm,
   FigureHairStyle,
+  FigureHairTexture,
   FigureHandStyle,
+  FigureHeadInput,
+  FigureHeadPresetId,
+  FigureHeadShape,
   FigureHornStyle,
   FigureLegwearStyle,
   FigurePalette,
@@ -117,7 +124,12 @@ export type {
   FigureTailStyle,
   ResolvedFigureDescriptor,
 } from './kernel/types';
-export { FIGURE_HAIR_STYLES, FIGURE_PRESET_IDS } from './kernel/types';
+export {
+  FIGURE_HAIR_STYLES,
+  FIGURE_HAIR_TEXTURES,
+  FIGURE_HEAD_PRESET_IDS,
+  FIGURE_PRESET_IDS,
+} from './kernel/types';
 
 import { registerFiguresComponents } from './kernel/components';
 

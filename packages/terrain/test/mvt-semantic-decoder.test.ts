@@ -619,6 +619,88 @@ it('preserves POI identity, detail and measured props independently of label min
   ).toThrow(/geometry points/);
 });
 
+it('reads settlement and district labels with the POIs, and no other place labels', () => {
+  const place = (id: number, properties: TestFeature['properties'], x: number): TestFeature => ({
+    id,
+    type: 1,
+    properties,
+    geometry: [[{ x, y: 2048 }]],
+  });
+  const bytes = encodeTile([
+    {
+      name: 'places',
+      features: [
+        place(
+          1,
+          { kind: 'locality', kind_detail: 'village', name: 'Buena', population: 990 },
+          1024,
+        ),
+        place(
+          2,
+          { kind: 'neighbourhood', kind_detail: 'suburb', name: 'Fremont', population: 0 },
+          2048,
+        ),
+        place(
+          3,
+          {
+            kind: 'locality',
+            kind_detail: 'city',
+            name: 'Seattle',
+            'name:en': 'Seattle',
+            population: 737015,
+          },
+          3072,
+        ),
+        place(4, { kind: 'locality', name: 'München', 'name:en': 'Munich' }, 512),
+        // A state, a country and an unnamed locality name no place a viewer is in.
+        place(5, { kind: 'region', name: 'Washington' }, 100),
+        place(6, { kind: 'country', name: 'United States' }, 200),
+        place(7, { kind: 'locality', kind_detail: 'hamlet' }, 300),
+      ],
+    },
+  ]);
+  const decoder = createProtomapsTerrainMvtDecoder();
+  const context = {
+    address: { level: 13, x: 0, z: 0 },
+    content: 'all' as const,
+    encoding: 'mvt' as const,
+    layers: ['poi'],
+  };
+  const tile = decoder.decode(bytes, context);
+  if (tile instanceof Promise) throw new Error('expected synchronous decode');
+  expect(tile.places).toEqual([
+    {
+      id: 1,
+      class: 'locality',
+      subclass: 'village',
+      point: [0.25, 0.5],
+      name: 'Buena',
+      population: 990,
+    },
+    { id: 2, class: 'neighbourhood', subclass: 'suburb', point: [0.5, 0.5], name: 'Fremont' },
+    {
+      id: 3,
+      class: 'locality',
+      subclass: 'city',
+      point: [0.75, 0.5],
+      name: 'Seattle',
+      population: 737015,
+    },
+    { id: 4, class: 'locality', point: [0.125, 0.5], name: 'München', nameLatin: 'Munich' },
+  ]);
+  // Place labels come with POIs only.
+  const roadsOnly = decoder.decode(bytes, { ...context, layers: ['transportation'] });
+  if (roadsOnly instanceof Promise) throw new Error('expected synchronous decode');
+  expect(roadsOnly.places).toBeUndefined();
+  // OpenMapTiles names the layer `place` and the kind `class`.
+  const omt = createTerrainMvtSemanticDecoder().decode(
+    encodeTile([{ name: 'place', features: [place(8, { class: 'town', name: 'Zillah' }, 2048)] }]),
+    context,
+  );
+  if (omt instanceof Promise) throw new Error('expected synchronous decode');
+  expect(omt.places).toEqual([{ id: 8, class: 'town', point: [0.5, 0.5], name: 'Zillah' }]);
+});
+
 it('rejoins a name Protomaps split into script runs and keeps the English name beside it', () => {
   const poi = (id: number, properties: TestFeature['properties']): TestFeature => ({
     id,

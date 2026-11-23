@@ -169,6 +169,68 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
       "additionalProperties": false,
       "description": "Optional global or regional agricultural retrieval dataset; missing tiles retain basemap/fallback crops. Include its license in attribution."
     },
+    "builtUp": {
+      "type": "object",
+      "properties": {
+        "urlTemplate": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Versioned built-up JSON tile URL, relative to this package or absolute; {z}/{x}/{y} placeholders."
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Single stored XYZ level; finer tiles read the part of their ancestor grid."
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pinned dataset identity, checked against every tile."
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200,
+          "description": "Observation year."
+        },
+        "maxTileBytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 1048576,
+          "description": "Uncompressed download bound; default 131072 bytes."
+        },
+        "bounds": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "[west, south, east, north] in degrees the dataset covers. Inside it a missing tile means nothing is built; outside it nothing is known. Default: the whole world."
+        }
+      },
+      "required": [
+        "urlTemplate",
+        "level",
+        "source",
+        "year"
+      ],
+      "additionalProperties": false,
+      "description": "Optional built-up evidence: the share of the ground under buildings by a source other than the map footprints. Generators invent buildings only where it exceeds what the footprints cover. Include its license in attribution."
+    },
     "version": {
       "type": "string",
       "minLength": 1,

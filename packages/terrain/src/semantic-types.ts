@@ -201,6 +201,30 @@ export interface TerrainPoiFeature extends TerrainStructureIdentity {
   tunnel?: boolean;
 }
 
+/**
+ * A named place the map labels at a point: a settlement (city, town, village, hamlet) or a
+ * district of one (suburb, quarter, neighbourhood). It says what a place is called, not where its
+ * edges are. Read from the source's place layer alongside its POIs (see
+ * `createTerrainMvtSemanticDecoder`).
+ */
+export interface TerrainPlaceFeature {
+  id?: string | number;
+  /**
+   * The source's kind: Protomaps' `locality`, `neighbourhood` or `macrohood`; OpenMapTiles' `city`,
+   * `town`, `village`, `hamlet`, `suburb`, `quarter`, `neighbourhood`, …
+   */
+  class: string;
+  /** Protomaps' finer kind (`city`, `town`, `village`, `hamlet`, `suburb`, `neighbourhood`, …). */
+  subclass?: string;
+  point: TerrainSemanticPoint;
+  /** The source's own name, in its local script and whole. */
+  name: string;
+  /** An English or Latin-script name, when the source has one besides `name`. */
+  nameLatin?: string;
+  /** Inhabitants, when the source knows (0 and absent both mean unknown). */
+  population?: number;
+}
+
 export interface TerrainSemanticTile {
   format: 'molen/terrain-semantics@1';
   landcover: TerrainLandcoverFeature[];
@@ -208,6 +232,8 @@ export interface TerrainSemanticTile {
   transportation: TerrainTransportationFeature[];
   buildings: TerrainBuildingFeature[];
   pois?: TerrainPoiFeature[];
+  /** Place labels (settlements and their districts); absent when the source has none. */
+  places?: TerrainPlaceFeature[];
   /** Source merged/generalized footprints cannot reliably identify individual premises. */
   buildingsGeneralized?: boolean;
   /**
@@ -216,6 +242,30 @@ export interface TerrainSemanticTile {
    * 2^(buildingSourceLevel - tile level); tile-edge ownership rules should narrow theirs to match.
    */
   buildingSourceLevel?: number;
+  /**
+   * Share of the ground under footprints on a `size` x `size` grid, carried when `buildings`
+   * is only a selection of the tile's footprints (a coarse tile composed from building detail
+   * keeps the largest): what `terrainBuildingCoverage` answers for the tile, so ground and
+   * density priors still see every building.
+   */
+  buildingCoverage?: { size: number; cells: number[] };
+  /**
+   * How much of the ground is under buildings by a source other than the map's footprints, where
+   * a host supplies one (built-up-grid.ts). A generator compares it with what `buildings` cover.
+   */
+  builtUp?: TerrainBuiltUpCoverage;
+}
+
+/** Built-up evidence lying over one semantic tile: a small grid of built shares of the ground. */
+export interface TerrainBuiltUpCoverage {
+  source: string;
+  year: number;
+  columns: number;
+  rows: number;
+  /** Tile-unit box the cells cover, [u0, v0, u1, v1]; it may reach past the tile's unit square. */
+  box: [number, number, number, number];
+  /** Share of each cell's ground under buildings, 0..1, row-major north to south. */
+  values: number[];
 }
 
 function assertFinite(value: number, path: string): void {
@@ -381,6 +431,21 @@ function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
     for (const key of ['bridge', 'tunnel'] as const)
       if (feature[key] !== undefined && typeof feature[key] !== 'boolean')
         throw new Error(`${path}/${key} must be boolean`);
+  }
+  if (tile.places !== undefined && !Array.isArray(tile.places))
+    throw new Error('terrain semantic places must be an array');
+  for (const [index, feature] of (tile.places ?? []).entries()) {
+    const path = `/places/${index}`;
+    assertClass(feature.class, `${path}/class`);
+    assertClass(feature.name, `${path}/name`);
+    assertPoint(feature.point, `${path}/point`);
+    for (const key of ['subclass', 'nameLatin'] as const)
+      if (feature[key] !== undefined) assertClass(feature[key], `${path}/${key}`);
+    if (
+      feature.population !== undefined &&
+      (!Number.isFinite(feature.population) || feature.population < 0)
+    )
+      throw new Error(`${path}/population must be a finite non-negative number`);
   }
   for (let index = 0; index < tile.landcover.length; index++) {
     const feature = tile.landcover[index] as TerrainLandcoverFeature;
@@ -548,6 +613,35 @@ function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
     (!Number.isSafeInteger(tile.buildingSourceLevel) || tile.buildingSourceLevel < 0)
   )
     throw new Error('buildingSourceLevel must be a whole level');
+  if (tile.buildingCoverage !== undefined) {
+    const { size, cells } = tile.buildingCoverage;
+    if (
+      !Number.isSafeInteger(size) ||
+      size < 1 ||
+      !Array.isArray(cells) ||
+      cells.length !== size * size ||
+      cells.some((value) => !(value >= 0 && value <= 1))
+    )
+      throw new Error('buildingCoverage must be a size x size grid of shares 0..1');
+  }
+  if (tile.builtUp !== undefined) {
+    const { columns, rows, box, values } = tile.builtUp;
+    if (
+      !Number.isSafeInteger(columns) ||
+      !Number.isSafeInteger(rows) ||
+      columns < 1 ||
+      rows < 1 ||
+      !Array.isArray(values) ||
+      values.length !== columns * rows ||
+      values.some((value) => !(value >= 0 && value <= 1)) ||
+      !Array.isArray(box) ||
+      box.length !== 4 ||
+      box.some((value) => !Number.isFinite(value)) ||
+      !(box[2] > box[0]) ||
+      !(box[3] > box[1])
+    )
+      throw new Error('builtUp must be a grid of shares 0..1 over a tile-unit box');
+  }
   for (let index = 0; index < tile.buildings.length; index++) {
     const feature = tile.buildings[index] as TerrainBuildingFeature;
     assertPolygons(feature.polygons, `/buildings/${index}/polygons`);

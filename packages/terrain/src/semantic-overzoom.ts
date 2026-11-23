@@ -240,6 +240,11 @@ export function overzoomTerrainSemanticTile(
     const point = transformPoint(feature.point, scale, ox, oy);
     return holds(point) ? [{ ...feature, point }] : [];
   });
+  // A place label, like a POI, belongs to the one descendant holding its point.
+  const places = tile.places?.flatMap((feature) => {
+    const point = transformPoint(feature.point, scale, ox, oy);
+    return holds(point) ? [{ ...feature, point }] : [];
+  });
   return {
     format: tile.format,
     landcover,
@@ -247,6 +252,7 @@ export function overzoomTerrainSemanticTile(
     transportation,
     buildings,
     ...(pois !== undefined ? { pois } : {}),
+    ...(places !== undefined && places.length > 0 ? { places } : {}),
     ...(tile.buildingsGeneralized !== undefined
       ? { buildingsGeneralized: tile.buildingsGeneralized }
       : {}),

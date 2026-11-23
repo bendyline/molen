@@ -35,7 +35,13 @@ const SEDAN = 'molen.entities.vehicle.sedan';
 const PERSON = { preset: 'human.adult' as const, height: 1.72 };
 const START = { latitude: 47.6, longitude: -122.33 };
 
-async function mountView(options: { interaction?: { pedestrians?: boolean } } = {}) {
+async function mountView(
+  options: {
+    interaction?: { pedestrians?: boolean };
+    avatar?: { figure: typeof PERSON };
+    walkView?: 'first' | 'third';
+  } = {},
+) {
   const content = {
     packs: {
       readBytes: async () => {
@@ -435,6 +441,38 @@ describe('Earth view actors', () => {
     view.walker.setAvatar(undefined);
     await pump(2);
     expect(drawnFigures(view)).toBe(0);
+    view.dispose();
+  });
+
+  it('mounts with a body in third person and re-dresses it while it is on screen', async () => {
+    const { view } = await mountView({ avatar: { figure: PERSON }, walkView: 'third' });
+    expect(view.walker.view).toBe('third');
+    await startWalking(view);
+    expect(view.getCamera().range).toBeGreaterThan(3.5);
+    expect(drawnFigures(view)).toBe(1);
+    const bodies = (): THREE.SkinnedMesh[] => {
+      const found: THREE.SkinnedMesh[] = [];
+      view.viewer.renderer.scene.traverse((object) => {
+        if (object.name !== 'ambient:figures') return;
+        object.traverseVisible((child) => {
+          if ((child as THREE.SkinnedMesh).isSkinnedMesh) found.push(child as THREE.SkinnedMesh);
+        });
+      });
+      return found;
+    };
+    const before = bodies()[0];
+    view.walker.setAvatar({
+      figure: { ...PERSON, features: { hair: 'bun', legs: 'skirt' }, palette: { top: '#aa2222' } },
+    });
+    await until(() => bodies()[0] !== before, 60);
+    expect(bodies()).toHaveLength(1);
+    expect(bodies()[0]).not.toBe(before);
+    view.dispose();
+  });
+
+  it('ignores a third-person walk view without an avatar', async () => {
+    const { view } = await mountView({ walkView: 'third' });
+    expect(view.walker.view).toBe('first');
     view.dispose();
   });
 });

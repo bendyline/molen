@@ -29,6 +29,7 @@ import {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from '../src/pyramid-types';
+import { taggedTerrainObjects, tagTerrainObject } from '../src/tagged-objects';
 
 function descriptor(overrides: Partial<TerrainPyramidDescriptor> = {}): TerrainPyramidDescriptor {
   return {
@@ -1510,6 +1511,202 @@ describe('screen-space terrain pyramid', () => {
       stream.dispose();
     }
   });
+
+  it('takes an evicted tile out of the lists a view walks, at once', async () => {
+    const d = descriptor({ rootSize: 256, maxLevel: 4 });
+    const view = {
+      ...VIEW,
+      position: [60, 10, 60] as [number, number, number],
+      direction: [0, -0.3, -1] as [number, number, number],
+      aspect: 1.4,
+    };
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: view,
+        maxScreenSpaceError: 1,
+        viewDistance: 120,
+        maxSelectedTiles: 64,
+        maxResidentTiles: 512,
+        maxResidentBytes: 1 << 30,
+        // Ground the camera leaves is evicted, not kept warm.
+        maxHiddenBytes: 0,
+        maxConcurrentLoads: 8,
+        layers: [
+          {
+            id: 'cars',
+            category: 'human-feature',
+            createTile({ address }) {
+              const group = new THREE.Group();
+              group.name = `cars:${terrainPyramidTileKey(address)}`;
+              tagTerrainObject('stream-retire', group);
+              return group;
+            },
+          },
+        ],
+      },
+    );
+    const listed = (): Set<string> =>
+      new Set([...taggedTerrainObjects('stream-retire')].map((object) => object.name));
+    try {
+      await stream.whenIdle();
+      const first = listed();
+      expect(first.size).toBeGreaterThan(0);
+      stream.update({ ...view, position: [200, 10, 200] });
+      await stream.whenIdle();
+      stream.update({ ...view, position: [200, 10, 200] });
+      // A list that waits for the collector to drop them keeps every tile ever built, and a
+      // host visiting it every frame then keeps the collector from ever taking them.
+      const resident = new Set(
+        stream.residentTiles().map((address) => `cars:${terrainPyramidTileKey(address)}`),
+      );
+      const now = listed();
+      expect(now.size).toBeGreaterThan(0);
+      for (const name of now) expect(resident.has(name), name).toBe(true);
+      expect([...first].filter((name) => !now.has(name)).length).toBeGreaterThan(0);
+    } finally {
+      stream.dispose();
+    }
+    expect(listed().size).toBe(0);
+  });
+
+  it('lets ground out of view give up kept detail, the farthest first, before what is on show passes the byte budget', async () => {
+    const d = descriptor({ rootSize: 8_192, maxLevel: 6, tileResolution: 9 });
+    // Low over the ground, looking east from `x`.
+    const at = (x: number) => ({
+      position: [x, 40, 4_096] as [number, number, number],
+      verticalFov: 0.7,
+      viewportHeight: 600,
+      direction: [1, -0.15, 0] as [number, number, number],
+      aspect: 1.5,
+    });
+    const material = new THREE.MeshBasicMaterial();
+    const make = (from: number, maxResidentBytes: number) =>
+      createTerrainPyramidStream(
+        d,
+        { load: async (address) => flatTile(d, address) },
+        {
+          initialView: at(from),
+          maxScreenSpaceError: 4,
+          viewDistance: 3_000,
+          maxSelectedTiles: 256,
+          maxResidentTiles: 1_024,
+          maxResidentBytes,
+          // Coarser tiles leave the cache once finer ground covers them, as they do under
+          // pressure over a city: one that takes over again behind the camera comes back bare.
+          maxHiddenBytes: 0,
+          maxConcurrentLoads: 16,
+          maxConcurrentLayerLoads: 16,
+          // Ground stays selected all the way round the camera, coarser out of view.
+          peripheralDegrees: 20,
+          surroundDetail: 0.1,
+          // The flight below steps 250 m every few milliseconds: no detail limits for speed,
+          // which would depend on how long each step happened to take.
+          lookAhead: false,
+          layers: [
+            { id: 'water', category: 'hydrology', createTile: () => new THREE.Group() },
+            {
+              id: 'human',
+              category: 'human-feature',
+              // A town's buildings on the finest tiles, next to nothing on coarser ones.
+              createTile: ({ address }) =>
+                new THREE.Mesh(
+                  new THREE.BufferGeometry().setAttribute(
+                    'position',
+                    new THREE.BufferAttribute(
+                      new Float32Array(address.level === d.maxLevel ? 30_000 : 30),
+                      3,
+                    ),
+                  ),
+                  material,
+                ),
+            },
+          ],
+        },
+      );
+    type Stream = ReturnType<typeof make>;
+    const size = terrainPyramidTileSize(d, d.maxLevel);
+    /** The finest tiles whose buildings are drawn, by how far behind `x` their centers are. */
+    const detail = (stream: Stream, x: number): Map<string, number> => {
+      const result = new Map<string, number>();
+      stream.object.traverseVisible((object) => {
+        const match = /^layer:human:(\d+)\/(\d+)\/(\d+)$/.exec(object.name);
+        if (match === null || Number(match[1]) !== d.maxLevel) return;
+        result.set(object.name, x - (Number(match[2]) + 0.5) * size);
+      });
+      return result;
+    };
+    const fly = async (stream: Stream, check?: (x: number) => void): Promise<void> => {
+      for (let x = 1_000; x <= 6_000; x += 250) {
+        stream.update(at(x));
+        await stream.whenIdle();
+        check?.(x);
+      }
+      // One more pass, for what the last arrivals added.
+      stream.update(at(6_000));
+      await stream.whenIdle();
+    };
+    const unlimited = 2 ** 40;
+    const free = make(1_000, unlimited);
+    const fresh = make(6_000, unlimited);
+    let bounded: Stream | undefined;
+    try {
+      await fly(free);
+      await fresh.whenIdle();
+      const arrived = fresh.pressure().displayedBytes;
+      const flown = free.pressure().displayedBytes;
+      const trail = flown - arrived;
+      // Flying there keeps the towns behind on show: half as much again as arriving does.
+      expect(trail).toBeGreaterThan(arrived * 0.5);
+      const behind = (stream: Stream): Map<string, number> =>
+        new Map([...detail(stream, 6_000)].filter(([, distance]) => distance > size));
+      const ahead = (stream: Stream): string[] =>
+        [...detail(stream, 6_000)].filter(([, distance]) => distance < 0).map(([name]) => name);
+      const kept = behind(free);
+      expect(kept.size).toBeGreaterThan(8);
+
+      // A budget that the view itself fits well inside, and the whole trail does not.
+      const cap = Math.round((arrived + trail * 0.3) / 0.7);
+      expect(flown).toBeGreaterThan(cap * 0.85);
+      bounded = make(1_000, cap);
+      const within = bounded;
+      await fly(within, () => {
+        expect(within.pressure().displayedBytes).toBeLessThanOrEqual(cap);
+      });
+      expect(within.pressure().displayedBytes).toBeLessThanOrEqual(cap * 0.85);
+      // What the camera looks at is untouched.
+      expect(ahead(within).sort()).toEqual(ahead(free).sort());
+      // Behind it the nearest towns are still drawn, and the farthest are gone. (Two flights
+      // do not build the same tiles in the same order, so the two trails are compared by how
+      // far back they reach, not tile for tile.)
+      const left = behind(within);
+      const mean = (values: Iterable<number>): number => {
+        const list = [...values];
+        return list.reduce((sum, value) => sum + value, 0) / list.length;
+      };
+      expect(left.size).toBeGreaterThan(0);
+      expect(left.size).toBeLessThan(kept.size);
+      expect(Math.max(...left.values())).toBeLessThan(Math.max(...kept.values()));
+      expect(mean(left.values())).toBeLessThan(mean(kept.values()));
+      expect(Math.min(...left.values())).toBeLessThanOrEqual(Math.min(...kept.values()) + size);
+      // And the ground itself is whole all the way back.
+      const shown = within.displayedTiles();
+      for (let x = 3_100; x <= 6_000; x += 97) {
+        const covering = shown.filter((address) => {
+          const [left0, top] = terrainPyramidTileOrigin(d, address);
+          const span = terrainPyramidTileSize(d, address.level);
+          return x >= left0 && x < left0 + span && 4_096 >= top && 4_096 < top + span;
+        });
+        expect(covering, `ground at ${x}`).toHaveLength(1);
+      }
+    } finally {
+      free.dispose();
+      fresh.dispose();
+      bounded?.dispose();
+      material.dispose();
+    }
+  }, 60_000);
 
   it('keeps on-screen detail when a new leaf has only a distant ancestor left in the cache', async () => {
     // A small resident cap evicts the intermediate levels. Panning then selects leaves whose only

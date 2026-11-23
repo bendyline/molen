@@ -12,6 +12,7 @@ import { createInThreadWorldgenGenerator } from '../src/client/generators';
 import {
   createWorldgenWorkerBridge,
   createWorldgenWorkerPool,
+  POOL_FOOTPRINTS_IN_FLIGHT,
   type WorkerLike,
 } from '../src/client/worker-bridge';
 import { ECOLOGY_ATLAS_EXAMPLE } from '../src/kernel/ecology-atlas-schema';
@@ -373,6 +374,67 @@ describe('worldgen worker protocol', () => {
       undefined,
       undefined,
     ]);
+    pool.dispose();
+  });
+
+  it('bounds the footprints a pool has in flight, and runs a tile past the bound alone', async () => {
+    // Three recording workers: a tile settles when the test answers it.
+    const posted: Array<{ id: number; geom: { x: number }; worker: number }> = [];
+    const answers: Array<((event: { data: unknown }) => void) | undefined> = [];
+    const workers: WorkerLike[] = [0, 1, 2].map((index) => ({
+      postMessage: (message) => {
+        const generate = message as { kind: string; id: number; geom: { x: number } };
+        if (generate.kind === 'generate') posted.push({ ...generate, worker: index });
+      },
+      addEventListener: (_type, listener) => {
+        answers[index] = listener;
+      },
+    }));
+    const finish = async (x: number): Promise<void> => {
+      const message = posted.find((entry) => entry.geom.x === x);
+      if (message === undefined) throw new Error(`tile ${x} was never posted`);
+      answers[message.worker]?.({ data: { kind: 'result', id: message.id, cancelled: true } });
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    };
+    const crowded = (footprints: number): TerrainSemanticTile => {
+      const base = tile();
+      const one = base.buildings[0] as TerrainSemanticTile['buildings'][number];
+      return { ...base, buildings: Array.from({ length: footprints }, () => one) };
+    };
+    const pool = createWorldgenWorkerPool(workers, { pack, atlas, metersPerUnit: 1 });
+    const sizes = [
+      POOL_FOOTPRINTS_IN_FLIGHT / 2,
+      POOL_FOOTPRINTS_IN_FLIGHT / 2,
+      10,
+      POOL_FOOTPRINTS_IN_FLIGHT * 2,
+      10,
+    ];
+    const tiles = sizes.map((footprints, x) =>
+      pool.generate(
+        {
+          tile: crowded(footprints),
+          geom: { ...geom, x },
+          ground,
+          resolution: 9,
+          priority: () => x,
+        },
+        new AbortController().signal,
+      ),
+    );
+    const at = (): number[] => posted.map((message) => message.geom.x);
+    // Two halves fill the bound: the third tile is ten footprints, and still waits its turn.
+    expect(at()).toEqual([0, 1]);
+    await finish(0);
+    expect(at()).toEqual([0, 1, 2]);
+    // The oversized tile is next in urgency: nothing passes it, and it starts only alone.
+    await finish(1);
+    expect(at()).toEqual([0, 1, 2]);
+    await finish(2);
+    expect(at()).toEqual([0, 1, 2, 3]);
+    await finish(3);
+    expect(at()).toEqual([0, 1, 2, 3, 4]);
+    await finish(4);
+    expect(await Promise.all(tiles)).toHaveLength(5);
     pool.dispose();
   });
 

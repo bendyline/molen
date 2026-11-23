@@ -8,7 +8,7 @@ export const anpingTreeHouseModel = 'anping_tree_house';
 const architect = 'https://alive.businessweekly.com.tw/Article/ARTL000037827';
 const city = 'https://www.twtainan.net/zh-tw/attractions/detail/806/';
 const osm = 'https://www.openstreetmap.org/way/498039297';
-const sha256 = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const sha256 = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 export function inspectAnpingTreeHouseFacts({ dir, proof, controls, frame, inventory }) {
   const fail = (reason) => ({ status: 'needs-review', reason });

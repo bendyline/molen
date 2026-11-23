@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export const victoriaLawCourtsCase = 'former-victoria-law-courts-bastion-square-heritage';
 export const victoriaLawCourtsModel = 'former_victoria_law_courts';
 
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function readRecord(dir, evidence, path) {
   if (evidence?.path !== path) throw Error('Unexpected courthouse evidence path');

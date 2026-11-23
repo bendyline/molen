@@ -8,6 +8,7 @@ import type {
 import { roadWidth } from '@bendyline/molen-terrain/kernel';
 import type * as THREE from 'three';
 import type { SemanticTileObserver } from './ambient-tiles';
+import { isFineTile } from './fine-tiles';
 
 type Point = [number, number];
 interface Tile {
@@ -18,6 +19,8 @@ interface Tile {
    */
   tile: Pick<TerrainSemanticTile, 'water' | 'landcover' | 'transportation' | 'pois'>;
   context: TerrainPyramidTileLayerContext;
+  /** Fine enough to choose the surface underfoot (fine-tiles.ts). */
+  fine: boolean;
 }
 export interface EarthAudioTerrainSample {
   /** Meters to a mapped ocean shore; Infinity when unknown or out of range. */
@@ -146,14 +149,18 @@ function surfaceOf(value: string): string | undefined {
   )[value];
 }
 
-/** The coarsest tile (m) whose land cover and roads choose the surface underfoot. */
+/**
+ * The coarsest tile (m) whose land cover and roads choose the surface underfoot, unless it is among
+ * the package's finest tiles (fine-tiles.ts).
+ */
 const FINE_TILE_SIZE = 2048;
 
 export class EarthAudioTerrain {
   private readonly tiles = new Map<THREE.Object3D, Tile>();
   readonly observer: SemanticTileObserver = {
     added: (object, tile, context) => {
-      const coarse = context.tileSize > FINE_TILE_SIZE;
+      const fine = isFineTile(context, FINE_TILE_SIZE);
+      const coarse = !fine;
       this.tiles.set(object, {
         object,
         tile: {
@@ -165,6 +172,7 @@ export class EarthAudioTerrain {
             : (tile.pois ?? []).filter((p) => (p.subclass ?? p.class) === 'traffic_signals'),
         },
         context,
+        fine,
       });
     },
     removed: (object) => {
@@ -184,6 +192,7 @@ export class EarthAudioTerrain {
     for (const {
       object,
       tile,
+      fine,
       context: { origin, tileSize },
     } of this.tiles.values()) {
       let visible = object.parent !== null;
@@ -231,7 +240,7 @@ export class EarthAudioTerrain {
         }
       }
       // Fine geometry is needed to choose the surface under a foot.
-      if (tileSize > FINE_TILE_SIZE) continue;
+      if (!fine) continue;
       for (const poi of tile.pois ?? []) {
         // A tunnel/overpass signal must not become a crossing on the street below.
         if (poi.tunnel || poi.bridge || (poi.layer ?? 0) !== 0) continue;

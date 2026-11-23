@@ -6,7 +6,7 @@ export const copticMuseumCase = 'coptic-museum-mapped-wings-and-archival-archite
 export const copticMuseumModel = 'coptic_museum';
 
 const wingIds = [197960955, 1244954042, 1244954045, 1244954043, 1244954044];
-const hash = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 function boundDocument(dir, binding, expectedPath) {
   if (binding?.path !== expectedPath) throw Error('Unexpected Coptic Museum source path');

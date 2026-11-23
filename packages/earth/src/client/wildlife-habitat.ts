@@ -10,6 +10,7 @@ import {
 import { renderedGroundSampler } from '@bendyline/molen-terrain/kernel';
 import type * as THREE from 'three';
 import type { SemanticTileObserver } from './ambient-tiles';
+import { isFineTile } from './fine-tiles';
 
 type Point = [number, number];
 /** Habitat kinds by code (see Tile.kinds), added to as tiles name new ones. */
@@ -258,8 +259,9 @@ export class WildlifeHabitatTiles {
     const target = channel === 'landcover' ? this.cover : this.features;
     return {
       added: (object, tile, context) => {
-        // Far/coarse tiles cannot locate roads and habitat closely enough to spawn small animals.
-        if (context.tileSize > 2048) return;
+        // Far/coarse tiles cannot locate roads and habitat closely enough to spawn small animals;
+        // a package's finest tiles serve whatever their size (fine-tiles.ts).
+        if (!isFineTile(context, 2048)) return;
         target.set(object, { object, tile, context });
       },
       removed: (object) => {

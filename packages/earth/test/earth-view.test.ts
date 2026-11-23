@@ -105,6 +105,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
 });
 
 const { earthOrbitMaxRange, mountEarthView } = await import('../src/client/earth-view');
+const { earthPerformanceTier, earthQualityLevel } = await import('../src/client/performance');
 
 // A real collection, to show what a handle still reaches: --expose-gc set at run time.
 setFlagsFromString('--expose-gc');
@@ -338,6 +339,77 @@ describe('mountEarthView', () => {
     view.dispose();
     await collectGarbage();
     expect(meshes.filter((mesh) => mesh.deref() !== undefined)).toHaveLength(0);
+  });
+
+  it('changes quality on the live view, keeping the viewer and what has streamed', async () => {
+    const { view, errors } = await mount();
+    await pump(20);
+    await settle(view);
+    expect(view.quality).toBe('auto');
+    const autoLevel = view.stats().qualityLevel;
+    expect(view.setMode('walk')).toBe(true);
+    await pump(30);
+    const before = view.getCamera();
+    const displayed = view.stats().displayedTiles;
+    expect(displayed).toBeGreaterThan(0);
+
+    view.setQuality('economy');
+    expect(view.quality).toBe('economy');
+    // The level is the preset's at once; its pieces swap a step a frame.
+    expect(view.stats().qualityLevel).toBe(earthQualityLevel('economy'));
+    await pump(10);
+    expect(viewerState.shadowQuality).toBe(
+      earthPerformanceTier(earthQualityLevel('economy')).shadows,
+    );
+    expect(viewerState.cloudQuality).toBe(
+      earthPerformanceTier(earthQualityLevel('economy')).clouds,
+    );
+
+    view.setQuality('high');
+    await pump(10);
+    expect(view.stats().qualityLevel).toBe(earthQualityLevel('high'));
+    expect(viewerState.cloudQuality).toBe(earthPerformanceTier(earthQualityLevel('high')).clouds);
+    // Still walking where the walker was, over ground that never went away.
+    expect(view.mode).toBe('walk');
+    const after = view.getCamera();
+    expect(after.latitude).toBeCloseTo(before.latitude, 7);
+    expect(after.longitude).toBeCloseTo(before.longitude, 7);
+    expect(view.stats().displayedTiles).toBeGreaterThan(0);
+
+    // Back to adaptive: the level a mount starts at, and the controller runs again.
+    view.setQuality('auto');
+    expect(view.quality).toBe('auto');
+    expect(view.stats().qualityLevel).toBe(autoLevel);
+    await pump(10);
+    expect(view.stats().qualityLevel).toBe(autoLevel);
+    expect(errors).toEqual([]);
+    view.dispose();
+    // A disposed view ignores it.
+    view.setQuality('high');
+    expect(view.quality).toBe('auto');
+  });
+
+  it('changes how busy the streets are while running', async () => {
+    const { view } = await mount();
+    expect(view.ambientDensity).toBeCloseTo(0.6, 6);
+    view.setAmbientDensity(1);
+    expect(view.ambientDensity).toBe(1);
+    view.setAmbientDensity(4);
+    expect(view.ambientDensity).toBe(1);
+    view.setAmbientDensity(Number.NaN);
+    expect(view.ambientDensity).toBe(1);
+    view.dispose();
+    const quiet = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+      style: { sky: false },
+      ambient: false,
+    });
+    quiet.setAmbientDensity(1);
+    expect(quiet.ambientDensity).toBe(0);
+    quiet.dispose();
   });
 
   it('keeps the orbit camera within the distance the terrain draws', async () => {

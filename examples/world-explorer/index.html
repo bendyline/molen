@@ -19,6 +19,16 @@
          Collapsing (desktop only, below) folds the panel down to this bar. */
       #hud-titlebar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 10px 0 16px; cursor: pointer; user-select: none; }
       #hud h1 { margin: 0; font: 650 17px/1.2 inherit; letter-spacing: .01em; }
+      /* Frames a second, in the bar so it shows with the panel folded: green from 50, amber from
+         30, red below (frameRateHealth in src/frame-meter.ts). */
+      #fps {
+        margin-left: auto; padding: 3px 8px; border-radius: 6px; background: rgb(255 255 255 / 7%);
+        color: #bde5c8; font: 600 12px/1.4 ui-monospace, monospace; font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      #fps[data-health="fair"] { color: #ffd79d; }
+      #fps[data-health="poor"] { color: #ffb4a6; }
+      #fps:empty { display: none; }
       #hud-collapse { flex: none; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; }
       #hud-collapse svg { transition: transform .15s; }
       #hud[data-collapsed] #hud-collapse svg { transform: rotate(-90deg); }
@@ -84,9 +94,16 @@
       .weather-options input, .weather-options select { box-sizing: border-box; width: 100%; min-width: 0; color: #deedf6; background: #243746; border: 1px solid #526674; border-radius: 4px; padding: 4px; }
       .weather-options input[type="range"] { padding: 0; accent-color: #bde5c8; }
       #status, #performance-status { margin: 11px 0 0; color: #d7e8f3; font: 11px/1.5 ui-monospace, monospace; white-space: pre-wrap; }
-      body[data-navigation="walk"] #status, body[data-navigation="walk"] #performance-status { display: none; }
+      #performance-status { margin-top: 6px; }
+      /* The streaming readout steps aside on foot and in a vehicle; the frame rate stays. */
+      body[data-navigation="walk"] #status { display: none; }
       details { margin-top: 8px; color: #9fb8c7; font-size: 10px; pointer-events: auto; }
       summary { cursor: pointer; }
+      /* The frame graph and figures (src/frame-meter.ts); the section folds and remembers it. */
+      #performance { margin-top: 10px; padding: 8px 0 2px; border-block: 1px solid rgb(255 255 255 / 12%); color: #a9c2d1; font-size: 12px; }
+      #performance > summary { color: #deedf6; font-weight: 600; }
+      #frame-graph { display: block; width: 100%; height: 44px; margin-top: 8px; border-radius: 4px; background: rgb(255 255 255 / 5%); }
+      #frame-graph-caption { margin: 3px 0 0; color: #9fb8c7; font-size: 10px; }
       #attribution-list { margin: 5px 0 0; padding-left: 18px; }
       /* ODbL and the OSMF attribution guidelines want the map credit readable without any
          interaction, so this lives outside #hud and the `hud=0` overlay switch leaves it alone.
@@ -137,6 +154,7 @@
     <aside id="hud">
       <div id="hud-titlebar">
         <h1>World explorer</h1>
+        <output id="fps" aria-label="Frame rate" title="Frames a second, and the rate of the slowest 1% of frames"></output>
         <button id="hud-collapse" type="button" aria-controls="hud-body" aria-expanded="true" aria-label="Collapse controls" title="Collapse controls">
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </button>
@@ -145,6 +163,12 @@
       <a href="road-signs.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Road sign library ↗</a>
       <a href="sky.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Sky observatory ↗</a>
       <a href="structures.html" style="display:inline-block;margin:6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Explore 120 structures ↗</a>
+      <details id="performance" open>
+        <summary>Performance</summary>
+        <canvas id="frame-graph" width="398" height="44" role="img" aria-label="Recent frame times"></canvas>
+        <p id="frame-graph-caption">Each bar is a frame, newest at the right · lines at 16.7 and 33.3 ms</p>
+        <pre id="performance-status"></pre>
+      </details>
       <p id="source">Starting terrain…</p>
       <label for="region" style="display:block;margin:10px 0;pointer-events:auto">Region
         <select id="region" style="display:block;width:100%;margin-top:6px"></select>
@@ -282,7 +306,6 @@
         <button type="button" data-train="ride" title="Ride a commuter train on the nearest railway">Ride commuter</button>
       </fieldset>
       <pre id="status"></pre>
-      <pre id="performance-status"></pre>
       <details>
         <summary>Data attribution</summary>
         <ul id="attribution-list"></ul>

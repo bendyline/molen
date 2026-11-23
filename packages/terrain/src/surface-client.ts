@@ -70,6 +70,7 @@ import {
   appendTerrainSignalLenses,
   type TerrainSignalHead,
   type TerrainTrafficSignalResolver,
+  terrainSignalLensesShown,
   updateTerrainSurfaceSignals,
 } from './surface-signals';
 import {
@@ -2216,8 +2217,15 @@ export interface TerrainSurfaceRenderer {
   updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
   /** Fade streetlamp emission and pavement pools, 0 (day) to 1 (night). */
   setNightFactor(factor: number): void;
-  /** Visit lamps on attached, visible tiles; positions are local to each source object. */
-  visitStreetLights(visit: (light: TerrainStreetLight, source: THREE.Object3D) => void): void;
+  /**
+   * Visit lamps on attached, visible tiles; positions are local to each source object. `wanted`,
+   * when given, is asked once for each tile's lamps and may refuse them all: a city view holds
+   * thousands of lamps, nearly all of them on tiles too far away to matter to the caller.
+   */
+  visitStreetLights(
+    visit: (light: TerrainStreetLight, source: THREE.Object3D) => void,
+    wanted?: (lights: readonly TerrainStreetLight[], source: THREE.Object3D) => boolean,
+  ): void;
   /**
    * Hide each tile's small street detail (signs, fixtures, signal lenses, lane markings, parked
    * cars) when the tile lies farther from `position` (the scene camera's world position) than
@@ -2253,6 +2261,8 @@ const PARKED_CAR_DISTANCE = 1500;
  * the ground too (`userData.detailAboveGround`): from a plane, a tile under it is not near. */
 const RAIL_DISTANCE = 260;
 const WIRE_DISTANCE = 200;
+/** Signal time, seconds, between advances of the tiles' signal lenses (see updateSignals). */
+const SIGNAL_STEP = 0.1;
 
 /**
  * Give a surface tile's small detail its draw distance (`userData.detailDistance`), and keep its
@@ -2318,6 +2328,8 @@ export function createTerrainSurfaceRenderer(
   let geometryRevision = 0;
   let disposed = false;
   let signalTime = 0;
+  /** The signal time the tiles were last advanced to (see updateSignals). */
+  let signalsAdvancedAt = Number.NEGATIVE_INFINITY;
   let nightFactor = 0;
   let signalResolver: TerrainTrafficSignalResolver | undefined;
   let detailRevision = -1;
@@ -2453,16 +2465,18 @@ export function createTerrainSurfaceRenderer(
         if (object) updateTerrainStreetLights(object, nightFactor);
       }
     },
-    visitStreetLights(visit) {
+    visitStreetLights(visit, wanted) {
       for (const root of tiles.keys()) {
         const source = root.children[0];
         if (!source || !root.parent) continue;
+        const lights = source.userData.streetLights as TerrainStreetLight[] | undefined;
+        if (lights === undefined || lights.length === 0) continue;
         let visible = true;
-        for (let parent: THREE.Object3D | null = source; parent; parent = parent.parent)
-          if (!parent.visible) visible = false;
+        for (let parent: THREE.Object3D | null = source; parent && visible; parent = parent.parent)
+          visible = parent.visible;
         if (!visible) continue;
-        for (const light of (source.userData.streetLights ?? []) as TerrainStreetLight[])
-          visit(light, source);
+        if (wanted !== undefined && !wanted(lights, source)) continue;
+        for (const light of lights) visit(light, source);
       }
     },
     updateDetail(position) {
@@ -2510,9 +2524,17 @@ export function createTerrainSurfaceRenderer(
       if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');
       signalTime = elapsedSeconds;
       signalResolver = resolve;
+      // A lens changes every few seconds, and a host calls this every frame: the tiles are
+      // visited once the time has moved SIGNAL_STEP (either way), and only those whose lenses are
+      // drawn. Every frame, a city's tiles (two name lookups each, then every head's phase) were
+      // 17 ms of each second of a flight over Osaka. A tile built in between starts at the
+      // current time (see `rebuild`).
+      if (Math.abs(elapsedSeconds - signalsAdvancedAt) < SIGNAL_STEP) return;
+      signalsAdvancedAt = elapsedSeconds;
       for (const root of tiles.keys()) {
         const object = root.children[0];
-        if (object) updateTerrainSurfaceSignals(object, signalTime, signalResolver);
+        if (object && terrainSignalLensesShown(object))
+          updateTerrainSurfaceSignals(object, signalTime, signalResolver);
       }
     },
     stats() {

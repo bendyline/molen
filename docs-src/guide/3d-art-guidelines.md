@@ -80,7 +80,7 @@ model; scene and tile budgets still control total instances and building vertice
 | Ordinary tree | 300–2,000 triangles | Fewer crown clusters, then a faceted crown/cone |
 | Small static building | 1,000–8,000 triangles | Remove furniture and small facade details |
 | Procedural building | Budgeted per outline | Keep measured envelope, main roof and identity where feasible |
-| Human figure | About 7,500 triangles (styled at most 8,500), one vertex-color material | About 2,200 medium tier; 1,100–1,200 rigid distant tier |
+| Human figure | About 7,500 triangles (styled at most 9,000; 9,700 with every accessory), one vertex-color material | About 2,200 medium tier (3,000 with accessories); 1,100–1,300 rigid distant tier |
 | Animal figure | About 4,100–6,500 triangles, one vertex-color material | About 2,100–2,900 medium; 1,100–1,500 rigid distant tier |
 
 Higher budgets need a visible reason and a distance fallback. Repeated street furniture and signs

@@ -213,7 +213,8 @@ semantic level receive sites; coarse representations retain the cheap exterior p
 A site comes with a building's full detail, and a crowded tile cannot detail every building: a
 dense Seattle tile holds 1,091 buildings and a WebGL host's vertex budget details 75 of them.
 From the air those are the largest. Once the position passed to `updateInteriors` is down among
-the buildings and moving at a walk, the tiles within 90 m of it are regenerated with their
+the buildings (within 25 m of the ground, or among the interiors already registered) and moving
+at a walk, the tiles within 90 m of it are regenerated with their
 buildings queued nearest first, and again each 36 m it moves, so the houses round a walker
 (148 of them in that tile, out to 140 m) are the ones with doors. Nothing is regenerated while the
 viewer is inside a building or travelling faster than 10 m/s, and the tile on screen stays

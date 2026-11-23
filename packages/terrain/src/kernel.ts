@@ -20,13 +20,26 @@ export {
 } from './archive-set';
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
 export {
+  blurTerrainBuildingCoverage,
   sampleTerrainBuildingCoverage,
+  TERRAIN_BUILDING_COVERAGE_SIZE,
   TERRAIN_URBAN_GROUND_CLASSES,
   TERRAIN_URBAN_GROUND_COVERAGE,
   type TerrainBuildingCoverage,
   terrainBuildingCoverage,
   terrainUrbanGroundPaved,
 } from './building-coverage';
+export {
+  decodeBuiltUpGrid,
+  emptyTerrainBuiltUpCoverage,
+  sampleTerrainBuiltUp,
+  type TerrainBuiltUpCoverage,
+  type TerrainBuiltUpGrid,
+  type TerrainBuiltUpSource,
+  terrainBuiltUpCoverage,
+  terrainBuiltUpCovers,
+  withTerrainBuiltUp,
+} from './built-up-grid';
 export type {
   TerrainDescriptor,
   TerrainLayer,
@@ -188,6 +201,10 @@ export {
   type TerrainSemanticTileLoader,
 } from './semantic-overzoom';
 export {
+  createRoadDetailTerrainSemanticSource,
+  type TerrainRoadDetailOptions,
+} from './semantic-road-detail';
+export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
   type TerrainAgricultureObservation,
@@ -195,6 +212,7 @@ export {
   type TerrainBuildingFeature,
   type TerrainCultivation,
   type TerrainLandcoverFeature,
+  type TerrainPlaceFeature,
   type TerrainPoiFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,

@@ -9,6 +9,8 @@
 
 import {
   applyPose,
+  createFigureMaterial,
+  descriptorKey,
   evaluatePose,
   type FigureData,
   FigureGeometryCache,
@@ -59,8 +61,21 @@ function posed(walker: WalkerView): boolean {
   return walker.mode === 'sit' || (walker.anchor !== undefined && walker.anchor !== 'origin');
 }
 
+/** A body still on screen while the one replacing it builds its shaders. */
+interface Outgoing {
+  key: string;
+  mesh: FigureMesh;
+  /** The walker's figure changed: dispose the old body instead of pooling it. */
+  retired: boolean;
+}
+
 interface Active {
+  /** The figure object this body was built from (identity is the change signal). */
+  figure: FigureData;
   descriptor: ResolvedFigureDescriptor;
+  /** `descriptorKey` of the descriptor: an equal figure under a new object keeps its body. */
+  body: string;
+  outgoing: Outgoing | undefined;
   rig: FigureRig;
   seed: number;
   tier: FigureTier;
@@ -103,11 +118,7 @@ const MAX_SWITCHES_PER_FRAME = 2;
 export class AmbientFigures {
   readonly group: THREE.Group = new THREE.Group();
   private readonly cache = new FigureGeometryCache();
-  private readonly material = new THREE.MeshStandardMaterial({
-    vertexColors: true,
-    roughness: 0.75,
-    metalness: 0,
-  });
+  private readonly material = createFigureMaterial();
   private readonly active = new Map<string, Active>();
   private readonly pool = new Map<string, FigureMesh[]>();
   private readonly descriptors = new WeakMap<FigureData, ResolvedFigureDescriptor>();
@@ -178,6 +189,31 @@ export class AmbientFigures {
 
   private pooled = 0;
 
+  /** Figures that failed to resolve: skipped without trying again every frame. */
+  private readonly unresolvable = new WeakSet<FigureData>();
+
+  private resolve(figure: FigureData): ResolvedFigureDescriptor | undefined {
+    let descriptor = this.descriptors.get(figure);
+    if (descriptor !== undefined || this.unresolvable.has(figure)) return descriptor;
+    try {
+      descriptor = resolveFigureDescriptor(figure);
+    } catch {
+      this.unresolvable.add(figure);
+      return undefined;
+    }
+    this.descriptors.set(figure, descriptor);
+    return descriptor;
+  }
+
+  /** Let go of a body: a retired one (its walker changed look) is disposed, not pooled. */
+  private dropOutgoing(outgoing: Outgoing | undefined): void {
+    if (outgoing === undefined) return;
+    if (outgoing.retired) {
+      outgoing.mesh.dispose();
+      this.cache.release(outgoing.key);
+    } else this.releaseMesh(outgoing.key, outgoing.mesh);
+  }
+
   private releaseMesh(key: string, mesh: FigureMesh): void {
     mesh.root.visible = false;
     const list = this.pool.get(key) ?? [];
@@ -219,29 +255,43 @@ export class AmbientFigures {
       if (tier === 2 && posed(w)) tier = undefined;
       if (tier === undefined) {
         if (entry !== undefined) {
+          this.dropOutgoing(entry.outgoing);
           this.releaseMesh(entry.key, entry.mesh);
           this.active.delete(w.id);
         }
         continue;
       }
       let current = entry;
+      // A host gave the walker a new figure object (a character's look changed). The same body
+      // under a new object keeps its mesh; a different body is rebuilt like a tier change.
+      let refigured = false;
+      if (current !== undefined && current.figure !== w.figure) {
+        const next = this.resolve(w.figure);
+        if (next !== undefined && descriptorKey(next) !== current.body) refigured = true;
+        else if (next !== undefined) current.figure = w.figure;
+      }
       // A few new bodies a frame, nearest first: a larger budget (a quality step) or a crowd
       // coming into range built every body in one frame. The rest keep what they show, or wait.
-      if ((current === undefined || current.tier !== tier) && switches < MAX_SWITCHES_PER_FRAME) {
+      if (
+        (current === undefined || current.tier !== tier || refigured) &&
+        switches < MAX_SWITCHES_PER_FRAME
+      ) {
+        const descriptor = this.resolve(w.figure);
+        if (descriptor === undefined) continue;
         switches++;
-        let descriptor = this.descriptors.get(w.figure);
-        if (descriptor === undefined) {
-          try {
-            descriptor = resolveFigureDescriptor(w.figure);
-          } catch {
-            continue;
-          }
-          this.descriptors.set(w.figure, descriptor);
+        // The body on screen stays until its replacement's shaders are built, so a change of
+        // look or detail never blinks the walker out for a frame.
+        let outgoing: Outgoing | undefined;
+        if (current !== undefined) {
+          this.dropOutgoing(current.outgoing);
+          outgoing = { key: current.key, mesh: current.mesh, retired: refigured };
         }
-        if (current !== undefined) this.releaseMesh(current.key, current.mesh);
         const { key, mesh } = this.acquire(descriptor, tier);
         current = {
+          figure: w.figure,
           descriptor,
+          body: descriptorKey(descriptor),
+          outgoing,
           rig: this.cache.rigFor(descriptor),
           seed: figureSeed(descriptor.seed, w.id),
           tier,
@@ -263,10 +313,20 @@ export class AmbientFigures {
       current.last = [w.pos[0], w.pos[2]];
       current.mesh.root.position.set(w.pos[0], w.pos[1], w.pos[2]);
       current.mesh.root.quaternion.set(w.rot[0], w.rot[1], w.rot[2], w.rot[3]);
+      if (current.outgoing !== undefined) {
+        if (this.preparing.has(current.mesh)) {
+          current.outgoing.mesh.root.position.set(w.pos[0], w.pos[1], w.pos[2]);
+          current.outgoing.mesh.root.quaternion.set(w.rot[0], w.rot[1], w.rot[2], w.rot[3]);
+        } else {
+          this.dropOutgoing(current.outgoing);
+          current.outgoing = undefined;
+        }
+      }
     }
     // Walkers that left the world entirely.
     for (const [id, entry] of this.active)
       if (entry.seen !== this.frame) {
+        this.dropOutgoing(entry.outgoing);
         this.releaseMesh(entry.key, entry.mesh);
         this.active.delete(id);
       }
@@ -341,7 +401,10 @@ export class AmbientFigures {
   }
 
   dispose(): void {
-    for (const entry of this.active.values()) entry.mesh.dispose();
+    for (const entry of this.active.values()) {
+      entry.mesh.dispose();
+      entry.outgoing?.mesh.dispose();
+    }
     for (const list of this.pool.values()) for (const mesh of list) mesh.dispose();
     this.active.clear();
     this.pool.clear();

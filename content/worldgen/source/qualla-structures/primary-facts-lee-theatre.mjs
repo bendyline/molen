@@ -8,7 +8,7 @@ export const leeTheatreModel = 'lee_theatre';
 const archive = 'https://data.gov.hk/en-data/dataset/hk-landsd-openmap-old-survey-sheets';
 const owner = 'https://www.hysan.com.hk/about/history/';
 const heritage = 'https://www.amo.gov.hk/filemanager/amo/common/form/YMTT_RBB_HIA-Report.pdf';
-const digest = (bytes) => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+const digest = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 export function inspectLeeTheatreFacts({ dir, proof, controls, frame, inventory }) {
   const fail = (reason) => ({ status: 'needs-review', reason });

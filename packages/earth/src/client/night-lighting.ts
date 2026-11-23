@@ -2,7 +2,7 @@
 import type { AmbientAgentData } from '@bendyline/molen-ambient/kernel';
 import { Vehicle, VehicleInput, VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
-import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
+import type { TerrainStreetLight, TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 
 const Agent = componentHandle('ambientAgent');
@@ -13,6 +13,26 @@ const MAX_BEAM_CARS = 4;
  * so headlights the driver turns on at dusk or by day still visibly light the road ahead.
  */
 const SWITCHED_BEAM_FLOOR = 0.35;
+/** Street lamps farther than this from the camera and from where it looks are left dark, m. */
+const STREET_LIGHT_REACH = 600;
+/** A lamp lit at the last choice counts as this much nearer at the next. */
+const STREET_LIGHT_HOLD = 0.85;
+/**
+ * The lamps to light are chosen again after this long, ms (scenery streams in and out), or as
+ * soon as the camera or the point it looks at has moved STREET_LIGHT_MOVE meters: four times a
+ * second for a view held still, and no later than 8 m on for one that travels or turns. Chosen
+ * every frame, the walk over a city's lamps took 50 ms of each second of a night flight over
+ * Osaka (12,900 lamps on show, a key string made for each).
+ */
+const STREET_LIGHT_MS = 250;
+const STREET_LIGHT_MOVE = 8;
+
+interface LampSlot {
+  key: string;
+  distance: number;
+  /** In the root's frame. */
+  position: THREE.Vector3;
+}
 
 export interface EarthNightLightingOptions {
   /** Parent in absolute simulation coordinates, normally the terrain stream object. */
@@ -71,6 +91,22 @@ export class EarthNightLighting {
   private readonly tailTint = new THREE.Color();
   private readonly sourceMatrix = new THREE.Matrix4();
   private streetKeys: string[] = [];
+  /** Street lights lit by the last choice, the first of `streets`. */
+  private streetCount = 0;
+  private streetsChosenAt = Number.NEGATIVE_INFINITY;
+  /** Camera x, z and focus x, z of the last choice. */
+  private streetsChosenFrom: [number, number, number, number] = [
+    Number.POSITIVE_INFINITY,
+    0,
+    Number.POSITIVE_INFINITY,
+    0,
+  ];
+  private readonly lampSlots: LampSlot[] = [];
+  /** Where each tile's lamps are, in the tile's own frame: worked out once per tile. */
+  private readonly lampBounds = new WeakMap<
+    readonly TerrainStreetLight[],
+    { center: THREE.Vector3; radius: number }
+  >();
 
   constructor(private readonly options: EarthNightLightingOptions) {
     this.object.name = 'earth:night-lighting';
@@ -81,6 +117,7 @@ export class EarthNightLighting {
       light.name = 'earth:street-light';
       this.streets.push(light);
       this.object.add(light);
+      this.lampSlots.push({ key: '', distance: 0, position: new THREE.Vector3() });
     }
     for (let i = 0; i < MAX_BEAM_CARS * 2; i++) {
       const light = new THREE.SpotLight('#fff1dc', 0, 55, Math.PI / 3, 1, 2);
@@ -105,8 +142,15 @@ export class EarthNightLighting {
     if (this.disposed) return;
     if (!Number.isFinite(frame.factor)) throw new Error('Night factor must be finite');
     const night = Math.max(0, Math.min(1, frame.factor));
-    for (const light of [...this.streets, ...this.beams]) light.intensity = 0;
+    for (const light of this.streets) light.intensity = 0;
+    for (const light of this.beams) light.intensity = 0;
     this.front.count = this.rear.count = 0;
+    // By day the street lamps stay dark, and the next dusk chooses its lamps afresh.
+    if (night === 0) {
+      this.streetCount = 0;
+      this.streetKeys = [];
+      this.streetsChosenAt = Number.NEGATIVE_INFINITY;
+    }
     // A driven vehicle with a headlight switch lights its beams whenever the switch is on, by
     // day too; everything else waits for dusk.
     const switched =
@@ -128,45 +172,23 @@ export class EarthNightLighting {
     const focusZ = camera[2] + direction[2] * reach;
     const distance = (x: number, z: number): number =>
       Math.min(Math.hypot(x - camera[0], z - camera[2]), Math.hypot(x - focusX, z - focusZ) * 1.2);
-    this.options.root.updateWorldMatrix(true, false);
-    this.toRoot.copy(this.options.root.matrixWorld).invert();
-    const lamps: { key: string; position: THREE.Vector3; distance: number }[] = [];
-    const previous = new Set(this.streetKeys);
-    let lastSource: THREE.Object3D | undefined;
-    // By day (a driven vehicle's headlights on) the street lamps stay dark: skip the walk.
-    const surface = this.options.surface;
-    const visit = (
-      walk: (
-        lamp: Parameters<Parameters<typeof surface.visitStreetLights>[0]>[0],
-        source: THREE.Object3D,
-      ) => void,
-    ): void => {
-      if (night > 0) surface.visitStreetLights(walk);
-    };
-    visit((lamp, source) => {
-      if (source !== lastSource) {
-        source.updateWorldMatrix(true, false);
-        this.sourceMatrix.multiplyMatrices(this.toRoot, source.matrixWorld);
-        lastSource = source;
+    // By day (a driven vehicle's headlights on) the walk over the lamps is skipped.
+    if (night > 0) {
+      const now = performance.now();
+      if (
+        now - this.streetsChosenAt >= STREET_LIGHT_MS ||
+        Math.hypot(camera[0] - this.streetsChosenFrom[0], camera[2] - this.streetsChosenFrom[1]) >
+          STREET_LIGHT_MOVE ||
+        Math.hypot(focusX - this.streetsChosenFrom[2], focusZ - this.streetsChosenFrom[3]) >
+          STREET_LIGHT_MOVE
+      ) {
+        this.streetsChosenAt = now;
+        this.streetsChosenFrom = [camera[0], camera[2], focusX, focusZ];
+        this.chooseStreetLights(distance);
       }
-      this.point.set(lamp.x, lamp.y - 0.2, lamp.z).applyMatrix4(this.sourceMatrix);
-      const d = distance(this.point.x, this.point.z);
-      const key = `${source.uuid}:${lamp.x},${lamp.z}`;
-      if (d < 600)
-        lamps.push({
-          key,
-          position: this.point.clone(),
-          distance: d * (previous.has(key) ? 0.85 : 1),
-        });
-    });
-    lamps.sort((a, b) => a.distance - b.distance);
-    this.streetKeys = lamps.slice(0, this.streets.length).map((lamp) => lamp.key);
-    for (const [i, light] of this.streets.entries()) {
-      const lamp = lamps[i];
-      if (!lamp) break;
-      light.position.copy(lamp.position);
-      light.intensity = 180 * night;
     }
+    for (let i = 0; i < this.streetCount; i++)
+      (this.streets[i] as THREE.PointLight).intensity = 180 * night;
 
     const cars: Car[] = [];
     const { world } = this.options;
@@ -287,6 +309,92 @@ export class EarthNightLighting {
     return position !== undefined
       ? position > 0.5
       : world.get(id, VehicleInput)?.actuators?.headlights === true;
+  }
+
+  /**
+   * Put the street lights on the lamps nearest the camera and where it looks. A city view holds
+   * over ten thousand lamps: tiles none of whose lamps can be near are passed over whole, and a
+   * lamp's key is made only once it is near enough to be chosen.
+   */
+  private chooseStreetLights(distance: (x: number, z: number) => number): void {
+    const root = this.options.root;
+    root.updateWorldMatrix(true, false);
+    this.toRoot.copy(root.matrixWorld).invert();
+    const previous = new Set(this.streetKeys);
+    const slots = this.lampSlots;
+    const limit = this.streets.length;
+    let count = 0;
+    let lastSource: THREE.Object3D | undefined;
+    const enter = (source: THREE.Object3D): void => {
+      if (source === lastSource) return;
+      source.updateWorldMatrix(true, false);
+      this.sourceMatrix.multiplyMatrices(this.toRoot, source.matrixWorld);
+      lastSource = source;
+    };
+    this.options.surface.visitStreetLights(
+      (lamp, source) => {
+        enter(source);
+        this.point.set(lamp.x, lamp.y - 0.2, lamp.z).applyMatrix4(this.sourceMatrix);
+        const d = distance(this.point.x, this.point.z);
+        if (d >= STREET_LIGHT_REACH) return;
+        // The farthest lamp kept so far, once every light has one.
+        const worst = count === limit ? (slots[limit - 1] as LampSlot).distance : Infinity;
+        if (d * STREET_LIGHT_HOLD >= worst) return;
+        // A lamp lit last time counts as nearer, so two lamps at about the same distance do not
+        // trade a light back and forth.
+        const key = `${source.uuid}:${lamp.x},${lamp.z}`;
+        const effective = previous.has(key) ? d * STREET_LIGHT_HOLD : d;
+        if (effective >= worst) return;
+        let slot: LampSlot;
+        if (count < limit) slot = slots[count++] as LampSlot;
+        else slot = slots[limit - 1] as LampSlot;
+        // Kept in order of distance; lamps equally far stay in the order visited.
+        let index = count - 1;
+        while (index > 0 && (slots[index - 1] as LampSlot).distance > effective) {
+          slots[index] = slots[index - 1] as LampSlot;
+          index--;
+        }
+        slots[index] = slot;
+        slot.key = key;
+        slot.distance = effective;
+        slot.position.copy(this.point);
+      },
+      (lights, source) => {
+        let bounds = this.lampBounds.get(lights);
+        if (bounds === undefined) {
+          let minX = Infinity,
+            minZ = Infinity,
+            maxX = -Infinity,
+            maxZ = -Infinity,
+            y = 0;
+          for (const lamp of lights) {
+            minX = Math.min(minX, lamp.x);
+            maxX = Math.max(maxX, lamp.x);
+            minZ = Math.min(minZ, lamp.z);
+            maxZ = Math.max(maxZ, lamp.z);
+            y += lamp.y / lights.length;
+          }
+          bounds = {
+            center: new THREE.Vector3((minX + maxX) / 2, y, (minZ + maxZ) / 2),
+            radius: Math.hypot(maxX - minX, maxZ - minZ) / 2,
+          };
+          this.lampBounds.set(lights, bounds);
+        }
+        enter(source);
+        this.point.copy(bounds.center).applyMatrix4(this.sourceMatrix);
+        // No lamp is farther than the radius from the middle; `distance` weighs the view's focus
+        // by 1.2, so the radius counts for as much.
+        const reach = bounds.radius * this.sourceMatrix.getMaxScaleOnAxis() * 1.2;
+        return distance(this.point.x, this.point.z) - reach < STREET_LIGHT_REACH;
+      },
+    );
+    this.streetCount = count;
+    this.streetKeys = [];
+    for (let i = 0; i < count; i++) {
+      const slot = slots[i] as LampSlot;
+      this.streetKeys.push(slot.key);
+      (this.streets[i] as THREE.PointLight).position.copy(slot.position);
+    }
   }
 
   private readonly position = new THREE.Vector3();
